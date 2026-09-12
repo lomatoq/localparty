@@ -1,0 +1,335 @@
+{
+  "version": 1,
+  "format": "lossless-webp",
+  "padding": 32,
+  "tileSize": 1254,
+  "atlases": [
+    {
+      "file": "menu-1.webp",
+      "width": 2604,
+      "height": 2604
+    },
+    {
+      "file": "menu-2.webp",
+      "width": 2604,
+      "height": 2604
+    },
+    {
+      "file": "menu-3.webp",
+      "width": 2604,
+      "height": 2604
+    },
+    {
+      "file": "menu-4.webp",
+      "width": 2604,
+      "height": 2604
+    },
+    {
+      "file": "menu-5.webp",
+      "width": 2604,
+      "height": 2604
+    }
+  ],
+  "frames": {
+    "push": {
+      "atlas": "menu-1.webp",
+      "frame": {
+        "x": 32,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "shrink": {
+      "atlas": "menu-1.webp",
+      "frame": {
+        "x": 1318,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "knives": {
+      "atlas": "menu-1.webp",
+      "frame": {
+        "x": 32,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "bomb": {
+      "atlas": "menu-1.webp",
+      "frame": {
+        "x": 1318,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "western": {
+      "atlas": "menu-2.webp",
+      "frame": {
+        "x": 32,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "tanks": {
+      "atlas": "menu-2.webp",
+      "frame": {
+        "x": 1318,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "tankarena": {
+      "atlas": "menu-2.webp",
+      "frame": {
+        "x": 32,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "chaos": {
+      "atlas": "menu-2.webp",
+      "frame": {
+        "x": 1318,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "kart": {
+      "atlas": "menu-3.webp",
+      "frame": {
+        "x": 32,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "monster": {
+      "atlas": "menu-3.webp",
+      "frame": {
+        "x": 1318,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "spy": {
+      "atlas": "menu-3.webp",
+      "frame": {
+        "x": 32,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "millionaire": {
+      "atlas": "menu-3.webp",
+      "frame": {
+        "x": 1318,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "sinyakquiz": {
+      "atlas": "menu-4.webp",
+      "frame": {
+        "x": 32,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "warsaw": {
+      "atlas": "menu-4.webp",
+      "frame": {
+        "x": 1318,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "crocodile": {
+      "atlas": "menu-4.webp",
+      "frame": {
+        "x": 32,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "jenga": {
+      "atlas": "menu-4.webp",
+      "frame": {
+        "x": 1318,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "crane": {
+      "atlas": "menu-5.webp",
+      "frame": {
+        "x": 32,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "naval": {
+      "atlas": "menu-5.webp",
+      "frame": {
+        "x": 1318,
+        "y": 32,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "drawguess": {
+      "atlas": "menu-5.webp",
+      "frame": {
+        "x": 32,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    "western_duel": {
+      "atlas": "menu-5.webp",
+      "frame": {
+        "x": 1318,
+        "y": 1318,
+        "w": 1254,
+        "h": 1254
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+[
+  {
+    "name": "actors",
+    "path": "C:/Users/nirrt/.codex/generated_images/01a09636-c232-7b80-9b72-455444a38371/exec-975f3a98-c8d0-4edb-b37b-13c59bff2967.png",
+    "keys": [
+      "runner",
+      "bird",
+      "blob",
+      "puck",
+      "tank",
+      "cowboy",
+      "kart",
+      "rugby-player"
+    ],
+    "tint": [
+      "runner",
+      "bird",
+      "blob",
+      "puck",
+      "tank",
+      "cowboy",
+      "kart",
+      "rugby-player"
+    ]
+  },
+  {
+    "name": "props",
+    "path": "C:/Users/nirrt/.codex/generated_images/01a09636-c232-7b80-9b72-455444a38371/exec-b20f6016-dfe0-4d4b-877e-8581948f89c0.png",
+    "keys": [
+      "knife",
+      "bomb",
+      "ball",
+      "punchbag",
+      "ship",
+      "revolver",
+      "badge",
+      "wheel"
+    ],
+    "tint": [
+      "knife",
+      "ball",
+      "ship",
+      "wheel"
+    ]
+  },
+  {
+    "name": "food",
+    "path": "C:/Users/nirrt/.codex/generated_images/01a09636-c232-7b80-9b72-455444a38371/exec-eb140fa0-fd22-46cc-94b0-5a243b288de1.png",
+    "keys": [
+      "food-pizza",
+      "food-burger",
+      "food-donut",
+      "food-chicken",
+      "food-apple",
+      "star",
+      "crystal",
+      "crate"
+    ],
+    "tint": []
+  },
+  {
+    "name": "world",
+    "path": "C:/Users/nirrt/.codex/generated_images/01a09636-c232-7b80-9b72-455444a38371/exec-76b3dc17-9be4-4e78-b1ca-c598a9fdaba4.png",
+    "keys": [
+      "pipe",
+      "cloud",
+      "mesa",
+      "grass",
+      "wood-block",
+      "concrete-block",
+      "hook",
+      "sparkle"
+    ],
+    "tint": []
+  },
+  {
+    "name": "parts",
+    "path": "C:/Users/nirrt/.codex/generated_images/01a09636-c232-7b80-9b72-455444a38371/exec-01803705-bcb7-403c-830f-9e95a61a78eb.png",
+    "keys": ["tank-body", "tank-turret", "bird-wing", "robot-foot-left", "robot-foot-right", "glove", "knife-handle", "pipe-cap"],
+    "tint": ["tank-body", "tank-turret", "bird-wing", "robot-foot-left", "robot-foot-right", "glove", "knife-handle"]
+  },
+  {
+    "name": "construction",
+    "path": "C:/Users/nirrt/.codex/generated_images/01a09636-c232-7b80-9b72-455444a38371/exec-93354b22-3048-4097-84df-f674468a4dba.png",
+    "keys": ["facade-floor-a", "facade-floor-b", "facade-floor-c", "facade-floor-d", "crane-mast", "crane-boom", "crane-trolley", "crane-hook"],
+    "tint": ["facade-floor-a", "facade-floor-b", "facade-floor-c", "facade-floor-d"]
+  }
+]

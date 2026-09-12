@@ -1,0 +1,1 @@
+const fs=require('fs');let s=fs.readFileSync('tests/audit-controller-finals-recheck.cjs','utf8').replace('/15 уровней/','/15 уровней/i').replace("['jenga','chaos']","['chaos']");fs.writeFileSync('tests/audit-controller-finals-recheck.cjs',s);

@@ -1,0 +1,24 @@
+{
+  "games": [
+    {
+      "id": "hungry",
+      "players": 16,
+      "viewport": "3430x1300",
+      "samples": 708,
+      "median": 4.199999999999818,
+      "p95": 4.300000000000182,
+      "max": 12.5
+    },
+    {
+      "id": "snakelines",
+      "players": 16,
+      "viewport": "3430x1300",
+      "samples": 484,
+      "median": 4.200000000000273,
+      "p95": 12.5,
+      "max": 20.800000000000182
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:65352/host\nPlayers: http://192.168.0.91:65352/ (Wi-Fi)\n[hungry] Arcade hungry http://localhost:63182\n[snakelines] Arcade snakelines http://localhost:55618\n"
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#090d12"><title>Local Party Controller</title><link rel="stylesheet" href="controller.css"></head>
+<body>
+  <section id="joinScreen" class="screen join-screen">
+    <div class="join-card">
+      <div class="eyebrow">LOCAL PARTY PACK</div>
+      <h1>Подключиться</h1>
+      <p>Введи имя — твой цвет появится на большом экране.</p>
+      <input id="nameInput" maxlength="20" autocomplete="nickname" placeholder="Твоё имя">
+      <div class="hand-label">Удобная рука</div>
+      <div class="hand-row"><button id="leftHand" class="hand">← ЛЕВША</button><button id="rightHand" class="hand selected">ПРАВША →</button></div>
+      <button id="joinBtn" class="join-btn">ИГРАТЬ</button>
+      <div class="small">Телефон и компьютер должны быть в одной Wi-Fi сети.</div>
+    </div>
+  </section>
+
+  <section id="controllerScreen" class="screen hidden">
+    <header class="hud">
+      <div class="who"><span id="colorDot"></span><b id="playerName">PLAYER</b></div>
+      <div id="modeLabel" class="mode-label">LOBBY</div>
+      <div id="roundLabel" class="round-label">—</div>
+    </header>
+    <div id="waiting" class="waiting"><b>ЖДЁМ СТАРТ НА КОМПЬЮТЕРЕ</b><span>Можно положить телефон горизонтально или держать как удобно.</span></div>
+
+    <main id="pushControls" class="push-controls hidden">
+      <div id="joystickZone" class="joystick-zone">
+        <div id="joystickBase" class="joystick-base"><div id="joystickKnob" class="joystick-knob"></div></div>
+        <div class="joy-tip">ВЕДИ ПАЛЬЦЕМ · ТОЛКАЙ ИХ ЗА КРАЙ</div>
+      </div>
+      <div class="push-stats"><div><small>ПОБЕДЫ</small><b id="pushWins">0</b></div><div><small>СТАТУС</small><b id="pushAlive">READY</b></div></div>
+    </main>
+
+    <main id="knifeControls" class="knife-controls hidden">
+      <div id="feedback" class="feedback">ПОПАДИ В СВОЙ ЦВЕТ</div>
+      <button id="throwBtn" class="throw-btn"><span>THROW</span><small>ТАПНИ В НУЖНЫЙ МОМЕНТ</small></button>
+      <div class="knife-stats"><div><small>НОЖИ</small><b id="knivesLeft">0</b></div><div><small>РАУНД</small><b id="roundScore">0</b></div><div><small>ВСЕГО</small><b id="totalScore">0</b></div></div>
+    </main>
+  </section>
+<script src="net.js"></script><script src="controller.js"></script>
+</body></html>

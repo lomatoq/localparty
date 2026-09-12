@@ -1,0 +1,11 @@
+from pathlib import Path
+p=Path('games/crane/server.js');s=p.read_text(encoding='utf-8');s=s.replace("const WIDTH=1100", "const {HangingLoad}=require('./pendulum');const hangingLoad=new HangingLoad();\nconst WIDTH=1100",1)
+s=s.replace('hookPhase=0,','')
+s=s.replace('hookY=top.y-BLOCK_H/2-DROP_GAP,hookX=trolley+Math.sin(hookPhase)*18','hook=hangingLoad.pose(trolley,top.y-BLOCK_H/2-DROP_GAP,trolleyVelocity),hookY=hook.y,hookX=hook.x')
+s=s.replace('trolley,hookX,hookY,topY:','trolley,hookX,hookY,beamY:hook.beamY,hookAngle:hook.angle,topY:')
+s=s.replace('trolleyVelocity=0;lastInput=0;falling=null;', 'trolleyVelocity=0;hangingLoad.reset();lastInput=0;falling=null;')
+s=s.replace('falling=physics.add(trolley+Math.sin(hookPhase)*18,top.y-BLOCK_H/2-DROP_GAP,','const hook=hangingLoad.pose(trolley,top.y-BLOCK_H/2-DROP_GAP,trolleyVelocity);falling=physics.add(hook.x,hook.y,')
+s=s.replace('falling.body.setLinvel({x:Math.cos(hookPhase)*5/SCALE,y:0},true);','falling.body.setLinvel({x:hook.vx/SCALE,y:hook.vy/SCALE},true);')
+s=s.replace('hookPhase+=dt*1.25;','')
+s=s.replace('trolleyVelocity+=(direction*310-trolleyVelocity)*Math.min(1,dt*7);','const previousVelocity=trolleyVelocity;trolleyVelocity+=(direction*310-trolleyVelocity)*(1-Math.exp(-dt*7));hangingLoad.step(dt,(trolleyVelocity-previousVelocity)/dt);')
+p.write_text(s,encoding='utf-8')

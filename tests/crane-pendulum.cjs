@@ -1,0 +1,4 @@
+const assert=require('assert/strict'),{HangingLoad}=require('../games/crane/pendulum');
+const a=new HangingLoad();a.reset(.2);const initial=Math.abs(a.angle);for(let i=0;i<1200;i++)a.step(1/120,0);assert(Math.abs(a.angle)<initial*.1,'unforced sway settles');
+const b=new HangingLoad();b.reset(0);for(let i=0;i<30;i++)b.step(1/120,1000);assert(b.angle<0,'load lags an accelerating trolley');assert(Math.abs(b.angle)<=.52);const p=b.pose(500,400,200);assert(p.vx!==200,'release includes rope motion');assert(Math.abs((p.x-500)**2+(p.y-(400-150))**2-150**2)<1e-6,'rope length stays fixed');
+const c=new HangingLoad(),d=new HangingLoad();for(let i=0;i<60;i++)c.step(1/60,180);for(let i=0;i<120;i++)d.step(1/120,180);assert(Math.abs(c.angle-d.angle)<1e-10,'same fixed integration across update rates');console.log('PASS pendulum acceleration lag, damping, fixed rope length, release momentum and timestep consistency');

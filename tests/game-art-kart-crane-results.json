@@ -1,0 +1,39 @@
+{
+  "games": [
+    {
+      "id": "kart",
+      "art": {
+        "draws": {
+          "kart": 378
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "kart",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "crane",
+      "art": {
+        "draws": {
+          "hook": 365,
+          "concrete-block": 730
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "crane",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:63429/host\nPlayers: http://192.168.0.91:63429/ (Wi-Fi)\n[kart] KART listening http://127.0.0.1:50106/\n[crane] CRANE http://127.0.0.1:58606/host\n"
+}

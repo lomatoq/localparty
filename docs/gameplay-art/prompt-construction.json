@@ -1,0 +1,13 @@
+{
+  "generator": "builtin image_gen",
+  "prompt": "Production 2D game sprite atlas for a beautiful premium playful tower stacking game. GENUINELY TRANSPARENT alpha background, 1536x1024, strict 4 columns x2rows equal cells. Eight isolated front orthographic objects,15%transparent gutter, no text, no grid, no ground, no shadows behind sprites. COHERENT FRONT ELEVATION, absolutely NO perspective, no visible top or side faces. Chunky tactile miniature architecture, polished soft painted materials, crisp readable windows, warm upperleft lighting restrained bevels. Row1 four perfectly SQUARE stackable building-floor facade modules with FLAT horizontal top and bottom: A neutral ivory painted facade two tall darkteal windows and thin sill; B neutral ivory facade three square darkteal windows; C neutral ivory facade two arched darkteal windows; D neutral ivory penthouse facade central large darkteal window, flat top NOT pitched roof. All four exactlysamewidth andheight, flat neutral pale paint panels intendedruntimecolor tint, no protruding balconies, no groundfloor/doors. Row2: straight vertical golden construction CRANE MAST SEGMENT lattice, flat ends designedrepeat; straight horizontal golden CRANE BOOM SEGMENT lattice, flat ends designedrepeat; compact golden crane TROLLEY frontview with twoblackwheels and centralcableattachment; golden CRANE HOOK frontview with pulley housing above curvedhook. Same goldenpaintmaterial forcrane. Modularparts mustalignfront elevation, notisometric. No buildingwide background. All8 centeredfullyinsidecells. Truealpha transparent.",
+  "integration": {
+    "floorModules": [
+      "facade-floor-a",
+      "facade-floor-b",
+      "facade-floor-c"
+    ],
+    "roofOnly": "facade-floor-d",
+    "note": "D has raised penthouse lip despite prompt: use only finished roof accent, not repeated physical floor. A/B/C front elevation flat aligned floors."
+  }
+}

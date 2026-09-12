@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>LOCAL TANKS — Controller</title>
+  <link rel="stylesheet" href="/controller.css" />
+</head>
+<body>
+  <main id="joinScreen" class="screen join-screen">
+    <div class="logo"><span></span> LOCAL TANKS</div>
+    <div class="join-card">
+      <div class="kicker">PHONE CONTROLLER</div>
+      <h1>Как тебя зовут?</h1>
+      <input id="nameInput" maxlength="20" placeholder="Глеб" autocomplete="off" />
+      <div class="label">Как держишь управление</div>
+      <div class="hand-toggle">
+        <button id="rightHand" class="selected">ПРАВША</button>
+        <button id="leftHand">ЛЕВША</button>
+      </div>
+      <button id="joinBtn" class="join-btn">ПОДКЛЮЧИТЬСЯ</button>
+      <p>Телефон и компьютер должны быть в одной Wi‑Fi сети.</p>
+    </div>
+  </main>
+
+  <main id="controllerScreen" class="screen controller-screen hidden">
+    <header>
+      <div class="identity"><span id="colorDot"></span><div><b id="playerName">PLAYER</b><small id="teamText">WAITING</small></div></div>
+      <div class="score"><b id="scoreMain">0</b><small id="scoreLabel">SCORE</small></div>
+    </header>
+
+    <section class="status-card">
+      <div id="modeText">Ждём старта</div>
+      <div id="statusText">Смотри на большой экран 👀</div>
+      <div class="hp"><span id="hpFill"></span></div>
+    </section>
+
+    <section id="lobbyTools" class="lobby-tools">
+      <span>Команда для режима с флагом:</span>
+      <div><button id="teamRed">RED</button><button id="teamBlue">BLUE</button></div>
+    </section>
+
+    <section id="controls" class="controls right-handed">
+      <button id="forwardBtn" class="control forward"><span>▲</span><small>ЗАЖАТЬ · ЕХАТЬ</small><em>отпусти — снова крутишься</em></button>
+      <button id="fireBtn" class="control fire"><span>●</span><small>ОГОНЬ</small><em>стреляй в текущий угол</em></button>
+    </section>
+
+    <footer><span id="kills">0 kills</span><span id="extraStat">0 deaths</span><button id="swapHand">⇄ HAND</button></footer>
+  </main>
+
+  <script src="/net.js"></script>
+  <script src="/controller.js"></script>
+</body>
+</html>

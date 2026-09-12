@@ -1,0 +1,14 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const context = {window: {devicePixelRatio: 1}, ResizeObserver: class { observe() {} }, fetch: () => Promise.resolve({ok: true, json: () => Promise.resolve({frames: {}})})};
+vm.runInNewContext(fs.readFileSync('public/game-art.js', 'utf8'), context);
+const canvas = {width: 0, height: 0, getBoundingClientRect: () => ({width: 1600, height: 900})};
+const g = {canvas, setTransform(...args) {this.transform = args;}};
+context.window.PartyArt.beginFrame(g, 900, 900);
+assert.equal(canvas.width, 900);
+context.window.PartyArt.beginFrame(g, 1600, 900);
+assert.equal(canvas.width, 1600, 'logical aspect change must invalidate the backing surface even without a resize event');
+assert.equal(canvas.height, 900);
+assert.deepEqual(g.transform, [1, 0, 0, 1, 0, 0]);
+console.log('PASS logical canvas dimension changes invalidate cached backing size');

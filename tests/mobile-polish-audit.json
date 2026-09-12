@@ -1,0 +1,3489 @@
+{
+  "games": [
+    {
+      "id": "push",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 393.640625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "shrink",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "knives",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "bomb",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "western",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -50.96875,
+                "left": 50.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -39.390625,
+                "left": 39.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "tanks",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -47.5625,
+                "left": 47.546875,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -47.5625,
+                "left": 47.546875,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -47.5625,
+                "left": 47.546875,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "tankarena",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "chaos",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -41.234375,
+                "left": 41.234375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -46.375,
+                "left": 46.375,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -41.234375,
+                "left": 41.234375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -46.375,
+                "left": 46.375,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -41.234375,
+                "left": 41.234375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -46.375,
+                "left": 46.375,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "kart",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -56.953125,
+                "left": 56.9375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -61.140625,
+                "left": 61.125,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -56.953125,
+                "left": 56.9375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -61.140625,
+                "left": 61.125,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -56.953125,
+                "left": 56.9375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -61.140625,
+                "left": 61.125,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "monster",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -47.4375,
+                "left": 47.4375,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -47.4375,
+                "left": 47.4375,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -47.4375,
+                "left": 47.4375,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "spy",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -31.078125,
+                "left": 31.078125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -42.421875,
+                "left": 42.40625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -31.078125,
+                "left": 31.078125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -42.421875,
+                "left": 42.40625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 555.75,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 439.75,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -31.078125,
+                "left": 31.078125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -42.421875,
+                "left": 42.40625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "millionaire",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "sinyakquiz",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "warsaw",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -60.40625,
+                "left": 60.390625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "crocodile",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -50.078125,
+                "left": 50.078125,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -50.078125,
+                "left": 50.078125,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -50.078125,
+                "left": 50.078125,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "jenga",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -55.96875,
+                "left": 55.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -36.53125,
+                "left": 36.515625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -55.96875,
+                "left": 55.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -36.53125,
+                "left": 36.515625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -55.96875,
+                "left": 55.953125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -36.53125,
+                "left": 36.515625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "crane",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -34.703125,
+                "left": 34.703125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -48.421875,
+                "left": 48.421875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -34.703125,
+                "left": 34.703125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -48.421875,
+                "left": 48.421875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -34.703125,
+                "left": 34.703125,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -48.421875,
+                "left": 48.421875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "naval",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -49.0625,
+                "left": 49.046875,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "drawguess",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -63.625,
+                "left": 63.625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -63.625,
+                "left": 63.625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -70.359375,
+                "left": 70.359375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -63.625,
+                "left": 63.625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "western_duel",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -51,
+                "left": 51,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -27.65625,
+                "left": 27.640625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -51,
+                "left": 51,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -27.65625,
+                "left": 27.640625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -51,
+                "left": 51,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -27.65625,
+                "left": 27.640625,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "taprace",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "punchmeter",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "flappy",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "hungry",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "snakelines",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -52.984375,
+                "left": 52.984375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -52.984375,
+                "left": 52.984375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -52.984375,
+                "left": 52.984375,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "carryball",
+      "results": [
+        {
+          "size": {
+            "width": 402,
+            "height": 874
+          },
+          "closed": {
+            "gap": 108,
+            "readyBottom": 746.40625,
+            "footer": 810,
+            "title": 206.0625,
+            "rulesTop": 528.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 680.40625,
+            "readyTop": 688.40625,
+            "readyBottom": 746.40625,
+            "footer": 810
+          }
+        },
+        {
+          "size": {
+            "width": 402,
+            "height": 760
+          },
+          "closed": {
+            "gap": 20,
+            "readyBottom": 632.40625,
+            "footer": 696,
+            "title": 192.375,
+            "rulesTop": 502.40625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 366,
+            "buttonWidth": 366,
+            "bottom": 566.40625,
+            "readyTop": 574.40625,
+            "readyBottom": 632.40625,
+            "footer": 696
+          }
+        },
+        {
+          "size": {
+            "width": 320,
+            "height": 640
+          },
+          "closed": {
+            "gap": 16,
+            "readyBottom": 514.40625,
+            "footer": 576,
+            "title": 157.1875,
+            "rulesTop": 384.625,
+            "overflow": false,
+            "headerValues": [
+              {
+                "id": "hudValue",
+                "right": -41.96875,
+                "left": 41.96875,
+                "font": "24px"
+              },
+              {
+                "id": "hudProgress",
+                "right": -82,
+                "left": 82,
+                "font": "10px"
+              },
+              {
+                "id": "hudLabel",
+                "right": -53.5,
+                "left": 53.5,
+                "font": "8px"
+              }
+            ]
+          },
+          "open": {
+            "title": 133.1875,
+            "detailsWidth": 288,
+            "buttonWidth": 288,
+            "bottom": 456.40625,
+            "readyTop": 464.40625,
+            "readyBottom": 514.40625,
+            "footer": 576
+          }
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

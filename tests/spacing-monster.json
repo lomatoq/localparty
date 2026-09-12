@@ -1,0 +1,98 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          210,
+          0,
+          1500,
+          882
+        ],
+        "padding": "64px 0px 22px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "#gamePanel",
+        "rect": [
+          210,
+          64,
+          1500,
+          796
+        ],
+        "padding": "35px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          965,
+          0,
+          1500,
+          1102
+        ],
+        "padding": "64px 0px 22px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "#gamePanel",
+        "rect": [
+          965,
+          64,
+          1500,
+          1016
+        ],
+        "padding": "35px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          22,
+          0,
+          1396,
+          702
+        ],
+        "padding": "64px 0px 22px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "#gamePanel",
+        "rect": [
+          22,
+          64,
+          1396,
+          616
+        ],
+        "padding": "35px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  }
+]

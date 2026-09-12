@@ -1,0 +1,39 @@
+.game .mechanic-preview{position:absolute;inset:48px 12px 43%;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:24px;background:#11181bf5;color:var(--card);padding:20px 12px 8px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 650ms ease,visibility 650ms;overflow:hidden}
+.game.cp-show .mechanic-preview{opacity:1;visibility:visible}.mechanic-preview svg{display:block;width:100%;height:calc(100% - 35px);min-height:0;max-width:380px}.game .cp-caption{font-size:13px;line-height:1.2;text-align:center;color:#eef3eb;max-width:100%;text-wrap:balance}.game .mechanic-dots{position:absolute;right:10px;top:48px;display:flex;gap:0;z-index:7}.game .mechanic-dots button{width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border:0;border-radius:50%;background:transparent!important;box-shadow:none!important;filter:none!important;display:grid;place-items:center;touch-action:manipulation}.game .mechanic-dots button:before{content:'';position:static;display:block;width:6px;height:6px;border-radius:50%;background:#ffffff70;box-shadow:0 0 0 3px #11181b70;opacity:1;transform:none;transition:background 250ms,width 250ms}.game .mechanic-dots button[aria-pressed=true]:before{width:16px;border-radius:6px;background:var(--card)}.game .mechanic-dots button:focus-visible{outline:2px solid var(--card);outline-offset:-5px}
+.mechanic-preview .cp-move{animation:cpMove 3s ease-in-out infinite alternate}.mechanic-preview .cp-rise{animation:cpRise 3s ease-in-out infinite alternate}.mechanic-preview .cp-drop{animation:cpDrop 4s ease-in-out infinite alternate}.mechanic-preview .cp-shrink{transform-origin:160px 90px;animation:cpShrink 5s ease-in-out infinite alternate}.mechanic-preview .cp-spin{transform-origin:160px 85px;animation:cpSpin 12s linear infinite}.mechanic-preview .cp-answer{animation:cpAnswer 3s ease-in-out infinite}.mechanic-preview .cp-ink{stroke-dasharray:500;animation:cpInk 5s ease-in-out infinite}
+.game:not(.cp-show) .mechanic-preview *,.game:not(.cp-visible) .mechanic-preview *{animation-play-state:paused!important}@keyframes cpMove{to{transform:translateX(22px)}}@keyframes cpRise{to{transform:translateY(-9px)}}@keyframes cpDrop{to{transform:translateY(22px)}}@keyframes cpShrink{to{transform:scale(.65)}}@keyframes cpSpin{to{transform:rotate(360deg)}}@keyframes cpAnswer{50%{opacity:.35}}@keyframes cpInk{0%,15%{stroke-dashoffset:500}75%,100%{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.game .mechanic-preview,.game .mechanic-preview *{animation:none!important;transition:none!important}.game .mechanic-dots button:before{transition:none}}
+.game:not(.cp-large) .mechanic-preview,.game:not(.cp-large) .mechanic-dots{display:none!important}.game .mechanic-preview{padding:0;inset:0 0 28%;border-radius:0;background:#090f14}.mechanic-preview img{width:100%;height:100%;min-height:0;object-fit:contain}.mechanic-preview .cp-caption{position:absolute;bottom:12px;left:14px;right:14px;padding:8px 12px;border-radius:12px;background:#0a101be6;font-size:13px}.game.cp-show .art .symbol{opacity:0}.game .art .symbol{transition:opacity 650ms ease,transform 400ms ease}.game .mechanic-dots{top:48px}
+@media(min-width:1201px){#games .game:nth-child(8) .game-info,#games .game:nth-child(12) .game-info{padding-right:24px;max-width:none;width:100%}#games .game:nth-child(8) .game-info>p,#games .game:nth-child(12) .game-info>p{max-width:70%}#games .game:nth-child(8) .game-bottom,#games .game:nth-child(12) .game-bottom{width:100%;justify-content:space-between}}
+/* More vivid illustration colors; dense text scrims remain unchanged. */
+html body .game{background:radial-gradient(ellipse at 70% 0%,color-mix(in srgb,var(--card) 44%,transparent),transparent 78%),radial-gradient(ellipse at 10% 45%,color-mix(in srgb,var(--card) 12%,transparent),transparent 68%),#141a20}
+@media(min-width:1201px){#games .game:nth-child(8) .mechanic-preview,#games .game:nth-child(12) .mechanic-preview{inset:0!important}#games .game:nth-child(8) .mechanic-preview img,#games .game:nth-child(12) .mechanic-preview img{width:100%;height:100%;object-fit:cover;object-position:center 48%}#games .game:nth-child(8) .cp-caption,#games .game:nth-child(12) .cp-caption{display:none}}
+/* Richer color without reducing text contrast. */
+html body .game{background-image:radial-gradient(ellipse at 85% 5%,color-mix(in srgb,var(--card,#c8f58b) 60%,transparent),transparent 70%),linear-gradient(145deg,#172320,#10171b)!important}
+
+
+
+/* Masked backdrop blur leaked composited edge strips on rounded cards.
+   The existing continuous text scrim gives contrast without that extra layer. */
+html body .game .game-info:before{display:none!important}
+html body .game{overflow:clip;isolation:isolate}
+html body .game>.art,html body .game>.mechanic-preview{clip-path:inset(0 round 27px)}
+html body .game>.mechanic-preview img{display:block}
+@media(max-width:700px){html body .game>.art,html body .game>.mechanic-preview{clip-path:inset(0 round 21px)}}
+
+/* Edge-adjacent rings/grid lines read as a second inset border in the bento. */
+html body .game:before{display:none!important}
+
+/* One painted card surface: no one-pixel inset perimeter between parent and art.
+   Corner rays belong to the background itself, so they never acquire layer edges. */
+html body .game{border:1px solid #ffffff24!important;background-origin:border-box!important;background-clip:border-box!important;background-image:radial-gradient(ellipse at 85% 5%,color-mix(in srgb,var(--card,#c8f58b) 60%,transparent),transparent 70%),repeating-conic-gradient(from 210deg at 100% 0%,transparent 0deg 8deg,#ffffff08 8deg 11deg,transparent 11deg 19deg),linear-gradient(145deg,#172320,#10171b)!important;box-shadow:0 12px 32px #0003}
+html body .game>.art,html body .game>.mechanic-preview{clip-path:none!important}
+html body .game:after{border:0!important;box-shadow:none!important;inset:0!important;border-radius:inherit}
+html body .game{background-image:linear-gradient(to top right,#10171b 0%,#10171bcc 24%,transparent 78%),radial-gradient(ellipse at 85% 5%,color-mix(in srgb,var(--card,#c8f58b) 60%,transparent),transparent 70%),repeating-conic-gradient(from 210deg at 120% -20%,transparent 0deg 5deg,#ffffff08 5deg 10deg),linear-gradient(145deg,#172320,#10171b)!important}
+/* Fine outline belongs to the card; rays fade independently towards bottom-left. */
+html body #games .game,html body #tableGames .game{border:1px solid #ffffff24!important}
+html body #games .game.featured .start-game{font-size:20px!important;min-height:62px!important;min-width:174px;padding:16px 28px!important;border-radius:32px!important;font-weight:900!important}
+@media(max-width:850px){html body #games .game.featured .start-game{font-size:17px!important;min-height:54px!important;min-width:144px;padding:12px 22px!important}}
+
+/* Live gameplay previews fill their media frame without side letterboxing. */
+html body .game>.mechanic-preview img{width:100%;height:100%;object-fit:cover;object-position:center;min-width:100%;}

@@ -1,0 +1,18 @@
+function westernRigActor(g,{x,y,height,color,flip=1,shotAge=Infinity,early=false,fall=0}){
+ const art=window.PartyArt,body=art?.sprite('cowboy-body-v2',color),arm=art?.sprite('cowboy-arm-pistol-v2',color),bodyMeta=art?.manifest?.frames?.['cowboy-body-v2'],armMeta=art?.manifest?.frames?.['cowboy-arm-pistol-v2'];
+ const rig=bodyMeta?.rig,ready=!!(body&&arm&&rig&&armMeta.muzzle),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const aim=early?0:Number.isFinite(shotAge)?1-(1-Math.min(1,Math.max(0,shotAge)/60))**3:0,recoilAge=shotAge-60,recoil=recoilAge>=0&&recoilAge<160&&!early&&!reduced?4*Math.sin(recoilAge/160*Math.PI):0;
+ const phi=-1.18*fall,lift=-height*.20*fall;g.save();g.translate(x,y+lift);g.scale(flip,1);g.rotate(phi);g.globalAlpha=1-fall*.20;
+ let mx,my,angle;
+ if(ready){const bw=height*body.w/body.h,aw=height*rig.armWidthRatio,ah=aw*arm.h/arm.w,shoulder={x:(rig.shoulder.x-.5)*bw,y:(rig.shoulder.y-1)*height},pivot=armMeta.pivot||{x:.1,y:.5};angle=1.05*(1-aim)-recoil*.012;
+  art.draw(g,'cowboy-body-v2',0,0,bw,height,{color,pivot:{x:.5,y:1}});g.save();g.translate(shoulder.x,shoulder.y);g.rotate(angle);g.translate(-recoil,0);art.draw(g,'cowboy-arm-pistol-v2',0,0,aw,ah,{color,pivot});g.restore();const ax=(armMeta.muzzle.x-pivot.x)*aw-recoil,ay=(armMeta.muzzle.y-pivot.y)*ah;mx=shoulder.x+ax*Math.cos(angle)-ay*Math.sin(angle);my=shoulder.y+ax*Math.sin(angle)+ay*Math.cos(angle);
+ }else{const f=art?.sprite('cowboy',color),bw=height*(f?.w||352)/(f?.h||404);if(!art?.draw(g,'cowboy',0,0,bw,height,{color,pivot:{x:.5,y:1}})){g.fillStyle=color;g.fillRect(-height*.15,-height*.75,height*.30,height*.75);}mx=height*.425;my=-height*.5;angle=0;}
+ g.restore();return{x:x+flip*(mx*Math.cos(phi)-my*Math.sin(phi)),y:y+lift+mx*Math.sin(phi)+my*Math.cos(phi),angle:flip===1?angle+phi:Math.PI-angle-phi,ready};
+}
+function westernShotFX(g,muzzle,target,age,early,scale=1){
+ if(early){if(age>=0&&age<220)westernGunBurst(g,muzzle.x,muzzle.y,age,Math.cos(muzzle.angle)>=0?1:-1,scale);return;}
+ const t=age-60;if(t<0||t>240)return;const dx=Math.cos(muzzle.angle),dy=Math.sin(muzzle.angle);
+ if(t<90){g.save();g.translate(muzzle.x,muzzle.y);g.rotate(muzzle.angle);g.globalAlpha=1-t/90;g.fillStyle='#fff2b5';g.beginPath();g.moveTo(0,-4*scale);g.lineTo((22*(1-t/90)+5)*scale,0);g.lineTo(0,4*scale);g.lineTo(5*scale,0);g.fill();g.restore();}
+ if(t<120){const q=t/120,bx=muzzle.x+(target.x-muzzle.x)*q,by=muzzle.y+(target.y-muzzle.y)*q,a=Math.atan2(target.y-muzzle.y,target.x-muzzle.x);g.save();g.strokeStyle='#ffeab4';g.lineWidth=2*scale;g.beginPath();g.moveTo(bx-Math.cos(a)*18*scale,by-Math.sin(a)*18*scale);g.lineTo(bx,by);g.stroke();g.translate(bx,by);g.rotate(a);g.fillStyle='#fff9d9';g.beginPath();g.ellipse(0,0,5*scale,2*scale,0,0,7);g.fill();g.restore();}
+ g.save();g.globalAlpha=.18*(1-t/240);g.fillStyle='#d7cec1';g.beginPath();g.arc(muzzle.x+dx*t*.025,muzzle.y+dy*t*.025-t*.025,(4+t*.02)*scale,0,7);g.fill();g.restore();
+}

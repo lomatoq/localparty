@@ -1,0 +1,18 @@
+'use strict';
+const express=require('express'),http=require('http'),crypto=require('crypto'),{WebSocketServer}=require('ws'),runtime=require('../../lib/party-runtime'),{Arcade}=require('./simulation');
+const app=express(),server=http.createServer(app),wss=new WebSocketServer({server,path:'/ws'}),game=new Arcade(process.env.PARTY_GAME_ID||'taprace');let eventId='',started=0,reported=false;
+app.get('/host',(_,r)=>r.sendFile(__dirname+'/public/host.html'));app.use(express.static(__dirname+'/public'));
+const send=(ws,type,data)=>{if(ws.readyState===1)ws.send(JSON.stringify({type,data}));};
+wss.on('connection',(ws,req)=>{ws.on('message',raw=>{let m;try{m=JSON.parse(raw);}catch{return;}const d=m.data||{};if(m.type==='host'){ws.host=runtime.managed?req.headers['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);return;}if(m.type==='join'){const identity=runtime.identify(d);if(runtime.managed&&!identity)return send(ws,'error','Войдите через главное лобби');const p=game.join(identity?.id||String(d.token||crypto.randomUUID()),String(identity?.name||d.name||'Игрок').slice(0,24));if(!p)return send(ws,'error','Все 16 мест заняты');p.ws=ws;ws.pid=p.id;send(ws,'joined',{id:p.id,name:p.name});send(ws,'state',{...controllerView(state()),selfId:p.id});return;}if(m.type==='start'&&ws.host&&game.phase!=='playing'){if(game.start()){if(process.env.TEST_FAST==='1')game.timer=2;eventId=crypto.randomUUID();started=Date.now();reported=false;}return;}const p=game.players.find(p=>p.id===ws.pid);if(m.type==='input'&&p?.ws===ws)game.input(p.id,d);});ws.on('close',()=>{const p=game.players.find(p=>p.id===ws.pid);if(p?.ws===ws){p.connected=false;p.input={x:0,y:0};runtime.presence(p.id,false);}});});
+// Never serialize socket objects into public simulation state.
+const state=()=>game.view();
+// Controllers need scores, turn and local feedback, not a copy of the rendered world.
+function controllerView(v){const {food,pipes,...rest}=v;return {...rest,players:v.players.map(({trail,...p})=>p)};}
+
+runtime.onPause(()=>game.players.forEach(p=>p.input={x:0,y:0}));
+runtime.setInterval(()=>{game.tick(1/30);if(game.phase==='finished'&&!reported){reported=true;const best=Math.max(...game.players.map(p=>p.score));runtime.report({eventId,gameId:game.mode,duration:(Date.now()-started)/1000,players:game.players.map(p=>({id:p.id,name:p.name,score:p.score,won:p.score===best,metrics:require('./report-metrics')(game,p)}))});}runtime.ui({phase:game.phase==='lobby'?'waiting':game.phase==='finished'?'results':'playing',label:'До финиша',endsAt:game.phase==='playing'?Date.now()+game.timer*1000:null,progress:game.mode==='snakelines'?`Раунд ${game.round}/5`:''});const v=state(),controllerState=controllerView(v),hostPacket=game.mode==='snakelines'?null:JSON.stringify({type:'state',data:v});for(const ws of wss.clients){if(!ws.host&&!ws.pid)continue;if(!ws.host){if(ws.readyState===1)ws.send(JSON.stringify({type:'state',data:{...controllerState,selfId:ws.pid}}));continue;}if(game.mode==='snakelines'){ws.trailOffsets??={};const reset=ws.trailMatch!==eventId+':'+game.round;ws.trailMatch=eventId+':'+game.round;const players=v.players.map(p=>{const from=reset?0:Math.min(ws.trailOffsets[p.id]||0,p.trail.length);ws.trailOffsets[p.id]=p.trail.length;return {...p,trailFrom:from,trail:ws.host?p.trail.slice(from):[]};});send(ws,'state',{...v,players});}else if(ws.readyState===1)ws.send(hostPacket);}},1000/30);
+server.listen(Number(process.env.PORT||0),runtime.managed?'127.0.0.1':'0.0.0.0',()=>{console.log('Arcade '+game.mode+' http://localhost:'+server.address().port);process.send?.({type:'ready',port:server.address().port});});
+
+
+
+

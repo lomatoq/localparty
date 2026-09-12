@@ -1,0 +1,13 @@
+/* Snake Lines presentation only. World coordinates remain 1200x720. */
+(()=>{'use strict';const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let scene='',lastTime=-1,previous=new Map(),sparks=[];
+window.paintSnakeArena=(q,s)=>{q.save();const floor=q.createLinearGradient(0,0,1200,720);floor.addColorStop(0,'#182e40');floor.addColorStop(.48,'#101d30');floor.addColorStop(1,'#211f38');q.fillStyle=floor;q.fillRect(0,0,1200,720);
+const light=q.createRadialGradient(410,240,30,600,360,680);light.addColorStop(0,'#75ddd90b');light.addColorStop(1,'#03081665');q.fillStyle=light;q.fillRect(0,0,1200,720);
+q.lineWidth=1;for(let x=0;x<=1200;x+=40){q.strokeStyle=x%160?'#91c6e409':'#91c6e414';q.beginPath();q.moveTo(x,10);q.lineTo(x,710);q.stroke();}for(let y=0;y<=720;y+=40){q.strokeStyle=y%160?'#91c6e409':'#91c6e414';q.beginPath();q.moveTo(10,y);q.lineTo(1190,y);q.stroke();}
+for(let x=80;x<1200;x+=160)for(let y=80;y<720;y+=160){q.strokeStyle='#83b6d528';q.beginPath();q.moveTo(x-4,y);q.lineTo(x+4,y);q.moveTo(x,y-4);q.lineTo(x,y+4);q.stroke();}
+q.lineWidth=2;q.shadowBlur=12;q.shadowColor='#61d9e8';q.strokeStyle='#69c9db80';q.beginPath();q.roundRect(10,10,1180,700,16);q.stroke();q.shadowBlur=0;
+for(const y of [10,710])for(let x=45;x<1190;x+=60){q.fillStyle=y===10?'#81dfed70':'#ba9ce580';q.fillRect(x,y-1,18,2);}q.restore();};
+window.drawSnakeAmbient=(g,s)=>{const key=s.round+':'+s.phase;if(key!==scene||s.time<lastTime){scene=key;previous.clear();sparks=[];}const fresh=s.time!==lastTime;lastTime=s.time;if(s.phase!=='playing')return;
+g.save();for(const p of s.players){if(!p.alive)continue;const old=previous.get(p.id),a=p.angle||0;if(fresh&&old&&!reduced){const turn=Math.abs(Math.atan2(Math.sin(a-old.angle),Math.cos(a-old.angle)));if(turn>.045&&s.time-old.lastSpark>.08){sparks.push({x:p.x-Math.cos(a)*12,y:p.y-Math.sin(a)*12,a:a+Math.PI+(a>old.angle?-.7:.7),color:p.color,time:s.time});old.lastSpark=s.time;}}if(fresh)previous.set(p.id,{angle:a,lastSpark:old?.lastSpark??s.time});
+// Short wake and shoulder lights follow the actual heading, never extend the lethal trail.
+g.save();g.translate(p.x,p.y);g.rotate(a);g.strokeStyle=p.color;g.globalAlpha=.3;g.lineWidth=2;for(const side of [-1,1]){g.beginPath();g.moveTo(-5,side*10);g.lineTo(-16,side*7);g.stroke();}g.fillStyle='#e2fbff';g.globalAlpha=.85;g.beginPath();g.arc(8,0,2,0,Math.PI*2);g.fill();g.restore();}
+sparks=sparks.filter(p=>s.time-p.time<.4).slice(-48);if(!reduced)for(const p of sparks){const t=(s.time-p.time)/.4,d=24*(1-Math.pow(1-t,2));g.globalAlpha=(1-t)*(1-t)*.65;g.strokeStyle=p.color;g.lineWidth=1.5;g.beginPath();g.moveTo(p.x+Math.cos(p.a)*d,p.y+Math.sin(p.a)*d);g.lineTo(p.x+Math.cos(p.a)*(d+5),p.y+Math.sin(p.a)*(d+5));g.stroke();}g.restore();};})();

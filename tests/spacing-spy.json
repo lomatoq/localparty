@@ -1,0 +1,62 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          1920,
+          928
+        ],
+        "padding": "20px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          3430,
+          1148
+        ],
+        "padding": "20px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          1440,
+          748
+        ],
+        "padding": "20px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  }
+]

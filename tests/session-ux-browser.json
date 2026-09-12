@@ -1,0 +1,13 @@
+{
+  "games": [
+    {
+      "id": "naval",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:62639/host\nPlayers: http://192.168.0.91:62639/ (Wi-Fi)\n[naval] Naval http://localhost:57495/host\n"
+}

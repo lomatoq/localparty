@@ -1,0 +1,1422 @@
+{
+  "version": 1,
+  "style": "LocalParty soft toy arcade / orthographic / upper-left light",
+  "frames": {
+    "runner": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 16,
+        "y": 33,
+        "w": 352,
+        "h": 446
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 446
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/runner.webp",
+      "tintMask": "masks/runner.png",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "bird": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 400,
+        "y": 101,
+        "w": 352,
+        "h": 310
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 310
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/bird.webp",
+      "tintMask": "masks/bird.png",
+      "cell": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "blob": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 784,
+        "y": 67,
+        "w": 352,
+        "h": 377
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 377
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/blob.webp",
+      "tintMask": "masks/blob.png",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "puck": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 1168,
+        "y": 81,
+        "w": 352,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 350
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/puck.webp",
+      "tintMask": "masks/puck.png",
+      "cell": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "tank": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 16,
+        "y": 534,
+        "w": 352,
+        "h": 467
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 467
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/tank.webp",
+      "tintMask": "masks/tank.png",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "cowboy": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 400,
+        "y": 566,
+        "w": 352,
+        "h": 404
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 404
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/cowboy.webp",
+      "tintMask": "masks/cowboy.png",
+      "cell": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "kart": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 784,
+        "y": 559,
+        "w": 352,
+        "h": 417
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 417
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/kart.webp",
+      "tintMask": "masks/kart.png",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "rugby-player": {
+      "atlas": "atlas-actors.webp",
+      "frame": {
+        "x": 1168,
+        "y": 607,
+        "w": 352,
+        "h": 322
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 322
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/rugby-player.webp",
+      "tintMask": "masks/rugby-player.png",
+      "cell": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "knife": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 125,
+        "y": 16,
+        "w": 133,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 133,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/knife.webp",
+      "tintMask": "masks/knife.png",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "bomb": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 420,
+        "y": 16,
+        "w": 312,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 312,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/bomb.webp",
+      "cell": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "ball": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 784,
+        "y": 81,
+        "w": 352,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 350
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/ball.webp",
+      "tintMask": "masks/ball.png",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "punchbag": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 1257,
+        "y": 16,
+        "w": 173,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 173,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.035
+      },
+      "sprite": "sprites/punchbag.webp",
+      "cell": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "ship": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 103,
+        "y": 528,
+        "w": 177,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 177,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/ship.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "revolver": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 400,
+        "y": 652,
+        "w": 352,
+        "h": 232
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 232
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/revolver.webp",
+      "cell": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "badge": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 784,
+        "y": 603,
+        "w": 352,
+        "h": 329
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 329
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/badge.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "wheel": {
+      "atlas": "atlas-props.webp",
+      "frame": {
+        "x": 1168,
+        "y": 593,
+        "w": 352,
+        "h": 349
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 349
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/wheel.webp",
+      "cell": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "food-pizza": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 16,
+        "y": 75,
+        "w": 352,
+        "h": 362
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 362
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/food-pizza.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "food-burger": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 400,
+        "y": 76,
+        "w": 352,
+        "h": 360
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 360
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/food-burger.webp",
+      "cell": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "food-donut": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 784,
+        "y": 103,
+        "w": 352,
+        "h": 305
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 305
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/food-donut.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "food-chicken": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 1168,
+        "y": 74,
+        "w": 352,
+        "h": 364
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 364
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/food-chicken.webp",
+      "cell": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "food-apple": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 16,
+        "y": 569,
+        "w": 352,
+        "h": 397
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 397
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/food-apple.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "star": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 400,
+        "y": 537,
+        "w": 352,
+        "h": 462
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 462
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/star.webp",
+      "cell": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "crystal": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 821,
+        "y": 528,
+        "w": 277,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 277,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/crystal.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "crate": {
+      "atlas": "atlas-food.webp",
+      "frame": {
+        "x": 1168,
+        "y": 580,
+        "w": 352,
+        "h": 376
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 376
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/crate.webp",
+      "cell": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "pipe": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 16,
+        "y": 26,
+        "w": 352,
+        "h": 460
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 460
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/pipe.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "cloud": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 400,
+        "y": 142,
+        "w": 352,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 227
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/cloud.webp",
+      "cell": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "mesa": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 784,
+        "y": 151,
+        "w": 352,
+        "h": 209
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 209
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/mesa.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "grass": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 1168,
+        "y": 67,
+        "w": 352,
+        "h": 377
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 377
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/grass.webp",
+      "cell": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "wood-block": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 16,
+        "y": 630,
+        "w": 352,
+        "h": 275
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 275
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/wood-block.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "concrete-block": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 400,
+        "y": 592,
+        "w": 352,
+        "h": 351
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 351
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/concrete-block.webp",
+      "cell": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "hook": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 833,
+        "y": 528,
+        "w": 254,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 254,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/hook.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "sparkle": {
+      "atlas": "atlas-world.webp",
+      "frame": {
+        "x": 1168,
+        "y": 591,
+        "w": 352,
+        "h": 353
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 353
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/sparkle.webp",
+      "cell": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "tank-body": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 16,
+        "y": 44,
+        "w": 352,
+        "h": 423
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 423
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/tank-body.webp",
+      "tintMask": "masks/tank-body.png",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "tank-turret": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 445,
+        "y": 16,
+        "w": 261,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 261,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.74
+      },
+      "sprite": "sprites/tank-turret.webp",
+      "tintMask": "masks/tank-turret.png",
+      "cell": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "bird-wing": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 784,
+        "y": 94,
+        "w": 352,
+        "h": 323
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 323
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/bird-wing.webp",
+      "tintMask": "masks/bird-wing.png",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "robot-foot-left": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 1168,
+        "y": 110,
+        "w": 352,
+        "h": 291
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 291
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/robot-foot-left.webp",
+      "tintMask": "masks/robot-foot-left.png",
+      "cell": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "robot-foot-right": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 16,
+        "y": 625,
+        "w": 352,
+        "h": 285
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 285
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/robot-foot-right.webp",
+      "tintMask": "masks/robot-foot-right.png",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "glove": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 400,
+        "y": 625,
+        "w": 352,
+        "h": 286
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 286
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/glove.webp",
+      "tintMask": "masks/glove.png",
+      "cell": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "knife-handle": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 806,
+        "y": 528,
+        "w": 307,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 307,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/knife-handle.webp",
+      "tintMask": "masks/knife-handle.png",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "pipe-cap": {
+      "atlas": "atlas-parts.webp",
+      "frame": {
+        "x": 1168,
+        "y": 631,
+        "w": 352,
+        "h": 274
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 274
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/pipe-cap.webp",
+      "cell": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "facade-floor-a": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 16,
+        "y": 86,
+        "w": 352,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 340
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/facade-floor-a.webp",
+      "tintMask": "masks/facade-floor-a.png",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "facade-floor-b": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 400,
+        "y": 87,
+        "w": 352,
+        "h": 337
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 337
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/facade-floor-b.webp",
+      "tintMask": "masks/facade-floor-b.png",
+      "cell": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "facade-floor-c": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 784,
+        "y": 85,
+        "w": 352,
+        "h": 341
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 341
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/facade-floor-c.webp",
+      "tintMask": "masks/facade-floor-c.png",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "facade-floor-d": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 1168,
+        "y": 70,
+        "w": 352,
+        "h": 371
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 371
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/facade-floor-d.webp",
+      "tintMask": "masks/facade-floor-d.png",
+      "cell": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "crane-mast": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 94,
+        "y": 528,
+        "w": 196,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/crane-mast.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "crane-boom": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 400,
+        "y": 705,
+        "w": 352,
+        "h": 126
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 126
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/crane-boom.webp",
+      "cell": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "crane-trolley": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 784,
+        "y": 541,
+        "w": 352,
+        "h": 454
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 454
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/crane-trolley.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "crane-hook": {
+      "atlas": "atlas-construction.webp",
+      "frame": {
+        "x": 1251,
+        "y": 528,
+        "w": 185,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 185,
+        "h": 480
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "sprites/crane-hook.webp",
+      "cell": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "edgeAlphaPixels": 0
+    },
+    "cowboy-body-v2": {
+      "atlas": "sprites/cowboy-body-v2.webp",
+      "sprite": "sprites/cowboy-body-v2.webp",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 909,
+        "h": 1320
+      },
+      "sourceSize": {
+        "w": 909,
+        "h": 1320
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1
+      },
+      "tintMask": "masks/cowboy-body-v2.png",
+      "rig": {
+        "shoulder": {
+          "x": 0.407,
+          "y": 0.539
+        },
+        "armWidthRatio": 0.43
+      }
+    },
+    "cowboy-arm-pistol-v2": {
+      "atlas": "sprites/cowboy-arm-pistol-v2.webp",
+      "sprite": "sprites/cowboy-arm-pistol-v2.webp",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 1615,
+        "h": 547
+      },
+      "sourceSize": {
+        "w": 1615,
+        "h": 547
+      },
+      "pivot": {
+        "x": 0.082,
+        "y": 0.534
+      },
+      "tintMask": "masks/cowboy-arm-pistol-v2.png",
+      "muzzle": {
+        "x": 0.991,
+        "y": 0.188
+      }
+    },
+    "runner-body-v2": {
+      "atlas": "sprites/runner-body-v2.webp",
+      "sprite": "sprites/runner-body-v2.webp",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 832
+      },
+      "sourceSize": {
+        "w": 768,
+        "h": 832
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1
+      },
+      "tintMask": "masks/runner-body-v2.png",
+      "rig": {
+        "nearHip": {
+          "x": 0.3697916666666667,
+          "y": 0.9110576923076923
+        },
+        "farHip": {
+          "x": 0.6197916666666666,
+          "y": 0.9314903846153846
+        },
+        "legHeightRatio": 0.62,
+        "nearLegHeightRatio": 0.6213942307692307,
+        "farLegHeightRatio": 0.5961538461538461
+      }
+    },
+    "runner-leg-near-v2": {
+      "atlas": "sprites/runner-leg-near-v2.webp",
+      "sprite": "sprites/runner-leg-near-v2.webp",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 461,
+        "h": 517
+      },
+      "sourceSize": {
+        "w": 461,
+        "h": 517
+      },
+      "pivot": {
+        "x": 0.1475054229934924,
+        "y": 0.13539651837524178
+      },
+      "tintMask": "masks/runner-leg-near-v2.png"
+    },
+    "runner-leg-far-v2": {
+      "atlas": "sprites/runner-leg-far-v2.webp",
+      "sprite": "sprites/runner-leg-far-v2.webp",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 462,
+        "h": 496
+      },
+      "sourceSize": {
+        "w": 462,
+        "h": 496
+      },
+      "pivot": {
+        "x": 0.12987012987012986,
+        "y": 0.12903225806451613
+      },
+      "tintMask": "masks/runner-leg-far-v2.png"
+    },
+    "ninja-body-v1": {
+      "atlas": "sprites/ninja-body-v1.webp",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 684,
+        "h": 1005
+      },
+      "sourceSize": {
+        "w": 684,
+        "h": 1005
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1
+      },
+      "tintMask": "masks/ninja-body-v1.png"
+    },
+    "ninja-arm-v1": {
+      "atlas": "sprites/ninja-arm-v1.webp",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 463,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 463,
+        "h": 153
+      },
+      "pivot": {
+        "x": 0.08,
+        "y": 0.5
+      },
+      "tintMask": "masks/ninja-arm-v1.png"
+    }
+  },
+  "atlases": [
+    {
+      "file": "atlas-actors.webp",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "atlas-props.webp",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "atlas-food.webp",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "atlas-world.webp",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "atlas-parts.webp",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "atlas-construction.webp",
+      "width": 1536,
+      "height": 1024
+    }
+  ],
+  "tint": {
+    "method": "semantic paint regions with neutral material and specular protection",
+    "saturationMax": 0.2,
+    "luminanceMin": 115,
+    "highlightFadeStart": 215,
+    "highlightProtectedAt": 235
+  },
+  "revision": "mtyl0tj4-cowboy-rig-v2-runner-rig-v2"
+}

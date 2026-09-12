@@ -1,0 +1,75 @@
+{
+  "errors": [],
+  "games": [
+    {
+      "id": "knives",
+      "samples": 351,
+      "p95": 8.400000000000546,
+      "max": 16.800000000000182,
+      "angleChanges": 336,
+      "snapshots": 40,
+      "backing": [
+        2041,
+        1148
+      ],
+      "events": [],
+      "cacheBytes": 9437184
+    },
+    {
+      "id": "bomb",
+      "samples": 380,
+      "p95": 8.400000000000546,
+      "max": 12.600000000000364,
+      "angleChanges": 0,
+      "snapshots": 42,
+      "backing": [
+        2041,
+        1148
+      ],
+      "events": [],
+      "cacheBytes": 0
+    },
+    {
+      "id": "push",
+      "samples": 487,
+      "p95": 8.300000000000182,
+      "max": 12.399999999999636,
+      "angleChanges": 0,
+      "snapshots": 40,
+      "backing": [
+        2041,
+        1148
+      ],
+      "events": [],
+      "cacheBytes": 0
+    },
+    {
+      "id": "western",
+      "samples": 525,
+      "p95": 4.300000000000182,
+      "max": 8.400000000000546,
+      "angleChanges": 0,
+      "snapshots": 40,
+      "backing": [
+        2041,
+        1148
+      ],
+      "events": [],
+      "cacheBytes": 0
+    },
+    {
+      "id": "shrink",
+      "samples": 516,
+      "p95": 4.300000000000182,
+      "max": 8.5,
+      "angleChanges": 0,
+      "snapshots": 40,
+      "backing": [
+        2041,
+        1148
+      ],
+      "events": [],
+      "cacheBytes": 0
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "stage",
+        "rect": [
+          24,
+          64,
+          1449,
+          848
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex"
+      },
+      {
+        "selector": "#scene",
+        "rect": [
+          25,
+          186.40625,
+          1447,
+          603.1875
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-duel-sidebar lp-start-card",
+        "rect": [
+          1491,
+          64,
+          405,
+          553.5
+        ],
+        "padding": "24px",
+        "gap": "16px",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "stage",
+        "rect": [
+          24,
+          64,
+          2959,
+          1068
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex"
+      },
+      {
+        "selector": "#scene",
+        "rect": [
+          25,
+          248,
+          2957,
+          700
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-duel-sidebar lp-start-card",
+        "rect": [
+          3001,
+          64,
+          405,
+          553.5
+        ],
+        "padding": "24px",
+        "gap": "16px",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "stage",
+        "rect": [
+          24,
+          64,
+          969,
+          668
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex"
+      },
+      {
+        "selector": "#scene",
+        "rect": [
+          25,
+          154.90625,
+          967,
+          486.1875
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-duel-sidebar lp-start-card",
+        "rect": [
+          1011,
+          64,
+          405,
+          553.5
+        ],
+        "padding": "24px",
+        "gap": "16px",
+        "display": "flex"
+      }
+    ]
+  }
+]

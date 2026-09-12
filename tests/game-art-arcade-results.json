@@ -1,0 +1,108 @@
+{
+  "games": [
+    {
+      "id": "taprace",
+      "art": {
+        "draws": {
+          "runner": 722
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "taprace",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "punchmeter",
+      "art": {
+        "draws": {
+          "punchbag": 361
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "punchmeter",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "flappy",
+      "art": {
+        "draws": {
+          "bird": 543,
+          "bird-wing": 543
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "flappy",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "hungry",
+      "art": {
+        "draws": {
+          "food-burger": 9075,
+          "food-donut": 4719,
+          "food-chicken": 4356,
+          "food-pizza": 7260,
+          "blob": 726
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "hungry",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "snakelines",
+      "art": {
+        "draws": {
+          "puck": 726
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "snakelines",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "carryball",
+      "art": {
+        "draws": {
+          "rugby-player": 728,
+          "ball": 364
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "carryball",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:50823/host\nPlayers: http://192.168.0.91:50823/ (Wi-Fi)\n[taprace] Arcade taprace http://localhost:56789\n[punchmeter] Arcade punchmeter http://localhost:50363\n[flappy] Arcade flappy http://localhost:61277\n[hungry] Arcade hungry http://localhost:59035\n[snakelines] Arcade snakelines http://localhost:57555\n[carryball] Arcade carryball http://localhost:49573\n"
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#11100f" />
+  <title>Монстр по кругу</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="phone-page">
+  <main class="phone-shell">
+    <section id="joinView" class="phone-card join-view">
+      <div class="monster-mark">✦</div>
+      <div class="eyebrow">MONSTER CIRCLE</div>
+      <h1>Кто ты?</h1>
+      <input id="nameInput" class="big-input" placeholder="Имя" maxlength="24" autocomplete="off" />
+      <div class="hand-row">
+        <button class="hand-btn active" data-hand="right">Правша</button>
+        <button class="hand-btn" data-hand="left">Левша</button>
+      </div>
+      <button id="joinBtn" class="btn primary jumbo">Войти</button>
+      <div id="joinError" class="error"></div>
+    </section>
+
+    <section id="waitView" class="phone-card hidden">
+      <div class="monster-mark pulse">✦</div>
+      <div class="eyebrow">ТЫ В ИГРЕ</div>
+      <h1 id="waitTitle">Ждём остальных</h1>
+      <p id="waitText">Не подсматривай в чужие телефоны 👀</p>
+      <div id="phoneQueue" class="phone-queue"></div>
+    </section>
+
+    <section id="drawView" class="draw-view hidden">
+      <div class="draw-topbar">
+        <div>
+          <div id="partLabel" class="eyebrow">ТВОЯ ЧАСТЬ</div>
+          <div id="prompt" class="prompt">—</div>
+        </div>
+        <div id="turnBadge" class="turn-badge">1/4</div>
+      </div>
+
+      <div class="instruction">Рисуй <b>только свою часть</b>. Продолжи две линии сверху и оставь две линии в зоне стыка снизу.</div>
+
+      <div class="canvas-wrap">
+        <canvas id="drawCanvas" width="720" height="520"></canvas>
+        <div class="top-stitch-label">СТЫК ОТ ПРЕДЫДУЩЕГО</div>
+        <div class="bottom-stitch-label">ОСТАВЬ 2 ЛИНИИ ДЛЯ СЛЕДУЮЩЕГО ↓</div>
+      </div>
+
+      <div id="toolDock" class="tool-dock">
+        <div class="colors" id="colors"></div>
+        <input id="brushSize" type="range" min="3" max="42" value="11" />
+        <button id="undoBtn" class="tool-btn">↶</button>
+        <button id="clearBtn" class="tool-btn">⌫</button>
+        <button id="doneBtn" class="btn primary done-btn">Готово ✓</button>
+      </div>
+    </section>
+
+    <section id="confirmView" class="phone-card confirm-view hidden">
+      <div class="eyebrow">ТОЧНО ЗАКОНЧИЛ?</div>
+      <h1>Отправляем этот кусок?</h1>
+      <canvas id="previewCanvas" width="360" height="260"></canvas>
+      <p>После отправки рисунок уже не вернуть. Следующий увидит только стык.</p>
+      <button id="confirmSubmit" class="btn primary jumbo">Да, отправить</button>
+      <button id="backToDraw" class="btn secondary jumbo">Ещё дорисую</button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/play.js"></script>
+</body>
+</html>

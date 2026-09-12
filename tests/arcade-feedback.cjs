@@ -1,0 +1,14 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const source=fs.readFileSync('games/arcade/public/app.js','utf8');
+const start=source.indexOf('let feedbackState='),end=source.indexOf('// Static world material',start);
+const ctx=new Proxy({}, {get:()=>()=>{},set:()=>true});
+const box={g:ctx,reducedArtMotion:false,state:null};vm.createContext(box);
+vm.runInContext(source.slice(start,end)+'\nthis.tick=s=>{state=s;drawFeedback(s);return feedbackBursts.length}',box);
+const s=(time,mass=20,phase='playing')=>({mode:'hungry',round:1,phase,time,players:[{id:'a',mass,x:50,y:60,color:'#fff'}]});
+assert.equal(box.tick(s(0)),0);const hit=s(.1,21);assert.equal(box.tick(hit),1);
+assert.equal(box.tick(hit),1,'same snapshot must not duplicate effects');
+assert.equal(box.tick({...hit}),1,'pause clock must preserve feedback without new event');
+assert.equal(box.tick(s(.9,21)),0,'expired effect removed');
+for(let i=0;i<40;i++)box.tick(s(1+i*.001,22+i));assert.equal(box.tick(s(1.05,61)),20,'burst budget bounded');
+assert.equal(box.tick(s(1.05,61,'finished')),0,'phase transition clears effects');
+console.log('PASS event feedback deduplication, pause clock, expiry, cap and phase reset');

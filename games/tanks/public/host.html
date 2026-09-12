@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LOCAL TANKS — Host</title>
+  <link rel="stylesheet" href="/host.css" />
+<link rel="stylesheet" href="action-glass.css"></head>
+<body>
+  <div id="app">
+    <canvas id="game" width="1280" height="720"></canvas>
+
+    <div id="topbar">
+      <div class="brand"><span class="dot"></span> LOCAL TANKS</div>
+      <div id="modeHud">LOBBY</div>
+      <div class="top-actions">
+        <button id="fullscreenBtn" class="ghost">FULLSCREEN</button>
+        <button id="lobbyBtn" class="ghost">LOBBY</button>
+      </div>
+    </div>
+
+    <section id="lobbyOverlay" class="panel overlay-panel">
+      <div class="lobby-grid">
+        <div class="join-card">
+          <div class="eyebrow">1 · ПОДКЛЮЧЕНИЕ</div>
+          <h1>Сканируйте QR<br/>с телефонов</h1>
+          <div class="qr-wrap"><div id="qr" class="qr-box" aria-label="QR code"></div></div>
+          <div id="joinUrl" class="url">загрузка…</div>
+          <div id="ipChoices" class="ip-choices"></div>
+          <p>Все устройства должны быть в одной Wi‑Fi сети. Если QR не открывается — выберите другой IP ниже.</p>
+        </div>
+
+        <div class="players-card">
+          <div class="eyebrow">2 · ИГРОКИ</div>
+          <h2>Подключились <span id="playerCount">0</span></h2>
+          <div id="playerList" class="player-list"></div>
+          <div class="tiny-note">Команды можно переключать на телефоне до старта.</div>
+        </div>
+
+        <div class="modes-card">
+          <div class="eyebrow">3 · РЕЖИМ</div>
+          <div class="mode-list">
+            <button class="mode-card" data-mode="survival">
+              <span class="mode-num">01</span>
+              <span><b>10 РАУНДОВ</b><small>Каждый сам за себя. Последний живой получает раунд. После 10 — чемпион по победам.</small></span>
+            </button>
+            <button class="mode-card" data-mode="ctf">
+              <span class="mode-num">02</span>
+              <span><b>УТАЩИ ФЛАГ</b><small>Красные против синих. Укради вражеский флаг и донеси на свою базу. До 3 захватов.</small></span>
+            </button>
+            <button class="mode-card" data-mode="coop">
+              <span class="mode-num">03</span>
+              <span><b>ОГРАБЬ БОССА</b><small>Все вместе против босса и охраны. Разнесите босса, заберите энергетическое ядро и утащите домой.</small></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultOverlay" class="result-overlay hidden">
+      <div class="result-card">
+        <div class="eyebrow">MATCH OVER</div>
+        <h1 id="resultText">Победа</h1>
+        <div id="resultStats" class="result-stats"></div>
+        <div class="result-actions">
+          <button id="rematchBtn" class="primary">ЕЩЁ РАЗ</button>
+          <button id="backBtn" class="ghost big">В ЛОББИ</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="joinBadge" class="join-badge hidden">
+      <div id="miniQr" class="mini-qr" aria-label="join QR"></div>
+      <span>JOIN</span>
+    </div>
+  </div>
+
+  <script src="/qr-lite.js"></script>
+  <script src="/net.js"></script>
+  <script src="/host.js"></script>
+<script src="touch-feedback.js"></script></body>
+</html>

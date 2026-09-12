@@ -1,0 +1,276 @@
+/* Shared session UX. Controls stay distinct from engine-specific game surfaces. */
+body .app-header button,body .session-controls button,body .room-actions button,body dialog form button{display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1.2;vertical-align:middle}
+body button>.ui-icon,body button>svg{width:20px;height:20px;flex:0 0 20px;display:block;vertical-align:middle}
+body #hudTimer small,body #hudTimer span{flex:none;text-align:center;white-space:normal;overflow-wrap:anywhere;margin:0;max-width:100%}
+@media(min-width:851px){body.is-host #hudTimer{width:310px;padding-left:36px;padding-right:36px}body.is-host #hudTimer:before{width:244px;left:50%;right:auto;transform:translateX(-50%) scaleX(1.27)}body.is-host #hudTimer span{max-width:228px;line-height:1.3}body.is-host #playingTitle{font-size:clamp(48px,4vw,80px)!important;line-height:1.08!important}}
+@media(max-width:850px){body.in-game #hudTimer{width:164px;min-width:164px;padding-left:20px;padding-right:20px}body.in-game #hudTimer:before{width:140px;left:50%;right:auto;transform:translateX(-50%) scaleX(1.17)}body.in-game #hudTimer span{font-size:10px!important;max-width:114px;line-height:1.3!important}body.in-game #hudTimer small{max-width:120px}body.in-game #sessionIdentity{max-width:calc((100vw - 188px)/2)}}
+body.is-host .playbar{background:transparent!important;border:0!important;box-shadow:none!important}
+body.is-host #playingTitle,body #waitingTitle{background:linear-gradient(90deg,var(--game-title-accent,#c8f58b),color-mix(in srgb,var(--game-title-accent,#c8f58b) 10%,transparent));background-clip:text;-webkit-background-clip:text;color:transparent;box-shadow:none;border:0;display:inline-block;width:fit-content;max-width:100%;padding-right:.15em;overflow-wrap:anywhere}
+body.is-host #playingTitle{font-size:50px!important;line-height:1.1!important}body #waitingTitle{font-size:clamp(48px,10vw,80px)!important;line-height:1.08}
+@media(max-width:850px){
+ body.in-game .app-header{overflow:visible!important;z-index:40}
+ body.in-game #hudTimer{position:absolute;grid-column:1/-1;left:50%;right:auto;top:-8px;translate:none;transform:translateX(-50%);box-sizing:border-box;width:140px;min-width:140px;height:108px;min-height:108px;padding:16px 14px 10px;border:0;border-radius:0;background:none;box-shadow:none;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px;isolation:isolate}
+ body.in-game #hudTimer:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#27351c,#111c19);clip-path:path('M 0 0 H 140 L 121 96 Q 119 107 109 107 H 31 Q 21 107 19 96 Z')}
+ body.in-game #hudTimer small{font-size:8px;line-height:1.2;letter-spacing:.3px;text-align:center}
+ body.in-game #hudTimer strong{font-size:38px;line-height:1;color:#d5ffa2;text-shadow:0 0 20px #c8f58b38}
+ body.in-game #hudTimer.word-time strong{font-size:24px}
+ body.in-game #hudTimer span{font-size:12px;line-height:1.2;color:#d4dfca}
+ body.in-game #play{padding-top:30px;box-sizing:border-box}
+ body.in-game #waitingRules{top:30px}
+ body.in-game #sessionIdentity{max-width:calc((100vw - 164px)/2)}
+ body.in-game #sessionIdentity b,body.in-game #sessionIdentity small{max-width:100%}
+}
+.mobile-room-strip{display:none}
+@media(max-width:850px){
+ body.lobby-connected:not(.in-game){--mobile-lobby-header:calc(154px + env(safe-area-inset-top));padding-top:var(--mobile-lobby-header)!important}
+ body.lobby-connected:not(.in-game) .app-header{position:fixed!important;inset:0 0 auto!important;width:100%;height:var(--mobile-lobby-header)!important;box-sizing:border-box;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:54px 40px 48px;gap:0!important;padding:calc(6px + env(safe-area-inset-top)) 12px 6px!important;z-index:40;background:#10171bf5;backdrop-filter:blur(20px);overflow:hidden}
+ body.lobby-connected:not(.in-game) .app-header>.identity{grid-area:1/1;min-width:0}
+ body.lobby-connected:not(.in-game) .app-header>nav:last-of-type{grid-area:1/2;margin:0!important;gap:5px;justify-self:end}
+ body.lobby-connected:not(.in-game) #showGames,body.lobby-connected:not(.in-game) #fullscreen{display:none!important}
+ body.lobby-connected:not(.in-game) #catalogFilters{display:flex!important;position:relative!important;inset:auto!important;transform:none!important;grid-area:3/1/4/3;width:100%;min-width:0;box-sizing:border-box;margin:0!important;padding:4px!important;align-self:center;justify-content:space-between;gap:0;height:46px;overflow:hidden}
+ body.lobby-connected:not(.in-game) #catalogFilters .filter-tab{flex:1;min-width:0;min-height:36px;height:36px;padding:0 5px!important;font-size:11px;white-space:nowrap}
+ body.lobby-connected:not(.in-game) #catalogFilters:before{top:0}
+ body.lobby-connected:not(.in-game) .mobile-room-strip{grid-area:2/1/3/3;display:flex;align-items:center;gap:5px;height:36px;min-height:36px;padding:3px 7px;margin:0;border:0;border-radius:12px;background:#c8f58b09;overflow-x:auto;scrollbar-width:none;color:#d4dfca;box-shadow:none}
+ .mobile-room-label{font-size:10px;white-space:nowrap;margin-right:5px;flex:none}.mobile-room-avatar{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:var(--avatar-color);color:#172018;font-size:11px;border:1px solid #ffffff30}
+ body.lobby-connected:not(.in-game) #home .company-people,body.lobby-connected:not(.in-game) #home>.evening-console{display:none!important}
+ body.lobby-connected:not(.in-game) #catalogSection{scroll-margin-top:calc(var(--mobile-lobby-header) + 12px)}
+}
+#backRules{flex:none;align-self:flex-start;display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;margin:0 0 16px;padding:10px 18px;font-size:16px}#backRules span{font-size:22px;line-height:1}
+@media(min-width:851px){body.is-host #hudTimer{grid-column:1/-1;left:50%;right:auto;margin:0;translate:none}body.is-host #hudTimer span{font-size:16px;line-height:1.25;color:#d4dfca}}
+:root{--lime:#c8f58b;--accent:#c8f58b}
+#spectateButton{display:none!important}.room-toggle{padding-right:18px!important}.evening-stats b{overflow-wrap:anywhere}
+#waitingRules{max-height:none}
+@media(min-width:851px){.is-host .app-header{overflow:visible}.is-host #hudTimer{position:absolute;left:50%;top:-14px;transform:translateX(-50%);width:244px;height:138px;min-height:138px;padding:24px 30px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;border-radius:0;background:none;box-shadow:none;isolation:isolate}.is-host #hudTimer:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#27351c,#111c19);clip-path:path('M 6 0 H 238 Q 248 0 241 19 L 208 123 Q 205 137 191 137 H 53 Q 39 137 36 123 L 3 19 Q -4 0 6 0 Z');filter:drop-shadow(0 8px 20px #0008)}.is-host #hudTimer strong{font-size:54px;line-height:1;letter-spacing:-2px;color:#d5ffa2;text-shadow:0 0 24px #c8f58b38}.is-host #hudTimer.word-time strong{font-size:36px;letter-spacing:-1px}.is-host #hudTimer small{font-size:11px;letter-spacing:.6px}.is-host #hudTimer span{font-size:11px}.is-host .playbar{display:flex!important;min-height:66px;padding:18px 3vw 10px;align-items:center;background:#0c1219;border:0;flex:none}.is-host #playingTitle{font-size:25px;line-height:1.1}.is-host #playingControls,.is-host #gameConnection{display:none}.is-host #sessionIdentity{display:flex;flex-direction:column;justify-content:center}.is-host #headerName{font-size:17px}.is-host .app-header>.identity{align-self:center}}
+.evening-stats>div:nth-child(n+3){grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px}.evening-stats>div:nth-child(n+3) small{order:-1;font-size:11px;margin:0}.evening-stats>div:nth-child(n+3) b{font-size:15px;text-align:right;max-width:60%}
+html body #catalogFilters:before{top:-2px}
+#rulesDialog{overflow:hidden;display:flex;flex-direction:column;max-height:calc(100dvh - 24px)}#rulesDialog:not([open]){display:none}#rulesBody{overflow:auto;min-height:0;overscroll-behavior:contain;padding-right:4px}#closeRules{flex:none;min-height:48px;margin-top:14px}#rulesDialog>h2,#rulesDialog>.eyebrow{flex:none}#rulesDialog h2{margin:10px 0 16px}
+.company #players .player:nth-child(n+5){display:none}#companyRoomOpen{width:100%;margin-top:10px;font-size:12px;min-height:44px}
+.game-objective{padding:9px 16px;background:#17201bf2;border-bottom:1px solid #c8f58b25;font-size:13px;line-height:1.35;color:#e5eddc;flex:none}
+#play{position:relative;min-height:0;overflow:hidden}.session-controls{display:flex;justify-content:center;gap:10px;padding:8px 16px calc(8px + env(safe-area-inset-bottom));background:#10151bf2;border-top:1px solid #ffffff12;flex:none;z-index:12}.session-controls button{min-height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;white-space:nowrap}
+#pauseOverlay{position:absolute;inset:0 0 70px;display:grid;place-items:center;background:#071018db;backdrop-filter:blur(12px);z-index:11;padding:20px}#pauseOverlay>div{text-align:center;max-width:520px}#pauseOverlay h2{font-size:clamp(36px,6vw,72px);margin:12px}#pauseOverlay button{margin-top:16px}
+#lobbyExit{display:flex;align-items:center;gap:8px;white-space:nowrap}#gameRules{width:auto!important;min-width:72px!important;font-size:13px!important}
+#waitingRules{position:absolute;inset:0 0 70px;z-index:9;max-width:none;margin:0;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 20%,#273824,#10151b 65%);overflow:auto;border:0;border-radius:0}
+#waitingRules>*{width:100%;max-width:560px}#waitingRules h2{font-size:clamp(26px,5vw,48px);margin:14px 0}#waitingContent{display:block}.waiting-goal{font-size:17px;line-height:1.5}.waiting-details{text-align:left;margin:18px 0;border:1px solid #ffffff20;border-radius:18px;background:#ffffff06;padding:12px 16px}.waiting-details summary{min-height:28px;cursor:pointer;font-size:15px;color:#d4f4af}.waiting-details p{font-size:14px;line-height:1.5}.waiting-details>div{margin-top:12px}.ready-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.ready-actions button{min-height:52px;min-width:150px}#readyProgress{font-size:13px;line-height:1.4;color:#c0cabb;margin:14px 0 0}.game-waiting #gameFrame{visibility:hidden}.game-waiting #gameObjective{visibility:hidden}
+.room-actions{display:grid;gap:10px}.room-actions button{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;margin:0;padding:10px 16px}.room-actions svg{width:20px;height:20px;flex:none}#confirmStop form{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:12px;margin-top:22px}#confirmStop form button{min-height:54px;margin:0;padding:12px 18px;line-height:1.3}#confirmStop{max-width:640px}#confirmStop h2{font-size:clamp(23px,3vw,34px)}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%23c8f58b' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px!important}
+#testModeBox{margin-top:18px;max-width:500px}.test-mode{display:flex;gap:10px;align-items:center;font-size:13px;cursor:pointer}.test-mode input{width:22px;height:22px;accent-color:#c8f58b}#testModeBox small{display:block;color:#aeb9ae;margin:6px 0;font-size:11px;line-height:1.4}
+.company-people{background:linear-gradient(135deg,#253826ed,#16261ef5)!important;border-color:#c8f58b35!important}.evening-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.evening-stats>div{background:#ffffff05;border-radius:12px;padding:9px}.evening-stats b{display:block;font-size:20px;color:#d9f6b6}.evening-stats small{display:block;font-size:9px;color:#b9c3b7;margin-top:3px}.company .mini-ranking{background:#171821ed!important}.company .mini-empty{font-size:12px}.company .section-title{align-items:center}
+html body #catalogFilters{align-items:center}#catalogFilters .filter-tab{display:flex;align-items:center;justify-content:center;min-height:42px;line-height:1;margin:0}
+#liveTop{position:static;display:flex;justify-content:center;flex-wrap:wrap;gap:12px;border-radius:0;padding:9px 16px;background:#131b20;border-top:1px solid #ffffff10;max-width:none;font-size:15px;flex:none}#liveTop>span{padding:5px 12px;border-radius:10px;background:#ffffff05}#liveTop b{color:#c8f58b}.is-player #liveTop{display:none}
+@media(min-width:851px){.in-game .app-header{grid-template-columns:minmax(180px,1fr) auto minmax(0,1fr)}.in-game .app-header>nav:last-child{min-width:max-content;gap:8px}.in-game #roomToggle{min-width:132px;flex-shrink:0}.in-game .room-caption{white-space:nowrap}.in-game #showGames{display:none}body.in-game #gameRules{display:none}.in-game .session-controls{padding-top:6px;padding-bottom:6px}.in-game .session-controls #exitVoteButton{display:none}}
+/* No nested scrolling in the home rails: smaller screens use the document flow. */
+@media(min-width:1101px){#home .company{overflow:visible!important;max-height:none!important}.company-people,.company .mini-ranking{zoom:1!important;padding:20px}.company .mini-ranking h3{margin:0 0 12px}.company .mini-rank{padding:9px 10px;margin:5px 0}.company #players{display:flex;flex-wrap:wrap;gap:5px}.company .player{padding:5px 8px;border:0}.company .player small{display:none}.company .player .avatar{width:25px;height:25px}.company #empty{margin-top:10px}.company #allRanks{margin-top:9px}.company .mini-stat{display:none}#home .company{top:var(--catalog-rail-top,420px)}#home>.evening-console{top:var(--catalog-rail-top,420px)}#qrDock{right:24px!important;max-width:145px;scale:1!important}#qrDock img{width:105px;height:105px}}
+@media(min-width:1101px) and (max-height:850px){#home .company{position:static;grid-column:3;grid-row:2;align-self:start}#home>.evening-console{position:sticky;top:110px;max-height:none;overflow:visible}#qrDock{bottom:12px;padding:10px;max-width:118px}#qrDock img{width:82px;height:82px}#qrDock small{display:none}}
+@media(max-width:850px){body.in-game{padding:0;height:100dvh;overflow:hidden}.in-game .app-header{height:72px!important;position:relative!important;padding:5px 10px!important;grid-template-columns:minmax(80px,1fr) auto minmax(78px,1fr)!important}.in-game #play{height:calc(100dvh - 72px)}.in-game .app-header>nav:last-child{justify-content:flex-end;gap:4px}.in-game #lobbyExit,.in-game #gameRules{display:none!important}.in-game .room-caption,.in-game #roomAvatars{display:none}.in-game #roomToggle{width:36px;min-width:36px;padding:5px}.in-game #showStats{min-width:42px;padding:7px;font-size:11px}.in-game #showStats svg{width:16px;height:16px}.in-game #sessionIdentity b{font-size:13px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.in-game #sessionIdentity small{font-size:10px;max-width:112px}.in-game #connection{font-size:8px}.in-game .clock-block{min-width:82px;min-height:60px}.game-objective{font-size:12px;padding:8px 12px}.session-controls{gap:6px;padding:6px 8px calc(6px + env(safe-area-inset-bottom))}.session-controls button{flex:1;min-width:0;padding:8px 5px;font-size:11px}.waiting-details{margin:10px 0}#waitingRules{padding:16px;inset:0 0 calc(56px + env(safe-area-inset-bottom));justify-content:center}#waitingRules h2{margin:9px 0;font-size:30px}.waiting-goal{font-size:16px;line-height:1.4;margin:10px 0}.ready-actions{gap:8px}.ready-actions button{min-width:0;flex:1;font-size:14px}#readyProgress{font-size:12px}.is-player .playbar{display:none!important}dialog{max-height:calc(100dvh - 30px);overflow:auto;width:calc(100% - 24px);padding:22px}#confirmStop form{grid-template-columns:1fr}#pauseOverlay{bottom:calc(56px + env(safe-area-inset-bottom))}.company-people{padding:16px}.company #players{gap:4px}.company .player{padding:5px 7px}.company .player small{display:none}}
+@media(max-height:500px) and (max-width:850px){#waitingRules{justify-content:flex-start}.game-objective{font-size:11px;padding:4px 10px}#waitingRules h2{font-size:23px}.waiting-details{margin:6px 0}.waiting-goal{font-size:13px}.ready-actions button{min-height:44px}#readyProgress{margin-top:5px}}
+/* Final mobile timer spacing after responsive shell rules. */
+@media(max-width:850px){html body.in-game #hudTimer{width:164px;min-width:164px;padding-left:20px;padding-right:20px}html body.in-game #hudTimer:before{width:140px;left:50%;right:auto;transform:translateX(-50%) scaleX(1.17)}html body.in-game #sessionIdentity{max-width:calc((100vw - 188px)/2)}}
+/* Game name is typography, without the old full-width strip. */
+html body #play>.playbar{background:none!important;background-image:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html body #play>.playbar:before,html body #play>.playbar:after{display:none!important}
+@media(max-width:850px){
+ html body.in-game #roomToggle{display:flex!important;align-items:center!important;justify-content:center!important;width:38px;min-width:38px;height:38px;min-height:38px;padding:0!important;gap:0!important;margin:0;box-sizing:border-box}
+ html body.in-game #roomCount{display:block;min-width:0;margin:0!important;padding:0!important;line-height:1;text-align:center;float:none}
+ html body.in-game #waitingRules{justify-content:flex-start;padding:24px 18px 18px;gap:12px}
+ html body.in-game #waitingRules>.eyebrow{margin:0;line-height:1.4}
+ html body.in-game #waitingTitle{margin:4px 0 10px}
+ html body.in-game #waitingContent{margin:0}
+ html body.in-game .waiting-goal{margin:0 0 22px;line-height:1.5}
+ html body.in-game .waiting-details{padding:0 16px;margin:0 0 18px;border-radius:18px}
+ html body.in-game .waiting-details summary{display:flex;align-items:center;justify-content:space-between;gap:12px;box-sizing:border-box;min-height:56px;padding:12px 0;line-height:1.35;list-style:none;margin:0}
+ html body.in-game .waiting-details summary::-webkit-details-marker{display:none}
+ html body.in-game .waiting-details summary:after{content:'⌄';flex:none;font-size:22px;line-height:1;align-self:center}
+ html body.in-game .waiting-details[open] summary:after{content:'⌃'}
+ html body.in-game .waiting-details>div{padding-bottom:14px;margin:0}
+ html body.in-game .ready-actions{margin-top:auto;flex:none;padding-top:12px}
+ html body.in-game .ready-actions button{min-height:58px;font-size:16px}
+ html body.in-game #readyProgress{margin:0;flex:none;line-height:1.4}
+}
+@media(max-width:850px) and (max-height:650px){html body.in-game #waitingRules{padding:16px;gap:6px}html body.in-game #waitingTitle{font-size:36px!important;margin:0 0 6px}html body.in-game .waiting-goal{margin-bottom:12px;font-size:16px;line-height:1.35}html body.in-game .waiting-details{margin-bottom:8px}html body.in-game .waiting-details summary{min-height:48px}html body.in-game .ready-actions{padding-top:6px}html body.in-game .ready-actions button{min-height:50px}}
+html body.in-game #mobileRoomStrip,html body:not(.lobby-connected) #mobileRoomStrip{display:none!important}
+@media(min-width:851px){html body #mobileRoomStrip{display:none!important}}
+@media(max-width:850px){html body.in-game #roomCount:before{display:none!important}html body.in-game .waiting-details summary:after{content:'';width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 2px 4px 0}html body.in-game .waiting-details[open] summary:after{content:'';transform:rotate(225deg);margin-bottom:0}}
+/* Shared header controls use the same box and optical baseline. */
+html body .app-header>nav:last-of-type{align-items:center!important}
+html body .app-header :is(#showStats,#lobbyExit,#roomToggle){box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-height:48px;height:48px;gap:10px;line-height:1;margin:0}
+html body .app-header :is(#showStats,#lobbyExit) svg{width:20px;height:20px;flex:0 0 20px;align-self:center;margin:0;stroke-width:2}
+html body .app-header :is(#showStats,#lobbyExit)>span{margin:0!important;line-height:1;display:block;float:none}
+@media(min-width:851px){
+ html body .app-header #roomToggle{padding:0 18px!important;gap:12px!important;min-width:180px}
+ html body .app-header #roomAvatars{margin-right:3px;align-items:center}
+ html body .app-header #roomCount{line-height:1;font-size:16px;margin:0;padding:0;align-self:center}
+ html body .app-header .room-caption{max-width:none;white-space:nowrap;font-size:11px;line-height:1;align-self:center;margin:0}
+ html body.is-host #playingTitle{font-size:clamp(72px,6vw,120px)!important;line-height:1.08!important}
+ html body.is-host #play>.playbar{background:transparent!important;filter:none!important;backdrop-filter:none!important}
+}
+@media(max-width:850px){
+ html body.in-game .app-header :is(#roomToggle,#showStats){height:44px!important;min-height:44px!important;margin:0!important;align-self:center;padding:0 8px!important;line-height:1}
+ html body.in-game .app-header #roomToggle{width:44px!important;min-width:44px!important;padding:0!important;flex:none}
+ html body.in-game .app-header #showStats{gap:5px!important;min-width:60px}
+ html body.in-game .app-header #showStats svg{width:16px;height:16px;flex-basis:16px}
+}
+/* A single dark surface replaces the catalog gradient strip behind game titles. */
+html body.in-game{background:#0b1016!important}
+html body.in-game>.ambient{display:none!important}
+html body.in-game #play{background:#0b1016!important;isolation:isolate}
+html body.is-host.in-game #play:before{content:'';position:absolute;left:-85px;top:-100px;width:440px;height:360px;background-image:var(--active-game-art);background-repeat:no-repeat;background-size:contain;background-position:center;filter:blur(20px);opacity:.23;pointer-events:none;z-index:-1;mask-image:radial-gradient(ellipse at 40% 35%,#000 15%,transparent 73%)}
+html body.is-host.in-game #play>.playbar{background:none!important;background-image:none!important;border:0!important;box-shadow:none!important;position:relative;z-index:1}
+@media(min-width:851px){
+ html body .app-header{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;grid-template-rows:1fr!important;height:88px!important;min-height:88px;align-items:center}
+ html body .app-header>.identity{grid-column:1;grid-row:1}
+ html body .app-header>#catalogFilters{grid-column:2;grid-row:1;align-self:center}
+ html body .app-header>nav:last-of-type{grid-column:3!important;grid-row:1!important;justify-self:end!important;align-self:center!important;display:flex;flex-wrap:nowrap;margin:0!important}
+ html body.is-host.in-game #play:before{left:-130px;top:120px;width:620px;height:560px;filter:blur(8px);opacity:.22;z-index:2;mask-image:radial-gradient(ellipse at 45% 45%,#000 38%,transparent 76%)}
+}
+/* Match the established in-game right edge in the main lobby. */
+@media(min-width:851px){html body .app-header{padding-left:24px!important;padding-right:24px!important}html body .app-header>nav:last-of-type{gap:8px!important}}
+@media(max-width:850px){html body.lobby-connected:not(.in-game) .app-header{padding-left:10px!important;padding-right:10px!important}}
+/* Large game emblem, anchored to the left edge and viewport vertical center. */
+@media(min-width:851px){html body.is-host.in-game #play:before{position:fixed;left:-260px;top:50dvh;width:1240px;height:1120px;transform:translateY(-50%);filter:blur(8px);pointer-events:none}}
+/* The title overlays the game surface; it no longer reserves a separate band. */
+@media(min-width:851px){html body.is-host.in-game #play>.playbar{position:absolute!important;left:0;right:0;top:0;z-index:3;pointer-events:none;min-height:0!important;margin:0!important;padding:24px 3vw 0!important;background:none!important;border:0!important;box-shadow:none!important}html body.is-host.in-game #gameFrame{position:relative;z-index:0}}
+/* Quiet game-colored light over the lower-right corner, without intercepting controls. */
+html body.in-game #play:after{content:'';position:absolute;right:-18%;bottom:-26%;width:88%;height:100%;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 75% 78%,color-mix(in srgb,var(--game-title-accent,#c8f58b) 16%,transparent) 0%,color-mix(in srgb,var(--game-title-accent,#c8f58b) 7%,transparent) 28%,transparent 66%)}
+html body.in-game .session-controls,html body.in-game #liveTop{position:relative;z-index:4}
+@media(max-width:850px){html body.in-game #play:after{width:140%;height:80%;right:-35%;bottom:-20%;opacity:.65}}
+/* Continue the waiting surface behind the timer overhang without moving content. */
+@media(max-width:850px){html body.in-game #waitingRules{top:0!important;padding-top:54px!important}}
+@media(max-width:850px) and (max-height:650px){html body.in-game #waitingRules{padding-top:46px!important}}
+/* One footer action row; rules are in cards and in the pause dialog. */
+html body.in-game #liveTop{display:none!important}
+html body.in-game #sessionControls{flex:none;min-height:64px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:12px;padding:8px 16px;background:transparent;border:0;position:relative;isolation:isolate}
+html body.in-game #sessionControls button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 24px;border-radius:100px;background:linear-gradient(135deg,#25332b,#161e23);border:1px solid #c8f58b36;box-shadow:0 4px 16px #0002;font-weight:800}
+#pauseButton svg{width:20px;height:20px;flex:0 0 20px}
+#pauseOverlay #sessionRules{display:block;margin:16px auto;min-height:48px;padding:12px 28px}
+html body.in-game #play:after{background:radial-gradient(ellipse at 76% 80%,color-mix(in srgb,var(--game-title-accent) 34%,transparent),color-mix(in srgb,var(--game-title-accent) 16%,transparent) 38%,transparent 72%)}
+@media(max-width:850px){html body.in-game #sessionControls{min-height:64px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}html body.in-game #sessionControls button{flex:1}#waitingRules{bottom:calc(64px + env(safe-area-inset-bottom))!important}}
+@media(max-width:850px){
+ html body.in-game #waitingRules{padding-top:clamp(80px,12dvh,130px)!important;isolation:isolate}
+ html body.in-game #waitingContent{display:contents}
+ html body.in-game #waitingRules>.eyebrow{order:1}
+ html body.in-game #waitingTitle{order:2;position:relative;font-size:clamp(34px,9vw,48px)!important;margin:18px 0 22px!important}
+ html body.in-game #waitingRules .waiting-goal{order:3;margin:8px 0 20px}
+ html body.in-game #waitingRules .waiting-details{order:4;margin: auto auto 18px!important;width:calc(100% - 28px);box-sizing:border-box;flex:none;background:linear-gradient(135deg,#ffffff0a,#ffffff03);backdrop-filter:blur(18px)}
+ html body.in-game #waitingRules .ready-actions{order:5;margin-top:0!important}
+ html body.in-game #readyProgress{order:6}
+ html body.in-game #waitingRules:before{content:'';position:absolute;inset:-100px -25% auto;height:470px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--game-title-accent) 30%,transparent),transparent 70%)}
+ html body.in-game #waitingTitle:before,html body.in-game #waitingTitle:after{position:absolute;top:-24px;font-size:25px;line-height:1;font-style:normal;-webkit-text-fill-color:initial;filter:drop-shadow(0 4px 10px #0005);pointer-events:none}
+ html body.in-game #waitingTitle:before{content:var(--mobile-deco-left,'✨');left:5px;transform:rotate(-14deg)}
+ html body.in-game #waitingTitle:after{content:var(--mobile-deco-right,'⚡');right:4px;transform:rotate(12deg)}
+}
+@media(max-width:850px) and (max-height:700px){html body.in-game #waitingRules{padding-top:64px!important}html body.in-game #waitingTitle{margin:10px 0!important;font-size:32px!important}html body.in-game #waitingRules .waiting-goal{font-size:14px;margin:6px 0 10px}}
+@media(max-width:850px){
+ html body.in-game #waitingRules .waiting-details{width:86%;padding:0 16px!important}
+ html body.in-game #waitingRules .waiting-details summary{font-size:14px!important;min-height:50px!important;padding:12px 22px 12px 0!important}
+ html body.in-game #waitingRules .waiting-details[open]{width:100%;max-height:34dvh;overflow:auto;padding-bottom:14px!important}
+}
+@media(max-width:850px){
+ html body.in-game #waitingTitle{font-size:var(--mobile-title-size,48px)!important;width:100%;max-width:560px;line-height:1.04!important}
+ html body.in-game #waitingRules .waiting-details{margin-bottom:8px!important;min-height:50px;flex-shrink:1}
+ html body.in-game #waitingRules .waiting-details[open]{max-height:max(94px,calc(100dvh - 650px));min-height:50px}
+ html body.in-game #waitingRules>.eyebrow,html body.in-game #waitingTitle,html body.in-game #waitingRules .waiting-goal,html body.in-game #waitingRules .ready-actions,html body.in-game #readyProgress{flex-shrink:0}
+}
+/* Decorative overflow must never become a programmatically scrollable viewport. */
+html body.in-game #play{overflow:clip!important;width:100%;max-width:100vw}
+@media(max-width:850px){html body.in-game #waitingTitle:before,html body.in-game #waitingTitle:after{color:white;-webkit-text-fill-color:white;background:none}}
+#gameFrame{transition:opacity 120ms ease}
+#gameFrame[data-loading=true]{opacity:0;pointer-events:none}
+@media(max-width:850px){
+ html body.in-game #waitingRules:has(.waiting-details[open]){padding-top:38px!important}
+ html body.in-game #waitingRules:has(.waiting-details[open]) #waitingTitle{margin:12px 0!important}
+ html body.in-game #waitingRules:has(.waiting-details[open]) .waiting-goal{margin:4px 0 12px}
+ html body.in-game #waitingRules .waiting-details[open]{flex:1 1 0;max-height:none!important;min-height:100px;margin-top:8px!important;overflow:auto}
+ html body.in-game #waitingRules .waiting-details[open]>summary{position:sticky;top:0;z-index:2;background:#18231ff5;border-radius:16px;backdrop-filter:blur(16px)}
+}
+html body.is-host.in-game #play:before,html body.is-host.in-game #play:after{display:none!important}
+html body .company-people #testModeBox.bots-panel{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:20px 0 0;padding:16px;background:#354b39;border:1px solid #baff6b24;border-radius:18px;max-width:none;color:#f0f8e8}
+html body .company-people #testModeBox[hidden]{display:none!important}
+.bots-panel>b{font-size:15px}.bot-stepper{display:flex;align-items:center;gap:10px}.bot-stepper button{display:grid;place-items:center;width:38px;height:38px;min-height:38px;padding:0;border-radius:12px;background:#c8ff7320;border:1px solid #c8ff7340;color:#d5ff99;font-size:25px;font-style:normal;line-height:1}.bot-stepper button:hover{background:#c8ff7340}.bot-stepper button:disabled{opacity:.35}.bot-stepper output{min-width:24px;text-align:center;font-size:19px;font-weight:850;font-variant-numeric:tabular-nums}
+@media(max-width:850px){html body.in-game #waitingRules{gap:0!important}html body.in-game #waitingRules .ready-actions{padding-top:0!important}html body.in-game #readyProgress{margin-top:12px!important}}
+
+/* During play, the game owns the stage; keep a compact title in its reserved strip. */
+@media(min-width:851px){html body.is-host.in-game.session-active #playingTitle{font-size:36px!important;line-height:1.1!important;max-width:min(70vw,1100px)}html body.is-host.in-game.session-active #play>.playbar{padding:12px 24px 0!important}}
+
+/* Mobile header overhang is spacing, not a second dark bar. */
+@media(max-width:850px){
+ html body.in-game #play{background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--game-title-accent,#c8f58b) 16%,transparent),transparent 50%),#10151b!important}
+ html body.in-game #gameObjective{background:transparent!important;border:0!important;box-shadow:none!important}
+ html body.in-game #gameFrame{background:transparent!important}
+ html body.in-game #waitingRules .waiting-details:not([open]){margin-bottom:clamp(16px,calc(100dvh - 740px),108px)!important}
+ html body.in-game #waitingRules .waiting-details[open]{margin-bottom:8px!important}
+ html body.in-game #hudValue{max-width:100%;white-space:nowrap;font-variant-numeric:tabular-nums}
+}
+body.is-player button,body.is-player [role=button],body.is-player img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+/* Pause footer fades into the game instead of drawing a solid strip. */
+html body.in-game .session-controls{background:linear-gradient(to top,rgba(11,16,22,.4),rgba(11,16,22,0))!important;border-top:0!important;box-shadow:none!important;backdrop-filter:none!important}
+/* Company statistics: scoped modal layout, independent from catalog cards. */
+#statsDialog{width:min(760px,calc(100vw - 28px));max-width:760px;max-height:calc(100dvh - 32px);padding:28px;border:1px solid #c8ff7330;border-radius:28px;background:linear-gradient(145deg,#202d29f7,#111920fc 70%);color:#f2f5ef;box-shadow:0 28px 100px #0009;overflow:hidden}
+#statsDialog[open]{display:flex;flex-direction:column;gap:20px}#statsDialog::backdrop{background:#05090cd1;backdrop-filter:blur(10px)}#statsDialog #statsName{margin:0;font-size:clamp(24px,4vw,34px);line-height:1.15;overflow-wrap:anywhere;flex:none;padding-right:8px}
+#statsBody{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#779653 #16201e;padding:2px 10px 8px 2px;display:flex;flex-direction:column;gap:12px;scrollbar-gutter:stable;overscroll-behavior:contain}#statsBody::-webkit-scrollbar{width:7px}#statsBody::-webkit-scrollbar-track{background:#16201e;border-radius:9px}#statsBody::-webkit-scrollbar-thumb{background:#779653;border:2px solid #16201e;border-radius:9px}
+#statsDialog .stats-intro,#statsDialog .stats-empty{margin:0 0 5px;color:#b4c0b9;font-size:14px;line-height:1.5}#statsDialog .stats-rank{display:grid;grid-template-columns:28px 44px minmax(0,1fr) minmax(60px,auto);align-items:center;gap:14px;width:100%;padding:18px;border:1px solid #ffffff14;border-radius:18px;background:#ffffff05;text-align:left;color:#f2f5ef;min-height:88px;flex:none}#statsDialog .stats-rank:hover{background:#c8ff7310;border-color:#c8ff7350}#statsDialog .stats-rank[data-place="1"]{background:linear-gradient(110deg,#bdff7326,#ffffff05);border-color:#c8ff7360;min-height:104px}#statsDialog .stats-rank[data-place="2"]{border-color:#b9c9dd35}#statsDialog .stats-rank[data-place="3"]{border-color:#d9a27435}
+#statsDialog .stats-place{font-size:24px;font-weight:800;color:#c8ff73;text-align:center}#statsDialog .stats-avatar{display:grid;place-items:center;width:44px;height:44px;border-radius:15px;background:linear-gradient(145deg,#dbffa6,#82b865);color:#203016;font-size:24px}#statsDialog .stats-identity{display:flex;flex-direction:column;gap:6px;min-width:0}#statsDialog .stats-identity b{font-size:17px;line-height:1.2;overflow-wrap:anywhere}#statsDialog .stats-identity small,#statsDialog .stats-score small{font-size:11px;color:#aab9af}#statsDialog .stats-score{display:flex;flex-direction:column;gap:4px;text-align:right;font-variant-numeric:tabular-nums}#statsDialog .stats-score strong{font-size:25px;color:#ccff83;overflow-wrap:anywhere}
+#statsDialog .stats-back{align-self:flex-start;background:#ffffff08;border:1px solid #ffffff20;color:#d1e7b7;border-radius:12px;padding:12px 16px;min-height:44px;font-size:13px}#statsDialog .profile-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;flex:none}#statsDialog .profile-summary>div{padding:18px 12px;background:#c8ff730b;border:1px solid #c8ff7320;border-radius:16px;display:flex;flex-direction:column;gap:7px}#statsDialog .profile-summary strong{font-size:28px;color:#c8ff73;overflow-wrap:anywhere}#statsDialog .profile-summary small{font-size:11px;color:#b6c3b8}#statsDialog .stat-game{padding:20px;margin:0;border:1px solid #ffffff15;border-radius:18px;background:#ffffff04;flex:none}#statsDialog .stat-game h3{margin:0;font-size:19px;line-height:1.25;overflow-wrap:anywhere}#statsDialog .stat-game-summary{margin:8px 0 0;color:#b4c0b9;font-size:12px;line-height:1.5}#statsDialog .stat-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0 0}#statsDialog .stat-metrics>div{padding:10px 12px;border-radius:10px;background:#0002;min-width:0}#statsDialog .stat-metrics dt{font-size:11px;color:#aebcb2;overflow-wrap:anywhere}#statsDialog .stat-metrics dd{margin:5px 0 0;font-size:17px;color:#edf4e8;overflow-wrap:anywhere}#statsDialog #closeStats{flex:none;align-self:stretch;min-height:48px;border-radius:16px;margin:0;background:linear-gradient(120deg,#d4ff9c,#b9f263);color:#1d2d16;font-size:14px}
+@media(max-width:520px){#statsDialog{padding:18px;width:calc(100vw - 20px);max-height:calc(100dvh - 20px);border-radius:22px}#statsDialog[open]{gap:16px}#statsBody{padding-right:6px}#statsDialog .stats-rank{grid-template-columns:22px 32px minmax(0,1fr) minmax(45px,auto);padding:13px 10px;gap:9px;min-height:82px}#statsDialog .stats-avatar{width:32px;height:32px;border-radius:11px;font-size:18px}#statsDialog .stats-identity b{font-size:14px}#statsDialog .stats-score strong{font-size:20px}#statsDialog .stats-place{font-size:20px}#statsDialog .stats-identity small{font-size:10px}#statsDialog .stat-game{padding:16px}#statsDialog .profile-summary>div{padding:14px 9px}#statsDialog .profile-summary strong{font-size:23px}#statsDialog .stat-metrics{gap:7px}}
+/* Mobile room count stays compact; the clickable target keeps its full height. */
+@media(max-width:850px){
+ html body .app-header #roomToggle{width:28px!important;min-width:28px!important;max-width:28px!important;height:44px!important;min-height:44px!important;padding:0!important;gap:0!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:8px;flex:0 0 28px!important}
+ html body .app-header #roomToggle :is(#roomAvatars,.room-caption){display:none!important}
+ html body .app-header #roomCount{font-size:18px!important;font-weight:900!important;line-height:1!important;color:#baff65!important;margin:0!important;padding:0!important}
+ html body .app-header #roomCount:before{display:none!important}
+ html body.lobby-connected:not(.in-game) .mobile-room-strip{justify-self:end;width:32px!important;max-width:32px!important;min-width:32px!important;padding:0!important;justify-content:center!important;background:transparent!important;overflow:visible!important}
+ html body .mobile-room-strip .mobile-room-avatar{display:none!important}
+ html body .mobile-room-strip .mobile-room-label{font-size:18px!important;font-weight:900!important;line-height:1;color:#baff65!important;white-space:nowrap}
+}
+@media(max-width:850px){
+ html body.in-game .app-header #roomToggle{width:28px!important;min-width:28px!important;max-width:28px!important;flex:0 0 28px!important}
+ html body.in-game .app-header #hudTimer{position:absolute!important;left:50%!important;right:auto!important;top:0!important;transform:translateX(-50%)!important;width:88px!important;min-width:88px!important;max-width:88px!important;box-sizing:border-box!important;padding:7px 5px!important;margin:0!important;height:82px!important;min-height:82px!important}
+ html body.in-game .app-header #hudTimer small{font-size:7px!important;letter-spacing:0!important}
+ html body.in-game .app-header #hudTimer strong{font-size:28px!important}
+ html body.in-game .app-header #hudTimer span{font-size:8px!important;line-height:1.1!important}
+ html body.in-game .app-header>nav:last-of-type{position:absolute!important;right:10px!important;top:13px!important;gap:4px!important;margin:0!important;max-width:96px!important;justify-content:flex-end!important}
+ html body.in-game .app-header>.identity{max-width:calc(50vw - 58px)!important;overflow:hidden}
+}
+@media(max-width:850px){html body.in-game .app-header #joinOpen{display:none!important}}
+@media(max-width:850px){html body.in-game .app-header #hudTimer:before{inset:0!important;width:100%!important;height:100%!important;left:0!important;right:0!important;transform:none!important;clip-path:polygon(0 0,100% 0,88% 94%,83% 100%,17% 100%,12% 94%)!important}html body.in-game #sessionIdentity{max-width:100%!important}}
+@media(max-width:850px){
+ html body.in-game .app-header #roomToggle{position:relative;isolation:isolate}
+ html body.in-game .app-header #roomToggle:before{content:'';position:absolute;inset:7px 0;z-index:-1;background:#253824b8;border:1px solid #baff6530;border-radius:999px;box-sizing:border-box}
+ html body .app-header #roomCount{font-size:16px!important}
+ html body.lobby-connected:not(.in-game) .mobile-room-strip{position:relative;isolation:isolate}
+ html body.lobby-connected:not(.in-game) .mobile-room-strip:before{content:'';position:absolute;inset:3px 0;z-index:-1;background:#253824b8;border:1px solid #baff6530;border-radius:999px;box-sizing:border-box}
+ html body .mobile-room-strip .mobile-room-label{font-size:16px!important;margin:0!important}
+}
+/* Joined phone header: count belongs to the same row as Top, never its own row. */
+@media(max-width:850px){
+ html body.lobby-connected:not(.in-game){--mobile-lobby-header:calc(114px + env(safe-area-inset-top))}
+ html body.lobby-connected:not(.in-game) .app-header{grid-template-rows:54px 48px!important}
+ html body.lobby-connected:not(.in-game) #catalogFilters{grid-area:2/1/3/3!important}
+ html body.lobby-connected:not(.in-game) .app-header>nav:last-of-type{gap:4px!important;align-items:center!important}
+ html body.lobby-connected:not(.in-game) .mobile-room-strip{display:flex!important;width:44px!important;min-width:44px!important;max-width:44px!important;height:44px!important;min-height:44px!important;flex:0 0 44px!important;grid-area:auto!important}
+ html body.lobby-connected:not(.in-game) .mobile-room-strip:before{inset:6px!important;border-radius:50%!important}
+ html body.in-game .app-header #roomToggle{width:44px!important;min-width:44px!important;max-width:44px!important;flex:0 0 44px!important}
+ html body.in-game .app-header #roomToggle:before{inset:6px!important;border-radius:50%!important}
+ html body.in-game .app-header #hudTimer{width:clamp(88px,calc(100vw - 232px),112px)!important;min-width:0!important;max-width:112px!important}
+ html body.in-game .app-header>nav:last-of-type{right:8px!important;max-width:none!important;width:104px!important;gap:4px!important}
+ html body .app-header #myRank{display:none!important}
+ html body.in-game .app-header #showStats{width:56px!important;min-width:56px!important;max-width:56px!important;flex:0 0 56px!important;padding:0 6px!important;gap:4px!important;font-size:11px!important}
+ html body.in-game .app-header #showStats .nav-label{display:inline!important;font-size:11px!important}
+ html body.in-game .app-header #showStats svg{width:14px!important;height:14px!important;flex:0 0 14px!important}
+}
+
+/* Give status words their own readable panel; balance against the wider right controls. */
+@media(max-width:850px){html body.in-game .app-header #hudTimer{left:calc(50% - 12px)!important;width:clamp(112px,calc(100vw - 208px),152px)!important;max-width:152px!important;padding-inline:10px!important}html body.in-game #sessionIdentity{max-width:calc((100vw - 160px)/2)!important}html body.in-game #hudTimer small,html body.in-game #hudTimer span{max-width:100%!important}}
+
+
+/* Premium icons have complete silhouettes: contain them inside their art stage. */
+:is(#games,#moreGames,#tableGames)>.game .art .symbol{width:78%!important;height:62%!important;right:3%!important;top:3%!important;left:auto!important;object-fit:contain!important;object-position:center!important;translate:0!important;transform:none!important;animation:none!important}
+:is(#games,#moreGames,#tableGames)>.game.featured .art .symbol{width:88%!important;height:76%!important;right:3%!important;top:2%!important}
+:is(#games,#moreGames,#tableGames)>.game .game-bottom{gap:6px!important;min-width:0!important}
+:is(#games,#moreGames,#tableGames)>.game .game-bottom .start-game{flex:0 0 auto!important;min-width:0!important;width:auto!important;padding-inline:12px!important;white-space:nowrap!important;font-size:12px!important;letter-spacing:0!important}
+:is(#games,#moreGames,#tableGames)>.game .game-bottom .rules-link{flex:0 1 auto!important;min-width:0!important;padding-inline:8px!important;font-size:10px!important;white-space:nowrap!important}
+:is(#games,#moreGames,#tableGames)>.game.featured .game-bottom .start-game{padding-inline:24px!important;font-size:16px!important}
+@media(max-width:850px){:is(#games,#moreGames,#tableGames)>.game .art .symbol{width:86%!important;height:62%!important;right:2%!important;top:4%!important}:is(#games,#moreGames,#tableGames)>.game.featured .art .symbol{width:88%!important;height:68%!important}}
+
+
+@media(max-width:850px){:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .rules-link{width:32px!important;flex:0 0 32px!important;padding:0!important;font-size:0!important}:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .rules-link:before{content:"?";font-size:14px}:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .rules-link:after{display:none!important}:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .start-game{padding-inline:8px!important;font-size:11px!important}}
+

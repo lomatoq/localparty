@@ -1,0 +1,767 @@
+{
+  "results": [
+    {
+      "width": 1920,
+      "overflow": false,
+      "tags": [
+        {
+          "text": "Джойстик · 4 оружия",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Сужающаяся арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "На меткость",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Догонялки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Дуэль",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Танковые бои",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кооператив",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Гонки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Рисование",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Блоки и равновесие",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кран и качающаяся башня",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Один против одного",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Разговорная",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Квиз · 150 вопросов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Соло или команды",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "150 мест и историй",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Покажи без слов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Выбери клетку — огонь",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кисть против догадок",
+          "spill": false,
+          "outside": false
+        }
+      ],
+      "numbers": [
+        {
+          "text": "07",
+          "clipped": false
+        },
+        {
+          "text": "01",
+          "clipped": false
+        },
+        {
+          "text": "02",
+          "clipped": false
+        },
+        {
+          "text": "03",
+          "clipped": false
+        },
+        {
+          "text": "04",
+          "clipped": false
+        },
+        {
+          "text": "05",
+          "clipped": false
+        },
+        {
+          "text": "06",
+          "clipped": false
+        },
+        {
+          "text": "08",
+          "clipped": false
+        },
+        {
+          "text": "09",
+          "clipped": false
+        },
+        {
+          "text": "10",
+          "clipped": false
+        },
+        {
+          "text": "16",
+          "clipped": false
+        },
+        {
+          "text": "17",
+          "clipped": false
+        },
+        {
+          "text": "20",
+          "clipped": false
+        },
+        {
+          "text": "11",
+          "clipped": false
+        },
+        {
+          "text": "12",
+          "clipped": false
+        },
+        {
+          "text": "13",
+          "clipped": false
+        },
+        {
+          "text": "14",
+          "clipped": false
+        },
+        {
+          "text": "15",
+          "clipped": false
+        },
+        {
+          "text": "18",
+          "clipped": false
+        },
+        {
+          "text": "19",
+          "clipped": false
+        }
+      ],
+      "tank": 1254,
+      "icons": 2
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "tags": [
+        {
+          "text": "Джойстик · 4 оружия",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Сужающаяся арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "На меткость",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Догонялки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Дуэль",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Танковые бои",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кооператив",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Гонки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Рисование",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Блоки и равновесие",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кран и качающаяся башня",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Один против одного",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Разговорная",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Квиз · 150 вопросов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Соло или команды",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "150 мест и историй",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Покажи без слов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Выбери клетку — огонь",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кисть против догадок",
+          "spill": false,
+          "outside": false
+        }
+      ],
+      "numbers": [
+        {
+          "text": "07",
+          "clipped": false
+        },
+        {
+          "text": "01",
+          "clipped": false
+        },
+        {
+          "text": "02",
+          "clipped": false
+        },
+        {
+          "text": "03",
+          "clipped": false
+        },
+        {
+          "text": "04",
+          "clipped": false
+        },
+        {
+          "text": "05",
+          "clipped": false
+        },
+        {
+          "text": "06",
+          "clipped": false
+        },
+        {
+          "text": "08",
+          "clipped": false
+        },
+        {
+          "text": "09",
+          "clipped": false
+        },
+        {
+          "text": "10",
+          "clipped": false
+        },
+        {
+          "text": "16",
+          "clipped": false
+        },
+        {
+          "text": "17",
+          "clipped": false
+        },
+        {
+          "text": "20",
+          "clipped": false
+        },
+        {
+          "text": "11",
+          "clipped": false
+        },
+        {
+          "text": "12",
+          "clipped": false
+        },
+        {
+          "text": "13",
+          "clipped": false
+        },
+        {
+          "text": "14",
+          "clipped": false
+        },
+        {
+          "text": "15",
+          "clipped": false
+        },
+        {
+          "text": "18",
+          "clipped": false
+        },
+        {
+          "text": "19",
+          "clipped": false
+        }
+      ],
+      "tank": 1254,
+      "icons": 2
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "tags": [
+        {
+          "text": "Джойстик · 4 оружия",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Сужающаяся арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "На меткость",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Догонялки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Дуэль",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Танковые бои",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кооператив",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Гонки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Рисование",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Блоки и равновесие",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кран и качающаяся башня",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Один против одного",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Разговорная",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Квиз · 150 вопросов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Соло или команды",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "150 мест и историй",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Покажи без слов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Выбери клетку — огонь",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кисть против догадок",
+          "spill": false,
+          "outside": false
+        }
+      ],
+      "numbers": [
+        {
+          "text": "07",
+          "clipped": false
+        },
+        {
+          "text": "01",
+          "clipped": false
+        },
+        {
+          "text": "02",
+          "clipped": false
+        },
+        {
+          "text": "03",
+          "clipped": false
+        },
+        {
+          "text": "04",
+          "clipped": false
+        },
+        {
+          "text": "05",
+          "clipped": false
+        },
+        {
+          "text": "06",
+          "clipped": false
+        },
+        {
+          "text": "08",
+          "clipped": false
+        },
+        {
+          "text": "09",
+          "clipped": false
+        },
+        {
+          "text": "10",
+          "clipped": false
+        },
+        {
+          "text": "16",
+          "clipped": false
+        },
+        {
+          "text": "17",
+          "clipped": false
+        },
+        {
+          "text": "20",
+          "clipped": false
+        },
+        {
+          "text": "11",
+          "clipped": false
+        },
+        {
+          "text": "12",
+          "clipped": false
+        },
+        {
+          "text": "13",
+          "clipped": false
+        },
+        {
+          "text": "14",
+          "clipped": false
+        },
+        {
+          "text": "15",
+          "clipped": false
+        },
+        {
+          "text": "18",
+          "clipped": false
+        },
+        {
+          "text": "19",
+          "clipped": false
+        }
+      ],
+      "tank": 1254,
+      "icons": 2
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "tags": [
+        {
+          "text": "Джойстик · 4 оружия",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Сужающаяся арена",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "На меткость",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Догонялки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Дуэль",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Танковые бои",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кооператив",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Гонки",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Рисование",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Блоки и равновесие",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кран и качающаяся башня",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Один против одного",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Разговорная",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Квиз · 150 вопросов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Соло или команды",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "150 мест и историй",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Покажи без слов",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Выбери клетку — огонь",
+          "spill": false,
+          "outside": false
+        },
+        {
+          "text": "Кисть против догадок",
+          "spill": false,
+          "outside": false
+        }
+      ],
+      "numbers": [
+        {
+          "text": "07",
+          "clipped": false
+        },
+        {
+          "text": "01",
+          "clipped": false
+        },
+        {
+          "text": "02",
+          "clipped": false
+        },
+        {
+          "text": "03",
+          "clipped": false
+        },
+        {
+          "text": "04",
+          "clipped": false
+        },
+        {
+          "text": "05",
+          "clipped": false
+        },
+        {
+          "text": "06",
+          "clipped": false
+        },
+        {
+          "text": "08",
+          "clipped": false
+        },
+        {
+          "text": "09",
+          "clipped": false
+        },
+        {
+          "text": "10",
+          "clipped": false
+        },
+        {
+          "text": "16",
+          "clipped": false
+        },
+        {
+          "text": "17",
+          "clipped": false
+        },
+        {
+          "text": "20",
+          "clipped": false
+        },
+        {
+          "text": "11",
+          "clipped": false
+        },
+        {
+          "text": "12",
+          "clipped": false
+        },
+        {
+          "text": "13",
+          "clipped": false
+        },
+        {
+          "text": "14",
+          "clipped": false
+        },
+        {
+          "text": "15",
+          "clipped": false
+        },
+        {
+          "text": "18",
+          "clipped": false
+        },
+        {
+          "text": "19",
+          "clipped": false
+        }
+      ],
+      "tank": 1254,
+      "icons": 2
+    }
+  ],
+  "errors": [],
+  "randomRules": true,
+  "reducedMotion": true
+}

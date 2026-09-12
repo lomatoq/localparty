@@ -1,0 +1,230 @@
+{
+  "games": [
+    {
+      "id": "warsaw",
+      "art": {
+        "draws": {},
+        "decor": []
+      }
+    },
+    {
+      "id": "warsaw",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "sinyakquiz",
+      "art": {
+        "draws": {},
+        "decor": []
+      }
+    },
+    {
+      "id": "sinyakquiz",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "millionaire",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/crystal.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H1",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/crystal.webp\")",
+            "width": 0,
+            "height": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "millionaire",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "spy",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/badge.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H1",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/badge.webp\")",
+            "width": 0,
+            "height": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "spy",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "crocodile",
+      "art": {
+        "draws": {},
+        "decor": []
+      }
+    },
+    {
+      "id": "crocodile",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "monster",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "monster",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "drawguess",
+      "art": {
+        "draws": {},
+        "decor": []
+      }
+    },
+    {
+      "id": "drawguess",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "naval",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/ship.webp\")",
+            "width": 270,
+            "height": 53.75
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/ship.webp\")",
+            "width": 132.015625,
+            "height": 53.75
+          },
+          {
+            "tag": "IMG",
+            "background": "none",
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "id": "naval",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "chaos",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/sparkle.webp\")",
+            "width": 1344,
+            "height": 38
+          }
+        ]
+      }
+    },
+    {
+      "id": "chaos",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "jenga",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "DIV",
+            "background": "url(\"http://localhost:58276/assets/gameplay/sprites/wood-block.webp\")",
+            "width": 374,
+            "height": 38
+          }
+        ]
+      }
+    },
+    {
+      "id": "jenga",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:58276/host\nPlayers: http://192.168.0.91:58276/ (Wi-Fi)\n[warsaw] Quiz http://localhost:65152/host\n[sinyakquiz] Quiz http://localhost:64809/host\n[millionaire] SINYAK MILLIONAIRE is running\n[millionaire] Host:   http://localhost:49954/host\nPhones: http://192.168.0.91:49954/\n[spy] 🕵️  SPY LAN GAME\n[spy] Host:   http://localhost:59007/host\nPhones: http://192.168.0.91:59007/\nAll devices must be on the same Wi-Fi.\n[crocodile] Crocodile http://localhost:50816/host\n[monster] 🎨 MONSTER CIRCLE запущен\n[monster] 🖥  Экран ведущего: http://localhost:60569\n[monster] 📱 Телефоны (Wi-Fi): http://192.168.0.91:60569/play.html\n[drawguess] DrawGuess http://localhost:56793/host\n[naval] Naval http://localhost:53165/host\n[chaos] CHAOS listening http://127.0.0.1:53871/\n[jenga] Jenga http://localhost:63706/host\n"
+}

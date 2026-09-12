@@ -1,0 +1,98 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "#arena",
+        "rect": [
+          19,
+          65,
+          1459,
+          844
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-start-card",
+        "rect": [
+          1497,
+          64,
+          405,
+          846
+        ],
+        "padding": "28px",
+        "gap": "24px",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "#arena",
+        "rect": [
+          19,
+          65,
+          2969,
+          1064
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-start-card",
+        "rect": [
+          3007,
+          64,
+          405,
+          1066
+        ],
+        "padding": "28px",
+        "gap": "24px",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "#arena",
+        "rect": [
+          19,
+          65,
+          979,
+          664
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-start-card",
+        "rect": [
+          1017,
+          64,
+          405,
+          666
+        ],
+        "padding": "28px",
+        "gap": "24px",
+        "display": "flex"
+      }
+    ]
+  }
+]

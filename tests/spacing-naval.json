@@ -1,0 +1,134 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "naval-console panel lp-start-card",
+        "rect": [
+          144,
+          64,
+          320,
+          830
+        ],
+        "padding": "24px",
+        "gap": "20px",
+        "display": "flex"
+      },
+      {
+        "selector": "panel screen-standings",
+        "rect": [
+          190,
+          486.125,
+          228,
+          281
+        ],
+        "padding": "24px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "stage panel",
+        "rect": [
+          492,
+          64,
+          1284,
+          848
+        ],
+        "padding": "22px",
+        "gap": "12px",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "naval-console panel lp-start-card",
+        "rect": [
+          899,
+          64,
+          320,
+          1050
+        ],
+        "padding": "24px",
+        "gap": "20px",
+        "display": "flex"
+      },
+      {
+        "selector": "panel screen-standings",
+        "rect": [
+          945,
+          486.125,
+          228,
+          281
+        ],
+        "padding": "24px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "stage panel",
+        "rect": [
+          1247,
+          64,
+          1284,
+          1068
+        ],
+        "padding": "22px",
+        "gap": "12px",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "naval-console panel lp-start-card",
+        "rect": [
+          56,
+          64,
+          320,
+          650
+        ],
+        "padding": "24px",
+        "gap": "20px",
+        "display": "flex"
+      },
+      {
+        "selector": "panel screen-standings",
+        "rect": [
+          102,
+          486.125,
+          228,
+          281
+        ],
+        "padding": "24px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "stage panel",
+        "rect": [
+          404,
+          64,
+          980,
+          668
+        ],
+        "padding": "22px",
+        "gap": "12px",
+        "display": "flex"
+      }
+    ]
+  }
+]

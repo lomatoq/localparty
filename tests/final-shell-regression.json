@@ -1,0 +1,988 @@
+{
+  "layouts": [
+    {
+      "id": "menu",
+      "width": 320,
+      "height": 568,
+      "outer": {
+        "width": 320,
+        "scroll": 320,
+        "header": 125
+      },
+      "inner": {
+        "width": 320,
+        "scroll": 320,
+        "height": 568,
+        "type": {
+          "family": "Rubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#showGames",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          },
+          {
+            "selector": "#showStats",
+            "present": true,
+            "visible": true,
+            "width": 43.640625,
+            "top": 13,
+            "bottom": 57,
+            "scrollable": true
+          },
+          {
+            "selector": "#roomToggle",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "menu",
+      "width": 360,
+      "height": 640,
+      "outer": {
+        "width": 360,
+        "scroll": 360,
+        "header": 125
+      },
+      "inner": {
+        "width": 360,
+        "scroll": 360,
+        "height": 640,
+        "type": {
+          "family": "Rubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#showGames",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          },
+          {
+            "selector": "#showStats",
+            "present": true,
+            "visible": true,
+            "width": 47.640625,
+            "top": 13,
+            "bottom": 57,
+            "scrollable": true
+          },
+          {
+            "selector": "#roomToggle",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "menu",
+      "width": 390,
+      "height": 844,
+      "outer": {
+        "width": 390,
+        "scroll": 390,
+        "header": 125
+      },
+      "inner": {
+        "width": 390,
+        "scroll": 390,
+        "height": 844,
+        "type": {
+          "family": "Rubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#showGames",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          },
+          {
+            "selector": "#showStats",
+            "present": true,
+            "visible": true,
+            "width": 47.640625,
+            "top": 13,
+            "bottom": 57,
+            "scrollable": true
+          },
+          {
+            "selector": "#roomToggle",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "menu",
+      "width": 844,
+      "height": 390,
+      "outer": {
+        "width": 844,
+        "scroll": 844,
+        "header": 125
+      },
+      "inner": {
+        "width": 844,
+        "scroll": 844,
+        "height": 390,
+        "type": {
+          "family": "Rubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#showGames",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          },
+          {
+            "selector": "#showStats",
+            "present": true,
+            "visible": true,
+            "width": 78.984375,
+            "top": 13,
+            "bottom": 57,
+            "scrollable": true
+          },
+          {
+            "selector": "#roomToggle",
+            "present": true,
+            "visible": false,
+            "width": 0,
+            "top": 0,
+            "bottom": 0,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "jenga",
+      "width": 320,
+      "height": 568,
+      "outer": {
+        "width": 320,
+        "scroll": 320,
+        "header": 76
+      },
+      "inner": {
+        "width": 320,
+        "scroll": 320,
+        "height": 492,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#layer",
+            "present": true,
+            "visible": true,
+            "width": 234.9375,
+            "top": 162.1875,
+            "bottom": 216.1875,
+            "scrollable": true
+          },
+          {
+            "selector": "#blocks",
+            "present": true,
+            "visible": true,
+            "width": 288,
+            "top": 226.1875,
+            "bottom": 274.1875,
+            "scrollable": true
+          },
+          {
+            "selector": "#jengaJoystick",
+            "present": true,
+            "visible": true,
+            "width": 140,
+            "top": 284.1875,
+            "bottom": 424.1875,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "jenga",
+      "width": 360,
+      "height": 640,
+      "outer": {
+        "width": 360,
+        "scroll": 360,
+        "header": 76
+      },
+      "inner": {
+        "width": 360,
+        "scroll": 360,
+        "height": 564,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#layer",
+            "present": true,
+            "visible": true,
+            "width": 274.9375,
+            "top": 162.1875,
+            "bottom": 216.1875,
+            "scrollable": true
+          },
+          {
+            "selector": "#blocks",
+            "present": true,
+            "visible": true,
+            "width": 328,
+            "top": 226.1875,
+            "bottom": 274.1875,
+            "scrollable": true
+          },
+          {
+            "selector": "#jengaJoystick",
+            "present": true,
+            "visible": true,
+            "width": 140,
+            "top": 284.1875,
+            "bottom": 424.1875,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "jenga",
+      "width": 390,
+      "height": 844,
+      "outer": {
+        "width": 390,
+        "scroll": 390,
+        "header": 76
+      },
+      "inner": {
+        "width": 390,
+        "scroll": 390,
+        "height": 768,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#layer",
+            "present": true,
+            "visible": true,
+            "width": 304.9375,
+            "top": 324.71875,
+            "bottom": 378.71875,
+            "scrollable": true
+          },
+          {
+            "selector": "#blocks",
+            "present": true,
+            "visible": true,
+            "width": 358,
+            "top": 388.71875,
+            "bottom": 436.71875,
+            "scrollable": true
+          },
+          {
+            "selector": "#jengaJoystick",
+            "present": true,
+            "visible": true,
+            "width": 167.6875,
+            "top": 446.71875,
+            "bottom": 614.40625,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "jenga",
+      "width": 844,
+      "height": 390,
+      "outer": {
+        "width": 844,
+        "scroll": 844,
+        "header": 76
+      },
+      "inner": {
+        "width": 844,
+        "scroll": 844,
+        "height": 314,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#layer",
+            "present": true,
+            "visible": true,
+            "width": 408.609375,
+            "top": 11,
+            "bottom": 53,
+            "scrollable": false
+          },
+          {
+            "selector": "#blocks",
+            "present": true,
+            "visible": true,
+            "width": 454.25,
+            "top": 61,
+            "bottom": 105,
+            "scrollable": false
+          },
+          {
+            "selector": "#jengaJoystick",
+            "present": true,
+            "visible": true,
+            "width": 122.453125,
+            "top": 146.765625,
+            "bottom": 269.21875,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "tankarena",
+      "width": 320,
+      "height": 568,
+      "outer": {
+        "width": 320,
+        "scroll": 320,
+        "header": 76
+      },
+      "inner": {
+        "width": 320,
+        "scroll": 320,
+        "height": 492,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joy",
+            "present": true,
+            "visible": true,
+            "width": 144,
+            "top": 140.46875,
+            "bottom": 284.46875,
+            "scrollable": false
+          },
+          {
+            "selector": "#fire",
+            "present": true,
+            "visible": true,
+            "width": 124.796875,
+            "top": 150.078125,
+            "bottom": 274.875,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "tankarena",
+      "width": 360,
+      "height": 640,
+      "outer": {
+        "width": 360,
+        "scroll": 360,
+        "header": 76
+      },
+      "inner": {
+        "width": 360,
+        "scroll": 360,
+        "height": 564,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joy",
+            "present": true,
+            "visible": true,
+            "width": 162,
+            "top": 152.34375,
+            "bottom": 314.34375,
+            "scrollable": false
+          },
+          {
+            "selector": "#fire",
+            "present": true,
+            "visible": true,
+            "width": 140.390625,
+            "top": 163.15625,
+            "bottom": 303.546875,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "tankarena",
+      "width": 390,
+      "height": 844,
+      "outer": {
+        "width": 390,
+        "scroll": 390,
+        "header": 76
+      },
+      "inner": {
+        "width": 390,
+        "scroll": 390,
+        "height": 768,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joy",
+            "present": true,
+            "visible": true,
+            "width": 175.5,
+            "top": 204.765625,
+            "bottom": 380.265625,
+            "scrollable": false
+          },
+          {
+            "selector": "#fire",
+            "present": true,
+            "visible": true,
+            "width": 152.09375,
+            "top": 216.46875,
+            "bottom": 368.5625,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "tankarena",
+      "width": 844,
+      "height": 390,
+      "outer": {
+        "width": 844,
+        "scroll": 844,
+        "header": 76
+      },
+      "inner": {
+        "width": 844,
+        "scroll": 844,
+        "height": 314,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joy",
+            "present": true,
+            "visible": true,
+            "width": 182.109375,
+            "top": 60.9375,
+            "bottom": 243.046875,
+            "scrollable": false
+          },
+          {
+            "selector": "#fire",
+            "present": true,
+            "visible": true,
+            "width": 182.109375,
+            "top": 60.9375,
+            "bottom": 243.046875,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "spy",
+      "width": 320,
+      "height": 568,
+      "outer": {
+        "width": 320,
+        "scroll": 320,
+        "header": 76
+      },
+      "inner": {
+        "width": 320,
+        "scroll": 320,
+        "height": 492,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#secretCard",
+            "present": true,
+            "visible": true,
+            "width": 296,
+            "top": 52,
+            "bottom": 414,
+            "scrollable": false
+          },
+          {
+            "selector": "#readyBtn",
+            "present": true,
+            "visible": true,
+            "width": 296,
+            "top": 424,
+            "bottom": 482,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "spy",
+      "width": 360,
+      "height": 640,
+      "outer": {
+        "width": 360,
+        "scroll": 360,
+        "header": 76
+      },
+      "inner": {
+        "width": 360,
+        "scroll": 360,
+        "height": 564,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#secretCard",
+            "present": true,
+            "visible": true,
+            "width": 336,
+            "top": 52,
+            "bottom": 486,
+            "scrollable": false
+          },
+          {
+            "selector": "#readyBtn",
+            "present": true,
+            "visible": true,
+            "width": 336,
+            "top": 496,
+            "bottom": 554,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "spy",
+      "width": 390,
+      "height": 844,
+      "outer": {
+        "width": 390,
+        "scroll": 390,
+        "header": 76
+      },
+      "inner": {
+        "width": 390,
+        "scroll": 390,
+        "height": 768,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#secretCard",
+            "present": true,
+            "visible": true,
+            "width": 326,
+            "top": 79,
+            "bottom": 666,
+            "scrollable": false
+          },
+          {
+            "selector": "#readyBtn",
+            "present": true,
+            "visible": true,
+            "width": 326,
+            "top": 680,
+            "bottom": 744,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "spy",
+      "width": 844,
+      "height": 390,
+      "outer": {
+        "width": 844,
+        "scroll": 844,
+        "header": 76
+      },
+      "inner": {
+        "width": 844,
+        "scroll": 844,
+        "height": 314,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#secretCard",
+            "present": true,
+            "visible": true,
+            "width": 808,
+            "top": 65,
+            "bottom": 245,
+            "scrollable": true
+          },
+          {
+            "selector": "#readyBtn",
+            "present": true,
+            "visible": true,
+            "width": 808,
+            "top": 259,
+            "bottom": 315,
+            "scrollable": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "push",
+      "width": 320,
+      "height": 568,
+      "outer": {
+        "width": 320,
+        "scroll": 320,
+        "header": 76
+      },
+      "inner": {
+        "width": 320,
+        "scroll": 320,
+        "height": 492,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joystickZone",
+            "present": true,
+            "visible": true,
+            "width": 320,
+            "top": 42,
+            "bottom": 412,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "push",
+      "width": 360,
+      "height": 640,
+      "outer": {
+        "width": 360,
+        "scroll": 360,
+        "header": 76
+      },
+      "inner": {
+        "width": 360,
+        "scroll": 360,
+        "height": 564,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joystickZone",
+            "present": true,
+            "visible": true,
+            "width": 360,
+            "top": 42,
+            "bottom": 484,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "push",
+      "width": 390,
+      "height": 844,
+      "outer": {
+        "width": 390,
+        "scroll": 390,
+        "header": 76
+      },
+      "inner": {
+        "width": 390,
+        "scroll": 390,
+        "height": 768,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joystickZone",
+            "present": true,
+            "visible": true,
+            "width": 390,
+            "top": 42,
+            "bottom": 688,
+            "scrollable": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "push",
+      "width": 844,
+      "height": 390,
+      "outer": {
+        "width": 844,
+        "scroll": 844,
+        "header": 76
+      },
+      "inner": {
+        "width": 844,
+        "scroll": 844,
+        "height": 314,
+        "type": {
+          "family": "PartyRubik, system-ui, sans-serif",
+          "weight": "800",
+          "style": "italic",
+          "transform": "uppercase",
+          "ok": true
+        },
+        "controls": [
+          {
+            "selector": "#joystickZone",
+            "present": true,
+            "visible": true,
+            "width": 422.890625,
+            "top": 42,
+            "bottom": 302,
+            "scrollable": false
+          }
+        ]
+      }
+    }
+  ],
+  "dialogs": [
+    {
+      "id": "jenga",
+      "button": "#roomToggle",
+      "ok": true
+    },
+    {
+      "id": "jenga",
+      "button": "#showStats",
+      "ok": true
+    },
+    {
+      "id": "jenga",
+      "button": "#gameRules",
+      "ok": true
+    },
+    {
+      "id": "tankarena",
+      "button": "#roomToggle",
+      "ok": true
+    },
+    {
+      "id": "tankarena",
+      "button": "#showStats",
+      "ok": true
+    },
+    {
+      "id": "tankarena",
+      "button": "#gameRules",
+      "ok": true
+    },
+    {
+      "id": "spy",
+      "button": "#roomToggle",
+      "ok": true
+    },
+    {
+      "id": "spy",
+      "button": "#showStats",
+      "ok": true
+    },
+    {
+      "id": "spy",
+      "button": "#gameRules",
+      "ok": true
+    },
+    {
+      "id": "push",
+      "button": "#roomToggle",
+      "ok": true
+    },
+    {
+      "id": "push",
+      "button": "#showStats",
+      "ok": true
+    },
+    {
+      "id": "push",
+      "button": "#gameRules",
+      "ok": true
+    },
+    {
+      "id": "host",
+      "button": "QR",
+      "ok": true
+    }
+  ],
+  "reconnect": [
+    {
+      "id": "jenga",
+      "ok": true,
+      "withoutReload": true
+    },
+    {
+      "id": "tankarena",
+      "ok": true,
+      "withoutReload": true
+    },
+    {
+      "id": "spy",
+      "ok": true,
+      "withoutReload": true
+    },
+    {
+      "id": "push",
+      "ok": true,
+      "withoutReload": true
+    }
+  ],
+  "errors": [],
+  "multitouch": {
+    "held": {
+      "x": 0.6875000108680833,
+      "y": 0,
+      "fire": true
+    },
+    "single": {
+      "x": 0,
+      "y": 0,
+      "fire": true
+    },
+    "released": {
+      "x": 0,
+      "y": 0,
+      "fire": false
+    },
+    "ok": true
+  }
+}

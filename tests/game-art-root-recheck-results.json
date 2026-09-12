@@ -1,0 +1,235 @@
+{
+  "games": [
+    {
+      "id": "tanks",
+      "art": {
+        "draws": {
+          "tank-body": 726,
+          "tank-turret": 726
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "tanks",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "tankarena",
+      "art": {
+        "draws": {
+          "tank-body": 726,
+          "tank-turret": 726
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "tankarena",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "warsaw",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/star.webp\")",
+            "width": 978,
+            "height": 103.8125
+          }
+        ]
+      }
+    },
+    {
+      "id": "warsaw",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "sinyakquiz",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/badge.webp\")",
+            "width": 978,
+            "height": 103.8125
+          }
+        ]
+      }
+    },
+    {
+      "id": "sinyakquiz",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "millionaire",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/crystal.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "DIV",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/crystal.webp\")",
+            "width": 1010,
+            "height": 38
+          },
+          {
+            "tag": "H1",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/crystal.webp\")",
+            "width": 0,
+            "height": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "millionaire",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "spy",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/badge.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/badge.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H1",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/badge.webp\")",
+            "width": 0,
+            "height": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "spy",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "crocodile",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/star.webp\")",
+            "width": 978,
+            "height": 44.796875
+          }
+        ]
+      }
+    },
+    {
+      "id": "crocodile",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "monster",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          },
+          {
+            "tag": "B",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/blob.webp\")",
+            "width": 528.328125,
+            "height": 38
+          },
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/blob.webp\")",
+            "width": 0,
+            "height": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "monster",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "drawguess",
+      "art": {
+        "draws": {},
+        "decor": [
+          {
+            "tag": "H2",
+            "background": "url(\"http://localhost:51055/assets/gameplay/sprites/sparkle.webp\")",
+            "width": 978,
+            "height": 44.796875
+          }
+        ]
+      }
+    },
+    {
+      "id": "drawguess",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:51055/host\nPlayers: http://192.168.0.91:51055/ (Wi-Fi)\n[tanks] ================ LOCAL TANKS ================\n[tanks] HOST SCREEN : http://localhost:60257/host\n[tanks] PHONES      : http://192.168.0.91:60257/\nSame Wi-Fi required. Keep this window open.\n=============================================\n[tankarena] Tank Arena http://localhost:56107/host\n[warsaw] Quiz http://localhost:64165/host\n[sinyakquiz] Quiz http://localhost:56585/host\n[millionaire] SINYAK MILLIONAIRE is running\n[millionaire] Host:   http://localhost:55213/host\nPhones: http://192.168.0.91:55213/\n[spy] 🕵️  SPY LAN GAME\n[spy] Host:   http://localhost:62499/host\nPhones: http://192.168.0.91:62499/\nAll devices must be on the same Wi-Fi.\n[crocodile] Crocodile http://localhost:51203/host\n[monster] 🎨 MONSTER CIRCLE запущен\n[monster] 🖥  Экран ведущего: http://localhost:58718\n📱 Телефоны (Wi-Fi): http://192.168.0.91:58718/play.html\n[drawguess] DrawGuess http://localhost:64839/host\n"
+}

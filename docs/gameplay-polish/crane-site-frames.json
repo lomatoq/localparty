@@ -1,0 +1,29 @@
+{
+  "source": "public/assets/gameplay/crane-site-source.png",
+  "frames": {
+    "foundation": {
+      "left": 45,
+      "top": 314,
+      "width": 874,
+      "height": 142
+    },
+    "head": {
+      "left": 980,
+      "top": 44,
+      "width": 512,
+      "height": 417
+    },
+    "footing": {
+      "left": 148,
+      "top": 591,
+      "width": 636,
+      "height": 351
+    },
+    "counterweight": {
+      "left": 1043,
+      "top": 583,
+      "width": 351,
+      "height": 381
+    }
+  }
+}

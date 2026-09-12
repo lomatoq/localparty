@@ -1,0 +1,105 @@
+{
+  "results": [
+    {
+      "id": "push",
+      "ok": true,
+      "hud": "03"
+    },
+    {
+      "id": "shrink",
+      "ok": true,
+      "hud": "03"
+    },
+    {
+      "id": "knives",
+      "ok": true,
+      "hud": "03"
+    },
+    {
+      "id": "bomb",
+      "ok": true,
+      "hud": "03"
+    },
+    {
+      "id": "western",
+      "ok": true,
+      "hud": "03"
+    },
+    {
+      "id": "tanks",
+      "ok": true,
+      "hud": "Игра"
+    },
+    {
+      "id": "tankarena",
+      "ok": true,
+      "hud": "1:30"
+    },
+    {
+      "id": "chaos",
+      "ok": true,
+      "hud": "02"
+    },
+    {
+      "id": "kart",
+      "ok": true,
+      "hud": "03"
+    },
+    {
+      "id": "monster",
+      "ok": true,
+      "hud": "1:30"
+    },
+    {
+      "id": "spy",
+      "ok": true,
+      "hud": "Роли"
+    },
+    {
+      "id": "millionaire",
+      "ok": true,
+      "hud": "10"
+    },
+    {
+      "id": "sinyakquiz",
+      "ok": true,
+      "hud": "10"
+    },
+    {
+      "id": "warsaw",
+      "ok": true,
+      "hud": "10"
+    },
+    {
+      "id": "crocodile",
+      "ok": true,
+      "hud": "1:00"
+    },
+    {
+      "id": "jenga",
+      "ok": true,
+      "hud": "30"
+    },
+    {
+      "id": "crane",
+      "ok": true,
+      "hud": "1:30"
+    },
+    {
+      "id": "naval",
+      "ok": true,
+      "hud": "3:00"
+    },
+    {
+      "id": "drawguess",
+      "ok": true,
+      "hud": "1:00"
+    },
+    {
+      "id": "western_duel",
+      "ok": true,
+      "hud": "03"
+    }
+  ],
+  "errors": []
+}

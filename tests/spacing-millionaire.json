@@ -1,0 +1,62 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "stage",
+        "rect": [
+          658,
+          64,
+          1078,
+          840
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "stage",
+        "rect": [
+          1413,
+          64,
+          1078,
+          1060
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "stage",
+        "rect": [
+          498,
+          64,
+          918,
+          660
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex"
+      }
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+const fs=require('fs');
+let h=fs.readFileSync('public/index.html','utf8');
+h=h.replace('<script>/*BOOT*/</script>','<link rel="stylesheet" href="/ux.css"><link rel="stylesheet" href="/catalog-previews.css"><script src="/catalog-previews.js" defer></script><script>/*BOOT*/</script>');
+h=h.replace('<button class="nav" id="showGames">Игры</button>','<button class="nav" id="showGames">Игры</button><button class="nav" id="lobbyExit" hidden><span aria-hidden="true">←</span><span>В лобби</span></button>');
+h=h.replace('aria-label="Правила игры">?</button>','aria-label="Развернуть правила игры">Правила</button>');
+h=h.replace('<div id="waitingRules" class="waiting-rules" hidden>', '<div id="gameObjective" class="game-objective" hidden></div><div id="waitingRules" class="waiting-rules" hidden>');
+h=h.replace('<span class="eyebrow">ПОКА ВЕДУЩИЙ ГОТОВИТ СТАРТ</span>','<span class="eyebrow">СОБИРАЕМСЯ НА СТАРТ</span>');
+h=h.replace('<div id="waitingContent"></div></div>','<div id="waitingContent"></div><div class="ready-actions"><button id="readyButton" class="primary">Я готов</button><button id="spectateButton" class="quiet">Пока смотрю</button></div><p id="readyProgress" role="status"></p></div>');
+h=h.replace('<div id="liveTop"','<div id="sessionControls" class="session-controls" hidden><button id="pauseButton" class="quiet">Ⅱ Пауза</button><button id="sessionRules" class="quiet">Правила ▾</button><button id="exitVoteButton" class="quiet">← В лобби</button></div><div id="pauseOverlay" hidden><div><span class="eyebrow">МОЖНО ПЕРЕВЕСТИ ДУХ</span><h2>Пауза</h2><p>Продолжить может любой игрок.</p><button id="resumeButton" class="primary">Продолжить игру</button></div></div><div id="liveTop"');
+h=h.replace('<div class="hero-pills">','<div id="testModeBox" hidden><label class="test-mode"><input type="checkbox" id="testMode"> Тест с одним телефоном</label><small>Добавит тестового напарника. Результаты не идут в статистику.</small></div><div class="hero-pills">');
+h=h.replace('<div id="miniLeaderboard"></div>','<div id="miniLeaderboard"></div><div id="eveningStats" class="evening-stats"></div>');
+h=h.replace('<button id="back" class="quiet">← Все в лобби</button>','<button id="back" class="quiet"><span aria-hidden="true">←</span><span>Все в лобби</span></button>');
+fs.writeFileSync('public/index.html',h);

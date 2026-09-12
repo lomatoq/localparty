@@ -1,0 +1,4 @@
+const fs=require('fs');let s=fs.readFileSync('tests/start-visibility.cjs','utf8');
+s=s.replace("await host.waitForFunction(()=>qaState?.players.length===2);",`await host.waitForFunction(()=>qaState?.players.length===2);for(let i=2;i<=3;i++){await host.locator('#botPlus').click();await host.waitForFunction(n=>qaState?.botCount===n&&qaState.players.length===n+1,i);}assert.equal(await host.locator('.company-people #botCount').textContent(),'3');await host.screenshot({path:'tests/bots-control.png'});`);
+s=s.replace("assert.deepEqual(report.errors,[]);",`for(let i=2;i>=0;i--){await host.locator('#botMinus').click();await host.waitForFunction(n=>qaState?.botCount===n&&qaState.players.length===n+1,i);}assert.equal(await host.locator('#botMinus').isDisabled(),true);assert.deepEqual(report.errors,[]);`);
+fs.writeFileSync('tests/bots-count.cjs',s);

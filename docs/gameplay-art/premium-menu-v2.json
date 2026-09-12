@@ -1,0 +1,127 @@
+{
+  "style": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. BACKGROUND REQUIREMENT OVERRIDES REFERENCES: perfectly uniform solid vivid magenta RGB(255,0,255) filling every background pixel. NO checkerboard, NO transparency preview, NO gradient, NO backdrop shadow, NO haze/glow or motion trails outside the object. No pure magenta paint inside the object; use violet instead. The solid pink background is a technical matte for extraction. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: ",
+  "items": [
+    [
+      "push",
+      "Two substantial coral-red and cyan bumper pucks with rounded handles are colliding on a compact lime-edged circular arena platform. Small sculpted amber impact spark between them, clear sense of bump and motion."
+    ],
+    [
+      "shrink",
+      "A dark sculpted circular futuristic arena platform with luminous cyan and violet concentric rings suspended above, small polished puck inside. Three distinctive decreasing rings; tasteful localized light, no fog."
+    ],
+    [
+      "knives",
+      "A substantial round segmented practice target made of dark rubber and metal with cyan/coral scoring sections. Three beautifully designed daggers with lime violet and cyan handles stuck into it at different angles. Whole target and all handles visible."
+    ],
+    [
+      "bomb",
+      "A charismatic round dark-violet polished bomb with a brass fuse cap and a short braided tan fuse curling upward, glowing warm amber tip and three small sharp sparks. Strong simple silhouette, no giant explosion."
+    ],
+    [
+      "western",
+      "A beautiful supple caramel leather cowboy hat with stitched violet hatband resting above a golden sheriff star badge. Two small ivory-grip revolvers crossed behind. Crisp recognisable western emblem, fine controlled material detail."
+    ],
+    [
+      "tanks",
+      "A chunky classic compact tank with olive-lime painted armor, sturdy dark articulated tracks, believable rotating turret and one forward barrel. Three-quarter front view, premium toy mechanical design."
+    ],
+    [
+      "tankarena",
+      "A powerful angular lime and gunmetal futuristic toy tank with violet energy accents, a large cannon, broad dark tracks, and one ammo crate beside it. Premium sculpted vehicle, coherent precise machinery."
+    ],
+    [
+      "chaos",
+      "A compact violet and cyan arcade game cabinet with lime joystick and coral buttons, dark clean screen showing one sculpted yellow lightning symbol. No text on machine. Fun game collection emblem."
+    ],
+    [
+      "kart",
+      "A gorgeous small coral-red racing go-kart with chunky dark tires, lime accents, sculpted black racing seat, a steering wheel and metal tubular chassis. Three-quarter front view, all four tires visible."
+    ],
+    [
+      "monster",
+      "A delightfully expressive patchwork toy monster with cyan and purple body panels, mismatched eyes, little lime horns and soft rounded paws, visible crafted stitched seams. Full body friendly funny creature."
+    ],
+    [
+      "spy",
+      "A mysterious violet spy fedora and dark sunglasses above a large gold-rimmed magnifying glass. Coherent compact emblem, rich felt/metal/glass material contrast."
+    ],
+    [
+      "millionaire",
+      "A bold golden trophy with a cyan faceted gem in its cup, violet quiz chips and a few gold coins at base. Confident game-show prize illustration, no money text."
+    ],
+    [
+      "sinyakquiz",
+      "A substantial violet tabletop quiz buzzer with a lime illuminated button, a floating coral question-mark shaped object and three small colored answer tiles, no letters."
+    ],
+    [
+      "warsaw",
+      "A charming miniature Warsaw Palace of Culture tower in warm sandstone, violet Ferris wheel and lime city accents at its base. Compact city landmark composition, entire tower visible."
+    ],
+    [
+      "crocodile",
+      "A friendly expressive lime cartoon crocodile standing with arms gesturing as if playing charades, purple theatre mask in one hand. Beautiful full-body toy character with big eyes and rounded paws."
+    ],
+    [
+      "jenga",
+      "A carefully built tall tower of chunky honey-colored wooden stacking blocks, one violet block halfway removed, one loose lime block beside its base. Warm wood grain, clean handcrafted edges."
+    ],
+    [
+      "crane",
+      "A miniature golden tower crane with coherent mast boom cable and hook, lifting a cyan architectural floor module above two neatly stacked lime and violet building modules. Compact stylish construction toy, no city backdrop."
+    ],
+    [
+      "naval",
+      "A compact steel-blue toy battleship with purposeful gun turrets, violet radar dish and lime markings riding a sculpted little cyan wave. Three-quarter view, readable boat silhouette."
+    ],
+    [
+      "drawguess",
+      "A chunky violet paintbrush and lime pencil crossing beside a white drawing card with one colorful painted star, coral paint tube and small cyan paint drop. Creative guessing-game emblem."
+    ],
+    [
+      "western_duel",
+      "Two beautifully crafted small toy revolvers with ivory and violet grips facing each other, a golden sunset disc behind them and a small caramel cowboy hat below. Compact western duel emblem."
+    ]
+  ],
+  "generated": [
+    {
+      "id": "push",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: Two substantial coral-red and cyan bumper pucks with rounded handles are colliding on a compact lime-edged circular arena platform. Small sculpted amber impact spark between them, clear sense of bump and motion.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-aabf0d9b-5582-4744-876c-3fcc9fb881c3.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "shrink",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: A dark sculpted circular futuristic arena platform with luminous cyan and violet concentric rings suspended above, small polished puck inside. Three distinctive decreasing rings; tasteful localized light, no fog.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-648c5d56-f67c-4d0f-bfd8-f7f91ead482c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "knives",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: A substantial round segmented practice target made of dark rubber and metal with cyan/coral scoring sections. Three beautifully designed daggers with lime violet and cyan handles stuck into it at different angles. Whole target and all handles visible.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-8c579c88-30fc-46dd-bc05-f1bc2287a386.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "bomb",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: A charismatic round dark-violet polished bomb with a brass fuse cap and a short braided tan fuse curling upward, glowing warm amber tip and three small sharp sparks. Strong simple silhouette, no giant explosion.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-08f44740-3474-4f2e-b40a-4973c595ce00.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "western",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: A beautiful supple caramel leather cowboy hat with stitched violet hatband resting above a golden sheriff star badge. Two small ivory-grip revolvers crossed behind. Crisp recognisable western emblem, fine controlled material detail. Use actual alpha background, do not draw any transparency checkerboard.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-6382a474-bd40-46ff-ab40-d2bc8efda704.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "tanks",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: A chunky classic compact tank with olive-lime painted armor, sturdy dark articulated tracks, believable rotating turret and one forward barrel. Three-quarter front view, premium toy mechanical design. Use actual alpha background, do not draw any transparency checkerboard.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-5a821296-a04f-4229-8e0b-ee8c733f8e13.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "tankarena",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: A powerful angular lime and gunmetal futuristic toy tank with violet energy accents, a large cannon, broad dark tracks, and one ammo crate beside it. Premium sculpted vehicle, coherent precise machinery. Use actual alpha background, do not draw any transparency checkerboard.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-b9d513ee-bc69-47cf-9fa4-a84042c10e5c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "id": "chaos",
+      "prompt": "Use case: stylized-concept. Create ONE premium game catalog illustration as a high-resolution isolated transparent PNG cutout. The attached existing Tap Race and Punch Meter images are the EXACT collection style reference; match their sculpted chunky toy-like forms, saturated lime/purple/coral/cyan colors, delightful shapes, clean precise geometry, and carefully controlled soft studio light. Three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, readable silhouette. Contemporary polished playful mobile party-game key art. NO dark cartoon outlines, NO flat vector graphic, NO clip-art, NO text, logos or labels, NO extra stage unless specified. Do not imitate the previous neon flat arcade icons. True transparent alpha, no background plane, no checkerboard, no colored backdrop, no ground shadow outside object. Entire object visible with at least8% transparent margin, square large canvas, subject fills80-85%. Important: individually designed proportions and coherent construction, no random decorative greebles, no blown highlights, no smeary glow. Subject: A compact violet and cyan arcade game cabinet with lime joystick and coral buttons, dark clean screen showing one sculpted yellow lightning symbol. No text on machine. Fun game collection emblem. Use actual alpha background, do not draw any transparency checkerboard.",
+      "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-7a4559d4-a7e6-4097-9668-9b8861a2d4c0.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    }
+  ]
+}

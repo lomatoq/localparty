@@ -1,0 +1,142 @@
+[
+  {
+    "id": "push",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "shrink",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "knives",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "bomb",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "western",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "tanks",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "tankarena",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 887,
+    "height": 885
+  },
+  {
+    "id": "chaos",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "kart",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "monster",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "spy",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "millionaire",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "sinyakquiz",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "warsaw",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "crocodile",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "jenga",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "crane",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "naval",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "drawguess",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  },
+  {
+    "id": "western_duel",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "bodyHeight": 885,
+    "height": 885
+  }
+]

@@ -1,0 +1,12 @@
+(function(root){'use strict';
+const waypoints=[[400,760],[950,760],[1370,720],[1460,565],[1360,445],[1200,500],[980,570],[790,445],[1030,310],[1290,290],[1420,160],[1130,105],[730,130],[550,275],[335,215],[145,325],[140,580],[230,710]];
+const points=[];for(let i=0;i<waypoints.length;i++)for(let j=0;j<16;j++){const t=j/16,p0=waypoints[(i+waypoints.length-1)%waypoints.length],p1=waypoints[i],p2=waypoints[(i+1)%waypoints.length],p3=waypoints[(i+2)%waypoints.length];const coord=k=>.5*((2*p1[k])+(-p0[k]+p2[k])*t+(2*p0[k]-5*p1[k]+4*p2[k]-p3[k])*t*t+(-p0[k]+3*p1[k]-3*p2[k]+p3[k])*t*t*t);points.push({x:coord(0),y:coord(1)});}
+let length=0;const segments=points.map((a,i)=>{const b=points[(i+1)%points.length],dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy),seg={a,b,dx,dy,len,s:length};length+=len;return seg;});const width=112,gates=32;
+function at(s){s=(s%length+length)%length;const seg=segments.find(e=>e.s+e.len>=s)||segments.at(-1),t=(s-seg.s)/seg.len;return{x:seg.a.x+seg.dx*t,y:seg.a.y+seg.dy*t,angle:Math.atan2(seg.dy,seg.dx),s};}
+function nearest(x,y){let best=null;for(const seg of segments){const t=Math.max(0,Math.min(1,((x-seg.a.x)*seg.dx+(y-seg.a.y)*seg.dy)/(seg.len*seg.len))),px=seg.a.x+t*seg.dx,py=seg.a.y+t*seg.dy,distance=Math.hypot(x-px,y-py);if(!best||distance<best.distance)best={x:px,y:py,distance,s:seg.s+t*seg.len,angle:Math.atan2(seg.dy,seg.dx)};}return best;}
+function delta(from,to){let d=to-from;if(d>length/2)d-=length;if(d<-length/2)d+=length;return d;}
+function advance(p,projection,dt){const d=delta(p.lastS,projection.s);p.lastS=projection.s;if(projection.distance>width*.56||Math.abs(d)>Math.max(35,dt*700))return false;p.distanceProgress=Math.max(-1000,(p.distanceProgress||0)+d);const step=length/gates;if(p.distanceProgress>=p.gatesPassed*step+step){p.gatesPassed++;return p.gatesPassed%gates===0;}return false;}
+// A solid road edge removes only outward velocity: existing tangent momentum survives.
+function contain(p,radius=19){const q=nearest(p.x,p.y),limit=width/2-radius;if(q.distance<=limit)return null;const nx=(p.x-q.x)/q.distance,ny=(p.y-q.y)/q.distance,outward=(p.vx||0)*nx+(p.vy||0)*ny;p.x=q.x+nx*limit;p.y=q.y+ny*limit;if(outward>0){p.vx-=nx*outward;p.vy-=ny*outward;p.speed=Math.min(p.speed,Math.hypot(p.vx,p.vy));}return {x:q.x+nx*width/2,y:q.y+ny*width/2,nx,ny,strength:Math.max(0,outward)};}
+const api={points,width,length,gates,at,nearest,delta,advance,contain};if(typeof module!=='undefined')module.exports=api;else root.KartTrack=api;
+})(typeof window!=='undefined'?window:globalThis);

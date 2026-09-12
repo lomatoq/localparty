@@ -1,0 +1,11 @@
+const fs=require('fs');
+const paths={grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',swords:'<path d="m14.5 17.5 3 3L21 17l-3-3M3 3l3 9 11 8 3-3L9 6 3 3Zm0 18 5-5m8-8 5-5-3 9M3 17l4 4"/>',brain:'<path d="M12 18V5a3 3 0 0 0-5.8-1 4 4 0 0 0-3 6 4 4 0 0 0 0 6A4 4 0 0 0 12 18Zm0-11h4l2-3m-6 8h7m-7 5h4l2 3"/><circle cx="19" cy="3" r="1"/><circle cx="21" cy="12" r="1"/><circle cx="19" cy="21" r="1"/>',party:'<path d="m5.8 10.8-3.3 10.7 10.7-3.3M4 15l5 5m0-13 8 8M15 3v3m3 2 3-1m-7 4 2-3m-5-4 1-2m7 12 3 1"/>',sparkles:'<path d="m12 3 2.7 6.3L21 12l-6.3 2.7L12 21l-2.7-6.3L3 12l6.3-2.7L12 3ZM3 3v4m-2-2h4m15 13v4m-2-2h4"/>',up:'<path d="m6 12 6-6 6 6m-6-6v15"/>'};
+const icon=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[k]}</svg>`;
+let html=fs.readFileSync('public/index.html','utf8');
+const nav=`<nav class="catalog-compass evening-console" aria-label="Выбор игры"><div class="console-moods console-box">${[['all','grid','Все игры'],['action','swords','Экшен'],['logic','brain','Логика'],['party','party','Вечеринка']].map(([v,i,t])=>`<button data-filter="${v}" class="${v==='all'?'active':''}" aria-pressed="${v==='all'}">${icon(i)}<span>${t}</span></button>`).join('')}</div><div class="console-box console-actions"><button id="surpriseGame" class="quiet">${icon('sparkles')}<span>Сюрприз</span></button><button id="railTop" class="quiet">${icon('up')}<span>Наверх</span></button></div><button id="goTable" hidden>Слова и секреты</button></nav>`;
+html=html.replace(/<nav class="catalog-compass evening-console"[\s\S]*?<\/nav>/, '');
+html=html.replace('<div class="layout"><section id="catalogSection">',nav+'<div class="layout"><section id="catalogSection">');
+fs.writeFileSync('public/index.html',html);
+let js=fs.readFileSync('public/app.js','utf8').replace("$('railTop').onclick=showTop;","$('railTop').onclick=()=>window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});");
+js=js.replace("[{opacity:0,transform:'translateY(10px) scale(.985)'},{opacity:1,transform:'none'}]","[{opacity:.25},{opacity:1}]");
+fs.writeFileSync('public/app.js',js);

@@ -1,0 +1,3 @@
+const fs=require('fs');let s=fs.readFileSync('tests/audit-results.cjs','utf8').replace("for(const id of ['push','tankarena','warsaw','naval'])","for(const id of ['naval'])");
+s=s.replace("await host.screenshot({path:'tests/audit-results-host-'+id+'.png'});",`const bad=await frame.evaluate(()=>[...document.querySelectorAll('.oceanCard')].flatMap(card=>{const c=card.getBoundingClientRect(),g=card.querySelector('.miniOcean').getBoundingClientRect();return g.left<c.left||g.right>c.right+1||g.top<c.top||g.bottom>c.bottom+1?[{c:c.toJSON(),g:g.toJSON()}]:[]}));assert.deepEqual(bad,[],'All public fleets fit their cards at results');await host.screenshot({path:'tests/audit-results-host-'+id+'.png'});`);
+fs.writeFileSync('tests/naval-final-geometry.cjs',s);

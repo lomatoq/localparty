@@ -1,0 +1,100 @@
+{
+  "games": [
+    {
+      "id": "push",
+      "art": {
+        "draws": {
+          "puck": 724
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "push",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "shrink",
+      "art": {
+        "draws": {
+          "puck": 722
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "shrink",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "knives",
+      "art": {
+        "draws": {},
+        "decor": []
+      }
+    },
+    {
+      "id": "knives",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "bomb",
+      "art": {
+        "draws": {
+          "puck": 722
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "bomb",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "western",
+      "art": {
+        "draws": {
+          "cowboy": 726
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "western",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "western_duel",
+      "art": {
+        "draws": {
+          "cowboy": 686
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "western_duel",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:55597/host\nPlayers: http://192.168.0.91:55597/ (Wi-Fi)\n[push] ============== LOCAL PARTY PACK ==============\n[push] HOST SCREEN : http://localhost:55623/host\nPHONES      : http://192.168.0.91:55623/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\nSame Wi-Fi required. Keep this window open.\n==============================================\n[shrink] ============== LOCAL PARTY PACK ==============\n[shrink] HOST SCREEN : http://localhost:63886/host\n[shrink] PHONES      : http://192.168.0.91:63886/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\nSame Wi-Fi required. Keep this window open.\n==============================================\n[knives] ============== LOCAL PARTY PACK ==============\n[knives] HOST SCREEN : http://localhost:60393/host\nPHONES      : http://192.168.0.91:60393/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\nSame Wi-Fi required. Keep this window open.\n==============================================\n[bomb] ============== LOCAL PARTY PACK ==============\n[bomb] HOST SCREEN : http://localhost:64350/host\nPHONES      : http://192.168.0.91:64350/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\nSame Wi-Fi required. Keep this window open.\n==============================================\n[western] ============== LOCAL PARTY PACK ==============\n[western] HOST SCREEN : http://localhost:63205/host\nPHONES      : http://192.168.0.91:63205/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\nSame Wi-Fi required. Keep this window open.\n==============================================\n[western_duel] Western Duel :55994\n"
+}

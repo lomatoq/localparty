@@ -1,0 +1,139 @@
+{
+  "games": [
+    {
+      "id": "chaos",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "kart",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "monster",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "spy",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "millionaire",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "sinyakquiz",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "warsaw",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "crocodile",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "jenga",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "crane",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "naval",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "drawguess",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "western_duel",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "taprace",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "punchmeter",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "flappy",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "hungry",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "snakelines",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "carryball",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:56793/host\nPlayers: http://192.168.0.91:56793/ (Wi-Fi)\n[chaos] CHAOS listening http://127.0.0.1:50596/\n[kart] KART listening http://127.0.0.1:57513/\n[monster] 🎨 MONSTER CIRCLE запущен\n[monster] 🖥  Экран ведущего: http://localhost:63979\n📱 Телефоны (Wi-Fi): http://192.168.0.91:63979/play.html\n[spy] 🕵️  SPY LAN GAME\nHost:   http://localhost:54950/host\nPhones: http://192.168.0.91:54950/\nAll devices must be on the same Wi-Fi.\n[millionaire] SINYAK MILLIONAIRE is running\n[millionaire] Host:   http://localhost:65160/host\nPhones: http://192.168.0.91:65160/\n[sinyakquiz] Quiz http://localhost:65343/host\n[warsaw] Quiz http://localhost:63184/host\n[crocodile] Crocodile http://localhost:52801/host\n[jenga] Jenga http://localhost:50805/host\n[crane] CRANE http://127.0.0.1:54956/host\n[naval] Naval http://localhost:52631/host\n[drawguess] DrawGuess http://localhost:52438/host\n[western_duel] Western Duel :56308\n[taprace] Arcade taprace http://localhost:49533\n[punchmeter] Arcade punchmeter http://localhost:49695\n[flappy] Arcade flappy http://localhost:58731\n[hungry] Arcade hungry http://localhost:52487\n[snakelines] Arcade snakelines http://localhost:58467\n[carryball] Arcade carryball http://localhost:58374\n"
+}

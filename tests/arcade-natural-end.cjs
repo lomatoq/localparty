@@ -1,0 +1,1 @@
+const assert=require('node:assert/strict'),{Arcade,MODES}=require('../games/arcade/simulation');for(const mode of Object.keys(MODES)){const g=new Arcade(mode);for(let i=0;i<16;i++)g.join('p'+i,'P'+i);g.start();let ticks=0;while(g.phase==='playing'&&ticks++<4000)g.tick(.05);assert.equal(g.phase,'finished',mode);console.log('PASS natural timeout/end',mode,ticks);}

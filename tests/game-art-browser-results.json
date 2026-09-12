@@ -1,0 +1,22 @@
+{
+  "games": [
+    {
+      "id": "push",
+      "art": {
+        "draws": {
+          "puck": 460
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "push",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:56059/host\nPlayers: http://192.168.0.91:56059/ (Wi-Fi)\n[push] ============== LOCAL PARTY PACK ==============\n[push] HOST SCREEN : http://localhost:59734/host\nPHONES      : http://192.168.0.91:59734/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\nSame Wi-Fi required. Keep this window open.\n==============================================\n"
+}

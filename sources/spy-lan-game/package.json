@@ -1,0 +1,19 @@
+{
+  "name": "spy-lan-party-game",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Wi-Fi Spy party game with phone controllers and a host screen",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check public/host.js && node --check public/player.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

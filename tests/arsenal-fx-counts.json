@@ -1,0 +1,26 @@
+[
+  {
+    "trails": 10,
+    "points": 10,
+    "marks": 18,
+    "afterlife": 0
+  },
+  {
+    "trails": 10,
+    "points": 46,
+    "marks": 20,
+    "afterlife": 2
+  },
+  {
+    "trails": 4,
+    "points": 7,
+    "marks": 15,
+    "afterlife": 4
+  },
+  {
+    "trails": 0,
+    "points": 0,
+    "marks": 13,
+    "afterlife": 0
+  }
+]

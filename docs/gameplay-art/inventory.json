@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "coverage": 26,
+  "principle": "Generated sprites for distinctive objects; procedural geometry for fields, collisions, readable text, trails and effects.",
+  "games": [
+    {
+      "id": "push",
+      "source": "games/party/public/host.js",
+      "view": "top-down",
+      "sprites": [
+        "puck"
+      ],
+      "procedural": "Procedural circular arena, boundary glows, trails. Keep physics radius authoritative."
+    },
+    {
+      "id": "shrink",
+      "source": "games/party/public/host.js",
+      "view": "top-down",
+      "sprites": [
+        "puck"
+      ],
+      "procedural": "Procedural shrinking circles and warnings; same puck reuse."
+    },
+    {
+      "id": "knives",
+      "source": "games/party/public/host.js",
+      "view": "top-down",
+      "sprites": [
+        "knife",
+        "knife-handle",
+        "wheel"
+      ],
+      "procedural": "Sector colors procedural masked by wheel; tint ONLY handle, retain steel blade."
+    },
+    {
+      "id": "bomb",
+      "source": "games/party/public/host.js",
+      "view": "top-down",
+      "sprites": [
+        "puck",
+        "bomb"
+      ],
+      "procedural": "Fuse sparks procedural, ownership ring readable over bomb."
+    },
+    {
+      "id": "western",
+      "source": "games/party/public/host.js",
+      "view": "side",
+      "sprites": [
+        "cowboy",
+        "revolver",
+        "badge",
+        "mesa"
+      ],
+      "procedural": "Procedural ground/saloon, reversible cowboy facing and recoil."
+    },
+    {
+      "id": "tanks",
+      "source": "games/tanks/public/host.js",
+      "view": "top-down",
+      "sprites": [
+        "tank-body",
+        "tank-turret",
+        "crate"
+      ],
+      "procedural": "Independent turret and body rotation; procedural wall geometry remains hitbox source."
+    },
+    {
+      "id": "tankarena",
+      "source": "games/tankarena/public/app.js",
+      "view": "top-down",
+      "sprites": [
+        "tank-body",
+        "tank-turret",
+        "crate",
+        "crystal"
+      ],
+      "procedural": "Reuse tank layers, procedural barrel variants/projectiles and weapon pickup marks."
+    },
+    {
+      "id": "chaos",
+      "source": "games/chaos/static/host.html",
+      "view": "mixed minigames",
+      "sprites": [
+        "star",
+        "crystal",
+        "sparkle"
+      ],
+      "procedural": "Cursor stays crisp procedural vector; task collision boundaries stay procedural."
+    },
+    {
+      "id": "kart",
+      "source": "games/kart/static/host.js",
+      "view": "top-down",
+      "sprites": [
+        "kart",
+        "grass"
+      ],
+      "procedural": "Track spline, lane edge, skid marks and checkpoints procedural."
+    },
+    {
+      "id": "monster",
+      "source": "games/monster/public/host.js",
+      "view": "drawing/DOM",
+      "sprites": [
+        "sparkle"
+      ],
+      "procedural": "Player drawings are primary artwork; never replace submitted artwork. Decorative reveal sparkle only."
+    },
+    {
+      "id": "spy",
+      "source": "games/spy/public/host.js",
+      "view": "DOM cards",
+      "sprites": [
+        "badge"
+      ],
+      "procedural": "Secret roles remain text/private; badge decor only, no asset reveals secret."
+    },
+    {
+      "id": "millionaire",
+      "source": "games/millionaire/public/screen.js",
+      "view": "DOM quiz",
+      "sprites": [
+        "star",
+        "sparkle"
+      ],
+      "procedural": "Answer cards/timer remain DOM for textfit and accessibility."
+    },
+    {
+      "id": "sinyakquiz",
+      "source": "games/quiz/public/screen.js",
+      "view": "DOM quiz",
+      "sprites": [
+        "star",
+        "sparkle"
+      ],
+      "procedural": "Procedural podium and answer transitions, no texture on readable answers."
+    },
+    {
+      "id": "warsaw",
+      "source": "games/quiz/public/screen.js",
+      "view": "DOM quiz",
+      "sprites": [
+        "star",
+        "sparkle"
+      ],
+      "procedural": "Shared quiz visuals; retain location-specific content."
+    },
+    {
+      "id": "crocodile",
+      "source": "games/crocodile/public/screen.js",
+      "view": "DOM acting",
+      "sprites": [
+        "sparkle"
+      ],
+      "procedural": "Stage glow procedural, preserve secret prompt visibility."
+    },
+    {
+      "id": "jenga",
+      "source": "games/jenga/public/app.js",
+      "view": "3D blocks",
+      "sprites": [
+        "wood-block"
+      ],
+      "procedural": "Use material reference only if renderer3D; don't paste isometric sprite onto arbitrary 3D face."
+    },
+    {
+      "id": "crane",
+      "source": "games/crane/public/client.js",
+      "view": "side physics",
+      "sprites": [
+        "concrete-block",
+        "hook"
+      ],
+      "procedural": "Crane cable and block silhouette remain physics-aligned; texture clipped inside block."
+    },
+    {
+      "id": "naval",
+      "source": "games/naval/public/screen.js",
+      "view": "top-down grid",
+      "sprites": [
+        "ship"
+      ],
+      "procedural": "Only public/revealed ships on broadcast; procedural grid and hit/miss/ripple."
+    },
+    {
+      "id": "drawguess",
+      "source": "games/drawguess/public/screen.js",
+      "view": "drawing/DOM",
+      "sprites": [
+        "sparkle"
+      ],
+      "procedural": "Preserve user drawings; confetti/reveal only."
+    },
+    {
+      "id": "western_duel",
+      "source": "games/western_duel/public/app.js",
+      "view": "side",
+      "sprites": [
+        "cowboy",
+        "revolver",
+        "badge",
+        "mesa"
+      ],
+      "procedural": "Reuse western artwork; recoil and turn indicator procedural."
+    },
+    {
+      "id": "taprace",
+      "source": "games/arcade/public/app.js",
+      "view": "side lanes",
+      "sprites": [
+        "runner",
+        "robot-foot-left",
+        "robot-foot-right",
+        "cloud",
+        "grass"
+      ],
+      "procedural": "Procedural track with finish, feet cycle from actual progress speed."
+    },
+    {
+      "id": "punchmeter",
+      "source": "games/arcade/public/app.js",
+      "view": "side",
+      "sprites": [
+        "punchbag",
+        "glove",
+        "sparkle"
+      ],
+      "procedural": "Bag pivot attachment at top; rope drawn to physical pivot, squash only visual."
+    },
+    {
+      "id": "flappy",
+      "source": "games/arcade/public/app.js",
+      "view": "side",
+      "sprites": [
+        "bird",
+        "bird-wing",
+        "pipe",
+        "pipe-cap",
+        "cloud"
+      ],
+      "procedural": "Pipes procedural stretch body with cap; bird flap/tilt from velocity."
+    },
+    {
+      "id": "hungry",
+      "source": "games/arcade/public/app.js",
+      "view": "top-down",
+      "sprites": [
+        "blob",
+        "food-pizza",
+        "food-burger",
+        "food-donut",
+        "food-chicken",
+        "food-apple",
+        "grass"
+      ],
+      "procedural": "Radius follows mass, food small capped sprite, absorb squash and particles."
+    },
+    {
+      "id": "snakelines",
+      "source": "games/arcade/public/app.js",
+      "view": "top-down",
+      "sprites": [
+        "puck",
+        "sparkle"
+      ],
+      "procedural": "Trails procedural are collisiongeometry; head tint and sparks only."
+    },
+    {
+      "id": "carryball",
+      "source": "games/arcade/public/app.js",
+      "view": "top-down",
+      "sprites": [
+        "rugby-player",
+        "ball",
+        "grass"
+      ],
+      "procedural": "Field markings/goalbounds procedural; ball spin separate from translation."
+    }
+  ]
+}

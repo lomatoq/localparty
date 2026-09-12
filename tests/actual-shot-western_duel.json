@@ -1,0 +1,28 @@
+[
+  {
+    "game": "western_duel",
+    "shot": {
+      "id": "60ef900882ba34f2",
+      "at": 1789252741402,
+      "early": true
+    },
+    "duel": {
+      "id": "028d8381-dbc5-4de2-855e-e71741bf4634",
+      "pair": [
+        "6f84eaf72ad8eaba",
+        "60ef900882ba34f2"
+      ],
+      "shots": [
+        {
+          "id": "60ef900882ba34f2",
+          "at": 1789252741402,
+          "early": true
+        }
+      ],
+      "winner": "6f84eaf72ad8eaba",
+      "loser": "60ef900882ba34f2",
+      "reason": "Ранний выстрел",
+      "drawAt": null
+    }
+  }
+]

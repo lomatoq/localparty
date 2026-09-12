@@ -1,0 +1,17 @@
+{
+  "name": "sinyak-millionaire-lan",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Wi-Fi multiplayer Igor Sinyak quiz with phone controllers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check public/host.js && node --check public/player.js && node -e \"const q=require('./data/questions.json'); if(q.length!==150) throw new Error('Expected 150 questions'); console.log('questions:',q.length)\""
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1"
+  },
+  "engines": { "node": ">=18" }
+}

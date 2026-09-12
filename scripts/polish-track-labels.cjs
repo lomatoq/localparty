@@ -1,0 +1,7 @@
+const fs=require('fs'),file='games/arcade/public/app.js';let s=fs.readFileSync(file,'utf8');function r(a,b){if(!s.includes(a))throw Error('Missing '+a);s=s.replace(a,b);}
+r("const h=640/Math.max(2,ps.length);for(let i=0;i<ps.length;i++)", "const h=640/Math.max(2,ps.length);g.fillStyle='#9edc8420';g.fillRect(145,35,22,650);for(let lx=200;lx<1120;lx+=90){g.fillStyle='#b8ff7340';g.fillRect(lx,25,18,5);g.fillRect(lx,690,18,5);}for(let fy=40;fy<680;fy+=16){g.fillStyle=Math.floor(fy/16)%2?'#eaf7d9':'#1a2630';g.fillRect(1114,fy,12,16);g.fillStyle=Math.floor(fy/16)%2?'#1a2630':'#eaf7d9';g.fillRect(1126,fy,12,16);}for(let i=0;i<ps.length;i++)");
+r("g.fillRect(30,40+h*i,1140,h-2);g.strokeStyle", "g.fillRect(30,40+h*i,1140,h-2);g.strokeStyle='#dfffe129';g.setLineDash([18,18]);g.beginPath();g.moveTo(170,40+h*i);g.lineTo(1100,40+h*i);g.stroke();g.setLineDash([]);g.strokeStyle");
+r("runnerArt(x,y,Math.min(62,h*.9),p,s.time)","runnerArt(x,y,Math.min(92,h*.9),p,s.time)");
+r("if(!window.PartyArt?.draw(g,'blob',p.x,p.y,Math.sqrt(p.mass)*6,Math.sqrt(p.mass)*6,{color:p.color}))", "circle(p.x,p.y,Math.sqrt(p.mass)*3+2,p.color);if(!window.PartyArt?.draw(g,'blob',p.x,p.y,Math.sqrt(p.mass)*6,Math.sqrt(p.mass)*6,{color:p.color}))");
+r("text(p.name,p.x,p.y-12,14,'#16202a');text(Math.round(p.mass),p.x,p.y+12,18,'#16202a');", "g.save();g.shadowColor='#000';g.shadowBlur=4;text(p.name,p.x,p.y-Math.sqrt(p.mass)*3-9,13,'#f5fff4');text(Math.round(p.mass),p.x,p.y+Math.sqrt(p.mass)*3+16,13,p.color);g.restore();");
+fs.writeFileSync(file,s);

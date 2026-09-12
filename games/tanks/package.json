@@ -1,0 +1,11 @@
+{
+  "name": "local-tanks-party",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Zero-dependency local-network phone-controlled tank party game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check public/net.js && node --check public/controller.js && node --check public/host.js"
+  }
+}

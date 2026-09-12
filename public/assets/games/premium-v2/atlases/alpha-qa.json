@@ -1,0 +1,322 @@
+[
+  {
+    "id": "push",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 26,
+      "y": 192,
+      "width": 1210,
+      "height": 908
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 763676,
+    "partial": 3260,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "shrink",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 41,
+      "y": 197,
+      "width": 1173,
+      "height": 859
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 766013,
+    "partial": 3144,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "knives",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 46,
+      "y": 53,
+      "width": 1171,
+      "height": 1129
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 818886,
+    "partial": 4250,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "bomb",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 84,
+      "y": 36,
+      "width": 1119,
+      "height": 1128
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 627905,
+    "partial": 3921,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "western",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 35,
+      "y": 41,
+      "width": 1183,
+      "height": 1143
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 783582,
+    "partial": 5362,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "tanks",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 49,
+      "y": 90,
+      "width": 1165,
+      "height": 1073
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 859091,
+    "partial": 3952,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "tankarena",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 30,
+      "y": 129,
+      "width": 1196,
+      "height": 1055
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 806052,
+    "partial": 4051,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "chaos",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 162,
+      "y": 27,
+      "width": 962,
+      "height": 1194
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 889417,
+    "partial": 2420,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "kart",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 19,
+      "y": 112,
+      "width": 1215,
+      "height": 971
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 737346,
+    "partial": 4468,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "monster",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 127,
+      "y": 28,
+      "width": 1034,
+      "height": 1174
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 718566,
+    "partial": 3824,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "spy",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 166,
+      "y": 47,
+      "width": 989,
+      "height": 1145
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 676170,
+    "partial": 2157,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "millionaire",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 75,
+      "y": 96,
+      "width": 1080,
+      "height": 1074
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 838159,
+    "partial": 5273,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "sinyakquiz",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 159,
+      "y": 44,
+      "width": 935,
+      "height": 1166
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 647921,
+    "partial": 5734,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "warsaw",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 143,
+      "y": 30,
+      "width": 969,
+      "height": 1164
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 538972,
+    "partial": 6138,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "crocodile",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 132,
+      "y": 30,
+      "width": 990,
+      "height": 1181
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 634849,
+    "partial": 5192,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "jenga",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 182,
+      "y": 42,
+      "width": 899,
+      "height": 1162
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 619586,
+    "partial": 3141,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "crane",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 94,
+      "y": 45,
+      "width": 1062,
+      "height": 1128
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 673957,
+    "partial": 8067,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "naval",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 68,
+      "y": 72,
+      "width": 1118,
+      "height": 1106
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 758405,
+    "partial": 5973,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "drawguess",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 95,
+      "y": 103,
+      "width": 1105,
+      "height": 1041
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 716446,
+    "partial": 4273,
+    "atlasRoundtrip": "exact-visible-rgba"
+  },
+  {
+    "id": "western_duel",
+    "width": 1254,
+    "height": 1254,
+    "alphaBounds": {
+      "x": 65,
+      "y": 100,
+      "width": 1124,
+      "height": 1040
+    },
+    "borderPixels": 0,
+    "mattePixels": 0,
+    "opaque": 757498,
+    "partial": 5253,
+    "atlasRoundtrip": "exact-visible-rgba"
+  }
+]

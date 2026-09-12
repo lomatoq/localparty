@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('games/arcade/public/app.js');s=p.read_text(encoding='utf-8');old="if(!window.PartyArt?.draw(g,'rugby-player',p.x,p.y,38,38,{color:p.color,rotation:Math.atan2(p.vy||0,p.vx||0)+Math.PI/2}))circle(p.x,p.y,11,p.color);";new="g.save();g.translate(p.x,p.y);g.scale(p.vx<0?-1:1,1);const bodyReady=runnerArt(0,0,40,p,s.time);g.restore();if(!bodyReady)circle(p.x,p.y,11,p.color);";assert old in s;s=s.replace(old,new);p.write_text(s,encoding='utf-8')

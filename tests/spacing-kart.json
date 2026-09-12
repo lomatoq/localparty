@@ -1,0 +1,134 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          1920,
+          928
+        ],
+        "padding": "64px 20px 20px",
+        "gap": "20px",
+        "display": "grid"
+      },
+      {
+        "selector": "#gameCanvas",
+        "rect": [
+          25.8125,
+          65,
+          1338.375,
+          842
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "controls-card card lp-start-card",
+        "rect": [
+          1390,
+          64,
+          510,
+          369.5
+        ],
+        "padding": "20px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          3430,
+          1148
+        ],
+        "padding": "64px 20px 20px",
+        "gap": "20px",
+        "display": "grid"
+      },
+      {
+        "selector": "#gameCanvas",
+        "rect": [
+          614.78125,
+          65,
+          1670.4375,
+          1062
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "controls-card card lp-start-card",
+        "rect": [
+          2900,
+          64,
+          510,
+          369.5
+        ],
+        "padding": "20px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          1440,
+          748
+        ],
+        "padding": "64px 20px 20px",
+        "gap": "20px",
+        "display": "grid"
+      },
+      {
+        "selector": "#gameCanvas",
+        "rect": [
+          21,
+          65,
+          868,
+          662
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "controls-card card lp-start-card",
+        "rect": [
+          910,
+          64,
+          510,
+          369.5
+        ],
+        "padding": "20px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  }
+]

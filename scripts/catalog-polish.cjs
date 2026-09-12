@@ -1,0 +1,18 @@
+const fs=require('fs');
+const file='public/index.html';let h=fs.readFileSync(file,'utf8');
+const icon=(paths)=>`<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+const qr=icon('<rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3M21 21v.01M12 7v3a2 2 0 0 1-2 2H7M3 12h.01M12 3h.01M12 16v.01M16 12h1M21 12v.01M12 21v-1"/>');
+const trophy=icon('<path d="M8 21h8m-4-5v5M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"/>');
+h=h.replace('<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>','<div class="ambient" aria-hidden="true"><i></i><i></i><i></i><div class="party-landscape"></div></div>');
+h=h.replace('<span aria-hidden="true">↗</span> Топ <small id="myRank"></small>',trophy+'<span class="nav-label">Топ</span><small id="myRank"></small>');
+h=h.replace('hidden>＋ Подключить</button>','hidden aria-label="Подключить игроков">'+qr+'<span class="nav-label">Подключить</span></button>');
+h=h.replace('<section id="catalogSection">','<section id="catalogSection"><div class="catalog-compass"><span>Не можете выбрать?</span><button id="surpriseGame" class="quiet">✳ Подбери нам игру</button><button id="goTable" class="quiet">Слова и секреты ↓</button></div>');
+fs.writeFileSync(file,h);
+let a=fs.readFileSync('public/app.js','utf8');
+a=a.replace("artwork.src='/assets/games/'+g.id+'.webp'","artwork.src='/assets/games/'+(g.id==='tankarena'?'tankarena-hd':g.id)+'.webp'");
+a=a.replace("img.src='/assets/games/'+g.id+'.webp'","img.src='/assets/games/'+(g.id==='tankarena'?'tankarena-hd':g.id)+'.webp'");
+a=a.replace(" $('address').onchange=updateQR;",` $('surpriseGame').onclick=()=>{const candidates=state?.catalog.filter(g=>catalogFilter==='all'||document.querySelector('.game[data-id="'+g.id+'"]')?.dataset.category===catalogFilter)||[];if(candidates.length){const chosen=candidates[Math.floor(Math.random()*candidates.length)];document.querySelector('.game[data-id="'+chosen.id+'"]').scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});showRules(chosen);}};
+ $('goTable').onclick=()=>{filterCatalog('all');$('tableSection').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});};
+ let scrollFrame=0;const updateLandscape=()=>{scrollFrame=0;document.documentElement.style.setProperty('--landscape-shift',Math.round(Math.min(90,scrollY*.045))+'px');};window.addEventListener('scroll',()=>{if(!reduced&&!scrollFrame)scrollFrame=requestAnimationFrame(updateLandscape);},{passive:true});
+ $('address').onchange=updateQR;`);
+fs.writeFileSync('public/app.js',a);

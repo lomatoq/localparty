@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm');
+process.env.UX_GAMES='tanks';
+let source=fs.readFileSync('tests/game-art-browser.cjs','utf8');
+source=source.replace("const art=await gameFrame.evaluate",`const controller=phone.frames().find(f=>f.url().includes('/games/tanks/'));
+await controller.evaluate(()=>socket.emit('input',{forward:true,fire:false}));
+await host.waitForTimeout(850);
+await controller.evaluate(()=>socket.emit('input',{forward:false,fire:false}));
+const marks=await gameFrame.evaluate(()=>({count:treadMarks.length,cache:!!wallCache,round:treadRound}));
+assert(marks.cache);assert(marks.count>0,'real driving leaves tracks');
+await host.screenshot({path:'tests/tanks-scenery.png'});
+console.log('PASS scenery and real movement trails',marks);
+const art=await gameFrame.evaluate`);
+vm.runInThisContext('(function(require){'+source+'\n})',{filename:__filename})(require);

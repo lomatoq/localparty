@@ -1,0 +1,8 @@
+const fs=require('fs'),f='games/crane/public/client.js';let s=fs.readFileSync(f,'utf8');
+const helper=`
+const sceneSnapshots=[];
+function recordScene(value){const time=performance.now();if(sceneSnapshots.at(-1)?.value.roundId!==value.roundId)sceneSnapshots.length=0;sceneSnapshots.push({time,value});while(sceneSnapshots.length>8)sceneSnapshots.shift();}
+function sceneAt(now){if(sceneSnapshots.length<2)return state;const target=now-40;let a=sceneSnapshots[0],b=sceneSnapshots.at(-1);for(let i=1;i<sceneSnapshots.length;i++){if(sceneSnapshots[i].time>=target){a=sceneSnapshots[i-1];b=sceneSnapshots[i];break;}}if(a.value.turnId!==b.value.turnId||a.value.turnStage!==b.value.turnStage||a.value.phase!==b.value.phase)return b.value;const t=Math.max(0,Math.min(1,(target-a.time)/Math.max(1,b.time-a.time))),mix=(x,y)=>x+(y-x)*t;const pose=(x,y)=>!x||!y?y:{...y,x:mix(x.x,y.x),y:mix(x.y,y.y),angle:x.angle+Math.atan2(Math.sin(y.angle-x.angle),Math.cos(y.angle-x.angle))*t};return {...b.value,trolley:mix(a.value.trolley,b.value.trolley),hookX:mix(a.value.hookX,b.value.hookX),hookY:mix(a.value.hookY,b.value.hookY),beamY:mix(a.value.beamY,b.value.beamY),blocks:b.value.blocks.map((v,i)=>pose(a.value.blocks[i],v)),falling:pose(a.value.falling,b.value.falling)};}
+`;
+s=s.replace('function connect(){',helper+'\nfunction connect(){').replace("if(m.type==='state'){state=m;", "if(m.type==='state'){if(host)recordScene(m);state=m;");
+const a=s.indexOf('function draw(now='),z=s.indexOf('connect();draw();',a);let draw=s.slice(a,z);draw=draw.replace('if(!state)return;','if(!state)return;const scene=sceneAt(now);').replace(/state\./g,'scene.');s=s.slice(0,a)+draw+s.slice(z);fs.writeFileSync(f,s);

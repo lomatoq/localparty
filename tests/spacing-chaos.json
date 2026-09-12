@@ -1,0 +1,62 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "#trailCanvas",
+        "rect": [
+          321.2799987792969,
+          106.27999877929688,
+          1277.43994140625,
+          765.43994140625
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "#trailCanvas",
+        "rect": [
+          893.3029174804688,
+          106.64666748046875,
+          1643.373291015625,
+          984.7066040039062
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "#trailCanvas",
+        "rect": [
+          230.97999572753906,
+          105.9800033569336,
+          978.0400390625,
+          586.0400390625
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  }
+]

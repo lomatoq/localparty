@@ -1,0 +1,206 @@
+[
+  {
+    "viewport": [
+      1920,
+      928
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          1920,
+          928
+        ],
+        "padding": "64px 20px 20px",
+        "gap": "20px",
+        "display": "grid"
+      },
+      {
+        "selector": "stage",
+        "rect": [
+          20,
+          64,
+          1440,
+          844
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "#scene",
+        "rect": [
+          21,
+          65,
+          1438,
+          722
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-start-card",
+        "rect": [
+          1480,
+          64,
+          420,
+          844
+        ],
+        "padding": "24px",
+        "gap": "16px",
+        "display": "flex"
+      },
+      {
+        "selector": "panel scores",
+        "rect": [
+          1505,
+          179,
+          370,
+          636
+        ],
+        "padding": "18px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      3430,
+      1148
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          3430,
+          1148
+        ],
+        "padding": "64px 20px 20px",
+        "gap": "20px",
+        "display": "grid"
+      },
+      {
+        "selector": "stage",
+        "rect": [
+          20,
+          64,
+          2950,
+          1064
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "#scene",
+        "rect": [
+          21,
+          65,
+          2948,
+          942
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-start-card",
+        "rect": [
+          2990,
+          64,
+          420,
+          1064
+        ],
+        "padding": "24px",
+        "gap": "16px",
+        "display": "flex"
+      },
+      {
+        "selector": "panel scores",
+        "rect": [
+          3015,
+          179,
+          370,
+          856
+        ],
+        "padding": "18px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      748
+    ],
+    "blocks": [
+      {
+        "selector": "host-shell",
+        "rect": [
+          0,
+          0,
+          1440,
+          748
+        ],
+        "padding": "64px 20px 20px",
+        "gap": "20px",
+        "display": "grid"
+      },
+      {
+        "selector": "stage",
+        "rect": [
+          20,
+          64,
+          960,
+          664
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "#scene",
+        "rect": [
+          21,
+          65,
+          958,
+          542
+        ],
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block"
+      },
+      {
+        "selector": "lp-start-card",
+        "rect": [
+          1000,
+          64,
+          420,
+          664
+        ],
+        "padding": "24px",
+        "gap": "16px",
+        "display": "flex"
+      },
+      {
+        "selector": "panel scores",
+        "rect": [
+          1025,
+          179,
+          370,
+          456
+        ],
+        "padding": "18px",
+        "gap": "normal",
+        "display": "block"
+      }
+    ]
+  }
+]

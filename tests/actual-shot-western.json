@@ -1,0 +1,48 @@
+[
+  {
+    "game": "western",
+    "poses": [
+      {
+        "x": 380,
+        "y": 570,
+        "scale": 1.61,
+        "flip": 1,
+        "labelWidth": 230
+      },
+      {
+        "x": 900,
+        "y": 570,
+        "scale": 1.61,
+        "flip": -1,
+        "labelWidth": 230
+      }
+    ],
+    "shot": {
+      "id": "p2",
+      "name": "Один телефон",
+      "color": "#58d9ff",
+      "handedness": "right",
+      "x": 640,
+      "y": 360,
+      "vx": 0,
+      "vy": 0,
+      "radius": 24,
+      "alive": false,
+      "active": true,
+      "roundWins": 0,
+      "totalScore": 0,
+      "roundScore": 0,
+      "knivesRemaining": 0,
+      "launcherAngle": 0,
+      "lastFeedback": "TOO EARLY!",
+      "lastFeedbackAt": 1789252731307,
+      "falseStart": true,
+      "falseStarts": 1,
+      "shotThisRound": true,
+      "shotVisualTime": 3953.9998720000003,
+      "reactionMs": null,
+      "bestReactionMs": null,
+      "reactionCount": 0
+    }
+  }
+]

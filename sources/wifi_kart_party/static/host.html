@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wi‑Fi Kart Party</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body class="host-page">
+  <main class="host-shell">
+    <section class="game-stage">
+      <canvas id="gameCanvas" width="1600" height="900"></canvas>
+      <div class="top-hud glass">
+        <div>
+          <div class="eyebrow">WI‑FI KART PARTY</div>
+          <div id="raceStatus" class="race-status">LOBBY</div>
+        </div>
+        <div class="race-clock">
+          <span class="muted">TIME</span>
+          <strong id="raceClock">00:00.000</strong>
+        </div>
+        <div class="lap-hud">
+          <span class="muted">LAPS</span>
+          <strong id="lapTarget">10</strong>
+        </div>
+      </div>
+      <div id="countdown" class="countdown hidden">3</div>
+      <div id="winnerBanner" class="winner-banner hidden"></div>
+      <div class="bottom-hint glass">📱 Scan QR → enter name → choose left/right hand → race.</div>
+    </section>
+
+    <aside class="side-panel">
+      <div class="brand-block">
+        <div class="logo-mark">⚡</div>
+        <div>
+          <h1>Wi‑Fi Kart</h1>
+          <p>Local party racing</p>
+        </div>
+      </div>
+
+      <div class="join-card card">
+        <div class="card-title">JOIN FROM PHONE</div>
+        <img id="qr" class="qr" src="/qr.png" alt="QR code" />
+        <div id="joinUrl" class="join-url">Loading local address…</div>
+        <div class="tiny">Phones and this computer must be on the same Wi‑Fi.</div>
+      </div>
+
+      <div class="controls-card card">
+        <div class="row between">
+          <span class="card-title">RACE</span>
+          <span id="playerCount" class="pill">0 players</span>
+        </div>
+        <div class="lap-setting">
+          <label for="lapsInput">Laps</label>
+          <input id="lapsInput" type="number" min="1" max="99" value="10" />
+        </div>
+        <div class="button-row">
+          <button id="startBtn" class="btn primary">START</button>
+          <button id="resetBtn" class="btn secondary">RESET</button>
+        </div>
+        <button id="fullscreenBtn" class="btn ghost full">⛶ FULLSCREEN</button>
+      </div>
+
+      <div class="leader-card card grow">
+        <div class="row between">
+          <span class="card-title">LIVE BOARD</span>
+          <span class="tiny">position · lap · best</span>
+        </div>
+        <div id="leaderboard" class="leaderboard empty-state">Waiting for drivers…</div>
+      </div>
+    </aside>
+  </main>
+  <script src="/static/host.js"></script>
+</body>
+</html>

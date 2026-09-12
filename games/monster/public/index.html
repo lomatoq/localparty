@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Монстр по кругу — Host</title>
+  <link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/monster-glass.css" />
+</head>
+<body class="host-page">
+  <main class="host-shell">
+    <header class="host-header">
+      <div>
+        <div class="eyebrow">LAN PARTY GAME</div>
+        <h1>МОНСТР<br><span>ПО КРУГУ</span></h1>
+      </div>
+      <div id="roundBadge" class="round-badge">ЛОББИ</div>
+    </header>
+
+    <section id="lobbyPanel" class="panel lobby-grid">
+      <div class="setup-card">
+        <h2>1. Настройка</h2>
+        <label>До 16 игроков · старт от 2
+          <input id="maxPlayers" type="number" min="2" max="16" value="16" readonly />
+        </label>
+        <label>Промпты
+          <select id="promptMode">
+            <option value="chaos">Каждая часть = новый персонаж 😈</option>
+            <option value="same">Один персонаж на весь рисунок</option>
+          </select>
+        </label>
+        <button id="applyConfig" class="btn secondary">Применить</button>
+        <button id="startGame" class="btn primary" disabled>Начать раунд</button>
+      </div>
+
+      <div class="qr-card">
+        <div class="card-title-row">
+          <div>
+            <div class="eyebrow">ТЕЛЕФОНЫ</div>
+            <h2>2. Сканируйте QR</h2>
+          </div>
+          <span id="playerCounter" class="pill">0 / 4</span>
+        </div>
+        <div class="qr-instruction">Откройте обычную камеру → наведите на код → нажмите ссылку. Ничего вводить не надо.</div>
+        <div class="qr-frame"><img id="qr" class="qr" alt="QR для подключения к игре" /></div>
+        <div id="qrStatus" class="qr-status">Ищу Wi‑Fi адрес компьютера…</div>
+        <div class="join-link-row">
+          <div id="joinUrl" class="join-url">…</div>
+          <button id="copyJoinUrl" class="copy-link" type="button">Копировать</button>
+        </div>
+        <details class="network-details">
+          <summary>Если QR не открывается</summary>
+          <p>Выбери сетевой адрес Wi‑Fi компьютера и QR обновится автоматически.</p>
+          <select id="ipSelect" class="ip-select"></select>
+        </details>
+      </div>
+
+      <div class="players-card">
+        <h2>Игроки</h2>
+        <div id="players" class="players-list"></div>
+      </div>
+    </section>
+
+    <section id="gamePanel" class="panel game-panel hidden">
+      <div class="status-top">
+        <div>
+          <div class="eyebrow">СЕЙЧАС РИСУЕТ</div>
+          <div id="hostTurnTimer" data-party-timer class="turn-timer">90 сек</div><button id="skipTurn" class="btn secondary">Пропустить ход</button><div id="activePlayer" class="active-player">—</div>
+        </div>
+        <div id="progressText" class="progress-text">0 / 0</div>
+      </div>
+      <div id="queue" class="queue"></div>
+      <div class="secret-box">
+        <div class="secret-icon">🙈</div>
+        <div>
+          <b>На большом экране рисунок скрыт.</b>
+          <span>Следующий игрок увидит только узкую полоску стыка.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="revealPanel" class="panel reveal-panel hidden">
+      <div class="reveal-head">
+        <div>
+          <div class="eyebrow">ФИНАЛЬНЫЙ МУТАНТ</div>
+          <h2 id="revealTitle">Раунд готов</h2>
+        </div>
+        <div class="reveal-actions">
+          <button id="downloadArt" class="btn secondary">Скачать PNG</button>
+          <button id="nextRound" class="btn primary">Ещё раунд</button>
+          <button id="resetLobby" class="btn ghost">В лобби</button>
+        </div>
+      </div>
+      <div class="reveal-stage">
+        <canvas id="revealCanvas"></canvas>
+      </div>
+      <div id="credits" class="credits"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/drawing.js"></script><script src="/socket.io/socket.io.js"></script>
+  <script src="/host.js"></script>
+</body>
+</html>

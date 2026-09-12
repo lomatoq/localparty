@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Local Party Pack — Host</title><link rel="stylesheet" href="host.css"><link rel="stylesheet" href="action-glass.css"></head>
+<body>
+  <canvas id="game" width="1280" height="720"></canvas>
+  <div class="topbar"><div class="brand">LOCAL PARTY PACK</div><div id="modeHud" class="modehud">LOBBY</div><button id="fullscreenBtn">FULLSCREEN</button></div>
+  <section id="lobbyOverlay" class="overlay lobby">
+    <div class="panel left-panel">
+      <div class="kicker">КОМПЬЮТЕР = ЭКРАН · ТЕЛЕФОНЫ = КОНТРОЛЛЕРЫ</div>
+      <h1>Выберите игру</h1>
+      <div class="mode-grid">
+        <button class="mode-card" data-mode="push"><span class="icon">◉</span><div><b>PUSH PIT</b><small>Джойстик · инерция · вышибай всех за край.</small></div></button>
+        <button class="mode-card" data-mode="knives"><span class="icon">✦</span><div><b>COLOR KNIVES</b><small>Лови тайминг и кидай ножи только в свой цвет.</small></div></button>
+        <button class="mode-card bomb-card" data-mode="bomb"><span class="icon">●</span><div><b>BOMB TAG</b><small>Передавай скрытую бомбу касанием. Взрыв выбивает носителя.</small></div></button>
+        <button class="mode-card western-card" data-mode="western"><span class="icon">★</span><div><b>ONE SHOT WESTERN</b><small>Смотри на экран. Не ведись на фальш-сигналы. Стреляй только на DRAW!</small></div></button>
+      </div>
+      <details class="game-options"><summary>Число раундов</summary><div class="rounds"><span>РАУНДОВ</span><div id="roundButtons"></div></div></details>
+      <div class="hint">Один QR для всех игр. 2–16 игроков. Можно войти прямо во время матча. После выбывания ждите следующего раунда.</div>
+    </div>
+    <div class="panel join-panel">
+      <div class="join-title">СКАНИРУЙ И ИГРАЙ</div><div id="qr"></div><div id="joinUrl" class="join-url">…</div><div id="ipChoices" class="ip-choices"></div>
+      <div class="players-title"><span>ИГРОКИ</span><b id="playerCount">0</b></div><div id="playerList" class="player-list"></div>
+    </div>
+  </section>
+  <section id="resultOverlay" class="overlay result hidden"><div class="result-card"><div class="kicker">МАТЧ ОКОНЧЕН</div><h2 id="resultText">Победа!</h2><div id="resultStats"></div><div class="result-actions"><button id="rematchBtn" class="primary">ЕЩЁ РАЗ</button><button id="lobbyBtn">В ЛОББИ</button></div></div></section>
+  <div id="joinBadge" class="join-badge hidden"><div id="miniQr"></div><span>JOIN<br><b id="miniUrl">...</b></span></div>
+<script src="net.js"></script><script src="qr-lite.js"></script><script src="visual-clock.js"></script><script src="host.js"></script>
+<script src="touch-feedback.js"></script></body></html>

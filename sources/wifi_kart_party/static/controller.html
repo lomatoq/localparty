@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#0B0D12" />
+  <title>Kart Controller</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body class="controller-page">
+  <div id="joinScreen" class="phone-screen join-screen">
+    <div class="phone-brand">
+      <div class="logo-mark big">⚡</div>
+      <div class="eyebrow">LOCAL WI‑FI RACING</div>
+      <h1>Grab a kart.</h1>
+      <p>Enter a name, choose your hand layout and your phone becomes the controller.</p>
+    </div>
+    <label class="field-label" for="nameInput">DRIVER NAME</label>
+    <input id="nameInput" class="name-input" maxlength="18" autocomplete="nickname" placeholder="Gleb" />
+    <div class="field-label">CONTROL LAYOUT</div>
+    <div class="hand-choice">
+      <button class="hand-btn" data-hand="left">👈 LEFT‑HAND</button>
+      <button class="hand-btn active" data-hand="right">RIGHT‑HAND 👉</button>
+    </div>
+    <button id="joinBtn" class="join-btn">JOIN RACE</button>
+    <div id="joinError" class="join-error"></div>
+  </div>
+
+  <div id="driveScreen" class="phone-screen drive-screen hidden">
+    <header class="phone-hud">
+      <div class="driver-chip">
+        <span id="colorDot" class="color-dot"></span>
+        <strong id="driverName">DRIVER</strong>
+      </div>
+      <div class="phone-stat"><span>POS</span><strong id="posText">—</strong></div>
+      <div class="phone-stat"><span>LAP</span><strong id="lapText">0/10</strong></div>
+      <div class="phone-stat"><span>TIME</span><strong id="timeText">00:00</strong></div>
+    </header>
+
+    <div class="status-strip" id="statusStrip">WAITING FOR HOST</div>
+
+    <section id="controlsArea" class="controls-area right-handed">
+      <div class="steering-zone">
+        <div class="control-label">STEER</div>
+        <div id="wheelPad" class="wheel-pad">
+          <div class="wheel-rim">
+            <div class="wheel-spoke s1"></div>
+            <div class="wheel-spoke s2"></div>
+            <div class="wheel-spoke s3"></div>
+            <div class="wheel-center">⚡</div>
+          </div>
+          <div class="steer-readout"><span id="steerValue">0%</span></div>
+        </div>
+      </div>
+      <div class="gas-zone">
+        <div class="control-label">GAS</div>
+        <button id="gasBtn" class="gas-btn" aria-label="Gas pedal">
+          <span class="gas-arrow">▲</span>
+          <span>GAS</span>
+        </button>
+      </div>
+    </section>
+
+    <footer class="phone-footer">
+      <div><span class="muted">BEST</span> <strong id="bestText">—</strong></div>
+      <div><span class="muted">SPEED</span> <strong id="speedText">0</strong></div>
+      <button id="swapHandBtn" class="swap-btn">⇄ Swap hands</button>
+    </footer>
+  </div>
+  <script src="/static/controller.js"></script>
+</body>
+</html>

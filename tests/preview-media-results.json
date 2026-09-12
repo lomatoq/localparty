@@ -1,0 +1,184 @@
+[
+  {
+    "id": "tankarena",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/tankarena.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "push",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/push.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "shrink",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/shrink.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "knives",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/knives.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "bomb",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/bomb.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "western",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/western.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "taprace",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/taprace.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "punchmeter",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/punchmeter.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "flappy",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/flappy.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "hungry",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/hungry.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "snakelines",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/snakelines.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "carryball",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/carryball.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "tanks",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/tanks.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "chaos",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/chaos.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "kart",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/kart.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "monster",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/monster.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "jenga",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/jenga.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "crane",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/crane.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "western_duel",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/western_duel.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "spy",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/spy.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "millionaire",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/millionaire.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "sinyakquiz",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/sinyakquiz.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "warsaw",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/warsaw.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "crocodile",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/crocodile.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "naval",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/naval.webp?v=live-art-20260913",
+    "fit": "cover"
+  },
+  {
+    "id": "drawguess",
+    "w": 1600,
+    "h": 900,
+    "src": "http://localhost:60564/assets/gameplay/drawguess.webp?v=live-art-20260913",
+    "fit": "cover"
+  }
+]

@@ -1,0 +1,7 @@
+const fs=require('fs'),path=require('path'),assert=require('assert');
+const sharp=require('C:/Users/nirrt/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');
+const root=path.resolve(__dirname,'../public/assets/gameplay'),m=require('../public/assets/gameplay/manifest.json'),inventory=require('../docs/gameplay-art/inventory.json');
+(async()=>{let masks=0;for(const a of m.atlases){const {data:d,info:i}=await sharp(path.join(root,a.file)).ensureAlpha().raw().toBuffer({resolveWithObject:true});assert.equal(i.width,a.width);assert.equal(i.height,a.height);for(let y=0;y<i.height;y++)for(let x=0;x<i.width;x++){if(x%384<12||x%384>371||y%512<12||y%512>499)assert.equal(d[(y*i.width+x)*4+3],0,`${a.file} cell gutter ${x},${y}`);}}
+ for(const [key,f]of Object.entries(m.frames)){assert(f.frame.x>=f.cell.x&&f.frame.x+f.frame.w<=f.cell.x+f.cell.w);const st=await sharp(path.join(root,f.sprite)).stats();assert.equal(st.channels.length,4);assert.equal(st.channels[3].min,0);assert(st.channels[3].max>200,key);if(f.tintMask){const sm=await sharp(path.join(root,f.tintMask)).metadata();assert.equal(sm.width,f.sourceSize.w);assert.equal(sm.height,f.sourceSize.h);masks++;}}
+ assert.equal(inventory.games.length,26);for(const game of inventory.games)for(const key of game.sprites)assert(m.frames[key],game.id+' missing '+key);
+ console.log(JSON.stringify({atlases:m.atlases.length,sprites:Object.keys(m.frames).length,masks,games:inventory.games.length,transparentGutters:true}));})();

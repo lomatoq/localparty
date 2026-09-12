@@ -1,0 +1,14 @@
+const fs=require('fs');
+let js=fs.readFileSync('public/catalog-previews.js','utf8');
+js=js.replace("panel.innerHTML='<svg viewBox=\"0 0 320 180\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\">'+shapes[shape]+'</svg><span class=\"cp-caption\"></span>';", "const screenshot=document.createElement('img');screenshot.src='/assets/gameplay/'+card.dataset.id+'.webp';screenshot.alt='Скриншот игры';screenshot.loading='lazy';panel.append(screenshot,document.createElement('span'));panel.lastChild.className='cp-caption';");
+js=js.replace("'Иллюстрация и схема механики'","'Арт и скриншот игры'").replace("'Схема: '+caption","'Геймплей: '+caption");
+js=js.replace("function select(index) {state.index=index;", "function select(index) {if(!isLarge(card))index=0;state.index=index;");
+js=js.replace("const scan=()=>", "function isLarge(card){return card.classList.contains('featured')||getComputedStyle(card).gridColumnEnd==='span 2';}\n  function resize(){cards.forEach((s,c)=>{const large=isLarge(c);c.classList.toggle('cp-large',large);if(!large)s.select(0);});}\n  window.addEventListener('resize',resize);\n  const scan=()=>");
+js=js.replace('state.select=select;card.append(panel,nav);observer.observe(card);','state.select=select;card.append(panel,nav);card.classList.toggle(\'cp-large\',isLarge(card));observer.observe(card);');
+js=js.replace('if(s.visible&&!c.hidden', 'if(isLarge(c)&&s.visible&&!c.hidden');
+fs.writeFileSync('public/catalog-previews.js',js);
+let test=fs.readFileSync('tests/session-ux-browser.cjs','utf8');
+test=test.replace("['push','tankarena','jenga','warsaw','crane']","require('../catalog.json').map(g=>g.id)");
+test=test.replace("await phone.waitForTimeout(700);", "await phone.waitForTimeout(4200);fs.mkdirSync('public/assets/gameplay',{recursive:true});await require('C:/Users/nirrt/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp')(await host.locator('#gameFrame').screenshot()).resize({width:1280}).webp({quality:86}).toFile('public/assets/gameplay/'+id+'.webp');");
+test=test.replace("tests/session-ux-browser.json","tests/gameplay-capture.json");
+fs.writeFileSync('tests/capture-gameplay.cjs',test);

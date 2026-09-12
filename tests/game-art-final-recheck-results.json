@@ -1,0 +1,94 @@
+{
+  "games": [
+    {
+      "id": "knives",
+      "art": {
+        "draws": {
+          "knife": 149
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "knives",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "bomb",
+      "art": {
+        "draws": {
+          "puck": 714,
+          "bomb": 357
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "bomb",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "kart",
+      "art": {
+        "draws": {
+          "kart": 694
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "kart",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "hungry",
+      "art": {
+        "draws": {
+          "food-chicken": 5976,
+          "food-burger": 5312,
+          "food-pizza": 6640,
+          "food-donut": 5312,
+          "blob": 664
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "hungry",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    },
+    {
+      "id": "carryball",
+      "art": {
+        "draws": {
+          "runner": 712,
+          "robot-foot-left": 712,
+          "robot-foot-right": 712,
+          "ball": 356
+        },
+        "decor": []
+      }
+    },
+    {
+      "id": "carryball",
+      "overflow": false,
+      "height": 874,
+      "viewport": 874,
+      "controls": 874
+    }
+  ],
+  "errors": [],
+  "log": "\nLOCAL PARTY — http://localhost:59257/host\nPlayers: http://192.168.0.91:59257/ (Wi-Fi)\n[knives] ============== LOCAL PARTY PACK ==============\n[knives] HOST SCREEN : http://localhost:53272/host\nPHONES      : http://192.168.0.91:53272/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\nSame Wi-Fi required. Keep this window open.\n==============================================\n[bomb] ============== LOCAL PARTY PACK ==============\n[bomb] HOST SCREEN : http://localhost:63036/host\nPHONES      : http://192.168.0.91:63036/\nGames       : PUSH PIT / COLOR KNIVES / BOMB TAG / ONE SHOT WESTERN\n[bomb] Same Wi-Fi required. Keep this window open.\n==============================================\n[kart] KART listening http://127.0.0.1:55326/\n[hungry] Arcade hungry http://localhost:56341\n[carryball] Arcade carryball http://localhost:53673\n"
+}

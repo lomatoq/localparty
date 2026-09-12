@@ -1,0 +1,11 @@
+const fs=require('fs');const s=fs.readFileSync('tests/audit-results.cjs','utf8');const prefix=s.slice(0,s.indexOf("for(const id of ['push'"));fs.writeFileSync('tests/audit-results-more.cjs',prefix+`
+await host.locator('#botMinus').click();const second=await browser.newPage({viewport:{width:402,height:874}});await second.goto(base);await second.locator('#name').fill('Другой телефон');await second.locator('#joinForm button').click();
+for(const id of ['millionaire','monster','crane']){
+await host.evaluate(id=>qa.send(JSON.stringify({type:'launch',id})),id);await phone.waitForFunction(id=>document.querySelector('#gameFrame').src.includes('/games/'+id+'/'),id);await phone.waitForFunction(()=>!document.querySelector('#readyButton').disabled);const frame=host.frames().find(f=>f.url().includes('/games/'+id+'/'));
+if(id==='millionaire')await frame.evaluate(()=>socket.emit('host:settings',{maxTurns:3,seconds:5}));
+await phone.locator('#readyButton').click();await second.locator('#readyButton').click();await host.waitForFunction(()=>qaState?.active?.ui?.phase!=='waiting');
+if(id==='monster'){for(let i=0;i<2;i++){for(const p of [phone,second]){const f=p.frames().find(f=>f.url().includes('/games/monster/'));if(await f.locator('#doneBtn').isVisible())await f.locator('#doneBtn').click();}await host.waitForTimeout(350);}}
+if(id==='crane'){for(let i=0;i<3;i++){for(const p of [phone,second]){const f=p.frames().find(f=>f.url().includes('/games/crane/'));if(await f.locator('#left').isEnabled()){await f.evaluate(()=>left=true);await p.waitForTimeout(1800);await f.evaluate(()=>{left=false;send({type:'drop',turnId:state.turnId})});await p.waitForTimeout(3500);break;}}}}
+await host.waitForFunction(()=>['results','reveal'].includes(qaState?.active?.ui?.phase),null,{timeout:35000});if(id==='millionaire')await host.waitForFunction(()=>qaState?.active?.ui?.phase==='results',null,{timeout:35000});await host.waitForTimeout(500);await host.screenshot({path:'tests/audit-results-host-'+id+'.png'});await phone.screenshot({path:'tests/audit-results-phone-'+id+'.png'});console.log('RESULTS',id);await host.evaluate(()=>qa.send(JSON.stringify({type:'stop'})));await host.waitForFunction(()=>!qaState.active);
+}
+}finally{await browser?.close();child.kill();}})().catch(e=>{console.error(e);process.exitCode=1});`);

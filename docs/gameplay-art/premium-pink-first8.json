@@ -1,0 +1,50 @@
+[
+  {
+    "id": "push",
+    "source": "C:/Users/nirrt/.codex/generated_images/01a09185-5504-73f3-a4ce-70f95b61dca8/exec-aabf0d9b-5582-4744-876c-3fcc9fb881c3.png",
+    "hint": "Background cleanup additionally removed original motion streaks.",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-9c2b79ce-0766-4853-9467-f0275c2b73c1.png"
+  },
+  {
+    "id": "shrink",
+    "source": "C:/Users/nirrt/.codex/generated_images/01a09185-5504-73f3-a4ce-70f95b61dca8/exec-648c5d56-f67c-4d0f-bfd8-f7f91ead482c.png",
+    "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-b4efac70-daa3-4fc9-b48d-b52a6f1fbffc.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-b4efac70-daa3-4fc9-b48d-b52a6f1fbffc.png"
+  },
+  {
+    "id": "knives",
+    "source": "C:/Users/nirrt/.codex/generated_images/01a09185-5504-73f3-a4ce-70f95b61dca8/exec-8c579c88-30fc-46dd-bc05-f1bc2287a386.png",
+    "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-dce59e58-d0ca-4091-a682-b91f784c8c3a.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-dce59e58-d0ca-4091-a682-b91f784c8c3a.png"
+  },
+  {
+    "id": "western",
+    "source": "C:/Users/nirrt/.codex/generated_images/01a09185-5504-73f3-a4ce-70f95b61dca8/exec-6382a474-bd40-46ff-ab40-d2bc8efda704.png",
+    "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-7c15fc27-901b-4dcc-972b-000d3b0c4941.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-7c15fc27-901b-4dcc-972b-000d3b0c4941.png"
+  },
+  {
+    "id": "tanks",
+    "source": "C:/Users/nirrt/.codex/generated_images/01a09185-5504-73f3-a4ce-70f95b61dca8/exec-5a821296-a04f-4229-8e0b-ee8c733f8e13.png",
+    "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-0b393f55-68e8-4da9-93bc-6eab5bbd9826.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-0b393f55-68e8-4da9-93bc-6eab5bbd9826.png"
+  },
+  {
+    "id": "tankarena",
+    "source": "C:/Users/nirrt/.codex/generated_images/01a09185-5504-73f3-a4ce-70f95b61dca8/exec-b9d513ee-bc69-47cf-9fa4-a84042c10e5c.png",
+    "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-5b598647-a6f8-4749-9142-ee7028e97d28.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-5b598647-a6f8-4749-9142-ee7028e97d28.png"
+  },
+  {
+    "id": "chaos",
+    "source": "C:/Users/nirrt/.codex/generated_images/01a09185-5504-73f3-a4ce-70f95b61dca8/exec-7a4559d4-a7e6-4097-9668-9b8861a2d4c0.png",
+    "hint": "Generated images are saved to C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39 as C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-eb998d4f-f654-4a50-9079-ab335bfc35af.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-eb998d4f-f654-4a50-9079-ab335bfc35af.png"
+  },
+  {
+    "id": "bomb",
+    "source": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09185-5504-73f3-a4ce-70f95b61dca8\\exec-08f44740-3474-4f2e-b40a-4973c595ce00.png",
+    "output": "C:\\Users\\nirrt\\.codex\\generated_images\\01a09792-04b9-7813-899c-54e0f78e0d39\\exec-b811a67d-61dd-4dc2-a1d7-272c7f19afac.png",
+    "hint": "Built-in imagegen background-only pink edit."
+  }
+]

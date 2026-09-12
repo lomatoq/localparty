@@ -1,0 +1,1 @@
+const fs=require('fs'),p='games/arcade/public/app.js';let s=fs.readFileSync(p,'utf8');for(const[a,b]of [["for(const f of s.food)","for(const f of s.food||[])"],["for(const p of s.pipes)","for(const p of s.pipes||[])"]]){if(!s.includes(a))throw Error(a);s=s.replace(a,b);}fs.writeFileSync(p,s);
