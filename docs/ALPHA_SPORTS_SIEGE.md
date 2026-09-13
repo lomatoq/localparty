@@ -1,6 +1,6 @@
 # LocalParty — Sports & Siege alpha.1
 
-Branch: `alpha/party-sports-siege`. Base release: `0.6.2`. The released package version and dependency lock are intentionally retained; the experimental build is identified by `build-info.json` and the alpha badge. This is not a new stable release.
+Branch: `alpha/sports-siege-swipe`. Base release: `0.6.2`. The released package version and dependency lock are intentionally retained; the experimental build is identified by `build-info.json` and the alpha badge. This is not a new stable release.
 
 ## Run
 
@@ -8,12 +8,12 @@ Use a clean working tree, then:
 
 ```sh
 git fetch origin
-git switch --track origin/alpha/party-sports-siege
+git switch --track origin/alpha/sports-siege-swipe
 npm ci
 npm start
 ```
 
-For an already checked-out branch use `git switch alpha/party-sports-siege` instead. The normal Windows/Mac launchers also work when dependencies/runtime are already installed. Phones join the existing shared lobby through its QR code. All play, assets, fonts and physics remain local. Only installing dependencies or explicitly checking/downloading an update needs internet.
+For an already checked-out branch use `git switch alpha/sports-siege-swipe` instead. The normal Windows/Mac launchers also work when dependencies/runtime are already installed. Phones join the existing shared lobby through its QR code. All play, assets, fonts and physics remain local. Only installing dependencies or explicitly checking/downloading an update needs internet.
 
 ## Four games
 
@@ -35,7 +35,7 @@ The existing packaging script copies `games`, `lib` and `public`, so the catalog
 
 ## Updates
 
-The header's download-arrow button opens the existing glass/lime-styled dialog. **Релиз** reads the latest non-prerelease GitHub release; **alpha** resolves the exact commit at `alpha/party-sports-siege`. Checking is explicit, not an automatic internet request during play.
+The header's download-arrow button opens the existing glass/lime-styled dialog. **Релиз** reads the latest non-prerelease GitHub release; **alpha** resolves the exact commit at `alpha/sports-siege-swipe`. Checking is explicit, not an automatic internet request during play.
 
 The repository is private. On the host, authenticate with `gh auth login`, or set `PARTY_GITHUB_TOKEN` to a token with **Contents: read** for this repository before launching. Do not paste tokens into a phone/controller, source file or commit. The updater never sends its token to clients or redirected download hosts.
 
