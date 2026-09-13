@@ -25,16 +25,16 @@ jobs:
         run: |
           node --test tests/sports-siege.test.js tests/alpha-updater.test.js tests/alpha-physics.test.js tests/alpha-network.test.js tests/alpha-start.test.js > /tmp/alpha-tests.log 2>&1 || { tail -n 80 /tmp/alpha-tests.log; exit 1; }
           tail -n 9 /tmp/alpha-tests.log
-      - name: Existing regression suite
-        run: |
-          npm test > /tmp/alpha-legacy.log 2>&1 || { tail -n 80 /tmp/alpha-legacy.log; exit 1; }
-          tail -n 9 /tmp/alpha-legacy.log
       - name: Install browser test runner
         run: |
           python -m pip install playwright==1.57.0 > /tmp/alpha-browser-install.log 2>&1 || { tail -n 30 /tmp/alpha-browser-install.log; exit 1; }
           python -m playwright install --with-deps chromium >> /tmp/alpha-browser-install.log 2>&1 || { tail -n 30 /tmp/alpha-browser-install.log; exit 1; }
       - name: Shared launcher and two phones, no external game requests
         run: python tests/browser/alpha_smoke.py
+      - name: Existing regression suite
+        run: |
+          npm test > /tmp/alpha-legacy.log 2>&1 || { tail -n 80 /tmp/alpha-legacy.log; exit 1; }
+          tail -n 9 /tmp/alpha-legacy.log
       - name: Screenshots and logs
         if: always()
         continue-on-error: true

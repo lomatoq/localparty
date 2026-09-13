@@ -15,24 +15,26 @@ async def main():
         async with async_playwright() as p:
             browser=await p.chromium.launch(headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage'])
             errors=[]; external=[]
+            def page_error(e):
+                errors.append(str(e));print('ALPHA_JS_ERROR '+str(e),flush=True)
             async def guard(route):
                 if route.request.url.startswith((base+'/', 'data:', 'blob:')): await route.continue_()
                 else: external.append(route.request.url);await route.abort()
             hc=await browser.new_context(viewport={'width':1440,'height':1000});await hc.route('**/*',guard)
-            host=await hc.new_page();host.on('pageerror',lambda e:errors.append(str(e)));await host.goto(base+'/host')
+            host=await hc.new_page();host.on('pageerror',page_error);await host.goto(base+'/host')
             await host.locator('.game[data-id="bowling"]').wait_for();assert await host.locator('.game').count()==30
             await host.locator('#lp-updates').click();await host.locator('.lp-updates-dialog').wait_for();await host.screenshot(path=str(OUT/'updates.png'));await host.locator('.lp-update-close').click()
             phones=[]
             for i in range(2):
                 c=await browser.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True);await c.route('**/*',guard)
-                page=await c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));await page.goto(base+'/');await page.locator('#name').fill('Alpha '+str(i));
+                page=await c.new_page();page.on('pageerror',page_error);await page.goto(base+'/');await page.locator('#name').fill('Alpha '+str(i));
                 if i==0:await page.locator('input[name="hand"][value="left"]').check()
                 await page.locator('#joinForm button').click();await page.locator('#home').wait_for();phones.append(page)
             for mode in ['curling','bowling','swarm_gate','peek_shoot']:
                 await host.locator(f'.game[data-id="{mode}"] .start-game').click()
                 for phone in phones:
-                    await phone.locator(f'#gameFrame[src*="/games/{mode}/"]').wait_for()
-                    await phone.frame_locator('#gameFrame').locator('#ss-name').wait_for()
+                    await phone.locator(f'#gameFrame[src*="/games/{mode}/"]').wait_for(state="attached")
+                    await phone.frame_locator('#gameFrame').locator('#ss-name').wait_for(state='attached')
                     await phone.locator('#readyButton').wait_for();await phone.locator('#readyButton').click()
                 frame=host.frame_locator('#gameFrame');await frame.locator('#ss-overlay').wait_for(state='hidden',timeout=25000)
                 await asyncio.sleep(7 if mode=='swarm_gate' else 1);await host.screenshot(path=str(OUT/f'{mode}-host.png'))
