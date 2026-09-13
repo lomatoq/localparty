@@ -1,0 +1,63 @@
+name: Alpha validation
+on:
+  push:
+    branches: [alpha/party-sports-siege]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: localparty-alpha
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: startsWith(github.event.head_commit.message, 'seed(afterparty):')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: alpha/party-sports-siege
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize narrowly scoped launcher integration
+        run: |
+          node scripts/integrate-afterparty.cjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add catalog.json server.js public/app.js public/index.html package.json package-lock.json scripts/package-release.cjs README.md RELEASE_NOTES.md
+          git diff --cached --quiet || git commit -m 'feat(afterparty): integrate four games and host updater into launcher'
+          git push origin HEAD:alpha/party-sports-siege
+  validate:
+    needs: integrate
+    if: always() && (needs.integrate.result == 'success' || needs.integrate.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: alpha/party-sports-siege
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Rules, physics, updater and original regression tests
+        run: |
+          mkdir -p test-results/afterparty
+          set -o pipefail
+          npm test 2>&1 | tee test-results/afterparty/npm-test.log
+      - name: Install browser-test tools without changing lockfile
+        run: |
+          npm install --no-save --package-lock=false playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Four 3D games, mobile controls and managed lobby
+        run: node tests/afterparty-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: afterparty-validation
+          path: test-results/afterparty
+          retention-days: 7
