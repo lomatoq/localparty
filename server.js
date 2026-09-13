@@ -10,7 +10,7 @@ const crypto = require('crypto');
 const {spawn} = require('child_process');
 const {WebSocketServer, WebSocket} = require('ws');
 const QRCode = require('qrcode');
-const catalog = require('./catalog.json');
+const catalog = require('./lib/catalog');
 const {ProfileStore}=require('./lib/profile-store');
 const {SessionControls}=require('./lib/session-controls');
 const ROOT = __dirname;
@@ -24,6 +24,7 @@ const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
 let active = null, busy = false, closing = false, testMode=false, botCount=0, testProfiles=[];
 function sendTestProfile(ws){while(testProfiles.length<botCount)testProfiles.push(publicProfile(profileStore.register(null,'Бот '+(testProfiles.length+1),'right')));send(ws,{type:'test-profiles',profiles:testProfiles.slice(0,botCount)});}
 const local = req => ['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
+const updater=require('./lib/updater').createUpdater({root:ROOT,hostKey,isLocal:local,isBusy:()=>!!active||busy,getPort:()=>PORT,shutdown});
 const addresses = () => Object.entries(os.networkInterfaces()).flatMap(([name, list]) => list.filter(x=>x.family==='IPv4'&&!x.internal).map(x=>({name,address:x.address}))).sort((a,b)=>Number(/virtual|vethernet|vpn|wsl/i.test(a.name))-Number(/virtual|vethernet|vpn|wsl/i.test(b.name)));
 function inviteUrl(req){const ips=addresses();const selected=req&&new URL(req.url,'http://localhost').searchParams.get('host');const ip=ips.find(x=>x.address===selected)?.address||ips[0]?.address;return ip?`${scheme}://${ip}:${PORT}/`:`${scheme}://${req?.headers.host||'localhost:'+PORT}/`;}
 const connected = () => [...players.values()].filter(p=>p.socket?.readyState===WebSocket.OPEN);
@@ -38,7 +39,7 @@ function freePort(){return new Promise((resolve,reject)=>{const s=net.createServ
 function syncRoster(){if(active?.child.connected)active.child.send({type:'party:roster',players:profileStore.data.players.map(publicProfile)});}
 async function waitReady(child, port){const until=Date.now()+15000;while(Date.now()<until){if(child.exitCode!==null||child.spawnError)throw Error(child.spawnError||'Игровой сервер завершился при запуске.');if(await new Promise(resolve=>{const r=http.get({host:'127.0.0.1',port,path:'/',timeout:350},res=>{res.resume();resolve(res.statusCode===200);});r.on('error',()=>resolve(false));r.on('timeout',()=>r.destroy());}))return;await new Promise(r=>setTimeout(r,100));}throw Error('Игровой сервер не ответил за 15 секунд.');}
 async function launch(id){
-  if(busy)throw Error('Подождите окончания запуска.');
+  if(busy||updater.running)throw Error('Подождите окончания запуска или обновления.');
   const game=catalog.find(g=>g.id===id);if(!game)throw Error('Игра не найдена.');
   if(connected().length<(testMode?1:game.min)||connected().length>game.max)throw Error(`Для этой игры нужно ${testMode?1:game.min}–${game.max} игроков.`);
   busy=true;broadcast();let next;
@@ -70,6 +71,7 @@ function transform(text, type, prefix, req){
   return text;
 }
 const handler=async(req,res)=>{
+  if(await updater.route(req,res))return;
   const url=new URL(req.url,'http://localhost');
   if(url.pathname==='/api/profile'&&req.method==='GET')return json(res,200,{profile:publicProfile(profileStore.get(tokenFromCookie(req)))});
   if(url.pathname==='/api/profile'&&req.method==='POST'){
@@ -98,9 +100,9 @@ const handler=async(req,res)=>{
     });upstream.on('error',()=>{if(!res.headersSent)json(res,502,{error:'Сервер игры недоступен'});else res.end();});req.pipe(upstream);return;
   }
   if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=addresses().map(x=>`${scheme}://${x.address}:${PORT}/`);const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await QRCode.toBuffer(target,{margin:1,width:240}));}
-  if(url.pathname==='/api/health')return json(res,200,{ok:true});
+  if(url.pathname==='/api/health')return json(res,200,{ok:true,pid:process.pid,build:'sports-siege-alpha.1'});
   if(url.pathname.startsWith('/assets/')){
-    let name;try{name=decodeURIComponent(url.pathname).slice(1);}catch{return json(res,400,{error:'Invalid path'});}
+    let name;try{name=decodeURIComponent(url.pathname).slice(1);if(/^assets\/games\/(curling|bowling|swarm_gate|peek_shoot)[.]webp$/.test(name))name=name.replace(/[.]webp$/,'.svg');}catch{return json(res,400,{error:'Invalid path'});}
     const root=path.join(ROOT,'public','assets'),target=path.resolve(ROOT,'public',name);
     if(!target.startsWith(root+path.sep)||!fs.existsSync(target)||!fs.statSync(target).isFile())return json(res,404,{error:'Не найдено'});
     const mime={'.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.ttf':'font/ttf','.woff2':'font/woff2','.json':'application/json'}[path.extname(target)];if(!mime)return json(res,404,{error:'Не найдено'});
@@ -108,15 +110,16 @@ const handler=async(req,res)=>{
   }
   const isHost=url.pathname==='/host';
   if(isHost&&!local(req))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   let content=fs.readFileSync(path.join(ROOT,'public',file));
-  if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`);
+  if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`).replace('</head>','<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script></head>');
   const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
 };
 const server=tlsFile?require('https').createServer({pfx:fs.readFileSync(tlsFile),passphrase:process.env.PARTY_TLS_PASSWORD||''},handler):http.createServer(handler);
 const wss=new WebSocketServer({noServer:true,maxPayload:8192});
 server.on('upgrade',(req,socket,head)=>{
+  if(req.headers.origin&&req.headers.origin!==`${scheme}://${req.headers.host}`){socket.destroy();return;}
   const url=new URL(req.url,'http://localhost');
   if(url.pathname==='/lobby'){if(req.headers.origin&&req.headers.origin!==`${scheme}://${req.headers.host}`){socket.destroy();return;}return wss.handleUpgrade(req,socket,head,ws=>wss.emit('connection',ws,req));}
   const run=active,prefix=run?`/games/${run.game.id}/`:'';
@@ -172,4 +175,3 @@ server.on('error',e=>{
 server.listen(listeningPort,'0.0.0.0');
 function shutdown(){closing=true;clearInterval(heartbeat);active?.child.kill();for(const ws of clients)ws.terminate();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
 process.on('SIGINT',shutdown);process.on('SIGTERM',shutdown);
-

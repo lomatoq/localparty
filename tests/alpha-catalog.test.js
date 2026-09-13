@@ -1,0 +1,3 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+test('alpha catalog extends, never replaces, the released games',()=>{const base=require('../catalog.json'),catalog=require('../lib/catalog');assert.equal(catalog.length,base.length+4);for(const game of base)assert.deepEqual(catalog.find(g=>g.id===game.id),game);for(const game of catalog.filter(g=>g.engine==='sports_siege')){assert.ok(game.max===16);for(const file of ['games/sports_siege/server.js','public/assets/games/'+game.artwork])assert.ok(fs.existsSync(path.join(__dirname,'..',file)),file);assert.ok(game.goal&&game.win&&game.controls&&game.lateJoin);}});

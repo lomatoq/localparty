@@ -1,0 +1,58 @@
+"""Real launcher + two phone browser contexts. All requests must stay local."""
+import asyncio, json, os, pathlib, socket, subprocess, time, urllib.request
+from playwright.async_api import async_playwright
+ROOT=pathlib.Path(__file__).resolve().parents[2]
+OUT=ROOT/'test-results'/'alpha-browser'
+async def main():
+    OUT.mkdir(parents=True,exist_ok=True)
+    with socket.socket() as s: s.bind(('127.0.0.1',0)); port=s.getsockname()[1]
+    proc=subprocess.Popen(['node','server.js'],cwd=ROOT,env={**os.environ,'PARTY_PORT':str(port),'PARTY_EPHEMERAL':'1','PARTY_NO_BROWSER':'1'},stdout=open(OUT/'launcher.log','w'),stderr=subprocess.STDOUT)
+    base=f'http://127.0.0.1:{port}'
+    try:
+        for _ in range(150):
+            try: urllib.request.urlopen(base+'/api/health',timeout=.2);break
+            except Exception: await asyncio.sleep(.1)
+        async with async_playwright() as p:
+            browser=await p.chromium.launch(headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage'])
+            errors=[]; external=[]
+            async def guard(route):
+                if route.request.url.startswith((base+'/', 'data:', 'blob:')): await route.continue_()
+                else: external.append(route.request.url);await route.abort()
+            hc=await browser.new_context(viewport={'width':1440,'height':1000});await hc.route('**/*',guard)
+            host=await hc.new_page();host.on('pageerror',lambda e:errors.append(str(e)));await host.goto(base+'/host')
+            await host.locator('.game[data-id="bowling"]').wait_for();assert await host.locator('.game').count()==30
+            await host.locator('#lp-updates').click();await host.locator('.lp-updates-dialog').wait_for();await host.screenshot(path=str(OUT/'updates.png'));await host.locator('.lp-update-close').click()
+            phones=[]
+            for i in range(2):
+                c=await browser.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True);await c.route('**/*',guard)
+                page=await c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));await page.goto(base+'/');await page.locator('#name').fill('Alpha '+str(i));
+                if i==0:await page.locator('input[name="hand"][value="left"]').check()
+                await page.locator('#joinForm button').click();await page.locator('#home').wait_for();phones.append(page)
+            for mode in ['curling','bowling','swarm_gate','peek_shoot']:
+                await host.locator(f'.game[data-id="{mode}"] .start-game').click()
+                for phone in phones:
+                    await phone.locator('#readyButton').wait_for();await phone.locator('#readyButton').click()
+                frame=host.frame_locator('#gameFrame');await frame.locator('#ss-overlay').wait_for(state='hidden',timeout=25000)
+                await asyncio.sleep(1);await host.screenshot(path=str(OUT/f'{mode}-host.png'))
+                pf=phones[0].frame_locator('#gameFrame');await pf.locator('#ss-name').wait_for(timeout=10000)
+                await phones[0].screenshot(path=str(OUT/f'{mode}-phone.png'))
+                if mode in ['swarm_gate','peek_shoot']:
+                    box=await pf.locator('#ss-fire').bounding_box()
+                    await phones[0].mouse.move(box['x']+box['width']/2,box['y']+box['height']/2)
+                    await phones[0].mouse.down();await asyncio.sleep(.15);await phones[0].mouse.up()
+                else:
+                    box=await pf.locator('#ss-throw-pad').bounding_box()
+                    x=box['x']+box['width']*.5;y=box['y']+box['height']*.85
+                    await phones[0].mouse.move(x,y);await phones[0].mouse.down()
+                    for k in range(10):
+                        await phones[0].mouse.move(x,y-box['height']*.06*(k+1));await asyncio.sleep(.025)
+                    await phones[0].mouse.up();await asyncio.sleep(1)
+                    await host.screenshot(path=str(OUT/f'{mode}-throw.png'))
+                await host.evaluate("""async()=>{const ws=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}/lobby`);await new Promise(r=>ws.onopen=r);ws.send(JSON.stringify({type:'host',key:window.PARTY_HOST_KEY}));await new Promise(r=>{ws.onmessage=e=>{if(JSON.parse(e.data).type==='host-ok')r()}});ws.send(JSON.stringify({type:'stop'}));setTimeout(()=>ws.close(),100)}""")
+                await host.locator('#home').wait_for();await asyncio.sleep(.2)
+            await browser.close()
+            (OUT/'report.json').write_text(json.dumps({'pageErrors':errors,'externalRequests':external},ensure_ascii=False,indent=2))
+            assert not errors,errors
+            assert not external,external
+    finally:proc.terminate();proc.wait(timeout=10)
+if __name__=='__main__':asyncio.run(main())

@@ -1,0 +1,40 @@
+name: Alpha sports and siege
+on:
+  push:
+    branches: ['alpha/party-sports-siege']
+  pull_request:
+    paths: ['games/sports_siege/**', 'lib/update*', 'lib/catalog.js', 'public/updates.*', 'tests/alpha*', 'tests/sports-siege.test.js', 'server.js']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: alpha-sports-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: New rules, real physics, sockets, updater transactions
+        run: node --test tests/sports-siege.test.js tests/alpha-updater.test.js tests/alpha-physics.test.js tests/alpha-network.test.js
+      - name: Existing regression suite
+        run: npm test
+      - name: Install browser test runner
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Shared launcher and two phones, no external game requests
+        run: python tests/browser/alpha_smoke.py
+      - name: Screenshots and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpha-browser
+          path: test-results/alpha-browser
+          if-no-files-found: ignore
