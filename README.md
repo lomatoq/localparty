@@ -1,10 +1,10 @@
 # Local Party
 
-**Version 0.6.0-alpha** · 26 games · One shared screen, phones as controllers
+**Version 0.6.2** · 26 games · One shared screen, phones as controllers
 
 Local Party turns a computer and a few phones into a local multiplayer arcade. Open the host screen on your computer, join from the same Wi-Fi network, and play together. Most games support 2–16 participants; individual rules explain teams, turns and late joining. The interface and question banks are currently in Russian.
 
-Gameplay runs on your computer. Fonts, artwork and physics libraries are bundled locally, so an internet connection is not needed during ordinary LAN play. This is an alpha release: device-specific behavior and game balance are still being refined.
+Gameplay runs on your computer. Fonts, artwork and physics libraries are bundled locally, so an internet connection is not needed during ordinary LAN play. Device-specific behavior and game balance continue to be refined.
 
 ## Play from a portable release
 
@@ -12,9 +12,9 @@ Download the ZIP matching your computer from [GitHub Releases](https://github.co
 
 | Computer | Archive | Launcher |
 |---|---|---|
-| Windows x64 | `LOCAL_PARTY_0.6.0-alpha_windows-x64.zip` | `START_WINDOWS.bat` |
-| Mac with Apple Silicon | `LOCAL_PARTY_0.6.0-alpha_macos-arm64.zip` | `START_MAC.command` |
-| Intel Mac | `LOCAL_PARTY_0.6.0-alpha_macos-x64.zip` | `START_MAC.command` |
+| Windows x64 | `LOCAL_PARTY_0.6.2_windows-x64.zip` | `START_WINDOWS.bat` |
+| Mac with Apple Silicon | `LOCAL_PARTY_0.6.2_macos-arm64.zip` | `START_MAC.command` |
+| Intel Mac | `LOCAL_PARTY_0.6.2_macos-x64.zip` | `START_MAC.command` |
 
 The archives include Node.js and dependencies; no separate installation or package download is required. Keep the launcher window open while playing. These are portable ZIPs, not signed EXE/DMG installers. macOS may ask you to allow an unsigned downloaded launcher in Privacy & Security. Use a current macOS version compatible with the bundled Node runtime (macOS 13.5 or newer).
 

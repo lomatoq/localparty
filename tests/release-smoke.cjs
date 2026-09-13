@@ -3,7 +3,8 @@ const fs=require('fs'),path=require('path'),os=require('os'),assert=require('ass
 const root=path.resolve(__dirname,'..');
 (async()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'localparty-release-'));
- new AdmZip(path.join(root,'dist/LOCAL_PARTY_windows-x64.zip')).extractAllTo(dir,true);
+ const version=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version;
+ new AdmZip(path.join(root,`dist/LOCAL_PARTY_${version}_windows-x64.zip`)).extractAllTo(dir,true);
  const cwd=path.join(dir,'LOCAL_PARTY'),child=spawn(path.join(cwd,'runtime/node/node.exe'),['server.js'],{cwd,windowsHide:true,env:{...process.env,PARTY_PORT:'0',PARTY_NO_BROWSER:'1',PARTY_EPHEMERAL:'1'},stdio:['ignore','pipe','pipe']});
  const sockets=[];let log='';child.stderr.on('data',d=>log+=d);
  try{
