@@ -24,6 +24,7 @@ const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
 let active = null, busy = false, closing = false, testMode=false, botCount=0, testProfiles=[];
 function sendTestProfile(ws){while(testProfiles.length<botCount)testProfiles.push(publicProfile(profileStore.register(null,'Бот '+(testProfiles.length+1),'right')));send(ws,{type:'test-profiles',profiles:testProfiles.slice(0,botCount)});}
 const local = req => ['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
+const updater = require('./lib/updater').createUpdater({root:ROOT,isLocal:local,hostKey,isIdle:()=>!active&&!busy&&!closing,shutdown,getPort:()=>PORT,scheme});
 const addresses = () => Object.entries(os.networkInterfaces()).flatMap(([name, list]) => list.filter(x=>x.family==='IPv4'&&!x.internal).map(x=>({name,address:x.address}))).sort((a,b)=>Number(/virtual|vethernet|vpn|wsl/i.test(a.name))-Number(/virtual|vethernet|vpn|wsl/i.test(b.name)));
 function inviteUrl(req){const ips=addresses();const selected=req&&new URL(req.url,'http://localhost').searchParams.get('host');const ip=ips.find(x=>x.address===selected)?.address||ips[0]?.address;return ip?`${scheme}://${ip}:${PORT}/`:`${scheme}://${req?.headers.host||'localhost:'+PORT}/`;}
 const connected = () => [...players.values()].filter(p=>p.socket?.readyState===WebSocket.OPEN);
@@ -38,7 +39,7 @@ function freePort(){return new Promise((resolve,reject)=>{const s=net.createServ
 function syncRoster(){if(active?.child.connected)active.child.send({type:'party:roster',players:profileStore.data.players.map(publicProfile)});}
 async function waitReady(child, port){const until=Date.now()+15000;while(Date.now()<until){if(child.exitCode!==null||child.spawnError)throw Error(child.spawnError||'Игровой сервер завершился при запуске.');if(await new Promise(resolve=>{const r=http.get({host:'127.0.0.1',port,path:'/',timeout:350},res=>{res.resume();resolve(res.statusCode===200);});r.on('error',()=>resolve(false));r.on('timeout',()=>r.destroy());}))return;await new Promise(r=>setTimeout(r,100));}throw Error('Игровой сервер не ответил за 15 секунд.');}
 async function launch(id){
-  if(busy)throw Error('Подождите окончания запуска.');
+  if(busy||updater.busy)throw Error('Подождите окончания запуска или обновления.');
   const game=catalog.find(g=>g.id===id);if(!game)throw Error('Игра не найдена.');
   if(connected().length<(testMode?1:game.min)||connected().length>game.max)throw Error(`Для этой игры нужно ${testMode?1:game.min}–${game.max} игроков.`);
   busy=true;broadcast();let next;
@@ -71,6 +72,7 @@ function transform(text, type, prefix, req){
 }
 const handler=async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
+  if(await updater.handle(req,res,url))return;
   if(url.pathname==='/api/profile'&&req.method==='GET')return json(res,200,{profile:publicProfile(profileStore.get(tokenFromCookie(req)))});
   if(url.pathname==='/api/profile'&&req.method==='POST'){
     let body='';req.on('data',d=>{body+=d;if(body.length>4096)req.destroy();});req.on('end',()=>{try{const {token}=JSON.parse(body);if(!profileStore.get(token))return json(res,403,{error:'Unknown profile'});res.setHeader('Set-Cookie',`local_party_device=${token}; Path=/; Max-Age=31536000; HttpOnly; SameSite=Lax`);json(res,200,{ok:true});}catch{json(res,400,{error:'Invalid request'});}});return;
@@ -98,7 +100,7 @@ const handler=async(req,res)=>{
     });upstream.on('error',()=>{if(!res.headersSent)json(res,502,{error:'Сервер игры недоступен'});else res.end();});req.pipe(upstream);return;
   }
   if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=addresses().map(x=>`${scheme}://${x.address}:${PORT}/`);const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await QRCode.toBuffer(target,{margin:1,width:240}));}
-  if(url.pathname==='/api/health')return json(res,200,{ok:true});
+  if(url.pathname==='/api/health')return json(res,200,{ok:true,version:require('./build-info.json').version,pid:process.pid});
   if(url.pathname.startsWith('/assets/')){
     let name;try{name=decodeURIComponent(url.pathname).slice(1);}catch{return json(res,400,{error:'Invalid path'});}
     const root=path.join(ROOT,'public','assets'),target=path.resolve(ROOT,'public',name);
@@ -118,6 +120,7 @@ const server=tlsFile?require('https').createServer({pfx:fs.readFileSync(tlsFile)
 const wss=new WebSocketServer({noServer:true,maxPayload:8192});
 server.on('upgrade',(req,socket,head)=>{
   const url=new URL(req.url,'http://localhost');
+  if(req.headers.origin&&req.headers.origin!==`${scheme}://${req.headers.host}`){socket.destroy();return;}
   if(url.pathname==='/lobby'){if(req.headers.origin&&req.headers.origin!==`${scheme}://${req.headers.host}`){socket.destroy();return;}return wss.handleUpgrade(req,socket,head,ws=>wss.emit('connection',ws,req));}
   const run=active,prefix=run?`/games/${run.game.id}/`:'';
   if(!run||!url.pathname.startsWith(prefix))return socket.destroy();

@@ -1,3 +1,13 @@
+# 0.7.0-alpha.1 — Sports, Siege & Gallery
+
+- 3D curling with team sweeping and three ends.
+- Rapier 3D bowling with swipe/spin controls and 5/10-frame scoring.
+- Cooperative gate defence, eight scaled waves, overheating and repairs.
+- Cover-based shooting gallery with a manually triggered five-second machine gun.
+- Local-host-only Stable/Alpha update UI, verified staging, profile preservation and rollback.
+- No new production dependencies; original LAN lobby, identities, pause and results reused.
+- Source Alpha only: no portable Alpha asset has been published by this change.
+
 # LocalParty 0.6.2
 
 One shared screen, phones as controllers, and 26 local multiplayer games.

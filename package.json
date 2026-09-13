@@ -1,6 +1,6 @@
 {
   "name": "local-party-launcher",
-  "version": "0.6.2",
+  "version": "0.7.0-alpha.1",
   "private": true,
   "description": "One LAN lobby and persistent player profiles for local party games",
   "scripts": {

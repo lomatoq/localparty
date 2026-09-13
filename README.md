@@ -1,5 +1,7 @@
 # Local Party
 
+> **This branch: 0.7.0-alpha.1 · 30 games.** Four new games and a host-only Stable/Alpha updater. See [Alpha instructions and verification](README_ALPHA.md). The portable release instructions below describe the published stable 0.6.2 packages; an Alpha portable release has not been published by this patch.
+
 **Version 0.6.2** · 26 games · One shared screen, phones as controllers
 
 Local Party turns a computer and a few phones into a local multiplayer arcade. Open the host screen on your computer, join from the same Wi-Fi network, and play together. Most games support 2–16 participants; individual rules explain teams, turns and late joining. The interface and question banks are currently in Russian.
