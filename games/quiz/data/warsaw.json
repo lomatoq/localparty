@@ -1,0 +1,2402 @@
+[
+  {
+    "id": "warsaw-001",
+    "category": "Городские секреты",
+    "question": "Кто поставил пальму на rondo de Gaulle’a?",
+    "answers": [
+      "Йоанна Райковска",
+      "Тамара Лемпицкая",
+      "Магдалена Абаканович",
+      "Зофья Стрыенская"
+    ],
+    "correct": "Йоанна Райковска",
+    "explanation": "Пальма — работа Райковской.",
+    "sourceUrl": "https://go2warsaw.pl/en/hidden-gems-of-warsaw/",
+    "sourceTitle": "Go To Warsaw · Неочевидная Варшава",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-002",
+    "category": "Городские секреты",
+    "question": "Чем раньше была Gnojna Góra?",
+    "answers": [
+      "Свалкой",
+      "Вулканом",
+      "Крепостью",
+      "Вокзалом"
+    ],
+    "correct": "Свалкой",
+    "explanation": "Панорама выросла на бывшей свалке.",
+    "sourceUrl": "https://go2warsaw.pl/en/hidden-gems-of-warsaw/",
+    "sourceTitle": "Go To Warsaw · Неочевидная Варшава",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-003",
+    "category": "Городские секреты",
+    "question": "Где спрятались финские деревянные домики?",
+    "answers": [
+      "Jazdów",
+      "Mordor",
+      "Plac Bankowy",
+      "Młociny"
+    ],
+    "correct": "Jazdów",
+    "explanation": "Ищите их в Jazdów.",
+    "sourceUrl": "https://go2warsaw.pl/en/hidden-gems-of-warsaw/",
+    "sourceTitle": "Go To Warsaw · Неочевидная Варшава",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-004",
+    "category": "Городские секреты",
+    "question": "Какое желание исполняет колокол на Kanonia по легенде?",
+    "answers": [
+      "Загаданное после трёх обходов",
+      "Только денежное",
+      "Только желание короля",
+      "Написанное на билете"
+    ],
+    "correct": "Загаданное после трёх обходов",
+    "explanation": "Три круга — правило легенды.",
+    "sourceUrl": "https://go2warsaw.pl/en/hidden-gems-of-warsaw/",
+    "sourceTitle": "Go To Warsaw · Неочевидная Варшава",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-005",
+    "category": "Городские секреты",
+    "question": "Что необычного внутри костёла святой Анны в Вилянуве?",
+    "answers": [
+      "Кость мамонта",
+      "Метеорит",
+      "Подводная лодка",
+      "Робот"
+    ],
+    "correct": "Кость мамонта",
+    "explanation": "Кость нашли при строительстве.",
+    "sourceUrl": "https://go2warsaw.pl/en/hidden-gems-of-warsaw/",
+    "sourceTitle": "Go To Warsaw · Неочевидная Варшава",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-006",
+    "category": "Городские секреты",
+    "question": "Кого поселили в Przyjaźń в 1952 году?",
+    "answers": [
+      "Строителей Дворца культуры",
+      "Королевскую свиту",
+      "Пилотов дирижаблей",
+      "Шоколатье"
+    ],
+    "correct": "Строителей Дворца культуры",
+    "explanation": "Деревянный посёлок строили для рабочих.",
+    "sourceUrl": "https://go2warsaw.pl/en/hidden-gems-of-warsaw/",
+    "sourceTitle": "Go To Warsaw · Неочевидная Варшава",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-007",
+    "category": "После завода",
+    "question": "Что производила Elektrownia Powiśle?",
+    "answers": [
+      "Электричество",
+      "Шоколад",
+      "Пиво",
+      "Трамваи"
+    ],
+    "correct": "Электричество",
+    "explanation": "Это бывшая электростанция.",
+    "sourceUrl": "https://go2warsaw.pl/en/revitalised-industrial-and-retail-spaces/",
+    "sourceTitle": "Go To Warsaw · Новая жизнь заводов",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-008",
+    "category": "После завода",
+    "question": "Что раньше делали на территории Koneser?",
+    "answers": [
+      "Водку",
+      "Автобусы",
+      "Шёлк",
+      "Фарфор"
+    ],
+    "correct": "Водку",
+    "explanation": "Сохранилась архитектура водочного завода.",
+    "sourceUrl": "https://go2warsaw.pl/en/revitalised-industrial-and-retail-spaces/",
+    "sourceTitle": "Go To Warsaw · Новая жизнь заводов",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-009",
+    "category": "После завода",
+    "question": "Какое прошлое у Browary Warszawskie?",
+    "answers": [
+      "Пивоварение",
+      "Судостроение",
+      "Добыча угля",
+      "Авиация"
+    ],
+    "correct": "Пивоварение",
+    "explanation": "Browary означает пивоварни.",
+    "sourceUrl": "https://go2warsaw.pl/en/revitalised-industrial-and-retail-spaces/",
+    "sourceTitle": "Go To Warsaw · Новая жизнь заводов",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-010",
+    "category": "После завода",
+    "question": "С какой промышленностью связан Norblin?",
+    "answers": [
+      "Металлообработка",
+      "Шоколад",
+      "Книгопечатание с основания",
+      "Киноплёнка"
+    ],
+    "correct": "Металлообработка",
+    "explanation": "Завод выпускал металлические изделия.",
+    "sourceUrl": "https://go2warsaw.pl/en/revitalised-industrial-and-retail-spaces/",
+    "sourceTitle": "Go To Warsaw · Новая жизнь заводов",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-011",
+    "category": "После завода",
+    "question": "В каком стиле построили Hala Koszyki?",
+    "answers": [
+      "Модерн",
+      "Брутализм",
+      "Готика",
+      "Конструктивизм"
+    ],
+    "correct": "Модерн",
+    "explanation": "Историческая торговая зала — модерн.",
+    "sourceUrl": "https://go2warsaw.pl/en/revitalised-industrial-and-retail-spaces/",
+    "sourceTitle": "Go To Warsaw · Новая жизнь заводов",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-012",
+    "category": "После завода",
+    "question": "Какой кинотеатр находится в Fabryka Norblina?",
+    "answers": [
+      "KinoGram",
+      "Luna",
+      "Iluzjon",
+      "Muranów"
+    ],
+    "correct": "KinoGram",
+    "explanation": "Кино дополнило бывшую фабрику.",
+    "sourceUrl": "https://go2warsaw.pl/en/revitalised-industrial-and-retail-spaces/",
+    "sourceTitle": "Go To Warsaw · Новая жизнь заводов",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-013",
+    "category": "Танцпол",
+    "question": "Какая пара клубов соседствует на 11 Listopada?",
+    "answers": [
+      "Hydrozagadka и Chmury",
+      "Enklawa и Luna",
+      "Palladium и Rascal",
+      "Bar Studio и Brać"
+    ],
+    "correct": "Hydrozagadka и Chmury",
+    "explanation": "Оба указаны по адресу 22.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-dance/",
+    "sourceTitle": "Go To Warsaw · Где танцуют",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-014",
+    "category": "Танцпол",
+    "question": "Где находится Bar Studio?",
+    "answers": [
+      "Дворец культуры",
+      "Королевский замок",
+      "Вокзал Centralna",
+      "Вилянув"
+    ],
+    "correct": "Дворец культуры",
+    "explanation": "Танцы прямо у PKiN.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-dance/",
+    "sourceTitle": "Go To Warsaw · Где танцуют",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-015",
+    "category": "Танцпол",
+    "question": "На какой улице искать Enklawa?",
+    "answers": [
+      "Mazowiecka",
+      "Francuska",
+      "Brzeska",
+      "Dobra"
+    ],
+    "correct": "Mazowiecka",
+    "explanation": "Клуб связан с Mazowiecka.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-dance/",
+    "sourceTitle": "Go To Warsaw · Где танцуют",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-016",
+    "category": "Танцпол",
+    "question": "Какой мост служит ориентиром для K-Bar?",
+    "answers": [
+      "Понятовского",
+      "Гданьский",
+      "Северный",
+      "Секерковский"
+    ],
+    "correct": "Понятовского",
+    "explanation": "K-Bar указан у моста Понятовского.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-dance/",
+    "sourceTitle": "Go To Warsaw · Где танцуют",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-017",
+    "category": "Танцпол",
+    "question": "Какое заведение есть на Mazowiecka вместе с Enklawa?",
+    "answers": [
+      "La Pose Varsovie",
+      "W Oparach Absurdu",
+      "KinoGram",
+      "Rusałka"
+    ],
+    "correct": "La Pose Varsovie",
+    "explanation": "Это ещё один танцевальный адрес.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-dance/",
+    "sourceTitle": "Go To Warsaw · Где танцуют",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-018",
+    "category": "Танцпол",
+    "question": "Какие ностальгические вечеринки отмечает гид танцполов?",
+    "answers": [
+      "В стиле 90-х и 2000-х",
+      "Только XIX века",
+      "Только ренессанс",
+      "Только диско XVIII века"
+    ],
+    "correct": "В стиле 90-х и 2000-х",
+    "explanation": "Ретро-вечеринки входят в городскую ночную жизнь.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-dance/",
+    "sourceTitle": "Go To Warsaw · Где танцуют",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-019",
+    "category": "Живой звук",
+    "question": "Какой клуб искать на Armii Ludowej?",
+    "answers": [
+      "Pardon, to tu",
+      "Same Krafty",
+      "Rascal",
+      "Enklawa"
+    ],
+    "correct": "Pardon, to tu",
+    "explanation": "Адрес клуба — Armii Ludowej 14.",
+    "sourceUrl": "https://go2warsaw.pl/en/live-music/",
+    "sourceTitle": "Go To Warsaw · Музыка в городе",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-020",
+    "category": "Живой звук",
+    "question": "Где проходят джемы из городского музыкального гида?",
+    "answers": [
+      "W Oparach Absurdu",
+      "POLIN",
+      "Hala Mirowska",
+      "BUW"
+    ],
+    "correct": "W Oparach Absurdu",
+    "explanation": "Гид отмечает джем-сейшены этого бара.",
+    "sourceUrl": "https://go2warsaw.pl/en/live-music/",
+    "sourceTitle": "Go To Warsaw · Музыка в городе",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-021",
+    "category": "Живой звук",
+    "question": "На какой улице расположен BARdzo bardzo?",
+    "answers": [
+      "Nowogrodzka",
+      "Targowa",
+      "Olkuska",
+      "Chmielna"
+    ],
+    "correct": "Nowogrodzka",
+    "explanation": "Музыкальный адрес — Nowogrodzka 11.",
+    "sourceUrl": "https://go2warsaw.pl/en/live-music/",
+    "sourceTitle": "Go To Warsaw · Музыка в городе",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-022",
+    "category": "Живой звук",
+    "question": "Как называется концертная арена в списке рядом с Narodowy?",
+    "answers": [
+      "Torwar",
+      "Kanonia",
+      "BUW",
+      "Koneser"
+    ],
+    "correct": "Torwar",
+    "explanation": "Torwar принимает концерты.",
+    "sourceUrl": "https://go2warsaw.pl/en/live-music/",
+    "sourceTitle": "Go To Warsaw · Музыка в городе",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-023",
+    "category": "Живой звук",
+    "question": "Какая пара названа концертными клубами?",
+    "answers": [
+      "Proxima и Palladium",
+      "Rusałka и Lussi",
+      "BUW и POLIN",
+      "Ćma и Rascal"
+    ],
+    "correct": "Proxima и Palladium",
+    "explanation": "Оба входят в концертную карту.",
+    "sourceUrl": "https://go2warsaw.pl/en/live-music/",
+    "sourceTitle": "Go To Warsaw · Музыка в городе",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-024",
+    "category": "Живой звук",
+    "question": "На какой улице искать W Oparach Absurdu?",
+    "answers": [
+      "Ząbkowska",
+      "Marszałkowska",
+      "Koszykowa",
+      "Wilcza"
+    ],
+    "correct": "Ząbkowska",
+    "explanation": "Культовый пражский бар на Ząbkowska.",
+    "sourceUrl": "https://go2warsaw.pl/en/live-music/",
+    "sourceTitle": "Go To Warsaw · Музыка в городе",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-025",
+    "category": "Барная карта",
+    "question": "Чем выделяются BarKa, Wynurzenie и Wir?",
+    "answers": [
+      "Это бары на баржах",
+      "Все под землёй",
+      "Все в аэропорту",
+      "Это молочные бары"
+    ],
+    "correct": "Это бары на баржах",
+    "explanation": "Встречаются на Висле.",
+    "sourceUrl": "https://go2warsaw.pl/en/bars/",
+    "sourceTitle": "Go To Warsaw · Бары Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-026",
+    "category": "Барная карта",
+    "question": "Какой бар искать на Hoża?",
+    "answers": [
+      "Pacyfik",
+      "Bar Studio",
+      "Brać",
+      "Same Krafty"
+    ],
+    "correct": "Pacyfik",
+    "explanation": "Pacyfik — адрес на Hoża.",
+    "sourceUrl": "https://go2warsaw.pl/en/bars/",
+    "sourceTitle": "Go To Warsaw · Бары Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-027",
+    "category": "Барная карта",
+    "question": "На какой улице находится Same Krafty?",
+    "answers": [
+      "Nowomiejska",
+      "Dobra",
+      "Brzeska",
+      "Olkuska"
+    ],
+    "correct": "Nowomiejska",
+    "explanation": "Крафтовый адрес в Старом городе.",
+    "sourceUrl": "https://go2warsaw.pl/en/bars/",
+    "sourceTitle": "Go To Warsaw · Бары Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-028",
+    "category": "Барная карта",
+    "question": "Где находится Ministerstwo Śledzia i Wódki?",
+    "answers": [
+      "Foksal",
+      "Targowa",
+      "Agrykola",
+      "Stalowa"
+    ],
+    "correct": "Foksal",
+    "explanation": "В гиде указан Foksal 18.",
+    "sourceUrl": "https://go2warsaw.pl/en/bars/",
+    "sourceTitle": "Go To Warsaw · Бары Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-029",
+    "category": "Барная карта",
+    "question": "Какой бар связан с Sierakowskiego?",
+    "answers": [
+      "Brać",
+      "Rascal",
+      "Kapsle i Kufle",
+      "Pacyfik"
+    ],
+    "correct": "Brać",
+    "explanation": "Brać — правобережный адрес.",
+    "sourceUrl": "https://go2warsaw.pl/en/bars/",
+    "sourceTitle": "Go To Warsaw · Бары Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-030",
+    "category": "Барная карта",
+    "question": "Какую улицу делят Zamieszanie и Rakieta?",
+    "answers": [
+      "Nowy Świat",
+      "Ząbkowska",
+      "Francuska",
+      "Żelazna"
+    ],
+    "correct": "Nowy Świat",
+    "explanation": "Оба отмечены на Nowy Świat.",
+    "sourceUrl": "https://go2warsaw.pl/en/bars/",
+    "sourceTitle": "Go To Warsaw · Бары Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-031",
+    "category": "Ночной перекус",
+    "question": "На какой улице проходит Nocny Market?",
+    "answers": [
+      "Towarowa",
+      "Dobra",
+      "Bracka",
+      "Foksal"
+    ],
+    "correct": "Towarowa",
+    "explanation": "Городской гид указывает Towarowa 3.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-eat-in-warsaw-at-night/",
+    "sourceTitle": "Go To Warsaw · Еда после прогулки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-032",
+    "category": "Ночной перекус",
+    "question": "Где искать ресторан Ćma?",
+    "answers": [
+      "Hala Koszyki",
+      "BUW",
+      "POLIN",
+      "Королевский замок"
+    ],
+    "correct": "Hala Koszyki",
+    "explanation": "Ćma связана с Koszykowa 63.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-eat-in-warsaw-at-night/",
+    "sourceTitle": "Go To Warsaw · Еда после прогулки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-033",
+    "category": "Ночной перекус",
+    "question": "За чем идут в Pałaszowanie?",
+    "answers": [
+      "За запеканкой",
+      "За устрицами",
+      "За фондю",
+      "За димсамами"
+    ],
+    "correct": "За запеканкой",
+    "explanation": "Гид относит его к запеканкам.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-eat-in-warsaw-at-night/",
+    "sourceTitle": "Go To Warsaw · Еда после прогулки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-034",
+    "category": "Ночной перекус",
+    "question": "Что предлагают Sapko, Ensaf и Tendur?",
+    "answers": [
+      "Кебаб",
+      "Только мороженое",
+      "Только пирожные",
+      "Фондю"
+    ],
+    "correct": "Кебаб",
+    "explanation": "Это адреса для кебаба.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-eat-in-warsaw-at-night/",
+    "sourceTitle": "Go To Warsaw · Еда после прогулки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-035",
+    "category": "Ночной перекус",
+    "question": "Где искать летний Plac Zabaw nad Wisłą?",
+    "answers": [
+      "Wybrzeże Kościuszkowskie",
+      "Plac Bankowy",
+      "Rondo ONZ",
+      "Sadyba"
+    ],
+    "correct": "Wybrzeże Kościuszkowskie",
+    "explanation": "Название не врёт: рядом Висла.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-eat-in-warsaw-at-night/",
+    "sourceTitle": "Go To Warsaw · Еда после прогулки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-036",
+    "category": "Ночной перекус",
+    "question": "Какой food hall стоит на Dobra?",
+    "answers": [
+      "Elektrownia Powiśle",
+      "Hala Koszyki",
+      "Fabryka Norblina",
+      "Hala Mirowska"
+    ],
+    "correct": "Elektrownia Powiśle",
+    "explanation": "Бывшая электростанция на Dobra 42.",
+    "sourceUrl": "https://go2warsaw.pl/en/where-to-eat-in-warsaw-at-night/",
+    "sourceTitle": "Go To Warsaw · Еда после прогулки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-037",
+    "category": "Что заказать",
+    "question": "Что такое pyzy?",
+    "answers": [
+      "Картофельные клёцки",
+      "Рыбный суп",
+      "Торт",
+      "Колбаски"
+    ],
+    "correct": "Картофельные клёцки",
+    "explanation": "Их связывают с пражской кухней.",
+    "sourceUrl": "https://go2warsaw.pl/en/what-to-eat-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Варшавская кухня",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-038",
+    "category": "Что заказать",
+    "question": "Какой рынок прославился pyzy?",
+    "answers": [
+      "Bazar Różyckiego",
+      "Hala Gwardii",
+      "Olkuska",
+      "Forteca"
+    ],
+    "correct": "Bazar Różyckiego",
+    "explanation": "Знаменитый пражский рынок.",
+    "sourceUrl": "https://go2warsaw.pl/en/what-to-eat-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Варшавская кухня",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-039",
+    "category": "Что заказать",
+    "question": "Какая закваска лежит в основе żurek?",
+    "answers": [
+      "Ржаная",
+      "Рисовая",
+      "Виноградная",
+      "Кукурузная"
+    ],
+    "correct": "Ржаная",
+    "explanation": "Ржаная закваска даёт кислинку.",
+    "sourceUrl": "https://go2warsaw.pl/en/what-to-eat-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Варшавская кухня",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-040",
+    "category": "Что заказать",
+    "question": "Какой суп подают холодным?",
+    "answers": [
+      "Chłodnik",
+      "Żurek",
+      "Rosół",
+      "Flaki"
+    ],
+    "correct": "Chłodnik",
+    "explanation": "Летний суп на кефире или сыворотке.",
+    "sourceUrl": "https://go2warsaw.pl/en/what-to-eat-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Варшавская кухня",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-041",
+    "category": "Что заказать",
+    "question": "Откуда название пирожного wuzetka?",
+    "answers": [
+      "От трассы W-Z",
+      "От имени повара",
+      "От района Wawer",
+      "От вокзала Zachodnia"
+    ],
+    "correct": "От трассы W-Z",
+    "explanation": "Название связано с послевоенной трассой.",
+    "sourceUrl": "https://go2warsaw.pl/en/what-to-eat-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Варшавская кухня",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-042",
+    "category": "Что заказать",
+    "question": "В честь кого назвали zygmuntówka?",
+    "answers": [
+      "Сигизмунда III Вазы",
+      "Коперника",
+      "Шопена",
+      "Яна Собеского"
+    ],
+    "correct": "Сигизмунда III Вазы",
+    "explanation": "Пирожное носит королевское имя.",
+    "sourceUrl": "https://go2warsaw.pl/en/what-to-eat-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Варшавская кухня",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-043",
+    "category": "За вкусным на рынок",
+    "question": "Какой рынок стоит на plac Mirowski?",
+    "answers": [
+      "Hala Mirowska",
+      "Bazar Olkuska",
+      "Forteca",
+      "Bazar Szembeka"
+    ],
+    "correct": "Hala Mirowska",
+    "explanation": "Название площади помогает сориентироваться.",
+    "sourceUrl": "https://go2warsaw.pl/en/markets/",
+    "sourceTitle": "Go To Warsaw · Рынки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-044",
+    "category": "За вкусным на рынок",
+    "question": "Какой рынок искать на Zamieniecka?",
+    "answers": [
+      "Bazar Szembeka",
+      "BioBazar",
+      "Różyckiego",
+      "Forteca"
+    ],
+    "correct": "Bazar Szembeka",
+    "explanation": "Указанный адрес — Zamieniecka 80.",
+    "sourceUrl": "https://go2warsaw.pl/en/markets/",
+    "sourceTitle": "Go To Warsaw · Рынки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-045",
+    "category": "За вкусным на рынок",
+    "question": "Какой рынок связан с органическими продуктами?",
+    "answers": [
+      "BioBazar",
+      "Вещевой аукцион",
+      "Биржа билетов",
+      "Авторынок"
+    ],
+    "correct": "BioBazar",
+    "explanation": "Гид рекомендует его за экопродуктами.",
+    "sourceUrl": "https://go2warsaw.pl/en/markets/",
+    "sourceTitle": "Go To Warsaw · Рынки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-046",
+    "category": "За вкусным на рынок",
+    "question": "Какой гастрорынок расположен в Forteca?",
+    "answers": [
+      "Kręgliccy",
+      "Koneser",
+      "KinoGram",
+      "Palladium"
+    ],
+    "correct": "Kręgliccy",
+    "explanation": "Там встречаются с производителями еды.",
+    "sourceUrl": "https://go2warsaw.pl/en/markets/",
+    "sourceTitle": "Go To Warsaw · Рынки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-047",
+    "category": "За вкусным на рынок",
+    "question": "Что означает Targ Śniadaniowy?",
+    "answers": [
+      "Завтрачный рынок",
+      "Рыбный порт",
+      "Ночной поезд",
+      "Блошиный рынок"
+    ],
+    "correct": "Завтрачный рынок",
+    "explanation": "Śniadanie — завтрак.",
+    "sourceUrl": "https://go2warsaw.pl/en/markets/",
+    "sourceTitle": "Go To Warsaw · Рынки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-048",
+    "category": "За вкусным на рынок",
+    "question": "Какой базар ищут на Olkuska?",
+    "answers": [
+      "Bazar Olkuska",
+      "Hala Koszyki",
+      "Nocny Market",
+      "Bazar Szembeka"
+    ],
+    "correct": "Bazar Olkuska",
+    "explanation": "Название совпадает с улицей.",
+    "sourceUrl": "https://go2warsaw.pl/en/markets/",
+    "sourceTitle": "Go To Warsaw · Рынки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-049",
+    "category": "Висла и чилл",
+    "question": "На каком берегу расположены главные бульвары?",
+    "answers": [
+      "Левом",
+      "Правом",
+      "На обоих одинаково",
+      "На острове"
+    ],
+    "correct": "Левом",
+    "explanation": "Левобережье — городской променад.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaws-vistula/",
+    "sourceTitle": "Go To Warsaw · Варшавская Висла",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-050",
+    "category": "Висла и чилл",
+    "question": "На каком берегу находится природная экотропа?",
+    "answers": [
+      "Правом",
+      "Левом",
+      "Под рекой",
+      "На крыше"
+    ],
+    "correct": "Правом",
+    "explanation": "Правобережная тропа ближе к природе.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaws-vistula/",
+    "sourceTitle": "Go To Warsaw · Варшавская Висла",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-051",
+    "category": "Висла и чилл",
+    "question": "Какую сеть охраны природы упоминают для Вислы?",
+    "answers": [
+      "Natura 2000",
+      "UNICEF",
+      "CERN",
+      "OPEC"
+    ],
+    "correct": "Natura 2000",
+    "explanation": "Речные острова важны для птиц.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaws-vistula/",
+    "sourceTitle": "Go To Warsaw · Варшавская Висла",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-052",
+    "category": "Висла и чилл",
+    "question": "Что находится у подножия Старого города?",
+    "answers": [
+      "Парк фонтанов",
+      "Аэропорт",
+      "Ипподром",
+      "Шоколадная фабрика"
+    ],
+    "correct": "Парк фонтанов",
+    "explanation": "Фонтаны стоят у Вислы.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaws-vistula/",
+    "sourceTitle": "Go To Warsaw · Варшавская Висла",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-053",
+    "category": "Висла и чилл",
+    "question": "У какого моста гид предлагает пляжный волейбол?",
+    "answers": [
+      "Понятовского",
+      "Северного",
+      "Гданьского",
+      "Лазенковского"
+    ],
+    "correct": "Понятовского",
+    "explanation": "Пляж у моста Понятовского.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaws-vistula/",
+    "sourceTitle": "Go To Warsaw · Варшавская Висла",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-054",
+    "category": "Висла и чилл",
+    "question": "Какой символ города стоит рядом с Коперником?",
+    "answers": [
+      "Русалка",
+      "Дракон",
+      "Лев",
+      "Медведь"
+    ],
+    "correct": "Русалка",
+    "explanation": "Это одна из варшавских Сиренок.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaws-vistula/",
+    "sourceTitle": "Go To Warsaw · Варшавская Висла",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-055",
+    "category": "Старая Варшава",
+    "question": "Кто стоит на колонне Замковой площади?",
+    "answers": [
+      "Сигизмунд III Ваза",
+      "Шопен",
+      "Коперник",
+      "Понятовский"
+    ],
+    "correct": "Сигизмунд III Ваза",
+    "explanation": "Здесь часто назначают встречи.",
+    "sourceUrl": "https://go2warsaw.pl/en/old-town/",
+    "sourceTitle": "Go To Warsaw · Старый город",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-056",
+    "category": "Старая Варшава",
+    "question": "Что охраняет центр Рыночной площади?",
+    "answers": [
+      "Русалка",
+      "Грифон",
+      "Базилиск",
+      "Золотая утка"
+    ],
+    "correct": "Русалка",
+    "explanation": "Сиренка — городской символ.",
+    "sourceUrl": "https://go2warsaw.pl/en/old-town/",
+    "sourceTitle": "Go To Warsaw · Старый город",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-057",
+    "category": "Старая Варшава",
+    "question": "Какая организация внесла Старый город в список наследия?",
+    "answers": [
+      "ЮНЕСКО",
+      "ФИФА",
+      "НАСА",
+      "ОПЕК"
+    ],
+    "correct": "ЮНЕСКО",
+    "explanation": "Старый город признан всемирным наследием.",
+    "sourceUrl": "https://go2warsaw.pl/en/old-town/",
+    "sourceTitle": "Go To Warsaw · Старый город",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-058",
+    "category": "Старая Варшава",
+    "question": "Где принимали Конституцию 3 мая?",
+    "answers": [
+      "Королевский замок",
+      "Дворец культуры",
+      "Вилянув",
+      "BUW"
+    ],
+    "correct": "Королевский замок",
+    "explanation": "Это бывшая королевская резиденция.",
+    "sourceUrl": "https://go2warsaw.pl/en/old-town/",
+    "sourceTitle": "Go To Warsaw · Старый город",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-059",
+    "category": "Старая Варшава",
+    "question": "Какой псевдоним носил Бернардо Беллотто?",
+    "answers": [
+      "Каналетто",
+      "Караваджо",
+      "Бэнкси",
+      "Матейко"
+    ],
+    "correct": "Каналетто",
+    "explanation": "Его виды города есть в замке.",
+    "sourceUrl": "https://go2warsaw.pl/en/old-town/",
+    "sourceTitle": "Go To Warsaw · Старый город",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-060",
+    "category": "Старая Варшава",
+    "question": "Кого из пианистов похоронили в архикафедральном соборе?",
+    "answers": [
+      "Падеревского",
+      "Рубинштейна",
+      "Листа",
+      "Рахманинова"
+    ],
+    "correct": "Падеревского",
+    "explanation": "Игнацы Ян Падеревский был также политиком.",
+    "sourceUrl": "https://go2warsaw.pl/en/old-town/",
+    "sourceTitle": "Go To Warsaw · Старый город",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-061",
+    "category": "Дворец с характером",
+    "question": "В каком году открыли PKiN?",
+    "answers": [
+      "1955",
+      "1918",
+      "1989",
+      "2004"
+    ],
+    "correct": "1955",
+    "explanation": "Дворец открылся в 1955 году.",
+    "sourceUrl": "https://go2warsaw.pl/en/palace-of-culture-and-science/",
+    "sourceTitle": "Go To Warsaw · Дворец культуры",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-062",
+    "category": "Дворец с характером",
+    "question": "На каком этаже смотровая терраса PKiN?",
+    "answers": [
+      "30",
+      "12",
+      "45",
+      "60"
+    ],
+    "correct": "30",
+    "explanation": "Классическая панорама с 30-го этажа.",
+    "sourceUrl": "https://go2warsaw.pl/en/palace-of-culture-and-science/",
+    "sourceTitle": "Go To Warsaw · Дворец культуры",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-063",
+    "category": "Дворец с характером",
+    "question": "Как высоко находится терраса PKiN?",
+    "answers": [
+      "114 метров",
+      "30 метров",
+      "230 метров",
+      "310 метров"
+    ],
+    "correct": "114 метров",
+    "explanation": "Это высота террасы, не шпиля.",
+    "sourceUrl": "https://go2warsaw.pl/en/palace-of-culture-and-science/",
+    "sourceTitle": "Go To Warsaw · Дворец культуры",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-064",
+    "category": "Дворец с характером",
+    "question": "На какой площади стоит PKiN?",
+    "answers": [
+      "Plac Defilad",
+      "Plac Wilsona",
+      "Plac Zbawiciela",
+      "Plac Grzybowski"
+    ],
+    "correct": "Plac Defilad",
+    "explanation": "Адрес — Plac Defilad 1.",
+    "sourceUrl": "https://go2warsaw.pl/en/palace-of-culture-and-science/",
+    "sourceTitle": "Go To Warsaw · Дворец культуры",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-065",
+    "category": "Дворец с характером",
+    "question": "Каков стиль скульптур на фасаде PKiN?",
+    "answers": [
+      "Соцреализм",
+      "Кубизм",
+      "Рококо",
+      "Поп-арт"
+    ],
+    "correct": "Соцреализм",
+    "explanation": "Фигуры представляют труд, науку и культуру.",
+    "sourceUrl": "https://go2warsaw.pl/en/palace-of-culture-and-science/",
+    "sourceTitle": "Go To Warsaw · Дворец культуры",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-066",
+    "category": "Дворец с характером",
+    "question": "Что расположено внутри PKiN помимо офисов?",
+    "answers": [
+      "Театры и кинотеатр",
+      "Морской порт",
+      "Ипподром",
+      "Терминал аэропорта"
+    ],
+    "correct": "Театры и кинотеатр",
+    "explanation": "Дворец объединяет разные культурные площадки.",
+    "sourceUrl": "https://go2warsaw.pl/en/palace-of-culture-and-science/",
+    "sourceTitle": "Go To Warsaw · Дворец культуры",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-067",
+    "category": "Сад над книгами",
+    "question": "Что скрывается на крыше BUW?",
+    "answers": [
+      "Сад",
+      "Стадион",
+      "Аэродром",
+      "Водочный завод"
+    ],
+    "correct": "Сад",
+    "explanation": "Один из необычных городских садов.",
+    "sourceUrl": "https://go2warsaw.pl/en/university-of-warsaw-library/",
+    "sourceTitle": "Go To Warsaw · Библиотека BUW",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-068",
+    "category": "Сад над книгами",
+    "question": "На какой улице стоит BUW?",
+    "answers": [
+      "Dobra",
+      "Hoża",
+      "Brzeska",
+      "Stalowa"
+    ],
+    "correct": "Dobra",
+    "explanation": "Библиотека расположена на Dobra.",
+    "sourceUrl": "https://go2warsaw.pl/en/university-of-warsaw-library/",
+    "sourceTitle": "Go To Warsaw · Библиотека BUW",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-069",
+    "category": "Сад над книгами",
+    "question": "Каким цветом выделяется стекло BUW?",
+    "answers": [
+      "Зелёным",
+      "Розовым",
+      "Оранжевым",
+      "Красным"
+    ],
+    "correct": "Зелёным",
+    "explanation": "Бетон сочетается с зелёным стеклом.",
+    "sourceUrl": "https://go2warsaw.pl/en/university-of-warsaw-library/",
+    "sourceTitle": "Go To Warsaw · Библиотека BUW",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-070",
+    "category": "Сад над книгами",
+    "question": "Какое искусство показывает галерея при BUW?",
+    "answers": [
+      "Польский плакат",
+      "Только иконы",
+      "Только фарфор",
+      "Только античные монеты"
+    ],
+    "correct": "Польский плакат",
+    "explanation": "Представлены послевоенные польские плакаты.",
+    "sourceUrl": "https://go2warsaw.pl/en/university-of-warsaw-library/",
+    "sourceTitle": "Go To Warsaw · Библиотека BUW",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-071",
+    "category": "Сад над книгами",
+    "question": "Куда можно заглянуть сверху из сада BUW?",
+    "answers": [
+      "В интерьер библиотеки",
+      "В метро",
+      "В футбольную раздевалку",
+      "В шахту"
+    ],
+    "correct": "В интерьер библиотеки",
+    "explanation": "Сад позволяет увидеть библиотеку сверху.",
+    "sourceUrl": "https://go2warsaw.pl/en/university-of-warsaw-library/",
+    "sourceTitle": "Go To Warsaw · Библиотека BUW",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-072",
+    "category": "Сад над книгами",
+    "question": "Для какого университета построена BUW?",
+    "answers": [
+      "Варшавского",
+      "Ягеллонского",
+      "Лодзинского",
+      "Гданьского"
+    ],
+    "correct": "Варшавского",
+    "explanation": "BUW — библиотека Варшавского университета.",
+    "sourceUrl": "https://go2warsaw.pl/en/university-of-warsaw-library/",
+    "sourceTitle": "Go To Warsaw · Библиотека BUW",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-073",
+    "category": "Королевский пикник",
+    "question": "Где находится Дворец на острове?",
+    "answers": [
+      "Лазенки",
+      "Moczydło",
+      "Pole Mokotowskie",
+      "Saxon Garden"
+    ],
+    "correct": "Лазенки",
+    "explanation": "Это центр королевского парка.",
+    "sourceUrl": "https://go2warsaw.pl/en/royal-lazienki-museum/",
+    "sourceTitle": "Go To Warsaw · Лазенки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-074",
+    "category": "Королевский пикник",
+    "question": "Какой король устраивал четверговые обеды?",
+    "answers": [
+      "Станислав Август Понятовский",
+      "Ян Собеский",
+      "Сигизмунд Старый",
+      "Болеслав Храбрый"
+    ],
+    "correct": "Станислав Август Понятовский",
+    "explanation": "Приглашал поэтов и учёных.",
+    "sourceUrl": "https://go2warsaw.pl/en/royal-lazienki-museum/",
+    "sourceTitle": "Go To Warsaw · Лазенки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-075",
+    "category": "Королевский пикник",
+    "question": "От какого здания произошло название Łazienki?",
+    "answers": [
+      "Купальня",
+      "Казарма",
+      "Мельница",
+      "Таверна"
+    ],
+    "correct": "Купальня",
+    "explanation": "Старая купальня стала дворцом.",
+    "sourceUrl": "https://go2warsaw.pl/en/royal-lazienki-museum/",
+    "sourceTitle": "Go To Warsaw · Лазенки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-076",
+    "category": "Королевский пикник",
+    "question": "Какие яркие птицы гуляют в Лазенках?",
+    "answers": [
+      "Павлины",
+      "Фламинго",
+      "Пингвины",
+      "Туканы"
+    ],
+    "correct": "Павлины",
+    "explanation": "Они свободно гуляют по парку.",
+    "sourceUrl": "https://go2warsaw.pl/en/royal-lazienki-museum/",
+    "sourceTitle": "Go To Warsaw · Лазенки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-077",
+    "category": "Королевский пикник",
+    "question": "Чья музыка связана с концертами в Лазенках?",
+    "answers": [
+      "Шопена",
+      "Элвиса",
+      "Баха исключительно",
+      "Daft Punk"
+    ],
+    "correct": "Шопена",
+    "explanation": "Шопеновские концерты — традиция парка.",
+    "sourceUrl": "https://go2warsaw.pl/en/royal-lazienki-museum/",
+    "sourceTitle": "Go To Warsaw · Лазенки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-078",
+    "category": "Королевский пикник",
+    "question": "Какой театр можно встретить в Лазенках?",
+    "answers": [
+      "Придворный",
+      "Только кукольный",
+      "Подводный",
+      "Ледовый"
+    ],
+    "correct": "Придворный",
+    "explanation": "В парке сохранился придворный театр.",
+    "sourceUrl": "https://go2warsaw.pl/en/royal-lazienki-museum/",
+    "sourceTitle": "Go To Warsaw · Лазенки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-079",
+    "category": "Вилянув",
+    "question": "Чьей резиденцией был Вилянув?",
+    "answers": [
+      "Яна III Собеского",
+      "Коперника",
+      "Шопена",
+      "Пилсудского"
+    ],
+    "correct": "Яна III Собеского",
+    "explanation": "Дворец связан с Яном III.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-king-jan-iiis-palace-at-wilanow/",
+    "sourceTitle": "Go To Warsaw · Дворец Вилянув",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-080",
+    "category": "Вилянув",
+    "question": "Какой стиль определяет дворец Вилянув?",
+    "answers": [
+      "Барокко",
+      "Брутализм",
+      "Баухаус",
+      "Конструктивизм"
+    ],
+    "correct": "Барокко",
+    "explanation": "Это варшавская жемчужина барокко.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-king-jan-iiis-palace-at-wilanow/",
+    "sourceTitle": "Go To Warsaw · Дворец Вилянув",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-081",
+    "category": "Вилянув",
+    "question": "Как звали супругу Собеского?",
+    "answers": [
+      "Мария Казимира",
+      "Бона Сфорца",
+      "Ядвига",
+      "Барбара Радзивилл"
+    ],
+    "correct": "Мария Казимира",
+    "explanation": "Во дворце есть её покои.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-king-jan-iiis-palace-at-wilanow/",
+    "sourceTitle": "Go To Warsaw · Дворец Вилянув",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-082",
+    "category": "Вилянув",
+    "question": "Кто держит щиты солнечных часов Вилянува?",
+    "answers": [
+      "Сатурн",
+      "Нептун",
+      "Марс",
+      "Аполлон"
+    ],
+    "correct": "Сатурн",
+    "explanation": "Часы отражают интерес короля к астрономии.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-king-jan-iiis-palace-at-wilanow/",
+    "sourceTitle": "Go To Warsaw · Дворец Вилянув",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-083",
+    "category": "Вилянув",
+    "question": "Как называется световая прогулка в Вилянуве?",
+    "answers": [
+      "Королевский сад света",
+      "Ночь Коперника",
+      "Неоновая Прага",
+      "Лес лазеров"
+    ],
+    "correct": "Королевский сад света",
+    "explanation": "Зимняя иллюминация преображает сад.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-king-jan-iiis-palace-at-wilanow/",
+    "sourceTitle": "Go To Warsaw · Дворец Вилянув",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-084",
+    "category": "Вилянув",
+    "question": "Какой музей находится рядом в бывшем манеже?",
+    "answers": [
+      "Плаката",
+      "Эволюции",
+      "Фармации",
+      "Железной дороги"
+    ],
+    "correct": "Плаката",
+    "explanation": "Музей плаката соседствует с дворцом.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-king-jan-iiis-palace-at-wilanow/",
+    "sourceTitle": "Go To Warsaw · Дворец Вилянув",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-085",
+    "category": "Прага без открыток",
+    "question": "От чего произошло название Praga?",
+    "answers": [
+      "От выжженного леса",
+      "От чешской столицы",
+      "От слова пирог",
+      "От имени русалки"
+    ],
+    "correct": "От выжженного леса",
+    "explanation": "Название связано с расчисткой леса.",
+    "sourceUrl": "https://go2warsaw.pl/en/walk-around-north-praga-district/",
+    "sourceTitle": "Go To Warsaw · Прогулка по Праге",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-086",
+    "category": "Прага без открыток",
+    "question": "Какой транспортный узел рядом с православным собором?",
+    "answers": [
+      "Dworzec Wileński",
+      "Metro Kabaty",
+      "Metro Młociny",
+      "Warszawa Centralna"
+    ],
+    "correct": "Dworzec Wileński",
+    "explanation": "Здесь начинается прогулка по Старой Праге.",
+    "sourceUrl": "https://go2warsaw.pl/en/walk-around-north-praga-district/",
+    "sourceTitle": "Go To Warsaw · Прогулка по Праге",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-087",
+    "category": "Прага без открыток",
+    "question": "В чём подают блюда Pyzy Flaki Gorące?",
+    "answers": [
+      "В банках",
+      "В ракушках",
+      "В вафельных рожках",
+      "В чайниках"
+    ],
+    "correct": "В банках",
+    "explanation": "Так сохраняют пражскую традицию.",
+    "sourceUrl": "https://go2warsaw.pl/en/walk-around-north-praga-district/",
+    "sourceTitle": "Go To Warsaw · Прогулка по Праге",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-088",
+    "category": "Прага без открыток",
+    "question": "Какой молочный бар находится на Floriańska?",
+    "answers": [
+      "Rusałka",
+      "Ćma",
+      "Pacyfik",
+      "Rascal"
+    ],
+    "correct": "Rusałka",
+    "explanation": "Это пражский bar mleczny.",
+    "sourceUrl": "https://go2warsaw.pl/en/walk-around-north-praga-district/",
+    "sourceTitle": "Go To Warsaw · Прогулка по Праге",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-089",
+    "category": "Прага без открыток",
+    "question": "Какое животное украшает Dom pod Sowami?",
+    "answers": [
+      "Сова",
+      "Лиса",
+      "Лев",
+      "Кот"
+    ],
+    "correct": "Сова",
+    "explanation": "Название означает «Дом под совами».",
+    "sourceUrl": "https://go2warsaw.pl/en/walk-around-north-praga-district/",
+    "sourceTitle": "Go To Warsaw · Прогулка по Праге",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-090",
+    "category": "Прага без открыток",
+    "question": "Как называют длинный дом на Kijowska 11?",
+    "answers": [
+      "Такса",
+      "Жираф",
+      "Краб",
+      "Бобёр"
+    ],
+    "correct": "Такса",
+    "explanation": "Одно из прозвищ — Jamnik.",
+    "sourceUrl": "https://go2warsaw.pl/en/walk-around-north-praga-district/",
+    "sourceTitle": "Go To Warsaw · Прогулка по Праге",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-091",
+    "category": "POLIN",
+    "question": "О чьей истории рассказывает POLIN?",
+    "answers": [
+      "Польских евреев",
+      "Варшавских пилотов",
+      "Римских императоров",
+      "Шведских королей"
+    ],
+    "correct": "Польских евреев",
+    "explanation": "Экспозиция охватывает тысячу лет.",
+    "sourceUrl": "https://go2warsaw.pl/en/polin-museum-of-the-history-of-polish-jews/",
+    "sourceTitle": "Go To Warsaw · Музей POLIN",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-092",
+    "category": "POLIN",
+    "question": "Сколько тематических галерей в основной экспозиции?",
+    "answers": [
+      "8",
+      "2",
+      "15",
+      "30"
+    ],
+    "correct": "8",
+    "explanation": "Маршрут проходит через восемь галерей.",
+    "sourceUrl": "https://go2warsaw.pl/en/polin-museum-of-the-history-of-polish-jews/",
+    "sourceTitle": "Go To Warsaw · Музей POLIN",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-093",
+    "category": "POLIN",
+    "question": "Откуда реконструированный свод синагоги в POLIN?",
+    "answers": [
+      "Гвоздец",
+      "Париж",
+      "Лиссабон",
+      "Осло"
+    ],
+    "correct": "Гвоздец",
+    "explanation": "Один из ярких экспонатов музея.",
+    "sourceUrl": "https://go2warsaw.pl/en/polin-museum-of-the-history-of-polish-jews/",
+    "sourceTitle": "Go To Warsaw · Музей POLIN",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-094",
+    "category": "POLIN",
+    "question": "Как переводят Polin в легенде названия?",
+    "answers": [
+      "Здесь отдохнёшь",
+      "Город мостов",
+      "Новая звезда",
+      "Большой рынок"
+    ],
+    "correct": "Здесь отдохнёшь",
+    "explanation": "Слово также обозначает Польшу.",
+    "sourceUrl": "https://go2warsaw.pl/en/polin-museum-of-the-history-of-polish-jews/",
+    "sourceTitle": "Go To Warsaw · Музей POLIN",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-095",
+    "category": "POLIN",
+    "question": "Какой памятник находится перед POLIN?",
+    "answers": [
+      "Героям гетто",
+      "Шопену",
+      "Сигизмунду",
+      "Копернику"
+    ],
+    "correct": "Героям гетто",
+    "explanation": "Это памятник героям гетто.",
+    "sourceUrl": "https://go2warsaw.pl/en/polin-museum-of-the-history-of-polish-jews/",
+    "sourceTitle": "Go To Warsaw · Музей POLIN",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-096",
+    "category": "POLIN",
+    "question": "Какую улицу искать для POLIN?",
+    "answers": [
+      "Anielewicza",
+      "Francuska",
+      "Hoża",
+      "Dobra"
+    ],
+    "correct": "Anielewicza",
+    "explanation": "Музей расположен на Anielewicza 6.",
+    "sourceUrl": "https://go2warsaw.pl/en/polin-museum-of-the-history-of-polish-jews/",
+    "sourceTitle": "Go To Warsaw · Музей POLIN",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-097",
+    "category": "Шопен крупным планом",
+    "question": "В каком дворце находится музей Шопена?",
+    "answers": [
+      "Острожских",
+      "Вилянув",
+      "Красиньских",
+      "Бельведер"
+    ],
+    "correct": "Острожских",
+    "explanation": "Исторический дворец на Okólnik.",
+    "sourceUrl": "https://go2warsaw.pl/en/fryderyk-chopin-museum/",
+    "sourceTitle": "Go To Warsaw · Музей Шопена",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-098",
+    "category": "Шопен крупным планом",
+    "question": "Какой марки последний рояль Шопена в коллекции?",
+    "answers": [
+      "Pleyel",
+      "Yamaha",
+      "Casio",
+      "Roland"
+    ],
+    "correct": "Pleyel",
+    "explanation": "На нём он играл последние два года.",
+    "sourceUrl": "https://go2warsaw.pl/en/fryderyk-chopin-museum/",
+    "sourceTitle": "Go To Warsaw · Музей Шопена",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-099",
+    "category": "Шопен крупным планом",
+    "question": "Какая сказочная птица у дворца Острожских?",
+    "answers": [
+      "Золотая утка",
+      "Серебряный орёл",
+      "Красный журавль",
+      "Синий павлин"
+    ],
+    "correct": "Золотая утка",
+    "explanation": "Фонтан связан с городской легендой.",
+    "sourceUrl": "https://go2warsaw.pl/en/fryderyk-chopin-museum/",
+    "sourceTitle": "Go To Warsaw · Музей Шопена",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-100",
+    "category": "Шопен крупным планом",
+    "question": "Слепок какой части тела хранит музей?",
+    "answers": [
+      "Кисти руки",
+      "Колена",
+      "Ступни",
+      "Уха"
+    ],
+    "correct": "Кисти руки",
+    "explanation": "В коллекции есть слепок руки.",
+    "sourceUrl": "https://go2warsaw.pl/en/fryderyk-chopin-museum/",
+    "sourceTitle": "Go To Warsaw · Музей Шопена",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-101",
+    "category": "Шопен крупным планом",
+    "question": "Что подарили десятилетнему Шопену за талант?",
+    "answers": [
+      "Золотые часы",
+      "Мотоцикл",
+      "Скрипку",
+      "Телескоп"
+    ],
+    "correct": "Золотые часы",
+    "explanation": "Часы входят в музейную коллекцию.",
+    "sourceUrl": "https://go2warsaw.pl/en/fryderyk-chopin-museum/",
+    "sourceTitle": "Go To Warsaw · Музей Шопена",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-102",
+    "category": "Шопен крупным планом",
+    "question": "Кто написал прижизненный портрет Шопена из коллекции?",
+    "answers": [
+      "Теофил Квятковский",
+      "Ян Матейко",
+      "Энди Уорхол",
+      "Сальвадор Дали"
+    ],
+    "correct": "Теофил Квятковский",
+    "explanation": "Портрет создан при жизни композитора.",
+    "sourceUrl": "https://go2warsaw.pl/en/fryderyk-chopin-museum/",
+    "sourceTitle": "Go To Warsaw · Музей Шопена",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-103",
+    "category": "Научная прогулка",
+    "question": "Кто проводит опыты в Копернике?",
+    "answers": [
+      "Сами посетители",
+      "Только профессора",
+      "Только экскурсоводы",
+      "Только роботы"
+    ],
+    "correct": "Сами посетители",
+    "explanation": "Посетитель становится исследователем.",
+    "sourceUrl": "https://go2warsaw.pl/en/copernicus-science-centre/",
+    "sourceTitle": "Go To Warsaw · Центр Коперник",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-104",
+    "category": "Научная прогулка",
+    "question": "Что играет главную роль в Театре высокого напряжения?",
+    "answers": [
+      "Электрические разряды",
+      "Огонь",
+      "Лёд",
+      "Водные струи"
+    ],
+    "correct": "Электрические разряды",
+    "explanation": "Представление посвящено электричеству.",
+    "sourceUrl": "https://go2warsaw.pl/en/copernicus-science-centre/",
+    "sourceTitle": "Go To Warsaw · Центр Коперник",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-105",
+    "category": "Научная прогулка",
+    "question": "Кто выступает в Роботическом театре?",
+    "answers": [
+      "Гуманоиды",
+      "Дельфины",
+      "Голограммы королей",
+      "Акробаты"
+    ],
+    "correct": "Гуманоиды",
+    "explanation": "Роботы говорят и жестикулируют.",
+    "sourceUrl": "https://go2warsaw.pl/en/copernicus-science-centre/",
+    "sourceTitle": "Go To Warsaw · Центр Коперник",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-106",
+    "category": "Научная прогулка",
+    "question": "Что можно мастерить в Thinkatorium?",
+    "answers": [
+      "Мосты и летательные модели",
+      "Только торты",
+      "Только плакаты",
+      "Ювелирные кольца"
+    ],
+    "correct": "Мосты и летательные модели",
+    "explanation": "Это пространство для конструирования.",
+    "sourceUrl": "https://go2warsaw.pl/en/copernicus-science-centre/",
+    "sourceTitle": "Go To Warsaw · Центр Коперник",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-107",
+    "category": "Научная прогулка",
+    "question": "Как называется виртуальный композитор экспозиции?",
+    "answers": [
+      "AVIVA",
+      "Alexa",
+      "Siri",
+      "HAL"
+    ],
+    "correct": "AVIVA",
+    "explanation": "AVIVA показана в «Цифровом мозге».",
+    "sourceUrl": "https://go2warsaw.pl/en/copernicus-science-centre/",
+    "sourceTitle": "Go To Warsaw · Центр Коперник",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-108",
+    "category": "Научная прогулка",
+    "question": "Какой необычный протез показывает Human 2.0?",
+    "answers": [
+      "Дополнительный большой палец",
+      "Крылья",
+      "Рыбий хвост",
+      "Рога"
+    ],
+    "correct": "Дополнительный большой палец",
+    "explanation": "Экспозиция исследует расширение возможностей тела.",
+    "sourceUrl": "https://go2warsaw.pl/en/copernicus-science-centre/",
+    "sourceTitle": "Go To Warsaw · Центр Коперник",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-109",
+    "category": "Ретро 3D",
+    "question": "Что показывает фотопластикон?",
+    "answers": [
+      "Объёмные фотографии",
+      "Только немое кино",
+      "Картины маслом",
+      "Лазерные скульптуры"
+    ],
+    "correct": "Объёмные фотографии",
+    "explanation": "Изображения создают эффект глубины.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaw-photoplasticon/",
+    "sourceTitle": "Go To Warsaw · Варшавский фотопластикон",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-110",
+    "category": "Ретро 3D",
+    "question": "Где находится фотопластикон?",
+    "answers": [
+      "Aleje Jerozolimskie",
+      "Plac Wilsona",
+      "Francuska",
+      "Dobra"
+    ],
+    "correct": "Aleje Jerozolimskie",
+    "explanation": "Адрес — Aleje Jerozolimskie 51.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaw-photoplasticon/",
+    "sourceTitle": "Go To Warsaw · Варшавский фотопластикон",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-111",
+    "category": "Ретро 3D",
+    "question": "Кому служил фотопластикон во время оккупации?",
+    "answers": [
+      "Польскому подполью",
+      "Только туристам",
+      "Биржевым брокерам",
+      "Космонавтам"
+    ],
+    "correct": "Польскому подполью",
+    "explanation": "Здесь тайно встречались подпольщики.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaw-photoplasticon/",
+    "sourceTitle": "Go To Warsaw · Варшавский фотопластикон",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-112",
+    "category": "Ретро 3D",
+    "question": "Какая музыка сопровождала послевоенные показы?",
+    "answers": [
+      "Джаз",
+      "Техно",
+      "Трэп",
+      "Драм-н-бейс"
+    ],
+    "correct": "Джаз",
+    "explanation": "Музыку ставили с привезённых пластинок.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaw-photoplasticon/",
+    "sourceTitle": "Go To Warsaw · Варшавский фотопластикон",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-113",
+    "category": "Ретро 3D",
+    "question": "Какие города помогали увидеть снимки после войны?",
+    "answers": [
+      "Недоступные города Запада",
+      "Только вымышленные",
+      "Только древнеримские",
+      "Только подводные"
+    ],
+    "correct": "Недоступные города Запада",
+    "explanation": "Фотографии заменяли невозможные поездки.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaw-photoplasticon/",
+    "sourceTitle": "Go To Warsaw · Варшавский фотопластикон",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-114",
+    "category": "Ретро 3D",
+    "question": "В каком веке открылся варшавский фотопластикон?",
+    "answers": [
+      "XX",
+      "XVII",
+      "XVIII",
+      "XXI"
+    ],
+    "correct": "XX",
+    "explanation": "Он работает с начала XX века.",
+    "sourceUrl": "https://go2warsaw.pl/en/warsaw-photoplasticon/",
+    "sourceTitle": "Go To Warsaw · Варшавский фотопластикон",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-115",
+    "category": "Неоновая память",
+    "question": "Что спасает Музей неона?",
+    "answers": [
+      "Световые вывески",
+      "Старые трамваи",
+      "Плюшевых медведей",
+      "Радиоприёмники"
+    ],
+    "correct": "Световые вывески",
+    "explanation": "Вывескам возвращают вторую жизнь.",
+    "sourceUrl": "https://go2warsaw.pl/en/neon-museum/",
+    "sourceTitle": "Go To Warsaw · Музей неона",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-116",
+    "category": "Неоновая память",
+    "question": "С какой эпохой связана значительная часть коллекции?",
+    "answers": [
+      "ПНР",
+      "Средневековьем",
+      "Античностью",
+      "Наполеоновскими войнами"
+    ],
+    "correct": "ПНР",
+    "explanation": "Неоны хранят память социалистических городов.",
+    "sourceUrl": "https://go2warsaw.pl/en/neon-museum/",
+    "sourceTitle": "Go To Warsaw · Музей неона",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-117",
+    "category": "Неоновая память",
+    "question": "Как называли плановое насыщение улиц неоном?",
+    "answers": [
+      "Неонизация",
+      "Электролиз",
+      "Урбаноспорт",
+      "Светотаксис"
+    ],
+    "correct": "Неонизация",
+    "explanation": "Вывески проектировали как систему.",
+    "sourceUrl": "https://go2warsaw.pl/en/neon-museum/",
+    "sourceTitle": "Go To Warsaw · Музей неона",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-118",
+    "category": "Неоновая память",
+    "question": "Что учитывали при проектировании неонов для улицы?",
+    "answers": [
+      "Архитектуру и соседние вывески",
+      "Только случайный цвет",
+      "Фазы Луны",
+      "Цвет автомобилей"
+    ],
+    "correct": "Архитектуру и соседние вывески",
+    "explanation": "Размеры и цвета согласовывали.",
+    "sourceUrl": "https://go2warsaw.pl/en/neon-museum/",
+    "sourceTitle": "Go To Warsaw · Музей неона",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-119",
+    "category": "Неоновая память",
+    "question": "Кто создавал польские неоновые вывески?",
+    "answers": [
+      "Художники и архитекторы",
+      "Только водители",
+      "Только спортсмены",
+      "Только кассиры"
+    ],
+    "correct": "Художники и архитекторы",
+    "explanation": "Над ними работали профессиональные дизайнеры.",
+    "sourceUrl": "https://go2warsaw.pl/en/neon-museum/",
+    "sourceTitle": "Go To Warsaw · Музей неона",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-120",
+    "category": "Неоновая память",
+    "question": "Какую роль неон имел в ПНР кроме информации?",
+    "answers": [
+      "Престиж",
+      "Навигацию самолётов",
+      "Обогрев улиц",
+      "Очистку воздуха"
+    ],
+    "correct": "Престиж",
+    "explanation": "Вывески были знаком престижа.",
+    "sourceUrl": "https://go2warsaw.pl/en/neon-museum/",
+    "sourceTitle": "Go To Warsaw · Музей неона",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-121",
+    "category": "Современное искусство",
+    "question": "Какого цвета новое здание MSN?",
+    "answers": [
+      "Белого",
+      "Чёрного",
+      "Ярко-красного",
+      "Зелёного"
+    ],
+    "correct": "Белого",
+    "explanation": "Белый объём выделяется в центре.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-modern-art-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Музей современного искусства",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-122",
+    "category": "Современное искусство",
+    "question": "Как называется кинотеатр при MSN?",
+    "answers": [
+      "Kinomuzeum",
+      "KinoGram",
+      "Luna",
+      "Praha"
+    ],
+    "correct": "Kinomuzeum",
+    "explanation": "Он показывает независимое кино.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-modern-art-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Музей современного искусства",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-123",
+    "category": "Современное искусство",
+    "question": "На какой улице находится MSN?",
+    "answers": [
+      "Marszałkowska",
+      "Brzeska",
+      "Francuska",
+      "Olkuska"
+    ],
+    "correct": "Marszałkowska",
+    "explanation": "Адрес — Marszałkowska 103.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-modern-art-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Музей современного искусства",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-124",
+    "category": "Современное искусство",
+    "question": "Какой фестиваль организует MSN?",
+    "answers": [
+      "Warszawa w Budowie",
+      "Open’er",
+      "Pol’and’Rock",
+      "Camerimage"
+    ],
+    "correct": "Warszawa w Budowie",
+    "explanation": "Название переводится «Варшава в строительстве».",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-modern-art-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Музей современного искусства",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-125",
+    "category": "Современное искусство",
+    "question": "Какую форму имеют лестницы музея?",
+    "answers": [
+      "Зигзаг",
+      "Спираль вокруг дерева",
+      "Прямая лестница без площадок",
+      "Кольцо"
+    ],
+    "correct": "Зигзаг",
+    "explanation": "Они напоминают о павильоне Emilia.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-modern-art-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Музей современного искусства",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-126",
+    "category": "Современное искусство",
+    "question": "Сколько крупных галерей описывает городской гид MSN?",
+    "answers": [
+      "4",
+      "1",
+      "12",
+      "25"
+    ],
+    "correct": "4",
+    "explanation": "Четыре галереи на выставочных этажах.",
+    "sourceUrl": "https://go2warsaw.pl/en/museum-of-modern-art-in-warsaw/",
+    "sourceTitle": "Go To Warsaw · Музей современного искусства",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-127",
+    "category": "Шоколадный город",
+    "question": "На что похож фасад музея Wedel?",
+    "answers": [
+      "Плитку шоколада",
+      "Волну",
+      "Корабль",
+      "Пирамиду"
+    ],
+    "correct": "Плитку шоколада",
+    "explanation": "Каждая «долька» имеет свой узор.",
+    "sourceUrl": "https://go2warsaw.pl/en/e-wedel-chocolate-factory/",
+    "sourceTitle": "Go To Warsaw · Фабрика шоколада Wedel",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-128",
+    "category": "Шоколадный город",
+    "question": "Из чего сделан макет Камёнка в музее?",
+    "answers": [
+      "Из шоколада",
+      "Из стекла",
+      "Из соли",
+      "Из бумаги"
+    ],
+    "correct": "Из шоколада",
+    "explanation": "Съедобный материал стал городским макетом.",
+    "sourceUrl": "https://go2warsaw.pl/en/e-wedel-chocolate-factory/",
+    "sourceTitle": "Go To Warsaw · Фабрика шоколада Wedel",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-129",
+    "category": "Шоколадный город",
+    "question": "Какой район изображает шоколадный макет?",
+    "answers": [
+      "Kamionek",
+      "Mokotów",
+      "Ursynów",
+      "Bielany"
+    ],
+    "correct": "Kamionek",
+    "explanation": "Это район самой фабрики.",
+    "sourceUrl": "https://go2warsaw.pl/en/e-wedel-chocolate-factory/",
+    "sourceTitle": "Go To Warsaw · Фабрика шоколада Wedel",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-130",
+    "category": "Шоколадный город",
+    "question": "Какое сырьё начинает музейный рассказ?",
+    "answers": [
+      "Какао-бобы",
+      "Картофель",
+      "Хмель",
+      "Рожь"
+    ],
+    "correct": "Какао-бобы",
+    "explanation": "Показан путь от боба до шоколада.",
+    "sourceUrl": "https://go2warsaw.pl/en/e-wedel-chocolate-factory/",
+    "sourceTitle": "Go To Warsaw · Фабрика шоколада Wedel",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-131",
+    "category": "Шоколадный город",
+    "question": "На каком этаже смотровая площадка музея?",
+    "answers": [
+      "6",
+      "30",
+      "53",
+      "1"
+    ],
+    "correct": "6",
+    "explanation": "Отсюда видны озеро и стадион.",
+    "sourceUrl": "https://go2warsaw.pl/en/e-wedel-chocolate-factory/",
+    "sourceTitle": "Go To Warsaw · Фабрика шоколада Wedel",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-132",
+    "category": "Шоколадный город",
+    "question": "Что видно рядом с фабрикой с террасы?",
+    "answers": [
+      "Kamionkowskie озеро",
+      "Балтийское море",
+      "Татры",
+      "Августовский канал"
+    ],
+    "correct": "Kamionkowskie озеро",
+    "explanation": "Площадка смотрит на Камёнек.",
+    "sourceUrl": "https://go2warsaw.pl/en/e-wedel-chocolate-factory/",
+    "sourceTitle": "Go To Warsaw · Фабрика шоколада Wedel",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-133",
+    "category": "Музейная дегустация",
+    "question": "Какой завод стал домом музея польской водки?",
+    "answers": [
+      "Koneser",
+      "Norblin",
+      "Wedel",
+      "Ursus"
+    ],
+    "correct": "Koneser",
+    "explanation": "Музей занимает историческое заводское здание.",
+    "sourceUrl": "https://go2warsaw.pl/en/polish-vodka-museum/",
+    "sourceTitle": "Go To Warsaw · Музей польской водки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-134",
+    "category": "Музейная дегустация",
+    "question": "Кто усовершенствовал дистилляцию в XIX веке?",
+    "answers": [
+      "Ян Писториус",
+      "Фредерик Шопен",
+      "Николай Коперник",
+      "Юзеф Понятовский"
+    ],
+    "correct": "Ян Писториус",
+    "explanation": "Его аппарат показан в истории технологии.",
+    "sourceUrl": "https://go2warsaw.pl/en/polish-vodka-museum/",
+    "sourceTitle": "Go To Warsaw · Музей польской водки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-135",
+    "category": "Музейная дегустация",
+    "question": "Из чего сравнивают водку в академии музея?",
+    "answers": [
+      "Рожь, пшеница, картофель",
+      "Оливки, томаты, огурцы",
+      "Кофе, какао, чай",
+      "Молоко, сыр, масло"
+    ],
+    "correct": "Рожь, пшеница, картофель",
+    "explanation": "Сырьё меняет характер напитка.",
+    "sourceUrl": "https://go2warsaw.pl/en/polish-vodka-museum/",
+    "sourceTitle": "Go To Warsaw · Музей польской водки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-136",
+    "category": "Музейная дегустация",
+    "question": "Какой старый напиток Baczewski есть в коллекции?",
+    "answers": [
+      "Вишнёвая водка",
+      "Абсент",
+      "Текила",
+      "Саке"
+    ],
+    "correct": "Вишнёвая водка",
+    "explanation": "Сохранилась закрытая бутылка 1940-х.",
+    "sourceUrl": "https://go2warsaw.pl/en/polish-vodka-museum/",
+    "sourceTitle": "Go To Warsaw · Музей польской водки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-137",
+    "category": "Музейная дегустация",
+    "question": "Над чем размещены столики музейного ресторана?",
+    "answers": [
+      "Историческими печами",
+      "Аквариумом",
+      "Рельсами метро",
+      "Бассейном"
+    ],
+    "correct": "Историческими печами",
+    "explanation": "Интерьер напоминает о заводе.",
+    "sourceUrl": "https://go2warsaw.pl/en/polish-vodka-museum/",
+    "sourceTitle": "Go To Warsaw · Музей польской водки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-138",
+    "category": "Музейная дегустация",
+    "question": "Что предлагает составить интерактивная экспозиция?",
+    "answers": [
+      "Рецепт настойки",
+      "График метро",
+      "План дворца",
+      "Партию в шахматы"
+    ],
+    "correct": "Рецепт настойки",
+    "explanation": "Музей рассказывает о традициях напитков.",
+    "sourceUrl": "https://go2warsaw.pl/en/polish-vodka-museum/",
+    "sourceTitle": "Go To Warsaw · Музей польской водки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-139",
+    "category": "Зелёный перерыв",
+    "question": "Где стоит памятник счастливой собаке?",
+    "answers": [
+      "Pole Mokotowskie",
+      "Вилянув",
+      "Саксонский сад",
+      "Камёнек"
+    ],
+    "correct": "Pole Mokotowskie",
+    "explanation": "Необычный памятник на прогулочном маршруте.",
+    "sourceUrl": "https://go2warsaw.pl/en/green-warsaw/",
+    "sourceTitle": "Go To Warsaw · Парки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-140",
+    "category": "Зелёный перерыв",
+    "question": "В каком парке есть скульптура «Танцовщица»?",
+    "answers": [
+      "Skaryszewski",
+      "Praski",
+      "Moczydło",
+      "Ujazdowski"
+    ],
+    "correct": "Skaryszewski",
+    "explanation": "Парк известен коллекцией скульптур.",
+    "sourceUrl": "https://go2warsaw.pl/en/green-warsaw/",
+    "sourceTitle": "Go To Warsaw · Парки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-141",
+    "category": "Зелёный перерыв",
+    "question": "Где неон изображает стакан оранжада?",
+    "answers": [
+      "Kępa Potocka",
+      "Jazdów",
+      "Лазенки",
+      "Старый город"
+    ],
+    "correct": "Kępa Potocka",
+    "explanation": "Светящийся стакан стоит у воды.",
+    "sourceUrl": "https://go2warsaw.pl/en/green-warsaw/",
+    "sourceTitle": "Go To Warsaw · Парки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-142",
+    "category": "Зелёный перерыв",
+    "question": "Какой парк славится горнолыжным склоном?",
+    "answers": [
+      "Szczęśliwicki",
+      "Krasińskich",
+      "Saski",
+      "Praski"
+    ],
+    "correct": "Szczęśliwicki",
+    "explanation": "Неожиданный горнолыжный уголок города.",
+    "sourceUrl": "https://go2warsaw.pl/en/green-warsaw/",
+    "sourceTitle": "Go To Warsaw · Парки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-143",
+    "category": "Зелёный перерыв",
+    "question": "У какого сада Могила Неизвестного Солдата?",
+    "answers": [
+      "Саксонского",
+      "Ботанического",
+      "Вилянувского",
+      "Сада BUW"
+    ],
+    "correct": "Саксонского",
+    "explanation": "Мемориал стоит под аркадами.",
+    "sourceUrl": "https://go2warsaw.pl/en/green-warsaw/",
+    "sourceTitle": "Go To Warsaw · Парки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-144",
+    "category": "Зелёный перерыв",
+    "question": "Какое животное изображает скульптура в Park Praski?",
+    "answers": [
+      "Жираф",
+      "Кит",
+      "Зубр",
+      "Верблюд"
+    ],
+    "correct": "Жираф",
+    "explanation": "Жираф напоминает о соседнем зоопарке.",
+    "sourceUrl": "https://go2warsaw.pl/en/green-warsaw/",
+    "sourceTitle": "Go To Warsaw · Парки Варшавы",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-145",
+    "category": "Выше города",
+    "question": "Сколько ступеней ведут на колокольню святой Анны?",
+    "answers": [
+      "150",
+      "30",
+      "500",
+      "1000"
+    ],
+    "correct": "150",
+    "explanation": "За подъём награждают видом Старого города.",
+    "sourceUrl": "https://go2warsaw.pl/en/vantage-points/",
+    "sourceTitle": "Go To Warsaw · Смотровые площадки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-146",
+    "category": "Выше города",
+    "question": "В какой башне находится Highline Warsaw?",
+    "answers": [
+      "Varso Tower",
+      "Warsaw Spire",
+      "Rondo 1",
+      "Złota 44"
+    ],
+    "correct": "Varso Tower",
+    "explanation": "Смотровая площадка расположена в Varso.",
+    "sourceUrl": "https://go2warsaw.pl/en/vantage-points/",
+    "sourceTitle": "Go To Warsaw · Смотровые площадки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-147",
+    "category": "Выше города",
+    "question": "Из чего насыпали Курган Варшавского восстания?",
+    "answers": [
+      "Из руин города",
+      "Из вулканической лавы",
+      "Из морского песка",
+      "Из соли"
+    ],
+    "correct": "Из руин города",
+    "explanation": "Курган хранит материальную память разрушения.",
+    "sourceUrl": "https://go2warsaw.pl/en/vantage-points/",
+    "sourceTitle": "Go To Warsaw · Смотровые площадки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-148",
+    "category": "Выше города",
+    "question": "На месте какой фабрики стоит комплекс Forest?",
+    "answers": [
+      "Кружевной",
+      "Шоколадной",
+      "Водочной",
+      "Самолётной"
+    ],
+    "correct": "Кружевной",
+    "explanation": "С крыши видны Повонзки.",
+    "sourceUrl": "https://go2warsaw.pl/en/vantage-points/",
+    "sourceTitle": "Go To Warsaw · Смотровые площадки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-149",
+    "category": "Выше города",
+    "question": "Какой варшавский мост двухъярусный?",
+    "answers": [
+      "Гданьский",
+      "Свентокшиский",
+      "Секерковский",
+      "Северный"
+    ],
+    "correct": "Гданьский",
+    "explanation": "Два уровня — его узнаваемая черта.",
+    "sourceUrl": "https://go2warsaw.pl/en/vantage-points/",
+    "sourceTitle": "Go To Warsaw · Смотровые площадки",
+    "verifiedAt": "2026-09-11"
+  },
+  {
+    "id": "warsaw-150",
+    "category": "Выше города",
+    "question": "На какой равнине стоит Варшава?",
+    "answers": [
+      "Мазовецкой низменности",
+      "Венгерской равнине",
+      "Паданской равнине",
+      "Туранской низменности"
+    ],
+    "correct": "Мазовецкой низменности",
+    "explanation": "Поэтому многие смотровые точки искусственные.",
+    "sourceUrl": "https://go2warsaw.pl/en/vantage-points/",
+    "sourceTitle": "Go To Warsaw · Смотровые площадки",
+    "verifiedAt": "2026-09-11"
+  }
+]
