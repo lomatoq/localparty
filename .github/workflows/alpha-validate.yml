@@ -11,7 +11,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,7 +31,7 @@ jobs:
           npm install --no-save --package-lock=false playwright@1.57.0
           npx playwright install --with-deps chromium
       - name: Four 3D games, mobile controls and managed lobby
-        run: node -r ./tests/afterparty-browser-diagnostics.cjs tests/afterparty-browser.cjs
+        run: timeout --kill-after=5s 180s node -r ./tests/afterparty-browser-diagnostics.cjs tests/afterparty-browser.cjs
       - name: Original game and launcher regression tests
         if: always() && !cancelled()
         run: |
