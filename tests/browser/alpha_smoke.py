@@ -1,5 +1,5 @@
 """Real launcher + two phone browser contexts. All requests must stay local."""
-import asyncio, json, os, pathlib, socket, subprocess, time, urllib.request
+import asyncio, base64, json, os, pathlib, socket, subprocess, time, urllib.request
 from playwright.async_api import async_playwright
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 OUT=ROOT/'test-results'/'alpha-browser'
@@ -31,9 +31,15 @@ async def main():
             for mode in ['curling','bowling','swarm_gate','peek_shoot']:
                 await host.locator(f'.game[data-id="{mode}"] .start-game').click()
                 for phone in phones:
+                    await phone.locator(f'#gameFrame[src*="/games/{mode}/"]').wait_for()
+                    await phone.frame_locator('#gameFrame').locator('#ss-name').wait_for()
                     await phone.locator('#readyButton').wait_for();await phone.locator('#readyButton').click()
                 frame=host.frame_locator('#gameFrame');await frame.locator('#ss-overlay').wait_for(state='hidden',timeout=25000)
-                await asyncio.sleep(1);await host.screenshot(path=str(OUT/f'{mode}-host.png'))
+                await asyncio.sleep(7 if mode=='swarm_gate' else 1);await host.screenshot(path=str(OUT/f'{mode}-host.png'))
+                # Bounded thumbnail diagnostics survive GitHub artifact storage quotas.
+                raw=base64.b64encode((OUT/f'{mode}-host.png').read_bytes()).decode()
+                thumb=await host.evaluate("""b=>new Promise(resolve=>{const image=new Image();image.onload=()=>{const c=document.createElement('canvas');c.width=720;c.height=Math.round(image.height*720/image.width);c.getContext('2d').drawImage(image,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',.5).split(',')[1]);};image.src='data:image/png;base64,'+b;})""",raw)
+                print('ALPHA_SCREENSHOT '+mode+' '+thumb,flush=True)
                 pf=phones[0].frame_locator('#gameFrame');await pf.locator('#ss-name').wait_for(timeout=10000)
                 await phones[0].screenshot(path=str(OUT/f'{mode}-phone.png'))
                 if mode in ['swarm_gate','peek_shoot']:
@@ -49,7 +55,8 @@ async def main():
                     await phones[0].mouse.up();await asyncio.sleep(1)
                     await host.screenshot(path=str(OUT/f'{mode}-throw.png'))
                 await host.evaluate("""async()=>{const ws=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}/lobby`);await new Promise(r=>ws.onopen=r);ws.send(JSON.stringify({type:'host',key:window.PARTY_HOST_KEY}));await new Promise(r=>{ws.onmessage=e=>{if(JSON.parse(e.data).type==='host-ok')r()}});ws.send(JSON.stringify({type:'stop'}));setTimeout(()=>ws.close(),100)}""")
-                await host.locator('#home').wait_for();await asyncio.sleep(.2)
+                await host.locator('#lobby').wait_for()
+                for phone in phones:await phone.locator('#lobby').wait_for()
             await browser.close()
             (OUT/'report.json').write_text(json.dumps({'pageErrors':errors,'externalRequests':external},ensure_ascii=False,indent=2))
             assert not errors,errors

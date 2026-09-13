@@ -22,7 +22,7 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - name: New rules, real physics, sockets, updater transactions
-        run: node --test tests/sports-siege.test.js tests/alpha-updater.test.js tests/alpha-physics.test.js tests/alpha-network.test.js
+        run: node --test tests/sports-siege.test.js tests/alpha-updater.test.js tests/alpha-physics.test.js tests/alpha-network.test.js tests/alpha-start.test.js
       - name: Existing regression suite
         run: npm test
       - name: Install browser test runner
@@ -33,6 +33,7 @@ jobs:
         run: python tests/browser/alpha_smoke.py
       - name: Screenshots and logs
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: alpha-browser

@@ -160,6 +160,7 @@ wss.on('connection',(ws,req)=>{
   }catch(e){send(ws,{type:'error',message:e.message});}});
   ws.on('close',()=>{clients.delete(ws);if(ws.player?.socket===ws){ws.player.socket=null;ws.player.disconnectedAt=Date.now();}checkSession();broadcast();});
 });
+const startRelay=setInterval(()=>require('./lib/start-delivery').relayStart(active,clients,send),400);
 const heartbeat=setInterval(()=>{for(const ws of clients){if(!ws.alive){ws.terminate();continue;}ws.alive=false;ws.ping();}for(const [token,p] of players)if(!p.socket&&Date.now()-p.disconnectedAt>24*3600000)players.delete(token);},10000);
 // Port 0 asks the OS to allocate and bind a free port in one atomic operation.
 // An explicitly requested port is only a preference: never fail just because it is busy.
@@ -173,5 +174,5 @@ server.on('error',e=>{
   console.error('Не удалось запустить локальный сервер:',e);process.exit(1);
 });
 server.listen(listeningPort,'0.0.0.0');
-function shutdown(){closing=true;clearInterval(heartbeat);active?.child.kill();for(const ws of clients)ws.terminate();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
+function shutdown(){closing=true;clearInterval(heartbeat);clearInterval(startRelay);active?.child.kill();for(const ws of clients)ws.terminate();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
 process.on('SIGINT',shutdown);process.on('SIGTERM',shutdown);
