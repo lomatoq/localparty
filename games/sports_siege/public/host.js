@@ -48,7 +48,12 @@ class Stage {
     this.scene=new THREE.Scene();this.scene.background=new THREE.Color(mode==='curling'?'#172930':mode==='peek_shoot'?'#222539':'#111b25');
     this.scene.fog=new THREE.Fog(this.scene.background,65,130);
     this.renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+    const gl=this.renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');
+    const gpu=debug?String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL)):'';
+    this.software=/swiftshader|llvmpipe|softpipe|software/i.test(gpu);
+    this.renderer.setPixelRatio(this.software?1:Math.min(devicePixelRatio||1,1.5));
+    this.renderer.shadowMap.enabled=!this.software;this.renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+    document.body.dataset.renderQuality=this.software?'software-compatible':'full';
     this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.18;
     $('ss-scene').append(this.renderer.domElement);
     this.renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();$('ss-error').hidden=false;$('ss-error').textContent='Графический контекст потерян. Перезагрузи экран ведущего — матч на сервере сохранится.';});
@@ -246,12 +251,12 @@ class Stage {
     this.tracers.count=beams;this.flashes.count=flashes;this.tracers.instanceMatrix.needsUpdate=this.flashes.instanceMatrix.needsUpdate=true;
     if(beams)this.tracers.instanceColor.needsUpdate=true;if(flashes)this.flashes.instanceColor.needsUpdate=true;
   }
-  resize(){const r=$('ss-scene').getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);this.renderer.setSize(w,h,false);
+  resize(){const r=$('ss-scene').getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);if(this.software)this.renderer.setPixelRatio(Math.min(1,640/w));this.renderer.setSize(w,h,false);
     if(this.camera.isPerspectiveCamera)this.camera.aspect=w/h;
     else{let height=mode==='peek_shoot'?22:mode==='curling'?32:32;height=Math.max(height,(mode==='peek_shoot'?35:mode==='curling'?17:42)/(w/h));this.camera.left=-height*w/h/2;this.camera.right=height*w/h/2;this.camera.top=height/2;this.camera.bottom=-height/2;}
     this.camera.updateProjectionMatrix();
   }
-  loop(now){const dt=Math.min(.05,(now-this.last)/1000);this.last=now;this.clock+=dt;
+  loop(now){if(now-this.last<(this.software?1000/15:1000/60)-1){requestAnimationFrame(this.loop);return;}const dt=Math.min(.1,(now-this.last)/1000);this.last=now;this.clock+=dt;
     if(this.state)this.updateObjects(this.state,dt);this.updateEffects();this.renderer.render(this.scene,this.camera);
     if(now>noticeUntil)$('ss-notice').classList.remove('show');requestAnimationFrame(this.loop);
   }

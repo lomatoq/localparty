@@ -1,6 +1,6 @@
 """Real launcher + two phone browser contexts. All requests must stay local."""
 import asyncio, json, os, pathlib, socket, subprocess, time, urllib.request
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright, expect
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 OUT=ROOT/'test-results'/'alpha-browser'
 async def main():
@@ -36,8 +36,19 @@ async def main():
                     await phone.locator(f'#gameFrame[src*="/games/{mode}/"]').wait_for(state="attached")
                     await phone.frame_locator('#gameFrame').locator('#ss-name').wait_for(state='attached')
                     await phone.locator('#readyButton').wait_for();await phone.locator('#readyButton').click()
-                frame=host.frame_locator('#gameFrame');await frame.locator('#ss-overlay').wait_for(state='hidden',timeout=25000)
+                frame=host.frame_locator('#gameFrame')
+                try:
+                    await frame.locator('#ss-overlay').wait_for(state='hidden',timeout=25000)
+                except Exception:
+                    print('ALPHA_DIAGNOSTICS '+mode,flush=True)
+                    for page in [host,*phones]:
+                        print(await page.evaluate("({phase:document.body.dataset.phase,ready:document.getElementById('readyProgress')?.textContent,notice:document.getElementById('notice')?.textContent})"),flush=True)
+                        inner=page.frame_locator('#gameFrame')
+                        print(await inner.locator('body').inner_text(timeout=5000),flush=True)
+                    raise
                 await asyncio.sleep(7 if mode=='swarm_gate' else 1);await host.screenshot(path=str(OUT/f'{mode}-host.png'))
+                assert not await frame.locator('#ss-error').is_visible(),await frame.locator('#ss-error').inner_text()
+                await frame.locator('#ss-scene canvas').wait_for()
                 print('ALPHA_PLAYING '+mode,flush=True)
                 pf=phones[0].frame_locator('#gameFrame');await pf.locator('#ss-name').wait_for(timeout=10000)
                 await phones[0].screenshot(path=str(OUT/f'{mode}-phone.png'))
@@ -46,12 +57,19 @@ async def main():
                     await phones[0].mouse.move(box['x']+box['width']/2,box['y']+box['height']/2)
                     await phones[0].mouse.down();await asyncio.sleep(.15);await phones[0].mouse.up()
                 else:
+                    shooter=None
+                    for phone in phones:
+                        if 'ТВОЙ БРОСОК' in await phone.frame_locator('#gameFrame').locator('#ss-turn').inner_text():shooter=phone;break
+                    assert shooter is not None,'No active thrower after match start: '+mode
+                    pf=shooter.frame_locator('#gameFrame')
                     box=await pf.locator('#ss-throw-pad').bounding_box()
                     x=box['x']+box['width']*.5;y=box['y']+box['height']*.85
-                    await phones[0].mouse.move(x,y);await phones[0].mouse.down()
+                    await shooter.mouse.move(x,y);await shooter.mouse.down()
                     for k in range(10):
-                        await phones[0].mouse.move(x,y-box['height']*.06*(k+1));await asyncio.sleep(.025)
-                    await phones[0].mouse.up();await asyncio.sleep(1)
+                        await shooter.mouse.move(x,y-box['height']*.06*(k+1));await asyncio.sleep(.025)
+                    await shooter.mouse.up()
+                    await expect(pf.locator('#ss-turn')).to_have_text('Смотри на общий экран',timeout=5000)
+                    await asyncio.sleep(1)
                     await host.screenshot(path=str(OUT/f'{mode}-throw.png'))
                 await host.evaluate("""async()=>{const ws=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}/lobby`);await new Promise(r=>ws.onopen=r);ws.send(JSON.stringify({type:'host',key:window.PARTY_HOST_KEY}));await new Promise(r=>{ws.onmessage=e=>{if(JSON.parse(e.data).type==='host-ok')r()}});ws.send(JSON.stringify({type:'stop'}));setTimeout(()=>ws.close(),100)}""")
                 await host.locator('#lobby').wait_for()
