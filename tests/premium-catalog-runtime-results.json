@@ -4,7 +4,7 @@
     "cards": [
       {
         "id": "tankarena",
-        "src": "http://localhost:60110/assets/games/tankarena-hd.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/tankarena-hd.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -17,7 +17,7 @@
       },
       {
         "id": "push",
-        "src": "http://localhost:60110/assets/games/push.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/push.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -30,7 +30,7 @@
       },
       {
         "id": "shrink",
-        "src": "http://localhost:60110/assets/games/shrink.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/shrink.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -43,7 +43,7 @@
       },
       {
         "id": "knives",
-        "src": "http://localhost:60110/assets/games/knives.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/knives.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -56,7 +56,7 @@
       },
       {
         "id": "bomb",
-        "src": "http://localhost:60110/assets/games/bomb.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/bomb.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -69,7 +69,7 @@
       },
       {
         "id": "western",
-        "src": "http://localhost:60110/assets/games/western.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/western.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -82,7 +82,7 @@
       },
       {
         "id": "taprace",
-        "src": "http://localhost:60110/assets/games/taprace.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/taprace.webp?v=0.6-premium",
         "natural": [
           1200,
           1113
@@ -95,7 +95,7 @@
       },
       {
         "id": "punchmeter",
-        "src": "http://localhost:60110/assets/games/punchmeter.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/punchmeter.webp?v=0.6-premium",
         "natural": [
           1200,
           1139
@@ -108,7 +108,7 @@
       },
       {
         "id": "flappy",
-        "src": "http://localhost:60110/assets/games/flappy.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/flappy.webp?v=0.6-premium",
         "natural": [
           1200,
           800
@@ -121,7 +121,7 @@
       },
       {
         "id": "hungry",
-        "src": "http://localhost:60110/assets/games/hungry.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/hungry.webp?v=0.6-premium",
         "natural": [
           1200,
           1200
@@ -134,7 +134,7 @@
       },
       {
         "id": "snakelines",
-        "src": "http://localhost:60110/assets/games/snakelines.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/snakelines.webp?v=0.6-premium",
         "natural": [
           1200,
           1000
@@ -147,7 +147,7 @@
       },
       {
         "id": "carryball",
-        "src": "http://localhost:60110/assets/games/carryball.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/carryball.webp?v=0.6-premium",
         "natural": [
           1200,
           1000
@@ -160,7 +160,7 @@
       },
       {
         "id": "tanks",
-        "src": "http://localhost:60110/assets/games/tanks.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/tanks.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -173,7 +173,7 @@
       },
       {
         "id": "chaos",
-        "src": "http://localhost:60110/assets/games/chaos.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/chaos.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -186,7 +186,7 @@
       },
       {
         "id": "kart",
-        "src": "http://localhost:60110/assets/games/kart.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/kart.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -199,7 +199,7 @@
       },
       {
         "id": "monster",
-        "src": "http://localhost:60110/assets/games/monster.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/monster.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -212,7 +212,7 @@
       },
       {
         "id": "jenga",
-        "src": "http://localhost:60110/assets/games/jenga.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/jenga.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -225,7 +225,7 @@
       },
       {
         "id": "crane",
-        "src": "http://localhost:60110/assets/games/crane.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/crane.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -238,7 +238,7 @@
       },
       {
         "id": "western_duel",
-        "src": "http://localhost:60110/assets/games/western_duel.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/western_duel.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -251,7 +251,7 @@
       },
       {
         "id": "spy",
-        "src": "http://localhost:60110/assets/games/spy.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/spy.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -264,7 +264,7 @@
       },
       {
         "id": "millionaire",
-        "src": "http://localhost:60110/assets/games/millionaire.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/millionaire.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -277,7 +277,7 @@
       },
       {
         "id": "sinyakquiz",
-        "src": "http://localhost:60110/assets/games/sinyakquiz.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/sinyakquiz.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -290,7 +290,7 @@
       },
       {
         "id": "warsaw",
-        "src": "http://localhost:60110/assets/games/warsaw.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/warsaw.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -303,7 +303,7 @@
       },
       {
         "id": "crocodile",
-        "src": "http://localhost:60110/assets/games/crocodile.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/crocodile.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -316,7 +316,7 @@
       },
       {
         "id": "naval",
-        "src": "http://localhost:60110/assets/games/naval.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/naval.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -329,7 +329,7 @@
       },
       {
         "id": "drawguess",
-        "src": "http://localhost:60110/assets/games/drawguess.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/drawguess.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -354,7 +354,7 @@
     "cards": [
       {
         "id": "tankarena",
-        "src": "http://localhost:60110/assets/games/tankarena-hd.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/tankarena-hd.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -367,7 +367,7 @@
       },
       {
         "id": "push",
-        "src": "http://localhost:60110/assets/games/push.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/push.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -380,7 +380,7 @@
       },
       {
         "id": "shrink",
-        "src": "http://localhost:60110/assets/games/shrink.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/shrink.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -393,7 +393,7 @@
       },
       {
         "id": "knives",
-        "src": "http://localhost:60110/assets/games/knives.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/knives.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -406,7 +406,7 @@
       },
       {
         "id": "bomb",
-        "src": "http://localhost:60110/assets/games/bomb.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/bomb.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -419,7 +419,7 @@
       },
       {
         "id": "western",
-        "src": "http://localhost:60110/assets/games/western.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/western.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -432,7 +432,7 @@
       },
       {
         "id": "taprace",
-        "src": "http://localhost:60110/assets/games/taprace.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/taprace.webp?v=0.6-premium",
         "natural": [
           1200,
           1113
@@ -445,7 +445,7 @@
       },
       {
         "id": "punchmeter",
-        "src": "http://localhost:60110/assets/games/punchmeter.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/punchmeter.webp?v=0.6-premium",
         "natural": [
           1200,
           1139
@@ -458,7 +458,7 @@
       },
       {
         "id": "flappy",
-        "src": "http://localhost:60110/assets/games/flappy.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/flappy.webp?v=0.6-premium",
         "natural": [
           1200,
           800
@@ -471,7 +471,7 @@
       },
       {
         "id": "hungry",
-        "src": "http://localhost:60110/assets/games/hungry.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/hungry.webp?v=0.6-premium",
         "natural": [
           1200,
           1200
@@ -484,7 +484,7 @@
       },
       {
         "id": "snakelines",
-        "src": "http://localhost:60110/assets/games/snakelines.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/snakelines.webp?v=0.6-premium",
         "natural": [
           1200,
           1000
@@ -497,7 +497,7 @@
       },
       {
         "id": "carryball",
-        "src": "http://localhost:60110/assets/games/carryball.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/carryball.webp?v=0.6-premium",
         "natural": [
           1200,
           1000
@@ -510,7 +510,7 @@
       },
       {
         "id": "tanks",
-        "src": "http://localhost:60110/assets/games/tanks.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/tanks.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -523,7 +523,7 @@
       },
       {
         "id": "chaos",
-        "src": "http://localhost:60110/assets/games/chaos.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/chaos.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -536,7 +536,7 @@
       },
       {
         "id": "kart",
-        "src": "http://localhost:60110/assets/games/kart.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/kart.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -549,7 +549,7 @@
       },
       {
         "id": "monster",
-        "src": "http://localhost:60110/assets/games/monster.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/monster.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -562,7 +562,7 @@
       },
       {
         "id": "jenga",
-        "src": "http://localhost:60110/assets/games/jenga.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/jenga.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -575,7 +575,7 @@
       },
       {
         "id": "crane",
-        "src": "http://localhost:60110/assets/games/crane.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/crane.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -588,7 +588,7 @@
       },
       {
         "id": "western_duel",
-        "src": "http://localhost:60110/assets/games/western_duel.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/western_duel.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -601,7 +601,7 @@
       },
       {
         "id": "spy",
-        "src": "http://localhost:60110/assets/games/spy.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/spy.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -614,7 +614,7 @@
       },
       {
         "id": "millionaire",
-        "src": "http://localhost:60110/assets/games/millionaire.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/millionaire.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -627,7 +627,7 @@
       },
       {
         "id": "sinyakquiz",
-        "src": "http://localhost:60110/assets/games/sinyakquiz.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/sinyakquiz.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -640,7 +640,7 @@
       },
       {
         "id": "warsaw",
-        "src": "http://localhost:60110/assets/games/warsaw.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/warsaw.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -653,7 +653,7 @@
       },
       {
         "id": "crocodile",
-        "src": "http://localhost:60110/assets/games/crocodile.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/crocodile.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -666,7 +666,7 @@
       },
       {
         "id": "naval",
-        "src": "http://localhost:60110/assets/games/naval.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/naval.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -679,7 +679,7 @@
       },
       {
         "id": "drawguess",
-        "src": "http://localhost:60110/assets/games/drawguess.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/drawguess.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -704,7 +704,7 @@
     "cards": [
       {
         "id": "tankarena",
-        "src": "http://localhost:60110/assets/games/tankarena-hd.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/tankarena-hd.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -717,7 +717,7 @@
       },
       {
         "id": "push",
-        "src": "http://localhost:60110/assets/games/push.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/push.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -730,7 +730,7 @@
       },
       {
         "id": "shrink",
-        "src": "http://localhost:60110/assets/games/shrink.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/shrink.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -743,7 +743,7 @@
       },
       {
         "id": "knives",
-        "src": "http://localhost:60110/assets/games/knives.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/knives.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -756,7 +756,7 @@
       },
       {
         "id": "bomb",
-        "src": "http://localhost:60110/assets/games/bomb.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/bomb.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -769,7 +769,7 @@
       },
       {
         "id": "western",
-        "src": "http://localhost:60110/assets/games/western.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/western.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -782,7 +782,7 @@
       },
       {
         "id": "taprace",
-        "src": "http://localhost:60110/assets/games/taprace.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/taprace.webp?v=0.6-premium",
         "natural": [
           1200,
           1113
@@ -795,7 +795,7 @@
       },
       {
         "id": "punchmeter",
-        "src": "http://localhost:60110/assets/games/punchmeter.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/punchmeter.webp?v=0.6-premium",
         "natural": [
           1200,
           1139
@@ -808,7 +808,7 @@
       },
       {
         "id": "flappy",
-        "src": "http://localhost:60110/assets/games/flappy.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/flappy.webp?v=0.6-premium",
         "natural": [
           1200,
           800
@@ -821,7 +821,7 @@
       },
       {
         "id": "hungry",
-        "src": "http://localhost:60110/assets/games/hungry.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/hungry.webp?v=0.6-premium",
         "natural": [
           1200,
           1200
@@ -834,7 +834,7 @@
       },
       {
         "id": "snakelines",
-        "src": "http://localhost:60110/assets/games/snakelines.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/snakelines.webp?v=0.6-premium",
         "natural": [
           1200,
           1000
@@ -847,7 +847,7 @@
       },
       {
         "id": "carryball",
-        "src": "http://localhost:60110/assets/games/carryball.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/carryball.webp?v=0.6-premium",
         "natural": [
           1200,
           1000
@@ -860,7 +860,7 @@
       },
       {
         "id": "tanks",
-        "src": "http://localhost:60110/assets/games/tanks.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/tanks.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -873,7 +873,7 @@
       },
       {
         "id": "chaos",
-        "src": "http://localhost:60110/assets/games/chaos.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/chaos.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -886,7 +886,7 @@
       },
       {
         "id": "kart",
-        "src": "http://localhost:60110/assets/games/kart.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/kart.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -899,7 +899,7 @@
       },
       {
         "id": "monster",
-        "src": "http://localhost:60110/assets/games/monster.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/monster.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -912,7 +912,7 @@
       },
       {
         "id": "jenga",
-        "src": "http://localhost:60110/assets/games/jenga.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/jenga.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -925,7 +925,7 @@
       },
       {
         "id": "crane",
-        "src": "http://localhost:60110/assets/games/crane.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/crane.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -938,7 +938,7 @@
       },
       {
         "id": "western_duel",
-        "src": "http://localhost:60110/assets/games/western_duel.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/western_duel.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -951,7 +951,7 @@
       },
       {
         "id": "spy",
-        "src": "http://localhost:60110/assets/games/spy.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/spy.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -964,7 +964,7 @@
       },
       {
         "id": "millionaire",
-        "src": "http://localhost:60110/assets/games/millionaire.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/millionaire.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -977,7 +977,7 @@
       },
       {
         "id": "sinyakquiz",
-        "src": "http://localhost:60110/assets/games/sinyakquiz.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/sinyakquiz.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -990,7 +990,7 @@
       },
       {
         "id": "warsaw",
-        "src": "http://localhost:60110/assets/games/warsaw.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/warsaw.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -1003,7 +1003,7 @@
       },
       {
         "id": "crocodile",
-        "src": "http://localhost:60110/assets/games/crocodile.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/crocodile.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -1016,7 +1016,7 @@
       },
       {
         "id": "naval",
-        "src": "http://localhost:60110/assets/games/naval.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/naval.webp?v=0.6-premium",
         "natural": [
           1254,
           1254
@@ -1029,7 +1029,7 @@
       },
       {
         "id": "drawguess",
-        "src": "http://localhost:60110/assets/games/drawguess.webp?v=0.6-premium",
+        "src": "http://localhost:58546/assets/games/drawguess.webp?v=0.6-premium",
         "natural": [
           1254,
           1254

@@ -1,5 +1,7 @@
 (() => {
  'use strict';
+ // Keep a running host's cached catalog visually current without interrupting a match.
+ const menuPalette={"push":["#a96aff","#5ce9ef"],"shrink":["#31dfff","#9760ff"],"knives":["#ff5977","#41d7ef"],"bomb":["#ae54ff","#ff9f35"],"western":["#ffac43","#a75bff"],"tanks":["#b4ec35","#8c55ff"],"tankarena":["#b6fa32","#a45cff"],"chaos":["#9b58ff","#17cfff"],"kart":["#ff634b","#c0ef3a"],"monster":["#25d8e5","#aa65f6"],"spy":["#b56aff","#f5bf51"],"millionaire":["#ffc949","#33dfff"],"sinyakquiz":["#bcf735","#a663ff"],"warsaw":["#efbb60","#b0ec3b"],"crocodile":["#a8ec32","#a866ef"],"jenga":["#f4b24e","#a872f5"],"crane":["#ffcc36","#19cfe9"],"naval":["#28d7f0","#8c68ef"],"drawguess":["#9f63f5","#b5ed35"],"western_duel":["#b363f5","#ffc440"],"taprace":["#ffc04d","#be63f3"],"punchmeter":["#ff6589","#ae63f5"],"flappy":["#3adef5","#b259ff"],"hungry":["#b2ef39","#ffad3e"],"snakelines":["#b4ed3f","#a86bff"],"carryball":["#36dbe9","#a7e83d"]};
  const $=id=>document.getElementById(id),host=!!window.PARTY_HOST_KEY;
  let profile=null,state=null,ws,frameKey=null,replaced=false,editing=false,accepted=false,everAccepted=false,gameStatus='connecting',lastRanks='',freshIdentityPending=false,reconnectTimer,pongTimer,clockOffset=0,waitingKey='',catalogFilter='all';
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -19,7 +21,7 @@
    if(m.type==='test-profiles'&&host){testProfiles=m.profiles||[];updateTestCompanion();return;}
    if(m.type==='session-start'&&host&&m.instance===state?.active?.instance){$('gameFrame').contentWindow?.postMessage({type:'party-start',instance:m.instance},location.origin);return;}
    if(m.type==='game-ui'&&state?.active?.instance===m.instance){state.active.ui=m.ui;clockOffset=Date.now()-m.ui.serverNow;renderHUD();return;}
-   if(m.type==='state'){state=m;if(m.active?.ui?.serverNow)clockOffset=Date.now()-m.active.ui.serverNow;render();}
+   if(m.type==='state'){for(const g of m.catalog){const p=menuPalette[g.id];if(p){g.color=p[0];g.secondaryColor=p[1];}}state=m;if(m.active?.ui?.serverNow)clockOffset=Date.now()-m.active.ui.serverNow;render();}
    if(m.type==='host-ok'){accepted=everAccepted=true;render();}
    if(m.type==='joined'){freshIdentityPending=false;accepted=everAccepted=true;profile={id:m.id,token:m.token,name:m.name,hand:m.hand};window.PARTY_PROFILE=profile;persist();editing=false;render();}
    if(m.type==='error'){tell(m.message);if(!host&&!everAccepted){editing=true;render();}}
@@ -63,7 +65,7 @@
   const popular=Object.entries(state.gamePopularity||{}).filter(([id])=>featureCandidates.some(g=>g.id===id)).sort((a,b)=>b[1]-a[1]);
   const featured=popular[0]?.[1]>0?popular[0][0]:featureCandidates.find(g=>g.id==='tankarena')?.id||featureCandidates[0]?.id;
   [...state.catalog].sort((a,b)=>Number(b.id===featured)-Number(a.id===featured)).forEach((g)=>{const i=state.catalog.findIndex(x=>x.id===g.id);
-   const card=el('article','game');card.style.setProperty('--enter-delay',Math.min(i*35,120)+'ms');card.dataset.id=g.id;card.dataset.category=['chaos','jenga','crane','naval','millionaire','warsaw','sinyakquiz'].includes(g.id)?'logic':['monster','spy','crocodile','drawguess'].includes(g.id)?'party':'action';card.style.setProperty('--card',g.color);
+   const card=el('article','game');card.style.setProperty('--enter-delay',Math.min(i*35,120)+'ms');card.dataset.id=g.id;card.dataset.category=['chaos','jenga','crane','naval','millionaire','warsaw','sinyakquiz'].includes(g.id)?'logic':['monster','spy','crocodile','drawguess'].includes(g.id)?'party':'action';card.style.setProperty('--card',g.color);card.style.setProperty('--card-secondary',g.secondaryColor||g.color);
    const art=el('div','art'),artwork=el('img','symbol');artwork.src='/assets/games/'+(g.id==='tankarena'?'tankarena-hd':g.id)+'.webp?v=0.6-premium';artwork.alt='';artwork.loading=i<5?'eager':'lazy';artwork.draggable=false;art.append(el('span','tag',g.tag),artwork,el('span','number',String(i+1).padStart(2,'0')));if(g.id===featured){card.classList.add('featured');card.append(el('span','featured-label',popular[0]?.[1]>0?'↗ Чаще играем':'✳ Выбор вечера'));}
    const info=el('div','game-info');info.append(el('h3','',g.title),el('p','',g.description));
    const bottom=el('div','game-bottom'),rules=el('button','rules-link','Как играть'),start=el('button','start-game',host?'Играть ↗':'Управление ↗');start.type=rules.type='button';

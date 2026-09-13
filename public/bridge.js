@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  if(!document.documentElement.classList.contains('party-host'))return;
  const info=parent.PARTY_GAME_INFO;if(!info)return;
  document.documentElement.style.setProperty('--lobby-accent',info.color||'#c8f58b');
+ document.documentElement.style.setProperty('--lobby-secondary',info.secondaryColor||info.color||'#c8f58b');
  document.documentElement.style.setProperty('--lobby-art',`url("/assets/games/${info.id==='tankarena'?'tankarena-hd':info.id}.webp?v=0.6-premium")`);
  if(document.documentElement.dataset.partyGame==='western_duel'){
   const main=document.querySelector('main'),side=document.createElement('aside');side.className='lp-duel-sidebar';
