@@ -42,7 +42,7 @@ function curlingScore(stones) {
   const nearest=distances.map(a=>a[0]??Infinity);
   if(nearest[0]===nearest[1]||Math.abs(nearest[0]-nearest[1])<.005)return [0,0];
   const winner=nearest[0]<nearest[1]?0:1;
-  const score=[0,0];score[winner]=distances[winner].filter(d=>d<nearest[1]-.005).length;return score;
+  const score=[0,0];score[winner]=distances[winner].filter(d=>d<nearest[1-winner]-.005).length;return score;
 }
 function gesture(samples,width,height) {
   if(samples.length<2||width<=0||height<=0)return null;

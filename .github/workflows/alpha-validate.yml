@@ -7,7 +7,7 @@ permissions:
   contents: read
 concurrency:
   group: localparty-alpha
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   integrate:
     if: startsWith(github.event.head_commit.message, 'seed(afterparty):')
@@ -44,17 +44,23 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - name: Rules, physics, updater and original regression tests
+      - name: Rules, physics and updater tests
         run: |
           mkdir -p test-results/afterparty
           set -o pipefail
-          npm test 2>&1 | tee test-results/afterparty/npm-test.log
+          node --test tests/afterparty.test.js tests/afterparty-regression.test.js tests/updater.test.js 2>&1 | tee test-results/afterparty/afterparty-test.log
       - name: Install browser-test tools without changing lockfile
         run: |
           npm install --no-save --package-lock=false playwright@1.57.0
           npx playwright install --with-deps chromium
       - name: Four 3D games, mobile controls and managed lobby
         run: node tests/afterparty-browser.cjs
+      - name: Original game and launcher regression tests
+        if: always() && !cancelled()
+        run: |
+          mkdir -p test-results/afterparty
+          set -o pipefail
+          timeout --kill-after=5s 180s npm test 2>&1 | tee test-results/afterparty/npm-test.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
