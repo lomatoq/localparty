@@ -259,7 +259,7 @@ html body.in-game .session-controls{background:linear-gradient(to top,rgba(11,16
 }
 
 /* Give status words their own readable panel; balance against the wider right controls. */
-@media(max-width:850px){html body.in-game .app-header #hudTimer{left:calc(50% - 12px)!important;width:clamp(112px,calc(100vw - 208px),152px)!important;max-width:152px!important;padding-inline:10px!important}html body.in-game #sessionIdentity{max-width:calc((100vw - 160px)/2)!important}html body.in-game #hudTimer small,html body.in-game #hudTimer span{max-width:100%!important}}
+@media(max-width:850px){html body.in-game .app-header #hudTimer{left:50%!important;width:clamp(112px,calc(100vw - 208px),152px)!important;max-width:152px!important;padding-inline:10px!important}html body.in-game #sessionIdentity{max-width:calc((100vw - 160px)/2)!important}html body.in-game #hudTimer small,html body.in-game #hudTimer span{max-width:100%!important}}
 
 
 /* Soft reflected light inside the glass, with a quiet continuous outer edge. */
@@ -281,5 +281,14 @@ html body.in-game .session-controls{background:linear-gradient(to top,rgba(11,16
 @media(max-width:850px){:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .rules-link{width:32px!important;flex:0 0 32px!important;padding:0!important;font-size:0!important}:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .rules-link:before{content:"?";font-size:14px}:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .rules-link:after{display:none!important}:is(#games,#moreGames,#tableGames)>.game:not(.featured) .game-bottom .start-game{padding-inline:8px!important;font-size:11px!important}}
 
 /* Preserve Local casing, with PARTY uppercase. */
+@media(max-width:850px){
+ html body.in-game #sessionIdentity #headerGame{display:none!important}
+ html body.is-player.in-game #play{display:flex!important;flex-direction:column;overflow:hidden!important}
+ html body.is-player.in-game #gameObjective{position:relative!important;flex:0 0 auto;width:100%;padding:12px 16px!important}
+ html body #gameObjective .objective-title{display:block;font-size:clamp(20px,5.8vw,27px)!important;line-height:1.12;letter-spacing:-.035em;color:var(--game-title-accent,#baff36);margin:0 0 8px;overflow-wrap:anywhere;text-shadow:0 2px 16px color-mix(in srgb,var(--game-title-accent,#baff36) 18%,transparent)}
+ html body #gameObjective .objective-copy{font-size:12px!important;line-height:1.45;margin:0;color:#d3ddd8}
+ html body.is-player.in-game #gameFrame{position:relative!important;inset:auto!important;flex:1 1 0!important;height:0!important;min-height:0!important;width:100%;display:block}
+ html body.is-player.in-game #sessionControls{position:relative!important;inset:auto!important;flex:0 0 auto}
+}
 html body :is(#localparty-type-system,.app-header) .identity .brand{ text-transform:none!important }
 html body :is(#localparty-type-system,.app-header) .identity .brand span{ text-transform:uppercase!important }

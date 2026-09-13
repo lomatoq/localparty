@@ -584,3 +584,16 @@ html.party-player:is([data-party-phase=waiting],[data-party-phase=results],[data
 /* Touch controls must never select labels or drag artwork. */
 html.party-player body,html.party-player button,html.party-player [role=button],html.party-player canvas,html.party-player img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
 html.party-player input,html.party-player textarea,html.party-player [contenteditable=true]{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+/* Keep phone fleet controls inside their panel at narrow and short sizes. */
+@media(max-width:850px){
+ html.party-managed.party-player[data-party-game=naval] body main{padding:10px!important;min-height:0!important}
+ html.party-managed.party-player[data-party-game=naval] #battle{display:flex!important;flex-direction:column;gap:12px;min-width:0}
+ html.party-managed.party-player[data-party-game=naval] #battle>.quickrules{display:none!important}
+ html.party-managed.party-player[data-party-game=naval] #grid{width:100%!important;max-width:420px!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px!important;margin:0 auto!important}
+ html.party-managed.party-player[data-party-game=naval] #grid button{height:auto!important;min-width:0!important;min-height:0!important;aspect-ratio:1;padding:0!important;font-size:12px!important}
+ html.party-managed.party-player[data-party-game=naval] #own{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,124px);gap:12px!important;align-items:center;width:100%!important;padding:12px!important;margin:0!important;box-sizing:border-box}
+ html.party-managed.party-player[data-party-game=naval] #own h3{max-width:none!important;min-width:0;font-size:12px!important;line-height:1.4;margin:0!important}
+ html.party-managed.party-player[data-party-game=naval] #ownGrid{width:100%!important;min-width:0!important;max-width:124px!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px!important;margin:0!important}
+ html.party-managed.party-player[data-party-game=naval] #ownGrid span{min-width:0;aspect-ratio:1;font-size:10px!important}
+ html.party-managed.party-player[data-party-game=naval] #shot{font-size:14px!important;line-height:1.4;overflow-wrap:anywhere}
+}
