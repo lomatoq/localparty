@@ -65,6 +65,17 @@ async function main() {
     await host.goto(`${base}/host`);
     await host.locator('.game[data-id="bowling"]').waitFor();
     if (await host.locator('.game').count() !== 30) throw new Error('Catalog no longer has 30 games');
+    for (const width of [420, 700, 900, 1440]) {
+      await host.setViewportSize({ width, height: width === 420 ? 800 : 700 });
+      await sleep(120);
+      const mark = await host.locator('.brand-mark').boundingBox();
+      const identity = await host.locator('.app-header > .identity').boundingBox();
+      if (!mark || !identity || mark.x < identity.x || mark.x + mark.width > identity.x + identity.width + 1) {
+        throw new Error(`Lobby brand mark does not fit ${width}px: ${JSON.stringify({ mark, identity })}`);
+      }
+      await host.screenshot({ path: path.join(OUT, `brand-lobby-${width}.png`) });
+    }
+    await host.setViewportSize({ width: 1440, height: 1000 });
     const freshOrder = await host.locator('#freshTrack .game').evaluateAll(cards => cards.slice(0, 4).map(card => card.dataset.id));
     if (freshOrder.join(',') !== 'curling,bowling,swarm_gate,peek_shoot') throw new Error(`Wrong fresh order: ${freshOrder}`);
     await host.setViewportSize({ width: 1180, height: 700 });
@@ -131,8 +142,11 @@ async function main() {
           }));
           const heading = await frame.locator('.ss-heading').boundingBox();
           const title = await frame.locator('#ss-title').boundingBox();
-          if (shell.overflow || shell.playbar !== 'none' || !heading || !title || heading.x < 0 || heading.x + heading.width > width || title.height < 1) {
-            throw new Error(`Sports HUD does not fit ${width}px: ${JSON.stringify({ shell, heading, title })}`);
+          const mark = await host.locator('.brand-mark').boundingBox();
+          const identity = await host.locator('.app-header > .identity').boundingBox();
+          const timer = await host.locator('#hudTimer').boundingBox();
+          if (shell.overflow || shell.playbar !== 'none' || !heading || !title || !mark || !identity || !timer || heading.x < 0 || heading.x + heading.width > width || title.height < 1 || mark.x < identity.x || mark.x + mark.width > identity.x + identity.width + 1 || mark.x + mark.width > timer.x) {
+            throw new Error(`Sports HUD does not fit ${width}px: ${JSON.stringify({ shell, heading, title, mark, identity, timer })}`);
           }
           await host.screenshot({ path: path.join(OUT, `swarm_gate-${width}.png`) });
         }

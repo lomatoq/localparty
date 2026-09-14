@@ -343,8 +343,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "swarm-explosion-1": {
       "file": "sprites/swarm-explosion-1.webp",
@@ -354,8 +354,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "swarm-explosion-2": {
       "file": "sprites/swarm-explosion-2.webp",
@@ -365,8 +365,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "swarm-explosion-3": {
       "file": "sprites/swarm-explosion-3.webp",
@@ -376,8 +376,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "swarm-explosion-4": {
       "file": "sprites/swarm-explosion-4.webp",
@@ -387,8 +387,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "swarm-explosion-5": {
       "file": "sprites/swarm-explosion-5.webp",
@@ -398,8 +398,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "swarm-explosion-6": {
       "file": "sprites/swarm-explosion-6.webp",
@@ -409,8 +409,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "swarm-explosion-7": {
       "file": "sprites/swarm-explosion-7.webp",
@@ -420,8 +420,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "target-chicken": {
       "file": "sprites/target-chicken.webp",
@@ -574,8 +574,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "shot-violet": {
       "file": "sprites/shot-violet.webp",
@@ -585,8 +585,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "muzzle-a": {
       "file": "sprites/muzzle-a.webp",
@@ -596,8 +596,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "muzzle-b": {
       "file": "sprites/muzzle-b.webp",
@@ -607,8 +607,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "hit-a": {
       "file": "sprites/hit-a.webp",
@@ -618,8 +618,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "hit-b": {
       "file": "sprites/hit-b.webp",
@@ -629,8 +629,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "miss-a": {
       "file": "sprites/miss-a.webp",
@@ -640,8 +640,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "miss-b": {
       "file": "sprites/miss-b.webp",
@@ -651,8 +651,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-0": {
       "file": "sprites/gallery-death-0.webp",
@@ -662,8 +662,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-1": {
       "file": "sprites/gallery-death-1.webp",
@@ -673,8 +673,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-2": {
       "file": "sprites/gallery-death-2.webp",
@@ -684,8 +684,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-3": {
       "file": "sprites/gallery-death-3.webp",
@@ -695,8 +695,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-4": {
       "file": "sprites/gallery-death-4.webp",
@@ -706,8 +706,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-5": {
       "file": "sprites/gallery-death-5.webp",
@@ -717,8 +717,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-6": {
       "file": "sprites/gallery-death-6.webp",
@@ -728,8 +728,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     },
     "gallery-death-7": {
       "file": "sprites/gallery-death-7.webp",
@@ -739,8 +739,8 @@
         0.5,
         0.5
       ],
-      "width": 384,
-      "height": 512
+      "width": 432,
+      "height": 560
     }
   },
   "ground": {

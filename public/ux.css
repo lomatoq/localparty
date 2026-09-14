@@ -302,6 +302,23 @@ html body.in-game .app-header>nav:last-of-type{min-width:0!important;max-width:c
 html body.in-game .app-header>nav:last-of-type>button{flex:0 0 auto;white-space:nowrap}
 html body.in-game #sessionIdentity :is(b,small){display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
+/* The supplied brand mark stays crisp beside the lobby wordmark and the live session identity. */
+html body .app-header>.identity{display:flex;align-items:center;justify-self:start;width:fit-content!important;max-width:100%;gap:clamp(7px,1vw,13px)}
+html body .app-header .identity-copy{flex:1 1 auto;min-width:0}
+html body .app-header .brand-mark{display:block;flex:0 0 auto;width:clamp(43px,4vw,60px);height:auto;max-height:42px;object-fit:contain;object-position:center}
+@media(max-width:1150px){html body .app-header .brand-mark{width:42px;max-height:30px}}
+@media(max-width:850px){html body .app-header>.identity{gap:5px}html body .app-header .brand-mark{width:34px;max-height:24px}}
+@media(max-width:380px){html body .app-header .brand-mark{width:28px;max-height:20px}}
+
+@media(min-width:851px) and (max-width:1000px){
+ html body:not(.in-game) .app-header{grid-template-columns:minmax(205px,1fr) minmax(300px,auto) 146px!important;gap:6px!important}
+ html body:not(.in-game) .app-header>nav:last-of-type{gap:4px!important}
+ html body:not(.in-game) .app-header :is(#lp-updates,#showStats,#joinOpen){width:46px!important;min-width:46px!important;max-width:46px!important;padding:0!important;gap:0!important}
+ html body:not(.in-game) .app-header :is(#lp-updates>span,#lp-updates>small,#showStats .nav-label,#showStats #myRank,#joinOpen .nav-label){display:none!important}
+}
+@media(min-width:851px) and (max-width:1000px){html body.in-game .app-header>.identity{max-width:calc(50vw - 170px)!important}}
+@media(max-width:850px){html body.in-game .app-header>.identity{max-width:calc(50vw - 90px)!important}}
+
 /* Sports Siege already draws its own readable title card inside the game. */
 html body.is-host.in-game.game-owns-hud #play>.playbar{display:none!important}
 html body.is-host.in-game:is([data-game-id="bowling"],[data-game-id="curling"],[data-game-id="swarm_gate"],[data-game-id="peek_shoot"]) #gameFrame{width:100%!important;height:100%!important;flex:1 1 100%!important;inset:0!important}

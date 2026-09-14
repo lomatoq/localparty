@@ -64,22 +64,40 @@ const clamp = value => Math.max(0, Math.min(1, value));
 async function keyedPixels(input) {
   const pipeline = typeof input === 'string' ? sharp(input) : input.clone();
   const {data, info} = await pipeline.ensureAlpha().raw().toBuffer({resolveWithObject: true});
-  const samples = [
-    [1, 1], [info.width - 2, 1], [1, info.height - 2], [info.width - 2, info.height - 2],
-    [Math.floor(info.width / 2), 1], [Math.floor(info.width / 2), info.height - 2]
-  ].map(([x, y]) => {
+  const sampleAt = (x, y) => {
     const offset = (y * info.width + x) * 4;
     return [data[offset], data[offset + 1], data[offset + 2]];
-  });
+  };
+  const corners = [sampleAt(1, 1), sampleAt(info.width - 2, 1), sampleAt(1, info.height - 2), sampleAt(info.width - 2, info.height - 2)];
+  const samples = [...corners, sampleAt(Math.floor(info.width / 2), 1), sampleAt(Math.floor(info.width / 2), info.height - 2)];
 
   for (let offset = 0; offset < data.length; offset += 4) {
     const red = data[offset], green = data[offset + 1], blue = data[offset + 2];
-    let distance = Infinity;
+    const pixel = offset / 4, x = pixel % info.width, y = Math.floor(pixel / info.width), tx = x / Math.max(1, info.width - 1), ty = y / Math.max(1, info.height - 1);
+    const matte = [0, 1, 2].map(channel => {
+      const top = corners[0][channel] * (1 - tx) + corners[1][channel] * tx;
+      const bottom = corners[2][channel] * (1 - tx) + corners[3][channel] * tx;
+      return top * (1 - ty) + bottom * ty;
+    });
+    const mr = red - matte[0], mg = green - matte[1], mb = blue - matte[2];
+    let distance = Math.sqrt(mr * mr + mg * mg + mb * mb), chosenMatte = matte;
     for (const sample of samples) {
       const dr = red - sample[0], dg = green - sample[1], db = blue - sample[2];
-      distance = Math.min(distance, Math.sqrt(dr * dr + dg * dg + db * db));
+      const candidate = Math.sqrt(dr * dr + dg * dg + db * db);
+      if (candidate < distance) { distance = candidate; chosenMatte = sample; }
     }
     const coverage = clamp((distance - 14) / 58);
+    if (coverage <= 0.035) {
+      data[offset] = data[offset + 1] = data[offset + 2] = data[offset + 3] = 0;
+      continue;
+    }
+    // Recover the foreground color from antialiased source-over-matte pixels.
+    // This prevents the keyed hot-pink RGB from bleeding through WebGL filtering.
+    for (let channel = 0; channel < 3; channel++) {
+      data[offset + channel] = Math.round(Math.max(0, Math.min(255,
+        (data[offset + channel] - chosenMatte[channel] * (1 - coverage)) / coverage
+      )));
+    }
     data[offset + 3] = Math.round(data[offset + 3] * coverage);
   }
   return {data, info};
@@ -125,7 +143,7 @@ async function importSheet(sheet, manifest) {
     const bounds = sheet.preserveCell?{left:0,top:0,width:cell.info.width,height:cell.info.height}:alphaBounds(cell.data, cell.info.width, cell.info.height);
     if (!bounds) throw new Error(`${sheet.id} cell ${index} (${name}) is empty`);
     const destination = path.join(spriteDir, `${name}.webp`);
-    const transparentPadding = sheet.preserveCell ? 0 : 18;
+    const transparentPadding = sheet.preserveCell ? 24 : 18;
     let sprite = sharp(cell.data, {raw: cell.info}).extract(bounds);
     if (transparentPadding) sprite = sprite.extend({
       top: transparentPadding, right: transparentPadding, bottom: transparentPadding, left: transparentPadding,

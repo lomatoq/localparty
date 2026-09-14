@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
 import {PartyConnection} from './net.js';
-const $=id=>document.getElementById(id),mode=window.SS_CONFIG.mode,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;document.body.dataset.ssMode=mode;
+const $=id=>document.getElementById(id),mode=window.SS_CONFIG.mode,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,clamp=(value,min,max)=>Math.max(min,Math.min(max,value)),seededUnit=seed=>{const n=Math.sin(seed*12.9898+78.233)*43758.5453;return n-Math.floor(n);};document.body.dataset.ssMode=mode;
 const net=new PartyConnection(true);let state=null,lastEvent=0,lastTurn='',noticeUntil=0,uiCards=new Map(),view;
 const instructions={
   bowling:'На телефоне выбери позицию и подкрутку. Проведи пальцем вверх: направление и скорость свайпа задают бросок. Играем по очереди; страйки, спэры и бонусные броски считаются автоматически.',
@@ -142,15 +142,13 @@ class Stage {
     }
   }
   makePools(){
-    this.flashes=new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1,1),new THREE.MeshBasicMaterial({color:'#ffffff',toneMapped:false,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false}),180);this.flashes.count=0;this.flashes.frustumCulled=false;this.scene.add(this.flashes);
     this.particles=new THREE.InstancedMesh(new THREE.TetrahedronGeometry(1,0),new THREE.MeshBasicMaterial({color:'#ffffff',toneMapped:false,transparent:true,opacity:.82,blending:THREE.AdditiveBlending,depthWrite:false}),360);this.particles.count=0;this.particles.frustumCulled=false;this.scene.add(this.particles);
-    this.rings=new THREE.InstancedMesh(new THREE.RingGeometry(.82,1,36),new THREE.MeshBasicMaterial({color:'#ffffff',side:THREE.DoubleSide,toneMapped:false,transparent:true,opacity:.55,blending:THREE.AdditiveBlending,depthWrite:false}),32);this.rings.count=0;this.rings.frustumCulled=false;this.scene.add(this.rings);
     this.effects=[];
   }
   makeBots(){
     const geometry=new THREE.PlaneGeometry(1,1),names={termite:'swarm-termite',runner:'swarm-runner',tank:'swarm-tank',boss:'swarm-boss'};this.botSprites={};
     for(const [kind,name] of Object.entries(names)){
-      const material=new THREE.MeshBasicMaterial({map:this.assetTexture(name),transparent:true,alphaTest:.035,depthWrite:false,toneMapped:false,side:THREE.DoubleSide});
+      const material=new THREE.MeshBasicMaterial({map:this.assetTexture(name),transparent:true,alphaTest:.035,depthWrite:true,toneMapped:false,side:THREE.DoubleSide});
       const mesh=new THREE.InstancedMesh(geometry,material,300);mesh.count=0;mesh.frustumCulled=false;mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);mesh.renderOrder=2;this.botSprites[kind]=mesh;this.scene.add(mesh);
     }
   }
@@ -252,14 +250,18 @@ class Stage {
       const color=e.hit?(e.good===false?'#ff5e7a':'#ffe568'):p.color,trail=this.projectileTrail(color);trail.position.copy(from);trail.material.rotation=projectile.material.rotation;trail.visible=false;this.scene.add(trail);
       const muzzle=this.assetSprite('muzzle-a',2.3,3.05,{depthTest:false,renderOrder:12});muzzle.position.copy(from);this.scene.add(muzzle);
       const impactPrefix=mode==='swarm_gate'&&e.dead?'swarm-explosion':mode==='peek_shoot'&&e.hit?'gallery-death':e.hit?'hit':'miss';
-      const impactFrames=impactPrefix==='swarm-explosion'||impactPrefix==='gallery-death'?8:2,impact=this.assetSprite(`${impactPrefix}-${impactFrames===8?'0':'a'}`,mode==='swarm_gate'?3.2:3,mode==='swarm_gate'?4.25:4,{depthTest:false,renderOrder:14});impact.position.copy(to);impact.visible=false;this.scene.add(impact);
-      this.effects.push({kind:'beam',from,to,color,born:this.clock,life:.5,hit:e.hit,good:e.good,projectile,trail,muzzle,impact,impactPrefix,impactFrames});
-    }else if(e.kind==='pulse')this.effects.push({kind:'pulse',origin:new THREE.Vector3(e.x,.22,e.z),color:'#b9ff67',born:this.clock,life:.78});
+      const impactFrames=impactPrefix==='swarm-explosion'||impactPrefix==='gallery-death'?8:2,impactBase=mode==='swarm_gate'?[3.2,4.25]:[3,4],impact=this.assetSprite(`${impactPrefix}-${impactFrames===8?'0':'a'}`,...impactBase,{depthTest:false,renderOrder:14});impact.position.copy(to);impact.visible=false;
+      const seed=Number(e.id||0)+to.x*17.17+to.y*7.31+to.z*23.03,kindScale=mode==='swarm_gate'?({termite:.82,runner:.9,tank:1.08,boss:1.22}[e.targetKind]||.9):e.targetKind==='gold'?1.08:e.targetKind==='friendly'?.94:1;
+      impact.material.rotation=clamp((seededUnit(seed+1)-.5)*.86,-.4,.4);this.scene.add(impact);
+      this.effects.push({kind:'beam',from,to,color,born:this.clock,life:.5,hit:e.hit,good:e.good,projectile,trail,muzzle,impact,impactPrefix,impactFrames,impactBase,impactScale:clamp(kindScale*(.9+seededUnit(seed)*.2),.76,1.28)});
+    }else if(e.kind==='pulse'){
+      const pulseSprite=this.assetSprite('turret-selection',1,1,{depthTest:false,renderOrder:11});pulseSprite.position.set(e.x,.25,e.z);pulseSprite.material.color.set('#b9ff67');pulseSprite.visible=false;this.scene.add(pulseSprite);this.effects.push({kind:'pulse',pulseSprite,color:'#b9ff67',born:this.clock,life:.78});
+    }
     else if(e.kind==='roll'&&e.pins>=8&&!reduced)this.effects.push({kind:'celebrate',origin:new THREE.Vector3(0,.4,-10.5),color:e.pins===10?'#ffe568':'#c8ff73',born:this.clock,life:1.05});
-    if(this.effects.length>120){const removed=this.effects.splice(0,this.effects.length-120);for(const old of removed)for(const sprite of [old.projectile,old.trail,old.muzzle,old.impact])if(sprite){this.scene.remove(sprite);sprite.material.dispose();}}
+    if(this.effects.length>120){const removed=this.effects.splice(0,this.effects.length-120);for(const old of removed)for(const sprite of [old.projectile,old.trail,old.muzzle,old.impact,old.pulseSprite])if(sprite){this.scene.remove(sprite);sprite.material.dispose();}}
   }
   updateEffects(){
-    const alive=[];for(const e of this.effects){if(this.clock-e.born<e.life)alive.push(e);else for(const sprite of [e.projectile,e.trail,e.muzzle,e.impact])if(sprite){this.scene.remove(sprite);sprite.material.dispose();}}this.effects=alive;let flashes=0,particles=0,rings=0;
+    const alive=[];for(const e of this.effects){if(this.clock-e.born<e.life)alive.push(e);else for(const sprite of [e.projectile,e.trail,e.muzzle,e.impact,e.pulseSprite])if(sprite){this.scene.remove(sprite);sprite.material.dispose();}}this.effects=alive;let particles=0;
     for(const e of this.effects){const age=(this.clock-e.born)/e.life,color=new THREE.Color(e.color);
       if(e.kind==='beam'){
         const direction=e.to.clone().sub(e.from),length=direction.length(),travel=Math.min(1,age/.68),projectileFade=travel<.88?1:Math.max(0,(1-travel)/.12);direction.normalize();
@@ -267,12 +269,12 @@ class Stage {
         const trailLength=Math.min(mode==='peek_shoot'?2.2:2.8,length*travel,.8+length*(1-travel));e.trail.visible=travel>.025&&travel<.98;e.trail.position.copy(e.projectile.position).addScaledVector(direction,-trailLength*.46);e.trail.scale.set(mode==='peek_shoot'?.72:.52,trailLength,1);e.trail.material.opacity=projectileFade*(.6+.2*Math.sin(travel*Math.PI));
         const muzzleFrame=age<.13?'a':'b';e.muzzle.visible=age<.30;if(e.muzzle.userData.frame!==muzzleFrame){e.muzzle.userData.frame=muzzleFrame;e.muzzle.material.map=this.assetTexture(`muzzle-${muzzleFrame}`);e.muzzle.material.needsUpdate=true;}e.muzzle.material.opacity=Math.max(0,1-age/.30);
         const impactAge=Math.max(0,(travel-.72)/.28);e.impact.visible=travel>=.72;const frame=e.impactFrames===8?Math.min(7,Math.floor(impactAge*8)):(impactAge<.45?'a':'b'),frameName=`${e.impactPrefix}-${frame}`;
-        if(e.impact.userData.frame!==frameName){e.impact.userData.frame=frameName;e.impact.material.map=this.assetTexture(frameName);e.impact.material.needsUpdate=true;}e.impact.material.opacity=Math.min(1,(1-age)/.18);e.impact.scale.set(mode==='swarm_gate'?3.2:3,mode==='swarm_gate'?4.25:4,1).multiplyScalar(.82+impactAge*.22);
+        if(e.impact.userData.frame!==frameName){e.impact.userData.frame=frameName;e.impact.material.map=this.assetTexture(frameName);e.impact.material.needsUpdate=true;}e.impact.material.opacity=Math.min(1,(1-age)/.18);e.impact.scale.set(e.impactBase[0],e.impactBase[1],1).multiplyScalar(e.impactScale*(.82+impactAge*.22));
       }else if(e.kind==='pulse'){
-        const radius=.8+age*6.4;this.instance(this.rings,rings,e.origin.x,e.origin.y,e.origin.z,radius,radius,radius,-Math.PI/2,0,0);this.rings.setColorAt(rings++,color);for(let i=0;i<20&&particles<360;i++){const a=i/20*Math.PI*2,travel=radius*(.75+.25*Math.sin(i*7));this.instance(this.particles,particles,e.origin.x+Math.cos(a)*travel,e.origin.y+.12+Math.sin(age*Math.PI)*.8,e.origin.z+Math.sin(a)*travel,.08*(1-age),.22*(1-age),.08*(1-age),age*7,a,0);this.particles.setColorAt(particles++,color);}
+        const diameter=1.5+age*12.5;e.pulseSprite.visible=true;e.pulseSprite.scale.set(diameter,diameter,1);e.pulseSprite.material.opacity=Math.pow(1-age,1.35);e.pulseSprite.material.rotation=age*.32;
       }else if(e.kind==='celebrate')for(let i=0;i<28&&particles<360;i++){const a=i*2.399,spread=(.6+i%5*.32)*age,x=e.origin.x+Math.cos(a)*spread,y=e.origin.y+Math.sin(age*Math.PI)*(2+i%4*.45),z=e.origin.z+Math.sin(a)*spread;this.instance(this.particles,particles,x,y,z,.08,.22,.04,age*9,a,age*12);this.particles.setColorAt(particles++,new THREE.Color(i%3===0?'#ff6f91':i%3===1?'#66e7f0':e.color));}
     }
-    this.flashes.count=flashes;this.particles.count=particles;this.rings.count=rings;for(const mesh of [this.flashes,this.particles,this.rings]){mesh.instanceMatrix.needsUpdate=true;if(mesh.count)mesh.instanceColor.needsUpdate=true;}
+    this.particles.count=particles;this.particles.instanceMatrix.needsUpdate=true;if(particles)this.particles.instanceColor.needsUpdate=true;
   }
   resize(){const r=$('ss-scene').getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);if(this.software)this.renderer.setPixelRatio(Math.min(1,640/w));this.renderer.setSize(w,h,false);
     if(this.camera.isPerspectiveCamera)this.camera.aspect=w/h;
