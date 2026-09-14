@@ -1,0 +1,250 @@
+{
+  "version": 2,
+  "project": "LocalParty / Sports & Siege",
+  "status": "generated-packed-and-runtime-integrated",
+  "generation_policy": {
+    "generate_each_job_separately": true,
+    "visual_review_completed": true,
+    "runtime_integration_completed": true,
+    "final_atlas_is_packed_deterministically": true,
+    "source_background": "#FF00A8",
+    "background_contract": "One mathematically uniform solid #FF00A8 fill only: no gradient, texture, noise, vignette, reflected light or shadow in the key color.",
+    "runtime_background": "transparent",
+    "style": "LocalParty soft toy arcade, orthographic, broad upper-left light, simple silhouettes, low detail",
+    "readability_target_px": {
+      "min": 48,
+      "max": 120
+    },
+    "forbidden": [
+      "perspective mismatch",
+      "three-quarter product shot for rotating gameplay parts",
+      "tiny rivets",
+      "surface scratches",
+      "micro-panels",
+      "fine debris",
+      "dense sparks",
+      "texture noise",
+      "text",
+      "logos",
+      "watermark",
+      "cast shadow on chroma background"
+    ]
+  },
+  "runtime_cameras": {
+    "swarm_gate": {
+      "projection": "orthographic",
+      "position": [0, 30, 22],
+      "target": [0, 0, -8],
+      "world_forward": "-Z",
+      "gate_position": "z=0, across X",
+      "notes": "Fixed scenery uses the live 45-degree south-to-north view. Rotating units use exact 90-degree top-down source art."
+    },
+    "peek_shoot": {
+      "projection": "orthographic",
+      "position": [0, 0, 35],
+      "target": [0, 0, 0],
+      "notes": "All targets and obstacles use exact front view with no visible side or top face."
+    }
+  },
+  "jobs": [
+    {
+      "id": "swarm-enemies-topdown",
+      "purpose": "Rotating and translating enemy sprites",
+      "output": "swarm-enemies-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "padding": 24 },
+      "camera": { "projection": "orthographic", "pitch_deg": 90, "yaw_deg": 0, "roll_deg": 0 },
+      "orientation": "Every enemy faces the bottom edge. Pivot is exact cell center.",
+      "cells": [
+        { "index": 0, "key": "termite", "content": "small orange worker bug" },
+        { "index": 1, "key": "runner", "content": "fast yellow-violet winged bug" },
+        { "index": 2, "key": "tank", "content": "wide green-charcoal armored beetle" },
+        { "index": 3, "key": "boss", "content": "large dark-violet boss with red plates" },
+        { "index": 4, "key": "empty" },
+        { "index": 5, "key": "empty" },
+        { "index": 6, "key": "empty" },
+        { "index": 7, "key": "empty" }
+      ],
+      "runtime": { "rotate_in_code": true, "movement_trail_in_asset": false, "pivot": [0.5, 0.5] },
+      "prompt": "Create a 1536x1024 source atlas with a strict 4-column by 2-row grid, each cell 384x512, on perfectly uniform #FF00A8. CAMERA: exact 90-degree orthographic top-down, no perspective, no horizon. Every enemy faces the bottom edge and is centered on the exact cell center. First row: small orange worker bug; fast yellow-violet winged bug; heavy green-charcoal armored beetle; large dark-violet boss bug with two red armor plates. Leave the second row empty hot pink. Match the LocalParty soft-toy arcade style: broad upper-left light, large rounded silhouettes, at most four material regions, readable at 48 pixels. No cast shadows, trails, debris, micro-detail, text, UI, logos, or watermark."
+    },
+    {
+      "id": "swarm-turret-rig-topdown",
+      "purpose": "A fixed base plus independently rotating turret heads and projectiles",
+      "output": "swarm-turret-rig-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "padding": 24 },
+      "camera": { "projection": "orthographic", "pitch_deg": 90, "yaw_deg": 0, "roll_deg": 0 },
+      "orientation": "All barrels and projectile noses point exactly toward the top edge.",
+      "cells": [
+        { "index": 0, "key": "turret-base", "pivot": [0.5, 0.5], "content": "rotationally symmetric base only" },
+        { "index": 1, "key": "turret-head-short", "pivot": [0.5, 0.5], "muzzle": [0.5, 0.08] },
+        { "index": 2, "key": "turret-head-long", "pivot": [0.5, 0.5], "muzzle": [0.5, 0.06] },
+        { "index": 3, "key": "turret-head-pulse", "pivot": [0.5, 0.5], "muzzle": [0.5, 0.12] },
+        { "index": 4, "key": "shell-gold", "pivot": [0.5, 0.5] },
+        { "index": 5, "key": "bolt-violet", "pivot": [0.5, 0.5] },
+        { "index": 6, "key": "missile", "pivot": [0.5, 0.5] },
+        { "index": 7, "key": "selection-ring", "pivot": [0.5, 0.5] }
+      ],
+      "runtime": { "base_rotates": false, "head_rotates": true, "projectiles_rotate": true },
+      "prompt": "Create a 1536x1024 modular turret rig atlas in a strict 4x2 grid, 384x512 per cell, on perfectly uniform #FF00A8. CAMERA: exact 90-degree orthographic top-down for every part, no perspective and no visible side faces. Cell 1 rotationally symmetric turret base only; cells 2-4 separate rotating turret heads with short cannon, long cannon, and pulse emitter; every barrel points exactly upward and every rotation pivot is at cell center. Cells 5-7 contain a gold shell, violet bolt, and compact missile with noses pointing upward and no trails. Cell 8 contains a simple cyan selection ring. Use simple chunky LocalParty forms, broad lighting, and no cast shadow. Never combine the base and head. Never tilt a cannon toward the viewer. No detail smaller than 10 pixels, text, UI, logos, or watermark."
+    },
+    {
+      "id": "swarm-pedestals-topdown",
+      "purpose": "Fixed interchangeable tower bases beneath separately rotating turret heads",
+      "output": "swarm-pedestals-source.png",
+      "size": [1536, 1536],
+      "grid": { "columns": 2, "rows": 2, "cell": [768, 768], "padding": 110 },
+      "camera": { "projection": "orthographic", "pitch_deg": 90, "yaw_deg": 0, "roll_deg": 0 },
+      "orientation": "Exact top-down bases with identical centered circular mounting rings and outer dimensions.",
+      "cells": [
+        { "index": 0, "key": "turret-pedestal-stone", "content": "pale stone, purple inset, restrained gold" },
+        { "index": 1, "key": "turret-pedestal-blue", "content": "dark blue stone, cyan accent" },
+        { "index": 2, "key": "turret-pedestal-wood", "content": "reinforced wood and stone" },
+        { "index": 3, "key": "turret-pedestal-damaged", "content": "lightly damaged pale stone" }
+      ],
+      "runtime": { "rotates": false, "placed_on_ground_plane": true, "turret_head_is_separate": true, "pivot": [0.5, 0.5] },
+      "prompt": "Create a production-ready 1536x1536 2D sprite atlas for the LocalParty co-op defense minigame in a clean 2x2 grid on mathematically uniform #FF00A8. Keep at least 110 px empty margin around every sprite. CAMERA: exact 90-degree orthographic top-down, pitch 90, yaw 0, roll 0, no visible side faces and no three-quarter perspective. Draw four compact defensive turret bases with the same centered circular mounting ring and the same outer footprint: pale stone with purple and gold; dark blue stone with cyan; reinforced wood and stone; lightly damaged pale stone. The separate top-down cannon head must fit the ring at cell center and rotate without wobble. Low-detail mobile-game forms readable at 90-160 px. No cannon, projectile, character, gate, wall, banner, scenery, cast shadow, floating debris, text, grid lines, cropped object, or any background gradient."
+    },
+    {
+      "id": "swarm-wall-fixed-camera",
+      "purpose": "Fixed wall and gate modules at world z=0",
+      "output": "swarm-wall-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "padding": 24 },
+      "camera": { "projection": "orthographic", "pitch_deg": 45, "yaw_deg": 0, "roll_deg": 0, "position_relation": "directly south of wall" },
+      "orientation": "Wall axis is horizontal. Show front/south face and top cap only; no side face.",
+      "cells": [
+        { "index": 0, "key": "wall-straight" },
+        { "index": 1, "key": "gate-closed" },
+        { "index": 2, "key": "gate-damaged" },
+        { "index": 3, "key": "gate-destroyed" },
+        { "index": 4, "key": "wall-end-left" },
+        { "index": 5, "key": "wall-end-right" },
+        { "index": 6, "key": "damage-decal" },
+        { "index": 7, "key": "repair-decal" }
+      ],
+      "runtime": { "rotates": false, "shared_baseline": true, "horizontal_connection_edges": true },
+      "prompt": "Create a 1536x1024 fixed-scenery atlas in a strict 4x2 grid, 384x512 per cell, on perfectly uniform #FF00A8. CAMERA: orthographic, located directly south, looking north and downward at exactly 45 degrees, yaw 0. Horizontal world lines stay horizontal. Show the south/front face and top cap of each wall piece, never a left or right side face. Cells: straight wall with flat connection seams; closed centered gate; damaged gate with identical silhouette; destroyed gate with identical frame; left end tower; right end tower; flat damage decal; flat repair decal. All wall and gate variants share one baseline, width, and camera. Use broad low-detail masonry. No diagonal wall chunk, isometric corner, surrounding ground, rubble cloud, text, logos, or watermark."
+    },
+    {
+      "id": "swarm-ground-tile",
+      "purpose": "Texture mapped to the existing horizontal gameplay field",
+      "output": "swarm-ground-tile-source.png",
+      "size": [1024, 1024],
+      "grid": null,
+      "camera": { "projection": "orthographic texture", "pitch_deg": 90, "yaw_deg": 0, "roll_deg": 0 },
+      "runtime": { "wrap_s": "repeat", "wrap_t": "repeat", "contains_game_objects": false },
+      "prompt": "Create one seamless 1024x1024 top-down gameplay ground texture for the existing Swarm Gate plane. Exact 90-degree top-down texture view, no perspective and no horizon. Dark blue-gray fortress courtyard floor with broad stone slabs, low contrast, subtle wide seams, two or three faint worn patches, and restrained violet-blue variation. It must tile perfectly on all four edges. Keep the middle visually quiet for enemies, aim lines, projectiles, and UI. No sky, mountains, castle, wall, gate, turret, enemy, projectile, vignette, dramatic light beam, grass, debris, tiny cracks, high-frequency texture, text, logo, or watermark."
+    },
+    {
+      "id": "swarm-explosion-8f",
+      "purpose": "320 ms top-down hit/death animation",
+      "output": "swarm-explosion-8f-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "frame_order": "left-to-right then top-to-bottom" },
+      "camera": { "projection": "orthographic", "pitch_deg": 90, "yaw_deg": 0, "roll_deg": 0 },
+      "animation": { "frames": 8, "duration_ms": 320, "frame_ms": 40, "loop": false, "pivot": [0.5, 0.5] },
+      "derived_death_sheets": ["swarm-death-termite", "swarm-death-runner", "swarm-death-tank", "swarm-death-boss"],
+      "derived_contract": "Each class keeps its own cleaned top-down silhouette through the first frames, then yields to this centered burst. Build four separate transparent 4x2 sheets; never reuse a side-view pose.",
+      "frame_intent": ["ignition", "small star", "expanding disk", "six-lobe peak", "ring and four pieces", "contracting ring", "three embers", "nearly empty"],
+      "prompt": "Create a 1536x1024 eight-frame top-down VFX atlas in a strict 4x2 grid, 384x512 per frame, on perfectly uniform #FF00A8. Every frame has the same exact center and scale envelope. Sequence: tiny white-yellow ignition; small orange star; expanding orange disk; peak with six large lobes; peak ring and four large debris shapes; contracting ring; three fading embers; almost empty final frame. Adjacent frames must form one continuous 320 ms animation. Use only 5-10 large shapes per frame. No detailed smoke, random design changes, camera changes, dense particles, text, UI, logos, watermark, or debris crossing a cell boundary."
+    },
+    {
+      "id": "gallery-targets-front",
+      "purpose": "Targets rise vertically from behind fixed covers",
+      "output": "gallery-targets-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "padding": 24 },
+      "camera": { "projection": "orthographic", "pitch_deg": 0, "yaw_deg": 0, "roll_deg": 0 },
+      "orientation": "Exact front view, common bottom baseline, body centered.",
+      "cells": [
+        { "index": 0, "key": "chicken" },
+        { "index": 1, "key": "bug-bandit" },
+        { "index": 2, "key": "armored-target" },
+        { "index": 3, "key": "boss-chicken" },
+        { "index": 4, "key": "friendly-flag" },
+        { "index": 5, "key": "gold-bonus" },
+        { "index": 6, "key": "empty" },
+        { "index": 7, "key": "empty" }
+      ],
+      "runtime": { "rise_is_code_animation": true, "bob_is_code_animation": true, "pivot": [0.5, 0.5] },
+      "prompt": "Create a 1536x1024 shooting-gallery target atlas in a strict 4x2 grid, 384x512 per cell, on perfectly uniform #FF00A8. CAMERA: exact orthographic front view, pitch 0, yaw 0, roll 0. All characters face the viewer directly, share the same bottom baseline, and are centered. Cells: surprised white chicken; orange bug bandit; violet armored beetle target; boss chicken with two simple shoulder pads; friendly white chicken holding one plain white flag; gold bonus target; two empty cells. Use neutral standing poses because rise, bob, recoil, and death are animated by code. Use broad low-detail LocalParty forms readable at 64 pixels. No three-quarter pose, visible top surface, weapon, projectile, crosshair, action trail, cast shadow, text, UI, logos, or watermark."
+    },
+    {
+      "id": "gallery-covers-front",
+      "purpose": "Front-facing cover art aligned with rectangular hitboxes",
+      "output": "gallery-covers-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "padding": 24 },
+      "camera": { "projection": "orthographic", "pitch_deg": 0, "yaw_deg": 0, "roll_deg": 0 },
+      "orientation": "Exact front view, identical bottom baseline and usable width.",
+      "cells": [
+        { "index": 0, "key": "crate" },
+        { "index": 1, "key": "crate-cracked" },
+        { "index": 2, "key": "stone-cover" },
+        { "index": 3, "key": "metal-cover" },
+        { "index": 4, "key": "crate-break-a" },
+        { "index": 5, "key": "crate-break-b" },
+        { "index": 6, "key": "round-cover" },
+        { "index": 7, "key": "empty" }
+      ],
+      "runtime": { "rectangular_hitbox_alignment": true, "pivot": [0.5, 0.5] },
+      "prompt": "Create a production cover atlas in a strict 4x2 grid on perfectly uniform #FF00A8. CAMERA: exact orthographic front view with no top face and no side face. Every usable obstacle is a low wide barricade approximately 2.2:1 width-to-height, shares the same baseline, and aligns with the horizontal rectangular gameplay hitbox. Cells: intact wide wooden plank barricade; identical cracked version; low wide stone-block barricade; low wide violet metal barricade; destroyed wood frame A with 4-6 large pieces; frame B with the same pieces farther apart; low wide rounded metal barricade; empty cell. No square crate silhouette, perspective, isometric view, floor, cast shadow, fine fragments, text, UI, logos, or watermark."
+    },
+    {
+      "id": "gallery-shot-fx",
+      "purpose": "Rotatable screen-plane projectiles plus two-frame muzzle, hit, and miss effects",
+      "output": "gallery-shot-fx-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "frame_order": "left-to-right then top-to-bottom" },
+      "camera": { "projection": "orthographic screen plane", "pitch_deg": 0, "yaw_deg": 0, "roll_deg": 0 },
+      "cells": [
+        { "index": 0, "key": "shot-gold", "orientation": "nose up" },
+        { "index": 1, "key": "shot-violet", "orientation": "nose up" },
+        { "index": 2, "key": "muzzle-a" },
+        { "index": 3, "key": "muzzle-b" },
+        { "index": 4, "key": "hit-a" },
+        { "index": 5, "key": "hit-b" },
+        { "index": 6, "key": "miss-a" },
+        { "index": 7, "key": "miss-b" }
+      ],
+      "runtime": { "projectiles_rotate": true, "pairs_swap_frames": true, "preserve_full_cell": true, "pivot": [0.5, 0.5] },
+      "prompt": "Create a production 4x2 sprite atlas on perfectly uniform #FF00A8. All assets are flat orthographic screen-plane overlays with zero perspective. Top row: short gold energy bolt pointing exactly up; short violet plasma bolt pointing exactly up; small symmetric muzzle flash A; expanded muzzle flash B. Bottom row: small orange-white hit spark A; expanded hit spark B with five large rays; compact pale miss-puff A; expanded fading miss-puff B. Use low-detail purple, gold, orange and white arcade forms, exact effect centers, and generous clearance. No weapon, target, scenery, decorative debris, grid lines, text, shadows, or unrelated objects."
+    },
+    {
+      "id": "gallery-death-8f",
+      "purpose": "400 ms front-facing generic non-graphic target knockout overlay",
+      "output": "gallery-death-8f-source.png",
+      "size": [1536, 1024],
+      "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "frame_order": "left-to-right then top-to-bottom" },
+      "camera": { "projection": "orthographic", "pitch_deg": 0, "yaw_deg": 0, "roll_deg": 0 },
+      "animation": { "frames": 8, "duration_ms": 400, "frame_ms": 50, "loop": false, "pivot": [0.5, 0.5], "preserve_full_cell": true },
+      "frame_intent": ["tiny impact", "star and ring", "peak and four fragments", "expanding ring", "six large sparks", "smaller sparks", "three tiny sparks", "one faint spark"],
+      "prompt": "Create a 1536x1024 eight-frame generic shooting-gallery knockout VFX atlas in a strict 4x2 grid, 384x512 per frame, on perfectly uniform #FF00A8. CAMERA: exact orthographic front screen-plane view. All frames share the same center and scale envelope. Sequence: tiny impact star; larger star with tight purple ring; peak flash with five large rays and four fragments; expanding ring with the same fragments; ring breaks into six large sparks; smaller sparks farther apart; three tiny sparks; one faint central spark. The same overlay must work after any enemy sprite is hidden, so do not draw a character body. Continuous 400 ms timing, playful and non-graphic. No gore, smoke cloud, camera change, dense particles, text, UI, logos, watermark, or pieces crossing cells."
+    }
+  ],
+  "packing": {
+    "method": "deterministic script after visual approval",
+    "steps": [
+      "flood-fill the edge-connected #FF00A8 field, remove isolated key-color compression islands, and decontaminate antialiased edges",
+      "crop static cells to alpha bounds, then add transparent sampling padding; preserve the complete cell for timed VFX",
+      "store standalone lossless WebP sprites",
+      "write a transparent lossless WebP runtime atlas for every approved source sheet",
+      "write frame cells, source sizes, pivots, and camera contracts to manifest JSON",
+      "verify zero opaque pixels touch an atlas cell edge"
+    ],
+    "do_not": "Do not ask an image model to redraw an approved set as one final atlas."
+  },
+  "acceptance_checks": [
+    "Every rotating gameplay sprite is exact top-down.",
+    "Every gallery sprite is exact front view.",
+    "Wall modules share camera, baseline, width, and connection edges.",
+    "Every turret base and head uses the same exact top-down camera, center pivot, and mounting-ring footprint.",
+    "Turret base and head are separate and share the same pivot.",
+    "Animation frames preserve center, baseline, scale, and identity.",
+    "Ground texture tiles on all four edges and contains no game objects.",
+    "All assets remain readable at their minimum runtime size.",
+    "No silhouette or effect touches a cell boundary."
+  ]
+}

@@ -45,6 +45,10 @@ struct HostView: View {
     private var catalog: some View {
         ScrollView {
             VStack(alignment:.leading,spacing:20) {
+                HStack(spacing:10) {
+                    if let url=Bundle.main.url(forResource:"localparty-mark",withExtension:"png",subdirectory:"Server/public/assets/branding"),let mark=UIImage(contentsOfFile:url.path) {Image(uiImage:mark).resizable().scaledToFit().frame(width:42,height:42)}
+                    Text("LocalParty").font(.title2.bold())
+                }
                 incidentCard
                 if !model.enabled { Button {tab=1} label: {Label("Запустить вечер →",systemImage:"wifi").font(.headline).frame(maxWidth:.infinity).padding()}.buttonStyle(.borderedProminent).foregroundStyle(.black) }
                 if let active=model.active { activeCard(active) }
@@ -120,12 +124,12 @@ struct HostView: View {
                         Button("Обновить картинку на ТВ") {model.externalDisplayReload += 1}
                         Text("Чтобы отключиться, откройте Пункт управления → «Повтор экрана» → «Остановить повтор».").font(.footnote).foregroundStyle(.secondary)
                     } else {
-                        Text("1. Подключите iPhone и телевизор с AirPlay к одной сети Wi-Fi.\n2. Откройте Пункт управления → «Повтор экрана» и выберите телевизор.\n3. Вернитесь в Party 26. На ТВ появится игра, а на iPhone останется пульт.").font(.subheadline)
+                        Text("1. Подключите iPhone и телевизор с AirPlay к одной сети Wi-Fi.\n2. Откройте Пункт управления → «Повтор экрана» и выберите телевизор.\n3. Вернитесь в LocalParty. На ТВ появится игра, а на iPhone останется пульт.").font(.subheadline)
                         Text("Нужен значок двух перекрывающихся прямоугольников. AirPlay в музыкальном плеере подключает только звук.").font(.footnote).foregroundStyle(.secondary)
                         DisclosureGroup("Не вижу «Повтор экрана»") {
                             Text("В Пункте управления нажмите «+» → «Добавить элемент управления», найдите «Повтор экрана» и добавьте его. Затем нажмите на новый значок и выберите телевизор.").font(.footnote)
                         }
-                        Text("Браузер на телевизоре не нужен. Держите Party 26 открытым во время игры.").font(.footnote).foregroundStyle(.secondary)
+                        Text("Браузер на телевизоре не нужен. Держите LocalParty открытым во время игры.").font(.footnote).foregroundStyle(.secondary)
                     }
                     DisclosureGroup("Или через браузер телевизора") {
                         Text(model.tvAddress).font(.system(.body,design:.monospaced)).textSelection(.enabled)

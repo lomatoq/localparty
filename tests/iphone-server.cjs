@@ -7,7 +7,7 @@ async function manage(command){const r=await fetch(origin+'/api/manage',{method:
 async function connect(path='/lobby',cookie=''){const ws=new WebSocket(origin.replace('http','ws')+path,{headers:{Cookie:cookie,Origin:origin}});sockets.push(ws);ws.messages=[];ws.on('message',raw=>{const m=JSON.parse(raw);ws.messages.push(m);if(m.type==='state')ws.state=m;if(m.type==='joined')ws.profile=m;});await new Promise((res,rej)=>{ws.once('open',res);ws.once('error',rej)});return ws;}
 const send=(ws,m)=>ws.send(JSON.stringify(m));
 (async()=>{try{
- await until(async()=>{try{return (await manage()).catalog.length===26}catch{return false}},20000);
+ await until(async()=>{try{return (await manage()).catalog.length===require('../lib/catalog').length}catch{return false}},20000);
  await manage({type:'server-start'});
  assert.equal((await fetch(origin+'/api/manage')).status,403);
  assert.equal((await fetch(origin+'/host')).status,403);

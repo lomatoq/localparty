@@ -5,6 +5,7 @@
  const syncLobbyRail=()=>{document.documentElement.style.setProperty('--shared-rail-top',Math.max(170,Math.min(260,innerHeight*.21))+'px');};
  syncLobbyRail();window.addEventListener('resize',syncLobbyRail);
  const profile=window.PARTY_PROFILE=(window.parent!==window?window.parent.PARTY_PROFILE:null)||{};
+ window.PARTY_ROSTER=window.parent!==window&&Array.isArray(window.parent.PARTY_ROSTER)?window.parent.PARTY_ROSTER:[];
  const player=!!profile.id;
  const displayOnly=window.parent!==window&&window.parent.PARTY_DISPLAY_ONLY===true;
  if(displayOnly){document.documentElement.classList.add('party-display-only');const style=document.createElement('style');style.textContent='.party-display-only button:not(.party-display-answer),.party-display-only select,.party-display-only input,.party-display-only .party-select,.party-display-only [role=button]{display:none!important}';document.head.append(style);document.addEventListener('DOMContentLoaded',()=>{const keepAnswers=()=>document.querySelectorAll('#answers button,#hostAnswers button,#grid button').forEach(b=>b.classList.add('party-display-answer'));keepAnswers();new MutationObserver(keepAnswers).observe(document.body,{childList:true,subtree:true});});}
@@ -69,10 +70,10 @@
  function resume(){if(!player||Date.now()-lastResume<600)return;lastResume=Date.now();announce('connecting');for(const s of [...nativeConnections])if(s.readyState<2)s.close(1000,'resume');for(const s of ioConnections){s.disconnect();s.connect();}}
  document.addEventListener('visibilitychange',()=>{if(document.hidden)window.dispatchEvent(new Event('blur'));else resume();});
  window.addEventListener('pageshow',e=>{if(e.persisted)resume();});window.addEventListener('online',resume);
- function applyUI(ui){if(!ui)return;const root=document.documentElement,changed=root.dataset.partyPhase!==ui.phase;if(changed)root.dataset.partyPhase=ui.phase;if(ui.phase!=='paused')root.classList.toggle('party-session-active',['countdown','playing','reveal','results'].includes(ui.phase));window.PARTY_UI=ui;if(changed){if(ui.phase==='paused')window.dispatchEvent(new Event('blur'));root.classList.remove('party-phase-enter');requestAnimationFrame(()=>{root.classList.add('party-phase-enter');clearTimeout(applyUI.timer);applyUI.timer=setTimeout(()=>root.classList.remove('party-phase-enter'),260);});window.dispatchEvent(new CustomEvent('party-phase-change',{detail:ui}));}}
+ function applyUI(ui){if(!ui)return;const root=document.documentElement,previous=root.dataset.partyPhase,changed=previous!==ui.phase;if(changed)root.dataset.partyPhase=ui.phase;if(ui.phase!=='paused')root.classList.toggle('party-session-active',['countdown','playing','reveal','results'].includes(ui.phase));window.PARTY_UI=ui;if(changed){if(ui.phase==='paused')window.dispatchEvent(new Event('blur'));root.classList.remove('party-phase-enter');requestAnimationFrame(()=>{root.classList.add('party-phase-enter');clearTimeout(applyUI.timer);applyUI.timer=setTimeout(()=>root.classList.remove('party-phase-enter'),260);});window.dispatchEvent(new CustomEvent('party-phase-change',{detail:ui}));if(['reveal','results'].includes(ui.phase)&&!['reveal','results'].includes(previous))window.LocalPartyFeel?.emit('round-result',{id:`${window.parent.PARTY_INSTANCE||prefix}:${ui.phase}`,intensity:.42,shake:false,haptic:true});}}
  let startInstance='';
  function requestStart(instance){if(player||displayOnly||startInstance===instance)return;const id=prefix.split('/').at(-1),selectors={push:'button[data-mode="push"]',shrink:'button[data-mode="shrink"]',knives:'button[data-mode="knives"]',bomb:'button[data-mode="bomb"]',western:'button[data-mode="western"]',tanks:'button[data-mode="survival"]',kart:'#startBtn',spy:'#startBtn',monster:'#startGame'};let tries=0;const attempt=()=>{if(startInstance===instance)return;const b=document.querySelector(selectors[id]||'#start');if(document.readyState==='complete'&&b&&!b.disabled){startInstance=instance;b.click();return;}if(tries++<50)setTimeout(attempt,100);};attempt();}
- window.addEventListener('message',e=>{if(e.source!==window.parent||e.origin!==location.origin)return;if(e.data?.type==='party-resume')resume();if(e.data?.type==='party-release')window.dispatchEvent(new Event('blur'));if(e.data?.type==='party-ui')applyUI(e.data.ui);if(e.data?.type==='party-start')requestStart(e.data.instance);});
+ window.addEventListener('message',e=>{if(e.source!==window.parent||e.origin!==location.origin)return;if(e.data?.type==='party-resume')resume();if(e.data?.type==='party-release')window.dispatchEvent(new Event('blur'));if(e.data?.type==='party-ui'){window.PARTY_SESSION=e.data.session;window.PARTY_GAME=e.data.game;if(Array.isArray(e.data.roster))window.PARTY_ROSTER=e.data.roster;applyUI(e.data.ui);}if(e.data?.type==='party-start')requestStart(e.data.instance);});
  if(window.parent.PARTY_TEST_BOT){window.PARTY_TEST_CONNECTIONS={native:nativeConnections,io:ioConnections};document.addEventListener('DOMContentLoaded',()=>{const script=document.createElement('script');script.src='/test-bot.js';document.head.append(script);});}
 })();
 
@@ -162,7 +163,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   main.append(side);for(const element of main.querySelectorAll(':scope>#notice,:scope>.glass,:scope>#board,:scope>#start,:scope>details'))side.append(element);
  }
  const start=document.querySelector('#startGame,#startBtn,#start');
- const card=document.querySelector('#lobbyOverlay .left-panel,#lobbyOverlay .modes-card,.setup-card,.lobbyPanel,#lobbyStage') || (document.documentElement.dataset.partyGame==='crane'?document.querySelector('aside'):null) || start?.closest('aside,.panel,.card,section,main');
+ const gameId=document.documentElement.dataset.partyGame;
+ const card=(gameId==='chaos'?document.querySelector('#lobby>.panel'):null) || document.querySelector('#lobbyOverlay .left-panel,#lobbyOverlay .modes-card,.setup-card,.lobbyPanel,#lobbyStage') || (gameId==='crane'?document.querySelector('aside'):null) || start?.closest('aside,.panel,.card,section,main');
  if(!card)return;
  document.querySelectorAll('details').forEach(detail=>{if(/правила|как играть/i.test(detail.querySelector('summary')?.textContent||''))detail.hidden=true;});
  card.classList.add('lp-start-card');
@@ -171,7 +173,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  for(const value of [info.goal,info.controls,info.win]){if(!value)continue;const p=document.createElement('p');p.textContent=Array.isArray(value)?value.join(' · '):value;rules.append(p);}
  const heading=card.querySelector('h1,h2');
  let headingRow=heading;while(headingRow&&headingRow.parentElement!==card)headingRow=headingRow.parentElement;
- if(headingRow&&!card.classList.contains('lp-duel-sidebar'))headingRow.after(rules);else card.prepend(rules);
+ const rulesAnchor=gameId==='chaos'?document.querySelector('#lobbyStage .lobbyHead'):headingRow;
+ if(rulesAnchor&&!card.classList.contains('lp-duel-sidebar'))rulesAnchor.after(rules);else card.prepend(rules);
  if(document.documentElement.dataset.partyGame==='spy'&&start)card.append(start);
 });
 

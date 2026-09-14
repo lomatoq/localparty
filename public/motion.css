@@ -1,0 +1,107 @@
+/* LocalParty motion language: fast feedback, calm layout, one celebratory accent. */
+:root{
+ --motion-instant:90ms;
+ --motion-fast:150ms;
+ --motion-base:240ms;
+ --motion-slow:420ms;
+ --motion-stagger:42ms;
+ --motion-ease:cubic-bezier(.2,.78,.2,1);
+ --motion-ease-out:cubic-bezier(.16,1,.3,1);
+ --motion-ease-pop:cubic-bezier(.18,1.28,.35,1);
+ --motion-ease-in:cubic-bezier(.4,0,1,1)
+}
+
+/* Controls react immediately. Keep hit boxes and document flow untouched. */
+button,[role="button"],summary,.game,.filter-tab,.player,.stats-rank{
+ transition-property:transform,background-color,border-color,box-shadow,color,opacity,filter;
+ transition-duration:var(--motion-fast);
+ transition-timing-function:var(--motion-ease)
+}
+button:not(:disabled),[role="button"]:not([aria-disabled="true"]),summary{will-change:transform}
+button.party-pressed,[role="button"].party-pressed,button:active:not(:disabled),[role="button"]:active:not([aria-disabled="true"]){transform:scale(.965)}
+button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transition-duration:var(--motion-instant);outline-offset:4px}
+@media(hover:hover) and (pointer:fine){
+ button:hover:not(:disabled),[role="button"]:hover:not([aria-disabled="true"]){transform:translateY(-2px)}
+ button.party-pressed:hover,[role="button"].party-pressed:hover,button:active:hover:not(:disabled){transform:translateY(0) scale(.965)}
+ .game:hover{transform:translateY(-5px)}
+}
+
+/* Shell entrance: top information lands first, then the playable surface and rail. */
+.lp-motion-ready body.in-game .app-header{animation:lp-hud-top-in var(--motion-slow) var(--motion-ease-out) both}
+.lp-motion-ready body.in-game #hudTimer{animation:lp-hud-chip-in 480ms var(--motion-ease-pop) 70ms both}
+.lp-motion-ready body.in-game #play>.playbar{animation:lp-hud-card-in var(--motion-slow) var(--motion-ease-out) 80ms both}
+.lp-motion-ready body.in-game #sessionControls{animation:lp-hud-bottom-in var(--motion-slow) var(--motion-ease-out) 150ms both}
+.lp-motion-ready body.in-game #liveTop>*{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
+.lp-motion-ready body.in-game #liveTop>*:nth-child(2){animation-delay:var(--motion-stagger)}
+.lp-motion-ready body.in-game #liveTop>*:nth-child(3){animation-delay:calc(var(--motion-stagger) * 2)}
+
+/* Dynamic lobby rows use the same restrained reveal cadence. Existing hero/card
+   arrival animations remain authoritative and keep their tested endpoints. */
+.lp-motion-ready .player,.lp-motion-ready .room-player,.lp-motion-ready .stats-rank{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
+
+/* Popups appear from their visual anchor and never move surrounding content. */
+.lp-motion-ready dialog[open]{animation:lp-dialog-in var(--motion-base) var(--motion-ease-pop) both}
+.lp-motion-ready dialog[open]::backdrop{animation:lp-backdrop-in var(--motion-base) ease-out both}
+.lp-motion-ready #pauseOverlay:not([hidden]),.lp-motion-ready #waitingRules:not([hidden]){animation:lp-backdrop-in var(--motion-base) ease-out both}
+.lp-motion-ready #pauseOverlay:not([hidden])>div,.lp-motion-ready #waitingRules:not([hidden])>*{animation:lp-dialog-in var(--motion-slow) var(--motion-ease-pop) both}
+.lp-motion-ready #notice:not([hidden]),.lp-motion-ready #toast.show,.lp-motion-ready .toast.show,.lp-motion-ready .announcement:not(:empty){animation:lp-toast-in var(--motion-base) var(--motion-ease-pop) both}
+.lp-motion-ready .ss-announcement.show{animation:lp-toast-centered-in var(--motion-base) var(--motion-ease-pop) both}
+
+/* Connection status communicates recovery without making the whole header flash. */
+#connection,#gameConnection,#status[role="status"]{transition:color var(--motion-base) var(--motion-ease),background-color var(--motion-base) var(--motion-ease),opacity var(--motion-fast) linear}
+.lp-motion-ready #connection:not(.online),.lp-motion-ready #gameConnection:not(.ready){animation:lp-connection-breathe 1.8s ease-in-out infinite}
+.lp-motion-ready #connection.online,.lp-motion-ready #gameConnection.ready{animation:lp-online-settle var(--motion-slow) var(--motion-ease-pop) both}
+
+/* Meaningful phase and score updates receive one short emphasis from motion.js. */
+.lp-motion-pulse{animation:lp-value-pulse var(--motion-base) var(--motion-ease-pop) both!important}
+.lp-motion-status{animation:lp-status-swap var(--motion-base) var(--motion-ease-out) both!important}
+
+/* Shared game-host patterns. Controller gesture surfaces are intentionally excluded. */
+.lp-motion-ready body[data-ss-role="host"] .ss-host-top{animation:lp-hud-top-centered-in var(--motion-slow) var(--motion-ease-out) both}
+.lp-motion-ready body[data-role="host"] .stage>header,
+.lp-motion-ready body.host .arena-heading{
+ animation:lp-hud-top-in var(--motion-slow) var(--motion-ease-out) both
+}
+.lp-motion-ready .arcade-host>.score-panel{animation:lp-score-item-in var(--motion-base) var(--motion-ease-out) both}
+.lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
+.lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*:nth-child(2){animation-delay:var(--motion-stagger)}
+.lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*:nth-child(3){animation-delay:calc(var(--motion-stagger) * 2)}
+.lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*:nth-child(n+4){animation-delay:calc(var(--motion-stagger) * 3)}
+.lp-motion-ready body[data-ss-role="host"] .ss-overlay:not([hidden]),
+.lp-motion-ready .overlay:not(.hidden),
+.lp-motion-ready [id$="Overlay"]:not(.hidden):not([hidden]),
+.lp-motion-ready .panel[id$="Panel"]:not(.hidden):not([hidden]){animation:lp-backdrop-in var(--motion-base) ease-out both}
+.lp-motion-ready body[data-ss-role="host"] .ss-overlay:not([hidden]) .ss-sheet,
+.lp-motion-ready .overlay:not(.hidden) .result-card,
+.lp-motion-ready [id$="Overlay"]:not(.hidden):not([hidden])>.panel{animation:lp-dialog-in var(--motion-slow) var(--motion-ease-pop) both}
+.lp-motion-ready .party-screen .stage,.lp-motion-ready .party-screen .screen-sidebar{animation:lp-hud-card-in var(--motion-slow) var(--motion-ease-out) both}
+.lp-motion-ready .party-screen .screen-sidebar{animation-delay:var(--motion-stagger)}
+.lp-motion-ready .runner-row,.lp-motion-ready .stat{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
+
+@keyframes lp-hud-top-in{from{opacity:0;transform:translate3d(0,-22px,0)}70%{opacity:1;transform:translate3d(0,2px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes lp-hud-top-centered-in{from{opacity:0;transform:translate3d(-50%,-22px,0)}70%{opacity:1;transform:translate3d(-50%,2px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
+@keyframes lp-hud-chip-in{from{opacity:0;filter:brightness(.7)}72%{opacity:1;filter:brightness(1.12)}to{opacity:1;filter:none}}
+@keyframes lp-hud-card-in{from{opacity:0;transform:translate3d(0,-12px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes lp-hud-bottom-in{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes lp-card-in{from{opacity:0;transform:translate3d(0,16px,0) scale(.975)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes lp-stagger-item-in{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes lp-score-item-in{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes lp-dialog-in{from{opacity:0;transform:translate3d(0,16px,0) scale(.94)}72%{opacity:1;transform:translate3d(0,-2px,0) scale(1.012)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes lp-backdrop-in{from{opacity:0}to{opacity:1}}
+@keyframes lp-toast-in{from{opacity:0;filter:brightness(.8)}70%{opacity:1;filter:brightness(1.12)}to{opacity:1;filter:none}}
+@keyframes lp-toast-centered-in{from{opacity:0;transform:translate3d(-50%,12px,0) scale(.94)}70%{opacity:1;transform:translate3d(-50%,-2px,0) scale(1.015)}to{opacity:1;transform:translate3d(-50%,0,0) scale(1)}}
+@keyframes lp-value-pulse{from{opacity:.68;transform:translate3d(0,5px,0) scale(.9)}65%{opacity:1;transform:translate3d(0,-1px,0) scale(1.07)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes lp-status-swap{from{opacity:.35;transform:translate3d(0,5px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes lp-online-settle{from{filter:brightness(1.75);transform:scale(.96)}to{filter:none;transform:scale(1)}}
+@keyframes lp-connection-breathe{0%,100%{opacity:.58}50%{opacity:1}}
+
+/* Motion never changes controller geometry, hit areas, or safe-area layout. */
+@media(max-width:700px){
+ :root{--motion-slow:340ms;--motion-stagger:32ms}
+ .lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*,
+ .lp-motion-ready .arcade-host>.score-panel{animation-name:lp-score-item-in}
+}
+@media(prefers-reduced-motion:reduce){
+ :root{--motion-instant:0ms;--motion-fast:0ms;--motion-base:0ms;--motion-slow:0ms;--motion-stagger:0ms}
+ *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}

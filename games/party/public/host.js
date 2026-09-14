@@ -93,7 +93,8 @@ function wheelTexture(d){
   wheelCache=off;return off;
 }
 const ninjaThrows=new Map();let ninjaRound=-1;
-function drawNinja(p,x,y,a,age){const art=window.PartyArt,body=art?.sprite('ninja-body-v1',p.color),arm=art?.sprite('ninja-arm-v1',p.color),h=80,bw=h*(body?.w||684)/(body?.h||1005),aw=h*.47,ah=aw*(arm?.h||153)/(arm?.w||463),flip=Math.cos(a)>0?-1:1,target=Math.atan2(-Math.sin(a),flip*-Math.cos(a)),active=age>=0&&age<260,wind=active?(age<35?-.8*(1-age/35):age<95?.17*Math.sin((age-35)/60*Math.PI):.25*(age-95)/165):.25,angle=target+wind,sx=-.185*bw,sy=35-h*.55;ctx.save();ctx.scale(flip,1);art?.draw(ctx,'ninja-body-v1',0,35,bw,h,{color:p.color,pivot:{x:.5,y:1}});ctx.translate(sx,sy);ctx.rotate(angle);art?.draw(ctx,'ninja-arm-v1',0,0,aw,ah,{color:p.color,pivot:{x:.08,y:.5}});if(p.knivesRemaining>0&&!active||active&&age<35)drawKnifeShape(aw*.82,0,0,p.color,.75);ctx.restore();return{x:x+flip*(sx+Math.cos(angle)*aw*.82),y:y+sy+Math.sin(angle)*aw*.82,age};}
+function ninjaRenderHeight(count){return count<=4?128:count<=8?108:96;}
+function drawNinja(p,x,y,a,age,height){const art=window.PartyArt,body=art?.sprite('ninja-body-v1',p.color),arm=art?.sprite('ninja-arm-v1',p.color),h=Math.round(height),bw=Math.round(h*(body?.w||684)/(body?.h||1005)),aw=Math.round(h*.47),ah=Math.round(aw*(arm?.h||153)/(arm?.w||463)),flip=Math.cos(a)>0?-1:1,target=Math.atan2(-Math.sin(a),flip*-Math.cos(a)),active=age>=0&&age<260,wind=active?(age<35?-.8*(1-age/35):age<95?.17*Math.sin((age-35)/60*Math.PI):.25*(age-95)/165):.25,angle=target+wind,sx=-.185*bw,sy=35-h*.55;ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.scale(flip,1);art?.draw(ctx,'ninja-body-v1',0,35,bw,h,{color:p.color,pivot:{x:.5,y:1}});ctx.translate(sx,sy);ctx.rotate(angle);art?.draw(ctx,'ninja-arm-v1',0,0,aw,ah,{color:p.color,pivot:{x:.08,y:.5}});if(p.knivesRemaining>0&&!active||active&&age<35)drawKnifeShape(aw*.82,0,0,p.color,.82);ctx.restore();return{x:x+flip*(sx+Math.cos(angle)*aw*.82),y:y+sy+Math.sin(angle)*aw*.82,age};}
 function drawKnives(s){
   ctx.save();ctx.translate(640,360);ctx.scale(.88,.88);ctx.translate(-640,-360);
   const d=s.drum,c=s.center;if(ninjaRound!==s.game.round){ninjaThrows.clear();ninjaRound=s.game.round;}const hands=new Map();
@@ -101,14 +102,14 @@ function drawKnives(s){
   ctx.save();ctx.translate(c.x,c.y);ctx.fillStyle='#0006';ctx.beginPath();ctx.ellipse(0,15,d.radius+21,d.radius+21,0,0,Math.PI*2);ctx.fill();ctx.rotate(d.angle);ctx.drawImage(wheelTexture(d),-256,-256,512,512);
   for(const k of d.stuck){const a=k.localAngle;drawKnifeShape(Math.cos(a)*(d.radius+16),Math.sin(a)*(d.radius+16),a+Math.PI,k.color,1.2);}ctx.restore();
   ctx.save();ctx.beginPath();ctx.arc(c.x,c.y,d.radius+10,0,Math.PI*2);ctx.clip();const keyLight=ctx.createLinearGradient(c.x-180,c.y-210,c.x+160,c.y+210);keyLight.addColorStop(0,'#d7faff55');keyLight.addColorStop(.38,'#c4e6ff0c');keyLight.addColorStop(.72,'#020c1d24');keyLight.addColorStop(1,'#01081760');ctx.fillStyle=keyLight;ctx.fillRect(c.x-250,c.y-250,500,500);ctx.strokeStyle='#ddffffa0';ctx.shadowColor='#8edfff';ctx.shadowBlur=12;ctx.lineWidth=3;ctx.beginPath();ctx.arc(c.x,c.y,d.radius+4,Math.PI*1.05,Math.PI*1.65);ctx.stroke();ctx.restore();
-  const count=s.players.filter(p=>p.active).length;
+  const count=s.players.filter(p=>p.active).length,ninjaHeight=ninjaRenderHeight(count);
   for(const p of s.players){
-    if(!p.active)continue;const a=p.launcherAngle,x=c.x+Math.cos(a)*332,y=c.y+Math.sin(a)*332;
-    ctx.save();ctx.translate(x,y);ctx.fillStyle='#0006';ctx.beginPath();ctx.ellipse(0,25,24,8,0,0,Math.PI*2);ctx.fill();
-    let event=ninjaThrows.get(p.id);if(!event){event={remaining:p.knivesRemaining,time:-Infinity};ninjaThrows.set(p.id,event);}if(p.knivesRemaining<event.remaining){event.time=s.visualTime;}event.remaining=p.knivesRemaining;hands.set(p.id,drawNinja(p,x,y,a,s.visualTime-event.time));
-    const labelSide=Math.abs(Math.sin(a))>.8,dx=labelSide?40:0,dy=labelSide?-8:(Math.sin(a)<0?-47:46);
-    ctx.textAlign=labelSide?'left':'center';ctx.fillStyle='#fff';ctx.font='italic 800 12px PartyRubik, Rubik, system-ui';ctx.fillText(p.name,dx,dy,count>8?83:125);
-    ctx.fillStyle=p.color;ctx.font='italic 800 11px PartyRubik, Rubik, system-ui';ctx.fillText(`${p.knivesRemaining} НОЖЕЙ`,dx,dy+17,90);ctx.restore();
+    if(!p.active)continue;const a=p.launcherAngle,launcherRadius=332-Math.max(0,-Math.sin(a))*(ninjaHeight-68),x=c.x+Math.cos(a)*launcherRadius,y=c.y+Math.sin(a)*launcherRadius;
+    ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.fillStyle='#0006';ctx.beginPath();ctx.ellipse(0,28,Math.round(ninjaHeight*.31),Math.max(8,Math.round(ninjaHeight*.09)),0,0,Math.PI*2);ctx.fill();
+    let event=ninjaThrows.get(p.id);if(!event){event={remaining:p.knivesRemaining,time:-Infinity};ninjaThrows.set(p.id,event);}if(p.knivesRemaining<event.remaining){event.time=s.visualTime;}event.remaining=p.knivesRemaining;hands.set(p.id,drawNinja(p,x,y,a,s.visualTime-event.time,ninjaHeight));
+    const labelSide=Math.abs(Math.sin(a))>.8,dx=labelSide?Math.round(ninjaHeight*.42):0,dy=labelSide?-8:(Math.sin(a)<0?-Math.round(ninjaHeight*.58):Math.round(ninjaHeight*.53));
+    ctx.textAlign=labelSide?'left':'center';ctx.fillStyle='#fff';ctx.font=`italic 800 ${count>8?12:14}px PartyRubik, Rubik, system-ui`;ctx.fillText(p.name,dx,dy,count>8?83:135);
+    ctx.fillStyle=p.color;ctx.font=`italic 800 ${count>8?10:12}px PartyRubik, Rubik, system-ui`;ctx.fillText(`${p.knivesRemaining} НОЖЕЙ`,dx,dy+(count>8?15:18),95);ctx.restore();
   }
   for(const original of s.flying){const hand=hands.get(original.ownerId);if(hand&&hand.age<35)continue;const q=hand?Math.min(1,Math.max(0,(hand.age-35)/65)):1,k=hand?{...original,x:hand.x+(original.x-hand.x)*q,y:hand.y+(original.y-hand.y)*q}:original;ctx.save();ctx.strokeStyle=k.color+'80';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(k.x-Math.cos(k.angle)*26,k.y-Math.sin(k.angle)*26);ctx.lineTo(k.x,k.y);ctx.stroke();ctx.restore();drawKnifeShape(k.x,k.y,k.angle,k.color,1.35);}
   drawVisualEvents(s);ctx.restore();
@@ -171,12 +172,20 @@ function drawScore(s){
   if(window.parent!==window)return;
   if(!s.game.mode||s.game.status==='lobby')return;const ps=sortPlayers(s.players,s.game.mode).slice(0,10);let y=96;ctx.textAlign='left';for(const p of ps){ctx.fillStyle='#0a1019cc';roundRect(22,y,245,34,11);ctx.fill();ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(39,y+17,6,0,Math.PI*2);ctx.fill();ctx.fillStyle='#edf2f8';ctx.font='italic 800 12px PartyRubik, Rubik, system-ui';ctx.fillText(p.name,52,y+21,135);ctx.textAlign='right';ctx.font='italic 800 12px PartyRubik, Rubik, system-ui';let txt=s.game.mode==='knives'?String(p.totalScore):s.game.mode==='western'?(p.bestReactionMs==null?`${p.roundWins} W`:`${p.roundWins} W · ${p.bestReactionMs}ms`):`${p.roundWins} W`;ctx.fillText(txt,254,y+21);ctx.textAlign='left';y+=40;}
 }
+const feltVisualEvents=new Set();
+function emitReliableFeelEvents(s){
+  for(const e of (s.visualEvents||[])){
+    if(feltVisualEvents.has(e.id))continue;feltVisualEvents.add(e.id);if(feltVisualEvents.size>64)feltVisualEvents.delete(feltVisualEvents.values().next().value);
+    const type=e.kind==='rim-out'?'out-of-bounds':e.kind==='bomb-explode'?'explosion':e.kind==='knife-hit'?'hit':'collision';
+    window.LocalPartyFeel?.emit(type,{id:`party:${e.id}`,x:e.x/1280,y:e.y/720,color:e.color,intensity:e.kind==='bomb-explode'?.9:e.kind==='rim-out'?.72:.46,shake:e.kind!=='bomb-pass'});
+  }
+}
 function render(){
   westernViewWidth=(chosenMode||state?.game.mode)==='western'?Math.max(1280,720*canvas.clientWidth/Math.max(1,canvas.clientHeight)):1280;window.PartyArt?.beginFrame(ctx,westernViewWidth,720);ctx.save();if(state?.game.mode==='western')ctx.translate((westernViewWidth-1280)/2,0);
   ctx.textBaseline='alphabetic';
   const view=visualClock.sample(performance.now())||state;
   if(!state||state.game.mode!=='western')bg();
-  if(view){if((view.game.mode==='push'||view.game.mode==='shrink'))drawPush(view);else if(view.game.mode==='knives')drawKnives(view);else if(view.game.mode==='bomb'){drawBomb(view);drawVisualEvents(view);}else if(view.game.mode==='western')drawWestern(view);drawScore(view);drawCenterText(view);}ctx.restore();requestAnimationFrame(render);
+  if(view){emitReliableFeelEvents(view);if((view.game.mode==='push'||view.game.mode==='shrink'))drawPush(view);else if(view.game.mode==='knives')drawKnives(view);else if(view.game.mode==='bomb'){drawBomb(view);drawVisualEvents(view);}else if(view.game.mode==='western')drawWestern(view);drawScore(view);drawCenterText(view);}ctx.restore();requestAnimationFrame(render);
 }
 render();
 

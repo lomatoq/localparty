@@ -2,7 +2,7 @@
 const $=id=>document.getElementById(id);let ws,state,key='',reconnect,offset=0,selected='',lastPlayers='';
 window.PARTY_PROFILE={};window.PARTY_DISPLAY_ONLY=true;
 const tell=message=>{$('notice').textContent=message;$('notice').hidden=false;clearTimeout(tell.timer);tell.timer=setTimeout(()=>$('notice').hidden=true,6000);};
-const art=id=>'/assets/games/'+(id==='tankarena'?'tankarena-hd':id)+'.webp';
+const art=id=>'/assets/games/'+(state?.catalog.find(g=>g.id===id)?.artwork||((id==='tankarena'?'tankarena-hd':id)+'.webp'));
 const text=(id,value)=>{const node=$(id);value=String(value);if(node.textContent!==value)node.textContent=value;};
 let lastHUD='',lastMessage='';
 function clock(){if(!state?.active)return;const {ui,session}=state.active;
@@ -10,15 +10,16 @@ function clock(){if(!state?.active)return;const {ui,session}=state.active;
  text('timer',seconds===null?'':Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0'));
 }
 function hud(force=false){if(!state?.active)return;const {ui,session}=state.active;const game=state.catalog.find(g=>g.id===state.active.id);window.PARTY_UI=ui;window.PARTY_SESSION=session;window.PARTY_GAME=game;
- const message={type:'party-ui',ui,session,game,host:true},messageKey=JSON.stringify(message);
+ window.PARTY_ROSTER=state.players;
+ const message={roster:state.players,type:'party-ui',ui,session,game,host:true},messageKey=JSON.stringify(message);
  if(force||messageKey!==lastMessage){lastMessage=messageKey;$('gameFrame').contentWindow?.postMessage(message,location.origin);}
  clock();
  const key=JSON.stringify([state.active.instance,ui?.phase,session,state.active.startError,state.players.length]);
  if(!force&&key===lastHUD)return;lastHUD=key;
- const systemPause=session?.pauseReason==='host-background';text('pauseTitle',systemPause?'Ждём iPhone-сервер':'Пауза');text('pauseHint',systemPause?'Откройте Party 26 на iPhone-сервере. Игра продолжится автоматически.':'Ведущий или игрок может продолжить игру с телефона.');$('paused').hidden=!session?.paused;text('phase',session?.paused?'Пауза':({waiting:'Ждём готовности игроков',playing:'Играем',countdown:'На старт',results:'Результаты',reveal:'Итоги хода'}[ui?.phase]||''));
+ const systemPause=session?.pauseReason==='host-background';text('pauseTitle',systemPause?'Ждём iPhone-сервер':'Пауза');text('pauseHint',systemPause?'Откройте LocalParty на iPhone-сервере. Игра продолжится автоматически.':'Ведущий или игрок может продолжить игру с телефона.');$('paused').hidden=!session?.paused;text('phase',session?.paused?'Пауза':({waiting:'Ждём готовности игроков',playing:'Играем',countdown:'На старт',results:'Результаты',reveal:'Итоги хода'}[ui?.phase]||''));
  $('waiting').hidden=ui?.phase!=='waiting';text('waitingTitle',state.active.startError?'Нужен iPhone ведущего':'Готовимся к игре');text('waitingHint',state.active.startError||'Нажмите «Я готов» на своём телефоне');text('readyCount',(session?.readyIds?.length||0)+' / '+state.players.length+' готовы');
 }
-function render(){if(!state)return;const banner=$('incident');banner.hidden=!state.incident;banner.textContent=state.incident?.message||'';const tallies=new Map();for(const v of state.votes||[])tallies.set(v.gameId,(tallies.get(v.gameId)||0)+1);$('votes').textContent=[...tallies].sort((a,b)=>b[1]-a[1]).slice(0,3).map(([id,n])=>(state.catalog.find(g=>g.id===id)?.title||id)+' · '+n).join('     ');const game=state.catalog.find(g=>g.id===state.active?.id);$('play').hidden=!game;$('lobby').hidden=!!game;
+function render(){if(!state)return;const banner=$('incident');banner.hidden=!state.incident;banner.textContent=state.incident?.message||'';const tallies=new Map();for(const v of state.votes||[])tallies.set(v.gameId,(tallies.get(v.gameId)||0)+1);$('votes').textContent=[...tallies].sort((a,b)=>b[1]-a[1]).slice(0,3).map(([id,n])=>(state.catalog.find(g=>g.id===id)?.title||id)+' · '+n).join('     ');const game=state.catalog.find(g=>g.id===state.active?.id);document.body.classList.toggle('game-owns-hud',game?.engine==='sports_siege');$('play').hidden=!game;$('lobby').hidden=!!game;
 if(game){const next=state.active.instance;if(key!==next){fitScreen();key=next;window.PARTY_INSTANCE=key;$('gameFrame').src='/games/'+game.id+game.host;}$('gameTitle').textContent=game.title;$('gamePlayers').textContent=state.players.length+' в игре';hud();}
 else if(key){key='';window.PARTY_INSTANCE=null;$('gameFrame').src='about:blank';}
 const choice=state.catalog.find(g=>g.id===state.selected);if(selected!==(choice?.id||'-')){selected=choice?.id||'-';$('preview').hidden=!choice;$('title').textContent=choice?.title||'Собираемся. Играем вместе.';$('description').textContent=choice?.goal||'Выбирайте игру в приложении iPhone. Остальные подключаются по QR-коду.';if(choice){$('cover').src=art(choice.id);$('controls').textContent=choice.controls;$('playersNeeded').textContent=choice.min+'–'+choice.max+' игроков';}const games=choice?[choice,...state.catalog.filter(g=>g.id!==choice.id)]:state.catalog;const tiles=games.slice(0,8).map(g=>{const tile=document.createElement('div');tile.className='tile'+(g.id===choice?.id?' selected':'');const img=new Image();img.src=art(g.id);img.alt='';const name=document.createElement('span');name.textContent=g.title;tile.append(img,name);return tile;});$('catalog').replaceChildren(...tiles);}

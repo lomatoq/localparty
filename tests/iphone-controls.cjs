@@ -10,14 +10,14 @@ async function until(fn,label,ms=15000){const end=Date.now()+ms;while(Date.now()
 async function manage(data,status=200){const res=await fetch(origin+'/api/manage',{method:data?'POST':'GET',headers:{Authorization:'Bearer '+key,'Content-Type':'application/json'},body:data?JSON.stringify(data):undefined});const result=await res.json();assert.equal(res.status,status,JSON.stringify(result));return result;}
 async function socket(path='/lobby',cookie='',io=false){const ws=new WS(origin.replace('http','ws')+path,{headers:{Cookie:cookie,Origin:origin}});sockets.push(ws);ws.messages=[];ws.io=io;ws.on('error',()=>{});ws.on('message',raw=>{const text=String(raw);if(io){if(text[0]==='0'){ws.send('40');return;}if(text==='2'){ws.send('3');return;}if(text.startsWith('40'))ws.connected=true;if(text.startsWith('43')){ws.ack=JSON.parse(text.slice(text.indexOf('[')))[0];return;}if(text.startsWith('42')){const [type,data]=JSON.parse(text.slice(2));ws.messages.push({type,data});}return;}const m=JSON.parse(text);ws.messages.push(m);if(m.type==='joined')ws.profile=m;});await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j)});if(io)await until(()=>ws.connected,'socket.io connect');return ws;}
 const send=(ws,type,data)=>ws.send(ws.io?'42'+JSON.stringify([type,data||{}]):JSON.stringify({type,...data}));
-async function controller(game,p){const engine=game.engine||game.id,io=['spy','millionaire','monster'].includes(engine),nested=['party','tanks','tankarena','jenga','arcade','western_duel'].includes(engine);
+async function controller(game,p){const engine=game.engine||game.id,io=['spy','millionaire','monster'].includes(engine),nested=['party','tanks','tankarena','jenga','arcade','western_duel','sports_siege'].includes(engine);
  const ws=await socket('/games/'+game.id+(io?'/socket.io/?EIO=4&transport=websocket':'/ws'),'',io);const identity={partyId:p.id,partyToken:p.token,name:p.name};
  if(io){ws.send('421'+JSON.stringify(['player:join',identity]));await until(()=>ws.ack,'player ack');assert.equal(ws.ack.ok,true,JSON.stringify(ws.ack));}
  else {send(ws,'join',nested?{data:identity}:identity);await until(()=>ws.profile,game.id+' join');}
  return ws;
 }
 async function run(){
- const initial=await manage();assert.equal(initial.catalog.length,26);await manage({type:'server-start'});assert.equal((await manage()).sessionLimit,undefined);
+ const initial=await manage();assert.equal(initial.catalog.length,require('../lib/catalog').length);await manage({type:'server-start'});assert.equal((await manage()).sessionLimit,undefined);
  assert.equal((await fetch(origin+'/api/manage')).status,403);assert.equal((await fetch(origin+'/host')).status,403);
  const res=await fetch(origin+'/tv'),html=await res.text(),cookie=res.headers.get('set-cookie').split(';')[0],displayKey=JSON.parse(html.match(/PARTY_DISPLAY_KEY=(.*?);/)[1]);assert.ok(!html.includes('<button'),'TV has no buttons');
  const screen=await socket('/lobby',cookie);send(screen,'display',{key:displayKey});await until(()=>screen.messages.some(m=>m.type==='display-ok'),'display auth');send(screen,'launch',{id:'tanks'});await until(()=>screen.messages.some(m=>m.type==='error'),'TV cannot launch');
@@ -36,13 +36,37 @@ async function run(){
   // Even a trusted display cannot bypass readiness or change native settings.
   const engine=game.engine||game.id;
   const host=await socket('/games/'+game.id+(['spy','monster','millionaire'].includes(engine)?'/socket.io/?EIO=4&transport=websocket':'/ws'+(engine==='chaos'?'?type=host':engine==='crane'?'?role=host':'')),cookie,['spy','monster','millionaire'].includes(engine));
-  if(!host.io)send(host,['party','tanks'].includes(engine)?'registerHost':'host');else send(host,'host:hello');
+  if(engine==='sports_siege'){
+   const html=await(await fetch(origin+'/games/'+game.id+game.host,{headers:{Cookie:cookie}})).text();
+   const key=JSON.parse(html.match(/window.SS_CONFIG=(.*?);/)[1]).hostKey;
+   send(host,'host',{data:{key}});await until(()=>host.messages.some(m=>m.type==='host-ok'),game.id+' display authorized');
+  }else if(!host.io)send(host,['party','tanks'].includes(engine)?'registerHost':'host');else send(host,'host:hello');
   for(const type of ['start','startGame','host_start','configure','host:start','host:settings'])send(host,type,{data:'survival',settings:{mode:'solo'},mode:'survival'});
   await delay(200);assert.equal((await manage()).active.session.startRequested,false,'TV cannot start '+game.id);
-  send(guests[0],'ready-set',{instance:run.instance,ready:true});await delay(100);assert.equal((await manage()).active.session.startRequested,false,'wait for everyone');
+  if(guests.length>1){send(guests[0],'ready-set',{instance:run.instance,ready:true});await delay(100);assert.equal((await manage()).active.session.startRequested,false,'wait for everyone');}
   for(const guest of guests)send(guest,'ready-set',{instance:run.instance,ready:true});
   await until(async()=>{const s=await manage();if(s.active.startError)throw Error(game.id+': '+s.active.startError);return s.active.ui.phase!=='waiting';},game.id+' native start',20000);
   let state=await manage();assert.equal(state.active.instance,run.instance);assert.equal(state.active.session.startRequested,true);assert.deepEqual(state.active.settings,settings);
+  if(engine==='sports_siege'){
+   await until(()=>host.messages.some(m=>m.type==='state'&&m.data.phase==='playing'),game.id+' rendered state');
+   const snapshot=()=>host.messages.filter(m=>m.type==='state').at(-1)?.data;
+   const actual=snapshot();
+   const field={bowling:'frameCount',curling:'endCount',swarm_gate:'waveCount'}[game.id];
+   if(field)assert.equal(actual[field],Number(Object.values(settings)[0]),game.id+' actual settings');
+   if(['bowling','curling'].includes(game.id)){
+    const index=guests.findIndex(g=>g.profile.id===actual.currentId),shot={power:.7,spin:.1,angle:0,position:0,turnToken:actual.turnToken};
+    send(controls[index],'throw',{data:shot});send(controls[index],'throw',{data:shot});
+    await until(()=>snapshot()?.stage==='rolling',game.id+' accepted swipe');
+    assert.equal(snapshot().events.filter(e=>e.kind==='throw').length,1,'duplicate throw rejected');
+    if(game.id==='bowling'){
+     const first=snapshot().physics.ball.z;await delay(500);
+     assert.ok(Math.abs(snapshot().physics.ball.z-first)>.1,'native bowling physics advances');
+    }
+   }else{
+    send(controls[0],'input',{data:{x:.25,y:.5,fire:true}});await delay(200);
+    assert.equal(snapshot().players.find(p=>p.id===guests[0].profile.id).fire,true,game.id+' accepted controller input');
+   }
+  }
   if(game.id==='tanks'){await until(()=>host.messages.some(m=>m.data?.game?.mode==='ctf'),'actual tank mode');}
   if(game.id==='kart'){await until(()=>controls[0].messages.some(m=>m.laps===3),'actual kart laps');}
   if(['quiz','millionaire','crocodile','drawguess','naval'].includes(engine)){

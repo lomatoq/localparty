@@ -26,7 +26,8 @@
   },
   "devDependencies": {
     "adm-zip": "0.6.1",
-    "tar-stream": "3.1.7"
+    "tar-stream": "3.1.7",
+    "sharp": "^0.34.4"
   },
   "overrides": {
     "qs": "6.16.0",

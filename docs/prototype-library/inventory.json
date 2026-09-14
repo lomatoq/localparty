@@ -1,0 +1,2584 @@
+{
+  "version": 1,
+  "scope": [
+    "public/assets/**",
+    "games/*/**"
+  ],
+  "note": "Deterministic generated index. Regenerate after adding or removing project assets or game files.",
+  "totals": {
+    "publicAssetFiles": 355,
+    "games": 17,
+    "gameFiles": 208
+  },
+  "publicAssets": [
+    {
+      "file": "public/assets/branding/icons/android-chrome-192x192.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/icons/android-chrome-512x512.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-114x114.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-120x120.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-144x144.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-152x152.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-167x167.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-180x180.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-57x57.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-60x60.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-72x72.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-76x76.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon-precomposed.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/apple-touch-icon.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/favicon-16x16.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/favicon-32x32.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-128x128.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-144x144.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-152x152.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-167x167.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-16x16.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-180x180.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-192x192.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-256x256.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-32x32.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-384x384.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-48x48.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-512x512.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-64x64.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-72x72.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/icon-96x96.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/icons/maskable-192x192.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/branding/icons/maskable-512x512.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/branding/icons/mstile-150x150.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/localparty-mark.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/safari-pinned-tab.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fonts/OFL.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Rubik-Italic.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/fonts/Rubik.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/gameplay/atlas-actors.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/gameplay/atlas-construction.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/gameplay/atlas-food.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/gameplay/atlas-parts.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/gameplay/atlas-props.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/gameplay/atlas-world.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/gameplay/bomb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/carryball.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/chaos.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/crane-city.webp",
+      "category": "background-or-tile"
+    },
+    {
+      "file": "public/assets/gameplay/crane-counterweight.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/crane-footing.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/crane-foundation.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/crane-head.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/crane.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/crocodile.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/drawguess.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/flappy.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/hungry.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/jenga.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/kart.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/knives.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/masks/ball.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/bird-wing.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/bird.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/blob.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/cowboy-arm-pistol-v2.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/cowboy-body-v2.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/cowboy.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/facade-floor-a.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/facade-floor-b.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/facade-floor-c.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/facade-floor-d.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/glove.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/kart.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/knife-handle.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/knife.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/ninja-arm-v1.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/ninja-body-v1.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/puck.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/robot-foot-left.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/robot-foot-right.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/rugby-player.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/runner-body-v2.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/runner-leg-far-v2.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/runner-leg-near-v2.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/runner.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/ship.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/tank-body.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/tank-turret.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/tank.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/masks/wheel.png",
+      "category": "tint-or-cutout-mask"
+    },
+    {
+      "file": "public/assets/gameplay/millionaire.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/monster.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/naval.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/punchmeter.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/push.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/shrink.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sinyakquiz.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/snakelines.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/gallery-covers-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/gallery-death-8f-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/gallery-shot-fx-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/gallery-targets-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/swarm-enemies-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/swarm-explosion-8f-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/swarm-ground-tile.png",
+      "category": "background-or-tile"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/swarm-pedestals-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/swarm-turret-rig-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources/sports-siege/swarm-wall-source.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sources.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/gallery-covers.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/gallery-death.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/gallery-shot-fx.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/gallery-targets.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-death-boss.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-death-runner.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-death-tank.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-death-termite.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-enemies.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-explosion.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-pedestals.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-turret.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/atlases/swarm-wall.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/cover-metal.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/cover-rounded.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/cover-stone.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/cover-wood-break-a.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/cover-wood-break-b.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/cover-wood-cracked.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/cover-wood.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-0.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-5.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-6.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gallery-death-7.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gate-closed.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gate-damaged.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/gate-open.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/hit-a.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/hit-b.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/miss-a.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/miss-b.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/muzzle-a.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/muzzle-b.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/shot-gold.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/shot-violet.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-boss.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-0.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-5.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-6.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-boss-7.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-0.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-5.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-6.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-runner-7.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-0.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-5.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-6.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-tank-7.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-0.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-5.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-6.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-death-termite-7.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-0.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-5.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-6.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-explosion-7.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-runner.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-tank.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/swarm-termite.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/target-beetle.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/target-bonus.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/target-boss.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/target-bug.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/target-chicken.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/target-friendly.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-base.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-bolt.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-head-long.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-head-short.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-missile.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-pedestal-blue.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-pedestal-damaged.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-pedestal-stone.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-pedestal-wood.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-pulse.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-selection.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/turret-shell.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/wall-damage.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/wall-repair.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/wall-straight.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/wall-tower-left.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/sprites/wall-tower-right.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/swarm-ground-tile.webp",
+      "category": "background-or-tile"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/badge.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/ball.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/bird-wing.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/bird.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/blob.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/bomb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/cloud.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/concrete-block.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/cowboy-arm-pistol-v2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/cowboy-body-v2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/cowboy.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/crane-boom.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/crane-hook.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/crane-mast.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/crane-trolley.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/crate.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/crystal.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/facade-floor-a.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/facade-floor-b.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/facade-floor-c.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/facade-floor-d.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/food-apple.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/food-burger.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/food-chicken.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/food-donut.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/food-pizza.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/glove.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/grass.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/hook.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/kart.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/knife-handle.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/knife.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/mesa.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/ninja-arm-v1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/ninja-body-v1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/pipe-cap.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/pipe.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/puck.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/punchbag.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/revolver.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/robot-foot-left.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/robot-foot-right.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/rugby-player.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/runner-body-v2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/runner-leg-far-v2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/runner-leg-near-v2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/runner.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/ship.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/sparkle.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/star.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/tank-body.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/tank-turret.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/tank.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/wheel.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sprites/wood-block.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/spy.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tankarena.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tanks.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/taprace.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/warsaw.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/western_duel.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/western-town.webp",
+      "category": "background-or-tile"
+    },
+    {
+      "file": "public/assets/gameplay/western.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/arcade-art-provenance.md",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/games/bomb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/bowling.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/bowling.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/carryball.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/chaos.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/crane.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/crocodile.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/curling.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/curling.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/drawguess.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/flappy.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/hungry.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/jenga.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/kart.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/knives.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/millionaire.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/monster.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/naval.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/peek_shoot.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/peek_shoot.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/atlases/alpha-qa.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/games/premium-v2/atlases/frames.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/games/premium-v2/atlases/menu-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/atlases/menu-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/atlases/menu-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/atlases/menu-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/atlases/menu-5.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/bomb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/chaos.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/crane.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/crocodile.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/drawguess.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/extraction-remaining12-report.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/games/premium-v2/extraction-report.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/games/premium-v2/jenga.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/kart.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/knives.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/millionaire.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/monster.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/naval.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/push.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/shrink.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/sinyakquiz.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/spy.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/tankarena.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/tanks.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/warsaw.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/western_duel.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/premium-v2/western.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/punchmeter.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/push.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/shrink.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/sinyakquiz.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/snakelines.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/SPORTS_SIEGE_ART.md",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/games/sports-siege-source-atlas.svg",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/games/spy.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/swarm_gate.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/swarm_gate.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/tankarena-hd.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/tankarena.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/tanks.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/taprace.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/warsaw.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/western_duel.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/western.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/grain.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/hero-loop.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/hero-sculpture.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/hero-star.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/lobby-controls.js",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/party-panorama.webp",
+      "category": "background-or-tile"
+    }
+  ],
+  "games": [
+    {
+      "id": "arcade",
+      "root": "games/arcade",
+      "sceneModes": [
+        "2d-front",
+        "2d-top-down"
+      ],
+      "reusableRoles": [
+        "entry-or-template",
+        "game-system",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/arcade/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/arcade/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/arcade/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/arcade/public/snake-polish.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/arcade/report-metrics.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/arcade/simulation.js",
+          "role": "game-system"
+        }
+      ]
+    },
+    {
+      "id": "chaos",
+      "root": "games/chaos",
+      "sceneModes": [
+        "2d-front"
+      ],
+      "reusableRoles": [
+        "documentation",
+        "entry-or-template",
+        "module",
+        "server",
+        "support-file"
+      ],
+      "files": [
+        {
+          "file": "games/chaos/README_NODE.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/chaos/README_RU.txt",
+          "role": "documentation"
+        },
+        {
+          "file": "games/chaos/RUN_GAME.bat",
+          "role": "support-file"
+        },
+        {
+          "file": "games/chaos/RUN_GAME.command",
+          "role": "support-file"
+        },
+        {
+          "file": "games/chaos/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/chaos/START_THIS_ONE.bat",
+          "role": "support-file"
+        },
+        {
+          "file": "games/chaos/static/controller.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/chaos/static/game-contract.js",
+          "role": "module"
+        },
+        {
+          "file": "games/chaos/static/host.html",
+          "role": "entry-or-template"
+        }
+      ]
+    },
+    {
+      "id": "crane",
+      "root": "games/crane",
+      "sceneModes": [
+        "2d-front"
+      ],
+      "reusableRoles": [
+        "documentation",
+        "entry-or-template",
+        "game-system",
+        "module",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/crane/pendulum.js",
+          "role": "module"
+        },
+        {
+          "file": "games/crane/physics.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/crane/public/client.js",
+          "role": "module"
+        },
+        {
+          "file": "games/crane/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/crane/public/play.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/crane/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/crane/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/crane/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
+      "id": "crocodile",
+      "root": "games/crocodile",
+      "sceneModes": [
+        "ui"
+      ],
+      "reusableRoles": [
+        "asset",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "game-system",
+        "host-renderer-or-client",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/crocodile/engine.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/crocodile/phone-check.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/crocodile/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/crocodile/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/crocodile/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/crocodile/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/crocodile/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/crocodile/words.json",
+          "role": "data-or-manifest"
+        }
+      ]
+    },
+    {
+      "id": "drawguess",
+      "root": "games/drawguess",
+      "sceneModes": [
+        "ui"
+      ],
+      "reusableRoles": [
+        "documentation",
+        "entry-or-template",
+        "game-system",
+        "host-renderer-or-client",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/drawguess/engine.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/drawguess/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/drawguess/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/drawguess/public/screen.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/drawguess/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/drawguess/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/drawguess/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
+      "id": "jenga",
+      "root": "games/jenga",
+      "sceneModes": [
+        "3d"
+      ],
+      "reusableRoles": [
+        "controller-system",
+        "entry-or-template",
+        "game-system",
+        "host-renderer-or-client",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/jenga/physics.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/jenga/public/action-glass.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/jenga/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/jenga/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/jenga/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/jenga/public/joystick.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/jenga/public/renderer3d.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/jenga/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/jenga/public/touch-feedback.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/jenga/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
+      "id": "kart",
+      "root": "games/kart",
+      "sceneModes": [
+        "pseudo-3d"
+      ],
+      "reusableRoles": [
+        "controller-system",
+        "documentation",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "support-file",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/kart/README_NODE.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/kart/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/kart/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/kart/START_MAC.command",
+          "role": "support-file"
+        },
+        {
+          "file": "games/kart/START_WINDOWS.bat",
+          "role": "support-file"
+        },
+        {
+          "file": "games/kart/static/controller.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/kart/static/controller.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/kart/static/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/kart/static/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/kart/static/styles.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/kart/static/track.js",
+          "role": "module"
+        }
+      ]
+    },
+    {
+      "id": "millionaire",
+      "root": "games/millionaire",
+      "sceneModes": [
+        "ui"
+      ],
+      "reusableRoles": [
+        "controller-system",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "server",
+        "support-file",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/millionaire/data/questions.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/millionaire/make_questions.py",
+          "role": "support-file"
+        },
+        {
+          "file": "games/millionaire/package.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/millionaire/public/host.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/millionaire/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/millionaire/public/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/millionaire/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/millionaire/public/player.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/millionaire/public/player.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/millionaire/public/screen.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/millionaire/public/screen.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/millionaire/public/shared.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/millionaire/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/millionaire/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/millionaire/SOURCES.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/millionaire/start-mac.command",
+          "role": "support-file"
+        },
+        {
+          "file": "games/millionaire/start-windows.bat",
+          "role": "support-file"
+        }
+      ]
+    },
+    {
+      "id": "monster",
+      "root": "games/monster",
+      "sceneModes": [
+        "2d-front"
+      ],
+      "reusableRoles": [
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "support-file",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/monster/.gitignore",
+          "role": "support-file"
+        },
+        {
+          "file": "games/monster/package.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/monster/public/drawing.js",
+          "role": "module"
+        },
+        {
+          "file": "games/monster/public/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/monster/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/monster/public/monster-glass.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/monster/public/play.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/monster/public/play.js",
+          "role": "module"
+        },
+        {
+          "file": "games/monster/public/styles.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/monster/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/monster/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/monster/START_MAC_LINUX.command",
+          "role": "support-file"
+        },
+        {
+          "file": "games/monster/START_WINDOWS.bat",
+          "role": "support-file"
+        }
+      ]
+    },
+    {
+      "id": "naval",
+      "root": "games/naval",
+      "sceneModes": [
+        "2d-top-down"
+      ],
+      "reusableRoles": [
+        "asset",
+        "documentation",
+        "entry-or-template",
+        "game-system",
+        "host-renderer-or-client",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/naval/engine.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/naval/phone-check.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/naval/public/broadcast.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/naval/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/naval/public/screen.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/naval/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/naval/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/naval/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
+      "id": "party",
+      "root": "games/party",
+      "sceneModes": [
+        "2d-top-down",
+        "2d-front",
+        "pseudo-3d"
+      ],
+      "reusableRoles": [
+        "controller-system",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "support-file",
+        "test",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/party/action.test.cjs",
+          "role": "test"
+        },
+        {
+          "file": "games/party/GAME_IDEAS.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/party/package.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/party/public/action-glass.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/party/public/controller.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/party/public/controller.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/party/public/host.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/party/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/party/public/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/party/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/party/public/net.js",
+          "role": "module"
+        },
+        {
+          "file": "games/party/public/qr-lite.js",
+          "role": "module"
+        },
+        {
+          "file": "games/party/public/touch-feedback.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/party/public/visual-clock.js",
+          "role": "module"
+        },
+        {
+          "file": "games/party/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/party/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/party/start-linux.sh",
+          "role": "support-file"
+        },
+        {
+          "file": "games/party/start-mac.command",
+          "role": "support-file"
+        },
+        {
+          "file": "games/party/start-windows.bat",
+          "role": "support-file"
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "root": "games/quiz",
+      "sceneModes": [
+        "ui"
+      ],
+      "reusableRoles": [
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "game-system",
+        "host-renderer-or-client",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/quiz/data/warsaw.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/quiz/engine.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/quiz/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/quiz/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/quiz/public/screen.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/quiz/public/screen.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/quiz/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/quiz/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/quiz/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
+      "id": "sports_siege",
+      "root": "games/sports_siege",
+      "sceneModes": [
+        "2d-top-down",
+        "2d-front",
+        "3d"
+      ],
+      "reusableRoles": [
+        "asset",
+        "controller-system",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "game-system",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/sports_siege/bowling.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/catalog.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/sports_siege/curling.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/match.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/bowling/ceiling-light.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/bowling/gutter-pair.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/bowling/lane-module.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/bowling/neon-sign.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/bowling/wall-panel.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/curling/club-locker.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/curling/equipment-bench.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/curling/house-end.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/curling/ice-centre.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/curling/roofed-hall.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/bg-blue.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/bg-wood.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/cloud-1.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/cloud-2.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/crosshair-mask.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/curtain-side.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/curtain-top.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/LICENSE-CROSSHAIR-KENNEY.txt",
+          "role": "documentation"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/gallery/LICENSE-KENNEY.txt",
+          "role": "documentation"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/LICENSES.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/sports_siege/public/controls.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/sports_siege/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/sports_siege/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/sports_siege/public/net.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/sports_siege/rules.js",
+          "role": "game-system"
+        },
+        {
+          "file": "games/sports_siege/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
+      "id": "spy",
+      "root": "games/spy",
+      "sceneModes": [
+        "ui"
+      ],
+      "reusableRoles": [
+        "controller-system",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "server",
+        "support-file",
+        "test",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/spy/integration.test.cjs",
+          "role": "test"
+        },
+        {
+          "file": "games/spy/package.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/spy/public/action-glass.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/spy/public/host.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/spy/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/spy/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/spy/public/player.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/spy/public/player.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/spy/public/shared.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/spy/public/touch-feedback.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/spy/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/spy/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/spy/start-mac.command",
+          "role": "support-file"
+        },
+        {
+          "file": "games/spy/start-windows.bat",
+          "role": "support-file"
+        }
+      ]
+    },
+    {
+      "id": "tankarena",
+      "root": "games/tankarena",
+      "sceneModes": [
+        "2d-top-down"
+      ],
+      "reusableRoles": [
+        "controller-system",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/tankarena/public/action-glass.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/tankarena/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/tankarena/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/tankarena/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/tankarena/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/tankarena/public/touch-feedback.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/tankarena/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
+      "id": "tanks",
+      "root": "games/tanks",
+      "sceneModes": [
+        "2d-top-down"
+      ],
+      "reusableRoles": [
+        "controller-system",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "support-file",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/tanks/package.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/tanks/public/action-glass.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/tanks/public/controller.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/tanks/public/controller.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/tanks/public/host.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/tanks/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/tanks/public/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/tanks/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/tanks/public/net.js",
+          "role": "module"
+        },
+        {
+          "file": "games/tanks/public/qr-lite.js",
+          "role": "module"
+        },
+        {
+          "file": "games/tanks/public/touch-feedback.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/tanks/README.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/tanks/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/tanks/start-linux.sh",
+          "role": "support-file"
+        },
+        {
+          "file": "games/tanks/start-mac.command",
+          "role": "support-file"
+        },
+        {
+          "file": "games/tanks/start-windows.bat",
+          "role": "support-file"
+        }
+      ]
+    },
+    {
+      "id": "western_duel",
+      "root": "games/western_duel",
+      "sceneModes": [
+        "2d-front"
+      ],
+      "reusableRoles": [
+        "entry-or-template",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/western_duel/game.js",
+          "role": "module"
+        },
+        {
+          "file": "games/western_duel/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/western_duel/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/western_duel/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/western_duel/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/western_duel/server.js",
+          "role": "server"
+        }
+      ]
+    }
+  ]
+}

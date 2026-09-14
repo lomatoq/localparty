@@ -50,7 +50,7 @@ private struct PartyExternalDisplayView: View {
             } else {
                 VStack(spacing: 24) {
                     Image(systemName: "airplayvideo").font(.system(size: 72))
-                    Text("Party 26").font(.system(size: 56, weight: .bold))
+                    Text("LocalParty").font(.system(size: 56, weight: .bold))
                     Text("Запустите сервер в разделе «Комната» на iPhone.").font(.title)
                     Text("Телевизор покажет игру, а телефон станет пультом.").font(.title2).foregroundStyle(.secondary)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(48)
@@ -169,7 +169,7 @@ private struct PartyTVContent: View {
     private func scheduleRetry() {
         guard url != nil else { return }
         retry?.cancel()
-        message = "Восстанавливаем картинку. Держите Party 26 открытым на iPhone."
+        message = "Восстанавливаем картинку. Держите LocalParty открытым на iPhone."
         retry = Task { [weak self] in
             do { try await Task.sleep(for: .seconds(2)) } catch { return }
             guard let self, let url = self.url else { return }

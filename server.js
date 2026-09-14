@@ -14,11 +14,12 @@ const controls=require('./lib/host-controls');
 const {ballot}=require('./lib/game-ballot');
 const {cssFallbacks}=require('./lib/browser-compat');
 let ballotArmed=false,ballotAttempt='';
-const catalog = require('./catalog.json').map(g=>({...g,hostControls:controls.schema(g)}));
+const catalog = require('./lib/catalog').map(g=>({...g,hostControls:controls.schema(g)}));
 const gameSettings=Object.fromEntries(catalog.map(g=>[g.id,controls.settingsFor(g)]));
-const {ProfileStore}=require('./lib/profile-store');
+const {ProfileStore,normalizeAvatar}=require('./lib/profile-store');
 const {SessionControls}=require('./lib/session-controls');
 const ROOT = __dirname;
+const APP_HEAD='<meta name="application-name" content="LocalParty"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="LocalParty"><meta name="msapplication-TileColor" content="#c8ff2e"><meta name="msapplication-config" content="/browserconfig.xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/branding/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/branding/icons/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/branding/icons/apple-touch-icon.png"><link rel="mask-icon" href="/assets/branding/safari-pinned-tab.svg" color="#c8ff2e"><link rel="manifest" href="/site.webmanifest">';
 const requestedPort = Number(process.env.PARTY_PORT || 0);
 let PORT = 0;
 const embedded=process.env.PARTY_EMBEDDED==='1';
@@ -98,14 +99,16 @@ function kickPlayer(id){
 }
 function gameVotes(){return connected().filter(p=>votes.has(p.id)).map(p=>({playerId:p.id,gameId:votes.get(p.id)}));}
 const tokenFromCookie=req=>{const item=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('local_party_device='));return item?.slice('local_party_device='.length);};
-const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
+const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand,avatar:p.avatar||null}:null;
+const gameBootstrapProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
 let active = null, busy = false, closing = false, testMode=false, botCount=0, testProfiles=[];
 function sendTestProfile(ws){while(testProfiles.length<botCount)testProfiles.push(publicProfile(profileStore.register(null,'Бот '+(testProfiles.length+1),'right')));send(ws,{type:'test-profiles',profiles:testProfiles.slice(0,botCount)});}
 const local = req => ['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
+const updater=embedded?null:require('./lib/updater').createUpdater({root:ROOT,hostKey,isLocal:local,isBusy:()=>!!active||busy,getPort:()=>PORT,shutdown});
 const addresses = () => Object.entries(os.networkInterfaces()).flatMap(([name, list]) => list.filter(x=>x.family==='IPv4'&&!x.internal&&(!embedded||/^en[0-9]+$/.test(name))).map(x=>({name,address:x.address}))).sort((a,b)=>Number(/virtual|vethernet|vpn|wsl/i.test(a.name))-Number(/virtual|vethernet|vpn|wsl/i.test(b.name)));
 function inviteUrl(req){const ips=addresses();const selected=req&&new URL(req.url,'http://localhost').searchParams.get('host');const ip=ips.find(x=>x.address===selected)?.address||ips[0]?.address;return ip?`${scheme}://${ip}:${PORT}/`:`${scheme}://${req?.headers.host||'localhost:'+PORT}/`;}
 const connected = () => [...players.values()].filter(p=>p.socket?.readyState===WebSocket.OPEN);
-function state(){return {type:'state',bootId,incident,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,testBot})=>({id,name,hand,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:profileStore.leaderboard(),lastResult:profileStore.data.events.at(-1)||null,urls:addresses().map(x=>`${scheme}://${x.address}:${PORT}/`)};}
+function state(){return {type:'state',bootId,incident,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:profileStore.leaderboard(),lastResult:profileStore.data.events.at(-1)||null,urls:addresses().map(x=>`${scheme}://${x.address}:${PORT}/`)};}
 function send(ws, data){if(ws.readyState===WebSocket.OPEN&&ws.bufferedAmount<256*1024)ws.send(JSON.stringify(data));}
 function eligible(){return connected().filter(p=>active?.ready.has(p.id)&&!p.testBot).map(p=>p.id);}
 function sessionState(){return active?{...active.session.view(eligible()),pauseReason:!executionAllowed?'host-background':active.userPaused?'player':null}:undefined;}
@@ -147,7 +150,7 @@ function freePort(){return new Promise((resolve,reject)=>{const s=net.createServ
 function syncRoster(){if(active?.child.connected)active.child.send({type:'party:roster',players:connected().map(publicProfile)});}
 async function waitReady(child, port){const until=Date.now()+(embedded?60000:15000);while(Date.now()<until){if(child.exitCode!==null||child.spawnError)throw Error(child.spawnError||'Игровой сервер завершился при запуске.');if(await new Promise(resolve=>{const r=http.get({host:'127.0.0.1',port,path:'/',timeout:350},res=>{res.resume();resolve(res.statusCode===200);});r.on('error',()=>resolve(false));r.on('timeout',()=>r.destroy());}))return;await new Promise(r=>setTimeout(r,100));}throw Error('Игровой сервер не ответил в отведённое время.');}
 async function launch(id,{autoReady=[]}={}){
-  if(busy)throw Error('Подождите окончания запуска.');
+  if(busy||updater?.running)throw Error('Подождите окончания запуска или обновления.');
   const game=catalog.find(g=>g.id===id);if(!game)throw Error('Игра не найдена.');
   if(connected().length<(testMode?1:game.min)||connected().length>game.max)throw Error(`Для этой игры нужно ${testMode?1:game.min}–${game.max} игроков.`);
   busy=true;broadcast();let next;
@@ -155,7 +158,7 @@ async function launch(id,{autoReady=[]}={}){
   if(embedded&&active){const previous=active;active=null;broadcast();await previous.child.kill();}
   try{
     const port=await freePort(), instance=crypto.randomBytes(8).toString('hex');
-    const gameDir=path.join(ROOT,'games',game.engine||id);const env={...process.env,PORT:String(port),PARTY_MANAGED:'1',PARTY_DISPLAY_ONLY:embedded?'1':'0',PARTY_HOST_SETTINGS:JSON.stringify(controls.workerSettings(game,gameSettings[id])),PARTY_GAME_ID:id,PARTY_INSTANCE:instance,PARTY_ROSTER:JSON.stringify(connected().map(publicProfile)),PARTY_PLAYER_LIMIT:String(connected().length),PARTY_JOIN_URL:inviteUrl()};
+    const gameDir=path.join(ROOT,'games',game.engine||id);const env={...process.env,PORT:String(port),PARTY_MANAGED:'1',PARTY_DISPLAY_ONLY:embedded?'1':'0',PARTY_HOST_SETTINGS:JSON.stringify(controls.workerSettings(game,gameSettings[id])),PARTY_GAME_ID:id,PARTY_INSTANCE:instance,PARTY_ROSTER:JSON.stringify(connected().map(gameBootstrapProfile)),PARTY_PLAYER_LIMIT:String(connected().length),PARTY_JOIN_URL:inviteUrl()};
     const child=embedded?require('./lib/game-worker.cjs').spawnGame(gameDir,env):spawn(process.execPath,['server.js'],{cwd:gameDir,env,windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
     next={game,port,instance,child,ready:new Set(),userPaused:false,session:new SessionControls(testMode)};for(const id of autoReady)next.session.setReady(id,true);let log='';
     child.on('message',m=>{
@@ -175,8 +178,8 @@ function transform(text, type, prefix, req){
   if(type.includes('text/html')){
     if(!/<head\b/i.test(text))text=text.replace(/<html([^>]*)>/i,'<html$1><head>').replace(/<body([^>]*)>/i,'</head><body$1>');
     text=text.replace(/((?:src|href|action)\s*=\s*["'])\/(?!\/)/gi,`$1${prefix}/`);
-    text=text.replace(/<head([^>]*)>/i,`<head$1><base href="${prefix}/"><script src="/browser-compat.js"></script><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
-    text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"></head>');
+    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/browser-compat.js"></script><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script src="/game-feel.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
+    text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/game-feel.css"><script defer src="/motion.js"></script></head>');
   }
   if(type.includes('text/css'))text=cssFallbacks(text);
   if(type.includes('text/html'))text=text.replace(/(<style[^>]*>)([\s\S]*?)(<\/style>)/gi,(_,a,b,c)=>a+cssFallbacks(b)+c);
@@ -184,6 +187,7 @@ function transform(text, type, prefix, req){
   return text;
 }
 const handler=async(req,res)=>{
+  if(updater&&await updater.route(req,res))return;
   const url=new URL(req.url,'http://localhost');
   if(url.pathname==='/api/manage'){
     if(!local(req)||req.headers.authorization!=='Bearer '+hostKey)return json(res,403,{error:'Нет доступа к настройкам сервера'});
@@ -220,9 +224,9 @@ const handler=async(req,res)=>{
     });upstream.on('error',()=>{if(!res.headersSent)json(res,502,{error:'Сервер игры недоступен'});else res.end();});req.pipe(upstream);return;
   }
   if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=addresses().map(x=>`${scheme}://${x.address}:${PORT}/`);const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await qrBuffer(target,{margin:1,width:240}));}
-  if(url.pathname==='/api/health')return json(res,200,{ok:true});
+  if(url.pathname==='/api/health')return json(res,200,{ok:true,pid:process.pid,build:'sports-siege-alpha.1'});
   if(url.pathname.startsWith('/assets/')){
-    let name;try{name=decodeURIComponent(url.pathname).slice(1);}catch{return json(res,400,{error:'Invalid path'});}
+    let name;try{name=decodeURIComponent(url.pathname).slice(1);if(/^assets\/games\/(curling|bowling|swarm_gate|peek_shoot)[.]webp$/.test(name))name=name.replace(/[.]webp$/,'.png');}catch{return json(res,400,{error:'Invalid path'});}
     const root=path.join(ROOT,'public','assets'),target=path.resolve(ROOT,'public',name);
     if(!target.startsWith(root+path.sep)||!fs.existsSync(target)||!fs.statSync(target).isFile())return json(res,404,{error:'Не найдено'});
     const mime={'.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.ttf':'font/ttf','.woff2':'font/woff2','.json':'application/json'}[path.extname(target)];if(!mime)return json(res,404,{error:'Не найдено'});
@@ -231,18 +235,19 @@ const handler=async(req,res)=>{
   const isTV=url.pathname==='/tv',isHost=url.pathname==='/host';
   if(isTV)res.setHeader('Set-Cookie',`party_display=${displayKey}; Path=/; HttpOnly; SameSite=Strict`);
   if(isHost&&(embedded||!local(req)))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   if(embedded&&!staticCache.has(file))staticCache.set(file,fs.readFileSync(path.join(ROOT,'public',file)));let content=embedded?staticCache.get(file):fs.readFileSync(path.join(ROOT,'public',file));
   if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`);
   if(file==='tv.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_DISPLAY_KEY=${JSON.stringify(displayKey)};`);
+  if(file==='index.html'||file==='tv.html')content=content.toString().replace('</head>',`${APP_HEAD}${file==='index.html'&&!embedded?'<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script>':''}</head>`);
   if(file.endsWith('.css'))content=cssFallbacks(content.toString());
-  const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
+  const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.xml':'application/xml; charset=utf-8','.ico':'image/x-icon'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
 };
 const safeHandler=(req,res)=>Promise.resolve(handler(req,res)).catch(e=>{console.error('HTTP:',e.message);if(!res.headersSent)json(res,500,{error:'Не удалось обработать запрос'});else res.end();});
 const server=tlsFile?require('https').createServer({pfx:fs.readFileSync(tlsFile),passphrase:process.env.PARTY_TLS_PASSWORD||''},safeHandler):http.createServer(safeHandler);
 server.on('connection',socket=>socket.setNoDelay(true));
-const wss=new WebSocketServer({noServer:true,maxPayload:8192});
+const wss=new WebSocketServer({noServer:true,maxPayload:196608});
 server.on('upgrade',(req,socket,head)=>{
   const url=new URL(req.url,'http://localhost');
   if(req.headers.origin&&req.headers.origin!==`${scheme}://${req.headers.host}`)return socket.destroy();
@@ -277,20 +282,22 @@ wss.on('connection',(ws,req)=>{
       const saved=m.freshIdentity?null:profileStore.get(m.token||tokenFromCookie(req));
       const name=String(m.name||saved?.name||'').normalize('NFC').trim().replace(/[<>\x00-\x1f]/g,'').slice(0,24);
       if(!name)throw Error('Введите имя.');
+      const avatar=Object.prototype.hasOwnProperty.call(m,'avatar')?normalizeAvatar(m.avatar):saved?.avatar||null;
       let p=saved&&players.get(saved.token);
       if([...players.values()].some(other=>other!==p&&other.name.toLocaleLowerCase()===name.toLocaleLowerCase()&&other.socket?.readyState===WebSocket.OPEN))throw Error('Это имя уже занято. Добавь, например, первую букву фамилии.');
-      if(!p){if(connected().length>=16)throw Error('В лобби уже 16 игроков.');const stored=profileStore.register(saved?.token,name,m.hand||saved?.hand||'right');p=publicProfile(stored);players.set(p.token,p);}
+      if(!p){if(connected().length>=16)throw Error('В лобби уже 16 игроков.');const stored=profileStore.register(saved?.token,name,m.hand||saved?.hand||'right',avatar);p=publicProfile(stored);players.set(p.token,p);}
       if(ws.player&&ws.player!==p&&ws.player.socket===ws)throw Error('Этот контроллер уже вошёл в комнату');
       if(p.socket&&p.socket!==ws){send(p.socket,{type:'replaced'});p.socket.close();}
-      p.name=name;p.hand=(m.hand||saved?.hand)==='left'?'left':'right';p.testBot=testProfiles.some(bot=>bot.id===p.id);p.socket=ws;ws.player=p;
-      if(saved)profileStore.register(p.token,p.name,p.hand);syncRoster();
-      send(ws,{type:'joined',token:p.token,id:p.id,name:p.name,hand:p.hand});broadcast();return;
+      p.name=name;p.hand=(m.hand||saved?.hand)==='left'?'left':'right';p.avatar=avatar;p.testBot=testProfiles.some(bot=>bot.id===p.id);p.socket=ws;ws.player=p;
+      if(saved)profileStore.register(p.token,p.name,p.hand,p.avatar);syncRoster();
+      send(ws,{type:'joined',token:p.token,id:p.id,name:p.name,hand:p.hand,avatar:p.avatar||null});broadcast();return;
     }
     if(m.type==='game-status'&&ws.player?.socket===ws&&active&&m.instance===active.instance){if(m.status==='ready')active.ready.add(ws.player.id);else active.ready.delete(ws.player.id);checkSession();return;}
-    if(m.type==='launch'||m.type==='stop'){if(!ws.isHost)throw Error('Игру выбирает ведущий.');if(m.type==='launch')await launch(m.id);else{if(busy)throw Error('Подождите окончания запуска.');stop();}return;}
+    if(m.type==='launch'||m.type==='stop'){if(!ws.isHost)throw Error('Игру выбирает ведущий.');if(m.type==='launch')await launch(m.id);else{if(busy||updater?.running)throw Error('Подождите окончания запуска или обновления.');stop();}return;}
   }catch(e){send(ws,{type:'error',message:e.message});}});
   ws.on('close',()=>{clients.delete(ws);if(ws.player?.socket===ws){ws.player.socket=null;ws.player.disconnectedAt=Date.now();}checkSession();broadcast();});
 });
+const startRelay=setInterval(()=>{if(!embedded)require('./lib/start-delivery').relayStart(active,clients,send);},400);
 const heartbeat=setInterval(()=>{for(const ws of clients){if(!ws.alive){ws.terminate();continue;}ws.alive=false;ws.ping();}for(const [token,p] of players)if(!p.socket&&Date.now()-p.disconnectedAt>24*3600000)players.delete(token);},10000);
 // Port 0 asks the OS to allocate and bind a free port in one atomic operation.
 // An explicitly requested port is only a preference: never fail just because it is busy.
@@ -305,7 +312,7 @@ server.on('error',e=>{
   console.error('Не удалось запустить локальный сервер:',e);process.exit(1);
 });
 server.listen(listeningPort,'0.0.0.0');
-function shutdown(){closing=true;clearInterval(heartbeat);active?.child.kill();for(const ws of clients)ws.terminate();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
+function shutdown(){closing=true;clearInterval(heartbeat);clearInterval(startRelay);active?.child.kill();for(const ws of clients)ws.terminate();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
 process.on('SIGINT',shutdown);process.on('SIGTERM',shutdown);
 let previousTick=performance.now(),nativeWorkUnits=0;
 setInterval(()=>{const now=performance.now(),delta=now-previousTick;previousTick=now;

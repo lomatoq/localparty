@@ -9,6 +9,7 @@ struct HostAction: Codable, Hashable, Identifiable { var id: String; var label: 
 struct HostControls: Codable, Hashable { var settings: [HostSetting]; var actions: [HostAction] }
 struct PartyGame: Codable, Identifiable, Hashable {
     var id: String; var title: String; var description: String; var controls: String
+    var artwork: String?
     var hostControls: HostControls?
     var min: Int; var max: Int; var color: String; var section: String; var goal: String?; var win: String?
 }
@@ -62,7 +63,7 @@ struct ServerState: Equatable, Codable {
     private var memoryObserver: NSObjectProtocol?
     var diagnosticsURL: URL { diagnosticsFile }
     func votes(for game:PartyGame)->Int {state?.votes.filter {$0.gameId == game.id}.count ?? 0}
-    var buildLabel: String { "Party 26 · \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"))" }
+    var buildLabel: String { "LocalParty · \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"))" }
     var enabled: Bool { state?.enabled == true }
     var selected: PartyGame? { catalog.first { $0.id == state?.selected } }
     var active: PartyGame? { catalog.first { $0.id == state?.active?.id } }
@@ -103,7 +104,7 @@ struct ServerState: Equatable, Codable {
         memoryObserver=NotificationCenter.default.addObserver(forName:UIApplication.didReceiveMemoryWarningNotification,object:nil,queue:.main) { [weak self] _ in Task { @MainActor in self?.artworkCache.removeAllObjects();self?.record("memory-warning: artwork cache cleared") } }
         try? FileManager.default.removeItem(at:portFile)
         let script=Bundle.main.url(forResource:"bootstrap",withExtension:"cjs",subdirectory:"Server")!
-        if let url=Bundle.main.url(forResource:"catalog",withExtension:"json",subdirectory:"Server"), let data=try? Data(contentsOf:url) { catalog=(try? JSONDecoder().decode([PartyGame].self,from:data)) ?? [] }
+        if let url=Bundle.main.url(forResource:"native-catalog",withExtension:"json",subdirectory:"Server"), let data=try? Data(contentsOf:url) { catalog=(try? JSONDecoder().decode([PartyGame].self,from:data)) ?? [] }
         let config:[String:String]=["PARTY_ADMIN_KEY":key,"PARTY_DATA_FILE":directory.appendingPathComponent("party.json").path,"PARTY_PORT_FILE":portFile.path]
         let json=String(data:try! JSONSerialization.data(withJSONObject:config),encoding:.utf8)!
         NodeBridge.startServer(script.path,configuration:json)
@@ -235,9 +236,9 @@ struct ServerState: Equatable, Codable {
         }
     }
     func image(_ game:PartyGame) -> UIImage? {
-        let name=game.id == "tankarena" ? "tankarena-hd" : game.id
+        let name=game.artwork ?? ((game.id == "tankarena" ? "tankarena-hd" : game.id) + ".webp")
         if let cached=artworkCache.object(forKey:name as NSString) {return cached}
-        guard let url=Bundle.main.url(forResource:name,withExtension:"webp",subdirectory:"Server/public/assets/games"),
+        guard let url=Bundle.main.url(forResource:name,withExtension:nil,subdirectory:"Server/public/assets/games"),
               let source=CGImageSourceCreateWithURL(url as CFURL,nil),
               let thumbnail=CGImageSourceCreateThumbnailAtIndex(source,0,[kCGImageSourceCreateThumbnailFromImageAlways:true,kCGImageSourceThumbnailMaxPixelSize:640,kCGImageSourceShouldCacheImmediately:true] as CFDictionary) else {return nil}
         let image=UIImage(cgImage:thumbnail)
@@ -301,7 +302,7 @@ struct ServerState: Equatable, Codable {
                 self.announce("Сервер работает в фоне")
             }
         guard registered else {finish(message:"Не удалось включить фон. Сервер работает при открытом приложении.");return}
-        let request=BGContinuedProcessingTaskRequest(identifier:attempt,title:"Party 26 · сервер",subtitle:"Игра по Wi-Fi")
+        let request=BGContinuedProcessingTaskRequest(identifier:attempt,title:"LocalParty · сервер",subtitle:"Игра по Wi-Fi")
         request.strategy = .fail
         do {try BGTaskScheduler.shared.submit(request)}
         catch {let error=error as NSError;log.error("Background request: \(error.domain, privacy:.public) / \(error.code)");finish(message:"iOS пока не разрешила фон. Сервер работает при открытом приложении.");return}

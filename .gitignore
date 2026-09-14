@@ -39,3 +39,5 @@ ios/NativePhysics/rapier2d.h
 ios/NativePhysics/rapier3d.c
 ios/NativePhysics/rapier3d.h
 **/xcuserdata/
+
+.DS_Store

@@ -3,3 +3,7 @@
 #gameFrame{pointer-events:none}#waiting{position:absolute;inset:48px 0 0;display:grid;align-content:center;justify-content:center;text-align:center;background:#10151a}#waiting strong{font-size:clamp(32px,4vw,56px)}#waiting p{color:#bec8c1}#readyCount{color:#c4f58b}#settings{font-size:14px;color:#c4f58b}
 
 .room-incident{position:fixed;bottom:24px;left:5%;right:5%;z-index:100;padding:16px;background:#303b23;color:#e6f5cf;border-radius:16px}.room-incident[hidden]{display:none}#votes{color:#bff580;font-size:22px}
+
+.brand{display:flex;align-items:center;gap:10px}.brand>img{width:42px;height:42px;object-fit:contain}.brand>span{margin-left:-10px}
+.game-owns-hud .gamebar{display:none}
+.game-owns-hud iframe{height:100%}.game-owns-hud #paused,.game-owns-hud #waiting{inset:0}
