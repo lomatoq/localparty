@@ -13,5 +13,5 @@ button{font-family:inherit!important;transition:transform .18s cubic-bezier(.2,.
 
 html.party-managed.party-host .arena-host aside>.lp-lobby-rules{margin:0!important}html.party-managed.party-host .arena-host aside{gap:16px!important}
 
-@media(min-width:1101px){html.party-managed.party-host .arena-host main{container-type:size}html.party-managed.party-host .arena-host .arena-surface{width:min(100%,calc(100cqh * 5 / 3))!important;height:auto!important;min-height:0!important;aspect-ratio:5/3;align-self:center;justify-self:center}html.party-managed.party-host .arena-host .arena-surface>canvas{position:absolute;inset:0;width:100%!important;height:100%!important;max-height:none!important;object-fit:fill}}
+@supports (width: 1cqh) and (aspect-ratio: 5/3){@media(min-width:1101px){html.party-managed.party-host .arena-host main{container-type:size}html.party-managed.party-host .arena-host .arena-surface{width:min(100%,calc(100cqh * 5 / 3))!important;height:auto!important;min-height:0!important;aspect-ratio:5/3;align-self:center;justify-self:center}html.party-managed.party-host .arena-host .arena-surface>canvas{position:absolute;inset:0;width:100%!important;height:100%!important;max-height:none!important;object-fit:fill}}}
 

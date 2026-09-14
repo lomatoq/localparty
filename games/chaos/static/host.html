@@ -82,7 +82,9 @@ const labels={move:'ДВИЖЕНИЕ',precision:'ТОЧНОСТЬ',left:'← LEF
 
 const gameClock=window.PARTY_GAME_CLOCK||{performanceNow:()=>performance.now(),setTimeout:(...args)=>setTimeout(...args),paused:false};
 function socket(){const proto=location.protocol==='https:'?'wss':'ws';ws=new WebSocket(`${proto}://${location.host}/ws?type=host`);ws.onmessage=e=>handle(JSON.parse(e.data));ws.onclose=()=>setTimeout(socket,800)}
+let managedStartID='';
 function handle(m){
+ if(m.type==='managed-start'){if(managedStartID!==m.id){showGame();managedStartID=m.id;}ws.send(JSON.stringify({type:'managed-started',id:m.id}));}
  if(m.type==='config'){if(window.PARTY_PROFILE){lobbyConfigured=true;$('#setupStage').style.display='none';$('#lobbyStage').classList.remove('hidden');$('#changeCount').style.display='none'}playerLimit=m.playerLimit||4;$('#count').value=playerLimit;$('#heroCount').textContent=playerLimit;$('#joinUrl').textContent='Телефоны: '+m.joinUrl;renderLobby()}
  if(m.type==='players'){const oldPlayers=players.join('|');playerLimit=m.playerLimit||playerLimit;players=m.players.filter(p=>p.connected).map(p=>p.name);m.players.forEach(p=>{roles[p.name]=p.role||roles[p.name]||[]});connected={};m.players.forEach(p=>connected[p.name]=p.connected);players.forEach(n=>{if(!stats[n])stats[n]={presses:0,active:0,deaths:0,collects:0}});renderLobby();renderRoles()}
  if(m.type==='input')input(m);

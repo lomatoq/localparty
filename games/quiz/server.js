@@ -14,12 +14,13 @@ function broadcast(){party.ui?.({phase:({lobby:'waiting',question:'playing',reve
 wss.on('connection',(ws,req)=>{
  const c={id:null,host:false};clients.set(ws,c);send(ws,quiz.view());
  ws.on('message',raw=>{let m;try{m=JSON.parse(raw);}catch{return;}if(!m||typeof m!=='object')return;
- if(m.type==='host'&&m.key===hostKey&&local(req)){c.host=true;quiz.configure({topic:m.topic});}
+ if(m.type==='host'&&m.key===hostKey&&local(req)){c.host=true;if(!party.displayOnly)quiz.configure({topic:m.topic});}
  else if(m.type==='join'){
-  let p=party.identify(m);
+  let p=party.identify(m,ws);
   if(!party.managed&&!p){const old=standalone.get(m.id);if(old&&old.token===m.token)p=old;else{p={id:crypto.randomUUID(),token:crypto.randomBytes(18).toString('hex'),name:String(m.name||'Игрок').trim().slice(0,24)||'Игрок'};standalone.set(p.id,p);}send(ws,{type:'identity',...p});}
   if(!p){send(ws,{type:'error',message:'Вернитесь в главное лобби: профиль не найден.'});return;}
   if(!quiz.players.has(p.id)&&quiz.players.size>=16){send(ws,{type:'error',message:'Уже 16 игроков.'});return;}
+  for(const [other,oc]of clients)if(other!==ws&&oc.id===p.id){oc.id=null;other.close(4001,'Replaced');}
   c.id=p.id;quiz.join(p.id,p.name);send(ws,{type:'joined',id:p.id});party.presence(p.id,true);
  }else if(m.type==='team'&&c.id)quiz.team(c.id,m.team);
  else if(m.type==='answer'&&c.id){if(!quiz.submit(c.id,m.round,m.answer))send(ws,{type:'error',message:'Ответ уже принят, время вышло или отвечает капитан.'});}
@@ -31,3 +32,6 @@ wss.on('connection',(ws,req)=>{
 party.setInterval(()=>{if(quiz.tick())broadcast();},150).unref();
 server.listen(Number(process.env.PORT||0),party.managed?'127.0.0.1':'0.0.0.0',()=>console.log('Quiz http://localhost:'+server.address().port+'/host'));
 
+
+// Commands from the iPhone server console.
+party.host({configure:s=>quiz.configure(s),start:()=>{const ok=quiz.start();broadcast();return ok;},reveal:()=>{quiz.reveal();broadcast();},next:()=>{if(quiz.phase!=='reveal')return false;quiz.next();broadcast();}});

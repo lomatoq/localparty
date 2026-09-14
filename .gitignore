@@ -28,3 +28,14 @@ public/assets/games/premium-v2/sources/
 public/assets/gameplay/sources/
 public/assets/gameplay/*-source.png
 
+
+# Generated iPhone runtime and signed builds
+ios/Vendor/
+ios/LocalParty/Server/
+ios/build/
+ios/.cache/
+ios/NativePhysics/rapier2d.c
+ios/NativePhysics/rapier2d.h
+ios/NativePhysics/rapier3d.c
+ios/NativePhysics/rapier3d.h
+**/xcuserdata/

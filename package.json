@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node server.js",
     "test": "node scripts/test.cjs",
-    "pack": "node scripts/package-release.cjs"
+    "pack": "node scripts/package-release.cjs",
+    "ios:prepare": "python3 scripts/prepare-ios.py",
+    "test:iphone": "node tests/iphone-server.cjs",
+    "test:iphone-controls": "node tests/iphone-controls.cjs",
+    "test:session": "node tests/session-network.cjs"
   },
   "engines": {
     "node": ">=20"
@@ -14,14 +18,18 @@
   "dependencies": {
     "@dimforge/rapier2d-compat": "0.20.0",
     "@dimforge/rapier3d-compat": "0.20.0",
-    "express": "4.21.2",
+    "express": "4.22.2",
     "qrcode": "1.5.4",
     "socket.io": "4.8.1",
     "three": "0.186.0",
-    "ws": "8.18.3"
+    "ws": "8.21.3"
   },
   "devDependencies": {
-    "adm-zip": "0.5.16",
+    "adm-zip": "0.6.1",
     "tar-stream": "3.1.7"
+  },
+  "overrides": {
+    "qs": "6.16.0",
+    "path-to-regexp": "0.1.13"
   }
 }

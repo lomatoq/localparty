@@ -19,7 +19,6 @@ let state = {
   status: 'lobby', laps: 10, countdown: 0, race_time: 0, players: [],
   track: {width:1600,height:900,cx:800,cy:450,outer_rx:730,outer_ry:380,inner_rx:430,inner_ry:170,mid_rx:580,mid_ry:275}
 };
-let prevPositions = new Map();
 let displayPositions = new Map();
 
 function connect(){
@@ -28,7 +27,6 @@ function connect(){
   ws.onmessage = e => {
     const msg = JSON.parse(e.data);
     if(msg.type === 'state'){
-      for(const p of state.players || []) prevPositions.set(p.id, {x:p.x,y:p.y,angle:p.angle});
       state = msg;
       updateHud();
     }
@@ -58,52 +56,63 @@ function fmtTime(sec, millis=true){
   return millis ? `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(ms).padStart(3,'0')}` : `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 
+const leaderRows=new Map();
+let leaderOrder='',winnerKey='';
+const setText=(node,value)=>{value=String(value);if(node.textContent!==value)node.textContent=value;};
+const setValue=(node,key,value)=>{if(node[key]!==value)node[key]=value;};
 function updateHud(){
-  lapTarget.textContent = state.laps;
-  lapsInput.value = state.laps;
-  lapsInput.disabled = state.status !== 'lobby';
-  raceClock.textContent = fmtTime(state.race_time);
-  const connected = state.players.filter(p=>p.connected).length;
-  playerCount.textContent = `${connected} player${connected===1?'':'s'}`;
-  startBtn.disabled = connected === 0 || state.status === 'countdown' || state.status === 'racing';
-  startBtn.textContent = state.status === 'results' ? 'RACE AGAIN' : 'START';
+  setText(lapTarget,state.laps);
+  setValue(lapsInput,'value',String(state.laps));
+  setValue(lapsInput,'disabled',state.status!=='lobby');
+  setText(raceClock,fmtTime(state.race_time));
+  const connected=state.players.filter(p=>p.connected).length;
+  setText(playerCount,`${connected} player${connected===1?'':'s'}`);
+  setValue(startBtn,'disabled',connected===0||state.status==='countdown'||state.status==='racing');
+  setText(startBtn,state.status==='results'?'RACE AGAIN':'START');
+  setText(raceStatus,{lobby:'LOBBY',countdown:'GET READY',racing:'RACING',results:'RESULTS'}[state.status]||state.status.toUpperCase());
+  countdownEl.classList.toggle('hidden',state.status!=='countdown');
+  if(state.status==='countdown')setText(countdownEl,Math.max(1,Math.ceil(state.countdown)));
 
-  const label = {lobby:'LOBBY',countdown:'GET READY',racing:'RACING',results:'RESULTS'}[state.status] || state.status.toUpperCase();
-  raceStatus.textContent = label;
-
-  if(state.status === 'countdown'){
-    countdownEl.classList.remove('hidden');
-    countdownEl.textContent = Math.max(1, Math.ceil(state.countdown));
-  } else {
-    countdownEl.classList.add('hidden');
+  const ordered=[...state.players].sort((a,b)=>(a.position||999)-(b.position||999));
+  const order=JSON.stringify(ordered.map(p=>p.id)),reorder=order!==leaderOrder;
+  // Speed updates do not change row geometry: keep the nodes and read layout
+  // only when the ranking actually changes, not on every 50 ms snapshot.
+  const previous=new Map();
+  if(reorder)for(const [id,row] of leaderRows)previous.set(id,row.element.offsetTop);
+  const ids=new Set(ordered.map(p=>p.id));
+  for(const [id,row] of leaderRows)if(!ids.has(id)){row.element.remove();leaderRows.delete(id);}
+  setValue(leaderboard,'className',ordered.length?'leaderboard':'leaderboard empty-state');
+  if(!ordered.length)setText(leaderboard,'Waiting for drivers…');
+  else {
+    if(!leaderRows.size)leaderboard.textContent='';
+    ordered.forEach((p,i)=>{
+      let row=leaderRows.get(p.id);
+      if(!row){
+        const element=document.createElement('div');element.className='leader-row';element.dataset.id=p.id;
+        element.innerHTML='<div class="leader-pos"></div><div class="leader-dot"></div><div class="leader-name"><strong></strong><span></span></div><div class="leader-meta"><strong></strong><span></span></div>';
+        row={element,position:element.children[0],dot:element.children[1],name:element.children[2].children[0],lap:element.children[2].children[1],speed:element.children[3].children[0],best:element.children[3].children[1]};
+        leaderRows.set(p.id,row);
+      }
+      setText(row.position,p.finish_order?'#'+p.finish_order:p.position);
+      if(row.color!==p.color){row.color=p.color;row.dot.style.background=p.color;}
+      setText(row.name,p.name+(p.connected?'':' · offline'));
+      setText(row.lap,p.finish_order?'FINISH #'+p.finish_order:`Lap ${Math.min(p.lap+1,state.laps)}/${state.laps}`);
+      setText(row.speed,p.finish_time!=null?fmtTime(p.finish_time):Math.round(p.speed*.55)+' km/h');
+      setText(row.best,p.best_lap==null?'best —':'best '+fmtTime(p.best_lap));
+      if(leaderboard.children[i]!==row.element)leaderboard.insertBefore(row.element,leaderboard.children[i]||null);
+    });
+    if(reorder)for(const row of leaderRows.values()){
+      const old=previous.get(row.element.dataset.id),dy=old===undefined?30:old-row.element.offsetTop;
+      if(dy)row.element.animate([{transform:`translateY(${dy}px)`,opacity:old===undefined?0:1},{transform:'translateY(0)',opacity:1}],{duration:380,easing:'cubic-bezier(.2,.8,.2,1)'});
+    }
   }
-
-  const ordered = [...state.players].sort((a,b)=>(a.position||999)-(b.position||999));
-  if(!ordered.length){
-    leaderboard.className='leaderboard empty-state';
-    leaderboard.textContent='Waiting for drivers…';
-  }else{
-    leaderboard.className='leaderboard';if(!leaderboard.children.length)leaderboard.textContent='';
-    const existing=new Map([...leaderboard.children].map(e=>[e.dataset.id,e]));const previous=new Map([...leaderboard.children].map(e=>[e.dataset.id,e.offsetTop]));
-    const markup = ordered.map(p=>{
-      const lap = Math.min(p.lap+1,state.laps);
-      const finish = p.finish_order ? `FINISH #${p.finish_order}` : `Lap ${lap}/${state.laps}`;
-      const best = p.best_lap==null ? 'best —' : `best ${fmtTime(p.best_lap)}`;
-      return `<div class="leader-row" data-id="${escapeHtml(p.id)}">
-        <div class="leader-pos">${p.finish_order ? '#'+p.finish_order : p.position}</div>
-        <div class="leader-dot" style="background:${p.color}"></div>
-        <div class="leader-name"><strong>${escapeHtml(p.name)}${p.connected?'':' · offline'}</strong><span>${finish}</span></div>
-        <div class="leader-meta"><strong>${p.finish_time!=null?fmtTime(p.finish_time):Math.round(p.speed*0.55)+' km/h'}</strong><span>${best}</span></div>
-      </div>`;
-    }).join('');
-    const template=document.createElement('template');template.innerHTML=markup;for(const fresh of [...template.content.children]){const row=existing.get(fresh.dataset.id)||fresh;if(row!==fresh&&row.innerHTML!==fresh.innerHTML)row.innerHTML=fresh.innerHTML;leaderboard.appendChild(row);existing.delete(fresh.dataset.id);}for(const row of existing.values())row.remove();for(const row of leaderboard.children){const old=previous.get(row.dataset.id),dy=old===undefined?30:old-row.offsetTop;if(dy)row.animate([{transform:`translateY(${dy}px)`,opacity:old===undefined?0:1},{transform:'translateY(0)',opacity:1}],{duration:380,easing:'cubic-bezier(.2,.8,.2,1)'});}
-  }
-
-  if(state.status === 'results' && ordered.length){
-    const winner = ordered.find(p=>p.finish_order===1) || ordered[0];
-    winnerBanner.innerHTML = `<div style="font-size:12px;color:#8D96A8;letter-spacing:.14em">WINNER</div><div style="color:${winner.color}">🏁 ${escapeHtml(winner.name)}</div><div style="font-size:14px;margin-top:4px">${winner.finish_time?fmtTime(winner.finish_time):''}</div>`;
+  leaderOrder=order;
+  if(state.status==='results'&&ordered.length){
+    const winner=ordered.find(p=>p.finish_order===1)||ordered[0];
+    const key=JSON.stringify([winner.id,winner.name,winner.color,winner.finish_time]);
+    if(key!==winnerKey){winnerKey=key;winnerBanner.innerHTML=`<div style="font-size:12px;color:#8D96A8;letter-spacing:.14em">WINNER</div><div style="color:${winner.color}">🏁 ${escapeHtml(winner.name)}</div><div style="font-size:14px;margin-top:4px">${winner.finish_time?fmtTime(winner.finish_time):''}</div>`;}
     winnerBanner.classList.remove('hidden');
-  } else winnerBanner.classList.add('hidden');
+  }else winnerBanner.classList.add('hidden');
 }
 function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 

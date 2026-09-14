@@ -691,6 +691,7 @@ class WSClient {
   }
   send(type, data) {
     if (this.closed || this.socket.destroyed) return;
+    if(type==='state'&&this.socket.writableLength>256*1024)return;
     try { this.socket.write(wsFrame(JSON.stringify({ type, data }))); } catch {}
   }
   pong(payload) {
@@ -749,7 +750,7 @@ function sendTo(id, type, data) {
 }
 
 function handleMessage(socket, msg) {
-  if(!runtime.allowMessage(msg))return;
+  if(socket.partyRemoved||!runtime.allowMessage(msg))return;
   const event = msg && msg.type;
   const payload = msg && msg.data;
   if (event === 'registerHost') {
@@ -760,7 +761,7 @@ function handleMessage(socket, msg) {
     return;
   }
   if (event === 'join') {
-    const data = {...(payload || {})};const identity=runtime.identify(data);if(identity){data.token='party:'+identity.id;data.name=identity.name;data.handedness=identity.hand;}
+    const data = {...(payload || {})};const identity=runtime.identify(data,socket);if(runtime.managed&&!identity)return socket.send('error','Войдите через общее лобби');if(identity){data.token='party:'+identity.id;data.name=identity.name;data.handedness=identity.hand;}
     let p = null;
     if (data.token && tokenToPlayer.has(data.token)) {
       p = players.get(tokenToPlayer.get(data.token));
@@ -881,3 +882,6 @@ server.listen(PORT, (process.env.PARTY_MANAGED === '1' ? '127.0.0.1' : '0.0.0.0'
 });
 
 runtime.onPause(()=>{for(const p of players.values()){p.input.forward=false;p.input.fire=false;}});
+
+// Commands from the iPhone server console.
+runtime.host({start:s=>{startGame(s.mode);return game.status!=='lobby';}});

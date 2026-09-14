@@ -247,7 +247,7 @@ io.on('connection', (socket) => {
   });
 
   function joinPlayer(payload={},ack=()=>{}) {
-    const identity=runtime.identify(payload);
+    const identity=runtime.identify(payload,socket);
     if(runtime.managed&&!identity)return ack({ok:false,error:'Войдите через общее лобби'});
     let player=identity?game.players.find(p=>p.id===identity.id):game.players.find(p=>p.id===payload.playerId&&p.token===payload.token);
     const name=String(identity?.name||payload.name||player?.name||'').trim().slice(0,28);
@@ -317,3 +317,6 @@ function advanceTurn(){
  if(game.turnIndex>=game.players.length){game.phase='reveal';game.revealAt=Date.now();game.turnDeadline=null;emitState();io.emit('round:reveal',{round:game.round,segments:game.segments});runtime.report({eventId:game.eventId,gameId:'monster',duration:(Date.now()-game.startedAt)/1000,players:game.players.map(p=>({id:p.id,name:p.name,score:game.segments.some(s=>s.playerId===p.id)?100:0,won:true,metrics:{drawings:game.segments.filter(s=>s.playerId===p.id).length,strokes:game.segments.filter(s=>s.playerId===p.id).reduce((n,s)=>n+s.strokes,0)}}))});}
  else{sendTurnToActive();emitState();}
 }
+
+// Commands from the iPhone server console.
+runtime.host({configure:s=>{game.promptMode=s.promptMode;},start:()=>{if(game.players.filter(p=>p.connected).length<2)return false;resetRound();return true;}});

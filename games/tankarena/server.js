@@ -11,7 +11,7 @@ function finish(){phase='finished';const ps=[...players.values()],best=Math.max(
 function start(){if([...players.values()].filter(p=>p.connected).length<2)return;phase='playing';timer=process.env.TEST_FAST==='1'?2:90;match=crypto.randomUUID();started=Date.now();bullets.length=pickups.length=effects.length=0;for(const p of players.values()){p.score=p.kills=p.deaths=p.shots=p.damage=0;spawn(p);}}
 wss.on('connection',(ws,req)=>{ws.on('message',raw=>{let m;try{m=JSON.parse(raw)}catch{return;}const d=m.data||{};
 if(m.type==='host'){const trusted=runtime.managed?req?.headers?.['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req?.socket?.remoteAddress);if(trusted)ws.host=true;return;}
-if(m.type==='join'){const identity=runtime.identify(d);if(process.env.PARTY_MANAGED==='1'&&!identity)return send(ws,'error','Вернитесь в главное меню для входа');const id=identity?.id||String(d.token||crypto.randomUUID());let p=players.get(id);if(!p){p={id,name:String(identity?.name||d.name||'Танкист').slice(0,24),color:colors[players.size%colors.length],angle:0,score:0,kills:0,deaths:0,shots:0,damage:0,cd:0};spawn(p);players.set(id,p);}p.ws=ws;p.connected=true;p.input={x:0,y:0,fire:false};ws.pid=id;send(ws,'joined',{id,name:p.name});return;}
+if(m.type==='join'){const identity=runtime.identify(d,ws);if(process.env.PARTY_MANAGED==='1'&&!identity)return send(ws,'error','Вернитесь в главное меню для входа');const id=identity?.id||String(d.token||crypto.randomUUID());let p=players.get(id);if(!p){p={id,name:String(identity?.name||d.name||'Танкист').slice(0,24),color:colors[players.size%colors.length],angle:0,score:0,kills:0,deaths:0,shots:0,damage:0,cd:0};spawn(p);players.set(id,p);}const previous=p.ws;p.ws=ws;p.connected=true;if(previous&&previous!==ws)previous.close(4001,'Replaced');p.input={x:0,y:0,fire:false};ws.pid=id;send(ws,'joined',{id,name:p.name});return;}
 if(m.type==='start'&&ws.host){start();return;}const p=players.get(ws.pid);if(!p||p.ws!==ws)return;if(m.type==='input'){p.input={x:clamp(Number(d.x)||0,-1,1),y:clamp(Number(d.y)||0,-1,1),fire:d.fire===true};}
 });ws.on('close',()=>{const p=players.get(ws.pid);if(p?.ws===ws){p.connected=false;runtime.presence(p.id,false);p.input={x:0,y:0,fire:false};}});});
 function shoot(p){const w=weapons[p.weapon];p.cd=w.cd;p.shots++;for(let i=0;i<w.count;i++){const a=p.angle+(i-(w.count-1)/2)*.16;bullets.push({id:crypto.randomUUID(),owner:p.id,x:p.x+Math.cos(a)*30,y:p.y+Math.sin(a)*30,vx:Math.cos(a)*w.speed,vy:Math.sin(a)*w.speed,damage:w.damage,kind:p.weapon,color:p.color,ttl:p.weapon==='shotgun'?.65:2});}}
@@ -24,3 +24,6 @@ server.listen(Number(process.env.PORT||0),process.env.PARTY_MANAGED==='1'?'127.0
 runtime.onPause(()=>{for(const p of players.values())p.input={x:0,y:0,fire:false};});
 
 
+
+// Commands from the iPhone server console.
+runtime.host({start:()=>{start();return phase==='playing';}});

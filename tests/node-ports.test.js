@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),{fork}=require('node:child_process'),{WebSocket}=require('ws'),path=require('node:path');
 const profiles=Array.from({length:16},(_,i)=>({id:`port-player-${i}`,name:`Игрок ${i}`,token:`secret-${i}`,hand:'right'}));
 function next(ws,predicate,ms=3000){return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{ws.off('message',on);reject(new Error('Protocol timeout'));},ms);function on(raw){const d=JSON.parse(raw);if(predicate(d)){clearTimeout(timer);ws.off('message',on);resolve(d);}}ws.on('message',on);});}
-async function connect(url){const ws=new WebSocket(url);await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});return ws;}
+async function connect(url){const ws=new WebSocket(url,{headers:{'x-party-local':'1'}});await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});return ws;}
 for(const game of ['chaos','kart'])test(`${game}: 15 identities + 16th late, refresh takeover, late join, input, free port`,async t=>{
  const child=fork(path.resolve(`games/${game}/server.js`),[],{silent:true,env:{...process.env,PARTY_MANAGED:'1',PORT:'0',PARTY_ROSTER:JSON.stringify(profiles)}});const sockets=[];t.after(()=>{sockets.forEach(s=>s.terminate());child.kill();});
  const port=await new Promise((resolve,reject)=>{let out='';const timer=setTimeout(()=>reject(new Error('Server did not start: '+out)),5000);child.stdout.on('data',b=>{out+=b;const m=out.match(/127\.0\.0\.1:(\d+)/);if(m){clearTimeout(timer);resolve(+m[1]);}});child.stderr.on('data',b=>out+=b);});

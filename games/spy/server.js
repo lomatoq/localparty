@@ -276,7 +276,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('player:join', (payload = {}, cb = () => {}) => {
-    const identity=runtime.identify(payload);const {id,name,emoji}={...payload,...(identity?{id:identity.id,name:identity.name}:{})};
+    const identity=runtime.identify(payload,socket);if(runtime.managed&&!identity)return cb({ok:false,error:'Войдите через общее лобби'});const {id,name,emoji}={...payload,...(identity?{id:identity.id,name:identity.name}:{})};
     const cleanName = String(name || '').trim().slice(0, 20);
     if (!cleanName) return cb({ ok:false, error:'Введите имя' });
     const playerId = String(id || crypto.randomUUID()).slice(0, 80);
@@ -375,3 +375,6 @@ server.listen(PORT, (process.env.PARTY_MANAGED === '1' ? '127.0.0.1' : '0.0.0.0'
   console.log(`Phones: http://${ip}:${PORT}/`);
   console.log('All devices must be on the same Wi-Fi.\n');
 });
+
+// Commands from the iPhone server console.
+runtime.host({available:()=>state.phase==='voting'?['finishVote']:state.phase==='playing'&&!state.duel?['beginVote']:[],configure:s=>Object.assign(state.settings,s),start:startRound,beginVote:()=>{if(state.phase!=='playing')return false;beginVoting('host');},finishVote:()=>{if(state.phase!=='voting')return false;finishVoting(true);}});

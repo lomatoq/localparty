@@ -1,3 +1,5 @@
+> **iPhone-сервер:** весь каталог можно запускать прямо на телефоне. Xcode-проект: `ios/LocalParty.xcodeproj`. [Установка, фон и проверки](ios/README.md).
+
 # Local Party
 
 **Version 0.6.2** · 26 games · One shared screen, phones as controllers

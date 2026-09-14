@@ -6,6 +6,8 @@
  syncLobbyRail();window.addEventListener('resize',syncLobbyRail);
  const profile=window.PARTY_PROFILE=(window.parent!==window?window.parent.PARTY_PROFILE:null)||{};
  const player=!!profile.id;
+ const displayOnly=window.parent!==window&&window.parent.PARTY_DISPLAY_ONLY===true;
+ if(displayOnly){document.documentElement.classList.add('party-display-only');const style=document.createElement('style');style.textContent='.party-display-only button:not(.party-display-answer),.party-display-only select,.party-display-only input,.party-display-only .party-select,.party-display-only [role=button]{display:none!important}';document.head.append(style);document.addEventListener('DOMContentLoaded',()=>{const keepAnswers=()=>document.querySelectorAll('#answers button,#hostAnswers button,#grid button').forEach(b=>b.classList.add('party-display-answer'));keepAnswers();new MutationObserver(keepAnswers).observe(document.body,{childList:true,subtree:true});});}
  if(parent!==window)document.documentElement.classList.add('party-managed',player?'party-player':'party-host');
  document.addEventListener('DOMContentLoaded',()=>{
   // WebKit can suspend animation frames in an opacity:0 iframe. Readiness must
@@ -67,9 +69,9 @@
  function resume(){if(!player||Date.now()-lastResume<600)return;lastResume=Date.now();announce('connecting');for(const s of [...nativeConnections])if(s.readyState<2)s.close(1000,'resume');for(const s of ioConnections){s.disconnect();s.connect();}}
  document.addEventListener('visibilitychange',()=>{if(document.hidden)window.dispatchEvent(new Event('blur'));else resume();});
  window.addEventListener('pageshow',e=>{if(e.persisted)resume();});window.addEventListener('online',resume);
- function applyUI(ui){if(!ui)return;const root=document.documentElement,changed=root.dataset.partyPhase!==ui.phase;root.dataset.partyPhase=ui.phase;if(ui.phase!=='paused')root.classList.toggle('party-session-active',['countdown','playing','reveal','results'].includes(ui.phase));window.PARTY_UI=ui;if(changed){if(ui.phase==='paused')window.dispatchEvent(new Event('blur'));root.classList.remove('party-phase-enter');requestAnimationFrame(()=>{root.classList.add('party-phase-enter');clearTimeout(applyUI.timer);applyUI.timer=setTimeout(()=>root.classList.remove('party-phase-enter'),260);});window.dispatchEvent(new CustomEvent('party-phase-change',{detail:ui}));}}
+ function applyUI(ui){if(!ui)return;const root=document.documentElement,changed=root.dataset.partyPhase!==ui.phase;if(changed)root.dataset.partyPhase=ui.phase;if(ui.phase!=='paused')root.classList.toggle('party-session-active',['countdown','playing','reveal','results'].includes(ui.phase));window.PARTY_UI=ui;if(changed){if(ui.phase==='paused')window.dispatchEvent(new Event('blur'));root.classList.remove('party-phase-enter');requestAnimationFrame(()=>{root.classList.add('party-phase-enter');clearTimeout(applyUI.timer);applyUI.timer=setTimeout(()=>root.classList.remove('party-phase-enter'),260);});window.dispatchEvent(new CustomEvent('party-phase-change',{detail:ui}));}}
  let startInstance='';
- function requestStart(instance){if(player||startInstance===instance)return;const id=prefix.split('/').at(-1),selectors={push:'button[data-mode="push"]',shrink:'button[data-mode="shrink"]',knives:'button[data-mode="knives"]',bomb:'button[data-mode="bomb"]',western:'button[data-mode="western"]',tanks:'button[data-mode="survival"]',kart:'#startBtn',spy:'#startBtn',monster:'#startGame'};let tries=0;const attempt=()=>{if(startInstance===instance)return;const b=document.querySelector(selectors[id]||'#start');if(document.readyState==='complete'&&b&&!b.disabled){startInstance=instance;b.click();return;}if(tries++<50)setTimeout(attempt,100);};attempt();}
+ function requestStart(instance){if(player||displayOnly||startInstance===instance)return;const id=prefix.split('/').at(-1),selectors={push:'button[data-mode="push"]',shrink:'button[data-mode="shrink"]',knives:'button[data-mode="knives"]',bomb:'button[data-mode="bomb"]',western:'button[data-mode="western"]',tanks:'button[data-mode="survival"]',kart:'#startBtn',spy:'#startBtn',monster:'#startGame'};let tries=0;const attempt=()=>{if(startInstance===instance)return;const b=document.querySelector(selectors[id]||'#start');if(document.readyState==='complete'&&b&&!b.disabled){startInstance=instance;b.click();return;}if(tries++<50)setTimeout(attempt,100);};attempt();}
  window.addEventListener('message',e=>{if(e.source!==window.parent||e.origin!==location.origin)return;if(e.data?.type==='party-resume')resume();if(e.data?.type==='party-release')window.dispatchEvent(new Event('blur'));if(e.data?.type==='party-ui')applyUI(e.data.ui);if(e.data?.type==='party-start')requestStart(e.data.instance);});
  if(window.parent.PARTY_TEST_BOT){window.PARTY_TEST_CONNECTIONS={native:nativeConnections,io:ioConnections};document.addEventListener('DOMContentLoaded',()=>{const script=document.createElement('script');script.src='/test-bot.js';document.head.append(script);});}
 })();
@@ -77,7 +79,7 @@
 document.addEventListener('DOMContentLoaded',()=>{
 /* Local, accessible settings picker. The original select remains the source of truth. */
 (() => {
-  if (!document.documentElement.classList.contains('party-host')) return;
+  if (!document.documentElement.classList.contains('party-host') || document.documentElement.classList.contains('party-display-only')) return;
   const enhanced = new WeakSet();
   let active = null;
   function close(focus = false) {

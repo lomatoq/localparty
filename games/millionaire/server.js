@@ -233,7 +233,7 @@ io.on('connection', socket => {
   socket.on('host:hello', () => { state.hostSocketId = socket.id; socket.join('host'); socket.emit('state', publicState()); });
 
   socket.on('player:join', (data={}, cb=()=>{}) => {
-    const identity=runtime.identify(data);if(identity)data={...data,id:identity.id,name:identity.name};
+    const identity=runtime.identify(data,socket);if(runtime.managed&&!identity)return cb({ok:false,error:'Войдите через общее лобби'});if(identity)data={...data,id:identity.id,name:identity.name};
     const id = String(data.id || '').slice(0,80);
     const name = String(data.name || '').trim().slice(0,28);
     const emoji = String(data.emoji || '😎').slice(0,8);
@@ -295,3 +295,6 @@ server.listen(PORT, process.env.PARTY_MANAGED === '1' ? '127.0.0.1' : '0.0.0.0',
   console.log(`Phones: http://${ip}:${PORT}/\n`);
 });
 
+
+// Commands from the iPhone server console.
+runtime.host({configure:s=>Object.assign(state.settings,s),start:startGame,next:()=>{if(state.phase!=='reveal')return false;askNext();}});
