@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <rect width="2048" height="2048" fill="#ff00a8"/>
+  <g stroke="#ff8fd5" stroke-width="4" fill="none" opacity=".8">
+    <rect x="24" y="24" width="988" height="988" rx="28"/><rect x="1036" y="24" width="988" height="988" rx="28"/>
+    <rect x="24" y="1036" width="988" height="988" rx="28"/><rect x="1036" y="1036" width="988" height="988" rx="28"/>
+  </g>
+  <image href="bowling.png" x="48" y="48" width="940" height="940" preserveAspectRatio="xMidYMid meet"/>
+  <image href="curling.png" x="1060" y="48" width="940" height="940" preserveAspectRatio="xMidYMid meet"/>
+  <image href="swarm_gate.png" x="48" y="1060" width="940" height="940" preserveAspectRatio="xMidYMid meet"/>
+  <image href="peek_shoot.png" x="1060" y="1060" width="940" height="940" preserveAspectRatio="xMidYMid meet"/>
+</svg>

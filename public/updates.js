@@ -1,8 +1,8 @@
 (() => {
  'use strict';
  const ids=['curling','bowling','swarm_gate','peek_shoot'];
- // The base catalog renderer uses WEBP. New alpha illustrations are local SVGs.
- function decorate(){for(const id of ids){const card=document.querySelector(`.game[data-id="${id}"]`);if(!card||card.dataset.alphaArt)return;card.dataset.alphaArt='1';card.classList.add('alpha-game');const img=card.querySelector('img.symbol');if(img)img.src=`/assets/games/${id}.svg`;const tag=card.querySelector('.tag');if(tag)tag.textContent='ALPHA · '+tag.textContent;}}
+ // Alpha cards use the supplied transparent hero illustrations.
+ function decorate(){for(const id of ids){const card=document.querySelector(`.game[data-id="${id}"]`);if(!card||card.dataset.alphaArt)return;card.dataset.alphaArt='1';card.classList.add('alpha-game');const img=card.querySelector('img.symbol');if(img)img.src=`/assets/games/${id}.png`;const tag=card.querySelector('.tag');if(tag)tag.textContent='ALPHA · '+tag.textContent;}}
  new MutationObserver(decorate).observe(document.getElementById('games')||document.body,{childList:true,subtree:true});decorate();
  if(!window.PARTY_HOST_KEY)return;
  const button=document.createElement('button');button.type='button';button.className='nav lp-update-button';button.id='lp-updates';button.setAttribute('aria-haspopup','dialog');button.innerHTML='<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></svg><span>Обновления</span><small>alpha</small>';

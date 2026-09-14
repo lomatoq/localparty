@@ -28,8 +28,14 @@ async def main():
             for i in range(2):
                 c=await browser.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True);await c.route('**/*',guard)
                 page=await c.new_page();page.on('pageerror',page_error);await page.goto(base+'/');await page.locator('#name').fill('Alpha '+str(i));
-                if i==0:await page.locator('input[name="hand"][value="left"]').check()
-                await page.locator('#joinForm button').click();await page.locator('#home').wait_for();phones.append(page)
+                if i==0:
+                    await page.locator('input[name="hand"][value="left"]').check()
+                    await page.locator('#avatarFile').set_input_files(str(ROOT/'public'/'assets'/'games'/'bowling.png'))
+                    await expect(page.locator('#avatarPreview img')).to_be_visible()
+                    await page.screenshot(path=str(OUT/'profile-photo-phone.png'))
+                await page.locator('#joinForm button[type="submit"]').click();await page.locator('#home').wait_for();phones.append(page)
+            await expect(host.locator('.player .avatar.has-photo img')).to_have_count(1)
+            await host.screenshot(path=str(OUT/'profile-photo-host.png'))
             for mode in ['curling','bowling','swarm_gate','peek_shoot']:
                 await host.locator(f'.game[data-id="{mode}"] .start-game').click()
                 for phone in phones:

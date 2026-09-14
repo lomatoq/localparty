@@ -97,11 +97,13 @@ test('LAN gateway identity, presence, and host authorization', {timeout: 30000},
   });
 
   const alice = await open();
-  alice.send({type: 'join', name: 'Алиса', hand: 'left'});
+  const avatar = 'data:image/jpeg;base64,/9j/2Q==';
+  alice.send({type: 'join', name: 'Алиса', hand: 'left', avatar});
   const identity = await alice.wait(m => m.type === 'joined');
   await t.test('joined player is visible with chosen name and hand', async () => {
     const state = await host.wait(m => m.type === 'state' && m.players.some(p => p.id === identity.id));
-    assert.deepEqual(state.players, [{id: identity.id, name: 'Алиса', hand: 'left', gameReady: false, testBot: false}]);
+    assert.equal(identity.avatar, avatar);
+    assert.deepEqual(state.players, [{id: identity.id, name: 'Алиса', hand: 'left', avatar, gameReady: false, testBot: false}]);
   });
 
   await t.test('case-insensitive duplicate name is rejected', async () => {
@@ -145,7 +147,7 @@ test('LAN gateway identity, presence, and host authorization', {timeout: 30000},
   });
   await t.test('device cookie restores identity and explicit fresh join does not replace it', async () => {
     const cookie=`local_party_device=${identity.token}`;
-    const profile=await(await fetch(origin+'/api/profile',{headers:{Cookie:cookie}})).json();assert.equal(profile.profile.id,identity.id);
+    const profile=await(await fetch(origin+'/api/profile',{headers:{Cookie:cookie}})).json();assert.equal(profile.profile.id,identity.id);assert.equal(profile.profile.avatar,avatar);
     const restored=await client(`ws://127.0.0.1:${port}/lobby`,{Cookie:cookie});clients.push(restored);restored.send({type:'join'});assert.equal((await restored.wait(m=>m.type==='joined')).id,identity.id);
     const fresh=await client(`ws://127.0.0.1:${port}/lobby`,{Cookie:cookie});clients.push(fresh);fresh.send({type:'join',freshIdentity:true,name:'Борис'});assert.notEqual((await fresh.wait(m=>m.type==='joined')).id,identity.id);
     restored.send({type:'ping'});await restored.wait(m=>m.type==='pong');

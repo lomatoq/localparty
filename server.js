@@ -11,7 +11,7 @@ const {spawn} = require('child_process');
 const {WebSocketServer, WebSocket} = require('ws');
 const QRCode = require('qrcode');
 const catalog = require('./lib/catalog');
-const {ProfileStore}=require('./lib/profile-store');
+const {ProfileStore,normalizeAvatar}=require('./lib/profile-store');
 const {SessionControls}=require('./lib/session-controls');
 const ROOT = __dirname;
 const requestedPort = Number(process.env.PARTY_PORT || 0);
@@ -20,7 +20,8 @@ const hostKey = crypto.randomBytes(24).toString('hex');
 const players = new Map(), clients = new Set();
 const profileStore=new ProfileStore(process.env.PARTY_EPHEMERAL==='1'?null:(process.env.PARTY_DATA_FILE||path.join(ROOT,'data','party.json')));
 const tokenFromCookie=req=>{const item=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('local_party_device='));return item?.slice('local_party_device='.length);};
-const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
+const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand,avatar:p.avatar||null}:null;
+const gameProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
 let active = null, busy = false, closing = false, testMode=false, botCount=0, testProfiles=[];
 function sendTestProfile(ws){while(testProfiles.length<botCount)testProfiles.push(publicProfile(profileStore.register(null,'Бот '+(testProfiles.length+1),'right')));send(ws,{type:'test-profiles',profiles:testProfiles.slice(0,botCount)});}
 const local = req => ['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
@@ -28,7 +29,7 @@ const updater=require('./lib/updater').createUpdater({root:ROOT,hostKey,isLocal:
 const addresses = () => Object.entries(os.networkInterfaces()).flatMap(([name, list]) => list.filter(x=>x.family==='IPv4'&&!x.internal).map(x=>({name,address:x.address}))).sort((a,b)=>Number(/virtual|vethernet|vpn|wsl/i.test(a.name))-Number(/virtual|vethernet|vpn|wsl/i.test(b.name)));
 function inviteUrl(req){const ips=addresses();const selected=req&&new URL(req.url,'http://localhost').searchParams.get('host');const ip=ips.find(x=>x.address===selected)?.address||ips[0]?.address;return ip?`${scheme}://${ip}:${PORT}/`:`${scheme}://${req?.headers.host||'localhost:'+PORT}/`;}
 const connected = () => [...players.values()].filter(p=>p.socket?.readyState===WebSocket.OPEN);
-function state(){return {type:'state',players:connected().map(({id,name,hand,testBot})=>({id,name,hand,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:profileStore.leaderboard(),lastResult:profileStore.data.events.at(-1)||null,urls:addresses().map(x=>`${scheme}://${x.address}:${PORT}/`)};}
+function state(){return {type:'state',players:connected().map(({id,name,hand,avatar,testBot})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:profileStore.leaderboard(),lastResult:profileStore.data.events.at(-1)||null,urls:addresses().map(x=>`${scheme}://${x.address}:${PORT}/`)};}
 function send(ws, data){if(ws.readyState===WebSocket.OPEN)ws.send(JSON.stringify(data));}
 function eligible(){return connected().filter(p=>active?.ready.has(p.id)&&!p.testBot).map(p=>p.id);}
 function sessionState(){return active?.session.view(eligible());}
@@ -36,7 +37,7 @@ function broadcast(){const s=state();s.testMode=testMode;s.botCount=botCount;if(
 function checkSession(){if(!active)return;const ids=eligible();if(active.session.shouldExit(ids)){stop();return;}const botReady=!active.session.testMode||testProfiles.slice(0,botCount).every(p=>active.ready.has(p.id));const rosterReady=connected().filter(p=>!p.testBot).every(p=>active.ready.has(p.id));if(rosterReady&&botReady&&(!active.ui||active.ui.phase==='waiting')&&active.session.shouldStart(ids)){for(const ws of clients)if(ws.isHost)send(ws,{type:'session-start',instance:active.instance});}broadcast();}
 function json(res, status, value){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));}
 function freePort(){return new Promise((resolve,reject)=>{const s=net.createServer();s.on('error',reject);s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>resolve(p));});});}
-function syncRoster(){if(active?.child.connected)active.child.send({type:'party:roster',players:profileStore.data.players.map(publicProfile)});}
+function syncRoster(){if(active?.child.connected)active.child.send({type:'party:roster',players:profileStore.data.players.map(gameProfile)});}
 async function waitReady(child, port){const until=Date.now()+15000;while(Date.now()<until){if(child.exitCode!==null||child.spawnError)throw Error(child.spawnError||'Игровой сервер завершился при запуске.');if(await new Promise(resolve=>{const r=http.get({host:'127.0.0.1',port,path:'/',timeout:350},res=>{res.resume();resolve(res.statusCode===200);});r.on('error',()=>resolve(false));r.on('timeout',()=>r.destroy());}))return;await new Promise(r=>setTimeout(r,100));}throw Error('Игровой сервер не ответил за 15 секунд.');}
 async function launch(id){
   if(busy||updater.running)throw Error('Подождите окончания запуска или обновления.');
@@ -45,7 +46,7 @@ async function launch(id){
   busy=true;broadcast();let next;
   try{
     const port=await freePort(), instance=crypto.randomBytes(8).toString('hex');
-    const child=spawn(process.execPath,['server.js'],{cwd:path.join(ROOT,'games',game.engine||id),env:{...process.env,PORT:String(port),PARTY_MANAGED:'1',PARTY_GAME_ID:id,PARTY_INSTANCE:instance,PARTY_ROSTER:JSON.stringify(profileStore.data.players.map(publicProfile)),PARTY_PLAYER_LIMIT:String(connected().length),PARTY_JOIN_URL:inviteUrl()},windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
+    const child=spawn(process.execPath,['server.js'],{cwd:path.join(ROOT,'games',game.engine||id),env:{...process.env,PORT:String(port),PARTY_MANAGED:'1',PARTY_GAME_ID:id,PARTY_INSTANCE:instance,PARTY_ROSTER:JSON.stringify(profileStore.data.players.map(gameProfile)),PARTY_PLAYER_LIMIT:String(connected().length),PARTY_JOIN_URL:inviteUrl()},windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
     next={game,port,instance,child,ready:new Set(),session:new SessionControls(testMode)};let log='';
     child.on('message',m=>{
       if(m?.type==='party:ui'&&m.ui){const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset)broadcast();}}
@@ -101,8 +102,8 @@ const handler=async(req,res)=>{
   }
   if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=addresses().map(x=>`${scheme}://${x.address}:${PORT}/`);const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await QRCode.toBuffer(target,{margin:1,width:240}));}
   if(url.pathname==='/api/health')return json(res,200,{ok:true,pid:process.pid,build:'sports-siege-alpha.1'});
-  if(url.pathname.startsWith('/assets/')){
-    let name;try{name=decodeURIComponent(url.pathname).slice(1);if(/^assets\/games\/(curling|bowling|swarm_gate|peek_shoot)[.]webp$/.test(name))name=name.replace(/[.]webp$/,'.svg');}catch{return json(res,400,{error:'Invalid path'});}
+    if(url.pathname.startsWith('/assets/')){
+    let name;try{name=decodeURIComponent(url.pathname).slice(1);if(/^assets\/games\/(curling|bowling|swarm_gate|peek_shoot)[.]webp$/.test(name))name=name.replace(/[.]webp$/,'.png');}catch{return json(res,400,{error:'Invalid path'});}
     const root=path.join(ROOT,'public','assets'),target=path.resolve(ROOT,'public',name);
     if(!target.startsWith(root+path.sep)||!fs.existsSync(target)||!fs.statSync(target).isFile())return json(res,404,{error:'Не найдено'});
     const mime={'.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.ttf':'font/ttf','.woff2':'font/woff2','.json':'application/json'}[path.extname(target)];if(!mime)return json(res,404,{error:'Не найдено'});
@@ -117,7 +118,7 @@ const handler=async(req,res)=>{
   const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
 };
 const server=tlsFile?require('https').createServer({pfx:fs.readFileSync(tlsFile),passphrase:process.env.PARTY_TLS_PASSWORD||''},handler):http.createServer(handler);
-const wss=new WebSocketServer({noServer:true,maxPayload:8192});
+const wss=new WebSocketServer({noServer:true,maxPayload:196608});
 server.on('upgrade',(req,socket,head)=>{
   if(req.headers.origin&&req.headers.origin!==`${scheme}://${req.headers.host}`){socket.destroy();return;}
   const url=new URL(req.url,'http://localhost');
@@ -147,13 +148,14 @@ wss.on('connection',(ws,req)=>{
       const saved=m.freshIdentity?null:profileStore.get(m.token||tokenFromCookie(req));
       const name=String(m.name||saved?.name||'').normalize('NFC').trim().replace(/[<>\x00-\x1f]/g,'').slice(0,24);
       if(!name)throw Error('Введите имя.');
+      const avatar=Object.prototype.hasOwnProperty.call(m,'avatar')?normalizeAvatar(m.avatar):saved?.avatar||null;
       let p=saved&&players.get(saved.token);
       if([...players.values()].some(other=>other!==p&&other.name.toLocaleLowerCase()===name.toLocaleLowerCase()&&other.socket?.readyState===WebSocket.OPEN))throw Error('Это имя уже занято. Добавь, например, первую букву фамилии.');
-      if(!p){if(connected().length>=16)throw Error('В лобби уже 16 игроков.');const stored=profileStore.register(saved?.token,name,m.hand||saved?.hand||'right');p=publicProfile(stored);players.set(p.token,p);}
+      if(!p){if(connected().length>=16)throw Error('В лобби уже 16 игроков.');const stored=profileStore.register(saved?.token,name,m.hand||saved?.hand||'right',avatar);p=publicProfile(stored);players.set(p.token,p);}
       if(p.socket&&p.socket!==ws){send(p.socket,{type:'replaced'});p.socket.close();}
-      p.name=name;p.hand=(m.hand||saved?.hand)==='left'?'left':'right';p.testBot=testProfiles.some(bot=>bot.id===p.id);p.socket=ws;ws.player=p;
-      profileStore.register(p.token,p.name,p.hand);syncRoster();
-      send(ws,{type:'joined',token:p.token,id:p.id,name:p.name,hand:p.hand});broadcast();return;
+      p.name=name;p.hand=(m.hand||saved?.hand)==='left'?'left':'right';p.avatar=avatar;p.testBot=testProfiles.some(bot=>bot.id===p.id);p.socket=ws;ws.player=p;
+      profileStore.register(p.token,p.name,p.hand,p.avatar);syncRoster();
+      send(ws,{type:'joined',token:p.token,id:p.id,name:p.name,hand:p.hand,avatar:p.avatar||null});broadcast();return;
     }
     if(m.type==='game-status'&&ws.player&&active){if(m.status==='ready')active.ready.add(ws.player.id);else active.ready.delete(ws.player.id);checkSession();return;}
     if(m.type==='launch'||m.type==='stop'){if(!ws.isHost)throw Error('Игру выбирает ведущий.');if(m.type==='launch')await launch(m.id);else{if(busy)throw Error('Подождите окончания запуска.');stop();}return;}

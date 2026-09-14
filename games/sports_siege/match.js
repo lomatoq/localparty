@@ -18,7 +18,7 @@ class Match {
     let p=this.players.get(profile.id);
     if(!p){
       if(this.players.size>=16)return null;
-      p={id:profile.id,name:String(profile.name||'Игрок').replace(/[<>\u0000-\u001f]/g,'').slice(0,24),hand:profile.hand==='left'?'left':'right',
+      p={id:profile.id,name:String(profile.name||'Игрок').replace(/[<>\u0000-\u001f]/g,'').slice(0,24),hand:profile.hand==='left'?'left':'right',avatar:profile.avatar||null,
         color:COLORS[this.players.size],number:this.players.size+1,team:this.players.size%2,connected:true,participant:false,
         score:0,kills:0,hits:0,shots:0,streak:0,charge:false,gunUntil:0,heat:0,lockedUntil:0,energy:1,abilityAt:0,
         aim:{x:.5,y:.5},fire:false,sweep:false,inputAt:-10,nextShot:0,offlineAt:0,frames:[],missed:0};

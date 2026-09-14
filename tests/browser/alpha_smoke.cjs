@@ -1,0 +1,182 @@
+/* Real launcher + two isolated phone contexts. All network traffic must stay local. */
+const { chromium } = require('playwright');
+const { spawn } = require('node:child_process');
+const fs = require('node:fs');
+const net = require('node:net');
+const path = require('node:path');
+
+const ROOT = path.resolve(__dirname, '..', '..');
+const OUT = path.join(ROOT, 'test-results', 'alpha-browser');
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function freePort() {
+  return new Promise((resolve, reject) => {
+    const server = net.createServer();
+    server.unref();
+    server.on('error', reject);
+    server.listen(0, '127.0.0.1', () => {
+      const port = server.address().port;
+      server.close(() => resolve(port));
+    });
+  });
+}
+
+async function waitForHealth(base) {
+  for (let i = 0; i < 150; i++) {
+    try {
+      const response = await fetch(`${base}/api/health`);
+      if (response.ok) return;
+    } catch {}
+    await sleep(100);
+  }
+  throw new Error('Temporary launcher did not become healthy');
+}
+
+async function main() {
+  fs.mkdirSync(OUT, { recursive: true });
+  const port = await freePort();
+  const base = `http://127.0.0.1:${port}`;
+  const log = fs.openSync(path.join(OUT, 'launcher.log'), 'w');
+  const launcher = spawn(process.execPath, ['server.js'], {
+    cwd: ROOT,
+    env: { ...process.env, PARTY_PORT: String(port), PARTY_EPHEMERAL: '1', PARTY_NO_BROWSER: '1' },
+    stdio: ['ignore', log, log],
+  });
+  let browser;
+  try {
+    await waitForHealth(base);
+    browser = await chromium.launch({
+      headless: true,
+      executablePath: process.env.PARTY_TEST_BROWSER || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+      args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-dev-shm-usage'],
+    });
+    const errors = [];
+    const external = [];
+    const guard = async route => {
+      const url = route.request().url();
+      if (url.startsWith(`${base}/`) || /^(data|blob):/.test(url)) await route.continue();
+      else { external.push(url); await route.abort(); }
+    };
+    const pageError = error => errors.push(String(error));
+    const hostContext = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+    await hostContext.route('**/*', guard);
+    const host = await hostContext.newPage();
+    host.on('pageerror', pageError);
+    await host.goto(`${base}/host`);
+    await host.locator('.game[data-id="bowling"]').waitFor();
+    if (await host.locator('.game').count() !== 30) throw new Error('Catalog no longer has 30 games');
+    const freshOrder = await host.locator('#freshTrack .game').evaluateAll(cards => cards.slice(0, 4).map(card => card.dataset.id));
+    if (freshOrder.join(',') !== 'curling,bowling,swarm_gate,peek_shoot') throw new Error(`Wrong fresh order: ${freshOrder}`);
+    await host.setViewportSize({ width: 1180, height: 700 });
+    await sleep(250);
+    const railAlignment = await host.evaluate(() => {
+      const sectionTop = document.querySelector('#catalogSection').getBoundingClientRect().top;
+      return {
+        sectionTop,
+        leftTop: document.querySelector('.evening-console').getBoundingClientRect().top,
+        rightTop: document.querySelector('.company').getBoundingClientRect().top,
+      };
+    });
+    if (Math.abs(railAlignment.leftTop - railAlignment.sectionTop) > 3 || Math.abs(railAlignment.rightTop - railAlignment.sectionTop) > 3) throw new Error(`Narrow rail alignment failed: ${JSON.stringify(railAlignment)}`);
+    await host.screenshot({ path: path.join(OUT, 'narrow-rails.png'), fullPage: true });
+    await host.setViewportSize({ width: 1440, height: 1000 });
+    await sleep(150);
+    await host.locator('#lp-updates').click();
+    await host.locator('.lp-updates-dialog').waitFor();
+    await host.screenshot({ path: path.join(OUT, 'updates.png') });
+    await host.locator('.lp-update-close').click();
+
+    const phones = [];
+    for (let i = 0; i < 2; i++) {
+      const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+      await context.route('**/*', guard);
+      const page = await context.newPage();
+      page.on('pageerror', pageError);
+      await page.goto(`${base}/`);
+      await page.locator('#name').fill(`Alpha ${i}`);
+      if (i === 0) {
+        await page.locator('input[name="hand"][value="left"]').check();
+        await page.locator('#avatarFile').setInputFiles(path.join(ROOT, 'public', 'assets', 'games', 'bowling.png'));
+        await page.locator('#avatarPreview img').waitFor();
+        await page.screenshot({ path: path.join(OUT, 'profile-photo-phone.png') });
+      }
+      await page.locator('#joinForm button[type="submit"]').click();
+      await page.locator('#home').waitFor();
+      phones.push(page);
+    }
+    await host.locator('.player .avatar.has-photo img').waitFor();
+    if (await host.locator('.player .avatar.has-photo img').count() !== 1) throw new Error('Player photo missing from host roster');
+    await host.screenshot({ path: path.join(OUT, 'profile-photo-host.png') });
+
+    for (const mode of ['curling', 'bowling', 'swarm_gate', 'peek_shoot']) {
+      await host.locator(`.game[data-id="${mode}"] .start-game`).click();
+      for (const phone of phones) {
+        await phone.locator(`#gameFrame[src*="/games/${mode}/"]`).waitFor({ state: 'attached' });
+        await phone.frameLocator('#gameFrame').locator('#ss-name').waitFor({ state: 'attached' });
+        await phone.locator('#readyButton').click();
+      }
+      const frame = host.frameLocator('#gameFrame');
+      await frame.locator('#ss-overlay').waitFor({ state: 'hidden', timeout: 25000 });
+      await sleep(mode === 'swarm_gate' ? 7000 : 1000);
+      await frame.locator('#ss-scene canvas').waitFor();
+      if (await frame.locator('#ss-error').isVisible()) throw new Error(await frame.locator('#ss-error').innerText());
+      await host.screenshot({ path: path.join(OUT, `${mode}-host.png`) });
+      await phones[0].screenshot({ path: path.join(OUT, `${mode}-phone.png`) });
+
+      const firstFrame = phones[0].frameLocator('#gameFrame');
+      if (mode === 'swarm_gate' || mode === 'peek_shoot') {
+        const box = await firstFrame.locator('#ss-fire').boundingBox();
+        await phones[0].mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+        await phones[0].mouse.down();
+        await sleep(450);
+        await host.screenshot({ path: path.join(OUT, `${mode}-effects.png`) });
+        await phones[0].mouse.up();
+      } else {
+        let shooter;
+        for (const phone of phones) {
+          if ((await phone.frameLocator('#gameFrame').locator('#ss-turn').innerText()).includes('ТВОЙ БРОСОК')) {
+            shooter = phone;
+            break;
+          }
+        }
+        if (!shooter) throw new Error(`No active thrower in ${mode}`);
+        const pad = shooter.frameLocator('#gameFrame').locator('#ss-throw-pad');
+        const box = await pad.boundingBox();
+        const x = box.x + box.width * .5;
+        const y = box.y + box.height * .85;
+        await shooter.mouse.move(x, y);
+        await shooter.mouse.down();
+        for (let k = 0; k < 10; k++) {
+          await shooter.mouse.move(x, y - box.height * .06 * (k + 1));
+          await sleep(25);
+        }
+        await shooter.mouse.up();
+        await firstFrame.locator('#ss-turn').waitFor();
+        await sleep(1100);
+        await host.screenshot({ path: path.join(OUT, `${mode}-throw.png`) });
+      }
+
+      await host.evaluate(async () => {
+        const ws = new WebSocket(`${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}/lobby`);
+        await new Promise(resolve => { ws.onopen = resolve; });
+        ws.send(JSON.stringify({ type: 'host', key: window.PARTY_HOST_KEY }));
+        await new Promise(resolve => { ws.onmessage = event => { if (JSON.parse(event.data).type === 'host-ok') resolve(); }; });
+        ws.send(JSON.stringify({ type: 'stop' }));
+        setTimeout(() => ws.close(), 100);
+      });
+      await host.locator('#lobby').waitFor();
+      for (const phone of phones) await phone.locator('#lobby').waitFor();
+    }
+    const report = { pageErrors: errors, externalRequests: external };
+    fs.writeFileSync(path.join(OUT, 'report.json'), JSON.stringify(report, null, 2));
+    console.log(`ALPHA_REPORT ${JSON.stringify(report)}`);
+    if (errors.length) throw new Error(`Browser page errors: ${errors.join('; ')}`);
+    if (external.length) throw new Error(`External requests: ${external.join('; ')}`);
+  } finally {
+    if (browser) await browser.close();
+    launcher.kill();
+    fs.closeSync(log);
+  }
+}
+
+main().catch(error => { console.error(error); process.exitCode = 1; });
