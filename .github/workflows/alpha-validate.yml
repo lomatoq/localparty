@@ -1,48 +1,67 @@
-name: Alpha validation
+name: Alpha visual and gameplay validation
 on:
   push:
     branches: [alpha/party-sports-siege]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: localparty-alpha
   cancel-in-progress: true
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-      - name: Rules, physics and updater tests
+      - name: Apply idempotent native-layout integration
+        run: node scripts/apply-polish-v2.cjs
+      - name: Install locked production dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Rules, real physics, security and new presentation states
+        id: unit
         run: |
-          mkdir -p test-results/afterparty
-          set -o pipefail
-          node --test tests/afterparty.test.js tests/afterparty-regression.test.js tests/updater.test.js 2>&1 | tee test-results/afterparty/afterparty-test.log
-      - name: Install browser-test tools without changing lockfile
+          mkdir -p test-results/polish-v2
+          node --test tests/afterparty.test.js tests/afterparty-regression.test.js tests/afterparty-v2.test.js tests/updater.test.js > test-results/polish-v2/unit.log 2>&1 || { tail -n 100 test-results/polish-v2/unit.log; exit 1; }
+          tail -n 9 test-results/polish-v2/unit.log
+      - name: Install browser tools without lockfile changes
         run: |
-          npm install --no-save --package-lock=false playwright@1.57.0
-          npx playwright install --with-deps chromium
-      - name: Four 3D games, mobile controls and managed lobby
-        run: timeout --kill-after=5s 180s node -r ./tests/afterparty-browser-diagnostics.cjs tests/afterparty-browser.cjs
-      - name: Original game and launcher regression tests
+          npm install --no-save --package-lock=false playwright@1.57.0 --no-audit --no-fund > /tmp/playwright-install.log 2>&1
+          npx playwright install --with-deps chromium >> /tmp/playwright-install.log 2>&1 || { tail -n 40 /tmp/playwright-install.log; exit 1; }
+      - name: All 30 managed game screens and detailed four-game checks
+        id: browser
+        run: timeout --kill-after=5s 800s node tests/polish-browser.cjs
+      - name: Original rules and launcher regression tests
+        if: always() && steps.unit.outcome == 'success' && !cancelled()
+        id: legacy
+        run: |
+          timeout --kill-after=5s 180s npm test > test-results/polish-v2/legacy.log 2>&1 || { tail -n 100 test-results/polish-v2/legacy.log; exit 1; }
+          tail -n 16 test-results/polish-v2/legacy.log
+      - name: Keep private diagnostics and guarded integration commit
         if: always() && !cancelled()
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          UNIT: ${{ steps.unit.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+          LEGACY: ${{ steps.legacy.outcome }}
         run: |
-          mkdir -p test-results/afterparty
-          set -o pipefail
-          timeout --kill-after=5s 180s npm test 2>&1 | tee test-results/afterparty/npm-test.log
-      - name: Optional screenshots and logs (repository artifact quota may be exhausted)
-        uses: actions/upload-artifact@v4
-        if: always()
-        continue-on-error: true
-        with:
-          name: afterparty-validation
-          path: test-results/afterparty
-          retention-days: 7
+          set -e
+          mkdir -p docs/qa/polish-v2
+          cp test-results/polish-v2/report.json docs/qa/polish-v2/report.json 2>/dev/null || true
+          for file in test-results/polish-v2/*.jpg; do [ -f "$file" ] && cp "$file" docs/qa/polish-v2/; done
+          printf 'unit=%s\nbrowser=%s\nlegacy=%s\nsource=%s\n' "$UNIT" "$BROWSER" "$LEGACY" "$EXPECTED_SHA" > docs/qa/polish-v2/status.txt
+          git config user.name 'LocalParty validation'
+          git config user.email '50571880+lomatoq@users.noreply.github.com'
+          git add -f docs/qa/polish-v2
+          if [ "$UNIT" = success ] && [ "$BROWSER" = success ] && [ "$LEGACY" = success ]; then
+            git add server.js public/index.html public/bridge.js public/app.js games/afterparty/server.js games/afterparty/sports.js games/afterparty/arcade.js tests/afterparty-browser.cjs build-info.json
+          fi
+          if git diff --cached --quiet; then exit 0; fi
+          REMOTE_SHA=$(git ls-remote origin refs/heads/alpha/party-sports-siege | cut -f1)
+          if [ "$REMOTE_SHA" != "$EXPECTED_SHA" ]; then echo 'Branch advanced; not overwriting concurrent work.'; exit 0; fi
+          git commit -m 'Record visual QA and verified native-layout integration [skip ci]'
+          git push origin HEAD:refs/heads/alpha/party-sports-siege
