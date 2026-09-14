@@ -1,81 +1,61 @@
 {
-  "testedCommit": "da2d647fd0850d772254e51bb2ecc85ceb603e48",
+  "testedCommit": "e48c0bd0eb0081bc50710b1b498d04baf0966b44",
   "cases": [
     {
       "mode": "bowling",
       "native": true,
-      "ok": true,
-      "bounds": [
-        {
-          "viewport": [
-            376,
-            614
+      "ok": false,
+      "bounds": [],
+      "error": "locator.waitFor: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator('#readyButton') to be visible\n\n    at /home/runner/work/localparty/localparty/tests/polish-browser.cjs:31:151",
+      "diagnostics": {
+        "phase": "waiting",
+        "session": {
+          "readyIds": [],
+          "exitVotes": [],
+          "spectatorIds": [],
+          "eligibleIds": [
+            "776464113f740327",
+            "0c5c524128cc6712"
           ],
-          "overflowX": 0,
-          "bad": []
+          "paused": false,
+          "testMode": false,
+          "startRequested": false,
+          "clockOffset": 0,
+          "pausedAt": null
         },
-        {
-          "viewport": [
-            376,
-            614
-          ],
-          "overflowX": 0,
-          "bad": []
-        },
-        {
-          "viewport": [
-            306,
-            338
-          ],
-          "overflowX": 0,
-          "bad": []
-        }
-      ],
-      "started": true,
-      "throwAccepted": true,
-      "camera": {
-        "before": "1.292,14.063,-13.608",
-        "after": "1.341,5.414,0.392",
-        "ndc": "0.002,-0.020,0.988"
+        "identities": [
+          "776464113f740327",
+          "0c5c524128cc6712"
+        ]
       },
       "returnUI": true
     },
     {
       "mode": "curling",
       "native": true,
-      "ok": true,
-      "bounds": [
-        {
-          "viewport": [
-            376,
-            614
+      "ok": false,
+      "bounds": [],
+      "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator('#readyButton')\n\n    at /home/runner/work/localparty/localparty/tests/polish-browser.cjs:32:63",
+      "diagnostics": {
+        "phase": "waiting",
+        "session": {
+          "readyIds": [],
+          "exitVotes": [],
+          "spectatorIds": [],
+          "eligibleIds": [
+            "776464113f740327",
+            "0c5c524128cc6712"
           ],
-          "overflowX": 0,
-          "bad": []
+          "paused": false,
+          "testMode": false,
+          "startRequested": false,
+          "clockOffset": 0,
+          "pausedAt": null
         },
-        {
-          "viewport": [
-            376,
-            614
-          ],
-          "overflowX": 0,
-          "bad": []
-        },
-        {
-          "viewport": [
-            306,
-            338
-          ],
-          "overflowX": 0,
-          "bad": []
-        }
-      ],
-      "started": true,
-      "throwAccepted": true,
-      "camera": {
-        "before": "2.556,20.646,-14.600",
-        "after": "2.341,8.867,-4.183",
-        "ndc": "0.016,-0.128,0.989"
+        "identities": [
+          "776464113f740327",
+          "0c5c524128cc6712"
+        ]
       },
       "returnUI": true
     },
@@ -146,6 +126,170 @@
       "started": true,
       "fireReleased": true,
       "returnUI": true
+    },
+    {
+      "mode": "push",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "shrink",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "knives",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "bomb",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "western",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "tanks",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "tankarena",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "chaos",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "kart",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 3,
+      "returnUI": true
+    },
+    {
+      "mode": "monster",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 1,
+      "returnUI": true
+    },
+    {
+      "mode": "spy",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 1,
+      "returnUI": true
+    },
+    {
+      "mode": "millionaire",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 0,
+      "returnUI": true
+    },
+    {
+      "mode": "sinyakquiz",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 5,
+      "returnUI": true
+    },
+    {
+      "mode": "warsaw",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 5,
+      "returnUI": true
+    },
+    {
+      "mode": "crocodile",
+      "native": false,
+      "ok": true,
+      "bounds": [],
+      "started": true,
+      "visibleButtons": 3,
+      "returnUI": true
+    },
+    {
+      "mode": "jenga",
+      "native": false,
+      "ok": false,
+      "bounds": [],
+      "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator('#readyButton')\n    - locator resolved to <button class=\"primary\" id=\"readyButton\" aria-pressed=\"false\">Я готов</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n\n    at /home/runner/work/localparty/localparty/tests/polish-browser.cjs:32:63",
+      "diagnostics": {
+        "phase": "waiting",
+        "session": {
+          "readyIds": [],
+          "exitVotes": [],
+          "spectatorIds": [],
+          "eligibleIds": [
+            "776464113f740327",
+            "0c5c524128cc6712"
+          ],
+          "paused": false,
+          "testMode": false,
+          "startRequested": false,
+          "clockOffset": 0,
+          "pausedAt": null
+        },
+        "identities": [
+          "776464113f740327",
+          "0c5c524128cc6712"
+        ]
+      },
+      "returnUI": true
     }
   ],
   "errors": [],
@@ -156,7 +300,7 @@
       "id": "bowling",
       "width": 512,
       "height": 512,
-      "src": "http://127.0.0.1:34775/assets/games/bowling-card-v3.avif",
+      "src": "http://127.0.0.1:44345/assets/games/bowling-card-v3.avif",
       "clip": "hidden",
       "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     },
@@ -164,7 +308,7 @@
       "id": "curling",
       "width": 512,
       "height": 512,
-      "src": "http://127.0.0.1:34775/assets/games/curling-card-v3.avif",
+      "src": "http://127.0.0.1:44345/assets/games/curling-card-v3.avif",
       "clip": "hidden",
       "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     },
@@ -172,7 +316,7 @@
       "id": "gate_siege",
       "width": 512,
       "height": 512,
-      "src": "http://127.0.0.1:34775/assets/games/gate_siege-card-v3.avif",
+      "src": "http://127.0.0.1:44345/assets/games/gate_siege-card-v3.avif",
       "clip": "hidden",
       "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     },
@@ -180,10 +324,11 @@
       "id": "pop_shots",
       "width": 512,
       "height": 512,
-      "src": "http://127.0.0.1:34775/assets/games/pop_shots-card-v3.avif",
+      "src": "http://127.0.0.1:44345/assets/games/pop_shots-card-v3.avif",
       "clip": "hidden",
       "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     }
   ],
-  "expected": 4
+  "expected": 34,
+  "fatal": "locator.waitFor: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator('#lobby') to be visible\n\n    at /home/runner/work/localparty/localparty/tests/polish-browser.cjs:52:87"
 }
