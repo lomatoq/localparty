@@ -13,20 +13,10 @@ edit('games/afterparty/public/sports-view.js',s=>{
  s=r(s,"this.renderer.setPixelRatio(low?Math.min(1,720/w):Math.min(devicePixelRatio||1,1.5));", "this.renderer.setPixelRatio(low?Math.min(1,600/w):Math.min(devicePixelRatio||1,1.5)*(this.quality==='auto'?this.budget.scale:1));this.dirty=true;");
  return s;
 });
-// A stalled/background tab must not reconnect an otherwise healthy lobby after 1.8s.
 edit('public/app.js',s=>r(s,'pongTimer=setTimeout(reopen,1800);','pongTimer=setTimeout(()=>{if(document.hidden)return;reopen();},8000);'));
-// Debounce deadline jitter: rendering sixty complete shell HUDs per second is unnecessary.
 edit('lib/party-runtime.js',s=>r(s,'const signature=JSON.stringify({...next,serverNow:0});','if(Number.isFinite(next.endsAt))next.endsAt=Math.round(next.endsAt/50)*50;\n const signature=JSON.stringify({...next,serverNow:0});'));
 edit('tests/polish-browser.cjs',s=>{
- s=r(s,"'--disable-dev-shm-usage']","'--disable-dev-shm-usage','--disable-background-timer-throttling','--disable-renderer-backgrounding','--disable-backgrounding-occluded-windows']");
- s=r(s,'width:1440,height:1000','width:1280,height:800');
- s=r(s,"host.on('pageerror',e=>errors.push({game:current,screen:'host',message:e.message}));", "host.on('pageerror',e=>errors.push({game:current,screen:'host',message:e.message}));host.on('websocket',s=>{s.on('framereceived',e=>{try{const m=JSON.parse(String(e.payload));if(m.type==='error')console.log('HOST_PROTOCOL_ERROR',JSON.stringify(m));}catch{}});});");
- s=r(s,"p.on('pageerror',e=>errors.push({game:current,screen:'phone'+i,message:e.message}));", "p.on('pageerror',e=>errors.push({game:current,screen:'phone'+i,message:e.message}));p.on('websocket',socket=>{const route=socket.url().includes('/lobby')?'lobby':'game';socket.on('framereceived',e=>{try{const m=JSON.parse(String(e.payload));if(['joined','join_error','error','replaced'].includes(m.type))console.log('PHONE_PROTOCOL',i,route,m.type,m.data?.id||m.id||'',m.message||'');}catch{}});socket.on('close',()=>console.log('PHONE_SOCKET_CLOSED',i,route));});");
- s=r(s,"for(const p of phones){await p.bringToFront();await p.waitForFunction", "for(const p of phones){await p.waitForFunction");
- s=r(s,"for(const p of phones){await p.bringToFront();await p.locator('#readyButton')", "for(const p of phones){await p.locator('#readyButton')");
- s=r(s,"await host.bringToFront();\n    const frame", "console.log('READY_BUTTONS_CLICKED',mode);\n    const frame");
- s=r(s,"entry.error=e.message;console.error", "entry.error=e.stack;console.error");
- s=r(s,"fs.writeFileSync(path.join(OUT,'server.log'),logs.join(''));", "fs.writeFileSync(path.join(OUT,'server.log'),logs.join(''));console.log('SERVER_LOG_TAIL',logs.join('').slice(-4000));");
- return s;
+ s=r(s,"if(m.type==='joined'&&kind==='game')", "if(m.type==='game-ui'&&data.lobby?.active?.instance===m.instance)data.lobby.active.ui=m.ui;\n   if(m.type==='joined'&&kind==='game')");
+ s=r(s,"await f.locator('#ap-power').fill('.70');await f.locator('#ap-power').dispatchEvent('input');", "await f.locator('#ap-power').evaluate(el=>{el.value='.70';el.dispatchEvent(new Event('input',{bubbles:true}));});");return s;
 });
 console.log('Pass2 applied: dynamic safe framing, adaptive resolution, reduced idle work, stable reconnects');
