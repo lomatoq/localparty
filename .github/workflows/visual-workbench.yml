@@ -1,0 +1,27 @@
+name: Private visual workbench
+on:
+  push:
+    branches: ['alpha/party-sports-siege']
+    paths: ['.github/workflows/visual-workbench.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Package reproducible source and installed dependencies
+        run: |
+          tar --exclude=.git --exclude=test-results --exclude=data --exclude=sources --exclude=.env --exclude=runtime --exclude='*.log' -czf /tmp/localparty-workbench.tgz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: localparty-private-workbench
+          path: /tmp/localparty-workbench.tgz
+          retention-days: 1
+          compression-level: 0
