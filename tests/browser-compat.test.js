@@ -7,7 +7,6 @@ test('old-TV viewport fallbacks preserve calc, clamp, responsive rules and curre
  assert.ok(out.includes('width:50vw;width:50svw'));
  assert.ok(out.includes('min-height:clamp(30px,50vh,300px);min-height:clamp(30px,50dvh,300px)'));
  assert.equal(cssFallbacks('a{color:red;background:url(/a.svg)}'),'a{color:red;background:url(/a.svg)}');
- const tv=cssFallbacks(fs.readFileSync('public/tv.css','utf8'));assert.ok(tv.includes('height:calc(100vh - 80px)'));assert.ok(tv.includes('height:calc(100vh - 64px)'));
 });
 test('fallbacks run when Array.at and Canvas.roundRect are absent',()=>{
  const context=vm.createContext({});

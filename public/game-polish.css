@@ -484,7 +484,6 @@ html.party-managed.party-host[data-party-game=tanks] body:has(#lobbyOverlay:not(
 }
 @media(min-width:1101px){
  html.party-managed.party-host[data-party-game=kart] .game-stage{aspect-ratio:auto!important;height:100%!important;align-self:stretch!important;min-height:0!important}
- html.party-managed.party-host[data-party-game=kart] #gameCanvas{width:100%!important;height:100%!important;object-fit:contain}
  html.party-managed.party-host[data-party-game=kart] .top-hud{display:none!important}
  html.party-managed.party-host[data-party-game=kart] .side-panel{height:100%;min-height:0;overflow:auto;justify-content:flex-start}
  html.party-managed.party-host[data-party-game=kart] .controls-card .button-row{gap:14px;margin-top:18px}
@@ -532,7 +531,7 @@ html.party-managed.party-host[data-party-game=tanks] #lobbyOverlay .lobby-grid{b
  html.party-managed.party-host .screen-sidebar #start{min-height:56px!important;margin-top:18px!important;padding:14px 20px!important}
  html.party-managed.party-host .screen-sidebar>.panel:has(#messages){max-height:100px;overflow:auto}
 }
-html.party-managed.party-host[data-party-game=kart] #gameCanvas{top:0!important;left:0!important;bottom:0!important}
+html.party-managed.party-host[data-party-game=kart] #gameCanvas{top:0!important;left:0!important;bottom:0!important;width:100%!important;height:100%!important;object-fit:contain}
 html.party-managed.party-host[data-party-game=kart] .host-shell{container-type:size}
 html.party-managed.party-host[data-party-game=kart] .game-stage{width:min(100%,calc(100cqh * 16 / 9))!important;height:auto!important;aspect-ratio:16/9!important;align-self:center!important;justify-self:center;max-height:100%}
 @media(min-width:1101px){html.party-managed.party-host[data-party-game=tanks] #game{top:160px!important;left:0!important;width:100%!important;height:calc(100dvh - 160px)!important;transform:none!important;object-fit:contain}}
