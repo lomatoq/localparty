@@ -1,0 +1,10 @@
+{
+ "revision":"approved-purple-cutouts-v3",
+ "processing":"Existing user-approved RGBA images, resized to 512x512; AVIF quality 40, transparent matte. No new image generation.",
+ "assets":{
+  "bowling":{"file":"bowling-card-v3.avif","bytes":21014,"source":"neon_bowling_strike_explosion.png","sourceSHA256":"b9bda11ed1e625af471c741b8085091eaa2e0e8a37da97aafeb24bb4b585b512","blob":"1a7fa64fde8e4515edf52e02ed5b4014abe6022f"},
+  "curling":{"file":"curling-card-v3.avif","bytes":22424,"source":"neon_curling_stone_and_sweeping_broom.png","sourceSHA256":"95817c7054fa61a96d260417edfc8bc772baffec77981ba4a070a67a0f14ec2f","blob":"cc458dd26c51cab469dc4fb12993c7f98a88a777"},
+  "gate_siege":{"file":"gate_siege-card-v3.avif","bytes":22131,"source":"purple_turret_defends_fortress_gate.png","sourceSHA256":"a75f87c050b9afd03019305b6df618fdc18b847228fb3ebd356dd1be4496beae","blob":"e87a1f96993ac7da099d38815ac8ffff50baf8b1"},
+  "pop_shots":{"file":"pop_shots-card-v3.avif","bytes":16443,"source":"toy_blaster_targets_surprised_chicken.png","sourceSHA256":"24ee990cc6bd3cf8ae3895cb36b9565a798f79f3fe1436c89965d736b6feecbb","blob":"bd5049b6f4bee806dc25024ac1849c328815c9da"}
+ }
+}
