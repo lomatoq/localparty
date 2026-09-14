@@ -130,6 +130,10 @@ class Stage {
     if(!this.killHaloTexture){const canvas=document.createElement('canvas');canvas.width=256;canvas.height=256;const c=canvas.getContext('2d');c.translate(128,128);const glow=c.createRadialGradient(0,0,8,0,0,112);glow.addColorStop(0,'#ffffffff');glow.addColorStop(.18,'#ffffffd8');glow.addColorStop(.42,'#ffffff42');glow.addColorStop(1,'#ffffff00');c.fillStyle=glow;c.beginPath();c.arc(0,0,112,0,Math.PI*2);c.fill();c.strokeStyle='#ffffffff';c.lineWidth=9;c.beginPath();c.arc(0,0,54,0,Math.PI*2);c.stroke();c.lineCap='round';for(let i=0;i<12;i++){const a=i*Math.PI/6,inner=i%2?70:63,outer=i%2?91:108;c.lineWidth=i%2?5:8;c.beginPath();c.moveTo(Math.cos(a)*inner,Math.sin(a)*inner);c.lineTo(Math.cos(a)*outer,Math.sin(a)*outer);c.stroke();}this.killHaloTexture=new THREE.CanvasTexture(canvas);this.killHaloTexture.colorSpace=THREE.SRGBColorSpace;}
     const material=new THREE.SpriteMaterial({map:this.killHaloTexture,color,transparent:true,depthTest:false,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending});const sprite=new THREE.Sprite(material);sprite.renderOrder=15;return sprite;
   }
+  bowlingPitFog(){
+    if(!this.bowlingPitFogTexture){const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;const c=canvas.getContext('2d'),depth=c.createRadialGradient(256,170,12,256,142,300);depth.addColorStop(0,'#010207ff');depth.addColorStop(.38,'#03050cf5');depth.addColorStop(.72,'#080b18d9');depth.addColorStop(1,'#18203c70');c.fillStyle=depth;c.fillRect(0,0,512,256);const veil=c.createLinearGradient(0,0,0,256);veil.addColorStop(0,'#28304d38');veil.addColorStop(.38,'#080b18a8');veil.addColorStop(1,'#000106f5');c.fillStyle=veil;c.fillRect(0,0,512,256);this.bowlingPitFogTexture=new THREE.CanvasTexture(canvas);this.bowlingPitFogTexture.colorSpace=THREE.SRGBColorSpace;}
+    const material=new THREE.MeshBasicMaterial({map:this.bowlingPitFogTexture,transparent:true,depthWrite:false,toneMapped:false,side:THREE.DoubleSide});const fog=new THREE.Mesh(new THREE.PlaneGeometry(7.35,1.82),material);fog.renderOrder=1;return fog;
+  }
   mesh(geo,mat,x=0,y=0,z=0,parent=this.scene){const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
   box(w,h,d,color,x=0,y=0,z=0,parent=this.scene){return this.mesh(new THREE.BoxGeometry(w,h,d),this.mat(color),x,y,z,parent);}
   sphere(r,color,x=0,y=0,z=0,parent=this.scene){return this.mesh(new THREE.SphereGeometry(r,18,12),this.mat(color),x,y,z,parent);}
@@ -160,19 +164,21 @@ class Stage {
       // Strips are geometry, not a remote texture: portable/offline builds stay self-contained.
       for(let i=0;i<14;i++)this.box(4.4/14,.25,28,i%3===0?'#c8955a':i%3===1?'#d9ad70':'#ddb77e',-2.2+(i+.5)*4.4/14,-.13,2);
       for(const x of [-2.65,2.65]){this.box(.9,.16,32,'#253747',x,-.40,0);this.glowBox(.06,.05,31.5,'#60e1ed',Math.sign(x)*3.12,.03,0);}
-      // A solid back wall and pin backstop close the lane. Keep every face on a
-      // distinct Z plane so the distant wall cannot shimmer as the camera flies.
+      // Keep the room wall behind a recessed pinsetter. The pit itself has a
+      // closed floor and dark local haze, while the upper opening remains deep.
       this.box(24,5.5,.6,'#1b2839',0,1.65,-16.8);this.glowBox(22,.08,.05,'#ba92ff',0,3.9,-16.44);this.glowBox(22,.045,.05,'#65e7f1',0,-.25,-16.44);
       for(const x of [-9,-6,-3,0,3,6,9])this.glowBox(.045,4.4,.05,x%6?'#65e7f1':'#ba92ff',x,1.7,-16.18);
       const pinDeck=this.box(4.4,.16,3.4,'#c79b64',0,-.08,-13.7);pinDeck.material=this.mat('#c79b64',.34);
-      this.box(8.2,2.8,.48,'#7a5549',0,1.03,-14.75);this.box(7.55,1.62,.18,'#d7b37f',0,1.08,-14.45);this.box(8.2,.62,.54,'#55385f',0,.10,-14.48);
-      for(const x of [-2.7,-1.35,0,1.35,2.7])this.box(.055,1.34,.08,'#9a7058',x,1.10,-14.31);
-      this.glowBox(7.3,.055,.05,'#ffcf73',0,.43,-14.18);this.glowBox(7.3,.035,.05,'#bd92ff',0,2.13,-14.18);
+      this.box(7.55,.16,2.45,'#191523',0,-.18,-15.38);this.box(7.55,.56,.34,'#55385f',0,.10,-14.55);
+      this.box(7.55,1.9,.12,'#03050b',0,.82,-16.28);const pitFog=this.bowlingPitFog();pitFog.position.set(0,.82,-16.10);this.scene.add(pitFog);
+      this.box(8.2,.38,2.75,'#7a5549',0,2.06,-14.78);this.box(8.2,.54,.42,'#d7b37f',0,1.82,-13.55);
+      for(const x of [-2.7,-1.35,0,1.35,2.7])this.box(.055,.34,.08,'#9a7058',x,1.82,-13.31);
+      this.glowBox(7.3,.055,.05,'#ffcf73',0,.42,-14.34);this.glowBox(7.3,.035,.05,'#bd92ff',0,1.54,-13.31);
       for(const x of [-3.85,3.85])this.box(.48,2.5,3.5,'#222d3b',x,.86,-13.0);
       for(let i=-2;i<=2;i++)this.sphere(.07,'#533c2c',i*.6,.018,6.7);
       this.box(4.4,.012,.08,'#513b34',0,.008,10.5);this.box(7,.25,8,'#3e454d',0,-.14,19.7);
       for(const x of [-10,10]){this.box(4,.3,36,'#263445',x,-.25,-2);for(let z=-12;z<15;z+=7)this.glowBox(2.5,.05,.08,'#8e6fbb',x,.02,z);}
-      for(const x of [-9,-6,-3,0,3,6,9])this.environmentModel('./assets/environment/bowling/wall-panel.glb',{position:[x,-.1,-16.12],scale:2.05,tint:x%6?'#263c58':'#54316d'});
+      for(const x of [-9,-6,-3,3,6,9])this.environmentModel('./assets/environment/bowling/wall-panel.glb',{position:[x,-.1,-16.12],scale:2.05,tint:x%6?'#263c58':'#54316d'});
       this.environmentModel('./assets/environment/bowling/neon-sign.glb',{position:[0,2.45,-15.38],scale:1.8,tint:'#c58aff'});
       for(const x of [-6,0,6])for(const z of [-9,2,13])this.environmentModel('./assets/environment/bowling/ceiling-light.glb',{position:[x,7,z],scale:1.25,tint:'#88efff'});
     }else if(mode==='curling'){
