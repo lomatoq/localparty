@@ -8,7 +8,7 @@
   "totals": {
     "publicAssetFiles": 389,
     "games": 17,
-    "gameFiles": 210
+    "gameFiles": 211
   },
   "publicAssets": [
     {
@@ -2401,6 +2401,10 @@
         },
         {
           "file": "games/sports_siege/public/assets/environment/curling/ice-centre.glb",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/environment/curling/roofed-hall.glb",
           "role": "asset"
         },
         {

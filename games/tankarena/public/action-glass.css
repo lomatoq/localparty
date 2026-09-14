@@ -15,3 +15,27 @@ html.party-managed.party-host .arena-host aside>.lp-lobby-rules{margin:0!importa
 
 @media(min-width:1101px){html.party-managed.party-host .arena-host main{container-type:size}html.party-managed.party-host .arena-host .arena-surface{width:min(100%,calc(100cqh * 5 / 3))!important;height:auto!important;min-height:0!important;aspect-ratio:5/3;align-self:center;justify-self:center}html.party-managed.party-host .arena-host .arena-surface>canvas{position:absolute;inset:0;width:100%!important;height:100%!important;max-height:none!important;object-fit:fill}}
 
+/* Keep the battlefield and its scoreboard as one bounded composition. */
+.arena-host main{align-content:center;align-items:start}
+.arena-host .arena-surface{min-width:0;min-height:0;aspect-ratio:5/3}
+.arena-host .arena-surface>canvas{display:block;width:100%;height:100%;max-height:none;object-fit:fill}
+.arena-host aside{box-sizing:border-box;min-width:0;max-width:100%;max-height:calc(100dvh - 36px);overflow:hidden}
+.arena-host aside>#board{min-height:0;overflow:auto;flex-wrap:nowrap!important;scrollbar-width:thin;scrollbar-color:#b4ff3955 #ffffff08}
+.arena-host aside>*{flex-shrink:0}
+.arena-host aside>#board{flex:0 1 auto}
+.arena-host aside>#board>.stat{flex:none}
+
+@media(max-width:800px){
+ .arena-host main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;align-content:start;gap:14px;padding:12px}
+ .arena-host .arena-surface{width:100%;min-height:0}
+ .arena-host aside{width:100%;max-height:min(520px,calc(100dvh - 24px));padding:16px;gap:12px}
+ .arena-host aside>#board{grid-template-columns:repeat(2,minmax(0,1fr));max-height:46dvh}
+ .arena-host .stat{min-width:0;overflow-wrap:anywhere}
+}
+
+@media(min-width:801px) and (max-width:1100px){
+ .arena-host main{--tank-rail:clamp(250px,30vw,300px);grid-template-columns:minmax(0,1fr) var(--tank-rail);grid-template-rows:auto;align-content:start;gap:18px;padding:64px 18px 18px}
+ .arena-host .arena-surface{width:min(100%,calc((100dvh - 36px) * 5 / 3));align-self:start;justify-self:center}
+ .arena-host aside{max-height:min(calc(100dvh - 36px),calc((100vw - var(--tank-rail) - 54px) * 3 / 5))}
+}
+

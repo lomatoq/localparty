@@ -597,3 +597,55 @@ html.party-player input,html.party-player textarea,html.party-player [contentedi
  html.party-managed.party-player[data-party-game=naval] #ownGrid span{min-width:0;aspect-ratio:1;font-size:10px!important}
  html.party-managed.party-player[data-party-game=naval] #shot{font-size:14px!important;line-height:1.4;overflow-wrap:anywhere}
 }
+
+/* Tank Arsenal: the roster rail follows the 5:3 battlefield instead of
+   stretching to the embedded viewport. */
+@media(min-width:1101px){
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host main{
+  --tank-rail:clamp(300px,22vw,380px);
+  grid-template-columns:minmax(0,1fr) var(--tank-rail)!important;
+  grid-template-rows:auto!important;
+  align-content:center!important;
+  align-items:start!important;
+  gap:24px!important;
+  height:100dvh!important;
+  min-height:0!important;
+  padding:64px 24px 20px!important;
+  container-type:size;
+ }
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host .arena-surface{
+  width:min(100%,calc(100cqh * 5 / 3))!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:0!important;
+  aspect-ratio:5/3;
+  align-self:start!important;
+  justify-self:center!important;
+ }
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host .arena-surface>canvas{
+  position:absolute;
+  inset:0;
+  width:100%!important;
+  height:100%!important;
+  max-height:none!important;
+  object-fit:fill;
+ }
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host aside{
+  align-self:start!important;
+  justify-self:stretch!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:min(100cqh,calc((100cqw - var(--tank-rail) - 72px) * 3 / 5));
+  padding:22px!important;
+  gap:16px!important;
+  overflow:hidden!important;
+ }
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host aside>#board{
+  flex:0 1 auto;
+  min-height:0;
+  overflow:auto!important;
+ }
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host .stat{padding:14px 16px;font-size:15px;line-height:1.3}
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host .stat b{font-size:24px}
+ html.party-managed.party-host[data-party-game=tankarena] .arena-host .stat small{font-size:12px;margin-top:5px}
+}

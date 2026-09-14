@@ -161,7 +161,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   main.append(side);for(const element of main.querySelectorAll(':scope>#notice,:scope>.glass,:scope>#board,:scope>#start,:scope>details'))side.append(element);
  }
  const start=document.querySelector('#startGame,#startBtn,#start');
- const card=document.querySelector('#lobbyOverlay .left-panel,#lobbyOverlay .modes-card,.setup-card,.lobbyPanel,#lobbyStage') || (document.documentElement.dataset.partyGame==='crane'?document.querySelector('aside'):null) || start?.closest('aside,.panel,.card,section,main');
+ const gameId=document.documentElement.dataset.partyGame;
+ const card=(gameId==='chaos'?document.querySelector('#lobby>.panel'):null) || document.querySelector('#lobbyOverlay .left-panel,#lobbyOverlay .modes-card,.setup-card,.lobbyPanel,#lobbyStage') || (gameId==='crane'?document.querySelector('aside'):null) || start?.closest('aside,.panel,.card,section,main');
  if(!card)return;
  document.querySelectorAll('details').forEach(detail=>{if(/правила|как играть/i.test(detail.querySelector('summary')?.textContent||''))detail.hidden=true;});
  card.classList.add('lp-start-card');
@@ -170,7 +171,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  for(const value of [info.goal,info.controls,info.win]){if(!value)continue;const p=document.createElement('p');p.textContent=Array.isArray(value)?value.join(' · '):value;rules.append(p);}
  const heading=card.querySelector('h1,h2');
  let headingRow=heading;while(headingRow&&headingRow.parentElement!==card)headingRow=headingRow.parentElement;
- if(headingRow&&!card.classList.contains('lp-duel-sidebar'))headingRow.after(rules);else card.prepend(rules);
+ const rulesAnchor=gameId==='chaos'?document.querySelector('#lobbyStage .lobbyHead'):headingRow;
+ if(rulesAnchor&&!card.classList.contains('lp-duel-sidebar'))rulesAnchor.after(rules);else card.prepend(rules);
  if(document.documentElement.dataset.partyGame==='spy'&&start)card.append(start);
 });
 

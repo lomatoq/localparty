@@ -252,7 +252,7 @@ async function main() {
         if (['bowling', 'curling', 'swarm_gate', 'peek_shoot'].includes(game)) {
           await hostFrame.locator('#ss-overlay').waitFor({ state: 'hidden', timeout: 25000 });
           await hostFrame.waitForFunction(expected => document.querySelectorAll('.ss-player-card').length === expected, count, { timeout: 10000 });
-          await sleep(game === 'swarm_gate' ? 1700 : 700);
+          await sleep(Number(process.env.QA_SCENE_WAIT_MS) || (game === 'swarm_gate' ? 1700 : 700));
         } else {
           await hostFrame.locator('#lobbyStage').waitFor({ state: 'hidden', timeout: 5000 }).catch(async () => {
             const start = hostFrame.locator('#start');

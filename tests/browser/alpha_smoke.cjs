@@ -204,6 +204,11 @@ async function main() {
         await firstFrame.locator('#ss-turn').waitFor();
         await sleep(1100);
         await host.screenshot({ path: path.join(OUT, `${mode}-throw.png`) });
+        const revealLabel = mode === 'bowling' ? 'КЕГЛИ' : 'ЗАМЕР';
+        await host.waitForFunction(expected => (
+          document.querySelector('#gameFrame')?.contentDocument?.querySelector('#ss-stage')?.textContent?.trim() === expected
+        ), revealLabel, { timeout: 15000 });
+        await host.screenshot({ path: path.join(OUT, `${mode}-reveal.png`) });
       }
 
       await host.evaluate(async () => {

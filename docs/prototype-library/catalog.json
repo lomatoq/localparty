@@ -38,6 +38,11 @@
     "OFL-1.1": {
       "label": "SIL Open Font License 1.1",
       "notice": "public/assets/fonts/OFL.txt"
+    },
+    "CC0-1.0": {
+      "label": "Creative Commons Zero 1.0 Universal",
+      "notice": "games/sports_siege/public/assets/environment/LICENSES.md",
+      "usage": "May be copied, modified and redistributed without attribution. Keep the local source record for provenance."
     }
   },
   "manifests": {
@@ -255,6 +260,29 @@
       "useFor": ["host backdrop", "results backdrop", "menu art"],
       "avoidFor": ["collision geometry", "phone controller", "assuming menu art is gameplay art"],
       "mobileBundle": "host-only"
+    },
+    {
+      "id": "sports-siege-3d-environments",
+      "title": "Host-only bowling and curling environment modules",
+      "category": "3d-environments",
+      "status": "visual-gate-required",
+      "files": [
+        "games/sports_siege/public/assets/environment/bowling/ceiling-light.glb",
+        "games/sports_siege/public/assets/environment/bowling/gutter-pair.glb",
+        "games/sports_siege/public/assets/environment/bowling/lane-module.glb",
+        "games/sports_siege/public/assets/environment/bowling/neon-sign.glb",
+        "games/sports_siege/public/assets/environment/bowling/wall-panel.glb",
+        "games/sports_siege/public/assets/environment/curling/roofed-hall.glb"
+      ],
+      "projection": "3d",
+      "camera": "perspective host camera; fit a single coherent pack at metre scale before tuning aim, chase and reveal cameras",
+      "pivot": "model origin and floor contact from the source GLB; verify transformed floor height against gameplay physics",
+      "tint": "optional restrained material tint after cloning; preserve value separation and material identity",
+      "animation": "static architecture; camera motion and gameplay objects remain separate presentation systems",
+      "license": "CC0-1.0",
+      "useFor": ["bowling host environment", "curling host environment", "3D sports alpha blockout with a real architectural shell"],
+      "avoidFor": ["phone controllers", "mixing unrelated packs in one room", "duplicating the gameplay surface", "placing decorative props in the action path"],
+      "mobileBundle": "host-only; controller entry points must never request these GLBs"
     },
     {
       "id": "rubik-font",
