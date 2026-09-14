@@ -20,14 +20,17 @@ async function roomCommand(page,type,data={}){return page.evaluate(({type,data})
   const phones=[];for(let i=0;i<2;i++){const ctx=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});const p=await ctx.newPage();p.on('pageerror',e=>errors.push({game:current,screen:'phone'+i,message:e.message}));await p.goto(base+'/');await p.locator('#name').fill(i?'Арина':'Глеб');if(i===0)await p.locator('input[name="hand"][value="left"]').check();await p.locator('#joinForm button').click();await p.locator('#home').waitFor();phones.push(p);}
   const catalog=await host.evaluate(()=>window.qaState.catalog),newIds=['bowling','curling','gate_siege','pop_shots'];assert.equal(catalog.length,30);
   await thumbnail(host,'catalog');
-  for(const mode of [...newIds,...catalog.map(g=>g.id).filter(id=>!newIds.includes(id))]){
+  for(const mode of (process.env.POLISH_GAMES?process.env.POLISH_GAMES.split(','):[...newIds,...catalog.map(g=>g.id).filter(id=>!newIds.includes(id))])){
    current=mode;const entry={mode,native:newIds.includes(mode),loaded:false,started:false,phoneBounds:[]};report.cases.push(entry);console.log('POLISH_BEGIN',mode);
    try{
     await roomCommand(host,'launch',{id:mode});
     await host.waitForFunction(id=>document.querySelector('#gameFrame').src.includes('/games/'+id+'/'),mode,{timeout:20000});
-    for(const p of phones){await p.locator('#readyButton').waitFor({state:'visible',timeout:15000});await p.locator('#readyButton').click({timeout:15000});}
+    for(const p of phones){await p.bringToFront();await p.waitForFunction(id=>document.querySelector('#gameFrame').src.includes('/games/'+id+'/'),mode,{timeout:20000,polling:100});}
+    await host.waitForFunction(id=>window.qaState?.active?.id===id&&window.qaState.players.every(p=>p.gameReady),mode,{timeout:20000,polling:100});
+    for(const p of phones){await p.bringToFront();await p.locator('#readyButton').waitFor({state:'visible',timeout:12000});await p.locator('#readyButton').click({timeout:12000});}
+    await host.bringToFront();
     const frame=host.frameLocator('#gameFrame');
-    await host.waitForFunction(()=>document.body.dataset.phase!=='waiting',null,{timeout:20000});entry.started=true;
+    await host.waitForFunction(()=>['playing','countdown','reveal','results'].includes(document.body.dataset.phase),null,{timeout:20000,polling:100});entry.started=true;
     await sleep(entry.native?800:300);entry.loaded=true;
     entry.phase=await host.locator('body').getAttribute('data-phase');
     if(entry.native){
@@ -38,7 +41,7 @@ async function roomCommand(page,type,data={}){return page.evaluate(({type,data})
      if(['bowling','curling'].includes(mode)){
       const startCamera=await frame.locator('#ap-stage').getAttribute('data-camera');let thrower;
       for(const p of phones){if((await p.frameLocator('#gameFrame').locator('#ap-state').innerText()).includes('Твой бросок'))thrower=p;}
-      assert.ok(thrower,'active thrower missing');const controls=thrower.frameLocator('#gameFrame');await controls.locator('#ap-precise-open').click();await controls.locator('#ap-power').fill('.75');await controls.locator('#ap-throw').click();await sleep(1500);
+      assert.ok(thrower,'active thrower missing');const controls=thrower.frameLocator('#gameFrame');await controls.locator('#ap-precise-open').click();await controls.locator('#ap-power').evaluate(e=>{e.value='.75';e.dispatchEvent(new Event('input',{bubbles:true}));});await controls.locator('#ap-throw').click();await sleep(1500);
       const endCamera=await frame.locator('#ap-stage').getAttribute('data-camera');entry.cameraChanged=startCamera!==endCamera;assert.ok(entry.cameraChanged,'camera did not follow');
       const ndc=await frame.locator('#ap-stage').getAttribute('data-projectile-ndc');entry.projectileNdc=ndc;if(ndc){const [x,y,z]=ndc.split(',').map(Number);assert.ok(Math.abs(x)<1&&Math.abs(y)<1&&z<1,'projectile outside view '+ndc);}
       await thumbnail(host,mode+'-action');
@@ -53,7 +56,7 @@ async function roomCommand(page,type,data={}){return page.evaluate(({type,data})
      await thumbnail(host,'legacy-'+mode,560);
     }
     entry.ok=true;
-   }catch(e){entry.ok=false;entry.error=e.message;console.error('POLISH_FAIL',mode,e.message);try{await thumbnail(host,'failed-'+mode,720);}catch{}}
+   }catch(e){entry.ok=false;entry.error=e.message;console.error('POLISH_FAIL',mode,e.message);entry.diagnostics=[];for(const page of [host,...phones]){try{const d=await page.evaluate(()=>({bodyClass:document.body.className,phase:document.body.dataset.phase,game:window.PARTY_GAME?.id,ui:window.PARTY_UI,session:window.PARTY_SESSION,profile:window.PARTY_PROFILE?.name,notice:document.querySelector('#notice')?.textContent,frameSrc:document.querySelector('#gameFrame')?.getAttribute('src'),rects:['play','waitingRules','readyButton','gameFrame'].map(id=>{const e=document.getElementById(id),r=e?.getBoundingClientRect(),c=e&&getComputedStyle(e);return {id,hidden:e?.hidden,rect:r?{x:r.x,y:r.y,w:r.width,h:r.height}:null,display:c?.display,visibility:c?.visibility,text:e?.textContent?.slice(0,180)};})}));entry.diagnostics.push(d);console.log('POLISH_DIAG',JSON.stringify(d));}catch{}}try{await thumbnail(host,'failed-'+mode,720);await thumbnail(phones[0],'failed-phone-'+mode,390);}catch{}}
    finally{await roomCommand(host,'stop');await host.locator('#lobby').waitFor({state:'visible',timeout:15000});await sleep(200);}
    console.log('POLISH_CASE',JSON.stringify(entry));
   }
