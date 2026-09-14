@@ -1,0 +1,324 @@
+{
+  "testedCommit": "f0bed3e84d1b3335c43c8c522fdbc8ff4db6d2d7",
+  "cases": [
+    {
+      "mode": "bowling",
+      "native": true,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#readyButton') to be visible\n"
+    },
+    {
+      "mode": "curling",
+      "native": true,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#readyButton') to be visible\n"
+    },
+    {
+      "mode": "gate_siege",
+      "native": true,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#readyButton') to be visible\n"
+    },
+    {
+      "mode": "pop_shots",
+      "native": true,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    },
+    {
+      "mode": "push",
+      "native": false,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    },
+    {
+      "mode": "shrink",
+      "native": false,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    },
+    {
+      "mode": "knives",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "countdown",
+      "hostTextLength": 0,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "bomb",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "countdown",
+      "hostTextLength": 0,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "western",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "countdown",
+      "hostTextLength": 0,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "tanks",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 0,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "tankarena",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 74,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "chaos",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "countdown",
+      "hostTextLength": 115,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "kart",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "countdown",
+      "hostTextLength": 170,
+      "visibleControls": 3,
+      "ok": true
+    },
+    {
+      "mode": "monster",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 140,
+      "visibleControls": 1,
+      "ok": true
+    },
+    {
+      "mode": "spy",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 205,
+      "visibleControls": 1,
+      "ok": true
+    },
+    {
+      "mode": "millionaire",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 178,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "sinyakquiz",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 352,
+      "visibleControls": 5,
+      "ok": true
+    },
+    {
+      "mode": "warsaw",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 318,
+      "visibleControls": 5,
+      "ok": true
+    },
+    {
+      "mode": "crocodile",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 265,
+      "visibleControls": 3,
+      "ok": true
+    },
+    {
+      "mode": "jenga",
+      "native": false,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#readyButton') to be visible\n"
+    },
+    {
+      "mode": "crane",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 227,
+      "visibleControls": 1,
+      "ok": true
+    },
+    {
+      "mode": "naval",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 149,
+      "visibleControls": 1,
+      "ok": true
+    },
+    {
+      "mode": "drawguess",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 172,
+      "visibleControls": 1,
+      "ok": true
+    },
+    {
+      "mode": "western_duel",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "countdown",
+      "hostTextLength": 197,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "taprace",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 27,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "punchmeter",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 57,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "flappy",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 27,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "hungry",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 29,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "snakelines",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 27,
+      "visibleControls": 0,
+      "ok": true
+    },
+    {
+      "mode": "carryball",
+      "native": false,
+      "loaded": true,
+      "started": true,
+      "phoneBounds": [],
+      "phase": "playing",
+      "hostTextLength": 34,
+      "visibleControls": 0,
+      "ok": true
+    }
+  ],
+  "errors": [],
+  "generatedAt": "2026-09-14T01:52:03.618Z",
+  "ok": false
+}
