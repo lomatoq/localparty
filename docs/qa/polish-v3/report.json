@@ -1,11 +1,11 @@
 {
-  "testedCommit": "12c6754bcc5375842bf0bd75f2bb5a8b7a49810c",
+  "testedCommit": "da2d647fd0850d772254e51bb2ecc85ceb603e48",
   "cases": [
     {
       "mode": "bowling",
       "native": true,
-      "ok": false,
-      "phoneBounds": [
+      "ok": true,
+      "bounds": [
         {
           "viewport": [
             376,
@@ -18,210 +18,172 @@
           "viewport": [
             376,
             614
+          ],
+          "overflowX": 0,
+          "bad": []
+        },
+        {
+          "viewport": [
+            306,
+            338
           ],
           "overflowX": 0,
           "bad": []
         }
       ],
-      "loaded": true,
       "started": true,
-      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#gameFrame').contentFrame().locator('#ap-throw')\n    - locator resolved to <button disabled id=\"ap-throw\" class=\"ap-primary\">Бросить ↗</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n\n    at /home/runner/work/localparty/localparty/tests/polish-browser.cjs:41:192",
-      "network": {
-        "lobbyPlayers": [
-          {
-            "id": "6cd34ba047efcd51",
-            "name": "Глеб",
-            "hand": "left",
-            "testBot": false,
-            "gameReady": true
-          },
-          {
-            "id": "92dc48361adfa4f3",
-            "name": "Арина",
-            "hand": "right",
-            "testBot": false,
-            "gameReady": true
-          }
-        ],
-        "session": {
-          "readyIds": [
-            "6cd34ba047efcd51",
-            "92dc48361adfa4f3"
-          ],
-          "exitVotes": [],
-          "spectatorIds": [],
-          "eligibleIds": [
-            "6cd34ba047efcd51",
-            "92dc48361adfa4f3"
-          ],
-          "paused": false,
-          "testMode": false,
-          "startRequested": true,
-          "clockOffset": 0,
-          "pausedAt": null
-        },
-        "hostGame": {
-          "phase": "playing",
-          "state": "aim",
-          "players": [
-            {
-              "id": "6cd34ba047efcd51",
-              "name": "Глеб",
-              "color": "#c8ff73",
-              "team": 0,
-              "connected": true,
-              "score": 0,
-              "stamina": 1,
-              "sweeping": 0,
-              "card": [
-                {
-                  "rolls": [
-                    0,
-                    0
-                  ],
-                  "points": 0,
-                  "total": 0,
-                  "done": true
-                },
-                {
-                  "rolls": [],
-                  "points": null,
-                  "total": null,
-                  "done": false
-                }
-              ]
-            },
-            {
-              "id": "92dc48361adfa4f3",
-              "name": "Арина",
-              "color": "#be8bff",
-              "team": 1,
-              "connected": true,
-              "score": 0,
-              "stamina": 1,
-              "sweeping": 0,
-              "card": [
-                {
-                  "rolls": [],
-                  "points": null,
-                  "total": null,
-                  "done": false
-                }
-              ]
-            }
-          ]
-        },
-        "phoneIds": [
-          "6cd34ba047efcd51",
-          "92dc48361adfa4f3"
-        ]
+      "throwAccepted": true,
+      "camera": {
+        "before": "1.292,14.063,-13.608",
+        "after": "1.341,5.414,0.392",
+        "ndc": "0.002,-0.020,0.988"
       },
-      "returnError": "locator.click: Timeout 6000ms exceeded.\nCall log:\n  - waiting for locator('#exitVoteButton')\n    - locator resolved to <button class=\"quiet\" id=\"exitVoteButton\">← Все в лобби</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    7 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 500ms\n"
+      "returnUI": true
+    },
+    {
+      "mode": "curling",
+      "native": true,
+      "ok": true,
+      "bounds": [
+        {
+          "viewport": [
+            376,
+            614
+          ],
+          "overflowX": 0,
+          "bad": []
+        },
+        {
+          "viewport": [
+            376,
+            614
+          ],
+          "overflowX": 0,
+          "bad": []
+        },
+        {
+          "viewport": [
+            306,
+            338
+          ],
+          "overflowX": 0,
+          "bad": []
+        }
+      ],
+      "started": true,
+      "throwAccepted": true,
+      "camera": {
+        "before": "2.556,20.646,-14.600",
+        "after": "2.341,8.867,-4.183",
+        "ndc": "0.016,-0.128,0.989"
+      },
+      "returnUI": true
+    },
+    {
+      "mode": "gate_siege",
+      "native": true,
+      "ok": true,
+      "bounds": [
+        {
+          "viewport": [
+            376,
+            614
+          ],
+          "overflowX": 0,
+          "bad": []
+        },
+        {
+          "viewport": [
+            376,
+            614
+          ],
+          "overflowX": 0,
+          "bad": []
+        },
+        {
+          "viewport": [
+            306,
+            338
+          ],
+          "overflowX": 0,
+          "bad": []
+        }
+      ],
+      "started": true,
+      "fireReleased": true,
+      "returnUI": true
+    },
+    {
+      "mode": "pop_shots",
+      "native": true,
+      "ok": true,
+      "bounds": [
+        {
+          "viewport": [
+            376,
+            614
+          ],
+          "overflowX": 0,
+          "bad": []
+        },
+        {
+          "viewport": [
+            376,
+            614
+          ],
+          "overflowX": 0,
+          "bad": []
+        },
+        {
+          "viewport": [
+            306,
+            338
+          ],
+          "overflowX": 0,
+          "bad": []
+        }
+      ],
+      "started": true,
+      "fireReleased": true,
+      "returnUI": true
     }
   ],
   "errors": [],
-  "requests": [
+  "requests": [],
+  "protocol": [],
+  "art": [
     {
-      "game": "lobby",
-      "screen": "host",
-      "url": "/assets/games/bowling-card-v2.webp",
-      "status": 404
+      "id": "bowling",
+      "width": 512,
+      "height": 512,
+      "src": "http://127.0.0.1:34775/assets/games/bowling-card-v3.avif",
+      "clip": "hidden",
+      "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     },
     {
-      "game": "lobby",
-      "screen": "host",
-      "url": "/assets/games/curling-card-v2.webp",
-      "status": 404
+      "id": "curling",
+      "width": 512,
+      "height": 512,
+      "src": "http://127.0.0.1:34775/assets/games/curling-card-v3.avif",
+      "clip": "hidden",
+      "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     },
     {
-      "game": "lobby",
-      "screen": "host",
-      "url": "/assets/games/gate_siege-card-v2.webp",
-      "status": 404
+      "id": "gate_siege",
+      "width": 512,
+      "height": 512,
+      "src": "http://127.0.0.1:34775/assets/games/gate_siege-card-v3.avif",
+      "clip": "hidden",
+      "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     },
     {
-      "game": "lobby",
-      "screen": "host",
-      "url": "/assets/games/pop_shots-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone0",
-      "url": "/assets/games/bowling-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone0",
-      "url": "/assets/games/curling-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone0",
-      "url": "/assets/games/gate_siege-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone0",
-      "url": "/assets/games/pop_shots-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone1",
-      "url": "/assets/games/bowling-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone1",
-      "url": "/assets/games/curling-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone1",
-      "url": "/assets/games/gate_siege-card-v2.webp",
-      "status": 404
-    },
-    {
-      "game": "lobby",
-      "screen": "phone1",
-      "url": "/assets/games/pop_shots-card-v2.webp",
-      "status": 404
+      "id": "pop_shots",
+      "width": 512,
+      "height": 512,
+      "src": "http://127.0.0.1:34775/assets/games/pop_shots-card-v3.avif",
+      "clip": "hidden",
+      "mask": "linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 66%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0) 100%)"
     }
   ],
-  "protocol": [
-    {
-      "screen": "phone0",
-      "kind": "lobby",
-      "type": "joined",
-      "at": 1789382619392,
-      "message": ""
-    },
-    {
-      "screen": "phone1",
-      "kind": "lobby",
-      "type": "joined",
-      "at": 1789382619965,
-      "message": ""
-    },
-    {
-      "screen": "phone0",
-      "kind": "game",
-      "type": "joined",
-      "at": 1789382620777,
-      "message": ""
-    },
-    {
-      "screen": "phone1",
-      "kind": "game",
-      "type": "joined",
-      "at": 1789382620803,
-      "message": ""
-    }
-  ]
+  "expected": 4
 }
