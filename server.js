@@ -62,10 +62,11 @@ async function launch(id){
 function stop(){const old=active;active=null;old?.child.kill();broadcast();}
 function transform(text, type, prefix, req){
   if(type.includes('text/html')){
+    const nativeLayout=/data-party-layout=["']native-v2["']/i.test(text);
     if(!/<head\b/i.test(text))text=text.replace(/<html([^>]*)>/i,'<html$1><head>').replace(/<body([^>]*)>/i,'</head><body$1>');
     text=text.replace(/((?:src|href|action)\s*=\s*["'])\/(?!\/)/gi,`$1${prefix}/`);
-    text=text.replace(/<head([^>]*)>/i,`<head$1><base href="${prefix}/"><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
-    text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"></head>');
+    text=text.replace(/<head([^>]*)>/i,`<head$1><base href="${prefix}/">${nativeLayout?'':'<script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script defer src="/game-art-dom.js"></script>'}<script src="${nativeLayout?'/native-bridge.js':'/bridge.js'}" data-prefix="${prefix}"></script>`);
+    if(!nativeLayout)text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"></head>');
   }
   if(type.includes('javascript')||type.includes('text/html'))text=text.replace(/\bio\(\)/g,`partyIO({path:'${prefix}/socket.io'})`);
   return text;
@@ -105,12 +106,12 @@ const handler=async(req,res)=>{
     let name;try{name=decodeURIComponent(url.pathname).slice(1);}catch{return json(res,400,{error:'Invalid path'});}
     const root=path.join(ROOT,'public','assets'),target=path.resolve(ROOT,'public',name);
     if(!target.startsWith(root+path.sep)||!fs.existsSync(target)||!fs.statSync(target).isFile())return json(res,404,{error:'Не найдено'});
-    const mime={'.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.ttf':'font/ttf','.woff2':'font/woff2','.json':'application/json'}[path.extname(target)];if(!mime)return json(res,404,{error:'Не найдено'});
+    const mime={'.avif':'image/avif','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.ttf':'font/ttf','.woff2':'font/woff2','.json':'application/json'}[path.extname(target)];if(!mime)return json(res,404,{error:'Не найдено'});
     res.writeHead(200,{'Content-Type':mime,'Cache-Control':'public,max-age=3600','X-Content-Type-Options':'nosniff'});fs.createReadStream(target).pipe(res);return;
   }
   const isHost=url.pathname==='/host';
   if(isHost&&!local(req))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  const files={'/native-bridge.js':'native-bridge.js','/shell-v2.css':'shell-v2.css','/shell-v2.js':'shell-v2.js','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   let content=fs.readFileSync(path.join(ROOT,'public',file));
   if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`);
@@ -160,6 +161,7 @@ wss.on('connection',(ws,req)=>{
   }catch(e){send(ws,{type:'error',message:e.message});}});
   ws.on('close',()=>{clients.delete(ws);if(ws.player?.socket===ws){ws.player.socket=null;ws.player.disconnectedAt=Date.now();}checkSession();broadcast();});
 });
+const startRelay=setInterval(()=>{if(active?.game.engine==='afterparty'&&active.session.startRequested&&!active.session.paused&&(active.ui?.phase||'waiting')==='waiting'){for(const ws of clients)if(ws.isHost)send(ws,{type:'session-start',instance:active.instance});}},400);
 const heartbeat=setInterval(()=>{for(const ws of clients){if(!ws.alive){ws.terminate();continue;}ws.alive=false;ws.ping();}for(const [token,p] of players)if(!p.socket&&Date.now()-p.disconnectedAt>24*3600000)players.delete(token);},10000);
 // Port 0 asks the OS to allocate and bind a free port in one atomic operation.
 // An explicitly requested port is only a preference: never fail just because it is busy.
@@ -173,6 +175,6 @@ server.on('error',e=>{
   console.error('Не удалось запустить локальный сервер:',e);process.exit(1);
 });
 server.listen(listeningPort,'0.0.0.0');
-function shutdown(){closing=true;clearInterval(heartbeat);active?.child.kill();for(const ws of clients)ws.terminate();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
+function shutdown(){closing=true;clearInterval(heartbeat);clearInterval(startRelay);active?.child.kill();for(const ws of clients)ws.terminate();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
 process.on('SIGINT',shutdown);process.on('SIGTERM',shutdown);
 

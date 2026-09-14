@@ -77,7 +77,7 @@
 document.addEventListener('DOMContentLoaded',()=>{
 /* Local, accessible settings picker. The original select remains the source of truth. */
 (() => {
-  if (!document.documentElement.classList.contains('party-host')) return;
+  if (!document.documentElement.classList.contains('party-host') || document.documentElement.dataset.partyLayout==='native-v2') return;
   const enhanced = new WeakSet();
   let active = null;
   function close(focus = false) {
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const name = select.getAttribute('aria-label') || (label ? [...label].filter(n => n.nodeType === 3).map(n => n.textContent.trim()).join(' ') : '') || 'Настройка';
     const sync = () => {
       button.textContent = select.selectedOptions[0]?.textContent || 'Выбрать';
-      button.disabled = select.disabled;
+      button.disabled = select.disabled; button.hidden = select.hidden;
       button.setAttribute('aria-label', name + ': ' + button.textContent);
     };
     select.classList.add('lp-native-select'); select.tabIndex = -1;
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 /* Rules belong to the lobby card; every engine keeps its own controls. */
 document.addEventListener('DOMContentLoaded',()=>{
- if(!document.documentElement.classList.contains('party-host'))return;
+ if(!document.documentElement.classList.contains('party-host')||document.documentElement.dataset.partyLayout==='native-v2')return;
  const info=parent.PARTY_GAME_INFO;if(!info)return;
  document.documentElement.style.setProperty('--lobby-accent',info.color||'#c8f58b');
  document.documentElement.style.setProperty('--lobby-secondary',info.secondaryColor||info.color||'#c8f58b');
@@ -175,4 +175,4 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
 /* Shared numeric fitting for narrow controller displays. */
-{const fitScript=document.createElement("script");fitScript.src="/value-fit.js";(document.head||document.documentElement).append(fitScript);}
+if(document.documentElement.dataset.partyLayout!=="native-v2"){const fitScript=document.createElement("script");fitScript.src="/value-fit.js";(document.head||document.documentElement).append(fitScript);}

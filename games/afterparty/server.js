@@ -7,7 +7,7 @@ if(!['curling','bowling','gate_siege','pop_shots'].includes(mode))throw Error('U
 const players=new Map(),palette=['#c8ff73','#be8bff','#48dcf5','#ff917d','#ffc85b','#ef8ccc','#88adff','#8fe0bb','#e8db91','#d399ff','#83eeee','#ffc3a0','#f3f798','#fa9ddf','#88c9ff','#d0f3c0'];
 let game=null,starting=false,matchId='',reported=false,started=0,serial=0;
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.ttf':'font/ttf'};
-const files={'/':'controller.html','/host':'host.html','/host.html':'host.html','/controls.js':'controls.js','/host.js':'host.js','/game.css':'game.css'};
+const files={'/':'controller.html','/host':'host.html','/host.html':'host.html','/controls.js':'controls.js','/host.js':'host.js','/game.css':'game.css','/venues.js':'venues.js','/sports-view.js':'sports-view.js','/arcade-view.js':'arcade-view.js','/motion.js':'motion.js'};
 const server=http.createServer((req,res)=>{
   const url=new URL(req.url,'http://localhost');
   if(url.pathname==='/config'){res.writeHead(200,{'Content-Type':'application/json'});return res.end(JSON.stringify({mode}));}
@@ -21,9 +21,11 @@ const server=http.createServer((req,res)=>{
 const wss=new WebSocketServer({server,path:'/ws',maxPayload:4096});
 function send(ws,type,data){if(ws.readyState===1&&ws.bufferedAmount<128*1024)ws.send(JSON.stringify({type,data}));}
 function lobby(){return{mode,phase:'waiting',time:0,players:[...players.values()].map(p=>({id:p.id,name:p.name,color:p.color,connected:p.connected})),message:'Ждём готовность игроков в главном лобби.'};}
+let phoneFrame=0;
 function broadcast(){
+  phoneFrame++;
   const full=game?game.snapshot(true):lobby(),slim=game?game.snapshot(false):full;
-  for(const ws of wss.clients){send(ws,'state',ws.host?full:slim);if(ws.pid)send(ws,'private',{id:ws.pid,spectator:!!game&&!game.players.some(p=>p.id===ws.pid),hand:players.get(ws.pid)?.hand||'right'});}
+  for(const ws of wss.clients){if(ws.host||phoneFrame%2===0||!game)send(ws,'state',ws.host?full:slim);if(ws.pid){const privateState={id:ws.pid,spectator:!!game&&!game.players.some(p=>p.id===ws.pid),hand:players.get(ws.pid)?.hand||'right'},key=JSON.stringify(privateState);if(key!==ws.privateKey){ws.privateKey=key;send(ws,'private',privateState);}}}
 }
 async function start(options={}){
   if(starting||game)return;const roster=[...players.values()].filter(p=>p.connected);if(roster.length<2)return;
@@ -38,6 +40,7 @@ wss.on('connection',(ws,req)=>{
   ws.on('message',raw=>{
     const now=Date.now();allowance=Math.min(160,allowance+(now-lastBudget)*.10);lastBudget=now;if(--allowance<0)return;
     let m;try{m=JSON.parse(raw);}catch{return;}const d=m.data&&typeof m.data==='object'?m.data:{};
+    if(m.type==='ping'){send(ws,'pong',{client:d.client});return;}
     if(m.type==='host'){
       const trusted=runtime.managed?req.headers['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
       if(trusted){ws.host=true;broadcast();}return;

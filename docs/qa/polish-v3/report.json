@@ -1,0 +1,620 @@
+{
+  "testedCommit": "85a97e43314b72c9ef8ae57057117577c08c83de",
+  "cases": [
+    {
+      "mode": "bowling",
+      "native": true,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "page.waitForFunction: Timeout 20000ms exceeded.",
+      "diagnostics": [
+        {
+          "bodyClass": "is-host lobby-connected native-game in-game",
+          "phase": "waiting",
+          "game": "bowling",
+          "ui": {
+            "phase": "waiting",
+            "endsAt": null,
+            "label": "До завершения хода",
+            "currentPlayer": null,
+            "progress": "",
+            "actions": [],
+            "serverNow": 1789381030842
+          },
+          "session": {
+            "readyIds": [],
+            "exitVotes": [],
+            "spectatorIds": [],
+            "eligibleIds": [
+              "1611af5582e57400",
+              "c95b88376413b8db"
+            ],
+            "paused": false,
+            "testMode": false,
+            "startRequested": false,
+            "clockOffset": 0,
+            "pausedAt": null
+          },
+          "notice": "",
+          "frameSrc": "/games/bowling/host",
+          "rects": [
+            {
+              "id": "play",
+              "hidden": false,
+              "rect": {
+                "x": 12,
+                "y": 104,
+                "w": 1416,
+                "h": 817
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "После страйкаСвайп вверх: скорость и длина определяют силу, горизонтальное движение — направление, изгиб в конце — спин. Позиция и подкрутка настраиваются отдельно. Можно раскрыть "
+            },
+            {
+              "id": "waitingRules",
+              "hidden": true,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "none",
+              "visibility": "visible",
+              "text": "СОБИРАЕМСЯ НА СТАРТПосле страйкаСбей десять кеглей, пока компания смотрит твой бросок на общем экране.Правила и управлениеУправлениеСвайп вверх: скорость и длина определяют силу, г"
+            },
+            {
+              "id": "readyButton",
+              "hidden": false,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": "Я готов"
+            },
+            {
+              "id": "gameFrame",
+              "hidden": false,
+              "rect": {
+                "x": 13,
+                "y": 105,
+                "w": 1414,
+                "h": 815
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "bodyClass": "is-player lobby-connected native-game in-game game-waiting",
+          "phase": "waiting",
+          "game": "bowling",
+          "ui": {
+            "phase": "waiting",
+            "endsAt": null,
+            "label": "До завершения хода",
+            "currentPlayer": null,
+            "progress": "",
+            "actions": [],
+            "serverNow": 1789381050971
+          },
+          "session": {
+            "readyIds": [],
+            "exitVotes": [],
+            "spectatorIds": [],
+            "eligibleIds": [],
+            "paused": false,
+            "testMode": false,
+            "startRequested": false,
+            "clockOffset": 0,
+            "pausedAt": null
+          },
+          "profile": "Глеб",
+          "notice": "",
+          "frameSrc": "/games/bowling/",
+          "rects": [
+            {
+              "id": "play",
+              "hidden": false,
+              "rect": {
+                "x": 6,
+                "y": 85,
+                "w": 378,
+                "h": 680
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "После страйкаСвайп вверх: скорость и длина определяют силу, горизонтальное движение — направление, изгиб в конце — спин. Позиция и подкрутка настраиваются отдельно. Можно раскрыть "
+            },
+            {
+              "id": "waitingRules",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 678
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "СОБИРАЕМСЯ НА СТАРТПосле страйкаСбей десять кеглей, пока компания смотрит твой бросок на общем экране.Правила и управлениеУправлениеСвайп вверх: скорость и длина определяют силу, г"
+            },
+            {
+              "id": "readyButton",
+              "hidden": false,
+              "rect": {
+                "x": 25,
+                "y": 659.203125,
+                "w": 340,
+                "h": 58
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": "Я готов"
+            },
+            {
+              "id": "gameFrame",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 614
+              },
+              "display": "block",
+              "visibility": "hidden",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "bodyClass": "is-player lobby-connected native-game in-game game-waiting",
+          "phase": "waiting",
+          "game": "bowling",
+          "ui": {
+            "phase": "waiting",
+            "endsAt": null,
+            "label": "До завершения хода",
+            "currentPlayer": null,
+            "progress": "",
+            "actions": [],
+            "serverNow": 1789381140499
+          },
+          "session": {
+            "readyIds": [],
+            "exitVotes": [],
+            "spectatorIds": [],
+            "eligibleIds": [
+              "1611af5582e57400"
+            ],
+            "paused": false,
+            "testMode": false,
+            "startRequested": false,
+            "clockOffset": 0,
+            "pausedAt": null
+          },
+          "profile": "Арина",
+          "notice": "",
+          "frameSrc": "/games/bowling/",
+          "rects": [
+            {
+              "id": "play",
+              "hidden": false,
+              "rect": {
+                "x": 6,
+                "y": 85,
+                "w": 378,
+                "h": 680
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "После страйкаСвайп вверх: скорость и длина определяют силу, горизонтальное движение — направление, изгиб в конце — спин. Позиция и подкрутка настраиваются отдельно. Можно раскрыть "
+            },
+            {
+              "id": "waitingRules",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 678
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "СОБИРАЕМСЯ НА СТАРТПосле страйкаСбей десять кеглей, пока компания смотрит твой бросок на общем экране.Правила и управлениеУправлениеСвайп вверх: скорость и длина определяют силу, г"
+            },
+            {
+              "id": "readyButton",
+              "hidden": false,
+              "rect": {
+                "x": 25,
+                "y": 659.203125,
+                "w": 340,
+                "h": 58
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": "Я готов"
+            },
+            {
+              "id": "gameFrame",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 614
+              },
+              "display": "block",
+              "visibility": "hidden",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "curling",
+      "native": true,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "page.waitForFunction: Timeout 20000ms exceeded.",
+      "diagnostics": [
+        {
+          "bodyClass": "is-host lobby-connected native-game in-game",
+          "phase": "waiting",
+          "game": "curling",
+          "ui": {
+            "phase": "waiting",
+            "endsAt": null,
+            "label": "До завершения хода",
+            "currentPlayer": null,
+            "progress": "Энд 1 / 3",
+            "actions": [],
+            "serverNow": 1789381208780
+          },
+          "session": {
+            "readyIds": [],
+            "exitVotes": [],
+            "spectatorIds": [],
+            "eligibleIds": [],
+            "paused": false,
+            "testMode": false,
+            "startRequested": false,
+            "clockOffset": 0,
+            "pausedAt": null
+          },
+          "notice": "",
+          "frameSrc": "/games/curling/host",
+          "rects": [
+            {
+              "id": "play",
+              "hidden": false,
+              "rect": {
+                "x": 12,
+                "y": 104,
+                "w": 1416,
+                "h": 817
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "Лёд & характерСвайп снизу вверх задаёт силу и направление; изгиб конца свайпа — подкрутку. Позицию и спин можно настроить ползунками. Пока камень скользит, своя команда удерживает "
+            },
+            {
+              "id": "waitingRules",
+              "hidden": true,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "none",
+              "visibility": "visible",
+              "text": "СОБИРАЕМСЯ НА СТАРТЛёд & характерПоложи камни своей команды ближе к центру дома и выбивай чужие.Правила и управлениеУправлениеСвайп снизу вверх задаёт силу и направление; изгиб кон"
+            },
+            {
+              "id": "readyButton",
+              "hidden": false,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": "Я готов"
+            },
+            {
+              "id": "gameFrame",
+              "hidden": false,
+              "rect": {
+                "x": 13,
+                "y": 105,
+                "w": 1414,
+                "h": 815
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "bodyClass": "is-player lobby-connected game-waiting native-game in-game",
+          "phase": "waiting",
+          "game": "curling",
+          "ui": {
+            "phase": "waiting",
+            "endsAt": null,
+            "label": "До завершения хода",
+            "currentPlayer": null,
+            "progress": "Энд 1 / 3",
+            "actions": [],
+            "serverNow": 1789381198702
+          },
+          "session": {
+            "readyIds": [],
+            "exitVotes": [],
+            "spectatorIds": [],
+            "eligibleIds": [],
+            "paused": false,
+            "testMode": false,
+            "startRequested": false,
+            "clockOffset": 0,
+            "pausedAt": null
+          },
+          "profile": "Глеб",
+          "notice": "",
+          "frameSrc": "/games/curling/",
+          "rects": [
+            {
+              "id": "play",
+              "hidden": false,
+              "rect": {
+                "x": 6,
+                "y": 85,
+                "w": 378,
+                "h": 680
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "Лёд & характерСвайп снизу вверх задаёт силу и направление; изгиб конца свайпа — подкрутку. Позицию и спин можно настроить ползунками. Пока камень скользит, своя команда удерживает "
+            },
+            {
+              "id": "waitingRules",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 678
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "СОБИРАЕМСЯ НА СТАРТЛёд & характерПоложи камни своей команды ближе к центру дома и выбивай чужие.Правила и управлениеУправлениеСвайп снизу вверх задаёт силу и направление; изгиб кон"
+            },
+            {
+              "id": "readyButton",
+              "hidden": false,
+              "rect": {
+                "x": 25,
+                "y": 659.203125,
+                "w": 340,
+                "h": 58
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": "Я готов"
+            },
+            {
+              "id": "gameFrame",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 614
+              },
+              "display": "block",
+              "visibility": "hidden",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "bodyClass": "is-player lobby-connected game-waiting native-game in-game",
+          "phase": "waiting",
+          "game": "curling",
+          "ui": {
+            "phase": "waiting",
+            "endsAt": null,
+            "label": "До завершения хода",
+            "currentPlayer": null,
+            "progress": "Энд 1 / 3",
+            "actions": [],
+            "serverNow": 1789381218872
+          },
+          "session": {
+            "readyIds": [],
+            "exitVotes": [],
+            "spectatorIds": [],
+            "eligibleIds": [],
+            "paused": false,
+            "testMode": false,
+            "startRequested": false,
+            "clockOffset": 0,
+            "pausedAt": null
+          },
+          "profile": "Арина",
+          "notice": "",
+          "frameSrc": "/games/curling/",
+          "rects": [
+            {
+              "id": "play",
+              "hidden": false,
+              "rect": {
+                "x": 6,
+                "y": 85,
+                "w": 378,
+                "h": 680
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "Лёд & характерСвайп снизу вверх задаёт силу и направление; изгиб конца свайпа — подкрутку. Позицию и спин можно настроить ползунками. Пока камень скользит, своя команда удерживает "
+            },
+            {
+              "id": "waitingRules",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 678
+              },
+              "display": "flex",
+              "visibility": "visible",
+              "text": "СОБИРАЕМСЯ НА СТАРТЛёд & характерПоложи камни своей команды ближе к центру дома и выбивай чужие.Правила и управлениеУправлениеСвайп снизу вверх задаёт силу и направление; изгиб кон"
+            },
+            {
+              "id": "readyButton",
+              "hidden": false,
+              "rect": {
+                "x": 25,
+                "y": 659.203125,
+                "w": 340,
+                "h": 58
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": "Я готов"
+            },
+            {
+              "id": "gameFrame",
+              "hidden": false,
+              "rect": {
+                "x": 7,
+                "y": 86,
+                "w": 376,
+                "h": 614
+              },
+              "display": "block",
+              "visibility": "hidden",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "gate_siege",
+      "native": true,
+      "loaded": false,
+      "started": false,
+      "phoneBounds": [],
+      "ok": false,
+      "error": "page.waitForFunction: Timeout 20000ms exceeded.",
+      "diagnostics": [
+        {
+          "bodyClass": "is-host lobby-connected",
+          "phase": "waiting",
+          "game": "curling",
+          "ui": {
+            "phase": "waiting",
+            "endsAt": null,
+            "label": "До завершения хода",
+            "currentPlayer": null,
+            "progress": "Энд 1 / 3",
+            "actions": [],
+            "serverNow": 1789381296547
+          },
+          "session": {
+            "readyIds": [],
+            "exitVotes": [],
+            "spectatorIds": [],
+            "eligibleIds": [
+              "1611af5582e57400"
+            ],
+            "paused": false,
+            "testMode": false,
+            "startRequested": false,
+            "clockOffset": 0,
+            "pausedAt": null
+          },
+          "notice": "",
+          "frameSrc": "about:blank",
+          "rects": [
+            {
+              "id": "play",
+              "hidden": true,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "none",
+              "visibility": "visible",
+              "text": "Лёд & характерСвайп снизу вверх задаёт силу и направление; изгиб конца свайпа — подкрутку. Позицию и спин можно настроить ползунками. Пока камень скользит, своя команда удерживает "
+            },
+            {
+              "id": "waitingRules",
+              "hidden": true,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "none",
+              "visibility": "visible",
+              "text": "СОБИРАЕМСЯ НА СТАРТЛёд & характерПоложи камни своей команды ближе к центру дома и выбивай чужие.Правила и управлениеУправлениеСвайп снизу вверх задаёт силу и направление; изгиб кон"
+            },
+            {
+              "id": "readyButton",
+              "hidden": false,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "block",
+              "visibility": "visible",
+              "text": "Я готов"
+            },
+            {
+              "id": "gameFrame",
+              "hidden": false,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+              },
+              "display": "inline",
+              "visibility": "visible",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "generatedAt": "2026-09-14T10:16:19.391Z",
+  "ok": false,
+  "failure": "page.evaluate: Target page, context or browser has been closed\n    at roomCommand (/home/runner/work/localparty/localparty/tests/polish-browser.cjs:8:59)\n    at /home/runner/work/localparty/localparty/tests/polish-browser.cjs:60:18"
+}

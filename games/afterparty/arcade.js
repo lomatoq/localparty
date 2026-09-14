@@ -98,4 +98,4 @@ class Arcade {
   }
   dispose(){}
 }
-module.exports={Arcade};
+module.exports={Arcade:require("./feel").enhanceArcade(Arcade)};

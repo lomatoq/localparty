@@ -121,4 +121,4 @@ class Sports {
   }
   dispose(){this.world?.free();this.world=null;}
 }
-module.exports={Sports};
+module.exports={Sports:require("./feel").enhanceSports(Sports)};

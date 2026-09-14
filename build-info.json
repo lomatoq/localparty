@@ -1,1 +1,7 @@
-{"version":"0.7.0-alpha.1","channel":"alpha","branch":"alpha/party-sports-siege","baseVersion":"0.6.2"}
+{
+  "version": "0.7.0-alpha.1",
+  "channel": "alpha",
+  "branch": "alpha/party-sports-siege",
+  "baseVersion": "0.6.2",
+  "polish": "venue-hud-v3"
+}
