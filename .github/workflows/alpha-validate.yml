@@ -11,14 +11,14 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - name: Materialize audited native integration
+      - name: Verify ordinary startup integration
         id: integration
         run: |
           node scripts/apply-polish-v3.cjs
@@ -27,28 +27,40 @@ jobs:
           node --check games/afterparty/server.js
       - name: Install locked dependencies
         run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Rules, physics and security
+      - name: Rules, physics, artwork integrity and security
         id: unit
         run: |
           mkdir -p test-results/polish-v2
-          node --test tests/afterparty.test.js tests/afterparty-regression.test.js tests/afterparty-v2.test.js tests/afterparty-camera-v3.test.js tests/updater.test.js > test-results/polish-v2/unit.log 2>&1 || { tail -n 100 test-results/polish-v2/unit.log; exit 1; }
+          node --test tests/afterparty.test.js tests/afterparty-regression.test.js tests/afterparty-v2.test.js tests/afterparty-camera-v3.test.js tests/alpha-art-v3.test.js tests/updater.test.js > test-results/polish-v2/unit.log 2>&1 || { tail -n 100 test-results/polish-v2/unit.log; exit 1; }
           tail -n 9 test-results/polish-v2/unit.log
       - name: Install browser tools
         run: |
           npm install --no-save --package-lock=false playwright@1.57.0 --no-audit --no-fund > /tmp/pw.log 2>&1
           npx playwright install --with-deps chromium >> /tmp/pw.log 2>&1 || { tail -n 40 /tmp/pw.log; exit 1; }
-      - name: Real managed browser walkthrough
+          python -m pip install Pillow==11.3.0 > /tmp/pillow.log 2>&1
+      - name: All thirty games through real launcher and two phone browsers
         id: browser
-        env:
-          POLISH_GAMES: bowling,curling,gate_siege,pop_shots
-        run: timeout --kill-after=5s 420s node tests/polish-browser.cjs
+        run: |
+          export POLISH_GAMES="bowling,curling,gate_siege,pop_shots,$(node -p "require('./catalog.json').map(g=>g.id).join(',')")"
+          timeout --kill-after=5s 1000s node tests/polish-browser.cjs
       - name: Full existing regression suite
         if: always() && steps.unit.outcome == 'success' && !cancelled()
         id: legacy
         run: |
           timeout --kill-after=5s 180s npm test > test-results/polish-v2/legacy.log 2>&1 || { tail -n 100 test-results/polish-v2/legacy.log; exit 1; }
           tail -n 16 test-results/polish-v2/legacy.log
-      - name: Publish integration and honest QA outcome on the same branch
+      - name: Compact visual review copies
+        if: always() && !cancelled()
+        run: python tests/qa-thumbnails.py
+      - name: Review screenshots and logs
+        if: always() && !cancelled()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: localparty-polish-review
+          path: test-results/polish-v2
+          retention-days: 1
+      - name: Publish actual QA outcome without rewriting application code
         if: always() && steps.integration.outcome == 'success' && steps.unit.outcome == 'success' && !cancelled()
         env:
           EXPECTED_SHA: ${{ github.sha }}
@@ -60,13 +72,13 @@ jobs:
           mkdir -p docs/qa/polish-v3
           cp test-results/polish-v2/report.json docs/qa/polish-v3/report.json 2>/dev/null || true
           for file in test-results/polish-v2/*.jpg; do [ ! -f "$file" ] || cp "$file" docs/qa/polish-v3/; done
+          cp -r test-results/polish-v2/thumbs docs/qa/polish-v3/ 2>/dev/null || true
           printf 'unit=%s\nbrowser=%s\nlegacy=%s\nsource=%s\n' "$UNIT" "$BROWSER" "$LEGACY" "$EXPECTED_SHA" > docs/qa/polish-v3/status.txt
           git config user.name 'LocalParty validation'
           git config user.email '50571880+lomatoq@users.noreply.github.com'
-          git add server.js lib/party-runtime.js public/index.html public/bridge.js public/app.js games/afterparty/server.js games/afterparty/sports.js games/afterparty/arcade.js games/afterparty/public/sports-view.js tests/polish-browser.cjs tests/afterparty-browser.cjs build-info.json
           git add -f docs/qa/polish-v3
           if git diff --cached --quiet; then exit 0; fi
           REMOTE_SHA=$(git ls-remote origin refs/heads/alpha/party-sports-siege | cut -f1)
           if [ "$REMOTE_SHA" != "$EXPECTED_SHA" ]; then echo 'Branch advanced: no overwrite.'; exit 0; fi
-          git commit -m 'Materialize native integration and record actual v3 QA outcome [skip ci]'
+          git commit -m 'Record all-game UI walkthrough and actual screenshots [skip ci]'
           git push origin HEAD:refs/heads/alpha/party-sports-siege
