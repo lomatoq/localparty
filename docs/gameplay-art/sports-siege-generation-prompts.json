@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "project": "LocalParty / Sports & Siege",
   "status": "generated-packed-and-runtime-integrated",
   "generation_policy": {
@@ -8,6 +8,7 @@
     "runtime_integration_completed": true,
     "final_atlas_is_packed_deterministically": true,
     "source_background": "#FF00A8",
+    "background_contract": "One mathematically uniform solid #FF00A8 fill only: no gradient, texture, noise, vignette, reflected light or shadow in the key color.",
     "runtime_background": "transparent",
     "style": "LocalParty soft toy arcade, orthographic, broad upper-left light, simple silhouettes, low detail",
     "readability_target_px": {
@@ -89,21 +90,21 @@
       "prompt": "Create a 1536x1024 modular turret rig atlas in a strict 4x2 grid, 384x512 per cell, on perfectly uniform #FF00A8. CAMERA: exact 90-degree orthographic top-down for every part, no perspective and no visible side faces. Cell 1 rotationally symmetric turret base only; cells 2-4 separate rotating turret heads with short cannon, long cannon, and pulse emitter; every barrel points exactly upward and every rotation pivot is at cell center. Cells 5-7 contain a gold shell, violet bolt, and compact missile with noses pointing upward and no trails. Cell 8 contains a simple cyan selection ring. Use simple chunky LocalParty forms, broad lighting, and no cast shadow. Never combine the base and head. Never tilt a cannon toward the viewer. No detail smaller than 10 pixels, text, UI, logos, or watermark."
     },
     {
-      "id": "swarm-pedestals-front",
+      "id": "swarm-pedestals-topdown",
       "purpose": "Fixed interchangeable tower bases beneath separately rotating turret heads",
       "output": "swarm-pedestals-source.png",
       "size": [1536, 1536],
       "grid": { "columns": 2, "rows": 2, "cell": [768, 768], "padding": 110 },
-      "camera": { "projection": "orthographic front elevation", "pitch_deg": 0, "yaw_deg": 0, "roll_deg": 0, "top_cap": "small visible mounting platform" },
-      "orientation": "Every pedestal faces the viewer; identical mounting height and near-identical outer dimensions.",
+      "camera": { "projection": "orthographic", "pitch_deg": 90, "yaw_deg": 0, "roll_deg": 0 },
+      "orientation": "Exact top-down bases with identical centered circular mounting rings and outer dimensions.",
       "cells": [
         { "index": 0, "key": "turret-pedestal-stone", "content": "pale stone, purple inset, restrained gold" },
         { "index": 1, "key": "turret-pedestal-blue", "content": "dark blue stone, cyan accent" },
         { "index": 2, "key": "turret-pedestal-wood", "content": "reinforced wood and stone" },
         { "index": 3, "key": "turret-pedestal-damaged", "content": "lightly damaged pale stone" }
       ],
-      "runtime": { "rotates": false, "placed_in_front_of_wall": true, "turret_head_is_separate": true, "pivot": [0.5, 0.92] },
-      "prompt": "Create a production-ready 1536x1536 2D sprite atlas for the LocalParty co-op defense minigame in a clean 2x2 grid on a uniform chroma-key background. Keep at least 110 px empty margin around every sprite. CAMERA: strict orthographic front elevation matching the front-facing castle wall, with only a small visible top mounting cap; no three-quarter perspective, diagonal rotation, or side face. Draw exactly four short wide defensive tower bases with a clear flat centered platform for a separate cannon sprite: pale stone with purple and gold; dark blue stone with cyan; reinforced wood and stone; lightly damaged pale stone. All variants share identical mounting height and near-identical dimensions. Low-detail mobile-game forms readable at 90-160 px. No cannon, weapon, projectile, character, gate, wall segment, banner, scenery, floor shadow, floating debris, text, grid lines, or cropped object."
+      "runtime": { "rotates": false, "placed_on_ground_plane": true, "turret_head_is_separate": true, "pivot": [0.5, 0.5] },
+      "prompt": "Create a production-ready 1536x1536 2D sprite atlas for the LocalParty co-op defense minigame in a clean 2x2 grid on mathematically uniform #FF00A8. Keep at least 110 px empty margin around every sprite. CAMERA: exact 90-degree orthographic top-down, pitch 90, yaw 0, roll 0, no visible side faces and no three-quarter perspective. Draw four compact defensive turret bases with the same centered circular mounting ring and the same outer footprint: pale stone with purple and gold; dark blue stone with cyan; reinforced wood and stone; lightly damaged pale stone. The separate top-down cannon head must fit the ring at cell center and rotate without wobble. Low-detail mobile-game forms readable at 90-160 px. No cannon, projectile, character, gate, wall, banner, scenery, cast shadow, floating debris, text, grid lines, cropped object, or any background gradient."
     },
     {
       "id": "swarm-wall-fixed-camera",
@@ -144,6 +145,8 @@
       "grid": { "columns": 4, "rows": 2, "cell": [384, 512], "frame_order": "left-to-right then top-to-bottom" },
       "camera": { "projection": "orthographic", "pitch_deg": 90, "yaw_deg": 0, "roll_deg": 0 },
       "animation": { "frames": 8, "duration_ms": 320, "frame_ms": 40, "loop": false, "pivot": [0.5, 0.5] },
+      "derived_death_sheets": ["swarm-death-termite", "swarm-death-runner", "swarm-death-tank", "swarm-death-boss"],
+      "derived_contract": "Each class keeps its own cleaned top-down silhouette through the first frames, then yields to this centered burst. Build four separate transparent 4x2 sheets; never reuse a side-view pose.",
       "frame_intent": ["ignition", "small star", "expanding disk", "six-lobe peak", "ring and four pieces", "contracting ring", "three embers", "nearly empty"],
       "prompt": "Create a 1536x1024 eight-frame top-down VFX atlas in a strict 4x2 grid, 384x512 per frame, on perfectly uniform #FF00A8. Every frame has the same exact center and scale envelope. Sequence: tiny white-yellow ignition; small orange star; expanding orange disk; peak with six large lobes; peak ring and four large debris shapes; contracting ring; three fading embers; almost empty final frame. Adjacent frames must form one continuous 320 ms animation. Use only 5-10 large shapes per frame. No detailed smoke, random design changes, camera changes, dense particles, text, UI, logos, watermark, or debris crossing a cell boundary."
     },
@@ -224,7 +227,7 @@
   "packing": {
     "method": "deterministic script after visual approval",
     "steps": [
-      "remove #FF00A8 with edge decontamination",
+      "flood-fill the edge-connected #FF00A8 field, remove isolated key-color compression islands, and decontaminate antialiased edges",
       "crop static cells to alpha bounds, then add transparent sampling padding; preserve the complete cell for timed VFX",
       "store standalone lossless WebP sprites",
       "write a transparent lossless WebP runtime atlas for every approved source sheet",
@@ -237,7 +240,7 @@
     "Every rotating gameplay sprite is exact top-down.",
     "Every gallery sprite is exact front view.",
     "Wall modules share camera, baseline, width, and connection edges.",
-    "Every fixed turret pedestal has the same front camera and mounting height.",
+    "Every turret base and head uses the same exact top-down camera, center pivot, and mounting-ring footprint.",
     "Turret base and head are separate and share the same pivot.",
     "Animation frames preserve center, baseline, scale, and identity.",
     "Ground texture tiles on all four edges and contains no game objects.",

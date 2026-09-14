@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id),host=!!window.IS_HOST;let ws,state,id,jo
 const send=(type,data={})=>{if(ws?.readyState===1)ws.send(JSON.stringify({type,data}));},esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function join(){const profile=window.PARTY_PROFILE||{};send('join',{partyId:profile.id,partyToken:profile.token,name:profile.name||$('nickname')?.value||'Игрок',token:localStorage.getItem('arcade-id')});}
 function connect(){ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/ws');ws.onopen=()=>{clearInterval(joinRetry);if(host)return send('host');const attempt=()=>{if(window.PARTY_PROFILE?.id||localStorage.getItem('arcade-id'))join();};attempt();joinRetry=setInterval(attempt,900);};ws.onclose=()=>{clearInterval(joinRetry);if(!host)$('status').textContent='Восстанавливаем связь…';setTimeout(connect,700);};ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.type==='joined'){clearInterval(joinRetry);id=m.data.id;localStorage.setItem('arcade-id',id);$('join').hidden=true;$('name').textContent=m.data.name;}if(m.type==='state'){if(host&&m.data.mode==='snakelines')for(const p of m.data.players){const previous=state?.players.find(q=>q.id===p.id)?.trail||[];p.trail=previous.slice(0,p.trailFrom||0).concat(p.trail);}state=m.data;if(!host&&state.selfId)id=state.selfId;update();}if(m.type==='error'&&!host)$('status').textContent=m.data;};}connect();
-const instructions={taprace:'Тапай как можно быстрее! Каждый тап разгоняет бегуна.',punchmeter:'Три попытки. Держи телефон крепко и сделай короткое движение рукой. Без датчика: зажми кнопку и отпусти на пике шкалы.',flappy:'Тап — взмах вверх. Пролетай между трубами.',hungry:'Веди джойстик к еде. Большие медленнее. После поражения вернёшься через 1,5 секунды.',snakelines:'Веди джойстик в нужную сторону экрана. Не касайся стен и любых следов.',carryball:'Джойстик — бег. Подойди к мячу, чтобы подобрать. Кнопка — пас ближайшему партнёру.'};
+const instructions={taprace:'Тапай как можно быстрее! Каждый тап разгоняет бегуна.',punchmeter:'Три попытки. Держи телефон крепко и сделай короткое движение рукой. Без датчика: зажми кнопку и отпусти на пике шкалы.',flappy:'Тап — взмах вверх. Пролетай между трубами.',hungry:'Веди джойстик к еде. Большие медленнее. После поражения вернёшься через 1,5 секунды.',snakelines:'Веди джойстик в нужную сторону экрана. Не касайся стен и любых следов.',carryball:'Джойстик — бег. Подойди к мячу, чтобы подобрать. Кнопка — пас в сторону движения.'};
 let boardKey='';function update(){const s=state,playing=s.phase==='playing',p=s.players.find(p=>p.id===id);if(host){$('title').textContent=s.title;$('lobbyStage').hidden=playing;$('start').textContent=s.phase==='finished'?'Сыграть ещё →':'Начать игру →';$('hint').textContent=instructions[s.mode];$('phase').textContent=s.phase==='finished'?'Результаты':s.mode==='carryball'?`Команды ${s.teams[0]} : ${s.teams[1]}`:'Игроки';const key=JSON.stringify(s.players.map(p=>[p.id,p.score,p.hits,p.alive,p.connected]));if(key!==boardKey){boardKey=key;$('board').innerHTML=[...s.players].sort((a,b)=>b.score-a.score).map((p,i)=>`<div class="runner-row"><span class="avatar" style="--color:${p.color}">${['😎','🦊','🐸','🐻'][s.players.indexOf(p)%4]}</span><span>${esc(p.name)}${s.mode==='punchmeter'?`<small>${p.hits.length}/3 · лучший ${Math.max(0,...p.hits)}</small>`:''}</span><b>${p.score}</b></div>`).join('');}}else{const joy=['hungry','snakelines','carryball'].includes(s.mode);$('joy').hidden=!joy;$('action').hidden=joy&&s.mode!=='carryball';$('action').classList.toggle('pass',s.mode==='carryball');$('action').textContent=s.mode==='carryball'?'ПАС →':s.mode==='punchmeter'?'ЗАЖМИ → ОТПУСТИ':s.mode==='flappy'?'ВЗМАХ ↑':'ТАП!';$('action').disabled=!playing||!p||!p.alive||s.mode==='punchmeter'&&(p.hits.length>=3||s.punchTurn!==id);$('motion').hidden=s.mode!=='punchmeter'||motionEnabled;$('help').textContent=instructions[s.mode];$('status').textContent=!p?'Войди в игру':!playing?(s.phase==='finished'?`Финиш · ${p.score} очков`:'Ждём старта на общем экране'):p.dead>0?'Возвращение через '+Math.ceil(p.dead)+'с':!p.alive?'Ты выбыл. Следи за общим экраном.':s.mode==='punchmeter'?`${s.punchTurn===id?'ТВОЙ УДАР · попытка '+(p.hits.length+1)+'/3':'Сейчас бьёт: '+(s.players.find(q=>q.id===s.punchTurn)?.name||'—')} · лучший ${Math.max(0,...p.hits)} · сумма ${p.score}`:s.mode==='taprace'?`До финиша ${Math.max(0,2000-p.score)} · Тапай быстрее!`:Math.ceil(s.timer)+' секунд · '+p.score+' очков';if(s.mode==='flappy'&&playing&&p&&!p.alive){$('action').textContent='ПОЛЁТ ЗАВЕРШЁН';$('help').textContent='Следи за оставшимися птицами на общем экране.';$('status').textContent=`Ты выбыл · ${p.score} очков. Следующий забег после завершения этого раунда.`;}if(s.mode==='punchmeter')renderPunchPhone(s,p);}}
 function renderPunchPhone(s,p){
  let panel=$('punchResult');if(!panel){panel=document.createElement('div');panel.id='punchResult';panel.setAttribute('role','status');$('status').after(panel);$('action').before($('motion'));}
@@ -56,17 +56,20 @@ function drawFeedback(s){
  const key=s.mode+':'+s.round+':'+s.phase;
  if(key!==feedbackKey){feedbackBursts=[];feedbackState=null;feedbackKey=key;}
  const burst=(x,y,color,strength=1,kind='impact')=>{feedbackBursts.push({x,y,color,strength,kind,time:s.time});if(feedbackBursts.length>20)feedbackBursts.shift();};
+ const feel=(type,x,y,color,intensity=.45)=>window.LocalPartyFeel?.emit(type,{id:`arcade:${s.mode}:${s.round}:${++drawFeedback.serial}`,x:x/1200,y:y/720,color,intensity,shake:!['score','shot'].includes(type)});
  if(state!==feedbackState){
   if(feedbackState&&s.phase==='playing'){
    for(const p of s.players){const old=feedbackState.players.find(q=>q.id===p.id);if(!old)continue;
-    if(s.mode==='hungry'&&p.mass>old.mass+.5)burst(p.x,p.y,p.color,.55,'absorb');
-    if(['flappy','snakelines'].includes(s.mode)&&old.alive&&!p.alive)burst(p.x,p.y,p.color,1,'break');
-    if(s.mode==='punchmeter'&&p.hits.length>old.hits.length){const a=s.bag.angle;burst(600+Math.sin(a)*250,100+Math.cos(a)*250,p.color,1.5);}
+    if(s.mode==='hungry'&&p.mass>old.mass+.5){burst(p.x,p.y,p.color,.55,'absorb');feel('score',p.x,p.y,p.color,.35);}
+    if(s.mode==='hungry'&&old.dead<=0&&p.dead>0)feel('elimination',p.x,p.y,p.color,.65);
+    if(['flappy','snakelines'].includes(s.mode)&&old.alive&&!p.alive){burst(p.x,p.y,p.color,1,'break');feel('collision',p.x,p.y,p.color,.58);}
+    if(s.mode==='punchmeter'&&p.hits.length>old.hits.length){const a=s.bag.angle,x=600+Math.sin(a)*250,y=100+Math.cos(a)*250;burst(x,y,p.color,1.5);feel('hit',x,y,p.color,.68);}
    }
+   if(s.mode==='taprace'){const leader=[...s.players].sort((a,b)=>b.score-a.score)[0],oldLeader=[...feedbackState.players].sort((a,b)=>b.score-a.score)[0];if(leader&&oldLeader&&leader.id!==oldLeader.id)feel('score',leader.x||600,leader.y||360,leader.color,.28);}
    if(s.mode==='carryball'){
-    if(s.teams[0]>feedbackState.teams[0])burst(1180,360,'#b9ff4d',2,'goal');
-    if(s.teams[1]>feedbackState.teams[1])burst(20,360,'#c295ff',2,'goal');
-    if(feedbackState.ball.owner&&!s.ball.owner)burst(s.ball.x,s.ball.y,'#fff1c7',.5,'pass');
+    if(s.teams[0]>feedbackState.teams[0]){burst(1180,360,'#b9ff4d',2,'goal');feel('score',1180,360,'#b9ff4d',.75);}
+    if(s.teams[1]>feedbackState.teams[1]){burst(20,360,'#c295ff',2,'goal');feel('score',20,360,'#c295ff',.75);}
+    if(feedbackState.ball.owner&&!s.ball.owner){burst(s.ball.x,s.ball.y,'#fff1c7',.5,'pass');feel('collision',s.ball.x,s.ball.y,'#fff1c7',.38);}
    }
   }
   feedbackState=state;
@@ -109,14 +112,21 @@ function runnerArt(x,y,size,p,time){
  leg('runner-leg-near-v2',near,rig.nearHip,gait.phase);
  g.restore();return true;
 }
+drawFeedback.serial=0;
 function tapTrackGeometry(count){const lanes=Math.max(2,count),h=Math.min(150,600/lanes);return {lanes,h,top:(720-h*lanes)/2,height:h*lanes};}
+function tapRaceRunnerLayout(p,index,count){
+ const {h,top}=tapTrackGeometry(count),y=top+h*(index+.5),size=Math.min(108,h*.82),x=185+Math.min(1,p.progress/2000)*900;
+ const bubbleHeight=Math.max(20,Math.min(34,h-10)),nameLength=Array.from(String(p.name||'')).length,bubbleWidth=Math.max(68,Math.min(98,46+nameLength*5.5));
+ return {h,top,laneTop:top+h*index,y,size,x,rearX:x-size*.14,bubble:{x:30,y:y-bubbleHeight/2,width:bubbleWidth,height:bubbleHeight,radius:bubbleHeight/2}};
+}
 function drawTapRace(s){
  const {h,top}=tapTrackGeometry(s.players.length),now=(window.PARTY_GAME_CLOCK?.now?.()??performance.now())/1000;
  for(let i=0;i<s.players.length;i++){
-  const p=s.players[i],y=top+h*(i+.5),size=Math.min(108,h*.82),x=185+Math.min(1,p.progress/2000)*900,fast=Math.max(0,Math.min(1,((p.vx||0)-95)/130));
-  g.fillStyle='#102534';g.beginPath();g.roundRect(22,top+i*h+6,118,h-12,Math.min(12,h*.2));g.fill();g.fillStyle=p.color;g.fillRect(22,top+i*h+12,3,h-24);
-  g.fillStyle='#edf8fc';g.textAlign='center';g.font=`800 ${Math.min(15,h*.30)}px PartyRubik,system-ui`;g.fillText(p.name,81,y+3,102);
-  if(fast>0&&!reducedArtMotion){g.save();g.beginPath();g.rect(164,top+i*h,945,h);g.clip();for(let j=0;j<5;j++){const t=(now*(2+j*.1)+j*.23)%1,yy=y+(j-2)*size*.11;const len=(25+fast*90)*(1-t);const tail=g.createLinearGradient(x-25-len,yy,x-25,yy);tail.addColorStop(0,'#0000');tail.addColorStop(1,p.color);g.strokeStyle=tail;g.globalAlpha=fast*(1-t)*.45;g.lineWidth=j===2?3:1.5;g.beginPath();g.moveTo(x-25-len,yy);g.lineTo(x-25,yy);g.stroke();}g.restore();}
+  const p=s.players[i],layout=tapRaceRunnerLayout(p,i,s.players.length),{y,size,x,rearX,bubble}=layout,fast=Math.max(0,Math.min(1,((p.vx||0)-95)/130));
+  g.save();g.fillStyle='#071723d9';g.strokeStyle=p.color+'99';g.lineWidth=1.5;g.beginPath();g.roundRect(bubble.x,bubble.y,bubble.width,bubble.height,bubble.radius);g.fill();g.stroke();
+  const badge=bubble.height*.32;g.fillStyle=p.color;g.beginPath();g.arc(bubble.x+bubble.height*.52,y,badge,0,Math.PI*2);g.fill();g.fillStyle='#09131d';g.textAlign='center';g.textBaseline='middle';g.font=`900 ${Math.max(9,Math.min(12,bubble.height*.42))}px PartyRubik,Rubik,system-ui`;g.fillText(Array.from(String(p.name||'?').trim())[0]?.toUpperCase()||'?',bubble.x+bubble.height*.52,y+.5);
+  g.fillStyle='#edf8fc';g.textAlign='left';g.font=`800 ${Math.max(9,Math.min(13,h*.27))}px PartyRubik,Rubik,system-ui`;g.fillText(p.name,bubble.x+bubble.height,bubble.y+bubble.height*.52,bubble.width-bubble.height-8);g.restore();
+  if(fast>0&&!reducedArtMotion){g.save();g.beginPath();g.rect(148,top+i*h,977,h);g.clip();for(let j=0;j<5;j++){const t=(now*(2+j*.1)+j*.23)%1,yy=y+(j-2)*size*.11;const len=(25+fast*90)*(1-t),end=rearX-2;const tail=g.createLinearGradient(end-len,yy,end,yy);tail.addColorStop(0,'#0000');tail.addColorStop(1,p.color);g.strokeStyle=tail;g.globalAlpha=fast*(1-t)*.45;g.lineWidth=j===2?3:1.5;g.beginPath();g.moveTo(end-len,yy);g.lineTo(end,yy);g.stroke();}g.restore();}
   if(!runnerArt(x,y,size,p,s.time))circle(x,y,Math.min(17,h*.3),p.color);
  }
 }

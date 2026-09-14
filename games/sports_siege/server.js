@@ -10,7 +10,7 @@ const hostKey=crypto.randomBytes(24).toString('hex');
 const match=new Match(mode,{bowlingFactory:()=>new bowling.BowlingWorld()});
 const sockets=new Map(),sessions=new Map();
 const local=req=>runtime.managed?req.headers['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
-const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8'};
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.glb':'model/gltf-binary','.webp':'image/webp','.png':'image/png'};
 const server=http.createServer((req,res)=>{
   let url;try{url=new URL(req.url,'http://localhost');}catch{res.writeHead(400);return res.end();}
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);return res.end();}
@@ -21,6 +21,12 @@ const server=http.createServer((req,res)=>{
     '/controls.js':'controls.js','/host.js':'host.js','/net.js':'net.js','/style.css':'style.css'};
   let file=allowed[url.pathname]&&path.join(__dirname,'public',allowed[url.pathname]);
   if(['/vendor/three.module.js','/vendor/three.core.js'].includes(url.pathname))file=path.join(__dirname,'../../node_modules/three/build',path.basename(url.pathname));
+  if(url.pathname==='/vendor/loaders/GLTFLoader.js')file=path.join(__dirname,'../../node_modules/three/examples/jsm/loaders/GLTFLoader.js');
+  if(['/vendor/utils/BufferGeometryUtils.js','/vendor/utils/SkeletonUtils.js'].includes(url.pathname))file=path.join(__dirname,'../../node_modules/three/examples/jsm/utils',path.basename(url.pathname));
+  if(url.pathname.startsWith('/assets/')){
+    const publicRoot=path.resolve(__dirname,'public'),candidate=path.resolve(publicRoot,'.'+url.pathname);
+    if(candidate.startsWith(publicRoot+path.sep))file=candidate;
+  }
   if(!file||!fs.existsSync(file)){res.writeHead(404);return res.end('Not found');}
   let body=fs.readFileSync(file);
   if(file.endsWith('.html'))body=Buffer.from(body.toString().replace('/*SS_BOOT*/',`window.SS_CONFIG=${JSON.stringify({mode,title:TITLES[mode],host,hostKey:host?hostKey:null,managed:runtime.managed})};`));
@@ -32,7 +38,7 @@ function send(ws,type,data){if(ws.readyState===1&&ws.bufferedAmount<512*1024)ws.
 function controllerState(s,id,bot=false){
   if(bot)return s;
   const {physics,stones,enemies,targets,covers,...small}=s;
-  small.players=s.players.map(p=>p.id===id?p:({id:p.id,name:p.name,color:p.color,team:p.team,number:p.number,score:p.score,connected:p.connected,participant:p.participant,gunUntil:p.gunUntil}));
+  small.players=s.players.map(p=>p.id===id?p:({id:p.id,name:p.name,avatar:p.avatar||null,color:p.color,team:p.team,number:p.number,score:p.score,connected:p.connected,participant:p.participant,gunUntil:p.gunUntil}));
   small.events=s.events.filter(e=>e.kind!=='shot'||e.player===id);
   return small;
 }
@@ -59,7 +65,7 @@ wss.on('connection',(ws,req)=>{
       if(!runtime.managed)sessions.set(profile.token,profile);
       const old=sockets.get(p.id);sockets.set(p.id,ws);ws.pid=p.id;ws.bot=d.bot===true;
       if(old&&old!==ws)old.close(1000,'Replaced');
-      send(ws,'joined',{id:p.id,name:p.name,hand:p.hand,token:profile.token});broadcast();return;
+      send(ws,'joined',{id:p.id,name:p.name,hand:p.hand,avatar:p.avatar||null,token:profile.token});broadcast();return;
     }
     if(ws.host&&m.type==='start'){try{match.start(d);}catch(e){send(ws,'error',{message:'Не удалось начать игру: '+e.message});}broadcast();return;}
     if(ws.host&&m.type==='reset'&&match.phase==='results'){match.phase='waiting';match.stage='waiting';match.result=null;match.release();broadcast();return;}

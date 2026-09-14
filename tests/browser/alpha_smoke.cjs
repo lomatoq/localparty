@@ -65,13 +65,19 @@ async function main() {
     await host.goto(`${base}/host`);
     await host.locator('.game[data-id="bowling"]').waitFor();
     if (await host.locator('.game').count() !== 30) throw new Error('Catalog no longer has 30 games');
-    for (const width of [420, 700, 900, 1440]) {
-      await host.setViewportSize({ width, height: width === 420 ? 800 : 700 });
+    for (const width of [320, 360, 390, 430, 700, 900, 1440]) {
+      await host.setViewportSize({ width, height: width <= 430 ? 800 : 700 });
       await sleep(120);
       const mark = await host.locator('.brand-mark').boundingBox();
       const identity = await host.locator('.app-header > .identity').boundingBox();
-      if (!mark || !identity || mark.x < identity.x || mark.x + mark.width > identity.x + identity.width + 1) {
-        throw new Error(`Lobby brand mark does not fit ${width}px: ${JSON.stringify({ mark, identity })}`);
+      const headerLayout = await host.evaluate(() => {
+        const box = selector => { const r = document.querySelector(selector)?.getBoundingClientRect(); return r && { x:r.x, y:r.y, right:r.right, bottom:r.bottom, width:r.width, height:r.height }; };
+        return { overflow: document.documentElement.scrollWidth > innerWidth, identity: box('.app-header > .identity'), nav: box('.app-header > nav:last-of-type'), filters: box('#catalogFilters') };
+      });
+      const overlaps = (a, b) => a && b && a.x < b.right && a.right > b.x && a.y < b.bottom && a.bottom > b.y;
+      const markBottomDelta = mark && identity ? identity.y + identity.height - mark.y - mark.height : Infinity;
+      if (!mark || !identity || headerLayout.overflow || mark.width < (width <= 430 ? 70 : 60) || mark.x < identity.x || mark.x + mark.width > identity.x + identity.width + 1 || markBottomDelta < -18 || markBottomDelta > 1 || overlaps(headerLayout.identity, headerLayout.nav) || overlaps(headerLayout.nav, headerLayout.filters)) {
+        throw new Error(`Lobby header does not fit ${width}px: ${JSON.stringify({ mark, identity, headerLayout })}`);
       }
       await host.screenshot({ path: path.join(OUT, `brand-lobby-${width}.png`) });
     }
@@ -126,6 +132,17 @@ async function main() {
         await phone.frameLocator('#gameFrame').locator('#ss-name').waitFor({ state: 'attached' });
         await phone.locator('#readyButton').click();
       }
+      if (mode === 'curling') {
+        await phones[0].waitForFunction(() => Array.isArray(document.querySelector('#gameFrame')?.contentWindow?.PARTY_ROSTER) && document.querySelector('#gameFrame').contentWindow.PARTY_ROSTER.length >= 2);
+        const forwarded = await phones[0].evaluate(() => {
+          const game = document.querySelector('#gameFrame').contentWindow;
+          return {
+            profileAvatar: game.PARTY_PROFILE?.avatar,
+            rosterAvatar: game.PARTY_ROSTER?.find(player => player.id === window.PARTY_PROFILE.id)?.avatar,
+          };
+        });
+        if (!forwarded.profileAvatar?.startsWith('data:image/') || !forwarded.rosterAvatar?.startsWith('data:image/')) throw new Error(`Avatar was not forwarded into the game: ${JSON.stringify(forwarded)}`);
+      }
       const frame = host.frameLocator('#gameFrame');
       await frame.locator('#ss-overlay').waitFor({ state: 'hidden', timeout: 25000 });
       await sleep(mode === 'swarm_gate' ? 7000 : 1000);
@@ -133,8 +150,8 @@ async function main() {
       if (await frame.locator('#ss-error').isVisible()) throw new Error(await frame.locator('#ss-error').innerText());
       await host.screenshot({ path: path.join(OUT, `${mode}-host.png`) });
       if (mode === 'swarm_gate') {
-        for (const width of [420, 700, 900, 1440]) {
-          await host.setViewportSize({ width, height: width === 420 ? 800 : 700 });
+        for (const width of [320, 360, 390, 430, 700, 900, 1440]) {
+          await host.setViewportSize({ width, height: width <= 430 ? 800 : 700 });
           await sleep(180);
           const shell = await host.evaluate(() => ({
             overflow: document.documentElement.scrollWidth > innerWidth,
@@ -145,8 +162,9 @@ async function main() {
           const mark = await host.locator('.brand-mark').boundingBox();
           const identity = await host.locator('.app-header > .identity').boundingBox();
           const timer = await host.locator('#hudTimer').boundingBox();
-          if (shell.overflow || shell.playbar !== 'none' || !heading || !title || !mark || !identity || !timer || heading.x < 0 || heading.x + heading.width > width || title.height < 1 || mark.x < identity.x || mark.x + mark.width > identity.x + identity.width + 1 || mark.x + mark.width > timer.x) {
-            throw new Error(`Sports HUD does not fit ${width}px: ${JSON.stringify({ shell, heading, title, mark, identity, timer })}`);
+          const nav = await host.locator('.app-header > nav:last-of-type').boundingBox();
+          if (shell.overflow || shell.playbar !== 'none' || !heading || !title || !mark || !identity || !timer || !nav || heading.x < 0 || heading.x + heading.width > width || title.height < 1 || mark.x < identity.x || mark.x + mark.width > identity.x + identity.width + 1 || mark.x + mark.width > timer.x || timer.x + timer.width > nav.x + 1) {
+            throw new Error(`Sports HUD does not fit ${width}px: ${JSON.stringify({ shell, heading, title, mark, identity, timer, nav })}`);
           }
           await host.screenshot({ path: path.join(OUT, `swarm_gate-${width}.png`) });
         }

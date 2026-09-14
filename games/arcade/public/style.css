@@ -11,13 +11,44 @@ html.party-host .arcade-host:has(#lobbyStage:not([hidden])) .score-panel{align-s
 #board{display:flex;flex-direction:column;gap:8px}.runner-row{padding:12px;border:1px solid #ffffff08;border-radius:18px;background:#ffffff04}
 
 .arcade-host:has(#lobbyStage:not([hidden])) #arena{filter:blur(12px);opacity:.15}.arcade-host:has(#lobbyStage[hidden]) #arena{filter:none;opacity:1}
-/* Symmetric side rails keep every arena at the physical screen center. */
-html.party-host .arcade-host{grid-template-columns:clamp(220px,18vw,336px) minmax(0,1fr) clamp(220px,18vw,336px);gap:24px}
-html.party-host .arcade-host #arena,html.party-host .arcade-host #lobbyStage{grid-column:2;grid-row:1}
-html.party-host .arcade-host .score-panel{grid-column:3;grid-row:1;width:100%}
+/* A shared lower rail keeps the arena centred and avoids duplicating player UI in a side column. */
+html.party-host .arcade-host{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:12px;align-items:stretch}
+html.party-host .arcade-host #arena,html.party-host .arcade-host #lobbyStage{grid-column:1;grid-row:1;min-width:0;width:100%;height:100%}
+html.party-host .arcade-host .score-panel{grid-column:1;grid-row:2;align-self:end;justify-self:center;width:min(100%,760px);max-height:156px;padding:10px 14px;border-radius:20px;overflow:auto}
+html.party-host .arcade-host .score-panel:has(.runner-row:nth-child(3)){width:min(100%,980px)}
+html.party-host .score-panel h2{font-size:12px;line-height:1;margin:0 0 7px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html.party-host #board{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,220px));justify-content:center;gap:6px}
+html.party-host .runner-row{min-width:0;min-height:42px;grid-template-columns:26px minmax(0,1fr) auto;gap:7px;padding:5px 8px;border-radius:12px;font-size:10px;overflow:hidden}
+html.party-host .runner-row .avatar{width:26px;height:26px;font-size:13px}
+html.party-host .runner-row>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html.party-host .runner-row small{display:none}
+html.party-host .runner-row b{font-size:13px}
+html.party-host #board:has(.runner-row:nth-child(9)){grid-template-columns:repeat(8,minmax(0,1fr))}
+html.party-host #board:has(.runner-row:nth-child(9)) .runner-row{display:grid;grid-template-columns:1fr;place-items:center;min-height:40px;padding:3px 1px;gap:1px}
+html.party-host #board:has(.runner-row:nth-child(9)) .runner-row>span:nth-child(2){display:none}
+html.party-host #board:has(.runner-row:nth-child(9)) .runner-row b{font-size:10px;line-height:1}
 #punchResult{padding:18px;border:1px solid #baff4640;border-radius:20px;background:#baff4610;font-size:18px;line-height:1.5;width:100%;overflow-wrap:anywhere}
 .controller:has(#punchResult) #status{font-size:26px;line-height:1.2;overflow-wrap:anywhere}
 .controller:has(#punchResult) #motion{min-height:56px;width:100%;border-radius:22px;background:#c6ff70;color:#182510;padding:14px;font-weight:800}
 .controller:has(#punchResult) #action{font-size:20px;min-height:80px;height:auto;padding:22px 16px}
 
 .controller #action:disabled{opacity:.42;filter:saturate(.3);box-shadow:none;cursor:default;transform:none}
+
+/* Narrow host displays keep the arena fully visible and move scores into a bottom rail. */
+@media(max-width:699px){
+ html.party-host,html.party-host body{width:100%;max-width:100%;overflow:hidden}
+ html.party-host .arcade-host{width:100%;max-width:100%;height:100dvh;padding:8px;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:8px;align-items:stretch;overflow:hidden}
+ html.party-host .arcade-host #arena,html.party-host .arcade-host #lobbyStage{grid-column:1;grid-row:1;min-width:0;max-width:100%;width:100%;height:100%}
+ html.party-host .arcade-host .score-panel{grid-column:1;grid-row:2;align-self:end;justify-self:center;width:min(100%,430px);max-width:100%;max-height:min(118px,24dvh);padding:8px 10px;border-radius:16px;overflow:auto}
+ html.party-host .score-panel h2{font-size:11px;line-height:1;margin:0 0 6px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ html.party-host #board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+ html.party-host .runner-row{min-width:0;min-height:40px;grid-template-columns:24px minmax(0,1fr) auto;gap:5px;padding:4px 6px;border-radius:11px;font-size:9px;overflow:hidden}
+ html.party-host .runner-row .avatar{width:24px;height:24px;font-size:12px}
+ html.party-host .runner-row>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ html.party-host .runner-row small{display:none}
+ html.party-host .runner-row b{font-size:12px}
+ html.party-host #board:has(.runner-row:nth-child(9)){grid-template-columns:repeat(8,minmax(0,1fr))}
+ html.party-host #board:has(.runner-row:nth-child(9)) .runner-row{display:grid;grid-template-columns:1fr;place-items:center;min-height:38px;padding:3px 1px;gap:1px}
+ html.party-host #board:has(.runner-row:nth-child(9)) .runner-row>span:nth-child(2){display:none}
+ html.party-host #board:has(.runner-row:nth-child(9)) .runner-row b{font-size:9px;line-height:1}
+}

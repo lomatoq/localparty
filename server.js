@@ -22,7 +22,8 @@ const players = new Map(), clients = new Set();
 const profileStore=new ProfileStore(process.env.PARTY_EPHEMERAL==='1'?null:(process.env.PARTY_DATA_FILE||path.join(ROOT,'data','party.json')));
 const tokenFromCookie=req=>{const item=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('local_party_device='));return item?.slice('local_party_device='.length);};
 const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand,avatar:p.avatar||null}:null;
-const gameProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
+const gameProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand,avatar:p.avatar||null}:null;
+const gameBootstrapProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
 let active = null, busy = false, closing = false, testMode=false, botCount=0, testProfiles=[];
 function sendTestProfile(ws){while(testProfiles.length<botCount)testProfiles.push(publicProfile(profileStore.register(null,'Бот '+(testProfiles.length+1),'right')));send(ws,{type:'test-profiles',profiles:testProfiles.slice(0,botCount)});}
 const local = req => ['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
@@ -47,7 +48,7 @@ async function launch(id){
   busy=true;broadcast();let next;
   try{
     const port=await freePort(), instance=crypto.randomBytes(8).toString('hex');
-    const child=spawn(process.execPath,['server.js'],{cwd:path.join(ROOT,'games',game.engine||id),env:{...process.env,PORT:String(port),PARTY_MANAGED:'1',PARTY_GAME_ID:id,PARTY_INSTANCE:instance,PARTY_ROSTER:JSON.stringify(profileStore.data.players.map(gameProfile)),PARTY_PLAYER_LIMIT:String(connected().length),PARTY_JOIN_URL:inviteUrl()},windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
+    const child=spawn(process.execPath,['server.js'],{cwd:path.join(ROOT,'games',game.engine||id),env:{...process.env,PORT:String(port),PARTY_MANAGED:'1',PARTY_GAME_ID:id,PARTY_INSTANCE:instance,PARTY_ROSTER:JSON.stringify(profileStore.data.players.map(gameBootstrapProfile)),PARTY_PLAYER_LIMIT:String(connected().length),PARTY_JOIN_URL:inviteUrl()},windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
     next={game,port,instance,child,ready:new Set(),session:new SessionControls(testMode)};let log='';
     child.on('message',m=>{
       if(m?.type==='party:ui'&&m.ui){const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset)broadcast();}}
@@ -66,8 +67,8 @@ function transform(text, type, prefix, req){
   if(type.includes('text/html')){
     if(!/<head\b/i.test(text))text=text.replace(/<html([^>]*)>/i,'<html$1><head>').replace(/<body([^>]*)>/i,'</head><body$1>');
     text=text.replace(/((?:src|href|action)\s*=\s*["'])\/(?!\/)/gi,`$1${prefix}/`);
-    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
-    text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"></head>');
+    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script src="/game-feel.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
+    text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/game-feel.css"><script defer src="/motion.js"></script></head>');
   }
   if(type.includes('javascript')||type.includes('text/html'))text=text.replace(/\bio\(\)/g,`partyIO({path:'${prefix}/socket.io'})`);
   return text;
@@ -112,7 +113,7 @@ const handler=async(req,res)=>{
   }
   const isHost=url.pathname==='/host';
   if(isHost&&!local(req))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/motion.css':'motion.css','/motion.js':'motion.js','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   let content=fs.readFileSync(path.join(ROOT,'public',file));
   if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`).replace('</head>',`${APP_HEAD}<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script></head>`);

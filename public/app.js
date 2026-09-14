@@ -5,7 +5,7 @@
  const $=id=>document.getElementById(id),host=!!window.PARTY_HOST_KEY;
  let profile=null,state=null,ws,frameKey=null,replaced=false,editing=false,accepted=false,everAccepted=false,gameStatus='connecting',lastRanks='',freshIdentityPending=false,reconnectTimer,pongTimer,clockOffset=0,waitingKey='',catalogFilter='all',pendingAvatar=null;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
- let testProfiles=[],liveScoreInstance='';
+ let testProfiles=[],liveScoreInstance='',rosterSource=null,rosterForGames=[],rosterPostedSource=null;
  function updateTestCompanion(){if(host)window.PartyBots?.update(state,testProfiles);}
  window.PARTY_PROFILE={};
  const tell=text=>{$('notice').textContent=text;$('notice').hidden=false;clearTimeout(tell.timer);tell.timer=setTimeout(()=>$('notice').hidden=true,6000);};
@@ -143,7 +143,7 @@
   document.body.dataset.gameId=active?game.id:'';
   document.body.classList.toggle('game-owns-hud',host&&active&&['bowling','curling','swarm_gate','peek_shoot'].includes(game.id));
   document.body.classList.toggle('in-game',active);document.body.classList.toggle('is-host',host);document.body.classList.toggle('is-player',!host);document.body.dataset.phase=ui.phase;if(ui.phase!=='paused')document.body.classList.toggle('session-active',active&&['countdown','playing','reveal','results'].includes(ui.phase));
-  $('hudTimer').hidden=!active;$('sessionIdentity').hidden=!active;$('gameRules').hidden=!active;$('joinOpen').hidden=!host;$('qrDock').hidden=!host||active;$('catalogFilters').hidden=active||!everAccepted;
+  $('hudTimer').hidden=!active;$('sessionIdentity').hidden=!active;$('gameRules').hidden=!active;$('joinOpen').hidden=!host;$('qrDock').hidden=!host||active;$('catalogFilters').hidden=active||!everAccepted;queueQrDockLayout();
   $('testModeBox').hidden=!host||active;$('testMode').checked=!!state?.testMode;$('botCount').textContent=state?.botCount||0;$('botMinus').disabled=active||!(state?.botCount);$('botPlus').disabled=active||(state?.botCount||0)>=15||(state?.players.length||0)>=16;
   $('back').hidden=!active||!host;$('roomRules').hidden=!active;$('retryGame').hidden=!active;$('closeRoom').textContent=active?'Вернуться в игру':'Вернуться';$('companyRoomOpen').hidden=!(state?.players?.length);
   $('lobbyExit').hidden=!active;$('sessionControls').hidden=!active;$('gameObjective').hidden=!active||host;$('pauseOverlay').hidden=!active||!state?.active?.session?.paused;
@@ -162,8 +162,11 @@
   $('readyProgress').textContent=spectating?'Ты наблюдаешь. Можно присоединиться перед стартом.':`Готовы ${readyIds.filter(id=>eligible.includes(id)).length} из ${expected}. ${expected>eligible.length?'Ждём подключения остальных.':'Когда все готовы — начнём автоматически.'}`;
   $('pauseButton').innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">'+(session.paused?'<path d="m8 5 11 7-11 7Z"/>':'<path d="M8 5v14M16 5v14"/>')+'</svg><span>'+(session.paused?'Продолжить':'Пауза')+'</span>';$('exitVoteButton').textContent=host?'← Все в лобби':(session.exitVotes||[]).includes(mine)?`✓ Выход ${session.exitVotes.length}/${eligible.length}`:'← В лобби';
   const key=state.active.instance+':'+game.id;if(waitingKey!==key){waitingKey=key;$('waitingTitle').textContent=game.title;$('gameObjective').replaceChildren(el('strong','objective-title',game.title),el('p','objective-copy',game.goal||game.description));const goal=el('p','waiting-goal',game.goal||game.description),details=el('details','waiting-details'),summary=el('summary','','Правила и управление');details.append(summary,...[['Управление',game.controls],['Победа',game.win]].map(([label,text])=>{const d=el('div','');d.append(el('b','',label),el('p','',text||''));return d;}));$('waitingContent').replaceChildren(goal,details);}
-  window.PARTY_UI=ui;window.PARTY_GAME=game;window.PARTY_SESSION=state.active.session;
-  $('gameFrame').contentWindow?.postMessage({type:'party-ui',ui,session:state.active.session,game:{id:game.id,title:game.title},host},location.origin);
+  const nextRosterSource=state.players||[];
+  if(rosterSource!==nextRosterSource){rosterSource=nextRosterSource;rosterForGames=nextRosterSource.map(({id,name,hand,avatar,testBot,gameReady})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!gameReady}));}
+  const roster=rosterForGames,sendRoster=rosterPostedSource!==rosterSource;if(sendRoster)rosterPostedSource=rosterSource;
+  window.PARTY_UI=ui;window.PARTY_GAME=game;window.PARTY_SESSION=state.active.session;window.PARTY_ROSTER=roster;
+  $('gameFrame').contentWindow?.postMessage({type:'party-ui',ui,session:state.active.session,game:{id:game.id,title:game.title},...(sendRoster?{roster}:{}),host},location.origin);
   if(host&&state.active.session?.startRequested&&ui.phase==='waiting')$('gameFrame').contentWindow?.postMessage({type:'party-start',instance:state.active.instance},location.origin);
  }
  function renderMiniRanks(){
@@ -177,6 +180,36 @@
  function showTop(){const ranks=state?.leaderboard||[];$('statsName').textContent='Топ компании';$('statsBody').className='ranking-content';$('statsBody').replaceChildren(el('p','stats-intro','Каждая партия меняет расстановку. Нажми на игрока, чтобы увидеть его результаты.'),...(ranks.length?ranks.map((p,i)=>{const b=el('button','stats-rank');b.type='button';b.dataset.place=i+1;const avatar=avatarNode(p,'stats-avatar'),identity=el('span','stats-identity'),score=el('span','stats-score');identity.append(el('b','',p.name),el('small','',`${p.wins||0} побед · ${p.played||0} партий`));score.append(el('strong','',Number(p.points||0).toLocaleString('ru-RU')),el('small','','очков'));b.append(el('span','stats-place',i===0?'♛':String(i+1)),avatar,identity,score);b.onclick=()=>showPlayerStats(p);return b;}):[el('p','stats-empty','Сыграйте первую партию — здесь появятся победы и рекорды.')]));$('statsDialog').showModal();$('statsBody').scrollTop=0;}
  function showCatalog(){if(!state)return;if(!state.active){$('catalogSection').scrollIntoView({behavior:reduced?'auto':'smooth'});return;}$('catalogQuick').replaceChildren(...state.catalog.map(g=>{const b=el('button',''),img=el('img','');img.src=g.artwork?'/assets/games/'+g.artwork:'/assets/games/'+(g.id==='tankarena'?'tankarena-hd':g.id)+'.webp?v=0.6-premium';img.alt='';b.append(img,el('span','',g.title));b.onclick=()=>{$('catalogDialog').close();host?send({type:'launch',id:g.id}):showRules(g);};return b;}));$('catalogDialog').showModal();}
  function updateQR(){$('qr').src='/api/qr?url='+encodeURIComponent($('address').value);$('dockQr').src=$('qr').src;}
+ const qrDock=$('qrDock'),joinOpen=$('joinOpen'),appHeader=document.querySelector('.app-header');
+ const qrAvoid=[document.querySelector('#home .company'),document.querySelector('#home>.evening-console')].filter(Boolean);
+ const overlaps=(a,b,gap=10)=>a.left<b.right+gap&&a.right>b.left-gap&&a.top<b.bottom+gap&&a.bottom>b.top-gap;
+ let qrLayoutFrame=0;
+ function queueQrDockLayout(){if(qrLayoutFrame)return;qrLayoutFrame=requestAnimationFrame(()=>{qrLayoutFrame=0;layoutQrDock();});}
+ function layoutQrDock(){
+  if(!qrDock||qrDock.hidden||!host||document.body.classList.contains('in-game')){qrDock?.classList.remove('qr-dock--header');if(qrDock)qrDock.dataset.mode='corner';return;}
+  const previous=qrDock.classList.contains('qr-dock--header');
+  qrDock.classList.remove('qr-dock--header');qrDock.classList.add('qr-dock--measuring');
+  const fullRect=qrDock.getBoundingClientRect();
+  const conflict=window.innerWidth<=850||qrAvoid.some(node=>{
+   if(node.hidden)return false;
+   const style=getComputedStyle(node);if(style.display==='none'||style.visibility==='hidden')return false;
+   const rect=node.getBoundingClientRect();return rect.width>0&&rect.height>0&&overlaps(fullRect,rect);
+  });
+  qrDock.classList.remove('qr-dock--measuring');qrDock.classList.toggle('qr-dock--header',conflict);qrDock.dataset.mode=conflict?'header':'corner';
+  if(conflict){
+   const headerRect=appHeader.getBoundingClientRect();
+   let buttonLeft=0,node=joinOpen;while(node){buttonLeft+=node.offsetLeft;node=node.offsetParent;}
+   const buttonCenter=buttonLeft+joinOpen.offsetWidth/2,preferredSize=Math.max(64,Math.min(92,joinOpen.offsetWidth-12||76));
+   const centeredLimit=Math.max(48,2*(window.innerWidth-buttonCenter)-12),size=Math.min(preferredSize,centeredLimit);
+   qrDock.style.setProperty('--qr-compact-size',`${Math.round(size)}px`);
+   const dockWidth=qrDock.offsetWidth||size+12;
+   const left=Math.max(0,Math.min(window.innerWidth-dockWidth,buttonCenter-dockWidth/2));
+   qrDock.style.setProperty('--qr-compact-left',`${Math.round(left)}px`);qrDock.style.setProperty('--qr-compact-top',`${Math.round(headerRect.bottom+8)}px`);
+  }else if(previous){qrDock.style.removeProperty('--qr-compact-left');qrDock.style.removeProperty('--qr-compact-top');qrDock.style.removeProperty('--qr-compact-size');}
+ }
+ const settleQrDockLayout=()=>{queueQrDockLayout();requestAnimationFrame(()=>requestAnimationFrame(queueQrDockLayout));};
+ window.addEventListener('resize',settleQrDockLayout,{passive:true});window.visualViewport?.addEventListener('resize',settleQrDockLayout,{passive:true});window.addEventListener('scroll',queueQrDockLayout,{passive:true});
+ const qrResizeObserver=new ResizeObserver(settleQrDockLayout);qrResizeObserver.observe(appHeader);qrResizeObserver.observe(joinOpen);qrAvoid.forEach(node=>qrResizeObserver.observe(node));document.fonts.ready.then(settleQrDockLayout);
  $('surpriseGame').onclick=()=>{const candidates=state?.catalog.filter(g=>catalogFilter==='all'||document.querySelector('.game[data-id="'+g.id+'"]')?.dataset.category===catalogFilter)||[];if(candidates.length){const chosen=candidates[Math.floor(Math.random()*candidates.length)];document.querySelector('.game[data-id="'+chosen.id+'"]').scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});showRules(chosen);}};
  const heroStage=document.querySelector('.headline-stage');
  if(heroStage&&!reduced){heroStage.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=heroStage.getBoundingClientRect(),x=Math.max(-1,Math.min(1,(e.clientX-r.left)/r.width*2-1)),y=Math.max(-1,Math.min(1,(e.clientY-r.top)/r.height*2-1));heroStage.style.setProperty('--art-x',(x*4).toFixed(2)+'px');heroStage.style.setProperty('--art-y',(y*3).toFixed(2)+'px');},{passive:true});heroStage.addEventListener('pointerleave',()=>{heroStage.style.setProperty('--art-x','0px');heroStage.style.setProperty('--art-y','0px');});}
@@ -207,7 +240,7 @@
  $('roomToggle').onclick=()=>{$('roomDialog').showModal();$('roomTitle').focus({preventScroll:true});$('roomDialog').scrollTop=0;};$('closeRoom').onclick=()=>$('roomDialog').close();$('roomRules').onclick=()=>{$('roomDialog').close();$('gameRules').click();};
  $('companyRoomOpen').onclick=()=>{$('roomDialog').showModal();$('roomTitle').focus({preventScroll:true});$('roomDialog').scrollTop=0;};
  $('joinOpen').onclick=()=>{$('dialogQr').src=$('qr').src;$('dialogAddress').textContent=$('address').value||location.origin;$('joinDialog').showModal();};$('closeJoin').onclick=()=>$('joinDialog').close();$('copyDialogAddress').onclick=()=>$('copy').click();$('closeCatalog').onclick=()=>$('catalogDialog').close();
- $('gameFrame').addEventListener('load',renderHUD);setInterval(renderHUD,200);
+ $('gameFrame').addEventListener('load',()=>{rosterPostedSource=null;renderHUD();});setInterval(renderHUD,200);
  window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===$('gameFrame').contentWindow&&e.data?.type==='party-visual-ready'&&e.data.instance===state?.active?.instance)$('gameFrame').dataset.loading='false';});
  window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==$('gameFrame').contentWindow||e.data?.type!=='party-score'||e.data.instance!==state?.active?.instance)return;liveScoreInstance=e.data.instance;const rows=Array.isArray(e.data.rows)?e.data.rows:[];$('liveTop').replaceChildren(...rows.slice(0,16).map((p,i)=>{const d=el('span','');d.append(el('b','',`${i+1}. ${p.name}`),document.createTextNode(` · ${Number(p.score)||0}`));return d;}));$('liveTop').setAttribute('aria-label',e.data.label||'Счёт игры');});
  const presses=new Map();document.addEventListener('pointerdown',e=>{const b=e.target.closest?.('button,[role=button]');if(!b||b.disabled)return;presses.set(e.pointerId,b);b.classList.add('party-pressed');},{passive:true});
@@ -221,4 +254,3 @@
  async function init(){if(!host){try{profile=JSON.parse(localStorage.getItem('local-party-profile')||'null');}catch{}const abort=new AbortController(),timeout=setTimeout(()=>abort.abort(),1800);try{const data=await(await fetch('/api/profile',{signal:abort.signal})).json();profile=data.profile||profile;}catch{}finally{clearTimeout(timeout);}window.PARTY_PROFILE=profile||{};if(profile){$('name').value=profile.name;pendingAvatar=profile.avatar||null;document.querySelector(`[name=hand][value=${profile.hand==='left'?'left':'right'}]`).checked=true;}updateAvatarPreview();}render();connect();}
  init();
 })();
-

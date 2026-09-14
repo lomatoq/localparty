@@ -68,6 +68,13 @@ test('reconnect preserves score and identity, spectators cannot shoot',()=>{
  const m=game('peek_shoot');m.players.get('p0').score=80;m.disconnect('p0');m.add({id:'p0',name:'new'});assert.equal(m.players.get('p0').score,80);assert.equal(m.players.size,2);
  m.add({id:'late'});assert.equal(m.input('late','input',{fire:true}),false);
 });
+test('player avatar survives roster snapshots and reconnects',()=>{
+ const avatar='data:image/png;base64,iVBORw0KGgo=';
+ const m=new Match('swarm_gate');m.add({id:'p0',name:'Игрок',hand:'left',avatar});
+ assert.equal(m.snapshot().players[0].avatar,avatar);
+ m.disconnect('p0');m.add({id:'p0',name:'Игрок',hand:'left',avatar});
+ assert.equal(m.snapshot().players[0].avatar,avatar);
+});
 test('gallery: cover occludes a target and visible head accepts a hit',()=>{
  const t={id:1,baseX:.5,coverY:.4,r:.04,depth:.9,hp:1,born:0,life:3,seed:0,speed:0},c={x:.4,y:.4,w:.2,h:.1,depth:1};
  assert.equal(rules.hitTarget([t],[c],.5,.4,1),null);

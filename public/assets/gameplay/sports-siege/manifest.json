@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "cameraContract": {
     "swarmUnits": "strict top-down sprites, billboarded and rotated in screen plane",
     "swarmWall": "fixed host-camera front/south face with top cap",
@@ -68,6 +68,54 @@
       "rows": 2,
       "width": 1536,
       "height": 1024
+    },
+    "swarm-death-termite": {
+      "file": "atlases/swarm-death-termite.webp",
+      "columns": 4,
+      "rows": 2,
+      "width": 1024,
+      "height": 512,
+      "animation": {
+        "frames": 8,
+        "fps": 18,
+        "loop": false
+      }
+    },
+    "swarm-death-runner": {
+      "file": "atlases/swarm-death-runner.webp",
+      "columns": 4,
+      "rows": 2,
+      "width": 1024,
+      "height": 512,
+      "animation": {
+        "frames": 8,
+        "fps": 18,
+        "loop": false
+      }
+    },
+    "swarm-death-tank": {
+      "file": "atlases/swarm-death-tank.webp",
+      "columns": 4,
+      "rows": 2,
+      "width": 1024,
+      "height": 512,
+      "animation": {
+        "frames": 8,
+        "fps": 18,
+        "loop": false
+      }
+    },
+    "swarm-death-boss": {
+      "file": "atlases/swarm-death-boss.webp",
+      "columns": 4,
+      "rows": 2,
+      "width": 1024,
+      "height": 512,
+      "animation": {
+        "frames": 8,
+        "fps": 18,
+        "loop": false
+      }
     }
   },
   "sprites": {
@@ -79,8 +127,15 @@
         0.5,
         0.5
       ],
-      "width": 300,
-      "height": 361
+      "width": 297,
+      "height": 359,
+      "safeBounds": [
+        18,
+        18,
+        261,
+        323
+      ],
+      "view": "top-down"
     },
     "swarm-runner": {
       "file": "sprites/swarm-runner.webp",
@@ -90,8 +145,15 @@
         0.5,
         0.5
       ],
-      "width": 366,
-      "height": 363
+      "width": 364,
+      "height": 361,
+      "safeBounds": [
+        18,
+        18,
+        328,
+        325
+      ],
+      "view": "top-down"
     },
     "swarm-tank": {
       "file": "sprites/swarm-tank.webp",
@@ -101,8 +163,15 @@
         0.5,
         0.5
       ],
-      "width": 372,
-      "height": 392
+      "width": 371,
+      "height": 390,
+      "safeBounds": [
+        18,
+        18,
+        335,
+        354
+      ],
+      "view": "top-down"
     },
     "swarm-boss": {
       "file": "sprites/swarm-boss.webp",
@@ -112,8 +181,15 @@
         0.5,
         0.5
       ],
-      "width": 372,
-      "height": 452
+      "width": 371,
+      "height": 451,
+      "safeBounds": [
+        18,
+        18,
+        335,
+        415
+      ],
+      "view": "top-down"
     },
     "turret-base": {
       "file": "sprites/turret-base.webp",
@@ -123,8 +199,15 @@
         0.5,
         0.5
       ],
-      "width": 361,
-      "height": 368
+      "width": 359,
+      "height": 367,
+      "safeBounds": [
+        18,
+        18,
+        323,
+        331
+      ],
+      "view": "top-down"
     },
     "turret-head-short": {
       "file": "sprites/turret-head-short.webp",
@@ -134,8 +217,15 @@
         0.5,
         0.5
       ],
-      "width": 288,
-      "height": 373
+      "width": 285,
+      "height": 371,
+      "safeBounds": [
+        18,
+        18,
+        249,
+        335
+      ],
+      "view": "top-down"
     },
     "turret-head-long": {
       "file": "sprites/turret-head-long.webp",
@@ -145,8 +235,15 @@
         0.5,
         0.5
       ],
-      "width": 286,
-      "height": 444
+      "width": 284,
+      "height": 442,
+      "safeBounds": [
+        18,
+        18,
+        248,
+        406
+      ],
+      "view": "top-down"
     },
     "turret-pulse": {
       "file": "sprites/turret-pulse.webp",
@@ -156,8 +253,15 @@
         0.5,
         0.5
       ],
-      "width": 305,
-      "height": 306
+      "width": 304,
+      "height": 304,
+      "safeBounds": [
+        18,
+        18,
+        268,
+        268
+      ],
+      "view": "top-down"
     },
     "turret-shell": {
       "file": "sprites/turret-shell.webp",
@@ -167,8 +271,15 @@
         0.5,
         0.5
       ],
-      "width": 291,
-      "height": 427
+      "width": 167,
+      "height": 296,
+      "safeBounds": [
+        18,
+        18,
+        131,
+        260
+      ],
+      "view": "top-down"
     },
     "turret-bolt": {
       "file": "sprites/turret-bolt.webp",
@@ -178,8 +289,15 @@
         0.5,
         0.5
       ],
-      "width": 156,
-      "height": 318
+      "width": 155,
+      "height": 317,
+      "safeBounds": [
+        18,
+        18,
+        119,
+        281
+      ],
+      "view": "top-down"
     },
     "turret-missile": {
       "file": "sprites/turret-missile.webp",
@@ -189,8 +307,15 @@
         0.5,
         0.5
       ],
-      "width": 233,
-      "height": 347
+      "width": 231,
+      "height": 346,
+      "safeBounds": [
+        18,
+        18,
+        195,
+        310
+      ],
+      "view": "top-down"
     },
     "turret-selection": {
       "file": "sprites/turret-selection.webp",
@@ -200,8 +325,15 @@
         0.5,
         0.5
       ],
-      "width": 369,
-      "height": 433
+      "width": 321,
+      "height": 317,
+      "safeBounds": [
+        18,
+        18,
+        285,
+        281
+      ],
+      "view": "top-down"
     },
     "turret-pedestal-stone": {
       "file": "sprites/turret-pedestal-stone.webp",
@@ -212,7 +344,14 @@
         0.92
       ],
       "width": 476,
-      "height": 474
+      "height": 474,
+      "safeBounds": [
+        18,
+        18,
+        440,
+        438
+      ],
+      "view": "top-down"
     },
     "turret-pedestal-blue": {
       "file": "sprites/turret-pedestal-blue.webp",
@@ -223,7 +362,14 @@
         0.92
       ],
       "width": 476,
-      "height": 474
+      "height": 474,
+      "safeBounds": [
+        18,
+        18,
+        440,
+        438
+      ],
+      "view": "top-down"
     },
     "turret-pedestal-wood": {
       "file": "sprites/turret-pedestal-wood.webp",
@@ -234,7 +380,14 @@
         0.92
       ],
       "width": 478,
-      "height": 476
+      "height": 476,
+      "safeBounds": [
+        18,
+        18,
+        442,
+        440
+      ],
+      "view": "top-down"
     },
     "turret-pedestal-damaged": {
       "file": "sprites/turret-pedestal-damaged.webp",
@@ -245,7 +398,14 @@
         0.92
       ],
       "width": 475,
-      "height": 474
+      "height": 474,
+      "safeBounds": [
+        18,
+        18,
+        439,
+        438
+      ],
+      "view": "top-down"
     },
     "wall-straight": {
       "file": "sprites/wall-straight.webp",
@@ -255,8 +415,15 @@
         0.5,
         0.9
       ],
-      "width": 388,
-      "height": 329
+      "width": 386,
+      "height": 327,
+      "safeBounds": [
+        18,
+        18,
+        350,
+        291
+      ],
+      "view": "top-down"
     },
     "gate-closed": {
       "file": "sprites/gate-closed.webp",
@@ -266,8 +433,15 @@
         0.5,
         0.9
       ],
-      "width": 388,
-      "height": 330
+      "width": 385,
+      "height": 328,
+      "safeBounds": [
+        18,
+        18,
+        349,
+        292
+      ],
+      "view": "top-down"
     },
     "gate-damaged": {
       "file": "sprites/gate-damaged.webp",
@@ -277,8 +451,15 @@
         0.5,
         0.9
       ],
-      "width": 388,
-      "height": 330
+      "width": 386,
+      "height": 328,
+      "safeBounds": [
+        18,
+        18,
+        350,
+        292
+      ],
+      "view": "top-down"
     },
     "gate-open": {
       "file": "sprites/gate-open.webp",
@@ -288,8 +469,15 @@
         0.5,
         0.9
       ],
-      "width": 388,
-      "height": 330
+      "width": 386,
+      "height": 328,
+      "safeBounds": [
+        18,
+        18,
+        350,
+        292
+      ],
+      "view": "top-down"
     },
     "wall-tower-left": {
       "file": "sprites/wall-tower-left.webp",
@@ -299,8 +487,15 @@
         0.5,
         0.9
       ],
-      "width": 366,
-      "height": 548
+      "width": 305,
+      "height": 446,
+      "safeBounds": [
+        18,
+        18,
+        269,
+        410
+      ],
+      "view": "top-down"
     },
     "wall-tower-right": {
       "file": "sprites/wall-tower-right.webp",
@@ -310,8 +505,15 @@
         0.5,
         0.9
       ],
-      "width": 307,
-      "height": 447
+      "width": 305,
+      "height": 446,
+      "safeBounds": [
+        18,
+        18,
+        269,
+        410
+      ],
+      "view": "top-down"
     },
     "wall-damage": {
       "file": "sprites/wall-damage.webp",
@@ -321,8 +523,15 @@
         0.5,
         0.9
       ],
-      "width": 367,
-      "height": 362
+      "width": 359,
+      "height": 352,
+      "safeBounds": [
+        18,
+        18,
+        323,
+        316
+      ],
+      "view": "top-down"
     },
     "wall-repair": {
       "file": "sprites/wall-repair.webp",
@@ -332,8 +541,15 @@
         0.5,
         0.9
       ],
-      "width": 383,
-      "height": 466
+      "width": 316,
+      "height": 327,
+      "safeBounds": [
+        18,
+        18,
+        280,
+        291
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-0": {
       "file": "sprites/swarm-explosion-0.webp",
@@ -344,7 +560,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-1": {
       "file": "sprites/swarm-explosion-1.webp",
@@ -355,7 +578,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-2": {
       "file": "sprites/swarm-explosion-2.webp",
@@ -366,7 +596,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-3": {
       "file": "sprites/swarm-explosion-3.webp",
@@ -377,7 +614,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-4": {
       "file": "sprites/swarm-explosion-4.webp",
@@ -388,7 +632,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-5": {
       "file": "sprites/swarm-explosion-5.webp",
@@ -399,7 +650,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-6": {
       "file": "sprites/swarm-explosion-6.webp",
@@ -410,7 +668,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "swarm-explosion-7": {
       "file": "sprites/swarm-explosion-7.webp",
@@ -421,7 +686,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "top-down"
     },
     "target-chicken": {
       "file": "sprites/target-chicken.webp",
@@ -431,8 +703,15 @@
         0.5,
         0.5
       ],
-      "width": 331,
-      "height": 437
+      "width": 329,
+      "height": 436,
+      "safeBounds": [
+        18,
+        18,
+        293,
+        400
+      ],
+      "view": "front"
     },
     "target-bug": {
       "file": "sprites/target-bug.webp",
@@ -442,8 +721,15 @@
         0.5,
         0.5
       ],
-      "width": 297,
-      "height": 396
+      "width": 294,
+      "height": 394,
+      "safeBounds": [
+        18,
+        18,
+        258,
+        358
+      ],
+      "view": "front"
     },
     "target-beetle": {
       "file": "sprites/target-beetle.webp",
@@ -453,8 +739,15 @@
         0.5,
         0.5
       ],
-      "width": 417,
-      "height": 419
+      "width": 415,
+      "height": 418,
+      "safeBounds": [
+        18,
+        18,
+        379,
+        382
+      ],
+      "view": "front"
     },
     "target-boss": {
       "file": "sprites/target-boss.webp",
@@ -464,8 +757,15 @@
         0.5,
         0.5
       ],
-      "width": 406,
-      "height": 509
+      "width": 405,
+      "height": 506,
+      "safeBounds": [
+        18,
+        18,
+        369,
+        470
+      ],
+      "view": "front"
     },
     "target-friendly": {
       "file": "sprites/target-friendly.webp",
@@ -475,8 +775,15 @@
         0.5,
         0.5
       ],
-      "width": 404,
-      "height": 512
+      "width": 389,
+      "height": 439,
+      "safeBounds": [
+        18,
+        18,
+        353,
+        403
+      ],
+      "view": "front"
     },
     "target-bonus": {
       "file": "sprites/target-bonus.webp",
@@ -486,8 +793,15 @@
         0.5,
         0.5
       ],
-      "width": 296,
-      "height": 394
+      "width": 294,
+      "height": 393,
+      "safeBounds": [
+        18,
+        18,
+        258,
+        357
+      ],
+      "view": "front"
     },
     "cover-wood": {
       "file": "sprites/cover-wood.webp",
@@ -497,8 +811,15 @@
         0.5,
         0.5
       ],
-      "width": 430,
-      "height": 214
+      "width": 428,
+      "height": 212,
+      "safeBounds": [
+        18,
+        18,
+        392,
+        176
+      ],
+      "view": "front"
     },
     "cover-wood-cracked": {
       "file": "sprites/cover-wood-cracked.webp",
@@ -508,8 +829,15 @@
         0.5,
         0.5
       ],
-      "width": 431,
-      "height": 215
+      "width": 429,
+      "height": 213,
+      "safeBounds": [
+        18,
+        18,
+        393,
+        177
+      ],
+      "view": "front"
     },
     "cover-stone": {
       "file": "sprites/cover-stone.webp",
@@ -519,8 +847,15 @@
         0.5,
         0.5
       ],
-      "width": 432,
-      "height": 218
+      "width": 430,
+      "height": 217,
+      "safeBounds": [
+        18,
+        18,
+        394,
+        181
+      ],
+      "view": "front"
     },
     "cover-metal": {
       "file": "sprites/cover-metal.webp",
@@ -530,8 +865,15 @@
         0.5,
         0.5
       ],
-      "width": 431,
-      "height": 217
+      "width": 429,
+      "height": 216,
+      "safeBounds": [
+        18,
+        18,
+        393,
+        180
+      ],
+      "view": "front"
     },
     "cover-wood-break-a": {
       "file": "sprites/cover-wood-break-a.webp",
@@ -541,8 +883,15 @@
         0.5,
         0.5
       ],
-      "width": 464,
-      "height": 404
+      "width": 428,
+      "height": 235,
+      "safeBounds": [
+        18,
+        18,
+        392,
+        199
+      ],
+      "view": "front"
     },
     "cover-wood-break-b": {
       "file": "sprites/cover-wood-break-b.webp",
@@ -552,8 +901,15 @@
         0.5,
         0.5
       ],
-      "width": 431,
-      "height": 224
+      "width": 427,
+      "height": 223,
+      "safeBounds": [
+        18,
+        18,
+        391,
+        187
+      ],
+      "view": "front"
     },
     "cover-rounded": {
       "file": "sprites/cover-rounded.webp",
@@ -563,8 +919,15 @@
         0.5,
         0.5
       ],
-      "width": 459,
-      "height": 206
+      "width": 457,
+      "height": 206,
+      "safeBounds": [
+        18,
+        18,
+        421,
+        170
+      ],
+      "view": "front"
     },
     "shot-gold": {
       "file": "sprites/shot-gold.webp",
@@ -575,7 +938,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "shot-violet": {
       "file": "sprites/shot-violet.webp",
@@ -586,7 +956,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "muzzle-a": {
       "file": "sprites/muzzle-a.webp",
@@ -597,7 +974,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "muzzle-b": {
       "file": "sprites/muzzle-b.webp",
@@ -608,7 +992,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "hit-a": {
       "file": "sprites/hit-a.webp",
@@ -619,7 +1010,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "hit-b": {
       "file": "sprites/hit-b.webp",
@@ -630,7 +1028,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "miss-a": {
       "file": "sprites/miss-a.webp",
@@ -641,7 +1046,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "miss-b": {
       "file": "sprites/miss-b.webp",
@@ -652,7 +1064,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-0": {
       "file": "sprites/gallery-death-0.webp",
@@ -663,7 +1082,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-1": {
       "file": "sprites/gallery-death-1.webp",
@@ -674,7 +1100,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-2": {
       "file": "sprites/gallery-death-2.webp",
@@ -685,7 +1118,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-3": {
       "file": "sprites/gallery-death-3.webp",
@@ -696,7 +1136,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-4": {
       "file": "sprites/gallery-death-4.webp",
@@ -707,7 +1154,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-5": {
       "file": "sprites/gallery-death-5.webp",
@@ -718,7 +1172,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-6": {
       "file": "sprites/gallery-death-6.webp",
@@ -729,7 +1190,14 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
     },
     "gallery-death-7": {
       "file": "sprites/gallery-death-7.webp",
@@ -740,7 +1208,590 @@
         0.5
       ],
       "width": 432,
-      "height": 560
+      "height": 560,
+      "safeBounds": [
+        24,
+        24,
+        384,
+        512
+      ],
+      "view": "front"
+    },
+    "swarm-death-termite-0": {
+      "file": "sprites/swarm-death-termite-0.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 0,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-termite-1": {
+      "file": "sprites/swarm-death-termite-1.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 1,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-termite-2": {
+      "file": "sprites/swarm-death-termite-2.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 2,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-termite-3": {
+      "file": "sprites/swarm-death-termite-3.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 3,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-termite-4": {
+      "file": "sprites/swarm-death-termite-4.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 4,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-termite-5": {
+      "file": "sprites/swarm-death-termite-5.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 5,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-termite-6": {
+      "file": "sprites/swarm-death-termite-6.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 6,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-termite-7": {
+      "file": "sprites/swarm-death-termite-7.webp",
+      "atlas": "swarm-death-termite",
+      "cell": 7,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-0": {
+      "file": "sprites/swarm-death-runner-0.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 0,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-1": {
+      "file": "sprites/swarm-death-runner-1.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 1,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-2": {
+      "file": "sprites/swarm-death-runner-2.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 2,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-3": {
+      "file": "sprites/swarm-death-runner-3.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 3,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-4": {
+      "file": "sprites/swarm-death-runner-4.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 4,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-5": {
+      "file": "sprites/swarm-death-runner-5.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 5,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-6": {
+      "file": "sprites/swarm-death-runner-6.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 6,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-runner-7": {
+      "file": "sprites/swarm-death-runner-7.webp",
+      "atlas": "swarm-death-runner",
+      "cell": 7,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-0": {
+      "file": "sprites/swarm-death-tank-0.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 0,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-1": {
+      "file": "sprites/swarm-death-tank-1.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 1,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-2": {
+      "file": "sprites/swarm-death-tank-2.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 2,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-3": {
+      "file": "sprites/swarm-death-tank-3.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 3,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-4": {
+      "file": "sprites/swarm-death-tank-4.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 4,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-5": {
+      "file": "sprites/swarm-death-tank-5.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 5,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-6": {
+      "file": "sprites/swarm-death-tank-6.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 6,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-tank-7": {
+      "file": "sprites/swarm-death-tank-7.webp",
+      "atlas": "swarm-death-tank",
+      "cell": 7,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-0": {
+      "file": "sprites/swarm-death-boss-0.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 0,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-1": {
+      "file": "sprites/swarm-death-boss-1.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 1,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-2": {
+      "file": "sprites/swarm-death-boss-2.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 2,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-3": {
+      "file": "sprites/swarm-death-boss-3.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 3,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-4": {
+      "file": "sprites/swarm-death-boss-4.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 4,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-5": {
+      "file": "sprites/swarm-death-boss-5.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 5,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-6": {
+      "file": "sprites/swarm-death-boss-6.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 6,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
+    },
+    "swarm-death-boss-7": {
+      "file": "sprites/swarm-death-boss-7.webp",
+      "atlas": "swarm-death-boss",
+      "cell": 7,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 256,
+      "height": 256,
+      "safeBounds": [
+        16,
+        16,
+        224,
+        224
+      ],
+      "view": "top-down"
     }
   },
   "ground": {
