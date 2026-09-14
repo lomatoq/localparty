@@ -1,13 +1,13 @@
 import * as T from './vendor/three.module.js';
 import {Venue} from './venues.js';
-import {cameraPlan,damp,clamp,BoundedEffects} from './motion.js';
+import {cameraPlan,fitCamera,focusPoints,FrameBudget,damp,clamp,BoundedEffects} from './motion.js';
 export class SportsView {
  constructor(container,mode,onError){
   this.container=container;this.mode=mode;this.onError=onError;this.objects=new Map();this.materials=[];this.geometries=[];this.textures=[];
   this.scene=new T.Scene();this.scene.background=new T.Color('#202435');this.scene.fog=new T.Fog('#202435',52,105);
   this.renderer=new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
   const gl=this.renderer.getContext(),dbg=gl.getExtension('WEBGL_debug_renderer_info'),gpu=dbg?String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)):'';
-  this.low=/swiftshader|llvmpipe|softpipe|software/i.test(gpu);this.quality='auto';
+  this.low=/swiftshader|llvmpipe|softpipe|software/i.test(gpu);this.quality='auto';this.budget=new FrameBudget();this.dirty=true;
   this.renderer.outputColorSpace=T.SRGBColorSpace;this.renderer.toneMapping=T.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.12;
   this.renderer.shadowMap.enabled=!this.low;this.renderer.shadowMap.type=T.PCFSoftShadowMap;
   container.append(this.renderer.domElement);this.renderer.domElement.setAttribute('aria-label',mode==='bowling'?'Трёхмерный боулинг-зал':'Трёхмерный ледовый зал');
@@ -43,7 +43,7 @@ export class SportsView {
  }
  makeBrooms(){const g=new T.Group();for(const side of [-1,1]){const b=new T.Group();b.position.set(side*.6,0,0);g.add(b);this.mesh(b,this.venue.geo,this.mat('#8870b5'),0,.1,0,.5,.14,.22);this.mesh(b,this.venue.geo,this.mat('#c9e4dd'),0,.045,0,.48,.07,.2);const handle=this.mesh(b,this.unitCylinder,this.mat('#c6adc9',.25,.4),0,.62,.2,.018,1.3,.018);handle.rotation.x=.32;}return g;}
  clear(){for(const o of this.objects.values())this.scene.remove(o);this.objects.clear();this.fx.clear();this.lastEvent=0;this.rackId=-1;}
- setState(s){this.state=s;if(this.rackId!==s.rackId&&this.mode==='bowling'){for(const [k,o]of this.objects){if(k.startsWith('pin')||k==='ball'){this.scene.remove(o);this.objects.delete(k);}}this.rackId=s.rackId;}
+ setState(s){if(this.state?.phase!==s.phase||this.state?.state!==s.state||this.state?.rackId!==s.rackId)this.dirty=true;this.state=s;if(this.rackId!==s.rackId&&this.mode==='bowling'){for(const [k,o]of this.objects){if(k.startsWith('pin')||k==='ball'){this.scene.remove(o);this.objects.delete(k);}}this.rackId=s.rackId;}
   for(const e of s.events||[]){if(e.id<=this.lastEvent)continue;this.lastEvent=e.id;
    if(['impact','strike','spare'].includes(e.kind))this.burst(-(e.x||0),.6,e.z||22,e.kind==='impact'?12:32,e.kind==='impact'?'#e9d7b6':'#bd8be9');
   }
@@ -52,7 +52,7 @@ export class SportsView {
  object(key,factory){let o=this.objects.get(key);if(!o){o=factory();o.userData.fresh=true;this.objects.set(key,o);this.scene.add(o);}o.userData.used=true;return o;}
  pose(o,p,q,dt){const a=o.userData.fresh?1:1-Math.exp(-24*dt);this.v.set(-p.x,p.y,p.z);o.position.lerp(this.v,a);if(q){this.quat.set(q.x,-q.y,-q.z,q.w);o.quaternion.slerp(this.quat,a);}o.userData.fresh=false;}
  update(dt,now,paused){
-  const s=this.state;if(!s||!this.renderer)return;if(now-this.renderAt<(this.low?65:15))return;this.renderAt=now;
+  const s=this.state;if(!s||!this.renderer)return;const idle=s.phase==='waiting'||paused;if(!this.dirty&&now-this.renderAt<(idle?500:this.low?90:16))return;const frameMS=this.renderAt?now-this.renderAt:16;this.renderAt=now;this.dirty=false;if(!idle&&this.quality==='auto'&&!this.low&&this.budget.sample(frameMS,now))this.resize();
   const step=paused?0:Math.min(.12,(this.lastNow?now-this.lastNow:16)/1000);this.lastNow=now;this.elapsed+=step;
   for(const o of this.objects.values())o.userData.used=false;
   const preview=s.aimPreview&&s.aimPreview.owner===s.currentId?s.aimPreview:null;this.guide.visible=!!preview&&s.state==='aim';if(this.guide.visible){const a=this.guideGeo.attributes.position;for(let i=0;i<24;i++){const d=i/23*7,v=this.mode==='bowling'?7+preview.power*7:4.4+preview.power*4.5,x=preview.offset*(this.mode==='bowling'?1.25:1.4)+preview.angle*(this.mode==='bowling'?1.05:.62)*d/v;a.setXYZ(i,-x,.04,2+d);}a.needsUpdate=true;this.guide.computeLineDistances();}
@@ -69,8 +69,9 @@ export class SportsView {
    if(!paused&&active&&s.state==='rolling'&&this.elapsed-this.trailAt>.075&&Math.hypot(active.vx,active.vz)>.5){this.trailAt=this.elapsed;this.burst(-active.x,.03,active.z-.25,sweep?3:1,'#acdfe9');}
   }
   for(const [k,o]of this.objects)if(!o.userData.used){this.scene.remove(o);this.objects.delete(k);}
-  const plan=cameraPlan(this.mode,s,this.overview||this.reduced);const rate=s.state==='aim'?1.75:3.8;
+  const plan=cameraPlan(this.mode,s,this.overview||this.reduced,this.camera.aspect);const rate=s.state==='aim'?1.75:3.8;
   if(!paused){this.pos.set(...plan.position);this.camera.position.lerp(this.pos,1-Math.exp(-rate*step));this.v.set(...plan.target);this.look.lerp(this.v,1-Math.exp(-rate*step));this.camera.fov=damp(this.camera.fov,plan.fov,3,step);this.camera.updateProjectionMatrix();}
+  if(!this.overview&&!this.reduced&&s.state==='rolling'){const fitted=fitCamera({position:this.camera.position.toArray(),target:this.look.toArray(),fov:this.camera.fov},focusPoints(this.mode,s),this.camera.aspect);this.camera.position.set(...fitted.position);}
   this.camera.lookAt(this.look);
   this.fx.tick(step);let i=0;for(const p of this.fx.items){p.x+=p.vx*step;p.y=Math.max(.02,p.y+p.vy*step);p.z+=p.vz*step;p.vy-=4*step;const k=1-p.age/p.life;this.dummy.position.set(p.x,p.y,p.z);this.dummy.scale.setScalar(p.size*k);this.dummy.rotation.set(p.age*3,p.age*2,0);this.dummy.updateMatrix();this.fxMesh.setMatrixAt(i,this.dummy.matrix);this.colour.set(p.color);this.fxMesh.setColorAt(i++,this.colour);}
   this.fxMesh.count=i;this.fxMesh.instanceMatrix.needsUpdate=true;if(i)this.fxMesh.instanceColor.needsUpdate=true;
@@ -79,8 +80,8 @@ export class SportsView {
   this.container.dataset.camera=this.camera.position.toArray().map(n=>n.toFixed(3)).join(',');this.container.dataset.drawCalls=String(this.renderer.info.render.calls);
   const projectile=this.mode==='bowling'?s.ball?.p:s.stones?.at(-1);if(projectile){this.v.set(-projectile.x,projectile.y||.2,projectile.z).project(this.camera);this.container.dataset.projectileNdc=[this.v.x,this.v.y,this.v.z].map(n=>n.toFixed(3)).join(',');}
  }
- setOverview(value){this.overview=value;}
+ setOverview(value){this.overview=value;this.dirty=true;}
  setQuality(value){this.quality=value;this.renderer.shadowMap.enabled=value!=='low'&&!this.low;this.resize();}
- resize(){const r=this.container.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height),low=this.low||this.quality==='low';this.renderer.setPixelRatio(low?Math.min(1,720/w):Math.min(devicePixelRatio||1,1.5));this.renderer.setSize(w,h,false);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();}
+ resize(){const r=this.container.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height),low=this.low||this.quality==='low';this.renderer.setPixelRatio(low?Math.min(1,600/w):Math.min(devicePixelRatio||1,1.5)*(this.quality==='auto'?this.budget.scale:1));this.dirty=true;this.renderer.setSize(w,h,false);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();}
  dispose(){this.resizeObserver.disconnect();this.guideMat.dispose();this.venue.dispose();for(const m of this.materials)m.dispose();for(const g of this.geometries)g.dispose();for(const t of this.textures)t.dispose();this.renderer.dispose();this.container.replaceChildren();}
 }

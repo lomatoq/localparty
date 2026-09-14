@@ -12,6 +12,7 @@ const report={testedCommit:process.env.GITHUB_SHA||'local',cases:[],errors:[],re
  function watch(page,screen){const data={lobby:null,game:null,identity:null,connections:[]};page.on('pageerror',e=>report.errors.push({game:current,screen,message:e.message}));page.on('response',r=>{if(r.status()>=400)report.requests.push({game:current,screen,url:r.url().replace(base,''),status:r.status()});});
   page.on('websocket',socket=>{const kind=socket.url().endsWith('/lobby')?'lobby':'game';data.connections.push({kind,open:Date.now()});socket.on('framereceived',event=>{let m;try{m=JSON.parse(String(event.payload));}catch{return;}
    if(m.type==='state'){if(kind==='lobby')data.lobby=m;else data.game=m.data||m;}
+   if(m.type==='game-ui'&&data.lobby?.active?.instance===m.instance)data.lobby.active.ui=m.ui;
    if(m.type==='joined'&&kind==='game')data.identity=m.data?.id||m.id;
    if(['joined','join_error','error','replaced'].includes(m.type)){const e={screen,kind,type:m.type,at:Date.now(),message:m.message||m.data?.message||''};report.protocol.push(e);console.log('PROTOCOL',JSON.stringify(e));}
   });socket.on('close',()=>{report.protocol.push({screen,kind,type:'closed',at:Date.now()});});});return data;
@@ -37,7 +38,7 @@ const report={testedCommit:process.env.GITHUB_SHA||'local',cases:[],errors:[],re
     for(const p of phones){const f=p.page.frameLocator('#gameFrame');await f.locator('#ap-state').waitFor();const bounds=await f.locator('body').evaluate(body=>{const ids=['ap-hand','ap-swipe','ap-offset','ap-spin','ap-precise-open','ap-fire','ap-ability','ap-aim','ap-sensitivity'];const bad=[];for(const id of ids){const e=document.getElementById(id),r=e?.getBoundingClientRect();if(r?.width&&r?.height&&getComputedStyle(e).visibility!=='hidden'&&(r.x< -2||r.y< -2||r.right>innerWidth+2||r.bottom>innerHeight+2))bad.push({id,x:r.x,y:r.y,w:r.width,h:r.height,viewport:[innerWidth,innerHeight]});}return{viewport:[innerWidth,innerHeight],overflowX:body.scrollWidth-innerWidth,bad};});entry.phoneBounds.push(bounds);if(bounds.bad.length||bounds.overflowX>2)throw Error('Controller clipped: '+JSON.stringify(bounds));}
     if(mode==='bowling'||mode==='curling'){
      const p=phones.find(p=>p.data.identity===h.data.game?.currentId);if(!p)throw Error('Current player has no controller');const f=p.page.frameLocator('#gameFrame'),before=await frame.locator('#ap-stage').getAttribute('data-camera');
-     await f.locator('#ap-precise-open').click();await f.locator('#ap-power').fill('.70');await f.locator('#ap-power').dispatchEvent('input');await f.locator('#ap-throw').click();
+     await f.locator('#ap-precise-open').click();await f.locator('#ap-power').evaluate(el=>{el.value='.70';el.dispatchEvent(new Event('input',{bubbles:true}));});await f.locator('#ap-throw').click();
      await until(()=>h.data.game?.state==='rolling','accepted physical throw '+mode,6000);await delay(1200);
      const camera=await frame.locator('#ap-stage').getAttribute('data-camera'),ndc=await frame.locator('#ap-stage').getAttribute('data-projectile-ndc');entry.camera={before,after:camera,ndc};if(!camera||camera===before)throw Error('Static camera after real throw');
      const xyz=(ndc||'').split(',').map(Number);if(xyz.length!==3||xyz.some(n=>!Number.isFinite(n))||Math.abs(xyz[0])>1||Math.abs(xyz[1])>1)throw Error('Projectile escaped frame: '+ndc);
