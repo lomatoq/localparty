@@ -190,7 +190,7 @@ class Match {
     let target=null,nearest=80;
     for(const b of this.enemies){if(b.hp<=0)continue;const d=rayCircle(ox,oz,dx,dz,b.x,b.z,b.r+.12,60);if(d!==null&&d<nearest){nearest=d;target=b;}}
     if(target){target.hp-=24;p.hits++;if(target.hp<=0){p.kills++;p.score+=target.kind==='boss'?100:target.kind==='tank'?25:10;}}
-    this.event('shot','',{player:p.id,ox,oz,x:target?ox+dx*nearest:x,z:target?oz+dz*nearest:z,hit:!!target});
+    this.event('shot','',{player:p.id,ox,oz,x:target?ox+dx*nearest:x,z:target?oz+dz*nearest:z,hit:!!target,dead:!!target&&target.hp<=0,targetKind:target?.kind});
   }
   siegeStep(dt){
     if(this.stage==='break'&&this.t>=this.deadline){
@@ -236,7 +236,7 @@ class Match {
         if(!mg&&!p.charge){p.streak++;if(p.streak>=6){p.charge=true;p.streak=0;this.event('charged',`${p.name}: пулемёт готов!`,{player:p.id});}}
       }
     }else p.streak=0;
-    this.event('shot','',{player:p.id,x,y,hit:!!t,good:!!t&&t.kind!=='friendly'});
+    this.event('shot','',{player:p.id,x,y,hit:!!t,dead:!!t,good:!!t&&t.kind!=='friendly',targetKind:t?.kind});
   }
   galleryStep(){
     if(this.t>=this.deadline){const best=Math.max(...this.playing().map(p=>p.score));this.finish('Время! Считаем попадания',this.playing().filter(p=>p.score===best).map(p=>p.id));return;}

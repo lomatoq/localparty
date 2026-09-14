@@ -121,6 +121,24 @@ async function main() {
       await frame.locator('#ss-scene canvas').waitFor();
       if (await frame.locator('#ss-error').isVisible()) throw new Error(await frame.locator('#ss-error').innerText());
       await host.screenshot({ path: path.join(OUT, `${mode}-host.png`) });
+      if (mode === 'swarm_gate') {
+        for (const width of [420, 700, 900, 1440]) {
+          await host.setViewportSize({ width, height: width === 420 ? 800 : 700 });
+          await sleep(180);
+          const shell = await host.evaluate(() => ({
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            playbar: getComputedStyle(document.querySelector('#play > .playbar')).display,
+          }));
+          const heading = await frame.locator('.ss-heading').boundingBox();
+          const title = await frame.locator('#ss-title').boundingBox();
+          if (shell.overflow || shell.playbar !== 'none' || !heading || !title || heading.x < 0 || heading.x + heading.width > width || title.height < 1) {
+            throw new Error(`Sports HUD does not fit ${width}px: ${JSON.stringify({ shell, heading, title })}`);
+          }
+          await host.screenshot({ path: path.join(OUT, `swarm_gate-${width}.png`) });
+        }
+        await host.setViewportSize({ width: 1440, height: 1000 });
+        await sleep(180);
+      }
       await phones[0].screenshot({ path: path.join(OUT, `${mode}-phone.png`) });
 
       const firstFrame = phones[0].frameLocator('#gameFrame');

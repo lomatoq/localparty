@@ -1,10 +1,16 @@
 # Sports & Siege: production prompts
 
+## Статус реализации
+
+Листы ниже сгенерированы отдельно, визуально проверены и сохранены в `public/assets/gameplay/sources/sports-siege` (эта папка не попадает в portable-сборку). `scripts/import-sports-siege-art.cjs` режет заданную сетку, удаляет фактический однотонный фон по образцам из углов, добавляет безопасное прозрачное поле статичным спрайтам, сохраняет lossless WebP и пишет `manifest.json`. Эффектные покадровые спрайты сохраняют полный размер ячейки: благодаря этому маленький первый кадр не растягивается до размера пикового взрыва.
+
+Runtime использует арт по его назначению: враги защиты вращаются как top-down billboard; стена и ворота остаются в фиксированном ракурсе; снаряд поворачивается по вектору выстрела; взрыв проигрывается только при смерти врага; тир рисует фронтальные цели за фронтальными широкими баррикадами, а попадание, смерть и промах меняют кадры по времени.
+
 ## Что зафиксировано по текущей игре
 
 - Визуальный стандарт проекта: `LocalParty soft toy arcade / orthographic / upper-left light`.
 - Текущие игровые атласы имеют размер 1536×1024, сетку 4×2 и ячейку 384×512. Внутри ячейки оставляется минимум 16 px запаса.
-- Защита ворот использует ортографическую камеру `(0, 30, 22) → (0, 0, -8)`: камера находится со стороны ворот, смотрит вдоль поля и вниз примерно под 45°. Ворота и стена неподвижны. Враги и башни должны вращаться в плоскости поля.
+- Защита ворот использует ортографическую камеру `(0, 30, 22) → (0, 0, -8)`: камера находится со стороны ворот, смотрит вдоль поля и вниз примерно под 45°. Ворота, стена и постаменты неподвижны. Враги и головки пушек вращаются кодом.
 - Тир использует строго фронтальную ортографическую камеру `(0, 0, 35) → (0, 0, 0)`. Мишени и укрытия нельзя рисовать в три четверти.
 - Розовый фон исходников: ровный `#FF00A8`. После генерации он удаляется, спрайты обрезаются и сохраняются с альфа-каналом.
 
@@ -54,6 +60,20 @@ CELL 7: compact missile, pure top view, nose pointing upward, no flame trail.
 CELL 8: circular selection ring, pure top view, simple cyan outline.
 
 Use simple chunky forms and only large readable color regions. Parts must not overlap. Do not combine the base and head. Do not tilt the cannon toward the viewer. Do not show a three-quarter product render.
+```
+
+## Защита ворот: основания под пушки
+
+Практическое применение: короткий фронтальный постамент стоит перед стеной, а отдельная вращаемая головка пушки накладывается на круглую верхнюю площадку. Все варианты имеют одинаковую высоту крепления и взаимозаменяемы без изменения игровой логики.
+
+```text
+Create a production-ready 1536×1536 2D sprite atlas for the LocalParty co-op defense minigame. Use a clean 2×2 grid and a uniform solid chroma-key background. Keep at least 110 px empty margin around every sprite.
+
+CAMERA: strict fixed gameplay camera matching a front-facing castle wall: orthographic front elevation with only a very small visible top cap, no three-quarter perspective, diagonal rotation, or side face. Every pedestal faces straight toward the viewer and uses the same silhouette size and camera.
+
+Draw exactly four short, wide defensive tower bases with one clearly visible flat centered mounting platform for a separate cannon sprite: pale stone with purple and gold; dark blue stone with cyan; reinforced wood and stone; lightly damaged pale stone. All four share identical mounting height and near-identical outer dimensions.
+
+Do not draw a cannon, weapon, projectile, character, gate, wall segment, banner, scenery, floor shadow, floating debris, text, labels, grid lines, or micro-detail. Preserve every full object without cropping.
 ```
 
 ## Защита ворот: стена и ворота под камерой игры
@@ -133,30 +153,45 @@ Create a 1536×1024 source atlas with a strict 4×2 grid, 384×512 per cell.
 
 CAMERA: exact orthographic front view, no top face and no side face. Every obstacle has the same bottom baseline and fills the same usable width. These assets must line up with a rectangular gameplay hitbox.
 
-CELL 1: intact wooden crate front, broad planks and one diagonal brace.
+Every usable obstacle has a low, wide silhouette approximately 2.2:1 width-to-height, matching the horizontal gameplay hitbox.
+
+CELL 1: intact low wide wooden barricade front with broad horizontal planks.
 CELL 2: cracked version with identical outer silhouette and only two large cracks.
-CELL 3: low stone barricade front, broad blocks, flat rectangular outer silhouette.
-CELL 4: violet metal shield front, flat rectangular outer silhouette.
-CELL 5: destroyed crate animation frame A, two large separated pieces inside the original silhouette.
-CELL 6: destroyed crate animation frame B, pieces lower than frame A.
-CELL 7: simple round metal obstacle front.
+CELL 3: low wide stone barricade front, broad blocks, flat rectangular outer silhouette.
+CELL 4: low wide violet metal shield front, flat rectangular outer silhouette.
+CELL 5: destroyed wooden barricade animation frame A, four to six large pieces.
+CELL 6: destroyed wooden barricade animation frame B, the same pieces farther apart.
+CELL 7: low wide rounded metal obstacle front.
 CELL 8: empty hot-pink cell.
 
-No perspective, no isometric view, no floor, no cast shadow, no scattered fragments outside the original obstacle bounds, and no detail smaller than 10 pixels at source size.
+No square crate silhouette, no perspective, no isometric view, no floor, no cast shadow, no scattered fragments outside the original obstacle bounds, and no detail smaller than 10 pixels at source size.
+```
+
+## Тир: вращаемый снаряд и двухкадровые эффекты
+
+Практическое применение: золотой и фиолетовый снаряды нарисованы носом строго вверх и поворачиваются кодом по направлению выстрела. Остальные пары меняются A→B без изменения центра.
+
+```text
+Create a production sprite atlas in a strict 4×2 grid on perfectly uniform #FF00A8. All assets are flat screen-plane gameplay overlays, exact orthographic view with zero perspective. Projectiles point exactly straight up so game code can rotate them.
+
+Top row: short gold energy bolt; short violet plasma bolt; small symmetric gold muzzle flash A; expanded version of the same muzzle flash B.
+Bottom row: small orange-white hit spark A; expanded version of the same hit spark B with five large rays; compact pale miss-puff A; expanded fading miss-puff B.
+
+Use the same low-detail purple, gold, orange and white arcade style. Keep exact effect centers and generous cell clearance. No weapon, target, scenery, decorative debris, grid lines, text, shadows, perspective, or unrelated objects.
 ```
 
 ## Тир: попадание и исчезновение цели
 
-Практическое применение: восемь последовательных кадров, 50 ms на кадр. Силуэт цели в кадрах 1–3 заменяется вспышкой и крупными частями; к кадру 8 ячейка почти пустая. Для курицы и жука нужны разные полосы, но одинаковая сетка.
+Практическое применение: это универсальный overlay поверх точки попадания. Цель сразу скрывается, а восемь последовательных кадров проигрываются за 400 ms. Полный размер ячейки сохраняется во всех кадрах, поэтому масштаб эффекта действительно растёт и затем затухает.
 
 ```text
-Create a 1536×1024 eight-frame VFX atlas in a strict 4×2 grid, 384×512 per frame, for one arcade target death animation.
+Create a 1536×1024 eight-frame VFX atlas in a strict 4×2 grid, 384×512 per frame, for one generic arcade target knockout overlay.
 
 CAMERA: exact orthographic front view. All frames share the same center, baseline, scale, and camera.
 
-Animation sequence: frame 1 compact impact star at body center; frame 2 silhouette squash with one bright flash; frame 3 silhouette breaks into four large playful pieces; frame 4 pieces move outward; frame 5 pieces shrink and fade; frame 6 two remaining pieces; frame 7 one small sparkle; frame 8 nearly empty.
+Animation sequence: frame 1 tiny impact star; frame 2 larger star with a tight purple shock ring; frame 3 peak flash with five large rays and four large fragments; frame 4 expanding ring with the same fragments; frame 5 ring breaks into six large sparks; frame 6 smaller sparks farther apart; frame 7 three tiny sparks; frame 8 one faint central spark.
 
-Keep the effect playful and non-graphic. Use only large pieces and a small fixed palette. No gore, smoke cloud, random unrelated explosion, camera movement, background glow, or particles crossing a cell boundary.
+Keep the effect playful and non-graphic. Do not draw a character body, because the same overlay is used for every target. Use only large pieces and a small fixed palette. No gore, smoke cloud, random unrelated explosion, camera movement, background glow, or particles crossing a cell boundary.
 ```
 
 ## Как собирать финальные атласы

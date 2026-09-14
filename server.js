@@ -14,6 +14,7 @@ const catalog = require('./lib/catalog');
 const {ProfileStore,normalizeAvatar}=require('./lib/profile-store');
 const {SessionControls}=require('./lib/session-controls');
 const ROOT = __dirname;
+const APP_HEAD='<meta name="application-name" content="LocalParty"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="LocalParty"><meta name="msapplication-TileColor" content="#c8ff2e"><meta name="msapplication-config" content="/browserconfig.xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/branding/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/branding/icons/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/branding/icons/apple-touch-icon.png"><link rel="mask-icon" href="/assets/branding/safari-pinned-tab.svg" color="#c8ff2e"><link rel="manifest" href="/site.webmanifest">';
 const requestedPort = Number(process.env.PARTY_PORT || 0);
 let PORT = 0;
 const hostKey = crypto.randomBytes(24).toString('hex');
@@ -65,7 +66,7 @@ function transform(text, type, prefix, req){
   if(type.includes('text/html')){
     if(!/<head\b/i.test(text))text=text.replace(/<html([^>]*)>/i,'<html$1><head>').replace(/<body([^>]*)>/i,'</head><body$1>');
     text=text.replace(/((?:src|href|action)\s*=\s*["'])\/(?!\/)/gi,`$1${prefix}/`);
-    text=text.replace(/<head([^>]*)>/i,`<head$1><base href="${prefix}/"><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
+    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
     text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"></head>');
   }
   if(type.includes('javascript')||type.includes('text/html'))text=text.replace(/\bio\(\)/g,`partyIO({path:'${prefix}/socket.io'})`);
@@ -111,11 +112,11 @@ const handler=async(req,res)=>{
   }
   const isHost=url.pathname==='/host';
   if(isHost&&!local(req))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   let content=fs.readFileSync(path.join(ROOT,'public',file));
-  if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`).replace('</head>','<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script></head>');
-  const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
+  if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`).replace('</head>',`${APP_HEAD}<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script></head>`);
+  const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.xml':'application/xml; charset=utf-8','.ico':'image/x-icon'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
 };
 const server=tlsFile?require('https').createServer({pfx:fs.readFileSync(tlsFile),passphrase:process.env.PARTY_TLS_PASSWORD||''},handler):http.createServer(handler);
 const wss=new WebSocketServer({noServer:true,maxPayload:196608});

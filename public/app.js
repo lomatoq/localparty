@@ -140,6 +140,8 @@
   strip.replaceChildren(el('span','mobile-room-label',String(online.length)),...online.map((p,i)=>{const avatar=avatarNode(p,'mobile-room-avatar');avatar.title=p.name;avatar.style.setProperty('--avatar-color',['#c8f58b','#a49aff','#75ddd5','#f5b47e'][i%4]);return avatar;}));
   strip.setAttribute('aria-label',`В комнате ${online.length}. Показать всех игроков`);
   const game=state?.catalog.find(g=>g.id===state.active?.id),active=!!game&&everAccepted,ui=state?.active?.session?.paused?{...state.active.ui,phase:'paused',endsAt:null,label:'Пауза'}:state?.active?.ui||{phase:'waiting',endsAt:null,label:'Ожидание'};
+  document.body.dataset.gameId=active?game.id:'';
+  document.body.classList.toggle('game-owns-hud',host&&active&&['bowling','curling','swarm_gate','peek_shoot'].includes(game.id));
   document.body.classList.toggle('in-game',active);document.body.classList.toggle('is-host',host);document.body.classList.toggle('is-player',!host);document.body.dataset.phase=ui.phase;if(ui.phase!=='paused')document.body.classList.toggle('session-active',active&&['countdown','playing','reveal','results'].includes(ui.phase));
   $('hudTimer').hidden=!active;$('sessionIdentity').hidden=!active;$('gameRules').hidden=!active;$('joinOpen').hidden=!host;$('qrDock').hidden=!host||active;$('catalogFilters').hidden=active||!everAccepted;
   $('testModeBox').hidden=!host||active;$('testMode').checked=!!state?.testMode;$('botCount').textContent=state?.botCount||0;$('botMinus').disabled=active||!(state?.botCount);$('botPlus').disabled=active||(state?.botCount||0)>=15||(state?.players.length||0)>=16;
@@ -219,6 +221,4 @@
  async function init(){if(!host){try{profile=JSON.parse(localStorage.getItem('local-party-profile')||'null');}catch{}const abort=new AbortController(),timeout=setTimeout(()=>abort.abort(),1800);try{const data=await(await fetch('/api/profile',{signal:abort.signal})).json();profile=data.profile||profile;}catch{}finally{clearTimeout(timeout);}window.PARTY_PROFILE=profile||{};if(profile){$('name').value=profile.name;pendingAvatar=profile.avatar||null;document.querySelector(`[name=hand][value=${profile.hand==='left'?'left':'right'}]`).checked=true;}updateAvatarPreview();}render();connect();}
  init();
 })();
-
-
 
