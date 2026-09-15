@@ -7,3 +7,11 @@ test('profiles and comparable rankings persist, results deduplicate, records kee
  assert(s.record({...result,eventId:'round2',players:[{id:p.id,score:20,won:false,metrics:{bestLap:45,bestStreak:2,kills:1}}]},'instance1','kart'));
  const loaded=new ProfileStore(file);assert.equal(loaded.get(p.token).id,p.id);const row=loaded.leaderboard()[0];assert.equal(row.played,2);assert.equal(row.points,50);assert.equal(row.games.kart.metrics.bestLap,40);assert.equal(row.games.kart.metrics.bestStreak,3);assert.equal(row.games.kart.metrics.kills,3);assert(!('token'in row));assert.equal(loaded.data.completed,2);
 });
+test('statistics reset preserves identity and rejects delayed results from previous matches',()=>{
+ const store=new ProfileStore(null),player=store.register(null,'Аня','left');
+ const result={eventId:'round',players:[{id:player.id,score:12,won:true}]};
+ assert.equal(store.record(result,'before','tanks',0),true);
+ store.resetStatistics();assert.equal(store.get(player.token).id,player.id);assert.equal(store.get(player.token).name,'Аня');
+ assert.equal(store.record(result,'late','tanks',0),false);assert.equal(store.data.completed,0);assert.deepEqual(store.leaderboard(),[]);
+ assert.equal(store.record(result,'after','tanks',1),true);assert.equal(store.data.completed,1);
+});

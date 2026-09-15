@@ -16,7 +16,9 @@ struct HostView: View {
     @State private var search=""
     @State private var filter="Все"
     @State private var detail:PartyGame?
-    @State private var confirmStop=false
+    @State private var confirmStatisticsReset=false
+    @State private var airPlayHelp=false
+    @State private var browserSelected=false
     @State private var removePlayer: PartyPlayer?
     private let accent=Color(red:0.76,green:0.96,blue:0.55)
     private var games:[PartyGame] { model.catalog.filter { (search.isEmpty || $0.title.localizedCaseInsensitiveContains(search)) && (filter == "Все" || (filter == "За столом" ? $0.section == "table" : $0.section != "table")) } }
@@ -27,7 +29,7 @@ struct HostView: View {
                     Group {
                 if model.enabled {
                     if controllerOpened {HostControllerWebView(store:controller,url:model.controllerURL,visible:tab==2 && phase == .active)} else {Color.clear}
-                } else {ContentUnavailableView {Label("Пульт",systemImage:"gamecontroller")} description: {Text("Запустите сервер в разделе «Комната», затем войдите как игрок.")} actions: {Button("Открыть комнату") {tab=1}}}
+                } else {ContentUnavailableView {Label("Пульт",systemImage:"gamecontroller")} description: {Text("Подготавливаем комнату. Через несколько секунд здесь появится ваш пульт.")} actions: {Button("Открыть комнату") {tab=1}}}
             }.tabItem {Label("Пульт",systemImage:"gamecontroller.fill")}.tag(2)
         }.tint(accent)
         .onChange(of:tab) {_,value in if value==2 {controllerOpened=true};controller.setVisible(value==2 && phase == .active)}
@@ -36,12 +38,29 @@ struct HostView: View {
         .onChange(of:phase) {_,value in model.sceneChanged(value);controller.setVisible(value == .active && tab==2)}
         .onChange(of:model.enabled) {_,value in if !value {controller.stop()}}
         .sheet(item:$detail) { game in gameDetail(game) }
-        .alert("Local Party",isPresented:Binding(get:{model.message != nil},set:{if !$0 {model.message=nil}})) {Button("Понятно") {model.message=nil}} message: {Text(model.message ?? "")}
+        .sheet(isPresented:$airPlayHelp) { airPlayInstructions }
         .confirmationDialog("Удалить \(removePlayer?.name ?? "игрока") из комнаты?",isPresented:Binding(get:{removePlayer != nil},set:{if !$0 {removePlayer=nil}}),titleVisibility:.visible) {Button("Удалить игрока",role:.destructive) {if let p=removePlayer {model.command(["type":"kick","id":p.id])};removePlayer=nil}} message: {Text("Контроллер отключится. Остальные участники продолжат игру.")}
-        .confirmationDialog("Остановить сервер и завершить игру?",isPresented:$confirmStop,titleVisibility:.visible) {Button("Остановить сервер",role:.destructive) {model.stop()}}
+        .confirmationDialog("Сбросить всю статистику?",isPresented:$confirmStatisticsReset,titleVisibility:.visible) {Button("Сбросить статистику",role:.destructive) {model.command(["type":"statistics-reset"])}} message: {Text("История матчей, очки и победы будут очищены. Имена игроков и подключённые пульты сохранятся.")}
     }
-    private var incidentCard: some View {Group {if let incident=model.state?.incident {VStack(alignment:.leading,spacing:10) {Label("Событие сервера",systemImage:"exclamationmark.arrow.triangle.2.circlepath").font(.headline);Text(incident.message).font(.subheadline);Button("Понятно") {model.command(["type":"dismiss-incident"])}}.padding().background(.orange.opacity(0.12),in:RoundedRectangle(cornerRadius:18))}}}
-    private var status: some View { HStack(spacing:5) {Circle().fill(!model.ready ? .orange : model.enabled ? accent : .secondary).frame(width:7,height:7);Text(!model.ready ? "Нет связи с сервером" : model.enabled ? "Сервер работает" : model.ready ? "Сервер готов" : "Загрузка…").font(.caption)} }
+    private var feedback: some View {
+        Group {
+            if let text=model.message ?? model.connectionStatus ?? model.state?.incident?.message {
+                HStack(alignment:.top,spacing:12) {
+                    Text(text).font(.subheadline)
+                    Spacer()
+                    if model.connectionStatus == nil {
+                        Button {if model.message != nil {model.message=nil} else {model.command(["type":"dismiss-incident"])}} label: {Image(systemName:"xmark")}.accessibilityLabel("Скрыть сообщение")
+                    }
+                }.padding().background(.white.opacity(0.06),in:RoundedRectangle(cornerRadius:18))
+            }
+        }
+    }
+    private var status: some View {
+        HStack(spacing:5) {
+            if !model.ready {ProgressView().controlSize(.mini)}
+            Text(model.ready ? "\(model.state?.players.count ?? 0) игроков" : "Подготавливаем…").font(.caption).foregroundStyle(.secondary)
+        }
+    }
     private var catalog: some View {
         ScrollView {
             VStack(alignment:.leading,spacing:20) {
@@ -49,8 +68,8 @@ struct HostView: View {
                     if let url=Bundle.main.url(forResource:"localparty-mark",withExtension:"png",subdirectory:"Server/public/assets/branding"),let mark=UIImage(contentsOfFile:url.path) {Image(uiImage:mark).resizable().scaledToFit().frame(width:42,height:42)}
                     Text("LocalParty").font(.title2.bold())
                 }
-                incidentCard
-                if !model.enabled { Button {tab=1} label: {Label("Запустить вечер →",systemImage:"wifi").font(.headline).frame(maxWidth:.infinity).padding()}.buttonStyle(.borderedProminent).foregroundStyle(.black) }
+                feedback
+                if (model.state?.screens ?? 0)==0 { Button {tab=1} label: {Label("Подключить общий экран",systemImage:"tv").font(.headline).frame(maxWidth:.infinity).padding()}.buttonStyle(.borderedProminent).foregroundStyle(.black) }
                 if let active=model.active { activeCard(active) }
                 Text("\(model.catalog.count) игр · один общий экран").font(.subheadline).foregroundStyle(.secondary)
                 Picker("Категория",selection:$filter) {ForEach(["Все","Аркады","За столом"],id:\.self) {Text($0)}}.pickerStyle(.segmented)
@@ -100,9 +119,9 @@ struct HostView: View {
                         }
                     }.padding().background(.white.opacity(0.05),in:RoundedRectangle(cornerRadius:18)).disabled(model.state?.active?.id == game.id)
                 }
-                Label(model.state?.selected == game.id && model.enabled ? "Выбор уже виден на телевизоре" : "Выбор появится на телевизоре после запуска сервера",systemImage:"tv").font(.footnote).foregroundStyle(.secondary)
+                Label((model.state?.screens ?? 0)>0 ? "Выбор виден на общем экране" : "Подключите общий экран в разделе «Комната»",systemImage:"tv").font(.footnote).foregroundStyle(.secondary)
             }.padding()}.safeAreaInset(edge:.bottom) {VStack(spacing:8) {
-                if !model.enabled {Button("Перейти к запуску сервера") {detail=nil;tab=1}.buttonStyle(.borderedProminent).foregroundStyle(.black)}
+                if (model.state?.screens ?? 0)==0 {Button("Подключить экран") {detail=nil;tab=1}.buttonStyle(.borderedProminent).foregroundStyle(.black)}
                 else {Button {model.command(["type":"launch","id":game.id]);detail=nil} label: {Text(model.state?.busy == true ? "Подготавливаем…" : "Играть вместе").font(.headline).frame(maxWidth:.infinity).padding(.vertical,8)}.buttonStyle(.borderedProminent).foregroundStyle(.black).disabled(!model.canLaunch || model.state?.selected != game.id)}
                 Text(model.launchHint).font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.center)
             }.padding().background(.ultraThinMaterial)}.toolbar {ToolbarItem(placement:.topBarTrailing) {Button("Готово") {detail=nil}}}
@@ -110,56 +129,92 @@ struct HostView: View {
     }
     private var room: some View {
         Form {
-            if model.state?.incident != nil {Section {incidentCard.listRowInsets(EdgeInsets())}}
             Section {
-                VStack(alignment:.leading,spacing:8) {Text(model.enabled ? "Вечер в эфире" : "Ваш iPhone — сервер").font(.title2.bold());Text("Телевизор показывает игру. Гости входят по QR-коду, а вы можете играть во вкладке «Пульт».").foregroundStyle(.secondary)}.padding(.vertical,8)
-                if model.enabled {Button("Остановить сервер",role:.destructive) {confirmStop=true}.disabled(model.working)}
-                else {Button {model.start()} label:{Label(model.working ? "Запускаем…" : "Запустить сервер",systemImage:"play.fill").frame(maxWidth:.infinity)}.buttonStyle(.borderedProminent).foregroundStyle(.black).disabled(!model.ready || model.working)}
+                VStack(alignment:.leading,spacing:8) {
+                    Text("Собираемся играть").font(.title2.bold())
+                    Text("Выберите общий экран, пригласите друзей и откройте игру.").foregroundStyle(.secondary)
+                }.padding(.vertical,8)
+                feedback.listRowInsets(EdgeInsets())
             }
-            if model.enabled {
-                Section("1. Игра на телевизоре") {
-                    Label(model.externalDisplayCount > 0 ? "Внешний экран подключён" : "AirPlay · Повтор экрана",systemImage:"square.on.square").font(.headline)
-                    if model.externalDisplayCount > 0 {
-                        Text("На телевизоре — общий экран игры. На iPhone играйте во вкладке «Пульт». Держите приложение открытым.").font(.subheadline)
-                        Button("Обновить картинку на ТВ") {model.externalDisplayReload += 1}
-                        Text("Чтобы отключиться, откройте Пункт управления → «Повтор экрана» → «Остановить повтор».").font(.footnote).foregroundStyle(.secondary)
-                    } else {
-                        Text("1. Подключите iPhone и телевизор с AirPlay к одной сети Wi-Fi.\n2. Откройте Пункт управления → «Повтор экрана» и выберите телевизор.\n3. Вернитесь в LocalParty. На ТВ появится игра, а на iPhone останется пульт.").font(.subheadline)
-                        Text("Нужен значок двух перекрывающихся прямоугольников. AirPlay в музыкальном плеере подключает только звук.").font(.footnote).foregroundStyle(.secondary)
-                        DisclosureGroup("Не вижу «Повтор экрана»") {
-                            Text("В Пункте управления нажмите «+» → «Добавить элемент управления», найдите «Повтор экрана» и добавьте его. Затем нажмите на новый значок и выберите телевизор.").font(.footnote)
-                        }
-                        Text("Браузер на телевизоре не нужен. Держите LocalParty открытым во время игры.").font(.footnote).foregroundStyle(.secondary)
-                    }
-                    DisclosureGroup("Или через браузер телевизора") {
-                        Text(model.tvAddress).font(.system(.body,design:.monospaced)).textSelection(.enabled)
-                        Button("Скопировать адрес ТВ") {UIPasteboard.general.string=model.tvAddress}
-                    }
-                    LabeledContent("Подключено общих экранов",value:"\(model.state?.screens ?? 0)")
+            Section("Общий экран") {
+                Button {airPlayHelp=true;browserSelected=false} label: {
+                    Label {VStack(alignment:.leading,spacing:4) {Text("AirPlay").font(.headline);Text(model.externalDisplayCount>0 ? "Экран подключён" : "Телевизор или Mac").font(.subheadline).foregroundStyle(.secondary)}} icon: {Image(systemName:"airplayvideo").font(.title2)}
                 }
-                Section("2. Подключите телефоны") {
-                    HStack {Spacer();QRCodeView(value:model.address).frame(width:210,height:210);Spacer()}.padding(.vertical,10)
-                    Text("Тот же QR-код показан на телевизоре. Подключитесь к одной сети Wi-Fi и откройте его камерой.").font(.footnote).foregroundStyle(.secondary)
-                    ShareLink("Поделиться входом",item:model.address)
-                    Button("Играть с этого iPhone") {controllerOpened=true;tab=2}
+                Button {browserSelected=true;if !model.networkEnabled {model.setNetworkEnabled(true)}} label: {
+                    Label {VStack(alignment:.leading,spacing:4) {Text("Через браузер").font(.headline);Text("Открыть общий экран по Wi-Fi").font(.subheadline).foregroundStyle(.secondary)}} icon: {Image(systemName:"globe").font(.title2)}
+                }.disabled(!model.ready || model.working)
+                if browserSelected && model.networkEnabled {
+                    Text(model.tvAddress).font(.system(.subheadline,design:.monospaced)).textSelection(.enabled)
+                    ShareLink("Поделиться адресом экрана",item:model.tvAddress)
                 }
-                if let active=model.active {Section {activeCard(active).listRowInsets(EdgeInsets())}}
-                Section("В комнате · \(model.state?.players.count ?? 0)") {
-                    if model.state?.players.isEmpty != false {Text("Ждём первого игрока").foregroundStyle(.secondary)}
-                    ForEach(model.state?.players ?? []) {p in HStack {VStack(alignment:.leading,spacing:4) {Text(p.name);Text(p.gameReady ? "В игре":"Подключён").font(.caption).foregroundStyle(.secondary)};Spacer();Button(role:.destructive) {removePlayer=p} label: {Image(systemName:"person.badge.minus").padding(8)}.buttonStyle(.borderless).accessibilityLabel("Удалить игрока " + p.name).disabled(model.working)}}
+                if (model.state?.screens ?? 0)>0 {Label("Подключено экранов: \(model.state?.screens ?? 0)",systemImage:"checkmark.circle").foregroundStyle(accent)}
+            }
+            Section {
+                Toggle("Доступ по Wi-Fi",isOn:Binding(get:{model.networkEnabled},set:{model.setNetworkEnabled($0)})).disabled(!model.ready || model.working)
+                if model.networkEnabled && !model.address.isEmpty {
+                    HStack {Spacer();QRCodeView(value:model.address).frame(width:190,height:190);Spacer()}.padding(.vertical,8)
+                    Text("Друзья подключаются к той же сети Wi-Fi и сканируют код. Он также появится на общем экране.").font(.footnote).foregroundStyle(.secondary)
+                    ShareLink("Пригласить игроков",item:model.address)
+                } else if model.networkEnabled {
+                    Text("Подключитесь к Wi-Fi — здесь появится код для гостей.").font(.subheadline).foregroundStyle(.secondary)
+                }
+                Button("Играть с этого iPhone") {controllerOpened=true;tab=2}.disabled(!model.ready)
+            } header: {Text("Игроки")} footer: {Text("Wi-Fi-доступ нужен для телефонов гостей и экрана в браузере. AirPlay и пульт на этом iPhone готовы автоматически.")}
+            if let active=model.active {Section {activeCard(active).listRowInsets(EdgeInsets())}}
+            Section("В комнате · \(model.state?.players.count ?? 0)") {
+                if model.state?.players.isEmpty != false {Text("Пока никого. Пригласите друзей или откройте свой пульт.").foregroundStyle(.secondary)}
+                ForEach(model.state?.players ?? []) {p in
+                    HStack {
+                        VStack(alignment:.leading,spacing:4) {Text(p.name);Text(p.gameReady ? "В игре":"Подключён").font(.caption).foregroundStyle(.secondary)}
+                        Spacer()
+                        Button(role:.destructive) {removePlayer=p} label: {Image(systemName:"person.badge.minus").padding(8)}.buttonStyle(.borderless).accessibilityLabel("Удалить игрока " + p.name).disabled(model.working)
+                    }
                 }
             }
-            if let text=model.connectionStatus {Section {Text(text).foregroundStyle(.secondary)}}
-            Section {Text(model.buildLabel).font(.caption).foregroundStyle(.secondary);ShareLink("Поделиться журналом сервера",item:model.diagnosticsURL)}
-            Section {Toggle("Не гасить экран приложения",isOn:$model.keepAwake);Text(model.backgroundStatus).font(.footnote).foregroundStyle(.secondary);if model.enabled {Button("Повторить запрос фонового режима") {model.requestBackground()}}} header: {Text("Настройки")} footer: {Text("Фоновая сессия работает с разрешения iOS 26. Если система остановит фон, откройте приложение для продолжения игры. Повторный запрос фона — по кнопке выше. Для управления играми интернет не нужен.")}
+            Section("Статистика") {
+                LabeledContent("Сыграно матчей",value:"\(model.state?.totalMatches ?? 0)")
+                ForEach((model.state?.leaderboard ?? []).prefix(5)) {p in LabeledContent(p.name,value:"\(p.wins) побед · \(p.points) очков")}
+                Text("Имена и результаты сохраняются между вечерами. Знакомый браузер узнаёт игрока автоматически; на новом устройстве нужно ввести имя.").font(.footnote).foregroundStyle(.secondary)
+                Button("Сбросить статистику",role:.destructive) {confirmStatisticsReset=true}.disabled(!model.ready || model.working || model.state?.active != nil || model.state?.totalMatches == 0)
+                if model.state?.active != nil {Text("Сброс доступен после завершения матча.").font(.caption).foregroundStyle(.secondary)}
+            }
+            Section {
+                DisclosureGroup("Настройки и диагностика") {
+                    Toggle("Не гасить экран приложения",isOn:$model.keepAwake)
+                    Text("Для вывода AirPlay держите приложение открытым.").font(.footnote).foregroundStyle(.secondary)
+                    Text(model.backgroundStatus).font(.footnote).foregroundStyle(.secondary)
+                    if model.networkEnabled {Button("Продолжать игру в фоне") {model.requestBackground()}}
+                    ShareLink("Поделиться диагностикой",item:model.diagnosticsURL)
+                    Text(model.buildLabel).font(.caption).foregroundStyle(.secondary)
+                }
+            }
         }
     }
+    private var airPlayInstructions: some View {
+        NavigationStack {
+            VStack(alignment:.leading,spacing:24) {
+                Image(systemName:"airplayvideo").font(.system(size:48)).foregroundStyle(accent)
+                Text(model.externalDisplayCount>0 ? "Экран подключён" : "Игра на большом экране").font(.largeTitle.bold())
+                if model.externalDisplayCount>0 {
+                    Text("Выберите игру во вкладке «Игры». На iPhone можно открыть свой пульт.")
+                    Button("Обновить картинку") {model.externalDisplayReload += 1}
+                } else {
+                    Label("Подключите iPhone и экран к одной сети Wi-Fi.",systemImage:"1.circle")
+                    Label("Откройте Пункт управления → «Повтор экрана» и выберите телевизор или Mac.",systemImage:"2.circle")
+                    Label("Вернитесь в LocalParty. Комната появится на экране автоматически.",systemImage:"3.circle")
+                }
+                Text("Для телефонов друзей включите «Доступ по Wi-Fi» в комнате. Держите LocalParty открытым во время игры.").font(.subheadline).foregroundStyle(.secondary)
+                Spacer()
+            }.padding(24).toolbar {ToolbarItem(placement:.topBarTrailing) {Button("Готово") {airPlayHelp=false}}}
+        }
+    }
+
 }
 struct QRCodeView:View {
     let value:String
     @State private var image:UIImage?
     private func makeImage()->UIImage? {let filter=CIFilter.qrCodeGenerator();filter.message=Data(value.utf8);guard let output=filter.outputImage?.transformed(by:CGAffineTransform(scaleX:8,y:8)),let cg=CIContext().createCGImage(output,from:output.extent) else{return nil};return UIImage(cgImage:cg)}
-    var body:some View {Group {if let image {Image(uiImage:image).interpolation(.none).resizable().scaledToFit().padding(12).background(.white,in:RoundedRectangle(cornerRadius:18)).accessibilityLabel("QR-код входа в игру")}}.task(id:value) {image=makeImage()}}
+    var body:some View {Group {if let image {Image(uiImage:image).interpolation(.none).resizable().scaledToFit().padding(12).background(.white,in:RoundedRectangle(cornerRadius:18)).accessibilityLabel("QR-код входа в игру")} else {ProgressView().frame(maxWidth:.infinity,maxHeight:.infinity)}}.task(id:value) {image=makeImage()}}
 }
 
 

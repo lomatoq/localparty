@@ -1,15 +1,15 @@
 'use strict';
 // Run against the simulator. The operator uses its Home/Sleep buttons at each WAIT.
 const assert=require('node:assert/strict'),WebSocket=require('ws');
-const origin=process.env.PARTY_TEST_ORIGIN||'http://127.0.0.1:8080',key=process.env.PARTY_TEST_KEY||'localparty-integration-test';
+const origin=process.env.PARTY_TEST_ORIGIN||'http://127.0.0.1:8081',key=process.env.PARTY_TEST_KEY||'localparty-integration-test';
 const delay=ms=>new Promise(r=>setTimeout(r,ms)),all=[];
 async function manage(command){const r=await fetch(origin+'/api/manage',{method:command?'POST':'GET',headers:{Authorization:'Bearer '+key,'Content-Type':'application/json'},body:command?JSON.stringify(command):undefined,signal:AbortSignal.timeout(3000)});assert.equal(r.status,200);return r.json();}
 async function until(fn){const end=Date.now()+180000;while(Date.now()<end){if(await fn())return;await delay(100);}throw Error('Lifecycle transition timeout');}
 async function connect(path='/lobby',cookie=''){const ws=new WebSocket(origin.replace('http','ws')+path,{headers:{Cookie:cookie,Origin:origin}});all.push(ws);ws.messages=[];ws.on('message',raw=>{const m=JSON.parse(raw);ws.messages.push(m);if(m.type==='joined')ws.profile=m.data||m;if(m.type==='state')ws.state=m.data||m;});await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j)});return ws;}
 const send=(ws,m)=>ws.send(JSON.stringify(m));
 (async()=>{try{
- await manage({type:'server-stop'});
- await manage({type:'server-start'});
+ await manage({type:'network-set',enabled:false});
+ await manage({type:'network-set',enabled:true});
  const tv=await fetch(origin+'/tv'),cookie=tv.headers.get('set-cookie').split(';')[0],html=await tv.text(),displayKey=JSON.parse(html.match(/PARTY_DISPLAY_KEY=(.*?);/)[1]);
  const screen=await connect('/lobby',cookie);send(screen,{type:'display',key:displayKey});await until(()=>screen.messages.some(m=>m.type==='display-ok'));
  const guests=[];
@@ -37,6 +37,6 @@ const send=(ws,m)=>ws.send(JSON.stringify(m));
   assert.equal((await manage()).players.length,2);assert.equal(new Set(host.state.players.map(p=>p.id)).size,2);
   console.log('PASS foreground '+cycle+' same match, same player and tank IDs, no duplicates');
  }
- await manage({type:'server-stop'});console.log('PASS simulator lifecycle: pause, return, reconnect identity; cycles='+Number(process.env.PARTY_TEST_LIFECYCLE_CYCLES||1));
+ await manage({type:'network-set',enabled:false});console.log('PASS simulator lifecycle: pause, return, reconnect identity; cycles='+Number(process.env.PARTY_TEST_LIFECYCLE_CYCLES||1));
  }finally{for(const ws of all)ws.terminate();}
 })().catch(e=>{console.error(e.stack);process.exitCode=1;});

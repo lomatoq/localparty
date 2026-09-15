@@ -19,9 +19,10 @@ struct GameSession: Equatable, Codable { var paused: Bool; var readyIds: [String
 struct ActiveGame: Equatable, Codable { var id: String; var instance: String; var ui: GameUI; var session: GameSession?; var startError: String? }
 struct RoomIncident: Equatable, Codable {var id:String;var at:Double;var message:String}
 struct GameVote: Equatable, Codable {var playerId:String;var gameId:String}
+struct PartyStanding: Equatable, Codable, Identifiable {var id:String;var name:String;var played:Int;var wins:Int;var points:Int}
 struct ServerState: Equatable, Codable {
     var bootId:String;var incident:RoomIncident?;var votes:[GameVote]
-    var enabled: Bool; var selected: String?; var screens: Int; var players: [PartyPlayer]
+    var enabled: Bool; var networkEnabled:Bool; var totalMatches:Int; var leaderboard:[PartyStanding]; var selected: String?; var screens: Int; var players: [PartyPlayer]
     var catalog: [PartyGame]; var urls: [String]; var active: ActiveGame?; var busy: Bool
     var executionAllowed: Bool; var gameSettings: [String:[String:String]]
 }
@@ -34,7 +35,7 @@ struct ServerState: Equatable, Codable {
     @Published var state: ServerState?
     @Published var catalog: [PartyGame] = []
     @Published var message: String?
-    @Published var backgroundStatus = "Фон запрашивается при запуске сервера"
+    @Published var backgroundStatus = "Во время игры держите приложение открытым"
     @Published var ready = false
     @Published var working = false
     @Published var settings: [String:[String:String]] = [:]
@@ -49,7 +50,7 @@ struct ServerState: Equatable, Codable {
         return UUID().uuidString + UUID().uuidString
     }()
     private var phase: ScenePhase = .active
-    private var port = 8080
+    private var port = 8081
     private let portFile: URL
     private let diagnosticsQueue = DispatchQueue(label: "party.diagnostics", qos: .utility)
     private let diagnosticsFile: URL
@@ -60,20 +61,22 @@ struct ServerState: Equatable, Codable {
     private var lastEnabled = false
     private var observedBoot: String?
     private var recordedIncident: String?
+    private var connectionFailures=0
     private var memoryObserver: NSObjectProtocol?
     var diagnosticsURL: URL { diagnosticsFile }
     func votes(for game:PartyGame)->Int {state?.votes.filter {$0.gameId == game.id}.count ?? 0}
     var buildLabel: String { "LocalParty · \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"))" }
     var enabled: Bool { state?.enabled == true }
+    var networkEnabled: Bool { state?.networkEnabled == true }
     var selected: PartyGame? { catalog.first { $0.id == state?.selected } }
     var active: PartyGame? { catalog.first { $0.id == state?.active?.id } }
     var address: String { state?.urls.first ?? "" }
     var controllerURL: URL {URL(string:"http://127.0.0.1:\(port)/play")!}
     var externalDisplayURL: URL {URL(string:"http://127.0.0.1:\(port)/tv")!}
     var tvAddress: String { address.isEmpty ? "" : address + "tv" }
-    var canLaunch: Bool { enabled && !working && state?.busy != true && (state?.screens ?? 0)>0 && selected != nil && (state?.players.count ?? 0) >= (selected?.min ?? 1) && (state?.players.count ?? 0) <= (selected?.max ?? 16) }
+    var canLaunch: Bool { ready && enabled && !working && state?.busy != true && (state?.screens ?? 0)>0 && selected != nil && (state?.players.count ?? 0) >= (selected?.min ?? 1) && (state?.players.count ?? 0) <= (selected?.max ?? 16) }
     var launchHint: String {
-        guard enabled else { return "Запустите сервер в разделе «Комната»" }
+        guard ready else { return "Подготавливаем комнату…" }
         if state?.busy == true { return "Подготавливаем игру…" }
         if state?.screens == 0 { return "Подключите AirPlay или откройте адрес ТВ из раздела «Комната»" }
         guard let game=selected else { return "Выберите игру" }
@@ -139,17 +142,18 @@ struct ServerState: Equatable, Codable {
             // Polling is a health check, not a reason to redraw both SwiftUI scenes.
             if state != next { state=next }
             if !ready { ready=true }
+            connectionFailures=0
             if connectionStatus != nil { connectionStatus=nil }
             if catalog != next.catalog { catalog=next.catalog }
             if !working && settings != next.gameSettings { settings=next.gameSettings }
             if let incident=next.incident, recordedIncident != incident.id {recordedIncident=incident.id;record("incident: " + incident.message)}
             if observedBoot != next.bootId {
                 observedBoot=next.bootId
-                if next.enabled && phase == .active {lastEnabled=true;background.noteRestoredSession();updateIdleTimer();applyExecutionPolicy()}
+                if next.enabled && phase == .active {lastEnabled=true;updateIdleTimer();applyExecutionPolicy()}
             }
             if lastEnabled && !next.enabled { background.finish();UIApplication.shared.isIdleTimerDisabled=false }
             lastEnabled=next.enabled
-        } catch {guard !working, commandRevision == expectedCommand, policyRevision == expectedPolicy else {return};if ready {record("server-unreachable: " + error.localizedDescription)};connectionStatus="Сервер не отвечает. Восстанавливаем соединение…";ready=false }
+        } catch {guard !working, commandRevision == expectedCommand, policyRevision == expectedPolicy else {return};if ready {record("server-unreachable: " + error.localizedDescription)};connectionFailures += 1;if connectionFailures>=5 {connectionStatus="Подключаем комнату заново…";ready=false} }
     }
     func command(_ value:[String:Any]) {
         // Preserve ordering when selection, settings and launch are tapped quickly.
@@ -158,32 +162,31 @@ struct ServerState: Equatable, Codable {
         commandTail=Task { [weak self] in
             await previous?.value
             guard let self else { return }
-            do {state=try await request(value);record("command: " + (value["type"] as? String ?? "?"))} catch {message=error.localizedDescription;record("command failed: " + error.localizedDescription)}
+            do {
+                state=try await request(value);message=nil
+                if value["type"] as? String == "network-set" {if !networkEnabled {background.finish()};updateIdleTimer();applyExecutionPolicy()}
+                record("command: " + (value["type"] as? String ?? "?"))
+            } catch {
+                if (error as NSError).domain == NSURLErrorDomain {message="Действие не выполнено. Комната переподключается — попробуйте ещё раз."}
+                else {message=error.localizedDescription}
+                if value["type"] as? String == "network-set", !networkEnabled {background.finish()}
+                record("command failed: " + error.localizedDescription)
+            }
             pendingCommands -= 1;working=pendingCommands>0
         }
     }
-    func select(_ game:PartyGame) { command(["type":"select","id":game.id]) }
+    func select(_ game:PartyGame) {guard ready else {return};command(["type":"select","id":game.id]) }
     func setting(_ field:HostSetting, game:PartyGame) -> String { settings[game.id]?[field.id] ?? field.initial }
     func setSetting(_ value:String, field:HostSetting, game:PartyGame) {
         var values=settings[game.id] ?? Dictionary(uniqueKeysWithValues:(game.hostControls?.settings ?? []).map {($0.id,$0.initial)})
         values[field.id]=value;settings[game.id]=values
         command(["type":"settings","id":game.id,"settings":values])
     }
-    func start() {
-        guard !working, phase == .active else {return};commandRevision += 1;working=true;message=nil
-        // Request while the Start gesture is still foregrounded, before any HTTP await.
-        background.start(source:"server-start")
-        Task {
-            do {state=try await request(["type":"server-start"]);lastEnabled=true;updateIdleTimer();applyExecutionPolicy()}
-            catch {background.finish();message=error.localizedDescription}
-            working=false
-        }
-    }
-    func stop() {
-        guard !working else {return};commandRevision += 1;working=true
-        // Release the system task even if the local server is unresponsive.
-        background.finish();UIApplication.shared.isIdleTimerDisabled=false
-        Task {do {state=try await request(["type":"server-stop"]);lastEnabled=false} catch {message=error.localizedDescription};working=false}
+    func setNetworkEnabled(_ value:Bool) {
+        guard ready, !working else {return}
+        // Only request extended execution from an explicit sharing gesture.
+        if value {background.start(source:"wifi-sharing")}
+        command(["type":"network-set","enabled":value])
     }
     func requestBackground() { guard enabled, phase == .active else {return};background.start(source:"manual-retry") }
     func sceneChanged(_ value:ScenePhase) {
@@ -232,7 +235,7 @@ struct ServerState: Equatable, Codable {
         Task {
             guard policyRevision == revision else {return}
             do {_ = try await request(["type":"execution","allowed":true,"revision":revision])}
-            catch {if policyRevision == revision {connectionStatus="Восстанавливаем связь с сервером…"}}
+            catch {record("execution policy pending: " + error.localizedDescription)}
         }
     }
     func image(_ game:PartyGame) -> UIImage? {
@@ -250,7 +253,7 @@ struct ServerState: Equatable, Codable {
 @MainActor private final class MatchBackgroundExecution {
     var onChange: (() -> Void)?
     var onDiagnostic: ((String) -> Void)?
-    private(set) var message = "Фон включается вместе с сервером"
+    private(set) var message = "Во время игры держите приложение открытым"
     private(set) var isRequesting = false
     var isRunning: Bool { task != nil }
     var canExecute: Bool { isRunning || handoff != .invalid }
@@ -261,11 +264,6 @@ struct ServerState: Equatable, Codable {
     private var monitor: DispatchSourceTimer?
     private var handoff: UIBackgroundTaskIdentifier = .invalid
     private let log = Logger(subsystem: Bundle.main.bundleIdentifier ?? "LocalParty", category: "BackgroundMatch")
-
-    func noteRestoredSession() {
-        guard !isRunning, !isRequesting else {return}
-        announce("Комната восстановлена. Сервер работает при открытом приложении. Чтобы снова включить фон, нажмите «Повторить запрос фонового режима».")
-    }
 
     func start(source:String) {
         guard !isRunning, !isRequesting else {return}
@@ -343,7 +341,7 @@ struct ServerState: Equatable, Codable {
         monitor=timer;timer.resume()
     }
 
-    func finish(message:String = "Сервер остановлен") {
+    func finish(message:String = "Во время игры держите приложение открытым") {
         let current=task, pendingIdentifier=identifier, finished=completion
         if let identifier {onDiagnostic?("background-finish id=\(identifier) work=\(NodeBridge.serverWorkUnits()) running=\(NodeBridge.serverExecuting()) reason=\(message)")}
         task=nil;identifier=nil;completion=nil;isRequesting=false

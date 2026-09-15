@@ -51,7 +51,7 @@ private struct PartyExternalDisplayView: View {
                 VStack(spacing: 24) {
                     Image(systemName: "airplayvideo").font(.system(size: 72))
                     Text("LocalParty").font(.system(size: 56, weight: .bold))
-                    Text("Запустите сервер в разделе «Комната» на iPhone.").font(.title)
+                    Text("Подготавливаем комнату…").font(.title)
                     Text("Телевизор покажет игру, а телефон станет пультом.").font(.title2).foregroundStyle(.secondary)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(48)
             }

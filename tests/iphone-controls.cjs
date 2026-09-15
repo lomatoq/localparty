@@ -3,7 +3,7 @@
 // Keep /tv open in a browser or the app's external-display window (AirPlay /
 // Simulator > I/O > External Displays). No clicks on that screen are made here.
 const assert=require('node:assert/strict'),WS=require('ws');
-const origin=process.env.PARTY_TEST_ORIGIN||'http://127.0.0.1:8080';
+const origin=process.env.PARTY_TEST_ORIGIN||'http://127.0.0.1:8081';
 const key=process.env.PARTY_TEST_KEY||'localparty-integration-test';
 const sockets=[],delay=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn,label,ms=15000){const end=Date.now()+ms;while(Date.now()<end){if(await fn())return;await delay(50);}throw Error('Timeout: '+label);}
@@ -17,7 +17,7 @@ async function controller(game,p){const engine=game.engine||game.id,io=['spy','m
  return ws;
 }
 async function run(){
- const initial=await manage();assert.equal(initial.catalog.length,require('../lib/catalog').length);await manage({type:'server-start'});assert.equal((await manage()).sessionLimit,undefined);
+ const initial=await manage();assert.equal(initial.catalog.length,require('../lib/catalog').length);await manage({type:'network-set',enabled:true});assert.equal((await manage()).sessionLimit,undefined);
  assert.equal((await fetch(origin+'/api/manage')).status,403);assert.equal((await fetch(origin+'/host')).status,403);
  const res=await fetch(origin+'/tv'),html=await res.text(),cookie=res.headers.get('set-cookie').split(';')[0],displayKey=JSON.parse(html.match(/PARTY_DISPLAY_KEY=(.*?);/)[1]);assert.ok(!html.includes('<button'),'TV has no buttons');
  const screen=await socket('/lobby',cookie);send(screen,'display',{key:displayKey});await until(()=>screen.messages.some(m=>m.type==='display-ok'),'display auth');send(screen,'launch',{id:'tanks'});await until(()=>screen.messages.some(m=>m.type==='error'),'TV cannot launch');
@@ -87,7 +87,7 @@ async function run(){
   for(const ws of [...controls,host])ws.terminate();
   console.log('PASS '+game.id+' phone settings/start, readiness, TV read-only, pause/resume, identity, removal');
  }
- await manage({type:'server-stop'});assert.equal((await fetch(origin+'/')).status,503);await manage({type:'server-start'});assert.equal((await fetch(origin+'/')).status,200);await manage({type:'server-stop'});
+ await manage({type:'network-set',enabled:false});assert.equal((await fetch(origin+'/')).status,200);assert.equal((await manage()).networkEnabled,false);await manage({type:'network-set',enabled:true});assert.equal((await fetch(origin+'/')).status,200);await manage({type:'network-set',enabled:false});
  console.log('PASS all '+catalog.length+' games in installed iPhone runtime');
 }
 run().catch(e=>{console.error(e.stack);process.exitCode=1;}).finally(()=>{for(const s of sockets)s.terminate();});

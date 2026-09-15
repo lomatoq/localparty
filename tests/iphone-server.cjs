@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('assert/strict'),WebSocket=require('ws');
-const origin=process.env.PARTY_TEST_ORIGIN||'http://127.0.0.1:8080',key=process.env.PARTY_TEST_KEY||'localparty-integration-test';
+const origin=process.env.PARTY_TEST_ORIGIN||'http://127.0.0.1:8081',key=process.env.PARTY_TEST_KEY||'localparty-integration-test';
 const delay=ms=>new Promise(r=>setTimeout(r,ms)),sockets=[];
 async function until(fn,timeout=12000){const end=Date.now()+timeout;while(Date.now()<end){if(await fn())return;await delay(35);}throw Error('Timed out waiting for state');}
 async function manage(command){const r=await fetch(origin+'/api/manage',{method:command?'POST':'GET',headers:{Authorization:'Bearer '+key,'Content-Type':'application/json'},body:command?JSON.stringify(command):undefined});const data=await r.json();assert.equal(r.status,200,JSON.stringify(data));return data;}
@@ -8,7 +8,7 @@ async function connect(path='/lobby',cookie=''){const ws=new WebSocket(origin.re
 const send=(ws,m)=>ws.send(JSON.stringify(m));
 (async()=>{try{
  await until(async()=>{try{return (await manage()).catalog.length===require('../lib/catalog').length}catch{return false}},20000);
- await manage({type:'server-start'});
+ await manage({type:'network-set',enabled:true});
  assert.equal((await fetch(origin+'/api/manage')).status,403);
  assert.equal((await fetch(origin+'/host')).status,403);
  const tv=await fetch(origin+'/tv');assert.equal(tv.status,200);const cookie=tv.headers.get('set-cookie').split(';')[0],html=await tv.text(),displayKey=JSON.parse(html.match(/PARTY_DISPLAY_KEY=(.*?);/)[1]);
@@ -45,7 +45,7 @@ const send=(ws,m)=>ws.send(JSON.stringify(m));
   await manage({type:'stop'});
  }
  const before=guests[0].profile;const resumed=await connect();send(resumed,{type:'join',token:before.token,name:before.name});await until(()=>resumed.profile);assert.equal(resumed.profile.id,before.id);await delay(250);const state=await manage();assert.equal(state.players.filter(p=>p.id===before.id).length,1);
- await manage({type:'server-stop'});assert.equal((await fetch(origin+'/')).status,503);await manage({type:'server-start'});assert.equal((await fetch(origin+'/')).status,200);await manage({type:'server-stop'});
+ await manage({type:'network-set',enabled:false});assert.equal((await fetch(origin+'/')).status,200);assert.equal((await manage()).networkEnabled,false);await manage({type:'network-set',enabled:true});assert.equal((await fetch(origin+'/')).status,200);await manage({type:'network-set',enabled:false});
  console.log('PASS '+catalog.length+' games, physics, TV sync, access boundaries, reconnect identity, stop/restart');
  }finally{for(const ws of sockets)ws.terminate();}
 })().catch(e=>{console.error(e.stack);process.exitCode=1;});

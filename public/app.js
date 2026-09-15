@@ -3,7 +3,7 @@
  // Keep a running host's cached catalog visually current without interrupting a match.
  const menuPalette={"push":["#a96aff","#5ce9ef"],"shrink":["#31dfff","#9760ff"],"knives":["#ff5977","#41d7ef"],"bomb":["#ae54ff","#ff9f35"],"western":["#ffac43","#a75bff"],"tanks":["#b4ec35","#8c55ff"],"tankarena":["#b6fa32","#a45cff"],"chaos":["#9b58ff","#17cfff"],"kart":["#ff634b","#c0ef3a"],"monster":["#25d8e5","#aa65f6"],"spy":["#b56aff","#f5bf51"],"millionaire":["#ffc949","#33dfff"],"sinyakquiz":["#bcf735","#a663ff"],"warsaw":["#efbb60","#b0ec3b"],"crocodile":["#a8ec32","#a866ef"],"jenga":["#f4b24e","#a872f5"],"crane":["#ffcc36","#19cfe9"],"naval":["#28d7f0","#8c68ef"],"drawguess":["#9f63f5","#b5ed35"],"western_duel":["#b363f5","#ffc440"],"taprace":["#ffc04d","#be63f3"],"punchmeter":["#ff6589","#ae63f5"],"flappy":["#3adef5","#b259ff"],"hungry":["#b2ef39","#ffad3e"],"snakelines":["#b4ed3f","#a86bff"],"carryball":["#36dbe9","#a7e83d"]};
  const $=id=>document.getElementById(id),host=!!window.PARTY_HOST_KEY;
- let profile=null,state=null,ws,frameKey=null,replaced=false,editing=false,accepted=false,everAccepted=false,gameStatus='connecting',lastRanks='',freshIdentityPending=false,reconnectTimer,pongTimer,clockOffset=0,waitingKey='',catalogFilter='all',pendingAvatar=null;
+ let profile=null,state=null,ws,frameKey=null,replaced=false,editing=false,accepted=false,everAccepted=false,gameStatus='connecting',lastRanks='',freshIdentityPending=false,reconnectTimer,pongTimer,clockOffset=0,waitingKey='',catalogFilter='all',pendingAvatar=null,accessClosed=false;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  let testProfiles=[],liveScoreInstance='',guestCategory='all',guestSearch='',removed=false,rosterSource=null,rosterForGames=[],rosterPostedSource=null;
  document.body.classList.toggle('guest-catalog',!host);
@@ -11,7 +11,7 @@
  function updateTestCompanion(){if(host)window.PartyBots?.update(state,testProfiles);}
  window.PARTY_PROFILE={};
  const tell=text=>{$('notice').textContent=text;$('notice').hidden=false;clearTimeout(tell.timer);tell.timer=setTimeout(()=>$('notice').hidden=true,6000);};
- const send=data=>{if(ws?.readyState===WebSocket.OPEN)ws.send(JSON.stringify(data));else tell('Восстанавливаем связь…');};
+ const send=data=>{if(ws?.readyState===WebSocket.OPEN)ws.send(JSON.stringify(data));else $('connection').textContent=accessClosed?'Ждём приглашения ведущего':'Подключаемся…';};
  async function persist(){localStorage.setItem('local-party-profile',JSON.stringify(profile));try{await fetch('/api/profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:profile.token})});}catch{}}
  function connect(){
   clearTimeout(reconnectTimer);
@@ -23,14 +23,16 @@
    if(m.type==='test-profiles'&&host){testProfiles=m.profiles||[];updateTestCompanion();return;}
    if(m.type==='session-start'&&host&&m.instance===state?.active?.instance){$('gameFrame').contentWindow?.postMessage({type:'party-start',instance:m.instance},location.origin);return;}
    if(m.type==='game-ui'&&state?.active?.instance===m.instance){state.active.ui=m.ui;clockOffset=Date.now()-m.ui.serverNow;renderHUD();return;}
-   if(m.type==='state'){for(const g of m.catalog){const p=menuPalette[g.id];if(p){g.color=p[0];g.secondaryColor=p[1];}}state=m;if(m.active?.ui?.serverNow)clockOffset=Date.now()-m.active.ui.serverNow;render();}
+   if(m.type==='access-closed'){accessClosed=true;if(state){state={...state,active:null,incident:null};render();}$('notice').hidden=true;$('connection').textContent='Ждём приглашения ведущего';}
+   if(m.type==='profile-required'){profile=null;window.PARTY_PROFILE={};localStorage.removeItem('local-party-profile');accepted=everAccepted=false;editing=true;render();}
+   if(m.type==='state'){accessClosed=false;for(const g of m.catalog){const p=menuPalette[g.id];if(p){g.color=p[0];g.secondaryColor=p[1];}}state=m;if(m.active?.ui?.serverNow)clockOffset=Date.now()-m.active.ui.serverNow;render();}
    if(m.type==='host-ok'){accepted=everAccepted=true;render();}
    if(m.type==='joined'){freshIdentityPending=false;accepted=everAccepted=true;profile={id:m.id,token:m.token,name:m.name,hand:m.hand,avatar:m.avatar||null};pendingAvatar=profile.avatar;window.PARTY_PROFILE=profile;persist();editing=false;render();}
    if(m.type==='error'){tell(m.message);if(!host&&!everAccepted){editing=true;render();}}
    if(m.type==='kicked'){removed=true;freshIdentityPending=true;accepted=everAccepted=false;replaced=true;profile=null;pendingAvatar=null;window.PARTY_PROFILE={};localStorage.removeItem('local-party-profile');frameKey=null;$('gameFrame').src='about:blank';editing=true;render();incidentBanner.textContent=m.message+' Для повторного входа укажите имя и нажмите «Я в игре».';incidentBanner.hidden=false;return;}
    if(m.type==='replaced'){freshIdentityPending=true;accepted=everAccepted=false;replaced=true;profile=null;pendingAvatar=null;frameKey=null;$('gameFrame').src='about:blank';editing=true;render();tell('Ты открыл игру в другой вкладке. Здесь можно войти другим игроком.');}
   };
-  ws.onclose=()=>{if(ws!==channel)return;accepted=false;$('joinForm').querySelector('button[type="submit"]').disabled=!replaced;$('connection').textContent=removed?'Вы удалены из комнаты':replaced?'Другая вкладка':'Восстанавливаем связь…';$('connection').classList.remove('online');if(!replaced)reconnectTimer=setTimeout(connect,800);};
+  ws.onclose=()=>{if(ws!==channel)return;accepted=false;$('joinForm').querySelector('button[type="submit"]').disabled=!replaced;$('connection').textContent=removed?'Вы удалены из комнаты':replaced?'Другая вкладка':accessClosed?'Ждём приглашения ведущего':'Подключаемся…';$('connection').classList.remove('online');if(!replaced)reconnectTimer=setTimeout(connect,800);};
   ws.onerror=()=>{};
  }
  function el(tag,className,text){const n=document.createElement(tag);if(className)n.className=className;if(text!==undefined)n.textContent=text;return n;}
