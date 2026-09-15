@@ -78,7 +78,7 @@ struct ServerState: Equatable, Codable {
     var launchHint: String {
         guard ready else { return "Подготавливаем комнату…" }
         if state?.busy == true { return "Подготавливаем игру…" }
-        if state?.screens == 0 { return "Подключите AirPlay или откройте адрес ТВ из раздела «Комната»" }
+        if state?.screens == 0 { return "Подключите общий экран в разделе «Комната»" }
         guard let game=selected else { return "Выберите игру" }
         let count=state?.players.count ?? 0
         return count<game.min ? "Нужно ещё \(game.min-count) игроков" : count>game.max ? "В этой игре максимум \(game.max) игроков" : "После запуска каждый нажимает «Я готов» на своём пульте"

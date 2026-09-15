@@ -1,0 +1,714 @@
+{
+  "checkedOn": "2026-09-15",
+  "scope": "Static review of repository metadata, license files, selected documentation and source paths; no third-party projects built or executed.",
+  "repositories": [
+    {
+      "repository": "absswds/GameNest",
+      "url": "https://github.com/absswds/GameNest",
+      "branch": "master",
+      "headTreeResponseSha": "c9f1207be23012a8cb278f312ccbd81196a760c3",
+      "archived": false,
+      "pushedAt": "2026-09-02T17:03:49Z",
+      "githubDetectedLicense": "Apache-2.0",
+      "licensePaths": [
+        "LICENSE",
+        "NOTICE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "NOTICE",
+          "blobSha": "2ab548e195f047caf6f11f2b417949dbedaef7b4",
+          "url": "https://github.com/absswds/GameNest/blob/master/NOTICE",
+          "retrievedLineCount": 4,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "blobSha": "daadf6be1ce1cf32bf2dbff8c079348aad50316b",
+          "url": "https://github.com/absswds/GameNest/blob/master/docs/ARCHITECTURE.md",
+          "retrievedLineCount": 81,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "public/js/room-client.js",
+          "blobSha": "4438dfd904733df80572ac79c6ca4480e201d4f3",
+          "url": "https://github.com/absswds/GameNest/blob/master/public/js/room-client.js",
+          "retrievedLineCount": 1331,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "android/app/src/main/java/com/gamenest/app/MainActivity.kt",
+          "blobSha": "cc166cb5e073a889dda3e26cbb9a9e157837aa70",
+          "url": "https://github.com/absswds/GameNest/blob/master/android/app/src/main/java/com/gamenest/app/MainActivity.kt",
+          "retrievedLineCount": 414,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "server.js",
+          "blobSha": "fa4152d2d089210a52a10e5566283ffc120b26ae",
+          "url": "https://github.com/absswds/GameNest/blob/master/server.js",
+          "retrievedLineCount": 1598,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "824345ad0097a81de1361e39e0170485ce9f0a9f",
+          "url": "https://github.com/absswds/GameNest/blob/master/LICENSE",
+          "retrievedLineCount": 192,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "virgilvox/doot-games",
+      "url": "https://github.com/virgilvox/doot-games",
+      "branch": "main",
+      "headTreeResponseSha": "0f78d6d11e7a7863cc9aa575ab2cfa39c5f6bd9b",
+      "archived": false,
+      "pushedAt": "2026-09-08T02:22:37Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "packages/sdk/src/manifest.ts",
+          "blobSha": "c03344260bef4818371fa4d0237fce9edecfd6bf",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/sdk/src/manifest.ts",
+          "retrievedLineCount": 42,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/engine/src/room.ts",
+          "blobSha": "6dedd37f3419ecfe9548a28f71b57757ab60c96e",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/engine/src/room.ts",
+          "retrievedLineCount": 1821,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/plugin-bridge/README.md",
+          "blobSha": "d33526c98e056a12e844e253b92fed70214c705f",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/plugin-bridge/README.md",
+          "retrievedLineCount": 52,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "apps/web/app/composables/useHostSession.ts",
+          "blobSha": "7907ea1f668f855bbc516d0bd089d4576ba99923",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/apps/web/app/composables/useHostSession.ts",
+          "retrievedLineCount": 139,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/plugin-bridge/src/protocol.ts",
+          "blobSha": "02fc81c4de47b004c6b3e2e0d01a8f85c5981d09",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/plugin-bridge/src/protocol.ts",
+          "retrievedLineCount": 66,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/games/src/games/hivemind/index.ts",
+          "blobSha": "ac94c35bed3af715f86cfb8930996494eb8fa4ff",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/games/src/games/hivemind/index.ts",
+          "retrievedLineCount": 79,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/games/src/games/split-room/index.ts",
+          "blobSha": "9ccca6ad6161d6e6bf96d2a93130a1f7dcfe0182",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/games/src/games/split-room/index.ts",
+          "retrievedLineCount": 101,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/games/src/games/doodle-chain/index.ts",
+          "blobSha": "17a4bab6cd167626e1f1adf6c0dcc2f7e389eb3f",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/games/src/games/doodle-chain/index.ts",
+          "retrievedLineCount": 78,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/engine/src/relay.ts",
+          "blobSha": "1100262887f8c59a115e7c40dbc4aea1d6625d70",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/engine/src/relay.ts",
+          "retrievedLineCount": 368,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/plugin-bridge/src/host.ts",
+          "blobSha": "71419c9055c21b692e755bfdff38feeb15df4c32",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/packages/plugin-bridge/src/host.ts",
+          "retrievedLineCount": 161,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "85e79dcbfd05a620b396d68c94b22704a2c3727d",
+          "url": "https://github.com/virgilvox/doot-games/blob/main/LICENSE",
+          "retrievedLineCount": 22,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "BEACNpool/LAN-Games",
+      "url": "https://github.com/BEACNpool/LAN-Games",
+      "branch": "main",
+      "headTreeResponseSha": "de5437568a03eceda5fed52de8b653c99618800a",
+      "archived": false,
+      "pushedAt": "2026-08-20T13:12:30Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "core/session.py",
+          "blobSha": "273f8a59eba6fffb1b8ef5d68e19e07ec56537d5",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/core/session.py",
+          "retrievedLineCount": 337,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "core/venue.py",
+          "blobSha": "ce9443f303646c504b2499063c6339b14e4f6c2e",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/core/venue.py",
+          "retrievedLineCount": 102,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "ADDING_A_GAME.md",
+          "blobSha": "80299f2d361914a716e8d8f4bf73e984b2c330da",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/ADDING_A_GAME.md",
+          "retrievedLineCount": 689,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "core/net.py",
+          "blobSha": "fd0a73d7ebdb7d8fc9dee7cb98983f96ace7978d",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/core/net.py",
+          "retrievedLineCount": 265,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "games/fifthsignal/game.py",
+          "blobSha": "ddf946ae5a037b57fa21a48a39959123b3b4e3ec",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/games/fifthsignal/game.py",
+          "retrievedLineCount": 731,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "games/fortfling/game.py",
+          "blobSha": "a7f74dd77db4b42e048aebcdacf3e50dfcabeed7",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/games/fortfling/game.py",
+          "retrievedLineCount": 422,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "games/orbitriot/game.py",
+          "blobSha": "49145029d8d26136cf695adb674ba07a7dde2836",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/games/orbitriot/game.py",
+          "retrievedLineCount": 545,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "45ccf0e8057304db765a49bf95cc39c00fc8052f",
+          "url": "https://github.com/BEACNpool/LAN-Games/blob/main/LICENSE",
+          "retrievedLineCount": 22,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "rodwilco/rumpus",
+      "url": "https://github.com/rodwilco/rumpus",
+      "branch": "main",
+      "headTreeResponseSha": "bf946fcc4f0dc099072d54b9d4f2ab94e36a97cb",
+      "archived": false,
+      "pushedAt": "2026-07-11T17:50:10Z",
+      "githubDetectedLicense": "AGPL-3.0",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "server.js",
+          "blobSha": "65f1ccc22f4be307a7eb890e5d288e4a3dc8f4ca",
+          "url": "https://github.com/rodwilco/rumpus/blob/main/server.js",
+          "retrievedLineCount": 255,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "be3f7b28e564e7dd05eaf59d64adba1a4065ac0e",
+          "url": "https://github.com/rodwilco/rumpus/blob/main/LICENSE",
+          "retrievedLineCount": 662,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "greggman/HappyFunTimes",
+      "url": "https://github.com/greggman/HappyFunTimes",
+      "branch": "master",
+      "headTreeResponseSha": "da2ba35511cfc657de9dfbbc7fca0d3aa7d89ef0",
+      "archived": false,
+      "pushedAt": "2020-04-17T03:23:58Z",
+      "githubDetectedLicense": "BSD-3-Clause",
+      "licensePaths": [
+        "LICENSE.md",
+        "dev/jsdoc-template/LICENSE.md"
+      ],
+      "reviewedSources": [
+        {
+          "path": "docs/network.md",
+          "blobSha": "7f904a93cea3cb8127371f8da3544591ead7600e",
+          "url": "https://github.com/greggman/HappyFunTimes/blob/master/docs/network.md",
+          "retrievedLineCount": 360,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "server/heart-monitor.js",
+          "blobSha": "589f1155b895b7e8832606923fe811538a98b3a5",
+          "url": "https://github.com/greggman/HappyFunTimes/blob/master/server/heart-monitor.js",
+          "retrievedLineCount": 94,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE.md",
+          "blobSha": "0ae62498a0c155d979b6e88a74e600ad4e304504",
+          "url": "https://github.com/greggman/HappyFunTimes/blob/master/LICENSE.md",
+          "retrievedLineCount": 34,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "tannerkrewson/rocketcrab",
+      "url": "https://github.com/tannerkrewson/rocketcrab",
+      "branch": "dev",
+      "headTreeResponseSha": "5ad9ca69910acb75c140323624603a3d8c966a37",
+      "archived": false,
+      "pushedAt": "2026-08-16T01:12:07Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "server/socket.ts",
+          "blobSha": "06811a28fa425d1c25b4765d1e51acb383042ddb",
+          "url": "https://github.com/tannerkrewson/rocketcrab/blob/dev/server/socket.ts",
+          "retrievedLineCount": 161,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "config/games/_template.ts",
+          "blobSha": "87b06fb0fcbfaad2da52d395761a3483f13dd51c",
+          "url": "https://github.com/tannerkrewson/rocketcrab/blob/dev/config/games/_template.ts",
+          "retrievedLineCount": 174,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "d9e563bee4f1cab1ee574bc22f82e7e271a0b4da",
+          "url": "https://github.com/tannerkrewson/rocketcrab/blob/dev/LICENSE",
+          "retrievedLineCount": 21,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "manojkumards656/Pocket-Party",
+      "url": "https://github.com/manojkumards656/Pocket-Party",
+      "branch": "main",
+      "headTreeResponseSha": "65b96e2fdf21efd007c4c74040d154da6b59fad2",
+      "archived": false,
+      "pushedAt": "2026-08-08T18:38:11Z",
+      "githubDetectedLicense": null,
+      "licensePaths": [],
+      "reviewedSources": [
+        {
+          "path": "README.md",
+          "blobSha": "3a5058f1a31ec1280c9060c453533acd1fb7be45",
+          "url": "https://github.com/manojkumards656/Pocket-Party/blob/main/README.md",
+          "retrievedLineCount": 446,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "lib/core/network/tcp_framing.dart",
+          "blobSha": "5a1f39f985afa626e7321992c9d7c6af619609cb",
+          "url": "https://github.com/manojkumards656/Pocket-Party/blob/main/lib/core/network/tcp_framing.dart",
+          "retrievedLineCount": 98,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "KNOWN_ISSUES.md",
+          "blobSha": "f0e0c82985743c0ac6a5f0e99b490be0a477dbc0",
+          "url": "https://github.com/manojkumards656/Pocket-Party/blob/main/KNOWN_ISSUES.md",
+          "retrievedLineCount": 26,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "faluciano/buzz-tv-party-game",
+      "url": "https://github.com/faluciano/buzz-tv-party-game",
+      "branch": "main",
+      "headTreeResponseSha": "4999b7c0f1aa81d9d24594c165a6bc8f200f3ff5",
+      "archived": false,
+      "pushedAt": "2026-09-14T01:29:36Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "packages/host/package.json",
+          "blobSha": "00a4d7729856372252c44f54ada67a8cfb84a93e",
+          "url": "https://github.com/faluciano/buzz-tv-party-game/blob/main/packages/host/package.json",
+          "retrievedLineCount": 34,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "packages/shared/index.ts",
+          "blobSha": "8b5d1b30a5ef629284094273c68b00054cfd6c2b",
+          "url": "https://github.com/faluciano/buzz-tv-party-game/blob/main/packages/shared/index.ts",
+          "retrievedLineCount": 61,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "c3ddc4b135b26db4d1e0fdbdd4f8e17b00a4cff3",
+          "url": "https://github.com/faluciano/buzz-tv-party-game/blob/main/LICENSE",
+          "retrievedLineCount": 22,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "VladimirKhil/SI",
+      "url": "https://github.com/VladimirKhil/SI",
+      "branch": "master",
+      "headTreeResponseSha": "8c2bee9c38d250884a3e575809172e626448a0f9",
+      "archived": false,
+      "pushedAt": "2026-08-07T20:11:35Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE",
+        "src/Common/SIPackages/LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "src/Common/SIPackages/README.md",
+          "blobSha": "4105b4dabdf5827e077b9b9ffb014286afcafbe6",
+          "url": "https://github.com/VladimirKhil/SI/blob/master/src/Common/SIPackages/README.md",
+          "retrievedLineCount": 399,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "src/Common/SIEngine.Core/DOCUMENTATION.md",
+          "blobSha": "15959d05a65c6dd2696bdea5f6ba7f6157540c3c",
+          "url": "https://github.com/VladimirKhil/SI/blob/master/src/Common/SIEngine.Core/DOCUMENTATION.md",
+          "retrievedLineCount": 385,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "4a49202a66376df0cd2fbe4ff8f585b24b8db5b3",
+          "url": "https://github.com/VladimirKhil/SI/blob/master/LICENSE",
+          "retrievedLineCount": 22,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "src/Common/SIPackages/LICENSE",
+          "blobSha": "4729630e1f9e772d760275abcbabbeb5ea0a3e5a",
+          "url": "https://github.com/VladimirKhil/SI/blob/master/src/Common/SIPackages/LICENSE",
+          "retrievedLineCount": 22,
+          "review": "Complete short license text reviewed."
+        }
+      ]
+    },
+    {
+      "repository": "kedoshim/ma.net",
+      "url": "https://github.com/kedoshim/ma.net",
+      "branch": "main",
+      "headTreeResponseSha": "5e300270f0dddbae62a03c9b148450e79fc6a759",
+      "archived": false,
+      "pushedAt": "2026-07-12T18:50:42Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "manet_mobile/lib/services/gamepad_input_engine.dart",
+          "blobSha": "b2d5afe84b1a75f506e13401c62213d511087b67",
+          "url": "https://github.com/kedoshim/ma.net/blob/main/manet_mobile/lib/services/gamepad_input_engine.dart",
+          "retrievedLineCount": 698,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "9e6d7b1491fe1d9b4d7a9156e3f34a7399b17e88",
+          "url": "https://github.com/kedoshim/ma.net/blob/main/LICENSE",
+          "retrievedLineCount": 21,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "benmross/partypad",
+      "url": "https://github.com/benmross/partypad",
+      "branch": "main",
+      "headTreeResponseSha": "71ee10d4de83d4ceb455d2df13cb5bf04e7429a5",
+      "archived": false,
+      "pushedAt": "2026-09-08T05:45:00Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "README.md",
+          "blobSha": "f09432bde4dbf79caf5c75c9ea404363910c402a",
+          "url": "https://github.com/benmross/partypad/blob/main/README.md",
+          "retrievedLineCount": 410,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "docs/device-authorization-protocol.md",
+          "blobSha": "08004439857470e3d757acc93270c2806afa7fcc",
+          "url": "https://github.com/benmross/partypad/blob/main/docs/device-authorization-protocol.md",
+          "retrievedLineCount": 217,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "server.py",
+          "blobSha": "42d6e67fa1fac0d6477dc58ab6bdaf0fa9a9682c",
+          "url": "https://github.com/benmross/partypad/blob/main/server.py",
+          "retrievedLineCount": 991,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "1459334324820ec8895c19b899cfd7e11cf8fd67",
+          "url": "https://github.com/benmross/partypad/blob/main/LICENSE",
+          "retrievedLineCount": 22,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "cdilga/multiplayer-racer",
+      "url": "https://github.com/cdilga/multiplayer-racer",
+      "branch": "main",
+      "headTreeResponseSha": "bbadc3ec73c8902f0262fe82ad4412a38a0abb51",
+      "archived": false,
+      "pushedAt": "2026-07-03T13:06:23Z",
+      "githubDetectedLicense": "GPL-3.0",
+      "licensePaths": [
+        "COPYING",
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "server/input_safety.py",
+          "blobSha": "2dc9adc606656473744b7ae3c6c48ff345f35a50",
+          "url": "https://github.com/cdilga/multiplayer-racer/blob/main/server/input_safety.py",
+          "retrievedLineCount": 137,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "server/room_seats.py",
+          "blobSha": "b3a7b9f57d63cb7010f78c9ef76c5500ae58fa28",
+          "url": "https://github.com/cdilga/multiplayer-racer/blob/main/server/room_seats.py",
+          "retrievedLineCount": 847,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+          "url": "https://github.com/cdilga/multiplayer-racer/blob/main/LICENSE",
+          "retrievedLineCount": 675,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "COPYING",
+          "blobSha": "7a694c9699a986b9adf1f6cb8a18a6e923e47ed9",
+          "url": "https://github.com/cdilga/multiplayer-racer/blob/main/COPYING",
+          "retrievedLineCount": 675,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "tarikbc/hotspot-arcade",
+      "url": "https://github.com/tarikbc/hotspot-arcade",
+      "branch": "master",
+      "headTreeResponseSha": "1ac230075f142bb57d0f1ea9756c92bbc0ccb37e",
+      "archived": false,
+      "pushedAt": "2026-09-11T00:52:04Z",
+      "githubDetectedLicense": "NOASSERTION",
+      "licensePaths": [
+        "LICENSE",
+        "esp32/libs/AsyncTCP/LICENSE",
+        "esp32/libs/ESPAsyncWebServer/LICENSE",
+        "flipper/hotspot-arcade/lib/esp-serial-flasher/LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "docs/PROTOCOL.md",
+          "blobSha": "4ace434512a352538d93a6fb18b1e69395b27411",
+          "url": "https://github.com/tarikbc/hotspot-arcade/blob/master/docs/PROTOCOL.md",
+          "retrievedLineCount": 957,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "blobSha": "a957650719c647865f9e0dad72027ab9402299bf",
+          "url": "https://github.com/tarikbc/hotspot-arcade/blob/master/docs/ARCHITECTURE.md",
+          "retrievedLineCount": 132,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "ab48cde98fc26ae0b25f0b1abff361e6a36a72b0",
+          "url": "https://github.com/tarikbc/hotspot-arcade/blob/master/LICENSE",
+          "retrievedLineCount": 26,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "abhijatchaturvedi/gamenight",
+      "url": "https://github.com/abhijatchaturvedi/gamenight",
+      "branch": "main",
+      "headTreeResponseSha": "4e515225ecbc6de16f1f5013b33fa84314a340ba",
+      "archived": false,
+      "pushedAt": "2026-07-14T05:21:36Z",
+      "githubDetectedLicense": null,
+      "licensePaths": [],
+      "reviewedSources": [
+        {
+          "path": "package.json",
+          "blobSha": "0a01ba0c9da48a1d05bdf2a4339d2a2f77dec642",
+          "url": "https://github.com/abhijatchaturvedi/gamenight/blob/main/package.json",
+          "retrievedLineCount": 19,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "server.js",
+          "blobSha": "5b430f3c7bd69aef5dd1e5f6960d988c9bf18f23",
+          "url": "https://github.com/abhijatchaturvedi/gamenight/blob/main/server.js",
+          "retrievedLineCount": 1368,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "googlecast/CastHelloVideo-ios",
+      "url": "https://github.com/googlecast/CastHelloVideo-ios",
+      "branch": "master",
+      "headTreeResponseSha": "a6a8aa63bfdfaa5f4c8d579e75be0098ac31378f",
+      "archived": false,
+      "pushedAt": "2024-10-15T21:37:40Z",
+      "githubDetectedLicense": "Apache-2.0",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "LICENSE",
+          "blobSha": "8405e89a0b12024529554191c9b7ec20acc116fd",
+          "url": "https://github.com/googlecast/CastHelloVideo-ios/blob/master/LICENSE",
+          "retrievedLineCount": 191,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "CastHelloVideo-swift/Classes/AppDelegate.swift",
+          "blobSha": "a983bfc0b5ac4f70f6e587f3f3db95b32af9f70e",
+          "url": "https://github.com/googlecast/CastHelloVideo-ios/blob/master/CastHelloVideo-swift/Classes/AppDelegate.swift",
+          "retrievedLineCount": 87,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "googlecast/CastReceiver",
+      "url": "https://github.com/googlecast/CastReceiver",
+      "branch": "master",
+      "headTreeResponseSha": "ddfb06c7fb94db902d7706f610553d8dd4ba85e7",
+      "archived": false,
+      "pushedAt": "2023-12-01T22:35:19Z",
+      "githubDetectedLicense": "Apache-2.0",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "LICENSE",
+          "blobSha": "e06d2081865a766a8668acc12878f98b27fc9ea0",
+          "url": "https://github.com/googlecast/CastReceiver/blob/master/LICENSE",
+          "retrievedLineCount": 203,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "js/receiver.js",
+          "blobSha": "8b2cb1416a7ac9e68a520c92b8fd1ad5804a38de",
+          "url": "https://github.com/googlecast/CastReceiver/blob/master/js/receiver.js",
+          "retrievedLineCount": 267,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    },
+    {
+      "repository": "thibauts/node-castv2-client",
+      "url": "https://github.com/thibauts/node-castv2-client",
+      "branch": "master",
+      "headTreeResponseSha": "a083b71f747557c1f3d5411abe7142e186ed9732",
+      "archived": false,
+      "pushedAt": "2021-04-13T00:45:47Z",
+      "githubDetectedLicense": "MIT",
+      "licensePaths": [
+        "LICENSE"
+      ],
+      "reviewedSources": [
+        {
+          "path": "LICENSE",
+          "blobSha": "629ca945653e5391ac24fa64868bf011bfee45b0",
+          "url": "https://github.com/thibauts/node-castv2-client/blob/master/LICENSE",
+          "retrievedLineCount": 22,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        },
+        {
+          "path": "package.json",
+          "blobSha": "c3e5f4e9b64848b4ba2fa113201a24ce2b6db14b",
+          "url": "https://github.com/thibauts/node-castv2-client/blob/master/package.json",
+          "retrievedLineCount": 31,
+          "review": "File retrieved; targeted relevant sections reviewed, not a complete security audit."
+        }
+      ]
+    }
+  ],
+  "officialCastDocumentation": [
+    "https://developers.google.com/cast/docs/overview",
+    "https://developers.google.com/cast/docs/ios_sender",
+    "https://developers.google.com/cast/docs/ios_sender/integrate",
+    "https://developers.google.com/cast/docs/ios_sender/advanced",
+    "https://developers.google.com/cast/docs/web_receiver/basic",
+    "https://developers.google.com/cast/docs/web_receiver/core_features",
+    "https://developers.google.com/cast/docs/reference/web_receiver/cast.framework.CastReceiverOptions",
+    "https://developers.google.com/cast/docs/registration",
+    "https://developers.google.com/cast/docs/terms"
+  ],
+  "localValidation": {
+    "result": "BUILD SUCCEEDED",
+    "target": "LocalParty Debug, generic iOS Simulator",
+    "physicalDeviceTests": false,
+    "thirdPartyCodeImported": false,
+    "implemented": "Browser display moved to dedicated beta settings page; help text and documentation adjusted.",
+    "notImplemented": "Google Cast SDK, receiver and new gameplay roadmap remain proposals."
+  }
+}

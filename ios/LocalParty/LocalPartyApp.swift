@@ -18,7 +18,6 @@ struct HostView: View {
     @State private var detail:PartyGame?
     @State private var confirmStatisticsReset=false
     @State private var airPlayHelp=false
-    @State private var browserSelected=false
     @State private var removePlayer: PartyPlayer?
     private let accent=Color(red:0.76,green:0.96,blue:0.55)
     private var games:[PartyGame] { model.catalog.filter { (search.isEmpty || $0.title.localizedCaseInsensitiveContains(search)) && (filter == "Все" || (filter == "За столом" ? $0.section == "table" : $0.section != "table")) } }
@@ -137,15 +136,8 @@ struct HostView: View {
                 feedback.listRowInsets(EdgeInsets())
             }
             Section("Общий экран") {
-                Button {airPlayHelp=true;browserSelected=false} label: {
+                Button {airPlayHelp=true} label: {
                     Label {VStack(alignment:.leading,spacing:4) {Text("AirPlay").font(.headline);Text(model.externalDisplayCount>0 ? "Экран подключён" : "Телевизор или Mac").font(.subheadline).foregroundStyle(.secondary)}} icon: {Image(systemName:"airplayvideo").font(.title2)}
-                }
-                Button {browserSelected=true;if !model.networkEnabled {model.setNetworkEnabled(true)}} label: {
-                    Label {VStack(alignment:.leading,spacing:4) {Text("Через браузер").font(.headline);Text("Открыть общий экран по Wi-Fi").font(.subheadline).foregroundStyle(.secondary)}} icon: {Image(systemName:"globe").font(.title2)}
-                }.disabled(!model.ready || model.working)
-                if browserSelected && model.networkEnabled {
-                    Text(model.tvAddress).font(.system(.subheadline,design:.monospaced)).textSelection(.enabled)
-                    ShareLink("Поделиться адресом экрана",item:model.tvAddress)
                 }
                 if (model.state?.screens ?? 0)>0 {Label("Подключено экранов: \(model.state?.screens ?? 0)",systemImage:"checkmark.circle").foregroundStyle(accent)}
             }
@@ -159,7 +151,7 @@ struct HostView: View {
                     Text("Подключитесь к Wi-Fi — здесь появится код для гостей.").font(.subheadline).foregroundStyle(.secondary)
                 }
                 Button("Играть с этого iPhone") {controllerOpened=true;tab=2}.disabled(!model.ready)
-            } header: {Text("Игроки")} footer: {Text("Wi-Fi-доступ нужен для телефонов гостей и экрана в браузере. AirPlay и пульт на этом iPhone готовы автоматически.")}
+            } header: {Text("Игроки")} footer: {Text("Wi-Fi-доступ нужен для телефонов гостей. AirPlay и пульт на этом iPhone готовы автоматически.")}
             if let active=model.active {Section {activeCard(active).listRowInsets(EdgeInsets())}}
             Section("В комнате · \(model.state?.players.count ?? 0)") {
                 if model.state?.players.isEmpty != false {Text("Пока никого. Пригласите друзей или откройте свой пульт.").foregroundStyle(.secondary)}
@@ -180,6 +172,9 @@ struct HostView: View {
             }
             Section {
                 DisclosureGroup("Настройки и диагностика") {
+                    NavigationLink { browserDisplaySettings } label: {
+                        Label("Экран в браузере · Бета",systemImage:"globe")
+                    }
                     Toggle("Не гасить экран приложения",isOn:$model.keepAwake)
                     Text("Для вывода AirPlay держите приложение открытым.").font(.footnote).foregroundStyle(.secondary)
                     Text(model.backgroundStatus).font(.footnote).foregroundStyle(.secondary)
@@ -189,6 +184,29 @@ struct HostView: View {
                 }
             }
         }
+    }
+    private var browserDisplaySettings: some View {
+        Form {
+            Section {
+                Label("Бета",systemImage:"flask").foregroundStyle(accent)
+                Text("Альтернативный способ подключить общий экран через браузер телевизора или компьютера. Устройства должны быть в одной сети Wi-Fi.")
+                Text("Совместимость и плавность игры зависят от браузера экрана.").font(.footnote).foregroundStyle(.secondary)
+            }
+            Section("Подключение экрана") {
+                if !model.ready {
+                    Label("Подготавливаем комнату…",systemImage:"hourglass")
+                } else if !model.networkEnabled {
+                    Button("Включить доступ по Wi-Fi") {model.setNetworkEnabled(true)}.disabled(model.working)
+                } else if model.tvAddress.isEmpty {
+                    Text("Подключите iPhone к Wi-Fi — здесь появится адрес экрана.").foregroundStyle(.secondary)
+                } else {
+                    Text("Откройте этот адрес в браузере общего экрана:")
+                    Text(model.tvAddress).font(.system(.subheadline,design:.monospaced)).textSelection(.enabled)
+                    ShareLink("Поделиться адресом экрана",item:model.tvAddress)
+                    Text("Затем вернитесь во вкладку «Игры». Телефоны гостей подключаются по коду из комнаты.").font(.footnote).foregroundStyle(.secondary)
+                }
+            }
+        }.navigationTitle("Экран в браузере").navigationBarTitleDisplayMode(.inline)
     }
     private var airPlayInstructions: some View {
         NavigationStack {

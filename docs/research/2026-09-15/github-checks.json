@@ -1,0 +1,92 @@
+{
+  "checked_at": "2026-09-15",
+  "method": "Read-only GitHub API: latest commit returned for checked default branch; no builds or tests run.",
+  "commits": [
+    {
+      "repo": "absswds/GameNest",
+      "latest": "2026-09-02T17:03:42Z",
+      "sha": "c9f1207be23012a8cb278f312ccbd81196a760c3",
+      "url": "https://github.com/absswds/GameNest/commit/c9f1207be23012a8cb278f312ccbd81196a760c3"
+    },
+    {
+      "repo": "virgilvox/doot-games",
+      "latest": "2026-09-08T02:22:35Z",
+      "sha": "0f78d6d11e7a7863cc9aa575ab2cfa39c5f6bd9b",
+      "url": "https://github.com/virgilvox/doot-games/commit/0f78d6d11e7a7863cc9aa575ab2cfa39c5f6bd9b"
+    },
+    {
+      "repo": "greggman/HappyFunTimes",
+      "latest": "2020-04-17T03:23:57Z",
+      "sha": "da2ba35511cfc657de9dfbbc7fca0d3aa7d89ef0",
+      "url": "https://github.com/greggman/HappyFunTimes/commit/da2ba35511cfc657de9dfbbc7fca0d3aa7d89ef0"
+    },
+    {
+      "repo": "tannerkrewson/rocketcrab",
+      "latest": "2024-10-27T23:13:48Z",
+      "sha": "5ad9ca69910acb75c140323624603a3d8c966a37",
+      "url": "https://github.com/tannerkrewson/rocketcrab/commit/5ad9ca69910acb75c140323624603a3d8c966a37"
+    },
+    {
+      "repo": "BEACNpool/LAN-Games",
+      "latest": "2026-07-26T17:42:49Z",
+      "sha": "de5437568a03eceda5fed52de8b653c99618800a",
+      "url": "https://github.com/BEACNpool/LAN-Games/commit/de5437568a03eceda5fed52de8b653c99618800a"
+    },
+    {
+      "repo": "rodwilco/rumpus",
+      "latest": "2026-07-10T16:57:02Z",
+      "sha": "bf946fcc4f0dc099072d54b9d4f2ab94e36a97cb",
+      "url": "https://github.com/rodwilco/rumpus/commit/bf946fcc4f0dc099072d54b9d4f2ab94e36a97cb"
+    },
+    {
+      "repo": "manojkumards656/Pocket-Party",
+      "latest": "2026-08-08T18:38:04Z",
+      "sha": "65b96e2fdf21efd007c4c74040d154da6b59fad2",
+      "url": "https://github.com/manojkumards656/Pocket-Party/commit/65b96e2fdf21efd007c4c74040d154da6b59fad2"
+    },
+    {
+      "repo": "faluciano/buzz-tv-party-game",
+      "latest": "2026-09-13T21:14:23Z",
+      "sha": "4999b7c0f1aa81d9d24594c165a6bc8f200f3ff5",
+      "url": "https://github.com/faluciano/buzz-tv-party-game/commit/4999b7c0f1aa81d9d24594c165a6bc8f200f3ff5"
+    }
+  ],
+  "license_metadata": [
+    {
+      "repo": "absswds/GameNest",
+      "license": "Apache-2.0",
+      "default_branch": "master",
+      "archived": false
+    },
+    {
+      "repo": "virgilvox/doot-games",
+      "license": "MIT",
+      "default_branch": "main",
+      "archived": false
+    },
+    {
+      "repo": "BEACNpool/LAN-Games",
+      "license": "MIT",
+      "default_branch": "main",
+      "archived": false
+    },
+    {
+      "repo": "rodwilco/rumpus",
+      "license": "AGPL-3.0",
+      "default_branch": "main",
+      "archived": false
+    },
+    {
+      "repo": "faluciano/buzz-tv-party-game",
+      "license": "MIT",
+      "default_branch": "main",
+      "archived": false
+    },
+    {
+      "repo": "kedoshim/ma.net",
+      "license": "MIT",
+      "default_branch": "main",
+      "archived": false
+    }
+  ]
+}
