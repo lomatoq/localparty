@@ -20,13 +20,13 @@
     "@dimforge/rapier3d-compat": "0.20.0",
     "express": "4.22.2",
     "qrcode": "1.5.4",
-    "socket.io": "4.8.1",
+    "socket.io": "4.8.3",
     "three": "0.186.0",
     "ws": "8.21.3"
   },
   "devDependencies": {
     "adm-zip": "0.6.1",
-    "tar-stream": "3.1.7",
+    "tar-stream": "3.2.1",
     "sharp": "^0.34.4"
   },
   "overrides": {

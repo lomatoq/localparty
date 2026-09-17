@@ -7,6 +7,11 @@
   const dialogs = ['hostPanel', 'gameDetail', 'confirmDialog'];
   const element = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
   const button = (text, cls, action) => { const b = element('button', cls, text); b.type = 'button'; b.addEventListener('click', action); return b; };
+  // Russian numeric agreement: 1 игрок / 2 игрока / 5 игроков.
+  const plural = (n, one, few, many) => {
+    const a = Math.abs(Math.trunc(Number(n) || 0)), d = a % 10, h = a % 100;
+    return a + ' ' + (d === 1 && h !== 11 ? one : d >= 2 && d <= 4 && (h < 12 || h > 14) ? few : many);
+  };
   const canSend = () => Boolean(window.webkit?.messageHandlers?.partyShell);
   function send(type, fields = {}) {
     if (!canSend()) { toast('Открой LocalParty в приложении iPhone.'); return false; }
@@ -16,8 +21,15 @@
   const busy = () => !state.native?.ready || state.native?.working || state.busy;
   const gameById = id => (state.catalog || []).find(g => g.id === id);
   function toast(text) { $('nativeToast').textContent = text; $('nativeToast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('nativeToast').hidden = true; }, 3500); }
-  function show(id) { const d = $(id); if (!d.open) d.showModal(); }
-  function close(id) { if ($(id).open) $(id).close(); }
+  // WebKit does not reliably restore focus when a dialog closes, so the opener is
+  // remembered explicitly and refocused. Keeps VoiceOver and keyboard users in place.
+  const openers = {};
+  function show(id) { const d = $(id); if (!d.open) { openers[id] = document.activeElement; d.showModal(); } }
+  function close(id) {
+    const d = $(id); if (!d.open) return;
+    d.close(); const opener = openers[id]; delete openers[id];
+    if (opener && opener.isConnected && typeof opener.focus === 'function') opener.focus();
+  }
   function confirm(title, text, action) { $('confirmTitle').textContent = title; $('confirmText').textContent = text; confirmAction = action; show('confirmDialog'); }
   function controller() { if (busy()) return; dialogs.forEach(close); send('controller'); }
   function artPath(game) {
@@ -70,7 +82,7 @@
       select.disabled = busy() || state.active?.id === g.id;
     });
     const count = state.players.length;
-    let hint = !state.native?.ready ? 'Подготавливаем комнату…' : !state.screens ? 'Подключи общий экран в панели ведущего.' : count < g.min ? `Нужно ещё ${g.min - count} игроков. Открой свой пульт или пригласи друзей.` : count > g.max ? `В этой игре максимум ${g.max} игроков.` : state.selected !== g.id ? 'Подтверждаем выбор игры…' : 'После запуска каждый нажимает «Я готов» на своём пульте.';
+    let hint = !state.native?.ready ? 'Подготавливаем комнату…' : !state.screens ? 'Подключи общий экран в панели ведущего.' : count < g.min ? 'Нужно ещё ' + plural(g.min - count, 'игрока', 'игроков', 'игроков') + '. Открой свой пульт или пригласи друзей.' : count > g.max ? `В этой игре максимум ${g.max} игроков.` : state.selected !== g.id ? 'Подтверждаем выбор игры…' : 'После запуска каждый нажимает «Я готов» на своём пульте.';
     $('launchHint').textContent = hint;
     $('launchGame').disabled = busy() || !state.screens || count < g.min || count > g.max || state.selected !== g.id;
     $('launchGame').textContent = state.busy ? 'Подготавливаем…' : 'Играть вместе';
@@ -95,7 +107,7 @@
   }
   function renderRoom() {
     const n = state.native || {}, address = n.address || '', hasAddress = Boolean(state.networkEnabled && address);
-    $('displayStatus').textContent = `${n.externalDisplays || 0} AirPlay / кабель · ${state.screens || 0} общих экранов`;
+    $('displayStatus').textContent = `${n.externalDisplays || 0} AirPlay / кабель · ` + plural(state.screens || 0, 'общий экран', 'общих экрана', 'общих экранов');
     $('refreshDisplay').disabled = !n.externalDisplays;
     $('tvAddress').textContent = address ? address + 'tv' : 'Сначала включи доступ по Wi-Fi.';
     setSwitch('networkToggle', state.networkEnabled, 'Включён', 'Выключен'); $('networkToggle').disabled = busy();
@@ -115,11 +127,11 @@
     setSwitch('hapticsToggle', n.haptics !== false, 'Включена', 'Выключена');
     setSwitch('awakeToggle', n.keepAwake !== false, 'Включено', 'Выключено');
     $('testHaptics').disabled = n.haptics === false;
-    $('matches').textContent = `${state.totalMatches || 0} матчей`;
+    $('matches').textContent = plural(state.totalMatches || 0, 'матч', 'матча', 'матчей');
     const leadersKey = JSON.stringify(state.leaderboard || []);
     if (leadersKey !== standingsSignature) {
       standingsSignature = leadersKey; $('standings').replaceChildren();
-      (state.leaderboard || []).slice(0, 5).forEach(p => {const row = element('div', 'rank-row'); row.append(element('b', 'rank-name', p.name), element('span', 'rank-stats', `${p.wins} побед · ${p.points} очков`)); $('standings').append(row);});
+      (state.leaderboard || []).slice(0, 5).forEach(p => {const row = element('div', 'rank-row'); row.append(element('b', 'rank-name', p.name), element('span', 'rank-stats', plural(p.wins, 'победа', 'победы', 'побед') + ' · ' + plural(p.points, 'очко', 'очка', 'очков'))); $('standings').append(row);});
     }
     $('resetStats').disabled = busy() || Boolean(state.active);
     $('backgroundStatus').textContent = n.backgroundStatus || 'Во время игры держи приложение открытым.';
@@ -132,7 +144,7 @@
     state = value;
     $('connection').textContent = state.native?.connectionStatus || (state.native?.ready ? 'Комната готова' : 'Подготавливаем комнату…');
     $('connection').classList.toggle('online', Boolean(state.native?.ready && !state.native?.connectionStatus));
-    $('gameCount').textContent = `${state.catalog.length} игр`; $('playerCount').textContent = `${state.players.length} игроков`; $('screenCount').textContent = state.screens ? `${state.screens} общих экранов` : 'Экран не подключён';
+    $('gameCount').textContent = plural(state.catalog.length, 'игра', 'игры', 'игр'); $('playerCount').textContent = plural(state.players.length, 'игрок', 'игрока', 'игроков'); $('screenCount').textContent = state.screens ? plural(state.screens, 'общий экран', 'общих экрана', 'общих экранов') : 'Экран не подключён';
     const message = state.native?.message || state.native?.connectionStatus || state.incident?.message;
     $('message').hidden = !message; $('message').textContent = message || '';
     ['openController', 'playHere', 'detailController'].forEach(id => $(id).disabled = busy());

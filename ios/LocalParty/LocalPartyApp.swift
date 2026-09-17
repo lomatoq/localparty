@@ -121,6 +121,10 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             view.scrollView.contentInsetAdjustmentBehavior = .never
             view.allowsBackForwardNavigationGestures = false
         }
+        // The shell is viewport-fit=cover and lays itself out with env(safe-area-inset-*).
+        // `.never` suppresses those values in WebKit, so the menu keeps the real insets
+        // while the game controller stays fully edge-to-edge.
+        menu.scrollView.contentInsetAdjustmentBehavior = .always
         menu.load(URLRequest(url: shellURL))
     }
     func update(_ model: ServerModel) {
@@ -169,7 +173,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         guard let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]), let payload = String(data: data, encoding: .utf8), payload != lastPayload else { return }
         lastPayload = payload
         // Pass JSON as an argument, never concatenate player names into executable JS.
-        menu.callAsyncJavaScript("window.LocalPartyHost?.update(JSON.parse(payload))", arguments: ["payload": payload], in: nil, contentWorld: .page) { [weak self] result in
+        menu.callAsyncJavaScript("window.LocalPartyHost?.update(JSON.parse(payload))", arguments: ["payload": payload], in: nil, in: .page) { [weak self] result in
             if case .failure = result { self?.lastPayload = "" }
         }
     }
@@ -211,7 +215,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         publish()
     }
     private func toast(_ text: String) {
-        menu.callAsyncJavaScript("window.LocalPartyHost?.toast(text)", arguments: ["text": text], in: nil, contentWorld: .page, completionHandler: nil)
+        menu.callAsyncJavaScript("window.LocalPartyHost?.toast(text)", arguments: ["text": text], in: nil, in: .page, completionHandler: nil)
     }
     private func share(_ item: Any) {
         guard let scene = menu.window?.windowScene, var presenter = scene.windows.first(where: { $0.isKeyWindow })?.rootViewController else { return }

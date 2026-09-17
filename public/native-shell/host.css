@@ -41,3 +41,6 @@
 .native-shell .native-sheet button[role=switch][aria-checked=true]{background:var(--lime);color:var(--bg)}
 @media(max-width:600px){.native-shell .app-header{padding-left:14px;padding-right:14px;min-height:76px}.native-shell .brand{font-size:24px}.native-shell .app-header .nav{padding:10px 12px;font-size:12px}.native-shell .intro h1{font-size:42px}.native-shell #catalog{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:300px;gap:12px}.native-shell .native-sheet{padding:16px}.native-shell .native-card{padding:16px}.native-shell .game h3{font-size:18px}.native-shell .game-info{padding-left:14px;padding-right:14px}.native-shell .native-actions>.primary{flex:1}.native-shell .native-catalog-tools{align-items:stretch}.native-shell .catalog-filters{width:100%}}
 @media(prefers-reduced-motion:reduce){.native-shell *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+/* Phone shell: keep scrolling, hide the scrollbar chrome (document and modal sheets). */
+.native-shell,.native-shell .native-sheet{scrollbar-width:none;-ms-overflow-style:none}
+.native-shell::-webkit-scrollbar,.native-shell ::-webkit-scrollbar{width:0;height:0;display:none}
