@@ -1,5 +1,6 @@
 import SwiftUI
 import WebKit
+import Combine
 import CoreImage.CIFilterBuiltins
 
 @main struct LocalPartyApp: App {
@@ -32,27 +33,83 @@ struct HostView: View {
     }
 }
 
-private struct PartySurfaces: UIViewRepresentable {
+// Keep one visible UIKit owner for the entire phone UI. On iOS 27 the
+// external-display scene is opt-in through a scene accessory registration.
+private struct PartySurfaces: UIViewControllerRepresentable {
     @ObservedObject var store: PartyWebStore
     @ObservedObject var model: ServerModel
-    func makeUIView(context: Context) -> UIView {
-        let root = UIView(); root.backgroundColor = .black
-        for view in [store.menu, store.controller] {
-            view.translatesAutoresizingMaskIntoConstraints = false
-            root.addSubview(view)
-            NSLayoutConstraint.activate([
-                view.leadingAnchor.constraint(equalTo: root.leadingAnchor),
-                view.trailingAnchor.constraint(equalTo: root.trailingAnchor),
-                view.topAnchor.constraint(equalTo: root.topAnchor),
-                view.bottomAnchor.constraint(equalTo: root.bottomAnchor)
-            ])
-        }
-        return root
+    func makeUIViewController(context: Context) -> PartySurfaceController {
+        let controller = PartySurfaceController(store: store)
+        store.surfaceController = controller
+        return controller
     }
-    func updateUIView(_ view: UIView, context: Context) {
+    func updateUIViewController(_ controller: PartySurfaceController, context: Context) {
         store.update(model)
         store.menu.isHidden = store.showingController
         store.controller.isHidden = !store.showingController
+    }
+}
+
+@MainActor private final class PartySurfaceController: UIViewController {
+    private let store: PartyWebStore
+    // Erase the type so an iOS 26 SDK can still compile the legacy path.
+    // The hotfix build script requires SDK 27 for current-device builds.
+    private var externalRegistration: AnyObject?
+    init(store: PartyWebStore) { self.store = store; super.init(nibName: nil, bundle: nil) }
+    required init?(coder: NSCoder) { fatalError("Use init(store:)") }
+    override func loadView() {
+        let root = UIView(); root.backgroundColor = .black
+        for web in [store.menu, store.controller] {
+            web.translatesAutoresizingMaskIntoConstraints = false
+            root.addSubview(web)
+            NSLayoutConstraint.activate([
+                web.leadingAnchor.constraint(equalTo: root.leadingAnchor),
+                web.trailingAnchor.constraint(equalTo: root.trailingAnchor),
+                web.topAnchor.constraint(equalTo: root.topAnchor),
+                web.bottomAnchor.constraint(equalTo: root.bottomAnchor)
+            ])
+        }
+        view = root
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ensureDisplayRegistration()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ensureDisplayRegistration()
+        store.refreshSnapshot()
+    }
+    func ensureDisplayRegistration() {
+        #if compiler(>=6.4)
+        if #available(iOS 27.0, *), externalRegistration == nil {
+            let configuration = UISceneConfiguration(name: "Party TV", sessionRole: .windowExternalDisplayNonInteractive)
+            configuration.sceneClass = UIWindowScene.self
+            configuration.delegateClass = PartyExternalDisplaySceneDelegate.self
+            let accessory = UISceneAccessory.externalNonInteractive(sceneConfiguration: configuration)
+            let registration = registerSceneAccessory(accessory)
+            registration.isEnabled = true
+            externalRegistration = registration // must live as long as the phone surface
+        }
+        #endif
+    }
+    var displayMode: String {
+        if #available(iOS 27.0, *) {
+            #if compiler(>=6.4)
+            return externalRegistration == nil ? "registering" : "scene-accessory"
+            #else
+            return "requires-ios27-sdk"
+            #endif
+        }
+        return "legacy-scene"
+    }
+    var displayAvailable: Bool {
+        #if compiler(>=6.4)
+        if #available(iOS 27.0, *), let registration = externalRegistration as? UISceneAccessoryRegistration {
+            return registration.isAvailable
+        }
+        #endif
+        return false
     }
 }
 
@@ -90,6 +147,16 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     @Published private(set) var showingController = false
     @Published private(set) var loadError: String?
     private weak var model: ServerModel?
+    weak var surfaceController: PartySurfaceController?
+    private var modelSubscription: AnyCancellable?
+    private var menuStarted = false
+    private var deliveryEpoch = 0
+    private var payloadInFlight = false, publishAgain = false
+    private var payloadRetry: DispatchWorkItem?
+    private var deliveryFailures = 0
+    private let shellRevision = "ios-recovery-20260918.1"
+    private var lastGoodCatalog: [PartyGame] = []
+    private var catalogError = ""
     private let handler = PartyScriptHandler()
     private let shellURL = URL(string: "partyapp://local/native-shell/index.html")!
     private var controllerURL: URL?
@@ -121,10 +188,19 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             view.scrollView.contentInsetAdjustmentBehavior = .never
             view.allowsBackForwardNavigationGestures = false
         }
-        menu.load(URLRequest(url: shellURL))
+        // Do not begin the JS handshake until the model has been attached.
     }
     func update(_ model: ServerModel) {
-        self.model = model
+        if self.model !== model {
+            self.model = model
+            modelSubscription = model.objectWillChange.sink { [weak self] _ in
+                // objectWillChange precedes mutation. Publish on the next main turn,
+                // independently of SwiftUI's UIViewControllerRepresentable redraws.
+                DispatchQueue.main.async { [weak self] in self?.publish() }
+            }
+            loadBundledCatalog()
+        }
+        if !menuStarted { menuStarted = true; reloadMenu() }
         if showingController, model.ready, controllerURL != model.controllerURL {
             controllerURL = model.controllerURL; controller.load(URLRequest(url: model.controllerURL))
         }
@@ -134,6 +210,10 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         phase = value
         signalController(showingController && value == .active)
         if value != .active { cancelHaptics() }
+        if value == .active {
+            surfaceController?.ensureDisplayRegistration()
+            refreshSnapshot()
+        }
     }
     func showController(_ value: Bool) {
         guard !value || model?.ready == true else { return }
@@ -153,25 +233,91 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     func retry() {
         loadError = nil
         if showingController, let url = controllerURL { controller.load(URLRequest(url: url)) }
-        else { menuReady = false; lastPayload = ""; menu.load(URLRequest(url: shellURL)) }
+        else { reloadMenu() }
+    }
+    func refreshSnapshot() {
+        deliveryFailures = 0
+        lastPayload = ""
+        publish()
+    }
+    private func resetDelivery() {
+        deliveryEpoch += 1
+        menuReady = false; payloadInFlight = false; publishAgain = false
+        lastPayload = ""; deliveryFailures = 0
+        payloadRetry?.cancel(); payloadRetry = nil
+    }
+    private func reloadMenu() {
+        resetDelivery()
+        menu.load(URLRequest(url: shellURL))
+    }
+    private func loadBundledCatalog() {
+        do {
+            guard let url = Bundle.main.url(forResource: "native-catalog", withExtension: "json", subdirectory: "Server") else {
+                throw NSError(domain: "LocalParty", code: 1, userInfo: [NSLocalizedDescriptionKey: "В сборке отсутствует Server/native-catalog.json."])
+            }
+            let games = try JSONDecoder().decode([PartyGame].self, from: Data(contentsOf: url))
+            guard !games.isEmpty, Set(games.map(\.id)).count == games.count else {
+                throw NSError(domain: "LocalParty", code: 2, userInfo: [NSLocalizedDescriptionKey: "Встроенный каталог пуст или содержит повторяющиеся игры."])
+            }
+            lastGoodCatalog = games; catalogError = ""
+        } catch {
+            catalogError = "Не удалось прочитать встроенный каталог: " + error.localizedDescription
+        }
     }
     private func publish() {
-        guard menuReady, let model else { return }
+        guard menuReady, deliveryFailures <= 5, let model else { return }
+        guard !payloadInFlight else { publishAgain = true; return }
         var value: [String: Any] = ["catalog": [], "players": [], "leaderboard": [], "votes": []]
         if let state = model.state, let data = try? JSONEncoder().encode(state), let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] { value = object }
-        else if let data = try? JSONEncoder().encode(model.catalog), let games = try? JSONSerialization.jsonObject(with: data) { value["catalog"] = games }
+        let liveGames = model.state?.catalog ?? []
+        if !liveGames.isEmpty { lastGoodCatalog = liveGames }
+        else if !model.catalog.isEmpty { lastGoodCatalog = model.catalog }
+        if let data = try? JSONEncoder().encode(lastGoodCatalog), let games = try? JSONSerialization.jsonObject(with: data) { value["catalog"] = games }
+        let validCatalog = !liveGames.isEmpty
+        let issue = model.ready && !validCatalog ? "Сервер не вернул каталог. Игры из приложения сохранены; запуск временно недоступен." : (lastGoodCatalog.isEmpty ? catalogError : "")
         if qrAddress != model.address { qrAddress = model.address; qrData = makeQR(qrAddress) }
         value["native"] = ["ready": model.ready, "working": model.working, "address": model.address,
                            "externalDisplays": model.externalDisplayCount, "qr": qrData,
                            "message": model.message ?? "", "connectionStatus": model.connectionStatus ?? "",
                            "backgroundStatus": model.backgroundStatus, "buildLabel": model.buildLabel,
-                           "keepAwake": model.keepAwake, "haptics": hapticsEnabled]
+                           "keepAwake": model.keepAwake, "haptics": hapticsEnabled,
+                           "catalogReady": validCatalog, "catalogError": issue,
+                           "bridgeRevision": shellRevision,
+                           "displayMode": surfaceController?.displayMode ?? "registering",
+                           "displayAvailable": surfaceController?.displayAvailable ?? false]
         guard let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]), let payload = String(data: data, encoding: .utf8), payload != lastPayload else { return }
-        lastPayload = payload
-        // Pass JSON as an argument, never concatenate player names into executable JS.
-        menu.callAsyncJavaScript("window.LocalPartyHost?.update(JSON.parse(payload))", arguments: ["payload": payload], in: nil, contentWorld: .page) { [weak self] result in
-            if case .failure = result { self?.lastPayload = "" }
+        payloadInFlight = true
+        let epoch = deliveryEpoch
+        // Only acknowledge delivery AFTER JavaScript explicitly accepts the snapshot.
+        // Optional chaining returning undefined is not successful delivery.
+        let script = "if (!window.LocalPartyHost) return false; return window.LocalPartyHost.update(JSON.parse(payload)) === true;"
+        menu.callAsyncJavaScript(script, arguments: ["payload": payload], in: nil, contentWorld: .page) { [weak self] result in
+            guard let self, self.deliveryEpoch == epoch else { return }
+            self.payloadInFlight = false
+            if case .success(let accepted) = result, accepted as? Bool == true {
+                self.lastPayload = payload; self.deliveryFailures = 0
+                self.payloadRetry?.cancel(); self.payloadRetry = nil
+                if !self.showingController { self.loadError = nil }
+            } else {
+                self.lastPayload = ""; self.schedulePayloadRetry()
+            }
+            if self.publishAgain { self.publishAgain = false; self.publish() }
         }
+    }
+    private func schedulePayloadRetry() {
+        deliveryFailures += 1
+        guard deliveryFailures <= 5 else {
+            if phase == .active && !showingController && loadError == nil { loadError = "Меню не приняло каталог. Нажми «Повторить» — профили и статистика не удаляются." }
+            return
+        }
+        payloadRetry?.cancel()
+        let epoch = deliveryEpoch
+        let retry = DispatchWorkItem { [weak self] in
+            guard let self, self.deliveryEpoch == epoch else { return }
+            self.payloadRetry = nil; self.publish()
+        }
+        payloadRetry = retry
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: retry)
     }
     private func makeQR(_ text: String) -> String {
         guard !text.isEmpty else { return "" }
@@ -184,14 +330,19 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         return origin.protocol == url.scheme && origin.host == url.host && origin.port == url.port
     }
     func receive(_ message: WKScriptMessage) {
-        guard phase == .active, let body = message.body as? [String: Any], let type = body["type"] as? String else { return }
+        guard let body = message.body as? [String: Any], let type = body["type"] as? String else { return }
         let shell = message.webView === menu && message.frameInfo.isMainFrame && message.frameInfo.request.url == shellURL
         let player = message.webView === controller && showingController && trustedController(message.frameInfo.securityOrigin)
         guard shell || player else { return }
+        // Readiness is passive transport, not an action. Control Centre, startup
+        // and AirPlay can leave the phone inactive when this message arrives.
+        if shell && (type == "ready" || type == "resync") {
+            menuReady = true; refreshSnapshot(); return
+        }
+        guard phase == .active else { return } // all actions still require foreground
         if type == "haptic" { playHaptics(body["pattern"]); return }
         if type == "menu", player, message.frameInfo.isMainFrame { showController(false); return }
         guard shell else { return } // game JavaScript can NEVER issue admin commands
-        if type == "ready" { menuReady = true; lastPayload = ""; publish(); return }
         guard let model else { return }
         switch type {
         case "controller": showController(true)
@@ -201,7 +352,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         case "network-set": if let enabled = body["enabled"] as? Bool { model.setNetworkEnabled(enabled) }
         case "awake-set": if let enabled = body["enabled"] as? Bool { model.keepAwake = enabled }
         case "haptics-set": if let enabled = body["enabled"] as? Bool { UserDefaults.standard.set(!enabled, forKey: "LocalParty.hapticsDisabled"); if !enabled { cancelHaptics() } }
-        case "screen-refresh": model.externalDisplayReload += 1
+        case "screen-refresh": surfaceController?.ensureDisplayRegistration(); model.externalDisplayReload += 1
         case "background-request": model.requestBackground()
         case "copy-invite": if !model.address.isEmpty { UIPasteboard.general.string = model.address; toast("Адрес скопирован") }
         case "share-invite": if !model.address.isEmpty { share(model.address) }
@@ -258,7 +409,10 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         decisionHandler(webView === controller && showingController && trustedController(origin) ? .prompt : .deny)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if webView === menu { lastPayload = ""; publish() }
+        if webView === menu {
+            // Fallback when the first ready message was lost during app startup.
+            menuReady = true; deliveryFailures = 0; refreshSnapshot()
+        }
         else { signalController(showingController && phase == .active) }
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { reportFailure(webView, error) }
@@ -269,7 +423,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         cancelHaptics()
-        if webView === menu { menuReady = false; lastPayload = ""; menu.load(URLRequest(url: shellURL)) }
+        if webView === menu { reloadMenu() }
         else if let url = controllerURL { controller.load(URLRequest(url: url)) }
     }
 }

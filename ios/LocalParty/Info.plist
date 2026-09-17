@@ -20,7 +20,7 @@
 <key>BGTaskSchedulerPermittedIdentifiers</key><array><string>$(PRODUCT_BUNDLE_IDENTIFIER).match.*</string></array>
 <key>UILaunchScreen</key><dict/>
 <key>UIApplicationSceneManifest</key><dict>
-<key>UIApplicationSupportsMultipleScenes</key><false/>
+<key>UIApplicationSupportsMultipleScenes</key><true/>
 <key>UISceneConfigurations</key><dict>
 <key>UIWindowSceneSessionRoleExternalDisplayNonInteractive</key><array><dict>
 <key>UISceneConfigurationName</key><string>Party TV</string>

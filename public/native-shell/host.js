@@ -4,6 +4,8 @@
   let state = {catalog: [], players: [], leaderboard: [], votes: [], native: {}}, section = 'all';
   let selectedDetail = null, catalogSignature = '', rosterSignature = '', actionsSignature = '', standingsSignature = '';
   let confirmAction = null, launchPending = false, toastTimer;
+  let receivedSnapshot = false, readyTimer = null, handshakeAttempts = 0;
+  const shellRevision = 'ios-recovery-20260918.1';
   const dialogs = ['hostPanel', 'gameDetail', 'confirmDialog'];
   const element = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
   const button = (text, cls, action) => { const b = element('button', cls, text); b.type = 'button'; b.addEventListener('click', action); return b; };
@@ -13,7 +15,7 @@
     window.webkit.messageHandlers.partyShell.postMessage({type, ...fields}); return true;
   }
   const manage = command => send('manage', {command});
-  const busy = () => !state.native?.ready || state.native?.working || state.busy;
+  const busy = () => !state.native?.ready || state.native?.catalogReady === false || state.native?.working || state.busy;
   const gameById = id => (state.catalog || []).find(g => g.id === id);
   function toast(text) { $('nativeToast').textContent = text; $('nativeToast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('nativeToast').hidden = true; }, 3500); }
   function show(id) { const d = $(id); if (!d.open) d.showModal(); }
@@ -38,8 +40,13 @@
         const info = element('div', 'game-info'); info.append(element('h3', '', g.title), element('p', '', g.description));
         const bottom = element('div', 'game-bottom'); bottom.append(element('span', '', `${g.min}–${g.max} игроков`), element('b', '', '↗')); info.append(bottom); card.append(art, info); frag.append(card);
       });
-      $('catalog').replaceChildren(frag); $('noGames').hidden = games.length > 0;
+      $('catalog').replaceChildren(frag);
     }
+    const hasCatalog = state.catalog.length > 0;
+    $('noGames').hidden = !hasCatalog || games.length > 0;
+    $('catalogState').hidden = hasCatalog;
+    $('catalogStateText').textContent = state.native?.catalogError || (receivedSnapshot ? 'Подготавливаем игры на этом iPhone…' : 'Соединяем меню с приложением…');
+    $('catalog').setAttribute('aria-busy', String(!hasCatalog));
     $('catalog').querySelectorAll('[data-game]').forEach(card => {card.setAttribute('aria-pressed', String(card.dataset.game === state.selected)); card.disabled = busy();});
   }
   function openGame(id) {
@@ -95,8 +102,15 @@
   }
   function renderRoom() {
     const n = state.native || {}, address = n.address || '', hasAddress = Boolean(state.networkEnabled && address);
-    $('displayStatus').textContent = `${n.externalDisplays || 0} AirPlay / кабель · ${state.screens || 0} общих экранов`;
-    $('refreshDisplay').disabled = !n.externalDisplays;
+    const external = Number(n.externalDisplays) || 0;
+    $('displayStatus').textContent = external > 0
+      ? `Отдельная сцена ТВ: ${external}. Игровых подключений экрана: ${state.screens || 0}.`
+      : n.displayMode === 'requires-ios27-sdk'
+        ? 'Для отдельного экрана на iOS 27 пересобери приложение с iOS 27 SDK.'
+        : n.displayAvailable
+          ? 'Дисплей доступен. Ожидаем отдельную сцену LocalParty…'
+          : 'Отдельная сцена ТВ пока не подключена. Повтор экрана сам по себе не подтверждает её запуск.';
+    $('refreshDisplay').disabled = !receivedSnapshot;
     $('tvAddress').textContent = address ? address + 'tv' : 'Сначала включи доступ по Wi-Fi.';
     setSwitch('networkToggle', state.networkEnabled, 'Включён', 'Выключен'); $('networkToggle').disabled = busy();
     $('inviteBox').hidden = !hasAddress; $('inviteAddress').textContent = address;
@@ -124,19 +138,27 @@
     $('resetStats').disabled = busy() || Boolean(state.active);
     $('backgroundStatus').textContent = n.backgroundStatus || 'Во время игры держи приложение открытым.';
     $('backgroundRequest').disabled = !state.networkEnabled || busy();
-    $('buildLabel').textContent = n.buildLabel || '';
+    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Native: ' + (n.bridgeRevision || 'ожидание'), n.displayMode].filter(Boolean).join(' · ');
   }
   function setSwitch(id, enabled, on, off) { const b = $(id); b.setAttribute('aria-checked', String(Boolean(enabled))); b.textContent = enabled ? on : off; }
   function update(value) {
-    if (!value || !Array.isArray(value.catalog) || !Array.isArray(value.players)) return;
+    if (!value || !Array.isArray(value.catalog) || !Array.isArray(value.players)) return false;
+    // Retain the last real catalog across transient empty snapshots. Do not invent
+    // game IDs; disable launch until the authoritative server catalog returns.
+    if (!value.catalog.length && state.catalog.length) {
+      value = {...value, catalog: state.catalog, native: {...value.native, catalogReady: false,
+        catalogError: value.native?.catalogError || 'Восстанавливаем каталог сервера. Список игр сохранён.'}};
+    }
     state = value;
+    receivedSnapshot = true; clearTimeout(readyTimer); readyTimer = null;
     $('connection').textContent = state.native?.connectionStatus || (state.native?.ready ? 'Комната готова' : 'Подготавливаем комнату…');
     $('connection').classList.toggle('online', Boolean(state.native?.ready && !state.native?.connectionStatus));
-    $('gameCount').textContent = `${state.catalog.length} игр`; $('playerCount').textContent = `${state.players.length} игроков`; $('screenCount').textContent = state.screens ? `${state.screens} общих экранов` : 'Экран не подключён';
-    const message = state.native?.message || state.native?.connectionStatus || state.incident?.message;
+    $('gameCount').textContent = (state.catalog.length ? `${state.catalog.length} игр` : 'Каталог загружается'); $('playerCount').textContent = `${state.players.length} игроков`; $('screenCount').textContent = state.screens ? `${state.screens} общих экранов` : 'Экран не подключён';
+    const message = state.native?.message || state.native?.catalogError || state.native?.connectionStatus || state.incident?.message;
     $('message').hidden = !message; $('message').textContent = message || '';
     ['openController', 'playHere', 'detailController'].forEach(id => $(id).disabled = busy());
     renderCatalog(); renderActive(); renderRoom(); updateDetail();
+    return true; // acknowledgement used by the native delivery state machine
   }
   $('openHost').onclick = () => show('hostPanel');
   ['openController', 'playHere', 'detailController'].forEach(id => $(id).onclick = controller);
@@ -156,7 +178,26 @@
   $('confirmDialog').addEventListener('close', () => { confirmAction = null; });
   $('search').addEventListener('input', renderCatalog);
   document.querySelectorAll('[data-section]').forEach(b => b.onclick = () => {section = b.dataset.section; document.querySelectorAll('[data-section]').forEach(x => {x.classList.toggle('active', x === b); x.setAttribute('aria-pressed', String(x === b));}); renderCatalog();});
+  function requestSnapshot() {
+    clearTimeout(readyTimer); readyTimer = null;
+    if (!canSend() || document.visibilityState === 'hidden') return;
+    send('ready');
+    if (!receivedSnapshot) {
+      handshakeAttempts += 1;
+      if (handshakeAttempts >= 8) $('connection').textContent = 'Восстанавливаем связь с приложением…';
+      readyTimer = setTimeout(requestSnapshot, handshakeAttempts < 8 ? 500 : 2000);
+    }
+  }
+  $('retryCatalog').onclick = () => { receivedSnapshot = false; handshakeAttempts = 0; requestSnapshot(); };
+  window.addEventListener('pageshow', requestSnapshot);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') { clearTimeout(readyTimer); readyTimer = null; }
+    else { send('resync'); requestSnapshot(); }
+  });
+  window.addEventListener('pagehide', () => { clearTimeout(readyTimer); readyTimer = null; });
   // Only Swift sends snapshots. No admin token is exposed to this document or the LAN.
   window.LocalPartyHost = Object.freeze({update, toast});
-  update(state); send('ready');
+  renderCatalog(); renderRoom();
+  ['openController', 'playHere', 'detailController'].forEach(id => $(id).disabled = true);
+  requestSnapshot();
 })();
