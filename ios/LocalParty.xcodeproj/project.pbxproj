@@ -6,64 +6,77 @@
 	objectVersion = 56;
 	objects = {
 
-BBBBBBBBBBBBBBBBBBBBBBB1 = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; files = (); inputPaths = (); outputPaths = ("$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Server"); alwaysOutOfDate = 1; name = "Bundle current games"; shellPath = /bin/sh; shellScript = "/usr/bin/python3 \"$PROJECT_DIR/../scripts/bundle-ios.py\""; runOnlyForDeploymentPostprocessing = 0; };
 /* Begin PBXBuildFile section */
-F0F0F0F0F0F0F0F0F0F0F001 = {isa = PBXBuildFile; fileRef = F0F0F0F0F0F0F0F0F0F0F002; };
-EEEEEEEEEEEEEEEEEEEEEEE1 = {isa = PBXBuildFile; fileRef = EEEEEEEEEEEEEEEEEEEEEEE2; };
-DDDDDDDDDDDDDDDDDDDDDDD1 = {isa = PBXBuildFile; fileRef = DDDDDDDDDDDDDDDDDDDDDDD2; };
-CCCCCCCCCCCCCCCCCCCCCCC1 = {isa = PBXBuildFile; fileRef = CCCCCCCCCCCCCCCCCCCCCCC2; };
-9059CFD73241BD340596A271 = {isa = PBXBuildFile; fileRef = 0C70042C77E2D2D99751ADCB; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
-BE228F61486C2DCB7F7443DA = {isa = PBXBuildFile; fileRef = 73F1AC09BA2467F994357C9E; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
-FE23BEE5725BE4121AC631C8 = {isa = PBXBuildFile; fileRef = 7E0E5259322970FC0805DCC5; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
-678BC668D4188F9C4AAAE77E = {isa = PBXBuildFile; fileRef = 4686177316D54E59823B69E4; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
-6CB19E5EF0B2A6407673BCFC = {isa = PBXBuildFile; fileRef = 43F3C3DAF5B3163D8E76C365; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
-AAAAAAAAAAAAAAAAAAAAAAA1 = {isa = PBXBuildFile; fileRef = AAAAAAAAAAAAAAAAAAAAAAA3; };
-AAAAAAAAAAAAAAAAAAAAAAA2 = {isa = PBXBuildFile; fileRef = AAAAAAAAAAAAAAAAAAAAAAA3; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy); }; };
 		2C981EEA9705749D162F601F /* NodeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D8A3A3D62B2EDD5DA858D4 /* NodeBridge.m */; };
 		5E18F48D4734258A5FFFF6A5 /* LocalPartyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A19ED3933ABCA42B1EAC69 /* LocalPartyApp.swift */; };
+		678BC668D4188F9C4AAAE77E /* NativePhysics/wasm-rt-impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 4686177316D54E59823B69E4 /* NativePhysics/wasm-rt-impl.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
+		6CB19E5EF0B2A6407673BCFC /* NativePhysics/wasm-rt-mem-impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 43F3C3DAF5B3163D8E76C365 /* NativePhysics/wasm-rt-mem-impl.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
 		719CD58F255347A33105A7CB /* ServerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A8398904667FF15427A09 /* ServerModel.swift */; };
+		9059CFD73241BD340596A271 /* NativePhysics/PhysicsBridge.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0C70042C77E2D2D99751ADCB /* NativePhysics/PhysicsBridge.cc */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
+		AAAAAAAAAAAAAAAAAAAAAAA1 /* Vendor/NodeMobile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAAAAAAAAAAAAAAAAAAAAA3 /* Vendor/NodeMobile.xcframework */; };
+		AAAAAAAAAAAAAAAAAAAAAAA2 /* Vendor/NodeMobile.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAAAAAAAAAAAAAAAAAAAAAA3 /* Vendor/NodeMobile.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE228F61486C2DCB7F7443DA /* NativePhysics/rapier2d.c in Sources */ = {isa = PBXBuildFile; fileRef = 73F1AC09BA2467F994357C9E /* NativePhysics/rapier2d.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
+		CCCCCCCCCCCCCCCCCCCCCCC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCCCCCCCCCCCCCCCCCCCCCC2 /* Assets.xcassets */; };
+		DDDDDDDDDDDDDDDDDDDDDDD1 /* NativePhysics/RuntimeBridge.cc in Sources */ = {isa = PBXBuildFile; fileRef = DDDDDDDDDDDDDDDDDDDDDDD2 /* NativePhysics/RuntimeBridge.cc */; };
+		EEEEEEEEEEEEEEEEEEEEEEE1 /* BackgroundTaskCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEEEEEEEEEEEEEEEEEEEEE2 /* BackgroundTaskCompletion.swift */; };
+		F0F0F0F0F0F0F0F0F0F0F001 /* ExternalDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0F0F0F0F0F0F0F0F0F002 /* ExternalDisplay.swift */; };
+		FE23BEE5725BE4121AC631C8 /* NativePhysics/rapier3d.c in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E5259322970FC0805DCC5 /* NativePhysics/rapier3d.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AAAAAAAAAAAAAAAAAAAAAAA4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AAAAAAAAAAAAAAAAAAAAAAA2 /* Vendor/NodeMobile.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-F0F0F0F0F0F0F0F0F0F0F002 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisplay.swift; sourceTree = "<group>"; };
-EEEEEEEEEEEEEEEEEEEEEEE2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskCompletion.swift; sourceTree = "<group>"; };
-DDDDDDDDDDDDDDDDDDDDDDD2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "NativePhysics/RuntimeBridge.cc"; sourceTree = SOURCE_ROOT; };
-CCCCCCCCCCCCCCCCCCCCCCC2 = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-0C70042C77E2D2D99751ADCB = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "NativePhysics/PhysicsBridge.cc"; sourceTree = SOURCE_ROOT; };
-73F1AC09BA2467F994357C9E = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/rapier2d.c"; sourceTree = SOURCE_ROOT; };
-7E0E5259322970FC0805DCC5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/rapier3d.c"; sourceTree = SOURCE_ROOT; };
-4686177316D54E59823B69E4 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/wasm-rt-impl.c"; sourceTree = SOURCE_ROOT; };
-43F3C3DAF5B3163D8E76C365 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/wasm-rt-mem-impl.c"; sourceTree = SOURCE_ROOT; };
-AAAAAAAAAAAAAAAAAAAAAAA3 = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Vendor/NodeMobile.xcframework; sourceTree = SOURCE_ROOT; };
 		0112DAE3F84CB4DF5179BE01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C70042C77E2D2D99751ADCB /* NativePhysics/PhysicsBridge.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NativePhysics/PhysicsBridge.cc; sourceTree = SOURCE_ROOT; };
 		38A007151ABE87CC01A5B6E9 /* LocalParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = LocalParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F3C3DAF5B3163D8E76C365 /* NativePhysics/wasm-rt-mem-impl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/wasm-rt-mem-impl.c"; sourceTree = SOURCE_ROOT; };
+		4686177316D54E59823B69E4 /* NativePhysics/wasm-rt-impl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/wasm-rt-impl.c"; sourceTree = SOURCE_ROOT; };
 		526A8398904667FF15427A09 /* ServerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerModel.swift; sourceTree = "<group>"; };
+		73F1AC09BA2467F994357C9E /* NativePhysics/rapier2d.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NativePhysics/rapier2d.c; sourceTree = SOURCE_ROOT; };
+		7E0E5259322970FC0805DCC5 /* NativePhysics/rapier3d.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NativePhysics/rapier3d.c; sourceTree = SOURCE_ROOT; };
+		AAAAAAAAAAAAAAAAAAAAAAA3 /* Vendor/NodeMobile.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Vendor/NodeMobile.xcframework; sourceTree = SOURCE_ROOT; };
 		CA84D1343B96BAA8137C943E /* Server */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Server; sourceTree = "<group>"; };
+		CCCCCCCCCCCCCCCCCCCCCCC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1A19ED3933ABCA42B1EAC69 /* LocalPartyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPartyApp.swift; sourceTree = "<group>"; };
 		D9D8A3A3D62B2EDD5DA858D4 /* NodeBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeBridge.m; sourceTree = "<group>"; };
+		DDDDDDDDDDDDDDDDDDDDDDD2 /* NativePhysics/RuntimeBridge.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NativePhysics/RuntimeBridge.cc; sourceTree = SOURCE_ROOT; };
+		EEEEEEEEEEEEEEEEEEEEEEE2 /* BackgroundTaskCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskCompletion.swift; sourceTree = "<group>"; };
+		F0F0F0F0F0F0F0F0F0F0F002 /* ExternalDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisplay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-AAAAAAAAAAAAAAAAAAAAAAA4 = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = ""; dstSubfolderSpec = 10; files = (AAAAAAAAAAAAAAAAAAAAAAA2); name = "Embed Frameworks"; runOnlyForDeploymentPostprocessing = 0; };
 /* Begin PBXFrameworksBuildPhase section */
 		7561BFB015D8F536760CB671 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
-			files = (AAAAAAAAAAAAAAAAAAAAAAA1);
+			files = (
+				AAAAAAAAAAAAAAAAAAAAAAA1 /* Vendor/NodeMobile.xcframework in Frameworks */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-BBBBBBBBBBBBBBBBBBBBBBB2 = {isa = PBXGroup; children = (DDDDDDDDDDDDDDDDDDDDDDD2,0C70042C77E2D2D99751ADCB,73F1AC09BA2467F994357C9E,7E0E5259322970FC0805DCC5,4686177316D54E59823B69E4,43F3C3DAF5B3163D8E76C365); name = "Native physics"; sourceTree = "<group>"; };
 		482182478A3ECD4745BEA917 /* LocalParty */ = {
 			isa = PBXGroup;
 			children = (
-BBBBBBBBBBBBBBBBBBBBBBB2,
-CCCCCCCCCCCCCCCCCCCCCCC2,
+				BBBBBBBBBBBBBBBBBBBBBBB2 /* Native physics */,
+				CCCCCCCCCCCCCCCCCCCCCCC2 /* Assets.xcassets */,
 				D9D8A3A3D62B2EDD5DA858D4 /* NodeBridge.m */,
 				526A8398904667FF15427A09 /* ServerModel.swift */,
-                EEEEEEEEEEEEEEEEEEEEEEE2,
-                F0F0F0F0F0F0F0F0F0F0F002,
+				EEEEEEEEEEEEEEEEEEEEEEE2 /* BackgroundTaskCompletion.swift */,
+				F0F0F0F0F0F0F0F0F0F0F002 /* ExternalDisplay.swift */,
 				D1A19ED3933ABCA42B1EAC69 /* LocalPartyApp.swift */,
 				CA84D1343B96BAA8137C943E /* Server */,
 				0112DAE3F84CB4DF5179BE01 /* Info.plist */,
@@ -71,12 +84,34 @@ CCCCCCCCCCCCCCCCCCCCCCC2,
 			path = LocalParty;
 			sourceTree = "<group>";
 		};
+		97977E08305CA48B0030B34A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				AAAAAAAAAAAAAAAAAAAAAAA3 /* Vendor/NodeMobile.xcframework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		B28B7AF69320201D1CF206EB = {
 			isa = PBXGroup;
 			children = (
 				482182478A3ECD4745BEA917 /* LocalParty */,
 				FBDC4F23F93125BBEEAE800C /* Products */,
+				97977E08305CA48B0030B34A /* Recovered References */,
 			);
+			sourceTree = "<group>";
+		};
+		BBBBBBBBBBBBBBBBBBBBBBB2 /* Native physics */ = {
+			isa = PBXGroup;
+			children = (
+				DDDDDDDDDDDDDDDDDDDDDDD2 /* NativePhysics/RuntimeBridge.cc */,
+				0C70042C77E2D2D99751ADCB /* NativePhysics/PhysicsBridge.cc */,
+				73F1AC09BA2467F994357C9E /* NativePhysics/rapier2d.c */,
+				7E0E5259322970FC0805DCC5 /* NativePhysics/rapier3d.c */,
+				4686177316D54E59823B69E4 /* NativePhysics/wasm-rt-impl.c */,
+				43F3C3DAF5B3163D8E76C365 /* NativePhysics/wasm-rt-mem-impl.c */,
+			);
+			name = "Native physics";
 			sourceTree = "<group>";
 		};
 		FBDC4F23F93125BBEEAE800C /* Products */ = {
@@ -93,7 +128,9 @@ CCCCCCCCCCCCCCCCCCCCCCC2,
 		0E8A3AD980EC179856012B7E /* LocalParty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C57128001CE614BF8549D6BB /* Build configuration list for PBXNativeTarget "LocalParty" */;
-			buildPhases = (BBBBBBBBBBBBBBBBBBBBBBB1,AAAAAAAAAAAAAAAAAAAAAAA4,
+			buildPhases = (
+				BBBBBBBBBBBBBBBBBBBBBBB1 /* Bundle current games */,
+				AAAAAAAAAAAAAAAAAAAAAAA4 /* Embed Frameworks */,
 				BCE16DD0260827ECF338C787 /* Sources */,
 				7561BFB015D8F536760CB671 /* Frameworks */,
 				0189424A5A60FED329FA868E /* Resources */,
@@ -145,22 +182,46 @@ CCCCCCCCCCCCCCCCCCCCCCC2,
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-CCCCCCCCCCCCCCCCCCCCCCC1,
+				CCCCCCCCCCCCCCCCCCCCCCC1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BBBBBBBBBBBBBBBBBBBBBBB1 /* Bundle current games */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle current games";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Server",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/python3 \"$PROJECT_DIR/../scripts/bundle-ios.py\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BCE16DD0260827ECF338C787 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (DDDDDDDDDDDDDDDDDDDDDDD1,9059CFD73241BD340596A271,BE228F61486C2DCB7F7443DA,FE23BEE5725BE4121AC631C8,678BC668D4188F9C4AAAE77E,6CB19E5EF0B2A6407673BCFC,
+			files = (
+				DDDDDDDDDDDDDDDDDDDDDDD1 /* NativePhysics/RuntimeBridge.cc in Sources */,
+				9059CFD73241BD340596A271 /* NativePhysics/PhysicsBridge.cc in Sources */,
+				BE228F61486C2DCB7F7443DA /* NativePhysics/rapier2d.c in Sources */,
+				FE23BEE5725BE4121AC631C8 /* NativePhysics/rapier3d.c in Sources */,
+				678BC668D4188F9C4AAAE77E /* NativePhysics/wasm-rt-impl.c in Sources */,
+				6CB19E5EF0B2A6407673BCFC /* NativePhysics/wasm-rt-mem-impl.c in Sources */,
 				2C981EEA9705749D162F601F /* NodeBridge.m in Sources */,
 				719CD58F255347A33105A7CB /* ServerModel.swift in Sources */,
-                EEEEEEEEEEEEEEEEEEEEEEE1,
-                F0F0F0F0F0F0F0F0F0F0F001,
+				EEEEEEEEEEEEEEEEEEEEEEE1 /* BackgroundTaskCompletion.swift in Sources */,
+				F0F0F0F0F0F0F0F0F0F0F001 /* ExternalDisplay.swift in Sources */,
 				5E18F48D4734258A5FFFF6A5 /* LocalPartyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,10 +232,10 @@ CCCCCCCCCCCCCCCCCCCCCCC1,
 		639A7CA24D39909E713B47F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UNGUHT4M6C;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = LocalParty/Info.plist;
 				MARKETING_VERSION = 0.11.0;
@@ -190,10 +251,10 @@ CCCCCCCCCCCCCCCCCCCCCCC1,
 		7082CC0B6FC1282FCEABD07A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UNGUHT4M6C;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = LocalParty/Info.plist;
 				MARKETING_VERSION = 0.11.0;
@@ -209,31 +270,47 @@ CCCCCCCCCCCCCCCCCCCCCCC1,
 		89E1FD6268CC0F221A2BE178 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Vendor/include",
+					"$(PROJECT_DIR)/NativePhysics",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = LocalParty/NodeBridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0; HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Vendor/include $(PROJECT_DIR)/NativePhysics"; CLANG_CXX_LANGUAGE_STANDARD = "c++17";
- SWIFT_OBJC_BRIDGING_HEADER = "LocalParty/NodeBridge.h";
- LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
- ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		E6DE6C99132752C914FEF632 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Vendor/include",
+					"$(PROJECT_DIR)/NativePhysics",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = LocalParty/NodeBridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0; HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Vendor/include $(PROJECT_DIR)/NativePhysics"; CLANG_CXX_LANGUAGE_STANDARD = "c++17";
- SWIFT_OBJC_BRIDGING_HEADER = "LocalParty/NodeBridge.h";
- LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
- ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
