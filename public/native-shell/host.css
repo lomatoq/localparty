@@ -1,0 +1,43 @@
+/* Reuse the launcher's actual styles. Only native layout/behaviour belongs here. */
+.native-shell .app-header{padding-top:env(safe-area-inset-top);height:auto;min-height:88px;grid-template-columns:1fr auto}
+.native-shell .app-header nav{grid-column:2;flex-wrap:wrap;gap:6px}
+.native-shell .app-header .nav span{display:inline;margin-left:6px}
+.native-shell main{padding-bottom:max(28px,env(safe-area-inset-bottom))}
+.native-shell .intro{padding:16px 0 24px}
+.native-shell .intro h1{font-size:clamp(38px,7vw,72px)}
+.native-shell .native-card{position:static;top:auto;width:100%;margin:0 0 16px;padding:20px}
+.native-shell .native-card h2,.native-shell .native-card h3{margin:0 0 12px}
+.native-shell .native-card p{font-size:14px;line-height:1.5}
+.native-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:12px 0}
+.native-row>span{min-width:0;overflow-wrap:anywhere}
+.native-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.native-catalog-tools{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap;margin-bottom:24px}
+.native-search{display:grid;gap:8px;flex:1;min-width:180px;color:var(--muted);font-size:12px}
+.native-search input,.native-shell select{color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:16px;min-height:44px;padding:10px 14px;width:100%}
+.native-shell select{width:auto;max-width:62%}
+.native-shell .catalog-filters{position:static;display:flex;gap:6px;flex-wrap:wrap}
+.native-shell .game{width:100%;text-align:left}
+.native-shell .game-info{pointer-events:none}
+.native-shell .game p{min-height:0}
+.native-shell .game[aria-pressed=true]{border-color:var(--lime)}
+.native-shell .native-sheet{width:min(640px,calc(100vw - 24px));max-width:640px;max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);overscroll-behavior:contain;padding:22px}
+.native-sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.native-sheet-head h2{margin:8px 0}
+.native-sheet-head>.quiet{flex-shrink:0}
+.native-detail-art{display:block;width:100%;height:180px;object-fit:contain;margin-bottom:14px}
+.native-shell #inviteQR{display:block;margin:16px auto;padding:8px;background:white;border-radius:20px}
+.native-shell code{display:block;white-space:normal;overflow-wrap:anywhere;user-select:text;-webkit-user-select:text;font-size:12px;margin:12px 0;color:var(--muted)}
+.native-shell summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:650}
+.native-shell details[open] summary{margin-bottom:12px}
+.native-shell .native-danger{color:var(--ink);border-style:dashed}
+.native-shell .native-note{color:var(--muted);font-size:12px}
+.native-shell .player{display:flex;flex-wrap:wrap;align-items:center;width:100%}
+.native-shell .player .quiet{margin-left:auto;flex-shrink:0}
+.native-shell #standings .rank-row{gap:12px;padding:12px;margin-bottom:6px}
+.native-shell #standings .rank-stats{font-size:12px}
+.native-shell #nativeToast{position:fixed;bottom:max(22px,env(safe-area-inset-bottom));left:16px;right:16px;z-index:10000;border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--bg);color:var(--ink);box-shadow:0 8px 30px #0005;pointer-events:none}
+.native-shell #message{margin-bottom:20px;text-align:left;font-size:14px;padding:16px}
+.native-shell button{min-height:44px}
+.native-shell .native-sheet button[role=switch][aria-checked=true]{background:var(--lime);color:var(--bg)}
+@media(max-width:600px){.native-shell .app-header{padding-left:14px;padding-right:14px;min-height:76px}.native-shell .brand{font-size:24px}.native-shell .app-header .nav{padding:10px 12px;font-size:12px}.native-shell .intro h1{font-size:42px}.native-shell #catalog{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:300px;gap:12px}.native-shell .native-sheet{padding:16px}.native-shell .native-card{padding:16px}.native-shell .game h3{font-size:18px}.native-shell .game-info{padding-left:14px;padding-right:14px}.native-shell .native-actions>.primary{flex:1}.native-shell .native-catalog-tools{align-items:stretch}.native-shell .catalog-filters{width:100%}}
+@media(prefers-reduced-motion:reduce){.native-shell *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
