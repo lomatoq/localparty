@@ -1,76 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>BGTaskSchedulerPermittedIdentifiers</key>
-	<array>
-		<string>$(PRODUCT_BUNDLE_IDENTIFIER).match.*</string>
-	</array>
-	<key>CFBundleDisplayName</key>
-	<string>LocalParty</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsLocalNetworking</key>
-		<true/>
-	</dict>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_localparty._tcp</string>
-	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Камера нужна, чтобы по вашему нажатию сделать фото профиля игрока.</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>LocalParty соединяет этот iPhone с телевизором и телефонами друзей по Wi-Fi, чтобы играть вместе без интернета.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>В играх с голосовым управлением микрофон используется только после вашего разрешения.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>Датчики движения нужны для игр с наклонами и замахами. Доступ запрашивается при включении управления движением.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Выберите фотографию для профиля игрока.</string>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
-		<dict>
-			<key>UIWindowSceneSessionRoleExternalDisplayNonInteractive</key>
-			<array>
-				<dict>
-					<key>UISceneClassName</key>
-					<string>UIWindowScene</string>
-					<key>UISceneConfigurationName</key>
-					<string>Party TV</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).PartyExternalDisplaySceneDelegate</string>
-				</dict>
-			</array>
-		</dict>
-	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>processing</string>
-	</array>
-	<key>UILaunchScreen</key>
-	<dict/>
-	<key>UIRequiresFullScreen</key>
-	<true/>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-</dict>
-</plist>
+<plist version="1.0"><dict>
+<key>CFBundleDisplayName</key><string>LocalParty</string>
+<key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
+<key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+<key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
+<key>CFBundlePackageType</key><string>APPL</string>
+<key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
+<key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
+<key>LSRequiresIPhoneOS</key><true/>
+<key>NSLocalNetworkUsageDescription</key><string>LocalParty соединяет этот iPhone с телевизором и телефонами друзей по Wi-Fi, чтобы играть вместе без интернета.</string>
+<key>NSMotionUsageDescription</key><string>Датчики движения нужны для игр с наклонами и замахами. Доступ запрашивается при включении управления движением.</string>
+<key>NSCameraUsageDescription</key><string>Камера нужна, чтобы по вашему нажатию сделать фото профиля игрока.</string>
+<key>NSPhotoLibraryUsageDescription</key><string>Выберите фотографию для профиля игрока.</string>
+<key>NSMicrophoneUsageDescription</key><string>В играх с голосовым управлением микрофон используется только после вашего разрешения.</string>
+<key>NSAppTransportSecurity</key><dict><key>NSAllowsLocalNetworking</key><true/></dict>
+<key>NSBonjourServices</key><array><string>_localparty._tcp</string></array>
+<key>UIBackgroundModes</key><array><string>processing</string></array>
+<key>BGTaskSchedulerPermittedIdentifiers</key><array><string>$(PRODUCT_BUNDLE_IDENTIFIER).match.*</string></array>
+<key>UILaunchScreen</key><dict/>
+<key>UIApplicationSceneManifest</key><dict>
+<key>UIApplicationSupportsMultipleScenes</key><true/>
+<key>UISceneConfigurations</key><dict>
+<key>UIWindowSceneSessionRoleExternalDisplayNonInteractive</key><array><dict>
+<key>UISceneConfigurationName</key><string>Party TV</string>
+<key>UISceneClassName</key><string>UIWindowScene</string>
+<key>UISceneDelegateClassName</key><string>$(PRODUCT_MODULE_NAME).PartyExternalDisplaySceneDelegate</string>
+</dict></array>
+</dict></dict>
+<key>UISupportedInterfaceOrientations</key><array><string>UIInterfaceOrientationPortrait</string></array>
+<key>UIRequiresFullScreen</key><true/>
+</dict></plist>
