@@ -188,10 +188,6 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             view.scrollView.contentInsetAdjustmentBehavior = .never
             view.allowsBackForwardNavigationGestures = false
         }
-        // The shell is viewport-fit=cover and lays itself out with env(safe-area-inset-*).
-        // `.never` suppresses those values in WebKit, so the menu keeps the real insets
-        // while the game controller stays fully edge-to-edge.
-        menu.scrollView.contentInsetAdjustmentBehavior = .always
         // Do not begin the JS handshake until the model has been attached.
     }
     func update(_ model: ServerModel) {
