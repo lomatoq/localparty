@@ -289,3 +289,7 @@ body.guest-catalog .guest-game.rank-row .guest-actions{grid-column:3}
  html body.guest-catalog:not(.lobby-connected):not(.in-game) .app-header{height:auto!important;min-height:0!important;grid-template-rows:auto!important;padding-top:calc(10px + env(safe-area-inset-top))!important;padding-bottom:10px!important}
 }
 @media(max-width:430px){body.guest-catalog #home>.intro{padding-bottom:6px!important;min-height:0!important;margin-bottom:0!important}body.guest-catalog #home .intro .headline-stage{margin-bottom:14px!important}body.guest-catalog #home .intro>div{min-height:0!important}}
+
+/* No visible scrollbars anywhere — scrolling stays, the bars go. */
+html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}
+html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;background:transparent!important}

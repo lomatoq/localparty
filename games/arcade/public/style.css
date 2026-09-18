@@ -59,3 +59,5 @@ html.party-host #board:has(.runner-row:nth-child(9)) .runner-row b{font-size:10p
 .punch-sense span{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#aab4a8;padding:0 6px 0 8px}
 .punch-sense button{min-height:36px;padding:7px 12px;border-radius:99px;border:0;background:transparent;color:#dfe8da;font:inherit;font-size:12px;font-weight:800}
 .punch-sense button[aria-pressed=true]{background:#c8f58b;color:#15200e}
+html,body,*{scrollbar-width:none!important}
+*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
