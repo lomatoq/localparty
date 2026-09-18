@@ -263,10 +263,10 @@
   function tvLayout(){
     const games=state.catalog||[],freshIds=(window.LocalPartyCatalog?.freshIds||[]).filter(id=>games.some(g=>g.id===id));
     const others=games.filter(g=>!freshIds.includes(g.id)),main=others.filter(g=>g.section!=='table').sort((a,b)=>Number(b.id==='tankarena')-Number(a.id==='tankarena')).map(g=>g.id);
-    const lead=main.slice(0,3),more=main.slice(3),table=others.filter(g=>g.section==='table').map(g=>g.id),rows=[];
-    if(lead.length){rows.push([{id:lead[0],c0:0,c1:1},...(lead[1]?[{id:lead[1],c0:2,c1:2}]:[])]);if(lead.length>2)rows.push([{id:lead[0],c0:0,c1:1},{id:lead[2],c0:2,c1:2}]);}
+    const lead=main.slice(0,5),more=main.slice(5),table=others.filter(g=>g.section==='table').map(g=>g.id),rows=[];
+    if(lead.length){rows.push([{id:lead[0],c0:0,c1:1},...[lead[1],lead[2]].map((id,k)=>id&&{id,c0:2+k,c1:2+k}).filter(Boolean)]);if(lead.length>3)rows.push([{id:lead[0],c0:0,c1:1},...[lead[3],lead[4]].map((id,k)=>id&&{id,c0:2+k,c1:2+k}).filter(Boolean)]);}
     if(freshIds.length)rows.push(freshIds.map((id,i)=>({id,c0:i,c1:i,fresh:true})));
-    for(const list of [more,table])for(let i=0;i<list.length;i+=3)rows.push(list.slice(i,i+3).map((id,k)=>({id,c0:k,c1:k})));
+    for(const list of [more,table])for(let i=0;i<list.length;i+=4)rows.push(list.slice(i,i+4).map((id,k)=>({id,c0:k,c1:k})));
     return {order:[...lead,...freshIds,...more,...table],rows};
   }
   function focusTV(id){if(id)manage({type:'tv-focus',id});}
@@ -282,7 +282,7 @@
     if(cell.fresh)lastFreshId=cell.id;else lastTVColumn=(cell.c0+cell.c1)/2;
     const target=rows[from+direction];if(!target)return;
     if(target[0].fresh){focusTV(target.some(c=>c.id===lastFreshId)?lastFreshId:target[0].id);return;}
-    const col=Math.min(2,lastTVColumn),hit=target.find(c=>c.c0<=col&&col<=c.c1)||target.reduce((a,b)=>Math.abs((a.c0+a.c1)/2-col)<=Math.abs((b.c0+b.c1)/2-col)?a:b);
+    const col=Math.min(3,lastTVColumn),hit=target.find(c=>c.c0<=col&&col<=c.c1)||target.reduce((a,b)=>Math.abs((a.c0+a.c1)/2-col)<=Math.abs((b.c0+b.c1)/2-col)?a:b);
     focusTV(hit.id);
   }
   $('tvPrev').onclick=()=>stepTV(-1);

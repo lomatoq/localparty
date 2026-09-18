@@ -293,3 +293,6 @@ body.guest-catalog .guest-game.rank-row .guest-actions{grid-column:3}
 /* No visible scrollbars anywhere — scrolling stays, the bars go. */
 html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}
 html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;background:transparent!important}
+/* Top-company rows: room for the highlighted row's ring and crown. */
+#statsDialog #statsBody{padding:6px 6px 8px 8px!important;overflow:visible!important}
+#statsDialog{overflow-x:hidden}

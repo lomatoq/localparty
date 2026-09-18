@@ -79,7 +79,7 @@
       const ordered=[...games].sort((a,b)=>Number(b.id==='tankarena')-Number(a.id==='tankarena'));
       let lead=0;
       for(const g of ordered){const index=games.findIndex(x=>x.id===g.id),card=makeCard(g,index,g.id==='tankarena');cards.set(g.id,card);if(freshIds.includes(g.id))continue;
-        if(g.section==='table')table.grid.append(card);else if(rest&&lead>=3)rest.append(card);else{main.grid.append(card);lead++;}}
+        if(g.section==='table')table.grid.append(card);else if(rest&&lead>=5)rest.append(card);else{main.grid.append(card);lead++;}}
       freshIds.forEach(id=>{if(cards.has(id))fresh.grid.append(cards.get(id));});
       if(track){track.scrollLeft=oldScroll;if(typeof ResizeObserver==='function'){resize=new ResizeObserver(scheduleBounds);resize.observe(track);}}
       scheduleBounds();
