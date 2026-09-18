@@ -80,9 +80,18 @@
       const main=document.getElementById('tvPodiumMain'),tail=document.getElementById('tvPodiumTail');
       main.style.setProperty('--seats',String(mainRows.length));tail.style.setProperty('--seats',String(tailRows.length||1));
       main.replaceChildren(...build(mainRows));tail.replaceChildren(...build(tailRows,true));tail.hidden=!tailRows.length;podium.classList.toggle('has-tail',!!tailRows.length);
-      // Lowest places arrive first; the winning centre follows with a small flourish.
-      for(const el of podium.querySelectorAll('.podium-seat')) {
-        const rank=Number(el.dataset.rank)||16;animate(el,[{opacity:0,translate:'0 28px',scale:.97},{opacity:1,translate:'0 0',scale:1}],{duration:620,delay:Math.max(0,8-Math.min(8,rank))*70});
+      // Classic podium reveal: lowest places first, each plinth rises from the floor with
+      // stretch → overshoot → squash → settle, then its player pops on top; 3rd, 2nd and
+      // finally the winner get their own beats and the crown drops in last.
+      const seats=[...podium.querySelectorAll('.podium-seat')].sort((a,b)=>(Number(b.dataset.rank)||16)-(Number(a.dataset.rank)||16));
+      let at=120;
+      for(const el of seats){
+        const rank=Number(el.dataset.rank)||16,plinth=el.querySelector('.podium-plinth'),portrait=el.querySelector('.podium-portrait'),name=el.querySelector('.podium-name'),crownEl=el.querySelector('.podium-crown');
+        if(plinth){plinth.style.transformOrigin='50% 100%';animate(plinth,[{transform:'scaleY(0) scaleX(.9)',opacity:0},{transform:'scaleY(1.14) scaleX(.95)',opacity:1,offset:.5},{transform:'scaleY(.92) scaleX(1.04)',offset:.72},{transform:'scaleY(1.03) scaleX(.99)',offset:.88},{transform:'none',opacity:1}],{duration:rank===1?900:720,delay:at,easing:'cubic-bezier(.22,.8,.3,1)',fill:'backwards'});}
+        if(portrait)animate(portrait,[{transform:'translateY(-46px) scale(.55)',opacity:0},{transform:'translateY(8px) scale(1.1,0.92)',opacity:1,offset:.55},{transform:'translateY(-4px) scale(.97,1.03)',offset:.78},{transform:'none',opacity:1}],{duration:640,delay:at+(rank===1?520:380),easing:'cubic-bezier(.3,.7,.3,1)',fill:'backwards'});
+        if(name)animate(name,[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:420,delay:at+(rank===1?700:540),easing:'ease-out',fill:'backwards'});
+        if(crownEl)animate(crownEl,[{transform:'translateX(-50%) translateY(-70px) rotate(-38deg) scale(.6)',opacity:0},{transform:'translateX(-50%) translateY(6px) rotate(4deg) scale(1.12)',opacity:1,offset:.62},{transform:'translateX(-50%) translateY(-2px) rotate(-10deg) scale(.97)',offset:.82},{transform:'translateX(-50%) rotate(-7deg)',opacity:1}],{duration:760,delay:at+1150,easing:'cubic-bezier(.3,.7,.3,1)',fill:'backwards'});
+        at+=rank>7?45:rank>3?90:rank===3?260:rank===2?300:0;
       }
     }
     function updateOverlay() {

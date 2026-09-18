@@ -289,6 +289,8 @@
   $('tvNext').onclick=()=>stepTV(1);
   $('tvUp').onclick=()=>moveTV(-1);
   $('tvDown').onclick=()=>moveTV(1);
+  // Folded rule rows open on tap.
+  document.querySelectorAll('#gameDetail .rule-row').forEach(row=>row.addEventListener('click',()=>row.classList.toggle('open')));
   $('choiceStart').onclick=()=>{const id=state.selected;if(!id||$('choiceStart').disabled)return;choiceStarting=true;renderChoice();manage({type:'launch',id});setTimeout(()=>{choiceStarting=false;renderChoice();},6000);};
   $('choiceOpen').onclick=()=>{if(state.selected)openGame(state.selected);};
   function focusNumber(){const number=Number($('tvGameNumber').value);if(!Number.isInteger(number)||number<1||number>state.catalog.length){toast('Введи номер от 1 до '+state.catalog.length);return;}manage({type:'tv-focus',number});}

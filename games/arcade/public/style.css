@@ -52,3 +52,10 @@ html.party-host #board:has(.runner-row:nth-child(9)) .runner-row b{font-size:10p
  html.party-host #board:has(.runner-row:nth-child(9)) .runner-row>span:nth-child(2){display:none}
  html.party-host #board:has(.runner-row:nth-child(9)) .runner-row b{font-size:9px;line-height:1}
 }
+
+/* Punch Meter: motion sensitivity (same on web and in the app). */
+.punch-sense{display:flex;align-items:center;justify-content:center;gap:6px;margin:10px auto;padding:4px;border-radius:99px;background:#ffffff08;border:1px solid #ffffff14;width:max-content;max-width:100%}
+.punch-sense[hidden]{display:none}
+.punch-sense span{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#aab4a8;padding:0 6px 0 8px}
+.punch-sense button{min-height:36px;padding:7px 12px;border-radius:99px;border:0;background:transparent;color:#dfe8da;font:inherit;font-size:12px;font-weight:800}
+.punch-sense button[aria-pressed=true]{background:#c8f58b;color:#15200e}

@@ -248,3 +248,22 @@ body.tv-screen #tvSidebar #players .player{display:flex!important}
 body.tv-screen #tvStage.roster-mid #tvSidebar .player{padding:6px 9px}
 body.tv-screen #tvStage.roster-mid #tvSidebar .tv-invite #inviteHint,body.tv-screen #tvStage.roster-mid #tvSidebar #qrCaption{display:none}
 body.tv-screen #tvStage.roster-mid #tvSidebar #players{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+
+/* ---- TV round 4 ------------------------------------------------------------ */
+/* Mascot stands on the masthead's bottom edge, no floating animation. */
+body.tv-screen .tv-identity .brand-mark{animation:none!important;align-self:flex-end!important;width:74px!important;height:48px!important;max-height:48px!important;object-position:center bottom!important;margin:0 0 -1px!important}
+/* Cards ~30% smaller: four columns, 184px rows, featured still 2×2. */
+body.tv-screen #tvStage .lp-catalog .games{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-rows:184px!important;gap:12px}
+body.tv-screen #tvStage.tv-compact .lp-catalog .games,body.tv-screen #tvStage.roster-big .lp-catalog .games{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card h3{font-size:15px!important}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card p{font-size:10px!important;margin:4px 0 8px!important}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.game-info{padding:20px 11px 10px!important}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card .start-game{min-height:30px!important;font-size:9px!important;padding:7px 10px!important}
+body.tv-screen #tvStage .lp-catalog .lp-player-range{font-size:9px}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art .number{font-size:80px!important;top:30px!important}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art .tag{font-size:8px!important;top:9px!important;left:9px!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured h3{font-size:30px!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured p{font-size:12px!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .number{font-size:130px!important;top:50px!important}
+body.tv-screen #tvStage .lp-catalog .fresh-track>.game.lp-catalog-card{flex-basis:calc((100% - 40px + 36px)/4.4)!important}
+body.tv-screen #tvStage .lp-catalog .fresh-track>.game.lp-catalog-card h3{font-size:17px!important}

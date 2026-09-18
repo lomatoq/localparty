@@ -9,17 +9,25 @@ function renderPunchPhone(s,p){
  let panel=$('punchResult');if(!panel){panel=document.createElement('div');panel.id='punchResult';panel.setAttribute('role','status');$('status').after(panel);$('action').before($('motion'));}
  const turn=s.players.find(q=>q.id===s.punchTurn),mine=s.punchTurn===id;
  $('status').textContent=s.phase==='finished'?(p?.hits.length===3?'Все удары завершены':'Время вышло · матч завершён'):s.phase!=='playing'?'Готовимся к ударам':mine?'ТВОЯ ОЧЕРЕДЬ БИТЬ':'СЕЙЧАС БЬЁТ: '+(turn?.name||'—');
- panel.textContent=s.phase==='finished'?`Выполнено ${p?.hits.length||0}/3 · лучший ${Math.max(0,...(p?.hits||[]))} · сумма ${p?.score||0}`:p?.hits.length?'✓ Удар засчитан: '+p.hits.at(-1)+' очков. Осталось '+(3-p.hits.length)+' из 3. Лучший: '+Math.max(...p.hits)+'. Сумма: '+p.score+'.':'Ударов пока нет · 3 попытки';
+ panel.textContent=s.phase==='finished'?`Выполнено ${p?.hits.length||0}/3 · лучший ${Math.max(0,...(p?.hits||[]))} · сумма ${p?.score||0}`:p?.hits.length?'✓ '+p.hits.at(-1)+' — '+punchTitle(p.hits.at(-1))+'. Осталось '+(3-p.hits.length)+' из 3 · сумма '+p.score:'Ударов пока нет · 3 попытки';
  $('motion').hidden=motionEnabled||s.phase==='finished';
+ let sense=$('punchSense');if(!sense){sense=document.createElement('div');sense.id='punchSense';sense.className='punch-sense';sense.setAttribute('role','group');sense.setAttribute('aria-label','Чувствительность датчика');sense.append(Object.assign(document.createElement('span'),{textContent:'Датчик'}));
+  for(const [key,label] of [['soft','Мягко'],['normal','Норма'],['sharp','Чутко']]){const b=document.createElement('button');b.type='button';b.dataset.sense=key;b.textContent=label;b.onclick=()=>{try{localStorage.setItem('lp.punchSense',key);}catch{}update();};sense.append(b);}
+  $('motion').after(sense);}
+ let senseLevel='soft';try{senseLevel=localStorage.getItem('lp.punchSense')||'soft';}catch{}
+ for(const b of sense.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.sense===senseLevel));sense.hidden=s.phase==='finished';
  $('help').textContent=s.phase==='finished'?'Результаты на общем экране.':!mine?'Дождись своей очереди — телефон подскажет, когда бить.':motionEnabled?'Сделай короткое движение рукой и остановись. После удара здесь появятся очки. Держи телефон крепко.':'Нажми «Разрешить движение» для удара телефоном. Или зажми нижнюю кнопку и отпусти на заполненной шкале.';
  if(!motionEnabled&&!$('motionFeedback'))$('motion').textContent='Разрешить движение';
  $('action').textContent=s.phase==='finished'?'Матч завершён':mine?'Удар кнопкой: зажми → отпусти':'Ждём очередь';
 }
 
-if(host)$('start').onclick=()=>send('start');else{$('join').onsubmit=e=>{e.preventDefault();join();};let held=0,pointer=null;const action=$('action');action.onpointerdown=e=>{if(action.disabled||!state)return;e.preventDefault();action.setPointerCapture(e.pointerId);held=performance.now();if(state.mode!=='punchmeter')send('input',{...axis,action:state.mode==='carryball'?'pass':'tap'});navigator.vibrate?.(10);};action.onpointerup=e=>{if(state?.mode==='punchmeter'&&held){const duration=(performance.now()-held)/1000,power=(Math.sin(duration*4-Math.PI/2)+1)/2;send('input',{action:'punch',power});held=0;}};action.onpointercancel=()=>held=0;
+if(host)$('start').onclick=()=>send('start');else{$('join').onsubmit=e=>{e.preventDefault();join();};let held=0,pointer=null;const action=$('action');action.onpointerdown=e=>{if(action.disabled||!state)return;e.preventDefault();action.setPointerCapture(e.pointerId);held=performance.now();if(state.mode!=='punchmeter')send('input',{...axis,action:state.mode==='carryball'?'pass':'tap'});navigator.vibrate?.(10);};action.onpointerup=e=>{if(state?.mode==='punchmeter'&&held){const duration=(performance.now()-held)/1000,power=(Math.sin(duration*4-Math.PI/2)+1)/2;held=0;if(duration<.15)return;const r=action.getBoundingClientRect(),side=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/(r.width/2||1)));send('input',{action:'punch',power,side});}};action.onpointercancel=()=>held=0;
  const zone=$('joy');function move(e){const r=zone.getBoundingClientRect(),radius=r.width*.32;let x=(e.clientX-r.left-r.width/2)/radius,y=(e.clientY-r.top-r.height/2)/radius,n=Math.max(1,Math.hypot(x,y));axis={x:x/n,y:y/n};$('knob').style.transform=`translate(calc(-50% + ${axis.x*radius}px),calc(-50% + ${axis.y*radius}px))`;send('input',axis);}function reset(){axis={x:0,y:0};pointer=null;held=0;$('knob').style.transform='translate(-50%,-50%)';send('input',axis);}zone.onpointerdown=e=>{if(pointer!==null)return;pointer=e.pointerId;zone.setPointerCapture(pointer);move(e);};zone.onpointermove=e=>{if(pointer===e.pointerId)move(e);};zone.onpointerup=zone.onpointercancel=reset;window.addEventListener('blur',reset);document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});
  // Motion permission alone is not proof that the phone is sending measurements.
  let motionPending=false,motionListener=null,motionWatchdog=null,motionGravity=null;
+ let motionSide=0,punchWasMine=false,punchTurnSince=0,punchArmed=false,punchStillSince=0;
+ // Sensitivity chosen on the controller (web or app); default is the calm "soft" profile.
+ function punchSense(){let level='soft';try{level=window.localStorage?.getItem('lp.punchSense')||'soft';}catch{}return {soft:{trigger:16,full:52},normal:{trigger:12,full:40},sharp:{trigger:9,full:32}}[level]||{trigger:16,full:52};}
  $('motion').onclick=async()=>{
   if(motionPending||motionEnabled)return;
   const button=$('motion');let feedback=$('motionFeedback');if(!feedback){feedback=document.createElement('p');feedback.id='motionFeedback';feedback.setAttribute('role','status');feedback.style.cssText='font-size:13px;line-height:1.4;margin:8px 0;max-width:100%;overflow-wrap:anywhere';button.after(feedback);}
@@ -38,8 +46,14 @@ if(host)$('start').onclick=()=>send('start');else{$('join').onsubmit=e=>{e.preve
     if(gravityFallback){if(!motionGravity)motionGravity=vector.slice();const linear=vector.map((v,i)=>v-motionGravity[i]);motionGravity=vector.map((v,i)=>motionGravity[i]*.85+v*.15);vector=linear;}
     if(!motionEnabled){motionEnabled=true;motionPending=false;button.hidden=true;feedback.textContent=gravityFallback?'Датчик работает: получены данные движения (с компенсацией гравитации).':'Датчик работает: получены данные ускорения.';}
     armWatchdog();const magnitude=Math.hypot(...vector);
-    if(state?.mode!=='punchmeter'||state.phase!=='playing'||state.punchTurn!==id){motionPeak=0;return;}
-    motionPeak=Math.max(motionPeak,magnitude);if(magnitude<3&&motionPeak>8&&performance.now()-lastMotion>1800){send('input',{action:'punch',power:Math.min(1,motionPeak/35)});motionPeak=0;lastMotion=performance.now();}
+    // A turn starts disarmed: the jolt of picking the phone up / the turn switching never
+    // counts. The phone must be held still briefly first, and again after every punch.
+    const now=performance.now();
+    if(state?.mode!=='punchmeter'||state.phase!=='playing'||state.punchTurn!==id){motionPeak=0;punchWasMine=false;return;}
+    if(!punchWasMine){punchWasMine=true;punchTurnSince=now;punchArmed=false;punchStillSince=0;motionPeak=0;}
+    if(!punchArmed){if(magnitude<2.2){punchStillSince||=now;if(now-punchTurnSince>=1200&&now-punchStillSince>=350)punchArmed=true;}else punchStillSince=0;motionPeak=0;return;}
+    const sense=punchSense();if(magnitude>=motionPeak)motionSide=magnitude?vector[0]/magnitude:0;motionPeak=Math.max(motionPeak,magnitude);
+    if(magnitude<3&&motionPeak>sense.trigger&&now-lastMotion>1800){send('input',{action:'punch',side:Math.max(-1,Math.min(1,motionSide)),power:Math.max(0,Math.min(1,(motionPeak-sense.trigger*.5)/(sense.full-sense.trigger*.5)))});motionPeak=0;lastMotion=now;punchArmed=false;punchStillSince=0;}
    };window.addEventListener('devicemotion',motionListener);armWatchdog();
   }catch{stopMotion('Браузер не дал доступ к движению. Используй кнопку или повтори запрос.');}
  };
@@ -63,7 +77,7 @@ function drawFeedback(s){
     if(s.mode==='hungry'&&p.mass>old.mass+.5){burst(p.x,p.y,p.color,.55,'absorb');feel('score',p.x,p.y,p.color,.35);}
     if(s.mode==='hungry'&&old.dead<=0&&p.dead>0)feel('elimination',p.x,p.y,p.color,.65);
     if(['flappy','snakelines'].includes(s.mode)&&old.alive&&!p.alive){burst(p.x,p.y,p.color,1,'break');feel('collision',p.x,p.y,p.color,.58);}
-    if(s.mode==='punchmeter'&&p.hits.length>old.hits.length){const a=s.bag.angle,x=600+Math.sin(a)*250,y=100+Math.cos(a)*250;burst(x,y,p.color,1.5);feel('hit',x,y,p.color,.68);}
+    if(s.mode==='punchmeter'&&p.hits.length>old.hits.length){const pose=punchBagPose(s.bag),x=pose.x,y=pose.y+110*pose.scale*pose.squash;burst(x,y,p.color,1.5);feel('hit',x,y,p.color,.68);}
    }
    if(s.mode==='taprace'){const leader=[...s.players].sort((a,b)=>b.score-a.score)[0],oldLeader=[...feedbackState.players].sort((a,b)=>b.score-a.score)[0];if(leader&&oldLeader&&leader.id!==oldLeader.id)feel('score',leader.x||600,leader.y||360,leader.color,.28);}
    if(s.mode==='carryball'){
@@ -212,7 +226,7 @@ function paintEnvironment(s){
  g.drawImage(environment,0,0,1200,720);
 }
 function draw(){window.PartyArt?.beginFrame(g,1200,720);g.clearRect(0,0,1200,720);if(state){const s=visualState(state),ps=s.players;paintEnvironment(s);g.save();g.beginPath();g.roundRect(0,0,1200,720,30);g.clip();if(s.mode==='taprace')drawTapRace(s);
-if(s.mode==='punchmeter'){const turn=s.players.find(p=>p.id===s.punchTurn);if(s.phase==='playing'&&turn){text('БЬЁТ: '+turn.name,600,35,26,turn.color);text('Попытка '+(turn.hits.length+1)+' из 3',600,690,22);}const angle=s.bag.angle,x=600+Math.sin(angle)*250,y=100+Math.cos(angle)*250;g.strokeStyle='#d7e9e9';g.lineWidth=5;g.beginPath();g.moveTo(600,70);g.lineTo(x,y);g.stroke();g.save();g.translate(x,y);g.rotate(-angle);const bagArt=window.PartyArt?.draw(g,'punchbag',0,-20,150,230,{pivot:{x:.5,y:0}});g.globalAlpha=bagArt?0:1;g.fillStyle='#ff5788';g.shadowColor='#ff5788';g.shadowBlur=32;g.beginPath();g.roundRect(-70,-20,140,230,60);g.fill();g.shadowBlur=0;g.fillStyle='#17222c';g.fillRect(-70,30,140,28);text('BOOM',0,135,24);g.restore();const hit=s.bag.last;if(hit&&s.time-hit.time<2)text(hit.score+'!',600,650,72,'#caff6a');}
+if(s.mode==='punchmeter'){const turn=s.players.find(p=>p.id===s.punchTurn);if(s.phase==='playing'&&turn){text('БЬЁТ: '+turn.name,600,35,26,turn.color);text('Попытка '+(turn.hits.length+1)+' из 3',600,690,22);}const pose=punchBagPose(s.bag),x=pose.x,y=pose.y;g.strokeStyle='#d7e9e9';g.lineWidth=5*pose.scale;g.beginPath();g.moveTo(600,70);g.lineTo(x,y);g.stroke();g.save();g.translate(x,y);g.rotate(pose.rotate);g.scale(pose.scale,pose.scale*pose.squash);g.filter=`brightness(${pose.light})`;const bagArt=window.PartyArt?.draw(g,'punchbag',0,-20,150,230,{pivot:{x:.5,y:0}});g.filter='none';g.globalAlpha=bagArt?0:1;g.fillStyle='#ff5788';g.shadowColor='#ff5788';g.shadowBlur=32;g.beginPath();g.roundRect(-70,-20,140,230,60);g.fill();g.shadowBlur=0;g.fillStyle='#17222c';g.fillRect(-70,30,140,28);text('BOOM',0,135,24);g.restore();const hit=s.bag.last;if(hit&&s.time-hit.time<3.8)punchScoreboard(hit,s.time-hit.time);}
 if(s.mode==='flappy'){g.fillStyle='#00000000';g.beginPath();g.roundRect(0,0,1200,720,28);g.fill();for(let ci=0;ci<4;ci++)window.PartyArt?.draw(g,'cloud',((ci*340-(reducedArtMotion?0:s.time*12))%1400+1400)%1400-100,100+ci%2*140,145,75,{alpha:.14});for(const p of s.pipes||[]){const material=g.createLinearGradient(p.x-32,0,p.x+32,0);material.addColorStop(0,'#286c39');material.addColorStop(.18,'#73c65e');material.addColorStop(.38,'#99df78');material.addColorStop(.72,'#4c9d43');material.addColorStop(1,'#245a32');g.fillStyle=material;g.fillRect(p.x-32,0,64,p.gap-105);g.fillRect(p.x-32,p.gap+105,64,720-p.gap-105);window.PartyArt?.draw(g,'pipe-cap',p.x,p.gap-115,76,26);window.PartyArt?.draw(g,'pipe-cap',p.x,p.gap+115,76,26,{rotation:Math.PI});}for(const p of ps){if(!p.alive)continue;const birdArt=window.PartyArt?.draw(g,'bird',p.x,p.y,40,35,{color:p.color,rotation:Math.max(-.45,Math.min(.9,(p.vy||0)/650))});if(!birdArt){circle(p.x,p.y,16,p.color);circle(p.x+7,p.y-5,5,'#fff');circle(p.x+9,p.y-5,2,'#17222c');g.fillStyle=p.color;g.fillRect(p.x-25,p.y+Math.sin(s.time*20)*8,16,6);}else {g.save();g.translate(p.x,p.y);g.rotate(Math.max(-.45,Math.min(.9,(p.vy||0)/650)));window.PartyArt?.draw(g,'bird-wing',-2,3,20,18,{color:p.color,flipX:true,pivot:{x:.2,y:.65},rotation:reducedArtMotion?0:Math.sin(s.time*19)*.6});g.restore();}text(p.name,p.x-65,p.y+5,12);}}
 if(s.mode==='hungry'){g.fillStyle='#00000000';g.beginPath();g.roundRect(0,0,1200,720,36);g.fill();for(const f of s.food||[])if(!window.PartyArt?.draw(g,['food-chicken','food-pizza','food-burger','food-donut'][f.kind],f.x,f.y,25,25))text(['🍗','🍕','🍔','🍩'][f.kind],f.x,f.y,24);for(const p of ps){if(p.dead>0)continue;circle(p.x,p.y,Math.sqrt(p.mass)*3.6+2,p.color);if(!window.PartyArt?.draw(g,'blob',p.x,p.y,Math.sqrt(p.mass)*7.2,Math.sqrt(p.mass)*7.2,{color:p.color}))circle(p.x,p.y,Math.sqrt(p.mass)*3,p.color);g.save();g.shadowColor='#000';g.shadowBlur=4;text(p.name,p.x,p.y-Math.sqrt(p.mass)*3.6-9,13,'#f5fff4');text(Math.round(p.mass),p.x,p.y+Math.sqrt(p.mass)*3.6+16,13,p.color);g.restore();}}
 if(s.mode==='snakelines'){g.strokeStyle='#ffffff35';g.lineWidth=2;g.fillStyle='#00000000';g.beginPath();g.roundRect(10,10,1180,700,28);g.fill();g.stroke();paintTrails(s);for(const p of ps){if(p.alive){if(!window.PartyArt?.draw(g,'puck',p.x,p.y,20,20,{color:p.color,rotation:p.angle}))circle(p.x,p.y,9,p.color);text(p.name,p.x,p.y-18,13);}}window.drawSnakeAmbient?.(g,s);if(s.roundWait>0)text('Раунд '+s.round+' завершён',600,360,40);}
@@ -223,3 +237,23 @@ if(state){drawFeedback(state);g.restore();}requestAnimationFrame(draw);}draw();}
 
 
 
+
+// Punch bag seen from the player: a hit swings it AWAY (it rises, shrinks and foreshortens
+// in perspective, a little darker), with a small left/right lean from the punch direction.
+function punchBagPose(bag){const a=bag?.angle||0,t=bag?.tilt||0,away=Math.sin(a),depth=Math.max(-.35,away);
+ const scale=1/(1+.55*depth),rope=250*Math.cos(a)*scale;return {x:600+Math.sin(t)*170*scale,y:70+rope,scale,squash:.72+.28*Math.abs(Math.cos(a)),rotate:-t*.8,light:Math.max(.62,1-.35*Math.max(0,away))};}
+
+// Arcade-machine readout: 15 titles from a feeble tap to a hero's blow.
+const PUNCH_TITLES=['Слабак','Котёнок','Пушинка','Разминка','Любитель','Крепыш','Боец','Задира','Ударник','Громила','Тяжеловес','Нокаутёр','Чемпион','Титан','Богатырь'];
+function punchTitle(score){return PUNCH_TITLES[Math.max(0,Math.min(14,Math.floor((score-100)/900*15)))];}
+// The number climbs like a real punching machine, a strength meter fills alongside,
+// and the title pops in once the count lands.
+function punchScoreboard(hit,since){const c=document.getElementById('arena')?.getContext('2d');if(!c)return;
+ const k=Math.min(1,since/1.25),eased=1-Math.pow(1-k,3),shown=Math.round(hit.score*eased),level=shown/1000,color=level>.8?'#ffcf5a':level>.55?'#caff6a':'#7fe7ff';
+ c.save();c.fillStyle='#0c1218cc';c.strokeStyle='#ffffff26';c.lineWidth=2;c.beginPath();c.roundRect(1048,150,70,420,35);c.fill();c.stroke();
+ const h=Math.max(0,412*level),grad=c.createLinearGradient(0,566,0,154);grad.addColorStop(0,'#7fe7ff');grad.addColorStop(.55,'#caff6a');grad.addColorStop(.85,'#ffcf5a');grad.addColorStop(1,'#ff6f7d');
+ c.fillStyle=grad;c.shadowColor=color;c.shadowBlur=24;c.beginPath();c.roundRect(1052,566-h,62,h,31);c.fill();c.shadowBlur=0;
+ for(let i=1;i<15;i++){const y=566-412*i/15;c.fillStyle='#ffffff30';c.fillRect(1052,y,i%5?14:24,2);}
+ c.textAlign='center';c.font='900 96px system-ui';c.fillStyle=color;c.shadowColor=color;c.shadowBlur=30;c.fillText(String(shown),600,588);c.shadowBlur=0;
+ if(k>=1){const pop=Math.min(1,(since-1.25)/.35),s=pop<1?.6+.55*Math.sin(pop*Math.PI*.75):1;c.translate(600,640);c.scale(s,s);c.font='900 34px system-ui';c.fillStyle='#f3f8ee';c.fillText(punchTitle(hit.score).toUpperCase(),0,0);}
+ c.restore();}

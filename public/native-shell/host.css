@@ -200,3 +200,27 @@ body.native-shell.tools-stuck .app-header::before{opacity:0}
 @keyframes lpFadeOut{to{opacity:0}}
 @keyframes lpRowIn{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
 @media(prefers-reduced-motion:reduce){.native-shell dialog[open],.native-shell dialog[open]::backdrop,.native-shell dialog[open]>*,.native-shell #roster>*,.native-shell .native-choice.is-new{animation:none}}
+
+/* Dialog actions share the row evenly; no button gets squeezed. */
+.native-shell .native-actions{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px}
+.native-shell .native-actions>button{width:100%;min-width:0;min-height:52px;margin:0;white-space:normal;line-height:1.15}
+.native-shell dialog button:focus:not(:focus-visible){outline:none;box-shadow:none}
+.native-shell .native-actions{grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
+.native-shell [data-close]{width:44px;min-width:44px;height:44px;min-height:44px;padding:0!important}
+
+/* Game sheet fits one screen: shorter art, tighter copy, long rule rows fold to three
+   lines and open on tap (nothing removed), actions share the row. */
+.native-shell #gameDetail{padding:16px}
+.native-shell #gameDetail .native-sheet-head{margin-bottom:6px;align-items:center}
+.native-shell #gameDetail .native-sheet-head h2{font-size:26px;margin:0}
+.native-shell #gameDetail .native-detail-art{height:118px;margin:0 0 10px}
+.native-shell #gameDetail #detailGoal{font-size:13px;line-height:1.4;margin:0 0 10px}
+.native-shell #gameDetail .rule-row{margin:0;padding:9px 0;border-top:1px solid var(--line);cursor:pointer}
+.native-shell #gameDetail .rule-row b{display:block;font-size:10px;letter-spacing:.12em;color:var(--lime);margin-bottom:3px}
+.native-shell #gameDetail .rule-row p{margin:0;font-size:12.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.native-shell #gameDetail .rule-row.open p{-webkit-line-clamp:unset;display:block}
+.native-shell #gameDetail #gameSettings .native-row{margin:8px 0}
+.native-shell #gameDetail #launchHint{font-size:11px;line-height:1.35;margin:8px 0 10px;color:var(--muted)}
+.native-shell #gameDetail .native-actions{margin-top:4px}
+@media(max-height:720px){.native-shell #gameDetail .native-detail-art{height:84px}}
+.native-shell dialog :is(button,h2):focus:not(:focus-visible),.native-shell dialog [data-close]:focus{outline:none;box-shadow:none}

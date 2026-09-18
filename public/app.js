@@ -48,8 +48,15 @@
   let source,release=()=>{};if('createImageBitmap' in window)source=await createImageBitmap(file,{imageOrientation:'from-image'});else{const url=URL.createObjectURL(file);release=()=>URL.revokeObjectURL(url);source=await new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=url;});}
   try{const side=Math.min(source.width,source.height),sx=(source.width-side)/2,sy=(source.height-side)/2,canvas=document.createElement('canvas');canvas.width=canvas.height=192;const c=canvas.getContext('2d',{alpha:false});c.fillStyle='#17131f';c.fillRect(0,0,192,192);c.drawImage(source,sx,sy,side,side,0,0,192,192);for(const quality of [.82,.72,.62,.52]){const data=canvas.toDataURL('image/jpeg',quality);if(data.length<128000)return data;}throw Error('Фото не удалось достаточно уменьшить.');}finally{source.close?.();release();}
  }
+ // Profile lives in the masthead: a round avatar with your initial/photo opens the editor.
+ function profileChip(){
+  if(host)return;let chip=$('editFromCatalog');
+  if(!chip){chip=el('button','profile-chip');chip.id='editFromCatalog';chip.type='button';chip.onclick=openProfile;document.querySelector('.app-header>nav:last-of-type')?.append(chip);}
+  const key=JSON.stringify([profile?.name,profile?.avatar]);if(chip.dataset.key!==key){chip.dataset.key=key;chip.replaceChildren(avatarNode(profile,'profile-chip-avatar'));}
+  chip.setAttribute('aria-label','Профиль и фото'+(profile?.name?': '+profile.name:''));chip.hidden=!profile;
+ }
  function render(){
-  updateTestCompanion();
+  updateTestCompanion();profileChip();
   const ready=(accepted||everAccepted)&&(host||!!profile&&!editing);
   $('onboarding').hidden=ready||host;$('home').hidden=!ready;
   if(!state)return;
@@ -73,7 +80,7 @@
   $('players').replaceChildren(...state.players.map((p,i)=>{const row=el('div','player'),avatar=avatarNode(p);avatar.style.setProperty('--card',state.catalog[i%state.catalog.length].color);row.append(avatar,el('b','',p.name),el('small',p.gameReady?'is-ready':'',p.gameReady?'в игре':p.id===profile?.id?'это ты':'в сети'));return row;}));
   if(!$('games').children.length)buildCatalog();
   updateVotes();
-  const ballotNote=document.querySelector('.guest-catalog-tools p');if(ballotNote){const b=state.ballot;ballotNote.textContent=b?.reason==='tie'?'Ничья. Подключите ТВ — сервер случайно выберет одну из игр-лидеров.':b?.reason==='player-count'?'Для выбранной игры не подходит число игроков. Выберите другую игру.':b?.reason==='ready'?'Все проголосовали. Подключите ТВ — игра запустится автоматически.':`Проголосовали ${b?.voted||0} из ${b?.total||0}. Когда выберут все, лидер запустится сам.`;}
+  const ballotNote=document.querySelector('.guest-ballot-status');if(ballotNote){const b=state.ballot;ballotNote.textContent=b?.reason==='tie'?'Ничья. Подключите ТВ — сервер случайно выберет одну из игр-лидеров.':b?.reason==='player-count'?'Для выбранной игры не подходит число игроков. Выберите другую игру.':b?.reason==='ready'?'Все проголосовали. Подключите ТВ — игра запустится автоматически.':`Голосов: ${b?.voted||0} из ${b?.total||0}`;}
   for(const b of document.querySelectorAll('.start-game'))b.disabled=state.busy;
   if(state.busy)$('connection').textContent='Запускаем игру…';else if(ws?.readyState===WebSocket.OPEN)$('connection').textContent='В одной сети';
   renderRanks();renderMiniRanks();renderRoom();renderHUD();
@@ -107,23 +114,44 @@
   const b=el('button','catalog-vote');b.type='button';b.dataset.vote=game.id;
   b.onclick=()=>send({type:'vote-game',id:(state.votes||[]).some(v=>v.playerId===profile?.id&&v.gameId===game.id)?null:game.id});return b;
  }
- function updateVotes(){for(const b of document.querySelectorAll('[data-vote]')){const votes=(state.votes||[]).filter(v=>v.gameId===b.dataset.vote),mine=votes.some(v=>v.playerId===profile?.id);b.textContent=(mine?'✓ Ваш голос':'Голосовать')+(votes.length?' · '+votes.length:'');b.setAttribute('aria-pressed',String(mine));b.disabled=!accepted;}}
+ function updateVotes(){rankGuests();for(const b of document.querySelectorAll('[data-vote]')){const votes=(state.votes||[]).filter(v=>v.gameId===b.dataset.vote),mine=votes.some(v=>v.playerId===profile?.id);b.textContent=(mine?'✓ Ваш голос':'Голосовать')+(votes.length?' · '+votes.length:'');b.setAttribute('aria-pressed',String(mine));b.disabled=!accepted;}}
+ // Guest catalog = a ranked list: the most-voted game on top (tall card with the vote
+ // count), the next two medium, the rest compact rows (art, title, rules "?", vote).
  function guestCard(game){
-  const card=el('article','guest-game');card.dataset.id=game.id;card.dataset.section=game.section;
-  const details=el('button','guest-game-details');details.type='button';details.setAttribute('aria-label','Правила: '+game.title);
-  const img=el('img','');img.src='/assets/games/'+(game.id==='tankarena'?'tankarena-hd':game.id)+'.webp';img.alt='';img.loading='lazy';
-  details.append(img,el('strong','',game.title),el('small','',game.min+'–'+game.max+' игроков'));details.onclick=()=>showRules(game);
-  card.append(details,voteButton(game));return card;
+  const card=el('article','guest-game rank-row');card.dataset.id=game.id;card.dataset.section=game.section;
+  if(/^#[a-f\d]{6}$/i.test(game.color||''))card.style.setProperty('--card',game.color);
+  const img=el('img','guest-art');img.src='/assets/games/'+(game.id==='tankarena'?'tankarena-hd':game.id)+'.webp';img.alt='';img.loading='lazy';img.decoding='async';img.onerror=()=>{img.hidden=true;};
+  const copy=el('div','guest-copy'),lead=el('span','guest-lead');lead.hidden=true;copy.append(lead,el('strong','',game.title),el('small','',game.min+'–'+game.max+' игроков'));
+  const info=el('button','guest-info','?');info.type='button';info.setAttribute('aria-label','Правила: '+game.title);info.onclick=()=>showRules(game);
+  const actions=el('div','guest-actions');actions.append(info,voteButton(game));
+  card.append(img,copy,actions);return card;
+ }
+ const plural=(n,one,few,many)=>{const a=n%10,b=n%100;return a===1&&b!==11?one:a>=2&&a<=4&&(b<12||b>14)?few:many;};
+ function rankGuests(){
+  const list=$('games');if(!list||list.className!=='guest-games')return;
+  const tally=new Map();for(const v of state.votes||[])tally.set(v.gameId,(tally.get(v.gameId)||0)+1);
+  const order=new Map(state.catalog.map((g,i)=>[g.id,i])),cards=[...list.children];
+  const sorted=[...cards].sort((a,b)=>(tally.get(b.dataset.id)||0)-(tally.get(a.dataset.id)||0)||order.get(a.dataset.id)-order.get(b.dataset.id));
+  const moved=sorted.some((c,i)=>c!==cards[i]),before=moved&&!reduced?new Map(cards.map(c=>[c,c.getBoundingClientRect()])):null;
+  if(moved)list.append(...sorted);
+  let place=0;for(const card of sorted){const rank=card.hidden?'row':place===0?'hero':place<3?'big':'row';if(!card.hidden)place++;
+   for(const r of ['hero','big','row'])card.classList.toggle('rank-'+r,r===rank);
+   const n=tally.get(card.dataset.id)||0,lead=card.querySelector('.guest-lead');lead.hidden=rank!=='hero';
+   lead.textContent=n?`Лидер · ${n} ${plural(n,'голос','голоса','голосов')}`:'Голосуй первым';}
+  // FLIP: cards glide to their new places instead of jumping.
+  if(before)for(const card of sorted){const was=before.get(card),now=card.getBoundingClientRect();if(!was||card.hidden)continue;const dy=was.top-now.top;if(Math.abs(dy)<1)continue;
+   card.animate([{transform:`translateY(${dy}px)`},{transform:'none'}],{duration:520,easing:'cubic-bezier(.32,.72,0,1)'});}
  }
  function buildGuestCatalog(){
   $('totalGames').textContent=state.catalog.length+' игр';$('arcadeCount').textContent=state.catalog.length+' игр';$('tableSection').hidden=true;
   $('games').className='guest-games';$('games').replaceChildren(...state.catalog.map(guestCard));
   const tools=el('div','guest-catalog-tools'),search=el('input','');search.type='search';search.placeholder='Найти игру';search.setAttribute('aria-label','Найти игру');search.oninput=()=>{guestSearch=search.value;filterGuests();};
   const filters=el('div','guest-filters');for(const [id,title]of [['all','Все'],['arcade','Аркады'],['table','За столом']]){const b=el('button','',title);b.type='button';b.dataset.category=id;b.setAttribute('aria-pressed',String(id==='all'));b.onclick=()=>{guestCategory=id;filterGuests();};filters.append(b);}
-  const editProfile=el('button','quiet','Профиль и фото');editProfile.id='editFromCatalog';editProfile.type='button';editProfile.onclick=openProfile;
-  tools.append(search,filters,editProfile,el('p','','Один голос на человека. Когда проголосуют все, игра запустится сама. При равенстве — случайный выбор среди лидеров.'));$('games').before(tools);
+  const ballot=el('details','guest-ballot'),summary=el('summary','','Как выбираем игру');ballot.append(summary,el('p','','Один голос на человека. Когда проголосуют все, игра запустится сама. При равенстве — случайный выбор среди лидеров.'));
+  const status=el('p','guest-ballot-status');status.setAttribute('role','status');const row=el('div','guest-ballot-row');row.append(status,ballot);
+  tools.append(search,filters,row);$('games').before(tools);
  }
- function filterGuests(){for(const b of document.querySelectorAll('.guest-filters button'))b.setAttribute('aria-pressed',String(b.dataset.category===guestCategory));let count=0;for(const card of $('games').children){const g=state.catalog.find(g=>g.id===card.dataset.id);card.hidden=!(guestCategory==='all'||(guestCategory==='table'?g.section==='table':g.section!=='table'))||!g.title.toLocaleLowerCase().includes(guestSearch.toLocaleLowerCase());if(!card.hidden)count++;}$('arcadeCount').textContent=count+' игр';}
+ function filterGuests(){for(const b of document.querySelectorAll('.guest-filters button'))b.setAttribute('aria-pressed',String(b.dataset.category===guestCategory));let count=0;for(const card of $('games').children){const g=state.catalog.find(g=>g.id===card.dataset.id);card.hidden=!(guestCategory==='all'||(guestCategory==='table'?g.section==='table':g.section!=='table'))||!g.title.toLocaleLowerCase().includes(guestSearch.toLocaleLowerCase());if(!card.hidden)count++;}$('arcadeCount').textContent=count+' игр';rankGuests();}
  function filterCatalog(value){if(!host)return;catalogFilter=value;for(const b of document.querySelectorAll('[data-filter]')){b.classList.toggle('active',b.dataset.filter===value);b.setAttribute('aria-pressed',String(b.dataset.filter===value));}for(const card of document.querySelectorAll('.game')){card.hidden=!['all','fresh'].includes(value)&&card.dataset.category!==value;}$('tableSection').hidden=![...$('tableGames').children].some(c=>!c.hidden);if($('freshSection'))$('freshSection').hidden=!['all','fresh','action'].includes(value);$('arcadeCount').textContent=`${[...document.querySelectorAll('#games>.game,#moreGames>.game,#freshTrack>.game')].filter(c=>!c.hidden).length} игр`;document.body.dataset.filter=value;if(value==='fresh')requestAnimationFrame(()=>$('freshSection')?.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'}));}
  function updateFilterIndicator(){const nav=$('catalogFilters'),active=nav.querySelector('.active');if(!active||nav.hidden)return;nav.style.setProperty('--tab-x',active.offsetLeft+'px');nav.style.setProperty('--tab-y',active.offsetTop+'px');nav.style.setProperty('--tab-w',active.offsetWidth+'px');nav.style.setProperty('--tab-h',active.offsetHeight+'px');nav.classList.add('indicator-ready');}
  new MutationObserver(updateFilterIndicator).observe($('catalogFilters'),{attributes:true,attributeFilter:['hidden'],subtree:false});
@@ -136,7 +164,7 @@
  window.addEventListener('resize',alignCatalogRails,{passive:true});
  document.fonts.ready.then(()=>{updateFilterIndicator();alignCatalogRails();});
  function showRules(g){
-  if(!g)return;$('rulesTitle').textContent=g.title;$('rulesBody').replaceChildren();
+  if(!g)return;$('rulesTitle').textContent=g.title;$('rulesBody').replaceChildren();$('rulesBody').onclick=e=>{const row=e.target.closest('#rulesBody>*');if(row)row.classList.toggle('open');};
   const rows=[['01 · ЦЕЛЬ',g.goal||g.description],['02 · УПРАВЛЕНИЕ',g.controls],['03 · КАК ПОБЕДИТЬ',g.win||'Следи за счётом на общем экране. Итоги появятся в конце партии.'],['ВХОД ВО ВРЕМЯ ИГРЫ',g.lateJoin||'Входи в любой момент. Если ход уже начался, игра подскажет, когда ты вступаешь.']];
   for(const [title,body] of rows){const row=el('div','rule-row');row.append(el('b','',title),el('p','',body));$('rulesBody').append(row);}
   $('rulesDialog').showModal();$('rulesTitle').tabIndex=-1;$('rulesTitle').focus({preventScroll:true});$('rulesDialog').scrollTop=0;

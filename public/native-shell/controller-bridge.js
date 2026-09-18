@@ -21,15 +21,6 @@
       #partyNativeDock{position:fixed;inset:auto 0 0;z-index:65;height:calc(52px + env(safe-area-inset-bottom));padding:5px max(12px,env(safe-area-inset-right)) calc(5px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:12px;box-sizing:border-box;isolation:isolate;background:none}
       #partyNativeDock:before{content:'';position:absolute;inset:-40px 0 0;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,#0b101600 0%,#0b10168c 42%,#0b1016e6 72%,#0b1016 100%);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 55%);mask-image:linear-gradient(to bottom,transparent 0%,#000 55%)}
       body.native-controller.in-game #partyNativeDock:before{top:0}
-      html body.native-controller.lobby-connected:not(.in-game) .app-header{background:none!important;border-bottom:0!important;box-shadow:none!important;overflow:visible!important;will-change:auto!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;isolation:auto!important}
-      html body.native-controller.lobby-connected:not(.in-game) .app-header:before{content:'';position:absolute;inset:0 0 -40px;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,#10171bf7 0%,#10171bf0 calc(100% - 40px),#10171b80 calc(100% - 20px),#10171b00 100%);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent 100%);mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent 100%)}
-      @media(max-width:430px){
-        html body.native-controller.lobby-connected:not(.in-game){--mobile-lobby-header:calc(114px + env(safe-area-inset-top))!important}
-        html body.native-controller.lobby-connected:not(.in-game) .app-header{grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:52px 48px!important}
-        html body.native-controller.lobby-connected:not(.in-game) .app-header>.identity{grid-area:1/1!important;min-width:0!important}
-        html body.native-controller.lobby-connected:not(.in-game) .app-header>nav:last-of-type{grid-area:1/2!important;width:auto!important;justify-content:flex-end!important;align-self:center}
-        html body.native-controller.lobby-connected:not(.in-game) #catalogFilters{grid-area:2/1/3/3!important}
-      }
       body.native-controller dialog[open]{animation:lpSheetIn 520ms cubic-bezier(.32,.72,0,1)}
       body.native-controller dialog[open]::backdrop{animation:lpFadeIn 320ms ease}
       @keyframes lpSheetIn{from{opacity:0;transform:translateY(48px) scale(.96)}to{opacity:1;transform:none}}

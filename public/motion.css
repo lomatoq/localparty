@@ -129,3 +129,148 @@ body .return-entry-help>summary:focus-visible{outline:2px solid var(--lime);outl
 body .return-entry-help>p{font-size:14px!important;line-height:1.5!important;margin:4px 0 10px!important}
 body .return-entry-help>small{display:block;font-size:12px;line-height:1.5;color:var(--muted)}
 @media(max-width:700px){body:not(.tv-screen) #joinDialog.lp-join-card{padding:23px;border-radius:25px}body:not(.tv-screen) #joinDialog.lp-join-card>h2{font-size:clamp(30px,9.7vw,43px)}body:not(.tv-screen) #joinDialog.lp-join-card>.eyebrow{font-size:9px;letter-spacing:1.4px}}
+
+/* ---- Guest phone, web and app alike (guest-ui-20260918.4) -------------------- */
+/* One-row masthead: brand + room count + top + profile avatar, category bar below,
+   over a gradient backdrop whose opacity and blur fade out downwards. */
+@media(max-width:430px){
+ html body.guest-catalog.lobby-connected:not(.in-game){--mobile-lobby-header:calc(114px + env(safe-area-inset-top))!important}
+ html body.guest-catalog.lobby-connected:not(.in-game) .app-header{grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:52px 48px!important;background:none!important;border-bottom:0!important;box-shadow:none!important;overflow:visible!important;will-change:auto!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;isolation:auto!important}
+ html body.guest-catalog.lobby-connected:not(.in-game) .app-header>.identity{grid-area:1/1!important;min-width:0!important}
+ html body.guest-catalog.lobby-connected:not(.in-game) .app-header>nav:last-of-type{grid-area:1/2!important;width:auto!important;justify-content:flex-end!important;align-self:center;gap:6px!important}
+ html body.guest-catalog.lobby-connected:not(.in-game) #catalogFilters{grid-area:2/1/3/3!important}
+ html body.guest-catalog.lobby-connected:not(.in-game) .app-header:before{content:'';position:absolute;inset:0 0 -40px;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,#10171bf7 0%,#10171bf0 calc(100% - 40px),#10171b80 calc(100% - 20px),#10171b00 100%);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent 100%);mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent 100%)}
+}
+@media(max-width:389px){html body.guest-catalog.lobby-connected:not(.in-game) .app-header .brand-mark{display:none!important}}
+/* In-game header clears the status bar / Dynamic Island in the app. */
+html body.in-game .app-header{padding-top:calc(5px + env(safe-area-inset-top))!important;height:calc(72px + env(safe-area-inset-top))!important}
+
+/* Profile avatar in the masthead. */
+.profile-chip{display:inline-grid;place-items:center;flex:none;width:44px;height:44px;min-width:44px;min-height:44px;padding:0!important;margin:0;border-radius:50%;border:1px solid #c8f58b66;background:#c8f58b14;box-shadow:0 0 0 3px #c8f58b12;cursor:pointer;transition:transform 260ms cubic-bezier(.32,.72,0,1),box-shadow 260ms ease}
+.profile-chip:active{transform:scale(.92)}
+.profile-chip .profile-chip-avatar{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;overflow:hidden;background:linear-gradient(145deg,#c8f58b,#8fd14f);color:#15200e;font:italic 900 16px/1 Rubik,system-ui,sans-serif}
+.profile-chip .profile-chip-avatar img{width:100%;height:100%;object-fit:cover}
+body.in-game .profile-chip,body.is-host .profile-chip{display:none!important}
+
+/* Ranked guest catalog. Unit row = 78px; leader 2.5 rows, next two 1.5 rows. */
+body.guest-catalog #games.guest-games{display:flex!important;flex-direction:column;gap:10px;grid-template-columns:none!important}
+body.guest-catalog .guest-game{position:relative;display:grid;align-items:center;column-gap:12px;min-width:0;margin:0;padding:10px 10px 10px 10px;border-radius:22px;overflow:hidden;isolation:isolate;border:1px solid #ffffff14;background:radial-gradient(120% 140% at 100% 0,color-mix(in srgb,var(--card,#a96aff) 30%,transparent),transparent 60%),linear-gradient(135deg,#1a2028,#11161c);box-shadow:0 8px 20px #0005;transition:min-height 420ms cubic-bezier(.32,.72,0,1)}
+body.guest-catalog .guest-game[hidden]{display:none!important}
+body.guest-catalog .guest-art{border-radius:16px;object-fit:cover;background:radial-gradient(circle,#ffffff12,#ffffff04);pointer-events:none}
+body.guest-catalog .guest-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+body.guest-catalog .guest-copy strong{font:italic 900 16px/1.1 Rubik,system-ui,sans-serif;text-transform:uppercase;letter-spacing:-.3px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}
+body.guest-catalog .guest-copy small{font-size:11px;color:var(--muted);white-space:nowrap}
+body.guest-catalog .guest-lead{align-self:flex-start;white-space:nowrap;padding:5px 10px;border-radius:99px;background:var(--lime);color:#15200e;font:italic 900 10px/1 Rubik,system-ui,sans-serif;letter-spacing:.3px;text-transform:uppercase;box-shadow:0 0 18px #b4ff3955;margin-bottom:4px}
+body.guest-catalog .guest-lead[hidden]{display:none}
+body.guest-catalog .guest-actions{display:flex;align-items:center;gap:6px}
+body.guest-catalog .guest-info{flex:none;width:40px;height:40px;min-width:40px;min-height:40px;padding:0!important;border-radius:50%;border:1px solid #ffffff22;background:#ffffff0d;color:var(--ink);font:900 17px/1 Rubik,system-ui,sans-serif}
+body.guest-catalog .guest-game .catalog-vote{width:auto!important;min-width:0!important;min-height:40px!important;margin:0!important;padding:9px 12px!important;font-size:11px!important;white-space:nowrap;border-radius:99px}
+/* row */
+body.guest-catalog .guest-game.rank-row{grid-template-columns:58px minmax(0,1fr) auto;min-height:78px}
+body.guest-catalog .guest-game.rank-row .guest-art{width:58px;height:58px;object-fit:cover;object-position:center 30%}
+/* medium (1.5 rows) and leader (2.5 rows): art fills the right side, copy top-left, actions bottom-left */
+body.guest-catalog .guest-game:is(.rank-big,.rank-hero){grid-template-columns:minmax(0,1fr);grid-template-rows:1fr auto;align-items:start;row-gap:8px;padding:14px}
+body.guest-catalog .guest-game:is(.rank-big,.rank-hero) .guest-art{position:absolute;z-index:-1;right:-4%;top:-12%;width:52%;height:124%;object-fit:contain;border-radius:0;background:none;filter:drop-shadow(0 10px 18px #0007)}
+body.guest-catalog .guest-game:is(.rank-big,.rank-hero) .guest-copy{max-width:58%}
+body.guest-catalog .guest-game.rank-big{min-height:125px}
+body.guest-catalog .guest-game.rank-big .guest-copy strong{font-size:19px}
+body.guest-catalog .guest-game.rank-hero{min-height:205px;border-color:#c8f58b66;box-shadow:0 0 0 1px #c8f58b22,0 0 30px #b4ff3922,0 12px 28px #0006}
+body.guest-catalog .guest-game.rank-hero .guest-art{width:62%;right:-6%;top:-6%;height:118%}
+body.guest-catalog .guest-game.rank-hero .guest-copy strong{font-size:26px;letter-spacing:-.8px}
+body.guest-catalog .guest-game.rank-hero .guest-copy{max-width:56%}
+
+/* Compact profile editor: fits one phone screen without scrolling, nothing removed. */
+@media(max-width:600px){
+ body.guest-catalog #onboarding{padding:18px 16px 16px!important;margin-top:8px!important;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;align-items:center}
+ body.guest-catalog #onboarding[hidden]{display:none!important}
+ body.guest-catalog #onboarding>.join-mark{grid-row:1/3;width:44px!important;height:44px!important;font-size:24px!important;margin:0!important;border-radius:14px}
+ body.guest-catalog #onboarding>.eyebrow{margin:0!important;font-size:9px!important}
+ body.guest-catalog #onboarding>h1{margin:2px 0 0!important;font-size:30px!important;line-height:1!important;letter-spacing:-1px}
+ body.guest-catalog #onboarding>h1 br{display:none}
+ body.guest-catalog #onboarding>h1 em:before{content:' '}
+ body.guest-catalog #onboarding>p{grid-column:1/-1;margin:10px 0 12px!important;font-size:12px!important;line-height:1.35!important}
+ body.guest-catalog #onboarding>#joinForm{grid-column:1/-1;display:flex;flex-direction:column;gap:10px;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-field{display:grid!important;grid-template-columns:76px minmax(0,1fr);gap:12px;align-items:center;padding:12px!important;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-preview{width:76px!important;height:76px!important}
+ body.guest-catalog #onboarding .profile-photo-copy{gap:3px!important}
+ body.guest-catalog #onboarding .profile-photo-copy .eyebrow{font-size:9px!important;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-copy b{font-size:14px!important;line-height:1.15}
+ body.guest-catalog #onboarding .profile-photo-copy small{font-size:11px!important;line-height:1.3}
+ body.guest-catalog #onboarding .profile-photo-actions{display:flex!important;flex-wrap:wrap;gap:6px!important;margin:6px 0 2px!important}
+ body.guest-catalog #onboarding .profile-photo-actions button{min-height:38px!important;padding:8px 12px!important;font-size:11px!important;flex:0 1 auto;width:auto!important}
+ body.guest-catalog #onboarding #avatarStatus{font-size:10px!important;line-height:1.3}
+ body.guest-catalog #onboarding label[for=name]{margin:2px 0 -4px!important;font-size:12px!important}
+ body.guest-catalog #onboarding #name{min-height:48px!important;margin:0!important}
+ body.guest-catalog #onboarding fieldset{display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px;margin:0!important;padding:0!important;border:0}
+ body.guest-catalog #onboarding fieldset legend{float:left;width:100%;margin:0 0 2px!important;font-size:12px!important}
+ body.guest-catalog #onboarding fieldset label{margin:0!important;min-height:36px;display:inline-flex;align-items:center;gap:6px}
+ body.guest-catalog #onboarding #joinForm>button[type=submit]{min-height:52px!important;margin:2px 0 0!important}
+}
+@media(prefers-reduced-motion:reduce){body.guest-catalog .guest-game{transition:none}}
+/* Short phones (SE, 320–375 × ≤700): tighten the profile editor further, same content. */
+@media(max-width:600px) and (max-height:760px){
+ body.guest-catalog #onboarding{padding:12px 14px!important;margin-top:4px!important}
+ body.guest-catalog #onboarding>h1{font-size:24px!important}
+ body.guest-catalog #onboarding>.join-mark{width:36px!important;height:36px!important;font-size:19px!important}
+ body.guest-catalog #onboarding>p{margin:6px 0 8px!important;font-size:11px!important}
+ body.guest-catalog #onboarding>#joinForm{gap:7px}
+ body.guest-catalog #onboarding .profile-photo-field{grid-template-columns:60px minmax(0,1fr);padding:10px!important}
+ body.guest-catalog #onboarding .profile-photo-preview{width:60px!important;height:60px!important}
+ body.guest-catalog #onboarding .profile-photo-copy small{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+ body.guest-catalog #onboarding .profile-photo-actions button{min-height:34px!important;padding:6px 10px!important}
+ body.guest-catalog #onboarding #name{min-height:42px!important}
+ body.guest-catalog #onboarding #joinForm>button[type=submit]{min-height:46px!important}
+}
+/* Leader: no pill — a soft lime glow rises from the top edge behind the text. */
+body.guest-catalog .guest-game.rank-hero::before{content:'';position:absolute;z-index:-1;left:-10%;right:30%;top:-40%;height:95%;pointer-events:none;background:radial-gradient(60% 70% at 30% 35%,#c8f58b66,#b4ff3924 45%,transparent 75%);filter:blur(6px)}
+body.guest-catalog .guest-lead{padding:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:var(--lime)!important;font:italic 900 11px/1.2 Rubik,system-ui,sans-serif!important;letter-spacing:.06em!important;text-shadow:0 0 14px #b4ff39aa;margin:0 0 2px!important}
+
+/* Profile photo block: avatar + copy on top, an even row of buttons, status below. */
+@media(max-width:600px){
+ body.guest-catalog #onboarding .profile-photo-field{display:grid!important;grid-template-columns:72px minmax(0,1fr)!important;grid-template-areas:"pic copy" "actions actions" "status status";column-gap:14px!important;row-gap:12px!important;align-items:center;padding:14px!important}
+ body.guest-catalog #onboarding .profile-photo-preview{grid-area:pic;width:72px!important;height:72px!important;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-copy{display:contents!important}
+ body.guest-catalog #onboarding .profile-photo-copy>.eyebrow,body.guest-catalog #onboarding .profile-photo-copy>b,body.guest-catalog #onboarding .profile-photo-copy>small{grid-area:copy}
+ body.guest-catalog #onboarding .profile-photo-copy>.eyebrow{align-self:start;margin:4px 0 0!important}
+ body.guest-catalog #onboarding .profile-photo-copy>b{align-self:center;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-copy>small{align-self:end;margin:0 0 4px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ body.guest-catalog #onboarding .profile-photo-actions{grid-area:actions;display:grid!important;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px!important;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-actions button{width:100%!important;min-width:0!important;min-height:42px!important;margin:0!important;padding:8px 10px!important;font-size:11px!important;white-space:nowrap}
+ body.guest-catalog #onboarding .profile-photo-actions button[hidden]{display:none!important}
+ body.guest-catalog #onboarding #avatarStatus{grid-area:status;text-align:center;margin:0!important}
+ body.guest-catalog #onboarding>.join-mark{display:grid!important;place-items:center;line-height:1!important;overflow:hidden;padding:0!important}
+}
+
+/* Mobile: less text. The in-game description is in the rules; the lobby keeps the
+   headline and moves the voting explanation under an info toggle. */
+@media(max-width:430px){
+ body.guest-catalog.in-game #playingControls{display:none!important}
+ body.guest-catalog #home .intro #subtitle,body.guest-catalog #home .intro .hero-pills{display:none!important}
+ body.guest-catalog .guest-ballot{margin:4px 0 0}
+ body.guest-catalog .guest-ballot summary{display:inline-flex;align-items:center;gap:8px;list-style:none;cursor:pointer;font-size:12px;font-weight:800;color:var(--muted);min-height:36px}
+ body.guest-catalog .guest-ballot summary::-webkit-details-marker{display:none}
+ body.guest-catalog .guest-ballot summary::before{content:'i';display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid #ffffff33;font:italic 900 12px/1 Georgia,serif;color:var(--ink)}
+ body.guest-catalog .guest-ballot p{margin:6px 0 0;font-size:12px;line-height:1.4}
+}
+body.guest-catalog .guest-ballot-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:8px 0 2px}
+body.guest-catalog .guest-ballot-status{margin:0!important;font-size:12px;font-weight:800;color:var(--lime)}
+body.guest-catalog .guest-ballot[open]{flex-basis:100%}
+/* Rules sheet on phones: fits the screen, rows fold to 3 lines and open on tap. */
+@media(max-width:600px){
+ #rulesDialog{padding:16px!important}
+ #rulesDialog #backRules{min-height:40px;padding:8px 14px}
+ #rulesDialog h2{margin:6px 0 8px!important;font-size:26px!important}
+ #rulesDialog .eyebrow{margin-top:10px}
+ #rulesBody{overflow:visible!important}
+ #rulesBody>*{padding:9px 0!important;margin:0!important}
+ #rulesBody :is(p,span,div){font-size:13px!important;line-height:1.4!important}
+ #rulesBody>* :is(p,div):last-child{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+ #rulesBody>.open :is(p,div):last-child{-webkit-line-clamp:unset;display:block}
+ #rulesDialog #closeRules{min-height:50px;margin-top:10px}
+}
+#rulesTitle:focus,#roomTitle:focus{outline:none}
+/* Rows: the game art sits free (no tile) and bleeds off the card's left edge. */
+body.guest-catalog .guest-game.rank-row{grid-template-columns:52px minmax(0,1fr) auto;padding-left:12px}
+body.guest-catalog .guest-game.rank-row .guest-art{position:absolute;z-index:-1;left:-18px;top:50%;width:92px;height:92px;translate:0 -50%;object-fit:contain;object-position:center;border-radius:0;background:none;filter:drop-shadow(0 6px 12px #0008)}
+body.guest-catalog .guest-game.rank-row .guest-copy{grid-column:2}
+body.guest-catalog .guest-game.rank-row .guest-actions{grid-column:3}
