@@ -120,7 +120,8 @@
   $('games').className='guest-games';$('games').replaceChildren(...state.catalog.map(guestCard));
   const tools=el('div','guest-catalog-tools'),search=el('input','');search.type='search';search.placeholder='Найти игру';search.setAttribute('aria-label','Найти игру');search.oninput=()=>{guestSearch=search.value;filterGuests();};
   const filters=el('div','guest-filters');for(const [id,title]of [['all','Все'],['arcade','Аркады'],['table','За столом']]){const b=el('button','',title);b.type='button';b.dataset.category=id;b.setAttribute('aria-pressed',String(id==='all'));b.onclick=()=>{guestCategory=id;filterGuests();};filters.append(b);}
-  tools.append(search,filters,el('p','','Один голос на человека. Когда проголосуют все, игра запустится сама. При равенстве — случайный выбор среди лидеров.'));$('games').before(tools);
+  const editProfile=el('button','quiet','Профиль и фото');editProfile.id='editFromCatalog';editProfile.type='button';editProfile.onclick=openProfile;
+  tools.append(search,filters,editProfile,el('p','','Один голос на человека. Когда проголосуют все, игра запустится сама. При равенстве — случайный выбор среди лидеров.'));$('games').before(tools);
  }
  function filterGuests(){for(const b of document.querySelectorAll('.guest-filters button'))b.setAttribute('aria-pressed',String(b.dataset.category===guestCategory));let count=0;for(const card of $('games').children){const g=state.catalog.find(g=>g.id===card.dataset.id);card.hidden=!(guestCategory==='all'||(guestCategory==='table'?g.section==='table':g.section!=='table'))||!g.title.toLocaleLowerCase().includes(guestSearch.toLocaleLowerCase());if(!card.hidden)count++;}$('arcadeCount').textContent=count+' игр';}
  function filterCatalog(value){if(!host)return;catalogFilter=value;for(const b of document.querySelectorAll('[data-filter]')){b.classList.toggle('active',b.dataset.filter===value);b.setAttribute('aria-pressed',String(b.dataset.filter===value));}for(const card of document.querySelectorAll('.game')){card.hidden=!['all','fresh'].includes(value)&&card.dataset.category!==value;}$('tableSection').hidden=![...$('tableGames').children].some(c=>!c.hidden);if($('freshSection'))$('freshSection').hidden=!['all','fresh','action'].includes(value);$('arcadeCount').textContent=`${[...document.querySelectorAll('#games>.game,#moreGames>.game,#freshTrack>.game')].filter(c=>!c.hidden).length} игр`;document.body.dataset.filter=value;if(value==='fresh')requestAnimationFrame(()=>$('freshSection')?.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'}));}
@@ -264,8 +265,23 @@
  let scrollFrame=0,landscapeY=0,lastLandscapeTime=0;const updateLandscape=time=>{const target=Math.min(64,scrollY*.025),dt=Math.min(40,time-(lastLandscapeTime||time-16));lastLandscapeTime=time;landscapeY+=(target-landscapeY)*(1-Math.exp(-dt/180));document.documentElement.style.setProperty('--landscape-shift',landscapeY.toFixed(2)+'px');if(Math.abs(target-landscapeY)>.08&&!document.hidden)scrollFrame=requestAnimationFrame(updateLandscape);else{scrollFrame=0;lastLandscapeTime=0;}};window.addEventListener('scroll',()=>{if(!reduced&&!scrollFrame)scrollFrame=requestAnimationFrame(updateLandscape);},{passive:true});
  $('address').onchange=updateQR;$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('address').value);tell('Адрес скопирован');}catch{tell('Адрес для друзей: '+$('address').value);}};
  $('joinForm').onsubmit=e=>{e.preventDefault();const data={type:'join',token:profile?.token,freshIdentity:freshIdentityPending,name:$('name').value,hand:document.querySelector('[name=hand]:checked').value,avatar:pendingAvatar||null};if(replaced){removed=false;replaced=false;connect();ws.addEventListener('open',()=>send(data),{once:true});}else send(data);};
- $('edit').onclick=()=>{editing=true;pendingAvatar=profile?.avatar||null;$('name').value=profile?.name||'';updateAvatarPreview();render();$('name').focus();};
- $('name').addEventListener('input',updateAvatarPreview);$('avatarCapture').onclick=()=>$('avatarFile').click();$('avatarRemove').onclick=()=>{pendingAvatar=null;$('avatarFile').value='';updateAvatarPreview();};$('avatarFile').onchange=async()=>{const file=$('avatarFile').files?.[0];if(!file)return;$('avatarCapture').disabled=true;try{pendingAvatar=await prepareAvatar(file);updateAvatarPreview();tell('Фото готово — сохрани профиль.');}catch(e){tell(e.message);}finally{$('avatarCapture').disabled=false;}};
+ function openProfile(){editing=true;pendingAvatar=profile?.avatar||null;$('name').value=profile?.name||'';updateAvatarPreview();render();$('name').focus();}
+ $('edit').onclick=openProfile;
+ let avatarBusy=false;
+ $('name').addEventListener('input',updateAvatarPreview);
+ $('avatarCapture').onclick=()=>$('avatarFile').click();
+ $('avatarGallery').onclick=()=>$('avatarLibrary').click();
+ $('avatarRemove').onclick=()=>{if(avatarBusy)return;pendingAvatar=null;$('avatarFile').value=$('avatarLibrary').value='';updateAvatarPreview();$('avatarStatus').textContent='Будет красивый плейсхолдер с твоей буквой.';};
+ async function selectAvatar(event){
+  const input=event.currentTarget,file=input.files?.[0];if(!file||avatarBusy)return;
+  avatarBusy=true;['avatarCapture','avatarGallery','avatarRemove'].forEach(id=>$(id).disabled=true);
+  document.querySelector('.profile-photo-field').setAttribute('aria-busy','true');$('avatarStatus').textContent='Готовим фото…';
+  try{pendingAvatar=await prepareAvatar(file);updateAvatarPreview();$('avatarStatus').textContent='Готово. Сохрани профиль — и ты в игре.';}
+  catch(e){$('avatarStatus').textContent=e.message;tell(e.message);}
+  finally{avatarBusy=false;input.value='';['avatarCapture','avatarGallery','avatarRemove'].forEach(id=>$(id).disabled=false);document.querySelector('.profile-photo-field').setAttribute('aria-busy','false');}
+ }
+ $('avatarFile').onchange=$('avatarLibrary').onchange=selectAvatar;
+ $('joinForm').addEventListener('submit',e=>{if(avatarBusy){e.preventDefault();e.stopImmediatePropagation();tell('Фото ещё готовится. Сохрани профиль через секунду.');}},{capture:true});
  const requestLobbyExit=()=>{if(!host){const votes=state?.active?.session?.exitVotes||[];send({type:'exit-vote',vote:!votes.includes(profile?.id),instance:state?.active?.instance});return;}$('roomDialog').close();$('confirmStop').returnValue='';$('confirmStop').showModal();};
  window.addEventListener('message',e=>{if(e.source!==$('gameFrame').contentWindow||e.origin!==location.origin||e.data?.type!=='party-exit'||e.data.instance!==state?.active?.instance)return;if(host&&state.active.ui?.phase==='results')send({type:'stop'});else requestLobbyExit();});
  $('back').onclick=requestLobbyExit;$('lobbyExit').onclick=requestLobbyExit;$('exitVoteButton').onclick=requestLobbyExit;
@@ -289,8 +305,8 @@
  $('gameFrame').addEventListener('load',()=>{rosterPostedSource=null;renderHUD(true);});window.addEventListener('resize',()=>renderHUD(true));document.fonts?.ready.then(()=>renderHUD(true));setInterval(renderHUD,200);
  window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===$('gameFrame').contentWindow&&e.data?.type==='party-visual-ready'&&e.data.instance===state?.active?.instance)$('gameFrame').dataset.loading='false';});
  window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==$('gameFrame').contentWindow||e.data?.type!=='party-score'||e.data.instance!==state?.active?.instance)return;liveScoreInstance=e.data.instance;const rows=Array.isArray(e.data.rows)?e.data.rows:[];$('liveTop').replaceChildren(...rows.slice(0,16).map((p,i)=>{const d=el('span','');d.append(el('b','',`${i+1}. ${p.name}`),document.createTextNode(` · ${Number(p.score)||0}`));return d;}));$('liveTop').setAttribute('aria-label',e.data.label||'Счёт игры');});
- const presses=new Map();document.addEventListener('pointerdown',e=>{const b=e.target.closest?.('button,[role=button]');if(!b||b.disabled)return;presses.set(e.pointerId,b);b.classList.add('party-pressed');},{passive:true});
- const releasePress=id=>{const b=presses.get(id);presses.delete(id);if(b&&![...presses.values()].includes(b))b.classList.remove('party-pressed');};for(const name of ['pointerup','pointercancel'])window.addEventListener(name,e=>releasePress(e.pointerId));window.addEventListener('blur',()=>{for(const id of [...presses.keys()])releasePress(id);});
+ // Decorative pressure is handled once by the shared motion.js layer.
+
  $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{tell('Полный экран доступен в меню браузера.');}};
  window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==$('gameFrame').contentWindow||e.data?.type!=='party-game-status'||e.data.instance!==state?.active?.instance||host)return;gameStatus=e.data.status;if(gameStatus==='ready')requestAnimationFrame(()=>requestAnimationFrame(()=>{if(e.data.instance===state?.active?.instance)$('gameFrame').dataset.loading='false';}));if(e.data.message)tell(e.data.message);if(ws?.readyState===WebSocket.OPEN)send({type:'game-status',status:gameStatus,instance:state?.active?.instance});render();});
  document.addEventListener('contextmenu',e=>{if(e.target.closest?.('button,.game,.player,.playbar'))e.preventDefault();});

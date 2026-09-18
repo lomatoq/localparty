@@ -21,11 +21,25 @@ test('motion styles define tokens and a strict reduced-motion exit',()=>{
  assert.doesNotMatch(css,/width\s*:\s*\d+px[^}]*\.joystick/i);
 });
 
-test('motion runtime observes presentation only',()=>{
+test('motion runtime only changes presentation and scoped native feedback',()=>{
  const js=fs.readFileSync(path.join(root,'public','motion.js'),'utf8');
  assert(js.includes('MutationObserver'));
  assert(js.includes("prefers-reduced-motion: reduce"));
- for(const forbidden of ['WebSocket','fetch(','postMessage(','pointerdown','touchstart'])assert(!js.includes(forbidden),forbidden);
+ // Pointer observers now implement user-requested visual pressure. They may not
+ // capture, cancel or synthesize gameplay input. Native haptics are not game commands.
+ for(const forbidden of ['WebSocket','fetch(','ws.send(','.preventDefault(','.stopPropagation(','.setPointerCapture(','.click(','touchstart'])assert(!js.includes(forbidden),forbidden);
+ const calls=[...js.matchAll(/([\w?.]+)postMessage\(([^\n;]+)\)/g)];
+ assert.equal(calls.length,2,'only prepare and short UI impact may use WK messaging');
+ for(const [,receiver,payload] of calls){
+  assert.equal(receiver,'window.webkit?.messageHandlers?.partyShell?.');
+  assert.match(payload,/^\{type:'haptic(?:-prepare)'\}$|^\{type:'haptic',pattern:\[7\]\}$/);
+ }
+ assert.match(js,/if\(document.body.classList.contains\('native-shell'\)\)/);
+ assert.match(js,/!e.isTrusted/);
+ assert.match(js,/capture:true,passive:true/);
+ assert.match(js,/window!==window.top/);
+ assert.match(js,/pointercancel/);
+ assert.match(js,/data-joystick/);
 });
 
 test('launcher serves the shared motion assets to lobby and game iframes',()=>{

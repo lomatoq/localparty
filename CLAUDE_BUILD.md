@@ -1,20 +1,15 @@
-# Claude Code — исправить установленную iPhone-сборку
+# Current Claude task — desktop QR card + compact podium
 
-**Сначала прочитай и выполни [IOS_HOTFIX.md](IOS_HOTFIX.md).**
+Start with **[CLAUDE_INVITE_POLISH.md](CLAUDE_INVITE_POLISH.md)**.
+Then use [CLAUDE_TV_SHOW.md](CLAUDE_TV_SHOW.md) for the full build/device checklist.
 
-Пользователь уже установил приложение и сообщил о трёх регрессиях:
-AirPlay зеркалирует телефон вместо отдельной сцены; карточки перекрываются;
-после перезапуска меню показывает пустой каталог.
+Apply on top of the existing WORKING AirPlay/Fresh/TV Show installation. The latest
+addition changes only four HTML/CSS runtime files. It does not replace earlier
+Swift/server fixes, upgrade dependencies or alter application signing identity.
 
-Ветка: `codex/ios-unified-host-20260917`.
-Ревизия исправления: `ios-recovery-20260918.1`.
-Проверки и ограничения: [docs/IOS_HOTFIX_VALIDATION.md](docs/IOS_HOTFIX_VALIDATION.md).
+The six-digit room code was optional and is deliberately NOT added. Existing
+same-origin profile restore plus a saved browser tab/bookmark supports return
+without rescanning; changed host addresses still require a new QR/link.
 
-Сохрани локальные исправления предыдущей сборки, существующие Team/Bundle ID,
-профили и статистику. Не удаляй приложение. Не обновляй зависимости в этом
-проходе. Нужны фактические сборка, установка поверх существующей и проверка
-разного контента на телефоне и телевизоре, а не только успешный xcodebuild.
-
-Полная предыдущая инструкция сохранена для справки:
-[docs/CLAUDE_BUILD_PRE_HOTFIX.md](docs/CLAUDE_BUILD_PRE_HOTFIX.md).
-Её массовый аудит/обновление версий сейчас НЕ выполняй: приоритет у хотфикса.
+Current supplementary validation: `docs/INVITE_POLISH_VALIDATION.md`.
+Historical TV Show validation: `docs/TV_SHOW_VALIDATION.md`.
