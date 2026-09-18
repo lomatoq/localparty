@@ -1,0 +1,141 @@
+--- a/public/native-shell/host.js
++++ b/public/native-shell/host.js
+@@ -132 +132,22 @@
+-    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), n.displayMode].filter(Boolean).join(' · ');
++    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), 'Show: tv-show-20260918.1', n.displayMode].filter(Boolean).join(' · ');
++  }
++  function renderTVControls() {
++    const tv=state.tv, unavailable=!tv||busy(), active=!!state.active;
++    const canCover=tv?.canCover===true;
++    $('tvShowQR').disabled=unavailable||!canCover||!state.networkEnabled||!state.native?.address;
++    $('tvShowCompany').disabled=unavailable||!canCover||!tv?.hasCompany;
++    $('tvShowMatch').disabled=unavailable||!canCover||!tv?.hasMatch;
++    $('tvCloseOverlay').disabled=unavailable||tv.mode==='none';
++    $('tvShowQR').setAttribute('aria-pressed',String(tv?.mode==='qr'));
++    $('tvShowCompany').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='company'));
++    $('tvShowMatch').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='match'));
++    for(const id of ['tvPrev','tvNext','tvGameNumber','tvSelectGame'])$(id).disabled=unavailable||active||!state.catalog.length;
++    const focus=gameById(tv?.focusId);
++    $('tvSelectGame').disabled ||= !focus;
++    $('tvGameNumber').max=String(state.catalog.length);
++    if(document.activeElement!==$('tvGameNumber'))$('tvGameNumber').value=tv?.focusNumber||'';
++    $('tvFocusName').textContent=focus?`№ ${tv.focusNumber} / ${tv.total} · ${focus.title}`:'Стрелки листают игры на ТВ. Матч сам не запустится.';
++    $('tvControlHint').textContent=!tv?'Обнови сборку: сервер ещё не передал управление показом.':!canCover?'Чтобы показать QR или пьедестал, сначала нажми «Пауза».':tv.mode==='qr'?'На ТВ — большая карточка приглашения.':tv.mode==='podium'?`На ТВ — ${tv.board?.subtitle||'пьедестал'}.`:'Выбирай, что показать компании. На ТВ нет кнопок администратора.';
++    $('tvPause').disabled=unavailable||!active;
++    $('tvPause').textContent=state.active?.session?.paused?'Продолжить матч':'Пауза';
++    for(const [id,key,on,off] of [['tvAutoPodium','autoPodium','Включён','Выключен'],['tvEffects','effects','Включены','Выключены'],['tvIdleBrowse','idleBrowse','Включено','Выключено']]){setSwitch(id,tv?.[key],on,off);$(id).disabled=unavailable;}
+@@ -151 +172 @@
+-    renderCatalog(); renderActive(); renderRoom(); updateDetail();
++    renderCatalog(); renderActive(); renderRoom(); renderTVControls(); updateDetail();
+@@ -171,0 +193,13 @@
++  const showTV=(mode,boardKind)=>manage({type:'tv-overlay',mode,...(boardKind?{boardKind}:{})});
++  $('tvShowQR').onclick=()=>showTV(state.tv?.mode==='qr'?'none':'qr');
++  $('tvShowCompany').onclick=()=>showTV('podium','company');
++  $('tvShowMatch').onclick=()=>showTV('podium','match');
++  $('tvCloseOverlay').onclick=()=>showTV('none');
++  $('tvPrev').onclick=()=>manage({type:'tv-focus',direction:-1});
++  $('tvNext').onclick=()=>manage({type:'tv-focus',direction:1});
++  function focusNumber(){const number=Number($('tvGameNumber').value);if(!Number.isInteger(number)||number<1||number>state.catalog.length){toast('Введи номер от 1 до '+state.catalog.length);return;}manage({type:'tv-focus',number});}
++  $('tvGameNumber').onchange=focusNumber;
++  $('tvGameNumber').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('tvGameNumber').blur();}};
++  $('tvSelectGame').onclick=()=>{if(state.tv?.focusId){close('hostPanel');openGame(state.tv.focusId);}};
++  $('tvPause').onclick=()=>manage({type:'pause',paused:!state.active?.session?.paused});
++  for(const [id,key] of [['tvAutoPodium','autoPodium'],['tvEffects','effects'],['tvIdleBrowse','idleBrowse']])$(id).onclick=()=>manage({type:'tv-options',options:{[key]:!state.tv?.[key]}});
+@@ -191 +225 @@
+-  renderCatalog(); renderRoom();
++  renderCatalog(); renderRoom(); renderTVControls();
+--- a/public/native-shell/host.css
++++ b/public/native-shell/host.css
+@@ -110,0 +111,14 @@
++
++/* TV remote uses existing buttons/cards; geometry is scoped to this panel. */
++.native-shell .tv-control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
++.native-shell .tv-control-grid button{font-size:12px;line-height:1.25;white-space:normal;min-width:0;min-height:48px;padding:12px}
++.native-shell #tvDirectorControls .eyebrow{margin-bottom:10px}
++.native-shell .tv-game-stepper{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:12px;align-items:center;padding:14px 0;border-block:1px solid var(--line);margin:14px 0}
++.native-shell .tv-game-stepper>button{padding:0;min-height:48px;font-size:22px}
++.native-shell .tv-game-stepper label{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:12px;min-width:0}
++.native-shell #tvGameNumber{width:74px;max-width:100%;min-height:44px;border:1px solid var(--line);border-radius:16px;padding:8px;background:#ffffff07;color:var(--ink);font-size:20px;text-align:center;font-variant-numeric:tabular-nums}
++.native-shell .tv-focus-copy>span{font-size:14px;line-height:1.35;flex:1}
++.native-shell .tv-focus-copy>button{flex:none}
++.native-shell #tvControlHint{min-height:40px;font-size:12px}
++.native-shell #tvDirectorControls button[aria-pressed=true]{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime)}
++@media(max-width:360px){.native-shell .tv-control-grid{grid-template-columns:minmax(0,1fr)}.native-shell .native-row{flex-wrap:wrap}.native-shell .tv-game-stepper{gap:8px}}
+--- a/tests/tv-director.test.cjs
++++ b/tests/tv-director.test.cjs
+@@ -27 +27 @@
+-test('new run resets overlay but keeps preferences',()=>{const {d}=setup();d.command({type:'tv-options',options:{autoPodium:true}});d.command({type:'tv-overlay',mode:'qr'},{sharing:true});d.resetRun();assert.equal(d.view().mode,'none');assert.equal(d.view().autoPodium,true);});
++test('new run resets overlay but keeps preferences',()=>{const {d}=setup();d.command({type:'tv-options',options:{autoPodium:true}});d.command({type:'tv-overlay',mode:'qr'},{sharing:true});d.resetRun();assert.equal(d.view({sharing:true}).mode,'none');assert.equal(d.view().autoPodium,true);});
+--- a/tests/fresh-lobby-browser.py
++++ b/tests/fresh-lobby-browser.py
+@@ -112 +112 @@
+-            check('vote badge updates in place',page.locator('[data-game=bowling] .lp-card-votes').inner_text()=='Голосов: 1')
++            check('vote badge updates in place',page.locator('[data-game=bowling] .lp-card-votes').text_content()=='Голосов: 1')
+--- a/scripts/build-ios-local.sh
++++ b/scripts/build-ios-local.sh
+@@ -32 +32 @@
+-node --test tests/native-shell.test.cjs 2>&1 | tee "$OUT/native-shell-tests.log"
++node --test tests/native-shell.test.cjs tests/fresh-lobby.test.cjs tests/tv-director.test.cjs 2>&1 | tee "$OUT/native-shell-tests.log"
+@@ -33,0 +34 @@
++python3 tests/test_show_product.py 2>&1 | tee "$OUT/show-product-tests.log"
+@@ -37,0 +39 @@
++python3 scripts/verify-show-product.py | tee "$OUT/verify-show-staged.json"
+@@ -39 +41,11 @@
+-COMMON=(-project ios/LocalParty.xcodeproj -scheme LocalParty -configuration Debug "MARKETING_VERSION=0.11.1" "CURRENT_PROJECT_VERSION=15")
++COMMON=(-project ios/LocalParty.xcodeproj -scheme LocalParty -configuration Debug)
++# Keep the project's version; do not downgrade a user's newer installed build.
++# Claude resolves these from the actual current project/installed product.
++if [[ -n "${APP_VERSION:-}" ]]; then
++  [[ "$APP_VERSION" =~ ^[0-9]+(\.[0-9]+){0,2}$ ]] || { echo 'Invalid APP_VERSION' >&2; exit 1; }
++  COMMON+=("MARKETING_VERSION=$APP_VERSION")
++fi
++if [[ -n "${BUILD_NUMBER:-}" ]]; then
++  [[ "$BUILD_NUMBER" =~ ^[0-9]+$ ]] || { echo 'BUILD_NUMBER must be an integer greater than the installed build.' >&2; exit 1; }
++  COMMON+=("CURRENT_PROJECT_VERSION=$BUILD_NUMBER")
++fi
+@@ -42,0 +55 @@
++  python3 scripts/verify-show-product.py --app "$OUT/Simulator/Build/Products/Debug-iphonesimulator/LocalParty.app" | tee "$OUT/verify-show-simulator.json"
+@@ -48,0 +62 @@
++  python3 scripts/verify-show-product.py --app "$APP" | tee "$OUT/verify-show-device.json"
+--- a/CLAUDE_BUILD.md
++++ b/CLAUDE_BUILD.md
+@@ -1 +1 @@
+-# Текущая задача: вернуть desktop Fresh lobby и добавить tactile UI
++# Current Claude task — TV Show + admin hub polish
+@@ -3,4 +3 @@
+-Пользователь подтвердил, что предыдущий хотфикс iPhone/AirPlay работает.
+-Теперь выполни **[CLAUDE_FRESH_LOBBY.md](CLAUDE_FRESH_LOBBY.md)**.
+-Это обновление UI поверх рабочего состояния, без повторной переделки Swift/AirPlay
+-и без обновления зависимостей. Старые инструкции ниже — только контекст.
++Start with **[CLAUDE_TV_SHOW.md](CLAUDE_TV_SHOW.md)**.
+@@ -8 +5,4 @@
+----
++This update sits on top of the already working AirPlay/hotfix and Fresh UI. It adds
++TV remote commands, QR/podium/loading/transitions, native hub haptics and controller/
++profile layout fixes. Unlike the previous Fresh-only update, small native Codable
++and protected command-whitelist changes are required. Keep local working scene fixes.
+@@ -10 +10,2 @@
+-# Claude Code — исправить установленную iPhone-сборку
++Do not re-run the old blanket dependency upgrade or uninstall the user's app.
++Validation and limitations: [docs/TV_SHOW_VALIDATION.md](docs/TV_SHOW_VALIDATION.md).
+@@ -12,18 +13,2 @@
+-**Сначала прочитай и выполни [IOS_HOTFIX.md](IOS_HOTFIX.md).**
+-
+-Пользователь уже установил приложение и сообщил о трёх регрессиях:
+-AirPlay зеркалирует телефон вместо отдельной сцены; карточки перекрываются;
+-после перезапуска меню показывает пустой каталог.
+-
+-Ветка: `codex/ios-unified-host-20260917`.
+-Ревизия исправления: `ios-recovery-20260918.1`.
+-Проверки и ограничения: [docs/IOS_HOTFIX_VALIDATION.md](docs/IOS_HOTFIX_VALIDATION.md).
+-
+-Сохрани локальные исправления предыдущей сборки, существующие Team/Bundle ID,
+-профили и статистику. Не удаляй приложение. Не обновляй зависимости в этом
+-проходе. Нужны фактические сборка, установка поверх существующей и проверка
+-разного контента на телефоне и телевизоре, а не только успешный xcodebuild.
+-
+-Полная предыдущая инструкция сохранена для справки:
+-[docs/CLAUDE_BUILD_PRE_HOTFIX.md](docs/CLAUDE_BUILD_PRE_HOTFIX.md).
+-Её массовый аудит/обновление версий сейчас НЕ выполняй: приоритет у хотфикса.
++Historical context only: `CLAUDE_FRESH_LOBBY.md`, `IOS_HOTFIX.md`,
++`docs/CLAUDE_BUILD_PRE_HOTFIX.md`. Their instructions are superseded here.

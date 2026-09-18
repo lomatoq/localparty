@@ -1,0 +1,84 @@
+--- a/server.js
++++ b/server.js
+@@ -35 +35 @@
+-function setPaused(value){if(active)active.userPaused=!!value;applyGamePause();}
++function setPaused(value){if(active)active.userPaused=!!value;if(!value)tvDirector.dismiss();applyGamePause();}
+@@ -58 +58,2 @@
+-  else if(m.type==='statistics-reset'){if(active||busy)throw Error('Завершите текущий матч перед сбросом статистики');profileStore.resetStatistics();}
++  else if(['tv-overlay','tv-focus','tv-options'].includes(m.type)){tvDirector.command(m,{active,busy,selected,sharing:sharedURLs().length>0});broadcast();return roomInfo();}
++  else if(m.type==='statistics-reset'){if(active||busy)throw Error('Завершите текущий матч перед сбросом статистики');profileStore.resetStatistics();tvDirector.lastMatch=null;tvDirector.dismiss();}
+@@ -70 +71 @@
+-  else if(m.type==='select'){if(!catalog.some(g=>g.id===m.id))throw Error('Игра не найдена');selected=m.id;}
++  else if(m.type==='select'){if(!catalog.some(g=>g.id===m.id))throw Error('Игра не найдена');selected=m.id;tvDirector.follow(m.id);}
+@@ -82,0 +84 @@
++const tvDirector=new (require('./lib/tv-director').TVDirector)({catalog,store:profileStore});
+@@ -119 +121 @@
+-function state(){return {type:'state',bootId,incident,networkEnabled:embedded?networkAccess.enabled:true,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:profileStore.leaderboard(),lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
++function state(){const standings=profileStore.leaderboard();return {type:'state',bootId,incident,tv:tvDirector.view({active,selected,sharing:sharedURLs().length>0,leaderboard:standings}),networkEnabled:embedded?networkAccess.enabled:true,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:standings,lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
+@@ -174 +176 @@
+-      if(m?.type==='party:ui'&&m.ui){const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset)broadcast();}}
++      if(m?.type==='party:ui'&&m.ui){const changed=next.ui?.phase!==m.ui.phase;const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset||changed)broadcast();}}
+@@ -176 +178,5 @@
+-      if(m?.type==='party:result'&&m.result?.eventId&&Array.isArray(m.result.players)){if(!next.session.testMode&&profileStore.record(m.result,instance,id,statisticsRevision))broadcast();}
++      if(m?.type==='party:result'&&m.result?.eventId&&Array.isArray(m.result.players)){
++        const recorded=!next.session.testMode&&profileStore.record(m.result,instance,id,statisticsRevision);
++        const captured=active===next&&statisticsRevision===(profileStore.statisticsRevision||0)&&tvDirector.capture(m.result,instance,game,next.session.testMode);
++        if(recorded||captured)broadcast();
++      }
+@@ -182 +188 @@
+-    const previous=active;active=next;selected=game.id;votes.clear();ballotArmed=false;ballotAttempt='';metrics.gameStarts++;if(!executionAllowed||!enabled){active.session.setPaused(true);child.send({type:'party:pause',paused:true});}syncRoster();previous?.child.kill();
++    const previous=active;active=next;tvDirector.resetRun();selected=game.id;votes.clear();ballotArmed=false;ballotAttempt='';metrics.gameStarts++;if(!executionAllowed||!enabled){active.session.setPaused(true);child.send({type:'party:pause',paused:true});}syncRoster();previous?.child.kill();
+@@ -185 +191 @@
+-function stop(){ballotArmed=false;ballotAttempt='';votes.clear();const old=active;active=null;old?.child.kill();persistRoom('game-stop');broadcast();}
++function stop(){tvDirector.resetRun();ballotArmed=false;ballotAttempt='';votes.clear();const old=active;active=null;old?.child.kill();persistRoom('game-stop');broadcast();}
+@@ -235 +241 @@
+-  if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=sharedURLs();const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await qrBuffer(target,{margin:1,width:240}));}
++  if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=sharedURLs();const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await qrBuffer(target,{margin:1,width:url.searchParams.get('size')==='large'?720:240}));}
+@@ -247 +253 @@
+-  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
++  const files={'/tv-show.js':'tv-show.js','/tv-show.css':'tv-show.css','/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+--- a/ios/LocalParty/LocalPartyApp.swift
++++ b/ios/LocalParty/LocalPartyApp.swift
+@@ -4,0 +5,14 @@
++
++// Optional display metadata. Old servers still decode; no player credentials here.
++struct PartyTVBoardRow: Codable, Equatable {
++    var id: String; var name: String; var rank: Int?; var score: Double; var points: Double?; var won: Bool
++}
++struct PartyTVBoard: Codable, Equatable {
++    var key: String; var kind: String; var title: String; var subtitle: String; var rows: [PartyTVBoardRow]
++}
++struct PartyTVPresentation: Codable, Equatable {
++    var revision: Int; var mode: String; var automatic: Bool; var board: PartyTVBoard?
++    var focusId: String?; var focusNumber: Int; var focusRevision: Int; var browse: Bool; var total: Int
++    var canCover: Bool; var hasMatch: Bool; var hasCompany: Bool
++    var autoPodium: Bool; var effects: Bool; var idleBrowse: Bool
++}
+@@ -168,0 +183 @@
++    private let uiImpact = UIImpactFeedbackGenerator(style: .soft)
+@@ -342,0 +358 @@
++        if type == "haptic-prepare", phase == .active, hapticsEnabled { uiImpact.prepare(); return }
+@@ -350 +366 @@
+-            let allowed: Set<String> = ["select", "settings", "launch", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident"]
++            let allowed: Set<String> = ["select", "settings", "launch", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options"]
+@@ -390 +406 @@
+-                    let impact = UIImpactFeedbackGenerator(style: duration > 60 ? .heavy : duration > 20 ? .medium : .soft)
++                    let impact = duration <= 20 ? self.uiImpact : UIImpactFeedbackGenerator(style: duration > 60 ? .heavy : .medium)
+--- a/ios/LocalParty/ServerModel.swift
++++ b/ios/LocalParty/ServerModel.swift
+@@ -23,0 +24 @@
++    var tv: PartyTVPresentation?
+--- a/public/tv.html
++++ b/public/tv.html
+@@ -2,2 +2,2 @@
+-<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/refresh.css"><link rel="stylesheet" href="/glass.css"><link rel="stylesheet" href="/ux.css"><link rel="stylesheet" href="/catalog-previews.css"><link rel="stylesheet" href="/fresh.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/tv.css">
+-<script>/*BOOT*/</script><script src="/browser-compat.js"></script><script src="/tv-layout.js"></script><script defer src="/tv.js"></script><script defer src="/motion.js"></script>
++<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/refresh.css"><link rel="stylesheet" href="/glass.css"><link rel="stylesheet" href="/ux.css"><link rel="stylesheet" href="/catalog-previews.css"><link rel="stylesheet" href="/fresh.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/tv.css"><link rel="stylesheet" href="/tv-show.css">
++<script>/*BOOT*/</script><script src="/browser-compat.js"></script><script src="/tv-layout.js"></script><script defer src="/tv-show.js"></script><script defer src="/tv.js"></script><script defer src="/motion.js"></script>
+@@ -5 +5,5 @@
+-<div class="ambient" aria-hidden="true"><i></i><i></i></div><div id="incident" class="room-incident" role="status" hidden></div>
++<div class="ambient" aria-hidden="true"><i></i><i></i></div><section id="tvStartup" class="tv-startup" aria-label="Подготовка интерфейса"><div class="tv-startup-orbit" aria-hidden="true"></div><div class="tv-startup-copy"><span class="eyebrow">ВЕЧЕР СВОИХ ЛЮДЕЙ</span><h1>Local<span>party</span></h1><p id="tvLoadStatus" role="status">Соединяем общий экран…</p><div class="tv-progress" role="progressbar" aria-label="Подготовка интерфейса" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="tvLoadBar"></i></div><small><span id="tvLoadProgress">0</span> / 100 · подготовка экрана</small></div></section>
++<section id="tvPresentation" class="tv-presentation" hidden aria-live="polite"><section id="tvLargeInvite" class="join-dialog tv-invite-card" hidden><div class="eyebrow">ЕЩЁ ЕСТЬ МЕСТО</div><h2>Залетай<br><em>в компанию.</em></h2><img id="tvLargeQR" alt="QR-код подключения игроков"><p>Один Wi-Fi. Наведи камеру — и ты в игре.</p><code id="tvLargeAddress"></code><span id="tvInviteCount" class="hero-pills"></span></section>
++<section id="tvPodium" class="tv-podium" hidden><div class="tv-celebration-background" aria-hidden="true"><canvas id="tvShader"></canvas><canvas id="tvFireworks"></canvas><div class="tv-stage-halo"></div></div><header class="tv-board-heading"><div class="eyebrow">ВОТ ЭТО КОМПАНИЯ</div><h2 id="tvBoardTitle"></h2><p id="tvBoardSubtitle"></p></header><div class="tv-podium-decks"><div id="tvPodiumMain" class="podium-deck"></div><div id="tvPodiumTail" class="podium-deck podium-tail" hidden></div></div><p class="tv-board-footer">Аплодисменты своим. Следующий раунд — новая история.</p></section></section>
++<div id="tvSceneTransition" class="tv-scene-transition" hidden aria-hidden="true"><span>LOCALPARTY</span><strong id="tvTransitionTitle"></strong></div>
++<div id="incident" class="room-incident" role="status" hidden></div>

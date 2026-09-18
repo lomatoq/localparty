@@ -1,0 +1,77 @@
+/* TV-only presentation layers. Never changes iframe or host control geometry. */
+body.tv-screen .tv-startup,body.tv-screen .tv-presentation,body.tv-screen .tv-scene-transition{position:absolute;inset:0;z-index:200;display:grid;place-items:center;overflow:hidden;pointer-events:none;color:var(--ink);box-sizing:border-box}
+body.tv-screen .tv-startup{z-index:240;background:radial-gradient(ellipse at 65% 12%,#61429136,transparent 64%),radial-gradient(ellipse at 15% 75%,#7fbc2933,transparent 60%),#0b0e12}
+body.tv-screen .tv-startup-copy{position:relative;text-align:center;z-index:2;width:430px}
+body.tv-screen .tv-startup h1{font:italic 850 84px/1 Rubik,system-ui,sans-serif;letter-spacing:-5px;margin:20px 0 32px}
+body.tv-screen .tv-startup h1 span{color:var(--lime)}
+body.tv-screen .tv-startup p{font-size:16px;min-height:28px;color:var(--muted)}
+body.tv-screen .tv-startup small{display:block;font-size:11px;letter-spacing:1px;color:#a5b19e;margin-top:16px}
+body.tv-screen .tv-progress{height:10px;margin:26px 32px 0;padding:2px;background:#ffffff0b;border:1px solid #ffffff14;border-radius:99px;overflow:hidden}
+body.tv-screen .tv-progress i{display:block;width:100%;height:100%;border-radius:99px;background:linear-gradient(90deg,#c8f58b,#f2ffd6);transform:scaleX(var(--progress,0));transform-origin:left;transition:transform .12s linear;box-shadow:0 0 20px #c8f58b88}
+body.tv-screen .tv-startup-orbit{position:absolute;width:600px;height:600px;border-radius:50%;border:1px solid #ffffff09;box-shadow:0 0 0 40px #ffffff02,inset 0 0 100px #c8f58b08;transform:rotateX(62deg) rotate(-24deg);opacity:.7}
+body.tv-screen .tv-presentation{z-index:180;background:radial-gradient(ellipse at 50% 0,#302c3d8a,transparent 85%),#0b0e12f5;backdrop-filter:blur(10px)}
+body.tv-screen .tv-invite-card{position:relative;inset:auto;width:560px;max-width:85%;max-height:680px;padding:28px 48px;border:1px solid #ffffff28;border-radius:38px;text-align:center;background:radial-gradient(ellipse at 15% 0,#c8f58b22,transparent 75%),linear-gradient(145deg,#202630,#131a22);box-shadow:inset 0 1px 0 #ffffff26,0 24px 80px #0007;margin:0;overflow:hidden}
+body.tv-screen .tv-invite-card h2{font-style:italic;text-transform:uppercase;font-size:44px;line-height:.99;letter-spacing:-2px;margin:12px 0 18px}
+body.tv-screen .tv-invite-card h2 em{color:var(--lime)}
+body.tv-screen #tvLargeQR{display:block;width:310px;height:310px;border-radius:24px;padding:14px;background:white;margin:0 auto;image-rendering:auto;box-shadow:0 14px 50px #0004}
+body.tv-screen .tv-invite-card p{font-size:14px;line-height:1.3;margin:18px 0 8px}
+body.tv-screen #tvLargeAddress{display:block;font:12px/1.3 monospace;color:var(--muted);overflow-wrap:anywhere}
+body.tv-screen #tvInviteCount{display:inline-flex;font-size:12px;padding:8px 14px;margin-top:14px;border:1px solid #c8f58b30;border-radius:999px;color:var(--lime)}
+body.tv-screen .tv-podium{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;isolation:isolate;padding:28px 38px 20px;box-sizing:border-box;background:radial-gradient(ellipse at 50% 40%,#64563929,#0b0e12 72%)}
+body.tv-screen .tv-celebration-background{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+body.tv-screen #tvShader,body.tv-screen #tvFireworks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+body.tv-screen #tvShader{opacity:.9}body.tv-screen #tvFireworks{opacity:.82}
+body.tv-screen .tv-stage-halo{position:absolute;left:10%;right:10%;bottom:32px;height:70px;background:radial-gradient(ellipse,#d9f2b83b,transparent 68%);filter:blur(18px)}
+body.tv-screen .tv-board-heading{position:relative;display:block;height:auto;border:0;background:none;text-align:center;padding:0;margin:0 auto 16px;width:100%;max-width:1020px;flex:0 0 auto}
+body.tv-screen .tv-board-heading h2{font-size:44px;line-height:1.1;letter-spacing:-1.8px;margin:10px 0 7px;font-style:italic;text-transform:uppercase;color:#f5f7ef;overflow-wrap:anywhere}
+body.tv-screen .tv-board-heading p{font-size:14px;margin:0;color:#c5ccb9}
+body.tv-screen .tv-board-heading .eyebrow{font-size:10px;letter-spacing:3px;color:#dcd0af}
+body.tv-screen .tv-podium-decks{width:100%;max-width:1160px;min-width:0}
+body.tv-screen .podium-deck{display:grid;grid-template-columns:repeat(var(--seats),minmax(0,1fr));gap:14px;align-items:end;justify-content:center;width:100%;padding-top:28px}
+body.tv-screen #tvPodiumMain{min-height:340px;max-width:1080px;margin:0 auto}
+body.tv-screen .podium-seat{position:relative;min-width:0;max-width:260px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:end;text-align:center;isolation:isolate}
+body.tv-screen .podium-portrait{position:relative;width:76px;height:76px;display:grid;place-items:center;flex-shrink:0;border:3px solid var(--medal);border-radius:50%;background:linear-gradient(145deg,#53634f,#182221);box-shadow:inset 0 1px 0 #ffffff60,0 8px 30px #0005;z-index:2}
+body.tv-screen .podium-portrait img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover}
+body.tv-screen .podium-initial{font-size:27px;font-weight:800;color:#f0f7dc}
+body.tv-screen .is-winner .podium-portrait{width:90px;height:90px;box-shadow:0 0 0 8px #ffe3a012,0 0 46px #ffd67d38,0 8px 30px #0006}
+body.tv-screen .podium-crown{position:absolute;z-index:3;width:52px;height:42px;left:50%;top:-36px;transform:translateX(-50%) rotate(-7deg);filter:drop-shadow(0 4px 12px #ffe3a059)}
+body.tv-screen .podium-crown svg{width:100%;height:100%}
+body.tv-screen .podium-name{position:relative;width:100%;min-height:37px;max-height:42px;overflow:hidden;font-size:17px!important;line-height:1.15!important;font-weight:700;text-transform:none;letter-spacing:-.4px;margin:12px 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere;color:#eff4e8}
+body.tv-screen .podium-plinth{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;width:100%;height:var(--plinth-height);min-height:52px;padding:8px 4px;border:1px solid #ffffff22;border-top:2px solid var(--medal);border-radius:18px 18px 6px 6px;background:linear-gradient(105deg,#ffffff18,transparent 14%,#ffffff05 70%,#0005),linear-gradient(180deg,#344137dd,#17211dee);box-shadow:inset 0 0 0 1px #ffffff05,0 10px 30px #0005;overflow:hidden}
+body.tv-screen .podium-plinth:before{content:'';position:absolute;inset:0 0 auto;height:11px;background:linear-gradient(90deg,transparent,#ffffff2d 50%,transparent);border-bottom:1px solid #ffffff0a}
+body.tv-screen .is-winner .podium-plinth{background:linear-gradient(110deg,#ffe3a028,transparent 18%,#ffffff08 65%,#0003),linear-gradient(180deg,#666247c4,#282d23f5);box-shadow:inset 0 1px 1px #fff4ce70,0 0 60px #dcb45110,0 18px 44px #0005}
+body.tv-screen .podium-rank{font:italic 800 42px/1 Rubik,system-ui,sans-serif;color:var(--medal);text-shadow:0 4px 18px #0003}
+body.tv-screen .is-winner .podium-rank{font-size:66px}
+body.tv-screen .podium-points{font-size:16px;font-weight:750;font-variant-numeric:tabular-nums;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:5px}
+body.tv-screen .podium-plinth small{color:#c5ccb9;font-size:9px;line-height:1.3}
+body.tv-screen .podium-tail{gap:10px;padding-top:18px;max-width:1120px;margin:auto}
+body.tv-screen .podium-tail .podium-portrait{width:38px;height:38px;border-width:1px}
+body.tv-screen .podium-tail .podium-initial{font-size:16px}
+body.tv-screen .podium-tail .podium-name{font-size:11px!important;min-height:25px;max-height:28px;margin:6px 0 5px}
+body.tv-screen .podium-tail .podium-plinth{border-radius:10px 10px 4px 4px}
+body.tv-screen .podium-tail .podium-rank{font-size:20px}
+body.tv-screen .podium-tail .podium-points{font-size:11px;margin:1px 0 0}
+body.tv-screen .podium-tail .podium-plinth small{display:none}
+body.tv-screen .tv-board-footer{font-size:12px;color:#b6c1ad;text-align:center;margin:20px 0 0;flex:0 0 auto}
+body.tv-screen .tv-podium.has-tail .tv-board-heading h2{font-size:32px}
+body.tv-screen .tv-podium.has-tail .tv-board-heading{margin-bottom:2px}
+body.tv-screen .tv-podium.has-tail #tvPodiumMain{min-height:295px;padding-top:15px}
+body.tv-screen .tv-podium.has-tail .podium-portrait{width:62px;height:62px}
+body.tv-screen .tv-podium.has-tail .is-winner .podium-portrait{width:76px;height:76px}
+body.tv-screen .tv-podium.has-tail .podium-tail .podium-portrait{width:38px;height:38px}
+body.tv-screen .tv-podium.has-tail .tv-board-footer{margin-top:10px}
+body.tv-screen .tv-scene-transition{z-index:210;background:radial-gradient(ellipse at 25% 0,#52663870,transparent 70%),#0d1318f2;backdrop-filter:blur(12px);align-content:center;gap:16px;text-align:center}
+body.tv-screen .tv-scene-transition>span{font-size:12px;letter-spacing:5px;color:var(--lime)}
+body.tv-screen .tv-scene-transition strong{font-size:42px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1.2;max-width:90%}
+body.tv-screen [hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){body.tv-screen .tv-startup-orbit{transform:none}body.tv-screen .tv-presentation{backdrop-filter:none}body.tv-screen .tv-progress i{transition:none}}
+
+/* Small outer plinths keep their scores readable; their height is not a clip mask. */
+body.tv-screen .podium-seat:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .podium-plinth{min-height:62px;padding:6px 4px}
+body.tv-screen .podium-seat:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .podium-rank{font-size:26px;line-height:1}
+body.tv-screen .podium-seat:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .podium-points{font-size:12px;line-height:1.1;margin-top:2px}
+body.tv-screen .podium-seat:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .podium-plinth small{font-size:8px;line-height:1.05}
+body.tv-screen .tv-podium.has-tail .tv-board-heading{margin-bottom:24px}
+body.tv-screen .tv-board-heading h2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body.tv-screen .podium-tail .podium-seat .podium-plinth{min-height:52px}
+body.tv-screen .podium-tail .podium-seat .podium-rank{font-size:20px}

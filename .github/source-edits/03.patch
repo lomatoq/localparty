@@ -1,0 +1,75 @@
+--- a/public/app.js
++++ b/public/app.js
+@@ -123 +123,2 @@
+-  tools.append(search,filters,el('p','','Один голос на человека. Когда проголосуют все, игра запустится сама. При равенстве — случайный выбор среди лидеров.'));$('games').before(tools);
++  const editProfile=el('button','quiet','Профиль и фото');editProfile.id='editFromCatalog';editProfile.type='button';editProfile.onclick=openProfile;
++  tools.append(search,filters,editProfile,el('p','','Один голос на человека. Когда проголосуют все, игра запустится сама. При равенстве — случайный выбор среди лидеров.'));$('games').before(tools);
+@@ -267,2 +268,17 @@
+- $('edit').onclick=()=>{editing=true;pendingAvatar=profile?.avatar||null;$('name').value=profile?.name||'';updateAvatarPreview();render();$('name').focus();};
+- $('name').addEventListener('input',updateAvatarPreview);$('avatarCapture').onclick=()=>$('avatarFile').click();$('avatarRemove').onclick=()=>{pendingAvatar=null;$('avatarFile').value='';updateAvatarPreview();};$('avatarFile').onchange=async()=>{const file=$('avatarFile').files?.[0];if(!file)return;$('avatarCapture').disabled=true;try{pendingAvatar=await prepareAvatar(file);updateAvatarPreview();tell('Фото готово — сохрани профиль.');}catch(e){tell(e.message);}finally{$('avatarCapture').disabled=false;}};
++ function openProfile(){editing=true;pendingAvatar=profile?.avatar||null;$('name').value=profile?.name||'';updateAvatarPreview();render();$('name').focus();}
++ $('edit').onclick=openProfile;
++ let avatarBusy=false;
++ $('name').addEventListener('input',updateAvatarPreview);
++ $('avatarCapture').onclick=()=>$('avatarFile').click();
++ $('avatarGallery').onclick=()=>$('avatarLibrary').click();
++ $('avatarRemove').onclick=()=>{if(avatarBusy)return;pendingAvatar=null;$('avatarFile').value=$('avatarLibrary').value='';updateAvatarPreview();$('avatarStatus').textContent='Будет красивый плейсхолдер с твоей буквой.';};
++ async function selectAvatar(event){
++  const input=event.currentTarget,file=input.files?.[0];if(!file||avatarBusy)return;
++  avatarBusy=true;['avatarCapture','avatarGallery','avatarRemove'].forEach(id=>$(id).disabled=true);
++  document.querySelector('.profile-photo-field').setAttribute('aria-busy','true');$('avatarStatus').textContent='Готовим фото…';
++  try{pendingAvatar=await prepareAvatar(file);updateAvatarPreview();$('avatarStatus').textContent='Готово. Сохрани профиль — и ты в игре.';}
++  catch(e){$('avatarStatus').textContent=e.message;tell(e.message);}
++  finally{avatarBusy=false;input.value='';['avatarCapture','avatarGallery','avatarRemove'].forEach(id=>$(id).disabled=false);document.querySelector('.profile-photo-field').setAttribute('aria-busy','false');}
++ }
++ $('avatarFile').onchange=$('avatarLibrary').onchange=selectAvatar;
++ $('joinForm').addEventListener('submit',e=>{if(avatarBusy){e.preventDefault();e.stopImmediatePropagation();tell('Фото ещё готовится. Сохрани профиль через секунду.');}},{capture:true});
+@@ -292,2 +308,2 @@
+- const presses=new Map();document.addEventListener('pointerdown',e=>{const b=e.target.closest?.('button,[role=button]');if(!b||b.disabled)return;presses.set(e.pointerId,b);b.classList.add('party-pressed');},{passive:true});
+- const releasePress=id=>{const b=presses.get(id);presses.delete(id);if(b&&![...presses.values()].includes(b))b.classList.remove('party-pressed');};for(const name of ['pointerup','pointercancel'])window.addEventListener(name,e=>releasePress(e.pointerId));window.addEventListener('blur',()=>{for(const id of [...presses.keys()])releasePress(id);});
++ // Decorative pressure is handled once by the shared motion.js layer.
++
+--- a/public/native-shell/controller-bridge.js
++++ b/public/native-shell/controller-bridge.js
+@@ -1 +1 @@
+-/* Installed by WKUserScript only in the native, origin-validated controller. */
++/* WKUserScript only. The controller has no administrative TV commands. */
+@@ -12,2 +12 @@
+-  window.LocalPartyNative = Object.freeze({haptic: vibrate, isNative: true});
+-  // Compatibility adapter for existing games, never injected into guest Safari.
++  window.LocalPartyNative = Object.freeze({haptic: vibrate, prepare:()=>send({type:'haptic-prepare'}), isNative: true});
+@@ -17,5 +16,25 @@
+-    const nav = document.querySelector('.app-header nav:last-child');
+-    if (!nav || document.getElementById('partyNativeMenu')) return;
+-    const b = document.createElement('button'); b.id = 'partyNativeMenu'; b.type = 'button'; b.className = 'nav'; b.textContent = 'Меню'; b.setAttribute('aria-label', 'Вернуться в меню LocalParty');
+-    b.addEventListener('click', () => send({type: 'menu'})); nav.prepend(b);
+-    const fullscreen = document.getElementById('fullscreen'); if (fullscreen) fullscreen.hidden = true;
++    if (document.getElementById('partyNativeMenu')) return;
++    document.body.classList.add('native-controller');
++    const style=document.createElement('style');style.textContent=`
++      body.native-controller{padding-bottom:calc(56px + env(safe-area-inset-bottom))!important}
++      body.native-controller.in-game #play{height:var(--native-play-height,calc(100svh - 128px - env(safe-area-inset-bottom)))!important;max-height:var(--native-play-height,calc(100svh - 128px - env(safe-area-inset-bottom)))!important;min-height:0!important}
++      #partyNativeDock{position:fixed;inset:auto 0 0;z-index:65;height:calc(52px + env(safe-area-inset-bottom));padding:5px max(12px,env(safe-area-inset-right)) calc(5px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0b1016f5;border-top:1px solid #ffffff14;box-sizing:border-box;backdrop-filter:blur(18px)}
++      #partyNativeDock #partyNativeMenu{display:inline-flex!important;align-items:center;gap:8px;min-width:92px;min-height:42px;height:42px;padding:8px 15px;font-size:12px;white-space:nowrap;margin:0}
++      #partyNativeDock small{color:var(--muted,#a1aaa9);font-size:11px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
++    `;document.head.append(style);
++    const dock=document.createElement('div');dock.id='partyNativeDock';
++    const b=document.createElement('button');b.id='partyNativeMenu';b.type='button';b.className='nav';b.textContent='← Меню';b.setAttribute('aria-label','Вернуться в меню ведущего');
++    b.addEventListener('click',()=>send({type:'menu'}));
++    const label=document.createElement('small');label.textContent='Твой пульт · LocalParty';dock.append(b,label);document.body.append(dock);
++    const fullscreen=document.getElementById('fullscreen');if(fullscreen)fullscreen.hidden=true;
++    let pending=0;
++    const fit=()=>{pending=0;const play=document.getElementById('play');if(!play||play.hidden)return;
++      const height=Math.max(1,document.documentElement.clientHeight-Math.max(0,play.getBoundingClientRect().top)-dock.getBoundingClientRect().height);
++      const value=Math.floor(height)+'px';if(play.style.getPropertyValue('--native-play-height')!==value)play.style.setProperty('--native-play-height',value);
++    };
++    const queue=()=>{if(!pending)pending=requestAnimationFrame(fit);};
++    const ro=new ResizeObserver(queue);ro.observe(dock);const header=document.querySelector('.app-header');if(header)ro.observe(header);
++    new MutationObserver(queue).observe(document.body,{attributes:true,attributeFilter:['class']});
++    const play=document.getElementById('play');if(play)new MutationObserver(queue).observe(play,{attributes:true,attributeFilter:['hidden']});
++    window.addEventListener('resize',()=>{fit();queue();},{passive:true});window.visualViewport?.addEventListener('resize',queue,{passive:true});
++    window.addEventListener('party-native-resume',()=>{fit();queue();});fit();queue();
+--- a/public/native-shell/index.html
++++ b/public/native-shell/index.html
+@@ -19,0 +20 @@
++<section id="tvDirectorControls" class="company native-card"><div class="eyebrow">ТЫ УПРАВЛЯЕШЬ ШОУ</div><h3>На большом экране</h3><div class="tv-control-grid"><button id="tvShowQR" class="primary" aria-pressed="false">Большой QR ↗</button><button id="tvShowCompany" class="quiet" aria-pressed="false">Топ компании ♛</button><button id="tvShowMatch" class="quiet" aria-pressed="false">Итоги матча</button><button id="tvCloseOverlay" class="quiet">Убрать карточку</button></div><p id="tvControlHint" role="status">Соединяем управление с экраном…</p><div class="tv-game-stepper"><button id="tvPrev" class="quiet" aria-label="Предыдущая игра на ТВ">←</button><label>Игра №<input id="tvGameNumber" type="number" inputmode="numeric" min="1" step="1" aria-label="Номер игры на телевизоре"></label><button id="tvNext" class="quiet" aria-label="Следующая игра на ТВ">→</button></div><div class="native-row tv-focus-copy"><span id="tvFocusName">Выбери игру стрелками</span><button id="tvSelectGame" class="lime small">Открыть</button></div><button id="tvPause" class="quiet">Пауза</button><div class="native-row"><span>Пьедестал после каждого матча</span><button id="tvAutoPodium" class="quiet" role="switch" aria-checked="false">Выключен</button></div><div class="native-row"><span>Фейерверк и живая подсветка</span><button id="tvEffects" class="quiet" role="switch" aria-checked="true">Включены</button></div><details><summary>Прокрутка лобби</summary><div class="native-row"><span>Листать каталог, пока никто не выбирает</span><button id="tvIdleBrowse" class="quiet" role="switch" aria-checked="true">Включено</button></div></details></section>
