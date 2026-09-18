@@ -62,7 +62,9 @@ jobs:
         run: python3 tests/tv-show-browser.py
       - name: Existing repository tests
         if: ${{ !cancelled() }}
-        run: npm test 2>&1 | tee .localparty-build/ci/npm-test.log
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee .localparty-build/ci/npm-test.log
       - name: Reports and reproducibility snapshot
         if: always()
         uses: actions/upload-artifact@v4

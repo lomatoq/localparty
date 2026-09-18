@@ -3,7 +3,7 @@
 Default loads real CSS from the checkout; HTTP/native/WebSocket are intercepted
 fixtures in either mode, not the real server/iPhone/AirPlay. Requires Playwright.
 """
-import argparse, importlib.util, json, re
+import argparse, importlib.util, json, re, time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -118,7 +118,14 @@ def main():
             # Test a visible control: browsers may defer offscreen animation frames.
             page.locator('#pressTest').scroll_into_view_if_needed()
             def event(id,kind,**args):page.locator('#'+id).dispatch_event(kind,dict(pointerId=41,button=0,clientX=5,clientY=5,pointerType='mouse',**args))
-            event('pressTest','pointerdown');page.wait_for_function('parseFloat(getComputedStyle(document.getElementById("pressTest")).scale)<1',timeout=2000);check('physical press held',page.locator('#pressTest').get_attribute('data-lp-press-state')=='down');check('physical scale compresses',page.locator('#pressTest').evaluate('e=>parseFloat(getComputedStyle(e).scale)<1'))
+            event('pressTest','pointerdown')
+            # Poll through the locator, not wait_for_function's runtime eval.
+            # The native document's no-unsafe-eval CSP remains enforced.
+            deadline=time.monotonic()+2
+            while time.monotonic()<deadline and not page.locator('#pressTest').evaluate('e=>parseFloat(getComputedStyle(e).scale)<1'):
+                page.wait_for_timeout(25)
+            check('physical press held',page.locator('#pressTest').get_attribute('data-lp-press-state')=='down')
+            check('physical scale compresses',page.locator('#pressTest').evaluate('e=>parseFloat(getComputedStyle(e).scale)<1'))
             event('pressTest','pointerup');check('release spring starts',page.locator('#pressTest').get_attribute('data-lp-press-state')=='release');page.wait_for_timeout(330);check('release cleans animated state',page.locator('#pressTest').get_attribute('data-lp-press-state') is None)
             event('pressTest','pointerdown');event('pressTest','pointercancel');check('cancel never sticks',page.locator('#pressTest').get_attribute('data-lp-press-state') is None)
             event('pressTest','pointerdown');page.locator('#pressTest').dispatch_event('pointermove',dict(pointerId=41,clientX=30,clientY=50,pointerType='touch'));check('swipe releases pressure',page.locator('#pressTest').get_attribute('data-lp-press-state') is None)
