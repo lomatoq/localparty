@@ -148,7 +148,9 @@ def main():
                 tv.set_viewport_size(dict(width=w,height=h));tv.wait_for_timeout(120)
                 check(f'TV {w}x{h} keeps logical 720px stage',tv.locator('#tvStage').evaluate('e=>e.offsetHeight')==720)
                 check(f'TV {w}x{h} Fresh contained vertically',tv.locator('.fresh-section').evaluate('e=>e.scrollHeight>=e.clientHeight&&e.clientHeight<600'))
-                check(f'TV {w}x{h} complete first Fresh row fits',tv.locator('.fresh-track>.game').first.evaluate('e=>e.getBoundingClientRect().bottom<=document.getElementById("tvBrowse").getBoundingClientRect().bottom+1'))
+                # 20260918.3: the featured bento block leads (like the computer); Fresh follows it
+                # as row 3. A whole Fresh card must still fit the view once the TV scrolls to it.
+                check(f'TV {w}x{h} featured bento leads, Fresh follows and a Fresh card fits the view',tv.evaluate('()=>{const order=[...document.querySelectorAll("#tvCatalog>section")].map(x=>x.dataset.catalogGroup);const card=document.querySelector(".fresh-track>.game").getBoundingClientRect(),view=document.getElementById("tvBrowse").getBoundingClientRect();return order[0]==="arcade"&&order[1]==="fresh"&&card.height<=view.height}'))
             s['selected']='bowling';tv.evaluate('(s)=>__sockets[0].emit(s)',s);check('native choice updates TV preview',tv.locator('#choiceTitle').text_content()=='Pocket Strike',{'title':tv.locator('#choiceTitle').inner_text(),'sockets':tv.evaluate('__sockets.length'),'selected':s.get('selected'),'type':s.get('type')})
             s['active']=dict(id='bowling',instance='test-instance',ui=dict(phase='waiting',serverNow=0),session=dict(paused=False,readyIds=[]));tv.evaluate('(s)=>__sockets[0].emit(s)',s);tv.wait_for_timeout(100)
             check('game uses unchanged display route',tv.locator('#gameFrame').get_attribute('data-requested-src' if a.in_memory else 'src')=='/games/bowling/host')

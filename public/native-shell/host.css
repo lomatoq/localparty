@@ -164,3 +164,39 @@ body.native-shell.tools-stuck .app-header::before{opacity:0}
 .native-shell .native-stepper{display:flex;align-items:center;gap:10px;flex:none}
 .native-shell .native-stepper button{width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;font-size:22px;line-height:1}
 .native-shell .native-stepper b{min-width:24px;text-align:center;font-size:20px;font-variant-numeric:tabular-nums}
+
+/* Host choice strip: the selected game with a Start button, no panel needed. */
+.native-shell .native-choice{display:flex;align-items:center;gap:10px;margin:6px 0 16px;padding:8px;border-radius:22px;border:1px solid #c8f58b55;background:linear-gradient(100deg,#c8f58b26,#c8f58b0a 45%,#141b21e8);box-shadow:0 10px 26px #0006,inset 0 1px 0 #ffffff12}
+.native-shell .native-choice.is-new{animation:lpChoiceIn 560ms cubic-bezier(.32,.72,0,1)}
+.native-shell .native-choice-main{flex:1;min-width:0;display:flex;align-items:center;gap:10px;margin:0;padding:0;min-height:0;border:0;background:none;color:inherit;text-align:left;box-shadow:none}
+.native-shell .native-choice-main img{width:50px;height:50px;flex:none;object-fit:contain;border-radius:14px;background:radial-gradient(circle,#ffffff14,#ffffff05)}
+.native-shell .native-choice-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+.native-shell .native-choice-copy .eyebrow{margin:0;font-size:9px;letter-spacing:2px;color:var(--lime)}
+.native-shell .native-choice-copy b{font:italic 900 17px/1.1 Rubik,system-ui,sans-serif;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.native-shell .native-choice-copy small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.native-shell #choiceStart{flex:none;min-height:46px;padding:10px 16px;font-size:13px;white-space:nowrap}
+@keyframes lpChoiceIn{from{opacity:0;translate:0 -10px;scale:.97}to{opacity:1;translate:0 0;scale:1}}
+
+/* Remote D-pad: ↑ / ← № → / ↓, like the controller. */
+.native-shell .tv-game-stepper.tv-dpad{grid-template-columns:52px minmax(0,1fr) 52px;grid-template-areas:". up ." "left num right" ". down .";row-gap:8px}
+.native-shell .tv-dpad #tvUp{grid-area:up;justify-self:center;width:52px}
+.native-shell .tv-dpad #tvDown{grid-area:down;justify-self:center;width:52px}
+.native-shell .tv-dpad #tvPrev{grid-area:left}
+.native-shell .tv-dpad #tvNext{grid-area:right}
+.native-shell .tv-dpad label{grid-area:num}
+
+/* iOS-like motion: sheets spring up and slide away, backdrops fade, rows settle in. */
+.native-shell dialog[open]{animation:lpSheetIn 520ms cubic-bezier(.32,.72,0,1)}
+.native-shell dialog[open]::backdrop{animation:lpFadeIn 320ms ease}
+.native-shell dialog.sheet-closing{animation:lpSheetOut 260ms cubic-bezier(.4,0,1,1) forwards}
+.native-shell dialog.sheet-closing::backdrop{animation:lpFadeOut 260ms ease forwards}
+.native-shell dialog[open]>*{animation:lpRowIn 560ms cubic-bezier(.32,.72,0,1) both}
+.native-shell dialog[open]>*:nth-child(2){animation-delay:40ms}.native-shell dialog[open]>*:nth-child(3){animation-delay:80ms}.native-shell dialog[open]>*:nth-child(4){animation-delay:120ms}.native-shell dialog[open]>*:nth-child(n+5){animation-delay:160ms}
+.native-shell button[role=switch]{transition:background-color 260ms ease,color 260ms ease,box-shadow 260ms ease}
+.native-shell #roster>*{animation:lpRowIn 480ms cubic-bezier(.32,.72,0,1) both}
+@keyframes lpSheetIn{from{opacity:0;transform:translateY(48px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes lpSheetOut{to{opacity:0;transform:translateY(56px) scale(.97)}}
+@keyframes lpFadeIn{from{opacity:0}}
+@keyframes lpFadeOut{to{opacity:0}}
+@keyframes lpRowIn{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.native-shell dialog[open],.native-shell dialog[open]::backdrop,.native-shell dialog[open]>*,.native-shell #roster>*,.native-shell .native-choice.is-new{animation:none}}

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
-  let state = {catalog: [], players: [], leaderboard: [], votes: [], native: {}}, section = 'all', pendingQR = false;
+  let state = {catalog: [], players: [], leaderboard: [], votes: [], native: {}}, section = 'all', pendingQR = false, choiceStarting = false, lastTVColumn = 0, lastFreshId = null;
   let selectedDetail = null, catalogSignature = '', rosterSignature = '', actionsSignature = '', standingsSignature = '';
   let confirmAction = null, launchPending = false, toastTimer;
   let receivedSnapshot = false, readyTimer = null, handshakeAttempts = 0;
@@ -26,11 +26,15 @@
   // WebKit does not reliably restore focus when a dialog closes, so the opener is
   // remembered explicitly and refocused. Keeps VoiceOver and keyboard users in place.
   const openers = {};
-  function show(id) { const d = $(id); if (!d.open) { openers[id] = document.activeElement; d.showModal(); } }
+  // iOS-style sheets: spring up on open, slide down before the dialog actually closes.
+  const closing = {};
+  function show(id) { const d = $(id); if (closing[id]) { clearTimeout(closing[id]); delete closing[id]; d.classList.remove('sheet-closing'); } if (!d.open) { openers[id] = document.activeElement; d.showModal(); } }
   function close(id) {
-    const d = $(id); if (!d.open) return;
-    d.close(); const opener = openers[id]; delete openers[id];
-    if (opener && opener.isConnected && typeof opener.focus === 'function') opener.focus();
+    const d = $(id); if (!d.open || closing[id]) return;
+    const finish = () => { delete closing[id]; d.classList.remove('sheet-closing'); if (!d.open) return; d.close(); const opener = openers[id]; delete openers[id];
+      if (opener && opener.isConnected && typeof opener.focus === 'function') opener.focus(); };
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+    d.classList.add('sheet-closing'); closing[id] = setTimeout(finish, 260);
   }
   function confirm(title, text, action) { $('confirmTitle').textContent = title; $('confirmText').textContent = text; confirmAction = action; show('confirmDialog'); }
   function controller() { if (busy()) return; dialogs.forEach(close); send('controller'); }
@@ -143,7 +147,18 @@
     $('backgroundRequest').disabled = !state.networkEnabled || busy();
     $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), 'Show: tv-show-20260918.1', n.displayMode].filter(Boolean).join(' · ');
   }
+  // Thin "host choice" card at the top of the lobby: start the selected game without the panel.
+  function renderChoice() {
+    const g = state.active ? null : gameById(state.selected), strip = $('choiceStrip');
+    strip.hidden = !g; if (!g) { choiceStarting = false; return; }
+    if ($('choiceName').textContent !== g.title) { $('choiceName').textContent = g.title; $('choiceArt').src = artPath(g); $('choiceArt').hidden = !artPath(g); strip.classList.remove('is-new'); void strip.offsetWidth; strip.classList.add('is-new'); }
+    const count = (state.players || []).length, min = (state.botCount || 0) > 0 ? 1 : g.min;
+    $('choiceMeta').textContent = !state.screens ? 'Подключи телевизор, чтобы начать' : count < min ? `Нужно ещё ${min - count} · ${g.min}–${g.max} игроков` : count > g.max ? `Максимум ${g.max} игроков` : `${count} в комнате · ${g.min}–${g.max} игроков`;
+    $('choiceStart').disabled = choiceStarting || busy() || !state.screens || count < min || count > g.max;
+    $('choiceStart').textContent = choiceStarting || state.busy ? 'Запускаем…' : 'Старт ▶';
+  }
   function renderTVControls() {
+    renderChoice();
     const tv=state.tv, unavailable=!tv||busy(), active=!!state.active;
     const canCover=tv?.canCover===true;
     $('tvShowQR').disabled=unavailable||!canCover||pendingQR;
@@ -157,7 +172,7 @@
     $('tvShowQR').setAttribute('aria-pressed',String(tv?.mode==='qr'));
     $('tvShowCompany').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='company'));
     $('tvShowMatch').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='match'));
-    for(const id of ['tvPrev','tvNext','tvGameNumber','tvSelectGame'])$(id).disabled=unavailable||active||!state.catalog.length;
+    for(const id of ['tvPrev','tvNext','tvUp','tvDown','tvGameNumber','tvSelectGame'])$(id).disabled=unavailable||active||!state.catalog.length;
     const focus=gameById(tv?.focusId);
     $('tvSelectGame').disabled ||= !focus;
     $('tvGameNumber').max=String(state.catalog.length);
@@ -243,19 +258,39 @@
   $('tvShowCompany').onclick=()=>showTV('podium','company');
   $('tvShowMatch').onclick=()=>showTV('podium','match');
   $('tvCloseOverlay').onclick=()=>showTV('none');
-  // Arrows walk every card in the order the TV shows them: Fresh shelf, featured, the rest, table games.
-  function tvOrder(){
+  // The remote mirrors the TV layout: featured bento (2 rows), the Fresh shelf (row 3),
+  // the remaining arcade grid and table games, three columns each.
+  function tvLayout(){
     const games=state.catalog||[],freshIds=(window.LocalPartyCatalog?.freshIds||[]).filter(id=>games.some(g=>g.id===id));
-    const rest=games.filter(g=>!freshIds.includes(g.id));
-    const main=rest.filter(g=>g.section!=='table').sort((a,b)=>Number(b.id==='tankarena')-Number(a.id==='tankarena'));
-    return [...freshIds,...main.map(g=>g.id),...rest.filter(g=>g.section==='table').map(g=>g.id)];
+    const others=games.filter(g=>!freshIds.includes(g.id)),main=others.filter(g=>g.section!=='table').sort((a,b)=>Number(b.id==='tankarena')-Number(a.id==='tankarena')).map(g=>g.id);
+    const lead=main.slice(0,3),more=main.slice(3),table=others.filter(g=>g.section==='table').map(g=>g.id),rows=[];
+    if(lead.length){rows.push([{id:lead[0],c0:0,c1:1},...(lead[1]?[{id:lead[1],c0:2,c1:2}]:[])]);if(lead.length>2)rows.push([{id:lead[0],c0:0,c1:1},{id:lead[2],c0:2,c1:2}]);}
+    if(freshIds.length)rows.push(freshIds.map((id,i)=>({id,c0:i,c1:i,fresh:true})));
+    for(const list of [more,table])for(let i=0;i<list.length;i+=3)rows.push(list.slice(i,i+3).map((id,k)=>({id,c0:k,c1:k})));
+    return {order:[...lead,...freshIds,...more,...table],rows};
   }
+  function focusTV(id){if(id)manage({type:'tv-focus',id});}
   function stepTV(direction){
-    const order=tvOrder();if(!order.length)return;const current=order.indexOf(state.tv?.focusId||state.selected);
-    manage({type:'tv-focus',id:order[current<0?(direction>0?0:order.length-1):(current+direction+order.length)%order.length]});
+    const {order}=tvLayout();if(!order.length)return;const current=order.indexOf(state.tv?.focusId||state.selected);
+    focusTV(order[current<0?(direction>0?0:order.length-1):(current+direction+order.length)%order.length]);
+  }
+  function moveTV(direction){
+    const {order,rows}=tvLayout();if(!rows.length)return;const current=state.tv?.focusId||state.selected;
+    const at=rows.map((row,i)=>row.some(c=>c.id===current)?i:-1).filter(i=>i>=0);
+    if(!at.length){focusTV(order[0]);return;}
+    const from=direction>0?at[at.length-1]:at[0],cell=rows[from].find(c=>c.id===current);
+    if(cell.fresh)lastFreshId=cell.id;else lastTVColumn=(cell.c0+cell.c1)/2;
+    const target=rows[from+direction];if(!target)return;
+    if(target[0].fresh){focusTV(target.some(c=>c.id===lastFreshId)?lastFreshId:target[0].id);return;}
+    const col=Math.min(2,lastTVColumn),hit=target.find(c=>c.c0<=col&&col<=c.c1)||target.reduce((a,b)=>Math.abs((a.c0+a.c1)/2-col)<=Math.abs((b.c0+b.c1)/2-col)?a:b);
+    focusTV(hit.id);
   }
   $('tvPrev').onclick=()=>stepTV(-1);
   $('tvNext').onclick=()=>stepTV(1);
+  $('tvUp').onclick=()=>moveTV(-1);
+  $('tvDown').onclick=()=>moveTV(1);
+  $('choiceStart').onclick=()=>{const id=state.selected;if(!id||$('choiceStart').disabled)return;choiceStarting=true;renderChoice();manage({type:'launch',id});setTimeout(()=>{choiceStarting=false;renderChoice();},6000);};
+  $('choiceOpen').onclick=()=>{if(state.selected)openGame(state.selected);};
   function focusNumber(){const number=Number($('tvGameNumber').value);if(!Number.isInteger(number)||number<1||number>state.catalog.length){toast('Введи номер от 1 до '+state.catalog.length);return;}manage({type:'tv-focus',number});}
   $('tvGameNumber').onchange=focusNumber;
   $('tvGameNumber').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('tvGameNumber').blur();}};

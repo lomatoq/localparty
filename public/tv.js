@@ -70,9 +70,16 @@
     function rebuild(games) {
       const oldScroll=track?.scrollLeft||0;
       resize?.disconnect();cancelAnimationFrame(frame);root.replaceChildren();cards.clear();groups=[];arrows=[];track=null;
-      const fresh=group('Свежая партия.',true),main=group('Во что влетаем?'),table=group('Слова, секреты и внезапные таланты.',false,true);
+      // TV: the featured bento block comes first; Fresh sits after its two rows (row 3).
+      let fresh,main,rest=null;
+      if(displayOnly){main=group('Во что влетаем?');fresh=group('Свежая партия.',true);
+        const box=node('section','lp-catalog-section lp-catalog-continued');box.dataset.catalogGroup='arcade-more';rest=node('div','games');box.append(rest);root.append(box);main.extra=rest;main.extraBox=box;}
+      else {fresh=group('Свежая партия.',true);main=group('Во что влетаем?');}
+      const table=group('Слова, секреты и внезапные таланты.',false,true);
       const ordered=[...games].sort((a,b)=>Number(b.id==='tankarena')-Number(a.id==='tankarena'));
-      for(const g of ordered){const index=games.findIndex(x=>x.id===g.id),card=makeCard(g,index,g.id==='tankarena');cards.set(g.id,card);if(!freshIds.includes(g.id))(g.section==='table'?table:main).grid.append(card);}
+      let lead=0;
+      for(const g of ordered){const index=games.findIndex(x=>x.id===g.id),card=makeCard(g,index,g.id==='tankarena');cards.set(g.id,card);if(freshIds.includes(g.id))continue;
+        if(g.section==='table')table.grid.append(card);else if(rest&&lead>=3)rest.append(card);else{main.grid.append(card);lead++;}}
       freshIds.forEach(id=>{if(cards.has(id))fresh.grid.append(cards.get(id));});
       if(track){track.scrollLeft=oldScroll;if(typeof ResizeObserver==='function'){resize=new ResizeObserver(scheduleBounds);resize.observe(track);}}
       scheduleBounds();
@@ -89,7 +96,7 @@
         const n=tallies.get(g.id)||0,votes=card.querySelector('.lp-card-votes');votes.hidden=!n;
         const text=`Голосов: ${n}`;if(votes.textContent!==text)votes.textContent=text;
       }
-      groups.forEach(({box,grid,count})=>{const n=[...grid.children].filter(c=>!c.hidden).length;box.hidden=!n;const text=`${n} игр`;if(count.textContent!==text)count.textContent=text;});
+      groups.forEach(({box,grid,count,extra,extraBox})=>{const shown=g=>[...g.children].filter(c=>!c.hidden).length;const more=extra?shown(extra):0,n=shown(grid)+more;box.hidden=!n;if(extraBox)extraBox.hidden=!more;const text=`${n} игр`;if(count.textContent!==text)count.textContent=text;});
       scheduleBounds();return visible;
     }
     function revealFresh(id){const card=cards.get(id);if(track&&card?.parentElement===track){const x=card.offsetLeft;track.scrollTo({left:Math.max(0,x-24),behavior:reduced()?'auto':'smooth'});}}
@@ -129,7 +136,9 @@ function hud(force=false){if(!state?.active)return;const {ui,session}=state.acti
 function render(){if(!state?.catalog||!state?.players)return;
  const banner=$('incident');banner.hidden=!state.incident;banner.textContent=state.incident?.message||'';
  const game=state.catalog.find(g=>g.id===state.active?.id);document.body.classList.toggle('game-owns-hud',game?.engine==='sports_siege');document.body.classList.toggle('tv-in-game',!!game);$('play').hidden=!game;$('lobby').hidden=!!game;
- $('tvStage').classList.toggle('large-roster',state.players.length>8);
+ const crowd=state.players.length;$('tvStage').classList.toggle('large-roster',crowd>8);
+ // The people column widens smoothly as the room fills, so every player stays on screen.
+ $('tvStage').classList.toggle('roster-mid',crowd>5&&crowd<=10);$('tvStage').classList.toggle('roster-big',crowd>10);
  if(game){const next=state.active.instance;if(key!==next){fitScreen();key=next;window.PARTY_INSTANCE=key;$('gameFrame').src='/games/'+game.id+game.host;}text('gameTitle',game.title);text('gamePlayers',state.players.length+' в игре');hud();}
  else if(key){key='';window.PARTY_INSTANCE=null;$('gameFrame').src='about:blank';lastHUD='';lastMessage='';fitScreen();}
  // Do not rebuild or animate the offscreen catalog for per-frame game traffic.
@@ -156,9 +165,13 @@ function fitScreen(){
  // 1080p AirPlay screen is sharp instead of an upscaled 720p bitmap. Own left/top are zoomed too.
  const z=layout.scale;stage.style.transform='none';stage.style.zoom=String(z);stage.style.width=layout.width+'px';stage.style.height=layout.height+'px';stage.style.left=layout.left/z+'px';stage.style.top=layout.top/z+'px';stage.style.setProperty('--tv-vw',layout.width/100+'px');stage.classList.toggle('tv-compact',layout.width<=1100);
  const play=$('play'),bar=play.querySelector('.gamebar');const height=Math.max(1,layout.height-play.offsetTop);play.style.height=height+'px';const frame=$('gameFrame');
- // Games keep their familiar 1280-wide logical viewport: undo the stage zoom on the
- // iframe box and scale it back visually, exactly like the previous whole-stage transform.
- frame.style.zoom=String(1/z);frame.style.width=layout.width+'px';frame.style.height=Math.max(1,height-bar.offsetHeight)+'px';frame.style.flex='none';frame.style.transformOrigin='0 0';frame.style.transform='scale('+z+')';
+ // Games render at the receiver's real resolution (a 1080p TV gives them a native
+ // 1920-wide viewport, like the computer host). Only above 1920 px is the viewport
+ // capped and scaled up, so 4K keeps desktop-sized game layouts.
+ const physicalWidth=layout.width*z,gameScale=Math.max(1,physicalWidth/1920);
+ frame.style.zoom=String(1/z);frame.style.flex='none';frame.style.transformOrigin='0 0';
+ frame.style.width=physicalWidth/gameScale+'px';frame.style.height=Math.max(1,(height-bar.offsetHeight)*z/gameScale)+'px';
+ frame.style.transform=gameScale>1?'scale('+gameScale+')':'none';
 }
 fitScreen();window.addEventListener('resize',fitScreen);
 $('gameFrame').addEventListener('load',()=>{fitScreen();hud(true);show?.gameLoaded();});setInterval(clock,250);

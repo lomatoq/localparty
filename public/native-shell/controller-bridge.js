@@ -30,6 +30,11 @@
         html body.native-controller.lobby-connected:not(.in-game) .app-header>nav:last-of-type{grid-area:1/2!important;width:auto!important;justify-content:flex-end!important;align-self:center}
         html body.native-controller.lobby-connected:not(.in-game) #catalogFilters{grid-area:2/1/3/3!important}
       }
+      body.native-controller dialog[open]{animation:lpSheetIn 520ms cubic-bezier(.32,.72,0,1)}
+      body.native-controller dialog[open]::backdrop{animation:lpFadeIn 320ms ease}
+      @keyframes lpSheetIn{from{opacity:0;transform:translateY(48px) scale(.96)}to{opacity:1;transform:none}}
+      @keyframes lpFadeIn{from{opacity:0}}
+      @media(prefers-reduced-motion:reduce){body.native-controller dialog[open],body.native-controller dialog[open]::backdrop{animation:none}}
       @media(max-width:359px){html body.native-controller.lobby-connected:not(.in-game) .app-header .brand-mark{display:none!important}}
       #partyNativeDock #partyNativeMenu{display:inline-flex!important;align-items:center;gap:8px;min-width:92px;min-height:42px;height:42px;padding:8px 15px;font-size:12px;white-space:nowrap;margin:0}
       #partyNativeDock small{color:var(--muted,#a1aaa9);font-size:11px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

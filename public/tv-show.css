@@ -13,7 +13,7 @@ body.tv-screen .tv-presentation{z-index:180;background:radial-gradient(ellipse a
 body.tv-screen .tv-podium{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;isolation:isolate;padding:28px 38px 20px;box-sizing:border-box;background:radial-gradient(ellipse at 50% 40%,#64563929,#0b0e12 72%)}
 body.tv-screen .tv-celebration-background{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
 body.tv-screen #tvShader,body.tv-screen #tvFireworks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-body.tv-screen #tvShader{opacity:.9}body.tv-screen #tvFireworks{opacity:.82}
+body.tv-screen #tvShader{opacity:.9}body.tv-screen #tvFireworks{opacity:1}
 body.tv-screen .tv-stage-halo{position:absolute;left:10%;right:10%;bottom:32px;height:70px;background:radial-gradient(ellipse,#d9f2b83b,transparent 68%);filter:blur(18px)}
 body.tv-screen .tv-board-heading{position:relative;display:block;height:auto;border:0;background:none;text-align:center;padding:0;margin:0 auto 16px;width:100%;max-width:1020px;flex:0 0 auto}
 body.tv-screen .tv-board-heading h2{font-size:44px;line-height:1.1;letter-spacing:-1.8px;margin:10px 0 7px;font-style:italic;text-transform:uppercase;color:#f5f7ef;overflow-wrap:anywhere}
@@ -108,8 +108,8 @@ body.tv-screen #tvStage>.tv-header{height:64px;min-height:64px;padding:0 24px;ga
 body.tv-screen .tv-identity{display:flex;align-items:flex-end;align-self:stretch;gap:4px;min-width:0}
 body.tv-screen .tv-identity .brand{align-self:center;font:italic 900 27px/1 Rubik,system-ui,sans-serif;letter-spacing:-1.2px;text-transform:none!important;white-space:nowrap}
 body.tv-screen .tv-identity .brand span{color:var(--lime);text-transform:uppercase}
-body.tv-screen .tv-identity .brand-mark{display:block;align-self:center;width:66px;height:auto;max-height:44px;object-fit:contain;object-position:center;margin:0;filter:drop-shadow(0 6px 14px #0008);animation:tvMascot 5.5s ease-in-out infinite}
-@keyframes tvMascot{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -3px;rotate:-3deg}}
+body.tv-screen .tv-identity .brand-mark{display:block;align-self:center;width:54px;height:34px;max-height:34px;object-fit:contain;object-position:center;margin:2px 0 0;filter:drop-shadow(0 6px 14px #0008);animation:tvMascot 5.5s ease-in-out infinite}
+@keyframes tvMascot{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 2px;rotate:-3deg}}
 body.tv-screen .tv-menu-labels{gap:4px;padding:4px;margin:auto;border-radius:99px;background:#ffffff05;border:1px solid #ffffff0d}
 body.tv-screen .tv-menu-labels span{padding:9px 16px;border-radius:99px;font:italic 800 11px/1 Rubik,system-ui,sans-serif;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);background:none;box-shadow:none}
 body.tv-screen .tv-menu-labels .is-active{color:var(--ink);background:linear-gradient(135deg,#ffffff17,#ffffff08);box-shadow:inset 0 1px 0 #ffffff1a,0 0 0 1px #ffffff14}
@@ -189,3 +189,62 @@ body.tv-screen #tvStage .lp-catalog .fresh-track>.game:nth-child(9){z-index:4}
 body.tv-screen #tvStage .lp-catalog .fresh-track>.game:nth-child(10){z-index:3}
 body.tv-screen #tvStage .lp-catalog .fresh-track>.game.selected{z-index:20;margin:0 6px 0 18px!important;box-shadow:inset 0 0 0 2px var(--lime),0 0 26px #c8f58b40,0 12px 26px #0007!important}
 body.tv-screen #tvStage .lp-catalog .fresh-track>.game.selected:first-child{margin-left:0!important}
+
+/* ---- TV round 3 ------------------------------------------------------------ */
+/* Fresh sits after the featured bento; room around the scroll column lets the whole
+   Fresh block's glow render instead of being cut at the sides. */
+body.tv-screen #tvBrowse{margin:0 -22px;padding-left:28px!important;padding-right:28px!important}
+body.tv-screen #tvStage>#lobby::before,body.tv-screen #tvStage>#lobby::after{left:2px;right:282px}
+body.tv-screen #tvStage .lp-catalog .lp-fresh-section{margin:26px 0 10px!important}
+body.tv-screen #tvStage .lp-catalog .lp-catalog-continued{margin-top:22px}
+
+/* People column widens smoothly as the room fills; everything stays on screen, pinned. */
+body.tv-screen #tvStage>#lobby{transition:grid-template-columns 600ms cubic-bezier(.32,.72,0,1)}
+body.tv-screen #tvSidebar{overflow:hidden!important}
+body.tv-screen #tvSidebar>section{transition:padding 400ms ease,opacity 300ms ease}
+body.tv-screen #tvSidebar #qr{transition:width 500ms cubic-bezier(.32,.72,0,1),height 500ms cubic-bezier(.32,.72,0,1)}
+body.tv-screen #tvStage.roster-mid>#lobby{grid-template-columns:minmax(0,1fr) 300px}
+body.tv-screen #tvStage.roster-mid #tvSidebar #qr{width:112px;height:112px}
+body.tv-screen #tvStage.roster-mid #tvRanking{display:none}
+body.tv-screen #tvStage.roster-big>#lobby{grid-template-columns:minmax(0,1fr) 380px}
+body.tv-screen #tvStage.roster-big #tvSidebar #qr{width:84px;height:84px;margin:6px auto}
+body.tv-screen #tvStage.roster-big #tvSidebar .tv-invite p,body.tv-screen #tvStage.roster-big #tvSidebar #qrCaption{display:none}
+body.tv-screen #tvStage.roster-big #tvRanking{display:none}
+body.tv-screen #tvStage.roster-big #tvSidebar #players{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+body.tv-screen #tvStage.roster-big #tvSidebar .player{padding:5px 7px}
+body.tv-screen #tvStage.roster-big #tvSidebar .player b{font-size:12px}
+body.tv-screen #tvStage.roster-mid #tvBrowse,body.tv-screen #tvStage.roster-big #tvBrowse{margin-right:-22px}
+body.tv-screen #tvStage.roster-mid>#lobby::before,body.tv-screen #tvStage.roster-mid>#lobby::after{right:324px}
+body.tv-screen #tvStage.roster-big>#lobby::before,body.tv-screen #tvStage.roster-big>#lobby::after{right:404px}
+body.tv-screen #tvSidebar .player{animation:tvPlayerIn 520ms cubic-bezier(.32,.72,0,1) both}
+@keyframes tvPlayerIn{from{opacity:0;translate:0 10px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+
+/* Podium: much larger photos; names follow. */
+body.tv-screen .podium-portrait{width:118px;height:118px;border-width:4px}
+body.tv-screen .is-winner .podium-portrait{width:150px;height:150px}
+body.tv-screen .podium-initial{font-size:44px}
+body.tv-screen .is-winner .podium-initial{font-size:56px}
+body.tv-screen .podium-crown{width:70px;height:56px;top:-46px}
+body.tv-screen .podium-name{font-size:20px!important;min-height:26px;margin:12px 0 10px}
+body.tv-screen .tv-podium.has-tail .podium-portrait{width:86px;height:86px}
+body.tv-screen .tv-podium.has-tail .is-winner .podium-portrait{width:108px;height:108px}
+body.tv-screen .tv-podium.has-tail .podium-initial{font-size:32px}
+body.tv-screen .podium-tail .podium-portrait,body.tv-screen .tv-podium.has-tail .podium-tail .podium-portrait{width:54px;height:54px;border-width:2px}
+body.tv-screen .podium-tail .podium-initial{font-size:20px}
+
+/* Glowing bokeh instead of flat dots: soft orbs drifting up, twinkling. */
+body.tv-screen .tv-celebration-background:after{display:none}
+body.tv-screen .tv-bokeh{position:absolute;inset:-260px 0 0;pointer-events:none;background-image:radial-gradient(circle,#ffd45ccc 0,#ffd45c55 2.5px,transparent 9px),radial-gradient(circle,#ff7ac3bb 0,#ff7ac344 2px,transparent 8px),radial-gradient(circle,#4fe0c8bb 0,#4fe0c844 3px,transparent 11px),radial-gradient(circle,#a98bffbb 0,#a98bff44 2px,transparent 8px),radial-gradient(circle,#fff6d8ee 0,#fff6d855 1.5px,transparent 5px),radial-gradient(circle,#b8f35aaa 0,#b8f35a33 3px,transparent 12px);background-size:260px 260px;background-position:30px 40px,150px 110px,210px 200px,80px 220px,180px 20px,20px 150px;-webkit-mask-image:radial-gradient(ellipse 38% 56% at 50% 58%,transparent 50%,#000 100%);mask-image:radial-gradient(ellipse 38% 56% at 50% 58%,transparent 50%,#000 100%);animation:tvBokehRise 22s linear infinite,tvTwinkle 3.2s ease-in-out infinite alternate}
+body.tv-screen .tv-bokeh-far{inset:-170px 0 0;background-size:170px 170px;background-position:60px 20px,10px 90px,120px 140px,150px 60px,90px 110px,40px 10px;opacity:.55;filter:blur(1.5px);animation:tvBokehRiseFar 34s linear infinite,tvTwinkle 4.6s ease-in-out -1.4s infinite alternate}
+@keyframes tvBokehRise{to{transform:translateY(-260px)}}
+@keyframes tvBokehRiseFar{to{transform:translateY(-170px)}}
+@keyframes tvTwinkle{from{opacity:.45}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){body.tv-screen .tv-bokeh,body.tv-screen #tvSidebar .player{animation:none}}
+/* The shared `header{backdrop-filter}` made the podium heading a dark blur box that cut fireworks. */
+body.tv-screen .tv-board-heading{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:none!important;box-shadow:none!important}
+body.tv-screen .podium-name{display:block!important;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;overflow-wrap:normal;-webkit-line-clamp:unset;max-height:none}
+/* The computer sidebar shows only 4 people; the TV must show everyone. */
+body.tv-screen #tvSidebar #players .player{display:flex!important}
+body.tv-screen #tvStage.roster-mid #tvSidebar .player{padding:6px 9px}
+body.tv-screen #tvStage.roster-mid #tvSidebar .tv-invite #inviteHint,body.tv-screen #tvStage.roster-mid #tvSidebar #qrCaption{display:none}
+body.tv-screen #tvStage.roster-mid #tvSidebar #players{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
