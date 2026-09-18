@@ -75,3 +75,10 @@ body.tv-screen .tv-podium.has-tail .tv-board-heading{margin-bottom:24px}
 body.tv-screen .tv-board-heading h2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 body.tv-screen .podium-tail .podium-seat .podium-plinth{min-height:52px}
 body.tv-screen .podium-tail .podium-seat .podium-rank{font-size:20px}
+
+/* The desktop .company can carry grid-area:2/3. In the TV's two-column
+   viewport that creates an invisible extra row/column and halves the catalog.
+   Explicit TV placement prevents inherited desktop grid coordinates leaking in. */
+body.tv-screen #tvStage>#lobby{grid-template-rows:minmax(0,1fr)}
+body.tv-screen #tvStage #tvBrowse{grid-area:1 / 1!important}
+body.tv-screen #tvStage #tvSidebar{grid-area:1 / 2!important}
