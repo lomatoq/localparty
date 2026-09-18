@@ -157,3 +157,10 @@ body.native-shell .native-catalog-tools::before{left:-15px;right:-15px;top:calc(
 body.native-shell.tools-stuck .native-catalog-tools::before{opacity:1}
 body.native-shell.tools-stuck .app-header::before{opacity:0}
 @media(prefers-reduced-motion:reduce){body.native-shell .app-header::before,body.native-shell .native-catalog-tools::before{transition:none}}
+
+/* Bots row in the roster card: label + small hint, round −/+ stepper. */
+.native-shell .native-bots>span{display:flex;flex-direction:column;gap:3px;font-weight:800}
+.native-shell .native-bots small{font-size:11px;font-weight:600;color:var(--muted);line-height:1.3}
+.native-shell .native-stepper{display:flex;align-items:center;gap:10px;flex:none}
+.native-shell .native-stepper button{width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;font-size:22px;line-height:1}
+.native-shell .native-stepper b{min-width:24px;text-align:center;font-size:20px;font-variant-numeric:tabular-nums}

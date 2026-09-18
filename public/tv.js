@@ -101,6 +101,8 @@
 
 (()=>{'use strict';
 const $=id=>document.getElementById(id);if(!$('tvStage'))return;
+// The TV hosts test bots for the iPhone room exactly like the computer host page does.
+let botProfiles=[];
 let ws,state,key='',reconnect,offset=0,selected='',lastPlayers='',lastStandings='',accessClosed=false;
 window.PARTY_PROFILE={};window.PARTY_DISPLAY_ONLY=true;
 const catalog=window.LocalPartyCatalog.create($('tvCatalog'),{displayOnly:true});
@@ -144,13 +146,19 @@ function render(){if(!state?.catalog||!state?.players)return;
  const signature=JSON.stringify(state.players.map(p=>[p.id,p.name,p.avatar]));if(signature!==lastPlayers){lastPlayers=signature;text('count',state.players.length+' / 16');$('players').replaceChildren(...state.players.map((p,i)=>{const n=document.createElement('div');n.className='player';const avatar=document.createElement('span');avatar.className='avatar';avatar.style.setProperty('--card',i%2?'#a96aff':'#c8f58b');avatar.textContent=Array.from(p.name||'?')[0];if(typeof p.avatar==='string'&&/^data:image\/(jpeg|png|webp);base64,/.test(p.avatar)){const img=new Image();img.src=p.avatar;img.alt='';avatar.replaceChildren(img);}const name=document.createElement('b');name.textContent=p.name;n.append(avatar,name);return n;}));$('tvEmpty').hidden=!!state.players.length;}
  const leaders=JSON.stringify((state.leaderboard||[]).slice(0,3));if(leaders!==lastStandings){lastStandings=leaders;$('tvLeaders').replaceChildren(...(state.leaderboard||[]).slice(0,3).map((p,i)=>{const row=document.createElement('div');row.className='mini-rank';const rank=document.createElement('span'),name=document.createElement('b'),score=document.createElement('strong');rank.textContent=String(i+1);name.textContent=p.name;score.textContent=String(p.points||0);row.append(rank,name,score);return row;}));$('tvRanking').hidden=!(state.leaderboard||[]).length;}
 show?.update(state);
+if(botProfiles.length||window.PartyBots?.profiles?.length)window.PartyBots?.update(state,botProfiles.slice(0,state.botCount??botProfiles.length));
 }
 function connect(){clearTimeout(reconnect);const channel=ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/lobby');channel.onopen=()=>{if(ws!==channel)return;channel.send(JSON.stringify({type:'display',key:window.PARTY_DISPLAY_KEY}));text('connection','Подключаем экран…');};channel.onmessage=e=>{if(ws!==channel)return;const m=JSON.parse(e.data);if(m.type==='display-ok'){show?.setConnected(true);text('connection','Общий экран подключён');$('connection').classList.add('online');}if(m.type==='error'&&m.code==='DISPLAY_AUTH'){location.reload();return;}if(m.type==='access-closed'){accessClosed=true;state={...state,active:null,networkEnabled:false,urls:[]};render();text('connection','Ждём приглашения ведущего');}
-if(m.type==='state'){accessClosed=false;state=m;if(m.active?.ui?.serverNow)offset=Date.now()-m.active.ui.serverNow;render();}if(m.type==='game-ui'&&m.instance===state?.active?.instance){state.active.ui=m.ui;offset=Date.now()-m.ui.serverNow;hud();show?.update(state);}if(m.type==='session-start')hud();if(m.type==='error')tell(m.message);};channel.onclose=()=>{if(ws!==channel)return;show?.setConnected(false);text('connection',accessClosed?'Доступ по Wi-Fi закрыт ведущим':'Подключаем экран заново…');$('connection').classList.remove('online');reconnect=setTimeout(connect,1200);};channel.onerror=()=>{};}
+if(m.type==='test-profiles'){botProfiles=Array.isArray(m.profiles)?m.profiles:[];if(state)window.PartyBots?.update(state,botProfiles);return;}if(m.type==='state'){accessClosed=false;state=m;if(m.active?.ui?.serverNow)offset=Date.now()-m.active.ui.serverNow;render();}if(m.type==='game-ui'&&m.instance===state?.active?.instance){state.active.ui=m.ui;offset=Date.now()-m.ui.serverNow;hud();show?.update(state);if(botProfiles.length)window.PartyBots?.update(state,botProfiles.slice(0,state.botCount??botProfiles.length));}if(m.type==='session-start')hud();if(m.type==='error')tell(m.message);};channel.onclose=()=>{if(ws!==channel)return;show?.setConnected(false);text('connection',accessClosed?'Доступ по Wi-Fi закрыт ведущим':'Подключаем экран заново…');$('connection').classList.remove('online');reconnect=setTimeout(connect,1200);};channel.onerror=()=>{};}
 function fitScreen(){
  const stage=$('tvStage'),layout=window.partyTVLayout(window.innerWidth,window.innerHeight);
- stage.style.width=layout.width+'px';stage.style.height=layout.height+'px';stage.style.left=layout.left+'px';stage.style.top=layout.top+'px';stage.style.transform='scale('+layout.scale+')';stage.style.setProperty('--tv-vw',layout.width/100+'px');stage.classList.toggle('tv-compact',layout.width<=1100);
- const play=$('play'),bar=play.querySelector('.gamebar');const height=Math.max(1,layout.height-play.offsetTop);play.style.height=height+'px';$('gameFrame').style.height=Math.max(1,height-bar.offsetHeight)+'px';
+ // zoom (not transform) re-lays text/art out at the receiver's real resolution, so a
+ // 1080p AirPlay screen is sharp instead of an upscaled 720p bitmap. Own left/top are zoomed too.
+ const z=layout.scale;stage.style.transform='none';stage.style.zoom=String(z);stage.style.width=layout.width+'px';stage.style.height=layout.height+'px';stage.style.left=layout.left/z+'px';stage.style.top=layout.top/z+'px';stage.style.setProperty('--tv-vw',layout.width/100+'px');stage.classList.toggle('tv-compact',layout.width<=1100);
+ const play=$('play'),bar=play.querySelector('.gamebar');const height=Math.max(1,layout.height-play.offsetTop);play.style.height=height+'px';const frame=$('gameFrame');
+ // Games keep their familiar 1280-wide logical viewport: undo the stage zoom on the
+ // iframe box and scale it back visually, exactly like the previous whole-stage transform.
+ frame.style.zoom=String(1/z);frame.style.width=layout.width+'px';frame.style.height=Math.max(1,height-bar.offsetHeight)+'px';frame.style.flex='none';frame.style.transformOrigin='0 0';frame.style.transform='scale('+z+')';
 }
 fitScreen();window.addEventListener('resize',fitScreen);
 $('gameFrame').addEventListener('load',()=>{fitScreen();hud(true);show?.gameLoaded();});setInterval(clock,250);

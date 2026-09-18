@@ -363,7 +363,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         switch type {
         case "controller": showController(true)
         case "manage":
-            let allowed: Set<String> = ["select", "settings", "launch", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options"]
+            let allowed: Set<String> = ["select", "settings", "launch", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options", "bots-set"]
             if model.ready, !model.working, let command = body["command"] as? [String: Any], let kind = command["type"] as? String, allowed.contains(kind) { model.command(command) }
         case "network-set": if let enabled = body["enabled"] as? Bool { model.setNetworkEnabled(enabled) }
         case "awake-set": if let enabled = body["enabled"] as? Bool { model.keepAwake = enabled }

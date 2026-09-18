@@ -99,3 +99,66 @@ body.tv-screen .podium-seat.is-medal .podium-rank{color:#241807;text-shadow:0 1p
 body.tv-screen .podium-seat.is-medal .podium-points{color:#241807}
 body.tv-screen .podium-seat.is-medal .podium-plinth small{color:#241807b8}
 body.tv-screen #tvPodiumMain .podium-seat:is([data-rank="6"],[data-rank="7"]) .podium-plinth small{display:none}
+
+/* ---- Desktop-style TV lobby (desktop-layout-20260918.3) ----------------------
+   Same visual language as the computer host: mascot masthead, pill category bar,
+   one-line hero with ornaments, bento grid with a 2×2 featured card, a slim host
+   choice strip and a scroll area whose top edge fades out under a blur. */
+body.tv-screen #tvStage>.tv-header{height:64px;min-height:64px;padding:0 24px;gap:20px;background:linear-gradient(180deg,#0b0e12f5,#0b0e12d9);border-bottom:1px solid #ffffff0d;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+body.tv-screen .tv-identity{display:flex;align-items:flex-end;align-self:stretch;gap:4px;min-width:0}
+body.tv-screen .tv-identity .brand{align-self:center;font:italic 900 27px/1 Rubik,system-ui,sans-serif;letter-spacing:-1.2px;text-transform:none!important;white-space:nowrap}
+body.tv-screen .tv-identity .brand span{color:var(--lime);text-transform:uppercase}
+body.tv-screen .tv-identity .brand-mark{display:block;width:78px;height:auto;max-height:50px;object-fit:contain;object-position:center bottom;margin-bottom:-12px;filter:drop-shadow(0 6px 14px #0008);animation:tvMascot 5.5s ease-in-out infinite}
+@keyframes tvMascot{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -3px;rotate:-3deg}}
+body.tv-screen .tv-menu-labels{gap:4px;padding:4px;margin:auto;border-radius:99px;background:#ffffff05;border:1px solid #ffffff0d}
+body.tv-screen .tv-menu-labels span{padding:9px 16px;border-radius:99px;font:italic 800 11px/1 Rubik,system-ui,sans-serif;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);background:none;box-shadow:none}
+body.tv-screen .tv-menu-labels .is-active{color:var(--ink);background:linear-gradient(135deg,#ffffff17,#ffffff08);box-shadow:inset 0 1px 0 #ffffff1a,0 0 0 1px #ffffff14}
+body.tv-screen .tv-menu-labels .is-fresh{color:var(--lime);text-shadow:0 0 14px #b4ff3999}
+
+/* Scroll area: content dissolves under the masthead instead of being cut. */
+body.tv-screen #tvStage>#lobby{padding-top:0}
+body.tv-screen #tvBrowse{padding-top:18px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#0008 22px,#000 56px);mask-image:linear-gradient(to bottom,transparent 0,#0008 22px,#000 56px)}
+body.tv-screen #tvStage>#lobby::before{content:'';position:absolute;z-index:3;left:24px;right:304px;top:0;height:56px;pointer-events:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);-webkit-mask-image:linear-gradient(to bottom,#000,transparent);mask-image:linear-gradient(to bottom,#000,transparent)}
+body.tv-screen #tvSidebar{padding-top:18px!important}
+
+/* Hero: one line like the computer, star and ring around it. */
+body.tv-screen .intro{padding:6px 0 22px!important}
+body.tv-screen .intro .headline-stage{container-type:normal;width:fit-content;max-width:100%;margin:14px 0 0 40px}
+body.tv-screen .intro .headline-stage h1{text-align:left;padding:4px 10px 8px 8px}
+body.tv-screen .intro h1{max-width:none!important;font-size:52px!important;letter-spacing:-2.6px;margin:4px 0!important;white-space:nowrap}
+body.tv-screen .intro .headline-art.art-left{left:-44px;right:auto;top:-22px;width:52px;height:52px}
+body.tv-screen .intro .headline-art.art-right{left:auto;right:-46px;top:30px;width:58px;height:58px}
+body.tv-screen .intro>.eyebrow{margin-left:40px}
+body.tv-screen .tv-hero-copy{margin:8px 0 12px 40px;max-width:520px;font:italic 800 13px/1.45 Rubik,system-ui,sans-serif;text-transform:uppercase;color:var(--muted)}
+body.tv-screen .intro .hero-pills{margin-left:40px}
+body.tv-screen #tvStage.tv-compact .intro h1{font-size:38px!important;white-space:normal}
+
+/* Bento: the featured card spans two columns and two rows, like the computer. */
+body.tv-screen #tvStage .lp-catalog .games{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:262px!important;grid-auto-flow:row dense!important;gap:16px}
+body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card{height:100%!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card>.art{flex:1 1 auto!important;aspect-ratio:auto!important;min-height:0!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card>.game-info{flex:0 0 auto!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card p{-webkit-line-clamp:1}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured{grid-column:span 2!important;grid-row:span 2!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .symbol{width:92%!important;height:108%!important;right:-4%!important;top:-6%!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .number{font-size:170px!important;top:70px!important;left:22px!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured h3{font-size:40px!important;letter-spacing:-1.5px}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured p{font-size:14px!important;-webkit-line-clamp:2;max-width:70%!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured>.game-info{padding:30px 22px 20px!important}
+body.tv-screen #tvStage.tv-compact .lp-catalog .games{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* Host choice: a slim strip instead of a tall card. */
+body.tv-screen #tvStage.tv-has-choice #preview.tv-choice{position:relative;display:grid;grid-template-columns:62px minmax(0,1fr);align-items:center;gap:14px;margin:0 0 16px;padding:9px 16px 9px 9px;min-height:0;border-radius:22px;border:1px solid #c8f58b55;background:linear-gradient(100deg,#c8f58b24,#c8f58b08 38%,#141b21e6 70%);box-shadow:0 0 0 1px #c8f58b10,0 10px 28px #0006,inset 0 1px 0 #ffffff12;overflow:hidden}
+body.tv-screen #tvStage.tv-has-choice #preview.tv-choice::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#ffffff14 45%,transparent 60%);translate:-100% 0;animation:tvChoiceShine 4.8s ease-in-out infinite;pointer-events:none}
+@keyframes tvChoiceShine{0%,55%{translate:-100% 0}100%{translate:100% 0}}
+body.tv-screen #tvStage.tv-has-choice #cover{width:62px;height:62px!important;object-fit:contain;border-radius:16px;background:radial-gradient(circle,#ffffff14,#ffffff05);padding:3px;box-sizing:border-box}
+body.tv-screen #preview.tv-choice>div{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-rows:auto auto;column-gap:12px;row-gap:2px;align-items:center;min-width:0}
+body.tv-screen #preview.tv-choice .eyebrow{grid-area:1/1/2/3;margin:0;font-size:9px;letter-spacing:2.4px;color:var(--lime)}
+body.tv-screen #preview.tv-choice #choiceTitle{grid-area:2/1/3/2;margin:0;font:italic 900 24px/1.05 Rubik,system-ui,sans-serif;letter-spacing:-.8px;text-transform:uppercase;white-space:nowrap}
+body.tv-screen #preview.tv-choice #description{grid-area:2/2/3/3;margin:0;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.tv-screen #preview.tv-choice #playersNeeded,body.tv-screen #preview.tv-choice #votes{grid-row:1/3;align-self:center;margin:0;padding:8px 12px;border-radius:99px;font-size:11px;font-weight:800;white-space:nowrap;color:#15200e;background:var(--lime)}
+body.tv-screen #preview.tv-choice #playersNeeded{grid-column:3}
+body.tv-screen #preview.tv-choice #votes{grid-column:4;color:var(--lime);background:#c8f58b1a;border:1px solid #c8f58b44}
+body.tv-screen #preview.tv-choice #votes:empty{display:none}
+body.tv-screen #preview.tv-choice #controls,body.tv-screen #preview.tv-choice #settings{display:none}
+@media(prefers-reduced-motion:reduce){body.tv-screen .tv-identity .brand-mark,body.tv-screen #tvStage.tv-has-choice #preview.tv-choice::after{animation:none}}

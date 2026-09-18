@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
-  let state = {catalog: [], players: [], leaderboard: [], votes: [], native: {}}, section = 'all';
+  let state = {catalog: [], players: [], leaderboard: [], votes: [], native: {}}, section = 'all', pendingQR = false;
   let selectedDetail = null, catalogSignature = '', rosterSignature = '', actionsSignature = '', standingsSignature = '';
   let confirmAction = null, launchPending = false, toastTimer;
   let receivedSnapshot = false, readyTimer = null, handshakeAttempts = 0;
@@ -146,7 +146,11 @@
   function renderTVControls() {
     const tv=state.tv, unavailable=!tv||busy(), active=!!state.active;
     const canCover=tv?.canCover===true;
-    $('tvShowQR').disabled=unavailable||!canCover||!state.networkEnabled||!state.native?.address;
+    $('tvShowQR').disabled=unavailable||!canCover||pendingQR;
+    if(pendingQR&&state.networkEnabled&&state.native?.address){pendingQR=false;manage({type:'tv-overlay',mode:'qr'});}
+    const bots=state.botCount||0,humans=(state.players||[]).filter(p=>!p.testBot).length;$('botCount').textContent=String(bots);
+    $('botMinus').disabled=busy()||!!state.active||bots<1;$('botPlus').disabled=busy()||!!state.active||!state.screens||bots>=15||bots+humans>=16;
+    $('botHint').textContent=!state.screens?'Боты играют через общий экран — подключи телевизор.':'Тестовые игроки, очки не записываются.';
     $('tvShowCompany').disabled=unavailable||!canCover||!tv?.hasCompany;
     $('tvShowMatch').disabled=unavailable||!canCover||!tv?.hasMatch;
     $('tvCloseOverlay').disabled=unavailable||tv.mode==='none';
@@ -228,12 +232,30 @@
     moveTabIndicator(false);
   }
   const showTV=(mode,boardKind)=>manage({type:'tv-overlay',mode,...(boardKind?{boardKind}:{})});
-  $('tvShowQR').onclick=()=>showTV(state.tv?.mode==='qr'?'none':'qr');
+  $('tvShowQR').onclick=()=>{
+    if(state.tv?.mode==='qr'){showTV('none');return;}
+    // The QR needs a guest address: switch Wi-Fi sharing on, then show the card once it exists.
+    if(!state.networkEnabled||!state.native?.address){pendingQR=true;$('tvShowQR').disabled=true;$('tvControlHint').textContent='Включаем доступ по Wi-Fi для гостей…';if(!state.networkEnabled)send('network-set',{enabled:true});setTimeout(()=>{if(pendingQR){pendingQR=false;renderTVControls();}},8000);return;}
+    showTV('qr');
+  };
+  $('botPlus').onclick=()=>manage({type:'bots-set',count:(state.botCount||0)+1});
+  $('botMinus').onclick=()=>manage({type:'bots-set',count:Math.max(0,(state.botCount||0)-1)});
   $('tvShowCompany').onclick=()=>showTV('podium','company');
   $('tvShowMatch').onclick=()=>showTV('podium','match');
   $('tvCloseOverlay').onclick=()=>showTV('none');
-  $('tvPrev').onclick=()=>manage({type:'tv-focus',direction:-1});
-  $('tvNext').onclick=()=>manage({type:'tv-focus',direction:1});
+  // Arrows walk every card in the order the TV shows them: Fresh shelf, featured, the rest, table games.
+  function tvOrder(){
+    const games=state.catalog||[],freshIds=(window.LocalPartyCatalog?.freshIds||[]).filter(id=>games.some(g=>g.id===id));
+    const rest=games.filter(g=>!freshIds.includes(g.id));
+    const main=rest.filter(g=>g.section!=='table').sort((a,b)=>Number(b.id==='tankarena')-Number(a.id==='tankarena'));
+    return [...freshIds,...main.map(g=>g.id),...rest.filter(g=>g.section==='table').map(g=>g.id)];
+  }
+  function stepTV(direction){
+    const order=tvOrder();if(!order.length)return;const current=order.indexOf(state.tv?.focusId||state.selected);
+    manage({type:'tv-focus',id:order[current<0?(direction>0?0:order.length-1):(current+direction+order.length)%order.length]});
+  }
+  $('tvPrev').onclick=()=>stepTV(-1);
+  $('tvNext').onclick=()=>stepTV(1);
   function focusNumber(){const number=Number($('tvGameNumber').value);if(!Number.isInteger(number)||number<1||number>state.catalog.length){toast('Введи номер от 1 до '+state.catalog.length);return;}manage({type:'tv-focus',number});}
   $('tvGameNumber').onchange=focusNumber;
   $('tvGameNumber').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('tvGameNumber').blur();}};

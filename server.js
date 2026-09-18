@@ -42,7 +42,7 @@ async function pauseBeforeSuspension(){
   });
   applyGamePause();await acknowledged;
 }
-function roomInfo(){const data=state();if(data.active)data.active.session=sessionState();return {...data,enabled,selected,screens:screens(),servedSeconds:Math.floor(servedSeconds),executionAllowed,metrics:{...metrics,rssMB:Math.round(process.memoryUsage().rss/1048576)}};}
+function roomInfo(){const data=state();if(data.active)data.active.session=sessionState();return {...data,enabled,selected,botCount,testMode,screens:screens(),servedSeconds:Math.floor(servedSeconds),executionAllowed,metrics:{...metrics,rssMB:Math.round(process.memoryUsage().rss/1048576)}};}
 async function manage(m){
   if(['network-set','server-start','server-stop'].includes(m.type)){
     if(!embedded)throw Error('Доступ по сети уже включён');
@@ -57,6 +57,15 @@ async function manage(m){
   }
   else if(['tv-overlay','tv-focus','tv-options'].includes(m.type)){tvDirector.command(m,{active,busy,selected,sharing:sharedURLs().length>0});broadcast();return roomInfo();}
   else if(m.type==='statistics-reset'){if(active||busy)throw Error('Завершите текущий матч перед сбросом статистики');profileStore.resetStatistics();tvDirector.lastMatch=null;tvDirector.dismiss();}
+  else if(m.type==='bots-set'){
+    // iPhone host: the bots are real controllers that the TV page runs in hidden frames.
+    if(active||busy)throw Error('Вернитесь в лобби перед сменой ботов.');
+    const requested=Number(m.count);
+    if(!Number.isInteger(requested)||requested<0||requested>15)throw Error('Можно добавить от 0 до 15 ботов.');
+    if(requested+connected().filter(p=>!p.testBot).length>16)throw Error('В комнате максимум 16 игроков.');
+    if(requested>0&&!screens())throw Error('Боты играют через общий экран — подключи телевизор.');
+    botCount=requested;testMode=botCount>0;for(const c of clients)if(c.isHost||c.isDisplay)sendTestProfile(c);
+  }
   else if(m.type==='kick'){kickPlayer(m.id);}
   else if(m.type==='dismiss-incident'){incident=null;}
   else if(m.type==='execution'){
@@ -281,7 +290,7 @@ wss.on('connection',(ws,req)=>{
   ws.on('message',async raw=>{try{
     const m=JSON.parse(raw);
     if(m.type==='ping')return send(ws,{type:'pong'});
-    if(m.type==='test-mode'||m.type==='bots-set'){if(!ws.isHost)throw Error('Тестовый режим включает ведущий.');if(active)throw Error('Вернитесь в лобби перед сменой режима.');const requested=m.type==='bots-set'?Number(m.count):(m.enabled?1:0);if(!Number.isInteger(requested)||requested<0||requested>15)throw Error('Можно добавить от 0 до 15 ботов.');if(requested+connected().filter(p=>!p.testBot).length>16)throw Error('В комнате максимум 16 игроков.');botCount=requested;testMode=botCount>0;for(const c of clients)if(c.isHost)sendTestProfile(c);broadcast();return;}
+    if(m.type==='test-mode'||m.type==='bots-set'){if(!ws.isHost)throw Error('Тестовый режим включает ведущий.');if(active)throw Error('Вернитесь в лобби перед сменой режима.');const requested=m.type==='bots-set'?Number(m.count):(m.enabled?1:0);if(!Number.isInteger(requested)||requested<0||requested>15)throw Error('Можно добавить от 0 до 15 ботов.');if(requested+connected().filter(p=>!p.testBot).length>16)throw Error('В комнате максимум 16 игроков.');botCount=requested;testMode=botCount>0;for(const c of clients)if(c.isHost||c.isDisplay)sendTestProfile(c);broadcast();return;}
     if(['ready-set','spectate-set','pause-set','exit-vote'].includes(m.type)){
       if(!active||m.instance!==active.instance||!ws.player||ws.player.socket!==ws||!active.ready.has(ws.player.id))throw Error('Сначала подключитесь к игре.');
       const id=ws.player.id;
