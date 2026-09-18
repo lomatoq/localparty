@@ -1,37 +1,85 @@
-# Invitation / podium polish — 2026-09-18
+# QR-карточка и компактный пьедестал — проверка 18.09.2026
 
-Base: `326a5c47077bcff074d49972420b7466674bada3`.
-Marker in both card roots: `desktop-card-20260918.2`.
+Метка: `desktop-card-20260918.2` в корнях обеих карточек.
+База дополнения: `326a5c47077bcff074d49972420b7466674bada3`.
+Проверенный коммит: `d06bccd52e703d1303ae35cd3ca7bd4ab221028a`.
+Последующий коммит отчёта не меняет проверенный код.
 
-Runtime changes are confined to public/index.html, public/tv.html,
-public/motion.css and public/tv-show.css. Server, native code, game logic, app.js,
-profile persistence, dependency pins and existing TV presentation state are unchanged.
+## GitHub Actions: SUCCESS
 
-Local checks completed before publication:
-- 72 focused Node tests (68 previous + 4 invitation-specific): PASS.
-- 5 existing synthetic show-resource verifier tests: PASS.
-- 85 existing TV Show browser checks: PASS in the explicit --in-memory mode
-  (actual CSS, mocked native/transport, no real fonts/art).
-- In-memory visual inspection with actual checkout CSS and a test QR PNG:
-  matching PC/TV card surface, title, address and QR computed style properties;
-  658px three-player group; 1080px main tier for 16 players. Local font/art files
-  were absent, so these previews use font fallback and are not asset validation.
+https://github.com/lomatoq/localparty/actions/runs/35320556288
 
-The new browser suite is wired into .github/workflows/ios-show-validation.yml.
-It checks source-card parity, QR aspect/centering/clipping at 720p/1080p/4K/4:3,
-repeated opening, compact podium spacing, 1/2/3/7/16 player layouts, guest-only
-return hint and actual app.js localStorage/autojoin after reloading the same
-origin. WebSocket/API/native are mocked; screenshots load actual repository fonts
-and artwork when available. Final remote CI results are recorded after inspection.
+Проверены результаты всех этапов и скачанный артефакт финального прогона:
 
-Six-digit code is not implemented. The user made it optional. No online rendezvous
-service, LAN scanner, fake code or new credential-bearing URL was added. The new
-hint explains the existing saved-profile path; it is NOT a new room-discovery feature.
+- Полный `npm test`: **160 passed, 0 failed, 0 skipped**, затем шесть успешных
+  интеграционных сводок. Четыре новых invite-теста включены в эти 160.
+- **68** отдельных целевых Node-тестов/контрактов предыдущей реализации: PASS.
+- **16** тестов валидаторов комплектации .app на синтетических каталогах: PASS.
+- **36** настоящих HTTP/WebSocket/worker-проверок Node-сервера: PASS.
+- Браузерные наборы: **41 + 76 + 85 + 33 = 235** проверок, все PASS.
 
-References for the browser behavior discussed in the handoff:
-- Apple: https://support.apple.com/guide/iphone/iphea86e5236/ios
-- Storage origin boundary: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+Счётчики разных наборов могут перекрываться по смыслу; это не 515 независимых
+пользовательских сценариев. Ни один из них не является физической проверкой iOS.
 
-Physical iOS/AirPlay, actual QR scans and Safari background/rejoin still need the
-local checks in CLAUDE_INVITE_POLISH.md. Existing TV Show limitations and dev-only
-sharp advisory remain as documented; this update does not fix that advisory.
+Артефакт `ios-show-review`, ID `10536748639`.
+SHA-256 скачанного ZIP:
+`9b2c592c8ce0e6eeaff70c81c43c86d89eed93282814816689781969b1e031b4`.
+Все четыре изменённых runtime-файла, оба новых теста и обе текущие инструкции
+побайтно совпали с исходниками проверенного CI-коммита.
+
+## Что конкретно подтверждено новым браузерным набором
+
+Карточка ПК и ТВ совпадает по подложке, рамке, скруглению, отступам, тени,
+шрифту и оформлению заголовка, QR и адреса. На телевизоре нет фиктивных кнопок
+копирования/закрытия — управление остаётся на телефоне.
+
+Карточка центрирована и не обрезается в 720p, 1080p, 4K и 4:3. В логическом
+viewport 1280×720 её ширина 440 px, высота около 567 px; QR — квадрат 240×240.
+Повторное открытие не создаёт новую карточку или дублирующий элемент.
+
+Три пьедестала: ширина группы **658 логических px**, промежутки **14 px**,
+первое место точно по центру. Проверены 1, 2, 3, 7 и 16 участников.
+Имена, места и очки на скриншотах — тестовые, не статистика пользователя.
+
+Подсказка повторного входа доступна только гостю, не desktop-хосту и не
+нативному пульту. Проверены размеры 320, 390 и 768 px в раскрытом состоянии.
+Настоящий `app.js` сохраняет профиль в localStorage; после reload той же
+страницы повторно отправляет сохранённый token/name и возвращается в каталог
+после ответа сервера. Это подтверждение существующего механизма, не новый
+сервис поиска комнаты.
+
+## Границы проверки
+
+Новый набор и TV Show используют полные CSS, шрифты и обложки из checkout.
+Файлы/API перехватывает тестовый route; WebSocket и нативный мост имитируются.
+Хранение localStorage и код app.js настоящие, браузер — Chromium, не Safari.
+Остальные два browser-набора используют полный CSS, но без настоящих ассетов
+либо с тестовыми SVG. Реальные сетевые проверки выполняются отдельно в Node.
+
+Первый удалённый прогон обнаружил ошибку проверки текста: innerText учитывал
+uppercase-оформление и не совпадал с исходной фразой. Проверка переведена на
+textContent без удаления условия; UI и политика безопасности не ослаблялись.
+Тестовый QR теперь генерируется существующей закреплённой зависимостью qrcode.
+
+До публикации локально прошли 72 целевых Node-проверки, 5 проверок нового
+валидатора и 85 TV Show DOM-проверок; локальный просмотр был без файлов шрифтов.
+Окончательные скриншоты взяты из полного CI-checkout и просмотрены отдельно.
+
+## Сохранение поведения и приёмка на устройствах
+
+Из runtime изменены только `public/index.html`, `public/tv.html`,
+`public/motion.css`, `public/tv-show.css`. Swift, AirPlay, сервер, app.js,
+профили, физика, зависимости и lockfile не изменены этим дополнением.
+
+Шестизначный код не добавлен: пользователь оставил его необязательным.
+Сохранённая вкладка/закладка использует известный адрес, а не ищет новый IP.
+Нужны работающий хост, доступ по Wi-Fi, та же сеть и сохранённые данные браузера;
+при смене адреса нужна новая ссылка/QR. Облачный каталог или сканирование LAN
+не добавлялись. Документация браузера: Apple Support — сохранение закладок;
+MDN Window.localStorage — хранение в пределах origin между сессиями браузера.
+
+Подписанная сборка .app, iPhone/AirPlay, реальные сканирования QR и возврат
+из Safari после ухода в фон требуют локальной проверки по
+`CLAUDE_INVITE_POLISH.md`, затем `CLAUDE_TV_SHOW.md`.
+Прежняя dev-only проблема sharp не исправлялась этим UI-дополнением;
+успех функциональных тестов не означает чистый аудит зависимостей.
