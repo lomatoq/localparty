@@ -23,31 +23,22 @@
   function confirm(title, text, action) { $('confirmTitle').textContent = title; $('confirmText').textContent = text; confirmAction = action; show('confirmDialog'); }
   function controller() { if (busy()) return; dialogs.forEach(close); send('controller'); }
   function artPath(game) {
-    const file = game.artwork || ((game.id === 'tankarena' ? 'tankarena-hd' : game.id) + '.webp');
-    return /^[a-zA-Z0-9_.-]+\.(webp|png|jpg|jpeg)$/i.test(file) ? '/assets/games/' + file : '';
+    return window.LocalPartyCatalog?.artPath(game) || '';
   }
+  let catalogView = null;
   function renderCatalog() {
-    const query = $('search').value.trim().toLocaleLowerCase();
-    const games = (state.catalog || []).filter(g => (!query || g.title.toLocaleLowerCase().includes(query)) && (section === 'all' || (section === 'table' ? g.section === 'table' : g.section !== 'table')));
-    const signature = JSON.stringify([games, query, section]);
-    if (signature !== catalogSignature) {
-      catalogSignature = signature;
-      const frag = document.createDocumentFragment();
-      games.forEach(g => {
-        const card = button('', 'game', () => openGame(g.id)); card.dataset.game = g.id; card.setAttribute('aria-label', `${g.title}, ${g.min}–${g.max} игроков`);
-        if (/^#[a-f\d]{6}$/i.test(g.color || '')) card.style.setProperty('--card', g.color);
-        const art = element('div', 'art'), image = element('img', 'symbol'); image.src = artPath(g); image.alt = ''; image.loading = 'lazy'; image.decoding = 'async'; image.addEventListener('error', () => image.hidden = true, {once: true}); art.append(image);
-        const info = element('div', 'game-info'); info.append(element('h3', '', g.title), element('p', '', g.description));
-        const bottom = element('div', 'game-bottom'); bottom.append(element('span', '', `${g.min}–${g.max} игроков`), element('b', '', '↗')); info.append(bottom); card.append(art, info); frag.append(card);
-      });
-      $('catalog').replaceChildren(frag);
+    if (!window.LocalPartyCatalog) {
+      $('catalogState').hidden = false;
+      $('catalogStateText').textContent = 'Не загрузился общий каталог интерфейса. Проверь ресурсы сборки.';
+      return;
     }
+    catalogView ||= window.LocalPartyCatalog.create($('catalog'), {onSelect: openGame});
+    const games = catalogView.update(state, {query: $('search').value, filter: section, disabled: busy()});
     const hasCatalog = state.catalog.length > 0;
     $('noGames').hidden = !hasCatalog || games.length > 0;
     $('catalogState').hidden = hasCatalog;
     $('catalogStateText').textContent = state.native?.catalogError || (receivedSnapshot ? 'Подготавливаем игры на этом iPhone…' : 'Соединяем меню с приложением…');
     $('catalog').setAttribute('aria-busy', String(!hasCatalog));
-    $('catalog').querySelectorAll('[data-game]').forEach(card => {card.setAttribute('aria-pressed', String(card.dataset.game === state.selected)); card.disabled = busy();});
   }
   function openGame(id) {
     const game = gameById(id); if (!game) return;
@@ -138,7 +129,7 @@
     $('resetStats').disabled = busy() || Boolean(state.active);
     $('backgroundStatus').textContent = n.backgroundStatus || 'Во время игры держи приложение открытым.';
     $('backgroundRequest').disabled = !state.networkEnabled || busy();
-    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Native: ' + (n.bridgeRevision || 'ожидание'), n.displayMode].filter(Boolean).join(' · ');
+    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), n.displayMode].filter(Boolean).join(' · ');
   }
   function setSwitch(id, enabled, on, off) { const b = $(id); b.setAttribute('aria-checked', String(Boolean(enabled))); b.textContent = enabled ? on : off; }
   function update(value) {

@@ -1,0 +1,22 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs'),path=require('node:path');
+const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
+const source=read('public/tv.js');
+function api(){const env={window:{},document:{getElementById:()=>null},WebSocket:class{constructor(){throw Error('Native menu must not open a WebSocket');}}};vm.runInNewContext(source,env);return env.window.LocalPartyCatalog;}
+test('shared catalog loads without starting TV or networking',()=>assert.equal(api().revision,'desktop-fresh-20260918.1'));
+test('Fresh is the same ten IDs as the desktop launcher',()=>assert.deepEqual(Array.from(api().freshIds),['curling','bowling','swarm_gate','peek_shoot','taprace','punchmeter','flappy','hungry','snakelines','carryball']));
+test('native artwork resolves real sports PNGs, not gateway-only aliases',()=>{for(const id of ['curling','bowling','swarm_gate','peek_shoot'])assert.equal(api().artPath({id}),`/assets/games/${id}.png`);});
+test('HD tank cover preserved',()=>assert.equal(api().artPath({id:'tankarena'}),'/assets/games/tankarena-hd.webp'));
+test('explicit artwork respected',()=>assert.equal(api().artPath({id:'x',artwork:'special.png'}),'/assets/games/special.png'));
+test('unsafe artwork filenames rejected',()=>{for(const artwork of ['../a.png','https://x/a.png','x.svg','x.png?secret'])assert.equal(api().artPath({id:'x',artwork}), '');});
+test('Fresh filtering and search intersect',()=>{const a=api(),g={id:'bowling',title:'Pocket Strike',section:'arcade'};assert.equal(a.matches(g,'pocket','fresh'),true);assert.equal(a.matches(g,'jenga','fresh'),false);assert.equal(a.matches({...g,id:'crane'},'','fresh'),false);});
+test('logic and table grouping match the desktop semantics',()=>{const a=api();assert.equal(a.category({id:'crane'}),'logic');assert.equal(a.category({id:'spy'}),'party');assert.equal(a.matches({id:'spy',title:'Spy',section:'table'},'','table'),true);});
+test('native keeps CSP network prohibition and loads helper before host script',()=>{const s=read('public/native-shell/index.html');assert.match(s,/connect-src 'none'/);assert.ok(s.indexOf('src="/tv.js"')<s.indexOf('src="/native-shell/host.js"'));assert.match(s,/data-section="fresh"/);});
+test('native and TV use exact shared visual styles',()=>{for(const html of ['public/native-shell/index.html','public/tv.html'])for(const css of ['style','refresh','glass','ux','catalog-previews','fresh','motion','tv'])assert.ok(read(html).includes(`href="/${css}.css"`),`${html}: ${css}`);});
+test('TV uses display authentication, never host credentials or launch messages',()=>{assert.match(source,/type:'display',key:window.PARTY_DISPLAY_KEY/);assert.doesNotMatch(source,/PARTY_HOST_KEY|type:\s*['"](?:launch|manage|host)['"]/);});
+test('TV game instance/route and HUD postMessage retained',()=>{assert.match(source,/key!==next/);assert.match(source,/'\/games\/'.*game\.id\+game\.host/);assert.match(source,/postMessage\(message,location.origin\)/);});
+test('TV catalog cards cannot be interactive',()=>{assert.match(source,/displayOnly\?'article':'button'/);assert.match(read('public/tv.html'),/class="tv-screen"/);});
+test('press layer never captures or cancels game input',()=>{const s=read('public/motion.js').replace(/\/\*[\s\S]*?\*\//g,'');assert.doesNotMatch(s,/\.preventDefault\(|\.stopPropagation\(|\.setPointerCapture\(|\.click\(/);assert.match(s,/pointercancel/);assert.match(s,/lostpointercapture/);assert.match(s,/party-native-hide/);});
+test('presses avoid disabled controls and gesture canvases',()=>{const s=read('public/motion.js');assert.match(s,/:disabled/);assert.match(s,/data-joystick/);assert.match(s,/input\[type=range\]/);});
+test('UI haptics use a native bridge, not a Safari vibration hack',()=>{const s=read('public/motion.js');assert.match(s,/e\.isTrusted/);assert.doesNotMatch(s,/navigator\.vibrate|type=["']checkbox["'] switch/);});
+test('per-input animations clean up and reduced motion cancels',()=>{const s=read('public/motion.js');assert.match(s,/effects\.delete\(el\)/);assert.match(s,/media\.addEventListener\?\.\('change',all\)/);assert.match(s,/document\.hidden/);});

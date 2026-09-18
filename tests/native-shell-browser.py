@@ -58,14 +58,14 @@ def main():
     html=(public/'native-shell/index.html').read_text()
     styles=[]
     for href in re.findall(r'<link[^>]+href="([^"\n]+\.css)"',html):
-        if args.fixture and href!='/native-shell/host.css':
+        if args.fixture and href not in ['/native-shell/host.css','/tv.css','/motion.css']:
             styles.append(FIXTURE_CSS if href=='/glass.css' else '')
         else: styles.append((public/href.lstrip('/')).read_text())
     html=re.sub(r'<link[^>]+rel="stylesheet"[^>]*>', '', html)
     html=re.sub(r'<script[^>]*src=[^>]*></script>', '', html)
     html=re.sub(r'<meta http-equiv="Content-Security-Policy"[^>]*>', '', html)
     html=html.replace('</head>','<style>'+ '\n'.join(styles) +'</style></head>')
-    source=(public/'native-shell/host.js').read_text()
+    source='\n'.join((public/name).read_text() for name in ['tv.js','native-shell/host.js','motion.js'])
     results=[]
     def check(name, condition, detail=None):
         results.append({'name':name,'passed':bool(condition),'detail':detail})
@@ -93,12 +93,12 @@ def main():
             ack=page.evaluate('(s)=>window.LocalPartyHost.update(s)',snap)
             check('snapshot is explicitly acknowledged',ack is True)
             page.wait_for_timeout(100)
-            check('all 30 synthetic cards appear',page.locator('#catalog > .game').count()==30)
+            check('all 30 synthetic cards appear',page.locator('#catalog .game').count()==30)
             initial_messages=page.evaluate('window.__messages.length');page.wait_for_timeout(650)
             if not args.baseline:check('ready retry stops after acknowledgment',page.evaluate('window.__messages.length')==initial_messages)
             def geometry():
                 return page.evaluate('''() => {
-                  const r=[...document.querySelectorAll('#catalog > .game')].map(el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};});
+                  const r=[...document.querySelectorAll('#catalog .game')].map(el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};});
                   const overlaps=[];
                   for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++) {
                     const x=Math.min(r[i].x+r[i].w,r[j].x+r[j].w)-Math.max(r[i].x,r[j].x);
@@ -118,15 +118,15 @@ def main():
                 check('invalid snapshot rejected',page.evaluate('window.LocalPartyHost.update({})') is False)
                 empty={**snap,'catalog':[],'native':{**snap['native'],'ready':False,'catalogReady':False}}
                 page.evaluate('(s)=>window.LocalPartyHost.update(s)',empty)
-                check('temporary empty snapshot retains catalog',page.locator('#catalog > .game').count()==30)
-                check('retained cards cannot launch against an empty server',page.locator('#catalog > .game:disabled').count()==30)
+                check('temporary empty snapshot retains catalog',page.locator('#catalog .game').count()==30)
+                check('retained cards cannot launch against an empty server',page.locator('#catalog .game:disabled').count()==30)
                 page.evaluate('(s)=>window.LocalPartyHost.update(s)',snap)
-                check('authoritative catalog reenables cards',page.locator('#catalog > .game:disabled').count()==0)
+                check('authoritative catalog reenables cards',page.locator('#catalog .game:disabled').count()==0)
                 page.locator('#search').fill('does-not-exist')
                 check('real no-results state still works',page.locator('#noGames').is_visible())
                 page.locator('#search').fill('')
-                check('clearing search restores catalog',page.locator('#catalog > .game').count()==30)
-                page.locator('#catalog > .game').first.click();check('game dialog opens',page.locator('#gameDetail').is_visible())
+                check('clearing search restores catalog',page.locator('#catalog .game').count()==30)
+                page.locator('#catalog .game[data-game="g0"]').click();check('game dialog opens',page.locator('#gameDetail').is_visible())
                 check('detail selection sends existing command',page.evaluate("window.__messages.some(m=>m.type==='manage'&&m.command.type==='select'&&m.command.id==='g0')"))
                 page.locator('[data-close="gameDetail"]').click()
                 page.locator('#openHost').click();check('host panel opens',page.locator('#hostPanel').is_visible())
@@ -139,10 +139,10 @@ def main():
                 page=fresh_page(page);page.wait_for_timeout(80)
                 check('cold reload shows loading not stale zero-results',not page.locator('#noGames').is_visible())
                 page.evaluate('(s)=>window.LocalPartyHost.update(s)',snap)
-                check('cold reload restores catalog from new snapshot',page.locator('#catalog > .game').count()==30)
+                check('cold reload restores catalog from new snapshot',page.locator('#catalog .game').count()==30)
                 for i in range(5):
                     page=fresh_page(page);page.evaluate('(s)=>window.LocalPartyHost.update(s)',snap)
-                    check(f'repeated JS document restart {i+1}',page.locator('#catalog > .game').count()==30)
+                    check(f'repeated JS document restart {i+1}',page.locator('#catalog .game').count()==30)
                 check('no uncaught page errors',not errors,errors)
                 browser.close()
     finally:

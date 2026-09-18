@@ -93,3 +93,18 @@ body.native-shell .native-sheet { overflow-y:auto; overflow-x:hidden; }
 body.native-shell .native-sheet > .native-card { min-width:0; box-sizing:border-box; }
 @media(min-width:760px){body.native-shell #catalog{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
 @media(max-width:359px){body.native-shell #catalog{grid-template-columns:minmax(0,1fr)}body.native-shell .app-header .brand{font-size:20px}body.native-shell .app-header .nav{padding:9px;font-size:11px}}
+
+/* Desktop lobby identity; structural shell and cold-start fixes stay intact. */
+body.native-shell .intro .headline-stage{position:relative;isolation:isolate;min-height:0;margin:0;}
+body.native-shell .intro .headline-stage h1{position:relative;z-index:1;}
+body.native-shell .intro .headline-art{position:absolute;pointer-events:none;z-index:0;opacity:.7;}
+body.native-shell .intro .headline-art img{width:100%;height:100%;object-fit:contain;}
+body.native-shell .intro .art-left{width:110px;height:110px;left:auto;right:90px;top:0;}
+body.native-shell .intro .art-right{width:140px;height:140px;right:-16px;top:15px;}
+body.native-shell .native-catalog-tools{position:relative;z-index:1;}
+body.native-shell .catalog-filters{gap:6px;}
+body.native-shell .catalog-filters .filter-tab{min-height:44px;}
+body.native-shell .catalog-filters .fresh-tab{color:var(--lime);border:1px solid #c8f58b44;}
+body.native-shell .catalog-filters .fresh-tab.active{background:var(--lime);color:var(--bg);}
+body.native-shell #catalog.lp-catalog{display:block!important;}
+@media(max-width:600px){body.native-shell .intro .headline-art{opacity:.32;}body.native-shell .catalog-filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%;padding:4px 0;overscroll-behavior-x:contain;}body.native-shell .catalog-filters .filter-tab{flex:0 0 auto;font-size:12px;padding:10px 13px;}}

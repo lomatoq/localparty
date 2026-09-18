@@ -10,14 +10,13 @@
  --motion-ease-pop:cubic-bezier(.18,1.28,.35,1);
  --motion-ease-in:cubic-bezier(.4,0,1,1)
 }
-
 /* Controls react immediately. Keep hit boxes and document flow untouched. */
 button,[role="button"],summary,.game,.filter-tab,.player,.stats-rank{
  transition-property:transform,background-color,border-color,box-shadow,color,opacity,filter;
  transition-duration:var(--motion-fast);
  transition-timing-function:var(--motion-ease)
 }
-button:not(:disabled),[role="button"]:not([aria-disabled="true"]),summary{will-change:transform}
+/* No permanent GPU layer per card/button: the press layer animates only input. */
 button.party-pressed,[role="button"].party-pressed,button:active:not(:disabled),[role="button"]:active:not([aria-disabled="true"]){transform:scale(.965)}
 button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transition-duration:var(--motion-instant);outline-offset:4px}
 @media(hover:hover) and (pointer:fine){
@@ -25,7 +24,6 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
  button.party-pressed:hover,[role="button"].party-pressed:hover,button:active:hover:not(:disabled){transform:translateY(0) scale(.965)}
  .game:hover{transform:translateY(-5px)}
 }
-
 /* Shell entrance: top information lands first, then the playable surface and rail. */
 .lp-motion-ready body.in-game .app-header{animation:lp-hud-top-in var(--motion-slow) var(--motion-ease-out) both}
 .lp-motion-ready body.in-game #hudTimer{animation:lp-hud-chip-in 480ms var(--motion-ease-pop) 70ms both}
@@ -34,11 +32,9 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
 .lp-motion-ready body.in-game #liveTop>*{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
 .lp-motion-ready body.in-game #liveTop>*:nth-child(2){animation-delay:var(--motion-stagger)}
 .lp-motion-ready body.in-game #liveTop>*:nth-child(3){animation-delay:calc(var(--motion-stagger) * 2)}
-
 /* Dynamic lobby rows use the same restrained reveal cadence. Existing hero/card
    arrival animations remain authoritative and keep their tested endpoints. */
 .lp-motion-ready .player,.lp-motion-ready .room-player,.lp-motion-ready .stats-rank{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
-
 /* Popups appear from their visual anchor and never move surrounding content. */
 .lp-motion-ready dialog[open]{animation:lp-dialog-in var(--motion-base) var(--motion-ease-pop) both}
 .lp-motion-ready dialog[open]::backdrop{animation:lp-backdrop-in var(--motion-base) ease-out both}
@@ -46,22 +42,17 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
 .lp-motion-ready #pauseOverlay:not([hidden])>div,.lp-motion-ready #waitingRules:not([hidden])>*{animation:lp-dialog-in var(--motion-slow) var(--motion-ease-pop) both}
 .lp-motion-ready #notice:not([hidden]),.lp-motion-ready #toast.show,.lp-motion-ready .toast.show,.lp-motion-ready .announcement:not(:empty){animation:lp-toast-in var(--motion-base) var(--motion-ease-pop) both}
 .lp-motion-ready .ss-announcement.show{animation:lp-toast-centered-in var(--motion-base) var(--motion-ease-pop) both}
-
 /* Connection status communicates recovery without making the whole header flash. */
 #connection,#gameConnection,#status[role="status"]{transition:color var(--motion-base) var(--motion-ease),background-color var(--motion-base) var(--motion-ease),opacity var(--motion-fast) linear}
 .lp-motion-ready #connection:not(.online),.lp-motion-ready #gameConnection:not(.ready){animation:lp-connection-breathe 1.8s ease-in-out infinite}
 .lp-motion-ready #connection.online,.lp-motion-ready #gameConnection.ready{animation:lp-online-settle var(--motion-slow) var(--motion-ease-pop) both}
-
 /* Meaningful phase and score updates receive one short emphasis from motion.js. */
 .lp-motion-pulse{animation:lp-value-pulse var(--motion-base) var(--motion-ease-pop) both!important}
 .lp-motion-status{animation:lp-status-swap var(--motion-base) var(--motion-ease-out) both!important}
-
 /* Shared game-host patterns. Controller gesture surfaces are intentionally excluded. */
 .lp-motion-ready body[data-ss-role="host"] .ss-host-top{animation:lp-hud-top-centered-in var(--motion-slow) var(--motion-ease-out) both}
 .lp-motion-ready body[data-role="host"] .stage>header,
-.lp-motion-ready body.host .arena-heading{
- animation:lp-hud-top-in var(--motion-slow) var(--motion-ease-out) both
-}
+.lp-motion-ready body.host .arena-heading{animation:lp-hud-top-in var(--motion-slow) var(--motion-ease-out) both}
 .lp-motion-ready .arcade-host>.score-panel{animation:lp-score-item-in var(--motion-base) var(--motion-ease-out) both}
 .lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
 .lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*:nth-child(2){animation-delay:var(--motion-stagger)}
@@ -77,7 +68,6 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
 .lp-motion-ready .party-screen .stage,.lp-motion-ready .party-screen .screen-sidebar{animation:lp-hud-card-in var(--motion-slow) var(--motion-ease-out) both}
 .lp-motion-ready .party-screen .screen-sidebar{animation-delay:var(--motion-stagger)}
 .lp-motion-ready .runner-row,.lp-motion-ready .stat{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
-
 @keyframes lp-hud-top-in{from{opacity:0;transform:translate3d(0,-22px,0)}70%{opacity:1;transform:translate3d(0,2px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
 @keyframes lp-hud-top-centered-in{from{opacity:0;transform:translate3d(-50%,-22px,0)}70%{opacity:1;transform:translate3d(-50%,2px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
 @keyframes lp-hud-chip-in{from{opacity:0;filter:brightness(.7)}72%{opacity:1;filter:brightness(1.12)}to{opacity:1;filter:none}}
@@ -94,14 +84,15 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
 @keyframes lp-status-swap{from{opacity:.35;transform:translate3d(0,5px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
 @keyframes lp-online-settle{from{filter:brightness(1.75);transform:scale(.96)}to{filter:none;transform:scale(1)}}
 @keyframes lp-connection-breathe{0%,100%{opacity:.58}50%{opacity:1}}
-
 /* Motion never changes controller geometry, hit areas, or safe-area layout. */
-@media(max-width:700px){
- :root{--motion-slow:340ms;--motion-stagger:32ms}
- .lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*,
- .lp-motion-ready .arcade-host>.score-panel{animation-name:lp-score-item-in}
-}
-@media(prefers-reduced-motion:reduce){
- :root{--motion-instant:0ms;--motion-fast:0ms;--motion-base:0ms;--motion-slow:0ms;--motion-stagger:0ms}
- *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-}
+@media(max-width:700px){:root{--motion-slow:340ms;--motion-stagger:32ms}.lp-motion-ready body[data-ss-role="host"] .ss-scoreboard>*,.lp-motion-ready .arcade-host>.score-panel{animation-name:lp-score-item-in}}
+@media(prefers-reduced-motion:reduce){:root{--motion-instant:0ms;--motion-fast:0ms;--motion-base:0ms;--motion-slow:0ms;--motion-stagger:0ms}*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Additional pressure is independent of authored transform (position/tilt).
+   Apply to actual active elements only, never every card or a gesture canvas. */
+body [data-lp-press-state="down"]{box-shadow:inset 0 3px 9px #00000038,0 1px 0 #ffffff12!important;transition-duration:75ms!important;}
+body .lp-catalog-card[data-lp-press-state="down"]{box-shadow:inset 0 0 0 2px #ffffff30,inset 0 4px 12px #0005,0 2px 8px #0003!important;}
+body .lp-catalog-card[data-lp-press-state="down"] .start-game{box-shadow:inset 0 2px 5px #36571335,0 1px 0 #47651f!important;}
+body [data-lp-press-state="release"]{transition-duration:240ms;}
+body input:focus-visible,body select:focus-visible{outline:2px solid var(--lime,#c8f58b);outline-offset:3px;}
+@media(prefers-reduced-motion:reduce){body [data-lp-press-state]{scale:1!important;}}
