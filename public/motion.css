@@ -274,3 +274,18 @@ body.guest-catalog .guest-game.rank-row{grid-template-columns:52px minmax(0,1fr)
 body.guest-catalog .guest-game.rank-row .guest-art{position:absolute;z-index:-1;left:-18px;top:50%;width:92px;height:92px;translate:0 -50%;object-fit:contain;object-position:center;border-radius:0;background:none;filter:drop-shadow(0 6px 12px #0008)}
 body.guest-catalog .guest-game.rank-row .guest-copy{grid-column:2}
 body.guest-catalog .guest-game.rank-row .guest-actions{grid-column:3}
+/* Photo block, WebKit-safe: eyebrow / title / hint each get their own row beside the avatar. */
+@media(max-width:600px){
+ body.guest-catalog #onboarding .profile-photo-field{grid-template-rows:auto auto auto auto auto!important;grid-template-areas:"pic eyebrow" "pic title" "pic hint" "actions actions" "status status"!important;row-gap:3px!important}
+ body.guest-catalog #onboarding .profile-photo-preview{grid-row:1/4!important;align-self:center}
+ body.guest-catalog #onboarding .profile-photo-copy>.eyebrow{grid-area:eyebrow!important;align-self:end!important;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-copy>b{grid-area:title!important;align-self:center!important}
+ body.guest-catalog #onboarding .profile-photo-copy>small{grid-area:hint!important;align-self:start!important;margin:0!important}
+ body.guest-catalog #onboarding .profile-photo-actions{margin-top:10px!important}
+ body.guest-catalog #onboarding #avatarStatus{margin-top:6px!important}
+}
+/* Before joining there are no category tabs: the masthead is a single row. */
+@media(max-width:850px){
+ html body.guest-catalog:not(.lobby-connected):not(.in-game) .app-header{height:auto!important;min-height:0!important;grid-template-rows:auto!important;padding-top:calc(10px + env(safe-area-inset-top))!important;padding-bottom:10px!important}
+}
+@media(max-width:430px){body.guest-catalog #home>.intro{padding-bottom:6px!important;min-height:0!important;margin-bottom:0!important}body.guest-catalog #home .intro .headline-stage{margin-bottom:14px!important}body.guest-catalog #home .intro>div{min-height:0!important}}
