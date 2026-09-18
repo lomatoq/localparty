@@ -1,0 +1,79 @@
+name: iOS show and UI regressions
+on:
+  push:
+    branches: ['codex/ios-unified-host-20260917']
+    paths: ['public/**', 'lib/**', 'server.js', 'ios/**', 'tests/**', 'scripts/**', '.github/workflows/ios-show-validation.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ios-show-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Reproducible text source snapshot (no runtime data or credentials)
+        run: |
+          mkdir -p .localparty-build/ci
+          git rev-parse HEAD > .localparty-build/ci/tested-sha.txt
+          python3 - <<'PY'
+          import subprocess, zipfile
+          from pathlib import Path
+          suffixes={'.js','.cjs','.mjs','.css','.html','.json','.swift','.plist','.py','.sh','.md','.pbxproj','.yml'}
+          with zipfile.ZipFile('.localparty-build/ci/review-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
+              p=Path(name)
+              if p.is_file() and p.suffix in suffixes and not name.startswith(('data/','public/assets/','runtime-cache/')):
+                z.write(p,name)
+          PY
+      - name: Install pinned project dependencies
+        run: npm ci --ignore-scripts
+      - name: Record dependency audit without upgrading anything
+        run: npm audit --json > .localparty-build/ci/npm-audit.json || true
+      - name: Source, product and real network checks
+        run: |
+          node --test tests/native-shell.test.cjs tests/fresh-lobby.test.cjs tests/tv-director.test.cjs
+          python3 tests/test_ios_product.py
+          python3 tests/test_show_product.py
+          node tests/tv-show-integration.cjs
+      - name: Install browser runner
+        id: browser
+        if: ${{ !cancelled() }}
+        run: |
+          python3 -m pip install playwright==1.57.0
+          python3 -m playwright install --with-deps chromium
+      - name: Native startup and layout contracts
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: python3 tests/native-shell-browser.py
+      - name: Fresh, input and display contracts
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: python3 tests/fresh-lobby-browser.py
+      - name: Full assets TV show and controller walkthrough
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: python3 tests/tv-show-browser.py
+      - name: Desktop invite reuse, compact podium and return entry
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: python3 tests/invite-polish-browser.py
+      - name: Existing repository tests
+        if: ${{ !cancelled() }}
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee .localparty-build/ci/npm-test.log
+      - name: Reports and reproducibility snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-show-review
+          path: .localparty-build
+          include-hidden-files: true
+          retention-days: 5
+          if-no-files-found: warn

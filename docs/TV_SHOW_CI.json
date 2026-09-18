@@ -1,0 +1,22 @@
+{
+  "revision": "tv-show-20260918.1",
+  "tested_commit": "6de718a5cb5aaabb5870859e75b8a53265a58063",
+  "run_id": 35296678199,
+  "url": "https://github.com/lomatoq/localparty/actions/runs/35296678199",
+  "conclusion": "success",
+  "focused_node": {"passed": 68, "failed": 0},
+  "synthetic_product_tests": {"existing_passed": 11, "new_passed": 5},
+  "real_node_network_checks": {"passed": 36, "physical_ios": false},
+  "browser_suites": [
+    {"name": "native startup", "passed": 41, "css": "full checkout", "assets": "none", "transport": "in-memory DOM, mocked native"},
+    {"name": "Fresh", "passed": 76, "css": "full checkout", "assets": "placeholder SVG", "transport": "intercepted files, mocked native and sockets"},
+    {"name": "TV show", "passed": 85, "css": "full checkout", "assets": "real checkout fonts and artwork", "transport": "intercepted files, mocked native and sockets"}
+  ],
+  "npm_test": {"passed": 156, "failed": 0, "skipped": 0, "additional_integration_summaries_passed": 6},
+  "artifact_id": 10527794625,
+  "artifact_sha256": "047f177257ac1201abd252c4c23fd9f36a9bcf61401beefebba63ccb9aea7cf9",
+  "development_dependency_audit": {"high": 1, "package": "sharp", "fixed_in_this_update": false},
+  "ios_sdk_build": "not executed here",
+  "physical_iphone_airplay_haptics": "requires Claude local validation",
+  "counts_may_overlap_between_suites": true
+}

@@ -7,7 +7,10 @@ async function until(fn,label){for(let i=0;i<300;i++){if(await fn())return;await
 test('Wi-Fi listener is opt-in, isolated from the room, and closes without losing the match or identities',{timeout:45000},async()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'party-network-')),file=path.join(dir,'party.json'),store=new ProfileStore(file);
  const known=store.register(null,'Знакомый игрок','left');store.record({eventId:'one',players:[{id:known.id,score:3,won:true}]},'old','tanks');
- const child=spawn(process.execPath,['server.js'],{cwd:path.join(__dirname,'..'),env:{...process.env,PARTY_EMBEDDED:'1',PARTY_ADMIN_KEY:'test',PARTY_DATA_FILE:file,PARTY_PORT:'0',PARTY_INTERNAL_PORT:'0',PARTY_NO_BROWSER:'1'},stdio:['ignore','pipe','pipe']});
+ // Model an iPhone interface using this machine's REAL LAN address in this
+ // isolated child only. Production keeps its enN filter and opt-in listener.
+ const bootstrap=`const os=require('node:os');const original=os.networkInterfaces();const lan=Object.values(original).flat().filter(x=>x.family==='IPv4'&&!x.internal);os.networkInterfaces=()=>({...original,en0:lan});require('./server.js');`;
+ const child=spawn(process.execPath,['-e',bootstrap],{cwd:path.join(__dirname,'..'),env:{...process.env,PARTY_EMBEDDED:'1',PARTY_ADMIN_KEY:'test',PARTY_DATA_FILE:file,PARTY_PORT:'0',PARTY_INTERNAL_PORT:'0',PARTY_NO_BROWSER:'1'},stdio:['ignore','pipe','pipe']});
  let log='',base;const sockets=[];child.stdout.on('data',b=>log+=b);child.stderr.on('data',b=>log+=b);
  async function manage(command,status=200,origin=base){const res=await fetch(origin+'/api/manage',{method:command?'POST':'GET',headers:{Authorization:'Bearer test','Content-Type':'application/json'},body:command?JSON.stringify(command):undefined});const data=await res.json();assert.equal(res.status,status,JSON.stringify(data));return data;}
  async function connect(origin=base,data){const ws=new WS(origin.replace('http','ws')+'/lobby');sockets.push(ws);ws.messages=[];ws.on('error',()=>{});ws.on('message',b=>{const m=JSON.parse(b);ws.messages.push(m);if(m.type==='joined')ws.profile=m;});await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});if(data){ws.send(JSON.stringify({...data,type:'join'}));await until(()=>ws.profile,'join');}return ws;}

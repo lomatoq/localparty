@@ -1,269 +1,445 @@
 import SwiftUI
 import WebKit
+import Combine
 import CoreImage.CIFilterBuiltins
+
+// Optional display metadata. Old servers still decode; no player credentials here.
+struct PartyTVBoardRow: Codable, Equatable {
+    var id: String; var name: String; var rank: Int?; var score: Double; var points: Double?; var won: Bool
+}
+struct PartyTVBoard: Codable, Equatable {
+    var key: String; var kind: String; var title: String; var subtitle: String; var rows: [PartyTVBoardRow]
+}
+struct PartyTVPresentation: Codable, Equatable {
+    var revision: Int; var mode: String; var automatic: Bool; var board: PartyTVBoard?
+    var focusId: String?; var focusNumber: Int; var focusRevision: Int; var browse: Bool; var total: Int
+    var canCover: Bool; var hasMatch: Bool; var hasCompany: Bool
+    var autoPodium: Bool; var effects: Bool; var idleBrowse: Bool
+}
 
 @main struct LocalPartyApp: App {
     @UIApplicationDelegateAdaptor(PartyAppDelegate.self) private var appDelegate
-    @StateObject private var model=ServerModel.shared
-    var body: some Scene { WindowGroup { HostView(model:model).preferredColorScheme(.dark) } }
+    @StateObject private var model = ServerModel.shared
+    var body: some Scene { WindowGroup { HostView(model: model).preferredColorScheme(.dark) } }
 }
+
+// Host menu uses the SAME bundled CSS, artwork and controls as the web launcher.
+// The game controller and external TV retain their existing server and sessions.
 struct HostView: View {
-    @ObservedObject var model:ServerModel
-    @State private var tab=0
-    @StateObject private var controller=HostControllerStore()
+    @ObservedObject var model: ServerModel
+    @StateObject private var store = PartyWebStore()
     @Environment(\.scenePhase) private var phase
-    @State private var controllerOpened=false
-    @State private var search=""
-    @State private var filter="Все"
-    @State private var detail:PartyGame?
-    @State private var confirmStatisticsReset=false
-    @State private var airPlayHelp=false
-    @State private var removePlayer: PartyPlayer?
-    private let accent=Color(red:0.76,green:0.96,blue:0.55)
-    private var games:[PartyGame] { model.catalog.filter { (search.isEmpty || $0.title.localizedCaseInsensitiveContains(search)) && (filter == "Все" || (filter == "За столом" ? $0.section == "table" : $0.section != "table")) } }
     var body: some View {
-        TabView(selection:$tab) {
-            NavigationStack { catalog.navigationTitle("Игры").searchable(text:$search,prompt:"Найти игру").toolbar { ToolbarItem(placement:.topBarTrailing) { status } } }.tabItem {Label("Игры",systemImage:"square.grid.2x2.fill")}.tag(0)
-            NavigationStack { room.navigationTitle("Комната").toolbar {ToolbarItem(placement:.topBarTrailing) {status}} }.tabItem {Label("Комната",systemImage:"wifi")}.tag(1)
-                    Group {
-                if model.enabled {
-                    if controllerOpened {HostControllerWebView(store:controller,url:model.controllerURL,visible:tab==2 && phase == .active)} else {Color.clear}
-                } else {ContentUnavailableView {Label("Пульт",systemImage:"gamecontroller")} description: {Text("Подготавливаем комнату. Через несколько секунд здесь появится ваш пульт.")} actions: {Button("Открыть комнату") {tab=1}}}
-            }.tabItem {Label("Пульт",systemImage:"gamecontroller.fill")}.tag(2)
-        }.tint(accent)
-        .onChange(of:tab) {_,value in if value==2 {controllerOpened=true};controller.setVisible(value==2 && phase == .active)}
-        // Observe the phone scene, not the aggregate phase of phone + TV.
-        .onAppear {model.sceneChanged(phase)}
-        .onChange(of:phase) {_,value in model.sceneChanged(value);controller.setVisible(value == .active && tab==2)}
-        .onChange(of:model.enabled) {_,value in if !value {controller.stop()}}
-        .sheet(item:$detail) { game in gameDetail(game) }
-        .sheet(isPresented:$airPlayHelp) { airPlayInstructions }
-        .confirmationDialog("Удалить \(removePlayer?.name ?? "игрока") из комнаты?",isPresented:Binding(get:{removePlayer != nil},set:{if !$0 {removePlayer=nil}}),titleVisibility:.visible) {Button("Удалить игрока",role:.destructive) {if let p=removePlayer {model.command(["type":"kick","id":p.id])};removePlayer=nil}} message: {Text("Контроллер отключится. Остальные участники продолжат игру.")}
-        .confirmationDialog("Сбросить всю статистику?",isPresented:$confirmStatisticsReset,titleVisibility:.visible) {Button("Сбросить статистику",role:.destructive) {model.command(["type":"statistics-reset"])}} message: {Text("История матчей, очки и победы будут очищены. Имена игроков и подключённые пульты сохранятся.")}
-    }
-    private var feedback: some View {
-        Group {
-            if let text=model.message ?? model.connectionStatus ?? model.state?.incident?.message {
-                HStack(alignment:.top,spacing:12) {
-                    Text(text).font(.subheadline)
-                    Spacer()
-                    if model.connectionStatus == nil {
-                        Button {if model.message != nil {model.message=nil} else {model.command(["type":"dismiss-incident"])}} label: {Image(systemName:"xmark")}.accessibilityLabel("Скрыть сообщение")
-                    }
-                }.padding().background(.white.opacity(0.06),in:RoundedRectangle(cornerRadius:18))
-            }
-        }
-    }
-    private var status: some View {
-        HStack(spacing:5) {
-            if !model.ready {ProgressView().controlSize(.mini)}
-            Text(model.ready ? "\(model.state?.players.count ?? 0) игроков" : "Подготавливаем…").font(.caption).foregroundStyle(.secondary)
-        }
-    }
-    private var catalog: some View {
-        ScrollView {
-            VStack(alignment:.leading,spacing:20) {
-                HStack(spacing:10) {
-                    if let url=Bundle.main.url(forResource:"localparty-mark",withExtension:"png",subdirectory:"Server/public/assets/branding"),let mark=UIImage(contentsOfFile:url.path) {Image(uiImage:mark).resizable().scaledToFit().frame(width:42,height:42)}
-                    Text("LocalParty").font(.title2.bold())
-                }
-                feedback
-                if (model.state?.screens ?? 0)==0 { Button {tab=1} label: {Label("Подключить общий экран",systemImage:"tv").font(.headline).frame(maxWidth:.infinity).padding()}.buttonStyle(.borderedProminent).foregroundStyle(.black) }
-                if let active=model.active { activeCard(active) }
-                Text("\(model.catalog.count) игр · один общий экран").font(.subheadline).foregroundStyle(.secondary)
-                Picker("Категория",selection:$filter) {ForEach(["Все","Аркады","За столом"],id:\.self) {Text($0)}}.pickerStyle(.segmented)
-                LazyVGrid(columns:[GridItem(.flexible()),GridItem(.flexible())],spacing:14) {
-                    ForEach(games) {game in Button {model.select(game);detail=game} label: {
-                        VStack(alignment:.leading,spacing:8) {
-                            Group {if let img=model.image(game) {Image(uiImage:img).resizable().scaledToFit()} else {Image(systemName:"gamecontroller.fill").resizable().scaledToFit().padding(35)}}.frame(height:120).frame(maxWidth:.infinity)
-                            Text(game.title).font(.headline).lineLimit(2).frame(height:43,alignment:.topLeading)
-                            Text("\(game.min)–\(game.max) игроков").font(.caption).foregroundStyle(.secondary)
-                            Label("Голосов: \(model.votes(for:game))",systemImage:"hand.thumbsup").font(.caption).foregroundStyle(accent)
-                        }.padding(12).frame(maxWidth:.infinity,alignment:.leading).background(.white.opacity(0.045),in:RoundedRectangle(cornerRadius:22)).overlay(RoundedRectangle(cornerRadius:22).stroke(model.state?.selected == game.id ? accent : .white.opacity(0.06),lineWidth:model.state?.selected == game.id ? 2:1))
-                    }.buttonStyle(.plain).accessibilityLabel("\(game.title), от \(game.min) до \(game.max) игроков") }
-                }
-                if games.isEmpty {ContentUnavailableView.search(text:search)}
-            }.padding()
-        }
-    }
-    private func activeCard(_ game:PartyGame) -> some View {
-        VStack(alignment:.leading,spacing:12) {
-            Label("На общем экране",systemImage:"tv").font(.caption).foregroundStyle(accent)
-            Text(game.title).font(.title2.bold())
-            Text(model.state?.active?.ui.phase == "waiting" ? "Ждём готовности игроков на пультах" : model.state?.active?.ui.progress ?? "").font(.subheadline).foregroundStyle(.secondary)
-            if let run=model.state?.active {
-                if let error=run.startError {Text(error).font(.footnote).foregroundStyle(.orange);Button("Повторить запуск") {model.command(["type":"retry-start","instance":run.instance])}.disabled(model.working)}
-                ForEach(game.hostControls?.actions.filter {$0.phases.contains(run.ui.phase) && (run.ui.hostActions?.contains($0.id) ?? true)} ?? []) {action in
-                    Button(action.label) {model.command(["type":"game-action","action":action.id,"instance":run.instance])}.buttonStyle(.bordered).disabled(model.working || run.session?.paused == true)
-                }
-                if run.ui.phase == "results" {Button("Сыграть ещё раз") {model.command(["type":"launch","id":game.id])}.buttonStyle(.borderedProminent).foregroundStyle(.black).disabled(model.working)}
-            }
-            HStack {Button(model.state?.active?.session?.paused == true ? "Продолжить" : "Пауза") {model.command(["type":"pause","paused":model.state?.active?.session?.paused != true])}.buttonStyle(.bordered);Spacer();Button("В лобби") {model.command(["type":"stop"])}.buttonStyle(.bordered)}.disabled(model.working || model.state?.busy == true)
-        }.padding(18).background(accent.opacity(0.09),in:RoundedRectangle(cornerRadius:22))
-    }
-    private func gameDetail(_ game:PartyGame) -> some View {
-        NavigationStack {
-            ScrollView {VStack(alignment:.leading,spacing:20) {
-                if let img=model.image(game) {Image(uiImage:img).resizable().scaledToFit().frame(height:230).frame(maxWidth:.infinity)}
-                Text(game.title).font(.largeTitle.bold())
-                Text("\(game.min)–\(game.max) игроков").font(.subheadline).foregroundStyle(accent)
-                Text(game.goal ?? game.description).font(.title3)
-                VStack(alignment:.leading,spacing:8) {Text("Управление").font(.headline);Text(game.controls).foregroundStyle(.secondary)}
-                if let win=game.win {VStack(alignment:.leading,spacing:8) {Text("Как победить").font(.headline);Text(win).foregroundStyle(.secondary)}}
-                if let fields=game.hostControls?.settings, !fields.isEmpty {
-                    VStack(alignment:.leading,spacing:12) {
-                        Text("Настройки игры").font(.headline)
-                        ForEach(fields) {field in
-                            HStack {Text(field.label);Spacer();Picker(field.label,selection:Binding(get:{model.setting(field,game:game)},set:{model.setSetting($0,field:field,game:game)})) {ForEach(field.options,id:\.value) {option in Text(option.label).tag(option.value)}}.labelsHidden().pickerStyle(.menu)}
-                        }
-                    }.padding().background(.white.opacity(0.05),in:RoundedRectangle(cornerRadius:18)).disabled(model.state?.active?.id == game.id)
-                }
-                Label((model.state?.screens ?? 0)>0 ? "Выбор виден на общем экране" : "Подключите общий экран в разделе «Комната»",systemImage:"tv").font(.footnote).foregroundStyle(.secondary)
-            }.padding()}.safeAreaInset(edge:.bottom) {VStack(spacing:8) {
-                if (model.state?.screens ?? 0)==0 {Button("Подключить экран") {detail=nil;tab=1}.buttonStyle(.borderedProminent).foregroundStyle(.black)}
-                else {Button {model.command(["type":"launch","id":game.id]);detail=nil} label: {Text(model.state?.busy == true ? "Подготавливаем…" : "Играть вместе").font(.headline).frame(maxWidth:.infinity).padding(.vertical,8)}.buttonStyle(.borderedProminent).foregroundStyle(.black).disabled(!model.canLaunch || model.state?.selected != game.id)}
-                Text(model.launchHint).font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.center)
-            }.padding().background(.ultraThinMaterial)}.toolbar {ToolbarItem(placement:.topBarTrailing) {Button("Готово") {detail=nil}}}
-        }
-    }
-    private var room: some View {
-        Form {
-            Section {
-                VStack(alignment:.leading,spacing:8) {
-                    Text("Собираемся играть").font(.title2.bold())
-                    Text("Выберите общий экран, пригласите друзей и откройте игру.").foregroundStyle(.secondary)
-                }.padding(.vertical,8)
-                feedback.listRowInsets(EdgeInsets())
-            }
-            Section("Общий экран") {
-                Button {airPlayHelp=true} label: {
-                    Label {VStack(alignment:.leading,spacing:4) {Text("AirPlay").font(.headline);Text(model.externalDisplayCount>0 ? "Экран подключён" : "Телевизор или Mac").font(.subheadline).foregroundStyle(.secondary)}} icon: {Image(systemName:"airplayvideo").font(.title2)}
-                }
-                if (model.state?.screens ?? 0)>0 {Label("Подключено экранов: \(model.state?.screens ?? 0)",systemImage:"checkmark.circle").foregroundStyle(accent)}
-            }
-            Section {
-                Toggle("Доступ по Wi-Fi",isOn:Binding(get:{model.networkEnabled},set:{model.setNetworkEnabled($0)})).disabled(!model.ready || model.working)
-                if model.networkEnabled && !model.address.isEmpty {
-                    HStack {Spacer();QRCodeView(value:model.address).frame(width:190,height:190);Spacer()}.padding(.vertical,8)
-                    Text("Друзья подключаются к той же сети Wi-Fi и сканируют код. Он также появится на общем экране.").font(.footnote).foregroundStyle(.secondary)
-                    ShareLink("Пригласить игроков",item:model.address)
-                } else if model.networkEnabled {
-                    Text("Подключитесь к Wi-Fi — здесь появится код для гостей.").font(.subheadline).foregroundStyle(.secondary)
-                }
-                Button("Играть с этого iPhone") {controllerOpened=true;tab=2}.disabled(!model.ready)
-            } header: {Text("Игроки")} footer: {Text("Wi-Fi-доступ нужен для телефонов гостей. AirPlay и пульт на этом iPhone готовы автоматически.")}
-            if let active=model.active {Section {activeCard(active).listRowInsets(EdgeInsets())}}
-            Section("В комнате · \(model.state?.players.count ?? 0)") {
-                if model.state?.players.isEmpty != false {Text("Пока никого. Пригласите друзей или откройте свой пульт.").foregroundStyle(.secondary)}
-                ForEach(model.state?.players ?? []) {p in
-                    HStack {
-                        VStack(alignment:.leading,spacing:4) {Text(p.name);Text(p.gameReady ? "В игре":"Подключён").font(.caption).foregroundStyle(.secondary)}
-                        Spacer()
-                        Button(role:.destructive) {removePlayer=p} label: {Image(systemName:"person.badge.minus").padding(8)}.buttonStyle(.borderless).accessibilityLabel("Удалить игрока " + p.name).disabled(model.working)
-                    }
+        PartySurfaces(store: store, model: model)
+            .ignoresSafeArea(.container, edges: [.top, .bottom])
+            .overlay {
+                if let error = store.loadError {
+                    ContentUnavailableView {
+                        Label("Не удалось открыть экран", systemImage: "wifi.exclamationmark")
+                    } description: { Text(error) } actions: {
+                        Button("Повторить") { store.retry() }
+                        if store.showingController { Button("В меню") { store.showController(false) } }
+                    }.background(Color.black)
                 }
             }
-            Section("Статистика") {
-                LabeledContent("Сыграно матчей",value:"\(model.state?.totalMatches ?? 0)")
-                ForEach((model.state?.leaderboard ?? []).prefix(5)) {p in LabeledContent(p.name,value:"\(p.wins) побед · \(p.points) очков")}
-                Text("Имена и результаты сохраняются между вечерами. Знакомый браузер узнаёт игрока автоматически; на новом устройстве нужно ввести имя.").font(.footnote).foregroundStyle(.secondary)
-                Button("Сбросить статистику",role:.destructive) {confirmStatisticsReset=true}.disabled(!model.ready || model.working || model.state?.active != nil || model.state?.totalMatches == 0)
-                if model.state?.active != nil {Text("Сброс доступен после завершения матча.").font(.caption).foregroundStyle(.secondary)}
-            }
-            Section {
-                DisclosureGroup("Настройки и диагностика") {
-                    NavigationLink { browserDisplaySettings } label: {
-                        Label("Экран в браузере · Бета",systemImage:"globe")
-                    }
-                    Toggle("Не гасить экран приложения",isOn:$model.keepAwake)
-                    Text("Для вывода AirPlay держите приложение открытым.").font(.footnote).foregroundStyle(.secondary)
-                    Text(model.backgroundStatus).font(.footnote).foregroundStyle(.secondary)
-                    if model.networkEnabled {Button("Продолжать игру в фоне") {model.requestBackground()}}
-                    ShareLink("Поделиться диагностикой",item:model.diagnosticsURL)
-                    Text(model.buildLabel).font(.caption).foregroundStyle(.secondary)
-                }
-            }
-        }
+            .onAppear { store.update(model); store.setPhase(phase); model.sceneChanged(phase) }
+            .onChange(of: phase) { _, value in store.setPhase(value); model.sceneChanged(value) }
     }
-    private var browserDisplaySettings: some View {
-        Form {
-            Section {
-                Label("Бета",systemImage:"flask").foregroundStyle(accent)
-                Text("Альтернативный способ подключить общий экран через браузер телевизора или компьютера. Устройства должны быть в одной сети Wi-Fi.")
-                Text("Совместимость и плавность игры зависят от браузера экрана.").font(.footnote).foregroundStyle(.secondary)
-            }
-            Section("Подключение экрана") {
-                if !model.ready {
-                    Label("Подготавливаем комнату…",systemImage:"hourglass")
-                } else if !model.networkEnabled {
-                    Button("Включить доступ по Wi-Fi") {model.setNetworkEnabled(true)}.disabled(model.working)
-                } else if model.tvAddress.isEmpty {
-                    Text("Подключите iPhone к Wi-Fi — здесь появится адрес экрана.").foregroundStyle(.secondary)
-                } else {
-                    Text("Откройте этот адрес в браузере общего экрана:")
-                    Text(model.tvAddress).font(.system(.subheadline,design:.monospaced)).textSelection(.enabled)
-                    ShareLink("Поделиться адресом экрана",item:model.tvAddress)
-                    Text("Затем вернитесь во вкладку «Игры». Телефоны гостей подключаются по коду из комнаты.").font(.footnote).foregroundStyle(.secondary)
-                }
-            }
-        }.navigationTitle("Экран в браузере").navigationBarTitleDisplayMode(.inline)
-    }
-    private var airPlayInstructions: some View {
-        NavigationStack {
-            VStack(alignment:.leading,spacing:24) {
-                Image(systemName:"airplayvideo").font(.system(size:48)).foregroundStyle(accent)
-                Text(model.externalDisplayCount>0 ? "Экран подключён" : "Игра на большом экране").font(.largeTitle.bold())
-                if model.externalDisplayCount>0 {
-                    Text("Выберите игру во вкладке «Игры». На iPhone можно открыть свой пульт.")
-                    Button("Обновить картинку") {model.externalDisplayReload += 1}
-                } else {
-                    Label("Подключите iPhone и экран к одной сети Wi-Fi.",systemImage:"1.circle")
-                    Label("Откройте Пункт управления → «Повтор экрана» и выберите телевизор или Mac.",systemImage:"2.circle")
-                    Label("Вернитесь в LocalParty. Комната появится на экране автоматически.",systemImage:"3.circle")
-                }
-                Text("Для телефонов друзей включите «Доступ по Wi-Fi» в комнате. Держите LocalParty открытым во время игры.").font(.subheadline).foregroundStyle(.secondary)
-                Spacer()
-            }.padding(24).toolbar {ToolbarItem(placement:.topBarTrailing) {Button("Готово") {airPlayHelp=false}}}
-        }
-    }
-
-}
-struct QRCodeView:View {
-    let value:String
-    @State private var image:UIImage?
-    private func makeImage()->UIImage? {let filter=CIFilter.qrCodeGenerator();filter.message=Data(value.utf8);guard let output=filter.outputImage?.transformed(by:CGAffineTransform(scaleX:8,y:8)),let cg=CIContext().createCGImage(output,from:output.extent) else{return nil};return UIImage(cgImage:cg)}
-    var body:some View {Group {if let image {Image(uiImage:image).interpolation(.none).resizable().scaledToFit().padding(12).background(.white,in:RoundedRectangle(cornerRadius:18)).accessibilityLabel("QR-код входа в игру")} else {ProgressView().frame(maxWidth:.infinity,maxHeight:.infinity)}}.task(id:value) {image=makeImage()}}
 }
 
+// Keep one visible UIKit owner for the entire phone UI. On iOS 27 the
+// external-display scene is opt-in through a scene accessory registration.
+private struct PartySurfaces: UIViewControllerRepresentable {
+    @ObservedObject var store: PartyWebStore
+    @ObservedObject var model: ServerModel
+    func makeUIViewController(context: Context) -> PartySurfaceController {
+        let controller = PartySurfaceController(store: store)
+        store.surfaceController = controller
+        return controller
+    }
+    func updateUIViewController(_ controller: PartySurfaceController, context: Context) {
+        store.update(model)
+        store.menu.isHidden = store.showingController
+        store.controller.isHidden = !store.showingController
+    }
+}
 
-// The host uses the same /play page, player identity and sockets as every guest.
-@MainActor final class HostControllerStore: NSObject, ObservableObject, WKNavigationDelegate {
-    let webView: WKWebView
-    private var loadedURL: URL?
-    private var visible=false
+@MainActor private final class PartySurfaceController: UIViewController {
+    private let store: PartyWebStore
+    // Erase the type so an iOS 26 SDK can still compile the legacy path.
+    // The hotfix build script requires SDK 27 for current-device builds.
+    private var externalRegistration: AnyObject?
+    init(store: PartyWebStore) { self.store = store; super.init(nibName: nil, bundle: nil) }
+    required init?(coder: NSCoder) { fatalError("Use init(store:)") }
+    override func loadView() {
+        let root = UIView(); root.backgroundColor = .black
+        for web in [store.menu, store.controller] {
+            web.translatesAutoresizingMaskIntoConstraints = false
+            root.addSubview(web)
+            NSLayoutConstraint.activate([
+                web.leadingAnchor.constraint(equalTo: root.leadingAnchor),
+                web.trailingAnchor.constraint(equalTo: root.trailingAnchor),
+                web.topAnchor.constraint(equalTo: root.topAnchor),
+                web.bottomAnchor.constraint(equalTo: root.bottomAnchor)
+            ])
+        }
+        view = root
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ensureDisplayRegistration()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ensureDisplayRegistration()
+        store.refreshSnapshot()
+    }
+    func ensureDisplayRegistration() {
+        #if compiler(>=6.4)
+        if #available(iOS 27.0, *), externalRegistration == nil {
+            let configuration = UISceneConfiguration(name: "Party TV", sessionRole: .windowExternalDisplayNonInteractive)
+            configuration.sceneClass = UIWindowScene.self
+            configuration.delegateClass = PartyExternalDisplaySceneDelegate.self
+            let accessory = UISceneAccessory.externalNonInteractive(sceneConfiguration: configuration)
+            let registration = registerSceneAccessory(accessory)
+            registration.isEnabled = true
+            externalRegistration = registration // must live as long as the phone surface
+        }
+        #endif
+    }
+    var displayMode: String {
+        if #available(iOS 27.0, *) {
+            #if compiler(>=6.4)
+            return externalRegistration == nil ? "registering" : "scene-accessory"
+            #else
+            return "requires-ios27-sdk"
+            #endif
+        }
+        return "legacy-scene"
+    }
+    var displayAvailable: Bool {
+        #if compiler(>=6.4)
+        if #available(iOS 27.0, *), let registration = externalRegistration as? UISceneAccessoryRegistration {
+            return registration.isAvailable
+        }
+        #endif
+        return false
+    }
+}
+
+// Serves only shipped public assets. Never exposes Application Support, keys,
+// server source or arbitrary filesystem paths to JavaScript.
+private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
+    func webView(_ webView: WKWebView, start task: WKURLSchemeTask) {
+        do {
+            guard let url = task.request.url, url.scheme == "partyapp", url.host == "local",
+                  task.request.httpMethod == "GET",
+                  let root = Bundle.main.url(forResource: "public", withExtension: nil, subdirectory: "Server") else { throw URLError(.noPermissionsToReadFile) }
+            let name = url.path == "/" ? "native-shell/index.html" : String(url.path.dropFirst())
+            guard !name.split(separator: "/").contains(".."), !name.contains("\\"), !name.contains("%") else { throw URLError(.noPermissionsToReadFile) }
+            let base = root.resolvingSymlinksInPath().standardizedFileURL
+            let file = base.appendingPathComponent(name).resolvingSymlinksInPath().standardizedFileURL
+            let mime = ["html":"text/html", "css":"text/css", "js":"text/javascript", "png":"image/png", "webp":"image/webp", "jpg":"image/jpeg", "jpeg":"image/jpeg", "svg":"image/svg+xml", "ttf":"font/ttf", "woff2":"font/woff2", "ico":"image/x-icon"]
+            guard file.path.hasPrefix(base.path + "/"), let type = mime[file.pathExtension.lowercased()],
+                  file.pathExtension != "html" || name == "native-shell/index.html" else { throw URLError(.noPermissionsToReadFile) }
+            let data = try Data(contentsOf: file)
+            task.didReceive(URLResponse(url: url, mimeType: type, expectedContentLength: data.count, textEncodingName: type.hasPrefix("text/") ? "utf-8" : nil))
+            task.didReceive(data); task.didFinish()
+        } catch { task.didFailWithError(error) }
+    }
+    func webView(_ webView: WKWebView, stop task: WKURLSchemeTask) { }
+}
+
+@MainActor private final class PartyScriptHandler: NSObject, WKScriptMessageHandler {
+    weak var target: PartyWebStore?
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) { target?.receive(message) }
+}
+
+@MainActor private final class PartyWebStore: NSObject, ObservableObject, WKNavigationDelegate, WKUIDelegate {
+    let menu: WKWebView
+    let controller: WKWebView
+    @Published private(set) var showingController = false
+    @Published private(set) var loadError: String?
+    private weak var model: ServerModel?
+    weak var surfaceController: PartySurfaceController?
+    private var modelSubscription: AnyCancellable?
+    private var menuStarted = false
+    private var deliveryEpoch = 0
+    private var payloadInFlight = false, publishAgain = false
+    private var payloadRetry: DispatchWorkItem?
+    private var deliveryFailures = 0
+    private let shellRevision = "ios-recovery-20260918.1"
+    private var lastGoodCatalog: [PartyGame] = []
+    private var catalogError = ""
+    private let handler = PartyScriptHandler()
+    private let shellURL = URL(string: "partyapp://local/native-shell/index.html")!
+    private var controllerURL: URL?
+    private var menuReady = false
+    private var phase: ScenePhase = .active
+    private var lastPayload = "", qrAddress = "", qrData = ""
+    private var hapticTasks: [DispatchWorkItem] = []
+    private var lastHapticTime: TimeInterval = 0
+    private var hapticGeneration = 0
+    private let uiImpact = UIImpactFeedbackGenerator(style: .soft)
+    private var hapticsEnabled: Bool { !UserDefaults.standard.bool(forKey: "LocalParty.hapticsDisabled") }
+
     override init() {
-        let config=WKWebViewConfiguration()
-        config.allowsInlineMediaPlayback=true
-        config.mediaTypesRequiringUserActionForPlayback=[]
-        webView=WKWebView(frame:.zero,configuration:config)
+        let menuConfig = WKWebViewConfiguration()
+        menuConfig.setURLSchemeHandler(PartyBundleScheme(), forURLScheme: "partyapp")
+        menu = WKWebView(frame: .zero, configuration: menuConfig)
+        let controllerConfig = WKWebViewConfiguration()
+        controllerConfig.allowsInlineMediaPlayback = true
+        controllerConfig.mediaTypesRequiringUserActionForPlayback = []
+        if let file = Bundle.main.url(forResource: "controller-bridge", withExtension: "js", subdirectory: "Server/public/native-shell"), let source = try? String(contentsOf: file, encoding: .utf8) {
+            controllerConfig.userContentController.addUserScript(WKUserScript(source: source, injectionTime: .atDocumentStart, forMainFrameOnly: false))
+        }
+        controller = WKWebView(frame: .zero, configuration: controllerConfig)
         super.init()
-        webView.navigationDelegate=self
-        webView.isOpaque=false;webView.backgroundColor = .black
-        webView.scrollView.contentInsetAdjustmentBehavior = .never
+        handler.target = self
+        for view in [menu, controller] {
+            view.configuration.userContentController.add(handler, name: "partyShell")
+            view.navigationDelegate = self; view.uiDelegate = self
+            view.isOpaque = false; view.backgroundColor = .black
+            view.scrollView.contentInsetAdjustmentBehavior = .never
+            view.allowsBackForwardNavigationGestures = false
+        }
+        // Do not begin the JS handshake until the model has been attached.
     }
-    func load(_ url:URL) {guard loadedURL != url else {return};loadedURL=url;webView.load(URLRequest(url:url))}
-    func setVisible(_ value:Bool) {
-        guard visible != value else {return};visible=value
-        let event=value ? "party-native-resume":"party-native-hide"
-        webView.evaluateJavaScript("window.dispatchEvent(new Event('\(event)'))",completionHandler:nil)
+    func update(_ model: ServerModel) {
+        if self.model !== model {
+            self.model = model
+            modelSubscription = model.objectWillChange.sink { [weak self] _ in
+                // objectWillChange precedes mutation. Publish on the next main turn,
+                // independently of SwiftUI's UIViewControllerRepresentable redraws.
+                DispatchQueue.main.async { [weak self] in self?.publish() }
+            }
+            loadBundledCatalog()
+        }
+        if !menuStarted { menuStarted = true; reloadMenu() }
+        if showingController, model.ready, controllerURL != model.controllerURL {
+            controllerURL = model.controllerURL; controller.load(URLRequest(url: model.controllerURL))
+        }
+        publish()
     }
-    func webViewWebContentProcessDidTerminate(_ webView:WKWebView) {
-        if let url=loadedURL {webView.load(URLRequest(url:url))}
+    func setPhase(_ value: ScenePhase) {
+        phase = value
+        signalController(showingController && value == .active)
+        if value != .active { cancelHaptics() }
+        if value == .active {
+            surfaceController?.ensureDisplayRegistration()
+            refreshSnapshot()
+        }
     }
-    func stop() {setVisible(false);loadedURL=nil;webView.stopLoading();webView.loadHTMLString("",baseURL:nil)}
-}
-struct HostControllerWebView:UIViewRepresentable {
-    let store:HostControllerStore;let url:URL;let visible:Bool
-    func makeUIView(context:Context)->WKWebView {store.load(url);store.setVisible(visible);return store.webView}
-    func updateUIView(_ view:WKWebView,context:Context) {store.load(url);store.setVisible(visible)}
+    func showController(_ value: Bool) {
+        guard !value || model?.ready == true else { return }
+        loadError = nil
+        showingController = value
+        if value, let model, controllerURL != model.controllerURL {
+            controllerURL = model.controllerURL; controller.load(URLRequest(url: model.controllerURL))
+        }
+        signalController(value && phase == .active)
+        cancelHaptics()
+    }
+    private func signalController(_ visible: Bool) {
+        let name = visible ? "party-native-resume" : "party-native-hide"
+        // Release held input in the launcher AND every same-origin game frame.
+        controller.evaluateJavaScript("(function visit(w){try{w.dispatchEvent(new w.Event('\(name)'));for(let i=0;i<w.frames.length;i++)visit(w.frames[i]);}catch(e){}})(window)", completionHandler: nil)
+    }
+    func retry() {
+        loadError = nil
+        if showingController, let url = controllerURL { controller.load(URLRequest(url: url)) }
+        else { reloadMenu() }
+    }
+    func refreshSnapshot() {
+        deliveryFailures = 0
+        lastPayload = ""
+        publish()
+    }
+    private func resetDelivery() {
+        deliveryEpoch += 1
+        menuReady = false; payloadInFlight = false; publishAgain = false
+        lastPayload = ""; deliveryFailures = 0
+        payloadRetry?.cancel(); payloadRetry = nil
+    }
+    private func reloadMenu() {
+        resetDelivery()
+        menu.load(URLRequest(url: shellURL))
+    }
+    private func loadBundledCatalog() {
+        do {
+            guard let url = Bundle.main.url(forResource: "native-catalog", withExtension: "json", subdirectory: "Server") else {
+                throw NSError(domain: "LocalParty", code: 1, userInfo: [NSLocalizedDescriptionKey: "В сборке отсутствует Server/native-catalog.json."])
+            }
+            let games = try JSONDecoder().decode([PartyGame].self, from: Data(contentsOf: url))
+            guard !games.isEmpty, Set(games.map(\.id)).count == games.count else {
+                throw NSError(domain: "LocalParty", code: 2, userInfo: [NSLocalizedDescriptionKey: "Встроенный каталог пуст или содержит повторяющиеся игры."])
+            }
+            lastGoodCatalog = games; catalogError = ""
+        } catch {
+            catalogError = "Не удалось прочитать встроенный каталог: " + error.localizedDescription
+        }
+    }
+    private func publish() {
+        guard menuReady, deliveryFailures <= 5, let model else { return }
+        guard !payloadInFlight else { publishAgain = true; return }
+        var value: [String: Any] = ["catalog": [], "players": [], "leaderboard": [], "votes": []]
+        if let state = model.state, let data = try? JSONEncoder().encode(state), let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] { value = object }
+        let liveGames = model.state?.catalog ?? []
+        if !liveGames.isEmpty { lastGoodCatalog = liveGames }
+        else if !model.catalog.isEmpty { lastGoodCatalog = model.catalog }
+        if let data = try? JSONEncoder().encode(lastGoodCatalog), let games = try? JSONSerialization.jsonObject(with: data) { value["catalog"] = games }
+        let validCatalog = !liveGames.isEmpty
+        let issue = model.ready && !validCatalog ? "Сервер не вернул каталог. Игры из приложения сохранены; запуск временно недоступен." : (lastGoodCatalog.isEmpty ? catalogError : "")
+        if qrAddress != model.address { qrAddress = model.address; qrData = makeQR(qrAddress) }
+        value["native"] = ["ready": model.ready, "working": model.working, "address": model.address,
+                           "externalDisplays": model.externalDisplayCount, "qr": qrData,
+                           "message": model.message ?? "", "connectionStatus": model.connectionStatus ?? "",
+                           "backgroundStatus": model.backgroundStatus, "buildLabel": model.buildLabel,
+                           "keepAwake": model.keepAwake, "haptics": hapticsEnabled,
+                           "catalogReady": validCatalog, "catalogError": issue,
+                           "bridgeRevision": shellRevision,
+                           "displayMode": surfaceController?.displayMode ?? "registering",
+                           "displayAvailable": surfaceController?.displayAvailable ?? false]
+        guard let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]), let payload = String(data: data, encoding: .utf8), payload != lastPayload else { return }
+        payloadInFlight = true
+        let epoch = deliveryEpoch
+        // Only acknowledge delivery AFTER JavaScript explicitly accepts the snapshot.
+        // Optional chaining returning undefined is not successful delivery.
+        let script = "if (!window.LocalPartyHost) return false; return window.LocalPartyHost.update(JSON.parse(payload)) === true;"
+        menu.callAsyncJavaScript(script, arguments: ["payload": payload], in: nil, contentWorld: .page) { [weak self] result in
+            guard let self, self.deliveryEpoch == epoch else { return }
+            self.payloadInFlight = false
+            if case .success(let accepted) = result, accepted as? Bool == true {
+                self.lastPayload = payload; self.deliveryFailures = 0
+                self.payloadRetry?.cancel(); self.payloadRetry = nil
+                if !self.showingController { self.loadError = nil }
+            } else {
+                self.lastPayload = ""; self.schedulePayloadRetry()
+            }
+            if self.publishAgain { self.publishAgain = false; self.publish() }
+        }
+    }
+    private func schedulePayloadRetry() {
+        deliveryFailures += 1
+        guard deliveryFailures <= 5 else {
+            if phase == .active && !showingController && loadError == nil { loadError = "Меню не приняло каталог. Нажми «Повторить» — профили и статистика не удаляются." }
+            return
+        }
+        payloadRetry?.cancel()
+        let epoch = deliveryEpoch
+        let retry = DispatchWorkItem { [weak self] in
+            guard let self, self.deliveryEpoch == epoch else { return }
+            self.payloadRetry = nil; self.publish()
+        }
+        payloadRetry = retry
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: retry)
+    }
+    private func makeQR(_ text: String) -> String {
+        guard !text.isEmpty else { return "" }
+        let filter = CIFilter.qrCodeGenerator(); filter.message = Data(text.utf8)
+        guard let output = filter.outputImage?.transformed(by: CGAffineTransform(scaleX: 6, y: 6)), let image = CIContext().createCGImage(output, from: output.extent), let png = UIImage(cgImage: image).pngData() else { return "" }
+        return "data:image/png;base64," + png.base64EncodedString()
+    }
+    private func trustedController(_ origin: WKSecurityOrigin) -> Bool {
+        guard let url = model?.controllerURL else { return false }
+        return origin.protocol == url.scheme && origin.host == url.host && origin.port == url.port
+    }
+    func receive(_ message: WKScriptMessage) {
+        guard let body = message.body as? [String: Any], let type = body["type"] as? String else { return }
+        let shell = message.webView === menu && message.frameInfo.isMainFrame && message.frameInfo.request.url == shellURL
+        let player = message.webView === controller && showingController && trustedController(message.frameInfo.securityOrigin)
+        guard shell || player else { return }
+        // Readiness is passive transport, not an action. Control Centre, startup
+        // and AirPlay can leave the phone inactive when this message arrives.
+        if shell && (type == "ready" || type == "resync") {
+            menuReady = true; refreshSnapshot(); return
+        }
+        guard phase == .active else { return } // all actions still require foreground
+        if type == "haptic-prepare", phase == .active, hapticsEnabled { uiImpact.prepare(); return }
+        if type == "haptic" { playHaptics(body["pattern"]); return }
+        if type == "menu", player, message.frameInfo.isMainFrame { showController(false); return }
+        guard shell else { return } // game JavaScript can NEVER issue admin commands
+        guard let model else { return }
+        switch type {
+        case "controller": showController(true)
+        case "manage":
+            let allowed: Set<String> = ["select", "settings", "launch", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options"]
+            if model.ready, !model.working, let command = body["command"] as? [String: Any], let kind = command["type"] as? String, allowed.contains(kind) { model.command(command) }
+        case "network-set": if let enabled = body["enabled"] as? Bool { model.setNetworkEnabled(enabled) }
+        case "awake-set": if let enabled = body["enabled"] as? Bool { model.keepAwake = enabled }
+        case "haptics-set": if let enabled = body["enabled"] as? Bool { UserDefaults.standard.set(!enabled, forKey: "LocalParty.hapticsDisabled"); if !enabled { cancelHaptics() } }
+        case "screen-refresh": surfaceController?.ensureDisplayRegistration(); model.externalDisplayReload += 1
+        case "background-request": model.requestBackground()
+        case "copy-invite": if !model.address.isEmpty { UIPasteboard.general.string = model.address; toast("Адрес скопирован") }
+        case "share-invite": if !model.address.isEmpty { share(model.address) }
+        case "share-diagnostics": share(model.diagnosticsURL)
+        default: break
+        }
+        publish()
+    }
+    private func toast(_ text: String) {
+        menu.callAsyncJavaScript("window.LocalPartyHost?.toast(text)", arguments: ["text": text], in: nil, contentWorld: .page, completionHandler: nil)
+    }
+    private func share(_ item: Any) {
+        guard let scene = menu.window?.windowScene, var presenter = scene.windows.first(where: { $0.isKeyWindow })?.rootViewController else { return }
+        while let presented = presenter.presentedViewController { presenter = presented }
+        let sheet = UIActivityViewController(activityItems: [item], applicationActivities: nil)
+        sheet.popoverPresentationController?.sourceView = presenter.view
+        sheet.popoverPresentationController?.sourceRect = CGRect(x: presenter.view.bounds.midX, y: presenter.view.bounds.midY, width: 1, height: 1)
+        presenter.present(sheet, animated: true)
+    }
+    private func cancelHaptics() { hapticGeneration += 1; hapticTasks.forEach { $0.cancel() }; hapticTasks.removeAll() }
+    private func playHaptics(_ value: Any?) {
+        guard let pattern = value as? [Double], pattern.count <= 12, pattern.allSatisfy({ $0.isFinite && $0 >= 0 && $0 <= 500 }) else { return }
+        if pattern.isEmpty || pattern.allSatisfy({ $0 == 0 }) { cancelHaptics(); return }
+        guard hapticsEnabled, phase == .active else { return }
+        let now = ProcessInfo.processInfo.systemUptime
+        guard now - lastHapticTime >= 0.035 else { return }
+        lastHapticTime = now; cancelHaptics()
+        let generation = hapticGeneration
+        var offset: Double = 0
+        for (index, duration) in pattern.enumerated() {
+            guard offset < 1500 else { break }
+            if index % 2 == 0 && duration > 0 {
+                let task = DispatchWorkItem { [weak self] in
+                    guard let self, self.phase == .active, self.hapticsEnabled, self.hapticGeneration == generation else { return }
+                    let impact = duration <= 20 ? self.uiImpact : UIImpactFeedbackGenerator(style: duration > 60 ? .heavy : .medium)
+                    impact.prepare(); impact.impactOccurred(intensity: min(1, max(0.35, duration / 80)))
+                }
+                hapticTasks.append(task); DispatchQueue.main.asyncAfter(deadline: .now() + offset / 1000, execute: task)
+            }
+            offset += duration
+        }
+    }
+    func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let url = action.request.url else { decisionHandler(.cancel); return }
+        if webView === menu { decisionHandler(url == shellURL ? .allow : .cancel); return }
+        if url.absoluteString == "about:blank" { decisionHandler(.allow); return }
+        let local = model?.controllerURL
+        decisionHandler(url.scheme == local?.scheme && url.host == local?.host && url.port == local?.port ? .allow : .cancel)
+    }
+    func webView(_ webView: WKWebView, requestDeviceOrientationAndMotionPermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, decisionHandler: @escaping (WKPermissionDecision) -> Void) {
+        decisionHandler(webView === controller && showingController && trustedController(origin) ? .prompt : .deny)
+    }
+    func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping (WKPermissionDecision) -> Void) {
+        decisionHandler(webView === controller && showingController && trustedController(origin) ? .prompt : .deny)
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if webView === menu {
+            // Fallback when the first ready message was lost during app startup.
+            menuReady = true; deliveryFailures = 0; refreshSnapshot()
+        }
+        else { signalController(showingController && phase == .active) }
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { reportFailure(webView, error) }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { reportFailure(webView, error) }
+    private func reportFailure(_ webView: WKWebView, _ error: Error) {
+        guard (error as NSError).code != NSURLErrorCancelled else { return }
+        if (webView === controller) == showingController { loadError = error.localizedDescription }
+    }
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        cancelHaptics()
+        if webView === menu { reloadMenu() }
+        else if let url = controllerURL { controller.load(URLRequest(url: url)) }
+    }
 }
