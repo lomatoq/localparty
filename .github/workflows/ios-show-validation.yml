@@ -60,6 +60,9 @@ jobs:
       - name: Full assets TV show and controller walkthrough
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         run: python3 tests/tv-show-browser.py
+      - name: Desktop invite reuse, compact podium and return entry
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: python3 tests/invite-polish-browser.py
       - name: Existing repository tests
         if: ${{ !cancelled() }}
         run: |

@@ -1,14 +1,15 @@
-# Current Claude task — TV Show + admin hub polish
+# Current Claude task — desktop QR card + compact podium
 
-Start with **[CLAUDE_TV_SHOW.md](CLAUDE_TV_SHOW.md)**.
+Start with **[CLAUDE_INVITE_POLISH.md](CLAUDE_INVITE_POLISH.md)**.
+Then use [CLAUDE_TV_SHOW.md](CLAUDE_TV_SHOW.md) for the full build/device checklist.
 
-This update sits on top of the already working AirPlay/hotfix and Fresh UI. It adds
-TV remote commands, QR/podium/loading/transitions, native hub haptics and controller/
-profile layout fixes. Unlike the previous Fresh-only update, small native Codable
-and protected command-whitelist changes are required. Keep local working scene fixes.
+Apply on top of the existing WORKING AirPlay/Fresh/TV Show installation. The latest
+addition changes only four HTML/CSS runtime files. It does not replace earlier
+Swift/server fixes, upgrade dependencies or alter application signing identity.
 
-Do not re-run the old blanket dependency upgrade or uninstall the user's app.
-Validation and limitations: [docs/TV_SHOW_VALIDATION.md](docs/TV_SHOW_VALIDATION.md).
+The six-digit room code was optional and is deliberately NOT added. Existing
+same-origin profile restore plus a saved browser tab/bookmark supports return
+without rescanning; changed host addresses still require a new QR/link.
 
-Historical context only: `CLAUDE_FRESH_LOBBY.md`, `IOS_HOTFIX.md`,
-`docs/CLAUDE_BUILD_PRE_HOTFIX.md`. Their instructions are superseded here.
+Current supplementary validation: `docs/INVITE_POLISH_VALIDATION.md`.
+Historical TV Show validation: `docs/TV_SHOW_VALIDATION.md`.
