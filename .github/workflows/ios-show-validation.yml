@@ -1,0 +1,62 @@
+name: iOS show and UI regressions
+on:
+  push:
+    branches: ['codex/ios-unified-host-20260917']
+    paths: ['public/**', 'lib/**', 'server.js', 'ios/**', 'tests/**', 'scripts/**', '.github/workflows/ios-show-validation.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ios-show-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Reproducible text source snapshot (no runtime data or credentials)
+        run: |
+          mkdir -p .localparty-build/ci
+          python3 - <<'PY'
+          import subprocess, zipfile
+          from pathlib import Path
+          suffixes={'.js','.cjs','.mjs','.css','.html','.json','.swift','.plist','.py','.sh','.md','.pbxproj','.yml'}
+          with zipfile.ZipFile('.localparty-build/ci/review-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
+              p=Path(name)
+              if p.is_file() and p.suffix in suffixes and not name.startswith(('data/','public/assets/','runtime-cache/')):
+                z.write(p,name)
+          PY
+      - name: Install pinned project dependencies
+        run: npm ci --ignore-scripts
+      - name: Source and unit checks
+        run: |
+          node --test tests/native-shell.test.cjs tests/fresh-lobby.test.cjs
+          python3 tests/test_ios_product.py
+          if test -f tests/tv-director.test.cjs; then node --test tests/tv-director.test.cjs; fi
+          if test -f tests/tv-show-integration.cjs; then node tests/tv-show-integration.cjs; fi
+      - name: Install browser runner
+        run: |
+          python3 -m pip install playwright==1.57.0
+          python3 -m playwright install --with-deps chromium
+      - name: Full checkout UI checks
+        run: |
+          python3 tests/native-shell-browser.py
+          python3 tests/fresh-lobby-browser.py
+          if test -f tests/tv-show-browser.py; then python3 tests/tv-show-browser.py; fi
+      - name: Existing repository tests
+        run: npm test
+      - name: Reports and reproducibility snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-show-review
+          path: .localparty-build
+          include-hidden-files: true
+          retention-days: 5
+          if-no-files-found: warn
