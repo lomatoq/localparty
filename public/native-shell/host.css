@@ -108,3 +108,17 @@ body.native-shell .catalog-filters .fresh-tab{color:var(--lime);border:1px solid
 body.native-shell .catalog-filters .fresh-tab.active{background:var(--lime);color:var(--bg);}
 body.native-shell #catalog.lp-catalog{display:block!important;}
 @media(max-width:600px){body.native-shell .intro .headline-art{opacity:.32;}body.native-shell .catalog-filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%;padding:4px 0;overscroll-behavior-x:contain;}body.native-shell .catalog-filters .filter-tab{flex:0 0 auto;font-size:12px;padding:10px 13px;}}
+
+/* TV remote uses existing buttons/cards; geometry is scoped to this panel. */
+.native-shell .tv-control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.native-shell .tv-control-grid button{font-size:12px;line-height:1.25;white-space:normal;min-width:0;min-height:48px;padding:12px}
+.native-shell #tvDirectorControls .eyebrow{margin-bottom:10px}
+.native-shell .tv-game-stepper{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:12px;align-items:center;padding:14px 0;border-block:1px solid var(--line);margin:14px 0}
+.native-shell .tv-game-stepper>button{padding:0;min-height:48px;font-size:22px}
+.native-shell .tv-game-stepper label{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:12px;min-width:0}
+.native-shell #tvGameNumber{width:74px;max-width:100%;min-height:44px;border:1px solid var(--line);border-radius:16px;padding:8px;background:#ffffff07;color:var(--ink);font-size:20px;text-align:center;font-variant-numeric:tabular-nums}
+.native-shell .tv-focus-copy>span{font-size:14px;line-height:1.35;flex:1}
+.native-shell .tv-focus-copy>button{flex:none}
+.native-shell #tvControlHint{min-height:40px;font-size:12px}
+.native-shell #tvDirectorControls button[aria-pressed=true]{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime)}
+@media(max-width:360px){.native-shell .tv-control-grid{grid-template-columns:minmax(0,1fr)}.native-shell .native-row{flex-wrap:wrap}.native-shell .tv-game-stepper{gap:8px}}

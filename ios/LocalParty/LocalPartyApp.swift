@@ -3,6 +3,20 @@ import WebKit
 import Combine
 import CoreImage.CIFilterBuiltins
 
+// Optional display metadata. Old servers still decode; no player credentials here.
+struct PartyTVBoardRow: Codable, Equatable {
+    var id: String; var name: String; var rank: Int?; var score: Double; var points: Double?; var won: Bool
+}
+struct PartyTVBoard: Codable, Equatable {
+    var key: String; var kind: String; var title: String; var subtitle: String; var rows: [PartyTVBoardRow]
+}
+struct PartyTVPresentation: Codable, Equatable {
+    var revision: Int; var mode: String; var automatic: Bool; var board: PartyTVBoard?
+    var focusId: String?; var focusNumber: Int; var focusRevision: Int; var browse: Bool; var total: Int
+    var canCover: Bool; var hasMatch: Bool; var hasCompany: Bool
+    var autoPodium: Bool; var effects: Bool; var idleBrowse: Bool
+}
+
 @main struct LocalPartyApp: App {
     @UIApplicationDelegateAdaptor(PartyAppDelegate.self) private var appDelegate
     @StateObject private var model = ServerModel.shared
@@ -166,6 +180,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     private var hapticTasks: [DispatchWorkItem] = []
     private var lastHapticTime: TimeInterval = 0
     private var hapticGeneration = 0
+    private let uiImpact = UIImpactFeedbackGenerator(style: .soft)
     private var hapticsEnabled: Bool { !UserDefaults.standard.bool(forKey: "LocalParty.hapticsDisabled") }
 
     override init() {
@@ -340,6 +355,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             menuReady = true; refreshSnapshot(); return
         }
         guard phase == .active else { return } // all actions still require foreground
+        if type == "haptic-prepare", phase == .active, hapticsEnabled { uiImpact.prepare(); return }
         if type == "haptic" { playHaptics(body["pattern"]); return }
         if type == "menu", player, message.frameInfo.isMainFrame { showController(false); return }
         guard shell else { return } // game JavaScript can NEVER issue admin commands
@@ -347,7 +363,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         switch type {
         case "controller": showController(true)
         case "manage":
-            let allowed: Set<String> = ["select", "settings", "launch", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident"]
+            let allowed: Set<String> = ["select", "settings", "launch", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options"]
             if model.ready, !model.working, let command = body["command"] as? [String: Any], let kind = command["type"] as? String, allowed.contains(kind) { model.command(command) }
         case "network-set": if let enabled = body["enabled"] as? Bool { model.setNetworkEnabled(enabled) }
         case "awake-set": if let enabled = body["enabled"] as? Bool { model.keepAwake = enabled }
@@ -387,7 +403,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             if index % 2 == 0 && duration > 0 {
                 let task = DispatchWorkItem { [weak self] in
                     guard let self, self.phase == .active, self.hapticsEnabled, self.hapticGeneration == generation else { return }
-                    let impact = UIImpactFeedbackGenerator(style: duration > 60 ? .heavy : duration > 20 ? .medium : .soft)
+                    let impact = duration <= 20 ? self.uiImpact : UIImpactFeedbackGenerator(style: duration > 60 ? .heavy : .medium)
                     impact.prepare(); impact.impactOccurred(intensity: min(1, max(0.35, duration / 80)))
                 }
                 hapticTasks.append(task); DispatchQueue.main.asyncAfter(deadline: .now() + offset / 1000, execute: task)

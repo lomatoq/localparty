@@ -1,29 +1,14 @@
-# Текущая задача: вернуть desktop Fresh lobby и добавить tactile UI
+# Current Claude task — TV Show + admin hub polish
 
-Пользователь подтвердил, что предыдущий хотфикс iPhone/AirPlay работает.
-Теперь выполни **[CLAUDE_FRESH_LOBBY.md](CLAUDE_FRESH_LOBBY.md)**.
-Это обновление UI поверх рабочего состояния, без повторной переделки Swift/AirPlay
-и без обновления зависимостей. Старые инструкции ниже — только контекст.
+Start with **[CLAUDE_TV_SHOW.md](CLAUDE_TV_SHOW.md)**.
 
----
+This update sits on top of the already working AirPlay/hotfix and Fresh UI. It adds
+TV remote commands, QR/podium/loading/transitions, native hub haptics and controller/
+profile layout fixes. Unlike the previous Fresh-only update, small native Codable
+and protected command-whitelist changes are required. Keep local working scene fixes.
 
-# Claude Code — исправить установленную iPhone-сборку
+Do not re-run the old blanket dependency upgrade or uninstall the user's app.
+Validation and limitations: [docs/TV_SHOW_VALIDATION.md](docs/TV_SHOW_VALIDATION.md).
 
-**Сначала прочитай и выполни [IOS_HOTFIX.md](IOS_HOTFIX.md).**
-
-Пользователь уже установил приложение и сообщил о трёх регрессиях:
-AirPlay зеркалирует телефон вместо отдельной сцены; карточки перекрываются;
-после перезапуска меню показывает пустой каталог.
-
-Ветка: `codex/ios-unified-host-20260917`.
-Ревизия исправления: `ios-recovery-20260918.1`.
-Проверки и ограничения: [docs/IOS_HOTFIX_VALIDATION.md](docs/IOS_HOTFIX_VALIDATION.md).
-
-Сохрани локальные исправления предыдущей сборки, существующие Team/Bundle ID,
-профили и статистику. Не удаляй приложение. Не обновляй зависимости в этом
-проходе. Нужны фактические сборка, установка поверх существующей и проверка
-разного контента на телефоне и телевизоре, а не только успешный xcodebuild.
-
-Полная предыдущая инструкция сохранена для справки:
-[docs/CLAUDE_BUILD_PRE_HOTFIX.md](docs/CLAUDE_BUILD_PRE_HOTFIX.md).
-Её массовый аудит/обновление версий сейчас НЕ выполняй: приоритет у хотфикса.
+Historical context only: `CLAUDE_FRESH_LOBBY.md`, `IOS_HOTFIX.md`,
+`docs/CLAUDE_BUILD_PRE_HOTFIX.md`. Their instructions are superseded here.

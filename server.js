@@ -32,7 +32,7 @@ function qrBuffer(url,options={}){const key=JSON.stringify([url,options]);if(!qr
 function tvAccess(req){return local(req)||(req.headers.cookie||'').split(';').some(c=>c.trim()==='party_display='+displayKey);}
 function screens(){return [...clients].filter(c=>c.isDisplay&&c.readyState===WebSocket.OPEN).length;}
 function applyGamePause(){if(active){active.session.setPaused(active.userPaused||!executionAllowed);active.child.send({type:'party:pause',paused:active.session.paused});}broadcast();}
-function setPaused(value){if(active)active.userPaused=!!value;applyGamePause();}
+function setPaused(value){if(active)active.userPaused=!!value;if(!value)tvDirector.dismiss();applyGamePause();}
 async function pauseBeforeSuspension(){
   const run=active;if(!run)return;
   const acknowledged=new Promise(resolve=>{
@@ -55,7 +55,8 @@ async function manage(m){
     })));
     await networkAccess.setEnabled(on);
   }
-  else if(m.type==='statistics-reset'){if(active||busy)throw Error('Завершите текущий матч перед сбросом статистики');profileStore.resetStatistics();}
+  else if(['tv-overlay','tv-focus','tv-options'].includes(m.type)){tvDirector.command(m,{active,busy,selected,sharing:sharedURLs().length>0});broadcast();return roomInfo();}
+  else if(m.type==='statistics-reset'){if(active||busy)throw Error('Завершите текущий матч перед сбросом статистики');profileStore.resetStatistics();tvDirector.lastMatch=null;tvDirector.dismiss();}
   else if(m.type==='kick'){kickPlayer(m.id);}
   else if(m.type==='dismiss-incident'){incident=null;}
   else if(m.type==='execution'){
@@ -67,7 +68,7 @@ async function manage(m){
     }
     executionAllowed=!!m.allowed;if(!executionAllowed)await pauseBeforeSuspension();else {applyGamePause();checkSession();}
   }
-  else if(m.type==='select'){if(!catalog.some(g=>g.id===m.id))throw Error('Игра не найдена');selected=m.id;}
+  else if(m.type==='select'){if(!catalog.some(g=>g.id===m.id))throw Error('Игра не найдена');selected=m.id;tvDirector.follow(m.id);}
   else if(m.type==='settings'){const game=catalog.find(g=>g.id===m.id);if(!game)throw Error('Игра не найдена');if(active?.game.id===m.id)throw Error('Вернитесь в лобби для смены настроек');gameSettings[m.id]=controls.settingsFor(game,m.settings);selected=m.id;}
   else if(m.type==='game-action'){if(!active||m.instance!==active.instance)throw Error('Эта игра уже завершена');const action=active.game.hostControls.actions.find(a=>a.id===m.action);if(!action||!action.phases.includes(active.ui?.phase)||(Array.isArray(active.ui?.hostActions)&&!active.ui.hostActions.includes(m.action)))throw Error('Действие сейчас недоступно');await hostCommand(active,m.action);}
   else if(m.type==='retry-start'){if(!active||m.instance!==active.instance||!active.startError)throw Error('Повторный запуск недоступен');active.startError=null;active.session.startRequested=false;checkSession();}
@@ -80,6 +81,7 @@ async function manage(m){
 
 const players = new Map(), clients = new Set();
 const profileStore=new ProfileStore(process.env.PARTY_EPHEMERAL==='1'?null:(process.env.PARTY_DATA_FILE||path.join(ROOT,'data','party.json')));
+const tvDirector=new (require('./lib/tv-director').TVDirector)({catalog,store:profileStore});
 const bootId=crypto.randomUUID();
 const savedRoom=embedded?profileStore.data.room:null;
 const votes=new Map(),revoked=new Set(savedRoom?.revoked||[]);
@@ -116,7 +118,7 @@ const addresses = () => Object.entries(os.networkInterfaces()).flatMap(([name, l
 function sharedURLs(){return embedded&&!networkAccess.enabled?[]:addresses().map(x=>`${scheme}://${x.address}:${embedded?networkAccess.port:PORT}/`);}
 function inviteUrl(req){const ips=addresses();const selected=req&&new URL(req.url,'http://localhost').searchParams.get('host');const ip=ips.find(x=>x.address===selected)?.address||ips[0]?.address;return ip&&(!embedded||networkAccess.enabled)?`${scheme}://${ip}:${embedded?networkAccess.port:PORT}/`:`${scheme}://${req?.headers.host||'localhost:'+PORT}/`;}
 const connected = () => [...players.values()].filter(p=>p.socket?.readyState===WebSocket.OPEN);
-function state(){return {type:'state',bootId,incident,networkEnabled:embedded?networkAccess.enabled:true,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:profileStore.leaderboard(),lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
+function state(){const standings=profileStore.leaderboard();return {type:'state',bootId,incident,tv:tvDirector.view({active,selected,sharing:sharedURLs().length>0,leaderboard:standings}),networkEnabled:embedded?networkAccess.enabled:true,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:standings,lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
 function send(ws, data){if(ws.readyState===WebSocket.OPEN&&ws.bufferedAmount<256*1024)ws.send(JSON.stringify(data));}
 function eligible(){return connected().filter(p=>active?.ready.has(p.id)&&!p.testBot).map(p=>p.id);}
 function sessionState(){return active?{...active.session.view(eligible()),pauseReason:!executionAllowed?'host-background':active.userPaused?'player':null}:undefined;}
@@ -171,18 +173,22 @@ async function launch(id,{autoReady=[]}={}){
     const child=embedded?require('./lib/game-worker.cjs').spawnGame(gameDir,env):spawn(process.execPath,['server.js'],{cwd:gameDir,env,windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
     next={game,port,instance,child,ready:new Set(),userPaused:false,session:new SessionControls(testMode)};for(const id of autoReady)next.session.setReady(id,true);let log='';
     child.on('message',m=>{
-      if(m?.type==='party:ui'&&m.ui){const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset)broadcast();}}
+      if(m?.type==='party:ui'&&m.ui){const changed=next.ui?.phase!==m.ui.phase;const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset||changed)broadcast();}}
       if(m?.type==='party:presence'&&typeof m.id==='string'){if(m.connected)next.ready.add(m.id);else next.ready.delete(m.id);if(active===next)checkSession();}
-      if(m?.type==='party:result'&&m.result?.eventId&&Array.isArray(m.result.players)){if(!next.session.testMode&&profileStore.record(m.result,instance,id,statisticsRevision))broadcast();}
+      if(m?.type==='party:result'&&m.result?.eventId&&Array.isArray(m.result.players)){
+        const recorded=!next.session.testMode&&profileStore.record(m.result,instance,id,statisticsRevision);
+        const captured=active===next&&statisticsRevision===(profileStore.statisticsRevision||0)&&tvDirector.capture(m.result,instance,game,next.session.testMode);
+        if(recorded||captured)broadcast();
+      }
     });
     child.on('error',e=>{child.spawnError=e.message;console.error('Game worker:',e.stack);});
     for(const stream of [child.stdout,child.stderr])stream.on('data',d=>{log=(log+d).slice(-8000);console.log(`[${id}] ${d.toString().trim()}`);});
     child.on('exit',code=>{if(active===next&&!closing){active=null;incident={id:crypto.randomUUID(),at:Date.now(),message:'Игра '+game.title+' неожиданно остановилась. Игроки остаются в комнате; можно запустить новый раунд.'};persistRoom('worker-exit:'+code+':'+log.slice(-500));broadcast();}});
     try{await waitReady(child,port);}catch(e){throw Error(`${e.message} ${log.slice(-700)}`);}
-    const previous=active;active=next;selected=game.id;votes.clear();ballotArmed=false;ballotAttempt='';metrics.gameStarts++;if(!executionAllowed||!enabled){active.session.setPaused(true);child.send({type:'party:pause',paused:true});}syncRoster();previous?.child.kill();
+    const previous=active;active=next;tvDirector.resetRun();selected=game.id;votes.clear();ballotArmed=false;ballotAttempt='';metrics.gameStarts++;if(!executionAllowed||!enabled){active.session.setPaused(true);child.send({type:'party:pause',paused:true});}syncRoster();previous?.child.kill();
   }catch(e){next?.child.kill();throw e;}finally{busy=false;persistRoom('game-launch');broadcast();}
 }
-function stop(){ballotArmed=false;ballotAttempt='';votes.clear();const old=active;active=null;old?.child.kill();persistRoom('game-stop');broadcast();}
+function stop(){tvDirector.resetRun();ballotArmed=false;ballotAttempt='';votes.clear();const old=active;active=null;old?.child.kill();persistRoom('game-stop');broadcast();}
 function transform(text, type, prefix, req){
   if(type.includes('text/html')){
     if(!/<head\b/i.test(text))text=text.replace(/<html([^>]*)>/i,'<html$1><head>').replace(/<body([^>]*)>/i,'</head><body$1>');
@@ -232,7 +238,7 @@ const handler=async(req,res)=>{
       else{res.writeHead(up.statusCode,out);up.pipe(res);}
     });upstream.on('error',()=>{if(!res.headersSent)json(res,502,{error:'Сервер игры недоступен'});else res.end();});req.pipe(upstream);return;
   }
-  if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=sharedURLs();const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await qrBuffer(target,{margin:1,width:240}));}
+  if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=sharedURLs();const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${scheme}://${req.headers.host}/`;return res.end(await qrBuffer(target,{margin:1,width:url.searchParams.get('size')==='large'?720:240}));}
   if(url.pathname==='/api/health')return json(res,200,{ok:true,pid:process.pid,build:'sports-siege-alpha.1'});
   if(url.pathname.startsWith('/assets/')){
     let name;try{name=decodeURIComponent(url.pathname).slice(1);if(/^assets\/games\/(curling|bowling|swarm_gate|peek_shoot)[.]webp$/.test(name))name=name.replace(/[.]webp$/,'.png');}catch{return json(res,400,{error:'Invalid path'});}
@@ -244,7 +250,7 @@ const handler=async(req,res)=>{
   const isTV=url.pathname==='/tv',isHost=url.pathname==='/host';
   if(isTV)res.setHeader('Set-Cookie',`party_display=${displayKey}; Path=/; HttpOnly; SameSite=Strict`);
   if(isHost&&(embedded||!local(req)))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  const files={'/tv-show.js':'tv-show.js','/tv-show.css':'tv-show.css','/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   if(embedded&&!staticCache.has(file))staticCache.set(file,fs.readFileSync(path.join(ROOT,'public',file)));let content=embedded?staticCache.get(file):fs.readFileSync(path.join(ROOT,'public',file));
   if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`);

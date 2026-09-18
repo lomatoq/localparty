@@ -109,7 +109,7 @@ def main():
             s['votes']=[dict(playerId='p1',gameId='bowling')];page.evaluate('(s)=>LocalPartyHost.update(s)',s)
             check('vote update retains card identity',page.evaluate('savedCard===document.querySelector("[data-game=bowling]")'))
             check('vote update retains rail scroll',page.evaluate('Math.abs(savedScroll-document.querySelector(".fresh-track").scrollLeft)<2'))
-            check('vote badge updates in place',page.locator('[data-game=bowling] .lp-card-votes').inner_text()=='Голосов: 1')
+            check('vote badge updates in place',page.locator('[data-game=bowling] .lp-card-votes').text_content()=='Голосов: 1')
             page.locator('.fresh-track').evaluate('(t)=>t.scrollLeft=0');page.wait_for_timeout(100)
             page.locator('[data-game=curling]').click();check('Fresh opens game detail',page.locator('#gameDetail').is_visible());check('single existing selection command',page.evaluate('__messages.filter(m=>m.type==="manage"&&m.command.type==="select"&&m.command.id==="curling").length')==1)
             page.locator('[data-close=gameDetail]').click();page.locator('#openHost').click();check('host panel still accessible',page.locator('#hostPanel').is_visible());page.locator('[data-close=hostPanel]').click()

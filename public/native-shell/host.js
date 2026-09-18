@@ -129,7 +129,28 @@
     $('resetStats').disabled = busy() || Boolean(state.active);
     $('backgroundStatus').textContent = n.backgroundStatus || 'Во время игры держи приложение открытым.';
     $('backgroundRequest').disabled = !state.networkEnabled || busy();
-    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), n.displayMode].filter(Boolean).join(' · ');
+    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), 'Show: tv-show-20260918.1', n.displayMode].filter(Boolean).join(' · ');
+  }
+  function renderTVControls() {
+    const tv=state.tv, unavailable=!tv||busy(), active=!!state.active;
+    const canCover=tv?.canCover===true;
+    $('tvShowQR').disabled=unavailable||!canCover||!state.networkEnabled||!state.native?.address;
+    $('tvShowCompany').disabled=unavailable||!canCover||!tv?.hasCompany;
+    $('tvShowMatch').disabled=unavailable||!canCover||!tv?.hasMatch;
+    $('tvCloseOverlay').disabled=unavailable||tv.mode==='none';
+    $('tvShowQR').setAttribute('aria-pressed',String(tv?.mode==='qr'));
+    $('tvShowCompany').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='company'));
+    $('tvShowMatch').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='match'));
+    for(const id of ['tvPrev','tvNext','tvGameNumber','tvSelectGame'])$(id).disabled=unavailable||active||!state.catalog.length;
+    const focus=gameById(tv?.focusId);
+    $('tvSelectGame').disabled ||= !focus;
+    $('tvGameNumber').max=String(state.catalog.length);
+    if(document.activeElement!==$('tvGameNumber'))$('tvGameNumber').value=tv?.focusNumber||'';
+    $('tvFocusName').textContent=focus?`№ ${tv.focusNumber} / ${tv.total} · ${focus.title}`:'Стрелки листают игры на ТВ. Матч сам не запустится.';
+    $('tvControlHint').textContent=!tv?'Обнови сборку: сервер ещё не передал управление показом.':!canCover?'Чтобы показать QR или пьедестал, сначала нажми «Пауза».':tv.mode==='qr'?'На ТВ — большая карточка приглашения.':tv.mode==='podium'?`На ТВ — ${tv.board?.subtitle||'пьедестал'}.`:'Выбирай, что показать компании. На ТВ нет кнопок администратора.';
+    $('tvPause').disabled=unavailable||!active;
+    $('tvPause').textContent=state.active?.session?.paused?'Продолжить матч':'Пауза';
+    for(const [id,key,on,off] of [['tvAutoPodium','autoPodium','Включён','Выключен'],['tvEffects','effects','Включены','Выключены'],['tvIdleBrowse','idleBrowse','Включено','Выключено']]){setSwitch(id,tv?.[key],on,off);$(id).disabled=unavailable;}
   }
   function setSwitch(id, enabled, on, off) { const b = $(id); b.setAttribute('aria-checked', String(Boolean(enabled))); b.textContent = enabled ? on : off; }
   function update(value) {
@@ -148,7 +169,7 @@
     const message = state.native?.message || state.native?.catalogError || state.native?.connectionStatus || state.incident?.message;
     $('message').hidden = !message; $('message').textContent = message || '';
     ['openController', 'playHere', 'detailController'].forEach(id => $(id).disabled = busy());
-    renderCatalog(); renderActive(); renderRoom(); updateDetail();
+    renderCatalog(); renderActive(); renderRoom(); renderTVControls(); updateDetail();
     return true; // acknowledgement used by the native delivery state machine
   }
   $('openHost').onclick = () => show('hostPanel');
@@ -169,6 +190,19 @@
   $('confirmDialog').addEventListener('close', () => { confirmAction = null; });
   $('search').addEventListener('input', renderCatalog);
   document.querySelectorAll('[data-section]').forEach(b => b.onclick = () => {section = b.dataset.section; document.querySelectorAll('[data-section]').forEach(x => {x.classList.toggle('active', x === b); x.setAttribute('aria-pressed', String(x === b));}); renderCatalog();});
+  const showTV=(mode,boardKind)=>manage({type:'tv-overlay',mode,...(boardKind?{boardKind}:{})});
+  $('tvShowQR').onclick=()=>showTV(state.tv?.mode==='qr'?'none':'qr');
+  $('tvShowCompany').onclick=()=>showTV('podium','company');
+  $('tvShowMatch').onclick=()=>showTV('podium','match');
+  $('tvCloseOverlay').onclick=()=>showTV('none');
+  $('tvPrev').onclick=()=>manage({type:'tv-focus',direction:-1});
+  $('tvNext').onclick=()=>manage({type:'tv-focus',direction:1});
+  function focusNumber(){const number=Number($('tvGameNumber').value);if(!Number.isInteger(number)||number<1||number>state.catalog.length){toast('Введи номер от 1 до '+state.catalog.length);return;}manage({type:'tv-focus',number});}
+  $('tvGameNumber').onchange=focusNumber;
+  $('tvGameNumber').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('tvGameNumber').blur();}};
+  $('tvSelectGame').onclick=()=>{if(state.tv?.focusId){close('hostPanel');openGame(state.tv.focusId);}};
+  $('tvPause').onclick=()=>manage({type:'pause',paused:!state.active?.session?.paused});
+  for(const [id,key] of [['tvAutoPodium','autoPodium'],['tvEffects','effects'],['tvIdleBrowse','idleBrowse']])$(id).onclick=()=>manage({type:'tv-options',options:{[key]:!state.tv?.[key]}});
   function requestSnapshot() {
     clearTimeout(readyTimer); readyTimer = null;
     if (!canSend() || document.visibilityState === 'hidden') return;
@@ -188,7 +222,7 @@
   window.addEventListener('pagehide', () => { clearTimeout(readyTimer); readyTimer = null; });
   // Only Swift sends snapshots. No admin token is exposed to this document or the LAN.
   window.LocalPartyHost = Object.freeze({update, toast});
-  renderCatalog(); renderRoom();
+  renderCatalog(); renderRoom(); renderTVControls();
   ['openController', 'playHere', 'detailController'].forEach(id => $(id).disabled = true);
   requestSnapshot();
 })();

@@ -84,7 +84,7 @@
       const visible=[];query=query.trim().toLocaleLowerCase();
       for(const g of latest){
         const card=cards.get(g.id);card.hidden=!matches(g,query,filter);if(!card.hidden)visible.push(g);
-        const selected=g.id===state.selected;card.classList.toggle('selected',selected);
+        const selected=g.id===(state.tv?.browse?state.tv.focusId:state.selected);card.classList.toggle('selected',selected);
         if(!displayOnly){card.disabled=Boolean(disabled);card.setAttribute('aria-pressed',String(selected));}else{selected?card.setAttribute('aria-current','true'):card.removeAttribute('aria-current');}
         const n=tallies.get(g.id)||0,votes=card.querySelector('.lp-card-votes');votes.hidden=!n;
         const text=`Голосов: ${n}`;if(votes.textContent!==text)votes.textContent=text;
@@ -104,6 +104,8 @@ const $=id=>document.getElementById(id);if(!$('tvStage'))return;
 let ws,state,key='',reconnect,offset=0,selected='',lastPlayers='',lastStandings='',accessClosed=false;
 window.PARTY_PROFILE={};window.PARTY_DISPLAY_ONLY=true;
 const catalog=window.LocalPartyCatalog.create($('tvCatalog'),{displayOnly:true});
+const show=window.LocalPartyShow?.create($('tvStage'));
+window.LocalPartyTVShow=show;
 const tell=message=>{$('notice').textContent=message;$('notice').hidden=false;clearTimeout(tell.timer);tell.timer=setTimeout(()=>$('notice').hidden=true,6000);};
 const art=id=>window.LocalPartyCatalog.artPath(state.catalog.find(g=>g.id===id));
 const text=(id,value)=>{const node=$(id);value=String(value);if(node.textContent!==value)node.textContent=value;};
@@ -131,7 +133,7 @@ function render(){if(!state?.catalog||!state?.players)return;
  // Do not rebuild or animate the offscreen catalog for per-frame game traffic.
  if(!game){
   catalog.update(state);text('tvGameCount',state.catalog.length+' игр');
-  const choice=state.catalog.find(g=>g.id===state.selected);$('preview').hidden=!choice;$('tvStage').classList.toggle('tv-has-choice',!!choice);
+  const choice=state.tv?.browse?null:state.catalog.find(g=>g.id===state.selected);$('preview').hidden=!choice;$('tvStage').classList.toggle('tv-has-choice',!!choice);
   if(selected!==(choice?.id||'-')){selected=choice?.id||'-';if(choice){$('cover').hidden=false;$('cover').src=art(choice.id);$('cover').onerror=()=>{$('cover').hidden=true;};text('choiceTitle',choice.title);text('description',choice.goal||choice.description||'');text('controls',choice.controls||'');text('playersNeeded',choice.min+'–'+choice.max+' игроков');catalog.revealFresh(choice.id);}$('tvBrowse').scrollTop=0;}
   const settings=choice?.hostControls?.settings||[];text('settings',settings.map(f=>f.label+': '+(f.options.find(o=>o.value===state.gameSettings?.[choice.id]?.[f.id])?.label||'')).join(' · '));
   const votes=(state.votes||[]).filter(v=>v.gameId===choice?.id).length;text('votes',votes?'За этот выбор: '+votes:'');
@@ -141,20 +143,21 @@ function render(){if(!state?.catalog||!state?.players)return;
  const join=state.urls[0]||'';if($('address').textContent!==join){text('address',join);if(join)$('qr').src='/api/qr?url='+encodeURIComponent(join);}
  const signature=JSON.stringify(state.players.map(p=>[p.id,p.name,p.avatar]));if(signature!==lastPlayers){lastPlayers=signature;text('count',state.players.length+' / 16');$('players').replaceChildren(...state.players.map((p,i)=>{const n=document.createElement('div');n.className='player';const avatar=document.createElement('span');avatar.className='avatar';avatar.style.setProperty('--card',i%2?'#a96aff':'#c8f58b');avatar.textContent=Array.from(p.name||'?')[0];if(typeof p.avatar==='string'&&/^data:image\/(jpeg|png|webp);base64,/.test(p.avatar)){const img=new Image();img.src=p.avatar;img.alt='';avatar.replaceChildren(img);}const name=document.createElement('b');name.textContent=p.name;n.append(avatar,name);return n;}));$('tvEmpty').hidden=!!state.players.length;}
  const leaders=JSON.stringify((state.leaderboard||[]).slice(0,3));if(leaders!==lastStandings){lastStandings=leaders;$('tvLeaders').replaceChildren(...(state.leaderboard||[]).slice(0,3).map((p,i)=>{const row=document.createElement('div');row.className='mini-rank';const rank=document.createElement('span'),name=document.createElement('b'),score=document.createElement('strong');rank.textContent=String(i+1);name.textContent=p.name;score.textContent=String(p.points||0);row.append(rank,name,score);return row;}));$('tvRanking').hidden=!(state.leaderboard||[]).length;}
+show?.update(state);
 }
-function connect(){clearTimeout(reconnect);const channel=ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/lobby');channel.onopen=()=>{if(ws!==channel)return;channel.send(JSON.stringify({type:'display',key:window.PARTY_DISPLAY_KEY}));text('connection','Подключаем экран…');};channel.onmessage=e=>{if(ws!==channel)return;const m=JSON.parse(e.data);if(m.type==='display-ok'){text('connection','Общий экран подключён');$('connection').classList.add('online');}if(m.type==='error'&&m.code==='DISPLAY_AUTH'){location.reload();return;}if(m.type==='access-closed'){accessClosed=true;state={...state,active:null,networkEnabled:false,urls:[]};render();text('connection','Ждём приглашения ведущего');}
-if(m.type==='state'){accessClosed=false;state=m;if(m.active?.ui?.serverNow)offset=Date.now()-m.active.ui.serverNow;render();}if(m.type==='game-ui'&&m.instance===state?.active?.instance){state.active.ui=m.ui;offset=Date.now()-m.ui.serverNow;hud();}if(m.type==='session-start')hud();if(m.type==='error')tell(m.message);};channel.onclose=()=>{if(ws!==channel)return;text('connection',accessClosed?'Доступ по Wi-Fi закрыт ведущим':'Подключаем экран заново…');$('connection').classList.remove('online');reconnect=setTimeout(connect,1200);};channel.onerror=()=>{};}
+function connect(){clearTimeout(reconnect);const channel=ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/lobby');channel.onopen=()=>{if(ws!==channel)return;channel.send(JSON.stringify({type:'display',key:window.PARTY_DISPLAY_KEY}));text('connection','Подключаем экран…');};channel.onmessage=e=>{if(ws!==channel)return;const m=JSON.parse(e.data);if(m.type==='display-ok'){show?.setConnected(true);text('connection','Общий экран подключён');$('connection').classList.add('online');}if(m.type==='error'&&m.code==='DISPLAY_AUTH'){location.reload();return;}if(m.type==='access-closed'){accessClosed=true;state={...state,active:null,networkEnabled:false,urls:[]};render();text('connection','Ждём приглашения ведущего');}
+if(m.type==='state'){accessClosed=false;state=m;if(m.active?.ui?.serverNow)offset=Date.now()-m.active.ui.serverNow;render();}if(m.type==='game-ui'&&m.instance===state?.active?.instance){state.active.ui=m.ui;offset=Date.now()-m.ui.serverNow;hud();show?.update(state);}if(m.type==='session-start')hud();if(m.type==='error')tell(m.message);};channel.onclose=()=>{if(ws!==channel)return;show?.setConnected(false);text('connection',accessClosed?'Доступ по Wi-Fi закрыт ведущим':'Подключаем экран заново…');$('connection').classList.remove('online');reconnect=setTimeout(connect,1200);};channel.onerror=()=>{};}
 function fitScreen(){
  const stage=$('tvStage'),layout=window.partyTVLayout(window.innerWidth,window.innerHeight);
  stage.style.width=layout.width+'px';stage.style.height=layout.height+'px';stage.style.left=layout.left+'px';stage.style.top=layout.top+'px';stage.style.transform='scale('+layout.scale+')';stage.style.setProperty('--tv-vw',layout.width/100+'px');stage.classList.toggle('tv-compact',layout.width<=1100);
  const play=$('play'),bar=play.querySelector('.gamebar');const height=Math.max(1,layout.height-play.offsetTop);play.style.height=height+'px';$('gameFrame').style.height=Math.max(1,height-bar.offsetHeight)+'px';
 }
 fitScreen();window.addEventListener('resize',fitScreen);
-$('gameFrame').addEventListener('load',()=>{fitScreen();hud(true);});setInterval(clock,250);
+$('gameFrame').addEventListener('load',()=>{fitScreen();hud(true);show?.gameLoaded();});setInterval(clock,250);
 // A TV is not a touchscreen. Quietly reveal the rest of Fresh only while idle.
-setInterval(()=>{if(!document.hidden&&state&&!state.active&&!state.selected&&!matchMedia('(prefers-reduced-motion: reduce)').matches)catalog.advanceFresh();},9000);
+setInterval(()=>{if(!document.hidden&&show?.canIdle()!==false&&state&&!state.active&&!state.selected&&!matchMedia('(prefers-reduced-motion: reduce)').matches)catalog.advanceFresh();},9000);
 // Noninteractive AirPlay has no scroll input: browse the lower catalog while idle.
-setInterval(()=>{if(document.hidden||!state||state.active||state.selected||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+setInterval(()=>{if(document.hidden||show?.canIdle()===false||!state||state.active||state.selected||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
  const view=$('tvBrowse'),max=view.scrollHeight-view.clientHeight;if(max>1)view.scrollTo({top:view.scrollTop>=max-2?0:Math.min(max,view.scrollTop+view.clientHeight*.8),behavior:'smooth'});
 },18000);
 window.addEventListener('online',()=>{if(ws?.readyState===WebSocket.CLOSED)connect();});connect();

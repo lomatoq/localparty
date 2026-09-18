@@ -96,3 +96,17 @@ body .lp-catalog-card[data-lp-press-state="down"] .start-game{box-shadow:inset 0
 body [data-lp-press-state="release"]{transition-duration:240ms;}
 body input:focus-visible,body select:focus-visible{outline:2px solid var(--lime,#c8f58b);outline-offset:3px;}
 @media(prefers-reduced-motion:reduce){body [data-lp-press-state]{scale:1!important;}}
+
+/* A self-contained photo editor, not a new global form theme. */
+body .profile-photo-field{display:grid!important;grid-template-columns:88px minmax(0,1fr)!important;align-items:start!important;gap:18px!important;max-width:100%;padding:20px!important;margin:24px 0;border:1px solid #ffffff16;border-radius:26px;background:linear-gradient(130deg,#c8f58b12,#9f72db0b 75%);box-sizing:border-box}
+body .profile-photo-field .profile-photo-preview{width:88px!important;height:88px!important;min-width:88px;flex:none;border:2px solid #c8f58b50!important;border-radius:50%!important;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#43583b,#17201d);color:var(--lime,#c8f58b);font-size:32px;box-shadow:0 8px 25px #0003,inset 0 1px 0 #ffffff30}
+body .profile-photo-field .profile-photo-preview img{width:100%;height:100%;object-fit:cover}
+body .profile-photo-copy{min-width:0;display:grid;gap:8px}
+body .profile-photo-copy b{font-size:17px;line-height:1.2}
+body .profile-photo-copy small{font-size:12px;line-height:1.45;color:var(--muted)}
+body .profile-photo-copy .eyebrow{font-size:8px;letter-spacing:1.3px}
+body .profile-photo-actions{display:flex;gap:8px;flex-wrap:wrap;min-width:0}
+body .profile-photo-actions button{min-height:44px!important;padding:10px 13px!important;font-size:11px!important;line-height:1.25;white-space:normal;flex:0 1 auto!important;max-width:100%}
+body #avatarStatus{font-size:11px;line-height:1.35;min-height:30px;color:var(--muted);overflow-wrap:anywhere}
+body .profile-photo-field[aria-busy=true] .profile-photo-preview{border-color:var(--lime);opacity:.65}
+@media(max-width:420px){body .profile-photo-field{grid-template-columns:64px minmax(0,1fr)!important;gap:12px!important;padding:14px!important}body .profile-photo-field .profile-photo-preview{width:64px!important;height:64px!important;min-width:64px}body .profile-photo-copy b{font-size:15px}body .profile-photo-actions button{padding:9px 10px!important}}

@@ -21,6 +21,7 @@ struct RoomIncident: Equatable, Codable {var id:String;var at:Double;var message
 struct GameVote: Equatable, Codable {var playerId:String;var gameId:String}
 struct PartyStanding: Equatable, Codable, Identifiable {var id:String;var name:String;var played:Int;var wins:Int;var points:Int}
 struct ServerState: Equatable, Codable {
+    var tv: PartyTVPresentation?
     var bootId:String;var incident:RoomIncident?;var votes:[GameVote]
     var enabled: Bool; var networkEnabled:Bool; var totalMatches:Int; var leaderboard:[PartyStanding]; var selected: String?; var screens: Int; var players: [PartyPlayer]
     var catalog: [PartyGame]; var urls: [String]; var active: ActiveGame?; var busy: Bool

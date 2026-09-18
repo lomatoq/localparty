@@ -48,6 +48,8 @@
  function target(node){
   if(!(node instanceof Element)||document.body.classList.contains('tv-screen')||window.PARTY_DISPLAY_ONLY)return null;
   const el=node.closest(selector);if(!el||el.matches(':disabled')||el.closest(excluded))return null;
+  // Do not deform continuous game controls inside the game iframe.
+  if(window!==window.top&&!el.closest('dialog,[data-lp-press],[data-lp-decorative]'))return null;
   if(el.matches('label')&&(!el.control||el.control.disabled||!['checkbox','radio','file'].includes(el.control.type)))return null;
   return el;
  }
@@ -73,6 +75,8 @@
  function all(){for(const id of [...pointers.keys()])release(id,false);for(const el of [...effects.keys()])forget(el);}
  function begin(id,el,x=0,y=0,touch=false){
   if(pointers.has(id))return;const p={el,x,y,timer:null};pointers.set(id,p);
+  if(document.body.classList.contains('native-shell'))window.webkit?.messageHandlers?.partyShell?.postMessage({type:'haptic-prepare'});
+  else if(el.closest('.app-header,dialog,.session-controls,#partyNativeDock'))window.LocalPartyNative?.prepare?.();
   if(touch)p.timer=setTimeout(()=>{if(pointers.get(id)===p&&el.isConnected)down(el);},35);else down(el);
  }
  document.addEventListener('pointerdown',e=>{if(e.button!==0)return;const el=target(e.target);if(el)begin(e.pointerId,el,e.clientX,e.clientY,e.pointerType==='touch');},{capture:true,passive:true});
@@ -91,10 +95,10 @@
   // The native endpoint enforces the user's haptics toggle. Game-hit haptics
   // remain owned by the game, avoiding a second vibration on every fire button.
   if(document.body.classList.contains('native-shell'))window.webkit?.messageHandlers?.partyShell?.postMessage({type:'haptic',pattern:[7]});
-  else if(el.closest('.app-header,dialog,.session-controls'))window.LocalPartyNative?.haptic?.(7);
+  else if(el.closest('.app-header,dialog,.session-controls,#partyNativeDock,.profile-photo-field'))window.LocalPartyNative?.haptic?.(7);
  },{capture:true,passive:true});
  window.addEventListener('blur',all);window.addEventListener('pagehide',all);window.addEventListener('party-native-hide',all);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)all();});
  media.addEventListener?.('change',all);
- window.LocalPartyUIFeel=Object.freeze({cancel:all,revision:'tactile-20260918.1'});
+ window.LocalPartyUIFeel=Object.freeze({cancel:all,revision:'tactile-20260918.2'});
 })();
