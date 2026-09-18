@@ -162,3 +162,12 @@ body.tv-screen #preview.tv-choice #votes{grid-column:4;color:var(--lime);backgro
 body.tv-screen #preview.tv-choice #votes:empty{display:none}
 body.tv-screen #preview.tv-choice #controls,body.tv-screen #preview.tv-choice #settings{display:none}
 @media(prefers-reduced-motion:reduce){body.tv-screen .tv-identity .brand-mark,body.tv-screen #tvStage.tv-has-choice #preview.tv-choice::after{animation:none}}
+
+/* Fresh shelf on TV: a roomier scroll box (offset by equal negative margins, so the
+   cards do not move) lets the focused card's glow render; it fades at the side edges. */
+body.tv-screen #tvStage .lp-catalog .fresh-track{padding:24px 20px 30px!important;margin:-16px -20px -18px!important;scroll-padding:0 20px!important;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%)!important;mask-image:linear-gradient(to right,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%)!important}
+body.tv-screen #tvStage .lp-catalog .lp-fresh-section{overflow:visible!important}
+/* Soft edges top AND bottom of the vertical scroll, each with a fading blur strip. */
+body.tv-screen #tvBrowse{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#0008 22px,#000 56px,#000 calc(100% - 56px),#0008 calc(100% - 22px),transparent 100%)!important;mask-image:linear-gradient(to bottom,transparent 0,#0008 22px,#000 56px,#000 calc(100% - 56px),#0008 calc(100% - 22px),transparent 100%)!important}
+body.tv-screen #tvStage>#lobby::after{content:'';position:absolute;z-index:3;left:24px;right:304px;bottom:0;height:56px;pointer-events:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);-webkit-mask-image:linear-gradient(to top,#000,transparent);mask-image:linear-gradient(to top,#000,transparent)}
