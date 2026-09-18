@@ -201,7 +201,32 @@
   $('confirmYes').onclick = () => { const action = confirmAction; confirmAction = null; close('confirmDialog'); action?.(); };
   $('confirmDialog').addEventListener('close', () => { confirmAction = null; });
   $('search').addEventListener('input', renderCatalog);
-  document.querySelectorAll('[data-section]').forEach(b => b.onclick = () => {section = b.dataset.section; document.querySelectorAll('[data-section]').forEach(x => {x.classList.toggle('active', x === b); x.setAttribute('aria-pressed', String(x === b));}); renderCatalog();});
+  // One sliding pill follows the active category; the row scrolls it into the middle.
+  const filters = document.querySelector('.catalog-filters');
+  function moveTabIndicator(scroll) {
+    const tab = filters?.querySelector('.filter-tab.active'); if (!tab || !tab.offsetWidth) return;
+    const first = !filters.classList.contains('indicator-ready');
+    if (first) filters.classList.add('indicator-init');
+    filters.style.setProperty('--tab-x', tab.offsetLeft + 'px'); filters.style.setProperty('--tab-y', tab.offsetTop + 'px');
+    filters.style.setProperty('--tab-w', tab.offsetWidth + 'px'); filters.style.setProperty('--tab-h', tab.offsetHeight + 'px');
+    filters.classList.toggle('fresh-active', tab.classList.contains('fresh-tab')); filters.classList.add('indicator-ready');
+    if (first) requestAnimationFrame(() => requestAnimationFrame(() => filters.classList.remove('indicator-init')));
+    if (scroll && filters.scrollWidth > filters.clientWidth) filters.scrollTo({left: tab.offsetLeft - (filters.clientWidth - tab.offsetWidth) / 2, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  }
+  document.querySelectorAll('[data-section]').forEach(b => b.onclick = () => {section = b.dataset.section; document.querySelectorAll('[data-section]').forEach(x => {x.classList.toggle('active', x === b); x.setAttribute('aria-pressed', String(x === b));}); moveTabIndicator(true); renderCatalog();});
+  // Search + tabs stick under the masthead; one shared backdrop takes over once they touch it.
+  const masthead = document.querySelector('.app-header'), tools = document.querySelector('.native-catalog-tools');
+  if (masthead && tools) {
+    let frame = 0;
+    const syncStick = () => {frame = 0; const head = masthead.offsetHeight; document.documentElement.style.setProperty('--host-head', head + 'px'); document.body.classList.toggle('tools-stuck', tools.getBoundingClientRect().top <= head + 1);};
+    const queueStick = () => {if (!frame) frame = requestAnimationFrame(syncStick);};
+    addEventListener('scroll', queueStick, {passive: true}); new ResizeObserver(queueStick).observe(masthead); syncStick();
+  }
+  if (filters) {
+    new ResizeObserver(() => moveTabIndicator(false)).observe(filters);
+    document.fonts?.ready.then(() => moveTabIndicator(false));
+    moveTabIndicator(false);
+  }
   const showTV=(mode,boardKind)=>manage({type:'tv-overlay',mode,...(boardKind?{boardKind}:{})});
   $('tvShowQR').onclick=()=>showTV(state.tv?.mode==='qr'?'none':'qr');
   $('tvShowCompany').onclick=()=>showTV('podium','company');

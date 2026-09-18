@@ -57,6 +57,8 @@
       }
       lastPaused=state?.active?paused:null;
     }
+    // Places after the medals get cheerful party colours instead of one pale tint.
+    const funColors=['#a98bff','#4fe0c8','#ff7ac3','#6fb8ff','#ffa24d','#b8f35a','#ff6f7d','#7ee7ff'];
     function buildPodium(board) {
       const photos=new Map([...(state?.leaderboard||[]),...(state?.players||[])].map(p=>[p.id,p.avatar]));
       const key=board.key+JSON.stringify(board.rows.map(r=>[r.id,r.name,photos.get(r.id)]));
@@ -66,7 +68,7 @@
       const build=(list,tail=false)=>podiumOrder(list).map(row=>{
         const card=make('article','podium-seat'+(row.rank===1?' is-winner':''));
         card.dataset.rank=String(row.rank||0);card.setAttribute('aria-label',`${row.rank?row.rank+' место':'Участник'}: ${row.name}`);
-        const hue=row.rank===1?'#ffe3a0':row.rank===2?'#dce5ff':row.rank===3?'#e7af87':'#b7d6be';card.style.setProperty('--medal',hue);
+        const hue=row.rank===1?'#ffd45c':row.rank===2?'#dfe6f5':row.rank===3?'#e89a62':funColors[((row.rank||4)-4)%funColors.length];card.style.setProperty('--medal',hue);if(row.rank>=1&&row.rank<=3)card.classList.add('is-medal');
         const h=tail?52:row.rank===1?194:row.rank===2?148:row.rank===3?119:Math.max(58,100-(row.rank||9)*6);card.style.setProperty('--plinth-height',h+'px');
         const portrait=make('div','podium-portrait');portrait.append(make('span','podium-initial',Array.from(row.name||'?')[0].toUpperCase()));
         if(safeAvatar(photos.get(row.id))){const img=new Image();img.src=photos.get(row.id);img.alt='';img.onerror=()=>img.remove();portrait.append(img);}

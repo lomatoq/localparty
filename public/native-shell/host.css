@@ -101,17 +101,28 @@ body.native-shell .native-sheet > .native-card { min-width:0; box-sizing:border-
 /* Desktop lobby identity; structural shell and cold-start fixes stay intact. */
 body.native-shell .intro .headline-stage{position:relative;isolation:isolate;min-height:0;margin:0;}
 body.native-shell .intro .headline-stage h1{position:relative;z-index:1;}
-body.native-shell .intro .headline-art{position:absolute;pointer-events:none;z-index:0;opacity:.7;}
+body.native-shell .intro .headline-art{position:absolute;pointer-events:none;z-index:0;}
 body.native-shell .intro .headline-art img{width:100%;height:100%;object-fit:contain;}
-body.native-shell .intro .art-left{width:110px;height:110px;left:auto;right:90px;top:0;}
-body.native-shell .intro .art-right{width:140px;height:140px;right:-16px;top:15px;}
+/* Ornaments sit in the free corner beside the first headline line, never under the copy. */
+body.native-shell .intro .headline-stage{width:100%;max-width:100%;margin:6px 0 0;}
+body.native-shell .intro .art-left{width:38px;height:38px;left:auto;right:76px;top:-38px;bottom:auto;}
+body.native-shell .intro .art-right{width:60px;height:60px;left:auto;right:6px;top:-6px;bottom:auto;}
+@media(max-width:359px){body.native-shell .intro .art-left{right:6px;top:-40px}body.native-shell .intro .art-right{width:52px;height:52px;right:0;top:56px}}
 body.native-shell .native-catalog-tools{position:relative;z-index:1;}
-body.native-shell .catalog-filters{gap:6px;}
-body.native-shell .catalog-filters .filter-tab{min-height:44px;}
-body.native-shell .catalog-filters .fresh-tab{color:var(--lime);border:1px solid #c8f58b44;}
-body.native-shell .catalog-filters .fresh-tab.active{background:var(--lime);color:var(--bg);}
+/* Category tabs: one sliding pill (glass, or lime for Fresh) instead of per-button fills. */
+body.native-shell .catalog-filters{position:relative;isolation:isolate;gap:6px;}
+body.native-shell .catalog-filters .filter-tab{position:relative;z-index:1;min-height:44px;background:transparent!important;border:1px solid transparent;box-shadow:none!important;transition:color 320ms ease,border-color 320ms ease;}
+body.native-shell .catalog-filters .filter-tab.active{color:var(--ink);}
+body.native-shell .catalog-filters .fresh-tab{color:var(--lime);border-color:#c8f58b44;}
+body.native-shell .catalog-filters .fresh-tab.active{color:#15200e;border-color:transparent;}
+body.native-shell .catalog-filters::before{content:'';position:absolute;left:0;top:0;z-index:0;width:var(--tab-w,0px);height:var(--tab-h,0px);transform:translate(var(--tab-x,0px),var(--tab-y,0px));border-radius:99px;border:1px solid #ffffff1c;background:linear-gradient(135deg,#ffffff1f,#ffffff08);box-shadow:inset 0 1px 0 #ffffff1f,0 6px 18px #0005;opacity:0;pointer-events:none;box-sizing:border-box;
+  transition:transform 460ms cubic-bezier(.34,1.32,.5,1),width 460ms cubic-bezier(.34,1.32,.5,1),background 360ms ease,box-shadow 360ms ease,border-color 360ms ease,opacity 240ms ease;}
+body.native-shell .catalog-filters.indicator-ready::before{opacity:1}
+body.native-shell .catalog-filters.fresh-active::before{background:var(--lime);border-color:#e4ffbf;box-shadow:inset 0 1px 0 #ffffff80,0 0 18px #b4ff3966,0 0 4px #b4ff3999;}
+body.native-shell .catalog-filters.indicator-init::before{transition:none}
+@media(prefers-reduced-motion:reduce){body.native-shell .catalog-filters::before{transition:opacity 1ms}}
 body.native-shell #catalog.lp-catalog{display:block!important;}
-@media(max-width:600px){body.native-shell .intro .headline-art{opacity:.32;}body.native-shell .catalog-filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%;padding:4px 0;overscroll-behavior-x:contain;}body.native-shell .catalog-filters .filter-tab{flex:0 0 auto;font-size:12px;padding:10px 13px;}}
+@media(max-width:600px){body.native-shell .catalog-filters{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;max-width:none;padding:14px 16px;margin:-10px -16px;scroll-padding-inline:16px;overscroll-behavior-x:contain;}body.native-shell .catalog-filters .filter-tab{flex:0 0 auto;font-size:12px;padding:10px 13px;}}
 
 /* TV remote uses existing buttons/cards; geometry is scoped to this panel. */
 .native-shell .tv-control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
@@ -126,3 +137,23 @@ body.native-shell #catalog.lp-catalog{display:block!important;}
 .native-shell #tvControlHint{min-height:40px;font-size:12px}
 .native-shell #tvDirectorControls button[aria-pressed=true]{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime)}
 @media(max-width:360px){.native-shell .tv-control-grid{grid-template-columns:minmax(0,1fr)}.native-shell .native-row{flex-wrap:wrap}.native-shell .tv-game-stepper{gap:8px}}
+
+/* Fresh shelf: roomier scroll box (offset by equal negative margins, so cards stay put)
+   lets the selected card's glow render; at the edges it fades out with the mask. */
+body.native-shell .lp-catalog .fresh-track{padding:26px 18px 30px!important;margin:-18px -18px -18px!important;scroll-padding:0 18px!important;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%)!important;mask-image:linear-gradient(to right,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%)!important}
+
+/* Sticky masthead + search/tabs. The shared body{overflow-x:hidden} made body a
+   non-scrolling scroll container, so sticky never engaged; clip keeps the guard
+   against sideways overflow without creating one. Backdrops are one gradient
+   layer each: opaque at the top, transparent at the bottom, with the blur faded
+   by the same mask. */
+html:has(body.native-shell),body.native-shell{overflow:visible!important;overflow-x:clip!important}
+body.native-shell .app-header{position:sticky!important;top:0;z-index:40;background:none!important;border-bottom:0!important;box-shadow:none!important;overflow:visible!important;will-change:auto!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+body.native-shell .app-header::before,body.native-shell .native-catalog-tools::before{content:'';position:absolute;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,#0b0e12f7 0%,#0b0e12f0 calc(100% - 40px),#0b0e1280 calc(100% - 20px),#0b0e1200 100%);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent 100%);mask-image:linear-gradient(to bottom,#000 calc(100% - 40px),transparent 100%);transition:opacity 220ms ease}
+body.native-shell .app-header::before{inset:0 0 -40px}
+body.native-shell .native-catalog-tools{position:sticky;top:var(--host-head,76px);z-index:30}
+body.native-shell .native-catalog-tools::before{left:-15px;right:-15px;top:calc(-1 * var(--host-head,76px));bottom:-40px;opacity:0}
+body.native-shell.tools-stuck .native-catalog-tools::before{opacity:1}
+body.native-shell.tools-stuck .app-header::before{opacity:0}
+@media(prefers-reduced-motion:reduce){body.native-shell .app-header::before,body.native-shell .native-catalog-tools::before{transition:none}}

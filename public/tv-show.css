@@ -79,3 +79,23 @@ body.tv-screen #tvStage #tvSidebar{grid-area:1 / 2!important}
 /* Keep the top three as one close group, not three isolated columns spread over
    the whole TV. Seven-seat and second-tier layouts retain their existing width. */
 body.tv-screen #tvPodiumMain{max-width:min(1080px,calc(var(--seats,3)*210px + (var(--seats,3) - 1)*14px))}
+
+/* Festive results stage: spotlight rays, party-colour glows and drifting confetti.
+   Pure CSS, one transformed layer each; stops under Reduce Motion. */
+body.tv-screen .tv-podium{background:radial-gradient(ellipse 60% 45% at 50% 38%,#ffd45c24,transparent 70%),radial-gradient(ellipse 45% 60% at 8% 85%,#a98bff38,transparent 70%),radial-gradient(ellipse 45% 60% at 92% 85%,#ff7ac330,transparent 70%),radial-gradient(ellipse 50% 40% at 50% 105%,#4fe0c826,transparent 70%),linear-gradient(180deg,#171229,#0d0f1a 60%,#0b0e12)}
+body.tv-screen .tv-celebration-background:before{content:'';position:absolute;left:50%;top:-40%;width:180%;aspect-ratio:1;translate:-50% 0;background:repeating-conic-gradient(from 0deg,#fff6d80f 0deg 7deg,transparent 7deg 20deg);-webkit-mask-image:radial-gradient(circle,#000 8%,transparent 55%);mask-image:radial-gradient(circle,#000 8%,transparent 55%);animation:tvRays 60s linear infinite}
+body.tv-screen .tv-celebration-background:after{content:'';position:absolute;left:0;right:0;top:-240px;bottom:0;background-image:radial-gradient(circle,#ffd45c 0 3px,transparent 4px),radial-gradient(circle,#ff7ac3 0 2.5px,transparent 3.5px),radial-gradient(circle,#4fe0c8 0 3px,transparent 4px),radial-gradient(circle,#a98bff 0 2px,transparent 3px),radial-gradient(circle,#b8f35a 0 2.5px,transparent 3.5px),radial-gradient(circle,#6fb8ff 0 2px,transparent 3px);background-size:240px 240px;background-position:18px 30px,130px 88px,200px 170px,70px 200px,160px 12px,40px 130px;opacity:.55;-webkit-mask-image:radial-gradient(ellipse 36% 58% at 50% 55%,transparent 55%,#000 100%);mask-image:radial-gradient(ellipse 36% 58% at 50% 55%,transparent 55%,#000 100%);animation:tvConfetti 16s linear infinite}
+@keyframes tvRays{to{rotate:360deg}}
+@keyframes tvConfetti{to{transform:translateY(240px)}}
+@media(prefers-reduced-motion:reduce){body.tv-screen .tv-celebration-background:before,body.tv-screen .tv-celebration-background:after{animation:none}}
+
+/* Gold, silver and bronze plinths are solid medal colour; the rest use --medal party tints. */
+body.tv-screen .podium-seat .podium-plinth{border:1px solid color-mix(in srgb,var(--medal) 70%,#fff);border-top:2px solid color-mix(in srgb,var(--medal) 40%,#fff);background:linear-gradient(105deg,#ffffff30,transparent 22%,#ffffff0a 70%,#0000001f),linear-gradient(180deg,color-mix(in srgb,var(--medal) 78%,#111),color-mix(in srgb,var(--medal) 48%,#10131a));box-shadow:inset 0 1px 1px #ffffff55,0 0 34px color-mix(in srgb,var(--medal) 22%,transparent),0 14px 34px #0006}
+body.tv-screen .podium-seat.is-medal .podium-plinth{background:linear-gradient(105deg,#ffffff70,transparent 24%,#ffffff1c 64%,#0000001a),linear-gradient(180deg,color-mix(in srgb,var(--medal) 92%,#fff),var(--medal) 45%,color-mix(in srgb,var(--medal) 62%,#2a1a08));box-shadow:inset 0 2px 2px #ffffffa0,inset 0 -8px 18px #0000002a,0 0 46px color-mix(in srgb,var(--medal) 34%,transparent),0 16px 38px #0007}
+body.tv-screen .podium-seat .podium-rank{color:#fff;text-shadow:0 2px 0 #0003,0 4px 18px #0003}
+body.tv-screen .podium-seat .podium-points{color:#fff}
+body.tv-screen .podium-seat .podium-plinth small{color:#ffffffc4}
+body.tv-screen .podium-seat.is-medal .podium-rank{color:#241807;text-shadow:0 1px 0 #ffffff80}
+body.tv-screen .podium-seat.is-medal .podium-points{color:#241807}
+body.tv-screen .podium-seat.is-medal .podium-plinth small{color:#241807b8}
+body.tv-screen #tvPodiumMain .podium-seat:is([data-rank="6"],[data-rank="7"]) .podium-plinth small{display:none}
