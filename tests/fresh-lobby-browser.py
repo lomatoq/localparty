@@ -115,8 +115,10 @@ def main():
             page.locator('[data-close=gameDetail]').click();page.locator('#openHost').click();check('host panel still accessible',page.locator('#hostPanel').is_visible());page.locator('[data-close=hostPanel]').click()
             check('native UI click sends real haptic request',page.evaluate('__messages.some(m=>m.type==="haptic"&&m.pattern[0]===7)'))
             page.evaluate('document.body.insertAdjacentHTML("beforeend",`<button id="pressTest">Press</button><button id="disabledTest" disabled>No</button><div data-joystick><button id="joystickTest">Gesture</button></div>`)')
+            # Test a visible control: browsers may defer offscreen animation frames.
+            page.locator('#pressTest').scroll_into_view_if_needed()
             def event(id,kind,**args):page.locator('#'+id).dispatch_event(kind,dict(pointerId=41,button=0,clientX=5,clientY=5,pointerType='mouse',**args))
-            event('pressTest','pointerdown');page.wait_for_timeout(100);check('physical press held',page.locator('#pressTest').get_attribute('data-lp-press-state')=='down');check('physical scale compresses',page.locator('#pressTest').evaluate('e=>parseFloat(getComputedStyle(e).scale)<1'))
+            event('pressTest','pointerdown');page.wait_for_function('parseFloat(getComputedStyle(document.getElementById("pressTest")).scale)<1',timeout=2000);check('physical press held',page.locator('#pressTest').get_attribute('data-lp-press-state')=='down');check('physical scale compresses',page.locator('#pressTest').evaluate('e=>parseFloat(getComputedStyle(e).scale)<1'))
             event('pressTest','pointerup');check('release spring starts',page.locator('#pressTest').get_attribute('data-lp-press-state')=='release');page.wait_for_timeout(330);check('release cleans animated state',page.locator('#pressTest').get_attribute('data-lp-press-state') is None)
             event('pressTest','pointerdown');event('pressTest','pointercancel');check('cancel never sticks',page.locator('#pressTest').get_attribute('data-lp-press-state') is None)
             event('pressTest','pointerdown');page.locator('#pressTest').dispatch_event('pointermove',dict(pointerId=41,clientX=30,clientY=50,pointerType='touch'));check('swipe releases pressure',page.locator('#pressTest').get_attribute('data-lp-press-state') is None)
