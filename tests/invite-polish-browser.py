@@ -3,16 +3,17 @@
 where present; intercepted file/API routes and mocked native/WebSocket. Not iOS.
 Run with --chromium PATH when using a system Chromium rather than Playwright's.
 """
-import argparse, base64, importlib.util, json, mimetypes, re
+import argparse, importlib.util, json, mimetypes, subprocess
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1];PUBLIC=ROOT/'public'
 spec=importlib.util.spec_from_file_location('fresh',ROOT/'tests/fresh-lobby-browser.py');fresh=importlib.util.module_from_spec(spec);spec.loader.exec_module(fresh)
-QR_PNG='iVBORw0KGgoAAAANSUhEUgAAAtAAAALQAQAAAACRLHoxAAADaElEQVR4nO3dX1LyMBSH4d8RZ/Su7AB3gjsr7kx2Ajto72DGcr6LpKQpFQRRLN97rmr+POPkJqQ5Tcz1U/HwYzI0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ09P9Ny/ex+6y2kiRrmy3S40CHMnnjHBBoaGhoaOg7oJ+8G++S1JhNpdJ30tbsJT7WZq+SNMk6rG7zX0NDQ0NDQ0Mf0GsLMU1FhbvZg/QU52w3m8X5XlIdOzyfpK8X0NDQ0NDQ0OfTtZl7Y/Yc5/uJ+zqu0b9LXxjQ0NDQ0NDQZ9KTtI9ep7fuV6EvD2hoaGho6PugZ3HjujpsG7bCzfI+ReywOUlfL6ChoaGhoaGP0VvrxqskNWazOI2H9LUsmqxDXnsPAwINDQ0NDT0S+jE92mdHq9am0t26RYVL0vGzWMc5INDQ0NDQ0GOnvZ9UvrRsFo8J6aWHr86WZmbhB8Eba3RoaGhoaOjb0sq++t5Is8GDXtqctSO77J1ajoGBhoaGhoYejOz0tfbbbUtntYQou5Ny3reKHTapIdMuNDQ0NDT0L9MHM7rHhXQlzf0gVlJnvnf/kIq08l4xo0NDQ0NDQ9+GztPXtml3u3AtTdLkY1+0PThgTYrJbUMV4xwQaGhoaGjoUdJDb9076+z2DPTO/ndnszsr2rDZDQ0NDQ0N/ffocPB5++je9FPO5+5mj7FhYNZmiy/Q3w9oaGhoaGjoXgzso7dXlM67a3SlXXZJRcybC6etloPr+3EOCDQ0NDQ09M/Rx16Nv6fahdSflPuRXzzKtAsNDQ0NDf2btPrzcD9C9loZt7Pbxyqlq1fZ6pkZHRoaGhoa+hZ0vkY/Xjv84ryKTXk1Dg0NDQ0N/Vfo/M35e7cqXB5qWYJaWsEP/Rq4hwGBhoaGhoYeK72Op51PU1En5XzmbhYW5svU8G3wjrM7GRBoaGhoaOhfpYuUvrZKRe1WeJGdvnYmfWFAQ0NDQ0NDn0/XZgt5+2V36bv2u+/2y273pn9N2RfpCwMaGhoaGhr6BD1Leeb9CGv0t/iWfJ4uImuLTtDXC2hoaGhoaOg8HrO/tnbQoIktbCdJ65e8dvKherqvzWOcAwINDQ0NDT1K2gavK7lKjHNAoKGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaH/Pv0PpTLSWeDTpaQAAAAASUVORK5CYII='
 
 def main():
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--chromium');parser.add_argument('--output',type=Path,default=ROOT/'.localparty-build/invite-polish');args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=True)
+ # Use the pinned project QR encoder; no added package or opaque inline asset.
+ qr_png=subprocess.check_output(['node','-e',"require('qrcode').toBuffer('http://192.168.1.20:8080/',{width:720,margin:4}).then(b=>process.stdout.write(b)).catch(e=>{console.error(e);process.exitCode=1;});"],cwd=ROOT,timeout=10)
  results=[];errors=[];console_errors=[]
  def check(name,ok,detail=None):
   results.append(dict(name=name,passed=bool(ok),detail=detail))
@@ -25,7 +26,7 @@ def main():
   ctx.add_init_script(fresh.MOCK+";window.PARTY_HOST_KEY=location.pathname==='/host'?'fixture-admin':null;")
   def route(r):
    name=urlparse(r.request.url).path.lstrip('/')
-   if name=='api/qr':r.fulfill(content_type='image/png',body=base64.b64decode(QR_PNG));return
+   if name=='api/qr':r.fulfill(content_type='image/png',body=qr_png);return
    if name.startswith('api/'):r.fulfill(content_type='application/json',body='{}');return
    if name.startswith('games/'):r.fulfill(content_type='text/html',body='<html><body>Fixture</body></html>');return
    file=PUBLIC/('index.html' if name in ['','host','play'] else 'tv.html' if name=='tv' else name)
@@ -73,7 +74,7 @@ def main():
     guest.set_viewport_size(dict(width=width,height=844));guest.locator('.return-entry-help').evaluate('e=>e.open=true');guest.wait_for_timeout(70)
     check(f'{width}px expanded return hint stays within its container',guest.locator('.return-entry-help').evaluate('e=>e.scrollWidth<=e.clientWidth+1'))
    guest.set_viewport_size(dict(width=390,height=844));guest.locator('.return-entry-help').scroll_into_view_if_needed();guest.screenshot(path=str(args.output/'guest-return-hint.png'))
-   check('return explanation warns about a changed LAN address','адрес ведущего изменился' in guest.locator('.return-entry-help').inner_text())
+   check('return explanation warns about a changed LAN address','адрес ведущего изменился' in guest.locator('.return-entry-help').text_content())
    check('desktop host does not see guest-only bookmark helper',pc.locator('.return-entry-help').is_hidden())
    guest.evaluate('document.body.classList.add("native-controller")');check('native controller does not get an extra layout block',guest.locator('.return-entry-help').is_hidden());guest.evaluate('document.body.classList.remove("native-controller")')
    # Existing real app.js persistence and autojoin path, not a fabricated remember-room registry.
