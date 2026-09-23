@@ -246,3 +246,9 @@ html body.tv-screen #tvStage.tv-browsing:not(.tv-has-choice)>#lobby{grid-templat
 /* !important: the intro's settledArrival animation (fill) would otherwise win over opacity. */
 html body.tv-screen #tvStage.tv-browsing:not(.tv-has-choice) #lobby>.intro{opacity:0!important;translate:0 -48px!important;pointer-events:none}
 @media (prefers-reduced-motion:reduce){html body.tv-screen #tvStage>#lobby,html body.tv-screen #tvStage #lobby>.intro{transition:none}}
+
+/* TV hero 300 -> 190 px: the catalog starts ~110 px higher so the first card row is
+   visible without scrolling. The artwork scales with the panel (object-fit: contain). */
+html body.tv-screen #tvStage#tvStage:not(.tv-has-choice):not(.tv-browsing)>#lobby{grid-template-rows:190px minmax(0,1fr)!important}
+html body.tv-screen #tvStage#tvStage #lobby>.intro{height:190px!important}
+html body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage{min-height:190px!important;padding-top:34px!important;padding-bottom:16px!important}
