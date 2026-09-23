@@ -214,8 +214,9 @@ function fitScreen(){
  // 1920-wide viewport, like the computer host). Only above 1920 px is the viewport
  // capped and scaled up, so 4K keeps desktop-sized game layouts.
  const physicalWidth=layout.width*z,gameScale=Math.max(1,physicalWidth/1920);
+ const hudHeight=bar.offsetHeight?bar.offsetHeight+(parseFloat(getComputedStyle(bar).marginBottom)||0):0;
  frame.style.zoom=String(1/z);frame.style.flex='none';frame.style.transformOrigin='0 0';
- frame.style.width=physicalWidth/gameScale+'px';frame.style.height=Math.max(1,(height-bar.offsetHeight)*z/gameScale)+'px';
+ frame.style.width=physicalWidth/gameScale+'px';frame.style.height=Math.max(1,(height-hudHeight)*z/gameScale)+'px';
  frame.style.transform=gameScale>1?'scale('+gameScale+')':'none';
 }
 window.addEventListener('message',event=>{

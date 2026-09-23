@@ -43,6 +43,14 @@ function check(g,size,lobby=false){const expected=measure(...size);assert.deepEq
    const inner=await frame.evaluate(()=>({w:innerWidth,h:innerHeight,sentinel:window.__resizeSentinel,canvases:[...document.querySelectorAll('canvas')].map(c=>({id:c.id,w:c.clientWidth,h:c.clientHeight,bufferWidth:c.width,bufferHeight:c.height,fit:getComputedStyle(c).objectFit}))}));
    if(['tankarena','kart'].includes(id)){const canvas=inner.canvases.find(c=>c.id===(id==='kart'?'gameCanvas':'arena'));assert.ok(canvas&&canvas.w>0&&canvas.h>0,'visible game canvas');assert.ok(canvas.fit==='contain'||Math.abs(canvas.w/canvas.h-canvas.bufferWidth/canvas.bufferHeight)<.01,'preserved game aspect '+JSON.stringify(canvas));}
    assert.equal(inner.sentinel,'same-game');assert.ok(Math.abs(inner.w-g.frameClient[0])<2,'logical game width '+JSON.stringify({id,size,inner,g,expected:measure(...size)}));assert.ok(Math.abs(inner.h-g.frameClient[1])<2,'logical game height '+JSON.stringify({id,size,inner,g,expected:measure(...size)}));
+   const notch=await tv.locator('.tv-info-center').boundingBox();
+   if(notch){
+    const screenshot=await tv.screenshot();const sharp=require('sharp');
+    const x=Math.round(notch.x+notch.width/2),y=Math.floor(notch.y+notch.height*.95);
+    const {data}=await sharp(screenshot).extract({left:x,top:y,width:1,height:1}).removeAlpha().raw().toBuffer({resolveWithObject:true});
+    assert(Math.abs(data[0]-47)<12&&Math.abs(data[1]-39)<12&&Math.abs(data[2]-66)<12,'Notch background must paint over the live game iframe: '+JSON.stringify({id,size,x,y,rgb:[...data]}));
+    if(size[0]===1920)await tv.screenshot({path:'/private/tmp/heypals-live-notch-'+id+'.png'});
+   }
    const font=await tv.locator('#connection').evaluate(n=>parseFloat(getComputedStyle(n).fontSize));baseFont??=font;assert.equal(font,baseFont,'stable logical text size');
    const current=await manage();assert.equal(current.active.instance,run.instance);assert.equal(current.players.length,2);assert.equal(current.screens,1);
    if(process.env.PARTY_LAYOUT_SHOTS&&[1920,3840,3024].includes(size[0])){fs.mkdirSync(process.env.PARTY_LAYOUT_SHOTS,{recursive:true});await tv.screenshot({path:path.join(process.env.PARTY_LAYOUT_SHOTS,id+'-'+size.join('x')+'.png')});}

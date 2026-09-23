@@ -358,6 +358,14 @@
  $('showStats').onclick=showTop;$('showGames').onclick=showCatalog;
  $('allRanks').onclick=showTop;$('qrDock').onclick=()=>$('joinOpen').click();for(const b of document.querySelectorAll('[data-filter]'))b.onclick=()=>{filterCatalog(b.dataset.filter);if(b.dataset.filter==='all'){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:reduced?'auto':'smooth'}));}else if(window.innerWidth<900&&b.dataset.filter!=='fresh')$('catalogSection').scrollIntoView({behavior:reduced?'auto':'smooth'});};
  $('roomToggle').onclick=()=>{$('roomDialog').showModal();$('roomTitle').focus({preventScroll:true});$('roomDialog').scrollTop=0;};$('closeRoom').onclick=()=>$('roomDialog').close();$('roomRules').onclick=()=>{$('roomDialog').close();$('gameRules').click();};
+ // Modal backdrops target the dialog itself; only dismiss a tap wholly outside it.
+ const roomDialog=$('roomDialog');
+ const outsideRoom=e=>{const r=roomDialog.getBoundingClientRect();return e.target===roomDialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom);};
+ let roomBackdropPress=false;
+ roomDialog.addEventListener('pointerdown',e=>{roomBackdropPress=outsideRoom(e);});
+ roomDialog.addEventListener('pointercancel',()=>{roomBackdropPress=false;});
+ roomDialog.addEventListener('click',e=>{const dismiss=roomBackdropPress&&outsideRoom(e);roomBackdropPress=false;if(dismiss)roomDialog.close();});
+ roomDialog.addEventListener('close',()=>{roomBackdropPress=false;});
  $('companyRoomOpen').onclick=()=>{$('roomDialog').showModal();$('roomTitle').focus({preventScroll:true});$('roomDialog').scrollTop=0;};
  $('joinOpen').onclick=()=>{$('dialogQr').src=$('qr').src;$('dialogAddress').textContent=$('address').value||location.origin;$('joinDialog').showModal();};$('closeJoin').onclick=()=>$('joinDialog').close();$('copyDialogAddress').onclick=()=>$('copy').click();$('closeCatalog').onclick=()=>$('catalogDialog').close();
  // Give every embedded controller the space actually left between the header

@@ -262,9 +262,7 @@ html body.tv-screen #play #gameFrame{position:relative;z-index:0}
    HUD on top. Give both an explicit z-index so the HUD and its notch always win. */
 html body.tv-screen #tvStage #play .gamebar.tv-information{position:relative;z-index:10!important}
 html body.tv-screen #tvStage #play :is(#waiting,#paused){z-index:1}
-/* The notch background is a masked ::before with z-index:-1. Composited, WebKit clipped
-   that negative layer to the 64 px bar, so the overhang lost its background. Keep it in
-   the notch's own stacking context instead. */
+/* Keep the notch background and labels in one local stacking context. */
 html body.tv-screen #tvStage #play .gamebar .tv-info-center{isolation:isolate}
 /* Keep the full native logo between the controller and host buttons on narrow phones. */
 @media(max-width:380px){html body.native-shell #brandHeader>.heypals-header-logo{width:100px;height:52px;top:calc(4px + env(safe-area-inset-top))}}
