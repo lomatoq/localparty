@@ -54,6 +54,27 @@ function emitterNames(weapon) {
   return [...names];
 }
 
+// A colour that still reads when drawn over the black sky (and additively).
+const visible = node => (node.a ?? 255) > 0 && Math.max(node.r || 0, node.g || 0, node.b || 0) >= 0x60;
+
+// BULLET_NONE nodes without a sprite have no body of their own in the source:
+// what the player sees in flight is their BULLET_EMITTER particle trail. Keep
+// that authored trail colour so the renderer can still show the projectile.
+// Near-black trails (e.g. Sneak Attack) stay unlisted and therefore hidden.
+function emitterTrails(weapon) {
+  const trails = {};
+  for (const block of weapon.chain) {
+    if (!['BULLET', 'CRUISER'].includes(block.type)) continue;
+    const values = block.values || {};
+    if (values.DRAW_METHOD !== 'BULLET_NONE' || /\.(bmp|png)/i.test(String(values.DRAW_ANIM || ''))) continue;
+    const node = list(values.BULLET_EMITTER_NAME).filter(name => name && !/^(NONE|NULL)$/i.test(String(name)))
+      .flatMap(name => reference.emitters[name] || []).find(visible);
+    // Grouped as {colour: 'NameA NameB'} to keep the shared weapon payload small.
+    if (node) { const color = hex(node.r, node.g, node.b); trails[color] = trails[color] ? `${trails[color]} ${block.name}` : block.name; }
+  }
+  return trails;
+}
+
 function compileEffect(weapon) {
   const names = emitterNames(weapon);
   const nodes = names.flatMap(name => reference.emitters[name] || []);
@@ -104,14 +125,18 @@ function compileEffect(weapon) {
   const explosions = weapon.chain.filter(block => block.type === 'EXPLOSION').map(block => block.values || {});
   const throwFlags = explosions.map(values => values.THROW_TANK_FLAG).filter(value => typeof value === 'boolean');
   const throwMagnitudes = finite(explosions.map(values => [values.THROW_TANK_MAGNITUDE, values.TANK_THROW_MAGNITUDE]));
+  const trails = emitterTrails(weapon);
   return {
+    // Only weapons with bodiless emitter shots carry it (payload stays small).
+    ...(Object.keys(trails).length ? { trails } : {}),
     commandTypes,
     colors,
     particleBudget,
     speedMin: clamp(median(lowSpeeds, 45), 5, 500),
     speedMax: clamp(max(highSpeeds, 160), 20, 650),
     duration: clamp(max(lengths, .55), .18, 3.5),
-    alpha: clamp(median(alphas, 220) / 255, .15, 1),
+    // Three decimals exceed the precision of the authored 8-bit alpha.
+    alpha: Math.round(clamp(median(alphas, 220) / 255, .15, 1) * 1000) / 1000,
     sprayAngle: median(finite(nodes.map(node => node.sprayAngle)), 270),
     spraySpread: clamp(max(finite(nodes.map(node => node.spraySpread)), 360), 1, 360),
     matchSpeed: nodes.some(node => node.matchSpeedFlag === true),

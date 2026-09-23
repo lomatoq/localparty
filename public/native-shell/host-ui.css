@@ -120,3 +120,8 @@ html body.native-shell .intro{padding-block:14px 10px!important;margin-block:0!i
 html body.native-shell #activeCard{align-content:start;transition:border-radius .34s cubic-bezier(.22,1,.36,1)}
 html body.native-shell #activeCard.is-compact:not(.is-expanded){border-radius:28px;align-content:start}
 @media(prefers-reduced-motion:reduce){html body.native-shell #activeCard{transition:none}}
+/* Soft trailing edge under the Now Playing deck (expanded and compact) while the page
+   scrolls beneath it: the frosted backing used to stop in a hard line 10 px below.
+   Once the search row sticks under the deck, that row owns the fade instead. */
+html body.native-shell #activeCard::before{bottom:-42px;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 34px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 34px),transparent)}
+html body.native-shell.tools-stuck #activeCard::before{bottom:-10px;-webkit-mask-image:none;mask-image:none}

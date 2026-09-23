@@ -14,7 +14,11 @@ const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');const catalog
 
  await page.evaluate(room=>{__hudSocket.emit({type:'display-ok'});__hudSocket.emit({...room,selected:'western_duel',leaderboard:[{id:'a',name:'Anna',score:120}]});},room);
  await page.waitForTimeout(500);
- for(const selector of ['#tvSidebar>.tv-invite','#tvSidebar>.company-people:not(.tv-invite)']){const box=await page.locator(selector).boundingBox();assert(box.height>=160,'Selected lobby sidebar cards must not collapse');}
+ for(const selector of ['#tvSidebar>.tv-invite','#tvSidebar>.company-people:not(.tv-invite)']){
+  const box=await page.locator(selector).boundingBox();assert(box&&box.height>0,'Selected lobby sidebar card is visible');
+  const fit=await page.locator(selector).evaluate(el=>{const box=el.getBoundingClientRect();return [...el.querySelectorAll('h2,.player:not([hidden])')].filter(n=>n.getClientRects().length).every(n=>{const r=n.getBoundingClientRect();return r.top>=box.top&&r.bottom<=box.bottom+1;});});
+  assert(fit,'Content fits the adaptive sidebar card');
+ }
  await page.screenshot({path:'/private/tmp/heypals-tv-selected.png'});
  async function game(id,snapshot){const g=catalog.find(g=>g.id===id);await page.evaluate(({room,id})=>{__hudSocket.emit({type:'display-ok'});__hudSocket.emit({...room,active:{id,instance:'match-'+id,roster:room.players,ui:{phase:'playing',label:'Матч',progress:'2 / 5',serverNow:Date.now(),endsAt:Date.now()+23000}}});},{room,id});await page.waitForFunction(id=>document.querySelector('#gameFrame').getAttribute('src').includes('/'+id+'/'),id);await page.waitForFunction(id=>document.querySelector('#gameFrame').contentWindow.location.pathname.includes('/'+id+'/'),id);const frame=page.frames().find(f=>f.url().includes('/games/'+id+'/'));await frame.waitForLoadState();if(snapshot)await frame.evaluate(({g,snapshot})=>{const info=parent.LocalPartyTVInformation.normalize({game:g,snapshot,now:Date.now()});parent.postMessage({type:'party-tv-information',instance:'match-'+g.id,info},location.origin);},{g,snapshot});await page.waitForTimeout(40);}
  for(const viewport of[{width:1280,height:720},{width:1920,height:1080}]){

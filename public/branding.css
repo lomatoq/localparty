@@ -257,4 +257,14 @@ html body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage{min-height:19
    The game frame stays explicitly under the shared HUD so its notch is never clipped. */
 html body.tv-screen.tv-in-game .tv-header .tv-menu-labels{display:none!important}
 html body.tv-screen #play #gameFrame{position:relative;z-index:0}
-html body.tv-screen #play .gamebar{position:relative;z-index:5}
+/* Explicit layers: WebKit's compositor drew the waiting/pause layer (later in the DOM,
+   overlapping the game iframe) over the notch overhang even though hit-testing put the
+   HUD on top. Give both an explicit z-index so the HUD and its notch always win. */
+html body.tv-screen #tvStage #play .gamebar.tv-information{position:relative;z-index:10!important}
+html body.tv-screen #tvStage #play :is(#waiting,#paused){z-index:1}
+/* The notch background is a masked ::before with z-index:-1. Composited, WebKit clipped
+   that negative layer to the 64 px bar, so the overhang lost its background. Keep it in
+   the notch's own stacking context instead. */
+html body.tv-screen #tvStage #play .gamebar .tv-info-center{isolation:isolate}
+/* Keep the full native logo between the controller and host buttons on narrow phones. */
+@media(max-width:380px){html body.native-shell #brandHeader>.heypals-header-logo{width:100px;height:52px;top:calc(4px + env(safe-area-inset-top))}}

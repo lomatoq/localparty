@@ -16,7 +16,7 @@ async function geometry(tv,lobby=false){return tv.evaluate(lobby=>{
  return {stage:box(stage),frame:box(frame),qr:box(qr),width:innerWidth,height:innerHeight,logical:[stage.clientWidth,stage.clientHeight],
   overflow:document.documentElement.scrollWidth>innerWidth||document.documentElement.scrollHeight>innerHeight,
   content:lobby?[...document.querySelectorAll('#lobby>.selection,#lobby>aside')].map(box):[],
-  people:document.querySelectorAll('#players .person').length};
+  frameClient:[frame.clientWidth,frame.clientHeight],people:document.querySelectorAll('#players .player:not(.tv-more)').length};
  },lobby);}
 function check(g,size,lobby=false){const expected=measure(...size);assert.deepEqual(g.logical,[expected.width,expected.height]);assert.equal(g.overflow,false,'receiver scrollbars');
  assert.ok(g.stage.x>=-1&&g.stage.y>=-1&&g.stage.right<=size[0]+1&&g.stage.bottom<=size[1]+1,JSON.stringify(g));
@@ -29,7 +29,7 @@ function check(g,size,lobby=false){const expected=measure(...size);assert.deepEq
  browser=await webkit.launch({headless:true});const tv=await browser.newPage({viewport:{width:1280,height:720}}),errors=[];tv.on('pageerror',e=>errors.push(e.message));await tv.goto(base+'/tv');await until(async()=>(await manage()).screens===1,'screen');
  const people=[];for(let i=0;i<16;i++)people.push(await join('Игрок '+i+' Длинное имя'));
  const catalog=(await manage()).catalog;
- if(!process.env.PARTY_LAYOUT_GAMES_ONLY)for(const size of sizes){await tv.setViewportSize({width:size[0],height:size[1]});await tv.waitForFunction(w=>document.getElementById('tvStage').clientWidth===w,measure(...size).width);for(const game of catalog){await manage({type:'select',id:game.id});await tv.locator('#title').filter({hasText:game.title}).waitFor();check(await geometry(tv,true),size,true);}console.log('PASS lobby, 30 selections, 16 players '+size.join('x'));}
+ if(!process.env.PARTY_LAYOUT_GAMES_ONLY)for(const size of sizes){await tv.setViewportSize({width:size[0],height:size[1]});await tv.waitForFunction(w=>document.getElementById('tvStage').clientWidth===w,measure(...size).width);for(const game of catalog){await manage({type:'select',id:game.id});await tv.waitForFunction(id=>!!document.querySelector(`[data-game="${id}"].selected`),game.id);check(await geometry(tv,true),size,true);}console.log('PASS lobby, 30 selections, 16 players '+size.join('x'));}
  for(const person of people.slice(2))await manage({type:'kick',id:person.profile.id});
  const phones=[];for(const p of people.slice(0,2)){const phone=await browser.newPage({viewport:{width:393,height:852},isMobile:true,hasTouch:true});phone.on('pageerror',e=>errors.push(e.message));await phone.goto(base+'/play');await phone.evaluate(({id,token,name,hand})=>localStorage.setItem('local-party-profile',JSON.stringify({id,token,name,hand})),p.profile);await phone.reload();await phone.locator('#home').waitFor();phones.push(phone);}
  for(const id of ['bowling','tankarena','kart','warsaw']){
@@ -42,12 +42,12 @@ function check(g,size,lobby=false){const expected=measure(...size);assert.deepEq
   for(const size of sizes){await tv.setViewportSize({width:size[0],height:size[1]});await tv.waitForFunction(w=>document.getElementById('tvStage').clientWidth===w,measure(...size).width);await delay(200);const g=await geometry(tv);check(g,size);
    const inner=await frame.evaluate(()=>({w:innerWidth,h:innerHeight,sentinel:window.__resizeSentinel,canvases:[...document.querySelectorAll('canvas')].map(c=>({id:c.id,w:c.clientWidth,h:c.clientHeight,bufferWidth:c.width,bufferHeight:c.height,fit:getComputedStyle(c).objectFit}))}));
    if(['tankarena','kart'].includes(id)){const canvas=inner.canvases.find(c=>c.id===(id==='kart'?'gameCanvas':'arena'));assert.ok(canvas&&canvas.w>0&&canvas.h>0,'visible game canvas');assert.ok(canvas.fit==='contain'||Math.abs(canvas.w/canvas.h-canvas.bufferWidth/canvas.bufferHeight)<.01,'preserved game aspect '+JSON.stringify(canvas));}
-   assert.equal(inner.sentinel,'same-game');assert.ok(Math.abs(inner.w-g.frame.w/measure(...size).scale)<2,'logical game width');assert.ok(Math.abs(inner.h-g.frame.h/measure(...size).scale)<2,'logical game height');
+   assert.equal(inner.sentinel,'same-game');assert.ok(Math.abs(inner.w-g.frameClient[0])<2,'logical game width '+JSON.stringify({id,size,inner,g,expected:measure(...size)}));assert.ok(Math.abs(inner.h-g.frameClient[1])<2,'logical game height '+JSON.stringify({id,size,inner,g,expected:measure(...size)}));
    const font=await tv.locator('#connection').evaluate(n=>parseFloat(getComputedStyle(n).fontSize));baseFont??=font;assert.equal(font,baseFont,'stable logical text size');
    const current=await manage();assert.equal(current.active.instance,run.instance);assert.equal(current.players.length,2);assert.equal(current.screens,1);
    if(process.env.PARTY_LAYOUT_SHOTS&&[1920,3840,3024].includes(size[0])){fs.mkdirSync(process.env.PARTY_LAYOUT_SHOTS,{recursive:true});await tv.screenshot({path:path.join(process.env.PARTY_LAYOUT_SHOTS,id+'-'+size.join('x')+'.png')});}
   }
-  await manage({type:'pause',paused:true});await tv.locator('#paused').waitFor();const overlay=await tv.locator('#paused').boundingBox(),f=await tv.locator('#gameFrame').boundingBox();assert.ok(Math.abs(overlay.y-f.y)<1&&Math.abs(overlay.height-f.height)<1,'pause covers game');
+  await manage({type:'pause',paused:true});await tv.locator('#paused').waitFor();await tv.locator('#paused').evaluate(async el=>{await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})));});const overlay=await tv.locator('#paused').boundingBox(),f=await tv.locator('#gameFrame').boundingBox();assert.ok(Math.abs(overlay.y-f.y)<1&&Math.abs(overlay.height-f.height)<1,'pause covers game '+JSON.stringify({id,overlay,f}));
   await manage({type:'pause',paused:false});await manage({type:'stop'});console.log('PASS gameplay resize, unchanged match, pause '+id);
  }
  assert.deepEqual(errors,[]);console.log('PASS TV layout: all receiver sizes, no page errors');

@@ -35,7 +35,11 @@ const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-a
  await page.evaluate(()=>scrollTo(0,1200));await page.waitForTimeout(400);await page.screenshot({path:path.join(out,'active-scrolled.png')});
  report.active=await page.locator('#activeCard').boundingBox();
  assert(report.active.y>=0&&report.active.y<180,'Active game remains pinned after scrolling');
- assert(await page.locator('[data-game=push] .lp-direct-start').isDisabled(),'Active game cannot accidentally restart');
+ const activeLaunch=page.locator('[data-game=push] .lp-direct-start');
+ assert.match(await activeLaunch.textContent(),/^(Открыть пульт|Open controller)$/,'Active game card offers its controller');
+ const commandCount=await page.evaluate(()=>__commands.length);
+ await activeLaunch.click();
+ assert.deepEqual(await page.evaluate(n=>__commands.slice(n).map(c=>c.type).filter(t=>!['launch-diagnostic','haptic','haptic-prepare'].includes(t)),commandCount),['controller'],'Active game card opens the controller without restarting');
  await page.evaluate(()=>{window.__actionNode=document.querySelector('#activeActions button');__snapshot.active.roster=__snapshot.players.map(p=>({...p,connected:false}));LocalPartyHost.update(__snapshot);});
  assert(await page.evaluate(()=>__actionNode===document.querySelector('#activeActions button')),'Presence updates retain action DOM/focus');
  await page.locator('#openHost').click();await page.waitForTimeout(300);
@@ -46,8 +50,8 @@ const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-a
  await page.setViewportSize({width:320,height:700});
  report.selection=await page.locator('#choiceStrip').evaluate(el=>({opacity:getComputedStyle(el).opacity,startOpacity:getComputedStyle(document.querySelector('#choiceStart')).opacity}));
  assert.equal(report.selection.opacity,'1','Unavailable game selection must stay fully readable');assert.equal(report.selection.startOpacity,'1','Disabled Start uses a muted color, not transparency');
- report.logo=await page.locator('.app-header .brand').evaluate(el=>{const r=document.createRange();r.selectNodeContents(el);const text=r.getBoundingClientRect(),box=el.getBoundingClientRect(),nav=document.querySelector('.app-header nav').getBoundingClientRect();return {textRight:text.right,boxRight:box.right,navLeft:nav.left};});
- assert(report.logo.textRight<=report.logo.boxRight+1&&report.logo.textRight<report.logo.navLeft,'Complete logo must fit without clipping or overlapping navigation');
+ report.logo=await page.locator('#brandHeader>.heypals-header-logo').evaluate(el=>{const box=el.getBoundingClientRect(),header=el.parentElement.getBoundingClientRect();const overlap=[...el.parentElement.querySelectorAll('nav button')].filter(n=>n.getClientRects().length).some(n=>{const r=n.getBoundingClientRect();return r.left<box.right&&r.right>box.left&&r.top<box.bottom&&r.bottom>box.top;});return {loaded:el.complete&&el.naturalWidth>0,fits:box.left>=header.left&&box.right<=header.right,overlap};});
+ assert(report.logo.loaded&&report.logo.fits&&!report.logo.overlap,'Complete logo must fit without clipping or overlapping navigation');
  await page.screenshot({path:path.join(out,'server-unavailable-320.png')});
  await page.evaluate(()=>{__snapshot.native.ready=true;__snapshot.native.connectionStatus=null;LocalPartyHost.update(__snapshot);});
  for(const width of [320,393,402,430]){
@@ -61,7 +65,7 @@ const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-a
  for(const width of [320,393,430]){
   await page.setViewportSize({width,height:874});await page.evaluate(()=>scrollTo(0,1200));await page.waitForTimeout(350);
   const stack=await page.evaluate(()=>{const box=s=>{const r=document.querySelector(s).getBoundingClientRect();return {top:r.top,bottom:r.bottom};};const tools=document.querySelector('.native-catalog-tools'),before=getComputedStyle(tools,'::before');return {head:box('.app-header'),tools:box('.native-catalog-tools'),stuck:document.body.classList.contains('tools-stuck'),beforeTop:before.top,beforeBackground:before.backgroundImage};});
-  assert(stack.stuck,'Find Game must enter its sticky state without Host Pick');assert(Math.abs(stack.tools.top-stack.head.bottom)<2,'Find Game must touch the header on first launch: '+JSON.stringify(stack));assert(parseFloat(stack.beforeTop)<=-stack.head.bottom+1,'Find Game backdrop must occlude the whole header gap: '+JSON.stringify(stack));
+  assert(stack.stuck,'Find Game must enter its sticky state without Host Pick');assert(Math.abs(stack.tools.top-stack.head.bottom)<2,'Find Game must touch the header on first launch: '+JSON.stringify(stack));assert(parseFloat(stack.beforeTop)<=0,'Find Game backdrop must cover the seam under the independently painted header: '+JSON.stringify(stack));
   await page.screenshot({path:path.join(out,`sticky-no-pick-${width}.png`)});
  }
  await page.evaluate(()=>{__commands.length=0;scrollTo(0,0);__snapshot.selected='push';__snapshot.screens=0;__snapshot.native.externalDisplays=0;__snapshot.native.ready=true;__snapshot.native.working=false;__snapshot.players=[{id:'one',name:'Александра',gameReady:true,connected:true},{id:'two',name:'Бот 1',gameReady:true,connected:true,testBot:true}];LocalPartyHost.update(__snapshot);});
@@ -73,9 +77,10 @@ const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-a
  await page.waitForTimeout(350);
  const rejectedTap=await direct.evaluate(el=>({disabled:el.disabled,hover:el.matches(':hover'),background:getComputedStyle(el).backgroundImage}));
  assert(!rejectedTap.disabled&&rejectedTap.background.includes('linear-gradient'),'Touch hover must retain the bright Start background: '+JSON.stringify(rejectedTap));
- const warning=await page.locator('#nativeToast').boundingBox();
- assert(warning&&warning.y<200&&warning.y>=0,'Launch rejection must be visible near the top, above the native tab bar');
+ const warning=await page.locator('#startBots').boundingBox();
+ assert(warning&&warning.y>=0&&warning.y+warning.height<=874,'Missing-player prompt must fit the visible screen');
  assert(!(await page.evaluate(()=>__commands.some(m=>m.type==='manage'&&m.command?.type==='launch'))),'Insufficient players must not launch');
+ await page.locator('#startBotsClose').click();
  await page.evaluate(()=>{__snapshot.players=[{id:'one',name:'One',gameReady:true},{id:'two',name:'Two',gameReady:true}];LocalPartyHost.update(__snapshot);});
  await direct.tap();
  assert(await page.evaluate(()=>__commands.some(message=>message.type==='screen-refresh')),'Start must request display recovery instead of silently dying');
