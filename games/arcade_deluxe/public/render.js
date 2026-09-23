@@ -4,9 +4,9 @@ import {SiegeFX} from './siege-fx.js';
 import {PocketProjectileArt} from './pocket-projectiles.js';
 import {AirDefenseRenderer} from './air-defense-render.js';
 const Geo=globalThis.ArcadeGeometry;
-// fx.trails is {colour:'NodeA NodeB'}; cache a per-weapon name->colour lookup.
+// fx.et (emitter trails) is {colour:'NodeA NodeB'}; cache a per-weapon name->colour lookup.
 const trailMaps=new WeakMap();
-function emitterColor(w,name){const t=w?.fx?.trails;if(!t||!name)return null;let map=trailMaps.get(t);if(!map){map=new Map();for(const [color,names] of Object.entries(t))for(const n of names.split(' '))map.set(n,color);trailMaps.set(t,map);}return map.get(name)||null;}
+function emitterColor(w,name){const t=w?.fx?.et;if(!t||!name)return null;let map=trailMaps.get(t);if(!map){map=new Map();for(const [color,names] of Object.entries(t))for(const n of names.split(' '))map.set(n,color);trailMaps.set(t,map);}return map.get(name)||map.get(name.replace(/\d+$/,'')+'#')||null;}
 const TAU=Math.PI*2,clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),lerp=(a,b,t)=>a+(b-a)*t;
 import {MARBLE_COLORS} from './palette.js';
 export {MARBLE_COLORS};

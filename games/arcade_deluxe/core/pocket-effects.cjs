@@ -70,7 +70,19 @@ function emitterTrails(weapon) {
     const node = list(values.BULLET_EMITTER_NAME).filter(name => name && !/^(NONE|NULL)$/i.test(String(name)))
       .flatMap(name => reference.emitters[name] || []).find(visible);
     // Grouped as {colour: 'NameA NameB'} to keep the shared weapon payload small.
-    if (node) { const color = hex(node.r, node.g, node.b); trails[color] = trails[color] ? `${trails[color]} ${block.name}` : block.name; }
+    if (node) (trails[hex(node.r, node.g, node.b)] ||= []).push(block.name);
+  }
+  // Grouped as {colour: 'NameA Stem#'} to keep the shared weapon payload small;
+  // 'Stem#' stands for every numbered node Stem1..N, used only when all of them share the colour.
+  const stemOf = name => name.replace(/\d+$/, '');
+  const numbered = weapon.chain.filter(b => ['BULLET', 'CRUISER'].includes(b.type) && /\d$/.test(b.name));
+  for (const [color, names] of Object.entries(trails)) {
+    const out = new Set();
+    for (const name of names) {
+      const stem = stemOf(name), all = numbered.filter(b => stemOf(b.name) === stem);
+      out.add(/\d$/.test(name) && all.length > 1 && all.every(b => names.includes(b.name)) ? stem + '#' : name);
+    }
+    trails[color] = [...out].join(' ');
   }
   return trails;
 }
@@ -127,16 +139,15 @@ function compileEffect(weapon) {
   const throwMagnitudes = finite(explosions.map(values => [values.THROW_TANK_MAGNITUDE, values.TANK_THROW_MAGNITUDE]));
   const trails = emitterTrails(weapon);
   return {
-    // Only weapons with bodiless emitter shots carry it (payload stays small).
-    ...(Object.keys(trails).length ? { trails } : {}),
+    // et = emitter trails; only weapons with bodiless emitter shots carry it (payload bound).
+    ...(Object.keys(trails).length ? { et: trails } : {}),
     commandTypes,
     colors,
     particleBudget,
     speedMin: clamp(median(lowSpeeds, 45), 5, 500),
     speedMax: clamp(max(highSpeeds, 160), 20, 650),
     duration: clamp(max(lengths, .55), .18, 3.5),
-    // Three decimals exceed the precision of the authored 8-bit alpha.
-    alpha: Math.round(clamp(median(alphas, 220) / 255, .15, 1) * 1000) / 1000,
+    alpha: clamp(median(alphas, 220) / 255, .15, 1),
     sprayAngle: median(finite(nodes.map(node => node.sprayAngle)), 270),
     spraySpread: clamp(max(finite(nodes.map(node => node.spraySpread)), 360), 1, 360),
     matchSpeed: nodes.some(node => node.matchSpeedFlag === true),
