@@ -153,9 +153,14 @@ const {reference,compileWeapon}=require('./pocket-effects.cjs');
 // The handwritten table above remains useful documentation for LocalParty's
 // earlier adaptation. Runtime weapons now come from the complete decoded
 // Pocket Tanks definition graph supplied by the developer's local copy.
+// The accent colour paints trails, fallback shells and explosion rings over a
+// black sky. The first emitter colour can be black (transparent or smoke
+// nodes), which made those shots and rings invisible; use the first authored
+// colour that reads on the dark background, else the family colour.
+const readable=c=>/^#[0-9a-f]{6}$/i.test(c||'')&&Math.max(...[1,3,5].map(i=>parseInt(c.slice(i,i+2),16)))>=0x60;
 const WEAPONS=reference.weapons.map(source=>{
  const imported=compileWeapon(source),profile=profiles[imported.id]||{};
- return {...imported,...profile,color:imported.color||palette[imported.family]||'#ffd17d'};
+ return {...imported,...profile,color:[imported.color,...imported.fx.colors].find(readable)||palette[imported.family]||'#ffd17d'};
 });
 const BY_ID=Object.fromEntries(WEAPONS.map(w=>[w.id,w]));
 module.exports={WEAPONS,BY_ID};

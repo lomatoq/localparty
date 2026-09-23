@@ -1,6 +1,10 @@
 import {PocketPlasma} from './pocket-plasma.js';
 // Client-only, bounded VFX. Cached soft sprites avoid per-particle blur filters.
 const TAU=Math.PI*2, MAX_ITEMS=360, clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+// Glows, rings and sparks are drawn additively ('lighter'): a near-black
+// authored emitter colour (smoke/transparent nodes) adds nothing and left
+// whole explosion stages invisible. Only readable colours are cycled.
+const readable=c=>/^#[0-9a-f]{6}$/i.test(c||'')&&Math.max(parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16))>=0x60;
 export class SiegeFX {
  constructor(reduced=false){this.reduced=reduced;this.items=[];this.labels=[];this.pool=[];this.sprites=new Map();this.weapons={};this.plasma=new PocketPlasma();}
  setWeapons(weapons){this.weapons=weapons||{};}
@@ -27,7 +31,7 @@ export class SiegeFX {
   const authoredMaterial=['blast','dirt','split','coat'].includes(e.kind)&&this.plasma.emit(e);
   if(e.kind==='blast'&&Array.isArray(e.fxStages)&&!e.fxStages.length&&!authoredMaterial)return true;
   let seed=((e.id||1)*2654435761)>>>0;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
-  const profile=this.weapons?.[e.weapon]?.fx||{},types=new Set(profile.commandTypes||[]),family=e.family||'shell',profileColors=profile.colors?.length?profile.colors:[],color=/^#[0-9a-f]{6}$/i.test(e.color||'')?e.color:profileColors[0]||'#ffb65b',r=clamp(e.r||20,8,150),blast=e.kind==='blast',earth=['dirt','land'].includes(e.kind)||['dirt','drill','quake','burrow'].includes(family)||types.has('DIRTMOVER')||types.has('MAGICWALL')||types.has('DIRTBALL'),energy=e.kind==='warp'||['pulse','laser','lightning','rail','freeze','pull','push','vortex'].includes(family)||types.has('LIGHTNING')||types.has('ZAPPER'),liquid=['fire','acid'].includes(family)||types.has('FIRE')||types.has('FOG');
+  const profile=this.weapons?.[e.weapon]?.fx||{},types=new Set(profile.commandTypes||[]),family=e.family||'shell',profileColors=(profile.colors||[]).filter(readable),color=/^#[0-9a-f]{6}$/i.test(e.color||'')?e.color:profileColors[0]||'#ffb65b',r=clamp(e.r||20,8,150),blast=e.kind==='blast',earth=['dirt','land'].includes(e.kind)||['dirt','drill','quake','burrow'].includes(family)||types.has('DIRTMOVER')||types.has('MAGICWALL')||types.has('DIRTBALL'),energy=e.kind==='warp'||['pulse','laser','lightning','rail','freeze','pull','push','vortex'].includes(family)||types.has('LIGHTNING')||types.has('ZAPPER'),liquid=['fire','acid'].includes(family)||types.has('FIRE')||types.has('FOG');
   const speedMin=clamp(profile.speedMin||35,4,600),speedMax=Math.max(speedMin,clamp(profile.speedMax||180,8,700)),effectDuration=clamp(profile.duration||.7,.15,3.5),authoredAlpha=clamp(profile.alpha??1,.15,1),spray=(profile.sprayAngle??270)*Math.PI/180,spread=clamp(profile.spraySpread??360,1,360)*Math.PI/180;
   const angle=()=>spread>=TAU-.01?rand()*TAU:spray+(rand()-.5)*spread;
   const terrainColors=Array.isArray(e.terrainMaterial)&&e.terrainMaterial.length===2&&e.terrainMaterial.every(c=>/^#[0-9a-f]{6}$/i.test(c))?e.terrainMaterial:null;
