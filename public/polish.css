@@ -1,0 +1,461 @@
+/* Shared final polish for the phone, native menu and TV. Lime stays on actions. */
+:root{--party-lilac:#c6b1ff;--party-blue:#9bbcff;--party-violet-surface:#242036}
+
+/* Informational surfaces share a visible violet base; action colours remain lime. */
+:root{--party-panel:linear-gradient(135deg,#302540f2,#20233af2);--party-panel-line:#b5a0ee48}
+html body .ambient i:first-child{background:radial-gradient(circle,#9672e8 0%,#574480 42%,transparent 70%)}
+html body .ambient i:nth-child(3){background:radial-gradient(circle,#789ff0 0%,#354f86 44%,transparent 72%)}
+html body :is(.company-people,.mini-ranking,.native-card,dialog,#statsDialog,#onboarding){background:var(--party-panel)!important;border-color:var(--party-panel-line)!important;box-shadow:inset 0 1px 0 #dfd2ff16,0 12px 42px #0c081b35!important}
+html body :is(.profile-photo-field,.profile-identity,.guest-filters,.hero-pills span,.mobile-room-strip,.rule-row){background:#a489e514;border-color:#b9a1ef30}
+html body :is(.eyebrow,.section-title>span,.evening-stats b,.rank-stats strong,.mini-rank>strong,#myRank,#roomCount,.guest-lead){color:var(--party-lilac)}
+html body :is(.intro h1 em,.section-title h2 em,.ranking h2 em,#onboarding h1 em,dialog h2 em){color:var(--party-lilac)!important}
+/* Warm metallic lettering for the two welcome headlines. */
+html body :is(.intro h1 em,#onboarding h1 em){color:#f2ce78!important;background:linear-gradient(112deg,#c98c37 0%,#eebd5c 19%,#fff1b9 38%,#e7b654 58%,#f9dfa0 77%,#c9943f 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 1px #4a2b2226) drop-shadow(0 0 14px #e9b95017)}
+html body :is(.profile-photo-preview,.profile-chip-avatar){background:linear-gradient(135deg,#64507f,#343d68)!important;color:#e4d8ff!important;border-color:#b4a0dd66!important}
+html body .return-entry-help summary{color:var(--party-lilac)}
+html body .room-toggle{background:#a489e514;border-color:#b5a0ee48}
+html body :is(.rank-row,.mini-rank,.room-player){background:linear-gradient(120deg,#a68be11a,#7795d40e);border-color:#b6a1ed2e}
+html body :is(.rank-row,.mini-rank):nth-child(1) :is(.rank-number,.rank-stats strong),html body .mini-rank:nth-child(1)>span{color:#f1d685}
+html body :is(.rank-row,.mini-rank):nth-child(2) :is(.rank-number,.rank-stats strong),html body .mini-rank:nth-child(2)>span{color:#d6e0ef}
+html body :is(.rank-row,.mini-rank):nth-child(3) :is(.rank-number,.rank-stats strong),html body .mini-rank:nth-child(3)>span{color:#dea985}
+html body .guest-game{background:radial-gradient(ellipse at 100% 12%,color-mix(in srgb,var(--card,#a96aff) 48%,transparent),transparent 66%),radial-gradient(ellipse at 65% 100%,color-mix(in srgb,var(--card-secondary,var(--card,#a96aff)) 24%,transparent),transparent 70%),linear-gradient(135deg,#242033,#151924)!important;border-color:color-mix(in srgb,var(--card,#a96aff) 28%,#b6a1ed24)!important}
+html body .guest-game.rank-row{background:radial-gradient(ellipse 155px 120% at 0 50%,color-mix(in srgb,var(--card,#a96aff) 42%,transparent),transparent 80%),radial-gradient(ellipse at 85% 0,color-mix(in srgb,var(--card-secondary,var(--card,#a96aff)) 15%,transparent),transparent 70%),linear-gradient(135deg,#242033,#151924)!important}
+html body .guest-game.rank-hero{border-color:#c6b1ff99!important;box-shadow:inset 0 0 0 1px #c6b1ff40,0 0 28px #a18ad329!important}
+html body.guest-catalog .guest-game.rank-hero::before{background:radial-gradient(60% 70% at 30% 35%,#b99bff66,#a386e824 45%,transparent 75%)}
+html body :is(#catalogFilters,.catalog-filters) .fresh-tab{color:#c6b1ff!important;text-shadow:none!important;border-color:transparent!important;box-shadow:none!important;background:transparent!important}
+html body :is(#catalogFilters,.catalog-filters) .filter-tab.active{color:#f3eaff!important;background:transparent!important;text-shadow:none!important;box-shadow:none!important}
+html body #catalogFilters::before,html body.native-shell .catalog-filters::before,html body.native-shell .catalog-filters.fresh-active::before{background:linear-gradient(135deg,#a185d952,#777fbc35);border-color:#c7b1ff66;box-shadow:inset 0 1px 0 #eadfff35,0 4px 16px #10092344;box-sizing:border-box}
+html body #catalogFilters::before{top:0}
+html body .clock-block{background:var(--party-panel);border-color:var(--party-panel-line)}
+html body .clock-block strong{color:var(--party-lilac)}
+html body.in-game #hudTimer strong{color:var(--party-lilac);text-shadow:0 0 20px #b99bff38}
+html body .clock-block{box-shadow:inset 0 1px 0 #e3d7ff12,0 0 32px #a68bd614}
+html body .clock-block small{color:#c4b8dd}
+html body.in-game #hudTimer::before{background:linear-gradient(180deg,#493762,#242339)!important}
+html body .clock-block.urgent strong{color:#ffb69c}
+html body.in-game .clock-block.urgent::before{background:linear-gradient(180deg,#6b353e,#342137)!important}
+html body :is(.game-objective,.playbar,#liveTop){background:#242039;border-color:#b6a1ed30}
+html body #liveTop b{color:var(--party-lilac)}
+html body.in-game #sessionControls button{background:linear-gradient(135deg,#393047,#25243b)!important;border-color:#b8a0e858!important}
+html body #waitingRules{background:radial-gradient(ellipse at 50% 20%,#40304f,#181b2b 68%)}
+/* Keep the pause actions inside the same padded card used by other dialogs.
+   The overlay scrolls on short/landscape phones instead of clipping its actions. */
+html body #pauseOverlay{overflow:auto;align-items:safe center;bottom:var(--session-controls-height,72px)!important;z-index:11}
+html body #pauseOverlay>div{box-sizing:border-box;width:100%;max-width:520px;min-width:0;flex-shrink:0;display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:clamp(20px,5vw,32px);border:1px solid var(--party-panel-line);border-radius:28px;background:var(--party-panel);box-shadow:inset 0 1px 0 #dfd2ff16,0 12px 42px #0c081b35}
+html body #pauseOverlay :is(h2,p){margin:0;overflow-wrap:anywhere}
+html body #pauseOverlay p{font-size:15px!important;line-height:1.5;font-style:italic!important;font-weight:500!important;text-transform:none!important;letter-spacing:normal!important}
+html body #pauseOverlay :is(#sessionRules,#resumeButton){box-sizing:border-box;width:100%;min-height:48px;margin:0;padding:12px 16px;white-space:normal}
+@media(max-height:500px){html body #pauseOverlay{padding:12px}html body #pauseOverlay>div{padding:16px;gap:8px}html body #pauseOverlay h2{font-size:28px}html body #pauseOverlay p{font-size:12px;line-height:1.35}html body #pauseOverlay .eyebrow{font-size:9px}html body #pauseOverlay :is(#sessionRules,#resumeButton){min-height:44px;padding:10px 12px}}
+html body .lp-catalog .game.lp-catalog-card.selected{border-color:#c6b1ff!important;box-shadow:inset 0 0 0 2px #c6b1ff,0 0 26px #a18ad32d!important}
+html body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card.selected{border-color:#c6b1ff!important;box-shadow:inset 0 0 0 2px #c6b1ff,0 0 26px #a18ad32d!important}
+html body .rank-row.champion{background:linear-gradient(110deg,#e8c37622,#b394f012 65%,#171c26);border-color:#e8c3768c}
+html body #statsDialog .stats-rank:hover{border-color:#c6b1ff70;box-shadow:0 0 22px #b99bff16}
+/* Keep the illustration under the caption instead of covering it with an opaque
+   panel. A separate painted image avoids WebKit's masked-backdrop edge strips. */
+html body .game[data-id]::after,html body .lp-catalog .game.lp-catalog-card::after{content:'';position:absolute;inset:-12px!important;z-index:0;pointer-events:none;border:0!important;border-radius:inherit;background-image:var(--lp-card-art);background-size:cover;background-position:65% 38%;background-repeat:no-repeat;filter:blur(12px) brightness(.8);-webkit-mask-image:linear-gradient(transparent 20%,#00000012 35%,#00000045 52%,#00000085 70%,#000000c7 86%,#000 100%);mask-image:linear-gradient(transparent 20%,#00000012 35%,#00000045 52%,#00000085 70%,#000000c7 86%,#000 100%);opacity:.8}
+/* Only the outer card may clip rounded corners. The shorter media box used to
+   cut a second rounded silhouette through the blur halfway down the card.
+   Fade the entire media box (including its children), not the rotated image. */
+html body .game[data-id]>.art,html body .lp-catalog .game.lp-catalog-card>.art{z-index:1;border-radius:0!important;background:transparent!important;-webkit-mask-image:linear-gradient(#000 40%,#000000ed 55%,#000000b3 72%,#0000004d 88%,transparent 100%)!important;mask-image:linear-gradient(#000 40%,#000000ed 55%,#000000b3 72%,#0000004d 88%,transparent 100%)!important}
+html body .game[data-id]>.art::after{display:none!important}
+/* This is now permanent artwork, not the old hover glow. */
+html body .game[data-id]::after{opacity:.8!important}
+/* Brightness belongs to the illustration; the fixed media container above
+   handles the fade so rotating/scaling the image cannot move its boundary. */
+html body .game[data-id]>.art .symbol{filter:brightness(.8) drop-shadow(0 8px 18px #0005)!important;-webkit-mask-image:none!important;mask-image:none!important}
+html body .game[data-id]>.game-info,html body .lp-catalog .game.lp-catalog-card>.game-info{background:linear-gradient(to bottom,transparent 0%,#1113210a 22%,#11132129 48%,#11132157 76%,#1113218c 100%)!important;text-shadow:0 1px 3px #000a}
+html body .game[data-id] .game-info>p,html body .lp-catalog .game.lp-catalog-card p{font-size:12px!important;line-height:1.4!important}
+/* Caption contrast must not bleed into the dark lettering on lime actions. */
+html body .game[data-id] :is(button,.start-game,.lp-direct-start,.rules-link),html body .game[data-id] :is(button,.start-game,.lp-direct-start,.rules-link) *{text-shadow:none!important}
+html body .native-sheet button[role=switch][aria-checked=true]{background:#c6b1ff;color:#221a33}
+html body.native-shell #tvDirectorControls button[aria-pressed=true]{border-color:#c6b1ff;box-shadow:inset 0 0 0 1px #c6b1ff}
+html body.tv-screen :is(.tv-startup,.tv-scene-transition){background:radial-gradient(ellipse at 25% 0,#76589950,transparent 70%),#141423f5}
+html body.tv-screen .tv-progress i{background:linear-gradient(90deg,#a88bdd,#a5baff);box-shadow:0 0 20px #ac92e166}
+html body.tv-screen .tv-scene-transition>span{color:var(--party-lilac)}
+html body.tv-screen .menu-labels .is-fresh{color:var(--party-lilac)!important;text-shadow:none!important}
+
+/* Existing-profile edits open over the lobby and can close by saving or tapping outside. */
+.profile-sheet-backdrop{position:fixed;inset:0;z-index:90;background:#080b14a6;-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);animation:profileShadeIn 280ms ease both}
+.profile-sheet-backdrop[hidden]{display:none!important}
+body.profile-editing{overflow:hidden!important}
+body.profile-editing #home,body.profile-editing>.app-header,body.profile-editing>.ambient{filter:blur(8px);pointer-events:none}
+body.profile-editing #lobby{z-index:auto!important}
+body.profile-editing #onboarding{position:fixed!important;z-index:91;left:50%;right:auto;bottom:0;top:auto;transform:translateX(-50%);box-sizing:border-box;width:min(620px,100vw)!important;max-width:100vw;max-height:min(92dvh,860px);overflow-y:auto;overscroll-behavior:contain;margin:0!important;padding:22px 22px calc(22px + env(safe-area-inset-bottom))!important;border:1px solid #bca3ff55;border-bottom:0;border-radius:28px 28px 0 0;background:linear-gradient(145deg,#211d32f7,#141923fa 62%,#171c29fa);box-shadow:0 -20px 70px #0009,0 0 42px #ab8af71c;animation:profileSheetIn 440ms cubic-bezier(.2,.8,.2,1) both}
+body.profile-editing #onboarding .profile-photo-field{background:linear-gradient(130deg,#bca3ff14,#87aaff0a)}
+body.profile-editing #onboarding .profile-photo-preview{border-color:#bca3ff66!important}
+body.guest-catalog #onboarding #avatarStatus{display:block;line-height:1.35;margin-top:10px!important;color:#b9b8cb}
+@keyframes profileShadeIn{from{opacity:0}to{opacity:1}}
+@keyframes profileSheetIn{from{opacity:0;transform:translate(-50%,80px)}to{opacity:1;transform:translate(-50%,0)}}
+@media(max-width:600px){body.profile-editing #onboarding{padding:16px 16px calc(16px + env(safe-area-inset-bottom))!important}}
+@media(prefers-reduced-motion:reduce){.profile-sheet-backdrop,body.profile-editing #onboarding{animation:none}}
+
+/* Larger portraits and the same crown asset as the TV podium. */
+#statsDialog .stats-rank{grid-template-columns:28px 68px minmax(0,1fr) minmax(56px,auto);min-height:104px;gap:12px;background:linear-gradient(110deg,#a78afa0e,#738ef408)}
+#statsDialog .stats-rank[data-place="1"]{min-height:116px;background:linear-gradient(110deg,#e8c37622,#b394f012 65%,#171c26);border-color:#e8c3768c;box-shadow:inset 0 0 0 1px #f6db9a38,0 0 24px #e8c37616}
+#statsDialog .stats-rank[data-place="2"]{border-color:#cbd5e86b}
+#statsDialog .stats-rank[data-place="3"]{border-color:#d8a68070}
+#statsDialog .stats-avatar{width:68px;height:68px;min-width:68px;border-radius:20px;background:linear-gradient(145deg,#a991eb,#6888ca);color:#fff;font-size:26px}
+#statsDialog .stats-rank[data-place="1"] .stats-avatar{width:76px;height:76px;min-width:76px;border-radius:23px;outline:2px solid #e9ca81;outline-offset:2px}
+#statsDialog .stats-place{color:#e9ca81;display:grid;place-items:center}
+#statsDialog .stats-rank[data-place="2"] .stats-place{color:#cbd5e8}
+#statsDialog .stats-rank[data-place="3"] .stats-place{color:#d8a680}
+#statsDialog .stats-crown{display:block;width:30px;height:27px;object-fit:contain;filter:drop-shadow(0 2px 6px #e8c37666)}
+#statsDialog .stats-score strong{color:var(--party-lilac)}
+#statsDialog .stats-rank[data-place="1"] .stats-score strong{color:#f3d989}
+#statsDialog .stats-rank[data-place="2"] .stats-score strong{color:#d7e1f3}
+#statsDialog .stats-rank[data-place="3"] .stats-score strong{color:#e3ad88}
+#statsDialog .stats-back{color:var(--party-lilac)}
+#statsDialog .profile-summary>div{background:#a893f711;border-color:#b7a3ff2a}
+#statsDialog .profile-summary strong{color:var(--party-lilac)}
+@media(max-width:520px){#statsDialog .stats-rank{grid-template-columns:23px 64px minmax(0,1fr) minmax(48px,auto);gap:10px;min-height:100px;padding:12px 10px}#statsDialog .stats-avatar{width:64px;height:64px;min-width:64px;border-radius:19px}#statsDialog .stats-rank[data-place="1"] .stats-avatar{width:70px;height:70px;min-width:70px;border-radius:21px}#statsDialog .stats-crown{width:25px;height:24px}#statsDialog .stats-identity b{font-size:15px}}
+
+/* The evening tag stays inside each card at phone and TV sizes. */
+body .game .featured-label,body .lp-catalog .featured-label{position:absolute!important;inset:12px 12px auto auto!important;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;max-width:min(55%,190px)!important;min-height:32px;padding:7px 11px!important;white-space:normal!important;overflow-wrap:anywhere;text-align:center;line-height:1.2!important;border-radius:999px;color:#e0d1ff;background:#221d33df;border:1px solid #c4a7ff70;box-shadow:0 4px 14px #0b071c99;z-index:6}
+@media(max-width:600px){body .game .featured-label,body .lp-catalog .featured-label{inset:10px 10px auto auto!important;max-width:58%!important;font-size:9px!important;padding:6px 9px!important}}
+
+/* Purple and blue identify information; the existing lime buttons still invite action. */
+body.guest-catalog .guest-lead{color:var(--party-lilac)!important;text-shadow:0 0 15px #a78bfa80}
+body.guest-catalog .guest-ballot-status{color:var(--party-blue)}
+body:not(.tv-screen) .app-header #myRank{color:var(--party-lilac)}
+body.native-shell .native-choice{border-color:#b9a2f861;background:linear-gradient(100deg,#7f69b435,#6674ae1a 50%,#181923e8)}
+body.native-shell .native-choice-copy .eyebrow{color:var(--party-lilac)}
+
+/* iOS controller: leave the Dynamic Island and status bar clear. */
+@media(max-width:850px){
+ html body.native-controller.in-game .app-header{height:calc(88px + env(safe-area-inset-top))!important;min-height:calc(88px + env(safe-area-inset-top))!important;padding-top:calc(8px + env(safe-area-inset-top))!important}
+ html body.native-controller.in-game .app-header #hudTimer{top:calc(8px + env(safe-area-inset-top))!important}
+ html body.native-controller.in-game .app-header>nav:last-of-type{top:calc(17px + env(safe-area-inset-top))!important}
+}
+
+/* Shared catalog vote intensity, strongest on the TV's leading cards. */
+body.tv-screen #tvStage>.ambient{background:radial-gradient(ellipse at 8% 0%,#9676df26,transparent 55%),radial-gradient(ellipse at 90% 45%,#728fee29,transparent 65%)}
+body.tv-screen #tvSidebar>.company-people,body.tv-screen #tvSidebar>.mini-ranking{background:linear-gradient(140deg,#26213abf,#151827d9);border-color:#b4a4ee2a}
+body.tv-screen .tv-choice{border-color:#bca8ff6b;background:linear-gradient(130deg,#a88ae728,#171b2d)}
+body.tv-screen #playersNeeded,body.tv-screen #settings,body.tv-screen #votes{color:var(--party-lilac)}
+body.tv-screen #tvStage .lp-catalog .game.vote-popular{border-color:#a9a0ec88!important;box-shadow:inset 0 0 0 1px #a9a0ec52,0 0 22px #a587ed25!important}
+body.tv-screen #tvStage .lp-catalog .game.vote-leader{border-color:#c7b4ff!important;box-shadow:inset 0 0 0 2px #c7b4ffb3,0 0 32px #ab8bf17a,0 8px 28px #0008!important}
+body.tv-screen #tvStage .lp-catalog .lp-card-votes{display:inline-flex;align-self:flex-start;margin-top:8px;padding:6px 10px;border-radius:999px;background:#9682e028;border:1px solid #bea9ff5c;color:#e0d3ff;font-size:11px;font-weight:800;line-height:1.15}
+body.tv-screen #tvStage .lp-catalog .game.vote-leader .lp-card-votes{background:#baa4fb;color:#211b31;border-color:#e2d5ff;box-shadow:0 0 18px #baa4fb6e}
+body.tv-screen #tvLeaders .mini-rank:nth-child(1)>span,body.tv-screen #tvLeaders .mini-rank:nth-child(1)>strong{color:#f1d685}
+body.tv-screen #tvLeaders .mini-rank:nth-child(2)>span,body.tv-screen #tvLeaders .mini-rank:nth-child(2)>strong{color:#d6e0ef}
+body.tv-screen #tvLeaders .mini-rank:nth-child(3)>span,body.tv-screen #tvLeaders .mini-rank:nth-child(3)>strong{color:#dea985}
+body.tv-screen .podium-crown img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* TV sidebar materials: invite stays violet, people use quiet green glass,
+   and the leaderboard gets a translucent gold layer rather than a solid fill. */
+html body.tv-screen #tvSidebar>.company-people.tv-invite,
+html body.tv-screen #tvLargeInvite.lp-join-card{
+ background:radial-gradient(ellipse at 16% 0%,#dcc4ff1f,transparent 65%),linear-gradient(145deg,#392956c7,#211b38b5)!important;
+ border-color:#c7afff61!important;
+ color:#f4edff!important;
+ box-shadow:inset 0 1px 0 #ffffff24,0 16px 44px #08041180,0 0 34px #a77cff15!important;
+ -webkit-backdrop-filter:blur(26px) saturate(118%);backdrop-filter:blur(26px) saturate(118%);
+}
+html body.tv-screen #tvSidebar>.company-people.tv-invite :is(h2,p,small,b,span,.eyebrow,#count,code){color:#e9dcff!important;text-shadow:none!important}
+html body.tv-screen #tvSidebar>.company-people:not(.tv-invite){
+ background:radial-gradient(ellipse at 16% 0%,#d4ffe01a,transparent 65%),linear-gradient(145deg,#233b32b8,#14251fbd)!important;
+ border-color:#9bd8ad45!important;
+ color:#edf8f0!important;
+ box-shadow:inset 0 1px 0 #e6fff21c,inset 0 0 32px #8ed2a00b,0 12px 36px #050a0780!important;
+ -webkit-backdrop-filter:blur(24px) saturate(108%);backdrop-filter:blur(24px) saturate(108%);
+}
+html body.tv-screen #tvSidebar>.company-people:not(.tv-invite) :is(h2,p,small,b,span,.eyebrow,#count,#tvEmpty){color:#d6e7db!important;text-shadow:none!important}
+html body.tv-screen #tvSidebar>.company-people:not(.tv-invite) :is(h2,.eyebrow,#count){color:#b9dfc3!important}
+html body.tv-screen #tvSidebar>.company-people:not(.tv-invite) .player{background:#d9ffe70b!important;border-color:#a8d7b52b!important}
+html body.tv-screen #tvSidebar>.mini-ranking{
+ background:radial-gradient(ellipse at 16% 0%,#ffe6a12b,transparent 65%),linear-gradient(145deg,#5b461f80,#292315b8)!important;
+ border:1px solid #f1ce65b8!important;
+ color:#fff5d5!important;
+ box-shadow:inset 0 1px 0 #fff3be47,inset 0 0 34px #e6bb4b0b,0 12px 36px #0a080480,0 0 22px #e6bb4b0c!important;
+ -webkit-backdrop-filter:blur(24px) saturate(112%);backdrop-filter:blur(24px) saturate(112%);
+}
+html body.tv-screen #tvSidebar>.mini-ranking h3{color:#f0d58c!important;text-shadow:none!important}
+html body.tv-screen #tvSidebar>.mini-ranking::before{
+ content:'';position:absolute;inset:-1px;padding:1px;border-radius:inherit;pointer-events:none;
+ background:linear-gradient(110deg,#e9b84400 38%,#ffe7a080 45%,#fff8d9 50%,#ffe7a080 55%,#e9b84400 62%) 160% 50%/300% 100% no-repeat;
+ -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+ -webkit-mask-composite:xor;mask-composite:exclude;
+ animation:tv-gold-edge-glint 12s ease-in-out infinite;
+}
+@keyframes tv-gold-edge-glint{0%,15%{background-position:160% 50%}85%,100%{background-position:-60% 50%}}
+@media(prefers-reduced-motion:reduce){html body.tv-screen #tvSidebar>.mini-ranking::before{animation:none;background-position:50% 50%}}
+/* Static reflected light: a fine edge highlight without a blur layer over text. */
+html body.tv-screen #tvSidebar>section::after{
+ content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+ background:linear-gradient(112deg,transparent 8%,#ffffff0a 30%,transparent 49%);
+ border-top:1px solid #ffffff24;
+}
+html body.tv-screen .tv-scene-transition{
+ background:radial-gradient(ellipse at 25% 0,#76589950,transparent 70%),#141423!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+
+/* The common TV game header regains its centered trapezoid without covering status. */
+body.tv-screen .gamebar{position:relative;justify-content:flex-end;gap:18px;background:linear-gradient(90deg,#1d1e30,#25213a 45%,#1a1e2d);border-bottom:1px solid #b29df041;color:#e8e3f6}
+body.tv-screen .gamebar #gameTitle{position:absolute;left:50%;top:0;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:min(40%,470px);height:50px;min-width:0;max-width:calc(100% - 380px);margin:0;padding:7px 34px 10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:center;font:italic 850 clamp(14px,1.6vw,22px)/1.1 Rubik,system-ui,sans-serif;text-transform:uppercase;color:#f3ecff;background:linear-gradient(180deg,#61518f,#302a53);border:1px solid #d0bcff55;clip-path:polygon(0 0,100% 0,94% 100%,6% 100%);text-shadow:0 2px 8px #16102e;z-index:2}
+body.tv-screen .gamebar #phase{margin-right:auto;max-width:23%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+body.tv-screen .gamebar :is(#timer,#gamePlayers){white-space:nowrap}
+body.tv-screen #tvStage.tv-compact .gamebar #gameTitle{max-width:38%;font-size:14px}
+
+/* Fresh keeps its original lime identity alongside the purple information panels. */
+html body .fresh-section,html body .lp-catalog .lp-fresh-section,html body.tv-screen #tvStage .lp-catalog .lp-fresh-section{background:radial-gradient(ellipse at 48% 0,#91ff383d,transparent 75%),linear-gradient(125deg,#193729dc,#111c1bdc)!important;border-color:#b4ff3950!important;box-shadow:0 0 72px #9fff3926,inset 0 1px #d8ff9470!important}
+html body .fresh-badge{background:#b4ff39!important;color:#17200e!important;box-shadow:0 0 22px #b4ff3940!important}
+html body .fresh-heading h2{color:#dcffaf!important;text-shadow:0 0 22px #b4ff3917}
+html body :is(#catalogFilters,.catalog-filters) .filter-tab.fresh-tab{color:#c4ff6d!important;text-shadow:0 0 14px #b4ff3950!important}
+html body :is(#catalogFilters,.catalog-filters) .filter-tab.fresh-tab.active{color:#18240b!important;text-shadow:none!important}
+html body #catalogFilters.fresh-active::before,html body.native-shell .catalog-filters.fresh-active::before{background:linear-gradient(135deg,#d5ff94,#b4ff39)!important;border-color:#e4ffbf;box-shadow:inset 0 1px 0 #ffffff80,0 0 18px #b4ff3940}
+html body.tv-screen .menu-labels .is-fresh{color:#c4ff6d!important;text-shadow:0 0 14px #b4ff3950!important}
+
+/* Descriptions and helper copy use lavender instead of grey/green-grey. */
+:root{--muted:#cbbbea;--party-secondary:#cbbbea}
+html body :where(.intro p,.game p,.fresh-heading p,.hero-pills span,.footnote,.native-card p,.native-note,.native-bots small,.native-choice-copy small,.profile-photo-copy small,#avatarStatus,#onboarding>p,.stats-intro,.stats-empty,.stats-identity small,.stats-score small,.profile-summary small,.guest-copy small,.rule-row p,.return-entry-help p,.return-entry-help small,.game-connection,.tv-board-heading p,.tv-board-footer,.podium-plinth small,.tv-startup p,.tv-startup small){color:var(--party-secondary)!important}
+html body :is(.filter-tab:not(.active):not(.fresh-tab),.guest-filters button:not([aria-pressed=true]),.menu-labels>span:not(.is-active):not(.is-fresh)){color:var(--party-secondary)!important}
+html body :is(.native-search input,.guest-catalog-tools input)::placeholder{color:#b6a5d4;opacity:1}
+
+/* The host strip uses the same raised lime face and lower edge as game cards. */
+html body.native-shell #choiceStart{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;min-width:90px;max-width:44%;min-height:46px;padding:10px 16px;border:1px solid #e9ffc08c;border-radius:999px;background:linear-gradient(155deg,#e2ffa8 0%,#c8ff73 42%,#a9ec4c 100%);color:#1b2b12;box-shadow:inset 0 2px 0 #ffffff65,inset 0 -3px 0 #6598273b,0 4px 0 #47651f,0 8px 22px #a9ed471b;font-weight:800;line-height:1.2;white-space:nowrap}
+html body.native-shell #choiceStart:not(:disabled):is(:active,[data-lp-press-state=down],.party-pressed){box-shadow:inset 0 1px 4px #36571325,inset 0 -1px 0 #65982733,0 1px 0 #47651f,0 3px 10px #a9ed4715;translate:0 3px}
+@media(hover:hover){html body.native-shell #choiceStart:not(:disabled):hover{background:linear-gradient(155deg,#ecffc8,#ccff82 45%,#b5f459);box-shadow:inset 0 2px 0 #ffffff80,inset 0 -3px 0 #65982733,0 5px 0 #47651f,0 10px 28px #b8fa492b}}
+
+/* Soft sheet arrival, restrained overshoot, and real image-loading placeholders. */
+html body dialog[open]:not(.sheet-closing){animation:lp-soft-sheet 680ms cubic-bezier(.22,.8,.24,1) both}
+html body dialog[open]::backdrop{animation:lp-soft-backdrop 420ms ease both}
+html body dialog[open]:not(.sheet-closing)>*{animation:lp-soft-content 650ms cubic-bezier(.16,1,.3,1) 80ms backwards}
+@keyframes lp-soft-sheet{0%{opacity:0;translate:0 64px;scale:.97}78%{opacity:1;translate:0 -3px;scale:1.003}100%{opacity:1;translate:0 0;scale:1}}
+@keyframes lp-soft-content{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+@keyframes lp-soft-backdrop{from{opacity:0}to{opacity:1}}
+.lp-art-loading{position:relative}
+.lp-art-loading::after,#catalogState:not([hidden])::after{content:'';position:absolute;inset:10px;border-radius:inherit;pointer-events:none;background:linear-gradient(110deg,transparent 20%,#d9caff1c 45%,#eee3ff35 50%,transparent 75%);background-size:250% 100%;border:1px solid #d0baff24;animation:lp-loading-sheen 1.8s ease-in-out infinite}
+#catalogState{position:relative;min-height:170px;border-radius:24px;background:#b499e710}
+@keyframes lp-loading-sheen{from{background-position:160% 0}to{background-position:-100% 0}}
+body.tv-screen .tv-startup-copy{position:absolute;left:50%;top:50%;translate:-50% -50%;width:min(90%,540px);display:flex;flex-direction:column;align-items:center;text-align:center}
+body.tv-screen .tv-startup h1{width:100%;text-align:center;white-space:nowrap;letter-spacing:-.055em;padding-right:.055em;box-sizing:border-box}
+body.tv-screen .tv-startup .tv-progress{width:min(100%,430px)}
+body.tv-screen .game:is(.vote-leader,.most-played) .start-game{animation:lp-invite-bounce 4.8s cubic-bezier(.22,.8,.24,1) 1.2s infinite}
+@keyframes lp-invite-bounce{0%,65%,100%{translate:0 0;scale:1}74%{translate:0 -5px;scale:1.025}83%{translate:0 1px;scale:.995}91%{translate:0 -1px;scale:1.005}}
+@media(prefers-reduced-motion:reduce){html body dialog[open]:not(.sheet-closing),html body dialog[open]::backdrop,html body dialog[open]:not(.sheet-closing)>*,.lp-art-loading::after,#catalogState:not([hidden])::after,body.tv-screen .game:is(.vote-leader,.most-played) .start-game{animation:none!important}}
+
+/* Mobile rules read as one sheet, without tinted tiles behind each paragraph. */
+@media(max-width:850px){
+ html body :is(#rulesBody>.rule-row,#gameDetail>.rule-row,.waiting-rules .rule-row){background:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important;border-radius:0!important}
+ html body #rulesBody>.rule-row{padding:12px 0!important}
+}
+
+/* Fresh is the deliberately green part of the catalog. */
+html body .fresh-section .fresh-heading p,html body :is(#catalog,#tvCatalog,#home) .fresh-section .fresh-heading p,html body .fresh-section .lp-group-count,html body .fresh-heading>span{color:rgba(255,255,255,.8)!important}
+html body .fresh-section .game.selected,html body.tv-screen #tvStage .lp-catalog .fresh-section .game.selected{border-color:#c4ff75!important;box-shadow:inset 0 0 0 2px #b4ff3980,0 0 28px #b4ff3945,0 8px 24px #0006!important}
+/* Keep the prepared UI behind startup until its single entrance is scheduled. */
+body.tv-screen #tvStage:not(.tv-show-ready)>:is(.tv-header,#lobby,#play,#tvPresentation){visibility:hidden}
+
+/* Clear hierarchy on the phone: one caption, one count, one primary action. */
+html body.native-shell .intro p{font-size:14px!important;line-height:1.5!important;max-width:28em;margin:20px 0;color:#e6def5!important}
+body.native-shell .hero-pills{justify-content:center;margin:20px 0 10px;gap:0}
+body.native-shell .hero-pills :is(#playerCount,#screenCount){display:none!important}
+html body.native-shell .hero-pills #gameCount{background:none!important;border:0;box-shadow:none!important;padding:4px 18px;font-size:12px;letter-spacing:.16em;color:#e5dff1!important}
+body.native-shell .hero-pills::before,body.native-shell .hero-pills::after{content:'';width:42px;height:1px;align-self:center;background:linear-gradient(90deg,transparent,#c8b3ef66)}
+body.native-shell .hero-pills::after{rotate:180deg}
+html body #onboarding>p:empty{display:none}
+html body.profile-editing #onboarding{padding-top:32px!important;max-height:94dvh}
+html body #onboarding h1{font-size:clamp(27px,7.5vw,38px)!important;line-height:1.12;margin-bottom:24px!important}
+html body #onboarding .profile-photo-field{padding:20px 16px!important;margin:20px 0 26px!important;row-gap:8px!important}
+html body #onboarding .profile-photo-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin-top:20px!important}
+html body #onboarding .profile-photo-actions button{width:100%;min-width:0;font-size:12px!important;min-height:46px;padding:10px 8px!important;white-space:normal;line-height:1.25}
+html body #onboarding #avatarRemove{grid-column:1/-1;min-height:36px;background:transparent;border:0;box-shadow:none;color:#dccff1}
+html body #onboarding #avatarStatus{margin-top:14px!important;font-size:11px!important;line-height:1.5}
+html body #joinForm>label{margin-top:20px;margin-bottom:10px}
+html body #joinForm fieldset{margin:22px 0 26px}
+html body #onboarding .profile-photo-preview{overflow:visible!important;border-radius:50%}
+html body .has-photo>img{border-radius:inherit}
+html body :is(.profile-photo-preview,.avatar,.rank-avatar,.stats-avatar,.profile-avatar,.mini-avatar,.mobile-room-avatar,.room-avatar-chip).has-photo:after{right:14.645%;bottom:14.645%;translate:50% 50%}
+/* Keep gameplay instructions in the rules sheet; live controls get the screen. */
+html body.in-game #gameObjective{display:none!important}
+@media(min-width:360px) and (max-width:850px){html body.in-game .app-header #hudTimer{width:132px!important;min-height:94px!important;padding:14px 14px 12px!important}html body.in-game .app-header{min-height:112px!important}html body.native-controller.in-game .app-header{height:calc(106px + env(safe-area-inset-top))!important;min-height:calc(106px + env(safe-area-inset-top))!important}}
+
+/* Results: soft purple stage, distinct scores, readable medal labels. */
+body.tv-screen #tvPodium{background:radial-gradient(ellipse at 50% 45%,#33204f 0%,#21152f 35%,#100d19 65%,#06080d 100%)}
+body.tv-screen #tvShader,body.tv-screen .tv-stage-halo,body.tv-screen .tv-celebration-background:before{display:none}
+body.tv-screen .tv-board-heading h2{color:#f6d77b;background:linear-gradient(110deg,#d4a841 12%,#fff0b7 38%,#edc764 58%,#fff8d8 66%,#d4a841 85%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 12px #efbd4630);animation:lp-gold-title 9s ease-in-out infinite}
+@keyframes lp-gold-title{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+body.tv-screen #tvPodiumMain .podium-plinth{min-height:112px;padding:14px 10px;gap:8px;overflow:visible}
+body.tv-screen #tvPodiumMain .podium-rank{font-size:36px;line-height:1;flex:none}
+body.tv-screen #tvPodiumMain .is-winner .podium-rank{font-size:58px}
+body.tv-screen #tvPodiumMain .podium-points{font-size:clamp(22px,2.5vw,34px);line-height:1.15;margin:0;flex:none}
+html body.tv-screen #tvPodium .podium-plinth small{color:#f2eaff!important;font-size:11px;line-height:1.3;letter-spacing:.08em;flex:none}
+html body.tv-screen #tvPodium .is-medal .podium-plinth small{color:#59330e!important}
+body.tv-screen #tvPodiumMain .podium-seat:is([data-rank="6"],[data-rank="7"]) .podium-rank{font-size:24px}
+body.tv-screen #tvPodiumMain .podium-seat:is([data-rank="6"],[data-rank="7"]) .podium-points{font-size:22px}
+@media(prefers-reduced-motion:reduce){body.tv-screen .tv-board-heading h2{animation:none}}
+@media(max-width:850px){
+ html body.is-player.in-game{display:flex!important;flex-direction:column!important;height:100dvh!important;min-height:0!important;box-sizing:border-box;overflow:hidden!important}
+ html body.is-player.in-game>.app-header{flex:0 0 auto;width:100%;box-sizing:border-box}
+ html body.is-player.in-game #play{flex:1 1 0!important;height:auto!important;min-height:0!important;padding-top:0!important}
+ html body.profile-editing #onboarding{min-height:min(78dvh,760px)}
+ html body.guest-catalog #onboarding h1{margin-bottom:30px!important}
+}
+@media(max-width:850px){html body.is-player.in-game{position:fixed!important;inset:0;width:100%;margin:0!important}}
+
+/* Profile rhythm is explicit: photo / name / hand / save, with equal section gaps. */
+html body.guest-catalog #onboarding{align-content:start!important;grid-auto-rows:min-content!important;row-gap:0!important;min-height:0!important;padding:28px 20px calc(24px + env(safe-area-inset-bottom))!important}
+html body.guest-catalog #onboarding>h1{margin:6px 0 0!important;font-size:clamp(26px,7vw,36px)!important;line-height:1.15!important}
+html body.guest-catalog #onboarding>#joinForm{display:grid!important;grid-template-columns:minmax(0,1fr);gap:28px!important;margin:24px 0 0!important}
+html body.guest-catalog #onboarding .profile-photo-field{margin:0!important;padding:16px!important;row-gap:14px!important;grid-template-columns:72px minmax(0,1fr)!important;grid-template-rows:auto auto!important;grid-template-areas:none!important}
+html body.guest-catalog #onboarding .profile-photo-preview{grid-area:1/1!important;grid-row:1!important;align-self:center}
+html body.guest-catalog #onboarding .profile-photo-copy{display:contents!important}
+html body.guest-catalog #onboarding .profile-photo-copy>.eyebrow{grid-area:1/2!important;align-self:start!important;margin:0!important}
+html body.guest-catalog #onboarding .profile-photo-copy>b{grid-area:1/2!important;align-self:center!important;margin:0!important}
+html body.guest-catalog #onboarding .profile-photo-copy>small{grid-area:1/2!important;align-self:end!important;margin:0!important}
+html body.guest-catalog #onboarding .profile-photo-actions{grid-area:2/1/3/-1!important;margin:0!important;gap:8px 10px!important}
+html body.guest-catalog #onboarding #avatarStatus{grid-area:3/1/4/-1!important;margin:0!important;font-size:11px!important;line-height:1.4}
+html body.guest-catalog #onboarding #avatarStatus:empty{display:none!important}
+html body.guest-catalog #onboarding .profile-name-group{display:flex;flex-direction:column;gap:10px}
+html body.guest-catalog #onboarding label[for=name]{margin:0!important}
+html body.guest-catalog #onboarding #name{min-height:56px!important}
+html body.guest-catalog #onboarding fieldset{margin:0!important;gap:12px 22px!important}
+html body.guest-catalog #onboarding fieldset legend{margin:0 0 10px!important}
+html body.guest-catalog #onboarding .profile-submit-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin:0!important}
+html body.guest-catalog #onboarding .profile-submit-row>button[type=submit]{width:100%;margin:0!important;min-height:54px!important}
+html body.guest-catalog #onboarding .profile-cancel{display:grid;place-items:center;width:54px;min-width:54px;height:54px;min-height:54px;margin:0;padding:0;border-radius:50%}
+html body.guest-catalog #onboarding .profile-cancel[hidden]{display:none!important}
+html body.guest-catalog #onboarding .profile-cancel svg{width:21px;height:21px}
+html body.profile-editing #onboarding .profile-submit-row>button[type=submit]{min-height:48px!important;padding-block:12px!important;font-size:13px!important}
+html body.profile-editing #onboarding .profile-cancel{width:48px;min-width:48px;height:48px;min-height:48px}
+@media(max-height:720px){html body.guest-catalog #onboarding>#joinForm{gap:22px!important;margin-top:20px!important}}
+/* Only the centre badge grows. The dark masthead keeps its original height. */
+@media(max-width:850px){
+ html body.is-player.in-game>.app-header{height:calc(72px + env(safe-area-inset-top))!important;min-height:calc(72px + env(safe-area-inset-top))!important}
+ html body.native-controller.is-player.in-game>.app-header{height:calc(88px + env(safe-area-inset-top))!important;min-height:calc(88px + env(safe-area-inset-top))!important}
+ html body.is-player.in-game .app-header #hudTimer{width:132px!important;max-width:132px!important;min-height:94px!important;padding:14px 12px 12px!important}
+ html body.is-player.in-game #play{padding-top:24px!important;background:#0b1016!important}
+ html body.native-controller.is-player.in-game #play{padding-top:18px!important}
+}
+/* One compact game masthead for Safari and the embedded controller. The badge
+   paints through the safe area, while its text stays below the status bar. */
+@media(max-width:850px){
+ html body.is-player.in-game>.app-header,
+ html body.native-controller.is-player.in-game>.app-header{box-sizing:border-box!important;height:calc(52px + env(safe-area-inset-top))!important;min-height:calc(52px + env(safe-area-inset-top))!important;padding:env(safe-area-inset-top) 8px 0!important}
+ html body.is-player.in-game .app-header #hudTimer{top:0!important;height:calc(64px + env(safe-area-inset-top))!important;min-height:calc(64px + env(safe-area-inset-top))!important;padding:calc(5px + env(safe-area-inset-top)) 12px 5px!important;gap:1px!important}
+ html body.is-player.in-game .app-header #hudTimer strong{font-size:30px!important}
+ html body.is-player.in-game .app-header #hudTimer.word-time strong{font-size:22px!important;line-height:1.1!important}
+ html body.is-player.in-game .app-header>nav:last-of-type{top:calc(2px + env(safe-area-inset-top))!important;height:44px!important;align-items:center!important}
+ html body.is-player.in-game .app-header>.identity{height:48px!important;width:calc(50vw - 66px)!important;align-self:end!important;position:relative;overflow:hidden!important}
+ html body.is-player.in-game .app-header .identity-copy{max-width:calc(100% - 44px)!important;position:relative;z-index:1}
+ html body.is-player.in-game .app-header .brand-mark{position:absolute!important;right:0;bottom:0!important;width:60px!important;height:48px!important;max-height:48px!important;z-index:0;pointer-events:none;align-self:flex-end!important;margin:0!important;object-fit:contain!important;object-position:center bottom!important;animation:none!important;transform:none!important;translate:none!important;rotate:none!important}
+ html body.is-player.in-game #play,html body.native-controller.is-player.in-game #play{padding-top:18px!important;background:#0a0a0c!important}
+}
+@media(max-width:359px){html body.is-player.in-game .app-header #hudTimer{width:118px!important;max-width:118px!important}}
+@media(max-width:370px){
+ html body.is-player.in-game .app-header>.identity{width:calc(50vw - 66px)!important;gap:0!important}
+ html body.is-player.in-game .app-header .identity-copy{width:100%;transform:translateY(-7px)}
+ html body.is-player.in-game .app-header #sessionIdentity{padding-right:0}
+ html body.is-player.in-game .app-header .brand-mark{position:absolute;right:0;bottom:0;width:60px!important;max-height:48px!important}
+ /* Keep the full live status in the accessibility tree; a dot is enough here. */
+ html body.is-player.in-game .app-header #connection{font-size:0!important;line-height:10px!important;height:10px;min-height:10px;overflow:visible}
+ html body.is-player.in-game .app-header #connection:before{width:6px;height:6px;min-width:6px;flex:0 0 6px;display:inline-block}
+}
+body.tv-screen #tvPodiumMain .podium-plinth{container-type:inline-size;min-height:134px}
+body.tv-screen #tvPodiumMain .podium-points{font-size:var(--score-size,34px)!important;overflow:visible;text-overflow:clip}
+body.tv-screen #tvPodiumMain .podium-name{font-size:16px!important;white-space:normal!important;text-overflow:clip;min-height:40px;max-height:42px}
+/* The dock fades into the game, with actions lifted above its solid lower edge. */
+html body.in-game #sessionControls{padding-top:4px!important;padding-bottom:calc(16px + env(safe-area-inset-bottom))!important;background:linear-gradient(to bottom,#15132100,#151321 75%)!important}
+/* Readiness is part of the flex layout: the footer can never cover its actions. */
+@media(max-width:850px){
+ html body.is-player.in-game #waitingRules{position:relative!important;inset:auto!important;flex:1 1 0!important;min-height:0!important;width:100%;overflow:auto!important;padding:32px 18px 20px!important;justify-content:flex-start!important;gap:12px!important}
+ html body.is-player.in-game.game-waiting #gameFrame{display:none!important}
+ html body.is-player.in-game #waitingTitle{font-size:clamp(27px,7vw,38px)!important;line-height:1.12!important;margin:10px 0!important}
+ html body.is-player.in-game #waitingRules .waiting-goal{font-size:14px!important;line-height:1.45!important;margin:6px auto 12px!important;width:100%;max-width:560px;box-sizing:border-box;text-align:center!important;text-wrap:balance;overflow-wrap:anywhere;align-self:center}
+ html body.is-player.in-game #waitingRules .waiting-details{margin:0 0 12px!important;width:100%!important;flex:none!important}
+ html body.is-player.in-game #waitingRules .ready-actions{margin-top:auto!important;padding:12px 0 0!important;flex:none!important}
+ html body.is-player.in-game #sessionControls{position:relative!important;flex:0 0 auto!important;min-height:72px;padding:4px 10px calc(16px + env(safe-area-inset-bottom))!important;background:linear-gradient(to bottom,#15132100,#151321 75%)!important;overflow:visible!important}
+ html body.is-player.in-game>.app-header{background:#0b1016!important;box-shadow:none!important;border-bottom:0!important}
+ html body.is-player.in-game>.app-header,
+ html body.native-controller.is-player.in-game>.app-header{height:calc(48px + env(safe-area-inset-top))!important;min-height:calc(48px + env(safe-area-inset-top))!important;max-height:calc(48px + env(safe-area-inset-top))!important;overflow:visible!important}
+ html body.is-player.in-game #connection::before{flex:0 0 6px!important;width:6px!important;height:6px!important;min-width:6px;min-height:6px;border-radius:50%;transform:none!important}
+}
+/* Shared chrome has one layer order: game < pause < actions. The actions use
+   their measured height, not a guessed inset that clips their top edge. */
+html body.is-player.in-game #sessionControls{z-index:12!important;background:none!important;box-shadow:none!important}
+html body.is-player.in-game #sessionControls::before{content:'';position:absolute;inset:-28px 0 0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(21,19,33,0) 0%,#151321 70%);border:0;border-radius:0}
+html body.native-controller.is-player.in-game #sessionControls{padding-bottom:16px!important}
+/* Controller viewport contract: one continuous surface, with footer space
+   reserved by flex layout rather than painted over the embedded game. */
+html body.is-player.in-game{background:#151321!important}
+html body.is-player.in-game>.app-header,
+html body.is-player.in-game #play,
+html body.native-controller.is-player.in-game #play{background:#151321!important}
+html body.is-player.in-game #play,
+html body.native-controller.is-player.in-game #play{box-sizing:border-box!important;height:var(--controller-play-height,calc(100dvh - 48px))!important;max-height:var(--controller-play-height,calc(100dvh - 48px))!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;padding-bottom:0!important}
+html body.is-player.in-game #gameFrame{box-sizing:border-box!important;position:relative!important;inset:auto!important;flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important;width:100%!important;background:transparent!important;border:0!important}
+html body.is-player.in-game #sessionControls{position:relative!important;inset:auto!important;flex:0 0 auto!important;background:#151321!important}
+html body.is-player.in-game #sessionControls::before{display:none!important}
+html body.native-controller.is-player.in-game #partyNativeDock{background:#151321!important}
+html body.native-controller.is-player.in-game #partyNativeDock::before{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html body.is-player.in-game #play::after{display:none!important}
+/* Keep the game-entry caption and round progress readable on small phones. */
+html body.is-player.in-game #waitingRules>.eyebrow{font-size:14px!important;line-height:1.4!important;letter-spacing:.12em!important}
+html body.is-player.in-game .app-header #hudTimer #hudProgress{font-size:12px!important;line-height:1.15!important;letter-spacing:0!important;white-space:nowrap}
+@media(min-width:375px){html body.is-player.in-game .app-header #hudTimer #hudProgress{font-size:13px!important}}
+html body.in-game #hudLabel[hidden]{display:none!important}
+/* Shared match notch: one primary value and one inset progress line. The tiny
+   third caption duplicated TURN/GAME and pushed the useful text into the tip. */
+html body.in-game .app-header #hudTimer #hudLabel{display:none!important}
+html body.in-game .app-header #hudTimer{justify-content:flex-start!important;gap:3px!important}
+html body.in-game .app-header #hudTimer #hudProgress{box-sizing:border-box;max-width:100%!important;text-align:center;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:850px){
+ html body.in-game .app-header #hudTimer,
+ html body.is-player.in-game .app-header #hudTimer{padding:calc(4px + env(safe-area-inset-top)) 22px 12px!important}
+ html body.in-game .app-header #hudTimer strong{line-height:1!important}
+ html body.is-player.in-game .app-header #hudTimer.word-time strong{line-height:1!important}
+}
+@media(min-width:851px){
+ html body.is-host.in-game .app-header #hudTimer{padding:18px 40px 22px!important;gap:6px!important}
+}
+/* Keep secondary descriptions compact; large titles carry the card hierarchy. */
+@media(min-width:851px){
+ html body .game[data-id] h3{overflow-wrap:anywhere}
+ html body .game[data-id] .game-info>p,html body .lp-catalog .game.lp-catalog-card p{font-size:12px!important;line-height:1.4!important}
+}
+/* A compact selected-game capsule, with quiet light pooled by the action. */
+html body.native-shell main #choiceStrip{isolation:isolate;border-radius:999px;padding:5px 7px;gap:8px;background:radial-gradient(ellipse at 100% 50%,#b6f35a26,transparent 48%),linear-gradient(100deg,#7f69b435,#6674ae1a 50%,#181923e8)!important}
+html body.native-shell #choiceStrip .native-choice-main img{width:44px;height:44px;border-radius:50%}
+html body.native-shell #choiceStrip #choiceStart{min-height:44px;padding:9px 15px;box-shadow:inset 0 2px 0 #ffffff65,inset 0 -3px 0 #6598273b,0 3px 0 #47651f,0 0 24px #b6f35a3b}
+html body.native-shell #choiceStrip>*{position:relative;z-index:1}
+html body.tv-screen #tvStage.tv-has-choice #preview.tv-choice{border-radius:999px;grid-template-columns:54px minmax(0,1fr);gap:12px;padding:5px 15px 5px 7px;background:radial-gradient(ellipse at 100% 50%,#b6f35a24,transparent 45%),linear-gradient(100deg,#c8f58b18,#141b21e6 70%)}
+html body.tv-screen #tvStage.tv-has-choice #preview.tv-choice #cover{width:54px;height:54px!important;border-radius:50%}
+html body.tv-screen #preview.tv-choice #playersNeeded{box-shadow:0 0 24px #b6f35a30}
+html body.native-shell main #choiceStrip::after,html body.tv-screen #tvStage.tv-has-choice #preview.tv-choice::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;background:linear-gradient(105deg,transparent 32%,#ffffff10 48%,transparent 64%) 150% 0/300% 100%;translate:none;animation:lpChoiceCapsuleShine 12s ease-in-out infinite}
+/* The native strip's existing sticky backdrop sits above its own background.
+   Keep the pill surface on the foreground pseudo-layer, below its buttons. */
+html body.native-shell main #choiceStrip::after{z-index:0;background-image:linear-gradient(105deg,transparent 32%,#ffffff10 48%,transparent 64%),radial-gradient(ellipse at 100% 50%,#b6f35a30,transparent 55%),linear-gradient(100deg,#30263f,#222330 60%,#1b2028);background-size:300% 100%,100% 100%,100% 100%;box-shadow:inset 0 0 0 1px #b9a2f838}
+@keyframes lpChoiceCapsuleShine{0%,65%{background-position:150% 0}95%,100%{background-position:-50% 0}}
+@media(prefers-reduced-motion:reduce){html body.native-shell main #choiceStrip::after,html body.tv-screen #tvStage.tv-has-choice #preview.tv-choice::after{animation:none;display:none}}
+@media(prefers-reduced-motion:reduce){html body.native-shell main #choiceStrip::after{display:block;background-position:150% 0}}
+/* Reuse the original curved notch path, scaled as a mask instead of replacing
+   its curved corners with a polygon. Both Safari and WKWebView use this shape. */
+@media(max-width:850px){html body.is-player.in-game .app-header #hudTimer::before{clip-path:none!important;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 108' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0H140L121 96Q119 107 109 107H31Q21 107 19 96Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 108' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0H140L121 96Q119 107 109 107H31Q21 107 19 96Z'/%3E%3C/svg%3E");-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}}
+
+/* Compact art-forward catalog: preserve touch areas while reducing decoration. */
+html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card>.art{aspect-ratio:1.48!important}
+html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card>.game-info{padding:24px 12px 12px!important;margin-top:-24px!important}
+html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card p{margin:6px 0 10px!important;font-size:12px!important;line-height:1.35!important}
+html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card h3{font-size:19px!important;line-height:1.15!important}
+html body:not(.tv-screen) .lp-catalog .games{gap:12px!important}
+html body:not(.tv-screen) .lp-catalog .lp-fresh-section{padding:14px!important;margin-bottom:18px!important;border-radius:24px}
+html body:not(.tv-screen) .lp-catalog .fresh-track{grid-auto-columns:74%!important;gap:12px!important;padding-block:8px 18px!important}
+html body:not(.tv-screen) .lp-catalog .fresh-track>.game.lp-catalog-card>.art{aspect-ratio:1.85!important}
+html body:not(.tv-screen) .lp-catalog .fresh-heading h2{font-size:25px!important;margin-block:0!important}
+html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card .start-game{min-height:44px!important}
+html body .guest-catalog-tools input[type=search]{border-radius:999px!important;min-height:44px;padding:10px 16px 10px 44px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c6b1ff' stroke-width='1.8'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:20px;background-position:16px center}
+html body #pauseOverlay h2,html body #paused h2{font-family:Rubik,system-ui,sans-serif!important}
+@media(max-width:850px){html body.in-game.game-waiting .app-header{background:linear-gradient(120deg,#33283f,#211d30 65%,#151321)!important}html body .guest-game{padding:12px!important}html body .guest-catalog-tools{margin-top:8px!important}}
+
+/* Keep the compact game header legible on landscape phones as well. */
+@media(max-height:420px) and (max-width:950px){
+ html body.in-game .app-header #showStats{width:44px!important;min-width:44px!important;max-width:44px!important;flex-basis:44px!important;padding:0!important}
+ html body.in-game .app-header #showStats .nav-label,html body.in-game #myRank{display:none!important}
+}
+
+/* Ranked guest cards keep artwork proportional to their own size. */
+html body.guest-catalog .guest-game.rank-hero{min-height:184px}
+html body.guest-catalog .guest-game:is(.rank-hero,.rank-big) .guest-art{height:112%;top:-6%;right:-5%;object-fit:contain;object-position:center}
+html body.guest-catalog .guest-game.rank-hero .guest-art{width:62%}
+html body.guest-catalog .guest-game.rank-hero .guest-copy{max-width:54%}

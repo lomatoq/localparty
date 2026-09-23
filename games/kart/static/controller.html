@@ -42,7 +42,7 @@
     <section id="controlsArea" class="controls-area right-handed">
       <div class="steering-zone">
         <div class="control-label">ПОВОРОТ</div>
-        <div class="slider-card"><label id="steeringLabel">ВЕДИ ПАЛЬЦЕМ ← →</label><div id="wheelPad" class="steer-touchpad" role="slider" tabindex="0" aria-labelledby="steeringLabel" aria-valuemin="-100" aria-valuemax="100" aria-valuenow="0"><span class="steer-rail"></span><span class="steer-thumb">↔</span></div><div class="slider-marks"><span>ВЛЕВО</span><b id="steerValue">0%</b><span>ВПРАВО</span></div><p>Отпусти — руль в центр</p></div>
+        <div class="slider-card"><div id="wheelPad" class="steer-buttons" role="group" aria-label="Steering"><button id="steerLeft" type="button" aria-label="Hold to steer left">← LEFT</button><button id="steerRight" type="button" aria-label="Hold to steer right">RIGHT →</button></div><b id="steerValue" aria-live="off">STRAIGHT</b><p>Hold to turn · release to straighten</p></div>
       </div>
       <div class="gas-zone">
         <div class="control-label">ГАЗ</div>
@@ -56,7 +56,7 @@
     <footer class="phone-footer">
       <div><span class="muted">ЛУЧШИЙ</span> <strong id="bestText">—</strong></div>
       <div><span class="muted">СКОРОСТЬ</span> <strong id="speedText">0</strong></div>
-      <button id="swapHandBtn" class="swap-btn">⇄ Сменить руки</button>
+      <button id="swapHandBtn" class="swap-btn" aria-label="Сменить руки" title="Сменить руки"><span aria-hidden="true">⇄</span></button>
     </footer>
   </div>
   <script src="/static/controller.js"></script>

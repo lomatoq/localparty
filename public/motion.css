@@ -49,6 +49,8 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
 /* Meaningful phase and score updates receive one short emphasis from motion.js. */
 .lp-motion-pulse{animation:lp-value-pulse var(--motion-base) var(--motion-ease-pop) both!important}
 .lp-motion-status{animation:lp-status-swap var(--motion-base) var(--motion-ease-out) both!important}
+/* One entry fade for every game document; never move pointer coordinate spaces. */
+html.lp-motion-ready.party-managed body{animation:lp-backdrop-in var(--motion-slow) ease-out both}
 /* Shared game-host patterns. Controller gesture surfaces are intentionally excluded. */
 .lp-motion-ready body[data-ss-role="host"] .ss-host-top{animation:lp-hud-top-centered-in var(--motion-slow) var(--motion-ease-out) both}
 .lp-motion-ready body[data-role="host"] .stage>header,
@@ -73,6 +75,10 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
 @keyframes lp-hud-chip-in{from{opacity:0;filter:brightness(.7)}72%{opacity:1;filter:brightness(1.12)}to{opacity:1;filter:none}}
 @keyframes lp-hud-card-in{from{opacity:0;transform:translate3d(0,-12px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 @keyframes lp-hud-bottom-in{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.lp-reveal-pending{opacity:0!important}
+.lp-catalog-card img.symbol,.guest-game img.guest-art{transition:opacity 360ms ease}
+.lp-art-loading img.symbol,.lp-art-loading img.guest-art{opacity:0}
+@media(prefers-reduced-motion:reduce){.lp-reveal-pending{opacity:1!important}.lp-catalog-card img.symbol,.guest-game img.guest-art{transition:none}}
 @keyframes lp-card-in{from{opacity:0;transform:translate3d(0,16px,0) scale(.975)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 @keyframes lp-stagger-item-in{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
 @keyframes lp-score-item-in{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
@@ -204,7 +210,7 @@ body.guest-catalog .guest-game.rank-hero .guest-copy{max-width:56%}
  body.guest-catalog #onboarding fieldset{display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px;margin:0!important;padding:0!important;border:0}
  body.guest-catalog #onboarding fieldset legend{float:left;width:100%;margin:0 0 2px!important;font-size:12px!important}
  body.guest-catalog #onboarding fieldset label{margin:0!important;min-height:36px;display:inline-flex;align-items:center;gap:6px}
- body.guest-catalog #onboarding #joinForm>button[type=submit]{min-height:52px!important;margin:2px 0 0!important}
+ body.guest-catalog #onboarding .profile-submit-row>button[type=submit]{min-height:52px!important;margin:2px 0 0!important}
 }
 @media(prefers-reduced-motion:reduce){body.guest-catalog .guest-game{transition:none}}
 /* Short phones (SE, 320–375 × ≤700): tighten the profile editor further, same content. */
@@ -219,7 +225,7 @@ body.guest-catalog .guest-game.rank-hero .guest-copy{max-width:56%}
  body.guest-catalog #onboarding .profile-photo-copy small{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
  body.guest-catalog #onboarding .profile-photo-actions button{min-height:34px!important;padding:6px 10px!important}
  body.guest-catalog #onboarding #name{min-height:42px!important}
- body.guest-catalog #onboarding #joinForm>button[type=submit]{min-height:46px!important}
+ body.guest-catalog #onboarding .profile-submit-row>button[type=submit]{min-height:46px!important}
 }
 /* Leader: no pill — a soft lime glow rises from the top edge behind the text. */
 body.guest-catalog .guest-game.rank-hero::before{content:'';position:absolute;z-index:-1;left:-10%;right:30%;top:-40%;height:95%;pointer-events:none;background:radial-gradient(60% 70% at 30% 35%,#c8f58b66,#b4ff3924 45%,transparent 75%);filter:blur(6px)}

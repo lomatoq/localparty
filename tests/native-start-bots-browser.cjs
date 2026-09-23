@@ -1,0 +1,44 @@
+'use strict';
+const assert=require('node:assert/strict'),express=require('express');
+const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');
+(async()=>{
+ const server=express().use(express.static('public')).listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));let browser;
+ try{
+  browser=await webkit.launch();const page=await browser.newPage({viewport:{width:320,height:700}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.addInitScript(()=>{window.commands=[];window.webkit={messageHandlers:{partyShell:{postMessage:m=>commands.push(m)}}};window.LocalPartyTabs={select:tab=>commands.push({type:'native-tab',tab})};});
+  await page.goto(`http://127.0.0.1:${server.address().port}/native-shell/index.html`);
+  const game={id:'push',title:'Push Pit',min:2,max:4,color:'#b4ff39',description:'Push rivals',goal:'Stay in the arena',controls:'Joystick',hostControls:{settings:[],actions:[]}};
+  const snapshot={catalog:[game],selected:'push',players:[],leaderboard:[],votes:[],screens:1,botCount:0,native:{ready:true,catalogReady:true},tv:{},gameSettings:{}};
+  const update=async patch=>{Object.assign(snapshot,patch);await page.evaluate(s=>LocalPartyHost.update(s),snapshot);};
+  const commands=type=>page.evaluate(type=>commands.filter(m=>m.type==='manage'&&m.command.type===type).map(m=>m.command),type);
+  await update({});await page.click('#choiceStart');await page.locator('#startBots:popover-open').waitFor();assert.equal((await commands('bots-set')).length,0,'opening never silently adds bots');assert.equal((await commands('launch')).length,0);assert.equal(await page.locator('#hostPanel').evaluate(e=>e.open),false);
+  const bounds=await page.locator('#startBots').boundingBox();assert(bounds.x>=0&&bounds.x+bounds.width<=320&&bounds.y>=0&&bounds.y+bounds.height<=700);await page.waitForFunction(()=>document.getElementById('startBotsHint').textContent==='Not enough players. Add a bot or invite friends.');await page.screenshot({path:'/private/tmp/native-start-bots-empty.png'});
+  await page.click('#startBotsPlus');await page.locator('#startBotsPlus').evaluate(e=>e.click());assert.deepEqual(await commands('bots-set'),[{type:'bots-set',count:1}]);assert.equal(await page.locator('#startBotsPlus').isDisabled(),true);assert.equal(await page.locator('#startBotsCount').textContent(),'0','no optimistic count');
+  await update({botCount:1});assert.equal(await page.locator('#startBotsLaunch').isDisabled(),true,'bot request needs connected roster, not count alone');
+  await update({players:[{id:'bot1',name:'Bot',testBot:true}]});assert.equal(await page.locator('#startBotsLaunch').isDisabled(),false);assert.equal(await page.locator('#startBotsCount').textContent(),'1');await page.screenshot({path:'/private/tmp/native-start-bots-ready.png'});
+  await page.click('#startBotsMinus');assert.deepEqual((await commands('bots-set')).at(-1),{type:'bots-set',count:0});await update({botCount:0,players:[]});assert.equal(await page.locator('#startBotsMinus').isDisabled(),true);
+  await page.click('#startBotsPlus');await update({native:{ready:true,catalogReady:true,message:'Экран отключился'}});assert.equal(await page.locator('#startBotsPlus').isDisabled(),false,'error unlocks request');assert.match(await page.locator('#startBotsHint').textContent(),/Экран отключился/);
+  await page.click('#startBotsPlus');await page.keyboard.press('Escape');assert.equal(await page.locator('#startBots').isVisible(),false);await update({botCount:1,players:[{id:'b',testBot:true,name:'B'}]});await update({botCount:0,players:[]});await page.click('#choiceStart');await page.locator('#startBots:popover-open').waitFor();await page.mouse.click(5,690);assert.equal(await page.locator('#startBots').isVisible(),false);
+  await update({native:{ready:true,catalogReady:true},screens:0});await page.click('#choiceStart');assert.equal(await page.locator('#startBotsPlus').isDisabled(),true);await page.keyboard.press('Escape');
+  await update({screens:1});await page.locator('[data-game=push] .lp-card-open').click();await page.locator('#gameDetail').waitFor();await page.click('#launchGame');assert(await page.locator('#startBots').isVisible(),'detail launch supports same inline recovery');
+  await update({botCount:3,players:[{id:'human',name:'A'},...Array.from({length:3},(_,i)=>({id:'b'+i,name:'B',testBot:true}))]});assert.equal(await page.locator('#startBotsPlus').isDisabled(),true,'game maximum limits bots');assert.equal(await page.locator('#startBotsLaunch').isDisabled(),false);
+  await page.click('#startBotsLaunch');assert.equal((await commands('launch')).length,1);assert.equal(await page.locator('#startBots').isVisible(),false);assert.deepEqual(errors,[]);
+  assert.equal(await page.locator('#choiceStart').isDisabled(),true,'start stays pending until authoritative active snapshot');
+  await page.locator('#choiceStart').evaluate(e=>e.click());await page.locator('[data-game=push] .lp-direct-start').evaluate(e=>e.click());assert.equal((await commands('launch')).length,1,'pending taps cannot relaunch');
+  const botCommands=(await commands('bots-set')).length;
+  await update({active:{id:'push',instance:'game-1',roster:snapshot.players,ui:{phase:'waiting'},session:{readyIds:[]}}});
+  await page.waitForFunction(()=>document.getElementById('choiceStart').textContent==='Open controller');
+  assert.equal(await page.locator('#choiceStrip').isVisible(),false);assert.equal(await page.locator('#choiceStart').isDisabled(),false);
+  await page.evaluate(()=>PartyI18n.setLanguage('ru'));await page.waitForFunction(()=>document.getElementById('choiceStart').textContent==='Открыть пульт');
+  assert(await page.locator('#activeController').evaluate(e=>e.scrollWidth<=e.clientWidth+1&&e.scrollHeight<=e.clientHeight+1),'Russian controller CTA fits a 320px phone');
+  await page.evaluate(()=>PartyI18n.setLanguage('en'));
+  await page.locator('#gameDetail').waitFor({state:'hidden'});await page.click('#activeController');await page.locator('[data-game=push] .lp-direct-start').click();
+  assert.equal(await page.evaluate(()=>commands.filter(m=>m.type==='native-tab'&&m.tab==='controller').length),2,'both confirmed CTAs navigate to controller tab');
+  assert.equal((await commands('launch')).length,1);assert.equal((await commands('bots-set')).length,botCommands,'controller navigation never adds bots');
+  await update({active:null});await page.waitForFunction(()=>document.getElementById('choiceStart').textContent==='Start ▶');
+  await page.click('#choiceStart');assert.equal((await commands('launch')).length,2,'return to lobby resets action to start');
+  await update({native:{ready:true,catalogReady:true,message:'Launch failed'}});assert.equal(await page.locator('#choiceStart').isDisabled(),false,'failure clears launch pending');
+  await page.click('#choiceStart');assert.equal((await commands('launch')).length,3,'failed launch may be retried once');assert.deepEqual(errors,[]);
+  console.log('PASS native start-bots: authoritative bots, pending deduplication, successful controller CTA/tab, stop reset, failure retry, no screen, dismissal, detail');
+ }finally{await browser?.close();server.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -1,25 +1,37 @@
 (() => {
  'use strict';
  const prefix=document.currentScript.dataset.prefix;
+ // Capture once: parent.PARTY_INSTANCE changes before the old document/socket
+ // has necessarily finished unloading. Late callbacks must stay in their match.
+ const instance=window.parent.PARTY_INSTANCE;
  document.documentElement.dataset.partyGame=prefix.split('/').filter(Boolean).pop();
  const syncLobbyRail=()=>{document.documentElement.style.setProperty('--shared-rail-top',Math.max(170,Math.min(260,innerHeight*.21))+'px');};
  syncLobbyRail();window.addEventListener('resize',syncLobbyRail);
  const profile=window.PARTY_PROFILE=(window.parent!==window?window.parent.PARTY_PROFILE:null)||{};
  window.PARTY_ROSTER=window.parent!==window&&Array.isArray(window.parent.PARTY_ROSTER)?window.parent.PARTY_ROSTER:[];
+ window.PartyI18n?.protectPlayers([...window.PARTY_ROSTER,profile]);
  const player=!!profile.id;
  const displayOnly=window.parent!==window&&window.parent.PARTY_DISPLAY_ONLY===true;
+ // Forward only a bounded, allowlisted information object, never the game state.
+ const publishTVInformation=window.LocalPartyTVInformation?.createPublisher({
+  enabled:displayOnly&&!player,instance,
+  game:()=>window.PARTY_GAME||window.parent.PARTY_GAME||{id:document.documentElement.dataset.partyGame},
+  ui:()=>window.PARTY_UI||window.parent.PARTY_UI,
+  now:()=>window.PARTY_GAME_CLOCK?.realNow?.()??Date.now(),
+  send:message=>window.parent.postMessage(message,location.origin)
+ });
  if(displayOnly){document.documentElement.classList.add('party-display-only');const style=document.createElement('style');style.textContent='.party-display-only button:not(.party-display-answer),.party-display-only select,.party-display-only input,.party-display-only .party-select,.party-display-only [role=button]{display:none!important}';document.head.append(style);document.addEventListener('DOMContentLoaded',()=>{const keepAnswers=()=>document.querySelectorAll('#answers button,#hostAnswers button,#grid button').forEach(b=>b.classList.add('party-display-answer'));keepAnswers();new MutationObserver(keepAnswers).observe(document.body,{childList:true,subtree:true});});}
  if(parent!==window)document.documentElement.classList.add('party-managed',player?'party-player':'party-host');
  document.addEventListener('DOMContentLoaded',()=>{
   // WebKit can suspend animation frames in an opacity:0 iframe. Readiness must
   // not wait on frames from the document that the parent is waiting to reveal.
-  let announced=false;const reveal=()=>{if(announced)return;announced=true;parent.postMessage({type:'party-visual-ready',instance:parent.PARTY_INSTANCE},location.origin);};
+  let announced=false;const reveal=()=>{if(announced)return;announced=true;parent.postMessage({type:'party-visual-ready',instance},location.origin);};
   const deadline=setTimeout(reveal,350);Promise.resolve(document.fonts?.ready).then(()=>{clearTimeout(deadline);setTimeout(reveal,0);},reveal);
  });
- const nativeConnections=new Set(),ioConnections=new Set();let lastResume=0;
- const announce=(status,message='')=>{if(window.parent!==window)window.parent.postMessage({type:'party-game-status',status,message,instance:window.parent.PARTY_INSTANCE},location.origin);};
+ const nativeConnections=new Set(),ioConnections=new Set();let lastResume=0,lastStatus='connecting';
+ const announce=(status,message='')=>{lastStatus=status;if(window.parent!==window)window.parent.postMessage({type:'party-game-status',status,message,instance},location.origin);};
  const nativeGet=Storage.prototype.getItem,nativeSet=Storage.prototype.setItem,nativeRemove=Storage.prototype.removeItem;
- const scope=`party-game:${prefix}:${profile.id||'host'}:${window.parent.PARTY_INSTANCE||'standalone'}:`;
+ const scope=`party-game:${prefix}:${profile.id||'host'}:${instance||'standalone'}:`;
  Storage.prototype.getItem=function(k){return nativeGet.call(this,scope+k);};
  Storage.prototype.setItem=function(k,v){return nativeSet.call(this,scope+k,v);};
  Storage.prototype.removeItem=function(k){return nativeRemove.call(this,scope+k);};
@@ -33,8 +45,15 @@
  const rewrite=value=>{const u=new URL(value,location.href);if(u.host===location.host&&!u.pathname.startsWith(prefix+'/'))u.pathname=prefix+u.pathname;return u.href;};
  const NativeSocket=window.WebSocket;
  window.WebSocket=class extends NativeSocket{
-  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native)announce('connecting');});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1))announce('connecting');});this.addEventListener('message',event=>{
-   try{const m=JSON.parse(event.data);if(['joined','resumed'].includes(m.type))announce('ready');if(['join_error','resume_error'].includes(m.type))announce('error',m.message||m.error||'Повторяем вход…');}catch{}
+  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native)announce('connecting');});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1)){if(player)window.dispatchEvent(new Event('blur'));announce('connecting');}});this.addEventListener('message',event=>{
+   try{const m=JSON.parse(event.data);
+    if(m.type==='state')publishTVInformation?.(m.data||m);
+    window.PartyI18n?.protectPlayers(m.data?.players||m.players||[]);
+    // Reuse the board already delivered to the TV. Bots don't open an extra
+    // host socket or ask controllers to download world geometry for their AI.
+    if(m.type==='state'&&['push','shrink','bomb','western','hungry','flappy','carryball','snakelines','marble_bloom'].includes(document.documentElement.dataset.partyGame)&&!player)window.PARTY_BOT_VIEW=m.data;
+    if(window.parent.PARTY_TEST_BOT&&['state','selfState'].includes(m.type))window.PARTY_BOT_SELF=m.data;
+    if(['joined','resumed'].includes(m.type))announce('ready');if(['join_error','resume_error'].includes(m.type))announce('error',m.message||m.error||'Повторяем вход…');}catch{}
   });}
   send(raw){if(player&&typeof raw==='string'){try{const m=JSON.parse(raw);if(['join','resume'].includes(m.type)){if(m.data)m.data=credentials(m.data);else Object.assign(m,credentials(m));raw=JSON.stringify(m);}}catch{}}return super.send(raw);}
  };
@@ -50,7 +69,8 @@
    }
    return emit(event,...args);
   };
-  socket.on('connect',()=>announce('connecting'));socket.on('disconnect',()=>announce('connecting'));
+  socket.on('connect',()=>announce('connecting'));socket.on('disconnect',()=>{if(player)window.dispatchEvent(new Event('blur'));announce('connecting');});
+  if(displayOnly&&!player)for(const name of ['state','game:state','state:public'])socket.on(name,s=>publishTVInformation?.(s));
   return socket;
  };
  const fetchOriginal=window.fetch.bind(window);
@@ -65,16 +85,22 @@
   for(const event of ['pointerup','pointercancel'])window.addEventListener(event,e=>release(e.pointerId),{passive:true});
   window.addEventListener('blur',()=>{for(const id of [...presses.keys()])release(id);});
   if(window.parent!==window){document.documentElement.classList.add('party-managed');applyUI(window.parent.PARTY_UI);}
-  document.addEventListener('click',e=>{const b=e.target.closest?.('button');if(!b||window.parent===window)return;if(b.id==='lobbyBtn'||/^в лобби$/i.test(b.textContent.trim())){e.preventDefault();e.stopImmediatePropagation();window.parent.postMessage({type:'party-exit',instance:window.parent.PARTY_INSTANCE},location.origin);}},true);
+  document.addEventListener('click',e=>{const b=e.target.closest?.('button');if(!b||window.parent===window)return;if(b.id==='lobbyBtn'||/^в лобби$/i.test(b.textContent.trim())){e.preventDefault();e.stopImmediatePropagation();window.parent.postMessage({type:'party-exit',instance},location.origin);}},true);
  });
- function resume(){if(!player||Date.now()-lastResume<600)return;lastResume=Date.now();announce('connecting');for(const s of [...nativeConnections])if(s.readyState<2)s.close(1000,'resume');for(const s of ioConnections){s.disconnect();s.connect();}}
+ function resume(){if(!player)return;if(Date.now()-lastResume<600){announce(lastStatus);return;}lastResume=Date.now();
+  // Network recovery can happen with a finger still down (without blur or
+  // pointerup). Clear controller state before reconnecting so its heartbeat
+  // cannot replay the held direction into the newly joined game session.
+  window.dispatchEvent(new Event('blur'));
+  announce('connecting');for(const s of [...nativeConnections])if(s.readyState<2)s.close(1000,'resume');for(const s of ioConnections){s.disconnect();s.connect();}}
  document.addEventListener('visibilitychange',()=>{if(document.hidden)window.dispatchEvent(new Event('blur'));else resume();});
  window.addEventListener('pageshow',e=>{if(e.persisted)resume();});window.addEventListener('online',resume);
+ window.addEventListener('offline',()=>{if(player)window.dispatchEvent(new Event('blur'));});
  function applyUI(ui){if(!ui)return;const root=document.documentElement,previous=root.dataset.partyPhase,changed=previous!==ui.phase;if(changed)root.dataset.partyPhase=ui.phase;if(ui.phase!=='paused')root.classList.toggle('party-session-active',['countdown','playing','reveal','results'].includes(ui.phase));window.PARTY_UI=ui;if(changed){if(ui.phase==='paused')window.dispatchEvent(new Event('blur'));root.classList.remove('party-phase-enter');requestAnimationFrame(()=>{root.classList.add('party-phase-enter');clearTimeout(applyUI.timer);applyUI.timer=setTimeout(()=>root.classList.remove('party-phase-enter'),260);});window.dispatchEvent(new CustomEvent('party-phase-change',{detail:ui}));if(['reveal','results'].includes(ui.phase)&&!['reveal','results'].includes(previous))window.LocalPartyFeel?.emit('round-result',{id:`${window.parent.PARTY_INSTANCE||prefix}:${ui.phase}`,intensity:.42,shake:false,haptic:true});}}
  let startInstance='';
  function requestStart(instance){if(player||displayOnly||startInstance===instance)return;const id=prefix.split('/').at(-1),selectors={push:'button[data-mode="push"]',shrink:'button[data-mode="shrink"]',knives:'button[data-mode="knives"]',bomb:'button[data-mode="bomb"]',western:'button[data-mode="western"]',tanks:'button[data-mode="survival"]',kart:'#startBtn',spy:'#startBtn',monster:'#startGame'};let tries=0;const attempt=()=>{if(startInstance===instance)return;const b=document.querySelector(selectors[id]||'#start');if(document.readyState==='complete'&&b&&!b.disabled){startInstance=instance;b.click();return;}if(tries++<50)setTimeout(attempt,100);};attempt();}
  window.addEventListener('message',e=>{if(e.source!==window.parent||e.origin!==location.origin)return;if(e.data?.type==='party-resume')resume();if(e.data?.type==='party-release')window.dispatchEvent(new Event('blur'));if(e.data?.type==='party-ui'){window.PARTY_SESSION=e.data.session;window.PARTY_GAME=e.data.game;if(Array.isArray(e.data.roster))window.PARTY_ROSTER=e.data.roster;applyUI(e.data.ui);}if(e.data?.type==='party-start')requestStart(e.data.instance);});
- if(window.parent.PARTY_TEST_BOT){window.PARTY_TEST_CONNECTIONS={native:nativeConnections,io:ioConnections};document.addEventListener('DOMContentLoaded',()=>{const script=document.createElement('script');script.src='/test-bot.js';document.head.append(script);});}
+ if(window.parent.PARTY_TEST_BOT){window.PARTY_TEST_CONNECTIONS={native:nativeConnections,io:ioConnections};document.addEventListener('DOMContentLoaded',()=>{const policy=document.createElement('script');policy.src='/bot-policy.js';policy.onload=()=>{const script=document.createElement('script');script.src='/test-bot.js';document.head.append(script);};document.head.append(policy);});}
 })();
 
 document.addEventListener('DOMContentLoaded',()=>{

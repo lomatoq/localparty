@@ -21,7 +21,7 @@
   if(el.matches(scoreSelector))pulse(el,'lp-motion-pulse');else if(el.matches(statusSelector))pulse(el,'lp-motion-status');
  };
  const scan=node=>{
-  const element=node instanceof Element?node:node.parentElement;if(!element)return;
+  const element=node instanceof Element?node:node?.parentElement;if(!element||!element.isConnected)return;
   if(element.matches(scoreSelector+','+statusSelector))changed(element);
   element.querySelectorAll?.(scoreSelector+','+statusSelector).forEach(changed);
  };
@@ -72,6 +72,13 @@
   a.timer=setTimeout(()=>{if(effects.get(el)===a)forget(el);},280);
  }
  function release(id,commit){const p=pointers.get(id);if(!p)return;clearTimeout(p.timer);pointers.delete(id);if(![...pointers.values()].some(x=>x.el===p.el))up(p.el,commit);}
+ function releaseElement(el){
+  // A WKWebView can deliver `click` after navigation/state work without the
+  // matching pointerup. Never leave the fill-forwards press animation behind.
+  for(const [id,p] of [...pointers])if(p.el===el)release(id,false);
+  forget(el);
+  el.classList.remove('party-pressed');
+ }
  function all(){for(const id of [...pointers.keys()])release(id,false);for(const el of [...effects.keys()])forget(el);}
  function begin(id,el,x=0,y=0,touch=false){
   if(pointers.has(id))return;const p={el,x,y,timer:null};pointers.set(id,p);
@@ -79,7 +86,7 @@
   else if(el.closest('.app-header,dialog,.session-controls,#partyNativeDock'))window.LocalPartyNative?.prepare?.();
   if(touch)p.timer=setTimeout(()=>{if(pointers.get(id)===p&&el.isConnected)down(el);},35);else down(el);
  }
- document.addEventListener('pointerdown',e=>{if(e.button!==0)return;const el=target(e.target);if(el)begin(e.pointerId,el,e.clientX,e.clientY,e.pointerType==='touch');},{capture:true,passive:true});
+ document.addEventListener('pointerdown',e=>{if(e.button!==0)return;const el=target(e.target);if(el){begin(e.pointerId,el,e.clientX,e.clientY,e.pointerType==='touch');if(e.isTrusted&&document.documentElement.classList.contains('party-player')){const shot=/fire|shoot|throw|drop|draw|action/i.test(el.id);setTimeout(()=>{if(!el.isConnected||el.disabled)return;const pattern=shot?[14]:[6];if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);},0);}}},{capture:true,passive:true});
  document.addEventListener('pointermove',e=>{
   const p=pointers.get(e.pointerId);if(!p)return;
   if(Math.hypot(e.clientX-p.x,e.clientY-p.y)>12){release(e.pointerId,false);return;}
@@ -91,14 +98,82 @@
  document.addEventListener('keyup',e=>release('key:'+e.key,true),{capture:true});
  document.addEventListener('click',e=>{
   const el=target(e.target);if(!e.isTrusted||!el||['testHaptics','hapticsToggle'].includes(el.id))return;
+  releaseElement(el);
   const now=performance.now();if(now-lastHaptic<65)return;lastHaptic=now;
   // The native endpoint enforces the user's haptics toggle. Game-hit haptics
   // remain owned by the game, avoiding a second vibration on every fire button.
-  if(document.body.classList.contains('native-shell'))window.webkit?.messageHandlers?.partyShell?.postMessage({type:'haptic',pattern:[7]});
-  else if(el.closest('.app-header,dialog,.session-controls,#partyNativeDock,.profile-photo-field'))window.LocalPartyNative?.haptic?.(7);
+  const selection=el.matches('[aria-pressed],[role=tab],.filter-tab,[data-section]'),confirmation=el.matches('[type=submit],#confirmYes,#readyButton,#resumeButton,#startBotsLaunch'),pattern=confirmation?[14,35,9]:selection?[5]:[9];
+  if(document.body.classList.contains('native-shell'))window.webkit?.messageHandlers?.partyShell?.postMessage({type:'haptic',pattern});
+  else if(el.closest('.app-header,dialog,.session-controls,#partyNativeDock,.profile-photo-field,.guest-catalog-tools,.catalog-filters')||confirmation){if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);}
  },{capture:true,passive:true});
  window.addEventListener('blur',all);window.addEventListener('pagehide',all);window.addEventListener('party-native-hide',all);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)all();});
  media.addEventListener?.('change',all);
- window.LocalPartyUIFeel=Object.freeze({cancel:all,revision:'tactile-20260918.2'});
+ window.LocalPartyUIFeel=Object.freeze({cancel:all,release:releaseElement,revision:'tactile-20260920.1'});
+})();
+
+/* One paced reveal queue, shared by native-host and player catalogs. */
+(()=>{
+ 'use strict';
+ if(document.body.classList.contains('tv-screen'))return;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)'), seen=new WeakSet(), images=new WeakSet();
+ const pending=new Set(),visible=new Set(),ready=new WeakSet(),running=new Set(),cardAnimations=new WeakMap();
+ let timer=0,nextStart=0;
+ const cards='.lp-catalog-card,.guest-game,.game[data-id]';
+ function pump(){
+  clearTimeout(timer);timer=0;
+  for(const card of pending)if(!card.isConnected){pending.delete(card);visible.delete(card);}
+  if(document.hidden||running.size>=3)return;
+  const card=[...pending].find(c=>visible.has(c)&&ready.has(c)&&!c.hidden);
+  if(!card)return;
+  const wait=nextStart-performance.now();if(wait>0){timer=setTimeout(pump,wait);return;}
+  pending.delete(card);visible.delete(card);watcher.unobserve(card);
+  card.classList.remove('lp-reveal-pending');
+  if(reduced.matches){pump();return;}
+  nextStart=performance.now()+120;
+  const animation=card.animate([{opacity:0,translate:'0 14px'},{opacity:1,translate:'0 0'}],{duration:640,easing:'cubic-bezier(.2,.65,.3,1)',fill:'backwards'});
+  cardAnimations.set(card,animation);running.add(animation);animation.finished.catch(()=>{}).finally(()=>{running.delete(animation);if(cardAnimations.get(card)===animation)cardAnimations.delete(card);pump();});pump();
+ }
+ const watcher=new IntersectionObserver(entries=>{
+  for(const entry of entries){
+   const card=entry.target;
+   if(entry.isIntersecting)visible.add(card);else visible.delete(card);
+  }
+  pump();
+ },{threshold:0,rootMargin:'120px 0px'});
+ function scan(root){
+  if(!(root instanceof Element))return;
+  const list=[...(root.matches(cards)?[root]:[]),...root.querySelectorAll(cards)];
+  for(const card of list){
+   if(seen.has(card))continue;seen.add(card);
+   if(reduced.matches){ready.add(card);continue;}
+   pending.add(card);card.classList.add('lp-reveal-pending');watcher.observe(card);
+   const img=card.querySelector('img.symbol,img.guest-art');
+   if(!img||images.has(img)){ready.add(card);pump();continue;}images.add(img);
+   // Decode before revealing when possible; a broken/slow cover must never
+   // prevent a card's title and controls from appearing.
+   card.classList.add('lp-art-loading');let settled=false;
+   const finish=()=>{if(settled)return;settled=true;clearTimeout(deadline);card.classList.remove('lp-art-loading');ready.add(card);pump();};
+   const deadline=setTimeout(()=>{ready.add(card);pump();},1200);
+   const decoded=()=>Promise.resolve(img.decode?.()).catch(()=>{}).then(finish);
+   img.addEventListener('load',decoded,{once:true});img.addEventListener('error',finish,{once:true});
+   if(img.complete)decoded();
+  }
+ }
+ scan(document.body);
+ // Replay only on a real game → lobby transition, never on room updates or
+ // ordinary scrolling. Cached images stay decoded and card geometry is stable.
+ window.addEventListener('party-lobby-enter',event=>{
+  const root=event.detail?.root||document.body;
+  clearTimeout(timer);nextStart=0;
+  for(const card of root.querySelectorAll(cards)){
+   cardAnimations.get(card)?.cancel();seen.delete(card);
+   pending.delete(card);visible.delete(card);watcher.unobserve(card);
+   card.classList.remove('lp-reveal-pending');
+  }
+  scan(root);
+ });
+ new MutationObserver(records=>{for(const r of records){for(const n of r.addedNodes)scan(n);if(r.target.id==='tvStartup'&&r.target.hidden)document.querySelectorAll(cards).forEach(card=>{watcher.unobserve(card);watcher.observe(card);});}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+ document.addEventListener('visibilitychange',pump);
+ reduced.addEventListener?.('change',()=>{if(reduced.matches){for(const card of pending){card.classList.remove('lp-reveal-pending');watcher.unobserve(card);}pending.clear();visible.clear();for(const a of running)a.cancel();clearTimeout(timer);}else pump();});
 })();

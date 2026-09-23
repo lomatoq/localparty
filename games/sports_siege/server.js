@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   res.end(req.method==='HEAD'?undefined:body);
 });
 const wss=new WebSocketServer({server,path:'/ws',maxPayload:4096});
-function send(ws,type,data){if(ws.readyState===1&&ws.bufferedAmount<512*1024)ws.send(JSON.stringify({type,data}));}
+function send(ws,type,data){if(ws.readyState===1&&(type!=='state'||ws.bufferedAmount<512*1024))ws.send(JSON.stringify({type,data}));}
 function controllerState(s,id,bot=false){
   if(bot)return s;
   const {physics,stones,enemies,targets,covers,...small}=s;

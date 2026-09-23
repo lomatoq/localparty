@@ -1,5 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
-const {spawn}=require('node:child_process'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),WS=require('ws');
+const {spawn}=require('node:child_process'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),http=require('node:http'),https=require('node:https'),WS=require('ws');
 const {ProfileStore}=require('../lib/profile-store');
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn,label){for(let i=0;i<300;i++){if(await fn())return;await delay(20);}throw Error(label);}
@@ -12,8 +12,10 @@ test('Wi-Fi listener is opt-in, isolated from the room, and closes without losin
  const bootstrap=`const os=require('node:os');const original=os.networkInterfaces();const lan=Object.values(original).flat().filter(x=>x.family==='IPv4'&&!x.internal);os.networkInterfaces=()=>({...original,en0:lan});require('./server.js');`;
  const child=spawn(process.execPath,['-e',bootstrap],{cwd:path.join(__dirname,'..'),env:{...process.env,PARTY_EMBEDDED:'1',PARTY_ADMIN_KEY:'test',PARTY_DATA_FILE:file,PARTY_PORT:'0',PARTY_INTERNAL_PORT:'0',PARTY_NO_BROWSER:'1'},stdio:['ignore','pipe','pipe']});
  let log='',base;const sockets=[];child.stdout.on('data',b=>log+=b);child.stderr.on('data',b=>log+=b);
- async function manage(command,status=200,origin=base){const res=await fetch(origin+'/api/manage',{method:command?'POST':'GET',headers:{Authorization:'Bearer test','Content-Type':'application/json'},body:command?JSON.stringify(command):undefined});const data=await res.json();assert.equal(res.status,status,JSON.stringify(data));return data;}
- async function connect(origin=base,data){const ws=new WS(origin.replace('http','ws')+'/lobby');sockets.push(ws);ws.messages=[];ws.on('error',()=>{});ws.on('message',b=>{const m=JSON.parse(b);ws.messages.push(m);if(m.type==='joined')ws.profile=m;});await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});if(data){ws.send(JSON.stringify({...data,type:'join'}));await until(()=>ws.profile,'join');}return ws;}
+ async function request(origin,route,options={}){if(!origin.startsWith('https:'))return fetch(origin+route,options);return new Promise((resolve,reject)=>{const req=https.request(origin+route,{method:options.method||'GET',headers:options.headers,rejectUnauthorized:false},res=>{let body='';res.on('data',b=>body+=b);res.on('end',()=>resolve({status:res.statusCode,json:async()=>JSON.parse(body),text:async()=>body}));});req.setTimeout(1500,()=>req.destroy(Error('request timeout')));req.on('error',reject);if(options.body)req.write(options.body);req.end();});}
+ async function manage(command,status=200,origin=base){const res=await request(origin,'/api/manage',{method:command?'POST':'GET',headers:{Authorization:'Bearer test','Content-Type':'application/json'},body:command?JSON.stringify(command):undefined});const data=await res.json();assert.equal(res.status,status,JSON.stringify(data));return data;}
+ async function connect(origin=base,data){const ws=new WS(origin.replace('http','ws')+'/lobby',origin.startsWith('https:')?{rejectUnauthorized:false}:undefined);sockets.push(ws);ws.messages=[];ws.on('error',()=>{});ws.on('message',b=>{const m=JSON.parse(b);ws.messages.push(m);if(m.type==='joined')ws.profile=m;});await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});if(data){ws.send(JSON.stringify({...data,type:'join'}));await until(()=>ws.profile,'join');}return ws;}
+ async function connectGame(player,origin=base){const ws=new WS(origin.replace('http','ws')+'/games/tanks/ws',origin.startsWith('https:')?{rejectUnauthorized:false}:undefined);sockets.push(ws);ws.messages=[];ws.on('error',()=>{});ws.on('message',b=>ws.messages.push(JSON.parse(b)));await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});ws.send(JSON.stringify({type:'join',data:{partyId:player.profile.id,partyToken:player.profile.token,name:player.profile.name}}));await until(()=>ws.messages.some(m=>m.type==='joined'),'game join');return ws;}
  try {
   await until(()=>/localhost:(\d+)/.test(log),'startup');base='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];
   let state=await manage();assert.equal(state.enabled,true);assert.equal(state.networkEnabled,false);assert.deepEqual(state.urls,[]);assert.equal(state.totalMatches,1);
@@ -23,22 +25,26 @@ test('Wi-Fi listener is opt-in, isolated from the room, and closes without losin
   const ips=Object.values(os.networkInterfaces()).flat().filter(x=>x.family==='IPv4'&&!x.internal);
   if(ips.length)await assert.rejects(fetch('http://'+ips[0].address+':'+new URL(base).port+'/api/health',{signal:AbortSignal.timeout(1200)}),'loopback listener must not accept LAN requests');
   state=await manage({type:'network-set',enabled:true});assert.equal(state.networkEnabled,true);assert.ok(state.urls.length);
-  const publicPort=new URL(state.urls[0]).port,publicBase='http://127.0.0.1:'+publicPort;
-  await manage(undefined,403,publicBase);assert.equal((await fetch(publicBase+'/play')).status,200);
+  const publicURL=new URL(state.urls[0]);publicURL.hostname='127.0.0.1';const publicPort=publicURL.port,publicBase=publicURL.origin;
+  await manage(undefined,403,publicBase);assert.equal((await request(publicBase,'/play')).status,200);
   const guest=await connect(publicBase,{name:'Гость'});const identity=guest.profile;
   const run=(await manage({type:'launch',id:'tanks'})).active;await manage({type:'statistics-reset'},400);
+  const hostGame=await connectGame(host),secondGame=await connectGame(second),guestGame=await connectGame(guest,publicBase);
   // Closing LAN must not turn a partial exit vote into unanimous consent.
   for(const player of [host,second,guest])player.send(JSON.stringify({type:'game-status',status:'ready',instance:run.instance}));
   await until(async()=>(await manage()).active.ready.length===3,'controllers registered');
+  state=await manage();assert.equal(state.active.roster.length,3);assert.ok(state.active.roster.every(p=>p.connected&&p.gameReady));
+  await manage({type:'force-start',instance:run.instance});
+  await until(async()=>(await manage()).active.ui.phase!=='waiting','host force start');
   for(const player of [host,second])player.send(JSON.stringify({type:'exit-vote',vote:true,instance:run.instance}));
   await until(async()=>(await manage()).active.session.exitVotes.length===2,'partial exit vote');
   // Both lobby sockets and proxied game sockets must close on the public listener.
-  const gameSocket=new WS(publicBase.replace('http','ws')+'/games/tanks/ws');sockets.push(gameSocket);gameSocket.on('error',()=>{});await new Promise((r,j)=>{gameSocket.once('open',r);gameSocket.once('error',j);});
+  const gameSocket=new WS(publicBase.replace('http','ws')+'/games/tanks/ws',{rejectUnauthorized:false});sockets.push(gameSocket);gameSocket.on('error',()=>{});await new Promise((r,j)=>{gameSocket.once('open',r);gameSocket.once('error',j);});
   for(let n=0;n<3;n++){
-   state=await manage({type:'network-set',enabled:false});assert.equal(state.enabled,true);assert.equal(state.active.instance,run.instance);assert.deepEqual(state.urls,[]);assert.equal(state.incident,null);
+   state=await manage({type:'network-set',enabled:false});assert.equal(state.enabled,true);assert.equal(state.active.instance,run.instance);assert.deepEqual(state.urls,[]);assert.equal(state.incident,null);assert.equal(state.active.roster.find(p=>p.id===identity.id)?.connected,false);
    assert.equal((await fetch(base+'/play')).status,200);assert.equal(display.readyState,WS.OPEN);assert.equal(host.readyState,WS.OPEN);
-   await until(()=>guest.readyState===WS.CLOSED&&gameSocket.readyState===WS.CLOSED,'guest and game socket closed');
-   await assert.rejects(fetch(publicBase+'/play',{signal:AbortSignal.timeout(1200)}));
+   await until(()=>guest.readyState===WS.CLOSED&&guestGame.readyState===WS.CLOSED&&gameSocket.readyState===WS.CLOSED,'guest and game sockets closed');
+   await assert.rejects(request(publicBase,'/play'));
    state=await manage({type:'network-set',enabled:true});assert.equal(new URL(state.urls[0]).port,publicPort);assert.equal(state.active.instance,run.instance);
   }
   assert.ok(guest.messages.some(m=>m.type==='access-closed'),'intentional disconnect has a distinct event');

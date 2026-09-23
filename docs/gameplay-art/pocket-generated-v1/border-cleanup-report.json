@@ -1,0 +1,2261 @@
+{
+  "weapons": 321,
+  "changedIcons": 70,
+  "removedPixels": 19738,
+  "protectedEdgeComponents": 94,
+  "thresholds": {
+    "alpha": 8,
+    "edgeFraction": 0.012,
+    "maxTileArea": 0.045,
+    "maxMainComponentArea": 0.18
+  },
+  "icons": [
+    {
+      "id": "pebble",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 5499
+    },
+    {
+      "id": "big_shot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11954
+    },
+    {
+      "id": "3_shot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 3074
+    },
+    {
+      "id": "5_shot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 8245
+    },
+    {
+      "id": "jackhammer",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13452
+    },
+    {
+      "id": "heatseeker",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13163
+    },
+    {
+      "id": "tracer",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10164
+    },
+    {
+      "id": "pile_driver",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10927
+    },
+    {
+      "id": "dirt_mover",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13046
+    },
+    {
+      "id": "crazy_ivan",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16426
+    },
+    {
+      "id": "spider",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20187
+    },
+    {
+      "id": "sniper_rifle",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11152
+    },
+    {
+      "id": "magic_wall",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11119
+    },
+    {
+      "id": "dirt_slinger",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12169
+    },
+    {
+      "id": "zapper",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 7241
+    },
+    {
+      "id": "napalm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 3274
+    },
+    {
+      "id": "hail_storm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 3533
+    },
+    {
+      "id": "ground_hog",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16873
+    },
+    {
+      "id": "worm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11573
+    },
+    {
+      "id": "homing_worm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17204
+    },
+    {
+      "id": "skipper",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 8589
+    },
+    {
+      "id": "chain_reaction",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15451
+    },
+    {
+      "id": "pineapple",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13793
+    },
+    {
+      "id": "firecracker",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 9761
+    },
+    {
+      "id": "homing_missile",
+      "removedPixels": 1103,
+      "removedComponents": 3,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10901
+    },
+    {
+      "id": "dirtball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13343
+    },
+    {
+      "id": "tommy_gun",
+      "removedPixels": 385,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13815
+    },
+    {
+      "id": "mountain_mover",
+      "removedPixels": 511,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14885
+    },
+    {
+      "id": "scatter_shot",
+      "removedPixels": 314,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14742
+    },
+    {
+      "id": "cruiser",
+      "removedPixels": 596,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14003
+    },
+    {
+      "id": "jump_jets",
+      "removedPixels": 1,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16877
+    },
+    {
+      "id": "mud_pie",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13770
+    },
+    {
+      "id": "pin_cushion",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15924
+    },
+    {
+      "id": "laser_battery",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17933
+    },
+    {
+      "id": "cannon_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17463
+    },
+    {
+      "id": "wacky_tank",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 20080
+    },
+    {
+      "id": "digger",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15802
+    },
+    {
+      "id": "glue_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11853
+    },
+    {
+      "id": "fission_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16986
+    },
+    {
+      "id": "late_bloomer",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19564
+    },
+    {
+      "id": "fire_bolt",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13809
+    },
+    {
+      "id": "color_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20781
+    },
+    {
+      "id": "potholes",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15158
+    },
+    {
+      "id": "boomerang",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11348
+    },
+    {
+      "id": "popcorn",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 5305
+    },
+    {
+      "id": "sprinkler",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13790
+    },
+    {
+      "id": "well_digger",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15197
+    },
+    {
+      "id": "bouncy_dirt",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17087
+    },
+    {
+      "id": "super_tracer",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 5594
+    },
+    {
+      "id": "minigun",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17209
+    },
+    {
+      "id": "laser",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15273
+    },
+    {
+      "id": "super_skipper",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10613
+    },
+    {
+      "id": "crater_maker",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19529
+    },
+    {
+      "id": "big_dirtball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19969
+    },
+    {
+      "id": "super_zapper",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11469
+    },
+    {
+      "id": "cruball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19643
+    },
+    {
+      "id": "mega_cruiser",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18477
+    },
+    {
+      "id": "roller",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20303
+    },
+    {
+      "id": "heavy_roller",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 23284
+    },
+    {
+      "id": "flash_blast",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12725
+    },
+    {
+      "id": "nuke",
+      "removedPixels": 734,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14907
+    },
+    {
+      "id": "mega_nuke",
+      "removedPixels": 16,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 20087
+    },
+    {
+      "id": "pillow_fight",
+      "removedPixels": 517,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17023
+    },
+    {
+      "id": "sink_and_swim",
+      "removedPixels": 287,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19453
+    },
+    {
+      "id": "hot_foot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17092
+    },
+    {
+      "id": "ambush",
+      "removedPixels": 37,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 5411
+    },
+    {
+      "id": "beehive",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 22498
+    },
+    {
+      "id": "blast_off",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13819
+    },
+    {
+      "id": "fire_in_the_hole",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15375
+    },
+    {
+      "id": "lob_o_matic",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 10759
+    },
+    {
+      "id": "rainbow_dirt",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16905
+    },
+    {
+      "id": "super_laser",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13111
+    },
+    {
+      "id": "ground_shocker",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12930
+    },
+    {
+      "id": "bouncy_wall",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 9824
+    },
+    {
+      "id": "lodestones",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15455
+    },
+    {
+      "id": "particle_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14938
+    },
+    {
+      "id": "magic_forest",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17345
+    },
+    {
+      "id": "buckshot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 8274
+    },
+    {
+      "id": "quad_missile",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15675
+    },
+    {
+      "id": "carpet_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 3703
+    },
+    {
+      "id": "carpet_bomb_2",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 3380
+    },
+    {
+      "id": "flamethrower",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12435
+    },
+    {
+      "id": "skimmer",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 6048
+    },
+    {
+      "id": "volcano",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13865
+    },
+    {
+      "id": "pedistal",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14475
+    },
+    {
+      "id": "fire_storm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15635
+    },
+    {
+      "id": "meteor_shower",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17070
+    },
+    {
+      "id": "roman_candle",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 9499
+    },
+    {
+      "id": "flying_digger",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19636
+    },
+    {
+      "id": "comet",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10407
+    },
+    {
+      "id": "sunburn",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15080
+    },
+    {
+      "id": "riptide",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19211
+    },
+    {
+      "id": "buzzsaw",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16339
+    },
+    {
+      "id": "static_ball",
+      "removedPixels": 3,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18824
+    },
+    {
+      "id": "mystery_bombs",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11717
+    },
+    {
+      "id": "flower_power",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20718
+    },
+    {
+      "id": "turn_and_burn",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14517
+    },
+    {
+      "id": "dome_protect",
+      "removedPixels": 200,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16846
+    },
+    {
+      "id": "backfire",
+      "removedPixels": 16,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14794
+    },
+    {
+      "id": "old_faithful",
+      "removedPixels": 27,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13248
+    },
+    {
+      "id": "bouncy_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14951
+    },
+    {
+      "id": "chaos_grenade",
+      "removedPixels": 56,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15525
+    },
+    {
+      "id": "tar_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15964
+    },
+    {
+      "id": "lightning_strike",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17761
+    },
+    {
+      "id": "acid_rain",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13807
+    },
+    {
+      "id": "porcupine",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15653
+    },
+    {
+      "id": "power_grid",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17116
+    },
+    {
+      "id": "shadow_blast",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17297
+    },
+    {
+      "id": "x_ray_cannon",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13888
+    },
+    {
+      "id": "bazooka",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13600
+    },
+    {
+      "id": "lucky_shot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17862
+    },
+    {
+      "id": "shelter",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18544
+    },
+    {
+      "id": "fire_ice",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16669
+    },
+    {
+      "id": "anvil",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13649
+    },
+    {
+      "id": "flare",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11930
+    },
+    {
+      "id": "super_flare",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16629
+    },
+    {
+      "id": "fracture",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 6814
+    },
+    {
+      "id": "claymore",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17589
+    },
+    {
+      "id": "phantom",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15626
+    },
+    {
+      "id": "earth_mover",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17582
+    },
+    {
+      "id": "flak",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12394
+    },
+    {
+      "id": "fireball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16754
+    },
+    {
+      "id": "flea_circus",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17762
+    },
+    {
+      "id": "super_star",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15035
+    },
+    {
+      "id": "drillers",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13316
+    },
+    {
+      "id": "gamma_blaster",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17928
+    },
+    {
+      "id": "gravity_well",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19123
+    },
+    {
+      "id": "hot_potato",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17444
+    },
+    {
+      "id": "funnel",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15686
+    },
+    {
+      "id": "crazy_wall",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 22287
+    },
+    {
+      "id": "burnt_popcorn",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15547
+    },
+    {
+      "id": "fireworks",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13741
+    },
+    {
+      "id": "super_nova",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19769
+    },
+    {
+      "id": "great_wall",
+      "removedPixels": 20,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19839
+    },
+    {
+      "id": "snowblower",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19804
+    },
+    {
+      "id": "lava_cannon",
+      "removedPixels": 68,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12711
+    },
+    {
+      "id": "solar_flare",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14394
+    },
+    {
+      "id": "10_shot",
+      "removedPixels": 180,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16353
+    },
+    {
+      "id": "stinger",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 9403
+    },
+    {
+      "id": "mega_reaction",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 21948
+    },
+    {
+      "id": "ant_farm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15638
+    },
+    {
+      "id": "sonic_blast",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 20369
+    },
+    {
+      "id": "rockslide",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16048
+    },
+    {
+      "id": "lightning_rod",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14085
+    },
+    {
+      "id": "star_dust",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16584
+    },
+    {
+      "id": "water_balloons",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14373
+    },
+    {
+      "id": "snowballs",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16646
+    },
+    {
+      "id": "sledgehammer",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13050
+    },
+    {
+      "id": "collide_o_scope",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17938
+    },
+    {
+      "id": "neon_blast",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15315
+    },
+    {
+      "id": "island",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16839
+    },
+    {
+      "id": "golden_bullet",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10844
+    },
+    {
+      "id": "melt_down",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15494
+    },
+    {
+      "id": "streamers",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 7703
+    },
+    {
+      "id": "mass_driver",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16683
+    },
+    {
+      "id": "molten_plastic",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 9988
+    },
+    {
+      "id": "spinner",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17922
+    },
+    {
+      "id": "flying_discs",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10852
+    },
+    {
+      "id": "phaser",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 21357
+    },
+    {
+      "id": "shredder",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17310
+    },
+    {
+      "id": "aqua_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16780
+    },
+    {
+      "id": "tunnel",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20527
+    },
+    {
+      "id": "lava",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12428
+    },
+    {
+      "id": "bouncy_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11745
+    },
+    {
+      "id": "laser_strike",
+      "removedPixels": 20,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20215
+    },
+    {
+      "id": "whiplash",
+      "removedPixels": 123,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12604
+    },
+    {
+      "id": "fuzz_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16275
+    },
+    {
+      "id": "burning_rubber",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17738
+    },
+    {
+      "id": "side_kick",
+      "removedPixels": 114,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15479
+    },
+    {
+      "id": "blockade",
+      "removedPixels": 65,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11105
+    },
+    {
+      "id": "stun_gun",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16645
+    },
+    {
+      "id": "tornado",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15183
+    },
+    {
+      "id": "thor_s_hammer",
+      "removedPixels": 387,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 12923
+    },
+    {
+      "id": "stampede",
+      "removedPixels": 31,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 12495
+    },
+    {
+      "id": "hot_coals",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14519
+    },
+    {
+      "id": "fizz_bombs",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14171
+    },
+    {
+      "id": "graviton",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13970
+    },
+    {
+      "id": "shield",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15088
+    },
+    {
+      "id": "firefly",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13974
+    },
+    {
+      "id": "glue_storm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 11211
+    },
+    {
+      "id": "glue_gun",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14572
+    },
+    {
+      "id": "run_n_gun",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19225
+    },
+    {
+      "id": "scorcher",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15927
+    },
+    {
+      "id": "saucer_attack",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10758
+    },
+    {
+      "id": "tractor_beam",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16966
+    },
+    {
+      "id": "smoke_bomb",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13702
+    },
+    {
+      "id": "nanobots",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 9939
+    },
+    {
+      "id": "phase_missile",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14593
+    },
+    {
+      "id": "gyro_glue",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17000
+    },
+    {
+      "id": "warp_gate",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 21671
+    },
+    {
+      "id": "tesla_coil",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 8318
+    },
+    {
+      "id": "magic_beans",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14385
+    },
+    {
+      "id": "grab_bag",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17062
+    },
+    {
+      "id": "railgun",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15059
+    },
+    {
+      "id": "sand_storm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20208
+    },
+    {
+      "id": "lemon",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14195
+    },
+    {
+      "id": "acid_bombs",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15073
+    },
+    {
+      "id": "chroma_blaster",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16489
+    },
+    {
+      "id": "cauldron",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19011
+    },
+    {
+      "id": "zipper",
+      "removedPixels": 840,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11083
+    },
+    {
+      "id": "bubble_wrap",
+      "removedPixels": 20,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16124
+    },
+    {
+      "id": "chalk_dust",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14295
+    },
+    {
+      "id": "mower",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 22978
+    },
+    {
+      "id": "trailblazer",
+      "removedPixels": 30,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 3973
+    },
+    {
+      "id": "bulldozer",
+      "removedPixels": 90,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 18675
+    },
+    {
+      "id": "lead_balloon",
+      "removedPixels": 91,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16293
+    },
+    {
+      "id": "dive_bomb",
+      "removedPixels": 277,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 12236
+    },
+    {
+      "id": "toaster",
+      "removedPixels": 355,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 21214
+    },
+    {
+      "id": "time_bomb",
+      "removedPixels": 69,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 19781
+    },
+    {
+      "id": "burn_barrel",
+      "removedPixels": 756,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17955
+    },
+    {
+      "id": "char",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 6286
+    },
+    {
+      "id": "pop_rocket",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13547
+    },
+    {
+      "id": "sky_strike",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14396
+    },
+    {
+      "id": "power_washer",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17656
+    },
+    {
+      "id": "cheap_shot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17315
+    },
+    {
+      "id": "blackout",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 23125
+    },
+    {
+      "id": "space_laser",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14786
+    },
+    {
+      "id": "bunker_buster",
+      "removedPixels": 56,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17701
+    },
+    {
+      "id": "bushwhack",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 12740
+    },
+    {
+      "id": "repeater",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16997
+    },
+    {
+      "id": "puddle_jumper",
+      "removedPixels": 15,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16572
+    },
+    {
+      "id": "elevator",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 18036
+    },
+    {
+      "id": "breakout",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19801
+    },
+    {
+      "id": "orbiter",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17086
+    },
+    {
+      "id": "bouncy_tunnel",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18298
+    },
+    {
+      "id": "barrage",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16329
+    },
+    {
+      "id": "fire_hose",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14948
+    },
+    {
+      "id": "bumpers",
+      "removedPixels": 88,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16154
+    },
+    {
+      "id": "web",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14400
+    },
+    {
+      "id": "blowtorch",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11549
+    },
+    {
+      "id": "mudslide",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16671
+    },
+    {
+      "id": "party_popper",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10967
+    },
+    {
+      "id": "torpedo",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17180
+    },
+    {
+      "id": "dazzler",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18098
+    },
+    {
+      "id": "trick_shot",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 11139
+    },
+    {
+      "id": "glue_stick",
+      "removedPixels": 151,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16376
+    },
+    {
+      "id": "bubble_blast",
+      "removedPixels": 8,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18868
+    },
+    {
+      "id": "spectra_laser",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17654
+    },
+    {
+      "id": "leap_frog",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17753
+    },
+    {
+      "id": "cluster_bombs",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17143
+    },
+    {
+      "id": "showdown",
+      "removedPixels": 414,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 13822
+    },
+    {
+      "id": "corkscrew",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 11920
+    },
+    {
+      "id": "booster_rocket",
+      "removedPixels": 911,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16398
+    },
+    {
+      "id": "hedge",
+      "removedPixels": 1148,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 21196
+    },
+    {
+      "id": "quicksand",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15066
+    },
+    {
+      "id": "laser_tracer",
+      "removedPixels": 84,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19756
+    },
+    {
+      "id": "shock_wave",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 22749
+    },
+    {
+      "id": "gummy_worms",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16399
+    },
+    {
+      "id": "jump_rope",
+      "removedPixels": 1,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 2,
+      "largestComponentPixels": 8499
+    },
+    {
+      "id": "super_funnel",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15334
+    },
+    {
+      "id": "bunker",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 21424
+    },
+    {
+      "id": "ice_crush",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 18054
+    },
+    {
+      "id": "liquid_nitrogen",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17698
+    },
+    {
+      "id": "flash_freeze",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16446
+    },
+    {
+      "id": "avalanche",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 18964
+    },
+    {
+      "id": "snowdrift",
+      "removedPixels": 16,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14712
+    },
+    {
+      "id": "bonfire",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17931
+    },
+    {
+      "id": "eruption",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17553
+    },
+    {
+      "id": "blaze",
+      "removedPixels": 166,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17691
+    },
+    {
+      "id": "heat_lamp",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14821
+    },
+    {
+      "id": "zinger",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 10263
+    },
+    {
+      "id": "space_cannon",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15703
+    },
+    {
+      "id": "pulsar",
+      "removedPixels": 238,
+      "removedComponents": 3,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17010
+    },
+    {
+      "id": "scrambler",
+      "removedPixels": 40,
+      "removedComponents": 3,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17518
+    },
+    {
+      "id": "laser_grenade",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15540
+    },
+    {
+      "id": "gyrobots",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16485
+    },
+    {
+      "id": "badger",
+      "removedPixels": 17,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19383
+    },
+    {
+      "id": "pot_o_gold",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20787
+    },
+    {
+      "id": "crackdown",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 20020
+    },
+    {
+      "id": "glacier",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17700
+    },
+    {
+      "id": "paddle_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18741
+    },
+    {
+      "id": "tidal_wave",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 22542
+    },
+    {
+      "id": "pounder",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 17445
+    },
+    {
+      "id": "frostbite",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16801
+    },
+    {
+      "id": "explode_a_tron",
+      "removedPixels": 41,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18528
+    },
+    {
+      "id": "excavator",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 19830
+    },
+    {
+      "id": "plasma_orb",
+      "removedPixels": 799,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 20952
+    },
+    {
+      "id": "bubble_gun",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17779
+    },
+    {
+      "id": "star_cruiser",
+      "removedPixels": 386,
+      "removedComponents": 5,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16914
+    },
+    {
+      "id": "lock_box",
+      "removedPixels": 45,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 21532
+    },
+    {
+      "id": "carbon_crawler",
+      "removedPixels": 804,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 18337
+    },
+    {
+      "id": "energy_spike",
+      "removedPixels": 295,
+      "removedComponents": 3,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14852
+    },
+    {
+      "id": "laser_net",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16744
+    },
+    {
+      "id": "tachyon_beam",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15554
+    },
+    {
+      "id": "fire_wall",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 24607
+    },
+    {
+      "id": "freeze_ray",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15367
+    },
+    {
+      "id": "buzzbots",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17120
+    },
+    {
+      "id": "wildfire",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 21991
+    },
+    {
+      "id": "robotic_worm",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14152
+    },
+    {
+      "id": "hot_spring",
+      "removedPixels": 151,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16574
+    },
+    {
+      "id": "mirror_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16772
+    },
+    {
+      "id": "twist_rockets",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 13582
+    },
+    {
+      "id": "black_forest",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16349
+    },
+    {
+      "id": "rubber_paint",
+      "removedPixels": 24,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 16577
+    },
+    {
+      "id": "yo_yo",
+      "removedPixels": 455,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17891
+    },
+    {
+      "id": "cavern",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 2,
+      "largestComponentPixels": 22464
+    },
+    {
+      "id": "toy_hammer",
+      "removedPixels": 536,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 14815
+    },
+    {
+      "id": "glitter_gun",
+      "removedPixels": 1206,
+      "removedComponents": 2,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 15073
+    },
+    {
+      "id": "beach_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 2,
+      "largestComponentPixels": 19787
+    },
+    {
+      "id": "bounce_house",
+      "removedPixels": 1214,
+      "removedComponents": 3,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 22926
+    },
+    {
+      "id": "lollipop",
+      "removedPixels": 210,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14783
+    },
+    {
+      "id": "cyclone",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16479
+    },
+    {
+      "id": "slingshot",
+      "removedPixels": 120,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14734
+    },
+    {
+      "id": "hot_seat",
+      "removedPixels": 60,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20576
+    },
+    {
+      "id": "rapids",
+      "removedPixels": 178,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 24089
+    },
+    {
+      "id": "slammer",
+      "removedPixels": 379,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19431
+    },
+    {
+      "id": "blender",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18289
+    },
+    {
+      "id": "robot_blimps",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 19253
+    },
+    {
+      "id": "slime_ball",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 16200
+    },
+    {
+      "id": "paintball_gun",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15648
+    },
+    {
+      "id": "whirlwind",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 22362
+    },
+    {
+      "id": "phoenix",
+      "removedPixels": 64,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 15662
+    },
+    {
+      "id": "sneak_attack",
+      "removedPixels": 335,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 20153
+    },
+    {
+      "id": "pipeline",
+      "removedPixels": 534,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 17277
+    },
+    {
+      "id": "magnet",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 14798
+    },
+    {
+      "id": "super_magnet",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 19958
+    },
+    {
+      "id": "quantum_cube",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 22787
+    },
+    {
+      "id": "missile_turret",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 19150
+    },
+    {
+      "id": "ion_cannon",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 20152
+    },
+    {
+      "id": "backtrack",
+      "removedPixels": 210,
+      "removedComponents": 1,
+      "protectedEdgeComponents": 1,
+      "largestComponentPixels": 19229
+    },
+    {
+      "id": "oil_slick",
+      "removedPixels": 0,
+      "removedComponents": 0,
+      "protectedEdgeComponents": 0,
+      "largestComponentPixels": 18585
+    }
+  ]
+}

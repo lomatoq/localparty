@@ -62,8 +62,9 @@ function bindHold(el,key){
   el.addEventListener('pointerdown',down);el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);el.addEventListener('lostpointercapture',up);
 }
 bindHold(forwardBtn,'forward');bindHold(fireBtn,'fire');
+function releaseInputs(){input.forward=input.fire=false;forwardBtn.classList.remove('pressed');fireBtn.classList.remove('pressed');socket.emit('input',input);}
 document.addEventListener('contextmenu',e=>e.preventDefault());
-document.addEventListener('visibilitychange',()=>{if(document.hidden){input.forward=input.fire=false;socket.emit('input',input);}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)releaseInputs();});window.addEventListener('blur',releaseInputs);window.addEventListener('pagehide',releaseInputs);window.addEventListener('offline',releaseInputs);setInterval(()=>{if(input.forward||input.fire)socket.emit('input',input);},120);
 
 document.getElementById('teamRed').onclick=()=>socket.emit('setTeam','red');
 document.getElementById('teamBlue').onclick=()=>socket.emit('setTeam','blue');

@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict'),express=require('express');
+const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');
+const {Tanks}=require('../games/arcade_deluxe/core/tanks.cjs');
+const {Marbles}=require('../games/arcade_deluxe/core/marbles.cjs');
+(async()=>{const server=express().use(express.static('games/arcade_deluxe/public')).listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));let browser;try{
+ const g=new Tanks();g.add({id:'a',name:'A',connected:true});g.add({id:'b',name:'B',connected:true});g.start();
+ browser=await webkit.launch();const page=await browser.newPage({viewport:{width:1280,height:720}});await page.goto(`http://127.0.0.1:${server.address().port}/geometry.js`);
+ await page.evaluate(async s=>{document.body.innerHTML='<canvas style="width:1000px;height:450px"></canvas>';const {Renderer}=await import('/render.js');window.renderer=new Renderer(document.querySelector('canvas'));renderer.setState(s);},g.snapshot());await page.waitForTimeout(150);
+ const r=await page.evaluate(()=>{cancelAnimationFrame(renderer.raf);const m=renderer.c.getTransform(),rect=renderer.el.getBoundingClientRect(),point=renderer.toWorld(rect.left+rect.width/2,rect.top+rect.height/2),p=renderer.s.players[0];p.x+=7;renderer.drawTanks(renderer.c,renderer.s,1/60);const first=renderer.tankPoses.get(p.id).x;for(let i=0;i<40;i++)renderer.drawTanks(renderer.c,renderer.s,1/60);return {sx:m.a,sy:m.d,point,first,target:p.x,last:renderer.tankPoses.get(p.id).x};});
+ assert.equal(r.sx,r.sy,'uniform canvas scale prevents vertically flattened marbles');assert(Math.abs(r.point.x-640)<1&&Math.abs(r.point.y-360)<1,'aim coordinates account for letterboxing');assert(r.first<r.target&&r.first>r.target-7,'tank renders between old and next packet instead of snapping');assert(Math.abs(r.last-r.target)<.01);console.log('PASS aspect ratio, aim mapping, smooth tank pose and settled position');
+ await page.setViewportSize({width:1600,height:720});await page.evaluate(()=>{renderer.el.style.width='100vw';renderer.el.style.height='100vh';renderer.frame(performance.now());cancelAnimationFrame(renderer.raf);});const wide=await page.evaluate(()=>{const m=renderer.c.getTransform();return {scale:m.a,x:m.e};});assert.equal(wide.scale,1.25,'Pocket Siege fills the available width');assert.equal(wide.x,0,'Pocket Siege has no horizontal letterbox');
+ const marbles=new Marbles();marbles.add({id:'a',name:'A',connected:true});marbles.start({levels:3});await page.evaluate(s=>{renderer.setState(s);renderer.frame(performance.now());cancelAnimationFrame(renderer.raf);},marbles.snapshot());marbles.level++;marbles.setupLevel();
+ await page.evaluate(s=>renderer.setState(s),marbles.snapshot());assert(await page.evaluate(()=>!!renderer.mapTransition?.snapshot),'map switch retains outgoing frame');
+ assert(await page.evaluate(()=>{renderer.transitionFrame(renderer.mapTransition.at+400);return !!renderer.mapTransition;}),'mid-transition retains frame');
+ assert(await page.evaluate(()=>{renderer.transitionFrame(renderer.mapTransition.at+900);return renderer.mapTransition===null;}),'old frame released after fade');console.log('PASS map crossfade lifecycle and bounded snapshot retention');
+}finally{await browser?.close();server.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

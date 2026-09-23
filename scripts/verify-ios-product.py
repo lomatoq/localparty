@@ -14,7 +14,23 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REVISION = 'ios-recovery-20260918.1'
-SHELL_FILES = ('index.html', 'host.js', 'host.css', 'controller-bridge.js')
+SHELL_FILES = ('index.html', 'host.js', 'host.css', 'host-ui.css', 'controller-bridge.js', 'tabs.js')
+POCKET_FILES = (
+    'core/tanks.cjs', 'core/pocket-runtime.cjs', 'core/air-defense.cjs', 'server.js',
+    'public/index.html', 'public/controller.js', 'public/host.js', 'public/net.js',
+    'public/pocket-deck.js', 'public/pocket-deck.css',
+    'public/render.js', 'public/air-defense-render.js',
+    'public/explosion-timeline.js', 'public/explosion-waves.js', 'public/siege-fx.js',
+    'public/pocket-projectiles.js', 'public/assets/pocket-projectiles.json',
+)
+MATCH_FILES = (
+    'server.js', 'lib/party-runtime.js',
+    'public/tv.html', 'public/tv.js', 'public/tv-information.js',
+    'public/tv-information.css', 'public/bridge.js',
+    'public/game-polish.css', 'public/i18n-shell.js',
+    'games/bow_club/public/phone.js', 'games/bow_club/public/src/camera-policy.mjs',
+    'games/bow_club/public/src/camera-preview.mjs',
+)
 
 
 def verify(root: Path, app: Path | None = None) -> dict:
@@ -26,6 +42,8 @@ def verify(root: Path, app: Path | None = None) -> dict:
                 'public/ux.css', 'public/catalog-previews.css', 'public/fresh.css',
                 'public/tv.html', 'public/tv.js']
     required += ['public/native-shell/' + name for name in SHELL_FILES]
+    required += ['games/arcade_deluxe/' + name for name in POCKET_FILES]
+    required += list(MATCH_FILES)
     for name in required:
         file = server / name
         if not file.is_file() or file.stat().st_size == 0:
@@ -51,8 +69,10 @@ def verify(root: Path, app: Path | None = None) -> dict:
     if set(ids) != expected:
         raise ValueError(f'Incomplete native catalog; expected {len(expected)} IDs, got {len(set(ids))}')
     hashes = {}
-    for name in SHELL_FILES:
-        relative = 'public/native-shell/' + name
+    checked_files = ['public/native-shell/' + name for name in SHELL_FILES]
+    checked_files += ['games/arcade_deluxe/' + name for name in POCKET_FILES]
+    checked_files += list(MATCH_FILES)
+    for relative in checked_files:
         expected_bytes = (root / relative).read_bytes()
         actual_bytes = (server / relative).read_bytes()
         if actual_bytes != expected_bytes:

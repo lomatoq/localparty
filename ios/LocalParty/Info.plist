@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
-<key>CFBundleDisplayName</key><string>LocalParty</string>
+<key>CFBundleDisplayName</key><string>HeyPals</string>
 <key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
 <key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 <key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
@@ -9,11 +9,11 @@
 <key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
 <key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
 <key>LSRequiresIPhoneOS</key><true/>
-<key>NSLocalNetworkUsageDescription</key><string>LocalParty соединяет этот iPhone с телевизором и телефонами друзей по Wi-Fi, чтобы играть вместе без интернета.</string>
-<key>NSMotionUsageDescription</key><string>Датчики движения нужны для игр с наклонами и замахами. Доступ запрашивается при включении управления движением.</string>
-<key>NSCameraUsageDescription</key><string>Камера нужна, чтобы по вашему нажатию сделать фото профиля игрока.</string>
-<key>NSPhotoLibraryUsageDescription</key><string>Выберите фотографию для профиля игрока.</string>
-<key>NSMicrophoneUsageDescription</key><string>В играх с голосовым управлением микрофон используется только после вашего разрешения.</string>
+<key>NSLocalNetworkUsageDescription</key><string>HeyPals connects this iPhone to a shared screen and your friends' phones over Wi-Fi so you can play together.</string>
+<key>NSMotionUsageDescription</key><string>Motion sensors let you tilt and swing in games. Access is requested when you enable motion controls.</string>
+<key>NSCameraUsageDescription</key><string>The camera is used for your profile photo and aiming at the shared screen in AR games.</string>
+<key>NSPhotoLibraryUsageDescription</key><string>Choose a photo for your player profile.</string>
+<key>NSMicrophoneUsageDescription</key><string>Voice-controlled games use the microphone only after you grant permission.</string>
 <key>NSAppTransportSecurity</key><dict><key>NSAllowsLocalNetworking</key><true/></dict>
 <key>NSBonjourServices</key><array><string>_localparty._tcp</string></array>
 <key>UIBackgroundModes</key><array><string>processing</string></array>

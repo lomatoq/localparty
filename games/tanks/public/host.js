@@ -18,6 +18,7 @@ const ipChoices = document.getElementById('ipChoices');
 let lastState = null;
 let lastMode = 'survival';
 let info = null;
+let lobbyPlayersKey=null,resultStatsKey=null;
 
 function drawQR(el,url,size){
   try{renderQr(el,url,size)}catch(err){
@@ -47,6 +48,9 @@ socket.on('state', state => {
 });
 
 function renderLobbyPlayers(players=[]){
+  const key=JSON.stringify(players.map(p=>[p.id,p.name,p.color,p.handedness,p.team]));
+  if(key===lobbyPlayersKey)return;
+  lobbyPlayersKey=key;
   playerCount.textContent = players.length;
   if(!players.length){
     playerList.innerHTML = '<div class="tiny-note">Пока никого. Первый телефон появится здесь сразу после ввода имени.</div>';
@@ -61,6 +65,7 @@ function renderLobbyPlayers(players=[]){
 
 function updateUI(s){
   const g=s.game;
+  if(g.status!=='finished')resultStatsKey=null;
   if(g.status==='lobby' || !g.mode){
     lobbyOverlay.classList.remove('hidden');
     resultOverlay.classList.add('hidden');
@@ -77,9 +82,11 @@ function updateUI(s){
   if(g.status==='finished'){
     resultOverlay.classList.remove('hidden');
     resultText.textContent=g.winnerText || 'Матч окончен';
-    resultStats.innerHTML = [...s.players].sort((a,b)=>b.score-a.score).map((p,i)=>
+    const sorted=[...s.players].sort((a,b)=>b.score-a.score);
+    const key=JSON.stringify([g.mode,...sorted.map(p=>[p.id,p.name,p.color,p.score,p.roundWins,p.captures,p.kills])]);
+    if(key!==resultStatsKey){resultStatsKey=key;resultStats.innerHTML = sorted.map((p,i)=>
       `<div class="stat-row"><b>${i+1}</b><span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${p.color};margin-right:8px"></i>${escapeHtml(p.name)}</span><span>${g.mode==='survival'?`${p.roundWins} wins`:g.mode==='ctf'?`${p.captures} flags`:`${p.kills} kills`}</span><b>${p.score}</b></div>`
-    ).join('');
+    ).join('');}
   } else resultOverlay.classList.add('hidden');
 }
 

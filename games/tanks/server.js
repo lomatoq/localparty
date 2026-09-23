@@ -176,7 +176,7 @@ function makePlayer(socket, payload) {
     alive: true,
     respawnTimer: 0,
     fireCd: 0,
-    input: { forward: false, fire: false },
+    input: { forward: false, fire: false, at: 0 },
     kills: 0,
     deaths: 0,
     score: 0,
@@ -785,6 +785,7 @@ function handleMessage(socket, msg) {
     const input = payload || {};
     p.input.forward = !!input.forward;
     p.input.fire = !!input.fire;
+    p.input.at = Date.now();
   } else if (event === 'setHandedness') {
     if (!p) return;
     p.handedness = payload === 'left' ? 'left' : 'right';
@@ -844,6 +845,7 @@ runtime.setInterval(() => {
   let dt = Number(now - last) / 1e9;
   last = now;
   dt = Math.min(dt, 0.05);
+  const inputNow=Date.now();for(const p of players.values())if((p.input.forward||p.input.fire)&&inputNow-(p.input.at||0)>500)p.input.forward=p.input.fire=false;
   if (game.status === 'playing' || game.status === 'between') {
     updatePlayers(dt);
     updateBots(dt);

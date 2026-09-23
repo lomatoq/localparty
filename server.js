@@ -19,13 +19,13 @@ const gameSettings=Object.fromEntries(catalog.map(g=>[g.id,controls.settingsFor(
 const {ProfileStore,normalizeAvatar}=require('./lib/profile-store');
 const {SessionControls}=require('./lib/session-controls');
 const ROOT = __dirname;
-const APP_HEAD='<meta name="application-name" content="LocalParty"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="LocalParty"><meta name="msapplication-TileColor" content="#c8ff2e"><meta name="msapplication-config" content="/browserconfig.xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/branding/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/branding/icons/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/branding/icons/apple-touch-icon.png"><link rel="mask-icon" href="/assets/branding/safari-pinned-tab.svg" color="#c8ff2e"><link rel="manifest" href="/site.webmanifest">';
+const APP_HEAD='<meta name="application-name" content="HeyPals"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="HeyPals"><meta name="msapplication-TileColor" content="#c8ff2e"><meta name="msapplication-config" content="/browserconfig.xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/branding/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/branding/icons/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/branding/icons/apple-touch-icon.png"><link rel="mask-icon" href="/assets/branding/safari-pinned-tab.svg" color="#c8ff2e"><link rel="manifest" href="/site.webmanifest">';
 const requestedPort = Number(process.env.PARTY_PORT || 0);
 let PORT = 0;
 const embedded=process.env.PARTY_EMBEDDED==='1';
 const hostKey = process.env.PARTY_ADMIN_KEY || crypto.randomBytes(24).toString('hex');
 const displayKey=crypto.randomBytes(24).toString('hex');
-let enabled=true,selected=null,servedSeconds=0,executionAllowed=true,executionRevision=0;
+let enabled=true,selected=null,servedSeconds=0,executionAllowed=true,executionRevision=0,languageOverride=null;
 const metrics={maxLoopDelayMs:0,gameStarts:0};
 const staticCache=new Map(),qrCache=new Map();
 function qrBuffer(url,options={}){const key=JSON.stringify([url,options]);if(!qrCache.has(key)){if(qrCache.size>=32)qrCache.clear();const task=QRCode.toBuffer(url,options).catch(e=>{qrCache.delete(key);throw e;});qrCache.set(key,task);}return qrCache.get(key);}
@@ -44,16 +44,24 @@ async function pauseBeforeSuspension(){
 }
 function roomInfo(){const data=state();if(data.active)data.active.session=sessionState();return {...data,enabled,selected,botCount,testMode,screens:screens(),servedSeconds:Math.floor(servedSeconds),executionAllowed,metrics:{...metrics,rssMB:Math.round(process.memoryUsage().rss/1048576)}};}
 async function manage(m){
-  if(['network-set','server-start','server-stop'].includes(m.type)){
+  if(m.type==='force-language'){
+    if(!['en','ru'].includes(m.language))throw Error('Unsupported language');
+    languageOverride={language:m.language,revision:crypto.randomUUID()};
+  }
+  else if(['network-set','server-start','server-stop'].includes(m.type)){
     if(!embedded)throw Error('Доступ по сети уже включён');
     const on=m.type==='network-set'?m.enabled:m.type==='server-start';
     if(typeof on!=='boolean')throw Error('Укажите состояние доступа по Wi-Fi');
     if(on&&!addresses().length)throw Error('Подключитесь к Wi-Fi, чтобы пригласить другие устройства');
     if(!on){active?.session.votes.clear();votes.clear();ballotArmed=false;ballotAttempt='';}
-    if(!on)await Promise.all([...clients].filter(ws=>ws.partyPublic&&ws.readyState===WebSocket.OPEN).map(ws=>new Promise(resolve=>{
+    const closingPublic=!on?[...clients].filter(ws=>ws.partyPublic):[];
+    if(!on)await Promise.all(closingPublic.filter(ws=>ws.readyState===WebSocket.OPEN).map(ws=>new Promise(resolve=>{
       const timer=setTimeout(resolve,150);ws.send(JSON.stringify({type:'access-closed'}),()=>{clearTimeout(timer);resolve();});
     })));
     await networkAccess.setEnabled(on);
+    if(!on)await Promise.all(closingPublic.map(ws=>ws.readyState===WebSocket.CLOSED?Promise.resolve():new Promise(resolve=>{
+      const done=()=>{clearTimeout(timer);resolve();};const timer=setTimeout(done,500);ws.once('close',done);
+    })));
   }
   else if(['tv-overlay','tv-focus','tv-options'].includes(m.type)){tvDirector.command(m,{active,busy,selected,sharing:sharedURLs().length>0});broadcast();return roomInfo();}
   else if(m.type==='statistics-reset'){if(active||busy)throw Error('Завершите текущий матч перед сбросом статистики');profileStore.resetStatistics();tvDirector.lastMatch=null;tvDirector.dismiss();}
@@ -80,8 +88,15 @@ async function manage(m){
   else if(m.type==='select'){if(!catalog.some(g=>g.id===m.id))throw Error('Игра не найдена');selected=m.id;tvDirector.follow(m.id);}
   else if(m.type==='settings'){const game=catalog.find(g=>g.id===m.id);if(!game)throw Error('Игра не найдена');if(active?.game.id===m.id)throw Error('Вернитесь в лобби для смены настроек');gameSettings[m.id]=controls.settingsFor(game,m.settings);selected=m.id;}
   else if(m.type==='game-action'){if(!active||m.instance!==active.instance)throw Error('Эта игра уже завершена');const action=active.game.hostControls.actions.find(a=>a.id===m.action);if(!action||!action.phases.includes(active.ui?.phase)||(Array.isArray(active.ui?.hostActions)&&!active.ui.hostActions.includes(m.action)))throw Error('Действие сейчас недоступно');await hostCommand(active,m.action);}
+  else if(m.type==='force-start'){
+    if(!active||m.instance!==active.instance||(active.ui?.phase||'waiting')!=='waiting')throw Error('Игра уже началась или завершена');
+    const loaded=[...active.present].filter(id=>active.roster.some(p=>p.id===id));
+    if(loaded.length<(testMode?1:active.game.min))throw Error(`Подключено только ${loaded.length}. Для старта нужно минимум ${testMode?1:active.game.min}.`);
+    active.startError=null;active.session.startRequested=true;
+    if(embedded)await hostCommand(active,'start');else for(const ws of clients)if(ws.isHost)send(ws,{type:'session-start',instance:active.instance});
+  }
   else if(m.type==='retry-start'){if(!active||m.instance!==active.instance||!active.startError)throw Error('Повторный запуск недоступен');active.startError=null;active.session.startRequested=false;checkSession();}
-  else if(m.type==='launch'){incident=null;if(!enabled)throw Error('Сначала запустите сервер');if(embedded&&!screens())throw Error('Откройте экран /tv на телевизоре');await launch(m.id||selected);selected=active.game.id;}
+  else if(m.type==='launch'){incident=null;if(!enabled)throw Error('Сначала запустите сервер');if(embedded&&!screens()&&m.externalDisplay!==true)throw Error('Откройте экран /tv на телевизоре');await launch(m.id||selected);selected=active.game.id;}
   else if(m.type==='stop'){incident=null;if(busy)throw Error('Подождите окончания запуска');stop();}
   else if(m.type==='pause'){if(!executionAllowed&&!m.paused)throw Error('Серверу нужна активная сессия');setPaused(!!m.paused);}
   else throw Error('Неизвестная команда');
@@ -111,7 +126,7 @@ function kickPlayer(id){
   if(!player)throw Error('Игрок уже вышел');
   revoked.add(player.token);votes.delete(id);
   const socket=player.socket;player.socket=null;players.delete(player.token);
-  if(active){active.ready.delete(id);active.session.setReady(id,false);active.session.vote(id,false);active.session.spectate(id,false);active.child.send({type:'party:kick',id});}
+  if(active){active.ready.delete(id);active.present.delete(id);active.roster=active.roster.filter(p=>p.id!==id);active.session.setReady(id,false);active.session.vote(id,false);active.session.spectate(id,false);active.child.send({type:'party:kick',id});}
   if(socket){send(socket,{type:'kicked',message:'Ведущий удалил вас из комнаты.'});socket.close(4003,'Removed by host');}
   syncRoster();checkSession();
 }
@@ -119,19 +134,33 @@ function gameVotes(){return connected().filter(p=>votes.has(p.id)).map(p=>({play
 const tokenFromCookie=req=>{const item=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('local_party_device='));return item?.slice('local_party_device='.length);};
 const publicProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand,avatar:p.avatar||null}:null;
 const gameBootstrapProfile=p=>p?{id:p.id,token:p.token,name:p.name,hand:p.hand}:null;
+const cleanClientId=value=>String(value||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);
+const avatarRef=p=>p?.avatar?`/api/avatar/${p.id}?v=${Number(p.lastSeen)||0}`:null;
+const publicStanding=p=>({...p,avatar:avatarRef(profileStore.data.players.find(stored=>stored.id===p.id))});
 let active = null, busy = false, closing = false, testMode=false, botCount=0, testProfiles=[];
-function sendTestProfile(ws){while(testProfiles.length<botCount)testProfiles.push(publicProfile(profileStore.register(null,'Бот '+(testProfiles.length+1),'right')));send(ws,{type:'test-profiles',profiles:testProfiles.slice(0,botCount)});}
+function sendTestProfile(ws){
+ while(testProfiles.length<botCount)testProfiles.push(publicProfile(profileStore.register(null,'Бот '+(testProfiles.length+1),'right')));
+ // One stable owner, not one copy of every bot per TV/browser window. Closing
+ // the owner hands its profiles to the next live display without new identities.
+ const owner=[...clients].find(c=>(c.isHost||c.isDisplay)&&c.readyState===WebSocket.OPEN);
+ send(ws,{type:'test-profiles',profiles:ws===owner?testProfiles.slice(0,botCount):[]});
+}
 const local = req => !req.partyPublic&&['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
 const updater=embedded?null:require('./lib/updater').createUpdater({root:ROOT,hostKey,isLocal:local,isBusy:()=>!!active||busy,getPort:()=>PORT,shutdown});
 const addresses = () => Object.entries(os.networkInterfaces()).flatMap(([name, list]) => list.filter(x=>x.family==='IPv4'&&!x.internal&&!x.address.startsWith('169.254.')&&(!embedded||/^en[0-9]+$/.test(name))).map(x=>({name,address:x.address}))).sort((a,b)=>Number(/virtual|vethernet|vpn|wsl/i.test(a.name))-Number(/virtual|vethernet|vpn|wsl/i.test(b.name)));
 function sharedURLs(){if(embedded)return networkAccess.enabled&&addresses().some(x=>x.address===networkAccess.boundAddress)?[`https://${networkAccess.hostname}:${networkAccess.port}/`]:[];return addresses().map(x=>`${scheme}://${x.address}:${PORT}/`);}
 function inviteUrl(req){if(embedded)return sharedURLs()[0]||`http://${req?.headers.host||'localhost:'+PORT}/`;const ips=addresses();const selected=req&&new URL(req.url,'http://localhost').searchParams.get('host');const ip=ips.find(x=>x.address===selected)?.address||ips[0]?.address;return ip?`${scheme}://${ip}:${PORT}/`:`${scheme}://${req?.headers.host||'localhost:'+PORT}/`;}
 const connected = () => [...players.values()].filter(p=>p.socket?.readyState===WebSocket.OPEN);
-function state(){const standings=profileStore.leaderboard();return {type:'state',bootId,incident,tv:tvDirector.view({active,selected,sharing:sharedURLs().length>0,leaderboard:standings}),networkEnabled:embedded?networkAccess.enabled:true,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot})=>({id,name,hand,avatar:avatar||null,testBot:!!testBot,gameReady:!!active?.ready.has(id)})),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:connected().map(p=>p.id),ready:[...active.ready],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:standings,lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
-function send(ws, data){if(ws.readyState===WebSocket.OPEN&&ws.bufferedAmount<256*1024)ws.send(JSON.stringify(data));}
+function state(){const standings=profileStore.leaderboard().map(publicStanding),online=new Set(connected().map(p=>p.id));return {type:'state',bootId,languageOverride,incident,tv:tvDirector.view({active,selected,sharing:sharedURLs().length>0,leaderboard:standings}),networkEnabled:embedded?networkAccess.enabled:true,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot,token})=>{const stored=profileStore.get(token);return {id,name,hand,avatar:avatarRef(stored),testBot:!!testBot,gameReady:!!active?.present.has(id)};}),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:active.roster.map(p=>p.id),roster:active.roster.map(p=>({...p,connected:online.has(p.id),gameReady:active.present.has(p.id)})),ready:[...active.present],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:standings,lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
+function send(ws, data){
+ // Readiness/identity acknowledgements are not disposable animation snapshots.
+ // Dropping `joined` when a reconnect burst fills the buffer leaves a phone
+ // stuck on onboarding although its player already exists on the server.
+ if(ws.readyState===WebSocket.OPEN&&(!['state','game-ui'].includes(data.type)||ws.bufferedAmount<256*1024))ws.send(JSON.stringify(data));
+}
 function eligible(){return connected().filter(p=>active?.ready.has(p.id)&&!p.testBot).map(p=>p.id);}
-function sessionState(){return active?{...active.session.view(eligible()),pauseReason:!executionAllowed?'host-background':active.userPaused?'player':null}:undefined;}
-function broadcast(){const s=state();s.testMode=testMode;s.botCount=botCount;if(s.active)s.active.session=sessionState();for(const ws of clients)send(ws,s);queueMicrotask(checkBallot);}
+function sessionState(){return active?{...active.session.view(eligible()),expectedIds:active.roster.filter(p=>!p.testBot).map(p=>p.id),pauseReason:!executionAllowed?'host-background':active.userPaused?'player':null}:undefined;}
+function broadcast(){const s=state();s.testMode=testMode;s.botCount=botCount;if(s.active)s.active.session=sessionState();const packet=JSON.stringify(s);for(const ws of clients)if(ws.readyState===WebSocket.OPEN&&ws.bufferedAmount<256*1024)ws.send(packet);queueMicrotask(checkBallot);}
 function checkBallot(){
  if(!ballotArmed||!enabled||!executionAllowed||active||busy)return;
  if(!screens()&&![...clients].some(c=>c.isHost&&c.readyState===WebSocket.OPEN))return;
@@ -158,8 +187,9 @@ function checkSession(){
  if(!active)return;const run=active,ids=eligible();if(run.session.shouldExit(ids)){stop();return;}
  // Only bots that are actually in the room hold the start (they live on the TV page;
  // if the TV drops, a missing bot must not freeze the match for real players).
- const botReady=!run.session.testMode||testProfiles.slice(0,botCount).filter(p=>connected().some(c=>c.id===p.id)).every(p=>run.ready.has(p.id));
- const humans=connected().filter(p=>!p.testBot),rosterReady=humans.every(p=>run.ready.has(p.id));
+ const botReady=!run.session.testMode||testProfiles.slice(0,botCount).filter(p=>connected().some(c=>c.id===p.id)).every(p=>run.present.has(p.id));
+ const online=new Set(connected().map(p=>p.id));
+ const rosterReady=run.roster.filter(p=>!p.testBot).every(p=>run.session.spectators.has(p.id)||(online.has(p.id)&&run.ready.has(p.id)&&run.present.has(p.id)));
  if(!run.startError&&connected().length>=(testMode?1:run.game.min)&&rosterReady&&botReady&&(!run.ui||run.ui.phase==='waiting')&&run.session.shouldStart(ids)){
   if(embedded)hostCommand(run,'start').catch(e=>{if(active===run){run.startError=e.message;broadcast();}});
   else for(const ws of clients)if(ws.isHost)send(ws,{type:'session-start',instance:run.instance});
@@ -168,7 +198,7 @@ function checkSession(){
 }
 function json(res, status, value){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));}
 function freePort(){return new Promise((resolve,reject)=>{const s=net.createServer();s.on('error',reject);s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>resolve(p));});});}
-function syncRoster(){if(active?.child.connected)active.child.send({type:'party:roster',players:connected().map(publicProfile)});}
+function syncRoster(){if(!active?.child.connected)return;if((active.ui?.phase||'waiting')==='waiting'){const current=new Map(active.roster.map(p=>[p.id,p]));for(const p of connected())if(!current.has(p.id))active.roster.push({id:p.id,name:p.name,testBot:!!p.testBot});else current.get(p.id).name=p.name;}active.child.send({type:'party:roster',players:connected().map(publicProfile)});}
 async function waitReady(child, port){const until=Date.now()+(embedded?60000:15000);while(Date.now()<until){if(child.exitCode!==null||child.spawnError)throw Error(child.spawnError||'Игровой сервер завершился при запуске.');if(await new Promise(resolve=>{const r=http.get({host:'127.0.0.1',port,path:'/',timeout:350},res=>{res.resume();resolve(res.statusCode===200);});r.on('error',()=>resolve(false));r.on('timeout',()=>r.destroy());}))return;await new Promise(r=>setTimeout(r,100));}throw Error('Игровой сервер не ответил в отведённое время.');}
 async function launch(id,{autoReady=[]}={}){
   if(busy||updater?.running)throw Error('Подождите окончания запуска или обновления.');
@@ -182,10 +212,10 @@ async function launch(id,{autoReady=[]}={}){
     const gameDir=path.join(ROOT,'games',game.engine||id);const env={...process.env,PORT:String(port),PARTY_MANAGED:'1',PARTY_DISPLAY_ONLY:embedded?'1':'0',PARTY_HOST_SETTINGS:JSON.stringify(controls.workerSettings(game,gameSettings[id])),PARTY_GAME_ID:id,PARTY_INSTANCE:instance,PARTY_ROSTER:JSON.stringify(connected().map(gameBootstrapProfile)),PARTY_PLAYER_LIMIT:String(connected().length),PARTY_JOIN_URL:inviteUrl()};
     const statisticsRevision=profileStore.statisticsRevision||0;
     const child=embedded?require('./lib/game-worker.cjs').spawnGame(gameDir,env):spawn(process.execPath,['server.js'],{cwd:gameDir,env,windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
-    next={game,port,instance,child,ready:new Set(),userPaused:false,session:new SessionControls(testMode)};for(const id of autoReady)next.session.setReady(id,true);let log='';
+    next={game,port,instance,child,ready:new Set(),present:new Set(),roster:connected().map(({id,name,testBot})=>({id,name,testBot:!!testBot})),userPaused:false,session:new SessionControls(testMode)};for(const id of autoReady)next.session.setReady(id,true);let log='';
     child.on('message',m=>{
       if(m?.type==='party:ui'&&m.ui){const changed=next.ui?.phase!==m.ui.phase;const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset||changed)broadcast();}}
-      if(m?.type==='party:presence'&&typeof m.id==='string'){if(m.connected)next.ready.add(m.id);else next.ready.delete(m.id);if(active===next)checkSession();}
+      if(m?.type==='party:presence'&&typeof m.id==='string'){if(m.connected)next.present.add(m.id);else next.present.delete(m.id);if(active===next)checkSession();}
       if(m?.type==='party:result'&&m.result?.eventId&&Array.isArray(m.result.players)){
         const recorded=!next.session.testMode&&profileStore.record(m.result,instance,id,statisticsRevision);
         const captured=active===next&&statisticsRevision===(profileStore.statisticsRevision||0)&&tvDirector.capture(m.result,instance,game,next.session.testMode);
@@ -202,9 +232,10 @@ async function launch(id,{autoReady=[]}={}){
 function stop(){tvDirector.resetRun();ballotArmed=false;ballotAttempt='';votes.clear();const old=active;active=null;old?.child.kill();persistRoom('game-stop');broadcast();}
 function transform(text, type, prefix, req){
   if(type.includes('text/html')){
+    const contentLocale=['millionaire','sinyakquiz','warsaw','spy','monster','crocodile','drawguess'].includes(prefix.split('/').at(-1))?'<script src="/i18n-content.js"></script>':'';
     if(!/<head\b/i.test(text))text=text.replace(/<html([^>]*)>/i,'<html$1><head>').replace(/<body([^>]*)>/i,'</head><body$1>');
     text=text.replace(/((?:src|href|action)\s*=\s*["'])\/(?!\/)/gi,`$1${prefix}/`);
-    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/browser-compat.js"></script><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script src="/game-feel.js"></script><script defer src="/game-art-dom.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
+    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/browser-compat.js"></script><script src="/i18n-inherit.js"></script>${contentLocale}<script src="/i18n.js"></script><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script src="/game-feel.js"></script><script defer src="/game-art-dom.js"></script><script src="/tv-information.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
     text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/game-feel.css"><script defer src="/motion.js"></script></head>');
   }
   if(type.includes('text/css'))text=cssFallbacks(text);
@@ -223,6 +254,12 @@ const handler=async(req,res)=>{
     req.on('end',async()=>{try{json(res,200,await manage(JSON.parse(body)));}catch(e){json(res,400,{error:e.message});}});return;
   }
   if(embedded&&!enabled&&url.pathname!=='/api/health')return json(res,503,{error:'Сервер остановлен. Запустите сессию в приложении iPhone.'});
+  if(url.pathname.startsWith('/api/avatar/')&&req.method==='GET'){
+    const id=url.pathname.slice('/api/avatar/'.length);if(!/^[a-f0-9]{16}$/.test(id))return json(res,404,{error:'Фото не найдено'});
+    const value=profileStore.data.players.find(p=>p.id===id)?.avatar,match=/^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/]+={0,2})$/.exec(value||'');
+    if(!match)return json(res,404,{error:'Фото не найдено'});const body=Buffer.from(match[2],'base64');
+    res.writeHead(200,{'Content-Type':`image/${match[1]}`,'Content-Length':body.length,'Cache-Control':'private,max-age=86400,immutable','X-Content-Type-Options':'nosniff'});res.end(body);return;
+  }
   if(url.pathname==='/api/profile'&&req.method==='GET')return json(res,200,{profile:publicProfile(profileStore.get(tokenFromCookie(req)))});
   if(url.pathname==='/api/profile'&&req.method==='POST'){
     let body='';req.on('data',d=>{body+=d;if(body.length>4096)req.destroy();});req.on('end',()=>{try{const {token}=JSON.parse(body);if(!profileStore.get(token))return json(res,403,{error:'Unknown profile'});res.setHeader('Set-Cookie',`local_party_device=${token}; Path=/; Max-Age=31536000; HttpOnly; SameSite=Lax`);json(res,200,{ok:true});}catch{json(res,400,{error:'Invalid request'});}});return;
@@ -261,13 +298,13 @@ const handler=async(req,res)=>{
   const isTV=url.pathname==='/tv',isHost=url.pathname==='/host';
   if(isTV)res.setHeader('Set-Cookie',`party_display=${displayKey}; Path=/; HttpOnly; SameSite=Strict`);
   if(isHost&&(embedded||!local(req)))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/tv-show.js':'tv-show.js','/tv-show.css':'tv-show.css','/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
-  files['/polish.css']='polish.css';
+  const files={'/tv-information.js':'tv-information.js','/tv-information.css':'tv-information.css','/tv-show.js':'tv-show.js','/tv-show.css':'tv-show.css','/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/bot-policy.js':'bot-policy.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  files['/branding.css']='branding.css';files['/polish.css']='polish.css';files['/i18n.js']='i18n.js';files['/i18n-inherit.js']='i18n-inherit.js';files['/i18n-shell.js']='i18n-shell.js';files['/i18n-content.js']='i18n-content.js';files['/i18n-dictionary.js']='i18n-dictionary.js';
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   if(embedded&&!staticCache.has(file))staticCache.set(file,fs.readFileSync(path.join(ROOT,'public',file)));let content=embedded?staticCache.get(file):fs.readFileSync(path.join(ROOT,'public',file));
   if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`);
   if(file==='tv.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_DISPLAY_KEY=${JSON.stringify(displayKey)};`);
-  if(file==='index.html'||file==='tv.html')content=content.toString().replace('</head>',`${APP_HEAD}${file==='index.html'&&!embedded?'<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script>':''}</head>`);
+  if(file==='index.html'||file==='tv.html')content=content.toString().replace('<head>','<head><script src="/i18n-dictionary.js"></script><script src="/i18n-shell.js"></script><script src="/i18n.js"></script>').replace('</head>',`${APP_HEAD}${file==='index.html'&&!embedded?'<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script>':''}</head>`);
   if(file.endsWith('.css'))content=cssFallbacks(content.toString());
   const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.xml':'application/xml; charset=utf-8','.ico':'image/x-icon'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
 };
@@ -294,9 +331,15 @@ wss.on('connection',(ws,req)=>{
   ws.on('message',async raw=>{try{
     const m=JSON.parse(raw);
     if(m.type==='ping')return send(ws,{type:'pong'});
+    if(m.type==='force-language'){if(!ws.isHost)throw Error('Host access required');await manage(m);return;}
     if(m.type==='test-mode'||m.type==='bots-set'){if(!ws.isHost)throw Error('Тестовый режим включает ведущий.');if(active)throw Error('Вернитесь в лобби перед сменой режима.');const requested=m.type==='bots-set'?Number(m.count):(m.enabled?1:0);if(!Number.isInteger(requested)||requested<0||requested>15)throw Error('Можно добавить от 0 до 15 ботов.');if(requested+connected().filter(p=>!p.testBot).length>16)throw Error('В комнате максимум 16 игроков.');botCount=requested;testMode=botCount>0;for(const c of clients)if(c.isHost||c.isDisplay)sendTestProfile(c);broadcast();return;}
     if(['ready-set','spectate-set','pause-set','exit-vote'].includes(m.type)){
-      if(!active||m.instance!==active.instance||!ws.player||ws.player.socket!==ws||!active.ready.has(ws.player.id))throw Error('Сначала подключитесь к игре.');
+      if(!active||m.instance!==active.instance||!ws.player||ws.player.socket!==ws)throw Error('Сначала подключитесь к игре.');
+      // The lobby reconnects before its game iframe. Existing match participants
+      // can resume the visible pause overlay during that gap; readiness/spectating
+      // still require the game handshake, and newcomers gain no pause permission.
+      const reconnectPause=m.type==='pause-set'&&active.roster.some(p=>p.id===ws.player.id);
+      if(!active.ready.has(ws.player.id)&&!reconnectPause)throw Error('Сначала подключитесь к игре.');
       const id=ws.player.id;
       if(m.type==='ready-set'){if(active.ui&&active.ui.phase!=='waiting')throw Error('Матч уже начался.');active.session.setReady(id,!!m.ready);}
       if(m.type==='spectate-set')active.session.spectate(id,!!m.spectating);
@@ -309,24 +352,31 @@ wss.on('connection',(ws,req)=>{
     if(m.type==='vote-game'){if(!ws.player||ws.player.socket!==ws)throw Error('Сначала войдите в комнату');if(m.id!==null&&!catalog.some(g=>g.id===m.id))throw Error('Игра не найдена');m.id===null?votes.delete(ws.player.id):votes.set(ws.player.id,m.id);ballotArmed=m.id!==null;ballotAttempt='';persistRoom();broadcast();return;}
     if(m.type==='join'){
       if(!m.freshIdentity&&revoked.has(m.token||tokenFromCookie(req))){send(ws,{type:'kicked',message:'Ведущий удалил вас из комнаты.'});ws.close(4003,'Removed by host');return;}
+      const clientId=cleanClientId(m.clientId);
       const saved=m.freshIdentity?null:profileStore.get(m.token||tokenFromCookie(req));
-      if(!m.freshIdentity&&m.token&&!saved){send(ws,{type:'profile-required'});return;}
       const name=String(m.name||saved?.name||'').normalize('NFC').trim().replace(/[<>\x00-\x1f]/g,'').slice(0,24);
       if(!name)throw Error('Введите имя.');
       const avatar=Object.prototype.hasOwnProperty.call(m,'avatar')?normalizeAvatar(m.avatar):saved?.avatar||null;
       let p=saved&&players.get(saved.token);
+      // A browser keeps this installation id independently from its player token. It lets
+      // the same phone reclaim a live room slot after Safari discarded cookies/storage or
+      // an old socket survived in the background, without opening name hijacking to others.
+      if(!p&&clientId)p=[...players.values()].find(other=>other.clientId===clientId&&(
+        (m.id&&other.id===m.id)||(m.recoverId&&other.id===m.recoverId)||other.name.toLocaleLowerCase()===name.toLocaleLowerCase()
+      ));
+      if(!m.freshIdentity&&m.token&&!saved&&!p){send(ws,{type:'profile-required'});return;}
       if([...players.values()].some(other=>other!==p&&other.name.toLocaleLowerCase()===name.toLocaleLowerCase()&&other.socket?.readyState===WebSocket.OPEN))throw Error('Это имя уже занято. Добавь, например, первую букву фамилии.');
       if(!p){if(connected().length>=16)throw Error('В лобби уже 16 игроков.');const stored=profileStore.register(saved?.token,name,m.hand||saved?.hand||'right',avatar);p=publicProfile(stored);players.set(p.token,p);}
       if(ws.player&&ws.player!==p&&ws.player.socket===ws)throw Error('Этот контроллер уже вошёл в комнату');
-      if(p.socket&&p.socket!==ws){send(p.socket,{type:'replaced'});p.socket.close();}
-      p.name=name;p.hand=(m.hand||saved?.hand)==='left'?'left':'right';p.avatar=avatar;p.testBot=testProfiles.some(bot=>bot.id===p.id);p.socket=ws;ws.player=p;
-      if(saved)profileStore.register(p.token,p.name,p.hand,p.avatar);syncRoster();
+      if(p.socket&&p.socket!==ws){const previous=p.socket;try{previous.send(JSON.stringify({type:'replaced'}),()=>previous.close(4001,'Reconnected elsewhere'));}catch{previous.terminate();}setTimeout(()=>{if(previous.readyState!==WebSocket.CLOSED)previous.terminate();},600).unref();}
+      p.name=name;p.hand=(m.hand||saved?.hand)==='left'?'left':'right';p.avatar=avatar;p.clientId=clientId||p.clientId||'';p.testBot=testProfiles.some(bot=>bot.id===p.id);p.socket=ws;ws.player=p;
+      profileStore.register(p.token,p.name,p.hand,p.avatar);syncRoster();
       send(ws,{type:'joined',token:p.token,id:p.id,name:p.name,hand:p.hand,avatar:p.avatar||null});broadcast();return;
     }
     if(m.type==='game-status'&&ws.player?.socket===ws&&active&&m.instance===active.instance){if(m.status==='ready')active.ready.add(ws.player.id);else active.ready.delete(ws.player.id);checkSession();return;}
     if(m.type==='launch'||m.type==='stop'){if(!ws.isHost)throw Error('Игру выбирает ведущий.');if(m.type==='launch')await launch(m.id);else{if(busy||updater?.running)throw Error('Подождите окончания запуска или обновления.');stop();}return;}
   }catch(e){send(ws,{type:'error',message:e.message});}});
-  ws.on('close',()=>{clients.delete(ws);if(ws.player?.socket===ws){ws.player.socket=null;ws.player.disconnectedAt=Date.now();}checkSession();broadcast();});
+  ws.on('close',()=>{clients.delete(ws);if(ws.player?.socket===ws){ws.player.socket=null;ws.player.disconnectedAt=Date.now();}if(ws.isHost||ws.isDisplay)for(const c of clients)if(c.isHost||c.isDisplay)sendTestProfile(c);checkSession();broadcast();});
 });
 const startRelay=setInterval(()=>{if(!embedded)require('./lib/start-delivery').relayStart(active,clients,send);},400);
 const heartbeat=setInterval(()=>{for(const ws of clients){if(!ws.alive){ws.terminate();continue;}ws.alive=false;ws.ping();}for(const [token,p] of players)if(!p.socket&&Date.now()-p.disconnectedAt>24*3600000)players.delete(token);},10000);

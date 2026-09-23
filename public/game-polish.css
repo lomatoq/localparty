@@ -6,6 +6,10 @@ html{color-scheme:dark}body,input,button,select,textarea{font-family:PartyRubik,
 .party-managed body{font-weight:400!important}.party-managed h1,.party-managed h2,.party-managed h3,.party-managed .turn,.party-managed .stage-note>b{font-weight:800!important;font-style:italic;text-transform:uppercase;letter-spacing:-.035em}.party-managed p,.party-managed .hint,.party-managed .subtitle,.party-managed .muted{font-weight:400!important}.party-managed button{font-weight:700}.party-managed button.primary,.party-managed button.start{font-weight:800;text-transform:uppercase;font-style:italic}.party-managed input,.party-managed select,.party-managed textarea{font-weight:400!important}
 .party-phase-enter main{animation:party-scene-in 220ms ease-out}@keyframes party-scene-in{from{opacity:.65}to{opacity:1}}.party-managed button[aria-pressed=true],.party-managed button.selected{box-shadow:inset 0 0 0 1px #b4ff3940,0 0 22px #b4ff3914}.party-managed details{border-radius:18px;border:1px solid #ffffff12;background:#19191e8c}.party-managed summary{cursor:pointer;min-height:44px;padding:12px 16px;font-weight:700;list-style-position:inside}.party-managed details[open]>:not(summary){animation:party-scene-in 180ms ease-out}@media(prefers-reduced-motion:reduce){.party-phase-enter main,.party-managed details[open]>:not(summary){animation:none}}
 /* Match the complete Superdesign voice, including nested labels and game-specific UI. */
+/* Shared information panels use purple; gameplay/team colours stay in their arenas. */
+html.party-managed body :is(.phone-panel,.phone-stat,.phone-hud,.screen-sidebar .panel,.left-panel,.join-panel){background:linear-gradient(135deg,#302540ed,#20233aed)!important;border-color:#b5a0ee48!important}
+html.party-managed body :is(.phone-stat strong,.phone-stat .value,.phone-hud .label){color:#c6b1ff!important}
+html.party-managed body :is(.hint,.subtitle,.muted,.phone-stat small,.phone-panel>p,.join-panel>p){color:#cbbbea!important}
 html.party-managed body,html.party-managed body :is(#localparty-type-system,*){font-family:PartyRubik,system-ui,sans-serif!important;font-style:italic!important;font-weight:800!important;text-transform:uppercase!important}
 
 /* Same gentle glass hover and fade-out as the catalog. */
@@ -578,6 +582,8 @@ html.party-managed.party-player .controller #action{flex:none;min-height:110px;b
 html.party-managed.party-player .controller #action.pass{min-height:76px}
 html.party-managed.party-player .controller #help{font-size:14px;line-height:1.4;max-width:440px}
 html.party-managed.party-player[data-party-game=snakelines] .controller #joy:after{content:'← ПОВОРОТ →';border-style:solid;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;font-size:10px;color:#d4e3bd}
+html[lang=en].party-managed.party-player[data-party-game=snakelines] .controller #joy:after{content:'← TURN →'}
+@media(orientation:portrait){html[lang=en][data-party-game=bow_club] #view::after{content:'Rotate your phone to landscape'}}
 @media(max-height:620px){html.party-managed.party-player .controller{padding:12px 16px;gap:12px}html.party-managed.party-player .controller #help{font-size:12px}html.party-managed.party-player .controller #action{min-height:94px;font-size:28px}html.party-managed.party-player .controller #action.pass{min-height:64px;font-size:23px}html.party-managed.party-player .controller #status{font-size:18px}html.party-managed.party-player .controller #punchResult{padding:12px;font-size:16px}html.party-managed.party-player .controller #motion{min-height:48px}html.party-managed.party-player[data-party-game=punchmeter] .controller #action{font-size:18px;min-height:72px;padding:18px 12px}}
 html.party-player:is([data-party-phase=waiting],[data-party-phase=results],[data-party-phase=paused]) .controller #joy{pointer-events:none;opacity:.45}
 /* Touch controls must never select labels or drag artwork. */
@@ -651,3 +657,243 @@ html.party-player input,html.party-player textarea,html.party-player [contentedi
 
 html,body,*{scrollbar-width:none!important}
 *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+
+/* Phone hierarchy: supporting copy is quiet; touch controls remain generous. */
+@media(max-width:850px){
+ html.party-managed.party-player body :is(p,small,.hint,.subtitle,.muted,.help,.description,.status-text,.phone-panel>p,#help,#motionFeedback){font-style:italic!important;font-weight:500!important;text-transform:none!important;line-height:1.45!important;font-size:13px!important;color:#d2c7e4}
+ html.party-managed.party-player body :is(h1,h2,.turn,.stage-note>b){font-size:clamp(20px,5.5vw,26px)!important;line-height:1.2!important;overflow-wrap:anywhere}
+ html.party-managed.party-player body :is(h3,.phone-panel h3){font-size:17px!important;line-height:1.3!important}
+ html.party-managed.party-player body :is(.phone-panel,.phone-stat,.phone-hud){border-radius:18px;gap:10px}
+ html.party-managed.party-player body :is(.phone-stat small,.phone-hud .label){font-size:11px!important;line-height:1.3!important}
+ html.party-managed.party-player body :is(#timerMini,#timeText,#statusStrip){font-size:clamp(18px,5vw,24px)!important;line-height:1.3!important}
+ html.party-managed.party-player body :is(.answer-option,.vote-option){font-size:16px!important;min-height:52px;line-height:1.3!important;padding:12px 14px}
+ html.party-managed.party-player body :is(button,.btn){overflow-wrap:break-word}
+ html.party-managed.party-player[data-party-game=punchmeter] .controller{display:flex!important;flex-direction:column;justify-content:center;align-items:stretch;gap:16px;padding:20px 16px!important;max-width:460px;margin:0 auto;min-height:0!important}
+ html.party-managed.party-player[data-party-game=punchmeter] #status{font-size:22px!important;line-height:1.25!important;margin:0;text-align:center}
+ html.party-managed.party-player[data-party-game=punchmeter] #punchResult{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%;padding:0;background:none;border:0;margin:0}
+ html.party-managed.party-player[data-party-game=punchmeter] #punchResult>div{display:flex;flex-direction:column;align-items:center;gap:8px;background:#aa8edf12;border:1px solid #cbb2f229;border-radius:16px;padding:16px 6px}
+ html.party-managed.party-player[data-party-game=punchmeter] #punchResult strong{font-size:24px!important;line-height:1.1;color:#f6f1ff}
+ html.party-managed.party-player[data-party-game=punchmeter] #punchResult small{font-size:11px!important;color:#cbbbea}
+ html.party-managed.party-player[data-party-game=punchmeter] :is(#action,#punchReady,#motion){width:100%;min-height:54px!important;height:auto!important;padding:15px 12px!important;font-size:15px!important;line-height:1.3!important;margin:0;border-radius:18px}
+ html.party-managed.party-player[data-party-game=punchmeter] #action{min-height:72px!important}
+ html.party-managed.party-player[data-party-game=punchmeter] #motion{background:#ac93e51c!important;color:#e7ddf8!important;border:1px solid #b8a0e44d;box-shadow:none}
+ html.party-managed.party-player[data-party-game=punchmeter] #help{margin:0;text-align:center}
+ html.party-managed.party-player[data-party-game=punchmeter] .punch-sense{margin:0 auto}
+ html.party-managed.party-player[data-party-game=punchmeter] .punch-sense button{min-height:38px;font-size:11px!important;padding:8px}
+ html.party-managed.party-player[data-party-game=punchmeter] [hidden]{display:none!important}
+}
+@media(max-width:850px){
+ html.party-managed.party-player :is(#throwBtn,#fireBtn) small{color:#173040!important;font-size:12px!important;opacity:1!important;letter-spacing:.04em}
+ html.party-managed.party-player[data-party-game=western] #fireBtn small{color:#39200f!important}
+ html.party-managed.party-player[data-party-game=naval] #battle{gap:8px!important}
+ html.party-managed.party-player[data-party-game=naval] #battle :is(h2,h3,p){margin:4px 0!important}
+ html.party-managed.party-player[data-party-game=naval] #grid{gap:4px!important;width:min(100%,max(216px,calc(100dvh - 290px)))!important}
+ html.party-managed.party-player[data-party-game=naval] body:has(#battle) #grid button{min-height:0!important;aspect-ratio:1!important;height:auto!important;padding:0!important}
+ html.party-managed.party-player[data-party-game=naval] .fleet-console{margin-bottom:0;gap:8px}
+ html.party-managed.party-player[data-party-game=naval] #battle>label,html.party-managed.party-player[data-party-game=naval] .fleet-console>label{font-size:12px!important;line-height:1.3!important}
+ html.party-managed.party-player[data-party-game=naval] #reload{padding:8px 10px!important;margin:0!important;font-size:12px!important}
+ html.party-managed.party-player[data-party-game=naval] #own{grid-template-columns:minmax(0,1fr) 84px!important;padding:8px!important}
+ html.party-managed.party-player[data-party-game=naval] #ownGrid{max-width:84px!important}
+ html.party-managed.party-player[data-party-game=naval] #own h3{font-size:11px!important}
+}
+/* Embedded controllers already have the shared name, round and timer header. */
+html.party-managed.party-player #controllerScreen>.hud{display:none!important}
+/* Tanks used five implicit grid rows even after the lobby/header were hidden:
+   the expanding row became empty and the actual controls collapsed above it. */
+html.party-managed.party-player[data-party-game=tanks] #controllerScreen{display:flex;flex-direction:column;height:100dvh;min-height:0;gap:12px;padding:12px}
+html.party-managed.party-player[data-party-game=tanks] #controllerScreen.hidden{display:none!important}
+html.party-managed.party-player[data-party-game=tanks] #controls{flex:1;min-height:150px;gap:12px}
+html.party-managed.party-player[data-party-game=tanks] #controls .control{padding:16px 10px;gap:10px;min-width:0}
+html.party-managed.party-player[data-party-game=tanks] #controls .control small{color:#f4edf9!important;font-size:14px!important;letter-spacing:0!important;line-height:1.3!important;margin:0;text-align:center}
+html.party-managed.party-player[data-party-game=tanks] #controls .control em{font-size:12px;line-height:1.4;color:#d4cadf;text-align:center;margin:0;max-width:100%;white-space:normal}
+html.party-managed.party-player[data-party-game=tanks] #swapHand{font-size:12px;min-height:44px}
+html.party-managed.party-player :is(#ss-ability,#ss-sound){font-size:12px!important;line-height:1.35!important;min-height:44px;padding:10px 12px;white-space:normal;overflow-wrap:normal}
+/* Keep the private fleet alongside targeting, not below the firing grid where
+   the shared pause dock could hide it on short phones. */
+@media(max-width:850px){
+ html.party-managed.party-player[data-party-game=naval] #battle{display:grid!important;grid-template-columns:minmax(0,1fr) 92px;grid-template-areas:'target own' 'reload reload' 'caption caption' 'grid grid' 'legend legend';gap:8px!important}
+ html.party-managed.party-player[data-party-game=naval] .fleet-console{grid-area:target;align-self:center;min-width:0}
+ html.party-managed.party-player[data-party-game=naval] #battle>#own{grid-area:own;display:flex!important;flex-direction:column;gap:4px!important;padding:6px!important;align-items:center;min-height:0}
+ html.party-managed.party-player[data-party-game=naval] #own h3{font-size:9px!important;line-height:1.2!important;text-align:center}
+ html.party-managed.party-player[data-party-game=naval] #ownGrid{max-width:66px!important;gap:2px!important}
+ html.party-managed.party-player[data-party-game=naval] #reload{grid-area:reload}
+ html.party-managed.party-player[data-party-game=naval] .enemy-caption{grid-area:caption;font-size:15px!important}
+ html.party-managed.party-player[data-party-game=naval] #battle #grid{grid-area:grid;width:min(100%,max(216px,calc(100dvh - 290px)))!important}
+ html.party-managed.party-player[data-party-game=naval] .legend{grid-area:legend}
+}
+html.party-managed.party-player #ss-ability{font-size:14px!important;min-height:54px}
+
+/* Imported games use the same LocalParty session shell, typography and controls. */
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"],[data-party-game="bow_club"]){--bg:#0b1016;--card:#29233b;--muted:#cfc1ea;--ink:#f5f3fa;--lime:#c4ff73;font-family:PartyRubik,system-ui,sans-serif}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"],[data-party-game="bow_club"]) body{background:#0b1016;color:#f5f3fa;font-family:PartyRubik,system-ui,sans-serif}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"],[data-party-game="bow_club"]) button{border-radius:24px;background:#302940;color:#f4efff;border:1px solid #b99bff36;font-size:14px;min-height:48px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) button.primary,[data-party-game="bow_club"] :is(#start,#draw){background:linear-gradient(135deg,#d0ff88,#b4ef59);color:#17210d;border:0;box-shadow:0 4px #6b913d;font-weight:900}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player :is(.phone-header,.hint,.hand-button){display:none!important}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player .controller{width:100%;max-width:560px;min-height:100dvh;padding:16px;margin:auto}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player :is(.range-card,.weapon-button,.aimpad){background:linear-gradient(145deg,#2b2340,#171522);border:1px solid #b99bff36;border-radius:22px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player .phone-meta{margin:0 0 16px;padding:0;font-size:13px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player #connected{display:flex;flex-direction:column;gap:14px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player #connected.hidden{display:none}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player .fire{min-height:54px;font-size:18px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-host :is(body>.header,.arena-head){display:none}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-host .host-main{padding:0;max-width:none}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-host .arena{max-height:none;border-radius:0;border:0}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .drawer-panel{background:linear-gradient(145deg,#302540,#181722);border-color:#b99bff40}
+[data-party-game="bow_club"].party-player #setup{min-height:100dvh;padding:24px 20px;background:radial-gradient(ellipse at top,#332445,transparent 80%);display:flex;flex-direction:column;gap:20px}
+[data-party-game="bow_club"].party-player #setup[hidden]{display:none}
+[data-party-game="bow_club"].party-player #setup h1{font-size:36px;margin:0;color:#d9c2ff;line-height:1.1;letter-spacing:-.02em}
+[data-party-game="bow_club"].party-player #setup p{font-size:13px;color:#d5c7ea;line-height:1.5}
+[data-party-game="bow_club"] .phone-hud{background:linear-gradient(#171320df,transparent)}
+[data-party-game="bow_club"] #draw{font-size:18px}
+[data-party-game="bow_club"] #metrics{font-size:11px;color:#ddd0f1}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .phone-meta{background:#282137;border:1px solid #b99bff36;border-radius:20px;padding:12px!important;color:#e8dfff}
+:is([data-party-game="pocket_siege"]).party-player .drawer-panel{display:flex;flex-direction:column;height:min(86dvh,760px);overflow:hidden;padding-bottom:max(12px,env(safe-area-inset-bottom))}
+:is([data-party-game="pocket_siege"]).party-player :is(.drawer-head,#weaponSearch,.arsenal-note){flex:0 0 auto}
+:is([data-party-game="pocket_siege"]).party-player #weaponSearch{height:64px!important;min-height:64px!important;font-family:PartyRubik,system-ui,sans-serif!important;font-style:italic!important;font-weight:800!important;text-transform:uppercase!important;border-radius:999px!important;background:#111019!important;border:1px solid #b99bff40!important;padding:19px 20px!important;line-height:24px!important}
+:is([data-party-game="pocket_siege"]).party-player .arsenal-note{font-size:10px!important;line-height:1.35!important;margin:8px 4px 10px!important}
+:is([data-party-game="pocket_siege"]).party-player .arsenal-list{min-height:0;overflow:auto;overscroll-behavior:contain;padding-bottom:76px}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row{grid-template-columns:48px minmax(0,1fr) 48px!important;min-height:64px!important;padding:7px 8px 7px 11px!important;border-radius:18px!important;background:linear-gradient(90deg,color-mix(in srgb,var(--weapon-color,#ad8dff) 24%,#2a2339) 0%,color-mix(in srgb,var(--weapon-color,#ad8dff) 9%,#211b2d) 32%,#171420 64%)!important;border:1px solid color-mix(in srgb,var(--weapon-color,#ad8dff) 30%,transparent)!important}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row strong{font-family:PartyRubik,system-ui,sans-serif!important;font-size:15px!important;font-style:italic!important;font-weight:850!important;line-height:1.15!important;letter-spacing:-.035em!important;text-transform:uppercase!important;color:#f7f3ff!important}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row-meta{justify-self:center!important;transform:translateX(-3px);font-size:29px!important;line-height:1!important;color:#c4ff73!important}
+:is([data-party-game="pocket_siege"]).party-player .loadout-dock{position:relative;z-index:4;flex:0 0 auto;margin:-72px -1px -1px;padding:72px 1px 1px;background:linear-gradient(to bottom,#18172200 0,#18172238 22%,#181722d9 58%,#181722 78%);pointer-events:none}
+:is([data-party-game="pocket_siege"]).party-player .loadout-dock:has(.hidden){display:none}
+:is([data-party-game="pocket_siege"]).party-player .loadout-ready{width:100%;margin:0!important;font-family:PartyRubik,system-ui,sans-serif!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase!important;pointer-events:auto}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .score-chip{background:#272136e8;border:1px solid #b99bff40;color:#f6f0ff}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) :is(.padlabel,.ammo-note,.move-controls span){color:#d3c4e8}
+:is([data-party-game="pocket_siege"]).party-player .weapon-button{gap:10px!important;padding:10px 14px!important;overflow:hidden!important}
+:is([data-party-game="pocket_siege"]).party-player .weapon-icon{display:block!important;width:72px!important;height:72px!important;margin-left:0!important;border:0!important;border-radius:0!important;background-color:transparent!important;box-shadow:none!important}
+:is([data-party-game="pocket_siege"]).party-player .arsenal-list{margin-left:0!important;margin-right:0!important;width:100%!important}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row{position:relative!important;isolation:isolate!important;grid-template-columns:78px minmax(0,1fr) 44px!important;min-height:80px!important;padding:3px 10px 3px 5px!important;border-radius:18px!important;gap:8px!important;overflow:hidden!important;background:#16121d!important}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,var(--weapon-color,#ad8dff) 0%,transparent 70%);opacity:.28}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row.selected::before{opacity:.36}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row>*{position:relative;z-index:1}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row-icon{display:block!important;width:72px!important;height:72px!important;align-self:center!important;justify-self:center!important;transform:translateX(3px)!important;background-color:transparent!important}
+:is([data-party-game="pocket_siege"]).party-player .weapon-row-meta{width:44px!important;text-align:center!important;transform:none!important}
+[data-party-game="bow_club"].party-host .tv-heading{display:none}
+[data-party-game="bow_club"].party-host .score-chip{background:#282137ef;color:#fff;border:1px solid #b99bff50;border-radius:16px}
+[data-party-game="bow_club"].party-host .score-chip span{color:#d8c8f0}
+[data-party-game="bow_club"].party-player #view::after{display:none}
+[data-party-game="bow_club"].party-player .phone-hud{padding:10px;align-items:center;gap:8px;border-radius:0;background:#171320d9}
+[data-party-game="bow_club"].party-player .phone-hud>div{padding:0}
+[data-party-game="bow_club"].party-player .phone-hud strong{font-size:11px}
+[data-party-game="bow_club"].party-player .phone-hud #hand{width:48px;min-width:48px;font-size:0!important;padding:8px}
+[data-party-game="bow_club"].party-player .phone-hud #hand::after{content:'⇄';font-size:22px}
+[data-party-game="bow_club"].party-player #draw{width:132px;min-width:132px;height:76px;min-height:76px;display:flex;flex-direction:column;justify-content:center;gap:3px;border-radius:26px;font-size:18px!important;padding:12px;line-height:1.1}
+[data-party-game="bow_club"].party-player #draw small{font-size:11px!important;color:#283817;opacity:1;margin:0;white-space:nowrap}
+[data-party-game="bow_club"].party-player .touch-mode #bow{display:none}
+[data-party-game="bow_club"].party-player .touch-mode #view{background:radial-gradient(ellipse at center,#30203e,#0b1016)}
+[data-party-game="bow_club"].party-player .touch-mode #touchPad{inset:108px 12px auto}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-host :is(body,.host-main,.arena){width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;aspect-ratio:auto}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-host #game{width:100%;height:100%;display:block}
+[data-party-game="bow_club"].party-host #stage{width:100vw;height:100dvh;max-width:none;max-height:none;aspect-ratio:auto}
+[data-party-game="bow_club"].party-player #video{width:100%;height:100%;object-fit:cover;object-position:center}
+/* Long player/weapon labels never compete with the primary action. */
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .range-head span{color:#d6c7ed;font-size:11px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .weapon-button>span:nth-child(2){min-width:0;flex:1}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) #weaponName{font-size:14px;line-height:1.2;overflow-wrap:anywhere}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) #weaponInfo{font-size:11px;line-height:1.35;color:#d5c7e9;white-space:normal;overflow-wrap:anywhere}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .drawer-panel{max-height:calc(100dvh - 16px);padding:16px;overflow:auto}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .drawer-head{gap:12px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .drawer-head h2{font-size:20px;line-height:1.15}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .weapon-tile{min-width:0;padding:12px;background:#282137;border:1px solid #b99bff40;border-radius:18px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .weapon-tile strong{font-size:12px;line-height:1.25;overflow-wrap:anywhere}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .weapon-tile small{font-size:11px;line-height:1.4;color:#d4c6e7;overflow-wrap:anywhere}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .weapon-tile.selected{border-color:#c4ff73;box-shadow:inset 0 0 0 1px #c4ff73}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .arsenal-note{font-size:11px;color:#cfc1e1}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .waiting-phone{padding:24px 16px;background:#282137;border:1px solid #b99bff36;border-radius:24px}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .waiting-phone h2{font-size:24px;line-height:1.2}
+:is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]) .waiting-phone p{font-size:13px;line-height:1.5;color:#d4c5e8}
+[data-party-game="bow_club"].party-player #feedback{left:16px;right:16px;top:42%;font-size:clamp(20px,6vw,28px);line-height:1.2;overflow-wrap:anywhere}
+[data-party-game="bow_club"].party-player #draw:not(:disabled) small{color:#283817!important}
+[data-party-game="bow_club"].party-player #score{color:#eadff7!important;font-size:12px;background:#211a30dc}
+@media(max-height:440px){
+ :is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player .controller{padding:10px}
+ :is([data-party-game="marble_bloom"],[data-party-game="pocket_siege"]).party-player .phone-meta{margin-bottom:8px}
+ [data-party-game="bow_club"].party-player .shoot-hud{padding:8px 12px}
+ [data-party-game="bow_club"].party-player #draw{height:58px;min-height:58px;width:112px;min-width:112px}
+ [data-party-game="bow_club"].party-player .touch-mode #touchPad{top:76px;right:164px;max-height:calc(100dvh - 88px);aspect-ratio:16/9}
+}
+html.party-managed.party-player[data-party-game="bow_club"] #draw small{color:#283817!important;-webkit-text-fill-color:#283817!important;opacity:1!important;text-shadow:none!important}
+html.party-managed.party-player[data-party-game="pocket_siege"] #arsenal{background:#090711b8;backdrop-filter:blur(14px);padding:12px;align-items:flex-end}
+html.party-managed.party-player[data-party-game="pocket_siege"] #arsenal .drawer-panel{width:100%;max-width:560px;max-height:calc(100dvh - 24px);padding:18px;border:1px solid #b99bff40;border-radius:26px;background:linear-gradient(145deg,#302540,#191622);box-shadow:0 24px 70px #0008}
+html.party-managed.party-player[data-party-game="pocket_siege"] .drawer-head{position:static;background:transparent!important;padding:0!important;margin:0 0 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:0}
+html.party-managed.party-player[data-party-game="pocket_siege"] .drawer-head h2{margin:0;font-size:19px!important;line-height:1.15;flex:1;min-width:0;color:#f5efff}
+html.party-managed.party-player[data-party-game="pocket_siege"] #closeArsenal{flex:none;width:44px;min-width:44px;height:44px;min-height:44px;padding:0!important;font-family:system-ui,sans-serif!important;font-size:26px!important;font-style:normal!important;font-weight:500!important;line-height:1!important;text-transform:none!important;background:#ffffff05;border:1px solid #ffffff17;border-radius:999px;color:#f7f2ff;display:flex;align-items:center;justify-content:center}
+html.party-managed.party-player[data-party-game="pocket_siege"] #weaponSearch{display:block;width:100%;min-width:0;height:64px;min-height:64px;margin:0 0 8px;padding:19px 20px;border:1px solid #b99bff50;border-radius:999px;background:#100e1a;color:#f8f4ff;font-size:14px!important;line-height:24px!important;outline-offset:3px;appearance:none;-webkit-appearance:none}
+html.party-managed.party-player[data-party-game="pocket_siege"] #weaponSearch::placeholder{color:#c6b5dc;opacity:1}
+html.party-managed.party-player[data-party-game="pocket_siege"] .arsenal-note{margin:6px 4px 12px;font-size:10px!important;line-height:1.35!important;color:#cbbbdf}
+html.party-managed.party-player[data-party-game="pocket_siege"] .arsenal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+html.party-managed.party-player[data-party-game="pocket_siege"] .weapon-tile{height:auto;min-height:150px;text-align:left;display:flex;flex-direction:column;align-items:stretch;gap:8px}
+
+/* Controller review: readable actions and an edge-to-edge drawing surface. */
+html.party-managed.party-player[data-party-game=chaos] #controlArea .ctrl small{font:italic 900 clamp(18px,5vw,24px)/1.2 PartyRubik,Rubik,system-ui,sans-serif!important;color:#f7f7fa!important}
+html.party-player[data-party-game=kart] .phone-stat span{color:#f7f7fa!important}
+html.party-player[data-party-game=kart] .phone-footer{position:relative;display:flex;align-items:center;justify-content:center;min-height:64px;padding:12px 64px!important;gap:8px;text-align:center}
+html.party-player[data-party-game=kart] .phone-footer .muted{font:italic 800 14px/1.2 PartyRubik,Rubik,system-ui,sans-serif!important;color:#f7f7fa!important}
+html.party-player[data-party-game=kart] #swapHandBtn{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:48px;min-width:48px;height:48px;padding:0;font-size:28px!important;display:grid;place-items:center}
+html.party-managed.party-player[data-party-game=drawguess] .party-screen .stage{text-align:center;padding-inline:0!important;overflow:hidden}
+html.party-player[data-party-game=drawguess] .stage :is(.eyebrow,h2,#status,#secret){margin-left:16px!important;margin-right:16px!important}
+html.party-player[data-party-game=drawguess] .stage .eyebrow{justify-content:center;text-align:center}
+html.party-player[data-party-game=drawguess] #status{margin-top:14px!important;margin-bottom:18px!important;color:#f7f7fa!important}
+html.party-player[data-party-game=drawguess] #canvas{width:100%!important;max-width:none!important;border-radius:0!important;border-left:0!important;border-right:0!important;margin:20px 0!important}
+html.party-player[data-party-game=drawguess] #drawingTools{display:flex;justify-content:center;align-items:center;gap:16px!important;padding:4px 16px 20px!important}
+html.party-player[data-party-game=drawguess] #colors{width:100%;justify-content:center;gap:10px}
+/* Embedded phone games share the parent surface all the way from header to
+   bottom actions. Keep coloured game panels/canvases, not full-page black mats. */
+html.party-managed.party-player,
+html.party-managed.party-player body{background:#151321!important;min-height:100%;margin:0}
+html.party-managed.party-player body main,
+html.party-managed.party-player :is(.controller,.phone-shell,.phone-screen,.phone-page,.party-screen,.screen,.move-controls,.knife-controls,.western-controls),
+html.party-managed.party-player body>#app{background:transparent!important}
+html.party-managed.party-player body::before{background:none!important}
+/* The TV notch already reserves its own height: quiz needs no second title rail. */
+@media(min-width:1101px){
+ html.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) .party-screen .screen-workspace{padding-top:12px!important;grid-template-columns:minmax(0,1fr) minmax(280px,34%)!important}
+ html.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) .screen-workspace>.stage{align-self:start!important;padding:22px!important}
+}
+@media(min-width:1101px) and (max-height:650px){
+ html.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) #question{font-size:32px!important;line-height:1.12!important;margin:12px 0!important}
+ html.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) .timebar{margin:8px 0 14px!important}
+ html.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) #status{margin:8px 0 14px!important}
+ html.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) #answers{gap:10px!important}
+ html.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) #answers>*{min-height:72px!important;padding:10px 14px!important;font-size:20px!important;line-height:1.25!important}
+}
+
+/* Holding directions uses two independent, reachable physical controls. */
+html.party-player[data-party-game=kart] .steer-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;min-height:100px}
+html.party-player[data-party-game=kart] .steer-buttons button{min-width:0;min-height:100px;padding:16px 8px;font:italic 800 clamp(16px,4vw,22px)/1.2 PartyRubik,Rubik,system-ui;border-radius:24px;background:linear-gradient(150deg,#504064,#292337);border:1px solid #c6b1ff55;color:#f4edff;box-shadow:inset 0 1px #ffffff25,0 5px #161020;touch-action:none}
+html.party-player[data-party-game=kart] .steer-buttons button.held{background:linear-gradient(#e2ffa8,#c8ff73);color:#17220e;box-shadow:inset 0 2px 6px #71954744;transform:translateY(3px)}
+html.party-player[data-party-game=kart] .steer-buttons button:disabled{opacity:.45;box-shadow:none}
+html.party-player[data-party-game=kart] #steerValue{display:block;margin-top:16px;font-size:13px;color:#c6b1ff}
+html.party-player[data-party-game=western_duel] #fire{margin-bottom:16px}
+html.party-player[data-party-game=western_duel] .stage{display:flex;align-items:center;justify-content:center;min-height:0}
+html.party-player[data-party-game=western_duel] .stage canvas{object-fit:contain;object-position:center;min-height:0;max-height:100%}
+
+html.party-managed .arsenal-health{display:inline-block;position:relative;color:#d6ffa5;font:700 12px/1.6 PartyRubik,Rubik,system-ui;padding-bottom:5px;min-width:58px;background:linear-gradient(90deg,#c8ff73 var(--hp),#ffffff18 var(--hp)) bottom/100% 3px no-repeat}
+
+/* Shared movement template reserves independent space for instructions and stats. */
+html.party-managed.party-player #moveControls{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px;padding:12px 16px max(12px,env(safe-area-inset-bottom));overflow:auto}
+html.party-managed.party-player #moveControls.hidden{display:none!important}
+html.party-managed.party-player #moveControls .joystick-zone{position:relative;inset:auto;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;padding:12px 0}
+html.party-managed.party-player #moveControls .joy-tip{position:static;inset:auto;max-width:100%;font-size:12px;line-height:1.45;letter-spacing:.025em;text-align:center;overflow-wrap:anywhere;flex:none}
+html.party-managed.party-player #moveControls .move-stats{position:static;inset:auto;width:100%;height:auto;min-height:64px;grid-template-columns:1fr 1fr;gap:10px;flex:none}
+html.party-managed.party-player #moveControls .move-stats>div{min-width:0;padding:10px 8px;flex-wrap:wrap;gap:6px}
+html.party-managed.party-player #moveControls .move-stats b{font-size:20px;overflow-wrap:anywhere}
+html.party-managed.party-player #moveControls .joystick-base{flex:none;width:min(66vw,40dvh,250px);height:min(66vw,40dvh,250px);transform:none!important}
+html.party-player[data-party-game=kart] #controlsArea{display:grid!important;grid-template-columns:1fr!important;grid-template-rows:1fr 1fr;gap:14px}
+html.party-player[data-party-game=kart] #controlsArea .steering-zone,html.party-player[data-party-game=kart] #controlsArea .gas-zone{grid-column:1!important;grid-row:auto!important;min-height:0;padding:0!important}
+html.party-player[data-party-game=kart] .slider-card{padding:0!important;display:flex;flex-direction:column;justify-content:center;background:none!important;border:0!important;box-shadow:none!important}
+html.party-player[data-party-game=kart] .steer-buttons{flex:1;min-height:70px}
+html.party-player[data-party-game=kart] .steer-buttons button{min-height:70px;white-space:nowrap}
+html.party-player[data-party-game=kart] #steerValue{margin-top:8px}
+html.party-player[data-party-game=kart] #gasBtn{min-height:76px!important;flex-direction:row;gap:18px;border-radius:24px!important}
+html.party-player[data-party-game=kart] #gasBtn .gas-arrow{font-size:36px!important}
+/* Shared shell owns Time/Round. Keep private turn and wind guidance compact. */
+html.party-managed.party-player[data-party-game=pocket_siege] .phone-meta #clock{display:none}
+html.party-managed.party-player[data-party-game=pocket_siege] .phone-meta{min-height:36px;margin-bottom:8px;padding:8px 12px!important}
+html.party-managed.party-player[data-party-game=pocket_siege] .phone-meta>div{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%}
+html.party-managed.party-player[data-party-game=pocket_siege] .phone-meta #turnHint{margin:0;font-size:11px}
+html.party-managed.party-player[data-party-game=pocket_siege] .pocket-deck{padding-bottom:18px!important;margin-bottom:10px}
+@media(max-height:420px) and (min-width:520px){html.party-managed.party-player #moveControls{grid-template-columns:1fr 1fr;grid-template-rows:1fr;align-items:center}html.party-managed.party-player #moveControls .move-stats{grid-template-columns:1fr}html.party-player[data-party-game=kart] #controlsArea{grid-template-columns:1.5fr 1fr!important;grid-template-rows:1fr}html.party-player[data-party-game=kart] #controlsArea .gas-zone{grid-column:2!important;grid-row:1!important}}
+html.party-managed.party-player[data-party-game=jenga] .phone select{min-width:0;max-width:100%;width:100%;text-overflow:ellipsis}
+html.party-managed.party-player[data-party-game=jenga] .phone label{min-width:0}

@@ -32,7 +32,7 @@ test('motion runtime only changes presentation and scoped native feedback',()=>{
  assert.equal(calls.length,2,'only prepare and short UI impact may use WK messaging');
  for(const [,receiver,payload] of calls){
   assert.equal(receiver,'window.webkit?.messageHandlers?.partyShell?.');
-  assert.match(payload,/^\{type:'haptic(?:-prepare)'\}$|^\{type:'haptic',pattern:\[7\]\}$/);
+  assert.match(payload,/^\{type:'haptic(?:-prepare)'\}$|^\{type:'haptic',pattern\}$/);
  }
  assert.match(js,/if\(document.body.classList.contains\('native-shell'\)\)/);
  assert.match(js,/!e.isTrusted/);

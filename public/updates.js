@@ -13,7 +13,7 @@
  const request=async(endpoint='',body)=>{const r=await fetch('/api/updates'+endpoint,{method:body?'POST':'GET',headers:{'X-Party-Host':window.PARTY_HOST_KEY,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});let d;try{d=await r.json();}catch{throw Error('Сервер не ответил');}if(!r.ok)throw Error(d.error||'Ошибка обновления');return d;};
  const sync=()=>{$('install').disabled=working||!candidate||candidate.current||!$('confirm').checked;$('check').disabled=working;$('rollback').disabled=working||!$('confirm').checked;};
  function show(s){
-  if(s.version)$('current').textContent=`LocalParty ${s.version} · alpha / sports & siege`;
+  if(s.version)$('current').textContent=`HeyPals ${s.version} · alpha / sports & siege`;
   if(s.candidate){candidate=s.candidate;$('install').textContent=`Установить ${candidate.version} ↓`;}
   $('status').textContent=s.message||'';if(s.previous?.phase==='error'&&s.phase==='idle')$('status').textContent=s.previous.message;
   if(s.rollback!==undefined)$('rollback').hidden=!s.rollback;

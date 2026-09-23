@@ -1,7 +1,10 @@
 'use strict';
 const crypto=require('crypto'),WORDS=require('../crocodile/words.json');
+const ENGLISH=require('../../public/i18n-content.js');
 const normalize=s=>String(s||'').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^а-яa-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
 const ALIASES={'Котёнок':['кот','кошка','котик'],'Щенок':['собака','пес','собачка'],'Паровоз':['поезд','локомотив'],'Пианино':['фортепиано','рояль'],'Самолёт':['аэроплан'],'Велосипед':['велик'],'Фотоаппарат':['камера','фотокамера'],'Мотоцикл':['байк','мото'],'Космонавт':['астронавт'],'Повар':['шеф','шеф повар'],'Врач':['доктор'],'Парикмахер':['барбер'],'Осьминог':['спрут'],'Воздушный змей':['змей'],'Человек невидимка':['невидимка'],'Стиральная машина':['стиралка'],'Зубная щётка':['щетка для зубов'],'Сахарная вата':['сладкая вата'],'Спагетти':['макароны','паста'],'Пожарный':['пожарник'],'Водитель автобуса':['автобусный водитель'],'Снеговик':['снежная баба'],'Скрипка':['виолина'],'Стоматолог':['зубной врач','дантист'],'Диджей':['dj','ди джей'],'Тяжелоатлет':['штангист'],'Канатоходец':['эквилибрист'],'Петь в душе':['пение в душе'],'Делать селфи':['селфи'],'Выгуливать собаку':['выгул собаки'],'Играть в боулинг':['боулинг']};
+// Mixed-language rooms share one secret and may answer in either language.
+for(const word of WORDS)if(typeof ENGLISH[word]==='string')ALIASES[word]=[...(ALIASES[word]||[]),ENGLISH[word]];
 class DrawGuess{
  constructor(report=()=>{}){this.report=report;this.players=new Map();this.phase='lobby';this.settings={seconds:60};this.turn=-1;this.turnId=0;this.strokes=[];this.messages=[];this.used=[];}
  join(id,name){let p=this.players.get(id);if(!p){p={id,name,online:true,score:0,correct:0,drawings:0,guessed:false,lastGuess:0};this.players.set(id,p);}p.name=name;p.online=true;if(this.order&&['drawing','reveal','paused'].includes(this.phase)&&!this.order.includes(id))this.order.push(id);return p;}

@@ -57,15 +57,31 @@
       "category": "characters",
       "status": "alpha-approved",
       "manifest": "shared2d",
-      "members": ["runner", "bird", "blob", "puck", "tank", "cowboy", "kart", "rugby-player"],
+      "members": [
+        "runner",
+        "bird",
+        "blob",
+        "puck",
+        "tank",
+        "cowboy",
+        "kart",
+        "rugby-player"
+      ],
       "projection": "pseudo-3d",
       "camera": "fixed orthographic three-quarter toy cutout",
       "pivot": "from shared2d manifest; centered unless overridden",
       "tint": "semantic tint mask for every member",
       "animation": "single pose; animate transform or use a rig collection",
       "license": "project-generated",
-      "useFor": ["menu prototype", "single-pose avatar", "simple arena token"],
-      "avoidFor": ["strict top-down combat", "frame animation without a rig"],
+      "useFor": [
+        "menu prototype",
+        "single-pose avatar",
+        "simple arena token"
+      ],
+      "avoidFor": [
+        "strict top-down combat",
+        "frame animation without a rig"
+      ],
       "mobileBundle": "allowed only when explicitly preloaded by a controller; prefer one sprite, not the full atlas"
     },
     {
@@ -74,15 +90,31 @@
       "category": "props",
       "status": "alpha-approved",
       "manifest": "shared2d",
-      "members": ["knife", "bomb", "ball", "punchbag", "ship", "revolver", "badge", "wheel"],
+      "members": [
+        "knife",
+        "bomb",
+        "ball",
+        "punchbag",
+        "ship",
+        "revolver",
+        "badge",
+        "wheel"
+      ],
       "projection": "pseudo-3d",
       "camera": "fixed orthographic cutout",
       "pivot": "from shared2d manifest; punchbag uses top suspension pivot",
       "tint": "knife, ball, ship and wheel have tint masks",
       "animation": "single pose; bomb fuse and projectile motion are runtime systems",
       "license": "project-generated",
-      "useFor": ["physics token", "pickup", "HUD accent", "alpha objective"],
-      "avoidFor": ["mixing with strict frontal or strict top-down sprites without a visual gate"],
+      "useFor": [
+        "physics token",
+        "pickup",
+        "HUD accent",
+        "alpha objective"
+      ],
+      "avoidFor": [
+        "mixing with strict frontal or strict top-down sprites without a visual gate"
+      ],
       "mobileBundle": "small individual sprites are allowed; do not preload unused props"
     },
     {
@@ -91,15 +123,31 @@
       "category": "tiles-and-background-parts",
       "status": "alpha-approved",
       "manifest": "shared2d",
-      "members": ["pipe", "cloud", "mesa", "grass", "wood-block", "concrete-block", "hook", "sparkle"],
+      "members": [
+        "pipe",
+        "cloud",
+        "mesa",
+        "grass",
+        "wood-block",
+        "concrete-block",
+        "hook",
+        "sparkle"
+      ],
       "projection": "pseudo-3d",
       "camera": "fixed orthographic cutout",
       "pivot": "from shared2d manifest",
       "tint": "none",
       "animation": "single pose; sparkle may be pulsed or rotated with reduced-motion fallback",
       "license": "project-generated",
-      "useFor": ["lightweight alpha dressing", "obstacles", "foreground accents"],
-      "avoidFor": ["seamless wall unless a repeat/seam check passes", "dense decoration inside the play path"],
+      "useFor": [
+        "lightweight alpha dressing",
+        "obstacles",
+        "foreground accents"
+      ],
+      "avoidFor": [
+        "seamless wall unless a repeat/seam check passes",
+        "dense decoration inside the play path"
+      ],
       "mobileBundle": "host preferred; individual small accents are allowed"
     },
     {
@@ -108,15 +156,38 @@
       "category": "characters-and-weapons",
       "status": "alpha-approved",
       "manifest": "shared2d",
-      "members": ["tank-body", "tank-turret", "bird-wing", "robot-foot-left", "robot-foot-right", "glove", "knife-handle", "cowboy-body-v2", "cowboy-arm-pistol-v2", "runner-body-v2", "runner-leg-near-v2", "runner-leg-far-v2", "ninja-body-v1", "ninja-arm-v1"],
+      "members": [
+        "tank-body",
+        "tank-turret",
+        "bird-wing",
+        "robot-foot-left",
+        "robot-foot-right",
+        "glove",
+        "knife-handle",
+        "cowboy-body-v2",
+        "cowboy-arm-pistol-v2",
+        "runner-body-v2",
+        "runner-leg-near-v2",
+        "runner-leg-far-v2",
+        "ninja-body-v1",
+        "ninja-arm-v1"
+      ],
       "projection": "pseudo-3d",
       "camera": "fixed side/front three-quarter cutout; never substitute for strict top-down turrets",
       "pivot": "explicit per-part pivots and rig anchors in shared2d manifest",
       "tint": "all listed parts have tint masks",
       "animation": "runtime articulated transforms; preserve manifest rig and muzzle anchors",
       "license": "project-generated",
-      "useFor": ["runner loop", "weapon recoil", "limb motion", "fast character prototypes"],
-      "avoidFor": ["top-down tower defense", "repacking without preserving pivots"],
+      "useFor": [
+        "runner loop",
+        "weapon recoil",
+        "limb motion",
+        "fast character prototypes"
+      ],
+      "avoidFor": [
+        "top-down tower defense",
+        "repacking without preserving pivots"
+      ],
       "mobileBundle": "host-only by default because several source sprites are large"
     },
     {
@@ -125,15 +196,27 @@
       "category": "enemies",
       "status": "visual-gate-required",
       "manifest": "sportsSiege",
-      "members": ["swarm-termite", "swarm-runner", "swarm-tank", "swarm-boss"],
+      "members": [
+        "swarm-termite",
+        "swarm-runner",
+        "swarm-tank",
+        "swarm-boss"
+      ],
       "projection": "2d-top-down",
       "camera": "strict 90 degree top-down, orthographic, no visible horizon or side elevation",
       "pivot": "manifest pivot; ground contact/center must stay stable across motion and death",
       "tint": "none",
       "animation": "single live pose; pair with a class-specific death sheet before production",
       "license": "project-generated",
-      "useFor": ["swarm", "tower defense", "top-down shooter"],
-      "avoidFor": ["frontal gallery targets", "use before neighbour-pixel QA passes"],
+      "useFor": [
+        "swarm",
+        "tower defense",
+        "top-down shooter"
+      ],
+      "avoidFor": [
+        "frontal gallery targets",
+        "use before neighbour-pixel QA passes"
+      ],
       "mobileBundle": "host-only"
     },
     {
@@ -142,15 +225,34 @@
       "category": "weapons",
       "status": "visual-gate-required",
       "manifest": "sportsSiege",
-      "members": ["turret-base", "turret-head-short", "turret-head-long", "turret-pulse", "turret-shell", "turret-bolt", "turret-missile", "turret-selection", "turret-pedestal-stone", "turret-pedestal-blue", "turret-pedestal-wood", "turret-pedestal-damaged"],
+      "members": [
+        "turret-base",
+        "turret-head-short",
+        "turret-head-long",
+        "turret-pulse",
+        "turret-shell",
+        "turret-bolt",
+        "turret-missile",
+        "turret-selection",
+        "turret-pedestal-stone",
+        "turret-pedestal-blue",
+        "turret-pedestal-wood",
+        "turret-pedestal-damaged"
+      ],
       "projection": "2d-top-down",
       "camera": "all gameplay pieces must read from the same strict top-down orthographic camera",
       "pivot": "barrels rotate around base center; muzzle/end pivot must match projectile spawn; pedestal centered under base",
       "tint": "player color belongs in a separate marker/bubble unless a tested mask exists",
       "animation": "rotate head in screen plane; short recoil; spawn projectile at muzzle; trail follows projectile and fades after impact",
       "license": "project-generated",
-      "useFor": ["top-down tower defense", "top-down artillery"],
-      "avoidFor": ["any side-view or three-quarter tower image", "pedestals whose camera does not match the head"],
+      "useFor": [
+        "top-down tower defense",
+        "top-down artillery"
+      ],
+      "avoidFor": [
+        "any side-view or three-quarter tower image",
+        "pedestals whose camera does not match the head"
+      ],
       "mobileBundle": "host-only"
     },
     {
@@ -159,15 +261,30 @@
       "category": "tiles-and-background-parts",
       "status": "visual-gate-required",
       "manifest": "sportsSiege",
-      "members": ["wall-straight", "gate-closed", "gate-damaged", "gate-open", "wall-tower-left", "wall-tower-right", "wall-damage", "wall-repair"],
+      "members": [
+        "wall-straight",
+        "gate-closed",
+        "gate-damaged",
+        "gate-open",
+        "wall-tower-left",
+        "wall-tower-right",
+        "wall-damage",
+        "wall-repair"
+      ],
       "projection": "pseudo-3d",
       "camera": "fixed host camera: straight south/front face with consistent top cap",
       "pivot": "bottom/ground alignment from manifest",
       "tint": "none",
       "animation": "swap gate/damage states; repair/damage overlays must share the same alignment",
       "license": "project-generated",
-      "useFor": ["full-width defensive boundary", "gate objective"],
-      "avoidFor": ["rotated placement", "gapped or overlapping repeat segments"],
+      "useFor": [
+        "full-width defensive boundary",
+        "gate objective"
+      ],
+      "avoidFor": [
+        "rotated placement",
+        "gapped or overlapping repeat segments"
+      ],
       "mobileBundle": "host-only"
     },
     {
@@ -176,15 +293,30 @@
       "category": "effects",
       "status": "visual-gate-required",
       "manifest": "sportsSiege",
-      "members": ["shot-gold", "shot-violet", "muzzle-a", "muzzle-b", "hit-a", "hit-b", "miss-a", "miss-b"],
+      "members": [
+        "shot-gold",
+        "shot-violet",
+        "muzzle-a",
+        "muzzle-b",
+        "hit-a",
+        "hit-b",
+        "miss-a",
+        "miss-b"
+      ],
       "projection": "2d-front",
       "camera": "screen-plane effects; rotate only around screen normal",
       "pivot": "center for impacts; muzzle at weapon emission point",
       "tint": "use dedicated variants; do not hue-shift highlights blindly",
       "animation": "projectile remains visible through travel; trail is attached, then contracts and fades; impact uses short scale/opacity curve",
       "license": "project-generated",
-      "useFor": ["shooting gallery", "screen-plane shooter feedback"],
-      "avoidFor": ["instant line beams", "mixing old line effect behind the projectile"],
+      "useFor": [
+        "shooting gallery",
+        "screen-plane shooter feedback"
+      ],
+      "avoidFor": [
+        "instant line beams",
+        "mixing old line effect behind the projectile"
+      ],
       "mobileBundle": "host-only; controller feedback should use CSS vibration/color"
     },
     {
@@ -193,15 +325,30 @@
       "category": "effects",
       "status": "visual-gate-required",
       "manifest": "sportsSiege",
-      "members": ["swarm-explosion-0", "swarm-explosion-1", "swarm-explosion-2", "swarm-explosion-3", "swarm-explosion-4", "swarm-explosion-5", "swarm-explosion-6", "swarm-explosion-7"],
+      "members": [
+        "swarm-explosion-0",
+        "swarm-explosion-1",
+        "swarm-explosion-2",
+        "swarm-explosion-3",
+        "swarm-explosion-4",
+        "swarm-explosion-5",
+        "swarm-explosion-6",
+        "swarm-explosion-7"
+      ],
       "projection": "2d-top-down",
       "camera": "strict top-down screen-plane",
       "pivot": "0.5,0.5 for every frame",
       "tint": "none",
       "animation": "8 frames in numeric order; clamp random scale and rotation so silhouette remains readable",
       "license": "project-generated",
-      "useFor": ["top-down enemy death", "projectile impact"],
-      "avoidFor": ["frontal targets", "random scale/rotation outside an authored narrow range"],
+      "useFor": [
+        "top-down enemy death",
+        "projectile impact"
+      ],
+      "avoidFor": [
+        "frontal targets",
+        "random scale/rotation outside an authored narrow range"
+      ],
       "mobileBundle": "host-only"
     },
     {
@@ -210,15 +357,35 @@
       "category": "enemies-and-obstacles",
       "status": "visual-gate-required",
       "manifest": "sportsSiege",
-      "members": ["target-chicken", "target-bug", "target-beetle", "target-boss", "target-friendly", "target-bonus", "cover-wood", "cover-wood-cracked", "cover-stone", "cover-metal", "cover-wood-break-a", "cover-wood-break-b", "cover-rounded"],
+      "members": [
+        "target-chicken",
+        "target-bug",
+        "target-beetle",
+        "target-boss",
+        "target-friendly",
+        "target-bonus",
+        "cover-wood",
+        "cover-wood-cracked",
+        "cover-stone",
+        "cover-metal",
+        "cover-wood-break-a",
+        "cover-wood-break-b",
+        "cover-rounded"
+      ],
       "projection": "2d-front",
       "camera": "strict frontal orthographic target plane",
       "pivot": "targets centered; covers aligned to a shared baseline",
       "tint": "none",
       "animation": "appear from behind cover, hit reaction, then a readable death; keep friendly state unmistakable",
       "license": "project-generated",
-      "useFor": ["shooting gallery", "whack-a-target"],
-      "avoidFor": ["top-down scenes", "cropped cells containing adjacent targets"],
+      "useFor": [
+        "shooting gallery",
+        "whack-a-target"
+      ],
+      "avoidFor": [
+        "top-down scenes",
+        "cropped cells containing adjacent targets"
+      ],
       "mobileBundle": "host-only"
     },
     {
@@ -227,15 +394,29 @@
       "category": "effects",
       "status": "visual-gate-required",
       "manifest": "sportsSiege",
-      "members": ["gallery-death-0", "gallery-death-1", "gallery-death-2", "gallery-death-3", "gallery-death-4", "gallery-death-5", "gallery-death-6", "gallery-death-7"],
+      "members": [
+        "gallery-death-0",
+        "gallery-death-1",
+        "gallery-death-2",
+        "gallery-death-3",
+        "gallery-death-4",
+        "gallery-death-5",
+        "gallery-death-6",
+        "gallery-death-7"
+      ],
       "projection": "2d-front",
       "camera": "strict frontal screen-plane",
       "pivot": "0.5,0.5 for every frame",
       "tint": "none",
       "animation": "8 frames in numeric order; show target disappearance clearly before removing the entity",
       "license": "project-generated",
-      "useFor": ["gallery target death"],
-      "avoidFor": ["top-down enemies", "single-frame pop/disappear"],
+      "useFor": [
+        "gallery target death"
+      ],
+      "avoidFor": [
+        "top-down enemies",
+        "single-frame pop/disappear"
+      ],
       "mobileBundle": "host-only"
     },
     {
@@ -257,8 +438,16 @@
       "tint": "none",
       "animation": "static; optional low-amplitude parallax on separate layers only",
       "license": "project-generated",
-      "useFor": ["host backdrop", "results backdrop", "menu art"],
-      "avoidFor": ["collision geometry", "phone controller", "assuming menu art is gameplay art"],
+      "useFor": [
+        "host backdrop",
+        "results backdrop",
+        "menu art"
+      ],
+      "avoidFor": [
+        "collision geometry",
+        "phone controller",
+        "assuming menu art is gameplay art"
+      ],
       "mobileBundle": "host-only"
     },
     {
@@ -280,8 +469,17 @@
       "tint": "optional restrained material tint after cloning; preserve value separation and material identity",
       "animation": "static architecture; camera motion and gameplay objects remain separate presentation systems",
       "license": "CC0-1.0",
-      "useFor": ["bowling host environment", "curling host environment", "3D sports alpha blockout with a real architectural shell"],
-      "avoidFor": ["phone controllers", "mixing unrelated packs in one room", "duplicating the gameplay surface", "placing decorative props in the action path"],
+      "useFor": [
+        "bowling host environment",
+        "curling host environment",
+        "3D sports alpha blockout with a real architectural shell"
+      ],
+      "avoidFor": [
+        "phone controllers",
+        "mixing unrelated packs in one room",
+        "duplicating the gameplay surface",
+        "placing decorative props in the action path"
+      ],
       "mobileBundle": "host-only; controller entry points must never request these GLBs"
     },
     {
@@ -289,16 +487,51 @@
       "title": "Rubik UI font",
       "category": "typography",
       "status": "alpha-approved",
-      "files": ["public/assets/fonts/Rubik.ttf", "public/assets/fonts/Rubik-Italic.ttf", "public/assets/fonts/OFL.txt"],
+      "files": [
+        "public/assets/fonts/Rubik.ttf",
+        "public/assets/fonts/Rubik-Italic.ttf",
+        "public/assets/fonts/OFL.txt"
+      ],
       "projection": "ui",
       "camera": "n/a",
       "pivot": "n/a",
       "tint": "CSS color",
       "animation": "n/a",
       "license": "OFL-1.1",
-      "useFor": ["HUD", "player bubbles", "buttons", "scores"],
-      "avoidFor": ["unbounded condensed all-caps text at tiny sizes"],
+      "useFor": [
+        "HUD",
+        "player bubbles",
+        "buttons",
+        "scores"
+      ],
+      "avoidFor": [
+        "unbounded condensed all-caps text at tiny sizes"
+      ],
       "mobileBundle": "approved; preload only weights actually used"
+    },
+    {
+      "id": "imported-v07-covers",
+      "title": "Marble Bloom, Pocket Siege and Bow Club covers",
+      "category": "menu-art",
+      "status": "alpha-approved",
+      "projection": "ui",
+      "camera": "three-quarter glossy toy catalog artwork",
+      "pivot": "center",
+      "tint": "none; preserve authored palette",
+      "animation": "single image",
+      "license": "project-generated",
+      "mobileBundle": "catalog only; not imported by game controllers",
+      "files": [
+        "public/assets/games/marble_bloom.webp",
+        "public/assets/games/pocket_siege.webp",
+        "public/assets/games/bow_club.webp"
+      ],
+      "useFor": [
+        "game catalog cards"
+      ],
+      "avoidFor": [
+        "gameplay sprites"
+      ]
     }
   ],
   "systems": [
@@ -307,9 +540,19 @@
       "title": "Manifest-driven atlas drawing and tint masks",
       "category": "rendering",
       "status": "alpha-approved",
-      "files": ["public/game-art.js", "public/assets/gameplay/manifest.json"],
+      "files": [
+        "public/game-art.js",
+        "public/assets/gameplay/manifest.json"
+      ],
       "license": "project-code",
-      "provides": ["cached image loading", "manifest lookup", "pivoted draw", "tint masks", "DPR-limited canvas sizing", "preload"],
+      "provides": [
+        "cached image loading",
+        "manifest lookup",
+        "pivoted draw",
+        "tint masks",
+        "DPR-limited canvas sizing",
+        "preload"
+      ],
       "mobileBundle": "allowed when the selected game already uses it; preload only selected keys"
     },
     {
@@ -317,9 +560,15 @@
       "title": "Small DOM art accents",
       "category": "ui",
       "status": "alpha-approved",
-      "files": ["public/game-art-dom.js"],
+      "files": [
+        "public/game-art-dom.js"
+      ],
       "license": "project-code",
-      "provides": ["manifest sprite headings", "small event accents", "reduced-motion fallback"],
+      "provides": [
+        "manifest sprite headings",
+        "small event accents",
+        "reduced-motion fallback"
+      ],
       "mobileBundle": "optional; do not include for a controller without visible art accents"
     },
     {
@@ -327,9 +576,15 @@
       "title": "Pause-safe client clock",
       "category": "game-system",
       "status": "alpha-approved",
-      "files": ["public/game-clock-client.js"],
+      "files": [
+        "public/game-clock-client.js"
+      ],
       "license": "project-code",
-      "provides": ["pause-safe timers", "time scaling boundary", "consistent visual time"],
+      "provides": [
+        "pause-safe timers",
+        "time scaling boundary",
+        "consistent visual time"
+      ],
       "mobileBundle": "approved"
     },
     {
@@ -337,9 +592,15 @@
       "title": "Network snapshot interpolation clock",
       "category": "game-system",
       "status": "reference-implementation",
-      "files": ["games/party/public/visual-clock.js"],
+      "files": [
+        "games/party/public/visual-clock.js"
+      ],
       "license": "project-code",
-      "provides": ["snapshot buffer", "host interpolation", "arrival-time smoothing"],
+      "provides": [
+        "snapshot buffer",
+        "host interpolation",
+        "arrival-time smoothing"
+      ],
       "mobileBundle": "host-side by default"
     },
     {
@@ -347,9 +608,16 @@
       "title": "Lobby/game phase bridge",
       "category": "integration",
       "status": "alpha-approved",
-      "files": ["public/bridge.js"],
+      "files": [
+        "public/bridge.js"
+      ],
       "license": "project-code",
-      "provides": ["phase propagation", "pause integration", "profile bridge", "session UI events"],
+      "provides": [
+        "phase propagation",
+        "pause integration",
+        "profile bridge",
+        "session UI events"
+      ],
       "mobileBundle": "approved"
     },
     {
@@ -357,9 +625,18 @@
       "title": "Responsive lobby, HUD and safe-area shell",
       "category": "ui",
       "status": "reference-implementation",
-      "files": ["public/ux.css", "public/glass.css"],
+      "files": [
+        "public/ux.css",
+        "public/glass.css"
+      ],
       "license": "project-code",
-      "provides": ["44px touch targets", "100dvh layouts", "safe-area padding", "reduced motion", "room and session layouts"],
+      "provides": [
+        "44px touch targets",
+        "100dvh layouts",
+        "safe-area padding",
+        "reduced motion",
+        "room and session layouts"
+      ],
       "mobileBundle": "approved; verify each game at 320-430px and landscape"
     },
     {
@@ -367,9 +644,19 @@
       "title": "Simple clean arena reference",
       "category": "reference-game",
       "status": "quality-reference",
-      "files": ["games/party/public/host.js", "games/party/server.js", "games/party/action.test.cjs"],
+      "files": [
+        "games/party/public/host.js",
+        "games/party/server.js",
+        "games/party/action.test.cjs"
+      ],
       "license": "project-code",
-      "provides": ["clear puck silhouettes", "simple field hierarchy", "readable rim danger", "minimal effects with gameplay meaning", "tested action flow"],
+      "provides": [
+        "clear puck silhouettes",
+        "simple field hierarchy",
+        "readable rim danger",
+        "minimal effects with gameplay meaning",
+        "tested action flow"
+      ],
       "mobileBundle": "controller logic stays separate in games/party/public/controller.js"
     },
     {
@@ -377,15 +664,24 @@
       "title": "Projectile, attached trail and impact lifecycle",
       "category": "effects",
       "status": "visual-gate-required",
-      "files": ["games/sports_siege/public/host.js"],
+      "files": [
+        "games/sports_siege/public/host.js"
+      ],
       "license": "project-code",
-      "provides": ["muzzle", "traveling projectile", "attached trail", "impact sprite sheet", "bounded effect pool"],
+      "provides": [
+        "muzzle",
+        "traveling projectile",
+        "attached trail",
+        "impact sprite sheet",
+        "bounded effect pool"
+      ],
       "mobileBundle": "host-only"
     }
   ],
   "generationSpecs": [
     "docs/gameplay-art/sports-siege-generation-prompts.json",
     "docs/gameplay-art/prompts.json",
-    "docs/gameplay-art/inventory.json"
+    "docs/gameplay-art/inventory.json",
+    "docs/gameplay-art/imported-v07-covers.json"
   ]
 }

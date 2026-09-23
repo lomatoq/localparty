@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none" aria-hidden="true">
+  <path d="m8 12 13 11L32 5l11 18 13-11-7 29H15L8 12Z" fill="url(#crownGold)" stroke="#fff0bf" stroke-width="2"/>
+  <path d="M17 34h30" stroke="#775721" stroke-width="3"/>
+  <defs><linearGradient id="crownGold" x1="13" y1="5" x2="49" y2="41" gradientUnits="userSpaceOnUse"><stop stop-color="#fff8d2"/><stop offset=".43" stop-color="#ffe593"/><stop offset="1" stop-color="#aa7234"/></linearGradient></defs>
+</svg>

@@ -1,0 +1,209 @@
+/* One compact masthead; controls never participate in wordmark centring. */
+html body #brandHeader{position:sticky!important;top:0;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:60px!important;gap:0!important;height:auto!important;min-height:0!important;width:100%!important;margin:0!important;padding:env(safe-area-inset-top) 10px 6px!important;box-sizing:border-box}
+html body #brandHeader>.heypals-header-logo{display:block;position:absolute;top:calc(4px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:120px;height:52px;object-fit:contain;z-index:5;pointer-events:none}
+html body #brandHeader>.identity,html body #brandHeader .brand,html body #brandHeader .brand-mark,html body #connection{display:none!important}
+html body #brandHeader>nav:last-of-type{display:contents!important}
+html body #brandHeader>nav:last-of-type>button{position:absolute!important;top:calc(8px + env(safe-area-inset-top));margin:0!important;height:44px!important;min-height:44px!important;box-sizing:border-box}
+html body #brandHeader #roomToggle{left:8px;width:40px!important;min-width:40px!important;padding:0!important}
+html body #brandHeader #showStats{left:52px;width:40px!important;min-width:40px!important;max-width:40px!important;padding:0!important}
+html body #brandHeader :is(#showStats .nav-label,#myRank,.room-caption,#roomAvatars,#showGames,#fullscreen,#lobbyExit,#gameRules){display:none!important}
+html body #brandHeader #editFromCatalog{right:8px;width:44px!important;min-width:44px!important}
+html body #brandHeader #joinOpen{right:58px;width:44px!important;min-width:44px!important;padding:0!important}
+html body #brandHeader #joinOpen .nav-label{display:none!important}
+html body #brandHeader #openController{left:8px;font-size:11px;padding:8px!important}
+html body #brandHeader #openHost{right:8px;font-size:11px;padding:8px!important}
+html body #brandHeader>#catalogFilters{grid-area:2/1!important;position:relative!important;justify-self:stretch!important;width:100%!important;max-width:none!important;margin:4px 0 0!important}
+html body:not(.in-game):not(.tv-screen){padding-top:0!important}
+html body .heypals-tv-logo{display:block;width:120px;height:54px;object-fit:contain}
+/* Shared full-width capsule tracks, with one sliding selection surface. */
+html body :is(#catalogFilters,.native-catalog-tools .catalog-filters,.guest-filters){position:relative!important;isolation:isolate;display:grid!important;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);width:100%!important;max-width:none!important;box-sizing:border-box;padding:4px!important;gap:0!important;border:1px solid #c6b1ff20!important;border-radius:999px!important;background:#ffffff05!important;overflow:hidden}
+html body :is(#catalogFilters,.native-catalog-tools .catalog-filters,.guest-filters)>button{position:relative;z-index:1;min-width:0!important;width:100%!important;min-height:42px!important;padding:8px 3px!important;margin:0!important;border:0!important;border-radius:999px!important;background:transparent!important;font-size:clamp(10px,2.8vw,14px)!important;line-height:1.15!important;white-space:nowrap!important;text-align:center;box-sizing:border-box}
+html body .guest-filters::before{content:'';position:absolute;left:4px;top:4px;bottom:4px;width:calc((100% - 8px)/3);transform:translateX(calc(var(--selection,0)*100%));border:1px solid #c7b1ff66;border-radius:999px;background:linear-gradient(135deg,#a185d952,#777fbc35);box-shadow:inset 0 1px #eadfff35,0 4px 16px #10092344;box-sizing:border-box;transition:transform 320ms cubic-bezier(.22,1,.36,1);z-index:0}
+html body .guest-filters button[aria-pressed=true]{background:transparent!important;color:#f3eaff!important}
+html body .guest-filters button[aria-pressed=false]{color:#bcb2cb!important}
+/* Supplied artwork bleeds to both screen edges; fades replace a card boundary. */
+html body .intro .headline-stage{position:relative!important;isolation:isolate;display:flex!important;align-items:flex-end;justify-content:flex-start;box-sizing:border-box;width:100vw!important;max-width:none!important;min-height:310px;margin:0 0 0 calc(50% - 50vw)!important;padding:54px max(20px,calc((100vw - 1100px)/2)) 40px!important;border:0!important;border-radius:0!important;overflow:hidden;background:transparent!important}
+html body .intro .headline-stage>.heypals-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;z-index:-2}
+html body .intro .headline-stage::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#11111e 0%,#11111e55 16%,transparent 36%,#11111e20 58%,#11111e 100%)}
+html body .intro .headline-stage .headline-art{display:none!important}
+html body .intro .headline-stage h1{position:relative!important;text-align:left!important;font-size:clamp(30px,4.5vw,60px)!important;line-height:1.05!important;width:auto!important;max-width:650px!important;min-width:0!important;margin:0!important;color:#fff!important;text-shadow:0 3px 22px #08091de0;white-space:normal!important;overflow-wrap:normal!important}
+html body .intro>div{width:100%}
+html body.native-shell .intro .headline-stage{min-height:300px}
+html body.tv-screen #tvStage>#lobby{grid-template-rows:auto minmax(0,1fr);row-gap:12px}
+html body.tv-screen #lobby>.intro{grid-column:1/-1;min-width:0;padding-bottom:0!important}
+html body.tv-screen #lobby>.intro>.headline-stage{width:calc(100% + 48px)!important;margin-left:-24px!important;min-height:250px;padding:46px 32px 30px!important}
+html body.tv-screen #lobby>.intro>:is(.eyebrow,.tv-hero-copy,.hero-pills){display:none!important}
+html body.tv-screen #tvBrowse{grid-column:1;grid-row:2}
+html body.tv-screen #tvSidebar{grid-column:2;grid-row:2;overflow:auto}
+html body.tv-screen #tvStage.tv-has-choice #tvBrowse,html body.tv-screen #tvStage.tv-has-choice #tvSidebar{grid-row:1/3}
+@media(max-width:850px){
+ html body .intro .headline-stage{min-height:290px;padding:60px 20px 34px!important}
+ html body .intro .headline-stage>.heypals-hero{object-position:62% center}
+ html body .intro .headline-stage h1{font-size:clamp(29px,7vw,42px)!important;max-width:90%!important}
+ html body.is-player.in-game>#brandHeader,html body.native-controller.is-player.in-game>#brandHeader{height:calc(64px + env(safe-area-inset-top))!important;min-height:calc(64px + env(safe-area-inset-top))!important;grid-template-rows:64px!important;padding:env(safe-area-inset-top) 8px 0!important}
+ html body.is-player.in-game #brandHeader>.heypals-header-logo{width:100px;height:48px;top:calc(7px + env(safe-area-inset-top))}
+ html body.is-player.in-game #brandHeader #hudTimer{left:auto!important;right:4px!important;top:env(safe-area-inset-top)!important;transform:none!important;width:82px!important;max-width:82px!important;height:64px!important;min-height:64px!important;padding:5px 4px!important;background:none!important;clip-path:none!important;border:0!important}
+ html body.is-player.in-game #brandHeader #hudTimer::before{display:none!important}
+ html body.is-player.in-game #brandHeader #hudTimer strong{font-size:25px!important}
+ html body.is-player.in-game #brandHeader #hudProgress{font-size:9px!important}
+ html body.is-player.in-game #brandHeader #editFromCatalog{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){html body .guest-filters::before{transition:none}}
+/* TV keeps the complete artwork visible inside the wide panel. */
+html body.tv-screen #lobby>.intro>.headline-stage{min-height:300px;background:#0c1020!important}
+html body.tv-screen .intro .headline-stage>.heypals-hero{object-fit:contain;object-position:right center}
+html body.tv-screen .intro .headline-stage::after{background:linear-gradient(180deg,#141321 0%,#14132135 18%,transparent 40%,#14132120 68%,#141321 100%),linear-gradient(270deg,#141321 0%,#14132160 7%,transparent 24%)}
+html body.tv-screen .intro .headline-stage h1{max-width:58%!important;font-size:clamp(32px,3.7vw,48px)!important}
+/* TV invitation and roster share the hero's height; the catalog uses the row below. */
+html body.tv-screen #tvSidebar{grid-column:2;grid-row:1;position:relative;z-index:2;align-self:stretch;min-height:0;max-height:300px;overflow:auto;box-sizing:border-box;margin:0;padding:8px 0;gap:10px}
+html body.tv-screen #tvBrowse{grid-column:1/-1;grid-row:2}
+html body.tv-screen #tvSidebar>.company-people{padding:12px!important;margin:0!important;min-height:0!important}
+html body.tv-screen #tvSidebar .tv-invite #qr{width:76px!important;height:76px!important}
+html body.tv-screen #tvSidebar .tv-invite :is(h2,p){font-size:12px!important;margin:6px 0!important}
+html body.tv-screen #tvSidebar .section-title{margin-bottom:8px!important}
+html body.tv-screen #tvSidebar .section-title h2{font-size:19px!important}
+html body.tv-screen #tvSidebar #tvEmpty{font-size:12px!important;margin:6px 0!important}
+html body.tv-screen .intro .headline-stage>.heypals-hero{object-position:calc(100% - 200px) center}
+html body.tv-screen .intro .headline-stage::after{background:linear-gradient(180deg,#141321 0%,#14132135 18%,transparent 40%,#14132120 68%,#141321 100%),linear-gradient(270deg,#141321 0%,#141321e0 20%,transparent 44%)}
+html body.tv-screen #tvStage>#lobby{grid-template-rows:300px minmax(0,1fr)!important;padding-top:8px!important}
+html body.tv-screen #tvStage #lobby>.intro{grid-area:1/1/2/-1!important;height:300px!important;min-height:0!important}
+html body.tv-screen #tvStage #tvBrowse{grid-area:2/1/3/2!important;margin:0!important;padding:0 6px 30px!important}
+html body.tv-screen #tvStage #tvSidebar{grid-area:1/2/2/3!important;height:300px!important;max-height:300px!important}
+html body.tv-screen #tvStage.tv-has-choice>#lobby{grid-template-rows:0 minmax(0,1fr)!important}
+html body.tv-screen #tvStage.tv-has-choice #tvSidebar{grid-area:2/2!important}
+html body.tv-screen #tvStage.tv-has-choice #tvBrowse{grid-area:2/1!important}
+html body .intro .headline-stage>.heypals-hero{-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent)}
+html body .intro .headline-stage::after{background:linear-gradient(0deg,#10111bcc,transparent 70%)}
+
+html body.tv-screen #lobby>.intro>.headline-stage{background:transparent!important}
+html body.tv-screen .intro .headline-stage::after{background:linear-gradient(0deg,#14132188,transparent 60%),linear-gradient(270deg,#141321ee 0%,#14132180 16%,transparent 35%)}
+html body.tv-screen #tvStage #tvSidebar{padding:0!important}
+html body.tv-screen #tvSidebar>.company-people{flex:1 1 0;box-sizing:border-box;overflow:auto}
+html body.tv-screen #tvSidebar>.company-people:not(.tv-invite){flex-grow:1.35}
+html body.tv-screen #tvSidebar>.mini-ranking{flex:none}
+html body.tv-screen .intro .headline-stage::before{content:'';position:absolute;inset:0;z-index:-3;pointer-events:none;background:#0c1020;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent)}
+
+/* Artwork continues beneath the following content instead of ending at the hero box. */
+html body .intro .headline-stage{overflow:visible!important;flex-direction:column;justify-content:flex-end;align-items:flex-start}
+html body .intro .headline-stage>.heypals-hero{height:calc(100% + 170px);max-height:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 48%,#0009 65%,transparent 100%);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 48%,#0009 65%,transparent 100%)}
+html body .intro .headline-stage::after{bottom:-170px;background:linear-gradient(180deg,transparent 35%,#10111b55 60%,#10111baa 80%,transparent 100%)}
+html body .intro .headline-stage>.eyebrow{position:relative;margin:14px 0 0!important;z-index:1;font-size:10px;letter-spacing:.14em}
+html body .intro :is(#subtitle,.hero-pills,.return-entry-help){position:relative;z-index:2}
+html body .intro .headline-stage h1 em,html body .intro .headline-stage #headline{color:#f2ce78!important;background:linear-gradient(112deg,#c98c37 0%,#eebd5c 19%,#fff1b9 38%,#e7b654 58%,#f9dfa0 77%,#c9943f 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;filter:drop-shadow(0 2px 1px #4a2b2226);text-shadow:none!important}
+html body.tv-screen #tvStage #lobby>.intro{position:relative;z-index:0;overflow:visible}
+html body.tv-screen #tvStage #tvBrowse{position:relative;z-index:1;grid-area:2/1/3/2!important}
+html body.tv-screen .intro .headline-stage>.heypals-hero{height:calc(100% + 180px);object-fit:contain;object-position:calc(100% - 180px) top;-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 48%,#0008 70%,transparent 100%);mask-image:linear-gradient(180deg,transparent,#000 12%,#000 48%,#0008 70%,transparent 100%)}
+html body.tv-screen .intro .headline-stage::before{bottom:-180px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#0008 65%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#0008 65%,transparent)}
+html body.tv-screen .intro .headline-stage::after{bottom:-180px;background:linear-gradient(270deg,#141321aa,transparent 35%),linear-gradient(180deg,transparent 38%,#14132155 62%,transparent 100%);-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+/* Following UI stays above the extended decorative background. */
+html body:not(.tv-screen) #home>.intro{position:relative;z-index:0}
+html body:not(.tv-screen) #catalogSection{position:relative;z-index:1}
+html body.tv-screen .intro .headline-stage>.heypals-hero{left:auto;right:180px;width:auto;max-width:none;object-fit:contain;object-position:center;-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 48%,#0008 70%,transparent 100%),linear-gradient(90deg,transparent,#000 10%,#000 82%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent,#000 12%,#000 48%,#0008 70%,transparent 100%),linear-gradient(90deg,transparent,#000 10%,#000 82%,transparent);mask-composite:intersect}
+/* Final copy hierarchy and more compact phone hero. */
+html body .intro .headline-stage #headline{background:none!important;-webkit-text-fill-color:#f5f4f8!important;color:#f5f4f8!important;filter:none!important}
+html body .intro .headline-stage #headline em{background:linear-gradient(112deg,#c98c37,#fff1b9 38%,#e7b654 58%,#f9dfa0 77%,#c9943f)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:#f2ce78!important}
+html body.tv-screen #lobby>.intro>.headline-stage{justify-content:flex-start;padding-top:42px!important}
+html body.tv-screen #tvStage #tvSidebar{margin-top:24px!important;height:276px!important;max-height:276px!important}
+html body:not(.tv-screen) .return-entry-help{display:block;width:100%;box-sizing:border-box;text-align:center;padding:20px 12px!important;margin:8px auto 14px!important;background:radial-gradient(ellipse at center,#0b0e18db 0%,#0b0e1880 45%,transparent 76%);border:0!important;box-shadow:none!important}
+html body:not(.tv-screen) .return-entry-help summary{text-align:center;list-style-position:inside}
+@media(max-width:850px){
+ html body .intro .headline-stage,html body.native-shell .intro .headline-stage{min-height:230px;justify-content:flex-start;padding-top:54px!important;padding-bottom:24px!important}
+ html body .intro .headline-stage>.heypals-hero{top:-30px;height:calc(100% + 160px);object-position:62% 20%;clip-path:inset(30px 0 0);-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 48%,#0008 65%,transparent 100%);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 48%,#0008 65%,transparent 100%)}
+ html body .intro .headline-stage::after{bottom:-130px}
+}
+html body:not(.tv-screen) .return-entry-help>summary{width:100%;margin:0 auto;text-align:center;box-sizing:border-box}
+html body .intro .headline-stage #headline em{margin-inline:.1em}
+@media(max-width:850px){html body .intro .headline-stage>.heypals-hero{clip-path:none}}
+/* Stable profile button geometry, independent of inherited nav placement. */
+html body #brandHeader #editFromCatalog{display:grid;place-items:center;left:auto!important;right:8px!important;bottom:auto!important;top:calc(8px + env(safe-area-inset-top))!important;width:44px!important;height:44px!important;padding:0!important;transform:none!important;translate:none!important;rotate:none!important;overflow:hidden}
+html body #brandHeader #editFromCatalog .profile-chip-avatar{position:static!important;display:grid;place-items:center;width:34px!important;height:34px!important;min-width:34px;transform:none!important;translate:none!important;margin:0!important}
+html body #brandHeader #editFromCatalog img{display:block;width:100%!important;height:100%!important;object-fit:cover;transform:none!important}
+html body.tv-screen #tvStage>.tv-header .tv-menu-labels{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0!important}
+html body.tv-screen #tvCatalog>.lp-catalog-section>.section-title h2{font-size:clamp(25px,2.5vw,34px)!important;line-height:1.15!important}
+@media(max-width:850px){
+ html body:not(.tv-screen) .intro .headline-stage{padding-top:72px!important}
+ html body:not(.tv-screen) .intro .headline-stage::after{background:radial-gradient(ellipse at 12% 15%,#080b19d9 0%,#080b1970 27%,transparent 60%),linear-gradient(180deg,transparent 40%,#10111b80 70%,transparent 100%)}
+ html body:not(.tv-screen) .return-entry-help{margin-top:26px!important}
+}
+/* No legacy blurred shelf below the masthead or double ring around the profile. */
+html body #brandHeader::before{bottom:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body #brandHeader #editFromCatalog{border:1px solid #c6b1ff66!important;border-radius:50%!important;background:#302740!important;box-shadow:inset 0 1px #ffffff12!important;overflow:hidden!important;box-sizing:border-box!important}
+html body #brandHeader #editFromCatalog::before,html body #brandHeader #editFromCatalog::after{display:none!important}
+html body #brandHeader #editFromCatalog .profile-chip-avatar{width:100%!important;height:100%!important;min-width:0!important;border:0!important;border-radius:50%!important;box-sizing:border-box!important;box-shadow:none!important;background:linear-gradient(145deg,#655082,#3b3152)!important}
+html body.tv-screen #tvStage>.tv-header{background:linear-gradient(180deg,#252039f5 0%,#171622ef 55%,#0c1019d9 100%)!important;border-bottom:0!important;box-shadow:none!important}
+@media(max-width:850px){
+ html body:not(.tv-screen) .intro .headline-stage,html body.native-shell .intro .headline-stage{min-height:174px!important;padding-top:48px!important;padding-bottom:18px!important;align-items:center!important}
+ html body:not(.tv-screen) .intro .headline-stage h1{width:100%!important;max-width:100%!important;text-align:center!important}
+ html body:not(.tv-screen) .intro .headline-stage>.eyebrow{width:100%;text-align:center!important;margin-top:12px!important}
+ html body:not(.tv-screen) .intro .headline-stage>.heypals-hero{height:calc(100% + 140px);top:-24px}
+ html body:not(.tv-screen) .intro .headline-stage::after{top:-40px;bottom:-110px;background:radial-gradient(ellipse at 50% 28%,#080b1980,transparent 65%)}
+ html body:not(.tv-screen) .return-entry-help{margin-top:12px!important;margin-bottom:4px!important;padding-block:12px!important}
+}
+html body #brandHeader #editFromCatalog{grid-template-columns:42px!important;grid-template-rows:42px!important;gap:0!important}
+html body #brandHeader #editFromCatalog .profile-chip-avatar{width:42px!important;height:42px!important;min-width:42px!important;max-width:42px!important;justify-self:center;align-self:center;flex:none}
+/* Native menu: one aligned search/category rail and compact Fresh controls. */
+html body.native-shell #brandHeader{background:linear-gradient(180deg,#0d1017 0%,#0d1017ed 65%,#0d101700 100%)!important;overflow:visible!important}
+html body.native-shell #brandHeader::before{display:none!important}
+html body.native-shell #brandHeader>.heypals-header-logo{width:164px;height:72px;top:calc(-3px + env(safe-area-inset-top));max-width:none;overflow:visible}
+html body.native-shell .intro{background:transparent!important}
+html body.native-shell .intro .headline-stage::after{background:radial-gradient(ellipse at 50% 24%,#0d101780,transparent 65%)}
+html body.native-shell .native-catalog-tools{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important}
+html body.native-shell #nativeCategories{display:flex!important;flex-wrap:nowrap!important;align-self:stretch!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:4px!important;gap:4px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;scroll-padding-inline:4px;overscroll-behavior-x:contain;-webkit-mask-image:none!important;mask-image:none!important}
+html body.native-shell #nativeCategories::-webkit-scrollbar{display:none}
+html body.native-shell #nativeCategories>.filter-tab{flex:0 0 auto!important;width:auto!important;min-width:max-content!important;padding:10px 14px!important;font-size:12px!important;min-height:42px!important}
+html body.native-shell .lp-catalog .fresh-heading{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px 10px!important;align-items:center!important;position:relative;margin:0 0 12px!important}
+html body.native-shell .lp-catalog .fresh-heading .fresh-copy{display:contents!important}
+html body.native-shell .lp-catalog .fresh-heading .fresh-badge{position:static!important;grid-area:1/1;justify-self:start;transform:none!important;margin:0!important;padding:5px 12px!important;line-height:1.2!important}
+html body.native-shell .lp-catalog .fresh-heading .lp-group-count{grid-area:1/2;justify-self:end;margin:0!important;font-size:11px}
+html body.native-shell .lp-catalog .fresh-heading h2{grid-area:2/1/3/-1;margin:0!important;font-size:26px!important;line-height:1.15!important;letter-spacing:-.6px}
+html body.native-shell .lp-catalog .fresh-heading p{grid-area:3/1;margin:0!important;font-size:11px!important;line-height:1.35!important}
+html body.native-shell .lp-catalog .fresh-heading .fresh-arrows{grid-area:3/2;display:flex!important;gap:5px!important;position:static!important;margin:0!important}
+html body.native-shell .lp-catalog .fresh-heading .fresh-arrow{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;padding:0!important;font-size:20px!important;display:grid;place-items:center}
+html body.native-shell .lp-catalog .fresh-heading .fresh-arrow svg{width:17px;height:17px}
+
+html body.native-shell #brandHeader{background:#0d1017!important}
+html body.native-shell .intro{background:linear-gradient(180deg,#0d1017,transparent 100px)!important}
+
+/* Each sticky row owns only its measured slot, never the search above/below it. */
+html body.native-shell #choiceStrip{margin-bottom:0!important;box-shadow:inset 0 1px #ffffff12!important}
+html body.native-shell .native-catalog-tools{box-sizing:border-box;width:100%;margin-inline:auto;}
+html body.native-shell #nativeCategories{justify-content:safe center!important;box-sizing:border-box!important}
+html body.native-shell.native-host-tab #brandHeader{background:linear-gradient(180deg,#332b47 0%,#2d263e 55%,#282239 100%)!important}
+@media(max-width:850px){
+ html body:not(.tv-screen) .intro .headline-stage,html body.native-shell .intro .headline-stage{padding-top:20px!important;padding-bottom:46px!important}
+ html body.native-shell .intro .hero-pills{margin-top:18px!important;margin-bottom:0!important}
+}
+
+html body.tv-screen .tv-startup .heypals-loading-logo{display:block;width:min(100%,480px);height:auto;margin:auto;object-fit:contain}
+/* Selected-game lobby uses the full sidebar; ranking cannot squeeze invite/people. */
+html body.tv-screen #tvStage.tv-has-choice #tvSidebar{height:auto!important;max-height:none!important;align-self:stretch;margin-top:0!important;overflow-y:auto}
+html body.tv-screen #tvStage.tv-has-choice #tvSidebar>.company-people{flex:0 0 auto!important;min-height:160px!important;overflow:visible}
+html body.tv-screen #tvStage.tv-has-choice #tvSidebar>.tv-invite{min-height:190px!important}
+html body.tv-screen #tvStage>.tv-header{background:linear-gradient(180deg,#141321 0%,#141321bd 52%,#14132100 100%)!important}
+html body.native-shell.native-host-tab #brandHeader{background:linear-gradient(180deg,#282239 0%,#282239c9 55%,#28223900 100%)!important}
+html body.native-shell .intro #gameCount{position:relative;top:10px}
+/* The selected-game card joins the header without exposed backing strips. */
+html body.native-shell #choiceStrip::before{background:linear-gradient(180deg,#0d1017 0%,#0d1017 calc(100% - 22px),#0d1017c4 calc(100% - 14px),#0d101700 100%)!important;box-shadow:none!important}
+html body.native-shell #choiceStrip::after{border-radius:inherit}
+/* Keep the game's full illustration visible in Host's Pick. */
+html body.native-shell #choiceStrip .choice-art-shell{display:block;width:54px;height:54px;flex:0 0 54px;overflow:hidden;border-radius:50%;background:radial-gradient(circle,#ffffff18,#ffffff06)}
+html body.native-shell #choiceStrip .choice-art-shell:has(#choiceArt[hidden]){display:none}
+html body.native-shell #choiceStrip #choiceArt{display:block;width:100%!important;height:100%!important;border-radius:0!important;object-fit:contain!important;object-position:center;transform:scale(1.32);background:none}
+html body.native-shell #choiceStrip #choiceArt[hidden]{display:none!important}
+/* Match the space above and below the category slider. */
+html body.native-shell .native-catalog-tools{margin-bottom:0!important}
+/* A little breathing room around the centered native category rail. */
+html body.native-shell .native-catalog-tools{gap:14px!important;padding-bottom:14px!important}
+
+/* One uninterrupted backing while the search/category rail is stacked; fade only below the controls. */
+html body.native-shell.tools-stuck .native-catalog-tools::before{top:-8px!important;background:linear-gradient(180deg,#0d1017 0%,#0d1017 calc(100% - 40px),#0d101700 100%)!important;-webkit-mask-image:none!important;mask-image:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* The phone controller keeps its header above scrolling lobby and game content. */
+html body.native-controller.lobby-connected:not(.in-game){--controller-lobby-header-height:calc(116px + env(safe-area-inset-top));padding-top:var(--controller-lobby-header-height)!important}
+html body.native-controller.lobby-connected:not(.in-game) #brandHeader{position:fixed!important;top:0!important;left:0!important;right:0!important;height:var(--controller-lobby-header-height)!important;min-height:var(--controller-lobby-header-height)!important;z-index:60!important;isolation:isolate;overflow:visible!important;--controller-header-surface:#0d1017;background:var(--controller-header-surface)!important}
+html body.native-controller.lobby-connected:not(.in-game) #brandHeader::after{content:'';position:absolute;left:0;right:0;top:100%;height:28px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,var(--controller-header-surface) 0%,color-mix(in srgb,var(--controller-header-surface) 60%,transparent) 42%,transparent 100%)}
+/* Player count sits inside the lime orb in the controller lobby header. */
+html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomToggle{display:grid!important;place-items:center!important}
+html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomCount{display:grid!important;place-items:center!important;flex:none!important;width:32px;height:32px;min-width:32px!important;max-width:32px!important;padding:0!important;margin:0!important;border-radius:50%;background:linear-gradient(145deg,#e2ffa8 0%,#b8f16c 57%,#8bcf4a 100%);box-shadow:inset 0 2px 1px #ffffffa0,inset 0 -2px 2px #5d9b3659,0 0 14px #b4ff3952;color:#233315!important;font-size:17px!important;line-height:1!important;text-shadow:none!important}
+html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomCount::after{content:none!important;display:none!important}
+/* Let the lime orb's glow extend beyond the invisible hit target. */
+html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomToggle{overflow:visible!important;clip-path:none!important;contain:none!important}

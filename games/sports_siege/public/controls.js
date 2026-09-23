@@ -36,7 +36,7 @@ net.addEventListener('state',e=>{
   $('ss-help').textContent=mode==='bowling'?'Свайп вверх: сила и направление. Подкрутку можно задать ползунком.':mode==='curling'?'Цель — ближе к центру. Пока камень своей команды едет — держи свип.':mode==='swarm_gate'?'Веди прицел и держи огонь. Импульс бьёт по области. Следи за нагревом.':'Прицел — тачпад. Огонь — отдельная кнопка. Белый флажок: не стрелять.';
   for(const event of state.events){if(event.id<=lastEvent)continue;lastEvent=event.id;
     if(event.player!==me.id)continue;
-    if(event.kind==='shot'&&event.hit)ping(event.good!==false);
+    if(event.kind==='shot'&&event.hit){ping(event.good!==false);if(event.dead)window.LocalPartyFeel?.emit('elimination',{id:state.roundSerial+':'+event.id,intensity:.7,haptic:true});}
     else if(event.kind==='charged')feedback('ПУЛЕМЁТ ГОТОВ!');
     else if(event.kind==='machinegun')feedback('8 СЕКУНД ОГНЯ!');
     else if(event.kind==='friendly')feedback('МИРНЫЙ! −15',false);
@@ -82,11 +82,12 @@ window.addEventListener('keydown',e=>{if(e.code==='Space'&&!sports){e.preventDef
 window.addEventListener('keyup',e=>{if(e.code==='Space'){fire=false;sendInput();}});
 setInterval(()=>{if(!document.hidden||bot)sendInput();},33);
 let botTurn='',botAt=0;
-if(bot)setInterval(()=>{
+if(bot)window.PARTY_BOT_ENGINE_TICK=()=>{
+  if(window.PARTY_SESSION?.paused||window.parent.PARTY_SESSION?.paused){if(fire||sweep||gesture)release();return;}
   if(!state||!me||state.phase!=='playing'||!me.participant)return;
   if(sports){
     if(state.currentId===me.id&&state.stage==='aim'&&botTurn!==state.turnToken){botTurn=state.turnToken;botAt=state.t+1;}
-    if(state.currentId===me.id&&state.stage==='aim'&&state.t>=botAt&&pendingTurn!==state.turnToken){pendingTurn=state.turnToken;net.send('throw',{turnToken:state.turnToken,power:mode==='curling'?.54+Math.random()*.05:.65,angle:(Math.random()-.5)*.025,spin:(Math.random()-.5)*.3,position:(Math.random()-.5)*.3});}
+    if(state.currentId===me.id&&state.stage==='aim'&&state.t>=botAt&&pendingTurn!==state.turnToken){pendingTurn=state.turnToken;net.send('throw',{turnToken:state.turnToken,power:mode==='curling'?.54+Math.random()*.05:.65,angle:(Math.random()-.5)*.025,spin:(Math.random()-.5)*.3,position:(Math.random()-.5)*.3});if(window.PARTY_BOT_DIAGNOSTICS)window.PARTY_BOT_DIAGNOSTICS.actions++;}
     sweep=mode==='curling'&&state.stage==='rolling'&&state.players.find(p=>p.id===state.currentId)?.team===me.team;
   }else if(mode==='swarm_gate'){
     const b=state.enemies?.filter(b=>b.hp>0).sort((a,b)=>b.z-a.z)[0];fire=!!b;if(b)aim={x:clamp(b.x/36+.5),y:clamp((b.z+27)/26)};
@@ -94,5 +95,6 @@ if(bot)setInterval(()=>{
   }else{
     const t=state.targets?.find(t=>t.hp>0&&t.rise>.8&&t.kind!=='friendly');fire=!!t;if(t)aim={x:t.x,y:t.y};if(me.charge)net.send('ability');
   }
+  if((fire||sweep)&&window.PARTY_BOT_DIAGNOSTICS)window.PARTY_BOT_DIAGNOSTICS.actions++;
   sendInput();
-},140);
+};

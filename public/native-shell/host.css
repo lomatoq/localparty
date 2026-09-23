@@ -26,16 +26,18 @@
 .native-sheet-head>.quiet{flex-shrink:0}
 .native-detail-art{display:block;width:100%;height:180px;object-fit:contain;margin-bottom:14px}
 .native-shell #inviteQR{display:block;margin:16px auto;padding:8px;background:white;border-radius:20px}
+.native-shell #inviteQR[hidden]{display:none}
 .native-shell code{display:block;white-space:normal;overflow-wrap:anywhere;user-select:text;-webkit-user-select:text;font-size:12px;margin:12px 0;color:var(--muted)}
 .native-shell summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:650}
 .native-shell details[open] summary{margin-bottom:12px}
 .native-shell .native-danger{color:var(--ink);border-style:dashed}
 .native-shell .native-note{color:var(--muted);font-size:12px}
+.native-shell #roster{display:flex;flex-direction:column;gap:8px}
 .native-shell .player{display:flex;flex-wrap:wrap;align-items:center;width:100%}
 .native-shell .player .quiet{margin-left:auto;flex-shrink:0}
 .native-shell #standings .rank-row{gap:12px;padding:12px;margin-bottom:6px}
 .native-shell #standings .rank-stats{font-size:12px}
-.native-shell #nativeToast{position:fixed;bottom:max(22px,env(safe-area-inset-bottom));left:16px;right:16px;z-index:10000;border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--bg);color:var(--ink);box-shadow:0 8px 30px #0005;pointer-events:none}
+.native-shell #nativeToast{position:fixed;top:calc(var(--host-head,76px) + 8px);bottom:auto;left:16px;right:16px;z-index:10000;border:1px solid #c6b1ff88;border-radius:18px;padding:16px;background:#221d32;color:#f4f1ff;box-shadow:0 8px 30px #0008;pointer-events:none}
 .native-shell #message{margin-bottom:20px;text-align:left;font-size:14px;padding:16px}
 .native-shell button{min-height:44px}
 .native-shell .native-sheet button[role=switch][aria-checked=true]{background:var(--lime);color:var(--bg)}
@@ -80,6 +82,11 @@ body.native-shell #catalog .game-bottom {
   position:static; display:flex; justify-content:space-between; align-items:center;
   flex-wrap:wrap; width:100%; min-width:0; margin:auto 0 0; padding:4px 0 0; gap:6px;
 }
+body.native-shell #catalog .game-info:has(.lp-direct-start),body.native-shell #catalog .game-info:has(.lp-direct-start) .game-bottom{pointer-events:auto}
+body.native-shell #catalog .lp-card-open,body.native-shell #catalog .lp-direct-start{position:relative;z-index:5;min-height:42px;padding:9px 11px;border-radius:999px;font-size:11px;font-weight:900}
+body.native-shell :is(#choiceStart,#catalog .lp-direct-start)[aria-busy=true]{opacity:1!important;filter:none!important;color:#15200e!important;background:linear-gradient(180deg,#d8ff9c,#aef14d)!important;box-shadow:inset 0 1px 0 #fff9,0 5px 0 #668f32,0 0 22px #baff6466!important}
+body.native-shell #catalog .lp-player-range{width:100%;margin-bottom:2px}
+body.native-shell #activeActions .native-danger{color:#ffb8b1;border-color:#ff796750;background:#391f25}
 /* Beat the shared masthead's 3-column and mobile 2-row selectors. */
 body.native-shell:not(.in-game) .app-header {
   grid-template-columns:minmax(0,1fr) auto; grid-template-rows:auto;
@@ -122,7 +129,7 @@ body.native-shell .catalog-filters.fresh-active::before{background:var(--lime);b
 body.native-shell .catalog-filters.indicator-init::before{transition:none}
 @media(prefers-reduced-motion:reduce){body.native-shell .catalog-filters::before{transition:opacity 1ms}}
 body.native-shell #catalog.lp-catalog{display:block!important;}
-@media(max-width:600px){body.native-shell .catalog-filters{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;max-width:none;padding:14px 16px;margin:-10px -16px;scroll-padding-inline:16px;overscroll-behavior-x:contain;}body.native-shell .catalog-filters .filter-tab{flex:0 0 auto;font-size:12px;padding:10px 13px;}}
+@media(max-width:600px){body.native-shell .catalog-filters{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;max-width:none;padding:14px 16px;margin:-10px -16px;scroll-padding-inline:16px;overscroll-behavior-x:contain;}body.native-shell .catalog-filters.can-scroll-right{-webkit-mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 28px),transparent 100%)}body.native-shell .catalog-filters.can-scroll-left:not(.can-scroll-right){-webkit-mask-image:linear-gradient(to right,transparent 0,#000 22px,#000 100%);mask-image:linear-gradient(to right,transparent 0,#000 22px,#000 100%)}body.native-shell .catalog-filters.can-scroll-left.can-scroll-right{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 22px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 22px,#000 calc(100% - 28px),transparent 100%)}body.native-shell .catalog-filters .filter-tab{flex:0 0 auto;font-size:12px;padding:10px 13px;}}
 
 /* TV remote uses existing buttons/cards; geometry is scoped to this panel. */
 .native-shell .tv-control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}

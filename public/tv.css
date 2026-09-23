@@ -78,7 +78,6 @@ body.tv-screen #tvStage .fresh-track{grid-auto-columns:calc((100% - 28px)/3)!imp
 body.tv-screen #tvStage.tv-compact .fresh-track{grid-auto-columns:calc((100% - 14px)/2)!important;}
 body.tv-screen #tvStage .lp-catalog .games{grid-template-columns:repeat(3,minmax(0,1fr));}
 body.tv-screen #tvStage.tv-compact .lp-catalog .games{grid-template-columns:repeat(2,minmax(0,1fr));}
-body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card h3{font-size:22px!important;}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art{aspect-ratio:1.55;}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card{cursor:default;}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card .start-game{font-size:10px!important;min-height:32px!important;}
@@ -92,12 +91,27 @@ body.tv-screen #tvStage>#play{position:relative;z-index:2;display:flex;flex-dire
 body.tv-screen .gamebar{height:48px;min-height:48px;flex-shrink:0;display:flex;align-items:center;gap:25px;padding:0 28px;font-size:15px;background:#17201c;}
 body.tv-screen .gamebar strong{margin-right:auto;}
 body.tv-screen #gameFrame{width:100%;height:calc(100% - 48px);min-height:0;flex:1;border:0;display:block;background:#10151a;pointer-events:none;}
-body.tv-screen #paused,body.tv-screen #waiting{position:absolute;inset:48px 0 0;display:grid;align-content:center;justify-content:center;text-align:center;padding:24px;}
+body.tv-screen #paused,body.tv-screen #waiting{position:absolute;inset:48px 0 0;display:grid;align-content:center;justify-content:center;justify-items:center;text-align:center;padding:24px;}
 body.tv-screen #paused{background:#10151acd;backdrop-filter:blur(8px);}
 body.tv-screen #paused strong,body.tv-screen #waiting strong{font-size:48px;}
-body.tv-screen #paused span,body.tv-screen #waiting p{font-size:18px;color:#bec8c1;max-width:650px;}
-body.tv-screen #waiting{background:#10151a;}
+body.tv-screen #paused span,body.tv-screen #waiting p{font-size:18px;color:#bec8c1;width:100%;max-width:650px;margin-inline:auto;text-align:center;text-wrap:balance;}
+body.tv-screen #waiting{background:#10151a;overflow:hidden;isolation:isolate;}
+body.tv-screen #waiting>*{position:relative;z-index:1;max-width:100%;}
+/* Static, cached artwork only on the shared-screen waiting layer. Side masks
+   fade into a quiet centre; no animated blur or extra controller layers. */
+body.tv-screen #waiting::before,body.tv-screen #waiting::after{content:'';position:absolute;top:0;bottom:0;width:58%;max-width:800px;z-index:0;pointer-events:none;background-image:var(--tv-waiting-art);background-size:contain;background-repeat:no-repeat;background-position:left center;opacity:.3;filter:none;transform:none;will-change:auto;}
+body.tv-screen #waiting::before{left:-8%;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 38%,#0008 68%,transparent 96%);mask-image:linear-gradient(90deg,#000 0%,#000 38%,#0008 68%,transparent 96%);}
+body.tv-screen #waiting::after{display:none;}
 body.tv-screen #readyCount{color:#c4f58b;}
+body.tv-screen #readyPlayers{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;width:min(900px,100%);max-width:900px;margin:24px auto 18px}
+body.tv-screen .ready-player{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;max-width:360px;padding:10px 16px;border:1px solid #ffffff22;border-radius:999px;background:#ffffff08;color:#cbd1cd;font-size:16px;font-weight:800;line-height:1.2;white-space:nowrap;box-sizing:border-box}
+body.tv-screen .ready-player .ready-status{display:inline-flex;align-items:center;justify-content:center;flex:0 0 1em;line-height:1.2}
+body.tv-screen #readyPlayers .ready-player{flex:0 0 auto}
+body.tv-screen .ready-player .ready-name{display:block;flex:0 0 auto;width:max-content;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}
+body.tv-screen .ready-player.is-ready{border-color:#b4ff3960;background:#b4ff3918;color:#dfffad}
+body.tv-screen .ready-player.is-missing{border-color:#ff796770;background:#ff796718;color:#ffc0b8;animation:tv-missing-pulse 1.3s ease-in-out infinite}
+body.tv-screen .ready-player.is-loading{border-color:#ffd36b55;color:#ffe3a0}
+@keyframes tv-missing-pulse{50%{box-shadow:0 0 24px #ff665550;transform:scale(1.035)}}
 body.tv-screen.game-owns-hud .gamebar{display:none;}
 body.tv-screen.game-owns-hud #gameFrame{height:100%;}
 body.tv-screen.game-owns-hud #paused,body.tv-screen.game-owns-hud #waiting{inset:0;}
@@ -118,7 +132,6 @@ body.tv-screen #tvStage .lp-catalog .fresh-heading h2{font-size:26px;margin:8px 
 body.tv-screen #tvStage .lp-catalog .fresh-heading p{font-size:12px;}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art{aspect-ratio:1.85;}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.game-info{padding:28px 14px 14px!important;}
-body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card p{font-size:12px!important;margin:7px 0 12px!important;}
 body.tv-screen #tvStage.tv-compact .intro h1{font-size:30px!important;max-width:calc(100% - 110px);}
 body.tv-screen #tvStage.tv-compact .headline-art.art-left{display:none;}
 body.tv-screen #tvStage .tv-invite .eyebrow{font-size:11px;letter-spacing:1px;}

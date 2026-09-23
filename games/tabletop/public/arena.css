@@ -1,0 +1,62 @@
+/* Gameplay art stays separate from card covers. Geometry is owned by the engine. */
+body:not(.host) .tv-only,body.host .phone-only{display:none!important}
+body.host[data-game=mines] header{display:none}
+body.host[data-game=mines] #tabletop{padding:10px 24px;max-width:1500px}
+body.host[data-game=mines] #mineHelp{font-size:15px;margin:4px 0 10px}
+body.host[data-game=mines] #grid{width:min(100%,calc(100vh - 150px));max-width:none;padding:10px}
+body.host[data-game=mines] #grid button{opacity:1;font-size:clamp(18px,2.4vw,30px)}
+body.host #players{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+body.host[data-game=poker] #players{display:none}
+body:not(.host) #players{display:none}
+body:not(.host) #tabletop{min-height:0;padding:12px 14px 24px;width:100%;overflow-x:clip}
+body:not(.host) header{margin-bottom:12px}body:not(.host) #eyebrow{display:none}body:not(.host) h1{font-size:24px;margin:6px 0}body:not(.host) #status{font-size:15px;margin:6px 0}
+body:not(.host) #hole{min-height:0;gap:16px;margin:22px 0 28px}
+body:not(.host) #hole .card{width:clamp(90px,29vw,145px);height:clamp(135px,43vw,215px);background:#fff8ee!important;color:#211b2b!important;font-size:clamp(36px,11vw,54px);border:0!important;border-radius:16px!important;padding:12px!important}
+body:not(.host) #hole .card.red{color:#c42c55!important}
+#myPokerStatus{color:#d5ff94;font-size:18px;min-height:26px;margin:14px 0}
+#actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;max-width:520px}#actions>*{min-width:0}#actions button{font-size:clamp(14px,4.4vw,20px);white-space:normal;overflow-wrap:anywhere;padding:12px 8px;min-height:52px}
+.joystick{--team-color:#c4ff71;position:relative;touch-action:none;width:min(78vw,310px);aspect-ratio:1;margin:22px auto 24px;border:2px solid #c7b1e63d;border-radius:50%;background:radial-gradient(circle,#3b304e 0%,#211e2d 62%,#151820 64%);box-shadow:inset 0 3px 20px #0006,0 1px #fff2}
+.joystick::before,.joystick::after{content:'';position:absolute;background:#c9b7de18;left:15%;right:15%;height:2px;top:50%}.joystick::after{transform:rotate(90deg)}
+#hockeyKnob{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);width:32%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff,var(--team-color) 40%,#596435);box-shadow:inset 0 0 0 6px #ffffff20,0 7px 0 #1118,0 12px 25px #0005}
+.mine-controls{text-align:center}#mineCoordinate{font-size:54px;display:block;color:#d4ff8a;margin:16px 0}.dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:300px;margin:18px auto}.dpad button{min-height:64px;font-size:28px}.dpad [data-direction=up]{grid-column:2}.dpad [data-direction=left]{grid-column:1}#mineOpen{width:100%;max-width:350px;min-height:64px;background:#c4ff71;color:#172217;font-size:22px}.mine-cursor{position:absolute;left:-4px;right:-4px;bottom:-3px;border-radius:4px;background:#161020;color:white;font-size:10px;line-height:12px;z-index:2}
+@media(max-height:650px){body:not(.host) #hole{margin:10px 0 18px}body:not(.host) #hole .card{height:130px;width:88px}body:not(.host) .joystick{width:min(62vw,240px);margin:12px auto}}
+body[data-game=poker] .felt{position:relative;display:flex;flex-direction:column;justify-content:center;aspect-ratio:16/9;min-height:0;border:0;box-shadow:none;border-radius:0;background:transparent url('/assets/gameplay/tabletop/poker-table.webp') center/contain no-repeat;padding:0;isolation:isolate}
+body[data-game=poker] .felt::before{content:'';position:absolute;inset:16% 13%;z-index:-1;background:#1c263ccc;border-radius:50%;filter:blur(14px)}
+body[data-game=poker] #pot{font-size:clamp(18px,2.7vw,30px);text-shadow:0 2px 8px #000}
+body[data-game=poker] #handStatus{font-size:clamp(13px,1.7vw,19px);margin:6px 0;color:#fff}
+body[data-game=poker] #community{margin:10px 0;min-height:60px}
+body[data-game=poker] #community .card{width:clamp(29px,6vw,62px);height:clamp(44px,9vw,90px);font-size:clamp(18px,3vw,30px);border-radius:7px}
+.table-seats{position:absolute;inset:0;pointer-events:none}.seat{position:absolute;transform:translate(-50%,-50%);width:110px;border-radius:16px;background:linear-gradient(160deg,#3d334e,#1b1927);border:2px solid #9881b0;padding:8px 10px;text-align:center;box-shadow:0 5px 16px #0008}.seat.current{border-color:#d4ff8b;box-shadow:0 0 24px #baff5144}.seat-name{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;color:#fff}.seat-score{display:block;color:#d4ff8b;font-size:17px}.seat.folded{opacity:.65}.seat-hand{font-size:13px;color:#fff4d7;margin-top:4px}.seat-chips{position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);width:30px;height:10px;border-radius:50%;background:#b99ae5;border:2px dashed #eee0ff;box-shadow:0 3px #634482,0 6px #a583d2}
+body.host[data-game=poker] .felt{max-width:1440px;width:min(96vw,calc((100dvh - 4px)*16/9));height:auto;aspect-ratio:16/9;margin:0 auto;padding:0;min-height:0;flex:none}
+body.host[data-game=poker] header{display:none}
+body.host[data-game=poker] #pot{position:absolute;top:26%;left:20%;right:20%;text-align:center}
+body.host[data-game=poker] #community{position:absolute;left:20%;right:20%;top:36%;margin:0}
+body.host[data-game=poker] #handStatus{position:absolute;bottom:23%;left:20%;right:20%;margin:0;text-align:center}
+body.host[data-game=poker] #tabletop{box-sizing:border-box;display:grid;grid-template-rows:minmax(0,1fr) auto;width:100%;max-width:none;height:100dvh;min-height:0;padding:0 18px 10px;overflow:hidden}
+body.host[data-game=poker] #poker{display:grid;place-items:center;width:100%;height:100%;min-height:0}
+body.host[data-game=poker] #players{align-self:end;width:100%;margin:0}
+body.host[data-game=poker] header{margin-bottom:0}body.host[data-game=poker] h1{font-size:32px;margin:4px 0}
+body:not(.host) .table-seats{display:none}
+body[data-game=mines] #grid{background:linear-gradient(145deg,#362b47,#151c26);border:2px solid #907da5;border-radius:20px;padding:12px;box-shadow:inset 0 2px 0 #ded0e54a,0 10px 0 #0c111c,0 14px 30px #0006}
+body[data-game=mines] #grid button{position:relative;background:transparent url('/assets/gameplay/tabletop/tile-covered.webp') center/100% 100% no-repeat;border:0;border-radius:6px;box-shadow:none;font-weight:900;font-style:italic;color:#d5edff;text-shadow:0 1px 2px #000}
+body[data-game=mines] #grid button.open{background-image:url('/assets/gameplay/tabletop/tile-open.webp');color:#d5edff}
+body[data-game=mines] #grid button.mine{background-image:url('/assets/gameplay/tabletop/mine.webp'),url('/assets/gameplay/tabletop/tile-open.webp');background-size:80% 80%,100% 100%;color:transparent}
+body[data-game=mines] #grid button[data-count="1"]{color:#82e3ff}body[data-game=mines] #grid button[data-count="2"]{color:#ccff90}body[data-game=mines] #grid button[data-count="3"]{color:#ffc5b0}body[data-game=mines] #grid button[data-count="4"]{color:#d8b7ff}
+body[data-game=airhockey] #rink{border:9px solid #67557f;border-radius:30px;box-shadow:0 0 0 2px #d1c7df,inset 0 0 30px #0006,0 12px 0 #21192c,0 20px 35px #0007}
+body.host[data-game=airhockey] #tabletop{max-width:1600px;padding:10px 30px}body.host[data-game=airhockey] #rink{width:min(100%,1080px);height:auto;max-height:none;aspect-ratio:5/3;margin:auto}body.host[data-game=airhockey] h1{font-size:26px;margin:4px}body.host[data-game=airhockey] header{display:none}body.host[data-game=airhockey] #goals{font-size:34px;margin:0 0 8px}body.host[data-game=airhockey] #hockeyHelp{display:none}body.host[data-game=airhockey] #players{margin-top:18px}body.host[data-game=airhockey] #rink{width:min(100%,calc((100vh - 125px)*5/3))}
+@media(max-width:420px){body[data-game=poker] .felt{min-height:210px;padding:12% 13%}body[data-game=mines] #grid{padding:7px;gap:2px}body[data-game=airhockey] #rink{border-width:6px;border-radius:22px}}
+/* TV mines: reserve the middle for the board, all supporting copy at the sides. */
+body.host[data-game=mines] #tabletop{display:grid;grid-template-columns:minmax(150px,1fr) minmax(0,min(52vw,calc(100vh - 88px))) minmax(150px,1fr);grid-template-rows:46px 1fr;gap:12px 24px;height:100vh;min-height:0;padding:10px 24px}
+body.host[data-game=mines] header{display:block;grid-column:1/-1;grid-row:1;margin:0}
+body.host[data-game=mines] #eyebrow{display:none}
+body.host[data-game=mines] h1{font-size:30px;line-height:1.1;margin:6px 0}
+body.host[data-game=mines] #mines{display:contents}
+body.host[data-game=mines] #grid{grid-column:2;grid-row:2;width:100%;max-width:none;align-self:start;aspect-ratio:1;min-width:0;margin:0;padding:10px}
+body.host[data-game=mines] #mineSide{grid-column:1;grid-row:2;align-self:start;border:1px solid #b39aca44;border-radius:22px;padding:20px;background:#241d3280}
+body.host[data-game=mines] #status{font-size:34px;color:#d1ff87;margin:0 0 20px}
+body.host[data-game=mines] #mineHelp{font-size:18px;text-align:left;line-height:1.55;margin:0;text-wrap:balance}
+body.host[data-game=mines] #players{grid-column:3;grid-row:2;align-self:start;grid-template-columns:1fr;margin:0;gap:8px;min-width:0}
+body.host[data-game=mines] #players:has(.player:nth-child(9)){grid-template-columns:1fr 1fr}
+body.host[data-game=mines] #players .player{min-width:0;font-size:16px;padding:12px 10px}
+body.host[data-game=mines] #players:has(.player:nth-child(9)) .player{font-size:13px;padding:10px 7px}
+#error:empty{display:none}

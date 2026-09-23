@@ -26,6 +26,12 @@ class ProductValidationTests(unittest.TestCase):
             rel='public/native-shell/'+name
             for root in [self.root,self.server]:
                 p=root/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('fixture '+verify_ios.REVISION)
+        for name in verify_ios.POCKET_FILES:
+            for root in [self.root,self.server]:
+                p=root/'games/arcade_deluxe'/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('pocket fixture')
+        for name in verify_ios.MATCH_FILES:
+            for root in [self.root,self.server]:
+                p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('match fixture')
     def tearDown(self):self.tmp.cleanup()
     def write(self,name,data):(self.server/name).write_text(json.dumps(data))
     def app(self):
@@ -51,6 +57,18 @@ class ProductValidationTests(unittest.TestCase):
     def test_stale_shell(self):
         (self.server/'public/native-shell/host.js').write_text('old shell')
         with self.assertRaisesRegex(ValueError,'Stale'):verify_ios.verify(self.root)
+    def test_stale_pocket_controller(self):
+        (self.server/'games/arcade_deluxe/public/pocket-deck.js').write_text('old controller')
+        with self.assertRaisesRegex(ValueError,'Stale'):verify_ios.verify(self.root)
+    def test_missing_air_defense(self):
+        (self.server/'games/arcade_deluxe/core/air-defense.cjs').unlink()
+        with self.assertRaisesRegex(ValueError,'Missing'):verify_ios.verify(self.root)
+    def test_stale_camera(self):
+        (self.server/'games/bow_club/public/phone.js').write_text('old camera')
+        with self.assertRaisesRegex(ValueError,'Stale'):verify_ios.verify(self.root)
+    def test_missing_tv_information(self):
+        (self.server/'public/tv-information.js').unlink()
+        with self.assertRaisesRegex(ValueError,'Missing'):verify_ios.verify(self.root)
     def test_valid_product(self):
         app,info=self.app();self.assertTrue(verify_ios.verify(self.root,app)['ok'])
     def test_wrong_sdk(self):

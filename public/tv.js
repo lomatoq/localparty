@@ -20,7 +20,7 @@
   const matches = (g, query, filter) => (!query || String(g.title).toLocaleLowerCase().includes(query)) &&
     (filter==='all' || filter==='fresh' && freshIds.includes(g.id) || filter==='arcade' && g.section!=='table' || filter==='table' && g.section==='table' || category(g)===filter);
   const node = (tag, cls, text) => {const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;};
-  function create(root, {displayOnly=false, onSelect=()=>{}}={}) {
+  function create(root, {displayOnly=false, onSelect=()=>{}, onLaunch=null}={}) {
     let signature='', cards=new Map(), latest=[], groups=[], track=null, arrows=[], resize=null, frame=0;
     root.classList.add('lp-catalog');root.classList.toggle('lp-display-catalog',displayOnly);
     const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -37,18 +37,23 @@
       track.scrollBy({left:direction*Math.max(1,track.clientWidth-32),behavior:reduced()?'auto':'smooth'});
     }
     function makeCard(g, index, featured) {
-      const card=node(displayOnly?'article':'button','game lp-catalog-card'+(featured?' featured':''));
+      const directLaunch=!displayOnly&&typeof onLaunch==='function';
+      const card=node(displayOnly||directLaunch?'article':'button','game lp-catalog-card'+(featured?' featured':''));
       card.dataset.game=g.id;card.dataset.id=g.id;card.dataset.category=category(g);
-      if(!displayOnly){card.type='button';card.setAttribute('aria-haspopup','dialog');card.addEventListener('click',()=>onSelect(g.id));}
+      if(!displayOnly&&!directLaunch){card.type='button';card.setAttribute('aria-haspopup','dialog');card.addEventListener('click',()=>onSelect(g.id));}
       card.setAttribute('aria-label',`${g.title}, ${g.min}–${g.max} игроков`);
       const palette=colors[g.id]||[g.color,g.secondaryColor||g.color];
       palette.forEach((v,i)=>{if(/^#[a-f\d]{6}$/i.test(v||''))card.style.setProperty(i?'--card-secondary':'--card',v);});
       const art=node('div','art'), img=node('img','symbol');img.src=artPath(g);img.alt='';img.loading=index<5?'eager':'lazy';img.decoding='async';img.draggable=false;
+      // The same illustration continues behind the caption, softly defocused.
+      card.style.setProperty('--lp-card-art',`url("${artPath(g)}")`);
       img.addEventListener('error',()=>{img.hidden=true;card.classList.add('lp-art-missing');},{once:true});
       art.append(node('span','tag',g.tag||({logic:'Логика',party:'Вечеринка',action:'Экшен'}[category(g)])),node('span','number',String(index+1).padStart(2,'0')),img);
       if(featured)art.append(node('span','featured-label','✳ Выбор вечера'));
       const info=node('div','game-info');info.append(node('h3','',g.title),node('p','',g.description||g.goal||''));
-      const bottom=node('div','game-bottom');bottom.append(node('span','lp-player-range',`${g.min}–${g.max} игроков`),node('span','start-game',displayOnly?'На телефонах ↗':'Выбрать ↗'));
+      const bottom=node('div','game-bottom');bottom.append(node('span','lp-player-range',`${g.min}–${g.max} игроков`));
+      if(directLaunch){const rules=node('button','lp-card-open quiet','Правила'),start=node('button','lp-direct-start start-game','Старт ▶');rules.type=start.type='button';rules.onclick=()=>onSelect(g.id);start.onclick=()=>{window.LocalPartyUIFeel?.release?.(start);onLaunch(g.id);};bottom.append(rules,start);}
+      else bottom.append(node('span','start-game',displayOnly?'На телефонах ↗':'Выбрать ↗'));
       const votes=node('span','lp-card-votes');votes.hidden=true;info.append(bottom,votes);card.append(art,info);return card;
     }
     function group(title, fresh=false, table=false) {
@@ -84,19 +89,25 @@
       if(track){track.scrollLeft=oldScroll;if(typeof ResizeObserver==='function'){resize=new ResizeObserver(scheduleBounds);resize.observe(track);}}
       scheduleBounds();
     }
-    function update(state,{query='',filter='all',disabled=false}={}) {
+    function update(state,{query='',filter='all',disabled=false,pendingId=null}={}) {
       latest=(state.catalog||[]).filter(g=>g&&typeof g.id==='string'&&typeof g.title==='string');
       const next=JSON.stringify(latest);if(next!==signature){signature=next;rebuild(latest);}
       const tallies=new Map();(state.votes||[]).forEach(v=>tallies.set(v.gameId,(tallies.get(v.gameId)||0)+1));
+      const mostVotes=Math.max(0,...tallies.values());
+      const mostPlayed=Math.max(0,...Object.values(state.gamePopularity||{}).map(Number));
       const visible=[];query=query.trim().toLocaleLowerCase();
       for(const g of latest){
         const card=cards.get(g.id);card.hidden=!matches(g,query,filter);if(!card.hidden)visible.push(g);
         const selected=g.id===(state.tv?.browse?state.tv.focusId:state.selected);card.classList.toggle('selected',selected);
-        if(!displayOnly){card.disabled=Boolean(disabled);card.setAttribute('aria-pressed',String(selected));}else{selected?card.setAttribute('aria-current','true'):card.removeAttribute('aria-current');}
+        const running=state.active?.id===g.id;card.classList.toggle('is-running',running);card.classList.toggle('is-launching',pendingId===g.id);
+        if(!displayOnly){if('disabled' in card)card.disabled=Boolean(disabled);card.querySelectorAll('button').forEach(button=>{button.disabled=Boolean(disabled);});card.setAttribute('aria-pressed',String(selected));}else{selected?card.setAttribute('aria-current','true'):card.removeAttribute('aria-current');}
+        const launch=card.querySelector('.lp-direct-start');if(launch){launch.textContent=pendingId===g.id?'Запускаем…':running?'Сейчас играем':'Старт ▶';launch.disabled=Boolean(disabled||running);launch.setAttribute('aria-busy',String(pendingId===g.id));}
+        card.classList.toggle('most-played',mostPlayed>0&&Number(state.gamePopularity?.[g.id])===mostPlayed);
         const n=tallies.get(g.id)||0,votes=card.querySelector('.lp-card-votes');votes.hidden=!n;
-        const text=`Голосов: ${n}`;if(votes.textContent!==text)votes.textContent=text;
+        const leader=n>=2&&n===mostVotes;card.classList.toggle('vote-leader',leader);card.classList.toggle('vote-popular',n>=2);card.style.setProperty('--vote-share',String(n/Math.max(1,state.players?.length||mostVotes)));
+        const text=leader?`Лидер голосования · ${n}`:`${n} ${n===1?'голос':n<5?'голоса':'голосов'}`;if(votes.textContent!==text)votes.textContent=text;
       }
-      groups.forEach(({box,grid,count,extra,extraBox})=>{const shown=g=>[...g.children].filter(c=>!c.hidden).length;const more=extra?shown(extra):0,n=shown(grid)+more;box.hidden=!n;if(extraBox)extraBox.hidden=!more;const text=`${n} игр`;if(count.textContent!==text)count.textContent=text;});
+      groups.forEach(({box,grid,count,extra,extraBox})=>{const shown=g=>[...g.children].filter(c=>!c.hidden).length;const more=extra?shown(extra):0,n=shown(grid)+more;box.hidden=!n;if(extraBox)extraBox.hidden=!more;const total=displayOnly&&box.dataset.catalogGroup==='arcade'?visible.length:n;const text=`${total} игр`;if(count.textContent!==text)count.textContent=text;});
       scheduleBounds();return visible;
     }
     function revealFresh(id){const card=cards.get(id);if(track&&card?.parentElement===track){const x=card.offsetLeft;track.scrollTo({left:Math.max(0,x-24),behavior:reduced()?'auto':'smooth'});}}
@@ -118,28 +129,58 @@ window.LocalPartyTVShow=show;
 const tell=message=>{$('notice').textContent=message;$('notice').hidden=false;clearTimeout(tell.timer);tell.timer=setTimeout(()=>$('notice').hidden=true,6000);};
 const art=id=>window.LocalPartyCatalog.artPath(state.catalog.find(g=>g.id===id));
 const text=(id,value)=>{const node=$(id);value=String(value);if(node.textContent!==value)node.textContent=value;};
-let lastHUD='',lastMessage='';
+let lastHUD='',lastMessage='',tvInfo=null,tvInfoAt=0,tvInfoInstance=null,displayConnected=false;
+function information(){
+ if(!state?.active||!window.LocalPartyTVInformation)return null;
+ const game=state.catalog.find(g=>g.id===state.active.id),ui=state.active.ui;
+ const base=window.LocalPartyTVInformation.normalize({game,ui,now:Date.now()-offset,paused:!!state.active.session?.paused});
+ const fresh=tvInfoInstance===state.active.instance&&Date.now()-tvInfoAt<2000;
+ const info=fresh?{...tvInfo,paused:base.paused,objective:tvInfo.objective||base.objective}:base;
+ if(base.paused){info.phaseLabel='Пауза';info.timer=null;}
+ if(!displayConnected){info.phaseLabel='Восстанавливаем связь';info.timer=null;}
+ let seconds=info.timer?.remainingSeconds;
+ if(info.timer?.clock==='epoch-ms')seconds=Math.max(0,(info.timer.endsAt-(Date.now()-offset))/1000);
+ else if(fresh&&Number.isFinite(seconds)&&!info.paused)seconds=Math.max(0,seconds-(Date.now()-tvInfoAt)/1000);
+ const formatted=Number.isFinite(seconds)?Math.floor(Math.ceil(seconds)/60)+':'+String(Math.ceil(seconds)%60).padStart(2,'0'):'';
+ const scoreMetric=(info.metrics||[]).find(m=>['goals','teams'].includes(m.key));
+ const primary=info.family==='live'&&scoreMetric?String(scoreMetric.value):info.family==='mission'&&info.progress?info.progress:formatted||info.actor||info.phaseLabel||info.title||'';
+ const phase=info.phaseLabel||info.statusLabel||'';
+ const translate=value=>window.PartyI18n?.t?.(value)||value;
+ const bar=$('play').querySelector('.gamebar');bar.dataset.family=info.family||'live';bar.dataset.coverage=info.coverage;bar.classList.toggle('is-paused',info.paused);bar.classList.toggle('is-reconnecting',!displayConnected);
+ $('gameContext').toggleAttribute('data-no-translate',!!(formatted&&info.actor));$('gameTitle').toggleAttribute('data-no-translate',primary===info.actor);
+ text('gameTitle',primary===info.actor?primary:translate(primary));text('gameContext',formatted&&info.actor?info.actor:translate(info.title||''));text('phase',translate(phase));
+ $('gameObjective').setAttribute('data-no-translate','');text('gameObjective',(window.PartyI18n?.language==='en'?info.objective?.english:info.objective?.text)||info.objective?.text||info.statusLabel||'');$('gameObjective').dataset.source=info.objective?.kind||'runtime';
+ const priorities={wind:0,gate:0,goals:0,pot:0,teams:0,submitted:0,lives:0,alive:0,score:1,arrows:1,queue:1};
+ const metrics=[...(info.metrics||[])].filter(m=>!(info.family==='live'&&scoreMetric===m)).sort((a,b)=>(priorities[a.key]??3)-(priorities[b.key]??3)).slice(0,2);
+ text('gamePlayers',formatted&&primary!==formatted?`${translate('Осталось')} ${formatted}`:info.progress||((state.active.roster?.length??state.players.length)+' в игре'));
+ text('gameMetric',metrics.map(m=>`${translate(m.label)} ${typeof m.value==='number'?Math.round(m.value*10)/10:m.value}`).join(' · '));
+ text('timer',formatted);$('timer').hidden=true;window.LocalPartyTVCurrentInformation=info;
+ return info;
+}
 function clock(){if(!state?.active)return;const {ui,session}=state.active;
- const seconds=ui?.endsAt&&!session?.paused?Math.max(0,Math.ceil((ui.endsAt-(Date.now()-offset))/1000)):null;
- text('timer',seconds===null?'':Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0'));
+ information();
 }
 function hud(force=false){if(!state?.active)return;const {ui,session}=state.active;const game=state.catalog.find(g=>g.id===state.active.id);window.PARTY_UI=ui;window.PARTY_SESSION=session;window.PARTY_GAME=game;
  window.PARTY_ROSTER=state.players;
  const message={roster:state.players,type:'party-ui',ui,session,game,host:true},messageKey=JSON.stringify(message);
  if(force||messageKey!==lastMessage){lastMessage=messageKey;$('gameFrame').contentWindow?.postMessage(message,location.origin);}
  clock();
- const key=JSON.stringify([state.active.instance,ui?.phase,session,state.active.startError,state.players.length]);
+ const key=JSON.stringify([state.active.instance,ui?.phase,session,state.active.startError,state.active.roster||state.players]);
  if(!force&&key===lastHUD)return;lastHUD=key;
- const systemPause=session?.pauseReason==='host-background';text('pauseTitle',systemPause?'Ждём ведущего':'Пауза');text('pauseHint',systemPause?'Откройте LocalParty на iPhone ведущего. Игра продолжится автоматически.':'Ведущий или игрок может продолжить игру с телефона.');$('paused').hidden=!session?.paused;text('phase',session?.paused?'Пауза':({waiting:'Ждём готовности игроков',playing:'Играем',countdown:'На старт',results:'Результаты',reveal:'Итоги хода'}[ui?.phase]||''));
- $('waiting').hidden=ui?.phase!=='waiting';text('waitingTitle',state.active.startError?'Нужен iPhone ведущего':'Готовимся к игре');text('waitingHint',state.active.startError||'Нажмите «Я готов» на своём телефоне');text('readyCount',(session?.readyIds?.length||0)+' / '+state.players.length+' готовы');
+ const systemPause=session?.pauseReason==='host-background';text('pauseTitle',systemPause?'Ждём ведущего':'Пауза');text('pauseHint',systemPause?'Откройте HeyPals на iPhone ведущего. Игра продолжится автоматически.':'Ведущий или игрок может продолжить игру с телефона.');$('paused').hidden=!session?.paused;
+ $('waiting').hidden=ui?.phase!=='waiting';$('waiting').style.setProperty('--tv-waiting-art',`url("${art(state.active.id)}")`);text('waitingTitle',state.active.startError?'Нужен iPhone ведущего':'Готовимся к игре');
+ const roster=state.active.roster||state.players,ready=new Set(session?.readyIds||[]),missing=roster.filter(p=>!p.testBot&&(!p.connected||!p.gameReady));
+ text('waitingHint',state.active.startError||(missing.length?'Ждём подключение: '+missing.map(p=>p.name).join(', '):'Нажмите «Я готов» на своём телефоне'));
+ $('readyPlayers').replaceChildren(...roster.map(p=>{const chip=document.createElement('span');chip.className='ready-player '+(ready.has(p.id)?'is-ready':!p.connected?'is-missing':p.gameReady?'is-waiting':'is-loading');const status=document.createElement('span'),name=document.createElement('span');status.className='ready-status';status.textContent=ready.has(p.id)?'✓':!p.connected?'○':p.gameReady?'…':'↻';name.className='ready-name';name.dataset.noTranslate='';name.textContent=p.name;chip.append(status,name);return chip;}));
+ text('readyCount',ready.size+' / '+roster.length+' готовы');
 }
 function render(){if(!state?.catalog||!state?.players)return;
  const banner=$('incident');banner.hidden=!state.incident;banner.textContent=state.incident?.message||'';
- const game=state.catalog.find(g=>g.id===state.active?.id);document.body.classList.toggle('game-owns-hud',game?.engine==='sports_siege');document.body.classList.toggle('tv-in-game',!!game);$('play').hidden=!game;$('lobby').hidden=!!game;
+ const game=state.catalog.find(g=>g.id===state.active?.id);document.body.classList.toggle('game-owns-hud',game?.engine==='sports_siege'||game?.id==='bow_club');document.body.classList.toggle('tv-in-game',!!game);$('play').hidden=!game;$('lobby').hidden=!!game;
  const crowd=state.players.length;$('tvStage').classList.toggle('large-roster',crowd>8);
  // The people column widens smoothly as the room fills, so every player stays on screen.
  $('tvStage').classList.toggle('roster-mid',crowd>5&&crowd<=10);$('tvStage').classList.toggle('roster-big',crowd>10);
- if(game){const next=state.active.instance;if(key!==next){fitScreen();key=next;window.PARTY_INSTANCE=key;$('gameFrame').src='/games/'+game.id+game.host;}text('gameTitle',game.title);text('gamePlayers',state.players.length+' в игре');hud();}
+ if(game){const next=state.active.instance;if(key!==next){tvInfo=null;tvInfoInstance=null;fitScreen();key=next;window.PARTY_INSTANCE=key;$('gameFrame').src='/games/'+game.id+game.host;}hud();}
  else if(key){key='';window.PARTY_INSTANCE=null;$('gameFrame').src='about:blank';lastHUD='';lastMessage='';fitScreen();}
  // Do not rebuild or animate the offscreen catalog for per-frame game traffic.
  if(!game){
@@ -152,18 +193,22 @@ function render(){if(!state?.catalog||!state?.players)return;
  const sharing=state.networkEnabled!==false&&state.urls.length>0;for(const id of ['qr','qrCaption','address'])$(id).hidden=!sharing;
  text('inviteHint',sharing?'Один Wi-Fi. И ты в игре.':'Для гостей включите доступ по Wi-Fi на iPhone.');
  const join=state.urls[0]||'';if($('address').textContent!==join){text('address',join);if(join)$('qr').src='/api/qr?url='+encodeURIComponent(join);}
- const signature=JSON.stringify(state.players.map(p=>[p.id,p.name,p.avatar]));if(signature!==lastPlayers){lastPlayers=signature;text('count',state.players.length+' / 16');$('players').replaceChildren(...state.players.map((p,i)=>{const n=document.createElement('div');n.className='player';const avatar=document.createElement('span');avatar.className='avatar';avatar.style.setProperty('--card',i%2?'#a96aff':'#c8f58b');avatar.textContent=Array.from(p.name||'?')[0];if(typeof p.avatar==='string'&&/^data:image\/(jpeg|png|webp);base64,/.test(p.avatar)){const img=new Image();img.src=p.avatar;img.alt='';avatar.replaceChildren(img);}const name=document.createElement('b');name.textContent=p.name;n.append(avatar,name);return n;}));$('tvEmpty').hidden=!!state.players.length;}
+ const signature=JSON.stringify(state.players.map(p=>[p.id,p.name,p.avatar]));if(signature!==lastPlayers){lastPlayers=signature;text('count',state.players.length+' / 16');$('players').replaceChildren(...state.players.map((p,i)=>{const n=document.createElement('div');n.className='player';const avatar=document.createElement('span');avatar.className='avatar';avatar.style.setProperty('--card',i%2?'#a96aff':'#c8f58b');avatar.textContent=Array.from(p.name||'?')[0];if(typeof p.avatar==='string'&&(/^data:image\/(jpeg|png|webp);base64,/.test(p.avatar)||/^\/api\/avatar\/[a-f0-9]{16}\?v=\d+$/.test(p.avatar))){const img=new Image();img.src=p.avatar;img.alt='';avatar.replaceChildren(img);}const name=document.createElement('b');name.textContent=p.name;n.append(avatar,name);return n;}));$('tvEmpty').hidden=!!state.players.length;}
  const leaders=JSON.stringify((state.leaderboard||[]).slice(0,3));if(leaders!==lastStandings){lastStandings=leaders;$('tvLeaders').replaceChildren(...(state.leaderboard||[]).slice(0,3).map((p,i)=>{const row=document.createElement('div');row.className='mini-rank';const rank=document.createElement('span'),name=document.createElement('b'),score=document.createElement('strong');rank.textContent=String(i+1);name.textContent=p.name;score.textContent=String(p.points||0);row.append(rank,name,score);return row;}));$('tvRanking').hidden=!(state.leaderboard||[]).length;}
 show?.update(state);
 if(botProfiles.length||window.PartyBots?.profiles?.length)window.PartyBots?.update(state,botProfiles.slice(0,state.botCount??botProfiles.length));
 }
-function connect(){clearTimeout(reconnect);const channel=ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/lobby');channel.onopen=()=>{if(ws!==channel)return;channel.send(JSON.stringify({type:'display',key:window.PARTY_DISPLAY_KEY}));text('connection','Подключаем экран…');};channel.onmessage=e=>{if(ws!==channel)return;const m=JSON.parse(e.data);if(m.type==='display-ok'){show?.setConnected(true);text('connection','Общий экран подключён');$('connection').classList.add('online');}if(m.type==='error'&&m.code==='DISPLAY_AUTH'){location.reload();return;}if(m.type==='access-closed'){accessClosed=true;state={...state,active:null,networkEnabled:false,urls:[]};render();text('connection','Ждём приглашения ведущего');}
-if(m.type==='test-profiles'){botProfiles=Array.isArray(m.profiles)?m.profiles:[];if(state)window.PartyBots?.update(state,botProfiles);return;}if(m.type==='state'){accessClosed=false;state=m;if(m.active?.ui?.serverNow)offset=Date.now()-m.active.ui.serverNow;render();}if(m.type==='game-ui'&&m.instance===state?.active?.instance){state.active.ui=m.ui;offset=Date.now()-m.ui.serverNow;hud();show?.update(state);if(botProfiles.length)window.PartyBots?.update(state,botProfiles.slice(0,state.botCount??botProfiles.length));}if(m.type==='session-start')hud();if(m.type==='error')tell(m.message);};channel.onclose=()=>{if(ws!==channel)return;show?.setConnected(false);text('connection',accessClosed?'Доступ по Wi-Fi закрыт ведущим':'Подключаем экран заново…');$('connection').classList.remove('online');reconnect=setTimeout(connect,1200);};channel.onerror=()=>{};}
+function connect(){clearTimeout(reconnect);const channel=ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/lobby');channel.onopen=()=>{if(ws!==channel)return;channel.send(JSON.stringify({type:'display',key:window.PARTY_DISPLAY_KEY}));text('connection','Подключаем экран…');};channel.onmessage=e=>{if(ws!==channel)return;const m=JSON.parse(e.data);if(m.type==='display-ok'){displayConnected=true;show?.setConnected(true);text('connection','Общий экран подключён');$('connection').classList.add('online');}if(m.type==='error'&&m.code==='DISPLAY_AUTH'){location.reload();return;}if(m.type==='access-closed'){accessClosed=true;state={...state,active:null,networkEnabled:false,urls:[]};render();text('connection','Ждём приглашения ведущего');}
+if(m.type==='test-profiles'){botProfiles=Array.isArray(m.profiles)?m.profiles:[];if(state)window.PartyBots?.update(state,botProfiles);return;}if(m.type==='state'){window.PartyI18n?.protectPlayers([...(m.players||[]),...(m.leaderboard||[]),...(m.active?.roster||[])]);window.PartyI18n?.acceptRoomLanguage(m.languageOverride);accessClosed=false;state=m;if(m.active?.ui?.serverNow)offset=Date.now()-m.active.ui.serverNow;render();}if(m.type==='game-ui'&&m.instance===state?.active?.instance){state.active.ui=m.ui;offset=Date.now()-m.ui.serverNow;hud();show?.update(state);if(botProfiles.length)window.PartyBots?.update(state,botProfiles.slice(0,state.botCount??botProfiles.length));}if(m.type==='session-start')hud();if(m.type==='error')tell(m.message);};channel.onclose=()=>{if(ws!==channel)return;displayConnected=false;clock();show?.setConnected(false);text('connection',accessClosed?'Доступ по Wi-Fi закрыт ведущим':'Подключаем экран заново…');$('connection').classList.remove('online');reconnect=setTimeout(connect,1200);};channel.onerror=()=>{};}
 function fitScreen(){
  const stage=$('tvStage'),layout=window.partyTVLayout(window.innerWidth,window.innerHeight);
  // zoom (not transform) re-lays text/art out at the receiver's real resolution, so a
  // 1080p AirPlay screen is sharp instead of an upscaled 720p bitmap. Own left/top are zoomed too.
- const z=layout.scale;stage.style.transform='none';stage.style.zoom=String(z);stage.style.width=layout.width+'px';stage.style.height=layout.height+'px';stage.style.left=layout.left/z+'px';stage.style.top=layout.top/z+'px';stage.style.setProperty('--tv-vw',layout.width/100+'px');stage.classList.toggle('tv-compact',layout.width<=1100);
+ const z=layout.scale;stage.style.transform='none';stage.style.zoom=String(z);stage.style.width=layout.width+'px';stage.style.height=layout.height+'px';stage.style.left=layout.left/z+'px';stage.style.top=layout.top/z+'px';stage.style.setProperty('--tv-vw',layout.width/100+'px');
+ // 16:10 AirPlay receivers have only 1152 logical pixels in the 720px stage.
+ // Four catalog columns plus the sidebar left too little width for readable
+ // text; reserve that density for wider 16:9 receivers.
+ stage.classList.toggle('tv-compact',layout.width<=1180);
  const play=$('play'),bar=play.querySelector('.gamebar');const height=Math.max(1,layout.height-play.offsetTop);play.style.height=height+'px';const frame=$('gameFrame');
  // Games render at the receiver's real resolution (a 1080p TV gives them a native
  // 1920-wide viewport, like the computer host). Only above 1920 px is the viewport
@@ -173,7 +218,13 @@ function fitScreen(){
  frame.style.width=physicalWidth/gameScale+'px';frame.style.height=Math.max(1,(height-bar.offsetHeight)*z/gameScale)+'px';
  frame.style.transform=gameScale>1?'scale('+gameScale+')':'none';
 }
+window.addEventListener('message',event=>{
+ if(event.origin!==location.origin||event.source!==$('gameFrame').contentWindow)return;
+ const message=event.data;if(message?.type!=='party-tv-information'||message.instance!==state?.active?.instance||message.info?.id!==state.active.id)return;
+ tvInfo=message.info;tvInfoInstance=message.instance;tvInfoAt=Date.now();information();
+});
 fitScreen();window.addEventListener('resize',fitScreen);
+if(typeof ResizeObserver==='function')new ResizeObserver(fitScreen).observe($('play').querySelector('.gamebar'));
 $('gameFrame').addEventListener('load',()=>{fitScreen();hud(true);show?.gameLoaded();});setInterval(clock,250);
 // A TV is not a touchscreen. Quietly reveal the rest of Fresh only while idle.
 setInterval(()=>{if(!document.hidden&&show?.canIdle()!==false&&state&&!state.active&&!state.selected&&!matchMedia('(prefers-reduced-motion: reduce)').matches)catalog.advanceFresh();},9000);

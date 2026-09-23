@@ -125,12 +125,17 @@ body.tv-screen #tvSidebar{padding-top:18px!important}
 body.tv-screen .intro{padding:6px 0 22px!important}
 body.tv-screen .intro .headline-stage{container-type:normal;width:fit-content;max-width:100%;margin:14px 0 0 40px}
 body.tv-screen .intro .headline-stage h1{text-align:left;padding:4px 10px 8px 8px}
-body.tv-screen .intro h1{max-width:none!important;font-size:52px!important;letter-spacing:-2.6px;margin:4px 0!important;white-space:nowrap}
+body.tv-screen .intro h1{max-width:100%!important;font-size:clamp(36px,4vw,64px)!important;letter-spacing:-2px;margin:4px 0!important;white-space:normal;overflow-wrap:normal;text-wrap:balance}
 body.tv-screen .intro .headline-art.art-left{left:-44px;right:auto;top:-22px;width:52px;height:52px}
 body.tv-screen .intro .headline-art.art-right{left:auto;right:-46px;top:30px;width:58px;height:58px}
 body.tv-screen .intro>.eyebrow{margin-left:40px}
 body.tv-screen .tv-hero-copy{margin:8px 0 12px 40px;max-width:520px;font:italic 800 13px/1.45 Rubik,system-ui,sans-serif;text-transform:uppercase;color:var(--muted)}
 body.tv-screen .intro .hero-pills{margin-left:40px}
+body.tv-screen .intro .headline-stage{width:auto;max-width:calc(100% - 56px)}
+body.tv-screen #tvSidebar>.company-people{border-color:#e9bc534d!important;background:linear-gradient(145deg,#302919f5,#171820f5)!important;box-shadow:inset 0 1px 0 #ffe7a31a,0 8px 28px #0003}
+body.tv-screen #tvSidebar .company-people :is(h2,.eyebrow,#count){color:#ffdc83}
+body.tv-screen #tvSidebar .tv-invite :is(p,code){color:#f2dfa8}
+body.tv-screen #tvSidebar .section-title h2{text-shadow:0 0 22px #ffc85c30}
 body.tv-screen #tvStage.tv-compact .intro h1{font-size:38px!important;white-space:normal}
 
 /* Bento: the featured card spans two columns and two rows, like the computer. */
@@ -138,12 +143,11 @@ body.tv-screen #tvStage .lp-catalog .games{grid-template-columns:repeat(3,minmax
 body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card{height:100%!important}
 body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card>.art{flex:1 1 auto!important;aspect-ratio:auto!important;min-height:0!important}
 body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card>.game-info{flex:0 0 auto!important}
-body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card p{-webkit-line-clamp:1}
 body.tv-screen #tvStage .lp-catalog .games>.game.featured{grid-column:span 2!important;grid-row:span 2!important}
-body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .symbol{width:92%!important;height:108%!important;right:-4%!important;top:-6%!important}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art .symbol{width:100%!important;right:-8%!important;object-position:right center!important;transform:rotate(-6deg) scale(1.3)!important;transform-origin:right center!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .symbol{width:100%!important;height:108%!important;right:-8%!important;top:-6%!important}
 body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .number{font-size:170px!important;top:70px!important;left:22px!important}
-body.tv-screen #tvStage .lp-catalog .games>.game.featured h3{font-size:40px!important;letter-spacing:-1.5px}
-body.tv-screen #tvStage .lp-catalog .games>.game.featured p{font-size:14px!important;-webkit-line-clamp:2;max-width:70%!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured p{max-width:85%!important}
 body.tv-screen #tvStage .lp-catalog .games>.game.featured>.game-info{padding:30px 22px 20px!important}
 body.tv-screen #tvStage.tv-compact .lp-catalog .games{grid-template-columns:repeat(2,minmax(0,1fr))}
 
@@ -252,18 +256,31 @@ body.tv-screen #tvStage.roster-mid #tvSidebar #players{grid-template-columns:rep
 /* ---- TV round 4 ------------------------------------------------------------ */
 /* Mascot stands on the masthead's bottom edge, no floating animation. */
 body.tv-screen .tv-identity .brand-mark{animation:none!important;align-self:flex-end!important;width:74px!important;height:48px!important;max-height:48px!important;object-position:center bottom!important;margin:0 0 -1px!important}
-/* Cards ~30% smaller: four columns, 184px rows, featured still 2×2. */
-body.tv-screen #tvStage .lp-catalog .games{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-rows:184px!important;gap:12px}
+/* Shared-screen text must remain readable at viewing distance. */
+body.tv-screen #tvStage .lp-catalog .games{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-rows:224px!important;gap:12px}
 body.tv-screen #tvStage.tv-compact .lp-catalog .games,body.tv-screen #tvStage.roster-big .lp-catalog .games{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card h3{font-size:15px!important}
-body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card p{font-size:10px!important;margin:4px 0 8px!important}
+/* One TV type scale. The 720px stage is uniformly zoomed by tv.js; these sizes
+   are logical stage pixels, not physical receiver pixels. Do not re-override
+   them in shared polish/mobile styles. Disable iOS text autosizing separately
+   from stage zoom so WKWebView cannot shrink individual text blocks. */
+body.tv-screen{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card h3{font-size:26px!important;line-height:1.15!important;letter-spacing:-.025em!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card p{-webkit-line-clamp:2}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card p{font-size:18px!important;margin:6px 0 10px!important;line-height:1.35!important}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.game-info{padding:20px 11px 10px!important}
-body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card .start-game{min-height:30px!important;font-size:9px!important;padding:7px 10px!important}
-body.tv-screen #tvStage .lp-catalog .lp-player-range{font-size:9px}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card .start-game{min-height:32px!important;font-size:12px!important;padding:7px 8px!important}
+body.tv-screen #tvStage .lp-catalog .lp-player-range{font-size:12px}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art .number{font-size:80px!important;top:30px!important}
-body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art .tag{font-size:8px!important;top:9px!important;left:9px!important}
-body.tv-screen #tvStage .lp-catalog .games>.game.featured h3{font-size:30px!important}
-body.tv-screen #tvStage .lp-catalog .games>.game.featured p{font-size:12px!important}
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art .tag{font-size:12px!important;top:9px!important;left:9px!important}
+body.tv-screen #tvStage .lp-catalog .games>.game.featured h3{font-size:34px!important}
 body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .number{font-size:130px!important;top:50px!important}
 body.tv-screen #tvStage .lp-catalog .fresh-track>.game.lp-catalog-card{flex-basis:calc((100% - 40px + 36px)/4.4)!important}
-body.tv-screen #tvStage .lp-catalog .fresh-track>.game.lp-catalog-card h3{font-size:17px!important}
+body.tv-screen #tvSidebar>.company-people{background:linear-gradient(135deg,#ffe5a0,#e7b84f)!important;border-color:#ffeac0!important;color:#302311!important}
+body.tv-screen #tvSidebar>.company-people :is(h2,p,small,b,span,.eyebrow,#count){color:#302311!important;text-shadow:none!important}
+body.tv-screen #tvSidebar>.company-people .player{background:#fff4d04d!important;border-color:#81571333!important}
+
+/* Let the original 72px Fresh shadow finish inside the scrollport.
+   Equal negative margins and padding preserve every catalog card's geometry. */
+body.tv-screen #tvBrowse,
+body.tv-screen.tv-roster-mid #tvBrowse,
+body.tv-screen.tv-roster-big #tvBrowse{margin-left:-76px;margin-right:-76px;padding-left:82px!important;padding-right:82px!important}

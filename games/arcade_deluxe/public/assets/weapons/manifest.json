@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "pebble",
+    "name": "Камешек",
+    "file": "pebble.svg",
+    "family": "shell",
+    "index": 1
+  },
+  {
+    "id": "thumper",
+    "name": "Гром",
+    "file": "thumper.svg",
+    "family": "shell",
+    "index": 2
+  },
+  {
+    "id": "moon",
+    "name": "Мини-луна",
+    "file": "moon.svg",
+    "family": "shell",
+    "index": 3
+  },
+  {
+    "id": "spark",
+    "name": "Искра",
+    "file": "spark.svg",
+    "family": "shell",
+    "index": 4
+  },
+  {
+    "id": "triple",
+    "name": "Трио",
+    "file": "triple.svg",
+    "family": "spread",
+    "index": 5
+  },
+  {
+    "id": "fan",
+    "name": "Веер",
+    "file": "fan.svg",
+    "family": "spread",
+    "index": 6
+  },
+  {
+    "id": "confetti",
+    "name": "Конфетти",
+    "file": "confetti.svg",
+    "family": "spread",
+    "index": 7
+  },
+  {
+    "id": "twins",
+    "name": "Близнецы",
+    "file": "twins.svg",
+    "family": "spread",
+    "index": 8
+  },
+  {
+    "id": "seedpod",
+    "name": "Стручок",
+    "file": "seedpod.svg",
+    "family": "cluster",
+    "index": 9
+  },
+  {
+    "id": "piñata",
+    "name": "Пиньята",
+    "file": "pinata.svg",
+    "family": "cluster",
+    "index": 10
+  },
+  {
+    "id": "rain",
+    "name": "Звёздный дождь",
+    "file": "rain.svg",
+    "family": "rain",
+    "index": 11
+  },
+  {
+    "id": "meteor",
+    "name": "Метеорный рой",
+    "file": "meteor.svg",
+    "family": "rain",
+    "index": 12
+  },
+  {
+    "id": "skip",
+    "name": "Лягушка",
+    "file": "skip.svg",
+    "family": "bounce",
+    "index": 13
+  },
+  {
+    "id": "superball",
+    "name": "Супермяч",
+    "file": "superball.svg",
+    "family": "bounce",
+    "index": 14
+  },
+  {
+    "id": "rubber",
+    "name": "Резина",
+    "file": "rubber.svg",
+    "family": "bounce",
+    "index": 15
+  },
+  {
+    "id": "roller",
+    "name": "Колобок",
+    "file": "roller.svg",
+    "family": "roller",
+    "index": 16
+  },
+  {
+    "id": "saw",
+    "name": "Пила",
+    "file": "saw.svg",
+    "family": "saw",
+    "index": 17
+  },
+  {
+    "id": "mole",
+    "name": "Крот",
+    "file": "mole.svg",
+    "family": "burrow",
+    "index": 18
+  },
+  {
+    "id": "deep",
+    "name": "Глубина",
+    "file": "deep.svg",
+    "family": "burrow",
+    "index": 19
+  },
+  {
+    "id": "drill",
+    "name": "Бур",
+    "file": "drill.svg",
+    "family": "drill",
+    "index": 20
+  },
+  {
+    "id": "ember",
+    "name": "Уголёк",
+    "file": "ember.svg",
+    "family": "fire",
+    "index": 21
+  },
+  {
+    "id": "inferno",
+    "name": "Огненный сад",
+    "file": "inferno.svg",
+    "family": "fire",
+    "index": 22
+  },
+  {
+    "id": "acid",
+    "name": "Кислотная капля",
+    "file": "acid.svg",
+    "family": "acid",
+    "index": 23
+  },
+  {
+    "id": "slime",
+    "name": "Слизь",
+    "file": "slime.svg",
+    "family": "acid",
+    "index": 24
+  },
+  {
+    "id": "rail",
+    "name": "Игла",
+    "file": "rail.svg",
+    "family": "rail",
+    "index": 25
+  },
+  {
+    "id": "prism",
+    "name": "Призма",
+    "file": "prism.svg",
+    "family": "rail",
+    "index": 26
+  },
+  {
+    "id": "lightning",
+    "name": "Молния",
+    "file": "lightning.svg",
+    "family": "lightning",
+    "index": 27
+  },
+  {
+    "id": "laser",
+    "name": "Орбитальный разрез",
+    "file": "laser.svg",
+    "family": "laser",
+    "index": 28
+  },
+  {
+    "id": "quake",
+    "name": "Волна",
+    "file": "quake.svg",
+    "family": "quake",
+    "index": 29
+  },
+  {
+    "id": "fault",
+    "name": "Разлом",
+    "file": "fault.svg",
+    "family": "quake",
+    "index": 30
+  },
+  {
+    "id": "garden",
+    "name": "Садовник",
+    "file": "garden.svg",
+    "family": "dirt",
+    "index": 31
+  },
+  {
+    "id": "wall",
+    "name": "Бастион",
+    "file": "wall.svg",
+    "family": "dirt",
+    "index": 32
+  },
+  {
+    "id": "blink",
+    "name": "Блинк",
+    "file": "blink.svg",
+    "family": "teleport",
+    "index": 33
+  },
+  {
+    "id": "hop",
+    "name": "Прыжок",
+    "file": "hop.svg",
+    "family": "jump",
+    "index": 34
+  },
+  {
+    "id": "magnet",
+    "name": "Магнит",
+    "file": "magnet.svg",
+    "family": "pull",
+    "index": 35
+  },
+  {
+    "id": "push",
+    "name": "Толчок",
+    "file": "push.svg",
+    "family": "push",
+    "index": 36
+  },
+  {
+    "id": "void",
+    "name": "Пустота",
+    "file": "void.svg",
+    "family": "vortex",
+    "index": 37
+  },
+  {
+    "id": "boomerang",
+    "name": "Бумеранг",
+    "file": "boomerang.svg",
+    "family": "boomerang",
+    "index": 38
+  },
+  {
+    "id": "comet",
+    "name": "Комета",
+    "file": "comet.svg",
+    "family": "comet",
+    "index": 39
+  },
+  {
+    "id": "seeker",
+    "name": "Искатель",
+    "file": "seeker.svg",
+    "family": "seeker",
+    "index": 40
+  },
+  {
+    "id": "bees",
+    "name": "Пчёлы",
+    "file": "bees.svg",
+    "family": "seeker",
+    "index": 41
+  },
+  {
+    "id": "splitter",
+    "name": "Вилка",
+    "file": "splitter.svg",
+    "family": "split",
+    "index": 42
+  },
+  {
+    "id": "carpet",
+    "name": "Ковёр",
+    "file": "carpet.svg",
+    "family": "rain",
+    "index": 43
+  },
+  {
+    "id": "chain",
+    "name": "Цепь",
+    "file": "chain.svg",
+    "family": "chain",
+    "index": 44
+  },
+  {
+    "id": "pulse",
+    "name": "Пульс",
+    "file": "pulse.svg",
+    "family": "pulse",
+    "index": 45
+  },
+  {
+    "id": "daisy",
+    "name": "Ромашка",
+    "file": "daisy.svg",
+    "family": "flower",
+    "index": 46
+  },
+  {
+    "id": "frost",
+    "name": "Иней",
+    "file": "frost.svg",
+    "family": "freeze",
+    "index": 47
+  },
+  {
+    "id": "echo",
+    "name": "Эхо",
+    "file": "echo.svg",
+    "family": "echo",
+    "index": 48
+  },
+  {
+    "id": "single_shot",
+    "name": "Single Shot",
+    "file": "single_shot.svg",
+    "family": "shell",
+    "index": 49
+  },
+  {
+    "id": "big_shot",
+    "name": "Big Shot",
+    "file": "big_shot.svg",
+    "family": "shell",
+    "index": 50
+  },
+  {
+    "id": "three_shot",
+    "name": "3 Shot",
+    "file": "three_shot.svg",
+    "family": "spread",
+    "index": 51
+  },
+  {
+    "id": "five_shot",
+    "name": "5 Shot",
+    "file": "five_shot.svg",
+    "family": "spread",
+    "index": 52
+  },
+  {
+    "id": "jackhammer",
+    "name": "Jackhammer",
+    "file": "jackhammer.svg",
+    "family": "bounce",
+    "index": 53
+  },
+  {
+    "id": "heatseeker",
+    "name": "Heatseeker",
+    "file": "heatseeker.svg",
+    "family": "seeker",
+    "index": 54
+  },
+  {
+    "id": "tracer",
+    "name": "Tracer",
+    "file": "tracer.svg",
+    "family": "spread",
+    "index": 55
+  },
+  {
+    "id": "pile_driver",
+    "name": "Pile Driver",
+    "file": "pile_driver.svg",
+    "family": "drill",
+    "index": 56
+  },
+  {
+    "id": "dirt_mover",
+    "name": "Dirt Mover",
+    "file": "dirt_mover.svg",
+    "family": "quake",
+    "index": 57
+  },
+  {
+    "id": "crazy_ivan",
+    "name": "Crazy Ivan",
+    "file": "crazy_ivan.svg",
+    "family": "cluster",
+    "index": 58
+  },
+  {
+    "id": "spider",
+    "name": "Spider",
+    "file": "spider.svg",
+    "family": "chain",
+    "index": 59
+  },
+  {
+    "id": "sniper_rifle",
+    "name": "Sniper Rifle",
+    "file": "sniper_rifle.svg",
+    "family": "shell",
+    "index": 60
+  },
+  {
+    "id": "magic_wall",
+    "name": "Magic Wall",
+    "file": "magic_wall.svg",
+    "family": "dirt",
+    "index": 61
+  },
+  {
+    "id": "dirt_slinger",
+    "name": "Dirt Slinger",
+    "file": "dirt_slinger.svg",
+    "family": "dirt",
+    "index": 62
+  },
+  {
+    "id": "zapper",
+    "name": "Zapper",
+    "file": "zapper.svg",
+    "family": "shell",
+    "index": 63
+  },
+  {
+    "id": "napalm",
+    "name": "Napalm",
+    "file": "napalm.svg",
+    "family": "fire",
+    "index": 64
+  },
+  {
+    "id": "hail_storm",
+    "name": "Hail Storm",
+    "file": "hail_storm.svg",
+    "family": "rain",
+    "index": 65
+  },
+  {
+    "id": "ground_hog",
+    "name": "Ground Hog",
+    "file": "ground_hog.svg",
+    "family": "burrow",
+    "index": 66
+  },
+  {
+    "id": "worm",
+    "name": "Worm",
+    "file": "worm.svg",
+    "family": "burrow",
+    "index": 67
+  },
+  {
+    "id": "homing_worm",
+    "name": "Homing Worm",
+    "file": "homing_worm.svg",
+    "family": "burrow",
+    "index": 68
+  },
+  {
+    "id": "skipper",
+    "name": "Skipper",
+    "file": "skipper.svg",
+    "family": "bounce",
+    "index": 69
+  },
+  {
+    "id": "chain_reaction",
+    "name": "Chain Reaction",
+    "file": "chain_reaction.svg",
+    "family": "chain",
+    "index": 70
+  },
+  {
+    "id": "pineapple",
+    "name": "Pineapple",
+    "file": "pineapple.svg",
+    "family": "cluster",
+    "index": 71
+  },
+  {
+    "id": "firecracker",
+    "name": "Firecracker",
+    "file": "firecracker.svg",
+    "family": "quake",
+    "index": 72
+  },
+  {
+    "id": "homing_missile",
+    "name": "Homing Missile",
+    "file": "homing_missile.svg",
+    "family": "seeker",
+    "index": 73
+  },
+  {
+    "id": "dirtball",
+    "name": "Dirtball",
+    "file": "dirtball.svg",
+    "family": "dirt",
+    "index": 74
+  },
+  {
+    "id": "tommy_gun",
+    "name": "Tommy Gun",
+    "file": "tommy_gun.svg",
+    "family": "spread",
+    "index": 75
+  },
+  {
+    "id": "mountain_mover",
+    "name": "Mountain Mover",
+    "file": "mountain_mover.svg",
+    "family": "quake",
+    "index": 76
+  },
+  {
+    "id": "scatter_shot",
+    "name": "Scatter Shot",
+    "file": "scatter_shot.svg",
+    "family": "flower",
+    "index": 77
+  },
+  {
+    "id": "cruiser",
+    "name": "Cruiser",
+    "file": "cruiser.svg",
+    "family": "roller",
+    "index": 78
+  },
+  {
+    "id": "jump_jets",
+    "name": "Jump Jets",
+    "file": "jump_jets.svg",
+    "family": "jump",
+    "index": 79
+  },
+  {
+    "id": "mud_pie",
+    "name": "Mud Pie",
+    "file": "mud_pie.svg",
+    "family": "dirt",
+    "index": 80
+  },
+  {
+    "id": "pin_cushion",
+    "name": "Pin Cushion",
+    "file": "pin_cushion.svg",
+    "family": "cluster",
+    "index": 81
+  },
+  {
+    "id": "laser_battery",
+    "name": "Laser Battery",
+    "file": "laser_battery.svg",
+    "family": "pulse",
+    "index": 82
+  },
+  {
+    "id": "cannon_ball",
+    "name": "Cannon Ball",
+    "file": "cannon_ball.svg",
+    "family": "roller",
+    "index": 83
+  },
+  {
+    "id": "wacky_tank",
+    "name": "Wacky Tank",
+    "file": "wacky_tank.svg",
+    "family": "push",
+    "index": 84
+  },
+  {
+    "id": "digger",
+    "name": "Digger",
+    "file": "digger.svg",
+    "family": "drill",
+    "index": 85
+  },
+  {
+    "id": "glue_bomb",
+    "name": "Glue Bomb",
+    "file": "glue_bomb.svg",
+    "family": "freeze",
+    "index": 86
+  },
+  {
+    "id": "fission_bomb",
+    "name": "Fission Bomb",
+    "file": "fission_bomb.svg",
+    "family": "split",
+    "index": 87
+  },
+  {
+    "id": "late_bloomer",
+    "name": "Late Bloomer",
+    "file": "late_bloomer.svg",
+    "family": "burrow",
+    "index": 88
+  },
+  {
+    "id": "fire_bolt",
+    "name": "Fire Bolt",
+    "file": "fire_bolt.svg",
+    "family": "fire",
+    "index": 89
+  },
+  {
+    "id": "color_bomb",
+    "name": "Color Bomb",
+    "file": "color_bomb.svg",
+    "family": "cluster",
+    "index": 90
+  },
+  {
+    "id": "potholes",
+    "name": "Potholes",
+    "file": "potholes.svg",
+    "family": "chain",
+    "index": 91
+  },
+  {
+    "id": "boomerang_pt",
+    "name": "Boomerang",
+    "file": "boomerang_pt.svg",
+    "family": "boomerang",
+    "index": 92
+  },
+  {
+    "id": "popcorn",
+    "name": "Popcorn",
+    "file": "popcorn.svg",
+    "family": "bounce",
+    "index": 93
+  },
+  {
+    "id": "sprinkler",
+    "name": "Sprinkler",
+    "file": "sprinkler.svg",
+    "family": "flower",
+    "index": 94
+  },
+  {
+    "id": "well_digger",
+    "name": "Well Digger",
+    "file": "well_digger.svg",
+    "family": "drill",
+    "index": 95
+  },
+  {
+    "id": "bouncy_dirt",
+    "name": "Bouncy Dirt",
+    "file": "bouncy_dirt.svg",
+    "family": "dirt",
+    "index": 96
+  },
+  {
+    "id": "super_tracer",
+    "name": "Super Tracer",
+    "file": "super_tracer.svg",
+    "family": "spread",
+    "index": 97
+  },
+  {
+    "id": "minigun",
+    "name": "Minigun",
+    "file": "minigun.svg",
+    "family": "spread",
+    "index": 98
+  },
+  {
+    "id": "crater_maker",
+    "name": "Crater Maker",
+    "file": "crater_maker.svg",
+    "family": "shell",
+    "index": 99
+  },
+  {
+    "id": "big_dirtball",
+    "name": "Big Dirtball",
+    "file": "big_dirtball.svg",
+    "family": "dirt",
+    "index": 100
+  },
+  {
+    "id": "super_zapper",
+    "name": "Super Zapper",
+    "file": "super_zapper.svg",
+    "family": "shell",
+    "index": 101
+  },
+  {
+    "id": "cruball",
+    "name": "Cruball",
+    "file": "cruball.svg",
+    "family": "roller",
+    "index": 102
+  },
+  {
+    "id": "mega_cruiser",
+    "name": "Mega Cruiser",
+    "file": "mega_cruiser.svg",
+    "family": "roller",
+    "index": 103
+  },
+  {
+    "id": "heavy_roller",
+    "name": "Heavy Roller",
+    "file": "heavy_roller.svg",
+    "family": "roller",
+    "index": 104
+  },
+  {
+    "id": "flash_blast",
+    "name": "Flash Blast",
+    "file": "flash_blast.svg",
+    "family": "pulse",
+    "index": 105
+  },
+  {
+    "id": "nuke",
+    "name": "Nuke",
+    "file": "nuke.svg",
+    "family": "shell",
+    "index": 106
+  },
+  {
+    "id": "mega_nuke",
+    "name": "Mega Nuke",
+    "file": "mega_nuke.svg",
+    "family": "shell",
+    "index": 107
+  },
+  {
+    "id": "pillow_fight",
+    "name": "Pillow Fight",
+    "file": "pillow_fight.svg",
+    "family": "cluster",
+    "index": 108
+  },
+  {
+    "id": "sink_and_swim",
+    "name": "Sink and Swim",
+    "file": "sink_and_swim.svg",
+    "family": "rain",
+    "index": 109
+  },
+  {
+    "id": "hotfoot",
+    "name": "Hotfoot",
+    "file": "hotfoot.svg",
+    "family": "burrow",
+    "index": 110
+  },
+  {
+    "id": "ambush",
+    "name": "Ambush",
+    "file": "ambush.svg",
+    "family": "roller",
+    "index": 111
+  },
+  {
+    "id": "beehive",
+    "name": "Beehive",
+    "file": "beehive.svg",
+    "family": "seeker",
+    "index": 112
+  },
+  {
+    "id": "blast_off",
+    "name": "Blast Off",
+    "file": "blast_off.svg",
+    "family": "jump",
+    "index": 113
+  },
+  {
+    "id": "fire_in_the_hole",
+    "name": "Fire in the Hole",
+    "file": "fire_in_the_hole.svg",
+    "family": "fire",
+    "index": 114
+  },
+  {
+    "id": "lob_o_matic",
+    "name": "Lob-o-Matic",
+    "file": "lob_o_matic.svg",
+    "family": "rain",
+    "index": 115
+  },
+  {
+    "id": "rainbow_dirt",
+    "name": "Rainbow Dirt",
+    "file": "rainbow_dirt.svg",
+    "family": "dirt",
+    "index": 116
+  },
+  {
+    "id": "super_laser",
+    "name": "Super Laser",
+    "file": "super_laser.svg",
+    "family": "laser",
+    "index": 117
+  },
+  {
+    "id": "ground_shocker",
+    "name": "Ground Shocker",
+    "file": "ground_shocker.svg",
+    "family": "burrow",
+    "index": 118
+  },
+  {
+    "id": "bouncy_wall",
+    "name": "Bouncy Wall",
+    "file": "bouncy_wall.svg",
+    "family": "dirt",
+    "index": 119
+  },
+  {
+    "id": "lodestones",
+    "name": "Lodestones",
+    "file": "lodestones.svg",
+    "family": "pull",
+    "index": 120
+  },
+  {
+    "id": "particle_bomb",
+    "name": "Particle Bomb",
+    "file": "particle_bomb.svg",
+    "family": "fire",
+    "index": 121
+  },
+  {
+    "id": "magic_forest",
+    "name": "Magic Forest",
+    "file": "magic_forest.svg",
+    "family": "dirt",
+    "index": 122
+  },
+  {
+    "id": "buckshot",
+    "name": "Buckshot",
+    "file": "buckshot.svg",
+    "family": "spread",
+    "index": 123
+  },
+  {
+    "id": "quad_missile",
+    "name": "Quad Missile",
+    "file": "quad_missile.svg",
+    "family": "seeker",
+    "index": 124
+  },
+  {
+    "id": "carpet_bomb",
+    "name": "Carpet Bomb",
+    "file": "carpet_bomb.svg",
+    "family": "rain",
+    "index": 125
+  },
+  {
+    "id": "flamethrower",
+    "name": "Flamethrower",
+    "file": "flamethrower.svg",
+    "family": "fire",
+    "index": 126
+  },
+  {
+    "id": "skimmer",
+    "name": "Skimmer",
+    "file": "skimmer.svg",
+    "family": "bounce",
+    "index": 127
+  },
+  {
+    "id": "volcano",
+    "name": "Volcano",
+    "file": "volcano.svg",
+    "family": "flower",
+    "index": 128
+  },
+  {
+    "id": "pedestal",
+    "name": "Pedestal",
+    "file": "pedestal.svg",
+    "family": "dirt",
+    "index": 129
+  },
+  {
+    "id": "fire_storm",
+    "name": "Fire Storm",
+    "file": "fire_storm.svg",
+    "family": "rain",
+    "index": 130
+  },
+  {
+    "id": "meteor_shower",
+    "name": "Meteor Shower",
+    "file": "meteor_shower.svg",
+    "family": "rain",
+    "index": 131
+  },
+  {
+    "id": "roman_candle",
+    "name": "Roman Candle",
+    "file": "roman_candle.svg",
+    "family": "spread",
+    "index": 132
+  },
+  {
+    "id": "flying_digger",
+    "name": "Flying Digger",
+    "file": "flying_digger.svg",
+    "family": "drill",
+    "index": 133
+  },
+  {
+    "id": "sunburn",
+    "name": "Sunburn",
+    "file": "sunburn.svg",
+    "family": "rail",
+    "index": 134
+  },
+  {
+    "id": "riptide",
+    "name": "Riptide",
+    "file": "riptide.svg",
+    "family": "spread",
+    "index": 135
+  },
+  {
+    "id": "buzzsaw",
+    "name": "Buzzsaw",
+    "file": "buzzsaw.svg",
+    "family": "saw",
+    "index": 136
+  },
+  {
+    "id": "static_ball",
+    "name": "Static Ball",
+    "file": "static_ball.svg",
+    "family": "vortex",
+    "index": 137
+  },
+  {
+    "id": "mystery_bombs",
+    "name": "Mystery Bombs",
+    "file": "mystery_bombs.svg",
+    "family": "split",
+    "index": 138
+  },
+  {
+    "id": "flower_power",
+    "name": "Flower Power",
+    "file": "flower_power.svg",
+    "family": "flower",
+    "index": 139
+  },
+  {
+    "id": "turn_and_burn",
+    "name": "Turn and Burn",
+    "file": "turn_and_burn.svg",
+    "family": "jump",
+    "index": 140
+  },
+  {
+    "id": "dome_protect",
+    "name": "Dome Protect",
+    "file": "dome_protect.svg",
+    "family": "dirt",
+    "index": 141
+  },
+  {
+    "id": "backfire",
+    "name": "Backfire",
+    "file": "backfire.svg",
+    "family": "teleport",
+    "index": 142
+  },
+  {
+    "id": "old_faithful",
+    "name": "Old Faithful",
+    "file": "old_faithful.svg",
+    "family": "rain",
+    "index": 143
+  },
+  {
+    "id": "bouncy_bomb",
+    "name": "Bouncy Bomb",
+    "file": "bouncy_bomb.svg",
+    "family": "dirt",
+    "index": 144
+  }
+]

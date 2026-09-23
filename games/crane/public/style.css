@@ -34,3 +34,5 @@ body[data-role=player] #progress{font-size:10px;line-height:1.3}
 .player .details{min-width:0}.player .details strong{overflow-wrap:anywhere}.player .score{flex:none;min-width:3ch;text-align:right}
 @media(max-width:900px){.host-shell{grid-template-columns:1fr}}
 .stage{background:linear-gradient(to top,#07182b 0%,#07182bdd 12%,#07182b22 30%,#07182b11 100%),url('/assets/gameplay/crane-city.webp') center top/cover no-repeat #07182b}
+
+.stage{background-position:center 64%!important}

@@ -25,11 +25,12 @@ function updateJoyFromPointer(e){
   const r=base.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;let dx=e.clientX-cx,dy=e.clientY-cy;const max=r.width*.35,d=Math.hypot(dx,dy);if(d>max){dx=dx/d*max;dy=dy/d*max;}
   joy.x=dx/max;joy.y=dy/max;knob.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;socket.emit('joystick',joy);
 }
-function resetJoy(){joy.x=joy.y=0;knob.style.transform='translate(-50%,-50%)';socket.emit('joystick',joy);}
+function resetJoy(){joyPointer=null;joy.x=joy.y=0;knob.style.transform='translate(-50%,-50%)';socket.emit('joystick',joy);}
 zone.addEventListener('pointerdown',e=>{if(joyPointer!==null)return;e.preventDefault();joyPointer=e.pointerId;zone.setPointerCapture?.(e.pointerId);updateJoyFromPointer(e);});
 zone.addEventListener('pointermove',e=>{if(e.pointerId===joyPointer)updateJoyFromPointer(e);});
-for(const ev of ['pointerup','pointercancel'])zone.addEventListener(ev,e=>{if(e.pointerId===joyPointer){joyPointer=null;resetJoy();}});
-window.addEventListener('blur',resetJoy);
+for(const ev of ['pointerup','pointercancel','lostpointercapture'])zone.addEventListener(ev,e=>{if(e.pointerId===joyPointer)resetJoy();});
+window.addEventListener('blur',resetJoy);window.addEventListener('pagehide',resetJoy);document.addEventListener('visibilitychange',()=>{if(document.hidden)resetJoy();});
+setInterval(()=>{if(joyPointer!==null)socket.emit('joystick',joy);},120);
 
 $('throwBtn').addEventListener('pointerdown',e=>{e.preventDefault();socket.emit('throw');if(navigator.vibrate)navigator.vibrate(22);});
 $('fireBtn').addEventListener('pointerdown',e=>{e.preventDefault();if(!self||self.status!=='playing'||self.shotThisRound||self.falseStart||e.isPrimary===false)return;socket.emit('westernShoot',{round:self.round});if(navigator.vibrate)navigator.vibrate(18);});

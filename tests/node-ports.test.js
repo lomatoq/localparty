@@ -12,7 +12,9 @@ for(const game of ['chaos','kart'])test(`${game}: 15 identities + 16th late, ref
  let statePromise=next(host,d=>game==='chaos'?d.type==='players':d.type==='state');
  if(game==='chaos'){host.send(JSON.stringify({type:'assign_roles',round:1,roles:Object.fromEntries(profiles.slice(0,15).map(p=>[p.name,['click']]))}));}else host.send(JSON.stringify({type:'host_start'}));
  let state=await statePromise;assert.equal(state.players.length,15);assert.equal(state.players.filter(p=>p.connected).length,15);
- const late=await join(15);state=await next(host,d=>(game==='chaos'?d.type==='players':d.type==='state')&&d.players.length===16).catch(async()=>{if(game==='chaos'){const pending=next(host,d=>d.type==='players');host.send(JSON.stringify({type:'assign_roles',round:1,roles:{}}));return pending;}throw new Error('Missing late join');});assert.equal(state.players.length,16);if(game==='kart')assert.equal(state.players.find(p=>p.id===profiles[15].id).in_race,true);
+ // Subscribe before joining: the host roster update may precede the join acknowledgement.
+ const lateState=next(host,d=>(game==='chaos'?d.type==='players':d.type==='state')&&d.players.length===16);
+ const late=await join(15);state=await lateState;assert.equal(state.players.length,16);if(game==='kart')assert.equal(state.players.find(p=>p.id===profiles[15].id).in_race,true);
  if(game==='chaos'){const got=next(host,d=>d.type==='input'&&d.name===profiles[0].name);replacement.send(JSON.stringify({type:'input',control:'click',state:'down'}));await got;}
  const res=await fetch(`http://127.0.0.1:${port}/${game==='chaos'?'api/config':'api/info'}`);assert.equal((await res.json()).port,port);assert.equal((await fetch(`http://127.0.0.1:${port}/controller`)).status,200);
 });

@@ -1,9 +1,9 @@
 {
   "id": "/",
-  "name": "LocalParty — игры для компании",
-  "short_name": "LocalParty",
-  "description": "Один общий экран и телефоны игроков как контроллеры.",
-  "lang": "ru",
+  "name": "HeyPals",
+  "short_name": "HeyPals",
+  "description": "One shared screen. Your phones are the controllers.",
+  "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

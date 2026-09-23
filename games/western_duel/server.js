@@ -3,7 +3,7 @@ const express=require('express'),http=require('http'),{WebSocketServer}=require(
 const app=express(),server=http.createServer(app),wss=new WebSocketServer({server,path:'/ws'}),game=new Tournament(),clients=new Map();let reported='';
 app.get('/host',(_,res)=>res.sendFile(__dirname+'/public/host.html'));app.use(express.static(__dirname+'/public'));
 function send(ws,type,data){if(ws.readyState===1)ws.send(JSON.stringify({type,data}));}
-wss.on('connection',(ws,req)=>{ws.on('message',raw=>{let m;try{m=JSON.parse(raw)}catch{return;}const d=m.data||{};
+wss.on('connection',(ws,req)=>{ws.on('message',raw=>{let m;try{m=JSON.parse(raw)}catch{return;}if(!m||typeof m!=='object'||Array.isArray(m)||typeof m.type!=='string')return;const d=m.data||{};
 if(m.type==='host'){ws.host=runtime.managed?req.headers['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);return;}
 if(m.type==='join'){const p=runtime.identify(d,ws);if(runtime.managed&&!p)return send(ws,'error','Вернитесь в главное меню');const id=p?.id||String(d.token||crypto.randomUUID());if(!game.players.has(id)&&game.players.size>=16)return send(ws,'error','Все 16 мест заняты');game.join(id,p?.name||String(d.name||'Ковбой').slice(0,24));const previous=clients.get(id);clients.set(id,ws);ws.pid=id;if(previous&&previous!==ws)previous.close(4001,'Replaced');send(ws,'joined',{id});return;}
 if(m.type==='start'&&ws.host){if(['waiting','results'].includes(game.phase))game.start([...clients.keys()]);return;}

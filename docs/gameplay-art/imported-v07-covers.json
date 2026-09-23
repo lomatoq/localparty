@@ -1,0 +1,24 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "public/assets/games/push.webp",
+  "requestedBackground": "#ff00a8",
+  "deliveredBackground": "transparent alpha supplied by image tool",
+  "style": "Glossy rounded premium 3D toy arcade icons, purple/lime/cyan/gold, three-quarter view, no text",
+  "assets": [
+    {
+      "id": "marble_bloom",
+      "file": "public/assets/games/marble_bloom.webp",
+      "prompt": "Curved chain of colorful marbles on purple/lime arcade track with toy marble launcher, cyan shot, restrained golden collision spark. Compact centered silhouette, 12% margin, solid chroma pink background."
+    },
+    {
+      "id": "pocket_siege",
+      "file": "public/assets/games/pocket_siege.webp",
+      "prompt": "Chunky purple artillery tank, elevated cannon, cyan tracks and lime trim on broken earth island, amber fragments and golden projectile arc. Compact centered silhouette, 12% margin, solid chroma pink background."
+    },
+    {
+      "id": "bow_club",
+      "file": "public/assets/games/bow_club.webp",
+      "prompt": "Chunky purple/lime archery bow and cyan-feathered arrow in golden bullseye of colorful round target, restrained impact spark. Compact centered silhouette, 12% margin, solid chroma pink background."
+    }
+  ]
+}

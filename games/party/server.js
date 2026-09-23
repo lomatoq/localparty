@@ -102,7 +102,7 @@ function makePlayer(socket,payload){
     id,token,socketId:socket.id,connected:true,name:rawName,
     handedness:payload.handedness==='left'||(payload.handedness==null&&autoLeft)?'left':'right',
     color:colorForIndex(idx),x:CENTER.x,y:CENTER.y,vx:0,vy:0,radius:24,alive:false,active:false,
-    input:{jx:0,jy:0},roundWins:0,totalScore:0,roundScore:0,knivesRemaining:0,throwCd:0,
+    input:{jx:0,jy:0,at:0},roundWins:0,totalScore:0,roundScore:0,knivesRemaining:0,throwCd:0,
     launcherAngle:0,lastFeedback:'',lastFeedbackAt:0,joinedAt:Date.now(),impactCd:0,
     falseStart:false,falseStarts:0,shotThisRound:false,reactionMs:null,bestReactionMs:null,reactionSum:0,reactionCount:0
   };
@@ -215,6 +215,7 @@ function endRound(text,winners=[]){
 function updatePush(dt){
   const ps=activePlayers().filter(p=>p.alive),elapsed=game.roundDuration-game.timer,shrinkT=clamp((elapsed-(TEST_FAST?.2:game.shrinkSpeed==='fast'?0:8))/(TEST_FAST?.7:game.shrinkSpeed==='fast'?20:45),0,1);game.arenaRadius=game.mode==='shrink'?292-shrinkT*140:292;
   for(const p of ps){
+    if((p.input.jx||p.input.jy)&&Date.now()-(p.input.at||0)>500)p.input.jx=p.input.jy=0;
     p.impactCd=Math.max(0,p.impactCd-dt);let jx=clamp(Number(p.input.jx)||0,-1,1),jy=clamp(Number(p.input.jy)||0,-1,1);const jm=len(jx,jy);if(jm>1){jx/=jm;jy/=jm;}
     const accel=jm>.05?1050:0;p.vx+=jx*accel*dt;p.vy+=jy*accel*dt;const damping=Math.pow(jm>.05?.975:.987,dt*60);p.vx*=damping;p.vy*=damping;const sp=len(p.vx,p.vy),maxSp=330;if(sp>maxSp){p.vx=p.vx/sp*maxSp;p.vy=p.vy/sp*maxSp;}p.x+=p.vx*dt;p.y+=p.vy*dt;
   }
@@ -273,7 +274,7 @@ function explodeBomb(){
 function updateBomb(dt){
   const ps=activePlayers().filter(p=>p.alive);bomb.passLock=Math.max(0,bomb.passLock-dt);bomb.noReturnTimer=Math.max(0,bomb.noReturnTimer-dt);
   for(let i=bomb.explosions.length-1;i>=0;i--){bomb.explosions[i].t+=dt;if(bomb.explosions[i].t>=bomb.explosions[i].ttl)bomb.explosions.splice(i,1);}
-  for(const p of ps){let jx=clamp(Number(p.input.jx)||0,-1,1),jy=clamp(Number(p.input.jy)||0,-1,1),jm=len(jx,jy);if(jm>1){jx/=jm;jy/=jm;}const accel=jm>.05?900:0;p.vx+=jx*accel*dt;p.vy+=jy*accel*dt;const damping=Math.pow(jm>.05?.91:.70,dt*60);p.vx*=damping;p.vy*=damping;const isHolder=p.id===bomb.holderId,maxSp=isHolder?330:305,sp=len(p.vx,p.vy);if(sp>maxSp){p.vx=p.vx/sp*maxSp;p.vy=p.vy/sp*maxSp;}p.x+=p.vx*dt;p.y+=p.vy*dt;collideWithBombObstacles(p);
+  for(const p of ps){if((p.input.jx||p.input.jy)&&Date.now()-(p.input.at||0)>500)p.input.jx=p.input.jy=0;let jx=clamp(Number(p.input.jx)||0,-1,1),jy=clamp(Number(p.input.jy)||0,-1,1),jm=len(jx,jy);if(jm>1){jx/=jm;jy/=jm;}const accel=jm>.05?900:0;p.vx+=jx*accel*dt;p.vy+=jy*accel*dt;const damping=Math.pow(jm>.05?.91:.70,dt*60);p.vx*=damping;p.vy*=damping;const isHolder=p.id===bomb.holderId,maxSp=isHolder?330:305,sp=len(p.vx,p.vy);if(sp>maxSp){p.vx=p.vx/sp*maxSp;p.vy=p.vy/sp*maxSp;}p.x+=p.vx*dt;p.y+=p.vy*dt;collideWithBombObstacles(p);
     let dx=p.x-CENTER.x,dy=p.y-CENTER.y,d=Math.hypot(dx,dy),max=bomb.arenaRadius-p.radius;if(d>max){const nx=dx/d,ny=dy/d;p.x=CENTER.x+nx*max;p.y=CENTER.y+ny*max;const outward=p.vx*nx+p.vy*ny;if(outward>0){p.vx-=nx*outward*1.45;p.vy-=ny*outward*1.45;}}
   }
   for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){
@@ -360,7 +361,7 @@ function handleMessage(socket,msg){
     socket.send('joined',{id:p.id,token:p.token,name:p.name,color:p.color,handedness:p.handedness});broadcast('lobby',lobbyState());return;
   }
   const p=players.get(socket.data.playerId);if(p&&p.socketId!==socket.id)return;
-  if(event==='joystick'&&p){const j=payload||{};p.input.jx=clamp(Number(j.x)||0,-1,1);p.input.jy=clamp(Number(j.y)||0,-1,1);}
+  if(event==='joystick'&&p){const j=payload||{};p.input.jx=clamp(Number(j.x)||0,-1,1);p.input.jy=clamp(Number(j.y)||0,-1,1);p.input.at=Date.now();}
   else if(event==='throw'&&p)throwKnife(p);
   else if(event==='westernShoot'&&p&&Number(payload?.round)===game.round)westernShoot(p);
   else if(event==='setHandedness'&&p){p.handedness=payload==='left'?'left':'right';broadcast('lobby',lobbyState());}

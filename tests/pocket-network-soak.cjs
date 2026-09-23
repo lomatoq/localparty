@@ -1,0 +1,11 @@
+'use strict';
+const {spawn}=require('node:child_process'),assert=require('node:assert/strict'),WS=require('ws');
+const child=spawn(process.execPath,['games/arcade_deluxe/server.js','pocket_siege'],{env:{...process.env,ARCADE_PORT:'0'},stdio:['ignore','pipe','pipe']});let log='',sockets=[];
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{try{
+ const base=await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error(log)),10000),read=b=>{log+=b;const m=log.match(/http:\/\/localhost:(\d+)\/host/);if(m){clearTimeout(timeout);resolve('http://127.0.0.1:'+m[1]);}};child.stdout.on('data',read);child.stderr.on('data',read);});
+ const html=await(await fetch(base+'/host')).text(),config=JSON.parse(html.match(/window.ARCADE_CONFIG=(.*?);/)[1]);
+ async function connect(host,index){const ws=new WS(base.replace('http','ws')+'/ws'),stats={host,states:0,bytes:0,gaps:[],terrain:0,strata:0,last:0};sockets.push(ws);await new Promise(r=>ws.once('open',r));ws.on('message',raw=>{const m=JSON.parse(raw);if(m.type==='state'){const now=performance.now();if(stats.last)stats.gaps.push(now-stats.last);stats.last=now;stats.states++;stats.bytes+=raw.length;if(m.data.terrainColumns)stats.terrain++;if(m.data.terrainStrata)stats.strata++;if(!host)for(const key of ['terrain','terrainColumns','terrainStrata','terrainMaterials'])assert(!(key in m.data));}});ws.send(JSON.stringify(host?{type:'host',data:{key:config.hostKey}}:{type:'join',data:{name:'Player'+index}}));return{ws,stats};}
+ const host=await connect(true),phones=[];for(let i=0;i<3;i++)phones.push(await connect(false,i));await sleep(250);host.ws.send(JSON.stringify({type:'start',data:{}}));await sleep(14000);
+ const report=[host,...phones].map(({stats:s})=>{s.gaps.sort((a,b)=>a-b);return{host:s.host,states:s.states,bytes:s.bytes,p95GapMs:s.gaps[Math.floor(s.gaps.length*.95)],maxGapMs:s.gaps.at(-1),terrainPackets:s.terrain,strataPackets:s.strata};});assert(host.stats.states>150);assert(phones.every(p=>p.stats.states>80));assert(host.stats.strata<10,'unchanged terrainStrata is not broadcast every frame');console.log(JSON.stringify(report,null,2));
+}finally{for(const ws of sockets)ws.close();child.kill();}})().catch(e=>{console.error(e);process.exitCode=1;});

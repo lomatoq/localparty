@@ -3,10 +3,12 @@
   'use strict';
   if (location.protocol !== 'http:' || location.hostname !== '127.0.0.1' || !window.webkit?.messageHandlers?.partyShell) return;
   const send = data => window.webkit.messageHandlers.partyShell.postMessage(data);
+  let lastPulse=-Infinity;
   function vibrate(value) {
     const pattern = Array.isArray(value) ? value : [value];
     if (!pattern.length) { send({type: 'haptic', pattern: [0]}); return true; }
     if (pattern.length > 12 || pattern.some(x => typeof x !== 'number' || !Number.isFinite(x) || x < 0)) return false;
+    const now=performance.now();if(pattern.length===1&&pattern[0]>0&&now-lastPulse<55)return true;if(pattern.some(x=>x>0))lastPulse=now;
     send({type: 'haptic', pattern: pattern.map(x => Math.min(500, Math.round(x)))}); return true;
   }
   window.LocalPartyNative = Object.freeze({haptic: vibrate, prepare:()=>send({type:'haptic-prepare'}), isNative: true});
@@ -37,8 +39,9 @@
     const fullscreen=document.getElementById('fullscreen');if(fullscreen)fullscreen.hidden=true;
     let pending=0;
     const fit=()=>{pending=0;const play=document.getElementById('play');if(!play||play.hidden)return;
-      const height=Math.max(1,document.documentElement.clientHeight-Math.max(0,play.getBoundingClientRect().top)-dock.getBoundingClientRect().height);
-      const value=Math.floor(height)+'px';if(play.style.getPropertyValue('--native-play-height')!==value)play.style.setProperty('--native-play-height',value);
+      const viewport=window.visualViewport,bottom=viewport?viewport.offsetTop+viewport.height:document.documentElement.clientHeight;
+      const height=Math.max(1,Math.min(bottom,dock.getBoundingClientRect().top)-Math.max(0,play.getBoundingClientRect().top));
+      const value=Math.floor(height)+'px';for(const name of ['--native-play-height','--controller-play-height'])if(play.style.getPropertyValue(name)!==value)play.style.setProperty(name,value);
     };
     const queue=()=>{if(!pending)pending=requestAnimationFrame(fit);};
     const ro=new ResizeObserver(queue);ro.observe(dock);const header=document.querySelector('.app-header');if(header)ro.observe(header);

@@ -2,7 +2,7 @@ const assert=require('node:assert/strict');
 const http=require('node:http');
 const fs=require('node:fs');
 const path=require('node:path');
-const {chromium}=require('C:/Users/nirrt/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');
 
 const root=path.resolve(__dirname,'..','public');
 const mime={'.css':'text/css','.js':'text/javascript','.png':'image/png','.webp':'image/webp'};
@@ -18,7 +18,7 @@ const shell=`<!doctype html><html><head><meta name="viewport" content="width=dev
 
 (async()=>{
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
- const browser=await chromium.launch({headless:true,channel:'msedge'});
+ const browser=await webkit.launch({headless:true});
  try{
   for(const width of [320,390,700,1440]){
    const page=await browser.newPage({viewport:{width,height:Math.max(568,Math.round(width*.68))}});

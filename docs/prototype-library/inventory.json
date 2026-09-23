@@ -6,11 +6,19 @@
   ],
   "note": "Deterministic generated index. Regenerate after adding or removing project assets or game files.",
   "totals": {
-    "publicAssetFiles": 355,
-    "games": 17,
-    "gameFiles": 208
+    "publicAssetFiles": 373,
+    "games": 20,
+    "gameFiles": 452
   },
   "publicAssets": [
+    {
+      "file": "public/assets/branding/heypals-hero.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/heypals-logo.png",
+      "category": "brand-or-icon"
+    },
     {
       "file": "public/assets/branding/icons/android-chrome-192x192.png",
       "category": "raster-or-vector-art"
@@ -149,6 +157,10 @@
     },
     {
       "file": "public/assets/branding/localparty-mark.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/podium-crown.svg",
       "category": "raster-or-vector-art"
     },
     {
@@ -1112,6 +1124,42 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/gameplay/tabletop/flag.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/hockey-field.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/mine.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/poker-table.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/puck.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/striker-lime.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/striker-violet.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/tile-covered.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/tabletop/tile-open.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
       "file": "public/assets/gameplay/tankarena.webp",
       "category": "raster-or-vector-art"
     },
@@ -1140,11 +1188,19 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/games/airhockey.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
       "file": "public/assets/games/arcade-art-provenance.md",
       "category": "metadata"
     },
     {
       "file": "public/assets/games/bomb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/bow_club.webp",
       "category": "raster-or-vector-art"
     },
     {
@@ -1204,7 +1260,15 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/games/marble_bloom.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
       "file": "public/assets/games/millionaire.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/mines.webp",
       "category": "raster-or-vector-art"
     },
     {
@@ -1221,6 +1285,14 @@
     },
     {
       "file": "public/assets/games/peek_shoot.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/pocket_siege.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/poker.webp",
       "category": "raster-or-vector-art"
     },
     {
@@ -1441,6 +1513,7 @@
         "2d-top-down"
       ],
       "reusableRoles": [
+        "controller-system",
         "entry-or-template",
         "game-system",
         "host-renderer-or-client",
@@ -1449,6 +1522,10 @@
         "ui-style"
       ],
       "files": [
+        {
+          "file": "games/arcade/controller-view.js",
+          "role": "controller-system"
+        },
         {
           "file": "games/arcade/public/app.js",
           "role": "host-renderer-or-client"
@@ -1480,6 +1557,979 @@
         {
           "file": "games/arcade/simulation.js",
           "role": "game-system"
+        }
+      ]
+    },
+    {
+      "id": "arcade_deluxe",
+      "root": "games/arcade_deluxe",
+      "sceneModes": [
+        "unknown"
+      ],
+      "reusableRoles": [
+        "asset",
+        "controller-system",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "support-file",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/arcade_deluxe/catalog.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/core/air-defense.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/common.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/drone.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/marbles.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/pocket-effects.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/pocket-expression.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/pocket-reference.generated.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/core/pocket-runtime.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/pocket-terrain.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/snapshot-view.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/tanks.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/terrain.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/weapon-profiles.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/core/weapons.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/LICENSE",
+          "role": "support-file"
+        },
+        {
+          "file": "games/arcade_deluxe/public/air-defense-render.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/covers/marble_bloom.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/covers/pocket_siege.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/icon.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/pocket-materials.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/pocket-projectiles.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/acid.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/ambush.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v2.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v2.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v3-source.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v3.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v3.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v3.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v4.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/atlas-v4.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/backfire.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/beehive.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/bees.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/big_dirtball.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/big_shot.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/blast_off.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/blink.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/boomerang_pt.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/boomerang.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/bouncy_bomb.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/bouncy_dirt.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/bouncy_wall.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/buckshot.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/buzzsaw.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/cannon_ball.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/carpet_bomb.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/carpet.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/chain_reaction.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/chain.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/color_bomb.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/comet.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/confetti.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/crater_maker.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/crazy_ivan.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/cruball.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/cruiser.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/daisy.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/deep.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/digger.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/dirt_mover.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/dirt_slinger.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/dirtball.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/dome_protect.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/drill.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/echo.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/ember.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/fan.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/fault.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/fire_bolt.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/fire_in_the_hole.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/fire_storm.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/firecracker.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/fission_bomb.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/five_shot.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/flamethrower.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/flash_blast.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/flower_power.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/flying_digger.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/frost.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/garden.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/glue_bomb.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/ground_hog.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/ground_shocker.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/hail_storm.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/heatseeker.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/heavy_roller.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/homing_missile.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/homing_worm.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/hop.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/hotfoot.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/inferno.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/jackhammer.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/jump_jets.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/laser_battery.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/laser.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/late_bloomer.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/lightning.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/lob_o_matic.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/lodestones.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/magic_forest.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/magic_wall.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/magnet.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/mega_cruiser.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/mega_nuke.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/meteor_shower.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/meteor.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/minigun.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/mole.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/moon.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/mountain_mover.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/mud_pie.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/mystery_bombs.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/napalm.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/nuke.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/old_faithful.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/particle_bomb.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pebble.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pedestal.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pile_driver.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pillow_fight.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pin_cushion.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pinata.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pineapple.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-01.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-02.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-03.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-04.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-05.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-06.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-07.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-08.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1-09.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pocket-atlas-v1.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/popcorn.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/potholes.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/prism.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/pulse.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/push.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/quad_missile.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/quake.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/rail.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/rain.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/rainbow_dirt.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/riptide.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/roller.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/roman_candle.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/rubber.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/saw.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/scatter_shot.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/seedpod.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/seeker.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/single_shot.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/sink_and_swim.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/skimmer.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/skip.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/skipper.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/slime.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/sniper_rifle.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/spark.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/spider.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/splitter.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/sprinkler.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/static_ball.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/sunburn.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/super_laser.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/super_tracer.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/super_zapper.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/superball.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/three_shot.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/thumper.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/tommy_gun.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/tracer.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/triple.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/turn_and_burn.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/twins.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/void.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/volcano.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/wacky_tank.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/wall.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/well_digger.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/worm.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/weapons/zapper.svg",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/controller.js",
+          "role": "controller-system"
+        },
+        {
+          "file": "games/arcade_deluxe/public/drone.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/arcade_deluxe/public/explosion-timeline.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/explosion-waves.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/geometry.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/host.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/arcade_deluxe/public/host.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/arcade_deluxe/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/arcade_deluxe/public/net.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/palette.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/pocket-deck.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/arcade_deluxe/public/pocket-deck.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/pocket-plasma.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/pocket-projectiles.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/render.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/siege-fx.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/snapshot-diagnostics.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/arcade_deluxe/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/arcade_deluxe/THIRD_PARTY_NOTICES.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/arcade_deluxe/transport/ws-lite.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/version.json",
+          "role": "data-or-manifest"
+        }
+      ]
+    },
+    {
+      "id": "bow_club",
+      "root": "games/bow_club",
+      "sceneModes": [
+        "unknown"
+      ],
+      "reusableRoles": [
+        "asset",
+        "data-or-manifest",
+        "documentation",
+        "entry-or-template",
+        "game-system",
+        "module",
+        "server",
+        "support-file",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/bow_club/catalog.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/bow_club/core/match.cjs",
+          "role": "game-system"
+        },
+        {
+          "file": "games/bow_club/LICENSE",
+          "role": "support-file"
+        },
+        {
+          "file": "games/bow_club/public/assets/covers/bow_club.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/net.js",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/phone.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/bow_club/public/phone.js",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/board.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/bow_club/public/src/camera-policy.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/camera-preview.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/homography.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/hybrid-tracker.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/marker-tracker.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/markers.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/mini3d.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/range-scene.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/tracking-worker.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/bow_club/public/tv.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/bow_club/public/tv.js",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/vendor/OPENCV-LICENSE.txt",
+          "role": "documentation"
+        },
+        {
+          "file": "games/bow_club/public/vendor/opencv.js",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/server.js",
+          "role": "server"
+        },
+        {
+          "file": "games/bow_club/THIRD_PARTY_NOTICES.md",
+          "role": "documentation"
+        },
+        {
+          "file": "games/bow_club/transport/ws-lite.cjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/version.json",
+          "role": "data-or-manifest"
         }
       ]
     },
@@ -2413,6 +3463,54 @@
       ]
     },
     {
+      "id": "tabletop",
+      "root": "games/tabletop",
+      "sceneModes": [
+        "unknown"
+      ],
+      "reusableRoles": [
+        "entry-or-template",
+        "host-renderer-or-client",
+        "module",
+        "server",
+        "ui-style"
+      ],
+      "files": [
+        {
+          "file": "games/tabletop/arcade.js",
+          "role": "module"
+        },
+        {
+          "file": "games/tabletop/poker.js",
+          "role": "module"
+        },
+        {
+          "file": "games/tabletop/public/app.js",
+          "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/tabletop/public/fx.js",
+          "role": "module"
+        },
+        {
+          "file": "games/tabletop/public/index.html",
+          "role": "entry-or-template"
+        },
+        {
+          "file": "games/tabletop/public/style.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/tabletop/server.js",
+          "role": "server"
+        }
+      ]
+    },
+    {
       "id": "tankarena",
       "root": "games/tankarena",
       "sceneModes": [
@@ -2422,10 +3520,15 @@
         "controller-system",
         "entry-or-template",
         "host-renderer-or-client",
+        "module",
         "server",
         "ui-style"
       ],
       "files": [
+        {
+          "file": "games/tankarena/powerups.js",
+          "role": "module"
+        },
         {
           "file": "games/tankarena/public/action-glass.css",
           "role": "ui-style"
@@ -2453,6 +3556,10 @@
         {
           "file": "games/tankarena/server.js",
           "role": "server"
+        },
+        {
+          "file": "games/tankarena/weapons.js",
+          "role": "module"
         }
       ]
     },

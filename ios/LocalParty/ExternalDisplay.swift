@@ -32,6 +32,12 @@ import WebKit
         model.externalDisplayConnected(session.persistentIdentifier)
     }
 
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        window?.isHidden = false
+        window?.rootViewController?.view.setNeedsLayout()
+        ServerModel.shared.externalDisplayReload += 1
+    }
+
     func sceneDidDisconnect(_ scene: UIScene) {
         window?.isHidden = true
         window?.rootViewController = nil
@@ -40,19 +46,34 @@ import WebKit
     }
 }
 
+private struct PartyTVLoadingLogo: View {
+    var body: some View {
+        if let url = Bundle.main.url(forResource: "heypals-logo", withExtension: "png", subdirectory: "Server/public/assets/branding"),
+           let logo = UIImage(contentsOfFile: url.path) {
+            Image(uiImage: logo).resizable().scaledToFit().frame(width: 420, height: 187).accessibilityLabel("HeyPals")
+        } else {
+            Text("HeyPals").font(.system(size: 56, weight: .bold))
+        }
+    }
+}
+
 private struct PartyExternalDisplayView: View {
     @ObservedObject var model: ServerModel
+    private var status: String {
+        // Legacy room language overrides do not change production loading copy.
+        guard let issue = model.connectionStatus else { return "Preparing your room…" }
+        return issue.contains("недоступен") ? "Local server unavailable. Close HeyPals on your iPhone and reopen it." : "Reconnecting to your local room…"
+    }
     var body: some View {
         Group {
-            if model.enabled {
+            if model.enabled && model.ready {
                 PartyTVContent(url: model.externalDisplayURL, bootID: model.state?.bootId ?? "",
                                reload: model.externalDisplayReload)
             } else {
                 VStack(spacing: 24) {
-                    Image(systemName: "airplayvideo").font(.system(size: 72))
-                    Text("LocalParty").font(.system(size: 56, weight: .bold))
-                    Text("Подготавливаем комнату…").font(.title)
-                    Text("Телевизор покажет игру, а телефон станет пультом.").font(.title2).foregroundStyle(.secondary)
+                    PartyTVLoadingLogo()
+                    Text(status).font(.title).multilineTextAlignment(.center)
+                    Text("The game appears on TV. Your phone becomes the controller.").font(.title2).foregroundStyle(.secondary)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(48)
             }
         }.background(.black).foregroundStyle(.white).preferredColorScheme(.dark).ignoresSafeArea()
@@ -71,6 +92,7 @@ private struct PartyTVContent: View {
             PartyTVWebView(renderer: renderer)
             if let message = renderer.message {
                 VStack(spacing: 20) {
+                    PartyTVLoadingLogo()
                     ProgressView().tint(.white).scaleEffect(1.6)
                     Text(message).font(.title2).multilineTextAlignment(.center)
                 }.padding(40).background(.black.opacity(0.85), in: RoundedRectangle(cornerRadius: 24))
@@ -83,9 +105,9 @@ private struct PartyTVContent: View {
 // The TV gets its own WebKit surface and cookies, not the phone controller's view.
 // It loads the existing display-only route over loopback, so no TV browser or
 // additional server is involved and the normal display authentication still applies.
-@MainActor final class PartyTVRenderer: NSObject, ObservableObject, WKNavigationDelegate, WKScriptMessageHandler {
+@MainActor final class PartyTVRenderer: NSObject, ObservableObject, WKNavigationDelegate, WKScriptMessageHandler, WKUIDelegate {
     let webView: WKWebView
-    @Published private(set) var message: String? = "Подключаем общий экран…"
+    @Published private(set) var message: String? = "Connecting the shared screen…"
     private var url: URL?
     private var retry: Task<Void, Never>?
 
@@ -97,6 +119,7 @@ private struct PartyTVContent: View {
         webView = WKWebView(frame: .zero, configuration: configuration)
         super.init()
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         if let scriptURL = Bundle.main.url(forResource: "frame-diagnostics", withExtension: "js", subdirectory: "Server/public"),
            let source = try? String(contentsOf: scriptURL, encoding: .utf8) {
             configuration.userContentController.add(PartyFrameStatsHandler(target: self), name: "partyFrameStats")
@@ -120,7 +143,7 @@ private struct PartyTVContent: View {
         retry?.cancel()
         retry = nil
         self.url = url
-        message = "Подключаем общий экран…"
+        message = "Connecting the shared screen…"
         webView.load(URLRequest(url: url))
     }
 
@@ -131,6 +154,11 @@ private struct PartyTVContent: View {
         webView.stopLoading()
         // Tear down the JS context and its display/game sockets on disconnect.
         webView.loadHTMLString("", baseURL: nil)
+    }
+
+    // External display and its test-controller frames never capture media.
+    func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping (WKPermissionDecision) -> Void) {
+        decisionHandler(.deny)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -169,7 +197,7 @@ private struct PartyTVContent: View {
     private func scheduleRetry() {
         guard url != nil else { return }
         retry?.cancel()
-        message = "Восстанавливаем картинку. Держите LocalParty открытым на iPhone."
+        message = "Reconnecting the screen. Keep HeyPals open on your iPhone."
         retry = Task { [weak self] in
             do { try await Task.sleep(for: .seconds(2)) } catch { return }
             guard let self, let url = self.url else { return }

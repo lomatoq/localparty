@@ -23,7 +23,6 @@ let ws=null, playerId=null, gameState=null;
 let steer=0, throttle=0;
 let selectedHand=window.PARTY_PROFILE?.hand||localStorage.getItem('kart_hand')||'right';
 let wheelPointer=null, gasPointer=null;
-let steeringOrigin=0, steeringTravel=80;
 let lastCountdown=null, wasFinished=false;
 
 function applyHand(hand){
@@ -79,21 +78,22 @@ nameInput.addEventListener('keydown',e=>{if(e.key==='Enter')joinBtn.click()});
 swapHandBtn.onclick=()=>applyHand(selectedHand==='right'?'left':'right');
 
 function transmitInput(){if(playerId)send({type:'input',player_id:playerId,steer,throttle});}
-function showSteer(){wheelPad.setAttribute('aria-valuenow',String(Math.round(steer*100)));steerValue.textContent=steer===0?'ПРЯМО':Math.round(Math.abs(steer)*100)+'% '+(steer<0?'←':'→');wheelPad.style.setProperty('--steer',String(steer));}
-function updateSteerFromPointer(e){
-  const raw=Math.max(-1,Math.min(1,(e.clientX-steeringOrigin)/steeringTravel)),value=Math.max(0,(Math.abs(raw)-.035)/.965);
-  steer=Math.sign(raw)*Math.pow(value,1.35);showSteer();transmitInput();
+const steeringHolds=new Map();
+function showSteer(){steerValue.textContent=steer===0?'STRAIGHT':steer<0?'← LEFT':'RIGHT →';for(const [id,direction] of [['steerLeft',-1],['steerRight',1]]){const b=document.getElementById(id);b.classList.toggle('held',steer===direction);b.setAttribute('aria-pressed',String(steer===direction));}}
+function syncSteering(){steer=Math.max(-1,Math.min(1,[...steeringHolds.values()].reduce((a,b)=>a+b,0)));showSteer();transmitInput();}
+function releaseWheel(){steeringHolds.clear();wheelPointer=null;syncSteering();}
+for(const [id,direction] of [['steerLeft',-1],['steerRight',1]]){
+ const b=document.getElementById(id);
+ b.addEventListener('pointerdown',e=>{if(b.disabled||wheelPad.disabled)return;e.preventDefault();b.setPointerCapture(e.pointerId);steeringHolds.set(e.pointerId,direction);syncSteering();navigator.vibrate?.(7);});
+ for(const event of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(event,e=>{if(steeringHolds.delete(e.pointerId))syncSteering();});
+ b.addEventListener('keydown',e=>{if(![' ','Enter','ArrowLeft','ArrowRight'].includes(e.key)||e.repeat||b.disabled)return;e.preventDefault();steeringHolds.set('key:'+e.key,e.key==='ArrowLeft'?-1:e.key==='ArrowRight'?1:direction);syncSteering();});
+ b.addEventListener('keyup',e=>{if(steeringHolds.delete('key:'+e.key)){e.preventDefault();syncSteering();}});
+ b.addEventListener('blur',releaseWheel);
 }
-wheelPad.addEventListener('keydown',e=>{if(wheelPad.disabled)return;if(['ArrowLeft','ArrowRight','Home'].includes(e.key)){e.preventDefault();steer=e.key==='Home'?0:Math.max(-1,Math.min(1,steer+(e.key==='ArrowLeft'?-.15:.15)));showSteer();transmitInput();}});
-wheelPad.addEventListener('keyup',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key))releaseWheel();});
-wheelPad.addEventListener('pointerdown',e=>{e.preventDefault();if(wheelPointer!==null||wheelPad.disabled)return;wheelPointer=e.pointerId;steeringOrigin=e.clientX;steeringTravel=Math.max(55,Math.min(100,wheelPad.getBoundingClientRect().width*.36));wheelPad.setPointerCapture(e.pointerId);wheelPad.classList.add('held');steer=0;showSteer();transmitInput();});
-wheelPad.addEventListener('pointermove',e=>{if(e.pointerId===wheelPointer)updateSteerFromPointer(e)});
-function releaseWheel(e){if(wheelPointer===null||!e||e.pointerId===wheelPointer){wheelPointer=null;steer=0;wheelPad.classList.remove('held');showSteer();transmitInput();}}
-wheelPad.addEventListener('pointerup',releaseWheel);wheelPad.addEventListener('pointercancel',releaseWheel);
 
 gasBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(gasPointer!==null||gasBtn.disabled)return;gasPointer=e.pointerId;gasBtn.setPointerCapture(e.pointerId);throttle=1;gasBtn.classList.add('active');transmitInput();try{navigator.vibrate?.(12)}catch(_){} });
 function releaseGas(e){if(gasPointer===null||!e||e.pointerId===gasPointer){gasPointer=null;throttle=0;gasBtn.classList.remove('active');transmitInput();}}
-gasBtn.addEventListener('pointerup',releaseGas);gasBtn.addEventListener('pointercancel',releaseGas);gasBtn.addEventListener('lostpointercapture',releaseGas);wheelPad.addEventListener('lostpointercapture',releaseWheel);window.addEventListener('blur',()=>{releaseGas();releaseWheel()});
+gasBtn.addEventListener('pointerup',releaseGas);gasBtn.addEventListener('pointercancel',releaseGas);gasBtn.addEventListener('lostpointercapture',releaseGas);window.addEventListener('blur',()=>{releaseGas();releaseWheel()});
 
 document.addEventListener('visibilitychange',()=>{if(document.hidden){throttle=0;steer=0;releaseGas();releaseWheel();}});
 setInterval(transmitInput,1000/30);
@@ -104,7 +104,7 @@ function updateStats(){
   const me=gameState.players.find(p=>p.id===playerId);
   if(!me)return;
   const ended=gameState.status==='results'||!!me.finish_order;
-  gasBtn.disabled=ended;wheelPad.disabled=ended;
+  gasBtn.disabled=ended;wheelPad.disabled=ended;for(const id of ['steerLeft','steerRight'])document.getElementById(id).disabled=ended;
   wheelPad.setAttribute('aria-disabled',String(ended));
   controlsArea.classList.toggle('race-ended',ended);
   if(ended){releaseGas();releaseWheel();}

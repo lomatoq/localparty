@@ -15,6 +15,8 @@ test('network ballot: partial, tie, unique winner, load barrier, no duplicate st
  send(b,{type:'vote-game',id:'warsaw'});await until(()=>a.state.ballot.winner==='warsaw','winner without screen');await delay(150);assert.equal(a.state.active,null);
  const host=await connect();send(host,{type:'host',key});await until(()=>host.state?.active?.id==='warsaw','screen triggers launch');
  assert.equal(host.state.votes.length,0);
+ async function connectGame(player){const ws=new WS(origin.replace('http','ws')+'/games/warsaw/ws');sockets.push(ws);ws.messages=[];ws.on('message',d=>ws.messages.push(JSON.parse(d)));await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j)});ws.send(JSON.stringify({type:'join',partyId:player.profile.id,partyToken:player.profile.token}));await until(()=>ws.messages.some(m=>m.type==='joined'),'game join');return ws;}
+ await Promise.all([a,b,c].map(connectGame));
  send(a,{type:'game-status',status:'ready'});send(b,{type:'game-status',status:'ready'});await delay(150);assert.equal(host.messages.some(m=>m.type==='session-start'),false,'wait for all controllers');
  send(c,{type:'game-status',status:'ready'});await until(()=>host.messages.some(m=>m.type==='session-start'),'auto-ready starts without Ready taps');
  send(c,{type:'game-status',status:'ready'});await delay(150);assert.equal(host.messages.filter(m=>m.type==='session-start').length,1);

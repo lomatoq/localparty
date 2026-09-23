@@ -103,7 +103,8 @@ test('LAN gateway identity, presence, and host authorization', {timeout: 30000},
   await t.test('joined player is visible with chosen name and hand', async () => {
     const state = await host.wait(m => m.type === 'state' && m.players.some(p => p.id === identity.id));
     assert.equal(identity.avatar, avatar);
-    assert.deepEqual(state.players, [{id: identity.id, name: 'Алиса', hand: 'left', avatar, gameReady: false, testBot: false}]);
+    assert.match(state.players[0].avatar, new RegExp(`^/api/avatar/${identity.id}\\?v=\\d+$`));
+    assert.deepEqual(state.players.map(p => ({...p, avatar: null})), [{id: identity.id, name: 'Алиса', hand: 'left', avatar: null, gameReady: false, testBot: false}]);
   });
 
   await t.test('case-insensitive duplicate name is rejected', async () => {

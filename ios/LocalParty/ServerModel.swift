@@ -13,14 +13,16 @@ struct PartyGame: Codable, Identifiable, Hashable {
     var hostControls: HostControls?
     var min: Int; var max: Int; var color: String; var section: String; var goal: String?; var win: String?
 }
-struct PartyPlayer: Equatable, Codable, Identifiable { var id: String; var name: String; var gameReady: Bool }
+struct PartyPlayer: Equatable, Codable, Identifiable { var id: String; var name: String; var gameReady: Bool; var connected: Bool?; var testBot: Bool? }
 struct GameUI: Equatable, Codable { var phase: String; var label: String?; var progress: String?; var hostActions: [String]? }
 struct GameSession: Equatable, Codable { var paused: Bool; var readyIds: [String]; var pauseReason: String? }
-struct ActiveGame: Equatable, Codable { var id: String; var instance: String; var ui: GameUI; var session: GameSession?; var startError: String? }
+struct ActiveGame: Equatable, Codable { var id: String; var instance: String; var ui: GameUI; var session: GameSession?; var startError: String?; var roster: [PartyPlayer]?; var ready: [String]? }
 struct RoomIncident: Equatable, Codable {var id:String;var at:Double;var message:String}
 struct GameVote: Equatable, Codable {var playerId:String;var gameId:String}
 struct PartyStanding: Equatable, Codable, Identifiable {var id:String;var name:String;var played:Int;var wins:Int;var points:Int}
+struct PartyLanguageOverride: Equatable, Codable { var language: String; var revision: String }
 struct ServerState: Equatable, Codable {
+    var languageOverride: PartyLanguageOverride?
     var tv: PartyTVPresentation?
     var botCount: Int?
     var bootId:String;var incident:RoomIncident?;var votes:[GameVote]
@@ -62,12 +64,13 @@ struct ServerState: Equatable, Codable {
     private var pendingCommands = 0
     private var lastEnabled = false
     private var observedBoot: String?
+    private var lastAutomaticSharingAttempt = Date.distantPast
     private var recordedIncident: String?
     private var connectionFailures=0
     private var memoryObserver: NSObjectProtocol?
     var diagnosticsURL: URL { diagnosticsFile }
     func votes(for game:PartyGame)->Int {state?.votes.filter {$0.gameId == game.id}.count ?? 0}
-    var buildLabel: String { "LocalParty · \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"))" }
+    var buildLabel: String { "HeyPals · \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"))" }
     var enabled: Bool { state?.enabled == true }
     var networkEnabled: Bool { state?.networkEnabled == true }
     var selected: PartyGame? { catalog.first { $0.id == state?.selected } }
@@ -126,7 +129,8 @@ struct ServerState: Equatable, Codable {
     private func request(_ command: [String:Any]? = nil) async throws -> ServerState {
         if let text=try? String(contentsOf:portFile,encoding:.utf8),let value=Int(text.trimmingCharacters(in:.whitespacesAndNewlines)) { port=value }
         var req=URLRequest(url:URL(string:"http://127.0.0.1:\(port)/api/manage")!)
-        req.timeoutInterval=command?["type"] as? String == "launch" ? 75 : 3
+        let action=command?["type"] as? String
+        req.timeoutInterval=action == "network-set" || action == "server-start" ? 120 : action == "launch" ? 75 : 3
         req.setValue("Bearer "+key,forHTTPHeaderField:"Authorization")
         if let command { req.httpMethod="POST";req.setValue("application/json",forHTTPHeaderField:"Content-Type");req.httpBody=try JSONSerialization.data(withJSONObject:command) }
         let (data,response)=try await URLSession.shared.data(for:req)
@@ -152,12 +156,19 @@ struct ServerState: Equatable, Codable {
             if observedBoot != next.bootId {
                 observedBoot=next.bootId
                 if next.enabled && phase == .active {lastEnabled=true;updateIdleTimer();applyExecutionPolicy()}
+                lastAutomaticSharingAttempt = .distantPast
+            }
+            // Retry when Wi-Fi was unavailable at launch. Explicitly disabled
+            // sharing stays disabled; automatic sharing never requests a BG grant.
+            if !next.networkEnabled && phase == .active && UserDefaults.standard.object(forKey: "LocalParty.wifiSharing") as? Bool != false && Date().timeIntervalSince(lastAutomaticSharingAttempt) > 30 {
+                lastAutomaticSharingAttempt = Date()
+                command(["type":"network-set","enabled":true], reportFailure: false)
             }
             if lastEnabled && !next.enabled { background.finish();UIApplication.shared.isIdleTimerDisabled=false }
             lastEnabled=next.enabled
-        } catch {guard !working, commandRevision == expectedCommand, policyRevision == expectedPolicy else {return};if ready {record("server-unreachable: " + error.localizedDescription)};connectionFailures += 1;if connectionFailures>=5 {connectionStatus="Подключаем комнату заново…";ready=false} }
+        } catch {guard !working, commandRevision == expectedCommand, policyRevision == expectedPolicy else {return};if ready {record("server-unreachable: " + error.localizedDescription)};connectionFailures += 1;if connectionFailures>=5 {connectionStatus=connectionFailures>=15 ? "Локальный сервер недоступен. Закройте LocalParty на iPhone и откройте снова." : "Восстанавливаем локальную комнату…";ready=false} }
     }
-    func command(_ value:[String:Any]) {
+    func command(_ value:[String:Any], reportFailure: Bool = true) {
         // Preserve ordering when selection, settings and launch are tapped quickly.
         let previous=commandTail
         commandRevision += 1;pendingCommands += 1;working=true;message=nil
@@ -169,8 +180,10 @@ struct ServerState: Equatable, Codable {
                 if value["type"] as? String == "network-set" {if !networkEnabled {background.finish()};updateIdleTimer();applyExecutionPolicy()}
                 record("command: " + (value["type"] as? String ?? "?"))
             } catch {
-                if (error as NSError).domain == NSURLErrorDomain {message="Действие не выполнено. Комната переподключается — попробуйте ещё раз."}
-                else {message=error.localizedDescription}
+                if reportFailure {
+                    if (error as NSError).domain == NSURLErrorDomain {message="Действие не выполнено. Комната переподключается — попробуйте ещё раз."}
+                    else {message=error.localizedDescription}
+                }
                 if value["type"] as? String == "network-set", !networkEnabled {background.finish()}
                 record("command failed: " + error.localizedDescription)
             }
@@ -186,6 +199,7 @@ struct ServerState: Equatable, Codable {
     }
     func setNetworkEnabled(_ value:Bool) {
         guard ready, !working else {return}
+        UserDefaults.standard.set(value, forKey: "LocalParty.wifiSharing")
         // Only request extended execution from an explicit sharing gesture.
         if value {background.start(source:"wifi-sharing")}
         command(["type":"network-set","enabled":value])
@@ -196,14 +210,32 @@ struct ServerState: Equatable, Codable {
         applyExecutionPolicy()
     }
     func recordDisplayPerformance(_ stats: [String: Any]) {
-        let fields = ["surface", "path", "fps", "p95", "max", "over50", "over100", "frames"]
+        let fields = ["surface", "path", "fps", "p95", "max", "over50", "over100", "frames",
+                      "viewport", "screen", "stage", "title", "description",
+                      "snapshots", "snapshotAge", "snapshotGap", "simulationGap", "simulationUnchanged"]
         let summary = fields.compactMap { key -> String? in
             guard let value = stats[key] else { return nil }
             return "\(key)=\(String(describing: value).prefix(100))"
         }.joined(separator: " ")
-        record("tv-frames " + summary)
+        let thermal: String
+        switch ProcessInfo.processInfo.thermalState {
+        case .nominal: thermal = "nominal"
+        case .fair: thermal = "fair"
+        case .serious: thermal = "serious"
+        case .critical: thermal = "critical"
+        @unknown default: thermal = "unknown"
+        }
+        record("tv-frames " + summary + " thermal=\(thermal) lowPower=\(ProcessInfo.processInfo.isLowPowerModeEnabled)")
     }
 
+    func recordLaunchAttempt(_ stats: [String: Any]) {
+        let fields = ["id", "players", "screens", "externalDisplays", "busy", "pending"]
+        record("launch-tap " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(80))" } }.joined(separator: " "))
+    }
+    func recordBowDiagnostic(_ stats: [String: Any]) {
+        let fields = ["event", "engine", "sent", "received", "detected", "accepted", "ms", "age", "tags", "decoded", "points", "video", "resolution", "frame", "mode", "stable", "joined", "phase", "error", "muted", "track", "videoTime", "hidden"]
+        record("bow-tracking " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(200))" } }.joined(separator: " "))
+    }
     private func record(_ event:String) {
         let line="\(ISO8601DateFormatter().string(from:Date())) \(event)\n"
         guard let data=line.data(using:.utf8) else {return}
@@ -302,7 +334,7 @@ struct ServerState: Equatable, Codable {
                 self.announce("Сервер работает в фоне")
             }
         guard registered else {finish(message:"Не удалось включить фон. Сервер работает при открытом приложении.");return}
-        let request=BGContinuedProcessingTaskRequest(identifier:attempt,title:"LocalParty · сервер",subtitle:"Игра по Wi-Fi")
+        let request=BGContinuedProcessingTaskRequest(identifier:attempt,title:"HeyPals · сервер",subtitle:"Игра по Wi-Fi")
         request.strategy = .fail
         do {try BGTaskScheduler.shared.submit(request)}
         catch {let error=error as NSError;log.error("Background request: \(error.domain, privacy:.public) / \(error.code)");finish(message:"iOS пока не разрешила фон. Сервер работает при открытом приложении.");return}
@@ -361,4 +393,3 @@ struct ServerState: Equatable, Codable {
     }
     private func announce(_ text:String) {message=text;log.notice("\(text, privacy:.public)");onChange?()}
 }
-

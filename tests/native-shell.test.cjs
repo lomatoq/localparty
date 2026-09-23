@@ -13,7 +13,7 @@ const swift = read('ios/LocalParty/LocalPartyApp.swift');
 const {parts, compare, classify} = require('../scripts/check-release-versions.cjs');
 function controller({protocol='http:', hostname='127.0.0.1', native=true, frame=false}={}) {
   const messages=[];
-  const context={location:{protocol,hostname}, navigator:{}, document:{readyState:'loading', addEventListener(){}}, window:{}};
+  const context={performance,location:{protocol,hostname}, navigator:{}, document:{readyState:'loading', addEventListener(){}}, window:{}};
   context.window=context;
   context.top=frame?{}:context;
   if(native)context.webkit={messageHandlers:{partyShell:{postMessage:m=>messages.push(m)}}};
@@ -35,7 +35,7 @@ test('untrusted names are never inserted as HTML',()=>{assert.doesNotMatch(ui,/\
 test('menu cannot connect to HTTP admin endpoints',()=>{assert.match(html,/connect-src 'none'/);assert.doesNotMatch(ui,/fetch\(|new WebSocket/);});
 test('Swift separates admin authorization from player haptics',()=>{assert.match(swift,/guard shell else \{ return \}/);assert.match(swift,/message\.webView === menu && message\.frameInfo\.isMainFrame/);assert.match(swift,/origin\.port == url\.port/);assert.doesNotMatch(swift,/PARTY_ADMIN_KEY|Bearer /);});
 test('native shell rejects directory traversal and other filesystem roots',()=>{assert.match(swift,/contains\("\.\."\)/);assert.match(swift,/file\.path\.hasPrefix\(base\.path \+ "\/"\)/);});
-test('held input and feedback are cancelled when leaving the controller',()=>{assert.match(swift,/party-native-hide/);assert.match(swift,/w\.frames\[i\]/);assert.match(swift,/if value != \.active \{ cancelHaptics\(\) \}/);});
+test('held input and feedback are cancelled when leaving the controller',()=>{assert.match(swift,/party-native-hide/);assert.match(swift,/w\.frames\[i\]/);assert.match(swift,/if value != \.active \{\s*cancelHaptics\(\)[^}]*\}/);assert.match(swift,/if value != \.active \{[^}]*bowMotion\.stopGyroUpdates\(\)/);});
 test('external display role and guarded permission strings remain in plist',()=>{const plist=read('ios/LocalParty/Info.plist');for(const key of ['UIWindowSceneSessionRoleExternalDisplayNonInteractive','NSMotionUsageDescription','NSCameraUsageDescription'])assert.ok(plist.includes(key));assert.ok(!plist.includes('NSAllowsArbitraryLoads'));});
 test('stable version parsing rejects pre-release tags',()=>{assert.deepEqual(parts('v24.21.0'),[24,21,0]);assert.equal(parts('27.2.0-beta'),null);});
 test('version comparisons use numeric components',()=>{assert.equal(compare('24.21.0','24.9.0'),1);assert.equal(compare('1.0.0','1.0.0'),0);});
@@ -52,3 +52,9 @@ test('modern AirPlay registration is retained with a legacy availability path',(
 test('catalog restart does not depend on a single unacknowledged ready message',()=>{assert.match(ui,/setTimeout\(requestSnapshot/);assert.match(ui,/clearTimeout\(readyTimer\)/);assert.match(ui,/receivedSnapshot = true/);assert.doesNotMatch(ui,/update\(state\); send\('ready'\)/);});
 test('cold startup has a distinct loading state',()=>{assert.match(html,/id="catalogState"/);assert.match(ui,/!hasCatalog \|\| games\.length/);assert.match(ui,/catalogReady === false/);});
 test('native layout does not force 300px rows beneath taller shared cards',()=>{const css=read('public/native-shell/host.css');assert.doesNotMatch(css,/grid-auto-rows:300px/);assert.match(css,/grid-auto-rows:auto/);assert.match(css,/position:relative; inset:auto; display:flex; flex-direction:column/);});
+test('native snapshots retain authoritative readiness and bot presence',()=>{const model=read('ios/LocalParty/ServerModel.swift');assert.match(model,/var roster: \[PartyPlayer\]\?/);assert.match(model,/var ready: \[String\]\?/);assert.match(model,/var connected: Bool\?/);assert.match(model,/var testBot: Bool\?/);});
+test('simulator UI driver is absent from device builds and requires explicit opt-in',()=>{assert.match(swift,/#if DEBUG && targetEnvironment\(simulator\)/);assert.match(swift,/environment\["PARTY_UI_AUDIT"\] == "1"/);});
+test('native host permits explicit force actions without granting games admin access',()=>{assert.match(swift,/let allowed: Set<String> = \[[^\n]*"force-start"[^\n]*"force-language"/);assert.ok(swift.indexOf('guard shell else')<swift.indexOf('let allowed: Set<String>'));});
+test('trusted host commands queue instead of being silently dropped while the model is working',()=>{const body=swift.slice(swift.indexOf('case "manage":'),swift.indexOf('case "network-set"'));assert.match(body,/model\.command\(command\)/);assert.doesNotMatch(body,/!model\.working|model\.ready/);});
+test('native display reconnect does not silently block a game launch',()=>{const server=read('server.js');assert.match(ui,/hasSharedScreen/);assert.match(ui,/externalDisplay:Number\(state\.native\?\.externalDisplays\)>0/);assert.match(server,/!screens\(\)&&m\.externalDisplay!==true/);});
+test('native locale is personal across both own surfaces; room override remains explicit',()=>{assert.match(swift,/for view in \[menu, controller\] \{ syncPersonalLanguage\(view\) \}/);assert.match(swift,/LocalParty\.language/);assert.match(ui,/acceptRoomLanguage\(state.languageOverride\)/);assert.match(ui,/forceRoomLanguage.*confirm\(/);assert.match(read('ios/LocalParty/ServerModel.swift'),/var languageOverride: PartyLanguageOverride\?/);assert.ok(html.indexOf('/i18n.js')<html.indexOf('/native-shell/host.js'));});
