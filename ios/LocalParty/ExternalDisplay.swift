@@ -46,6 +46,23 @@ import WebKit
     }
 }
 
+private struct PartyTVLoadingBackdrop: View {
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                Color(red: 0.03, green: 0.04, blue: 0.07)
+                if let url = Bundle.main.url(forResource: "heypals-hero", withExtension: "png", subdirectory: "Server/public/assets/branding"),
+                   let artwork = UIImage(contentsOfFile: url.path) {
+                    Image(uiImage: artwork).resizable().scaledToFill()
+                        .frame(width: geometry.size.width + 48, height: geometry.size.height + 48)
+                        .blur(radius: 14).position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                }
+                LinearGradient(colors: [.black.opacity(0.72), .black.opacity(0.84)], startPoint: .top, endPoint: .bottom)
+            }.frame(width: geometry.size.width, height: geometry.size.height).clipped()
+        }.ignoresSafeArea().accessibilityHidden(true)
+    }
+}
+
 private struct PartyTVLoadingLogo: View {
     var body: some View {
         if let url = Bundle.main.url(forResource: "heypals-logo", withExtension: "png", subdirectory: "Server/public/assets/branding"),
@@ -74,7 +91,7 @@ private struct PartyExternalDisplayView: View {
                     PartyTVLoadingLogo()
                     Text(status).font(.title).multilineTextAlignment(.center)
                     Text("The game appears on TV. Your phone becomes the controller.").font(.title2).foregroundStyle(.secondary)
-                }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(48)
+                }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(48).background(PartyTVLoadingBackdrop())
             }
         }.background(.black).foregroundStyle(.white).preferredColorScheme(.dark).ignoresSafeArea()
     }
@@ -91,11 +108,12 @@ private struct PartyTVContent: View {
         ZStack {
             PartyTVWebView(renderer: renderer)
             if let message = renderer.message {
+                PartyTVLoadingBackdrop()
                 VStack(spacing: 20) {
                     PartyTVLoadingLogo()
                     ProgressView().tint(.white).scaleEffect(1.6)
                     Text(message).font(.title2).multilineTextAlignment(.center)
-                }.padding(40).background(.black.opacity(0.85), in: RoundedRectangle(cornerRadius: 24))
+                }.padding(40)
             }
         }
         .task(id: loadID) { renderer.load(url) }

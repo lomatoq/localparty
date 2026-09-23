@@ -151,7 +151,7 @@ html body.native-shell .native-catalog-tools{display:flex!important;flex-directi
 html body.native-shell #nativeCategories{display:flex!important;flex-wrap:nowrap!important;align-self:stretch!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:4px!important;gap:4px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;scroll-padding-inline:4px;overscroll-behavior-x:contain;-webkit-mask-image:none!important;mask-image:none!important}
 html body.native-shell #nativeCategories::-webkit-scrollbar{display:none}
 html body.native-shell #nativeCategories>.filter-tab{flex:0 0 auto!important;width:auto!important;min-width:max-content!important;padding:10px 14px!important;font-size:12px!important;min-height:42px!important}
-html body.native-shell .lp-catalog .fresh-heading{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px 10px!important;align-items:center!important;position:relative;margin:0 0 12px!important}
+html body.native-shell .lp-catalog .fresh-heading{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px 10px!important;align-items:center!important;position:relative;margin:0 0 32px!important}
 html body.native-shell .lp-catalog .fresh-heading .fresh-copy{display:contents!important}
 html body.native-shell .lp-catalog .fresh-heading .fresh-badge{position:static!important;grid-area:1/1;justify-self:start;transform:none!important;margin:0!important;padding:5px 12px!important;line-height:1.2!important}
 html body.native-shell .lp-catalog .fresh-heading .lp-group-count{grid-area:1/2;justify-self:end;margin:0!important;font-size:11px}
@@ -279,3 +279,16 @@ html body.tv-screen #tvStage #tvSidebar #qr{transition:none!important}
 html body.tv-screen #tvStage #tvSidebar>section{transition:opacity 300ms ease}
 html body.tv-screen #tvStage.roster-needs-space #tvSidebar #qrCaption{display:none!important}
 html body.tv-screen #tvStage.roster-needs-space #tvSidebar .tv-invite :is(h2,p){margin:4px 0!important}
+
+/* Give the selected-game strip breathing room below the TV navigation. */
+html body.tv-screen #tvStage#tvStage>#lobby{padding-top:20px!important;padding-bottom:6px!important}
+/* One full-screen character backdrop, shared by the lobby and web loading screen. */
+html body.tv-screen::before,html body.tv-screen #tvStartup::before{content:'';position:fixed;inset:-24px;pointer-events:none;background:url('/assets/branding/heypals-hero.png') center/cover no-repeat;filter:blur(14px);z-index:0}
+html body.tv-screen::after,html body.tv-screen #tvStartup::after{content:'';position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,#080b16b8,#080b16d6);z-index:0}
+html body.tv-screen #tvStage{z-index:1;background:transparent}
+html body.tv-screen #tvStage>.ambient{background:transparent}
+html body.tv-screen #tvStartup{background:#0b0e12;isolation:isolate}
+html body.tv-screen #tvStartup::before,html body.tv-screen #tvStartup::after{position:absolute}
+html body.tv-screen #tvStartup .tv-startup-orbit{z-index:1}
+/* The heading/arrows occupy their own space; let the Fresh section grow. */
+@media(max-width:850px){html body:not(.tv-screen):not(.native-shell) .fresh-heading{margin-bottom:32px!important}}
