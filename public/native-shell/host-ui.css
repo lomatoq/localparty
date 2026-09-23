@@ -114,3 +114,9 @@ html body.native-shell .native-search svg{position:absolute;left:16px;top:50%;tr
 html body.native-shell .native-search input{margin:0;height:46px;min-height:44px;padding:10px 18px 10px 46px;border-radius:999px!important;background:linear-gradient(115deg,#292436,#1b1925);border:1px solid #c6b1ff32;font-size:16px;box-shadow:inset 0 1px #ffffff08}
 html body.native-shell .native-catalog-tools{padding-top:8px;padding-bottom:8px}
 html body.native-shell .intro{padding-block:14px 10px!important;margin-block:0!important}
+/* Deck morph: rows stay at the top of the resizing box (the compact row used to float
+   in the middle of a tall empty card), and the pill radius equals half its ~56 px
+   height so the corner interpolates cleanly instead of via 999 px. */
+html body.native-shell #activeCard{align-content:start;transition:border-radius .34s cubic-bezier(.22,1,.36,1)}
+html body.native-shell #activeCard.is-compact:not(.is-expanded){border-radius:28px;align-content:start}
+@media(prefers-reduced-motion:reduce){html body.native-shell #activeCard{transition:none}}

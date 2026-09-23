@@ -12,7 +12,9 @@ html body.tv-screen #play .tv-information :is(#gameObjective,#gamePlayers,#gameM
 html body.tv-screen #play .tv-information #gamePlayers{font-weight:700;color:#f4f6f4}
 html body.tv-screen #play .tv-information #gameObjective{color:#c8c0d4}
 html body.tv-screen #play .tv-information.is-paused #gameTitle,html body.tv-screen #play .tv-information.is-reconnecting #gameTitle{color:#c6b1ff}
-html body.tv-screen #play :is(#waiting,#paused){top:104px}
+/* Start right under the 64 px HUD (the notch overlays it); a 104 px offset left the
+   game frame showing as a dark stripe between the header and this layer. */
+html body.tv-screen #play :is(#waiting,#paused){top:64px;padding-top:40px;box-sizing:border-box}
 html body.tv-screen.game-owns-hud #play .gamebar.tv-information{display:none}
 html body.tv-screen.game-owns-hud #play :is(#waiting,#paused){top:0}
 @media(max-width:1100px){html body.tv-screen #play .gamebar.tv-information{grid-template-columns:minmax(0,1fr) 280px minmax(0,1fr);gap:10px;padding-inline:18px}html body.tv-screen #play .tv-information #gameTitle{font-size:28px}}

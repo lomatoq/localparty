@@ -252,3 +252,9 @@ html body.tv-screen #tvStage.tv-browsing:not(.tv-has-choice) #lobby>.intro{opaci
 html body.tv-screen #tvStage#tvStage:not(.tv-has-choice):not(.tv-browsing)>#lobby{grid-template-rows:190px minmax(0,1fr)!important}
 html body.tv-screen #tvStage#tvStage #lobby>.intro{height:190px!important}
 html body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage{min-height:190px!important;padding-top:34px!important;padding-bottom:16px!important}
+
+/* In a match the lobby's category tabs are meaningless on the TV header; keep the logo.
+   The game frame stays explicitly under the shared HUD so its notch is never clipped. */
+html body.tv-screen.tv-in-game .tv-header .tv-menu-labels{display:none!important}
+html body.tv-screen #play #gameFrame{position:relative;z-index:0}
+html body.tv-screen #play .gamebar{position:relative;z-index:5}

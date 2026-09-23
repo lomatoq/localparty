@@ -169,7 +169,7 @@
   }
   function renderActive() {
     const run = state.active, game = gameById(run?.id);
-    document.body.classList.toggle('has-active-game',Boolean(game));$('activeCard').hidden = !game; if (!game) { actionsSignature = ''; return; }
+    document.body.classList.toggle('has-active-game',Boolean(game));$('activeCard').hidden = !game; if (!game) { actionsSignature = ''; deckAnimation?.cancel(); deckSlot = 0; $('activeCard').style.marginBottom = ''; return; }
     $('activeCard').classList.toggle('is-paused',Boolean(run.session?.paused));
     $('activeTitle').textContent = game.title;
     const roster=run.roster||[],ready=new Set(run.session?.readyIds||[]),missing=roster.filter(p=>!p.testBot&&(!p.connected||!p.gameReady||!ready.has(p.id)));
@@ -311,13 +311,20 @@
     if(returnedToLobby)window.dispatchEvent(new CustomEvent('party-lobby-enter'));
     return true; // acknowledgement used by the native delivery state machine
   }
-  let deckAnimation;
+  let deckAnimation, deckSlot = 0;
+  // The deck is sticky but still occupies its slot in the page flow. Shrinking that slot
+  // on compaction pulled everything below it up ~140 px mid-scroll (WebKit has no scroll
+  // anchoring). While compact, a bottom margin keeps the slot at its expanded height.
   function animateDeck(change) {
-    const card=$('activeCard'), before=card.getBoundingClientRect().height;
-    deckAnimation?.cancel(); change();
-    const after=card.getBoundingClientRect().height;
+    const card=$('activeCard'), before=card.getBoundingClientRect().height, wasCompact=card.classList.contains('is-compact');
+    const mbBefore=parseFloat(getComputedStyle(card).marginBottom)||0;
+    deckAnimation?.cancel(); card.style.marginBottom=''; change();
+    const compact=card.classList.contains('is-compact');
+    if (compact && !wasCompact) deckSlot=before+mbBefore; else if (!compact) deckSlot=0;
+    const after=card.getBoundingClientRect().height, mbAfter=compact?Math.max(0,deckSlot-after):0;
+    if (mbAfter) card.style.marginBottom=mbAfter+'px';
     if (!card.hidden && before && after && before!==after && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      deckAnimation=card.animate([{height:before+'px',overflow:'clip'},{height:after+'px',overflow:'clip'}],{duration:320,easing:'cubic-bezier(.22,1,.36,1)'});
+      deckAnimation=card.animate([{height:before+'px',marginBottom:mbBefore+'px',overflow:'clip'},{height:after+'px',marginBottom:mbAfter+'px',overflow:'clip'}],{duration:340,easing:'cubic-bezier(.22,1,.36,1)'});
     }
   }
   function setDeckExpanded(expanded) { animateDeck(()=>{ $('activeMore').setAttribute('aria-expanded',String(expanded)); $('activeCard').classList.toggle('is-expanded',expanded); }); }

@@ -897,3 +897,7 @@ html.party-managed.party-player[data-party-game=pocket_siege] .pocket-deck{paddi
 @media(max-height:420px) and (min-width:520px){html.party-managed.party-player #moveControls{grid-template-columns:1fr 1fr;grid-template-rows:1fr;align-items:center}html.party-managed.party-player #moveControls .move-stats{grid-template-columns:1fr}html.party-player[data-party-game=kart] #controlsArea{grid-template-columns:1.5fr 1fr!important;grid-template-rows:1fr}html.party-player[data-party-game=kart] #controlsArea .gas-zone{grid-column:2!important;grid-row:1!important}}
 html.party-managed.party-player[data-party-game=jenga] .phone select{min-width:0;max-width:100%;width:100%;text-overflow:ellipsis}
 html.party-managed.party-player[data-party-game=jenga] .phone label{min-width:0}
+
+/* TV waiting screen: the translucent overlay let the arena's top margin (kept clear
+   for the shared HUD notch) show through as a dark stripe. Give it a solid base. */
+html.party-display-only.party-host #lobbyOverlay.overlay.lobby:not(.overlay-panel){background-color:#080c12}
