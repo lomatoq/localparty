@@ -63,7 +63,7 @@
   if(host)return;let chip=$('editFromCatalog');
   if(!chip){chip=el('button','profile-chip');chip.id='editFromCatalog';chip.type='button';chip.onclick=openProfile;document.querySelector('.app-header>nav:last-of-type')?.append(chip);}
   const key=JSON.stringify([profile?.name,profile?.avatar]);if(chip.dataset.key!==key){chip.dataset.key=key;chip.replaceChildren(avatarNode(profile,'profile-chip-avatar'));}
-  chip.setAttribute('aria-label','Профиль и фото'+(profile?.name?': '+profile.name:''));chip.hidden=!profile;
+  if(profile?.name)window.PartyI18n?.protectPlayers([profile]);chip.setAttribute('aria-label','Профиль и фото'+(profile?.name?': '+profile.name:''));chip.hidden=!profile;
  }
  function render(){
   updateTestCompanion();profileChip();

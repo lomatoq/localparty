@@ -50,7 +50,18 @@
   const openers = {};
   // iOS-style sheets: spring up on open, slide down before the dialog actually closes.
   const closing = {};
-  function show(id) { closeBotPrompt(); setDeckExpanded(false); for (const other of dialogs) { if (other !== id && $(other).open) { clearTimeout(closing[other]); delete closing[other]; $(other).classList.remove('sheet-closing'); $(other).close(); } } const d = $(id); if (closing[id]) { clearTimeout(closing[id]); delete closing[id]; d.classList.remove('sheet-closing'); } if (!d.open) { openers[id] = document.activeElement; d.showModal(); } }
+  function show(id) { closeBotPrompt(); setDeckExpanded(false); for (const other of dialogs) { if (other !== id && $(other).open) { clearTimeout(closing[other]); delete closing[other]; $(other).classList.remove('sheet-closing'); $(other).close(); } } const d = $(id); if (closing[id]) { clearTimeout(closing[id]); delete closing[id]; d.classList.remove('sheet-closing'); } if (!d.open) { openers[id] = document.activeElement; d.showModal(); holdEntranceUntilPainted(d); } }
+  // The first paint of a sheet (artwork decode, backdrop blur) can take longer than its
+  // 180 ms entrance, which then looked like a one-frame pop. Hold the entrance at its
+  // first keyframe until a frame has actually been presented, then play all of it.
+  function holdEntranceUntilPainted(d) {
+    const entrance = d.getAnimations({subtree: true}).filter(a => a.playState === 'running');
+    if (!entrance.length) return;
+    // 1 ms in, not 0: WebKit skips painting a fully transparent layer, which would
+    // push the expensive first paint back into the running animation.
+    entrance.forEach(a => { a.pause(); a.currentTime = 1; });
+    requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(() => entrance.forEach(a => { if (d.open && a.playState === 'paused') a.play(); }))));
+  }
   function close(id) {
     if(id==='hostPanel'&&document.body.classList.contains('native-host-tab')){window.LocalPartyTabs?.select('games');return;}
     const d = $(id); if (!d.open || closing[id]) return;
@@ -223,8 +234,14 @@
   }
   // Thin "host choice" card at the top of the lobby: start the selected game without the panel.
   function renderChoice() {
-    const g = gameById(state.selected), strip = $('choiceStrip');
+    const g = gameById(state.selected), strip = $('choiceStrip'), wasHidden = strip.hidden;
     strip.hidden = !g || state.active?.id===g.id; if (!g) { choiceStarting = false; return; }
+    // The first room snapshot arrives after the catalog is already on screen: open the
+    // strip's height instead of shoving the whole page down in one frame.
+    if (wasHidden && !strip.hidden && receivedSnapshot && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const cs = getComputedStyle(strip), h = strip.offsetHeight;
+      strip.animate([{height:'0px',marginTop:'0px',marginBottom:'0px',opacity:0,overflow:'clip'},{height:h+'px',marginTop:cs.marginTop,marginBottom:cs.marginBottom,opacity:1,overflow:'clip'}],{duration:380,easing:'cubic-bezier(.22,1,.36,1)'});
+    }
     if ($('choiceName').textContent !== g.title) { $('choiceName').textContent = g.title; $('choiceArt').src = artPath(g); $('choiceArt').hidden = !artPath(g); strip.classList.remove('is-new'); void strip.offsetWidth; strip.classList.add('is-new'); }
     const count = (state.players || []).length, min = (state.botCount || 0) > 0 ? 1 : g.min;
     $('choiceMeta').textContent = !hasSharedScreen() ? '◷ Ждём экран' : count < min ? `◷ ${count}/${min} игроков` : count > g.max ? `До ${g.max} игроков` : `${count} игроков`;

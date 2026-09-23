@@ -1629,7 +1629,8 @@ CLICK по switch 1, потом 2, потом 3. Лазеры убивают.|CL
   "Общее минное поле и личные очки. Открывайте безопасные клетки быстрее друзей.": "One shared minefield, individual scores. Open safe tiles before your friends.",
   "Нажми закрытую клетку. Число показывает мины вокруг. Первый ход безопасен.": "Tap a hidden tile. Numbers show nearby mines. The first opening is safe.",
   "Безопасная клетка даёт одно очко. Мина отнимает пять и блокирует ход на две секунды.": "A safe tile earns one point. A mine costs five and gives a two-second cooldown.",
-  "Больше очков после открытия безопасных клеток или трёх минут — победа.": "Most points when all safe tiles are open or three minutes are up wins."
+  "Больше очков после открытия безопасных клеток или трёх минут — победа.": "Most points when all safe tiles are open or three minutes are up wins.",
+  "Разрушаемый грунт, плавная езда и полный арсенал из 321 оружия — со случайной выдачей или ручным выбором перед матчем.": "Destructible terrain, smooth driving and a full arsenal of 321 weapons — dealt at random or picked by hand before the match."
 });
   if (typeof module !== 'undefined' && module.exports) module.exports=dictionary;
   if(root)root.PARTY_TRANSLATIONS=dictionary;

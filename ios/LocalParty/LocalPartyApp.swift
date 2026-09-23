@@ -111,7 +111,8 @@ private struct PartySurfaces: UIViewControllerRepresentable {
     init(store: PartyWebStore) { self.store = store; super.init(nibName: nil, bundle: nil) }
     required init?(coder: NSCoder) { fatalError("Use init(store:)") }
     override func loadView() {
-        let root = UIView(); root.backgroundColor = .black; root.clipsToBounds = true
+        // Same colour as the launch screen and the pages, so startup never flashes black/white.
+        let root = UIView(); root.backgroundColor = PartyWebStore.pageBackground; root.clipsToBounds = true
         for web in [store.menu, store.controller] {
             web.translatesAutoresizingMaskIntoConstraints = false
             root.addSubview(web)
@@ -166,61 +167,92 @@ private struct PartySurfaces: UIViewControllerRepresentable {
         }
         updateNavigation()
     }
-    func updateNavigation() {
-        guard isViewLoaded else { return }
-        store.menu.isHidden = store.showingController
-        store.controller.isHidden = !store.showingController
-        let ru = false // Production UI is English, including accessibility labels.
-        let names = ru ? ["Игры", "Пульт", "Ведущий"] : ["Games", "Controller", "Host"]
+    private let tabOrder = ["games", "controller", "host"]
+    // What the tab bar shows. It follows the tap immediately, while WebKit is
+    // still preparing the destination page.
+    private var highlightedTab = ""
+    // Live page leaving the screen during a menu <-> controller slide. It stays a real
+    // WKWebView (no frozen snapshot) and is hidden only once the slide has finished.
+    private var outgoingWeb: WKWebView?
+    private func paintTabs(_ tab: String) {
+        let names = ["Games", "Controller", "Host"] // Production UI is English, including accessibility labels.
+        let reduce = UIAccessibility.isReduceMotionEnabled
+        let previous = highlightedTab, changed = previous != tab
         for (i, button) in tabs.enumerated() {
-            let selected = ["games", "controller", "host"][i] == store.selectedTab
+            let selected = tabOrder[i] == tab
             var config = button.configuration!
             config.title = nil; config.attributedTitle = nil
             config.baseForegroundColor = selected ? .white : UIColor.white.withAlphaComponent(0.6)
             button.configuration = config
             button.accessibilityLabel = names[i]
+            button.backgroundColor = .clear
+            button.accessibilityTraits = selected ? [.button, .selected] : .button
+            // SwiftUI calls updateNavigation on every model publish; animate only real changes.
+            guard changed else { continue }
             button.layer.shadowColor = UIColor(red: 0.77, green: 1, blue: 0.48, alpha: 1).cgColor
             button.layer.shadowRadius = 9; button.layer.shadowOffset = .zero
-            UIView.animate(withDuration: UIAccessibility.isReduceMotionEnabled ? 0 : 0.24, delay: 0, options: [.beginFromCurrentState, .curveEaseInOut]) {
+            UIView.animate(withDuration: reduce || previous.isEmpty ? 0 : 0.24, delay: 0, options: [.beginFromCurrentState, .curveEaseInOut, .allowUserInteraction]) {
                 button.transform = selected ? CGAffineTransform(scaleX: 1.13, y: 1.13) : .identity
                 button.layer.shadowOpacity = selected ? 0.85 : 0
             }
-            button.backgroundColor = .clear
-            button.accessibilityTraits = selected ? [.button, .selected] : .button
         }
-        let index = ["games", "controller", "host"].firstIndex(of: store.selectedTab) ?? 0
-        let changed = lastTab != store.selectedTab
-        if changed, !lastTab.isEmpty, UIApplication.shared.applicationState == .active {
+        guard changed else { return }
+        highlightedTab = tab
+        if !previous.isEmpty, UIApplication.shared.applicationState == .active {
             tabHaptic.selectionChanged()
             tabHaptic.prepare()
         }
-        if tabs.indices.contains(index), changed {
-            let target = glowFrame(index)
-            glowAnimator?.stopAnimation(true)
-            let animator = UIViewPropertyAnimator(duration: UIAccessibility.isReduceMotionEnabled ? 0 : 0.56, controlPoint1: CGPoint(x: 0.22, y: 1), controlPoint2: CGPoint(x: 0.36, y: 1))
-            animator.addAnimations { self.tabSelection.frame = target }
-            glowAnimator = animator; animator.startAnimation()
-            UIView.animateKeyframes(withDuration: UIAccessibility.isReduceMotionEnabled ? 0 : 0.56, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction]) {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.2) { self.tabSelection.alpha = 0.35 }
-                UIView.addKeyframe(withRelativeStartTime: 0.35, relativeDuration: 0.65) { self.tabSelection.alpha = 1 }
-            }
+        guard let index = tabOrder.firstIndex(of: tab), tabs.indices.contains(index) else { return }
+        let target = glowFrame(index)
+        glowAnimator?.stopAnimation(true)
+        guard !previous.isEmpty, !reduce else { tabSelection.frame = target; tabSelection.alpha = 1; return }
+        let animator = UIViewPropertyAnimator(duration: 0.56, controlPoint1: CGPoint(x: 0.22, y: 1), controlPoint2: CGPoint(x: 0.36, y: 1))
+        animator.addAnimations { self.tabSelection.frame = target }
+        animator.isUserInteractionEnabled = true
+        glowAnimator = animator; animator.startAnimation()
+        UIView.animateKeyframes(withDuration: 0.56, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction]) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.2) { self.tabSelection.alpha = 0.35 }
+            UIView.addKeyframe(withRelativeStartTime: 0.35, relativeDuration: 0.65) { self.tabSelection.alpha = 1 }
         }
-        guard changed else { return }
-        let order = ["games", "controller", "host"]
-        let direction: CGFloat = (order.firstIndex(of: store.selectedTab) ?? 0) >= (order.firstIndex(of: lastTab) ?? 0) ? 1 : -1
+    }
+    func updateNavigation() {
+        guard isViewLoaded else { return }
+        let transitioning = store.tabTransitionPending || outgoingWeb != nil || outgoingScreen != nil
+        if !transitioning {
+            store.menu.isHidden = store.showingController
+            store.controller.isHidden = !store.showingController
+        }
+        paintTabs(store.tabTransitionPending && !highlightedTab.isEmpty ? highlightedTab : store.selectedTab)
+        guard lastTab != store.selectedTab else { return }
+        let direction: CGFloat = (tabOrder.firstIndex(of: store.selectedTab) ?? 0) >= (tabOrder.firstIndex(of: lastTab) ?? 0) ? 1 : -1
         lastTab = store.selectedTab
         let web = store.showingController ? store.controller : store.menu
         transitionID += 1; let epoch = transitionID
-        let snapshot = outgoingScreen
-        guard !UIAccessibility.isReduceMotionEnabled, let snapshot else { clearScreenTransition(); store.finishTabTransition(); return }
+        let width = view.bounds.width
+        let finish: (UIViewAnimatingPosition) -> Void = { [weak self] _ in
+            guard let self, self.transitionID == epoch else { return }
+            self.clearScreenTransition(); self.store.finishTabTransition()
+        }
+        if !UIAccessibility.isReduceMotionEnabled, let outgoing = outgoingWeb, outgoing !== web {
+            // Two live, opaque, adjoining pages. The incoming one has been visible
+            // (parked off-screen) since the tap, so it is already laid out and painted.
+            web.isHidden = false; web.alpha = 1
+            if web.transform == .identity { web.transform = CGAffineTransform(translationX: direction * width, y: 0) }
+            let animator = UIViewPropertyAnimator(duration: 0.34, controlPoint1: CGPoint(x: 0.22, y: 1), controlPoint2: CGPoint(x: 0.36, y: 1))
+            animator.addAnimations { web.transform = .identity; outgoing.transform = CGAffineTransform(translationX: -direction * width, y: 0) }
+            animator.addCompletion(finish)
+            screenAnimator = animator; animator.startAnimation()
+            return
+        }
+        guard !UIAccessibility.isReduceMotionEnabled, let snapshot = outgoingScreen else { clearScreenTransition(); store.finishTabTransition(); return }
         // Opaque adjoining pages, not two partially transparent overlapping
         // WebKit surfaces. A cross-fade looks like a stale screen on rapid taps.
-        web.alpha = 1; web.transform = CGAffineTransform(translationX: direction * view.bounds.width, y: 0)
-        let animator = UIViewPropertyAnimator(duration: 0.26, controlPoint1: CGPoint(x: 0.22, y: 1), controlPoint2: CGPoint(x: 0.36, y: 1))
-        animator.addAnimations { web.transform = .identity; snapshot.transform = CGAffineTransform(translationX: -direction * self.view.bounds.width, y: 0) }
-        animator.addCompletion { [weak self] _ in
-            guard let self, self.transitionID == epoch else { snapshot.removeFromSuperview(); return }
-            self.clearScreenTransition(); self.store.finishTabTransition()
+        web.alpha = 1; web.transform = CGAffineTransform(translationX: direction * width, y: 0)
+        let animator = UIViewPropertyAnimator(duration: 0.34, controlPoint1: CGPoint(x: 0.22, y: 1), controlPoint2: CGPoint(x: 0.36, y: 1))
+        animator.addAnimations { web.transform = .identity; snapshot.transform = CGAffineTransform(translationX: -direction * width, y: 0) }
+        animator.addCompletion { position in
+            if self.transitionID != epoch { snapshot.removeFromSuperview() }
+            finish(position)
         }
         screenAnimator = animator; animator.startAnimation()
     }
@@ -231,15 +263,36 @@ private struct PartySurfaces: UIViewControllerRepresentable {
         if let animator = screenAnimator, animator.state == .active { animator.stopAnimation(true) }
         screenAnimator = nil
         outgoingScreen?.removeFromSuperview(); outgoingScreen = nil
+        outgoingWeb = nil
         UIView.performWithoutAnimation {
             for web in [store.menu, store.controller] { web.alpha = 1; web.transform = .identity }
+            store.menu.isHidden = store.showingController
+            store.controller.isHidden = !store.showingController
         }
     }
-    func prepareTransition() {
+    /// Runs on tap, before the destination page is prepared: the tab bar answers
+    /// at once and the destination starts rendering while JavaScript settles it.
+    func beginTransition(to tab: String) {
         clearScreenTransition()
-        guard isViewLoaded, !UIAccessibility.isReduceMotionEnabled else { return }
-        let current = store.showingController ? store.controller : store.menu
-        guard let content = current.snapshotView(afterScreenUpdates: true) else { return }
+        guard isViewLoaded else { return }
+        paintTabs(tab)
+        guard !UIAccessibility.isReduceMotionEnabled else { return }
+        let fromController = store.showingController, toController = tab == "controller"
+        let direction: CGFloat = (tabOrder.firstIndex(of: tab) ?? 0) >= (tabOrder.firstIndex(of: store.selectedTab) ?? 0) ? 1 : -1
+        if fromController != toController {
+            // A hidden WKWebView runs no requestAnimationFrame and may drop its tiles,
+            // so it froze and then repainted mid-slide. Park it off-screen instead.
+            let incoming = toController ? store.controller : store.menu
+            UIView.performWithoutAnimation {
+                incoming.transform = CGAffineTransform(translationX: direction * view.bounds.width, y: 0)
+                incoming.isHidden = false
+            }
+            outgoingWeb = fromController ? store.controller : store.menu
+            return
+        }
+        let current = fromController ? store.controller : store.menu
+        // The current frame is already on screen: no synchronous WebKit commit needed.
+        guard let content = current.snapshotView(afterScreenUpdates: false) else { return }
         // WebKit itself is non-opaque. Give the snapshot an opaque backing so
         // transparent page margins cannot expose the incoming page underneath.
         let snapshot = UIView(frame: view.bounds)
@@ -256,7 +309,7 @@ private struct PartySurfaces: UIViewControllerRepresentable {
             return ["hidden": web.isHidden, "alpha": web.alpha, "presentationAlpha": layer.opacity,
                     "translationX": web.transform.tx, "presentationTranslationX": layer.transform.m41]
         }
-        return ["tab": store.selectedTab, "running": screenAnimator?.isRunning == true,
+        return ["tab": store.selectedTab, "running": screenAnimator?.isRunning == true, "timing": store.lastTransitionTiming,
                 "snapshotCount": view.subviews.filter { $0.accessibilityIdentifier == "party-tab-transition-snapshot" }.count,
                 "surfaces": surfaces]
     }
@@ -269,7 +322,7 @@ private struct PartySurfaces: UIViewControllerRepresentable {
         let fade = min(1, 44 / max(1, tabBar.bounds.height))
         mask.locations = [0, NSNumber(value: fade * 0.25), NSNumber(value: fade * 0.5), NSNumber(value: fade * 0.8), NSNumber(value: fade), 1]
         tabBar.layer.mask = mask
-        let index = ["games", "controller", "host"].firstIndex(of: store.selectedTab) ?? 0
+        let index = tabOrder.firstIndex(of: highlightedTab.isEmpty ? store.selectedTab : highlightedTab) ?? 0
         if tabs.indices.contains(index), glowAnimator?.isRunning != true { tabSelection.frame = glowFrame(index) }
         CATransaction.begin(); CATransaction.setDisableActions(true)
         // Wide, overlapping light clouds, with their cores below the screen edge.
@@ -385,6 +438,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
 }
 
 @MainActor private final class PartyWebStore: NSObject, ObservableObject, WKNavigationDelegate, WKUIDelegate {
+    static let pageBackground = UIColor(red: 0x0d / 255, green: 0x10 / 255, blue: 0x17 / 255, alpha: 1) // LaunchBackground
     let menu: WKWebView
     let controller: WKWebView
     @Published private(set) var showingController = false
@@ -436,7 +490,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             view.configuration.userContentController.add(handler, name: "partyShell")
             view.configuration.userContentController.addUserScript(WKUserScript(source: "window.addEventListener('party-language-change', e => window.webkit.messageHandlers.partyShell.postMessage({type:'personal-language',language:e.detail.language}));", injectionTime: .atDocumentStart, forMainFrameOnly: true))
             view.navigationDelegate = self; view.uiDelegate = self
-            view.isOpaque = false; view.backgroundColor = .black
+            view.isOpaque = false; view.backgroundColor = PartyWebStore.pageBackground; view.scrollView.backgroundColor = PartyWebStore.pageBackground
             view.scrollView.contentInsetAdjustmentBehavior = .never
             // Elastic root scrolling moves even CSS-fixed chrome in WKWebView.
             // Keep menus anchored; nested web content still scrolls normally.
@@ -514,7 +568,10 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         signalController(value && phase == .active)
         cancelHaptics()
     }
-    private var tabTransitionPending = false
+    private(set) var tabTransitionPending = false
+    #if DEBUG
+    var lastTransitionTiming: [String: Any] = [:]
+    #endif
     private var queuedTab: String?
     func finishTabTransition() {
         tabTransitionPending = false
@@ -531,7 +588,13 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         guard tab != selectedTab else { return }
         if tab == "controller", controller.isLoading { queuedTab = tab; return }
         tabTransitionPending = true
-        surfaceController?.prepareTransition()
+        #if DEBUG
+        let began = CACurrentMediaTime()
+        #endif
+        surfaceController?.beginTransition(to: tab)
+        #if DEBUG
+        let prepared = CACurrentMediaTime()
+        #endif
         let destination = tab == "controller" ? controller : menu
         // Keep the outgoing snapshot opaque until WebKit has laid out the new tab.
         // Previously native animation raced the asynchronous host DOM update.
@@ -542,6 +605,9 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             return true;
             """, arguments: ["tab": tab], in: nil, in: .page) { [weak self] _ in
                 guard let self else { return }
+                #if DEBUG
+                self.lastTransitionTiming = ["tab": tab, "prepareMs": (prepared - began) * 1000, "readyMs": (CACurrentMediaTime() - began) * 1000]
+                #endif
                 self.showController(tab == "controller")
                 self.selectedTab = tab
                 self.surfaceController?.updateNavigation()
@@ -691,7 +757,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         }
         if type == "haptic-prepare", phase == .active, hapticsEnabled { uiImpact.prepare(); return }
         if type == "haptic" { playHaptics(body["pattern"]); return }
-        if type == "menu", player, message.frameInfo.isMainFrame { showController(false); return }
+        if type == "menu", player, message.frameInfo.isMainFrame { selectTab("games"); return }
         if type == "native-tab", message.frameInfo.isMainFrame, let tab = body["tab"] as? String { selectTab(tab); return }
         if type == "personal-language", message.frameInfo.isMainFrame,
            let language = body["language"] as? String, language == "en" {
@@ -703,7 +769,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         guard let model else { return }
         switch type {
         case "launch-diagnostic": if let stats = body["stats"] as? [String: Any] { model.recordLaunchAttempt(stats) }
-        case "controller": showController(true)
+        case "controller": selectTab("controller")
         case "manage":
             let allowed: Set<String> = ["select", "settings", "launch", "force-start", "force-language", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options", "bots-set"]
             // ServerModel already serializes commands through commandTail. Rejecting a

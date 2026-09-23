@@ -1,0 +1,35 @@
+/* Rendering cost fixes. Loaded last on phone, native shell and TV.
+   Same look, cheaper pixels: no full-screen blur filters, no per-card
+   backdrop blur while scrolling, glints moved to compositor-only properties. */
+
+/* Ambient orbs: 95–150px `filter: blur()` on ~450px layers is re-applied by the
+   compositor on every frame (and every scrolled frame). Their fill is already a
+   radial gradient that fades to transparent; a larger scale gives the same soft
+   glow without any filter. */
+html body .ambient i{filter:none!important;scale:1.45}
+
+/* Category chips on catalog cards: 36 backdrop blurs recomputed while scrolling.
+   The chip sits on artwork, so a slightly denser tint reads the same. */
+html body .game .art .tag{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background-color:#0b1019c7}
+
+/* Headline glint animated `left` (a layout per frame, forever). Same sweep with
+   `translate`: the strip is 30% wide and travels 180% of the headline. */
+html body .intro h1:after{animation-name:lp-hero-glare-x}
+@keyframes lp-hero-glare-x{
+ 0%,58%{translate:0 0;opacity:0}
+ 63%{opacity:.8}
+ 88%,100%{translate:600% 0;opacity:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+ html body .intro h1:after{animation:none;opacity:0}
+}
+
+/* 36 permanently promoted card layers (each a full-resolution backing store).
+   The reveal uses Web Animations, which promote a card only while it runs. */
+html body .game{will-change:auto}
+
+/* Caption frost: the blurred artwork painted under the caption (polish.css
+   `.game::after`) already provides it; a second, masked backdrop blur per card
+   only added scroll-time cost. */
+html body .game .game-info:before{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}

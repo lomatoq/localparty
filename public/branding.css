@@ -207,3 +207,12 @@ html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomCoun
 html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomCount::after{content:none!important;display:none!important}
 /* Let the lime orb's glow extend beyond the invisible hit target. */
 html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomToggle{overflow:visible!important;clip-path:none!important;contain:none!important}
+
+/* TV people card: the hero layout leaves ~150 px for it. The invitation keeps its
+   natural height (no empty filler) and the roster drifts when even the densest
+   grid overflows — a TV has no way to scroll it. Classes are set by tv.js fitRoster(). */
+html body.tv-screen #tvStage:not(.tv-has-choice) #tvSidebar>.tv-invite{flex:0 0 auto!important}
+html body.tv-screen #tvStage.roster-scroll #tvSidebar>.company-people:not(.tv-invite){display:flex!important;flex-direction:column;overflow:hidden!important}
+html body.tv-screen #tvStage.roster-scroll #tvSidebar #players{flex:1 1 auto;min-height:0;overflow:hidden;align-content:start;scroll-behavior:smooth}
+/* Denser roster hides the invite caption; without a QR the hint is the only way to learn how to invite guests. */
+html body.tv-screen #tvStage #tvSidebar .tv-invite:has(#qr[hidden]) #inviteHint{display:block!important}

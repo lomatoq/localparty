@@ -178,8 +178,7 @@ function render(){if(!state?.catalog||!state?.players)return;
  const banner=$('incident');banner.hidden=!state.incident;banner.textContent=state.incident?.message||'';
  const game=state.catalog.find(g=>g.id===state.active?.id);document.body.classList.toggle('game-owns-hud',game?.engine==='sports_siege'||game?.id==='bow_club');document.body.classList.toggle('tv-in-game',!!game);$('play').hidden=!game;$('lobby').hidden=!!game;
  const crowd=state.players.length;$('tvStage').classList.toggle('large-roster',crowd>8);
- // The people column widens smoothly as the room fills, so every player stays on screen.
- $('tvStage').classList.toggle('roster-mid',crowd>5&&crowd<=10);$('tvStage').classList.toggle('roster-big',crowd>10);
+ // People-card density (roster-mid/big) follows measured overflow: fitRoster().
  if(game){const next=state.active.instance;if(key!==next){tvInfo=null;tvInfoInstance=null;fitScreen();key=next;window.PARTY_INSTANCE=key;$('gameFrame').src='/games/'+game.id+game.host;}hud();}
  else if(key){key='';window.PARTY_INSTANCE=null;$('gameFrame').src='about:blank';lastHUD='';lastMessage='';fitScreen();}
  // Do not rebuild or animate the offscreen catalog for per-frame game traffic.
@@ -195,6 +194,7 @@ function render(){if(!state?.catalog||!state?.players)return;
  const join=state.urls[0]||'';if($('address').textContent!==join){text('address',join);if(join)$('qr').src='/api/qr?url='+encodeURIComponent(join);}
  const signature=JSON.stringify(state.players.map(p=>[p.id,p.name,p.avatar]));if(signature!==lastPlayers){lastPlayers=signature;text('count',state.players.length+' / 16');$('players').replaceChildren(...state.players.map((p,i)=>{const n=document.createElement('div');n.className='player';const avatar=document.createElement('span');avatar.className='avatar';avatar.style.setProperty('--card',i%2?'#a96aff':'#c8f58b');avatar.textContent=Array.from(p.name||'?')[0];if(typeof p.avatar==='string'&&(/^data:image\/(jpeg|png|webp);base64,/.test(p.avatar)||/^\/api\/avatar\/[a-f0-9]{16}\?v=\d+$/.test(p.avatar))){const img=new Image();img.src=p.avatar;img.alt='';avatar.replaceChildren(img);}const name=document.createElement('b');name.textContent=p.name;n.append(avatar,name);return n;}));$('tvEmpty').hidden=!!state.players.length;}
  const leaders=JSON.stringify((state.leaderboard||[]).slice(0,3));if(leaders!==lastStandings){lastStandings=leaders;$('tvLeaders').replaceChildren(...(state.leaderboard||[]).slice(0,3).map((p,i)=>{const row=document.createElement('div');row.className='mini-rank';const rank=document.createElement('span'),name=document.createElement('b'),score=document.createElement('strong');rank.textContent=String(i+1);name.textContent=p.name;score.textContent=String(p.points||0);row.append(rank,name,score);return row;}));$('tvRanking').hidden=!(state.leaderboard||[]).length;}
+if(!game)queueRosterFit();
 show?.update(state);
 if(botProfiles.length||window.PartyBots?.profiles?.length)window.PartyBots?.update(state,botProfiles.slice(0,state.botCount??botProfiles.length));
 }
@@ -223,7 +223,23 @@ window.addEventListener('message',event=>{
  const message=event.data;if(message?.type!=='party-tv-information'||message.instance!==state?.active?.instance||message.info?.id!==state.active.id)return;
  tvInfo=message.info;tvInfoInstance=message.instance;tvInfoAt=Date.now();information();
 });
-fitScreen();window.addEventListener('resize',fitScreen);
+// A TV cannot scroll the people card. Densify it only when rows actually overflow
+// (the hero layout leaves far less height than the host-choice layout), and if even
+// the densest grid overflows, drift the list slowly so every name is shown.
+let rosterFitKey='',rosterFrame=0;
+function fitRoster(){rosterFrame=0;const stage=$('tvStage'),list=$('players'),card=list?.closest('section');if(!card||$('lobby').hidden)return;
+ const key=[lastPlayers,stage.classList.contains('tv-has-choice'),innerWidth,innerHeight].join('|');if(key===rosterFitKey)return;rosterFitKey=key;
+ const crowd=state?.players?.length||0,over=()=>card.scrollHeight-card.clientHeight;
+ stage.classList.remove('roster-scroll');list.scrollTop=0;
+ stage.classList.toggle('roster-mid',crowd>5&&crowd<=10);stage.classList.toggle('roster-big',crowd>10);
+ if(over()>4&&!stage.classList.contains('roster-big')){stage.classList.add('roster-mid');if(over()>4){stage.classList.remove('roster-mid');stage.classList.add('roster-big');}}
+ if(over()>4)stage.classList.add('roster-scroll');
+ // The QR size animates for 500 ms after a density change; measure once more after it settles.
+ clearTimeout(fitRoster.settle);fitRoster.settle=setTimeout(()=>{if(rosterFitKey===key&&!stage.classList.contains('roster-scroll')&&over()>4){rosterFitKey='';queueRosterFit();}},650);}
+// Ping-pong the clipped list: hold, glide to the end, hold, glide back.
+setInterval(()=>{const list=$('players');if(document.hidden||!$('tvStage').classList.contains('roster-scroll')||!list)return;const end=list.scrollHeight-list.clientHeight;if(end<2)return;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;list.scrollTo({top:list.scrollTop>end/2?0:end,behavior:reduce?'auto':'smooth'});},4500);
+function queueRosterFit(){if(!rosterFrame)rosterFrame=requestAnimationFrame(fitRoster);}
+fitScreen();window.addEventListener('resize',()=>{fitScreen();queueRosterFit();});
 if(typeof ResizeObserver==='function')new ResizeObserver(fitScreen).observe($('play').querySelector('.gamebar'));
 $('gameFrame').addEventListener('load',()=>{fitScreen();hud(true);show?.gameLoaded();});setInterval(clock,250);
 // A TV is not a touchscreen. Quietly reveal the rest of Fresh only while idle.
