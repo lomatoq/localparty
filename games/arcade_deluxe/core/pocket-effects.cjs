@@ -69,7 +69,20 @@ function emitterTrails(weapon) {
     if (values.DRAW_METHOD !== 'BULLET_NONE' || /\.(bmp|png)/i.test(String(values.DRAW_ANIM || ''))) continue;
     const node = list(values.BULLET_EMITTER_NAME).filter(name => name && !/^(NONE|NULL)$/i.test(String(name)))
       .flatMap(name => reference.emitters[name] || []).find(visible);
-    if (node) trails[block.name] = hex(node.r, node.g, node.b);
+    // Grouped as {colour: 'NameA NameB'} to keep the shared weapon payload small.
+    if (node) (trails[hex(node.r, node.g, node.b)] ||= []).push(block.name);
+  }
+  // Grouped as {colour: 'NameA Stem#'} to keep the shared weapon payload small;
+  // 'Stem#' stands for every numbered node Stem1..N, used only when all of them share the colour.
+  const stemOf = name => name.replace(/\d+$/, '');
+  const numbered = weapon.chain.filter(b => ['BULLET', 'CRUISER'].includes(b.type) && /\d$/.test(b.name));
+  for (const [color, names] of Object.entries(trails)) {
+    const out = new Set();
+    for (const name of names) {
+      const stem = stemOf(name), all = numbered.filter(b => stemOf(b.name) === stem);
+      out.add(/\d$/.test(name) && all.length > 1 && all.every(b => names.includes(b.name)) ? stem + '#' : name);
+    }
+    trails[color] = [...out].join(' ');
   }
   return trails;
 }
@@ -126,8 +139,8 @@ function compileEffect(weapon) {
   const throwMagnitudes = finite(explosions.map(values => [values.THROW_TANK_MAGNITUDE, values.TANK_THROW_MAGNITUDE]));
   const trails = emitterTrails(weapon);
   return {
-    // Only weapons with bodiless emitter shots carry it (payload stays small).
-    ...(Object.keys(trails).length ? { trails } : {}),
+    // et = emitter trails; only weapons with bodiless emitter shots carry it (payload bound).
+    ...(Object.keys(trails).length ? { et: trails } : {}),
     commandTypes,
     colors,
     particleBudget,
