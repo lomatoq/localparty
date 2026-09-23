@@ -267,5 +267,15 @@ html body.tv-screen #tvStage #play .gamebar .tv-info-center{isolation:isolate}
 /* Keep the full native logo between the controller and host buttons on narrow phones. */
 @media(max-width:380px){html body.native-shell #brandHeader>.heypals-header-logo{width:100px;height:52px;top:calc(4px + env(safe-area-inset-top))}}
 
-/* The optional leaderboard yields its space before connected players are clipped. */
-html body.tv-screen #tvStage.roster-needs-space #tvRanking{display:none!important}
+/* Compact the three sidebar cards together; never remove the leaderboard. */
+html body.tv-screen #tvStage#tvStage.roster-needs-space #tvSidebar .tv-invite #qr{width:128px!important;height:128px!important}
+html body.tv-screen #tvStage.roster-needs-space #tvRanking{padding:10px 12px!important}
+html body.tv-screen #tvStage.roster-needs-space #tvRanking h3{font-size:17px;line-height:1.2;margin:0 0 6px}
+html body.tv-screen #tvStage.roster-needs-space #tvLeaders .mini-rank{padding:4px 7px;margin:3px 0;font-size:13px;line-height:20px}
+html body.tv-screen #tvStage.roster-needs-space #tvSidebar .player{padding:4px 10px!important}
+html body.tv-screen #tvStage.roster-needs-space #tvSidebar .avatar{width:24px!important;height:24px!important;flex-basis:24px!important}
+/* Layout is measured synchronously: animated QR sizes/padding gave stale fit results. */
+html body.tv-screen #tvStage #tvSidebar #qr{transition:none!important}
+html body.tv-screen #tvStage #tvSidebar>section{transition:opacity 300ms ease}
+html body.tv-screen #tvStage.roster-needs-space #tvSidebar #qrCaption{display:none!important}
+html body.tv-screen #tvStage.roster-needs-space #tvSidebar .tv-invite :is(h2,p){margin:4px 0!important}

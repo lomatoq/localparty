@@ -25,9 +25,12 @@ const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');const catalog
   await page.setViewportSize({width,height:width*9/16});let oneHeight;
   for(const count of [1,2,3,4,16,2]){
    const state={...room,networkEnabled:true,urls:['http://192.168.1.20:3000'],players:Array.from({length:count},(_,i)=>({id:String(i),name:'Player '+i,connected:true})),leaderboard:Array.from({length:3},(_,i)=>({id:String(i),name:'Player '+i,points:30-i}))};
-   await page.evaluate(state=>__hudSocket.emit(state),state);await page.waitForTimeout(100);
+   await page.evaluate(state=>__hudSocket.emit(state),state);await page.waitForFunction(()=>{const card=document.querySelector('#players').closest('section');return card.scrollHeight-card.clientHeight<=4;});
    const roster=await page.locator('#players').evaluate(list=>{const card=list.closest('section');return{height:card.clientHeight,overflow:card.scrollHeight-card.clientHeight,shown:list.querySelectorAll('.player:not(.tv-more):not([hidden])').length,hidden:list.querySelectorAll('.player[hidden]').length,more:list.querySelector('.tv-more')?.textContent};});
    assert(roster.overflow<=4,'All visible roster rows fit: '+JSON.stringify({width,count,roster}));
+   assert(await page.locator('#tvRanking').isVisible(),'Leaderboard remains visible beside the online roster');
+   assert.equal(await page.locator('#tvLeaders .mini-rank').count(),3);
+   const sideFit=await page.locator('#tvSidebar').evaluate(side=>[...side.children].filter(n=>n.getClientRects().length).every(n=>n.getBoundingClientRect().bottom<=side.getBoundingClientRect().bottom+1));assert(sideFit,'QR, online roster and leaderboard all fit the sidebar');
    if(count===1)oneHeight=roster.height;
    if(count<=4){assert.equal(roster.shown,count);if(count>1)assert(roster.height>oneHeight,'Online panel grows with the players');}
    assert.equal(roster.shown+roster.hidden,count);if(roster.hidden)assert.equal(roster.more,'+'+roster.hidden);

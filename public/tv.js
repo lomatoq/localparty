@@ -233,7 +233,7 @@ function fitRoster(){rosterFrame=0;const stage=$('tvStage'),list=$('players'),ca
  const rows=[...list.children].filter(n=>!n.classList.contains('tv-more'));list.querySelector('.tv-more')?.remove();rows.forEach(n=>{n.hidden=false;});
  stage.classList.toggle('roster-compact',rows.length>4);
  const over=()=>card.scrollHeight-card.clientHeight>4;
- // The optional ranking must yield before hiding any connected players.
+ // Compact QR, ranking and roster together, keeping all three cards visible.
  if(over()&&!$('tvRanking').hidden)stage.classList.add('roster-needs-space');
  if(!over())return;
  const more=document.createElement('div');more.className='player tv-more';more.setAttribute('aria-hidden','true');list.append(more);
