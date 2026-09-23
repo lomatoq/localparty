@@ -266,3 +266,6 @@ html body.tv-screen #tvStage #play :is(#waiting,#paused){z-index:1}
 html body.tv-screen #tvStage #play .gamebar .tv-info-center{isolation:isolate}
 /* Keep the full native logo between the controller and host buttons on narrow phones. */
 @media(max-width:380px){html body.native-shell #brandHeader>.heypals-header-logo{width:100px;height:52px;top:calc(4px + env(safe-area-inset-top))}}
+
+/* The optional leaderboard yields its space before connected players are clipped. */
+html body.tv-screen #tvStage.roster-needs-space #tvRanking{display:none!important}

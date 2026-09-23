@@ -228,16 +228,23 @@ window.addEventListener('message',event=>{
 // rows; when the rows do not fit, the last visible ones fold into a "+N" chip.
 let rosterFitKey='',rosterFrame=0;
 function fitRoster(){rosterFrame=0;const stage=$('tvStage'),list=$('players'),card=list?.closest('section');if(!card||$('lobby').hidden)return;
- const key=[lastPlayers,stage.classList.contains('tv-has-choice'),innerWidth,innerHeight].join('|');if(key===rosterFitKey)return;rosterFitKey=key;
+ const key=[lastPlayers,lastStandings,stage.classList.contains('tv-has-choice'),stage.classList.contains('tv-browsing'),$('tvSidebar').clientHeight,$('qr').hidden,$('tvRanking').hidden,$('tvSidebar').querySelector('.tv-invite').offsetHeight,innerWidth,innerHeight].join('|');if(key===rosterFitKey)return;rosterFitKey=key;
+ stage.classList.remove('roster-needs-space');
  const rows=[...list.children].filter(n=>!n.classList.contains('tv-more'));list.querySelector('.tv-more')?.remove();rows.forEach(n=>{n.hidden=false;});
  stage.classList.toggle('roster-compact',rows.length>4);
- const over=()=>card.scrollHeight-card.clientHeight>4;if(!over())return;
+ const over=()=>card.scrollHeight-card.clientHeight>4;
+ // The optional ranking must yield before hiding any connected players.
+ if(over()&&!$('tvRanking').hidden)stage.classList.add('roster-needs-space');
+ if(!over())return;
  const more=document.createElement('div');more.className='player tv-more';more.setAttribute('aria-hidden','true');list.append(more);
  let hidden=0;for(let i=rows.length-1;i>0&&over();i--){rows[i].hidden=true;hidden++;more.textContent='+'+hidden;}
  if(!hidden)more.remove();}
 // Hero folds away while the catalog is scrolled (see branding.css .tv-browsing).
-{const browse=$('tvBrowse');let browsing=false;browse.addEventListener('scroll',()=>{const on=browse.scrollTop>(browsing?2:24);if(on!==browsing){browsing=on;$('tvStage').classList.toggle('tv-browsing',on);}},{passive:true});}
+{const browse=$('tvBrowse');let browsing=false;browse.addEventListener('scroll',()=>{const on=browse.scrollTop>(browsing?2:24);if(on!==browsing){browsing=on;$('tvStage').classList.toggle('tv-browsing',on);queueRosterFit();}},{passive:true});}
 function queueRosterFit(){if(!rosterFrame)rosterFrame=requestAnimationFrame(fitRoster);}
+const rosterResize=new ResizeObserver(queueRosterFit);
+rosterResize.observe($('tvSidebar'));rosterResize.observe($('tvSidebar').querySelector('.tv-invite'));
+document.fonts?.ready.then(()=>{rosterFitKey='';queueRosterFit();});
 fitScreen();window.addEventListener('resize',()=>{fitScreen();queueRosterFit();});
 if(typeof ResizeObserver==='function')new ResizeObserver(fitScreen).observe($('play').querySelector('.gamebar'));
 $('gameFrame').addEventListener('load',()=>{fitScreen();hud(true);show?.gameLoaded();});setInterval(clock,250);

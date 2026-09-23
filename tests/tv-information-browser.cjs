@@ -20,6 +20,19 @@ const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');const catalog
   assert(fit,'Content fits the adaptive sidebar card');
  }
  await page.screenshot({path:'/private/tmp/heypals-tv-selected.png'});
+ // A populated leaderboard used to squeeze the online card down to ~70px.
+ for(const width of [1280,1920]){
+  await page.setViewportSize({width,height:width*9/16});let oneHeight;
+  for(const count of [1,2,3,4,16,2]){
+   const state={...room,networkEnabled:true,urls:['http://192.168.1.20:3000'],players:Array.from({length:count},(_,i)=>({id:String(i),name:'Player '+i,connected:true})),leaderboard:Array.from({length:3},(_,i)=>({id:String(i),name:'Player '+i,points:30-i}))};
+   await page.evaluate(state=>__hudSocket.emit(state),state);await page.waitForTimeout(100);
+   const roster=await page.locator('#players').evaluate(list=>{const card=list.closest('section');return{height:card.clientHeight,overflow:card.scrollHeight-card.clientHeight,shown:list.querySelectorAll('.player:not(.tv-more):not([hidden])').length,hidden:list.querySelectorAll('.player[hidden]').length,more:list.querySelector('.tv-more')?.textContent};});
+   assert(roster.overflow<=4,'All visible roster rows fit: '+JSON.stringify({width,count,roster}));
+   if(count===1)oneHeight=roster.height;
+   if(count<=4){assert.equal(roster.shown,count);if(count>1)assert(roster.height>oneHeight,'Online panel grows with the players');}
+   assert.equal(roster.shown+roster.hidden,count);if(roster.hidden)assert.equal(roster.more,'+'+roster.hidden);
+  }
+ }
  async function game(id,snapshot){const g=catalog.find(g=>g.id===id);await page.evaluate(({room,id})=>{__hudSocket.emit({type:'display-ok'});__hudSocket.emit({...room,active:{id,instance:'match-'+id,roster:room.players,ui:{phase:'playing',label:'Матч',progress:'2 / 5',serverNow:Date.now(),endsAt:Date.now()+23000}}});},{room,id});await page.waitForFunction(id=>document.querySelector('#gameFrame').getAttribute('src').includes('/'+id+'/'),id);await page.waitForFunction(id=>document.querySelector('#gameFrame').contentWindow.location.pathname.includes('/'+id+'/'),id);const frame=page.frames().find(f=>f.url().includes('/games/'+id+'/'));await frame.waitForLoadState();if(snapshot)await frame.evaluate(({g,snapshot})=>{const info=parent.LocalPartyTVInformation.normalize({game:g,snapshot,now:Date.now()});parent.postMessage({type:'party-tv-information',instance:'match-'+g.id,info},location.origin);},{g,snapshot});await page.waitForTimeout(40);}
  for(const viewport of[{width:1280,height:720},{width:1920,height:1080}]){
   await page.setViewportSize(viewport);
