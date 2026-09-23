@@ -208,11 +208,41 @@ html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomCoun
 /* Let the lime orb's glow extend beyond the invisible hit target. */
 html body.native-controller.lobby-connected:not(.in-game) #brandHeader #roomToggle{overflow:visible!important;clip-path:none!important;contain:none!important}
 
-/* TV people card: the hero layout leaves ~150 px for it. The invitation keeps its
-   natural height (no empty filler) and the roster drifts when even the densest
-   grid overflows — a TV has no way to scroll it. Classes are set by tv.js fitRoster(). */
-html body.tv-screen #tvStage:not(.tv-has-choice) #tvSidebar>.tv-invite{flex:0 0 auto!important}
-html body.tv-screen #tvStage.roster-scroll #tvSidebar>.company-people:not(.tv-invite){display:flex!important;flex-direction:column;overflow:hidden!important}
-html body.tv-screen #tvStage.roster-scroll #tvSidebar #players{flex:1 1 auto;min-height:0;overflow:hidden;align-content:start;scroll-behavior:smooth}
-/* Denser roster hides the invite caption; without a QR the hint is the only way to learn how to invite guests. */
-html body.tv-screen #tvStage #tvSidebar .tv-invite:has(#qr[hidden]) #inviteHint{display:block!important}
+/* TV sidebar: one fixed width (258 px logical) with readable type. The old
+   roster-mid/big modes widened it to 300/380 px while shrinking names to 11-12 px.
+   Rows that do not fit fold into a "+N" chip (tv.js fitRoster); nothing scrolls. */
+html body.tv-screen #tvStage>#lobby,html body.tv-screen #tvStage:is(.roster-mid,.roster-big)>#lobby{grid-template-columns:minmax(0,1fr) 258px!important}
+html body.tv-screen #tvStage #tvSidebar>.company-people{box-shadow:inset 0 1px 0 #ffffff1c,0 6px 18px #0806112e!important}
+/* The column runs the full lobby height in every state (row 2 on the right was
+   empty in the hero layout), so the people card can show more rows. #tvStage#tvStage
+   outranks the older per-state min-heights (190/160 px) that left empty boxes. */
+html body.tv-screen #tvStage#tvStage #tvSidebar{grid-area:1/2/3/3!important;height:auto!important;max-height:none!important;align-self:stretch!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+html body.tv-screen #tvStage#tvStage.tv-has-choice #tvSidebar{margin-top:0!important}
+html body.tv-screen #tvStage#tvStage #tvSidebar>.tv-invite{min-height:0!important;flex:0 0 auto!important}
+/* Scannable from the sofa: the QR had been squeezed to 76 px (≈ 3 cm on a 55" TV). */
+html body.tv-screen #tvStage#tvStage #tvSidebar .tv-invite #qr{width:168px!important;height:168px!important;margin:8px auto 4px!important;display:block}
+html body.tv-screen #tvStage#tvStage #tvSidebar .tv-invite #qr[hidden]{display:none!important}
+/* Fresh block's 72 px glow: equal negative margin + padding give it room inside the
+   scrollport (an older margin:0!important had cut it 9 px from the block). */
+html body.tv-screen #tvStage#tvStage #tvBrowse{margin-left:-74px!important;margin-right:-74px!important;padding-left:80px!important;padding-right:80px!important}
+html body.tv-screen #tvStage#tvStage #tvSidebar>.company-people:not(.tv-invite){min-height:0!important;flex:0 1 auto!important;overflow:hidden!important}
+html body.tv-screen #tvSidebar .tv-invite .eyebrow{font-size:13px!important}
+html body.tv-screen #tvSidebar .tv-invite :is(h2,p){font-size:14px!important;line-height:1.3!important}
+html body.tv-screen #tvStage #tvSidebar #players{grid-template-columns:minmax(0,1fr)!important;gap:6px!important}
+html body.tv-screen #tvStage #tvSidebar .player{padding:7px 10px!important;gap:10px!important}
+html body.tv-screen #tvStage #tvSidebar .player b{font-size:15px!important}
+html body.tv-screen #tvStage #tvSidebar .avatar{width:30px!important;height:30px!important;flex-basis:30px!important}
+html body.tv-screen #tvStage.roster-compact #tvSidebar .player{padding:4px 10px!important}
+html body.tv-screen #tvStage.roster-compact #tvSidebar .avatar{width:24px!important;height:24px!important;flex-basis:24px!important}
+html body.tv-screen #tvStage #tvSidebar .player.tv-more{justify-content:center;font:italic 900 15px/1.2 Rubik,PartyRubik,system-ui,sans-serif;letter-spacing:.5px}
+html body.tv-screen #tvStage #tvSidebar .player[hidden]{display:none!important}
+
+/* TV lobby while the catalog is scrolled (D-pad focus or idle browse): the hero
+   folds away so the catalog uses the full height instead of being cut off at the
+   middle of the screen. Scrolling back to the top brings the hero back. */
+html body.tv-screen #tvStage>#lobby{transition:grid-template-rows 560ms cubic-bezier(.22,1,.36,1)}
+html body.tv-screen #tvStage #lobby>.intro{transition:opacity 320ms ease,translate 560ms cubic-bezier(.22,1,.36,1)}
+html body.tv-screen #tvStage.tv-browsing:not(.tv-has-choice)>#lobby{grid-template-rows:0px minmax(0,1fr)!important}
+/* !important: the intro's settledArrival animation (fill) would otherwise win over opacity. */
+html body.tv-screen #tvStage.tv-browsing:not(.tv-has-choice) #lobby>.intro{opacity:0!important;translate:0 -48px!important;pointer-events:none}
+@media (prefers-reduced-motion:reduce){html body.tv-screen #tvStage>#lobby,html body.tv-screen #tvStage #lobby>.intro{transition:none}}

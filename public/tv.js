@@ -177,8 +177,8 @@ function hud(force=false){if(!state?.active)return;const {ui,session}=state.acti
 function render(){if(!state?.catalog||!state?.players)return;
  const banner=$('incident');banner.hidden=!state.incident;banner.textContent=state.incident?.message||'';
  const game=state.catalog.find(g=>g.id===state.active?.id);document.body.classList.toggle('game-owns-hud',game?.engine==='sports_siege'||game?.id==='bow_club');document.body.classList.toggle('tv-in-game',!!game);$('play').hidden=!game;$('lobby').hidden=!!game;
- const crowd=state.players.length;$('tvStage').classList.toggle('large-roster',crowd>8);
- // People-card density (roster-mid/big) follows measured overflow: fitRoster().
+ $('tvStage').classList.remove('large-roster','roster-mid','roster-big');
+ // People-card density follows measured overflow: fitRoster() (fixed column width).
  if(game){const next=state.active.instance;if(key!==next){tvInfo=null;tvInfoInstance=null;fitScreen();key=next;window.PARTY_INSTANCE=key;$('gameFrame').src='/games/'+game.id+game.host;}hud();}
  else if(key){key='';window.PARTY_INSTANCE=null;$('gameFrame').src='about:blank';lastHUD='';lastMessage='';fitScreen();}
  // Do not rebuild or animate the offscreen catalog for per-frame game traffic.
@@ -223,21 +223,19 @@ window.addEventListener('message',event=>{
  const message=event.data;if(message?.type!=='party-tv-information'||message.instance!==state?.active?.instance||message.info?.id!==state.active.id)return;
  tvInfo=message.info;tvInfoInstance=message.instance;tvInfoAt=Date.now();information();
 });
-// A TV cannot scroll the people card. Densify it only when rows actually overflow
-// (the hero layout leaves far less height than the host-choice layout), and if even
-// the densest grid overflows, drift the list slowly so every name is shown.
+// A TV cannot scroll the people card. The column keeps one width and readable
+// rows; when the rows do not fit, the last visible ones fold into a "+N" chip.
 let rosterFitKey='',rosterFrame=0;
 function fitRoster(){rosterFrame=0;const stage=$('tvStage'),list=$('players'),card=list?.closest('section');if(!card||$('lobby').hidden)return;
  const key=[lastPlayers,stage.classList.contains('tv-has-choice'),innerWidth,innerHeight].join('|');if(key===rosterFitKey)return;rosterFitKey=key;
- const crowd=state?.players?.length||0,over=()=>card.scrollHeight-card.clientHeight;
- stage.classList.remove('roster-scroll');list.scrollTop=0;
- stage.classList.toggle('roster-mid',crowd>5&&crowd<=10);stage.classList.toggle('roster-big',crowd>10);
- if(over()>4&&!stage.classList.contains('roster-big')){stage.classList.add('roster-mid');if(over()>4){stage.classList.remove('roster-mid');stage.classList.add('roster-big');}}
- if(over()>4)stage.classList.add('roster-scroll');
- // The QR size animates for 500 ms after a density change; measure once more after it settles.
- clearTimeout(fitRoster.settle);fitRoster.settle=setTimeout(()=>{if(rosterFitKey===key&&!stage.classList.contains('roster-scroll')&&over()>4){rosterFitKey='';queueRosterFit();}},650);}
-// Ping-pong the clipped list: hold, glide to the end, hold, glide back.
-setInterval(()=>{const list=$('players');if(document.hidden||!$('tvStage').classList.contains('roster-scroll')||!list)return;const end=list.scrollHeight-list.clientHeight;if(end<2)return;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;list.scrollTo({top:list.scrollTop>end/2?0:end,behavior:reduce?'auto':'smooth'});},4500);
+ const rows=[...list.children].filter(n=>!n.classList.contains('tv-more'));list.querySelector('.tv-more')?.remove();rows.forEach(n=>{n.hidden=false;});
+ stage.classList.toggle('roster-compact',rows.length>4);
+ const over=()=>card.scrollHeight-card.clientHeight>4;if(!over())return;
+ const more=document.createElement('div');more.className='player tv-more';more.setAttribute('aria-hidden','true');list.append(more);
+ let hidden=0;for(let i=rows.length-1;i>0&&over();i--){rows[i].hidden=true;hidden++;more.textContent='+'+hidden;}
+ if(!hidden)more.remove();}
+// Hero folds away while the catalog is scrolled (see branding.css .tv-browsing).
+{const browse=$('tvBrowse');let browsing=false;browse.addEventListener('scroll',()=>{const on=browse.scrollTop>(browsing?2:24);if(on!==browsing){browsing=on;$('tvStage').classList.toggle('tv-browsing',on);}},{passive:true});}
 function queueRosterFit(){if(!rosterFrame)rosterFrame=requestAnimationFrame(fitRoster);}
 fitScreen();window.addEventListener('resize',()=>{fitScreen();queueRosterFit();});
 if(typeof ResizeObserver==='function')new ResizeObserver(fitScreen).observe($('play').querySelector('.gamebar'));
