@@ -155,7 +155,7 @@ function refreshMotionCopy(){
   document.body.dataset.ssInputMode=controlMode;
   $('ss-mode-swipe').textContent=ru?'Свайп':'Swipe';$('ss-mode-motion').textContent=ru?'Движение':'Motion';
   $('ss-mode-swipe').setAttribute('aria-pressed',String(!motion));$('ss-mode-motion').setAttribute('aria-pressed',String(motion));
-  const failed=sensors.status==='denied'||sensors.status==='unavailable';
+  const failed=sensors.status==='denied'||sensors.status==='unavailable'||sensors.status==='insecure';
   $('ss-enable-motion').hidden=motionReady||!motion&&!failed;
   const throwing=canMotionThrow(),sweeping=canMotionSweep();
   if(state)$('ss-launch-station').hidden=!(throwing||motion&&sweeping);
@@ -193,12 +193,12 @@ const sensors=new SportsSensors({onDiagnostic:motionDiagnostic,onSample:sample=>
   if(!sports)return;motionReady=status==='ready';const ru=window.PartyI18n?.language==='ru';
   const label=$('ss-motion-status');label.hidden=false;label.dataset.ready=String(motionReady);
   if(status==='waiting'){cancelGesture();motionSweep=false;shake.reset();$('ss-sweep').classList.toggle('pressed',sweep);sendInput();}
-  label.textContent=status==='ready'?(ru?'Датчики готовы · крепко держи телефон':'Motion ready · keep a firm grip'):status==='waiting'?(ru?'Ждём данные датчиков…':'Waiting for motion…'):status==='denied'?(ru?'Доступ закрыт. Свайп работает.':'Permission denied. Swipe is available.'):(ru?'Датчики недоступны. Свайп работает.':'No motion data. Swipe is available.');
+  label.textContent=status==='ready'?(ru?'Датчики готовы · крепко держи телефон':'Motion ready · keep a firm grip'):status==='waiting'?(ru?'Ждём данные датчиков…':'Waiting for motion…'):status==='insecure'?(ru?'Датчикам нужен HTTPS. Используй свайп.':'Motion needs HTTPS. Swipe is available.'):status==='denied'?(ru?'Доступ закрыт. Свайп работает.':'Permission denied. Swipe is available.'):(ru?'Датчики недоступны. Свайп работает.':'No motion data. Swipe is available.');
   $('ss-enable-motion').disabled=status==='waiting';
-  if(status==='denied'||status==='unavailable'){controlMode='swipe';motionSweep=false;shake.reset();cancelGesture();$('ss-sweep').classList.toggle('pressed',sweep);sendInput();}
+  if(status==='denied'||status==='unavailable'||status==='insecure'){controlMode='swipe';motionSweep=false;shake.reset();cancelGesture();$('ss-sweep').classList.toggle('pressed',sweep);sendInput();}
   refreshMotionCopy();
 }});
-if(sports)Object.defineProperty(window,'PartySportsMotionDiagnostics',{configurable:true,get:()=>Object.freeze({mode:controlMode,status:sensors.status,transport:sensors.transport||null,received:sensors.received,ready:motionReady,fresh:!!sensors.fresh(),holding:false,calibrated:!!motionThrow.frame,armed:motionThrow.armed,gestureState:motionThrow.state,connected,stage:state?.stage||null,phase:state?.phase||null,ownTurn:state?.currentId===net.id,canThrow:!!canMotionThrow()})});
+if(sports)Object.defineProperty(window,'PartySportsMotionDiagnostics',{configurable:true,get:()=>Object.freeze({mode:controlMode,status:sensors.status,transport:sensors.transport||null,attitudeBasis:sensors.sample?.attitudeBasis||null,received:sensors.received,ready:motionReady,fresh:!!sensors.fresh(),holding:false,calibrated:!!motionThrow.frame,armed:motionThrow.armed,gestureState:motionThrow.state,connected,stage:state?.stage||null,phase:state?.phase||null,ownTurn:state?.currentId===net.id,canThrow:!!canMotionThrow()})});
 function stopMotion(){sensors.stop();motionThrow.reset();motionReady=motionSweep=false;shake.reset();if(sports){controlMode='swipe';$('ss-enable-motion').disabled=false;$('ss-motion-status').hidden=true;refreshMotionCopy();}}
 if(sports){
   $('ss-mode-swipe').onclick=()=>{release();};

@@ -10,7 +10,7 @@ class BowMatch {
  targetsAt(now){
   const dt=Math.max(0,Math.min(.25,(now-(this.motionAt??now))/1000));this.motionAt=now;
   const participants=this.players.filter(p=>p.participant),turn=participants.length?Math.min(...participants.map(p=>p.shots)):0;
-  const target=this.phase==='playing'?Math.min(1,turn/8):0;
+  const target=this.phase==='playing'?Math.min(1,.28+turn*.09):0;
   this.motionDifficulty=(this.motionDifficulty||0)+(target-(this.motionDifficulty||0))*(1-Math.exp(-dt*1.4));
   this.motionPhase=(this.motionPhase||0)+dt*(.22+this.motionDifficulty*.6);
   return TARGETS.map((t,i)=>({...t,u:t.u+Math.sin(this.motionPhase+i*1.8)*.065*this.motionDifficulty,v:t.v+Math.sin(this.motionPhase*.7+i*2.1)*.035*this.motionDifficulty}));

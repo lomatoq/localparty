@@ -38,7 +38,8 @@ function fakeHost(native=false){
 test('permission starts both requests within enable, denied permission gracefully stops',async()=>{
  const {SportsSensors}=await moduleReady,{host,events}=fakeHost(),calls=[],states=[];
  host.DeviceMotionEvent.requestPermission=()=>{calls.push('motion');return Promise.resolve('granted');};
- host.DeviceOrientationEvent.requestPermission=()=>{calls.push('orientation');return Promise.resolve('denied');};
+ host.DeviceOrientationEvent.requestPermission=()=>{calls.push('orientation');return Promise.resolve('granted');};
+ host.DeviceMotionEvent.requestPermission=()=>{calls.push('motion');return Promise.resolve('denied');};
  const sensors=new SportsSensors({host,onSample:()=>assert.fail('denied must not emit'),onStatus:s=>states.push(s)});
  const enabled=sensors.enable();assert.deepEqual(calls,['motion','orientation']);await enabled;
  assert.deepEqual(states,['waiting','denied']);assert.equal(sensors.ready,false);assert.equal(events.size,0);sensors.stop();
@@ -98,16 +99,14 @@ test('permission dialog blur can keep pending request, explicit stop rejects lat
  // Controller preserves this pending path on dialog blur; pagehide/explicit Swipe stops it.
  sensors.stop();grant('granted');await enabling;assert.equal(events.size,0);assert.equal(sensors.ready,false);assert.deepEqual(states,['waiting']);
 });
-test('absent orientation never declares ready; stale attitude cancels held trace even with fresh acceleration',async()=>{
- const {SportsSensors,MotionThrow}=await moduleReady,{host,events}=fakeHost(),states=[],trace=new MotionThrow();let last;
- const sensors=new SportsSensors({host,onSample:s=>{last=s;trace.add(s);},onStatus:s=>{states.push(s);if(s==='waiting')trace.cancel();}});await sensors.enable();
- const motion={acceleration:{x:8,y:0,z:0},rotationRate:{alpha:0,beta:0,gamma:100}};
- events.get('devicemotion')(motion);assert.equal(sensors.ready,false);assert.equal(last,undefined);
- events.get('deviceorientation')({alpha:null,beta:0,gamma:0});events.get('devicemotion')(motion);assert.equal(sensors.ready,false);
- events.get('deviceorientation')({alpha:0,beta:0,gamma:0});events.get('devicemotion')(motion);assert.equal(sensors.ready,true);trace.begin(last,last.at);
- sensors.orientation.at=performance.now()-300;events.get('devicemotion')(motion);
- assert.equal(sensors.ready,false);assert.equal(sensors.sample,null);assert.equal(trace.finish(performance.now(),0,0),null);assert.deepEqual(states,['waiting','ready','waiting']);
- sensors.started=performance.now()-2300;await new Promise(r=>setTimeout(r,130));assert.equal(states.at(-1),'unavailable');sensors.stop();
+test('valid acceleration works without orientation; stopped motion remains an honest fallback',async()=>{
+ const {SportsSensors}=await moduleReady,{host,events}=fakeHost(),states=[],samples=[];
+ const sensors=new SportsSensors({host,onSample:s=>samples.push(s),onStatus:s=>states.push(s)});await sensors.enable();
+ const motion={acceleration:{x:0,y:0,z:0},rotationRate:{alpha:0,beta:0,gamma:0}};
+ events.get('devicemotion')(motion);assert.equal(sensors.ready,true);assert.equal(samples[0].attitudeBasis,'browser-relative');
+ events.get('deviceorientation')({alpha:null,beta:0,gamma:0});events.get('devicemotion')(motion);assert.equal(sensors.ready,true);
+ sensors.sample.at=performance.now()-1100;await new Promise(r=>setTimeout(r,130));
+ assert.equal(states.at(-1),'unavailable');assert.equal(sensors.ready,false);sensors.stop();
 });
 
 test('native delivery acknowledgement and lifecycle diagnostics contain no sensor vectors',async()=>{

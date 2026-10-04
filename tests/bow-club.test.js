@@ -4,8 +4,8 @@ const {BowMatch,TARGETS}=require('../games/bow_club/core/match.cjs');
 function shoot(g,id,u,v,seq,now){const aim={u,v,quality:1,ageMs:0,revision:g.revision};assert.equal(g.draw(id,aim,now),true);return g.shoot(id,{...aim,seq},now+600);}
 test('Bow Club hit rings stay circular for a full TV viewport',()=>{
  for(const [dx,dy,expected] of [[.17,0,100],[0,.17,100],[1.02,0,0]]){
-  const g=new BowMatch();g.aspect=1280/608;g.add({id:'a',name:'Alex'});g.start({},0);const t=TARGETS[1];
-  assert.equal(shoot(g,'a',t.u+t.r*dx/(720*g.aspect),t.v+t.r*dy/720,1,1000).points,expected);
+  const g=new BowMatch();g.aspect=1280/608;g.add({id:'a',name:'Alex'});g.start({},0);const aim={quality:1,ageMs:0,revision:g.revision};assert(g.draw('a',aim,1000));const t=g.targetsAt(1600)[1];
+  assert.equal(g.shoot('a',{...aim,u:t.u+t.r*dx/(720*g.aspect),v:t.v+t.r*dy/720,seq:1},1600).points,expected);
  }
 });
 test('All 90 arrows persist through a maximum roster match and reset with the next match',()=>{
@@ -14,7 +14,9 @@ test('All 90 arrows persist through a maximum roster match and reset with the ne
 });
 test('target motion grows gradually and scoring uses the displayed position',()=>{
  const g=new BowMatch();g.add({id:'a',name:'Alex'});g.start({},0);
- assert.deepEqual(g.targetsAt(1000),TARGETS,'first arrow stays still');
+ assert.deepEqual(g.targetsAt(0),TARGETS,'starts from authored centres');
+ for(let t=16;t<=1000;t+=16)g.targetsAt(t);
+ const first=g.targetsAt(1000);assert(first.some((t,i)=>Math.hypot(t.u-TARGETS[i].u,t.v-TARGETS[i].v)>.004),'targets move visibly during first second without any arrows');
  g.players[0].shots=4;
  const before=g.targetsAt(1000),after=g.targetsAt(1016);
  assert(Math.hypot(after[1].u-before[1].u,after[1].v-before[1].v)<.001,'no position snap at difficulty changes');

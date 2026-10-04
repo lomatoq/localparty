@@ -50,3 +50,32 @@ test('slow or failed vision worker restarts within a bounded session budget; obs
  workers[1].onmessage({data:{ready:true,engine:'opencv'}});workers[1].onmessage({data:{result:{},at:2}});assert.equal(results,1);workers[1].recover('timeout');assert.equal(workers.length,3);workers[2].recover('timeout');assert.equal(workers.length,3);assert.equal(context.worker,null);assert.equal(context.visionDebug.engine,'fallback');
  assert.match(source,/workerFrames\?VISION_TIMEOUT.frame:VISION_TIMEOUT.firstFrame/);assert.doesNotMatch(source,/drawOverlay\.outline|caps\.zoom\.min/);assert.match(source,/now-tracking\.at>320/,'fresh visual lock is still required');
 });
+test('first permission reveals primary lens: bootstrap stops before wide opens and wide zoom resets to 1x',async()=>{
+ const {acquireRearCamera}=await import('../games/bow_club/public/src/camera-policy.mjs');let enumerations=0,active=0,maximum=0;const events=[];
+ const devices=[{kind:'videoinput',label:'Back Telephoto Camera',deviceId:'tele'},{kind:'videoinput',label:'Back Camera',deviceId:'wide'}];
+ const make=(id,label)=>{active++;maximum=Math.max(maximum,active);let live=true;const track={label,getSettings:()=>({deviceId:id,zoom:3}),getCapabilities:()=>({zoom:{min:1,max:5}}),applyConstraints:async value=>events.push(['zoom',value.advanced[0].zoom]),stop(){if(live){live=false;active--;events.push(['stop',id]);}}};return {getTracks:()=>[track],getVideoTracks:()=>[track]};};
+ const media={enumerateDevices:async()=>++enumerations===1?devices.map(d=>({...d,label:'',deviceId:''})):devices,getUserMedia:async options=>{const id=options.video.deviceId?.exact||'tele';events.push(['open',id]);return make(id,devices.find(d=>d.deviceId===id).label);}};
+ const stream=await acquireRearCamera(media);assert.equal(stream.getVideoTracks()[0].getSettings().deviceId,'wide');assert.deepEqual(events,[['open','tele'],['stop','tele'],['open','wide'],['zoom',1]]);assert.equal(maximum,1);assert.equal(active,1);stream.getTracks()[0].stop();assert.equal(active,0);
+});
+test('post-permission cancellation closes bootstrap without reopening; cancelled replacement also closes',async()=>{
+ const {acquireRearCamera}=await import('../games/bow_club/public/src/camera-policy.mjs');
+ for(const cancelAt of ['enumerate','replacement']){let current=true,enumerations=0,calls=0,stops=0;
+ const make=id=>{const track={label:id==='wide'?'Back Camera':'Back Telephoto Camera',getSettings:()=>({deviceId:id}),stop(){stops++;}};return {getTracks:()=>[track],getVideoTracks:()=>[track]};};
+ const media={enumerateDevices:async()=>{if(++enumerations===1)return [];if(cancelAt==='enumerate')current=false;return [{kind:'videoinput',label:'Back Camera',deviceId:'wide'}];},getUserMedia:async options=>{calls++;if(calls===2)current=false;return make(options.video.deviceId?.exact||'tele');}};
+ await assert.rejects(acquireRearCamera(media,{isCurrent:()=>current}),{name:'AbortError'});assert.equal(calls,cancelAt==='enumerate'?1:2);assert.equal(stops,calls);
+ }
+});
+test('ordinary active wide lens is kept; unknown and virtual lenses never force zoom',async()=>{
+ const {acquireRearCamera,primaryRearCamera}=await import('../games/bow_club/public/src/camera-policy.mjs');assert(primaryRearCamera([{kind:'videoinput',label:'Kamera tylna',deviceId:'pl'}]));
+ for(const label of ['Back Camera','Back Triple Camera','']){let opens=0,zooms=0;const track={label,getSettings:()=>({deviceId:'same'}),getCapabilities:()=>({zoom:{min:.5,max:8}}),applyConstraints:async()=>{zooms++;},stop(){}};const stream={getTracks:()=>[track],getVideoTracks:()=>[track]};const media={enumerateDevices:async()=>[{kind:'videoinput',label,deviceId:'same'}],getUserMedia:async()=>{opens++;return stream;}};assert.equal(await acquireRearCamera(media),stream);assert.equal(opens,1);assert.equal(zooms,label==='Back Camera'?1:0);}
+});
+test('localized compound camera labels never become the ordinary physical rear lens',async()=>{
+ const {primaryRearCamera}=await import('../games/bow_club/public/src/camera-policy.mjs');
+ for(const label of ['Caméra arrière triple','Câmera traseira tripla','Cámara trasera doble','Rückseitige Dreifachkamera','Kamera tylna potrójna','Задняя тройная камера'])assert.equal(primaryRearCamera([{kind:'videoinput',deviceId:'compound',label}]),null,label);
+});
+test('a lens rejected after permission reopens a usable environment camera sequentially; denial does not retry',async()=>{
+ const {acquireRearCamera}=await import('../games/bow_club/public/src/camera-policy.mjs');
+ for(const errorName of ['OverconstrainedError','NotFoundError','NotReadableError','NotAllowedError']){let calls=0,enumerations=0,active=0,maximum=0,stops=0;const make=()=>{active++;maximum=Math.max(maximum,active);const track={label:'',getSettings:()=>({deviceId:'default'}),stop(){active--;stops++;}};return {getTracks:()=>[track],getVideoTracks:()=>[track]};};const media={enumerateDevices:async()=>++enumerations===1?[]:[{kind:'videoinput',label:'Back Camera',deviceId:'missing'}],getUserMedia:async options=>{calls++;if(options.video.deviceId)throw Object.assign(Error(errorName),{name:errorName});return make();}};
+ if(errorName==='NotAllowedError'){await assert.rejects(acquireRearCamera(media),{name:errorName});assert.equal(calls,2);assert.equal(active,0);}else{const stream=await acquireRearCamera(media);assert.equal(calls,3);assert.equal(active,1);stream.getTracks()[0].stop();}assert.equal(maximum,1);assert.equal(stops,errorName==='NotAllowedError'?1:2);
+ }
+});

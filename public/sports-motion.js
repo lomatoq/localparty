@@ -3,6 +3,7 @@
 export const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
 const finite = n => typeof n === 'number' && Number.isFinite(n);
 const vector = v => v && ['x', 'y', 'z'].every(k => finite(v[k]));
+const browserVector = v => v && ['x','y','z'].some(k=>finite(v[k])) ? {x:finite(v.x)?v.x:0,y:finite(v.y)?v.y:0,z:finite(v.z)?v.z:0} : null;
 const magnitude = v => Math.hypot(v.x, v.y, v.z);
 const rad = Math.PI / 180;
 const quaternion = q => q && ['x', 'y', 'z', 'w'].every(k => finite(q[k])) && Math.hypot(q.x,q.y,q.z,q.w) > .5;
@@ -30,6 +31,20 @@ export function motionDirection(neutral,current){
   return{heading,twist:relativeRotation(a,residual).y};
 }
 export const FRESH_MS = 250;
+const identityQuaternion = () => ({w:1,x:0,y:0,z:0});
+function integrateRotation(q,rotation,dt){
+  const speed=magnitude(rotation)*rad,angle=speed*dt;
+  if(angle<1e-9)return q;
+  const k=Math.sin(angle/2)/(speed/rad);
+  return normalize(multiplyQuaternion(q,{w:Math.cos(angle/2),x:rotation.x*k,y:rotation.y*k,z:rotation.z*k}));
+}
+// Tilt correction uses measured up, without recapturing the calibrated TV heading.
+function alignUp(q,up){
+  const world=rotate(q,up),n=magnitude(world);if(n<.5)return q;
+  const x=world.x/n,y=world.y/n,z=world.z/n;
+  const correction=z<-.9999?{w:0,x:1,y:0,z:0}:normalize({w:1+z,x:y,y:-x,z:0});
+  return normalize(multiplyQuaternion(correction,q));
+}
 
 export class MotionThrow {
   begin(sample, now) {
@@ -169,7 +184,7 @@ export class SportsSensors {
   async enable() {
     this.stop(); const epoch = ++this.epoch; this.running = true;
     this.ready = false; this.started = performance.now(); this.lastSourceTime = null;
-    this.orientation = null; this.gravity = null; this.received = 0; this.nativeAttitudeInverse = true;
+    this.orientation = null; this.gravity = null; this.browserAttitude = null; this.browserGyroBias = {x:0,y:0,z:0}; this.browserBasis = 'browser-relative'; this.lastBrowserAt = null; this.appliedOrientationAt = null; this.received = 0; this.nativeAttitudeInverse = true;
     this.status = 'waiting'; this.onStatus('waiting');
     const native = this.host.webkit?.messageHandlers?.partyShell;
     this.transport = native ? 'native' : 'browser';
@@ -198,15 +213,17 @@ export class SportsSensors {
       native.postMessage({type: 'sports-motion-start', session: epoch});
     } else {
       try {
+        if (this.host.isSecureContext === false) { this.fail('insecure'); return; }
+        if (!this.host.DeviceMotionEvent) { this.fail('unavailable'); return; }
+        // Start both requests in the button gesture. Optional attitude permission
+        // cannot veto a valid accelerometer stream (e.g. Android without heading).
         const permissions = [this.host.DeviceMotionEvent, this.host.DeviceOrientationEvent]
-          .filter(c => typeof c?.requestPermission === 'function').map(c => c.requestPermission());
-        // Both permission calls are initiated synchronously inside the button gesture.
+          .map(c => {try{return typeof c?.requestPermission === 'function' ? c.requestPermission() : Promise.resolve('granted');}catch{return Promise.resolve('denied');}});
         this.permissionPending = true;
-        const values = await Promise.all(permissions);
+        const values = await Promise.allSettled(permissions);
         if(epoch===this.epoch)this.permissionPending=false;
         if (!this.running || epoch !== this.epoch) return;
-        if (values.some(v => v !== 'granted')) { this.fail('denied'); return; }
-        if (!this.host.DeviceMotionEvent) { this.fail('unavailable'); return; }
+        if (values[0].status !== 'fulfilled' || values[0].value !== 'granted') { this.fail('denied'); return; }
         this.host.addEventListener('devicemotion', this.motion);
         this.host.addEventListener('deviceorientation', this.orient);
       } catch { if (epoch === this.epoch) this.fail('denied'); return; }
@@ -219,28 +236,43 @@ export class SportsSensors {
   }
   browserOrientation(e) {
     if(finite(e.timeStamp)&&e.timeStamp>0&&performance.now()-e.timeStamp>FRESH_MS)return;
-    if (['alpha', 'beta', 'gamma'].every(k => finite(e[k]))) this.orientation = {quaternion: orientationQuaternion(e.alpha,e.beta,e.gamma,this.screenAngle()), deviceQuaternion:orientationQuaternion(e.alpha,e.beta,e.gamma), at: performance.now()};
+    // Some Android devices expose tilt with a null compass heading.
+    if (finite(e.beta) && finite(e.gamma)) this.orientation = {deviceQuaternion:orientationQuaternion(finite(e.alpha)?e.alpha:0,e.beta,e.gamma), heading:finite(e.alpha), at:performance.now()};
   }
   browserMotion(e) {
-    let acceleration = e.acceleration;
+    let acceleration = browserVector(e.acceleration);
     const now = performance.now();
     if(finite(e.timeStamp)&&e.timeStamp>0&&now-e.timeStamp>FRESH_MS)return;
-    if(!this.orientation||now-this.orientation.at>FRESH_MS){
-      if(this.ready){this.ready=false;this.sample=null;this.started=now;this.status='waiting';this.onStatus('waiting');this.onDiagnostic({event:'attitude-stale',transport:'browser',received:this.received});}
-      return;
-    }
-    const dt = this.sample ? clamp((now - this.sample.at) / 1000, .005, .08) : 1 / 30;
+    const dt = this.lastBrowserAt === null ? 1/30 : clamp((now-this.lastBrowserAt)/1000,.005,.08);
+    const gravity = browserVector(e.accelerationIncludingGravity);
     if (!vector(acceleration)) {
-      if (!vector(e.accelerationIncludingGravity)) return;
-      const g = e.accelerationIncludingGravity;
-      if (!this.gravity) { this.gravity = {x: g.x, y: g.y, z: g.z}; return; }
+      if (!gravity) return;
+      if (!this.gravity) { this.gravity = {x:gravity.x,y:gravity.y,z:gravity.z}; this.lastBrowserAt=now; return; }
       const k = 1 - Math.exp(-dt / .35);
       acceleration = {};
-      for (const axis of ['x', 'y', 'z']) { this.gravity[axis] += k * (g[axis] - this.gravity[axis]); acceleration[axis] = g[axis] - this.gravity[axis]; }
+      for (const axis of ['x', 'y', 'z']) { this.gravity[axis] += k * (gravity[axis] - this.gravity[axis]); acceleration[axis] = gravity[axis] - this.gravity[axis]; }
     }
     const r = e.rotationRate;
-    const rotation = {x: finite(r?.beta) ? r.beta : 0, y: finite(r?.gamma) ? r.gamma : 0, z: finite(r?.alpha) ? r.alpha : 0};
-    this.emit(acceleration, rotation, this.orientation.quaternion, this.orientation.deviceQuaternion);
+    const rotation = {x:finite(r?.beta)?r.beta:0,y:finite(r?.gamma)?r.gamma:0,z:finite(r?.alpha)?r.alpha:0};
+    const orientationFresh=this.orientation && now-this.orientation.at<=FRESH_MS;
+    let q=this.browserAttitude || (orientationFresh?this.orientation.deviceQuaternion:identityQuaternion());
+    // Integrate between attitude updates; a slower orientation stream must not
+    // cancel an otherwise fresh forward impulse. A real sensor gap still does.
+    // Relative attitude has no compass correction. Learn tiny gyro drift only
+    // during genuinely quiet samples, never from a throw or deliberate twist.
+    if(magnitude(acceleration)<1.25 && magnitude(rotation)<8){
+      const k=1-Math.exp(-dt/.3);for(const axis of ['x','y','z'])this.browserGyroBias[axis]+=(rotation[axis]-this.browserGyroBias[axis])*k;
+    }
+    const correctedRotation={x:rotation.x-this.browserGyroBias.x,y:rotation.y-this.browserGyroBias.y,z:rotation.z-this.browserGyroBias.z};
+    if(this.lastBrowserAt!==null && now-this.lastBrowserAt<=FRESH_MS)q=integrateRotation(q,correctedRotation,dt);
+    if(orientationFresh && this.orientation.heading && this.appliedOrientationAt!==this.orientation.at){
+      q=this.orientation.deviceQuaternion;this.browserBasis='browser';this.appliedOrientationAt=this.orientation.at;
+    }else if(magnitude(acceleration)<1.25 && magnitude(rotation)<24){
+      const up=orientationFresh?rotate({w:this.orientation.deviceQuaternion.w,x:-this.orientation.deviceQuaternion.x,y:-this.orientation.deviceQuaternion.y,z:-this.orientation.deviceQuaternion.z},{x:0,y:0,z:1}):gravity;
+      if(up)q=alignUp(q,up);
+    }
+    this.browserAttitude=q;this.lastBrowserAt=now;
+    this.emit(acceleration,rotation,screenQuaternion(q,this.screenAngle()),q,this.browserBasis);
   }
   screenAngle(){return this.host.screen?.orientation?.angle??this.host.orientation??0;}
   emit(acceleration, rotation, q, deviceQuaternion = q, attitudeBasis = 'browser') {

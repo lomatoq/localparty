@@ -247,7 +247,7 @@ struct ServerState: Equatable, Codable {
         record("launch-tap " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(80))" } }.joined(separator: " "))
     }
     func recordBowDiagnostic(_ stats: [String: Any]) {
-        let fields = ["event", "engine", "sent", "received", "detected", "accepted", "ms", "age", "tags", "decoded", "points", "video", "resolution", "frame", "mode", "stable", "joined", "phase", "error", "muted", "track", "videoTime", "hidden"]
+        let fields = ["event", "engine", "sent", "received", "detected", "accepted", "ms", "age", "tags", "decoded", "points", "video", "resolution", "frame", "mode", "stable", "joined", "phase", "error", "muted", "track", "videoTime", "hidden", "lens", "zoom", "aspect", "facing", "orientation"]
         record("bow-tracking " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(200))" } }.joined(separator: " "))
     }
     // Lifecycle counters only: never record sensor vectors, players or controller URLs.

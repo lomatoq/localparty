@@ -602,7 +602,8 @@ html.party-managed.party-player[data-party-game=tanks] .logo{top:22px!important}
    colour pools behind its art on the left, the lime action light rises toward
    START on the right. One sheen crosses the card when the pick changes. */
 html body.native-shell main #choiceStrip#choiceStrip::after,
-html body.native-shell main #activeCard#activeCard::after{
+html body.native-shell main #activeCard#activeCard::after,
+html.hp-ui body.tv-screen #tvStage.tv-has-choice #preview.tv-choice::after{
  background-image:
   linear-gradient(105deg,transparent 32%,#ffffff1c 48%,transparent 64%),
   linear-gradient(90deg,color-mix(in srgb,var(--pick-color,#9b7bff) 58%,transparent) 0%,color-mix(in srgb,var(--pick-color,#9b7bff) 22%,transparent) 30%,transparent 52%),
@@ -698,6 +699,12 @@ html.hp-ui body.native-shell #activeStatus.hp-menu-counter{flex-wrap:wrap;gap:4p
 html.hp-ui body.native-shell #activeStatus .hp-menu-counter-value{font-size:20px!important;color:#cfff85!important}
 html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-value{font-size:17px!important}
 html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-label{font-size:12px!important}
+html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-value{opacity:1}
+html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-total{
+ font:italic 900 17px/1.1 var(--hp-font-action)!important;color:#e9ddff!important;
+ font-variant-numeric:tabular-nums;opacity:.75;padding:1px 3px 1px 1px!important;
+}
+
 html.hp-ui body.native-shell .hp-menu-counter-group{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline}
 html.hp-ui body.native-shell .hp-menu-counter-group>.hp-menu-counter{flex-wrap:wrap;gap:4px 6px!important}
 html.hp-ui body.native-shell :is(#botCount,#startBotsCount,#tvGameNumber){font:italic 900 24px/1.1 var(--hp-font-action)!important;color:#e9ddff;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
@@ -716,3 +723,10 @@ html.hp-ui body.is-player:not(.in-game) .catalog-vote .hp-vote-count{white-space
 }
 /* A voted-for readout keeps contrast when the illustrated artwork sits behind it. */
 html.hp-ui body.is-player:not(.in-game) button.catalog-vote[aria-pressed=false]:has(.hp-vote-count){background:#252637!important}
+
+/* Preserve the complete Host Pick readout alongside Start on narrow phones. */
+@media(max-width:360px){
+ html.hp-ui body.native-shell #choiceMeta{gap:3px}
+ html.hp-ui body.native-shell #choiceMeta .hp-menu-counter{gap:3px!important}
+ html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-readout{gap:2px}
+}

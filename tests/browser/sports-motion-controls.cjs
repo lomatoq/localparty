@@ -63,11 +63,11 @@ function fixture(native){
   await game.evaluate(()=>Object.assign(window.__motionFixture,{a:0,forward:0,r:0}));await sleep(160);assert.equal(throws().length,0);assert.equal(await game.evaluate(()=>document.body.dataset.ssInputMode),'motion');
   row.actions.push('Orientation event cancels current impulse; Motion remains selected');
   if(!native){
-   await neutral();await impulse(90);await game.evaluate(()=>window.__motionFixture.orientation=false);
+   await neutral();await impulse(90);await game.evaluate(()=>window.__motionFixture.auto=false);
    await game.waitForFunction(()=>document.body.dataset.ssInputMode==='swipe',null,{timeout:5000});assert.equal(throws().length,0);await shot('attitude-fallback');
-   await game.evaluate(()=>Object.assign(window.__motionFixture,{orientation:true,a:0,forward:0,r:0,permissionBlur:false}));
+   await game.evaluate(()=>Object.assign(window.__motionFixture,{auto:true,orientation:true,a:0,forward:0,r:0,permissionBlur:false}));
    await game.locator('#ss-enable-motion').tap();await game.waitForFunction(()=>window.PartySportsMotionDiagnostics.ready);await neutral();
-   row.actions.push('Attitude interruption cancels unfinished hands-free throw; Retry restores sensor arming');
+   row.actions.push('Motion stream interruption cancels unfinished hands-free throw; Retry restores sensor arming');
   }
   await neutral();await impulse(120);await api({type:'pause',paused:true});await sleep(200);
   await game.evaluate(()=>Object.assign(window.__motionFixture,{a:0,forward:0,r:0}));assert.equal(throws().length,0);await api({type:'pause',paused:false});await phone.waitForFunction(()=>window.PARTY_UI?.phase!=='paused');

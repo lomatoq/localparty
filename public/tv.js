@@ -139,7 +139,7 @@
 const $=id=>document.getElementById(id);if(!$('tvStage'))return;
 // The TV hosts test bots for the iPhone room exactly like the computer host page does.
 let botProfiles=[];
-let ws,state,key='',reconnect,offset=0,selected='',lastPlayers='',lastStandings='',accessClosed=false;
+let ws,state,key='',reconnect,offset=0,selected='',lastChoiceCount='',lastPlayers='',lastStandings='',accessClosed=false;
 window.PARTY_PROFILE={};window.PARTY_DISPLAY_ONLY=true;
 const catalog=window.LocalPartyCatalog.create($('tvCatalog'),{displayOnly:true});
 const show=window.LocalPartyShow?.create($('tvStage'));
@@ -147,6 +147,21 @@ window.LocalPartyTVShow=show;
 const tell=message=>{$('notice').textContent=message;$('notice').hidden=false;clearTimeout(tell.timer);tell.timer=setTimeout(()=>$('notice').hidden=true,6000);};
 const art=id=>window.LocalPartyCatalog.artPath(state.catalog.find(g=>g.id===id));
 const text=(id,value)=>{const node=$(id);value=String(value);if(node.textContent!==value)node.textContent=value;};
+function choicePlayers(choice){
+ if(!choice){lastChoiceCount='';return;}
+ const count=state.players.length,min=state.botCount>0?1:choice.min,max=choice.max;
+ const signature=JSON.stringify([choice.id,count,min,max]);
+ if(signature===lastChoiceCount)return;lastChoiceCount=signature;
+ const part=(cls,value)=>{const el=document.createElement('span');el.className=cls;el.textContent=String(value);return el;};
+ const counter=part('hp-menu-counter',''),readout=part('hp-menu-counter-readout','');
+ const value=part('hp-menu-counter-value',Math.min(count,max));value.dataset.noTranslate='';readout.append(value);
+ if(count<min){const total=part('hp-menu-counter-total',min);total.dataset.noTranslate='';readout.append(part('hp-menu-counter-separator',' / '),total);}
+ counter.append(readout,part('hp-menu-counter-label',count>max?'До '+max+' игроков':'игроков'));
+ // Over-capacity uses the same "up to" meaning as the host controller.
+ if(count>max)counter.replaceChildren(part('hp-menu-counter-label','До'),readout,part('hp-menu-counter-label','игроков'));
+ $('playersNeeded').replaceChildren(counter);
+}
+
 let lastHUD='',lastMessage='',tvInfo=null,tvInfoAt=0,tvInfoInstance=null,displayConnected=false,waitingGameKey='';
 // Existing status nodes share one authored contour rather than three floating wings.
 const informationBar=$('play').querySelector('.gamebar'),informationDock=document.createElement('div'),informationActor=document.createElement('span'),informationClockLabel=document.createElement('small');
@@ -308,7 +323,8 @@ function render(){if(!state?.catalog||!state?.players)return;
   window.HeyPalsAudio?.scene('lobby');
   catalog.update(state);text('tvGameCount',state.catalog.length+' игр');
   const choice=state.tv?.browse?null:state.catalog.find(g=>g.id===state.selected);$('preview').hidden=!choice;$('tvStage').classList.toggle('tv-has-choice',!!choice);
-  if(selected!==(choice?.id||'-')){selected=choice?.id||'-';if(choice){$('cover').hidden=false;$('cover').src=art(choice.id);$('cover').onerror=()=>{$('cover').hidden=true;};text('choiceTitle',choice.title);text('description',choice.goal||choice.description||'');text('controls',choice.controls||'');text('playersNeeded',choice.min+'–'+choice.max+' игроков');catalog.revealFresh(choice.id);}$('tvBrowse').scrollTop=0;}
+  if(selected!==(choice?.id||'-')){selected=choice?.id||'-';if(choice){$('cover').hidden=false;$('cover').src=art(choice.id);$('cover').onerror=()=>{$('cover').hidden=true;};text('choiceTitle',choice.title);text('description',choice.goal||choice.description||'');text('controls',choice.controls||'');$('preview').style.setProperty('--pick-color',/^#[0-9a-f]{3,8}$/i.test(choice.color||'')?choice.color:'#9b7bff');catalog.revealFresh(choice.id);}$('tvBrowse').scrollTop=0;}
+  choicePlayers(choice);
   const settings=choice?.hostControls?.settings||[];text('settings',settings.map(f=>f.label+': '+(f.options.find(o=>o.value===state.gameSettings?.[choice.id]?.[f.id])?.label||'')).join(' · '));
   const votes=(state.votes||[]).filter(v=>v.gameId===choice?.id).length;text('votes',votes?'За этот выбор: '+votes:'');
  }
@@ -318,7 +334,7 @@ function render(){if(!state?.catalog||!state?.players)return;
  text('address',invitation.room);
  if(invitation.src&&$('qr').getAttribute('src')!==invitation.src)$('qr').src=invitation.src;
  if(!invitation.src)$('qr').removeAttribute('src');
- const signature=JSON.stringify(state.players.map(p=>[p.id,p.name,p.avatar]));if(signature!==lastPlayers){lastPlayers=signature;text('count',state.players.length+' / 16');$('players').replaceChildren(...state.players.map((p,i)=>{const n=document.createElement('div');n.className='player';const avatar=document.createElement('span');avatar.className='avatar';avatar.style.setProperty('--card',i%2?'#a96aff':'#c8f58b');avatar.textContent=Array.from(p.name||'?')[0];if(typeof p.avatar==='string'&&(/^data:image\/(jpeg|png|webp);base64,/.test(p.avatar)||/^\/api\/avatar\/[a-f0-9]{16}\?v=\d+$/.test(p.avatar))){const img=new Image();img.src=p.avatar;img.alt='';avatar.replaceChildren(img);avatar.classList.add('has-photo');}else window.HeyPalsAvatar?.paint(avatar,p.name);const name=document.createElement('b');name.textContent=p.name;n.append(avatar,name);return n;}));$('tvEmpty').hidden=!!state.players.length;}
+ const signature=JSON.stringify(state.players.map(p=>[p.id,p.name,p.avatar]));if(signature!==lastPlayers){lastPlayers=signature;text('count',state.players.length+' / 16');$('players').replaceChildren(...state.players.map((p,i)=>{const n=document.createElement('div');n.className='player';const avatar=document.createElement('span');avatar.className='avatar';avatar.style.setProperty('--card',i%2?'#a96aff':'#c8f58b');avatar.dataset.initial=(Array.from((p.name||'?').trim())[0]||'?').toUpperCase();avatar.dataset.noTranslate='';avatar.textContent=avatar.dataset.initial;if(typeof p.avatar==='string'&&(/^data:image\/(jpeg|png|webp);base64,/.test(p.avatar)||/^\/api\/avatar\/[a-f0-9]{16}\?v=\d+$/.test(p.avatar))){const img=new Image();img.src=p.avatar;img.alt='';avatar.replaceChildren(img);avatar.classList.add('has-photo');}else window.HeyPalsAvatar?.paint(avatar,p.name);const name=document.createElement('b');name.textContent=p.name;n.append(avatar,name);return n;}));$('tvEmpty').hidden=!!state.players.length;}
  const companyPlaces=rows=>{let place=0,last='';return rows.map((p,i)=>{const key=`${Number(p.points)||0}:${Number(p.wins)||0}`;if(key!==last){place=i+1;last=key;}return place;});};
  const standings=state.leaderboard||[],places=companyPlaces(standings);
  const leaders=JSON.stringify((state.leaderboard||[]).slice(0,3));if(leaders!==lastStandings){lastStandings=leaders;$('tvLeaders').replaceChildren(...(state.leaderboard||[]).slice(0,3).map((p,i)=>{const row=document.createElement('div');row.className='mini-rank';const place=places[i];row.dataset.rank=String(place);row.dataset.place=String(place);row.dataset.hpRank=String(place);const rank=document.createElement('span'),name=document.createElement('b'),score=document.createElement('strong');rank.dataset.place=String(place);rank.dataset.hpRank=String(place);const medal=document.createElement('img');medal.className='hp-award';medal.dataset.hpRank=String(place);medal.src='/assets/awards/'+['medal-gold','medal-silver','medal-bronze'][place-1]+'.png';medal.alt=String(place)+' place';rank.append(medal);name.textContent=p.name;score.textContent=String(p.points||0);row.append(rank,name,score);return row;}));$('tvRanking').hidden=!(state.leaderboard||[]).length;}
