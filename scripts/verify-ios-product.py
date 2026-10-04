@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REVISION = 'ios-recovery-20260918.1'
-SHELL_FILES = ('index.html', 'host.js', 'host.css', 'host-ui.css', 'controller-bridge.js', 'tabs.js')
+SHELL_FILES = ('index.html', 'host.js', 'host.css', 'host-ui.css', 'controller-bridge.js', 'tabs.js', 'nearby-rooms.js')
 POCKET_FILES = (
     'core/tanks.cjs', 'core/pocket-runtime.cjs', 'core/air-defense.cjs', 'server.js',
     'public/index.html', 'public/controller.js', 'public/host.js', 'public/net.js',
@@ -28,6 +28,10 @@ MATCH_FILES = (
     'public/tv.html', 'public/tv.js', 'public/tv-information.js',
     'public/tv-information.css', 'public/bridge.js',
     'public/game-polish.css', 'public/i18n-shell.js',
+    'public/index.html', 'public/app.js', 'public/branding.css', 'public/background-scene.css',
+    'public/game-logo-renderer.js', 'public/match-results.js',
+    'public/game-feel-state.js', 'public/game-feel.js', 'public/game-feel.css',
+    'public/motion.js', 'public/motion.css',
     'games/bow_club/public/phone.js', 'games/bow_club/public/src/camera-policy.mjs',
     'games/bow_club/public/src/camera-preview.mjs',
 )

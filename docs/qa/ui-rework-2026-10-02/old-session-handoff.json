@@ -1,0 +1,25 @@
+{
+  "updatedAt": "2026-10-02T11:27:38.533846+00:00",
+  "branch": "heypals/ux-polish",
+  "sharedRootFilesFrozen": true,
+  "groups": {
+    "02": {
+      "frozen": true,
+      "owner": "old ui_rework_games",
+      "instruction": "Read-only until old root updates frozen=true. Await group02 fresh proof and exact source hash packet.",
+      "report": "group02-progress.md",
+      "sourceHashes": "group02-source-hashes.json",
+      "acceptance": "Tanks named corrections accepted; Tankarena compact roster/phone accepted; P1 shared-notch target occlusion remains for new root/group02."
+    },
+    "06": {
+      "frozen": true,
+      "owner": "old social_ui_redesign",
+      "instruction": "Read-only until old root updates frozen=true. Await group06 fresh proof and exact source hash packet.",
+      "report": "group06-progress.md",
+      "sourceHashes": "output/playwright/ui-rework-2026-10-02/social-actions/group06-source-hashes.json",
+      "acceptance": "Actual all4 TV/phone captured; Drawguess synced stroke, Monster part submitted, Spy vote acknowledged. Old director final scoped review finishing in commander-findings.md; no hardware/full-results acceptance."
+    }
+  },
+  "artDirector": "Old commander may update docs only; new director writes new report to avoid colliding.",
+  "newThreadId": "01a0fc5b-9a58-7b90-a8ae-78420115152d"
+}

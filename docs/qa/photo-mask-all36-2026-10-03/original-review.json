@@ -1,0 +1,565 @@
+{
+  "method": "Each whole original was opened with view_image; no contact-sheet-only acceptance. Photo-specific review: circular visible uploads and thin thematic edge; existing game composition/physics retained.",
+  "originals": [
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/before-sports/bowling-tv-live-1280.png",
+      "sha256": "6c554ba90cf0fe04e9930f1229cd9e47fec66686fecf6eb84e49521cfadff166",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/before-sports/bowling-tv-live-1920.png",
+      "sha256": "e9d1d3eda9fd676d78e0f97a1f06e937adce513b980015ebe689d64e2f1233c9",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/before-sports/curling-tv-live-1280.png",
+      "sha256": "690956a0d8b1db4dea5200456307fe633cbbc042aba55a6e1928c09eab156152",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/before-sports/curling-tv-live-1920.png",
+      "sha256": "19a7deca01ca91640297c142abedd2df6f7ba794f2199e7ba6ba2f255e726350",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/bomb-tv-live-1280.png",
+      "sha256": "fde5a4dce162c521c5935d3707fb28f252e20780fc2ff4980674a18a2f5d18c6",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/bomb-tv-live-1920.png",
+      "sha256": "5876e7c70e3fb551b8f1afd37f82d90d86976d10cffb61cc1554b4b289c41b0c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/bow_club-tv-live-1280.png",
+      "sha256": "37dc4a94448c6dbf9201bdc90c664710a0762f64735bafa3c9519e9fc17e1798",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/bow_club-tv-live-1920.png",
+      "sha256": "15a479e10db5b391640a0ae6f410f85a13418d1e56a93268978b2e3149f28bfd",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/bowling-tv-live-1280.png",
+      "sha256": "a019a1b737ec2c1c70dc1271f188001e41d1b00aa9cc6d7e0b5a3e9bfad2e258",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/bowling-tv-live-1920.png",
+      "sha256": "abb9e74862898045182d754cdec707f0c6c24c51253f2382b2b753b42d626d14",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/carryball-tv-live-1280.png",
+      "sha256": "438ab8677a23501599c712c8d64ea15b193371a5a53c79d4cc550f3e6d676865",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/carryball-tv-live-1920.png",
+      "sha256": "71c947198179152c4305969f7cfdd23ff40963f16379698c1d0c9fcc61f6a116",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/chaos-tv-live-1280.png",
+      "sha256": "1998e68d96d708e1e15b9bf90cc96335a667f37817fa86ebff896e1a49669049",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/chaos-tv-live-1920.png",
+      "sha256": "d47950925d20cba4e2f4b24f9177b89fdc8accdadd1f6e00dad477b5bb114a98",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/crane-tv-live-1280.png",
+      "sha256": "129e73d89c1989d1b64a2c99ab918bd5ef2a48a40f59e8f181c128e14a82f30a",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/crane-tv-live-1920.png",
+      "sha256": "daf0f9ec35b80279bd5d37f66493de072533f15f50d1a95d79937bbb3d71e91d",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/crocodile-tv-live-1280.png",
+      "sha256": "835085f708992fc872ef753cfd41a4a5d9f741392650ac925354ea07a03763ae",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/crocodile-tv-live-1920.png",
+      "sha256": "dfb639a8346dedc3df34e069df50d775b399042603255eea1183be6700901fea",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/curling-tv-live-1280.png",
+      "sha256": "45b189f99ca0993f5cd4407add91829a36c682bb878cd3d33b8619c891ce1f44",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/curling-tv-live-1920.png",
+      "sha256": "150bbe1f948fa9271696584854f645c1d9194b079dc7aa84979464960a059b17",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/drawguess-tv-live-1280.png",
+      "sha256": "a191a52a123591c21746c26e2bd559d94619bc6342026ebdc23cfd58ad8e7632",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/drawguess-tv-live-1920.png",
+      "sha256": "b45c870d7fb1c054a8d1e2ee8b4b77498edaca06b7929ec394af43897cc3c8b7",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/flappy-tv-live-1280.png",
+      "sha256": "29c4e444e8d5b3163ba52395c92695477dc64822bb32d3d462217ed3af0bfe03",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/flappy-tv-live-1920.png",
+      "sha256": "f6d432ccb9f77eb9b6c5b8fb963cb2c60d466e87abe02479dcaa71e24831aa68",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/hungry-tv-live-1280.png",
+      "sha256": "cedddb7e135c4e617c9f829f70c83dc12f112a1198db115a756b2bbc5a03cd51",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/hungry-tv-live-1920.png",
+      "sha256": "8ac61a29790e6cbcdfaf1bb9ffd8d19bf19bb32a318a56db1abf1d503e3a5cb4",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/jenga-tv-live-1280.png",
+      "sha256": "e5b246230c30d2ae5f3baddccf9035f89976d3b36482ec227e7d9d5b9a466e11",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/jenga-tv-live-1920.png",
+      "sha256": "6007472aac481d973e84b8fe026959fa8698dc0602f6d3369807c6c4d20f991b",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/kart-tv-live-1280.png",
+      "sha256": "a4a416e2782e659dd8341f8c446e04e134be48eb7fe4c74a3fab91dcea331f84",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/kart-tv-live-1920.png",
+      "sha256": "843402f52ce1ae4f9eaf3382f8309182b007b4be7dcca578b2a5d344f736805c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/knives-tv-live-1280.png",
+      "sha256": "6ff357cd4fd67862c47d176f3803f562ef540e9240bb8088c213b5b9984e7bbb",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/knives-tv-live-1920.png",
+      "sha256": "f9a990bca77a5ba85a9e744253d37e34f41b50b3c788f09ae699945a7a3a2df2",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/marble_bloom-tv-live-1280.png",
+      "sha256": "0380845d9683072b7f456ba58935ee49a9386d8108d6c006baf5fe7d97f5131b",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/marble_bloom-tv-live-1920.png",
+      "sha256": "3afc6daf2de5b5413626cf3a63e92a7b6c79d8b03c628e40f591f4a144a9737c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/millionaire-tv-live-1280.png",
+      "sha256": "742b0fcb3a0fd5984faea9d9766608403ce2aa6e35328ae2c66633d38895e1d6",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/millionaire-tv-live-1920.png",
+      "sha256": "004591d8eecbfb2d0eea1afdaf31a940c79be50cb6f115b057a6b74b7402139d",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/mines-tv-live-1280.png",
+      "sha256": "94cd4fc0a7b09f630359990deeb154a2fc4a1639b0a8d17be7d95302bb0cebfb",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/mines-tv-live-1920.png",
+      "sha256": "2308b42f6ef0aeaa57b59787792532cd9ab093c2e1f3f32684eef64e76a90269",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/monster-tv-live-1280.png",
+      "sha256": "fb52d6b4b66e04d09fa1ccd72526bf2cf2a166749acbe17b08e826fe51918cd9",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/monster-tv-live-1920.png",
+      "sha256": "5d4ae44ac993e5e211c495707415656f2f9d799e2d6b5d840da01328b76074f5",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/naval-tv-live-1280.png",
+      "sha256": "92264a086a1776f06bc81b4ba4dfbae569fc1f39afd5c1dd8e99225551d253da",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/naval-tv-live-1920.png",
+      "sha256": "3bcba94b2f5475cd9fe2173701d4b5ade30d37e0fd695d7661a98bbdd423ad00",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/peek_shoot-tv-live-1280.png",
+      "sha256": "331689065120d0d01791d4e487d754c4d6e62ce4dbfd680a757ac60d2f897e26",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/peek_shoot-tv-live-1920.png",
+      "sha256": "b4983d7d5c37c3b1d8b74efcc8f9bc87af97bae26493857cb0083289107c81af",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/pocket_siege-tv-live-1280.png",
+      "sha256": "d7c3801ed17d3b80bc59a6d5c2c7ae1774a3f424097c6039e7b71b9eba0db9c3",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/pocket_siege-tv-live-1920.png",
+      "sha256": "48a34e8de50ee61cc509694cf6d251cc79569df4165feb3c08d46ece0248a9d0",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/poker-tv-live-1280.png",
+      "sha256": "8514bbfc3a792ba1163fac46981f2ad53c7475b3e73c0a8082af38b68f5468c6",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/poker-tv-live-1920.png",
+      "sha256": "7d577d640f74d0ae456be39ce117b1efb644e8b6285c8c5f4566776f16fc3b9a",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/punchmeter-tv-live-1280.png",
+      "sha256": "11b3f0549b711db36b76ed03d513e7a04a16fc2f99715d7c5a878cb85dbb9306",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/punchmeter-tv-live-1920.png",
+      "sha256": "b07664a1c0cfab1d1053b036aeb2dbb5b0595643246f60ad1a51ec70ccb2d18a",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/push-tv-live-1280.png",
+      "sha256": "aa1d7248273b7a16557b5b82856a53e83f39089156e2f434a00e5f7d2cde63d7",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/push-tv-live-1920.png",
+      "sha256": "97aa0aba1b6755434dce88307f51381318a0b6b9e20c8938e3ce0eb5745523e3",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/shrink-tv-live-1280.png",
+      "sha256": "d462e1acc0b8d550b526d96f3e496a233d12ddbf4c04d07c1d6ce5099525373f",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/shrink-tv-live-1920.png",
+      "sha256": "945ae61d98f364ae271e402cbf60b6299c680ce58035449c0935c2dde7727d1c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/sinyakquiz-tv-live-1280.png",
+      "sha256": "e605cf4eca589e16a3a4ab27367e5e35f191785422ee279c482a8db35603102b",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/sinyakquiz-tv-live-1920.png",
+      "sha256": "ae1fd52273f2fe9ee291ef9859bb34ee5ea55dd9c6b7f867694bae5ed0b1406d",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/snakelines-tv-live-1280.png",
+      "sha256": "a34b11dbbcf98e04de0cc9484d9f9b929691f3604af4a3089fb1813540b4a54e",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/snakelines-tv-live-1920.png",
+      "sha256": "6c659d8e7de4e5205b075b7d45bde41473d24c58b5def80d156039d7e7316415",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/swarm_gate-tv-live-1280.png",
+      "sha256": "7b536f17ff1afee02b7faa6d25139e5fbbaf21fabf5fb28d3ad581463d85677b",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/swarm_gate-tv-live-1920.png",
+      "sha256": "77f63c0c03853091a132725d73f88ad922a3c252a729461522a64fcf8ae32fe1",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/tankarena-tv-live-1280.png",
+      "sha256": "24567930149ed6095adb70e2fd380d60131184b1fc002dc3318d7d934f2380df",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/tankarena-tv-live-1920.png",
+      "sha256": "1360a1e206ee8c506af0d91b50217924872e1cd9ca5142d6caa81c72ff372fc1",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/tanks-tv-live-1280.png",
+      "sha256": "7705d24fc2e7acc3c0982d017702d5200703b08af5a513913400b0d25509430e",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/tanks-tv-live-1920.png",
+      "sha256": "68dc0935742fcca7cefbc22d1f27396a6aba62ec39ec3690fe602ac3f43098a9",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/taprace-tv-live-1280.png",
+      "sha256": "4b52c4ab15a313c37a67de9570af7459fde6c37716e85c18cb56957b15c763ee",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/taprace-tv-live-1920.png",
+      "sha256": "94d9a6baec79874339f204e785a5da2965661320387bdc62870802caf38e10aa",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/warsaw-tv-live-1280.png",
+      "sha256": "2907ee41d71719253c73c18b5d86c2c5ec563223d98d55f5b923866925fcc8ba",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/warsaw-tv-live-1920.png",
+      "sha256": "7741c03a04b74c5789d10333139cbfecf75f8133b478105538c4dc90106f5028",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/western-tv-live-1280.png",
+      "sha256": "108dfe122f9ee5d66be31b9d55f74090105b0bfbc625ca999d088ac34b97d98c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/western-tv-live-1920.png",
+      "sha256": "c10da12ced918faaa6884bb309dd781976311a1e5caf9914af55f45027c12dd6",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/western_duel-tv-live-1280.png",
+      "sha256": "e17631e3d9b4372a2265855a77dfb34e38dda483474e1fa46e29bbb7807a2bca",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/western_duel-tv-live-1920.png",
+      "sha256": "df0abcdd822d56ca3ac7b375d1b6cbd90b71771b63ec693a35cb04fda9becfd3",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bomb-tv-live-1280.png",
+      "sha256": "f57b3c66213ee7f77220eac8196ea6fb386d225df098eba1610bc718edbf4f0e",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bomb-tv-live-1920.png",
+      "sha256": "c697af9cdcc1e82f6a799133a0edb6350dcfaf2e4fd01cb1179acd22b22171b7",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bowling-tv-live-1280.png",
+      "sha256": "63e7ed601587a1f28a54828d4925733e4f0d515ab53b66c696b522eb25c6884c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bowling-tv-live-1920.png",
+      "sha256": "04563a4fd476e709f20628b8decbdf3924d032b92a04547c8c169d75ae477a37",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/curling-tv-live-1280.png",
+      "sha256": "348c829f90925559fe008a4fe6ee45cc55601ebd244bf4d849ff253ac0793cd5",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/curling-tv-live-1920.png",
+      "sha256": "9cf06c3bb3937a7325f8d3c2f1f2332dd87c715feef383b329ba239eff650015",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/knives-tv-live-1280.png",
+      "sha256": "7ce91b566dc4795385015a380d0e374cf2c2268d4219b90dd37d7b84ef282e17",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/knives-tv-live-1920.png",
+      "sha256": "b5c44d4fdabb596e3deff574bfa27ae7af23807eded31eb27dff7e30d62af72d",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/marble_bloom-tv-live-1280.png",
+      "sha256": "0a477e956bb0d97947fee5827919701c6986ec246f56100d7b4d8212deff4bb2",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/marble_bloom-tv-live-1920.png",
+      "sha256": "4eeb69d847e99a2cc49bc64679cfa274a9e851fd5002d26152eb5e2e42d4a7f9",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/pocket_siege-tv-live-1280.png",
+      "sha256": "6209827df1d1f74d4b7ba7cd279cf6f03a27ca753c492e19126dc7c319f51bf9",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/pocket_siege-tv-live-1920.png",
+      "sha256": "9c1f1609c3b05b45fd006d2aeb40bbfeef46d9b368f77cfa92cdad3e2daea6bb",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/push-tv-live-1280.png",
+      "sha256": "c8ab4516e0f3993b38f449b47b8514242da113cb6e43012736165be37c67da6b",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/push-tv-live-1920.png",
+      "sha256": "bfdf9fa75ae8627408bb52d3986cf3a7c2acf97c6b24252faa1c729cbd572aa9",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/shrink-tv-live-1280.png",
+      "sha256": "d22199c2fe18d04f31e51237c9e7a96d600da2136542e4e209907fb8b028bb2c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/shrink-tv-live-1920.png",
+      "sha256": "7fc47ccbad402dff31faaa848780f822b416c029aa68f90e40da00a010369692",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1280.png",
+      "sha256": "91e798c1268fd92f64b48df85479f702db05eb4f80039d4b0a0f080330682d8d",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1920.png",
+      "sha256": "19fe6ce5a4a7bc7251ef8e53408ae5c37b8930adb7c1d7dc85f5983491dfada1",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/western-tv-live-1280.png",
+      "sha256": "54a5d7d3e013cc92f218bccb7d7999019f88f084e39cee5a37d17688489d5ec0",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/western-tv-live-1920.png",
+      "sha256": "4b5e793c8e6ded0f22dd8ff49f220a5cd216a27d9d2fc17ada2d4b0e2af963e4",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/airhockey-tv-live-1280.png",
+      "sha256": "9c3f9226afb86d0c93b68627cd99ba638e9521df35f8277ba148f0536446c44d",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/airhockey-tv-live-1920.png",
+      "sha256": "199a4d832802bb0bb5be142d6a6588057a78b772839f5300ad22378aea7db0d6",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/bow_club-tv-live-1280.png",
+      "sha256": "a1de6d9b20ed0c5f3b13132f0a15157b1b2e668a5d13706b21cbddc902247021",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/bow_club-tv-live-1920.png",
+      "sha256": "59189f702dee4ba9e694945f1a1630a0f39e37781a64464b6e532319699d359f",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/players-320.png",
+      "sha256": "e0323262257cf911e5517111db32650455d374bb2c85a43a4fd5e3398064655c",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/players-402.png",
+      "sha256": "28231d2af9d596e45a0a5c14b6e90614c064132ce53f0645dfd97a043e4b025a",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/profile-320.png",
+      "sha256": "29c38cca839de825ee08db938ac78d463c1011661e9008b82df86a91d3a9566f",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/profile-402.png",
+      "sha256": "4f8bef996d1a961ef393eac87a993ada34f51236ec5fc100b53e4f7d1aae18fe",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/ranking-profile-320.png",
+      "sha256": "75d6e1a5355e98f002b6703c7583e2dac590f1ad940c9ac5de8fad128ad87c75",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/ranking-profile-402.png",
+      "sha256": "bbbaed6ebeebb238bedb28a900f01ef0c60961424a4b78ef49e66751c5a0f9b0",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/rankings-320.png",
+      "sha256": "b5406d572ac9a5da4022ac3b3ddf6e08685bd8dbb87a9bfa994da15082e705a8",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/rankings-402.png",
+      "sha256": "242b5f0ba492a9a8452823399a57b16b1614fbbb0422fbbf8209570e7ed2367d",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/tv-arrival-3-1280.png",
+      "sha256": "35999caa0c7fe1c51deeacd138084b7edc2c1057aabb1c71258d9f91ca12f1d2",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/tv-arrival-3-1920.png",
+      "sha256": "c213d116fb53063453dd22cbe463496d54b860226dec8d51369b9ae4187a3a60",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/tv-arrival-4-1280.png",
+      "sha256": "2ffeb4e33efc683f530b5fdd336f04b86fd04967da79c320c7aa2b489a9a9d21",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/tv-arrival-4-1920.png",
+      "sha256": "1f23306639715e4ecbdc1ec6e90b0ee87ba0f0690b0a230a6a2d6a027bae5625",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/tv-our-people-1280.png",
+      "sha256": "89cf77a9a05473da3e506649b31bbcbfeef8c30cc2ac28fcbaf8b5468aa98738",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/tv-our-people-1920.png",
+      "sha256": "b98f6d321f834eea60882e255fc4094ddc54c7d05225703b0aff3fd7a204cfc3",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/upload-preview-3-402.png",
+      "sha256": "f569848887688219fc7440dee0aae2b93e27f7f2493df3172c3da450d199edd3",
+      "opened": true
+    },
+    {
+      "path": "output/playwright/photo-mask-all36-2026-10-03/shared-screens/upload-preview-4-402.png",
+      "sha256": "5d6f253ed8ec9a88324bd42f20ba56296f79d46d562c41e69ca994984a2a3250",
+      "opened": true
+    }
+  ]
+}

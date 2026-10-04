@@ -1,4 +1,7 @@
 /* TV-only presentation layers. Never changes iframe or host control geometry. */
+body.tv-screen #tvBoardTitle.has-game-logo{display:block;overflow:visible;margin:8px auto;line-height:0;-webkit-line-clamp:unset}
+body.tv-screen .tv-board-game-logo{display:block;width:340px;height:104px;margin:0 auto;max-width:100%;object-fit:contain;image-rendering:auto}
+body.tv-screen .tv-podium.has-tail .tv-board-game-logo{height:76px;width:280px}
 body.tv-screen .tv-startup,body.tv-screen .tv-presentation,body.tv-screen .tv-scene-transition{position:absolute;inset:0;z-index:200;display:grid;place-items:center;overflow:hidden;pointer-events:none;color:var(--ink);box-sizing:border-box}
 body.tv-screen .tv-startup{z-index:240;background:radial-gradient(ellipse at 65% 12%,#61429136,transparent 64%),radial-gradient(ellipse at 15% 75%,#7fbc2933,transparent 60%),#0b0e12}
 body.tv-screen .tv-startup-copy{position:relative;text-align:center;z-index:2;width:430px}
@@ -15,9 +18,9 @@ body.tv-screen .tv-celebration-background{position:absolute;inset:0;z-index:-1;o
 body.tv-screen #tvShader,body.tv-screen #tvFireworks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 body.tv-screen #tvShader{opacity:.9}body.tv-screen #tvFireworks{opacity:1}
 body.tv-screen .tv-stage-halo{position:absolute;left:10%;right:10%;bottom:32px;height:70px;background:radial-gradient(ellipse,#d9f2b83b,transparent 68%);filter:blur(18px)}
-body.tv-screen .tv-board-heading{position:relative;display:block;height:auto;border:0;background:none;text-align:center;padding:0;margin:0 auto 16px;width:100%;max-width:1020px;flex:0 0 auto}
+body.tv-screen .tv-board-heading{position:relative;display:block;height:auto;border:0;background:none;text-align:center;padding:0 0 20px;margin:0 auto 16px;width:100%;max-width:1020px;flex:0 0 auto}
 body.tv-screen .tv-board-heading h2{font-size:44px;line-height:1.1;letter-spacing:-1.8px;margin:10px 0 7px;font-style:italic;text-transform:uppercase;color:#f5f7ef;overflow-wrap:anywhere}
-body.tv-screen .tv-board-heading p{font-size:14px;margin:0;color:#c5ccb9}
+body.tv-screen .tv-board-heading p{position:absolute;top:0;right:0;max-width:250px;text-align:right;font-size:14px;margin:0;color:#c5ccb9}
 body.tv-screen .tv-board-heading .eyebrow{font-size:10px;letter-spacing:3px;color:#dcd0af}
 body.tv-screen .tv-podium-decks{width:100%;max-width:1160px;min-width:0}
 body.tv-screen .podium-deck{display:grid;grid-template-columns:repeat(var(--seats),minmax(0,1fr));gap:14px;align-items:end;justify-content:center;width:100%;padding-top:28px}
@@ -25,14 +28,16 @@ body.tv-screen #tvPodiumMain{min-height:340px;max-width:1080px;margin:0 auto}
 body.tv-screen .podium-seat{position:relative;min-width:0;max-width:260px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:end;text-align:center;isolation:isolate}
 body.tv-screen .podium-portrait{position:relative;width:76px;height:76px;display:grid;place-items:center;flex-shrink:0;border:3px solid var(--medal);border-radius:50%;background:linear-gradient(145deg,#53634f,#182221);box-shadow:inset 0 1px 0 #ffffff60,0 8px 30px #0005;z-index:2}
 body.tv-screen .podium-portrait img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover}
+body.tv-screen .podium-portrait img.podium-mascot{object-fit:contain;border-radius:0;padding:8px;box-sizing:border-box}
+body.tv-screen .podium-portrait.has-mascot>.podium-initial{visibility:hidden}
 body.tv-screen .podium-initial{font-size:27px;font-weight:800;color:#f0f7dc}
 body.tv-screen .is-winner .podium-portrait{width:90px;height:90px;box-shadow:0 0 0 8px #ffe3a012,0 0 46px #ffd67d38,0 8px 30px #0006}
 body.tv-screen .podium-crown{position:absolute;z-index:3;width:52px;height:42px;left:50%;top:-36px;transform:translateX(-50%) rotate(-7deg);filter:drop-shadow(0 4px 12px #ffe3a059)}
 body.tv-screen .podium-crown svg{width:100%;height:100%}
 body.tv-screen .podium-name{position:relative;width:100%;min-height:37px;max-height:42px;overflow:hidden;font-size:17px!important;line-height:1.15!important;font-weight:700;text-transform:none;letter-spacing:-.4px;margin:12px 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere;color:#eff4e8}
-body.tv-screen .podium-plinth{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;width:100%;height:var(--plinth-height);min-height:52px;padding:8px 4px;border:1px solid #ffffff22;border-top:2px solid var(--medal);border-radius:18px 18px 6px 6px;background:linear-gradient(105deg,#ffffff18,transparent 14%,#ffffff05 70%,#0005),linear-gradient(180deg,#344137dd,#17211dee);box-shadow:inset 0 0 0 1px #ffffff05,0 10px 30px #0005;overflow:hidden}
-body.tv-screen .podium-plinth:before{content:'';position:absolute;inset:0 0 auto;height:11px;background:linear-gradient(90deg,transparent,#ffffff2d 50%,transparent);border-bottom:1px solid #ffffff0a}
-body.tv-screen .is-winner .podium-plinth{background:linear-gradient(110deg,#ffe3a028,transparent 18%,#ffffff08 65%,#0003),linear-gradient(180deg,#666247c4,#282d23f5);box-shadow:inset 0 1px 1px #fff4ce70,0 0 60px #dcb45110,0 18px 44px #0005}
+body.tv-screen .podium-plinth{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;width:100%;height:var(--plinth-height);min-height:52px;padding:8px 4px;border:1px solid #ffffff22;border-top:2px solid transparent;border-radius:18px 18px 6px 6px;background:linear-gradient(105deg,#ffffff18,transparent 14%,#ffffff05 70%,#0005),linear-gradient(180deg,#344137dd,#17211dee);box-shadow:inset 0 0 0 1px #ffffff05,0 10px 30px #0005;overflow:hidden}
+body.tv-screen .podium-plinth:before{content:none;position:absolute;inset:0 0 auto;height:11px;background:linear-gradient(90deg,transparent,#ffffff2d 50%,transparent);border-bottom:1px solid #ffffff0a}
+body.tv-screen .is-winner .podium-plinth{background:linear-gradient(110deg,#ffe3a028,transparent 18%,#ffffff08 65%,#0003),linear-gradient(180deg,#666247c4,#282d23f5);box-shadow:0 0 60px #dcb45110,0 18px 44px #0005}
 body.tv-screen .podium-rank{font:italic 800 42px/1 Rubik,system-ui,sans-serif;color:var(--medal);text-shadow:0 4px 18px #0003}
 body.tv-screen .is-winner .podium-rank{font-size:66px}
 body.tv-screen .podium-points{font-size:16px;font-weight:750;font-variant-numeric:tabular-nums;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:5px}
@@ -90,8 +95,8 @@ body.tv-screen .tv-celebration-background:after{content:'';position:absolute;lef
 @media(prefers-reduced-motion:reduce){body.tv-screen .tv-celebration-background:before,body.tv-screen .tv-celebration-background:after{animation:none}}
 
 /* Gold, silver and bronze plinths are solid medal colour; the rest use --medal party tints. */
-body.tv-screen .podium-seat .podium-plinth{border:1px solid color-mix(in srgb,var(--medal) 70%,#fff);border-top:2px solid color-mix(in srgb,var(--medal) 40%,#fff);background:linear-gradient(105deg,#ffffff30,transparent 22%,#ffffff0a 70%,#0000001f),linear-gradient(180deg,color-mix(in srgb,var(--medal) 78%,#111),color-mix(in srgb,var(--medal) 48%,#10131a));box-shadow:inset 0 1px 1px #ffffff55,0 0 34px color-mix(in srgb,var(--medal) 22%,transparent),0 14px 34px #0006}
-body.tv-screen .podium-seat.is-medal .podium-plinth{background:linear-gradient(105deg,#ffffff70,transparent 24%,#ffffff1c 64%,#0000001a),linear-gradient(180deg,color-mix(in srgb,var(--medal) 92%,#fff),var(--medal) 45%,color-mix(in srgb,var(--medal) 62%,#2a1a08));box-shadow:inset 0 2px 2px #ffffffa0,inset 0 -8px 18px #0000002a,0 0 46px color-mix(in srgb,var(--medal) 34%,transparent),0 16px 38px #0007}
+body.tv-screen .podium-seat .podium-plinth{border:1px solid color-mix(in srgb,var(--medal) 70%,#fff);border-top:2px solid transparent;background:linear-gradient(105deg,#ffffff30,transparent 22%,#ffffff0a 70%,#0000001f),linear-gradient(180deg,color-mix(in srgb,var(--medal) 78%,#111),color-mix(in srgb,var(--medal) 48%,#10131a));box-shadow:0 0 34px color-mix(in srgb,var(--medal) 22%,transparent),0 14px 34px #0006}
+body.tv-screen .podium-seat.is-medal .podium-plinth{background:linear-gradient(105deg,#ffffff70,transparent 24%,#ffffff1c 64%,#0000001a),linear-gradient(180deg,color-mix(in srgb,var(--medal) 92%,#fff),var(--medal) 45%,color-mix(in srgb,var(--medal) 62%,#2a1a08));box-shadow:inset 0 -8px 18px #0000002a,0 0 46px color-mix(in srgb,var(--medal) 34%,transparent),0 16px 38px #0007}
 body.tv-screen .podium-seat .podium-rank{color:#fff;text-shadow:0 2px 0 #0003,0 4px 18px #0003}
 body.tv-screen .podium-seat .podium-points{color:#fff}
 body.tv-screen .podium-seat .podium-plinth small{color:#ffffffc4}
@@ -169,7 +174,7 @@ body.tv-screen #preview.tv-choice #controls,body.tv-screen #preview.tv-choice #s
 
 /* Fresh shelf on TV: a roomier scroll box (offset by equal negative margins, so the
    cards do not move) lets the focused card's glow render; it fades at the side edges. */
-body.tv-screen #tvStage .lp-catalog .fresh-track{padding:24px 20px 30px!important;margin:-16px -20px -18px!important;scroll-padding:0 20px!important;
+body.tv-screen #tvStage .lp-catalog .fresh-track{padding:44px 20px 48px!important;margin:-36px -20px -36px!important;scroll-padding:0 20px!important;
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%)!important;mask-image:linear-gradient(to right,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%)!important}
 body.tv-screen #tvStage .lp-catalog .lp-fresh-section{overflow:visible!important}
 /* Soft edges top AND bottom of the vertical scroll, each with a fading blur strip. */
@@ -267,6 +272,8 @@ body.tv-screen{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card h3{font-size:26px!important;line-height:1.15!important;letter-spacing:-.025em!important}
 body.tv-screen #tvStage .lp-catalog .games>.game.lp-catalog-card p{-webkit-line-clamp:2}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card p{font-size:18px!important;margin:6px 0 10px!important;line-height:1.35!important}
+/* Compact TV cards keep descriptions subordinate; the featured card keeps its larger scale. */
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card:not(.featured) .game-info>p{font-size:14px!important;line-height:1.4!important}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.game-info{padding:20px 11px 10px!important}
 body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card .start-game{min-height:32px!important;font-size:12px!important;padding:7px 8px!important}
 body.tv-screen #tvStage .lp-catalog .lp-player-range{font-size:12px}
@@ -284,3 +291,34 @@ body.tv-screen #tvSidebar>.company-people .player{background:#fff4d04d!important
 body.tv-screen #tvBrowse,
 body.tv-screen.tv-roster-mid #tvBrowse,
 body.tv-screen.tv-roster-big #tvBrowse{margin-left:-76px;margin-right:-76px;padding-left:82px!important;padding-right:82px!important}
+
+/* Small catalogue cards stay subordinate to the large featured card. */
+body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card:not(.featured) h3{font-size:23px!important}
+
+/* Scene transition: the quiet shared wall, the game's own wordmark and the
+   approved Kardia roles. Opaque so a loading iframe never flashes through. */
+html body.tv-screen #tvSceneTransition.tv-scene-transition{
+ isolation:isolate;gap:18px!important;
+ background:radial-gradient(ellipse 46% 42% at 50% 52%,#7b5bd03d,transparent 70%),linear-gradient(180deg,#151321ee,#100e19f8),var(--hp-wall-image,none) center/cover no-repeat,#141423!important;
+}
+html body.tv-screen .tv-scene-transition>span{font:normal 600 13px/1 var(--hp-font-body,KardiaFit),sans-serif;letter-spacing:.42em;padding-left:.42em;color:var(--party-lilac,#c6b1ff)}
+html body.tv-screen .tv-scene-transition strong{font-family:var(--hp-font-action,KardiaFatRunner),sans-serif;font-style:italic;font-weight:900;font-size:48px;letter-spacing:-.02em;color:#f6f1ff;text-shadow:0 4px 22px #0009}
+html body.tv-screen .tv-scene-logo{display:block;width:min(46vw,560px);height:min(34vh,240px);object-fit:contain;filter:drop-shadow(0 14px 34px #0008)}
+html body.tv-screen .tv-scene-logo[hidden],html body.tv-screen .tv-scene-transition.has-logo strong{display:none}
+
+/* Arrival cards (tv-show.js welcome): bottom-right under the roster, above the stage art, never
+   over the catalogue focus or sidebar. Enter from the left, leave by fading. */
+html body.tv-screen .tv-arrivals{position:absolute;right:24px;bottom:24px;justify-items:end;z-index:230;display:grid;gap:10px;pointer-events:none}
+html body.tv-screen .tv-arrival{display:flex;align-items:center;gap:12px;padding:8px 18px 8px 8px;border-radius:999px;background:#221d30f0;outline:1px solid #d6bdff3d;box-shadow:0 10px 30px #0008;animation:tv-arrival-in 520ms cubic-bezier(.34,1.4,.64,1) both}
+html body.tv-screen .tv-arrival.is-leaving{animation:tv-arrival-out 360ms cubic-bezier(.23,1,.32,1) both}
+html body.tv-screen .tv-arrival-face{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;overflow:hidden;font:italic 900 20px/1 var(--hp-font-action,KardiaFatRunner),sans-serif;color:#fff;background:#3a2f55}
+html body.tv-screen .tv-arrival-face img{width:100%;height:100%;object-fit:cover}
+html body.tv-screen .tv-arrival-copy{display:grid;gap:2px}
+html body.tv-screen .tv-arrival-copy b{font:550 18px/1.2 var(--hp-font-body,KardiaFit),sans-serif;color:#f6f1ff;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body.tv-screen .tv-arrival-copy small{font:italic 400 13px/1.2 var(--hp-font-copy,KardiaFitRunner),sans-serif;color:#cfff85}
+@keyframes tv-arrival-in{from{opacity:0;translate:40px 0;scale:.92}to{opacity:1;translate:0 0;scale:1}}
+@keyframes tv-arrival-out{to{opacity:0;translate:0 8px}}
+@media(prefers-reduced-motion:reduce){html body.tv-screen .tv-arrival,html body.tv-screen .tv-arrival.is-leaving{animation:none}}
+
+/* Podium identity and plinth remain whole without a horizontal top stripe. */
+html.hp-ui body.tv-screen .hp-ranking-podium .podium-name{border-bottom-color:transparent}

@@ -1,0 +1,35 @@
+{
+  "capturedAt": "2026-10-03T19:49:34.285829+00:00",
+  "ownedSource": {
+    "games/kart/server.js": "b8464166aa05ebffa92cf3eeb7839057a28fa53e23b940ad9fdb6b048619b324",
+    "games/kart/static/handling.js": "a82f54d1a25d5e23e1a06a4238e03bca887f52d912aa19803dc3e64bd83aa1d0",
+    "games/kart/static/host.js": "35f4065e967bc45eed0e013d32564d515f768549a6a86e35e1abdcb8ef18d718",
+    "tests/kart-handling.test.cjs": "3555e04138df66899c6e640269837d85d3e593eaec6a2a06a2977b08e4fa2ecc"
+  },
+  "browserReport": "output/playwright/kart-handling-2026-10-03/final-clean/report.json",
+  "visualReviewed": [
+    "final-clean/kart-tv-1280.png",
+    "final-clean/kart-tv-1920.png",
+    "final-clean/kart-controller-402.png"
+  ],
+  "tests": {
+    "focusedAndBarrier": {
+      "passed": 12,
+      "failed": 0,
+      "log": "output/playwright/kart-handling-2026-10-03/focused-tests.log"
+    },
+    "realLap": {
+      "passed": 1,
+      "failed": 0,
+      "realPhysicsLapSeconds": 31,
+      "offroadFrames": 0,
+      "log": "output/playwright/kart-handling-2026-10-03/final-lap.log"
+    }
+  },
+  "limitations": [
+    "No physical phone driving validation.",
+    "Browser driving is automated button/key exercise, not a human usability study.",
+    "Canonical circuit, walls, checkpoints, laps and maximum straight speed stay intact.",
+    "Uploaded-photo style is owned by the separate cross-game photo audit."
+  ]
+}

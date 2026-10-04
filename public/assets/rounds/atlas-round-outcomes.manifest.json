@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "source": "atlas-round-outcomes.png",
+  "styleProfile": "illustration",
+  "chromaKeyed": false,
+  "frames": {
+    "survived-bomb": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 52,
+        "y": 123,
+        "w": 280,
+        "h": 266
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 266
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/survived-bomb.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      }
+    },
+    "winner-crown": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 434,
+        "y": 78,
+        "w": 284,
+        "h": 356
+      },
+      "sourceSize": {
+        "w": 284,
+        "h": 356
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/winner-crown.webp",
+      "cell": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      }
+    },
+    "eliminated": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 831,
+        "y": 107,
+        "w": 258,
+        "h": 299
+      },
+      "sourceSize": {
+        "w": 258,
+        "h": 299
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/eliminated.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      }
+    },
+    "closest-centre": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 1210,
+        "y": 114,
+        "w": 268,
+        "h": 285
+      },
+      "sourceSize": {
+        "w": 268,
+        "h": 285
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/closest-centre.webp",
+      "cell": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      }
+    },
+    "fastest-draw": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 40,
+        "y": 630,
+        "w": 304,
+        "h": 276
+      },
+      "sourceSize": {
+        "w": 304,
+        "h": 276
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/fastest-draw.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      }
+    },
+    "draw-tie": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 424,
+        "y": 655,
+        "w": 304,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 304,
+        "h": 227
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/draw-tie.webp",
+      "cell": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      }
+    },
+    "knocked-out": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 808,
+        "y": 638,
+        "w": 304,
+        "h": 261
+      },
+      "sourceSize": {
+        "w": 304,
+        "h": 261
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/knocked-out.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      }
+    },
+    "next-round": {
+      "atlas": "atlas-round-outcomes.webp",
+      "frame": {
+        "x": 1202,
+        "y": 642,
+        "w": 285,
+        "h": 252
+      },
+      "sourceSize": {
+        "w": 285,
+        "h": 252
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-round-outcomes/next-round.webp",
+      "cell": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      }
+    }
+  }
+}

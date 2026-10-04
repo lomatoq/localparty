@@ -1,0 +1,10 @@
+'use strict';
+const assert=require('node:assert/strict');
+async function checkWaitingLayout(page){
+ await page.evaluate(async()=>{await document.fonts.ready;const roots=['waitingRules','brandHeader','sessionControls'].map(id=>document.getElementById(id)).filter(Boolean);const finite=roots.flatMap(n=>n.getAnimations({subtree:true})).filter(a=>{const t=a.effect?.getComputedTiming();return a.playState==='running'&&t&&Number.isFinite(t.endTime)&&t.endTime<=3000;});await Promise.all(finite.map(a=>a.finished.catch(()=>{})));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});
+ const data=await page.evaluate(()=>{const rect=id=>{const e=document.getElementById(id),r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom,right:r.right,scrollWidth:e.scrollWidth,clientWidth:e.clientWidth};};const card=rect('waitingRules'),header=rect('brandHeader'),footer=rect('sessionControls');return{viewport:{width:innerWidth,height:innerHeight},documentWidth:document.documentElement.scrollWidth,card,header,footer,headerGap:card.y-header.bottom,buttons:['readyButton','spectateButton'].map(id=>{const r=rect(id),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return{id,...r,hit:hit?.closest('button')?.id};})};});
+ assert(data.documentWidth<=data.viewport.width+1,'Waiting page horizontal overflow: '+JSON.stringify(data));assert(data.card.scrollWidth<=data.card.clientWidth+1,'Waiting card horizontal overflow');assert(data.headerGap>=-1&&data.headerGap<=24,'Waiting card must follow header without large blank gap: '+data.headerGap);
+ for(const b of data.buttons){if(b.id==='spectateButton'&&!b.width&&!b.height)continue;assert(b.width>0&&b.height>=40&&b.x>=-1&&b.right<=data.viewport.width+1&&b.y>=0&&b.bottom<=data.viewport.height+1,'Waiting action clipped: '+JSON.stringify(b));assert.equal(b.hit,b.id,'Waiting action must be clickable');if(data.footer.height>0)assert(b.bottom<=data.footer.y+1,'Waiting action overlaps session footer: '+JSON.stringify(b));}
+ return data;
+}
+module.exports={checkWaitingLayout};

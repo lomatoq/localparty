@@ -18,7 +18,12 @@ const server=http.createServer((req,res)=>{
   const host=url.pathname==='/host'||url.pathname==='/host.html';
   if(host&&!local(req)){res.writeHead(403);return res.end('Host is local only');}
   const allowed={'/':'index.html','/index.html':'index.html','/host':'host.html','/host.html':'host.html',
-    '/controls.js':'controls.js','/host.js':'host.js','/net.js':'net.js','/style.css':'style.css'};
+    '/curling-ice.js':'curling-ice.js',
+    '/curling-arena.js':'curling-arena.js',
+    '/curling-feel.js':'curling-feel.js',
+    '/spectator-seat.js':'spectator-seat.js','/spectator-crowd.js':'spectator-crowd.js','/notice-copy.js':'notice-copy.js','/scene-bowling.js':'scene-bowling.js','/bowling-extras.js':'bowling-extras.js','/controls.js':'controls.js','/host.js':'host.js','/scene-curling.js':'scene-curling.js','/curling-extras.js':'curling-extras.js','/net.js':'net.js','/style.css':'style.css','/sports-controls.css':'sports-controls.css'};
+  allowed['/bowling-alley.js']='bowling-alley.js';
+  allowed['/bowling-feel.js']='bowling-feel.js';
   let file=allowed[url.pathname]&&path.join(__dirname,'public',allowed[url.pathname]);
   if(['/vendor/three.module.js','/vendor/three.core.js'].includes(url.pathname))file=path.join(__dirname,'../../node_modules/three/build',path.basename(url.pathname));
   if(url.pathname==='/vendor/loaders/GLTFLoader.js')file=path.join(__dirname,'../../node_modules/three/examples/jsm/loaders/GLTFLoader.js');

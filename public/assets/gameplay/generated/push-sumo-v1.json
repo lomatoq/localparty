@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "image": "push-sumo-v1.png",
+  "size": {
+    "w": 1254,
+    "h": 1254
+  },
+  "canonicalFacing": "up",
+  "variants": [
+    {
+      "id": "lime",
+      "frame": {
+        "x": 99,
+        "y": 48,
+        "w": 456,
+        "h": 498
+      },
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "alphaThreshold": 24,
+      "cellPadding": {
+        "left": 105,
+        "top": 54,
+        "right": 78,
+        "bottom": 87
+      }
+    },
+    {
+      "id": "plum",
+      "frame": {
+        "x": 700,
+        "y": 48,
+        "w": 455,
+        "h": 498
+      },
+      "cell": {
+        "x": 627,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "alphaThreshold": 24,
+      "cellPadding": {
+        "left": 79,
+        "top": 54,
+        "right": 105,
+        "bottom": 87
+      }
+    },
+    {
+      "id": "coral",
+      "frame": {
+        "x": 100,
+        "y": 675,
+        "w": 454,
+        "h": 498
+      },
+      "cell": {
+        "x": 0,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "alphaThreshold": 24,
+      "cellPadding": {
+        "left": 106,
+        "top": 54,
+        "right": 79,
+        "bottom": 87
+      }
+    },
+    {
+      "id": "cyan",
+      "frame": {
+        "x": 701,
+        "y": 675,
+        "w": 453,
+        "h": 498
+      },
+      "cell": {
+        "x": 627,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "alphaThreshold": 24,
+      "cellPadding": {
+        "left": 80,
+        "top": 54,
+        "right": 106,
+        "bottom": 87
+      }
+    }
+  ],
+  "provenance": {
+    "tool": "built-in image_gen",
+    "original": "/Users/hlebhlyaba/.codex/generated_images/01a100eb-2b5c-7533-b152-96f37575dd91/exec-2a1d363a-2fdb-4c2a-a4df-b29642401fe5.png",
+    "sha256": "f10adb6abcaf46a53fc63afb2353d64a5f08e37cebdf8b4c393d85387fdfc07c",
+    "bitmapProcessing": "none; byte-for-byte copy; native alpha"
+  }
+}

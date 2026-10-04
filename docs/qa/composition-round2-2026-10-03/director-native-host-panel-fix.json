@@ -1,0 +1,77 @@
+{
+  "status": "scoped-browser-visual-confirmation",
+  "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/report.json",
+  "reportSha256": "e5ba3dcaa96c4099f0f68906ffbcf19b08940fb80294e001c526ea27ecbce251",
+  "method": "Actual bundled native-shell HTML in WebKit with simulated native snapshots and command bridge. No physical iPhone or managed game-engine acceptance.",
+  "captureSourceDrift": [],
+  "currentSourceDrift": [],
+  "judgment": "All six originals individually opened. One continuous rounded outer Host Panel surface; no separate rectangular inner purple layer. Host Panel title and close button remain at the same top position for top/middle/end states. Content continuation fades appear only at scroll edges, while the final diagnostics text is whole at the end. No new scoped clipping or header attachment defect observed.",
+  "physicalDeviceValidated": false,
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-top-320.png",
+      "sha256": "b79c328ee339c79575bad114ad59bc453b83583fb2eaca666c7454d32cb112e4",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-middle-320.png",
+      "sha256": "d222c1a7d98dd170211dbe55b15d8c4f956558e5208ac3af5ad9e0e9af98d03f",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-end-320.png",
+      "sha256": "df47cb50c6e415872aa98e1e8f371cbbc318517172b7134e401529a409e8e692",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-top-402.png",
+      "sha256": "68f6499ae8296651332ae9441cdd2c657e4a6d79b843bf7c01bd289fa421601d",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-middle-402.png",
+      "sha256": "c352da492a8c1c254d70cdbeb4f696448424c47037ebe22298c2c5d73449e565",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-end-402.png",
+      "sha256": "6a7029cec668718d8f20c29f9b9cf780ff9aaefbe1569e7391eacf8ce9ceebee",
+      "individuallyOpened": true
+    }
+  ],
+  "horizontalFollowup": {
+    "judgment": "Six start/middle/end originals individually opened. Genre labels soften at continuing left/right edges; initial All and final Table remain whole. Fixed Host Panel title/close and one continuous rounded outer surface remain intact. Synthesized browser evidence only.",
+    "originals": [
+      {
+        "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-start-320.png",
+        "sha256": "5f50bb70cd1f8b1f8ef58f66d5080bb6b421d66985ef7bb5f9499ef8b5a94296",
+        "individuallyOpened": true
+      },
+      {
+        "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-middle-320.png",
+        "sha256": "58913b354d4f47328113246085eeabf5c4b0522ffda2a2164a21741bcd8b0500",
+        "individuallyOpened": true
+      },
+      {
+        "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-end-320.png",
+        "sha256": "a3d8b80380552ee3e4702118706c29e872cf76f97b6d645a71c51318b6bbacdf",
+        "individuallyOpened": true
+      },
+      {
+        "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-start-402.png",
+        "sha256": "dc492136db2c7ae7c4341c13bd4b9aca381a2874381ca40d37ef21d37112ac70",
+        "individuallyOpened": true
+      },
+      {
+        "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-middle-402.png",
+        "sha256": "22c5bddc0c42d8aeb40aa639aa7f827923a6ee382ff16e77b3b9ca59ada6cc3d",
+        "individuallyOpened": true
+      },
+      {
+        "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-end-402.png",
+        "sha256": "4634e4fe2a1cb782827524d29aaacdb68af7381f6179b9e3e3a059d63966efd3",
+        "individuallyOpened": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "scope": "Independent Bow TV cap live/draw/result at720/1080",
+  "judgment": "Captured cap/field closure; prominent approvedwordmark+Time identity, Arrows/Mode guidance supporting; markers/targets whole; realresults replace cap",
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/bow-cap/tv-playing-1280.png",
+      "sha256": "5744b5e67b1e2ed5cbbc033a13af2f34252f699ebbe206231b115a484392e6e8",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/bow-cap/tv-playing-1920.png",
+      "sha256": "345837878dc6bb12753baded056cd218db9e8d9d101b22814bbecb5f99fd3f9e",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/bow-cap/draw-tv-1280.png",
+      "sha256": "c8401699f0193c0468d4c19d5016e8c222a6e3fcff7ad98c4c8d571664c64a26",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/bow-cap/draw-tv-1920.png",
+      "sha256": "f7503d9b241397a72c26c822fa5a8dde1bec2ddfa0d54d2f046c2610c29646aa",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/bow-cap/tv-results-1280.png",
+      "sha256": "dba9d411aa52e0cc8a6e378a3bc94c0b37e93126cf6700e4a93f304e6caf4465",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/bow-cap/tv-results-1920.png",
+      "sha256": "60601ed44d06874048f5982b7073ccc18f568bae129838726e5d7eb85a272f14",
+      "individuallyOpened": true
+    }
+  ],
+  "sourcePacket": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/bow-cap/source-review-packet.json",
+  "ownerHashes": {
+    "games/bow_club/public/phone.html": "b5ee0c04417c0c1859516dd625c2ffd3f4992bb2d104a4448c8dff1446c0afc0",
+    "games/bow_club/public/phone.js": "f45efca4646e366cfbc943b48c62001fdc4f426d8f83ec4b4edc31047ce507d7",
+    "games/bow_club/public/style.css": "2fc5f52015a67f0dc29fca27439062603541c435f500417ccb1f4b041cfe10b5",
+    "games/bow_club/public/tv.js": "46c4b572966f4d98e252c4fc55bcfac0c3ed13d3ed368287672a76f3d7699770",
+    "games/bow_club/public/src/range-scene.mjs": "6942687d6f488384f44d3e8c35b208ee3ad1b294d14cc48c47796bef89b22bcc",
+    "public/assets/game-logos-v1/logos/bow_club.png": "bc68ae77a1578fd7fc79491e17a15e032847399a921c3fb1d1e8726472e45efd"
+  },
+  "sharedHashes": {
+    "public/app.js": "16e1c07924cf5af1613cb737fb149d137e25aacebb2500cb89dc18d861b9d4de",
+    "public/tv.js": "00f7bd46e01685609c92d846ce56d9ed11fb5fa97850ea4f39fe35c82f3be21e",
+    "public/tv-information.css": "4cfd0282a8beb2450207903fd766cb549113ed1495238102e504f9c0fe831c17",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-logo-renderer.js": "2b7ec4bd6687a3fde77cd4b3c97b8d4ab5d4d4648a28ce7f56424741f20dcd95"
+  },
+  "errors": [],
+  "ownerChanged": [],
+  "sharedChanged": [],
+  "qualifications": [
+    "Capturedpixels only, no camera/hardware acceptance.",
+    "LiteralCyrillic playernames preserved in ENinterface."
+  ]
+}

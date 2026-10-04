@@ -1,0 +1,32 @@
+[
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "/Users/hlebhlyaba/HeyPals/localparty/games/jenga/public/style.css",
+    "line": 1,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "overused-font",
+    "name": "Overused font",
+    "description": "Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans, and Space Grotesk are used on so many sites they no longer feel distinctive. Each new wave of AI-generated UIs converges on the same handful of faces. Choose a face that gives your interface personality.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/hlebhlyaba/HeyPals/localparty/games/arcade_deluxe/public/style.css",
+    "line": 32,
+    "snippet": "font-family:Arial"
+  },
+  {
+    "antipattern": "bounce-easing",
+    "name": "Bounce or elastic easing",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/hlebhlyaba/HeyPals/localparty/games/arcade_deluxe/public/style.css",
+    "line": 171,
+    "snippet": "cubic-bezier(.34, 1.56, .64, 1)"
+  }
+]

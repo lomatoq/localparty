@@ -2,6 +2,10 @@
 // Deterministic planar ice/contact solver; rendered as real 3D meshes on the host.
 // Fixed 120 Hz substeps keep fast take-outs from tunnelling through other stones.
 const {clamp}=require('./rules');
+// Curl turn rate (rad/s per unit spin). Measured in tests/curling-physics.test.js:
+// .052 sent every full-spin draw off the sheet (|x|>3.35), so half the spin slider
+// was unusable. .026 keeps the same model: full spin curls ~1.9 m at draw weight.
+const CURL=.026;
 class Ice {
   constructor(){this.stones=[];this.active=null;this.serial=0;}
   reset(){this.stones=[];this.active=null;}
@@ -18,7 +22,7 @@ class Ice {
         if(!s.valid)continue;
         const v=Math.hypot(s.vx,s.vz), sw=s===this.active?clamp(sweep,0,1):0;
         if(v>.018){
-          const next=Math.max(0,v-(.46-.11*sw)*h), angle=s.spin*.052*(1-sw*.6)*h;
+          const next=Math.max(0,v-(.46-.11*sw)*h), angle=s.spin*CURL*(1-sw*.6)*h;
           const vx=s.vx*Math.cos(angle)-s.vz*Math.sin(angle),vz=s.vx*Math.sin(angle)+s.vz*Math.cos(angle);
           s.vx=vx*next/v;s.vz=vz*next/v;s.x+=s.vx*h;s.z+=s.vz*h;s.rotation+=s.spin*h*2;
         }else{s.vx=s.vz=0;}
@@ -40,4 +44,4 @@ class Ice {
   snapshot(){return this.stones.map(({vx,vz,spin,...s})=>s);}
   free(){}
 }
-module.exports={Ice};
+module.exports={Ice,CURL};

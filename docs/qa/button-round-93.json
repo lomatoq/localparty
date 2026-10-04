@@ -1,0 +1,38 @@
+{
+  "errors": [],
+  "round": {
+    "text": "1/7",
+    "font": "KardiaFatRunner"
+  },
+  "hudRound": {
+    "text": "ROUND 1 / 7",
+    "font": "KardiaFatRunner",
+    "round": "true"
+  },
+  "icons": [
+    {
+      "id": "copy",
+      "scale": "1.18"
+    },
+    {
+      "id": "surpriseGame",
+      "scale": "1.18"
+    },
+    {
+      "id": "",
+      "scale": "1.18"
+    }
+  ],
+  "tvRounds": [
+    {
+      "text": "1 / 7",
+      "font": "KardiaFatRunner"
+    }
+  ],
+  "build": 93,
+  "viewed": [
+    "controller-game.png",
+    "tv-game.png",
+    "controller-lobby-393.png"
+  ]
+}

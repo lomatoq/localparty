@@ -3,6 +3,14 @@
   // Exact source copy is the key. Keep game mechanics and names out of code paths.
   const dictionary = Object.create(null);
   const pairs = `
+Держись ближе к центру · арена сжимается|Stay near the centre · the arena is shrinking
+НОЖИ КОНЧИЛИСЬ|NO KNIVES LEFT
+ВЫСТРЕЛЕНО|SHOT
+ЖДЁМ|WAITING
+Проверь роль|Check role
+Отменить мазок|Undo
+Следующий забег после завершения этого раунда.|The next race starts when this round ends.
+Ты выбыл · следи за экраном. Скоро следующий раунд.|You are out · watch the screen. Next round soon.
 Игры|Games
 Все игры|All games
 Играть|Play
@@ -22,6 +30,13 @@
 Сейчас не твой ход|Not your turn yet
 Дождись своего хода|Wait for your turn
 Настройки|Settings
+Звук|Audio
+Включить звук|Enable audio
+Настройки звука|Audio settings
+Без звука|Mute
+Музыка|Music
+Эффекты|Effects
+Авторы музыки и звуков|Music and sound credits
 Настройка|Setup
 Настройки раунда|Round settings
 Настройки выбранной игры|Game settings
@@ -219,6 +234,7 @@
 ЗАМЕР|MEASURING
 ТАП!|TAP!
 ТАПНИ В НУЖНЫЙ МОМЕНТ|TAP AT THE RIGHT MOMENT
+Тапни в нужный момент|Tap at the right moment
 Тапай быстрее!|Tap faster!
 ВЗМАХ ↑|FLAP ↑
 ПАС|PASS
@@ -331,6 +347,14 @@
 МАТЧ|MATCH
 МАТЧ ОКОНЧЕН|MATCH OVER
 Матч окончен|Match over
+Отличная игра!|Great game!
+Результаты всей компании|Everyone’s results
+Результаты матча|Match results
+Итоги этого матча|Match results
+Тестовый матч · без записи в рейтинг|Test match · not added to rankings
+Общие очки за все сыгранные матчи|Total points across all matches
+Результаты этого матча|Results of this match
+Это ты|You
 Матч завершён|Match complete
 Матч закончен|Match over
 ИГРА ОКОНЧЕНА|GAME OVER
@@ -501,6 +525,7 @@
 Правила указаны на общем экране.|Rules are shown on the shared screen.
 Закончить игру?|End the game?
 Текущий матч завершится для всей компании.|The current match will end for everyone.
+Пока никого. Первый телефон появится здесь сразу после ввода имени.|Nobody here yet. The first phone will appear after entering a name.
 Пока никого. Открой свой пульт или пригласи друзей.|Nobody here yet. Open your controller or invite friends.
 Контроллер отключится. Остальные игроки продолжат.|This controller will disconnect. Other players can continue.
 Во время игры держи приложение открытым.|Keep the app open during play.
@@ -678,6 +703,7 @@ AR / стрельба из лука|AR / archery
 `;
   const gameCopy = `
 Твой ход|Your turn
+Твой блок|Your block
 Восстанавливаем комнату…|Restoring the room…
 Нет связи с локальным сервером.|Cannot reach the local server.
 Применить язык ко всем|Apply language to everyone
@@ -874,6 +900,7 @@ CO-OP: очистить цепочки на 1, 3 или 6 уровнях. VERSUS
 ОЧЕРЕДЬ|QUEUE
 ОЧКИ|POINTS
 Очки|Points
+Убийства|Kills
 ОЧЕРЕДЬ ХОДОВ|TURN ORDER
 ПОБЕДЫ|WINS
 Победа|Victory
@@ -898,6 +925,18 @@ CO-OP: очистить цепочки на 1, 3 или 6 уровнях. VERSUS
 ПРИСОЕДИНИТЬСЯ|JOIN
 ПОЛЁТ ЗАВЕРШЁН|FLIGHT OVER
 ПОПАДИ В СВОЙ ЦВЕТ|HIT YOUR COLOR
+Фальстарты|False starts
+Лучшая|Best
+Победы|Wins
+Не стреляй до DRAW!|Don't shoot before DRAW!
+Убегай от бомбы · не дай себя коснуться|Run from the bomb · don't get tagged
+Догони кого-нибудь и коснись|Catch someone and tag them
+Веди пальцем · толкай их за край|Drag to move · push them over the edge
+Веди пальцем|Drag to move
+Смотри на экран|Watch the screen
+Смотри на большой экран · не ведись на фейки|Watch the screen · ignore fake signals
+Попади в свой цвет|Hit your color
+Нужно ещё 1 игрока|Still need 1 player
 ПОПЫТКИ|ATTEMPTS
 ПОСТРОИТЬ БАШНЮ|BUILD A TOWER
 ПРАВША|RIGHT-HANDED
@@ -1198,6 +1237,7 @@ iOS может приостановить сервер. Фоновое разр�
 Открой IP компьютера :3000|Open the computer's IP address :3000
 Открой на телефоне IP этого компьютера :3000|On your phone, open this computer's IP address :3000
 Или откройте на телефоне|Or open on your phone
+Сканируйте QR первым телефоном.|Scan the QR code with the first phone.
 Сканируйте QR|Scan the QR code
 Если QR не открывается|If the QR code does not open
 Выбери сетевой адрес Wi‑Fi компьютера и QR обновится автоматически.|Choose the computer's Wi-Fi address; the QR code updates automatically.
@@ -1233,6 +1273,7 @@ QR → имя → телефон автоматически получает с�
 Разминка|Warm-up
 Попробуйте ещё раз|Try again
 Не загрузился арсенал. Обнови страницу.|The arsenal did not load. Refresh the page.
+Здоровье|Health
 Оружие|Weapon
 Оружие появится после начала матча.|Weapons appear after the match starts.
 Пока не выбран|Not selected yet
@@ -1622,8 +1663,8 @@ CLICK по switch 1, потом 2, потом 3. Лазеры убивают.|CL
   "Больше фишек после пяти раздач — победа. Боковые банки и ничьи учитываются.": "Most chips after five hands wins. Includes side pots and split pots.",
   "Две команды": "Two teams",
   "Быстрая шайба и две равные команды. Играйте вдвоём, вчетвером, вшестером или ввосьмером.": "A fast puck and two equal teams. Play with 2, 4, 6 or 8 players.",
-  "Веди пальцем по полю: бита следует за ним в твоей полосе.": "Drag on the rink: your striker follows within your lane.",
-  "Защищай свои ворота и забивай соперникам. Каждый отвечает за свою полосу.": "Defend your goal and score against your rivals. Everyone owns a lane.",
+  "Веди пальцем по полю: бита следует за ним по всей половине твоей команды.": "Drag on the rink: your striker moves across your team’s half.",
+  "Защищай свои ворота и забивай соперникам. Перемещайся по всей половине своей команды.": "Defend your goal and score. Move anywhere on your team’s half.",
   "Первыми забейте семь голов или ведите в счёте через две минуты.": "First to seven goals, or the team ahead after two minutes, wins.",
   "Общее поле · риск": "Shared field · risk",
   "Общее минное поле и личные очки. Открывайте безопасные клетки быстрее друзей.": "One shared minefield, individual scores. Open safe tiles before your friends.",
@@ -1632,6 +1673,32 @@ CLICK по switch 1, потом 2, потом 3. Лазеры убивают.|CL
   "Больше очков после открытия безопасных клеток или трёх минут — победа.": "Most points when all safe tiles are open or three minutes are up wins.",
   "Разрушаемый грунт, плавная езда и полный арсенал из 321 оружия — со случайной выдачей или ручным выбором перед матчем.": "Destructible terrain, smooth driving and a full arsenal of 321 weapons — dealt at random or picked by hand before the match."
 });
+  Object.assign(dictionary,{
+    'ТВОИ ФИШКИ':'YOUR CHIPS', 'Краткие правила':'Quick rules',
+    'Уравняй текущую ставку, повысь её или сбрось карты. Лучшая комбинация из пяти карт забирает банк.':'Match the current bet to call, increase it to raise, or fold your hand. The best five-card hand wins the pot.',
+    'ГОНИ!':'RACE!', 'ГОНКА ОКОНЧЕНА':'RACE OVER', 'ЖДИ СЛЕДУЮЩИЙ ЗАБЕГ':'WAITING FOR NEXT RACE',
+    'ПО БЕЗДОРОЖЬЮ · МЕДЛЕННЕЕ':'OFF‑ROAD · SLOWDOWN',
+    'Удерживай, чтобы повернуть · отпусти, чтобы ехать прямо':'Hold to turn · release to straighten',
+    'Руление':'Steering', 'Удерживай для поворота влево':'Hold to steer left', 'Удерживай для поворота вправо':'Hold to steer right',
+    'Педаль газа':'Gas pedal', 'Открыть настройки выбранной игры':'Open selected game settings',
+    'Все':'All', 'Стратегия':'Strategy', 'Настольные':'Table',
+    'ЕЩЁ ЗАБЕГ':'RACE AGAIN', 'ГОНКА':'RACING', 'Ждём гонщиков…':'Waiting for drivers…',
+    'ПОБЕДИЛ!':'WINS!', 'пережил бомбу!':'survived the bomb!',
+    'берёт раунд':'wins the round', 'Ничья раунда':'Round draw',
+    'выживаний':'survivals', 'побед в раундах':'round wins',
+    'фальстартов':'false starts', 'лучшее':'best', 'Рисует':'Drawing:',
+    'Угадано':'Guessed', 'рисунков':'drawings', 'Вот ваши таланты':'Your artists',
+    'Рисунков':'Drawings', 'Следующий художник':'Next artist',
+    'НИЧЬЯ':'DRAW', 'НОЖЕЙ':'KNIVES', 'ФЛАГ':'FLAG', 'Флаги':'Flags',
+    'Спроси':'Ask', 'Отвечай':'Answer', 'Роль:':'Role:',
+    'остался на арене!':'is the last on the arena!',
+    'Все вылетели одновременно!':'Everyone was knocked out at once!',
+    'ближе всех к центру!':'is closest to the centre!',
+    'победитель раунда':'round winner', 'пережил дольше всех!':'survived the longest!',
+    'Никто не пережил раунд!':'Nobody survived the round!',
+    'Никто не выстрелил после DRAW!':'Nobody fired after DRAW!',
+    'Все выстрелили раньше сигнала':'Everyone fired before the signal'
+  });
   if (typeof module !== 'undefined' && module.exports) module.exports=dictionary;
   if(root)root.PARTY_TRANSLATIONS=dictionary;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,0 +1,46 @@
+/* Solid, rounded silhouettes from the supplied pack. Keep standard optical boxes. */
+html body svg.hp-pack-icon{display:inline-block;width:22px;height:22px;min-width:22px;flex:none;fill:currentColor!important;stroke:#0b0d17!important;stroke-width:.12!important;stroke-linejoin:round;paint-order:stroke fill;vertical-align:middle;pointer-events:none}
+html body .hp-button-icon.hp-pack-icon{width:var(--hp-button-icon-size,22px)!important;height:var(--hp-button-icon-size,22px)!important;min-width:var(--hp-button-icon-size,22px)}
+html body button:has(>.hp-pack-icon){gap:10px!important;align-items:center;justify-content:center}
+html body [data-game-icon]>.hp-pack-icon{width:32px;height:32px;color:var(--game-title-accent,#c8ff68);filter:drop-shadow(0 1px 1px #0008)}
+
+html body .hp-button-icon>.hp-pack-icon{width:100%!important;height:100%!important;min-width:0!important}
+html body .game .tag.hp-game-tag{display:inline-flex;align-items:center;gap:6px}
+html body .game .tag.hp-game-tag>.hp-pack-icon{width:16px!important;height:16px!important;min-width:16px!important;color:#c8ff68}
+/* Inline label symbols remain vectors on the bundle custom scheme as well. */
+html body svg.hp-inline-icon{width:1.05em!important;height:1.05em!important;min-width:1.05em!important;margin-inline:4px;vertical-align:-.15em;stroke-width:.12!important}
+html body #partyNativeDock svg.hp-pack-icon{width:21px!important;height:21px!important;min-width:21px!important;stroke-width:.12!important}
+
+html body .game .featured-label{box-sizing:border-box;height:var(--genre-badge-height,32px)!important;min-height:0!important;padding-block:0!important;display:inline-flex;align-items:center;justify-content:center}
+/* Start label and its arrow form one centred unit, never space-between. */
+html.hp-ui body.native-shell #catalog button.lp-direct-start{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ gap:6px!important;text-align:center!important;
+}
+html.hp-ui body.native-shell #catalog button.lp-direct-start svg.hp-inline-icon{
+ margin-inline:0!important;position:static!important;float:none!important;
+ width:1em!important;height:1em!important;min-width:1em!important;
+}
+html.hp-ui body.native-shell #catalog button.lp-direct-start>:is(span,b,strong){flex:0 0 auto!important;width:auto!important;margin-inline:0!important;text-align:center!important}
+
+/* Recommendation is a compact circular icon; genre owns the remaining rail. */
+html body .game .featured-label.hp-featured-icon{
+ inset:12px 12px auto auto!important;width:32px!important;height:32px!important;
+ min-height:32px!important;max-width:none!important;padding:0!important;
+ border-radius:50%!important;color:#c8ff73!important;background:#201d30!important;
+ border:1px solid #c8ff7359!important;display:grid!important;place-items:center!important;
+}
+html body .game .featured-label.hp-featured-icon>svg{width:19px!important;height:19px!important;min-width:19px!important;margin:0!important;fill:currentColor}
+html body .game.featured .art>.tag{
+ max-width:calc(100% - 68px)!important;box-sizing:border-box;white-space:nowrap!important;
+ overflow:hidden!important;text-overflow:ellipsis;min-width:0;
+}
+
+/* A modest optical enlargement; neutral navigation/footer symbols retain
+   their approved size. Scale keeps text alignment and button height stable. */
+html body button .hp-colored-button-icon{scale:1.18;transform-origin:center}
+html body button img.hp-award{scale:1.18;transform-origin:center}
+
+/* Fresh arrows keep their tap target; only the symbol gets smaller. */
+html body .fresh-arrow svg.hp-pack-icon{width:18px!important;height:18px!important;min-width:18px!important}
+html body.native-shell .fresh-arrow svg.hp-pack-icon{width:15px!important;height:15px!important;min-width:15px!important}

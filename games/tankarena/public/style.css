@@ -1,2 +1,140 @@
 *{box-sizing:border-box}body{margin:0;background:#101823;color:#ecf5ff;font:600 16px system-ui;overscroll-behavior:none}header{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;border-bottom:1px solid #ffffff18}header b{letter-spacing:2px}#timer{font-size:clamp(34px,7vw,70px);font-variant-numeric:tabular-nums;color:#ffce72}a{color:#94eaff}main{max-width:1400px;margin:auto;padding:16px}canvas{width:100%;max-height:70vh;object-fit:contain;border-radius:22px;background:#192938}button{border:0;background:#ffca72;color:#261c0d;border-radius:18px;min-height:58px;padding:16px 24px;font:900 18px system-ui;cursor:pointer;transition:transform .12s,filter .12s}button:active{transform:scale(.95);filter:brightness(1.2)}button:disabled{opacity:.35}button,#joy,canvas{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none}p{color:#a9bacb}#board{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.stat{padding:12px 18px;border:1px solid #ffffff22;border-radius:16px;background:#203043;animation:rise .4s both}.stat b{font-size:24px}.stat small{display:block;color:#b5c4d4;margin-top:4px}.controls{display:flex;align-items:center;justify-content:space-around;gap:18px;min-height:55vh}#joy{position:relative;width:min(47vw,250px);height:min(47vw,250px);border:3px solid #6fdbdb44;border-radius:50%;background:radial-gradient(circle,#315568,#182938)}#knob{position:absolute;left:50%;top:50%;width:38%;height:38%;border-radius:50%;background:#70e0e6;box-shadow:0 5px 24px #0006;transform:translate(-50%,-50%)}#joy small{position:absolute;top:110%;left:0;width:100%;font-size:11px;text-align:center;color:#9fbdc7}#fire{width:min(38vw,210px);height:min(38vw,210px);border-radius:50%;background:#ff795f;box-shadow:0 8px 0 #893f34;font-size:clamp(20px,5vw,32px)}#status{padding:14px;background:#203043;border-radius:15px;text-align:center;font-size:19px}form{padding:16px;display:flex;gap:10px}input{min-width:0;width:100%;padding:15px;border-radius:12px;font:18px system-ui}body{padding-bottom:env(safe-area-inset-bottom)}@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@media(max-width:500px){main{padding:12px}.stat{padding:9px;font-size:13px}.controls{gap:10px}header{padding:10px 15px}}
 [hidden]{display:none!important}
+
+/* Shared hierarchy, separated values instead of an unscannable status sentence. */
+html.party-managed.party-player .combat-stats{display:grid;grid-template-columns:1fr minmax(0,1.5fr) 1fr;gap:8px;width:100%;max-width:600px;margin:0 auto}
+html.party-managed.party-player .combat-stats[hidden]{display:none}
+.combat-stats>div{min-width:0;padding:12px 8px;text-align:center;border:1px solid #d6bdff2b;border-radius:18px;background:#262035}
+.combat-stats small{display:block;font:500 12px/1.4 var(--hp-font-body,system-ui);color:#c5bad7;margin-bottom:6px}
+.combat-stats b{display:block;font:650 clamp(20px,5.5vw,28px)/1.2 var(--hp-font-numeric,system-ui);overflow-wrap:anywhere;color:#f6f1ff}
+html.party-managed.party-player .combat-stats #combatWeapon{font:550 clamp(12px,3.5vw,15px)/1.3 var(--hp-font-body,system-ui);text-transform:none;overflow-wrap:normal;word-break:normal}
+
+/* The rail is one scoreboard: four players remain visible, larger rosters
+   scroll inside it while the title stays fixed. Names and points have separate roles. */
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host aside{
+ align-self:stretch!important;height:100%!important;max-height:none!important;padding:20px!important;gap:12px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host aside h2{
+ text-align:center;font-size:20px!important;line-height:1.2!important;margin:0!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host aside>#board{
+ flex:1 1 0!important;min-height:0!important;margin:0!important;gap:8px!important;scrollbar-width:none;overflow-anchor:none;
+}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board::-webkit-scrollbar{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board[data-scroll-above=false][data-scroll-below=true]{mask-image:linear-gradient(#000 calc(100% - 18px),transparent)}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board[data-scroll-above=true][data-scroll-below=false]{mask-image:linear-gradient(transparent,#000 18px)}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board[data-scroll-above=true][data-scroll-below=true]{mask-image:linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent)}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board>.stat{
+ flex:none!important;min-width:0;padding:12px!important;border-radius:18px!important;box-shadow:none!important;border-color:#ffffff1c!important;border-left:3px solid var(--player-color)!important;
+}
+.arsenal-identity{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;align-items:center;min-width:0}
+.arsenal-rank{font:italic 900 16px/1.25 var(--hp-font-action,KardiaFatRunner);color:#c5b7dc;text-align:center}
+.arsenal-name{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:550 16px/1.25 var(--hp-font-body,KardiaFit);text-transform:none;color:#f9f4ff}
+.arsenal-metrics{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
+.arsenal-points{display:flex;align-items:baseline;gap:6px;min-width:0}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host .stat .arsenal-points>small{display:inline;font:italic 400 12px/1.2 var(--hp-font-copy,KardiaFitRunner)!important;margin:0!important;color:#c5b7dc}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host .stat .arsenal-score{font:italic 900 26px/1.15 var(--hp-font-action,KardiaFatRunner)!important;color:#cfff85}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host .stat .arsenal-health{font:550 12px/1.5 var(--hp-font-body,KardiaFit)!important;min-width:56px;padding-bottom:4px}
+.arsenal-kills{font:550 12px/1.5 var(--hp-font-body,KardiaFit);white-space:nowrap;color:#ded5eb}
+.stat[data-connected=false]{opacity:.55}
+.stat[data-dead=true] .arsenal-health{color:#ffa3a7!important}
+html.hp-ui.party-managed.party-player[data-party-game=tankarena] body>main{padding-inline:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tankarena] body #status:not([hidden]){margin-bottom:12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tankarena] body .combat-stats :is(#combatHealth,#combatScore){font:italic 900 24px/1.2 var(--hp-font-action,KardiaFatRunner)!important}
+html.hp-ui.party-managed.party-player[data-party-game=tankarena] body #joy[aria-disabled=true]{opacity:.4;pointer-events:none}
+@media(max-width:1100px){html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host aside{height:auto!important;max-height:min(520px,60dvh)!important}}
+
+/* Combat polish 2026-10-02: FIRE press ring from the finger, recoil squash,
+   real reload sweep (server cooldown) and one pop when a long reload ends. */
+html.party-player #fire{position:relative;overflow:hidden;isolation:isolate}
+html.party-player #fire::before{content:"";position:absolute;left:var(--press-x,50%);top:var(--press-y,50%);width:150%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,#ffffffd0 0,#ffffff00 28%,#2f4a0866 46%,#2f4a0800 60%);opacity:0;scale:.3;pointer-events:none;z-index:-1}
+html.party-player #fire.is-pressed::before{animation:arsenal-press-ring .36s cubic-bezier(.23,1,.32,1) both}
+html.party-player #fire::after{content:"";position:absolute;inset:0;border-radius:inherit;background:conic-gradient(from 0deg,#11111400 0 calc((1 - var(--reload,0))*360deg),#111114 0);opacity:0;pointer-events:none;-webkit-mask:radial-gradient(circle,#0000 0 64%,#000 65%);mask:radial-gradient(circle,#0000 0 64%,#000 65%);transition:opacity .12s ease}
+html.party-player #fire.is-reloading::after{opacity:.42}
+html.party-player #fire.is-ready{animation:arsenal-ready .32s cubic-bezier(.34,1.56,.64,1)}
+@keyframes arsenal-press-ring{0%{opacity:.9;scale:.3}100%{opacity:0;scale:1}}
+@keyframes arsenal-ready{0%{scale:1}40%{scale:1.05}100%{scale:1}}
+@media (prefers-reduced-motion:reduce){html.party-player #fire::before,html.party-player #fire.is-ready{animation:none!important}}
+
+/* Codex UI: tighten the arena-to-scoreboard gap and let both use their columns. */
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main{width:100%!important;max-width:none!important;grid-template-columns:minmax(0,1fr) clamp(300px,25vw,430px)!important;gap:20px!important;padding-inline:24px!important}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main .arena-surface{width:100%!important;min-width:0;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main .arena-surface canvas#arena{width:100%!important;max-width:none!important;border-radius:0!important;box-shadow:none!important;object-fit:contain!important}
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main aside{width:100%!important;min-width:0}
+
+/* Fullheight receiver, uniform world camera, and a single roster reading axis. */
+@media(min-width:1101px){
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main{--tank-rail:clamp(320px,19vw,360px);grid-template-columns:minmax(0,1fr) var(--tank-rail)!important;grid-template-rows:minmax(0,1fr)!important;align-content:stretch!important;align-items:stretch!important;box-sizing:border-box;height:100dvh!important;min-height:0!important;padding:0 24px!important;gap:20px!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main .arena-surface{width:100%!important;height:100%!important;min-height:0!important;aspect-ratio:auto!important;align-self:stretch!important;justify-self:start!important;border-radius:0!important;overflow:visible!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main .arena-surface canvas#arena{height:100%!important;max-height:none!important;object-fit:fill!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main aside{align-self:center!important;display:flex;flex-direction:column;height:auto!important;max-height:calc(100dvh - 24px)!important;margin:0!important;padding:calc(var(--party-hud-height,136px) + 12px) 12px 12px!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:hidden!important;gap:12px!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main aside>#board{flex:0 1 auto!important;max-height:calc(100dvh - 24px - var(--party-hud-height,136px) - 72px)!important;min-height:0!important;gap:8px!important;overflow:auto!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host[data-phase=playing] .host-rules{display:none!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal]{display:block!important;padding:10px!important;border-left-width:1px!important;border-radius:16px!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal] .arsenal-identity{display:grid!important;grid-template-columns:64px 32px minmax(0,1fr)!important;gap:8px!important;align-items:center!important;text-align:center}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-avatar{width:32px;height:40px;object-fit:contain;justify-self:center}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-name{font-size:18px!important;line-height:1.2!important;text-align:center!important;overflow-wrap:anywhere}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal] .arsenal-metrics{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin-top:8px!important;align-items:center!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board :is(.arsenal-points,.arsenal-kills){display:flex;grid-column:auto;grid-row:auto;justify-content:center;align-items:center;flex-direction:row;gap:6px;min-width:0}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board :is(.arsenal-points,.arsenal-kills)>small{display:block!important;font:italic 400 14px/1.25 var(--hp-font-copy,KardiaFitRunner)!important;margin:0!important;color:#c5b7dc}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal] :is(.arsenal-score,.arsenal-kill-count){font:italic 900 26px/1.25 var(--hp-font-action,KardiaFatRunner)!important;min-width:0;text-align:center!important;font-variant-numeric:tabular-nums}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-kill-count{color:#f8f2ff}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-health{display:block!important;width:100%;min-width:0!important;font:550 14px/1.25 var(--hp-font-body,KardiaFit)!important;text-align:center;background:none!important;padding:0!important;margin-top:8px}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-health-track{height:6px;width:100%;margin-top:4px;border-radius:3px;background:#ffffff20;overflow:hidden}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-health-track>i{display:block;width:var(--hp,0%);height:100%;background:#c8ff73}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .stat[data-dead=true] .arsenal-health-track>i{background:#ff8b80}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host aside>canvas#arsenalEvents{position:static!important;inset:auto!important;display:block;width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:360/124;flex:none;pointer-events:none;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:contain}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host aside>canvas#arsenalEvents[hidden]{display:none!important}
+}
+
+/* The rail has no enclosing card: its atmosphere belongs to the full scene.
+   A quiet gunmetal wash spans the receiver height behind the unchanged cards. */
+@media(min-width:1101px){
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main{position:relative;isolation:isolate}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main::before{content:"";position:absolute;inset:0 0 0 auto;width:calc(var(--tank-rail) + 120px);background:linear-gradient(to left,#1d2c37d9 0%,#22343f99 58%,#22343f00 100%);pointer-events:none;z-index:-1}
+}
+
+@media(min-width:1101px) and (max-width:1400px){
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host>main aside>#board{gap:6px!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal]{padding:4px 8px!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal] .arsenal-identity{grid-template-columns:64px 24px minmax(0,1fr)!important;gap:6px!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-avatar{width:24px;height:30px}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-name{font-size:16px!important;line-height:1.2!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal] .arsenal-metrics{margin-top:4px!important;gap:8px!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board :is(.arsenal-points,.arsenal-kills)>small{font-size:12px!important;line-height:1.2!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal] :is(.arsenal-score,.arsenal-kill-count){font-size:18px!important;line-height:1.1!important}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-health{font-size:12px!important;line-height:1!important;margin-top:4px}
+ html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-health-track{height:4px;margin-top:2px}
+}
+
+/* Tactical slate belongs to the existing roster, with the authored terrain's
+   quiet material beneath it. The rail cap and ordered board share one axis. */
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout=arsenal]{
+ background:linear-gradient(155deg,#424b39,#29352f 48%,#242637)!important;
+ border-color:#bacd914d!important;
+ box-shadow:inset 0 1px 0 #eaffcf20,inset 0 -8px 18px #070b1026!important;
+}
+
+/* Phone combat: stats, instruction and controls form one lower thumb group.
+   Extra receiver height sits above the group, not between stats and action. */
+@media (max-width:600px) and (orientation:portrait){
+ html.hp-ui.party-managed.party-player[data-party-game=tankarena] body>main{
+  display:flex!important;flex-direction:column;justify-content:flex-end;box-sizing:border-box;
+  height:100dvh;min-height:0!important;
+  padding-bottom:clamp(12px,calc(30dvh - 95px),106px)!important;
+ }
+ html.hp-ui.party-managed.party-player[data-party-game=tankarena] body>main>:is(#status,.combat-stats){flex:none}
+ html.hp-ui.party-managed.party-player[data-party-game=tankarena] body>main>.controls{
+  flex:none;min-height:0!important;box-sizing:border-box;
+  padding-top:56px;padding-bottom:0;
+ }
+ html.hp-ui.party-managed.party-player[data-party-game=tankarena] body #joy>small{
+  top:auto!important;bottom:calc(100% + 12px);margin:0;pointer-events:none;
+ }
+}
+
+/* Match the uploaded-photo identity contract without clipping mascot art. */
+html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-avatar[data-photo=true]{height:auto!important;aspect-ratio:1;object-fit:cover;border-radius:50%}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.arsenal-avatar[data-photo=true]{box-sizing:border-box;border:1.5px solid var(--player,#b6ba99)}

@@ -1,0 +1,41 @@
+{
+  "evidence": "output/playwright/composition-round2-2026-10-03/kart-tap-local-fit-confirm/report.json",
+  "proof": [
+    {
+      "game": "kart",
+      "w": 1280,
+      "h": 720,
+      "whole4": true,
+      "lastBottom": 632.75,
+      "railBottom": 648.75
+    },
+    {
+      "game": "kart",
+      "w": 1920,
+      "h": 1080,
+      "whole4": true,
+      "lastBottom": 873.265625,
+      "railBottom": 889.265625
+    },
+    {
+      "game": "taprace",
+      "w": 1280,
+      "h": 720,
+      "outerPaintRemoved": true
+    },
+    {
+      "game": "taprace",
+      "w": 1920,
+      "h": 1080,
+      "outerPaintRemoved": true
+    }
+  ],
+  "errors": [],
+  "changedFiles": [],
+  "ownedHash": {
+    "kart": "9944514e4e545b9af1694b294c5cc593464d949f98139eb27cccb125a90a6b4e",
+    "tap": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d"
+  },
+  "sharedHeaderHash": "d7caa8359033306217afe2703dd56e065e99d36c5fdfcec6c15f7ee58d5cb649",
+  "all4TVOriginalsOpened": true
+}

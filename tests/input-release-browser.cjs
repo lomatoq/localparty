@@ -19,10 +19,10 @@ async function until(fn){for(let i=0;i<200;i++){if(await fn())return;await delay
   await until(()=>tv.frames().some(f=>f.parentFrame()&&f.parentFrame()!==tv.mainFrame()&&f.url().includes('/games/'+id+'/')));
   for(const bot of tv.frames().filter(f=>f.parentFrame()&&f.parentFrame()!==tv.mainFrame()&&f.url().includes('/games/'+id+'/'))){await bot.waitForFunction(()=>typeof window.PARTY_BOT_TICK==='function');await bot.evaluate(()=>{window.PARTY_BOT_TICK=()=>{};});}
   await phone.locator('#readyButton').click();await until(async()=>['countdown','playing'].includes((await api()).active?.ui?.phase));
-  const f=phone.frames().find(f=>f.url().includes('/games/'+id+'/')),control=f.locator(selector);await control.waitFor({state:'visible'});await until(()=>control.isEnabled());
-  for(const event of ['pointercancel','lostpointercapture','blur','offline']){
+  const f=phone.frames().find(f=>f.url().includes('/games/'+id+'/')),control=f.locator(selector);await control.waitFor({state:'visible'});await until(async()=>await control.isVisible()&&await control.isEnabled()&&await control.getAttribute('aria-disabled')!=='true');
+  for(const event of ['pointercancel','lostpointercapture','window-release','blur','offline']){
    const r=await control.boundingBox();await phone.mouse.move(r.x+r.width*.72,r.y+r.height*.5);await phone.mouse.down();assert(await f.evaluate(held),id+' press must engage control');
-   if(event==='blur'||event==='offline')await f.evaluate(type=>window.dispatchEvent(new Event(type)),event);else await control.dispatchEvent(event,{pointerId:1,pointerType:'mouse'});
+   if(event==='window-release')await f.evaluate(()=>window.dispatchEvent(new PointerEvent('pointerup',{pointerId:1,pointerType:'mouse'})));else if(event==='blur'||event==='offline')await f.evaluate(type=>window.dispatchEvent(new Event(type)),event);else await control.dispatchEvent(event,{pointerId:1,pointerType:'mouse'});
    assert(await f.evaluate(neutral),id+' '+event+' must release state');await phone.mouse.up();
   }
   // Reconnect while the finger is still DOWN, not after a convenient release.
@@ -30,13 +30,13 @@ async function until(fn){for(let i=0;i<200;i++){if(await fn())return;await delay
   const opened=await f.evaluate(()=>window.__opened);await f.evaluate(()=>window.dispatchEvent(new Event('online')));await f.waitForFunction(n=>window.__opened>n,opened);await until(async()=>(await api()).active.ready.length===2);
   assert(await f.evaluate(neutral),id+' recovery must not restore a held direction');await phone.mouse.up();
   // A neutral but permanently disabled controller is also a failure.
-  await until(()=>control.isEnabled());const resumed=await control.boundingBox();await phone.mouse.move(resumed.x+resumed.width*.72,resumed.y+resumed.height*.5);
+  await until(async()=>await control.isVisible()&&await control.isEnabled()&&await control.getAttribute('aria-disabled')!=='true');const resumed=await control.boundingBox();await phone.mouse.move(resumed.x+resumed.width*.72,resumed.y+resumed.height*.5);
   await phone.mouse.down();assert(await f.evaluate(held),id+' new press after reconnect');await phone.mouse.up();assert(await f.evaluate(neutral),id+' release after reconnect');
   await phone.mouse.down();assert(await f.evaluate(held),id+' held before transport loss');
   const transportOpened=await f.evaluate(()=>window.__opened);await f.evaluate(()=>{for(const socket of window.__auditSockets)if(socket.readyState===1)socket.close(4000,'test transport interruption');});
   await f.waitForFunction(n=>window.__opened>n,transportOpened);await until(async()=>(await api()).active.ready.length===2);
   assert(await f.evaluate(neutral),id+' bare transport recovery must clear held direction');await phone.mouse.up();
-  await until(()=>control.isEnabled());const recovered=await control.boundingBox();await phone.mouse.move(recovered.x+recovered.width*.72,recovered.y+recovered.height*.5);
+  await until(async()=>await control.isVisible()&&await control.isEnabled()&&await control.getAttribute('aria-disabled')!=='true');const recovered=await control.boundingBox();await phone.mouse.move(recovered.x+recovered.width*.72,recovered.y+recovered.height*.5);
   await phone.mouse.down();assert(await f.evaluate(held),id+' press after transport recovery');await phone.mouse.up();assert(await f.evaluate(neutral));
   report.games.push({id,scenarios:['pointercancel','lostpointercapture','blur','offline','reconnect-while-held','press-after-reconnect','transport-loss-while-held','press-after-transport-loss'],passed:true});console.log('PASS',id,'release/re-arm and connection recovery');
   await api({type:'stop'});await phone.locator('#home').waitFor({state:'visible'});

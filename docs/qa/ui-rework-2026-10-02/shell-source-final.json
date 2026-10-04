@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-02T10:05:25.818344+00:00",
+  "files": {
+    "public/app.js": "fe38cf35fa1486568ac72eac5628b1d885246ecff628b80204337f6589be9317",
+    "public/polish.css": "8791f38b3e8eaf5d487be7a532ef4d2f3d3fa22a0471bba5b5a03a992839d104",
+    "public/index.html": "dce6d30650d1afa8d09001aaba614b9ec4dfca68fbab2a7e86c1da4c0afb20b3",
+    "public/native-shell/host.js": "7b7b1fcf13d6169e7faa7fce995f40fabffdd962f68e498be084388f39da771e",
+    "public/native-shell/index.html": "32c5531b70541f7acc286d072643aadf1de2e4b7bf7625d997193d4473937b0a",
+    "public/native-shell/host-ui.css": "41a7223ab08169555c0ae9bba14f85b46fb0968e6c1eb32501d35ec556d3292b",
+    "public/game-ui-system.css": "6951fe7f55a681b425ab85a1338a10d8b3b4734eb439f4553e3efddf3eee594b",
+    "public/i18n-shell.js": "ba50b3691e2d8bc3c8f0a1631e6203cfb3ea8cba78f3f73a5ec2dcc24ad49b6d",
+    "scripts/qa/capture-review-main.cjs": "2671ca9827821f1444985d6dfd1f263aad93a85c9e37f7ff4d44abfd09370f3f"
+  }
+}

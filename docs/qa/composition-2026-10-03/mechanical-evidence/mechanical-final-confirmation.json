@@ -1,0 +1,1368 @@
+{
+  "reviewer": "independent assessment B / group06",
+  "reviewedAt": "2026-10-03T02:36:33.074066+00:00",
+  "report": "output/playwright/composition-2026-10-03/final-confirmation/report.json",
+  "reportSHA256": "1d501a066dfde8c8a6c2703d77676ec8474ab8c50a76de59a4767adad4e418e5",
+  "startedAt": "2026-10-03T02:27:06.293Z",
+  "finishedAt": "2026-10-03T02:32:40.611Z",
+  "topErrors": [],
+  "rowErrors": [
+    {
+      "game": "tanks",
+      "error": "No requested state before 60000ms"
+    },
+    {
+      "game": "peek_shoot",
+      "error": "frame.evaluate: Error: Theme stylesheet missing on actual game route"
+    }
+  ],
+  "changedDuringCapture": [
+    "games/monster/public/styles.css"
+  ],
+  "currentEndHashDrift": [],
+  "sourceCount": 337,
+  "sourceEnd": {
+    "server.js": "96f4b2b9980266559a43ac8c8547255df43fa716054bc8815c5633c620fc587b",
+    "public/tv-menu-polish.css": "7895e27dbd65d0c6cceed07ac02e78fff68fc8d2fe85105052f5f3a92f60834c",
+    "public/russian-fonts.css": "f58e9ee2c8414e5c9ae040afed38027ba50158216a350b3b928f1d9138bb1ed5",
+    "public/game-ui-themes.css": "88a36b9642889a3dbf8f6356522f37ba5a0182fe6884868c9bae95e93e539047",
+    "public/game-ui-themes.js": "181d3d8a64e2ab474883ba0038c52949993fea31d674f95ef7d36f6b7ba6a850",
+    "public/assets/spectators-20261002/spectator-01-coral.png": "d618937f956edd20ed690afc49d9b55d85ae0e4c499793cdca56b715d43d82fb",
+    "public/assets/spectators-20261002/spectator-02-teal.png": "abf0ade349cd23377318f47c00e0b7d427818e384e01dd390eeb5162b0afa542",
+    "public/assets/spectators-20261002/spectator-03-violet.png": "479464d00494007ac1524739dfda12c7fa6c3e56bf11e843ebb30602cd415f87",
+    "public/assets/spectators-20261002/spectator-04-lime.png": "f0245eaafe25e5970a04bba04505fe091e35c1847c6799498a8a2910cac3cf49",
+    "public/assets/spectators-20261002/spectator-05-lavender.png": "539ad6d6e1b882f689c785d84a3166b42dc0cd5dda5959f07f207fde47cb9c21",
+    "public/assets/game-ui-themes-20261002/bowling-pins.png": "7ee568b34a34ac3a33e290cddbbc7e8595ea780d9a3f0883b92ba60f467a9e12",
+    "public/assets/game-ui-themes-20261002/curling-stone.png": "99d5b98a43a1feec730f5d23beff3180bcf91c979e91e1fbd7c05f16d48417bb",
+    "public/assets/game-ui-themes-20261002/drawing-pencils.png": "37821c766158dcba542b8460ee00db9a6bb6bff882dc1700f3a3006b714d0455",
+    "public/assets/game-ui-themes-20261002/poker-chips.png": "07dc5f7e1d92dce4e666a6e28c28624144e29eb7257d4bdd26620e1e5f178829",
+    "public/assets/game-ui-themes-20261002/provenance.json": "63cff2bf287fb62982e91a5f28883662661eb3f189ad85d044e58190a4c98ecd",
+    "public/assets/game-ui-themes-20261002/racing-flag.webp": "83ea0129b8c5136448bb6cdaa05a38061cfc88bf171e66800fff7d576eabb63d",
+    "public/assets/game-ui-themes-20261002/racing-flag.webp.json": "e8c7d23ae468e11ebd37e8c7d5e055ad9b01deff4f367e380f57b39ca1c905c8",
+    "public/assets/game-ui-themes-20261002/source-hashes.json": "fe571f054ab2a2df1e92455ed198ae71e17946a06c882cda7570357d11a28df3",
+    "public/assets/game-ui-themes-20261002/wood-blocks.png": "4cc29a908c6940a6eff1fda9c6bff41b4bd9e8d99e2c06aa3bdc569bdcbd5625",
+    "public/i18n.js": "c2fa14cddfbd35225bf5fb0e50f240a0b05825355022a2f366d6514bd33bc5eb",
+    "public/tv.html": "448906e12f173dd33b44e4b11385cdbe2c214eda5d9dd4b0e3970e9dd58fdc2e",
+    "public/tv.js": "bfb310c31d3d29d9406f111a3e47a6dd0e60b4664a20be23ac6e65523d318446",
+    "public/tv.css": "ff99ec9422bba72f6a72def5dee15f14950aacdbce884c4de2ed420e926f5571",
+    "public/tv-information.css": "c303b6187a7462d4802d9ba7387ec8b7279f6389b2677a22cb1084a18aa1aaf2",
+    "public/tv-information.js": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+    "public/bridge.js": "e56a3c5cc60e8d0ee8e8094844ce8c29eacde905097804e61260172694334f84",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "ca399feb3d1ecd549dbe12ab1ff8cec598bea64be47b6d331cae55dcf9aa72fe",
+    "public/native-shell/controller-bridge.js": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+    "public/native-shell/tabs.js": "dc472e4d8f21cf648c1dfb6deb219c78e1988afaa93a1a8530255b0ec574015b",
+    "public/rankings-theme.css": "e1267b82b6e9964a90af309dc08751b2d93d40f883d1a0f0082f4b993652810a",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/polish.css": "7e57fafb1325fff73df63e2da427646689bed5c55cfea8fb46552ddd69695598",
+    "public/app.js": "16e1c07924cf5af1613cb737fb149d137e25aacebb2500cb89dc18d861b9d4de",
+    "public/background-scene.css": "b10f5c1389af61d51ea7e5162efd0f384f45442fb5cd7d2e8b18ae940c96d8cf",
+    "public/match-results.js": "22208ca92a54c2be19d74d5a4d774f52185d8c6dcda9393ffe0122b889c0a95f",
+    "public/tv-show.js": "dfae45a7a0ce9f5c84b91a1bbb04ed90903722ac6edb8c58d77e85fc9c55878d",
+    "public/tv-show.css": "60a9f4c6737a8edea31020b46996157057c93436a127a90ea47daf8985dd502e",
+    "public/native-shell/host.js": "eebbe2aebb414f5ab14ab0352f376dc2796f92a9d47c79cb198b5b064f420eec",
+    "public/native-shell/host-ui.css": "2e2145eea377aac9802ea652f3cd715fdca97f3feff090d21b6ad27e2adcc546",
+    "public/assets/gameplay/sports-siege/gallery-meadow-flat-v2.webp": "b09ae9325e89d7186b8e6a40e38a9a1c9abfa04068bf0b765103c9c5f2876379",
+    "public/assets/gameplay/sports-siege/gallery-meadow-flat-v3.webp": "fbcfd565be6d93c20f88aadbdeed608aa50529746d8b9b235bc24eaac6933050",
+    "games/sports_siege/public/assets/atlas-sports/banner-blank.webp": "f6f9768ca6661efc592d5fd6ba79778422dfc85992032e8697312a712c01a49b",
+    "games/sports_siege/public/assets/atlas-sports/bowling-ball-galaxy.webp": "401034c0548124a5bdb31e53f8f842519f31fa6a0e9c99838b1fa3b7a391b756",
+    "games/sports_siege/public/assets/atlas-sports/bowling-ball-lime.webp": "1c882fcd26019c583eb613da14bc67b6d22e6e67bf1d7357915fdb445b64a602",
+    "games/sports_siege/public/assets/atlas-sports/bowling-ball-marble.webp": "f55408af2e91144c877df1ca3980d69dd16f074686f2c83f01f8ed54edb6da36",
+    "games/sports_siege/public/assets/atlas-sports/bowling-pin.webp": "8bc7d6818c76b88f6222db4b5cfa4cb151f3337d2c8287ea879bd68976c79c26",
+    "games/sports_siege/public/assets/atlas-sports/broom.webp": "c7e27cd3504702234fe639aac8ef4eab60bffde2da5dc8ba20ce7ef0c430c2cc",
+    "games/sports_siege/public/assets/atlas-sports/curling-stone-coral.webp": "0b4946dd750ed9be5f93ce991508d7984ffea56bd88450302d2f04a9a24cfcf9",
+    "games/sports_siege/public/assets/atlas-sports/curling-stone-teal.webp": "5a062f4046bf7ecca62210d28635a11d7cf0ae063e788ac36eaf1268d3010943",
+    "games/sports_siege/public/assets/atlas-sports/fan-blob-a.webp": "ba78ae023785a50427716a2af4290b0cf3a5a714366f69242c3824f90effe6ac",
+    "games/sports_siege/public/assets/atlas-sports/fan-blob-b.webp": "6cfcdd1cc85e13086d110892b72355cd43b0beae942860d267a8a2c6a8a7a4a2",
+    "games/sports_siege/public/assets/atlas-sports/fan-blob-c.webp": "d809f43e6b7f70dbbfe93685f64ab14e73146479165c6a607798983057bf8fbb",
+    "games/sports_siege/public/assets/atlas-sports/gallery-friendly.webp": "d6c26902537c47c7def8f54f334e1140741379e5a6129d5b71c829bb7f916ca5",
+    "games/sports_siege/public/assets/atlas-sports/gallery-target-duck.webp": "323412cf090a07ce6dc40fd673d011150a76e8c4ecfa14222e92c56a9bfdc630",
+    "games/sports_siege/public/assets/atlas-sports/gallery-target-star.webp": "237344fb57df02b9e1d8fa39352c0123f1b5f7411719e3a67b2f872c89c61976",
+    "games/sports_siege/public/assets/atlas-sports/gate.webp": "75a4c5866070d4c49c5ce3ca90f51853d2d8aa37f75a884f1b85ce576df47b17",
+    "games/sports_siege/public/assets/atlas-sports/gold-target.webp": "68b3aec50279bd889f95cd690c119334a5c3f5d6ef3a51bed5435bfdb6e1c415",
+    "games/sports_siege/public/assets/atlas-sports/house-target.webp": "7813b72d7b786e76e11795bbda1613d3e4343bd0a67a86953a41465dceb3f7a0",
+    "games/sports_siege/public/assets/atlas-sports/lane-arrow.webp": "ab8d056c3f8cf7f90019f33d59ff6c2808437d8c245cc4482d6a4de8be46096d",
+    "games/sports_siege/public/assets/atlas-sports/pin-fallen.webp": "f873acbf4324cbb93ac96e941e2161150e3854c68b5aa5e79d705dc6bb3a9bdc",
+    "games/sports_siege/public/assets/atlas-sports/spare-badge.webp": "40ebcac540c3bdb11af1bae87f2a8a8396831a341001a5647db8ddb6a6aa4f51",
+    "games/sports_siege/public/assets/atlas-sports/strike-badge.webp": "786f067b20cb7b8b59d5f9ce896c8190a48ea656a12896f382482d419717c728",
+    "games/sports_siege/public/assets/atlas-sports/swarm-boss.webp": "9fa54647293d552b3e242076f18b46c29e13ebd3dfdc7ba0b21c6c2843679ba9",
+    "games/sports_siege/public/assets/atlas-sports/swarm-bug-a.webp": "73b5699301fdb195476fc0cc79dfbbd2f50de369fa88f4f550e0d012d0900776",
+    "games/sports_siege/public/assets/atlas-sports/swarm-bug-b.webp": "34cf8615302bf89685ca7386f43c1714fb1bac7f2fbcdb2fa49df4c83530d3f3",
+    "games/sports_siege/public/assets/atlas-sports.manifest.json": "4128dc8dc264324d9b3c16c85eca1b39a7a7a7296d209a629b75c110b82c1400",
+    "games/sports_siege/public/assets/atlas-sports.png": "ded58a112500bbe512c7ffa165bb4c62ee760bc925205acd4bd335635835ae9d",
+    "games/sports_siege/public/assets/atlas-sports.webp": "564fe978ff3f5eabeafeb3d1b5706de228d42bd0367431a768474728dc8bfdaf",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-hazard-v3.webp": "da64a000eadf0cc6ad67e2bc4583bc7ee6255e3ba79462b40f6eb14f67b71ee4",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-metal-v3.webp": "cf9eba74e67ac95b970837008f952025fce4d92919510187d99e9ba9fa4f0723",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-stone-v3.webp": "e89868ec0ade308780fe091d33b83a835b2bf08497dd07b2874b1d28026388c5",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-wood-v3.webp": "a9e82ea4dac79972f1ce3f1a645c9a158d4b9e3694070c3d5102cc06355fe71c",
+    "games/sports_siege/public/assets/environment/gallery/bg-blue.png": "a8d9487a6db81b9f4c723250ac147bd4ba0322bc33fb7bbdc87b9bc10935e280",
+    "games/sports_siege/public/assets/environment/gallery/bg-wood.png": "9d6ec1811b54cace6132c546ac61366bd86878ca4b6496d32a56232c35f221cd",
+    "games/sports_siege/public/assets/environment/gallery/cloud-1.png": "f93365452e5a8a2f45cd610a1faf495f95ea3ed93fcda9df74b09360784e97f3",
+    "games/sports_siege/public/assets/environment/gallery/cloud-2.png": "fe067f61703fd227bf015aaa1c060dc8f7762bb5c21efabf5d9823e3dac72f28",
+    "games/sports_siege/public/assets/environment/gallery/crosshair-mask.png": "c552a05d6f0452a5d589ec06af19d14408d3938f8a0764fd62c9545a300c8b43",
+    "games/sports_siege/public/assets/environment/gallery/curtain-side.png": "0f131726e6641477692160b89389f46c448edfcc568e5fb50f4c50dc02f67723",
+    "games/sports_siege/public/assets/environment/gallery/curtain-top.png": "e7d168611e0d5663128bc594bfa8161656108feec68953612e83128b03b7e899",
+    "games/sports_siege/public/assets/ice-pebble.png": "51289f7b453f098ec3ea7a0d7cf88e2b29772245fe63d3d73839635d7bd9771f",
+    "games/sports_siege/public/assets/ice-pebble.seamless.png": "46f27b7ba89bda0ee64ecbea32631d30e3a5adeb30ee904a7f1e022cc883c949",
+    "games/sports_siege/public/assets/lane-wood.png": "0ff56a2b229a9b6aba119400e8ed18fb55db867774f15d42c7984696bbba8d6e",
+    "games/sports_siege/public/assets/swarm-v3/gate-closed-v3.webp": "76e570cc479cbca6ca1e0036b94d1314568b93c5f72f4d835ea98efa70dc2cfc",
+    "games/sports_siege/public/assets/swarm-v3/gate-damaged-v3.webp": "8764c795a0002aec73f468afbc032bf2d34bfd9e4058f42004a016850eb7382c",
+    "games/sports_siege/public/assets/swarm-v3/gate-open-v3.webp": "bd0712b6e528d905bd8244dcb57fde9a74d264ad46fc15d630b409288a30697a",
+    "games/sports_siege/public/assets/swarm-v3/turret-coral-v3.webp": "c7a502899576cbb3f3d315846ba0b3c3dc7bf6c854665ddd96d38747a1576301",
+    "games/sports_siege/public/assets/swarm-v3/turret-cream-v3.webp": "48e28777ab340aeb859745627448af1ed94e8893fded20d300bdbb4614bdec55",
+    "games/sports_siege/public/assets/swarm-v3/turret-cyan-v3.webp": "82c5e76739ad730fddbd0e32e4b84886a0292a498978374fedd7437707bbe6a1",
+    "games/sports_siege/public/assets/swarm-v3/turret-gold-v3.webp": "63cfdd36e8756ae3fec96e1e0b642fdbe0f04224db61774f4db73f4f152da071",
+    "games/sports_siege/public/assets/swarm-v3/turret-leaf-v3.webp": "a1f926b5855484ff8f9d7d87d328c74776fa7637a76128c0aa81bde7fdd6a384",
+    "games/sports_siege/public/assets/swarm-v3/turret-lime-v3.webp": "caaf0c913d5161a9e32d545443fc23a9a08e0bb191569874ee818de2c5387f91",
+    "games/sports_siege/public/assets/swarm-v3/turret-manifest-v3.json": "02b36e3f632da416bc9cad4f4cb84230cdf4280beb19fc370537f243d861f898",
+    "games/sports_siege/public/assets/swarm-v3/turret-mint-v3.webp": "863dbadbb24adaedf2dc3faaceb3d5d8f49ae5c6a475371a379990287b4fde27",
+    "games/sports_siege/public/assets/swarm-v3/turret-orange-v3.webp": "c777551068f6a005c0e8065bb6693c03f4512819b2749ad44bbc5b0e7bdd5247",
+    "games/sports_siege/public/assets/swarm-v3/turret-orchid-v3.webp": "9bbe5ebd300c42c92e9be3aede745c6198e1405291147f2f6512594cb64a2a34",
+    "games/sports_siege/public/assets/swarm-v3/turret-pink-v3.webp": "a497bdd4e629b0c5f4d6931b1e295cfa0fd75996ca06cde7840dd6134f93ea97",
+    "games/sports_siege/public/assets/swarm-v3/turret-raspberry-v3.webp": "d586314ab6f22f5432a40820af64cc3b4624f519b9d73b31f0465e792881a5d5",
+    "games/sports_siege/public/assets/swarm-v3/turret-royal-v3.webp": "02ff1ebbb0649dd0475958bb3c2bc9ac2afb31143925eb694a47c558c2020755",
+    "games/sports_siege/public/assets/swarm-v3/turret-sky-v3.webp": "b12cf782d47b52f075edf8aa2ec2d565eaa8d851257bb014425234040ab0b8fa",
+    "games/sports_siege/public/assets/swarm-v3/turret-steel-v3.webp": "a2b912b06413780b53b071fcdbf5734f1856e48894eea10479b7b318e28650c4",
+    "games/sports_siege/public/assets/swarm-v3/turret-teal-v3.webp": "554e1ab9cc2a4712db81d30167df2b79002b5364d9761ead823314615f90cb51",
+    "games/sports_siege/public/assets/swarm-v3/turret-violet-v3.webp": "d145800ef1919eeb63e90a01a3a41c1d77ad723d79dcc134c43039ae6a8c2486",
+    "games/sports_siege/public/assets/swarm-v3/wall-left-v3.webp": "d3cfe3db00e4c4699bc405908d88cc4610adae908d970f3b7ab4bdc723c6d278",
+    "games/sports_siege/public/assets/swarm-v3/wall-right-v3.webp": "c169f399a4c7b2532df59b9664d7780b48de68de13a20665bf8f91fbe22f3565",
+    "games/sports_siege/public/assets/swarm-v4/gate-closed-v4.png": "ce4eaddc7e3f1a03c5578ce43892f306726cd5cc6c9d7cf0f1a0dac03a19205f",
+    "games/sports_siege/public/assets/swarm-v4/gate-damaged-v4.png": "c51f636b856716f947abb571ceb9e723f0ff1f49adf8ce47cf2d88808a9c9e0c",
+    "games/sports_siege/public/assets/swarm-v4/gate-open-v4.png": "bb0d6dfe4b56c452ab5691ea990d307ec4654988d846016920db2c9841cac040",
+    "games/sports_siege/public/assets/swarm-v4/manifest.json": "0914a47352af3ac850d6e26c695d8247f4f0bce1240c774c5edeb0e15dab16cc",
+    "games/sports_siege/public/assets/swarm-v4/wall-long-v4.png": "d787111d7fe245874856ec8e103e3f2b217dec643c482b7cf9622b00780dff89",
+    "games/sports_siege/public/assets/targets-flat-v2/manifest.json": "b6b754d99a0835c5d5a31684c0f16e95dd8bc2f02b3ffae6a5986522de40a63a",
+    "games/sports_siege/public/assets/targets-flat-v2/target-beetle-v2.webp": "e148d89df007fd0d7f2348507f58add786a6099b3ea242303bf5940546b734f6",
+    "games/sports_siege/public/assets/targets-flat-v2/target-bonus-v2.webp": "f623de757b494b0f08bbee731fd0014e310fe405aecdc2f2abdb2bbd381528be",
+    "games/sports_siege/public/assets/targets-flat-v2/target-boss-v2.webp": "cb54d73b9ee8f0098412d2244d909a67eab1160f3f0f3a21eecda6364e7922a5",
+    "games/sports_siege/public/assets/targets-flat-v2/target-bug-v2.webp": "57335e8affd1745c1d42e61f83d8135180f883481b8bf4029aaedaf2ba27e695",
+    "games/sports_siege/public/assets/targets-flat-v2/target-chicken-v2.webp": "879ab69a5d2d7685f5480ab461f5132844ec20683acb558d7986480c696f50a6",
+    "games/sports_siege/public/assets/targets-flat-v2/target-friendly-v2.webp": "06e37374848048d09db1f32b9152737e5adde6f86635f99929a56aabfe1cf747",
+    "public/i18n-dictionary.js": "dc61fc0af6c600c9ce6202de212a2d73e2d5bc7164ec47b53fbce9aef54c52db",
+    "public/game-ui-system.css": "bbfe00f8becc650dde20cd54e32eca121693d50eedc828c0268a3ee1fa0e02ea",
+    "public/game-polish.css": "fc59ca0ef6ab45449536d00d58bed2c7f4f348afce94b73d493f32931e3d21f2",
+    "public/game-feel.css": "9871f81d1f59a9042ac615f4709fbe5763ca309dfa94cc867426c944e2aad74c",
+    "games/party/knives-sectors.js": "942b804b5ca39d6f06d3642e91cd0340535d00256ee2d8a8ab1ef24ca9cb651b",
+    "games/party/public/action-glass.css": "1bdf86f662d23b13dbdde22bc387a2270301e3c3fece0cbbd5c3e673712f5bd2",
+    "games/party/public/controller.css": "24594c72e4f726d8b8754479ba836fe04fac211c696c7e6ea9408050a92c3371",
+    "games/party/public/controller.js": "45adf8b47edc649f10581764005270e39cbb6e31d02fc8dcf2724a62f61f018f",
+    "games/party/public/host.css": "e462a46d7f31a7ed5e1ed45174d417746b01c62009bc1cae3e8b4f055c13a1e4",
+    "games/party/public/host.html": "77649f865717007a9432a935ad053fabeb6e8b7af8b4b051416337b2799de138",
+    "games/party/public/host.js": "2ccb52be70974f710a120ffbef0039ef739ea539c99b1a1712bb894fd4956c17",
+    "games/party/public/index.html": "1bd51be3ee34b892d79f805259334e93316889f44df26b263ee411cab8c7f7da",
+    "games/party/public/net.js": "b21c8df9c465cf4876062275f13877dc3b52a81ba1050f896fc51b1140034bac",
+    "games/party/public/qr-lite.js": "5d1678ae01658f7578f22450aa79204f51bd74c7adb6332775157f25a4a4a7d6",
+    "games/party/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "games/tanks/public/action-glass.css": "01f50a8f49d7a234d043f292fe9a9478196b69b9d35d68260504554338850a70",
+    "games/tanks/public/controller.css": "87c8b7a6e06a97bb61fc3ff309a931dc718c86464990ddc5977a1d496f84e8a3",
+    "games/tanks/public/controller.js": "fb5898a293ee01be97f949fdb4715f6797ebfdf1fa20c2396db25e8bbe377783",
+    "games/tanks/public/host.css": "e02e016c29bd69fa7eb880a4e56e5ee0bff178dcd443cb39fae5dc4ada74a557",
+    "games/tanks/public/host.html": "2b3df93235952cc0e61cde1000f26756eee4251e5d11befebc8d7ac322e44711",
+    "games/tanks/public/host.js": "3bf14a4a3e31ba051c2d6ff9f5d75c6cba05d126c5e4d52f15136cc9c00a3854",
+    "games/tanks/public/index.html": "773f075e34c818939a32e032e5f25d24223f799b3d1e421ca00b567b49c9bf72",
+    "games/tanks/public/net.js": "b21c8df9c465cf4876062275f13877dc3b52a81ba1050f896fc51b1140034bac",
+    "games/tanks/public/qr-lite.js": "5d1678ae01658f7578f22450aa79204f51bd74c7adb6332775157f25a4a4a7d6",
+    "games/tanks/public/tank-fx.js": "64eb6025147d886309662f3b6d25188d3a66ff68af71f7e061d376140e3151b7",
+    "games/tanks/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/tanks/server.js": "445e4cf92b00c0ee9e47b5ff247c00c9d38e8ad2ac6d7eb08341a4cbe688128a",
+    "games/tankarena/powerups.js": "b7d66e10f8facc6da6f30aa087e8f9b7c5a7f255b0bdcda346899aed230cb92e",
+    "games/tankarena/public/action-glass.css": "2bac416cfe13b954b357b0b961b15269bb175ac5103afb8273932e22be4dec5c",
+    "games/tankarena/public/app.js": "322dd09639e1ed850aca2d4db147cbe1cb208bb917d79e35569c37cbfe681c4e",
+    "games/tankarena/public/host.html": "5bd8d7628e184836439373050c9c3744faa587e35de3a87e5947834aedeccd6f",
+    "games/tankarena/public/index.html": "37d94b965c87ab62fbe830771166f7a49abce083abb19da081387c5801024e49",
+    "games/tankarena/public/style.css": "f6fa242c258b8c84733fde59de36bdff9001586c2af7c451e8c78c6260498514",
+    "games/tankarena/public/tank-fx.js": "c9e1e859f3cdcab4c6f693884585d68c89e2821bf6bee48ab96c13affe517d8b",
+    "games/tankarena/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/tankarena/server.js": "624b2a810e6b23065f430fdc168ed71a6da920770bb94fce613373cf94d2ec43",
+    "games/tankarena/weapons.js": "8ada974601417de5b396ad8a85d64bcb768e02f3234d7902b62fe5644aeae326",
+    "games/chaos/server.js": "f56ec5cab64d15ec28d1ee658ded58a6b3b30902253c3d9cf1a7e21f08b07562",
+    "games/chaos/static/controller.html": "8b568586a16809c1b730cee27bdb2f7f79c37f03f91a5fa2215188b22e2e1492",
+    "games/chaos/static/game-contract.js": "30deb8c4bdfdf8de1b173ea4dc2a397383db118b6bde177b0659b118fce12284",
+    "games/chaos/static/host.html": "7ff07cb530d329fc6c06d056622b217aa2f068cf68c88a27532e7289354461fb",
+    "games/kart/server.js": "bedada00317a5696b700cee20639f0029b4b11909d8004f883b1e1d9c73b0953",
+    "games/kart/static/controller.html": "4adb5ad7cf10b204766f0063ffdc97fb0cf74b8101df813b147f3cfa393a27dc",
+    "games/kart/static/controller.js": "1ed1d7737148c7cb02b1a7559c075cd0f4d3d77cf58d2f03125cc6976a074537",
+    "games/kart/static/host.html": "f7a5820f7a13f1d39dc95c46079fe34bb105975254c6fa8a62ee1fd55e0038ae",
+    "games/kart/static/host.js": "9b534b530f403c47db20762e02967367f9b667e0e8aecae2648cb42bdc7cc230",
+    "games/kart/static/styles.css": "6c9f9f79b088ac2cccd1408f4c2757cabe24a0e3c736e1acc4584d8ce3852f13",
+    "games/kart/static/track.js": "d190078d8cfe0cd6846f127bec75a375b20172381ffa1a59f590bbec0697fd55",
+    "games/monster/public/drawing.js": "43830afb97912d87686b3a01f31797e0fa306b71d40fd05b4d919cb39cab1fcf",
+    "games/monster/public/host.js": "d5fd40016d81838bdb10da4be155066b1056a1a8d0d38109c11f1a9ed3953c08",
+    "games/monster/public/index.html": "6c079c84dc75c918d0beb05365d95d58ee3537347816174f80e228bef9f34e41",
+    "games/monster/public/monster-glass.css": "21c4e1abf7c327764b416d346ebccb18e538110a5befd1075ad5b5d82e508853",
+    "games/monster/public/monster-polish.css": "d6187345816bcf80de3a7984fc3b34e55c6acf7671dab131c51e6ec024024a8b",
+    "games/monster/public/play.html": "53e2015214b81bbf4e1ceae4dad75f7a007fa61a1671007f8d247799d96018b0",
+    "games/monster/public/play.js": "b56ccca1d399f103e4abeee229f3131ebb71af6630dfee83345da9afe72160f0",
+    "games/monster/public/styles.css": "76244617804a4ffdd9ff3e6825b881110dba24beb5f2d4554471f32d60fed915",
+    "games/monster/server.js": "a82783b448693ecdf1dfa9d125ffc743813afc7c3aa3186066dbe0a174163000",
+    "games/spy/public/action-glass.css": "edbb6746802cf7e7c94d5f2383f70a727899a90bb7714959536b7fc625660227",
+    "games/spy/public/host.css": "604ac4034968d89fd027c8b932fbb0e2b428e2d9842cfc4a9e28dcb11f15cd1f",
+    "games/spy/public/host.html": "abaddc5bac2462bd67ba598a412379058a707d38c99692f1d736fd6aaa5421b7",
+    "games/spy/public/host.js": "58034c9e8c7b484d1bcbf4129da9888ed65f31e0c8b8c30e001fbf82eb3a9fe5",
+    "games/spy/public/index.html": "ddf08b170b7fec8d447830edf2d9199888aab681dc478f8823fda77cd9764688",
+    "games/spy/public/player.css": "d00faebf8f35c99f16f1f6f6db003af1531b04bec123af361e45567db61ecbf6",
+    "games/spy/public/player.js": "c122b63237f9558ea871efbd11f060019d9a28ceb458d1c6c1d9fc4b09fa38df",
+    "games/spy/public/shared.css": "2339d986c8b7db1fbbcfbbe73bbdcad8432b42fb440f456420ee81b07050ac04",
+    "games/spy/public/spy-layout.css": "a4e09fe1b3a84fd393082f4afe5d8f574fba35c38b33545185de1138b097587e",
+    "games/spy/public/spy-polish.css": "eab4a2b15d1022b3f667b0b0bd124d1faa3527d2a8ffbbb0540484d9b9936583",
+    "games/spy/public/spy-polish.js": "ec6dbfc8cd417460f31da798e7df750cfb4d4949c00162abbe54b089a6d7ae44",
+    "games/spy/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/spy/server.js": "bad58e7cd4c3660dec7437da752f70076707ff14ed4c6689f0d9f4ea822334d6",
+    "games/millionaire/public/host.css": "a1ac7754cc8fa594f309ad3225ac3ba5910f675b9007ef9940f235e89e58720c",
+    "games/millionaire/public/host.html": "3b97e073cd07203a27a7ebc4a31bab1115e75ec210a3ea97777fe4516e28abe5",
+    "games/millionaire/public/host.js": "427f11427954b547e63e96a492311712197c5d57bf1d23d352fc6c1bdf19b35c",
+    "games/millionaire/public/index.html": "830d5b7ca748dc11ac207048ffaacb8b4990ae9e5e94a223146e4deb24c13308",
+    "games/millionaire/public/mq-polish.css": "2c8e2bfa1c5790d84497d36ebf8a3b0c47586643df2b9c4c58a0979f2f8c6bf6",
+    "games/millionaire/public/player.css": "3f532bb5a18d38a773279b01bb6e4c84da3928cdb41f447d2a66ce52b925a253",
+    "games/millionaire/public/player.js": "6d0dc50a966ff944bdce3e8c381436dd2535edcc4ebd50634659ec5799be4257",
+    "games/millionaire/public/screen.css": "bd3684c8013bae040017ddb90943b201bec65aa0eff386b57c2e41f0d79664c4",
+    "games/millionaire/public/screen.js": "618fc2ab8834f496dd8bc79de63636a5e15364b6d476ad6b018988581d2559d8",
+    "games/millionaire/public/shared.css": "a98ab6caa595dc155be8f694aa4a01888c3521a507540b37d8aab33a0fedffa6",
+    "games/millionaire/public/tv-layout.css": "dfa069df8baa42ff6f6fd1ba5b981372933a85fc06ebc9b5d122bda616f6a0c0",
+    "games/millionaire/server.js": "b1f879d53205a889ff90058b80c0d7f0ec5160cd79e76fa43044a0d23ded3411",
+    "games/quiz/engine.js": "ce09ca9eaed917904094321dbe00925e5a9a6052883d77eb992f442258aea126",
+    "games/quiz/public/app.js": "8ec1764da04012df55922ce6c49aacd0bc7dc44b0456c4caad660320bd5d28fb",
+    "games/quiz/public/index.html": "b923ac5a7d6cf791287c227ea766da8294c3d839ad04eb85532267d33b5eca80",
+    "games/quiz/public/quiz-polish.css": "6deacca6e709afd56a8f4ec77e7747deb7c5a04f103ea61654495f917cea9f41",
+    "games/quiz/public/quiz-polish.js": "c4322af1ff04bd98636c738e8c413a886a8742f65f9995b44f79950ceb341d9d",
+    "games/quiz/public/screen.css": "5a00de998e1422707b4265509ae588159282b0254e3b52f9f2bdd16c0f95988d",
+    "games/quiz/public/screen.js": "46e63a9a149c791bc484d49dd2d488d852e8385a97206da0c94d146018feafca",
+    "games/quiz/public/style.css": "9e9889e7f7f593151c435c1228377eda3c898f1fe472cd1dded0a7f3facaea46",
+    "games/quiz/server.js": "11c2e81a6ade0c7966f90056fba28085af714070b0a819c0f241fac22eb61587",
+    "games/crocodile/engine.js": "b524913d5e0c7b95955217f0e8da9f9725d6bcb64c3546d1d16950263b7de86f",
+    "games/crocodile/public/app.js": "a1b4f4f44fe73efc7c8b49e1f45450e17377fd861a3c843e9f55d4391b4e80b0",
+    "games/crocodile/public/controller-layout.css": "b1ea8d23e7e1101be09f517982a1508bb37e3490b7c72edd8c263e463eda3ab8",
+    "games/crocodile/public/croc-polish.css": "69baf9c0c6ccdaa48e8739f2b608613cdd394e3d32a890cc4a516b80bf6d0c2c",
+    "games/crocodile/public/croc-polish.js": "c3315b4e7f78d1eb36d5001bae6003c7df13714f0b2e25cc9b9d4d39232a092a",
+    "games/crocodile/public/index.html": "1a1472a6423993ebb2866c8e3be83e75620748c6541201054ee3faaca63ab756",
+    "games/crocodile/public/screen.css": "5afa59f20025e0c493e87437d1b1ff4f41e3396ae3831c0e68a19eb2df136111",
+    "games/crocodile/public/screen.js": "e34aae03fd53f1f9cb6bb8263ddc74dffe97bff6a9cf8c68e66a1b50bdf2af55",
+    "games/crocodile/public/style.css": "d1c9b4145883e2e3702bfceff6ac2776b261333cef3161593c400c1a9b8961e8",
+    "games/crocodile/server.js": "406c3d7f48e21c9ff9c1d6c0f1719fa1817ce6e12ed4f167b3662b184d3c0bc9",
+    "games/jenga/physics.js": "cc1b6f58d0be7d953edc75cb289d93e3817b0c99ff4260b60fb689b45db2c884",
+    "games/jenga/public/action-glass.css": "e2d073a7faaea18a5d3e95605c6bcc00f00974c94953508a84a1f0f6829bd6eb",
+    "games/jenga/public/app.js": "4565cf50f201b23752eabdb49f0f69100ab7e278b089d38b0305854a72da6d56",
+    "games/jenga/public/controller.css": "5d665c8d06cdfd9feecf89ddf115152b9a6a2a04447ff2fed1899e2cf9790c10",
+    "games/jenga/public/controller.js": "7638836e58d169d382ff3e33d200797b0562f10487d90a4bf9955c3658c836d0",
+    "games/jenga/public/host.html": "24f726beb1aad7b82042089ad1934faf6589c88637090f7775e1c66614a75bac",
+    "games/jenga/public/index.html": "68586a0580eaa171eec1cee6864a90d5aba778bf5ee0300a5e1b1fbe46b0543b",
+    "games/jenga/public/joystick.js": "89522db8a8c6502486d6b5e21f76520ed651bb0f6c96e7e8c8597280c47190eb",
+    "games/jenga/public/renderer3d.js": "e8a017964e2daa37bd213533a437fe75ad8981debbe0bcd6695618a5b68f1411",
+    "games/jenga/public/style.css": "91bdb6003f5f721687bb0d23c3638a1ce9491385aba53821010a31b6ac387440",
+    "games/jenga/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/jenga/server.js": "f430db56e1dee37a16dc3129c3ebd3f74d1d402eb5c4f1b2f948968966887017",
+    "games/crane/pendulum.js": "a88fac11fdf9153afd940c02270fc39921ea22044fb34de821d65a0acb039f98",
+    "games/crane/physics.js": "e534fc89df7e303187b8b457fbf6cd3d2cbe069f477e9702b32fa5bf49e26840",
+    "games/crane/public/client.js": "d5a5270173d526310f82f3732c941ac70c6865d9d64d206b489ba9fcb7a4bd68",
+    "games/crane/public/host.html": "b5c7c9704bca9086eb41ff136966539ee302c9b1a35af47d2b8590551538448c",
+    "games/crane/public/play.html": "3557b2074d5eef123f68edf318fe3b99ef046897af212b6aed66eba821002686",
+    "games/crane/public/style.css": "ac0daf78b38e50622eeadcec181bf87748865e779214609bcf308c68e0288f77",
+    "games/crane/server.js": "b08610ac34d2323c1690d96b1ad613b306da88f877317d6745be0031295f5d60",
+    "games/naval/engine.js": "55f987d39d056153954ef3d6a4cdb44c36795259a4ecc700b240d7915b1396f2",
+    "games/naval/public/app.js": "5b16fd3e272a65b02636c1b3d0e9ee0431d2e10773d5670f542844443728f6a3",
+    "games/naval/public/broadcast.js": "4d252de1469e4b6c7c84941d293044a7cdbffbe799f5fa7387385ee31269cad3",
+    "games/naval/public/index.html": "f077b13682730557c685159e1c311a744c7c21c32c7d6e4d2068e7727cdde5f7",
+    "games/naval/public/screen.css": "9f6d63d89ec070b33a7f792b938024bee33306ca8d235144eb26fc4792b2c842",
+    "games/naval/public/screen.js": "4f85105a7d3e8678c5885d8c103508014622bcbb4005767bda5cf344c2067d9a",
+    "games/naval/public/style.css": "78c653f677ca08abd76001f68a487715a5d4984162e81e07be9ef0ab214dd54b",
+    "games/naval/server.js": "c1ac02623687595a1518b9a733380ad8bd103ac0a5ef1c41009e33c5d9d6242c",
+    "games/drawguess/engine.js": "544d42a6710ca978e2ad342203bc6c0dc15e7f9313b99f2aef1b695fd83c84c6",
+    "games/drawguess/public/app.js": "3c44e40c2d3c9849216b078864f6eaf8a57bbbdb90cebc445f0c6cf0b98e9c2d",
+    "games/drawguess/public/draw-polish.css": "0e4e57352b8de56f8942f86bfa1a01cbbf88830a6f09604207e59e5e3a4c0e56",
+    "games/drawguess/public/draw-polish.js": "40c8466d8f67dcc7561a23a44f07e91e581d84134dd0af935d8bb540ca2650ea",
+    "games/drawguess/public/index.html": "76d5e0d89878f1244d60bb14c7f3b758ec80f7275def82d6a2b1397908d61dfd",
+    "games/drawguess/public/screen.css": "7bac572fc5c40f5e57a168f0cb7dcc1db5ebae23eebc4e002b5ad028af36072a",
+    "games/drawguess/public/screen.js": "84aae01bd94a81cf69ccc423b2460292d5ca9e08608a44d3d4dabedd959d7275",
+    "games/drawguess/public/style.css": "a65e9390aa007b173dc7fa808c4f6317bcc9598e1bfa5abdecd03eea52d1220c",
+    "games/drawguess/server.js": "d24d2fa2713b40e1db2cd001aef8ddb9809bef2c2ff31d0c02595e6c42c6b251",
+    "games/western_duel/game.js": "ce7078f9df306aeeca4c5646758c9f5036b50fee3d3fcd4becc1532467454c5d",
+    "games/western_duel/public/app.js": "5c6a800c50d84113f1c7016c9d694333f15b0eef861772a4fbd8f41efb7f6b8f",
+    "games/western_duel/public/host.html": "ed9280783fb18eddb47bd3a4f999340e10971c15b0ee1fb9207db2a204773cbb",
+    "games/western_duel/public/index.html": "90375ec17f36d04a84e3075df553bfa7b9a25f2e33c541fb9e8bccf8769db034",
+    "games/western_duel/public/style.css": "5e474a3c64a06a7a88c7718d76a3b21ea2a1d64d311971b374855389d0839fa6",
+    "games/western_duel/server.js": "a902a47c182434071de3d29361867e4d40958136cb5d21ebbfd55c65f3f9832d",
+    "games/arcade/controller-view.js": "2adfd28ba5b1ba237b6b509845e23f95badd859a7ac3cac56edffe53022ae57a",
+    "games/arcade/public/app.js": "e73d47326e8a1e161bd9c26799bae5b6fd8cbca7f52fa966c7ac6e232a014d54",
+    "games/arcade/public/arcade-juice.js": "7935a831047c94ef90927dc4e510e9936c8c41bdb376967dee404b545acbe802",
+    "games/arcade/public/host.html": "23f4206edaa44ae7bfee651e7077297fce397908ae4008113d02d62a85cd8d5c",
+    "games/arcade/public/index.html": "f30d57aa39618ae532cf4f261923d7e241e75bc91315678d11d540e900ce4fe9",
+    "games/arcade/public/snake-polish.js": "328e1506ccce11c43c73458d807a8d5ea7cf32a58ca5d6d4ebe259f27e940204",
+    "games/arcade/public/style.css": "ae7fe85cb763c8b36b1af5e33edb7234b6a6d336e5806eccf60cd2a32577c1f4",
+    "games/arcade/report-metrics.js": "5944689f714c9e5fe823e807379f5b13bbb3f0503557dcf8154ca793ed07f407",
+    "games/arcade/server.js": "525c797ba0f178f42510a81e7bcc68685aeb7ed22433c9a09127a2d745abe3c8",
+    "games/arcade/simulation.js": "829b4b9780c3fd5f935c03f9b39749a7a42854998a3f2a4fc85e4f19180d5307",
+    "games/arcade_deluxe/public/air-defense-render.js": "ad4e9b14dfe7dba0ee76fb43cc7f5bb029456143d66fe4a8beb0718cfbc056ee",
+    "games/arcade_deluxe/public/controller.js": "1dfaf00b0f5a194cc6490d432bfb59c8b67f14573e1e46350afca90e24fb9b9c",
+    "games/arcade_deluxe/public/drone.css": "38d9c6dfa2abbb7a79b249e0aeb4214508ede9131fdba6d30a17f2ee6bf6f3f5",
+    "games/arcade_deluxe/public/explosion-timeline.js": "0061d231d5093b271afccc7057e5d3a81590719dc6ab70d0b5738a6ce07497e9",
+    "games/arcade_deluxe/public/explosion-waves.js": "87e284f9905736eb7d98c203894fc10f5409e24246c435055816bc50df5ad3d0",
+    "games/arcade_deluxe/public/geometry.js": "5ce01285c16c6bbee82aba7c735b1a4de17a26f14b88af0838b34cadd3787814",
+    "games/arcade_deluxe/public/host.html": "0af87262ea679492e02d6255696d34d8cf5ffe535f8e160a128b182ace05b728",
+    "games/arcade_deluxe/public/host.js": "231700d036c4d3342912203ed7d565f95c2018e6a9d244a58106a4ed1dced851",
+    "games/arcade_deluxe/public/index.html": "a0fee9e0c24b68c6d88fabb0db70d068f00128fd7889d307cba5c427d14e63af",
+    "games/arcade_deluxe/public/marble-layout.js": "3102789dacbd64f6072ae915182e704c4a336ee04ea0a31ef8447c5f8ab984e8",
+    "games/arcade_deluxe/public/net.js": "966ae77fb6bb7c562bf793f222adb3c4355db3fbd2a8c356011b30df2144d786",
+    "games/arcade_deluxe/public/palette.js": "c0e10cfbd1171aab4395a7242b66d2e61f7aaf447bb1804b32d4712d6447d144",
+    "games/arcade_deluxe/public/pocket-deck.css": "330c5f2cf193d1464e8fc835c08adb86e779f3bf1ac51f538045cdffe2a96106",
+    "games/arcade_deluxe/public/pocket-deck.js": "d054868a81f4f9f606aa670be5f24de8d7b57f5656e6a06e686b2abb5df8d5ff",
+    "games/arcade_deluxe/public/pocket-plasma.js": "50a5c95652b975be1f00cfca989cb9e88de92f6962ce1c719645d8635373bb92",
+    "games/arcade_deluxe/public/pocket-projectiles.js": "fabb8793b392f5d34b0e7f66f4e7af40fdc4179eb784e438f430b7677b6a7a0a",
+    "games/arcade_deluxe/public/render.js": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0",
+    "games/arcade_deluxe/public/siege-fx.js": "0e67186efcef0e862d18d398dd60d69a2c1bd6b68d27af3820efa1c33f732513",
+    "games/arcade_deluxe/public/snapshot-diagnostics.js": "baf5ad9e32afa0da2512f4049c0ac05cb6571d0f8520c21abde5357dcc182b9d",
+    "games/arcade_deluxe/public/style.css": "04aae6474e64b0757c58a90aa02a97f1d201f3e6711904f6882c72d32001a03c",
+    "games/arcade_deluxe/server.js": "c99948d160a1ec24aeba30aeb82c38efe039f0d03638aebe4418b011829e7a4a",
+    "games/bow_club/public/net.js": "ec4a83a31ae31285c1d356c122f329db06eeb4bb2ad52f3dd7629791de0decc5",
+    "games/bow_club/public/phone.html": "b5ee0c04417c0c1859516dd625c2ffd3f4992bb2d104a4448c8dff1446c0afc0",
+    "games/bow_club/public/phone.js": "f45efca4646e366cfbc943b48c62001fdc4f426d8f83ec4b4edc31047ce507d7",
+    "games/bow_club/public/src/camera-policy.mjs": "b4aa4afc09e0f148589ad2d5b39c79be114ae121ba7d72feea46b7ccaed5c5f1",
+    "games/bow_club/public/src/camera-preview.mjs": "ff02bba13c91d4dd0e7cec8ab802bf70a74894c17534ee8d445c3464af61a133",
+    "games/bow_club/public/src/homography.mjs": "a1d3246b8cf4e42391eac417c0244650a008e4d70c4c1b52ebaac9794a16b089",
+    "games/bow_club/public/src/hybrid-tracker.mjs": "4c69b62cfdf47214927152eda05571e6f6dd649d3349b1ee56e9246ce3c2132e",
+    "games/bow_club/public/src/marker-tracker.mjs": "2470855689ca232324f24fdaaf26fd7954291b0217f61766e84bd89d3da27106",
+    "games/bow_club/public/src/markers.mjs": "ec44fb11a8165df4f39fad643bf334bccea9ea20aa21e46cbb7c6fde1fd7599c",
+    "games/bow_club/public/src/mini3d.mjs": "2dadba4c18ee48e1e4f92911377d6ffdd0f4cdb8f78409d065ca4f53489ea6a5",
+    "games/bow_club/public/src/range-scene.mjs": "6942687d6f488384f44d3e8c35b208ee3ad1b294d14cc48c47796bef89b22bcc",
+    "games/bow_club/public/src/tracking-worker.mjs": "0db71c757367d00ca3c7fbd2099b4b6ad02821d91d782a73a784cb8c774e2625",
+    "games/bow_club/public/style.css": "627b9801bf8e23cdf98bda5568d42e88536df0b78fc84f15caa1df8c54435db6",
+    "games/bow_club/public/tv.html": "cb4fc8af6a52414b4c7a0cd52a844f9623bfa8af1417b505ef6ca25fc34e7217",
+    "games/bow_club/public/tv.js": "800f6c269c278a4417017922edaf4b443fa2f649605d7d747ffdc68ac4eb6665",
+    "games/bow_club/public/vendor/opencv.js": "b873c8211421da7b9bf41ae157a923f05a46a0b8d3e5904c44c6f3ad6d39a1bd",
+    "games/bow_club/server.js": "50f811f57f9f0d6ebf3d0a6e49bd7502942348b9e25efcd3c2424a5ecfa58863",
+    "games/tabletop/arcade.js": "0f1e0bef056b2edf5871b0c5748d6ddf38c8d3e1d8d449199bf6e93a270a71be",
+    "games/tabletop/poker.js": "2870b0b28b886684e84671179bee9a55c868e88ef448c741e9ad7d0db55158d9",
+    "games/tabletop/public/app.js": "1825ef5d11ebfe320e8a0eaa80a27d2b3b5ef46022b2fbd82230450b7342c1f5",
+    "games/tabletop/public/arena.css": "5b3d00265f0e13a9458c35e95d88403a9c3f6b213d6adfa37423923c0e1d5c41",
+    "games/tabletop/public/fx.js": "269208b1ecebea6718c68adc5b441da6bf2ba8fb60b151b70c26ffbe325e6832",
+    "games/tabletop/public/index.html": "a43c45b91ce84d371c87f24e4c9c9834c9995669dda5cbc484fd0683b0eb3043",
+    "games/tabletop/public/style.css": "f8f06f8418ab33fb694fce45507f867d5f40dd772d52b977d99c232324d0bbc6",
+    "games/tabletop/server.js": "d7e99c86f4411e1e7d51b3db5414877a12a836fefef402da1805603ff228e519",
+    "games/sports_siege/bowling.js": "b15cb59f6923401997c86690c67dbdcb4cf029a721f0ec3665079bf4a1980de0",
+    "games/sports_siege/curling.js": "6a17efefb9b0086461b68f01af0ffd7f4046caf8663dea220d80bcc56d264c1d",
+    "games/sports_siege/match.js": "cd962aa59e6c7c66c18a4957ba4e77b3f514aad8f007ca06743deeb75d222f47",
+    "games/sports_siege/public/bowling-extras.js": "e371dc2d4f190c19cba31fcd83315ff0973bd9c240fe1405d39b53018327a0ac",
+    "games/sports_siege/public/controls.js": "5fece249bfba4b1baade1e154ba65a4b1b1f817868225ce52881d3cddf507b5e",
+    "games/sports_siege/public/curling-extras.js": "e416e041a852e1c5686ff7c9a1a607a1e899bb155d3fdda408ca6e13ad2566a8",
+    "games/sports_siege/public/host.html": "83fc8987c458aacc1304a584266397b93a99a1378c8c6c46a8b199add43c8092",
+    "games/sports_siege/public/host.js": "e4d6b8911815df145013bd74789550e2c28ed3315caef807d7f35a40f5bd3088",
+    "games/sports_siege/public/index.html": "186310e07259edae4581f1a832c7543085299b0b85695f9cbbb3816f659b6e2e",
+    "games/sports_siege/public/net.js": "1445300c965b9a653343576bc92de9686a1955e01417bee0e9f723673aa4e53c",
+    "games/sports_siege/public/notice-copy.js": "c9a2d6ec0972bcf2c17b4674d9adbcf93389095f9be9c4e7d0b91141e228d394",
+    "games/sports_siege/public/scene-bowling.js": "5d139cb4c59a4aa4059ef9e3ffd1162a0b81cb2c89eac8737ad03e2d85c91c10",
+    "games/sports_siege/public/scene-curling.js": "f227c4371b317c40449dabb5fc5df53c77426aa06c8db3fbd281f15e0d3b5aa1",
+    "games/sports_siege/public/spectator-crowd.js": "7f3a87ef33d931a52604dfdc3d9cb698e91901ae9de1a59a53612540aab3cb85",
+    "games/sports_siege/public/spectator-seat.js": "0b2c6f03f37d69bd74f05f4147d3aebec5ad26fae8d870d6f392252db31624c6",
+    "games/sports_siege/public/sports-controls.css": "d316da24201d4651f77304f2941bed18ffc31ebf956b0bb09cfefbf22e5ef260",
+    "games/sports_siege/public/style.css": "62b44d09e7462879c7673201146ed6da4f6554dd3aad9a042555726c11fbbbe3",
+    "games/sports_siege/rules.js": "9365051a4997ae72a88fb1d1c84e05de9c47ee8c4bdff68d41a91213d060f6c9",
+    "games/sports_siege/server.js": "869ace6cf8137690364d0f953a39cd227175b6d3ddb2a7d6b13b542ce871a5f4"
+  },
+  "phoneCount": 36,
+  "targetTVCount": 8,
+  "supplementCount": 9,
+  "images": [
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/push-phone-live-402.png",
+      "sha256": "7d218eec81556181a6c3c2de6ae1f75c09beac0e0cedb79291d0c2552d63716d",
+      "bytes": 1039090,
+      "game": "push",
+      "openedOriginal": true,
+      "observation": "Out state: Wins/Out, spectator guidance and mascot form a compact centered group. Active movement is not shown."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/shrink-phone-live-402.png",
+      "sha256": "b736718a8d6e5cb35702fa044ca2c62635d7953a40f1e5896248cb321b34b1fa",
+      "bytes": 1038270,
+      "game": "shrink",
+      "openedOriginal": true,
+      "observation": "Out state: status, wins and next-round guidance form a centered passive group; no misleading active pad."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/knives-phone-live-402.png",
+      "sha256": "85dfb009fbf764e5c36cf7a0c11ed728116530a02db3e50b532b1b4f6ec5c048",
+      "bytes": 809702,
+      "game": "knives",
+      "openedOriginal": true,
+      "observation": "Five knives, Hit your color and Round/Total lead into large Throw control; all labels fit."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/bomb-phone-live-402.png",
+      "sha256": "06cbaf8cdc399063ee83f20fa997ab08af66984263c22cc6405ec0acc2201572",
+      "bytes": 1253416,
+      "game": "bomb",
+      "openedOriginal": true,
+      "observation": "Three remaining players, Safe state and movement hint precede warm circular joystick; footer independent."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/western-phone-live-402.png",
+      "sha256": "1076636a30f152800411fd7520c2ada02f688807b1accb94a1c8e4e5441c7066",
+      "bytes": 848146,
+      "game": "western",
+      "openedOriginal": true,
+      "observation": "Wins/Best/False starts above Fire; explicit warning against shooting before DRAW remains readable."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/tankarena-phone-live-402.png",
+      "sha256": "a08b5a157afb35af29f968e727f07e20b40c51fbfa3fc31308dba80655567964",
+      "bytes": 1116167,
+      "game": "tankarena",
+      "openedOriginal": true,
+      "observation": "Telemetry remains high; Move/Aim hint and joystick/Fire now occupy the lower thumb zone with reduced unused bottom area. Approximately250CSS px still separate telemetry from controls, deliberately distinct zones, not a contiguous-cluster claim."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/chaos-phone-live-402.png",
+      "sha256": "48af4966e844c0aca9175e4272aa7c68d076380a9b27a9a43d36baf506748c8d",
+      "bytes": 717307,
+      "game": "chaos",
+      "openedOriginal": true,
+      "observation": "Level1 and Accuracy/Click readouts lead into Everyone moves hint and centered movement pad."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/kart-phone-live-402.png",
+      "sha256": "a5f5779b6279a690858e009bdd789b8daddf96f35a9f8cfd9b6e5b2aa03f50d5",
+      "bytes": 1069894,
+      "game": "kart",
+      "openedOriginal": true,
+      "observation": "Place4/4, Lap1/5, Race and Speed0 above steering/throttle. Bottom throttle clears shared footer by about22CSS px."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/monster-phone-live-402.png",
+      "sha256": "b5dff921dd6f715c9bf115483b973151f35473f91dddd6e12a259f58c4824ded",
+      "bytes": 623383,
+      "game": "monster",
+      "openedOriginal": true,
+      "observation": "Head/Baymax and1/4 above a useful approximately379CSS px canvas; palette, labeled Brush thickness, Undo/Clear and Done remain above footer with about32CSS px independent clearance. Blankcanvas capture alone proves no stroke."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/spy-phone-live-402.png",
+      "sha256": "54c6f0846f2c8657257e864ef0c76c4433a04d6e664255b703ceee79e798d47f",
+      "bytes": 943878,
+      "game": "spy",
+      "openedOriginal": true,
+      "observation": "AskAlexandra→Bot3, own SPA/Coach information and I asked a question action are coherently grouped; own private role stays readable."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/millionaire-phone-live-402.png",
+      "sha256": "654cfbe663c9d9ce00321a2d88344a017ecf8581aa57dc1706467ae77d9ea16f",
+      "bytes": 708508,
+      "game": "millionaire",
+      "openedOriginal": true,
+      "observation": "Current turn3/5, question and four answer targets readable including long two-line option."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/sinyakquiz-phone-live-402.png",
+      "sha256": "4da40c8f539f202f2284e2e86b3b493ff8a7dc89d3ecd10778def96c75f0c3b0",
+      "bytes": 1062602,
+      "game": "sinyakquiz",
+      "openedOriginal": true,
+      "observation": "Question and four answer targets fit; points/current-task hierarchy readable without clipping."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/warsaw-phone-live-402.png",
+      "sha256": "6ba15539b4c9afbee3c5de4870ed31ad169eaad7b358aa491648a302f086b41f",
+      "bytes": 1883194,
+      "game": "warsaw",
+      "openedOriginal": true,
+      "observation": "Market question and Polish place answer labels remain readable; proper place names are not UI language leakage."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/crocodile-phone-live-402.png",
+      "sha256": "3d400ca2f198a8e97998c0c1581a6eba7e487a04214ac238a19ca5fc6128cc0f",
+      "bytes": 708098,
+      "game": "crocodile",
+      "openedOriginal": true,
+      "observation": "Actor OCTOPUS private prompt, counters and Guessed+100/Skip are readable; action row clears footer by approximately34CSS px."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/jenga-phone-live-402.png",
+      "sha256": "a49e2eb77733819884cb6484a9d041610a0e3880d1a21d0f8950a60878b7f8af",
+      "bytes": 2011326,
+      "game": "jenga",
+      "openedOriginal": true,
+      "observation": "Your turn, support layer10, Left/Middle/Right and tower preview form a useful task/action group; Plus visibly disabled."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/crane-phone-live-402.png",
+      "sha256": "bab1c931404c48b9d61646bb3fd01083a43b8e3a9c41f1db2fd169b92a771c4c",
+      "bytes": 916055,
+      "game": "crane",
+      "openedOriginal": true,
+      "observation": "Your turn, Blocks0/Attempts3, steering hint and Left/Right/Drop block fit. Root explicitly retains minor three-line TV full-name wrap."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/naval-phone-live-402.png",
+      "sha256": "3f41092867cfedc9497018e644d2c886a6bbe877c0915835a8486825c7ec6d84",
+      "bytes": 782299,
+      "game": "naval",
+      "openedOriginal": true,
+      "observation": "Recent miss, chosen Bot1 target, private fleet and Cannon ready lead directly into complete6×6 firing grid. All coordinates readable; grid ends well above footer."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/drawguess-phone-live-402.png",
+      "sha256": "1210d274467b6389a163e76c28883dc03995129c25be2926b41f251867e15d1e",
+      "bytes": 1619991,
+      "game": "drawguess",
+      "openedOriginal": true,
+      "observation": "Own private BINOCULARS prompt precedes large drawing canvas; palette, labeled brush selector with arrow and Clear grouped below. Useful canvas and independent footer clearance visible; no stroke in this image."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/western_duel-phone-live-402.png",
+      "sha256": "a91e287f759981d63c667fb1a31dbf257a0ae03e8ec5aec3b362eaa5354d06d5",
+      "bytes": 1432257,
+      "game": "western_duel",
+      "openedOriginal": true,
+      "observation": "Actual DRAW state, both opponents and explicit one-shot timing instruction above Shoot. Name uses explicit ellipsis rather than glyph loss."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/taprace-phone-live-402.png",
+      "sha256": "928839d6c5ce5c103d29c3fdcd5a2800e6569dc3934914d9457f67570adc6bff",
+      "bytes": 1598852,
+      "game": "taprace",
+      "openedOriginal": true,
+      "observation": "Runner/task, Place4/4/Points0/Speed0, progress track and acceleration instruction precede large Tap."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/punchmeter-phone-live-402.png",
+      "sha256": "78cc10ab2a5324fa14fa1abd4c641df221140ffe048e52c6d902c0ca5f92bc49",
+      "bytes": 1201587,
+      "game": "punchmeter",
+      "openedOriginal": true,
+      "observation": "Your punch and attempts/best/total lead into peak-release instruction, Allow motion and Hold→Release; permission action distinct from primary action."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/flappy-phone-live-402.png",
+      "sha256": "bee4236da55f9e1ab0b1dafa4f2e4f7940f7ad186b74ae8b478b6d22d288e446",
+      "bytes": 1647958,
+      "game": "flappy",
+      "openedOriginal": true,
+      "observation": "Place1/4/Points36/Flying and gap-flight instruction above Flap; flying state meaningful and unclipped."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/hungry-phone-live-402.png",
+      "sha256": "15c390a0ff043a6b3592be32bff520bb28a54d466645df35f6262c275a073359",
+      "bytes": 1345108,
+      "game": "hungry",
+      "openedOriginal": true,
+      "observation": "Eat and grow, place/points and avoidance guidance precede joystick; score grouping and movement target readable."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/snakelines-phone-live-402.png",
+      "sha256": "5b661bf8d061bdf4dffd49fefc6e42de44868af14b9ad3b1fd20365efa7647dd",
+      "bytes": 942707,
+      "game": "snakelines",
+      "openedOriginal": true,
+      "observation": "Out state, Wins0/Out and return-next-round guidance centered; absent active controls are appropriate."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/carryball-phone-live-402.png",
+      "sha256": "006c5228d8bd56a8755a5c530f0fcd3e50f523502052d223789e3f705d528020",
+      "bytes": 1376560,
+      "game": "carryball",
+      "openedOriginal": true,
+      "observation": "Pick up ball, Lime team, Score0:0 and pickup guidance precede joystick; Pass is visibly inactive while not carrying. Last action has narrow but independent footer clearance."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/marble_bloom-phone-live-402.png",
+      "sha256": "eed2f9168179c8f979509484bc3538b9fd69edb5a89ef4cb2e88348b87cd3d5c",
+      "bytes": 1707851,
+      "game": "marble_bloom",
+      "openedOriginal": true,
+      "observation": "Shared chain/Orbital Garden, now/next projectile previews above large drag-to-aim field; Swap and Fire align below with ample clearance."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/pocket_siege-phone-live-402.png",
+      "sha256": "0fdcc073892c9eafb5a6380dc5e72bf223adf69d6b95f4c0d687dcba60e59a96",
+      "bytes": 1305805,
+      "game": "pocket_siege",
+      "openedOriginal": true,
+      "observation": "Own turn/wind/round and Tank/Drone/AA tabs above weapon, Direction/Power sliders, fuel and movement/Fire. Dense game-specific controls remain fully visible."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/bow_club-phone-live-402.png",
+      "sha256": "698ed54bede880b7ceab6f94b876c50d8c16dff24734aa9ef0559b81a5358baf",
+      "bytes": 1394613,
+      "game": "bow_club",
+      "openedOriginal": true,
+      "observation": "Touch aiming, local0points/10arrows and mini-field guidance above roundedfield; Draw begins20CSS px below useful field, removing former103px deadband. Shared timer has no duplicate quiver."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/poker-phone-live-402.png",
+      "sha256": "b301733bdc3111c8bb1abc927f8c0ae0095c4456fbb8ee2bcdb67142da07c548",
+      "bytes": 812132,
+      "game": "poker",
+      "openedOriginal": true,
+      "observation": "Poker night and collapsed Quick rules above Your turn/1000chips/private9spades+3clubs; Fold/Call20 and Raise total40/Raise grouped, all visible."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/airhockey-phone-live-402.png",
+      "sha256": "2c35158b06bcf88b3340db862b9608cabbd86037519184bcf7b5794a3272b932",
+      "bytes": 1274585,
+      "game": "airhockey",
+      "openedOriginal": true,
+      "observation": "Title, mascot and1:0score above movement instruction and large joystick; current score and task readable."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/mines-phone-live-402.png",
+      "sha256": "e305cb78897f85763b32d5e419e9b16534b590601977401658af70d619fb4bf4",
+      "bytes": 884958,
+      "game": "mines",
+      "openedOriginal": true,
+      "observation": "Safe/mine/cooldown rules above TileE5/Points0, directionalpad and Already open disabled action. Clear selected-tile state."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/curling-phone-live-402.png",
+      "sha256": "debdf5080ba0a13c93889ab3c67bac5b7a398e0a3b5accfa9d80f2f119e553bd",
+      "bytes": 2296131,
+      "game": "curling",
+      "openedOriginal": true,
+      "observation": "Full actor name/Coral team/0points/Your throw above Position/Spin and useful swipe field with Power0%; field ends about18CSS px beforefooter."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/bowling-phone-live-402.png",
+      "sha256": "412f130a4695caead1da91c33e412224c8acaff1d4828a7741f82dcc75e40560",
+      "bytes": 2289126,
+      "game": "bowling",
+      "openedOriginal": true,
+      "observation": "Full actor name/Frame1/5/0points/Your throw above Position/Spin and useful swipe field; ball cue and Power0% readable with independentfooter clearance."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/swarm_gate-phone-live-402.png",
+      "sha256": "97de8f32b1afeb0d8365a24b27bd08d4a6575bc29eefb268a129ec9d07239436",
+      "bytes": 2305959,
+      "game": "swarm_gate",
+      "openedOriginal": true,
+      "observation": "Full actor name, Defend the gate, targets0/Gate100%/Heat0% precede Fire/Pulse and large labeled Aim touchpad; touchfield clearsfooter."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/poker-tv-live-1280.png",
+      "sha256": "9eb5928d74c9f4fdc2a39963e9b8551f4976a93788ba28b66e1904747d7e2f86",
+      "bytes": 900003,
+      "game": "poker",
+      "openedOriginal": true,
+      "observation": "Complete oval table fills the viewport and centers both cap and playfield; all four seats, hand1/5, Pot50 and Current bet20 readable. Neither prior1280 top-left paint on1920 nor1920 cropping on1280 reproduces. Directly viewed 1280 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/poker-tv-live-1920.png",
+      "sha256": "87ab5f34da468c6a7e3fc8fd88309b13b48d36564a86a722a673df0f0e7e6fe1",
+      "bytes": 1959818,
+      "game": "poker",
+      "openedOriginal": true,
+      "observation": "Complete oval table fills the viewport and centers both cap and playfield; all four seats, hand1/5, Pot50 and Current bet20 readable. Neither prior1280 top-left paint on1920 nor1920 cropping on1280 reproduces. Directly viewed 1920 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/naval-tv-live-1280.png",
+      "sha256": "03feaa9fed9a837ec9cee68a871e0d9376c1eacfbae6c1274d4e5191f9f1e0d9",
+      "bytes": 704903,
+      "game": "naval",
+      "openedOriginal": true,
+      "observation": "Captain rail and all four6×6 boards fit. Bot1/2/3 numbers retained; long player names use explicit ellipsis. Scores/place axes readable; boards and labels independent from rail. Directly viewed 1280 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/naval-tv-live-1920.png",
+      "sha256": "1835cd9bea9739403ae73a6f57a0d45b2ebbbf499b488fdd0a535655215009ab",
+      "bytes": 1332815,
+      "game": "naval",
+      "openedOriginal": true,
+      "observation": "Captain rail and all four6×6 boards fit. Bot1/2/3 numbers retained; long player names use explicit ellipsis. Scores/place axes readable; boards and labels independent from rail. Directly viewed 1920 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/jenga-tv-live-1280.png",
+      "sha256": "d2d9c49bee8f7cea1a4ebbbcae154b89ef19113ad65189049222d23b73e82bca",
+      "bytes": 955659,
+      "game": "jenga",
+      "openedOriginal": true,
+      "observation": "Transparent cap blends into authored right station with readable title/timer/actor/blocks/stability. Support/force/crew remain readable; tower is primary and unobscured. Decorative table bottomcrop at1920 does not crop playable tower. Directly viewed 1280 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/jenga-tv-live-1920.png",
+      "sha256": "d00d6fd55428618b10e01c4c8f3f20cd7bc7bcf6ec3b8d60d3dbb72aecf4c663",
+      "bytes": 1886462,
+      "game": "jenga",
+      "openedOriginal": true,
+      "observation": "Transparent cap blends into authored right station with readable title/timer/actor/blocks/stability. Support/force/crew remain readable; tower is primary and unobscured. Decorative table bottomcrop at1920 does not crop playable tower. Directly viewed 1920 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/western_duel-tv-live-1280.png",
+      "sha256": "c8e1a84481c18689ca8163fbd9d4b77a7fa4d51b315c22383453cedec8b1e4c6",
+      "bytes": 1129791,
+      "game": "western_duel",
+      "openedOriginal": true,
+      "observation": "TWO AT SUNSET is primary rail title; current duel pairing/status, order and place/name/points rows remain readable. Large field and WAIT/DRAW timing stay separate from rail, no title/current-task collision. Directly viewed 1280 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/western_duel-tv-live-1920.png",
+      "sha256": "63cb25536e2c60d35644d3c2839f2bd4f97493bc0619d472e128ada644aa3772",
+      "bytes": 2345922,
+      "game": "western_duel",
+      "openedOriginal": true,
+      "observation": "TWO AT SUNSET is primary rail title; current duel pairing/status, order and place/name/points rows remain readable. Large field and WAIT/DRAW timing stay separate from rail, no title/current-task collision. Directly viewed 1920 original."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/monster-native-canvas-final/monster-native-402-stroke.png",
+      "sha256": "517f099aa15c3519ad92cd071dc9a6d3a77b80a17d5b6fd74912054b0400a630",
+      "bytes": 653847,
+      "game": null,
+      "openedOriginal": true,
+      "observation": "Actual diagonal stroke visible in enlarged402canvas; utilities/action fit."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/monster-native-canvas-final/monster-native-320-confirm.png",
+      "sha256": "07d5c2207ebc6100ae5b20ae9f491487e60317689e9e1c62ebfc203c55cccc73",
+      "bytes": 917504,
+      "game": null,
+      "openedOriginal": true,
+      "observation": "Actual Send this part confirmation with stroke preview and Yes send/Keep drawing; short568high screenshot clips lowerpanel edge, label remains visible. Not whole320 hardware acceptance."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/monster-native-canvas-final/monster-native-320-submitted.png",
+      "sha256": "aea81de8cb4c9b419a2cad8f5bee7824d17a22e3d693735d71a250d371029fa5",
+      "bytes": 1305495,
+      "game": null,
+      "openedOriginal": true,
+      "observation": "Submitted row✓ ownname, nextBot1 drawing and1/4progress visible; no exposed previous fullstroke."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/bow-gap-final-proof/draw-held-402.png",
+      "sha256": "7c6b5007c27dbb946fd6c2a46f3b3d841d059228e0bb76ba0651abc2aa2c30a2",
+      "bytes": 231034,
+      "game": null,
+      "openedOriginal": true,
+      "observation": "Actual held-release state shows RELEASE100% and aimed reticle, grouped20pxfield/action gap."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/bow-gap-final-proof/phone-results-402.png",
+      "sha256": "f8578f0df17966734d4aa04db2242334471c0d0674d76c6b1b564024d0d558c9",
+      "bytes": 164295,
+      "game": null,
+      "openedOriginal": true,
+      "observation": "Actual settled results show tied place1/85points for both literalCyrillicnames."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/monster-native-confirm-fit/monster-native-402-stroke.png",
+      "sha256": "f35e6b7abfc685ac84f5d449b1cb0e29e8c7bfcead777eca04290f66324a7b83",
+      "bytes": 660045,
+      "game": "monster",
+      "openedOriginal": true,
+      "observation": "Current-style actual diagonal stroke in379.75CSSpx canvas; palette/Brush thickness/Undo/Clear/Done and footer independent."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/monster-native-confirm-fit/monster-native-402-confirm.png",
+      "sha256": "ae38432cec44285dc1d8e615b428ca9ee00f5e8060a0dd73f1941826e4e5d635",
+      "bytes": 1239831,
+      "game": "monster",
+      "openedOriginal": true,
+      "observation": "Current-style402 confirmation shows fullstroke preview, irreversible-send privacy copy, Yes send and Keep drawing, completecard abovefooter."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/monster-native-confirm-fit/monster-native-320-confirm.png",
+      "sha256": "a1b9e02b3b1e12ce2604bfa8124660fb67ad873ea09ddc90066406c0027a331b",
+      "bytes": 876653,
+      "game": "monster",
+      "openedOriginal": true,
+      "observation": "Current-style short320 confirmation fits fullcard and both44CSSpx targets insideiframe with independentfooter clearance; priorclippedrim resolved."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/monster-native-confirm-fit/monster-native-320-submitted.png",
+      "sha256": "00e0fd173753147522442949874414f7cbf9fb73afc3a9f19aba181b1ea8a626",
+      "bytes": 1297145,
+      "game": "monster",
+      "openedOriginal": true,
+      "observation": "Current-style submitted own✓ and currentBot3/pencil plus1/4progress truthful. Passivefourthqueue loweredge reachesiframeboundary; noactiveactionunderfooter."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/focused-final-confirmation/tanks-phone-live-402.png",
+      "sha256": "125aa7901d3a3ea0be6165c39849ac31f95897efc1437a725e3005911529b329",
+      "bytes": 796880,
+      "game": "tanks",
+      "openedOriginal": true,
+      "observation": "Flags0:0 stays English. Captured0/task, Health100/100 and kills0/deaths0 above Hand toggle and large HoldDrive/Fire targets. Timing/direction guidance readable within buttons; controlbottom clearsfooter independently."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/focused-final-confirmation/monster-phone-live-402.png",
+      "sha256": "33fcee825addbdcdc3b1cab771c4aac4d47093477b098c916dcc16b7973a2ed7",
+      "bytes": 623205,
+      "game": "monster",
+      "openedOriginal": true,
+      "observation": "Fresh frozen-source Head/KINGKONG1/4 above fulluseful379pxcanvas; palette, labeledbrushrange, Undo/Clear/Done fit with independentfooter. This replaces driftingcatalogMonsterrow forcurrentgate."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/focused-final-confirmation/peek_shoot-phone-live-402.png",
+      "sha256": "837dd45a843fda2e470471129ad6a085534a493d05817e8416bdb75df60907e1",
+      "bytes": 2126976,
+      "game": "peek_shoot",
+      "openedOriginal": true,
+      "observation": "Fullactorname, AimAndFire/points0/streak0/6, whiteflag do-not-shoot cue above Fire/disabled6Hits and largetouchpad. Actualmaterial present; touchpadendsbeforefooter."
+    }
+  ],
+  "matrix": [
+    {
+      "game": "push",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/push-phone-live-402.png",
+        "sha256": "7d218eec81556181a6c3c2de6ae1f75c09beac0e0cedb79291d0c2552d63716d",
+        "bytes": 1039090,
+        "game": "push",
+        "openedOriginal": true,
+        "observation": "Out state: Wins/Out, spectator guidance and mascot form a compact centered group. Active movement is not shown."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "shrink",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/shrink-phone-live-402.png",
+        "sha256": "b736718a8d6e5cb35702fa044ca2c62635d7953a40f1e5896248cb321b34b1fa",
+        "bytes": 1038270,
+        "game": "shrink",
+        "openedOriginal": true,
+        "observation": "Out state: status, wins and next-round guidance form a centered passive group; no misleading active pad."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "knives",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/knives-phone-live-402.png",
+        "sha256": "85dfb009fbf764e5c36cf7a0c11ed728116530a02db3e50b532b1b4f6ec5c048",
+        "bytes": 809702,
+        "game": "knives",
+        "openedOriginal": true,
+        "observation": "Five knives, Hit your color and Round/Total lead into large Throw control; all labels fit."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "bomb",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/bomb-phone-live-402.png",
+        "sha256": "06cbaf8cdc399063ee83f20fa997ab08af66984263c22cc6405ec0acc2201572",
+        "bytes": 1253416,
+        "game": "bomb",
+        "openedOriginal": true,
+        "observation": "Three remaining players, Safe state and movement hint precede warm circular joystick; footer independent."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "western",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/western-phone-live-402.png",
+        "sha256": "1076636a30f152800411fd7520c2ada02f688807b1accb94a1c8e4e5441c7066",
+        "bytes": 848146,
+        "game": "western",
+        "openedOriginal": true,
+        "observation": "Wins/Best/False starts above Fire; explicit warning against shooting before DRAW remains readable."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "tanks",
+      "status": "current focused captured-state visually confirmed",
+      "imagesOpened": [],
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/focused-final-confirmation/tanks-phone-live-402.png",
+        "sha256": "125aa7901d3a3ea0be6165c39849ac31f95897efc1437a725e3005911529b329",
+        "bytes": 796880,
+        "game": "tanks",
+        "openedOriginal": true,
+        "observation": "Flags0:0 stays English. Captured0/task, Health100/100 and kills0/deaths0 above Hand toggle and large HoldDrive/Fire targets. Timing/direction guidance readable within buttons; controlbottom clearsfooter independently."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "tankarena",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/tankarena-phone-live-402.png",
+        "sha256": "a08b5a157afb35af29f968e727f07e20b40c51fbfa3fc31308dba80655567964",
+        "bytes": 1116167,
+        "game": "tankarena",
+        "openedOriginal": true,
+        "observation": "Telemetry remains high; Move/Aim hint and joystick/Fire now occupy the lower thumb zone with reduced unused bottom area. Approximately250CSS px still separate telemetry from controls, deliberately distinct zones, not a contiguous-cluster claim."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "chaos",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/chaos-phone-live-402.png",
+        "sha256": "48af4966e844c0aca9175e4272aa7c68d076380a9b27a9a43d36baf506748c8d",
+        "bytes": 717307,
+        "game": "chaos",
+        "openedOriginal": true,
+        "observation": "Level1 and Accuracy/Click readouts lead into Everyone moves hint and centered movement pad."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "kart",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/kart-phone-live-402.png",
+        "sha256": "a5f5779b6279a690858e009bdd789b8daddf96f35a9f8cfd9b6e5b2aa03f50d5",
+        "bytes": 1069894,
+        "game": "kart",
+        "openedOriginal": true,
+        "observation": "Place4/4, Lap1/5, Race and Speed0 above steering/throttle. Bottom throttle clears shared footer by about22CSS px."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "monster",
+      "status": "current focused captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/focused-final-confirmation/monster-phone-live-402.png",
+        "sha256": "33fcee825addbdcdc3b1cab771c4aac4d47093477b098c916dcc16b7973a2ed7",
+        "bytes": 623205,
+        "game": "monster",
+        "openedOriginal": true,
+        "observation": "Fresh frozen-source Head/KINGKONG1/4 above fulluseful379pxcanvas; palette, labeledbrushrange, Undo/Clear/Done fit with independentfooter. This replaces driftingcatalogMonsterrow forcurrentgate."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "spy",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/spy-phone-live-402.png",
+        "sha256": "54c6f0846f2c8657257e864ef0c76c4433a04d6e664255b703ceee79e798d47f",
+        "bytes": 943878,
+        "game": "spy",
+        "openedOriginal": true,
+        "observation": "AskAlexandra→Bot3, own SPA/Coach information and I asked a question action are coherently grouped; own private role stays readable."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "millionaire",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/millionaire-phone-live-402.png",
+        "sha256": "654cfbe663c9d9ce00321a2d88344a017ecf8581aa57dc1706467ae77d9ea16f",
+        "bytes": 708508,
+        "game": "millionaire",
+        "openedOriginal": true,
+        "observation": "Current turn3/5, question and four answer targets readable including long two-line option."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "sinyakquiz",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/sinyakquiz-phone-live-402.png",
+        "sha256": "4da40c8f539f202f2284e2e86b3b493ff8a7dc89d3ecd10778def96c75f0c3b0",
+        "bytes": 1062602,
+        "game": "sinyakquiz",
+        "openedOriginal": true,
+        "observation": "Question and four answer targets fit; points/current-task hierarchy readable without clipping."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "warsaw",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/warsaw-phone-live-402.png",
+        "sha256": "6ba15539b4c9afbee3c5de4870ed31ad169eaad7b358aa491648a302f086b41f",
+        "bytes": 1883194,
+        "game": "warsaw",
+        "openedOriginal": true,
+        "observation": "Market question and Polish place answer labels remain readable; proper place names are not UI language leakage."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "crocodile",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/crocodile-phone-live-402.png",
+        "sha256": "3d400ca2f198a8e97998c0c1581a6eba7e487a04214ac238a19ca5fc6128cc0f",
+        "bytes": 708098,
+        "game": "crocodile",
+        "openedOriginal": true,
+        "observation": "Actor OCTOPUS private prompt, counters and Guessed+100/Skip are readable; action row clears footer by approximately34CSS px."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "jenga",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/jenga-phone-live-402.png",
+        "sha256": "a49e2eb77733819884cb6484a9d041610a0e3880d1a21d0f8950a60878b7f8af",
+        "bytes": 2011326,
+        "game": "jenga",
+        "openedOriginal": true,
+        "observation": "Your turn, support layer10, Left/Middle/Right and tower preview form a useful task/action group; Plus visibly disabled."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "crane",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/crane-phone-live-402.png",
+        "sha256": "bab1c931404c48b9d61646bb3fd01083a43b8e3a9c41f1db2fd169b92a771c4c",
+        "bytes": 916055,
+        "game": "crane",
+        "openedOriginal": true,
+        "observation": "Your turn, Blocks0/Attempts3, steering hint and Left/Right/Drop block fit. Root explicitly retains minor three-line TV full-name wrap."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "naval",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/naval-phone-live-402.png",
+        "sha256": "3f41092867cfedc9497018e644d2c886a6bbe877c0915835a8486825c7ec6d84",
+        "bytes": 782299,
+        "game": "naval",
+        "openedOriginal": true,
+        "observation": "Recent miss, chosen Bot1 target, private fleet and Cannon ready lead directly into complete6×6 firing grid. All coordinates readable; grid ends well above footer."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "drawguess",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/drawguess-phone-live-402.png",
+        "sha256": "1210d274467b6389a163e76c28883dc03995129c25be2926b41f251867e15d1e",
+        "bytes": 1619991,
+        "game": "drawguess",
+        "openedOriginal": true,
+        "observation": "Own private BINOCULARS prompt precedes large drawing canvas; palette, labeled brush selector with arrow and Clear grouped below. Useful canvas and independent footer clearance visible; no stroke in this image."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "western_duel",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/western_duel-phone-live-402.png",
+        "sha256": "a91e287f759981d63c667fb1a31dbf257a0ae03e8ec5aec3b362eaa5354d06d5",
+        "bytes": 1432257,
+        "game": "western_duel",
+        "openedOriginal": true,
+        "observation": "Actual DRAW state, both opponents and explicit one-shot timing instruction above Shoot. Name uses explicit ellipsis rather than glyph loss."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "taprace",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/taprace-phone-live-402.png",
+        "sha256": "928839d6c5ce5c103d29c3fdcd5a2800e6569dc3934914d9457f67570adc6bff",
+        "bytes": 1598852,
+        "game": "taprace",
+        "openedOriginal": true,
+        "observation": "Runner/task, Place4/4/Points0/Speed0, progress track and acceleration instruction precede large Tap."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "punchmeter",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/punchmeter-phone-live-402.png",
+        "sha256": "78cc10ab2a5324fa14fa1abd4c641df221140ffe048e52c6d902c0ca5f92bc49",
+        "bytes": 1201587,
+        "game": "punchmeter",
+        "openedOriginal": true,
+        "observation": "Your punch and attempts/best/total lead into peak-release instruction, Allow motion and Hold→Release; permission action distinct from primary action."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "flappy",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/flappy-phone-live-402.png",
+        "sha256": "bee4236da55f9e1ab0b1dafa4f2e4f7940f7ad186b74ae8b478b6d22d288e446",
+        "bytes": 1647958,
+        "game": "flappy",
+        "openedOriginal": true,
+        "observation": "Place1/4/Points36/Flying and gap-flight instruction above Flap; flying state meaningful and unclipped."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "hungry",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/hungry-phone-live-402.png",
+        "sha256": "15c390a0ff043a6b3592be32bff520bb28a54d466645df35f6262c275a073359",
+        "bytes": 1345108,
+        "game": "hungry",
+        "openedOriginal": true,
+        "observation": "Eat and grow, place/points and avoidance guidance precede joystick; score grouping and movement target readable."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "snakelines",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/snakelines-phone-live-402.png",
+        "sha256": "5b661bf8d061bdf4dffd49fefc6e42de44868af14b9ad3b1fd20365efa7647dd",
+        "bytes": 942707,
+        "game": "snakelines",
+        "openedOriginal": true,
+        "observation": "Out state, Wins0/Out and return-next-round guidance centered; absent active controls are appropriate."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "carryball",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/carryball-phone-live-402.png",
+        "sha256": "006c5228d8bd56a8755a5c530f0fcd3e50f523502052d223789e3f705d528020",
+        "bytes": 1376560,
+        "game": "carryball",
+        "openedOriginal": true,
+        "observation": "Pick up ball, Lime team, Score0:0 and pickup guidance precede joystick; Pass is visibly inactive while not carrying. Last action has narrow but independent footer clearance."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "marble_bloom",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/marble_bloom-phone-live-402.png",
+        "sha256": "eed2f9168179c8f979509484bc3538b9fd69edb5a89ef4cb2e88348b87cd3d5c",
+        "bytes": 1707851,
+        "game": "marble_bloom",
+        "openedOriginal": true,
+        "observation": "Shared chain/Orbital Garden, now/next projectile previews above large drag-to-aim field; Swap and Fire align below with ample clearance."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "pocket_siege",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/pocket_siege-phone-live-402.png",
+        "sha256": "0fdcc073892c9eafb5a6380dc5e72bf223adf69d6b95f4c0d687dcba60e59a96",
+        "bytes": 1305805,
+        "game": "pocket_siege",
+        "openedOriginal": true,
+        "observation": "Own turn/wind/round and Tank/Drone/AA tabs above weapon, Direction/Power sliders, fuel and movement/Fire. Dense game-specific controls remain fully visible."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "bow_club",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/bow_club-phone-live-402.png",
+        "sha256": "698ed54bede880b7ceab6f94b876c50d8c16dff24734aa9ef0559b81a5358baf",
+        "bytes": 1394613,
+        "game": "bow_club",
+        "openedOriginal": true,
+        "observation": "Touch aiming, local0points/10arrows and mini-field guidance above roundedfield; Draw begins20CSS px below useful field, removing former103px deadband. Shared timer has no duplicate quiver."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "poker",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/poker-phone-live-402.png",
+        "sha256": "b301733bdc3111c8bb1abc927f8c0ae0095c4456fbb8ee2bcdb67142da07c548",
+        "bytes": 812132,
+        "game": "poker",
+        "openedOriginal": true,
+        "observation": "Poker night and collapsed Quick rules above Your turn/1000chips/private9spades+3clubs; Fold/Call20 and Raise total40/Raise grouped, all visible."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "airhockey",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/airhockey-phone-live-402.png",
+        "sha256": "2c35158b06bcf88b3340db862b9608cabbd86037519184bcf7b5794a3272b932",
+        "bytes": 1274585,
+        "game": "airhockey",
+        "openedOriginal": true,
+        "observation": "Title, mascot and1:0score above movement instruction and large joystick; current score and task readable."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "mines",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/mines-phone-live-402.png",
+        "sha256": "e305cb78897f85763b32d5e419e9b16534b590601977401658af70d619fb4bf4",
+        "bytes": 884958,
+        "game": "mines",
+        "openedOriginal": true,
+        "observation": "Safe/mine/cooldown rules above TileE5/Points0, directionalpad and Already open disabled action. Clear selected-tile state."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "curling",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/curling-phone-live-402.png",
+        "sha256": "debdf5080ba0a13c93889ab3c67bac5b7a398e0a3b5accfa9d80f2f119e553bd",
+        "bytes": 2296131,
+        "game": "curling",
+        "openedOriginal": true,
+        "observation": "Full actor name/Coral team/0points/Your throw above Position/Spin and useful swipe field with Power0%; field ends about18CSS px beforefooter."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "bowling",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/bowling-phone-live-402.png",
+        "sha256": "412f130a4695caead1da91c33e412224c8acaff1d4828a7741f82dcc75e40560",
+        "bytes": 2289126,
+        "game": "bowling",
+        "openedOriginal": true,
+        "observation": "Full actor name/Frame1/5/0points/Your throw above Position/Spin and useful swipe field; ball cue and Power0% readable with independentfooter clearance."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "swarm_gate",
+      "status": "captured-state visually confirmed",
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/final-confirmation/swarm_gate-phone-live-402.png",
+        "sha256": "97de8f32b1afeb0d8365a24b27bd08d4a6575bc29eefb268a129ec9d07239436",
+        "bytes": 2305959,
+        "game": "swarm_gate",
+        "openedOriginal": true,
+        "observation": "Full actor name, Defend the gate, targets0/Gate100%/Heat0% precede Fire/Pulse and large labeled Aim touchpad; touchfield clearsfooter."
+      },
+      "phase": "playing",
+      "lang": "en"
+    },
+    {
+      "game": "peek_shoot",
+      "status": "current focused captured-state visually confirmed",
+      "imagesOpened": [],
+      "image": {
+        "file": "output/playwright/composition-2026-10-03/focused-final-confirmation/peek_shoot-phone-live-402.png",
+        "sha256": "837dd45a843fda2e470471129ad6a085534a493d05817e8416bdb75df60907e1",
+        "bytes": 2126976,
+        "game": "peek_shoot",
+        "openedOriginal": true,
+        "observation": "Fullactorname, AimAndFire/points0/streak0/6, whiteflag do-not-shoot cue above Fire/disabled6Hits and largetouchpad. Actualmaterial present; touchpadendsbeforefooter."
+      },
+      "phase": "playing",
+      "lang": "en"
+    }
+  ],
+  "qualifications": [
+    "Historical full packet had34 normalphones and2 failedrows. Current focusedretry closesbothmissinggames and replacesMonster; current36 gate passes as explicitcomposite.",
+    "Historical fullcapture changedMonsterstyles duringrun. All337 capturedendhashes matchcurrent; currentMonster actionandnormalretry use762446 unchanged. Older5e1401 actionpacket remains historical.",
+    "Bow supplemental fivearrows perplayer/tenattempts reached results with sourceEnd matchingcurrent.",
+    "Static original review of captured states; no action reexecution by reviewer, no physical device proof, noMonster16assembled claim.",
+    "Historical failing final-catalog Poker originals retained separately; currentpair fixes its visible paint failure.",
+    "Latest monster-native-confirm-fit actionpacket directly inspected; allfour ownerhashes matchcurrent, noerrors/change, resized/Back bitmapstable and realconfirmedsubmit. Historicalearlierstyle/clippedrimqualification remains recordedbutissuperseded forcurrentnamedconfirmation.",
+    "Current36 phonegate is explicitcomposite:33 retained final-confirmation rows plus3 focused-final-confirmation rows. Originalfullcapture stillhas2failures+Monsterstylechange; no claimitwasstable36pass. Bothpacket337 endhashmaps areidentical andmatchcurrent; focused3 haserrors[]/changedFiles[]."
+  ],
+  "currentMonsterAction": {
+    "report": "output/playwright/composition-2026-10-03/monster-native-confirm-fit/report.json",
+    "sha256": "bbf0366badb8a2eafa04b2fa230731c44fbfd819fe38d8653a9792f152cf6456",
+    "errors": [],
+    "changedFiles": [],
+    "sourceEnd": {
+      "games/monster/public/styles.css": "76244617804a4ffdd9ff3e6825b881110dba24beb5f2d4554471f32d60fed915",
+      "games/monster/public/play.js": "b56ccca1d399f103e4abeee229f3131ebb71af6630dfee83345da9afe72160f0",
+      "games/monster/public/drawing.js": "43830afb97912d87686b3a01f31797e0fa306b71d40fd05b4d919cb39cab1fcf",
+      "games/monster/public/play.html": "53e2015214b81bbf4e1ceae4dad75f7a007fa61a1671007f8d247799d96018b0"
+    },
+    "sourceDrift": [],
+    "bitmapStableOnResize": true,
+    "bitmapStableOnBack": true,
+    "confirm320": {
+      "height": 358,
+      "card": {
+        "y": 16,
+        "bottom": 325.65625,
+        "h": 309.65625
+      },
+      "actions": [
+        {
+          "id": "confirmSubmit",
+          "y": 218.65625,
+          "bottom": 262.65625,
+          "h": 44
+        },
+        {
+          "id": "backToDraw",
+          "y": 268.65625,
+          "bottom": 312.65625,
+          "h": 44
+        }
+      ]
+    }
+  },
+  "focusedRetry": {
+    "report": "output/playwright/composition-2026-10-03/focused-final-confirmation/report.json",
+    "reportSHA256": "b18371d4fa0768cd4e0027ed437240d2382300a48626b862bab249ab1f13501e",
+    "startedAt": "2026-10-03T02:36:26.298Z",
+    "finishedAt": "2026-10-03T02:36:48.385Z",
+    "errors": [],
+    "rowErrors": [],
+    "changedFiles": [],
+    "sourceCount": 337,
+    "currentEndHashDrift": [],
+    "retainedPacketEndVsRetryEndChanges": []
+  },
+  "totalOpenedOriginals": 54,
+  "gate": "36 current phone captured states confirmed using33 retainedrows+3 focusedrows; targetTV8 confirmed; historicalrawfailedpacket remains failed"
+}

@@ -1,0 +1,32 @@
+{
+  "bug": {
+    "file": "target-bug-v2.webp",
+    "width": 694,
+    "height": 904
+  },
+  "beetle": {
+    "file": "target-beetle-v2.webp",
+    "width": 650,
+    "height": 895
+  },
+  "boss": {
+    "file": "target-boss-v2.webp",
+    "width": 689,
+    "height": 969
+  },
+  "chicken": {
+    "file": "target-chicken-v2.webp",
+    "width": 632,
+    "height": 1072
+  },
+  "bonus": {
+    "file": "target-bonus-v2.webp",
+    "width": 898,
+    "height": 876
+  },
+  "friendly": {
+    "file": "target-friendly-v2.webp",
+    "width": 884,
+    "height": 981
+  }
+}

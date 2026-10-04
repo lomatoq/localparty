@@ -1,0 +1,142 @@
+{
+  "scope": "Read-only focused current Mines TV ResizeObserver diagnosis after root removed redundant observer. No source changes.",
+  "createdAt": "2026-10-03T14:17:07.965Z",
+  "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/mines-resize-diagnosis/report.json",
+  "reportSha256": "86c6d079c9028548cf8dcc309f0ed8c953c8a5f9cebc4c24716c8632f5e6f014",
+  "sourceHashes": {
+    "public/tv.js": "9248ddb220690923efe9a585883b21a080beb67c72a13367f6fd952bfb7ab505",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "games/arcade/public/app.js": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52",
+    "games/arcade/public/style.css": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d"
+  },
+  "sourceStart": {
+    "public/tv.js": "9248ddb220690923efe9a585883b21a080beb67c72a13367f6fd952bfb7ab505",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "games/arcade/public/app.js": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52",
+    "games/arcade/public/style.css": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d"
+  },
+  "sourceEnd": {
+    "public/tv.js": "9248ddb220690923efe9a585883b21a080beb67c72a13367f6fd952bfb7ab505",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "games/arcade/public/app.js": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52",
+    "games/arcade/public/style.css": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d"
+  },
+  "errors": [],
+  "sourceDrift": [],
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/mines-resize-diagnosis/main-tv-lobby.png",
+      "sha256": "e5d43a81e0d161e6240b4081fc7a42c55c4642710d8cdc7aba06cbd4e08e1c1b",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/mines-resize-diagnosis/mines-tv-gameplay.png",
+      "sha256": "76b3418fac8ed823e912a0d1b02d5cc0b2b63264285bb782f7096f8ce3ecd70e",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/mines-resize-diagnosis/mines-tv-live-1280.png",
+      "sha256": "b36d126ef9709d91279cc433ec5337e7e04ccef79a2e673df2582b78dc037b23",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/mines-resize-diagnosis/mines-tv-live-1920.png",
+      "sha256": "bd44e607924621e24cc7612ef0dd078041421f9fd87baae6305b5e05c2bfe069",
+      "openedIndividually": true
+    }
+  ],
+  "actualGameplay": "playing",
+  "actions": [
+    "actual TV route and game identity ready before gameplay measurements"
+  ],
+  "viewportSettles": [
+    {
+      "surface": "tv",
+      "w": 1280,
+      "h": 720,
+      "state": "live",
+      "at": "2026-10-03T14:15:09.178Z",
+      "geometry": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "frame": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "dock": [
+          [
+            124,
+            67,
+            320,
+            132.7
+          ]
+        ],
+        "fields": [
+          {
+            "rect": [
+              124,
+              67.1,
+              320,
+              585.9
+            ],
+            "bitmap": null
+          }
+        ]
+      }
+    },
+    {
+      "surface": "tv",
+      "w": 1920,
+      "h": 1080,
+      "state": "live",
+      "at": "2026-10-03T14:15:10.245Z",
+      "geometry": {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "frame": [
+          0,
+          0,
+          1920,
+          1080
+        ],
+        "dock": [
+          [
+            254,
+            201.9,
+            340,
+            199.1
+          ]
+        ],
+        "fields": [
+          {
+            "rect": [
+              254,
+              201.9,
+              340,
+              676.2
+            ],
+            "bitmap": null
+          }
+        ]
+      }
+    }
+  ],
+  "method": "Normal-clock real ready player plus built-in bots, committed TV route guard, actual1280×720→1920×1080 viewport resizing, passive unmodified pageerror capture, no ResizeObserver error suppression. All4 originals opened. No phone PNG.",
+  "conclusion": "No runtime/observer error reproduced on current sources. Both game views show whole10×10 board and four identities. This clean focused run does not prove the precise cause of the historical intermittent error.",
+  "qualification": "Current micro-art is local-only evidence; new paired generation ongoing. Main lobby is setup evidence only. No physical-device claim."
+}

@@ -131,7 +131,7 @@ function publicState() {
 }
 
 function emitState() {
-  runtime.ui({phase:game.phase==='lobby'?'waiting':game.phase==='playing'?'playing':'results',endsAt:game.phase==='playing'?game.turnDeadline:null,label:'Твой рисунок',currentPlayer:game.players[game.turnIndex]?.name||null,progress:`${game.segments.length} / ${game.players.length}`,actions:game.phase==='playing'?['draw']:[]});
+  runtime.ui({phase:game.phase==='lobby'?'waiting':game.phase==='playing'?'playing':game.phase==='reveal'&&game.revealAt&&Date.now()-game.revealAt<showcaseMs()?'reveal':'results',endsAt:game.phase==='playing'?game.turnDeadline:null,label:'Твой рисунок',currentPlayer:game.players[game.turnIndex]?.name||null,progress:`${game.segments.length} / ${game.players.length}`,actions:game.phase==='playing'?['draw']:[]});
   io.emit('game:state', publicState());
 }
 
@@ -313,8 +313,11 @@ server.listen(PORT, (process.env.PARTY_MANAGED === '1' ? '127.0.0.1' : '0.0.0.0'
 });
 
 function validPng(data,width,height){try{const b=Buffer.from(data.split(',')[1],'base64');return b.length>24&&b.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&b.readUInt32BE(16)===width&&b.readUInt32BE(20)===height;}catch{return false;}}
+// Showcase: the shared results overlay waits while the TV unveils the monster
+// part by part. The result report itself is still sent at once.
+function showcaseMs(){return Math.min(12000,3600+900*game.segments.length);}
 function advanceTurn(){
- if(game.turnIndex>=game.players.length){game.phase='reveal';game.revealAt=Date.now();game.turnDeadline=null;emitState();io.emit('round:reveal',{round:game.round,segments:game.segments});runtime.report({eventId:game.eventId,gameId:'monster',duration:(Date.now()-game.startedAt)/1000,players:game.players.map(p=>({id:p.id,name:p.name,score:game.segments.some(s=>s.playerId===p.id)?100:0,won:true,metrics:{drawings:game.segments.filter(s=>s.playerId===p.id).length,strokes:game.segments.filter(s=>s.playerId===p.id).reduce((n,s)=>n+s.strokes,0)}}))});}
+ if(game.turnIndex>=game.players.length){game.phase='reveal';game.revealAt=Date.now();game.turnDeadline=null;emitState();{const at=game.revealAt;runtime.setTimeout(()=>{if(game.phase==='reveal'&&game.revealAt===at)emitState();},showcaseMs()+60);}io.emit('round:reveal',{round:game.round,segments:game.segments});runtime.report({eventId:game.eventId,gameId:'monster',duration:(Date.now()-game.startedAt)/1000,players:game.players.map(p=>({id:p.id,name:p.name,score:game.segments.some(s=>s.playerId===p.id)?100:0,won:true,metrics:{drawings:game.segments.filter(s=>s.playerId===p.id).length,strokes:game.segments.filter(s=>s.playerId===p.id).reduce((n,s)=>n+s.strokes,0)}}))});}
  else{sendTurnToActive();emitState();}
 }
 

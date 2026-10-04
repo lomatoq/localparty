@@ -1,0 +1,13 @@
+# Wi-Fi Kart Party — handling and vehicle art
+
+Current source correction; not installed or tested on physical iPhone by this worker.
+
+The supplied left/right buttons and gas layout remain unchanged. The actual driving response changes: brief steering presses build progressively to full steering over200ms, release immediately stops additional yaw, and reversal starts the new direction from neutral. A sustained corner reduces speed to220 world units/s while the existing straight limit430 remains. Grip no longer drops into deliberate sliding when a button is fully held. The physics integrates bounded substeps so60/120Hz inputs produce the same response. Holding gas can turn a stalled kart away from a barrier; an idle kart cannot rotate without gas. Disconnect, input timeout, pause and reconnect clear steering state.
+
+Vehicle art now uses broad colored overhead shells, four simple rubber wheels, a contrasting helmet/cockpit and front/rear lights. Front wheels articulate with the observed turn. The colors come from each actual racer. The approved forest circuit and collision path remain unchanged; no extra header decoration or random background was added. This is code-native canvas art with clean geometry, not new generated bitmap assets.
+
+Fresh normal-clock browser capture used the actual launcher, two UI-joined human browser profiles, two built-in bots and the shipped controller key handlers. No game positions or world state were injected. Both1280×720 and1920×1080 TV originals were opened and reviewed, alongside402px controller original. Errors and source drift were empty for the final18-second driving exercise. The automated exercise confirms input plumbing and motion; it does not replace physical touch driving or demonstrate subjective ease for every player.
+
+`output/playwright/kart-handling-2026-10-03/final-clean/` contains current screenshots, source hashes and driving snapshots. Initial before and functional intermediate after runs remain alongside it. The changed host.js Impeccable scan returned no findings. The focused handling plus existing barrier regression run passed12 tests. The full real-physics lap test passed on the final handling source:31.00 seconds, zero offroad frames (`final-lap.log`).
+
+Opening-grid ranking changes no longer trigger a stack of place-gain notices during the first2 seconds; repeated gains for one driver replace their previous gain notice. Actual lap-crossing and finish notices remain, guarded by a behavioral regression. This final feedback refinement followed the parent review of the fresh screenshots. The one Impeccable scan was performed before this feedback-only guard; it was not rerun or presented as final full-catalogue UI acceptance.

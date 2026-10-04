@@ -157,18 +157,7 @@ function setupPushRound(){
   ps.forEach((p,i)=>{const a=-Math.PI/2+i*Math.PI*2/Math.max(1,ps.length);p.active=true;p.alive=true;p.x=CENTER.x+Math.cos(a)*spawnR;p.y=CENTER.y+Math.sin(a)*spawnR;p.vx=p.vy=0;p.input.jx=p.input.jy=0;p.roundScore=0;p.impactCd=0;});
   drum.flying=[];drum.stuck=[];bomb.explosions=[];
 }
-function buildSectors(ps,round){
-  const count=clamp(10+ps.length*3+(round-1)*2,10,46),weights=Array.from({length:count},()=>rand(.65,1.55)),sum=weights.reduce((a,b)=>a+b,0);
-  let a=0;const sectors=[];
-  for(let i=0;i<count;i++){
-    const size=weights[i]/sum*Math.PI*2;let ownerId=null,type='neutral',color='#3a414c';const hazardChance=round>=3?.10:.04;
-    if(Math.random()<hazardChance){type='danger';color='#15191f';}
-    else if(ps.length&&Math.random()<.82){const owner=ps[(i+round)%ps.length];ownerId=owner.id;type='player';color=owner.color;}
-    sectors.push({start:a,end:a+size,ownerId,type,color});a+=size;
-  }
-  for(let j=0;j<ps.length;j++)for(let n=0;n<2;n++){const idx=(j*2+n*ps.length+round)%sectors.length;sectors[idx].ownerId=ps[j].id;sectors[idx].type='player';sectors[idx].color=ps[j].color;}
-  return sectors;
-}
+const buildSectors = require('./knives-sectors');
 function setupKnivesRound(){
   const ps=connectedPlayers();game.roundDuration=TEST_FAST?1.4:Math.max(24,34-game.round*.8);drum.angle=rand(0,Math.PI*2);
   const base=.50+(game.round-1)*.10;drum.speed=(game.round%2===0?-1:1)*clamp(base,.5,1.45);drum.wobble=game.round>=4?(.10+.035*game.round):0;
@@ -274,7 +263,7 @@ function explodeBomb(){
 function updateBomb(dt){
   const ps=activePlayers().filter(p=>p.alive);bomb.passLock=Math.max(0,bomb.passLock-dt);bomb.noReturnTimer=Math.max(0,bomb.noReturnTimer-dt);
   for(let i=bomb.explosions.length-1;i>=0;i--){bomb.explosions[i].t+=dt;if(bomb.explosions[i].t>=bomb.explosions[i].ttl)bomb.explosions.splice(i,1);}
-  for(const p of ps){if((p.input.jx||p.input.jy)&&Date.now()-(p.input.at||0)>500)p.input.jx=p.input.jy=0;let jx=clamp(Number(p.input.jx)||0,-1,1),jy=clamp(Number(p.input.jy)||0,-1,1),jm=len(jx,jy);if(jm>1){jx/=jm;jy/=jm;}const accel=jm>.05?900:0;p.vx+=jx*accel*dt;p.vy+=jy*accel*dt;const damping=Math.pow(jm>.05?.91:.70,dt*60);p.vx*=damping;p.vy*=damping;const isHolder=p.id===bomb.holderId,maxSp=isHolder?330:305,sp=len(p.vx,p.vy);if(sp>maxSp){p.vx=p.vx/sp*maxSp;p.vy=p.vy/sp*maxSp;}p.x+=p.vx*dt;p.y+=p.vy*dt;collideWithBombObstacles(p);
+  for(const p of ps){if((p.input.jx||p.input.jy)&&Date.now()-(p.input.at||0)>500)p.input.jx=p.input.jy=0;let jx=clamp(Number(p.input.jx)||0,-1,1),jy=clamp(Number(p.input.jy)||0,-1,1),jm=len(jx,jy);if(jm>1){jx/=jm;jy/=jm;}const accel=jm>.05?(p.id===bomb.holderId?1008:900):0;p.vx+=jx*accel*dt;p.vy+=jy*accel*dt;const damping=Math.pow(jm>.05?.91:.70,dt*60);p.vx*=damping;p.vy*=damping;const isHolder=p.id===bomb.holderId,maxSp=isHolder?342:305,sp=len(p.vx,p.vy);if(sp>maxSp){p.vx=p.vx/sp*maxSp;p.vy=p.vy/sp*maxSp;}p.x+=p.vx*dt;p.y+=p.vy*dt;collideWithBombObstacles(p);
     let dx=p.x-CENTER.x,dy=p.y-CENTER.y,d=Math.hypot(dx,dy),max=bomb.arenaRadius-p.radius;if(d>max){const nx=dx/d,ny=dy/d;p.x=CENTER.x+nx*max;p.y=CENTER.y+ny*max;const outward=p.vx*nx+p.vy*ny;if(outward>0){p.vx-=nx*outward*1.45;p.vy-=ny*outward*1.45;}}
   }
   for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){
@@ -354,9 +343,14 @@ function handleMessage(socket,msg){
   if(event==='registerHost'){if(!socket.trustedHost)return;socket.data.isHost=true;socket.send('state',snapshot());socket.send('lobby',lobbyState());return;}
   if(event==='join'){
     const d={...(payload||{})};const identity=runtime.identify(d,socket);if(runtime.managed&&!identity)return socket.send('error','Войдите через общее лобби');if(identity){d.token='party:'+identity.id;d.name=identity.name;d.handedness=identity.hand;}let p=null;
-    if(d.token&&tokenToPlayer.has(d.token)){p=players.get(tokenToPlayer.get(d.token));if(p){p.connected=true;p.socketId=socket.id;p.name=cleanName(d.name||p.name);if(d.handedness)p.handedness=d.handedness==='left'?'left':'right';socket.data.playerId=p.id;}}
+    if(d.token&&tokenToPlayer.has(d.token)){p=players.get(tokenToPlayer.get(d.token));if(p){p.connected=true;p.socketId=socket.id;p.input.jx=p.input.jy=0;p.input.at=0;p.name=cleanName(d.name||p.name);if(d.handedness)p.handedness=d.handedness==='left'?'left':'right';socket.data.playerId=p.id;}}
     if(!p)p=makePlayer(socket,d);if(identity)p.partyId=identity.id;
-    if(!p.active&&(game.status==='playing'||game.status==='countdown')){p.active=true;p.alive=true;p.x=CENTER.x+rand(-100,100);p.y=CENTER.y+rand(-100,100);p.knivesRemaining=drum.knivesPerPlayer;p.launcherAngle=rand(0,Math.PI*2);if(game.mode==='knives'){const sectors=drum.sectors.filter(s=>s.type==='neutral');const candidates=sectors.length?sectors:drum.sectors.slice(-2);for(const sector of candidates.slice(0,2)){sector.ownerId=p.id;sector.type='player';sector.color=p.color;}}}
+    if(!p.active&&(game.status==='playing'||game.status==='countdown')){
+      if(game.mode==='knives'){
+        // Joining mid-round must not steal another player's scoring sectors.
+        p.lastFeedback='ЖДИ СЛЕДУЮЩИЙ РАУНД';p.lastFeedbackAt=Date.now();
+      }else{p.active=true;p.alive=true;p.x=CENTER.x+rand(-100,100);p.y=CENTER.y+rand(-100,100);}
+    }
     if(game.status==='lobby'||game.status==='finished')p.active=false;
     socket.send('joined',{id:p.id,token:p.token,name:p.name,color:p.color,handedness:p.handedness});broadcast('lobby',lobbyState());return;
   }

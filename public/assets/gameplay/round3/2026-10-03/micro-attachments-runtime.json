@@ -1,0 +1,654 @@
+{
+  "version": 1,
+  "opticalThreshold": 8,
+  "items": {
+    "push": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        76,
+        121,
+        248,
+        217
+      ],
+      "optical": [
+        4,
+        4,
+        240,
+        209
+      ],
+      "pack": 1,
+      "cell": 0,
+      "seat": "right"
+    },
+    "shrink": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        422,
+        104,
+        260,
+        247
+      ],
+      "optical": [
+        4,
+        4,
+        252,
+        239
+      ],
+      "pack": 1,
+      "cell": 1,
+      "seat": "right"
+    },
+    "knives": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        785,
+        106,
+        264,
+        235
+      ],
+      "optical": [
+        4,
+        4,
+        256,
+        227
+      ],
+      "pack": 1,
+      "cell": 2,
+      "seat": "right"
+    },
+    "bomb": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        1133,
+        56,
+        260,
+        305
+      ],
+      "optical": [
+        4,
+        4,
+        252,
+        297
+      ],
+      "pack": 1,
+      "cell": 3,
+      "seat": "right"
+    },
+    "western": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        58,
+        420,
+        284,
+        239
+      ],
+      "optical": [
+        4,
+        4,
+        276,
+        231
+      ],
+      "pack": 1,
+      "cell": 4,
+      "seat": "right"
+    },
+    "tanks": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        424,
+        420,
+        250,
+        239
+      ],
+      "optical": [
+        4,
+        4,
+        242,
+        231
+      ],
+      "pack": 1,
+      "cell": 5,
+      "seat": "right"
+    },
+    "tankarena": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        765,
+        421,
+        273,
+        237
+      ],
+      "optical": [
+        4,
+        4,
+        265,
+        229
+      ],
+      "pack": 1,
+      "cell": 6,
+      "seat": "right"
+    },
+    "chaos": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        1162,
+        437,
+        223,
+        229
+      ],
+      "optical": [
+        4,
+        4,
+        215,
+        221
+      ],
+      "pack": 1,
+      "cell": 7,
+      "seat": "right"
+    },
+    "kart": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        67,
+        756,
+        252,
+        226
+      ],
+      "optical": [
+        4,
+        4,
+        244,
+        218
+      ],
+      "pack": 1,
+      "cell": 8,
+      "seat": "right"
+    },
+    "monster": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        407,
+        751,
+        291,
+        240
+      ],
+      "optical": [
+        4,
+        4,
+        283,
+        232
+      ],
+      "pack": 1,
+      "cell": 9,
+      "seat": "right"
+    },
+    "spy": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        754,
+        750,
+        296,
+        238
+      ],
+      "optical": [
+        4,
+        4,
+        288,
+        230
+      ],
+      "pack": 1,
+      "cell": 10,
+      "seat": "right"
+    },
+    "millionaire": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "source": [
+        1115,
+        756,
+        286,
+        235
+      ],
+      "optical": [
+        4,
+        4,
+        278,
+        227
+      ],
+      "pack": 1,
+      "cell": 11,
+      "seat": "right"
+    },
+    "sinyakquiz": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        65,
+        89,
+        270,
+        243
+      ],
+      "optical": [
+        4,
+        4,
+        262,
+        235
+      ],
+      "pack": 2,
+      "cell": 0,
+      "seat": "left"
+    },
+    "warsaw": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        421,
+        105,
+        269,
+        231
+      ],
+      "optical": [
+        4,
+        4,
+        261,
+        223
+      ],
+      "pack": 2,
+      "cell": 1,
+      "seat": "left"
+    },
+    "crocodile": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        773,
+        104,
+        262,
+        223
+      ],
+      "optical": [
+        4,
+        4,
+        254,
+        215
+      ],
+      "pack": 2,
+      "cell": 2,
+      "seat": "left"
+    },
+    "jenga": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        1124,
+        105,
+        256,
+        227
+      ],
+      "optical": [
+        4,
+        4,
+        248,
+        219
+      ],
+      "pack": 2,
+      "cell": 3,
+      "seat": "left"
+    },
+    "crane": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        63,
+        396,
+        276,
+        254
+      ],
+      "optical": [
+        4,
+        4,
+        268,
+        246
+      ],
+      "pack": 2,
+      "cell": 4,
+      "seat": "left"
+    },
+    "naval": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        416,
+        424,
+        282,
+        220
+      ],
+      "optical": [
+        4,
+        4,
+        274,
+        212
+      ],
+      "pack": 2,
+      "cell": 5,
+      "seat": "left"
+    },
+    "drawguess": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        778,
+        424,
+        283,
+        217
+      ],
+      "optical": [
+        4,
+        4,
+        275,
+        209
+      ],
+      "pack": 2,
+      "cell": 6,
+      "seat": "left"
+    },
+    "western_duel": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        1124,
+        421,
+        262,
+        230
+      ],
+      "optical": [
+        4,
+        4,
+        254,
+        222
+      ],
+      "pack": 2,
+      "cell": 7,
+      "seat": "left"
+    },
+    "taprace": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        63,
+        751,
+        263,
+        237
+      ],
+      "optical": [
+        4,
+        4,
+        255,
+        229
+      ],
+      "pack": 2,
+      "cell": 8,
+      "seat": "left"
+    },
+    "punchmeter": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        417,
+        728,
+        281,
+        252
+      ],
+      "optical": [
+        4,
+        4,
+        273,
+        244
+      ],
+      "pack": 2,
+      "cell": 9,
+      "seat": "left"
+    },
+    "flappy": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        776,
+        724,
+        272,
+        251
+      ],
+      "optical": [
+        4,
+        2,
+        264,
+        245
+      ],
+      "pack": 2,
+      "cell": 10,
+      "seat": "left"
+    },
+    "hungry": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "source": [
+        1123,
+        725,
+        267,
+        261
+      ],
+      "optical": [
+        4,
+        4,
+        259,
+        253
+      ],
+      "pack": 2,
+      "cell": 11,
+      "seat": "left"
+    },
+    "snakelines": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        54,
+        94,
+        289,
+        221
+      ],
+      "optical": [
+        4,
+        4,
+        281,
+        213
+      ],
+      "pack": 3,
+      "cell": 0,
+      "seat": "left"
+    },
+    "carryball": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        418,
+        78,
+        256,
+        237
+      ],
+      "optical": [
+        4,
+        4,
+        248,
+        229
+      ],
+      "pack": 3,
+      "cell": 1,
+      "seat": "left"
+    },
+    "marble_bloom": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        752,
+        101,
+        330,
+        202
+      ],
+      "optical": [
+        4,
+        4,
+        322,
+        194
+      ],
+      "pack": 3,
+      "cell": 2,
+      "seat": "left"
+    },
+    "pocket_siege": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        1137,
+        101,
+        261,
+        200
+      ],
+      "optical": [
+        4,
+        4,
+        253,
+        192
+      ],
+      "pack": 3,
+      "cell": 3,
+      "seat": "left"
+    },
+    "bow_club": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        63,
+        432,
+        267,
+        201
+      ],
+      "optical": [
+        4,
+        4,
+        259,
+        193
+      ],
+      "pack": 3,
+      "cell": 4,
+      "seat": "left"
+    },
+    "poker": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        416,
+        408,
+        263,
+        239
+      ],
+      "optical": [
+        4,
+        4,
+        255,
+        231
+      ],
+      "pack": 3,
+      "cell": 5,
+      "seat": "left"
+    },
+    "airhockey": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        770,
+        419,
+        261,
+        230
+      ],
+      "optical": [
+        4,
+        4,
+        253,
+        222
+      ],
+      "pack": 3,
+      "cell": 6,
+      "seat": "left"
+    },
+    "mines": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        1122,
+        417,
+        271,
+        221
+      ],
+      "optical": [
+        4,
+        4,
+        263,
+        213
+      ],
+      "pack": 3,
+      "cell": 7,
+      "seat": "left"
+    },
+    "curling": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        56,
+        738,
+        275,
+        251
+      ],
+      "optical": [
+        4,
+        4,
+        267,
+        243
+      ],
+      "pack": 3,
+      "cell": 8,
+      "seat": "left"
+    },
+    "bowling": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        421,
+        754,
+        288,
+        219
+      ],
+      "optical": [
+        4,
+        4,
+        280,
+        211
+      ],
+      "pack": 3,
+      "cell": 9,
+      "seat": "left"
+    },
+    "swarm_gate": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        786,
+        734,
+        247,
+        261
+      ],
+      "optical": [
+        4,
+        4,
+        239,
+        253
+      ],
+      "pack": 3,
+      "cell": 10,
+      "seat": "left"
+    },
+    "peek_shoot": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "source": [
+        1123,
+        757,
+        280,
+        214
+      ],
+      "optical": [
+        4,
+        4,
+        272,
+        206
+      ],
+      "pack": 3,
+      "cell": 11,
+      "seat": "left"
+    }
+  }
+}

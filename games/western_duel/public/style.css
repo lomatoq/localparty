@@ -4,3 +4,110 @@ body{font-weight:400;background:#0a0a0c}h1,h2{font-weight:800;font-style:italic;
 /* Dynamic desert renderer fills its stage; cue remains a readable overlay. */
 html.party-managed.party-host[data-party-game=western_duel] main>.stage{position:relative!important}html.party-managed.party-host[data-party-game=western_duel] .stage>#scene{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;object-fit:fill!important}html.party-managed.party-host[data-party-game=western_duel] #cue{z-index:1;text-shadow:0 3px 18px #101820,0 1px 4px #101820}
 
+/* The cue is the task; player identity and Points use separate, stable roles. */
+html.party-managed body #cue{font-family:KardiaFatRunner,system-ui!important;font-weight:900!important;font-style:italic!important;text-transform:uppercase;line-height:1.12}
+html.party-managed body #board .stat{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center}
+html.party-managed body #board .duel-rank{font:italic 900 18px KardiaFatRunner,system-ui;color:#bcb2cf;text-align:center}
+html.party-managed body #board .duel-player{min-width:0}
+html.party-managed body #board .player-name{font-family:KardiaFit,system-ui!important;font-style:normal!important;font-weight:500!important;text-transform:none!important;overflow-wrap:anywhere;line-height:1.25}
+html.party-managed body #board .duel-player small{font-family:KardiaFitRunner,system-ui;line-height:1.3;margin-top:3px}
+html.party-managed body #board .duel-metric{text-align:center;min-width:42px}
+html.party-managed body #board .duel-points{font:italic 900 26px KardiaFatRunner,system-ui!important;line-height:1}
+html.party-managed body #board .duel-metric small{font:400 10px KardiaFit,system-ui;color:#bcb2cf;letter-spacing:.06em;margin-top:4px}
+html.party-managed.party-host body .glass h2{text-align:center}
+
+/* A two-person duel keeps the whole field while a 16-person roster remains reachable. */
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body:has(#cue):has(#queue) main{grid-template-rows:minmax(0,1fr)!important;height:100dvh;min-height:0;overflow:hidden;padding-bottom:16px!important}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body main>:not(.stage):not(.duel-playing-rail){display:none!important}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body main>.stage{grid-row:1!important;min-height:0;height:100%;align-self:stretch}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body main>.duel-playing-rail{grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:16px;min-height:0;height:100%;overflow:hidden;padding:16px;border-radius:26px}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body .duel-playing-rail>*{grid-row:auto!important;grid-column:auto!important;margin:0;min-width:0}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body .duel-playing-rail>.glass{flex:none;height:auto;min-height:0;padding:16px}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body .duel-playing-rail>#notice{flex:none;min-height:0;text-align:center}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body .duel-playing-rail>#board{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:none;padding:4px 0 8px}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body #board::-webkit-scrollbar{display:none}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body #board .stat{animation:none}
+html.party-managed.party-host.party-session-active[data-party-game=western_duel] body .duel-playing-rail>#start{flex:none}
+
+/* A round winner shares one small roofline; the duelists remain visible below. */
+html.party-managed.party-player[data-party-game=western_duel] body #cue.duel-reveal-cue{display:flex;align-items:center;justify-content:center;gap:8px;padding:0 10px;height:22px;line-height:22px;font-size:18px!important;white-space:nowrap}
+html.party-managed.party-player[data-party-game=western_duel] body #cue .duel-winner-name{min-width:0;max-width:calc(100% - 58px);overflow:hidden;text-overflow:ellipsis;font:500 13px KardiaFit,system-ui!important;text-transform:none!important}
+html.party-managed.party-player[data-party-game=western_duel] body #cue .duel-win-caption{flex:none;font:italic 900 18px KardiaFatRunner,system-ui!important;line-height:22px;text-transform:uppercase}
+
+/* Codex UI: compact tournament wing and a consistent controller reading order. */
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main :is(.lp-duel-sidebar,.duel-playing-rail){padding:20px!important;gap:12px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main :is(.lp-duel-sidebar,.duel-playing-rail)>.glass{padding:16px!important;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main{display:flex!important;flex-direction:column;gap:12px;justify-content:center;padding:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main .glass{margin:0!important;padding:12px!important;width:100%}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main #board:empty{display:none}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main #fire{margin:0!important;min-height:110px!important;font:italic 900 30px/1.1 KardiaFatRunner,sans-serif}
+
+/* Group05: a full sunset stage and a compact ordered tournament wing. */
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=western_duel] body:has(#cue):has(#queue) main{padding:0 16px!important;gap:16px!important;grid-template-columns:minmax(0,1fr) 360px!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main :is(.lp-duel-sidebar,.duel-playing-rail){padding:0!important;gap:16px!important;overflow:hidden}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main :is(.lp-duel-sidebar,.duel-playing-rail)>.glass{padding:0 12px!important;background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main :is(.lp-duel-sidebar,.duel-playing-rail) #notice{font:italic 400 16px/1.3 KardiaFitRunner,sans-serif!important;flex:none}
+html.hp-ui.party-managed[data-party-game=western_duel] body #queue{display:flex;flex-direction:column;gap:8px;color:#e6dcf8}
+html.hp-ui.party-managed[data-party-game=western_duel] body .duel-next{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;align-items:center}
+html.hp-ui.party-managed[data-party-game=western_duel] body .duel-next-index{font:italic 400 16px KardiaFitRunner,sans-serif;color:#d4ff9b;text-align:center}
+html.hp-ui.party-managed[data-party-game=western_duel] body .duel-next-pair{display:grid;grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr);gap:4px;align-items:center;font:500 15px/1.15 KardiaFit,sans-serif;overflow-wrap:anywhere}
+html.hp-ui.party-managed[data-party-game=western_duel] body .duel-versus{font:italic 400 13px KardiaFitRunner,sans-serif;color:#ae9acb;text-align:center}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body #board .stat{grid-template-columns:40px 44px minmax(0,1fr) 50px!important;gap:12px!important;padding:12px!important;min-height:78px!important}
+html.hp-ui.party-managed[data-party-game=western_duel] body .duel-portrait{width:44px;height:48px;display:grid;place-items:center}
+html.hp-ui.party-managed[data-party-game=western_duel] body .duel-portrait img{width:100%;height:100%;object-fit:contain}
+html.hp-ui.party-managed[data-party-game=western_duel] body .duel-portrait img.duel-photo{object-fit:cover;border-radius:50%;height:44px}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main{gap:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main .glass{background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:0 8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main .glass h2{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #queue .duel-next:nth-child(n+2){display:none}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #queue .duel-next:before{content:'NEXT';font:italic 400 13px KardiaFitRunner,sans-serif;color:#d4ff9b}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #queue .duel-next{grid-template-columns:42px minmax(0,1fr);gap:8px}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #queue .duel-next-index{display:none}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #queue .duel-next-pair{font-size:15px}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #notice{min-height:0!important;margin:0!important;font:italic 400 15px/1.3 KardiaFitRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #fire{display:flex;align-items:center;justify-content:center;gap:12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #fire .duel-fire-icon{display:block;width:32px;height:32px;background:currentColor;mask:url('/assets/icons/game-pack/target.svg') center/contain no-repeat;-webkit-mask:url('/assets/icons/game-pack/target.svg') center/contain no-repeat}
+
+
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main :is(.lp-duel-sidebar,.duel-playing-rail){padding-top:calc(var(--party-stage-inset-top,0px) + 12px)!important;box-sizing:border-box}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main :is(.lp-duel-sidebar,.duel-playing-rail)>#notice{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body #cue{top:calc(var(--party-stage-inset-top,0px) + 12px)!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body #fire .duel-fire-icon{mask-image:url('/assets/icons/game-pack/pistol.svg');-webkit-mask-image:url('/assets/icons/game-pack/pistol.svg')}
+
+
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main #fire:disabled{min-height:64px!important;height:64px!important;font-size:20px!important;flex:none;opacity:.45}
+
+/* Repeated two-player pairings are future duels, distinguished by their real number. */
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main #queue .duel-next:before{content:'NEXT\A' attr(data-duel-number);white-space:pre-line;font:400 12px/1.25 var(--hp-font-body,KardiaFit,sans-serif)!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main #notice{font:400 14px/1.35 var(--hp-font-body,KardiaFit,sans-serif)!important;font-style:normal!important;color:var(--hp-muted,#b9b1c9)!important;text-transform:none!important}
+
+/* A saloon ledger owns the full match cap, queue and standings. */
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=western_duel] body main{max-width:none!important;grid-template-columns:minmax(0,1fr) 360px!important;padding:0 16px!important;gap:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main [data-tv-hud-rail]{--game-panel-fill:#352523;--game-panel-rim:#b99065;--game-panel-ink:#fff0dd;--game-panel-muted:#ddc4ad;position:relative;align-self:center!important;height:auto!important;max-height:calc(100dvh - 24px)!important;padding:calc(var(--party-hud-height,136px) + 13px) 17px 17px!important;gap:12px!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:var(--game-panel-ink)}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main [data-tv-hud-rail]>.glass{padding:0 4px!important;border-bottom:0!important;border-radius:0!important;background:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main [data-tv-hud-rail] .glass h2{font-size:16px!important;margin:0 0 12px!important;color:#f0d1ad!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main #board .stat{grid-template-columns:32px 44px minmax(0,1fr) 44px!important;gap:8px!important;padding:12px 8px!important;background:#241c27!important;border-color:#b9906545!important;min-height:76px!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main #board .stat.active{border-color:#d6b989a0!important;background:#3d2d2a!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main #cue{top:50%!important;transform:translateY(-50%);padding-block:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main .stage{border-color:#b9906580!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main #queue{padding:8px 0;border-block:1px solid #b9906545;color:#f0ddc8}
+
+/* During your duel, the signal and Shoot form the entire action path. */
+html.hp-ui.party-managed.party-player[data-party-game=western_duel][data-duel-active=true] body main .glass{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=western_duel] body main{height:100dvh!important;min-height:0!important;justify-content:center!important}
+
+/* Intrinsic tournament content forms one centered group; only standings scroll. */
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=western_duel] body main .duel-playing-rail>#board{flex:0 1 auto!important;min-height:0!important}
+
+/* Sunset atmosphere spans the scene; queue and player cards keep their geometry.
+   One pixel of former rim becomes inset so removing it does not widen cards. */
+/* Scenery belongs to the field. The renderer fades its background toward the
+   ledger; rounded-card clipping must not cut off the left building or sky. */
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main>.stage{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+@media(min-width:1101px){
+ html.hp-ui.party-managed.party-host.party-session-active[data-party-game=western_duel] body main{position:relative;isolation:isolate}
+ html.hp-ui.party-managed.party-host.party-session-active[data-party-game=western_duel] body main::before{content:"";position:absolute;inset:0 0 0 auto;width:480px;background:linear-gradient(to left,#51382dbf 0%,#51382d80 58%,#51382d00 100%);pointer-events:none;z-index:-1}
+}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.duel-portrait img.duel-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#d0af86)}

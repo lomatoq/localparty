@@ -1,0 +1,392 @@
+{
+  "version": 1,
+  "source": "atlas-marbles.png",
+  "styleProfile": "sprite",
+  "chromaKeyed": false,
+  "frames": {
+    "marble-violet": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 48,
+        "y": 48,
+        "w": 161,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 161,
+        "h": 160
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-violet.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "marble-lime": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 305,
+        "y": 49,
+        "w": 159,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 159
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-lime.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "marble-pink": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 560,
+        "y": 49,
+        "w": 160,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 159
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-pink.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "marble-cyan": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 816,
+        "y": 49,
+        "w": 160,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 158
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-cyan.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "marble-gold": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 48,
+        "y": 304,
+        "w": 161,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 161,
+        "h": 160
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-gold.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "marble-orange": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 304,
+        "y": 304,
+        "w": 161,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 161,
+        "h": 160
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-orange.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "marble-rainbow": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 560,
+        "y": 303,
+        "w": 161,
+        "h": 162
+      },
+      "sourceSize": {
+        "w": 161,
+        "h": 162
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-rainbow.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "marble-bomb": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 821,
+        "y": 296,
+        "w": 151,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 151,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/marble-bomb.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "petal-a": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 69,
+        "y": 575,
+        "w": 118,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 118,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/petal-a.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "petal-b": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 327,
+        "y": 576,
+        "w": 114,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 114,
+        "h": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/petal-b.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bloom-flower": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 562,
+        "y": 561,
+        "w": 157,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 158
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/bloom-flower.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pop-ring": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 808,
+        "y": 567,
+        "w": 176,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/pop-ring.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shooter": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 46,
+        "y": 811,
+        "w": 165,
+        "h": 171
+      },
+      "sourceSize": {
+        "w": 165,
+        "h": 171
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/shooter.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "track-curve": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 300,
+        "y": 808,
+        "w": 168,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 168,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/track-curve.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "hole": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 557,
+        "y": 814,
+        "w": 167,
+        "h": 164
+      },
+      "sourceSize": {
+        "w": 167,
+        "h": 164
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/hole.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "combo-star": {
+      "atlas": "atlas-marbles.webp",
+      "frame": {
+        "x": 820,
+        "y": 824,
+        "w": 153,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 153,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-marbles/combo-star.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

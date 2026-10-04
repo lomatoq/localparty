@@ -1,0 +1,29 @@
+{
+  "createdAt": "2026-10-03T13:01:22.761Z",
+  "checks": [
+    "Decode only requested active mode",
+    "Unready image retains fallback",
+    "Decoded image reveals full-view passive cover layer",
+    "Game bitmap clears above passive environment",
+    "Mode change hides previous environment while loading",
+    "Lobby/no mode clears environment",
+    "Previously decoded mode reuses image",
+    "Syntax host/rig PASS",
+    "Party engine actions/inertia/shrink/reset/stats PASS",
+    "Visual clock interpolation/pause/reset PASS",
+    "Shared HTML transform + injected base resolves helper globally in all5modes"
+  ],
+  "browserStarted": false,
+  "visualLiveAcceptance": "PENDING root/art-director real gameplay captures; original assets inspected, no physical-device claim",
+  "sources": {
+    "games/party/public/host.js": "f448ad278714f1332fc3c0d84db78e0d56819041cc3d2ea5881632aa3821c1d3",
+    "games/party/public/host.html": "90b71ffb7e9c11c515340c569c3cb4d5e8250966797123315649a21a2dc0a079",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v1.png": "4eeeb7f59be9e383a809901094197be7ca93280b9badc1278afe23a7d14252a7",
+    "public/assets/gameplay/round3/2026-10-03/last-circle-chamber-v1.png": "3c11c37bd8facff4bdd4fa362595af052b0697b6abea4c3fc81ecb6759a2543c",
+    "public/assets/gameplay/round3/2026-10-03/knives-training-floor-v1.png": "f77d7e43ee778179420ca8d65c7b5f45d42db5dbf9e18e3b52d9fc1b31cadcf1",
+    "public/assets/gameplay/round3/2026-10-03/bomb-storage-yard-v1.png": "9c6cd581ef8435c33ef7e248c4c03a80d57b0e734f7a315ec6d1cf270ad76b77",
+    "public/assets/gameplay/generated/western-mascot-rig-v3.js": "e9f114092b23b57e65a55ef8de89035ff82c068381ad5036b13b334cd86c9618",
+    "public/assets/gameplay/generated/western-mascots-v3.json": "9d3c8df4e51e09c7c62715c949e46ddcad4a98ff1e119d1eabe48ca80c70ace7",
+    "public/assets/gameplay/generated/western-mascots-v3.png": "879ff5484bcb5572b9a1533ad61018dd665b58a44bd8a0f60e4fbba93f9cd810"
+  }
+}

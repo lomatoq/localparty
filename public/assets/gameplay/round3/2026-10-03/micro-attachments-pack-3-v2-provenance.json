@@ -1,0 +1,406 @@
+{
+  "status": "generated-candidate-pending-root-40px-style-review",
+  "method": "built-in image_gen; transparent_background=true; second separate exact-prompt generation; original bytes unchanged",
+  "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-6485-73d2-b3bc-248fd473d3a8/exec-a9af20fb-1c83-4390-a9ad-702b868b5684.png",
+  "asset": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+  "size": [
+    1448,
+    1086
+  ],
+  "mode": "RGBA",
+  "alphaExtrema": [
+    0,
+    255
+  ],
+  "fullyTransparentPixels": 1028698,
+  "sha256": "dd388a2f87c3cc8c608617e22cd28797a0fdf44fbdf37df0edadae0816e44e48",
+  "promptFile": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-prompt.txt",
+  "prompt": "A production transparent PNG atlas for minimal HeyPals game HEADER EDGE ATTACHMENTS, not free-floating icons. Exactly twelve separate complete attachments in a regular FOUR-COLUMN THREE-ROW grid. Equal rectangular cells; each object centered with at least20percent transparent padding on every side. No labels, captions or text. Strict orthographic TOP-DOWN view for EVERY piece: ZERO perspective, ZERO visible vertical side faces, ZERO isometric depth. Simple clean vector-like filled geometry, two-tone gentle material shading only, at most three colors per piece, broad shapes, no noisy texture, grain, woven fibers, tiny screws or photographic shading. Each item is a small purposeful cuff, strap, clip or corner overlap designed to sit across the side edge of an existing rounded UI panel: the attachment has a recognizable short straight seating edge or flat fastening tab that visibly hugs a panel boundary. Shape/readability over detail; must read at40pixels. No backing rectangle or drop-shadow plate surrounding the object; true alpha everywhere between sprites. Same restrained premium cartoon visual language, dark navy/plum structure, soft game-specific tint, few cream highlights. NO3D toy renders, no gradients as separate blobs, no humans, no UI screenshots, no full environment. Output one wide4:3 transparent sprite-sheet bitmap. Follow this EXACT row-major order:\nrow 1: 1. bluegreen snake-track right-angle edge clip with one cream direction tip; 2. grassgreen football patch corner sleeve with three broad ivory/navy panels; 3. teal edge holder holding two flat coral/lime marble discs; 4. warm sand aiming-tape edge clasp with one navy notch and broad muted brass rivet\nrow 2: 1. cream fletched arrow tail fastened by a coral/wood panel band; 2. plum/cream poker-chip edge cuff with a muted coral disc, no numbers; 3. paleice puck grip on an ivory flat mounting lip; 4. sagegreen folded flag patch over a small warmyellow corner plate\nrow 3: 1. iceblue topdown curling-stone cuff with a flat gray ring and simplehandle; 2. warmamber bowling-pin top silhouette corner sleeve, two cream broad bands; 3. plum masonry gate hinge corner clip with two simple gunmetal pads; 4. meadowgreen wooden edge grip with a simple coral sight-ring silhouette\nAll twelve attachments complete, identical overhead view, generousalpha margins, clean sparse silhouettes. No unrelated decorative object. Cohesive material engineering with a tiny edge seat; no whole rectangular panel.",
+  "promptSha256": "457727d148a416063c10254a50a68328103bfaa0728e4a2c35e12ca49e1ddbe5",
+  "bindingPlan": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/micro-attachments-design.json",
+  "bindingPlanSha256": "2d796295dfd8f5fcfb953931480b767ea6487e05fe4b4d9adc831b5da1394737",
+  "cells": [
+    {
+      "game": "snakelines",
+      "cellIndex": 0,
+      "cell": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "bboxAlpha32Local": [
+        58,
+        98,
+        339,
+        311
+      ],
+      "bboxAlpha8Local": [
+        58,
+        98,
+        339,
+        311
+      ],
+      "paddingFractions": [
+        0.1602,
+        0.2707,
+        0.0635,
+        0.1409
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.1423487544483986
+    },
+    {
+      "game": "carryball",
+      "cellIndex": 1,
+      "cell": [
+        362,
+        0,
+        724,
+        362
+      ],
+      "bboxAlpha32Local": [
+        60,
+        82,
+        306,
+        311
+      ],
+      "bboxAlpha8Local": [
+        58,
+        82,
+        308,
+        311
+      ],
+      "paddingFractions": [
+        0.1657,
+        0.2265,
+        0.1547,
+        0.1409
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.16260162601626016
+    },
+    {
+      "game": "marble_bloom",
+      "cellIndex": 2,
+      "cell": [
+        724,
+        0,
+        1086,
+        362
+      ],
+      "bboxAlpha32Local": [
+        32,
+        105,
+        354,
+        297
+      ],
+      "bboxAlpha8Local": [
+        32,
+        105,
+        354,
+        299
+      ],
+      "paddingFractions": [
+        0.0884,
+        0.2901,
+        0.0221,
+        0.1796
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.12422360248447205
+    },
+    {
+      "game": "pocket_siege",
+      "cellIndex": 3,
+      "cell": [
+        1086,
+        0,
+        1448,
+        362
+      ],
+      "bboxAlpha32Local": [
+        55,
+        105,
+        306,
+        297
+      ],
+      "bboxAlpha8Local": [
+        53,
+        105,
+        309,
+        297
+      ],
+      "paddingFractions": [
+        0.1519,
+        0.2901,
+        0.1547,
+        0.1796
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.1593625498007968
+    },
+    {
+      "game": "bow_club",
+      "cellIndex": 4,
+      "cell": [
+        0,
+        362,
+        362,
+        724
+      ],
+      "bboxAlpha32Local": [
+        68,
+        74,
+        326,
+        267
+      ],
+      "bboxAlpha8Local": [
+        67,
+        74,
+        326,
+        267
+      ],
+      "paddingFractions": [
+        0.1878,
+        0.2044,
+        0.0994,
+        0.2624
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.15503875968992248
+    },
+    {
+      "game": "poker",
+      "cellIndex": 5,
+      "cell": [
+        362,
+        362,
+        724,
+        724
+      ],
+      "bboxAlpha32Local": [
+        60,
+        50,
+        313,
+        281
+      ],
+      "bboxAlpha8Local": [
+        58,
+        48,
+        314,
+        281
+      ],
+      "paddingFractions": [
+        0.1657,
+        0.1381,
+        0.1354,
+        0.2238
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.15810276679841898
+    },
+    {
+      "game": "airhockey",
+      "cellIndex": 6,
+      "cell": [
+        724,
+        362,
+        1086,
+        724
+      ],
+      "bboxAlpha32Local": [
+        52,
+        61,
+        301,
+        283
+      ],
+      "bboxAlpha8Local": [
+        50,
+        61,
+        303,
+        283
+      ],
+      "paddingFractions": [
+        0.1436,
+        0.1685,
+        0.1685,
+        0.2182
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.1606425702811245
+    },
+    {
+      "game": "mines",
+      "cellIndex": 7,
+      "cell": [
+        1086,
+        362,
+        1448,
+        724
+      ],
+      "bboxAlpha32Local": [
+        41,
+        60,
+        303,
+        272
+      ],
+      "bboxAlpha8Local": [
+        40,
+        59,
+        303,
+        272
+      ],
+      "paddingFractions": [
+        0.1133,
+        0.1657,
+        0.163,
+        0.2486
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.15267175572519084
+    },
+    {
+      "game": "curling",
+      "cellIndex": 8,
+      "cell": [
+        0,
+        724,
+        362,
+        1086
+      ],
+      "bboxAlpha32Local": [
+        61,
+        18,
+        327,
+        259
+      ],
+      "bboxAlpha8Local": [
+        60,
+        18,
+        328,
+        261
+      ],
+      "paddingFractions": [
+        0.1685,
+        0.0497,
+        0.0967,
+        0.2845
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.15037593984962405
+    },
+    {
+      "game": "bowling",
+      "cellIndex": 9,
+      "cell": [
+        362,
+        724,
+        724,
+        1086
+      ],
+      "bboxAlpha32Local": [
+        63,
+        34,
+        342,
+        243
+      ],
+      "bboxAlpha8Local": [
+        61,
+        34,
+        344,
+        245
+      ],
+      "paddingFractions": [
+        0.174,
+        0.0939,
+        0.0552,
+        0.3287
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.14336917562724014
+    },
+    {
+      "game": "swarm_gate",
+      "cellIndex": 10,
+      "cell": [
+        724,
+        724,
+        1086,
+        1086
+      ],
+      "bboxAlpha32Local": [
+        66,
+        14,
+        305,
+        267
+      ],
+      "bboxAlpha8Local": [
+        65,
+        14,
+        305,
+        269
+      ],
+      "paddingFractions": [
+        0.1823,
+        0.0387,
+        0.1575,
+        0.2624
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.15810276679841898
+    },
+    {
+      "game": "peek_shoot",
+      "cellIndex": 11,
+      "cell": [
+        1086,
+        724,
+        1448,
+        1086
+      ],
+      "bboxAlpha32Local": [
+        41,
+        37,
+        312,
+        243
+      ],
+      "bboxAlpha8Local": [
+        41,
+        37,
+        313,
+        243
+      ],
+      "paddingFractions": [
+        0.1133,
+        0.1022,
+        0.1381,
+        0.3287
+      ],
+      "meets20percentPadding": false,
+      "boundaryAlpha32Pixels": 0,
+      "optical40pxScale": 0.14760147601476015
+    }
+  ],
+  "visualFindings": [
+    "12 complete separate silhouettes with recognizable straight mounting tabs, correct row-major identities.",
+    "Every alpha32 silhouette inside its nominal cell; no cell-boundary alpha32 content.",
+    "No pixels altered; true alpha between objects, no rectangular backdrop.",
+    "Full-resolution details remain for root optical-size judgment: dashed seams on Carryball/Pocket/Mines and bevel highlights; Airhockey puck has a narrow side band. No unilateral small-scale style approval.",
+    "Literal prompt20percent padding is unmet in all12 cells; complete separated silhouettes and zero alpha32 boundary pixels pass. Root states padding is nonblocking.",
+    "40px optical sprite preview prepared for actual renderer review; small seams are needless detail and cannot be accepted as broad filled geometry. No live header integration/physical test claimed."
+  ],
+  "rejectedFirstOriginal": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2-rejected-first.png",
+  "rootClarification": "Padding20percent is a prompt/layout target, not a user acceptance blocker; mild two-tone face highlights are acceptable at40px, no literal color-count gate."
+}

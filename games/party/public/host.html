@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Local Party Pack — Host</title><link rel="stylesheet" href="host.css"><link rel="stylesheet" href="action-glass.css"></head>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Local Party Pack — Host</title><link rel="stylesheet" href="host.css"><link rel="stylesheet" href="action-glass.css"><link rel="stylesheet" href="../../game-message.css"></head>
 <body>
+  <div id="roundEnvironment" hidden aria-hidden="true" style="position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat;pointer-events:none;z-index:0"></div>
   <canvas id="game" width="1280" height="720"></canvas>
   <div class="topbar"><div class="brand">LOCAL PARTY PACK</div><div id="modeHud" class="modehud">LOBBY</div><button id="fullscreenBtn">FULLSCREEN</button></div>
   <section id="lobbyOverlay" class="overlay lobby">
@@ -23,5 +24,5 @@
   </section>
   <section id="resultOverlay" class="overlay result hidden"><div class="result-card"><div class="kicker">МАТЧ ОКОНЧЕН</div><h2 id="resultText">Победа!</h2><div id="resultStats"></div><div class="result-actions"><button id="rematchBtn" class="primary">ЕЩЁ РАЗ</button><button id="lobbyBtn">В ЛОББИ</button></div></div></section>
   <div id="joinBadge" class="join-badge hidden"><div id="miniQr"></div><span>JOIN<br><b id="miniUrl">...</b></span></div>
-<script src="net.js"></script><script src="qr-lite.js"></script><script src="visual-clock.js"></script><script src="host.js"></script>
+<script src="net.js"></script><script src="qr-lite.js"></script><script src="visual-clock.js"></script><script src="../../assets/gameplay/generated/western-mascot-rig-v4.js"></script><script src="../../assets/gameplay/generated/push-sumo-art-v1.js"></script><script src="../../game-message.js"></script><script src="host.js"></script>
 <script src="touch-feedback.js"></script></body></html>

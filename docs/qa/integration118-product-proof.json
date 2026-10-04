@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "sourceCount": 2225,
+  "runtimeCount": 1725,
+  "sourceDrift": [],
+  "runtimeMismatch": [],
+  "versions": [
+    {
+      "bundleId": "com.localparty.launcher",
+      "build": "118",
+      "version": "0.11.7"
+    },
+    {
+      "bundleId": "com.localparty.launcher.Join",
+      "build": "118",
+      "version": "0.11.7"
+    }
+  ]
+}

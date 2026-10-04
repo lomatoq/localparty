@@ -1,0 +1,19 @@
+/* Spy polish (social lane, 2026-10-02) */
+/* Dossier cover: quiet hatch and a dashed inner frame, same for every role. */
+html.party-player .secret-card .secret-cover{background:repeating-linear-gradient(135deg,#ffffff05 0 2px,transparent 2px 11px),radial-gradient(circle at 50% 32%,#34313f,#18181e)!important;transform-origin:0 50%;backface-visibility:hidden}
+html.party-player .secret-card .secret-cover::before{content:'';position:absolute;inset:14px;border:1.5px dashed #ffffff17;border-radius:22px;pointer-events:none}
+html.party-player .secret-card .finger{position:relative;display:grid;place-items:center;width:84px;height:84px;border-radius:50%}
+html.party-player .secret-card .finger::after{content:'';position:absolute;inset:0;border-radius:50%;padding:3px;background:conic-gradient(#cfff85 calc(var(--hold,0)*1turn),#ffffff14 0);-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+@property --hold{syntax:'<number>';inherits:true;initial-value:0}
+html.party-player .secret-card.holding .finger::after{animation:spy-hold .26s linear forwards}
+html.party-player .secret-card.revealing .finger::after{--hold:1}
+/* Privacy: content is invisible the moment the hold ends; the cover swings back over an empty card. */
+html.party-player .secret-card:not(.revealing) .secret-content{opacity:0!important;transition:none!important}
+@media (prefers-reduced-motion:no-preference){
+ html.party-player .secret-card{perspective:1100px}
+ html.party-player .secret-card .secret-cover{transition:transform .2s cubic-bezier(.23,1,.32,1),opacity .2s cubic-bezier(.23,1,.32,1)!important}
+ html.party-player .secret-card.revealing .secret-cover{transform:rotateY(-105deg)!important;opacity:0!important;transition:transform .32s cubic-bezier(.23,1,.32,1),opacity .2s ease-out .12s!important}
+ html.party-player .secret-card.revealing .secret-content{transition:opacity .18s ease-out .08s,transform .32s cubic-bezier(.23,1,.32,1),filter .3s cubic-bezier(.23,1,.32,1)!important}
+ html.party-player .secret-card.holding:not(.revealing){transform:scale(.985);transition:transform .12s cubic-bezier(.23,1,.32,1)}
+}
+@keyframes spy-hold{from{--hold:0}to{--hold:1}}

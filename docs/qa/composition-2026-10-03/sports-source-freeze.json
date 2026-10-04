@@ -1,0 +1,16 @@
+{
+  "games/sports_siege/public/host.js": "e4d6b8911815df145013bd74789550e2c28ed3315caef807d7f35a40f5bd3088",
+  "games/sports_siege/public/controls.js": "5fece249bfba4b1baade1e154ba65a4b1b1f817868225ce52881d3cddf507b5e",
+  "games/sports_siege/public/index.html": "186310e07259edae4581f1a832c7543085299b0b85695f9cbbb3816f659b6e2e",
+  "games/sports_siege/public/style.css": "62b44d09e7462879c7673201146ed6da4f6554dd3aad9a042555726c11fbbbe3",
+  "games/sports_siege/public/sports-controls.css": "d316da24201d4651f77304f2941bed18ffc31ebf956b0bb09cfefbf22e5ef260",
+  "games/bow_club/public/style.css": "4569aabdb957bf5f015d2b7bd19f211846526a26b4a0a9b002949e07ea832074",
+  "games/bow_club/public/tv.html": "cb4fc8af6a52414b4c7a0cd52a844f9623bfa8af1417b505ef6ca25fc34e7217",
+  "games/bow_club/public/tv.js": "800f6c269c278a4417017922edaf4b443fa2f649605d7d747ffdc68ac4eb6665",
+  "games/bow_club/public/phone.html": "b5ee0c04417c0c1859516dd625c2ffd3f4992bb2d104a4448c8dff1446c0afc0",
+  "games/sports_siege/public/assets/swarm-v4/gate-closed-v4.png": "ce4eaddc7e3f1a03c5578ce43892f306726cd5cc6c9d7cf0f1a0dac03a19205f",
+  "games/sports_siege/public/assets/swarm-v4/gate-open-v4.png": "bb0d6dfe4b56c452ab5691ea990d307ec4654988d846016920db2c9841cac040",
+  "games/sports_siege/public/assets/swarm-v4/gate-damaged-v4.png": "c51f636b856716f947abb571ceb9e723f0ff1f49adf8ce47cf2d88808a9c9e0c",
+  "games/sports_siege/public/assets/swarm-v4/manifest.json": "0914a47352af3ac850d6e26c695d8247f4f0bce1240c774c5edeb0e15dab16cc",
+  "games/sports_siege/public/assets/swarm-v4/wall-long-v4.png": "d787111d7fe245874856ec8e103e3f2b217dec643c482b7cf9622b00780dff89"
+}

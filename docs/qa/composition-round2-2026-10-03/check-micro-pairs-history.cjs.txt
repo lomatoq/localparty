@@ -1,0 +1,111 @@
+'use strict';
+
+// Validate fresh screenshot-adjacent pixels/geometry, not placement-algorithm
+// output alone. This never imports the runtime's place() or changes game state.
+const fs=require('node:fs'),path=require('node:path');
+if(!process.argv[2]){console.error('Usage: node scripts/qa/check-micro-attachments-evidence.cjs <capture-directory> [--stdout-only]');process.exit(2);}
+const directory=path.resolve(process.argv[2]),report=JSON.parse(fs.readFileSync(path.join(directory,'report.json'),'utf8'));
+const manifestFile=path.resolve(__dirname,'../../public/assets/gameplay/round3/2026-10-03/micro-attachments-runtime.json');
+const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8'));
+const pairedManifestFile=path.resolve(__dirname,'../../public/assets/gameplay/round3/2026-10-03/top-cap-matte-runtime.json');
+const pairedManifest=fs.existsSync(pairedManifestFile)?JSON.parse(fs.readFileSync(pairedManifestFile,'utf8')):null;
+const catalog=require('../../lib/catalog').map(game=>game.id),gameOwned=new Set(['bow_club','curling','bowling','swarm_gate','peek_shoot']);
+const top=new Set('tanks western marble_bloom pocket_siege taprace punchmeter flappy hungry snakelines carryball chaos poker airhockey bow_club curling bowling swarm_gate peek_shoot'.split(' ')),unboxed=new Set(['jenga','crane']);
+const profileFor=id=>top.has(id)?'top-pair':unboxed.has(id)?'unboxed':'single';
+const findings=[],checked=[],checkedPieces=[],skipped=[],seen=new Map(),add=(game,file,check,details)=>findings.push({game,file,check,details});
+const near=(a,b,tolerance)=>Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=tolerance;
+const hasBox=b=>b&&['x','y','width','height','right','bottom'].every(k=>Number.isFinite(b[k]))&&b.width>0&&b.height>0;
+
+for(const row of report.games||[]){
+  for(const shot of(row.compositionScreens||[]).filter(shot=>shot.surface==='tv')){
+    const evidence=shot.evidence||{},parent=evidence.parent,content=evidence.content;
+    const m=gameOwned.has(row.id)?content?.microAttachment:parent?.microAttachment;
+    const file=shot.file,key=row.id+':'+shot.w,expectedProfile=profileFor(row.id),expectedCount=expectedProfile==='top-pair'?2:expectedProfile==='single'?1:0;
+    if(!m){add(row.id,file,'missing-passive-paint-record','Fresh array/profile-aware micro evidence absent');continue;}
+    if(!m.phase){skipped.push({game:row.id,file,reason:'Unknown actual phase; no invented playing assumption'});continue;}
+    if(!['countdown','playing','reveal'].includes(m.phase)||m.paused){skipped.push({game:row.id,file,phase:m.phase,reason:'Actual non-live or paused state'});continue;}
+    seen.set(key,(seen.get(key)||0)+1);
+    if(typeof file!=='string'||!fs.existsSync(path.join(directory,file)))add(row.id,file,'missing-adjacent-original',file);
+    const item=(expectedProfile==='top-pair'?pairedManifest:manifest)?.items?.[row.id],visible=(m.pieces||[]).filter(p=>p.canvas?.box&&!p.canvas.hidden);
+    checked.push({game:row.id,file,w:shot.w,h:shot.h,phase:m.phase,profile:expectedProfile,expectedPieces:expectedCount,visiblePieces:visible.length});
+    if(!m.adapterLoaded||m.profile!==expectedProfile||m.diagnostics?.profile!==expectedProfile||m.diagnostics?.game!==row.id)add(row.id,file,'wrong-explicit-ui-role-profile',{expected:expectedProfile,actual:m.profile,diagnostics:m.diagnostics});
+    if(visible.length!==expectedCount||m.visiblePieces!==expectedCount)add(row.id,file,'wrong-piece-count-for-approved-role',{expected:expectedCount,actual:visible.length,declared:m.visiblePieces});
+    const secondary=gameOwned.has(row.id)?parent?.microAttachment:content?.microAttachment;
+    if(secondary?.visiblePieces>0)add(row.id,file,'duplicate-parent-child-attachments',{secondaryProfile:secondary.profile,pieces:secondary.visiblePieces});
+    if(!manifest.items?.[row.id])add(row.id,file,'missing-retained-36-game-design-kit',row.id);
+    if(expectedProfile==='unboxed'){
+      const transparent=b=>b&&b.backgroundImage==='none'&&['rgba(0, 0, 0, 0)','transparent'].includes(b.backgroundColor)&&/^0px\b/.test(b.border||'')&&b.boxShadow==='none';
+      if(m.inspected!==null||m.diagnostics?.reason!=='no-physical-edge')add(row.id,file,'unboxed-omission-not-explicit',{inspected:m.inspected,diagnostics:m.diagnostics});
+      if(!transparent(m.cap)||!['none','normal'].includes(m.cap?.before?.content)||!['none','normal'].includes(m.cap?.after?.content))add(row.id,file,'unboxed-cap-has-physical-backing',m.cap);
+      const rail=content?.rails?.[0];
+      if(!rail||!/^0px\b/.test(rail.border||'')||rail.boxShadow!=='none')add(row.id,file,'unboxed-local-rail-has-contour',rail);
+      if(row.id==='jenga'&&(!rail?.backgroundImage?.includes('gradient')||!rail.backgroundImage.includes('rgba(0, 0, 0, 0)')))add(row.id,file,'missing-transparent-edge-jenga-wash',rail);
+      if(row.id==='crane'&&(!transparent(rail)||!content?.backgroundProof?.loaded||!content.backgroundProof.paintedInCanvas))add(row.id,file,'missing-open-crane-world-wash',{rail,background:content?.backgroundProof});
+      if((parent?.microAttachment?.visiblePieces||0)+(content?.microAttachment?.visiblePieces||0)>0)add(row.id,file,'floating-cuff-on-unboxed-wash',{parent:parent?.microAttachment,content:content?.microAttachment});
+      continue;
+    }
+    if(!item){add(row.id,file,'missing-authored-manifest-entry',{game:row.id,profile:expectedProfile});continue;}
+    if(!m.inspected||m.inspected.profile!==expectedProfile||m.inspected.paired!==(expectedCount===2)||m.inspected.attachments?.length!==expectedCount)add(row.id,file,'wrong-typed-attachment-inspection',m.inspected);
+    if(expectedProfile==='top-pair'){
+      if(!['centered-scoreboard','game-owned'].includes(m.compositionRole))add(row.id,file,'pair-on-non-top-cap-role',m.compositionRole);
+      const sides=visible.map(p=>p.canvas.dataset.side).sort();
+      if(sides.join(',')!=='left,right'||visible[0]?.geometry?.mirrored===visible[1]?.geometry?.mirrored)add(row.id,file,'missing-opposite-inward-mirror-pair',visible.map(p=>({geometry:p.geometry,dataset:p.canvas.dataset})));
+      const pixels=m.pairPixels;
+      if(!pixels?.sameBitmapDimensions||!(pixels.pixels>0)||!(pixels.mirroredMeanChannelDifference<=2&&pixels.mirroredMeanAlphaDifference<=2&&pixels.mirroredDifferentPixelFraction<=.03))add(row.id,file,'actual-pair-pixels-do-not-mirror',pixels);
+    }
+    if(['naval','mines'].includes(row.id)&&visible.some(p=>p.geometry?.side!=='left'||p.canvas.dataset.side!=='left'))add(row.id,file,'left-rail-cuff-intrudes-on-tiles',visible.map(p=>p.geometry));
+    for(const member of visible){
+      const d=member.geometry,c=member.canvas,p=member.paint;
+      checkedPieces.push({game:row.id,file,profile:expectedProfile,side:d?.side,pack:c.dataset?.pack,cell:c.dataset?.cell,rgbaFNV1a:p?.rgbaFNV1a});
+      if(c.dataset?.profile!==expectedProfile||c.dataset?.role!=='edge-cuff')add(row.id,file,'wrong-explicit-canvas-role',c.dataset);
+      if(!m.adapterLoaded||!d||!c||c.hidden||!hasBox(c.box)||!p?.readable){add(row.id,file,'attachment-not-actually-painted',{adapter:m.adapterLoaded,inspected:d,canvas:c,paint:p,error:m.error});continue;}
+    if(m.game!==row.id||m.inspected?.game!==row.id||c.dataset?.game!==row.id)add(row.id,file,'wrong-actual-game',{expected:row.id,document:m.game,adapter:m.inspected?.game,canvas:c.dataset?.game});
+    if(m.inspected?.pack!==item.pack||m.inspected?.cell!==item.cell||Number(c.dataset?.pack)!==item.pack||Number(c.dataset?.cell)!==item.cell)add(row.id,file,'wrong-atlas-cell',{expected:{pack:item.pack,cell:item.cell},adapter:{pack:m.inspected?.pack,cell:m.inspected?.cell},canvas:c.dataset});
+    if(!(p.nontransparentPixels>0&&p.opticalPixels>0&&p.transparentPixels>0&&p.rgbaFNV1a&&hasBox(p.optical)))add(row.id,file,'blank-or-opaque-canvas',{paint:p});
+    if(c.pointerEvents!=='none'||c.ariaHidden!=='true')add(row.id,file,'decoration-intercepts-input-or-accessibility',{pointerEvents:c.pointerEvents,ariaHidden:c.ariaHidden});
+    const scale=d.scale,epsilon=Number.isFinite(scale)&&scale>0?2*scale:2;
+    if(!(Number.isFinite(scale)&&scale>0)){add(row.id,file,'invalid-actual-ui-scale',scale);continue;}
+    const size=d.optical?(expectedProfile==='top-pair'?d.optical.height:Math.max(d.optical.width,d.optical.height))/scale:NaN;
+    if(expectedProfile==='top-pair'?!(size>=35.99&&size<=40.01&&d.optical.width/scale<=27.01):!near(size,40,.1)&&!near(size,36,.1))add(row.id,file,'incorrect-visible-ui-size',{logicalHeight:d.optical?.height/scale,logicalWidth:d.optical?.width/scale,logicalSize:size,expected:expectedProfile==='top-pair'?'Natural-aspect height36–40 UIpx,width≤27 UIpx':'40 UIpx, or36 UIpx constrained-gutter fallback'});
+    if(expectedProfile==='top-pair'&&!(d.overlap/scale<=8.01))add(row.id,file,'pair-contact-exceeds-eight-pixel-gutter',{overlap:d.overlap,scale});
+    if(p.optical){
+      const paintedSize=Math.max(p.optical.width,p.optical.height)/scale;
+      if(!near(paintedSize,size,2))add(row.id,file,'reported-size-does-not-match-pixels',{reported:size,painted:paintedSize});
+      if(p.optical.x < -epsilon||p.optical.y < -epsilon||p.optical.right>m.viewport.width+epsilon||p.optical.bottom>m.viewport.height+epsilon)add(row.id,file,'painted-sprite-outside-screen',{optical:p.optical,viewport:m.viewport});
+      for(const [actual,declared]of[['x','left'],['y','top'],['right','right'],['bottom','bottom']])if(!near(p.optical[actual],d.optical?.[declared],epsilon))add(row.id,file,'optical-bounds-disagree-with-paint',{edge:actual,actual:p.optical,declared:d.optical});
+      if(gameOwned.has(row.id)&&hasBox(parent?.frame)&&content?.width>0&&content?.height>0){
+        const sx=parent.frame.width/content.width,sy=parent.frame.height/content.height,whole={left:parent.frame.x+p.optical.x*sx,top:parent.frame.y+p.optical.y*sy,right:parent.frame.x+p.optical.right*sx,bottom:parent.frame.y+p.optical.bottom*sy};
+        if(whole.left < -epsilon*sx||whole.top < -epsilon*sy||whole.right>parent.width+epsilon*sx||whole.bottom>parent.height+epsilon*sy)add(row.id,file,'iframe-piece-clipped-in-whole-tv',{whole,parentViewport:{width:parent.width,height:parent.height},frame:parent.frame});
+      }
+    }
+    const cap=m.cap,surface=m.capSurface||cap,a=d.anchor;
+    if(!hasBox(cap)||!hasBox(surface)||!a){add(row.id,file,'missing-existing-cap-contact',m);continue;}
+    if(expectedProfile==='top-pair'&&(!(d.optical.top>=cap.y-.01*scale&&d.optical.bottom<=cap.bottom+.01*scale)||p.optical&&(p.optical.y<cap.y-epsilon||p.optical.bottom>cap.bottom+epsilon)))add(row.id,file,'pair-hangs-beyond-cap-vertical-bounds',{cap,declared:d.optical,painted:p.optical});
+    // The accepted Naval ::before alone scales by1.05. Compare the actual
+    // computed surface horizontally and its unchanged center; retain base cap
+    // vertical coordinates so an intentional backing overhang is not a waiver.
+    const horizontal=row.id==='naval'?surface:cap;
+    if(!near(a.left,horizontal.x,epsilon)||!near(a.right,horizontal.right,epsilon)||!near(a.width,horizontal.width,epsilon)||!near(a.top,cap.y,epsilon)||!near(a.bottom,cap.bottom,epsilon)||!near(a.height,cap.height,epsilon))add(row.id,file,'attachment-uses-different-cap-rectangle',{inspectedAnchor:a,actualCap:cap,actualSurface:surface});
+    const s=p.seatContact;
+    if(!['left','right'].includes(d.side)||c.dataset?.side!==d.side||c.dataset?.mirrored!==String(d.mirrored))add(row.id,file,'invalid-actual-seat-side',{adapter:d,canvas:c.dataset});
+    if(!s||!(s.insidePixels>0&&s.outsidePixels>0)||!Number.isFinite(s.nearestEdgeDistance)||s.nearestEdgeDistance>epsilon)add(row.id,file,'painted-seat-does-not-touch-cap',{side:d.side,contact:s,cap,surface});
+    const gutter=expectedProfile==='top-pair'?8*scale:18*scale,gutterTolerance=expectedProfile==='top-pair'?.5*scale:epsilon;
+    if(s&&s.maxInteriorDepth>gutter+gutterTolerance)add(row.id,file,'paint-in-protected-cap-gutter',{depth:s.maxInteriorDepth,max:gutter,contact:s});
+    if(s&&p.optical&&s.maxInteriorDepth>p.optical.width*.5+epsilon)add(row.id,file,'attachment-consumes-cap-interior',{contact:s,optical:p.optical});
+    if(p.protectedInkCollisions?.length)add(row.id,file,'paint-overlaps-logo-or-stat-ink',p.protectedInkCollisions);
+    const expectedCap=gameOwned.has(row.id)?null:parent?.dock;
+    if(expectedCap&&['x','y','width','height'].some(k=>!near(expectedCap[k],cap[k],epsilon)))add(row.id,file,'cap-changed-between-adjacent-evidence',{adjacent:expectedCap,micro:cap});
+    }
+  }
+}
+for(const game of catalog)for(const width of[1280,1920]){
+  const count=seen.get(game+':'+width)||0;
+  if(count!==1)add(game,null,'incomplete-36-by-2-live-evidence',{width,eligibleRecords:count,expected:1});
+}
+if(report.changedFiles?.length)add(null,null,'source-drift-during-capture',report.changedFiles);
+if(report.errors?.length)add(null,null,'browser-errors',report.errors);
+if((report.games||[]).some(row=>row.error))add(null,null,'incomplete-real-game-capture',report.games.filter(row=>row.error).map(row=>({game:row.id,error:row.error})));
+const result={status:findings.length?'needs-correction':'passed',expectedRecords:catalog.length*2,expectedPieces:catalog.reduce((n,id)=>n+(top.has(id)?2:unboxed.has(id)?0:1)*2,0),checkedRecords:checked.length,checkedPieces:checkedPieces.length,checked,pieces:checkedPieces,skipped,findings,
+  scope:'Fresh actual TV profile-driven2/1/0 pieces, mirrored pair RGBA, canvas alpha/optical bounds, authored game/pack/cell, visible UI size, cap contact/gutter/ink, explicit unboxed wash omission. No phone or state injection. Geometry/pixels do not replace independent original-image aesthetic review.'};
+if(!process.argv.includes('--stdout-only'))fs.writeFileSync(path.join(directory,'micro-attachments-check.json'),JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));process.exitCode=findings.length?1:0;

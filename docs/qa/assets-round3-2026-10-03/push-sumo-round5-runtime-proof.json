@@ -1,0 +1,714 @@
+{
+  "scope": "Push-only top-down sumo integration; actual TV/realcontroller movement, release, pause, resize, resume. No phonePNG or physicaldevice claim.",
+  "rawReport": "output/playwright/composition-round3-2026-10-03/push-sumo-round5-inward/report.json",
+  "rawSHA256": "e7ed0b5e8007a9b6f29904ff391657e4e59afad57fe255da1da4b8daed13a144",
+  "finishedAt": "2026-10-03T14:58:18.119Z",
+  "sourceStart": {
+    "games/party/public/host.js": "e16614cd9fcbf19377d212f5efb90270db8f7bd54f31d92235e3e5484a1b2f01",
+    "games/party/public/host.html": "f898a0d247704ad78afbb8a15f62ec082e7c6bb9efab61f6cee2fb62012b93b6",
+    "games/party/public/host.css": "83dde569fe670a5109b9ce0000f0e6f719f738e112ca90a50edadb73db90c227",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "server.js": "3b7becf42738d64347f0b3904517c05d1afad139267e7f6b240bfd05920a0d8e",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png": "42c8dcfa042d273917938500a8afca38e23e84e787bf9f4afd4afb3ab11464f7",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-micro-assets.js": "beb39568c5b7860cb7aecd0cfd1be96662ae1be5228b1c6c134b313a85861cf6",
+    "public/game-ui-micro-assets.css": "f4a4bf3b4108b5672814a93f4a6fe63b9a72420fe8b91754b26a1890d6750932",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548",
+    "public/assets/gameplay/generated/push-sumo-art-v1.js": "8fcaab03f7556e38a74940b1522083fcb4ec0a880b30fbfae92a169a50902e42",
+    "public/assets/gameplay/generated/push-sumo-v1.png": "f10adb6abcaf46a53fc63afb2353d64a5f08e37cebdf8b4c393d85387fdfc07c",
+    "public/assets/gameplay/generated/push-sumo-v1.json": "3a34dee31c2644d9b64afc0cd51f15b1339d0a61dda1ba6f415a3f7a024f7003",
+    "games/party/public/controller.js": "45adf8b47edc649f10581764005270e39cbb6e31d02fc8dcf2724a62f61f018f",
+    "public/app.js": "16e1c07924cf5af1613cb737fb149d137e25aacebb2500cb89dc18d861b9d4de"
+  },
+  "sourceEnd": {
+    "games/party/public/host.js": "e16614cd9fcbf19377d212f5efb90270db8f7bd54f31d92235e3e5484a1b2f01",
+    "games/party/public/host.html": "f898a0d247704ad78afbb8a15f62ec082e7c6bb9efab61f6cee2fb62012b93b6",
+    "games/party/public/host.css": "83dde569fe670a5109b9ce0000f0e6f719f738e112ca90a50edadb73db90c227",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "server.js": "3b7becf42738d64347f0b3904517c05d1afad139267e7f6b240bfd05920a0d8e",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png": "42c8dcfa042d273917938500a8afca38e23e84e787bf9f4afd4afb3ab11464f7",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-micro-assets.js": "beb39568c5b7860cb7aecd0cfd1be96662ae1be5228b1c6c134b313a85861cf6",
+    "public/game-ui-micro-assets.css": "f4a4bf3b4108b5672814a93f4a6fe63b9a72420fe8b91754b26a1890d6750932",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548",
+    "public/assets/gameplay/generated/push-sumo-art-v1.js": "8fcaab03f7556e38a74940b1522083fcb4ec0a880b30fbfae92a169a50902e42",
+    "public/assets/gameplay/generated/push-sumo-v1.png": "f10adb6abcaf46a53fc63afb2353d64a5f08e37cebdf8b4c393d85387fdfc07c",
+    "public/assets/gameplay/generated/push-sumo-v1.json": "3a34dee31c2644d9b64afc0cd51f15b1339d0a61dda1ba6f415a3f7a024f7003",
+    "games/party/public/controller.js": "45adf8b47edc649f10581764005270e39cbb6e31d02fc8dcf2724a62f61f018f",
+    "public/app.js": "16e1c07924cf5af1613cb737fb149d137e25aacebb2500cb89dc18d861b9d4de"
+  },
+  "errors": [],
+  "changedFiles": [],
+  "images": [
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/push-sumo-round5-inward/push-tv-moving-1280.png",
+      "sha256": "1e7823f4a0271f4cec5a77b2fa30c960087caad22605afb531f6788b3c959abf",
+      "personallyOpenedOriginal": true,
+      "observations": "Three live wrestlers and one fading real knockout. Full silhouettes and rotational heading readable; real collision flashes overlap nearby fighters briefly. Existing player-name placement/ghostlabels retained. Quiet court and current footprintshadow clear; staircase remains at492px.",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "sessionPaused": false,
+      "engineStatus": "playing",
+      "partyIframePhase": "playing",
+      "aliveAtGeometryRead": 3,
+      "sumoFrames": [
+        {
+          "id": "p1",
+          "x": 784.8078356096817,
+          "y": 200.74437659548462,
+          "radius": 24,
+          "vx": 31.609431657373328,
+          "vy": -166.57237989109012,
+          "ghost": false,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 0.18753410471402443,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 911.3611124161637,
+          "y": 222.62333643984232,
+          "radius": 24,
+          "vx": 114.52449015678197,
+          "vy": -116.89020219671849,
+          "ghost": false,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0.7751756938967054,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p3",
+          "x": 800.2824911743505,
+          "y": 248.6781467619261,
+          "radius": 24,
+          "vx": -36.92074861720549,
+          "vy": -5.436456565323013,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": -1.4246002231678165,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p4",
+          "x": 736.9711016306163,
+          "y": 196.5322138002259,
+          "radius": 24,
+          "vx": 74.28129726266253,
+          "vy": 98.72566357852021,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": 2.496556615015974,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ],
+      "courtProjection": {
+        "seat": 0.38098086124401914,
+        "ratio": 1.7768331562167907,
+        "width": 1289.932628781305,
+        "height": 725.9728490928278,
+        "x": 5.684341886080802e-14,
+        "y": -2.9864245464139003,
+        "entryCenterX": 491.4396438598633,
+        "arenaCenterX": 491.4396438598633,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "covered": true
+      }
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/push-sumo-round5-inward/push-tv-paused-1280.png",
+      "sha256": "4f03a5a9e0a5bb27279a67a9ad14f0e98f92f0cdf4fc655be2801ebcae81f67d",
+      "personallyOpenedOriginal": true,
+      "observations": "Actual Pause overlay and PAUSEreadout are coherent; field subdued as intended, real3alive. Main session paused=true; engine timer/positions static, no atlas fallback.",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "sessionPaused": true,
+      "engineStatus": "playing",
+      "partyIframePhase": "playing",
+      "aliveAtGeometryRead": 3,
+      "sumoFrames": [
+        {
+          "id": "p1",
+          "x": 802.7541991450787,
+          "y": 169.97125801558104,
+          "radius": 24,
+          "vx": 50.72309378291476,
+          "vy": -78.30704189978006,
+          "ghost": false,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 0.574789239479744,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 911.5353275765762,
+          "y": 222.4455225478227,
+          "radius": 24,
+          "vx": 112.91741713726566,
+          "vy": -115.2499321554462,
+          "ghost": true,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0.7751756938967054,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p3",
+          "x": 800.5987667874746,
+          "y": 223.83497396485024,
+          "radius": 24,
+          "vx": 27.680727337936442,
+          "vy": -58.533268497972664,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": 0.4417383431269579,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p4",
+          "x": 759.205455055909,
+          "y": 199.53283941058834,
+          "radius": 24,
+          "vx": 14.684407506352574,
+          "vy": -34.484956981841954,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": 0.40256555738814104,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ],
+      "courtProjection": {
+        "seat": 0.38098086124401914,
+        "ratio": 1.7768331562167907,
+        "width": 1291.403453689168,
+        "height": 726.800627943485,
+        "x": 0,
+        "y": -3.4003139717424915,
+        "entryCenterX": 492,
+        "arenaCenterX": 492,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "covered": true
+      }
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/push-sumo-round5-inward/push-tv-paused-resize-1920.png",
+      "sha256": "9a5de530cc4cd233177cc7142a8ac97d1ca1b8c33bc6a7888d456b19ad97ad26",
+      "personallyOpenedOriginal": true,
+      "observations": "Same actual paused3alive state after resize; court stair/arena align at772px, aspect preserved, no exposed background edges. Pause message and ranking group remain readable.",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "sessionPaused": true,
+      "engineStatus": "playing",
+      "partyIframePhase": "playing",
+      "aliveAtGeometryRead": 3,
+      "sumoFrames": [
+        {
+          "id": "p1",
+          "x": 802.7541991450787,
+          "y": 169.97125801558104,
+          "radius": 24,
+          "vx": 50.72309378291476,
+          "vy": -78.30704189978006,
+          "ghost": false,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 0.574789239479744,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 911.5353275765762,
+          "y": 222.4455225478227,
+          "radius": 24,
+          "vx": 112.91741713726566,
+          "vy": -115.2499321554462,
+          "ghost": true,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0.7751756938967054,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p3",
+          "x": 800.5987667874746,
+          "y": 223.83497396485024,
+          "radius": 24,
+          "vx": 27.680727337936442,
+          "vy": -58.533268497972664,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": 0.4417383431269579,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p4",
+          "x": 759.205455055909,
+          "y": 199.53283941058834,
+          "radius": 24,
+          "vx": 14.684407506352574,
+          "vy": -34.484956981841954,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": 0.40256555738814104,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ],
+      "courtProjection": {
+        "seat": 0.38098086124401914,
+        "ratio": 1.7768331562167907,
+        "width": 2026.348508634223,
+        "height": 1140.4270015698587,
+        "x": 0,
+        "y": -30.21350078492935,
+        "entryCenterX": 772,
+        "arenaCenterX": 772,
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "covered": true
+      }
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/push-sumo-round5-inward/push-tv-resumed-1920.png",
+      "sha256": "cc265772adbe351fe13697b926a1ad5a44bce8fc1aee1fa650ad9a96040257d3",
+      "personallyOpenedOriginal": true,
+      "observations": "Resume returns actual playing field; two live wrestlers plus two genuine ghosts after bot collisions. Top-down bodies, directional arms/head, footprintshadows and names visible; rail remains separate. Court0px alignment and quietteal surface intact.",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "sessionPaused": false,
+      "engineStatus": "playing",
+      "partyIframePhase": "playing",
+      "aliveAtGeometryRead": 2,
+      "sumoFrames": [
+        {
+          "id": "p1",
+          "x": 831.5355599892623,
+          "y": 125.53817908699777,
+          "radius": 24,
+          "vx": 27.973692372769403,
+          "vy": -43.18618872305182,
+          "ghost": true,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 0.5747892394797436,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 911.5353275765762,
+          "y": 222.4455225478227,
+          "radius": 24,
+          "vx": 112.91741713726566,
+          "vy": -115.2499321554462,
+          "ghost": true,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0.7751756938967054,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p3",
+          "x": 738.38952503331,
+          "y": 228.40707183195866,
+          "radius": 24,
+          "vx": -94.1864655517117,
+          "vy": -51.025436951053024,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": -1.0743098090150518,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p4",
+          "x": 728.2005219802629,
+          "y": 181.50120147478162,
+          "radius": 24,
+          "vx": -88.19801526748144,
+          "vy": -45.56026831555981,
+          "ghost": false,
+          "ready": true,
+          "variant": "lime",
+          "nativeFrame": {
+            "x": 99,
+            "y": 48,
+            "w": 456,
+            "h": 498
+          },
+          "width": 43.95180722891566,
+          "height": 48,
+          "rotation": -1.0939823760353504,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ],
+      "courtProjection": {
+        "seat": 0.38098086124401914,
+        "ratio": 1.7768331562167907,
+        "width": 2026.348508634223,
+        "height": 1140.4270015698587,
+        "x": 0,
+        "y": -30.21350078492935,
+        "entryCenterX": 772,
+        "arenaCenterX": 772,
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "covered": true
+      }
+    }
+  ],
+  "input": {
+    "controllerIds": [
+      "p1",
+      "p2"
+    ],
+    "primaryActualActorId": "p1",
+    "primaryDistanceMovedPxWorld": 11.567112571697079,
+    "held": {
+      "held": "true",
+      "joy": {
+        "x": 0,
+        "y": 0.10885989010989011
+      }
+    },
+    "released": {
+      "held": "false",
+      "joy": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "actualRenderedVelocityHeadingChecks": [
+      {
+        "id": "p1",
+        "actual": 3.141592653589793,
+        "expectedFromRenderedVelocity": 3.141592653589793,
+        "deltaRadians": 0.0
+      },
+      {
+        "id": "p2",
+        "actual": -1.5622738058679495,
+        "expectedFromRenderedVelocity": -1.5622738058679495,
+        "deltaRadians": 0.0
+      },
+      {
+        "id": "p3",
+        "actual": 0.7595167818225811,
+        "expectedFromRenderedVelocity": 0.7595167818225811,
+        "deltaRadians": 0.0
+      },
+      {
+        "id": "p4",
+        "actual": 0.7720102291419486,
+        "expectedFromRenderedVelocity": 0.7720102291419486,
+        "deltaRadians": 0.0
+      }
+    ],
+    "pausedEnginePositionsEqual": true,
+    "pausedTimerBefore": 40.17900006400024,
+    "pausedTimerAfter": 40.17900006400024,
+    "pausedResizeHeadingsRetained": true
+  },
+  "nativeAlphaFit": [
+    {
+      "variant": "lime",
+      "alphaThreshold": 24,
+      "nominalRadius": 24,
+      "maxRadialInk": 27.147548754845612,
+      "rectangleMaxDimension": 48,
+      "insideCollisionDisc": false,
+      "insideCurrentCameraActorPad26": false
+    },
+    {
+      "variant": "plum",
+      "alphaThreshold": 24,
+      "nominalRadius": 24,
+      "maxRadialInk": 26.991436952249842,
+      "rectangleMaxDimension": 48,
+      "insideCollisionDisc": false,
+      "insideCurrentCameraActorPad26": false
+    },
+    {
+      "variant": "coral",
+      "alphaThreshold": 24,
+      "nominalRadius": 24,
+      "maxRadialInk": 27.147548754845612,
+      "rectangleMaxDimension": 48,
+      "insideCollisionDisc": false,
+      "insideCurrentCameraActorPad26": false
+    },
+    {
+      "variant": "cyan",
+      "alphaThreshold": 24,
+      "nominalRadius": 24,
+      "maxRadialInk": 27.109579627722248,
+      "rectangleMaxDimension": 48,
+      "insideCollisionDisc": false,
+      "insideCurrentCameraActorPad26": false
+    }
+  ],
+  "qualifications": [
+    "Nativeframe rectangle fits2r preserving aspect; alpha24 radial ink reaches27.15 atcollisionradius24, beyond existing cameraactorpad26 by up to1.15worldpx. No actualvisiblecrop observed; not claiming exactcircular inkfit. Root/Pocket notified.",
+    "Normal-clock bot collisions caused genuine knockout states; original snapshots are adjacent to geometry samples, not frozen identicalframes. Initial moving720read reports3alive while readout brieflystill4 due adjacentroot/gamebroadcast.",
+    "Iframe PARTY_UI phase remains playing during launcherpause; actualsession.paused=true + visiblePauseoverlay and frozenenginepositions prove pause.",
+    "Atlas4palette small-size renderer proof belongs to Pocket; this normalgame roster maps coral/cyan/lime/lime. No all4unique palette liveclaim.",
+    "Previous push-sumo-round5-live raw4originals retained/opened: longholdfixture drove humans out beforePNGs. Finalgentle actual-ID inwardproof replaces its canonicalart pair without altering gameplay."
+  ],
+  "preservedRaw": "output/playwright/composition-round3-2026-10-03/push-sumo-round5-live/report.json",
+  "browserAndServerClosed": true,
+  "productEditsAfterCapture": false,
+  "focusedChecks": [
+    "host.js syntax PASS",
+    "Party action regression PASS",
+    "Party visual-clock PASS"
+  ],
+  "sourceChange": "host.js explicitPush-only flag to drawPlayerDisc; helper uses currentcentre/radius/palette, render-onlyvelocityheading with retentionbelow12, existingimpact-squash/trail/alpha/shadow. hostHTMLrelativeglobalhelperscript. Othermodes, physics, courtyard0pxanchor and currentnames unchanged."
+}

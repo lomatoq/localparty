@@ -21,7 +21,7 @@
    // aria-hidden, not inert: inert restyles the whole catalog (70-170 ms). The opaque
    // full-screen panel already blocks pointer input to it.
    const main=document.querySelector('body>main');if(main){if(tab==='host')main.setAttribute('aria-hidden','true');else main.removeAttribute('aria-hidden');}
-   if(tab==='host'){if(host.open)host.close();host.show();}else if(host.open)host.close();
+   if(tab==='host'){if(host.open)host.close();host.show();host.scrollTop=0;}else if(host.open)host.close();
    if(!window.__partyPersistentTabs&&previous!==tab&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const target=tab==='host'?host:document.querySelector('body>main');target?.animate([{opacity:0,translate:tab==='host'?'20vw 0':'-20vw 0'},{opacity:1,translate:'0 0'}],{duration:460,easing:'cubic-bezier(.22,1,.36,1)'});}
   }
   current=tab;paint();if(notify)send(tab);
@@ -62,11 +62,11 @@
    html body.native-shell.tools-stuck .native-catalog-tools::before{left:50%;right:auto;width:100vw;transform:translateX(-50%);top:-1px}
    html body.native-host-tab #hostPanel[open]{z-index:38}
    /* The host panel scrolls under the masthead: keep the logo on a solid backing, fading only its last 20px. */
-   html body.native-shell.native-host-tab header#brandHeader.app-header{background:linear-gradient(180deg,#2d263e 0%,#282239 calc(100% - 20px),#28223900 100%)!important}
+   /* Header/background rendering lives in background-scene.css. */
    html body.native-shell.native-host-tab{background:#282239!important}
-   html body.native-shell.native-host-tab .app-header::before{bottom:-20px;background:#282239!important;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 20px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 20px),transparent)}
-   html body.native-shell.native-host-tab #hostPanel[open]{background:#282239!important;border-top:0!important;box-shadow:none!important}
-   html body.native-shell>main{background:#0d1017}
+
+   html body.native-shell.native-host-tab #hostPanel[open]{border-top:0!important;box-shadow:none!important}
+   html body.native-shell>main{background:transparent}
    html body.native-shell .app-header #connection{grid-column:1/-1;grid-row:2;justify-self:center;text-align:center;justify-content:center;margin:0!important}
    body.native-host-tab>.native-run{display:none!important}
    html body.native-host-tab #hostPanel[open]{overscroll-behavior:contain}
@@ -79,8 +79,10 @@
   `;
   if(window.__partyPersistentTabs)style.textContent+=' #partyNativeDock.native-tabs{visibility:hidden!important;pointer-events:none!important}';
   document.head.append(style);
+  const viewport=document.querySelector('meta[name=viewport]');
+  if(viewport)viewport.content='width=device-width,initial-scale=1,viewport-fit=cover';
  }
- if(document.body)installStyle();else new MutationObserver((_,observer)=>{if(document.body){observer.disconnect();installStyle();}}).observe(document.documentElement,{childList:true});
+ if(document.body)installStyle();else new MutationObserver((_,observer)=>{if(document.body){observer.disconnect();installStyle();}}).observe(document,{childList:true,subtree:true});
  function mount(){
   if(document.body.classList.contains('native-shell'))current='games';
   dock=document.getElementById('partyNativeDock');if(!dock){dock=document.createElement('nav');dock.id='partyNativeDock';document.body.append(dock);}

@@ -1,0 +1,344 @@
+{
+  "reviewedAt": "2026-10-03T14:45:52.252Z",
+  "status": "24 fresh originals visually reviewed; two narrow720p copy-fit findings sent to root",
+  "method": "Individually opened24 normal-clock actualTV original PNGs at1280x720 and1920x1080. Read-only review, no browser launched or product changes. This is browser screenshot evidence, not physical-device validation.",
+  "captureReport": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/report.json",
+  "captureReportSha256": "5dc1f6789494e0a8df3854958ef5d3cbcd4bd0edc0db6710053dce3686910589",
+  "captureFinishedAt": "2026-10-03T14:42:37.186Z",
+  "sourcesStable": true,
+  "changedFiles": [],
+  "errors": [],
+  "missing": [],
+  "images": [
+    {
+      "game": "drawguess",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/drawguess-tv-live-1280.png",
+      "sha256": "537fe250688efc31ee5b4dcf85c51f1bd52323c7120b2effdd547b68acd4f116",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:40:53.476Z",
+      "phase": "playing",
+      "note": "Canvas x514/y198/bottom673 and sidebar share the same top/bottom. Large Guesses block; individual roster cards with no enclosing backing; continuation fade and no native scrollbar. Header logo left; clock and turn whole. Long two-line first name cuts its secondary line at lower card edge."
+    },
+    {
+      "game": "drawguess",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/drawguess-tv-live-1920.png",
+      "sha256": "8031210e795e13ccbe5c31ab6c8ad9b45711e123b6a81f32d33a7970a455aadd",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:40:53.476Z",
+      "phase": "playing",
+      "note": "Canvas and sidebar share y246 to1038. Large Guesses and allfour roster rows fit. Header follows canvas-column width; logo/timer/turn clear. No edge decoration."
+    },
+    {
+      "game": "carryball",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/carryball-tv-live-1280.png",
+      "sha256": "e91e2e765fb48f5feac8220320653ade2d149a6a8cdfbffc016f8e2c76c83e91",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:36.350Z",
+      "phase": "playing",
+      "note": "Whole grass pitch boundary and both goals visible. Header digits/dividers fit; labels beside players clear of cap. Natural cluster of bots is gameplay."
+    },
+    {
+      "game": "carryball",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/carryball-tv-live-1920.png",
+      "sha256": "9abe5c36c99423b76bfb951e273fb26837e5d9a7785e276027eb882979d35640",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:36.350Z",
+      "phase": "playing",
+      "note": "Whole pitch and goals fit. Logo/score and timer/points/leader separate cleanly; player identity labels clear of cap. Negative field space preserved."
+    },
+    {
+      "game": "marble_bloom",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/marble_bloom-tv-live-1280.png",
+      "sha256": "94d4b261d67be31b5a07f6f24bca6610a02172a3a584cdc1743424a148a26f30",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:41.063Z",
+      "phase": "playing",
+      "note": "Whole spiral track and three bottom cards fit. Header sits above track, full logo/level/points/queued. No cuff."
+    },
+    {
+      "game": "marble_bloom",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/marble_bloom-tv-live-1920.png",
+      "sha256": "298e68dc5f61a847f7862fcab4a09105be32fd9905cfc1afdc23e56eec4b84ad",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:41.063Z",
+      "phase": "playing",
+      "note": "Whole track, launchers and three bottom cards remain visible. Header and gameplay effects do not collide. No new decorative backing."
+    },
+    {
+      "game": "pocket_siege",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/pocket_siege-tv-live-1280.png",
+      "sha256": "7fccde3e2ed6b75ad09a7eb1f51db2fda740516dee035a6a78dc5a8dccb1d458",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:48.277Z",
+      "phase": "playing",
+      "note": "Terrain and allfour tanks visible. Turn/wind/points fully readable. Existing weapon and roster stay separate from cap."
+    },
+    {
+      "game": "pocket_siege",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/pocket_siege-tv-live-1920.png",
+      "sha256": "338e5b93e2f84cffe1d9b7e959b0f930efc99a6b6a29937b75dd09f159505330",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:48.277Z",
+      "phase": "playing",
+      "note": "Whole terrain/tanks and supporting cards preserved. Numeric wind sign intact; header logo/actor/turn/wind/points fit without collision."
+    },
+    {
+      "game": "bow_club",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/bow_club-tv-live-1280.png",
+      "sha256": "7da2f6c330c14ff2432c4f2236ce81417f66f6964d7a7729bd45b161d6b16796",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:53.306Z",
+      "phase": "playing",
+      "note": "Actual fresh game route now renders. Full targets and four calibration markers visible; clear logo/time versus arrows/mode/instruction. Bottom bot names collapse to B... despite short names; scores and arrow counts whole."
+    },
+    {
+      "game": "bow_club",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/bow_club-tv-live-1920.png",
+      "sha256": "82a36c96ae834f7004e4f936c1059fb18048df6ab1e7c557473852a4c30c5f2d",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:41:53.306Z",
+      "phase": "playing",
+      "note": "Full targets and calibration markers visible. Header hierarchy legible; bottom Bot2/Bot3/Bot1 names and allnumbers complete. No cuff."
+    },
+    {
+      "game": "poker",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/poker-tv-live-1280.png",
+      "sha256": "179d630c03963dda6dc5f350a462851041e3c6d511c034b667c277588d0da7a3",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:00.221Z",
+      "phase": "playing",
+      "note": "Authored purple table/room retained without added felt overlay. Seats/cards/pot/turn remain whole; header values clear."
+    },
+    {
+      "game": "poker",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/poker-tv-live-1920.png",
+      "sha256": "3232db9b77078cf755dbe434680e8823c82583495dab5ab59c158701b7eea955",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:00.221Z",
+      "phase": "playing",
+      "note": "Whole authored table/room and four seat readouts fit. Logo/hand/pot/currentbet stay in header; no extra felt or edge ornament."
+    },
+    {
+      "game": "airhockey",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/airhockey-tv-live-1280.png",
+      "sha256": "a876ec9faa1dcc0f03ac9076c34e4b2f5e4df1c69927ca0feab550204317f310",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:05.101Z",
+      "phase": "playing",
+      "note": "Whole rink and both goals fit; header separated above rink. No extra dark rectangle around field. Puck/players remain gameplay."
+    },
+    {
+      "game": "airhockey",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/airhockey-tv-live-1920.png",
+      "sha256": "717188d9c3caa8b3831c95346c6445813b3abffe6825596ce85587f9ad375ba8",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:05.101Z",
+      "phase": "playing",
+      "note": "Whole rink fits withinviewport. Pale header logo/score/timer clear; lasttouch corner boxes preserve field hierarchy. No cuff/backing."
+    },
+    {
+      "game": "mines",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/mines-tv-live-1280.png",
+      "sha256": "58c08ac53f468cd5813a808e2e8748316118550d1d663d04b2a5145ed646ef77",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:10.140Z",
+      "phase": "playing",
+      "note": "Whole board and roster visible; graphite cap/instruction/cards coherent. No flag or board overlap. Long name fits two lines."
+    },
+    {
+      "game": "mines",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/mines-tv-live-1920.png",
+      "sha256": "f612283a5ecf1091c4d816ff06349f82844b551d0a54c2e5d833e72db32c5294",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:10.140Z",
+      "phase": "playing",
+      "note": "Whole board and roster visible. Header/board gap clear now that flag is absent. No cap/field collision or added list enclosure."
+    },
+    {
+      "game": "curling",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/curling-tv-live-1280.png",
+      "sha256": "cc82d645d65aae73ad25f3f473608b5543d9a78c9004cd61bb60869a62129a71",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:16.972Z",
+      "phase": "playing",
+      "note": "Full perspective ice, target and throw stone visible. Five bottom rows complete; phase/team/end header readable. No cuff."
+    },
+    {
+      "game": "curling",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/curling-tv-live-1920.png",
+      "sha256": "45c3589d6e82da07e73526bce5f15d2f52877d88f861fbf5025b6de6ceaf30b2",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:16.972Z",
+      "phase": "playing",
+      "note": "Full ice scene and bottom five-player rail visible. Cap/team/end metrics clear; authored crowd and lane perspective preserved."
+    },
+    {
+      "game": "bowling",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/bowling-tv-live-1280.png",
+      "sha256": "6ba4f7c387dc0a64a61e252f84ee94e88235f3890af2ad9a211145bcef6c209d",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:22.260Z",
+      "phase": "playing",
+      "note": "Active lane, pins and ball complete. Four bottom players and header frame/time fit. No cuff."
+    },
+    {
+      "game": "bowling",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/bowling-tv-live-1920.png",
+      "sha256": "16c9180dbe03900b126411539d25545cb79d051e2db232cff97c579230b5ab23",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:22.260Z",
+      "phase": "playing",
+      "note": "Whole lane/pins/ball and player rail complete. Header and authored signs distinct; retained scene depth."
+    },
+    {
+      "game": "swarm_gate",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/swarm_gate-tv-live-1280.png",
+      "sha256": "90c994934d1568948ae51cb9c7f57d0ac4d73ac95e141ac33bb0bc7c731b4d79",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:31.840Z",
+      "phase": "playing",
+      "note": "Gate, attackers and four player controls visible. Header wave/gate values and bottom four-player readouts whole; no cuff."
+    },
+    {
+      "game": "swarm_gate",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/swarm_gate-tv-live-1920.png",
+      "sha256": "f3f81a80793f9e5c231d612f7ea3d6985e3381681c47d5712042bfa99257a9ee",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:31.840Z",
+      "phase": "playing",
+      "note": "Gate, attackers/pulse feedback and bottom rail whole. Announcement below header does not collide with header stats."
+    },
+    {
+      "game": "peek_shoot",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/peek_shoot-tv-live-1280.png",
+      "sha256": "e5842f245e243fa563b9b57fe71de0878c7544530228525f98a805a945ad8df8",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:37.155Z",
+      "phase": "playing",
+      "note": "Allthree target rows and bottom four-player rail fit. Temporary announcement remains under cap; no cuff."
+    },
+    {
+      "game": "peek_shoot",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/peek_shoot-tv-live-1920.png",
+      "sha256": "63e05d9d49ef206f7b0bb52a7af8880155cad2ada4d5dadff3bc25c60d9115f1",
+      "openedIndividually": true,
+      "captureRunGameFinishedAt": "2026-10-03T14:42:37.155Z",
+      "phase": "playing",
+      "note": "Allthree target rows, hits and four-player rail remain visible. Header timing/streak complete; announcement separated below."
+    }
+  ],
+  "findings": [
+    {
+      "game": "drawguess",
+      "viewport": 1280,
+      "severity": "minor text fit",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/drawguess-tv-live-1280.png",
+      "note": "First roster card long two-line name leaves the guessed0/Drawings1 supporting line clipped at lower border, approximatelyy526–531. Narrow local row-height fit; canvas/full-sidebar geometry passes."
+    },
+    {
+      "game": "bow_club",
+      "viewport": 1280,
+      "severity": "minor identity fit",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/bow_club-tv-live-1280.png",
+      "note": "Allthree shortbot names become B... in bottom player cards. Their distinct avatars/scores stay visible; names fit at1920. Narrow row width allocation issue, not header redesign."
+    }
+  ],
+  "structuralBlockers": [],
+  "microDecorPresent": false
+}

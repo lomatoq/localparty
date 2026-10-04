@@ -1,0 +1,188 @@
+{
+  "reviewedAt": "2026-10-03T20:07:49.680431+00:00",
+  "reviewer": "art_director",
+  "status": "PASS bounded representative motion UI",
+  "diagnosis": {
+    "path": "/Users/hlebhlyaba/HeyPals/localparty/docs/qa/screen-state-audit-2026-10-03/sports-motion-115-diagnosis.json",
+    "sha256": "4bedb4979678ec966529485ba1966ea094bbf11cc928eacb1f75c16c16094500"
+  },
+  "sources": {
+    "captureExpected": {
+      "public/sports-motion.js": "1d7c9a931394d59a95c3f2a3f69df9dbb127d7c2b7b4418f48ec0a9c4f66d801",
+      "games/sports_siege/public/controls.js": "71eca23ea0fecb0922f0eee3c40bfce015f54143e0947207090363f05f79df63",
+      "games/sports_siege/public/sports-controls.css": "4207f6f120c657d6d000444a7433e32894432a53b6ee89e768d4d8b639b421e4",
+      "ios/LocalParty/LocalPartyApp.swift": "9f6b94d431f9d2eba8a744281a5f5fcd2d85222b758c975d2c1c03b76b092bb9",
+      "ios/LocalParty/ServerModel.swift": "e39e20bf8096fbf6ad8a033c22993bd439ea26ac9a627ab29c20e587e8caff94",
+      "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3"
+    },
+    "verifiedCurrent": {
+      "public/sports-motion.js": "1d7c9a931394d59a95c3f2a3f69df9dbb127d7c2b7b4418f48ec0a9c4f66d801",
+      "games/sports_siege/public/controls.js": "71eca23ea0fecb0922f0eee3c40bfce015f54143e0947207090363f05f79df63",
+      "games/sports_siege/public/sports-controls.css": "4207f6f120c657d6d000444a7433e32894432a53b6ee89e768d4d8b639b421e4",
+      "ios/LocalParty/LocalPartyApp.swift": "9f6b94d431f9d2eba8a744281a5f5fcd2d85222b758c975d2c1c03b76b092bb9",
+      "ios/LocalParty/ServerModel.swift": "e39e20bf8096fbf6ad8a033c22993bd439ea26ac9a627ab29c20e587e8caff94",
+      "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3"
+    },
+    "currentMismatches": []
+  },
+  "images": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-motion-ready.png",
+      "sha256": "8d3b48868103565369cfbf4a3b05d4f6187a70a30c41c8aaf6eafda866544d5b",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Motion selected; explicit hold pad/swing/release-finger instruction and power visible. Whole controls, footer and native tabs; generic Swipe ball/arrow absent in Motion."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-motion-held.png",
+      "sha256": "a8615a19ce2421b8a055d3cf392b953ad8e06822caebdff3076b5d35fe14dad5",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Actual49% held power legible; hold/swing title wraps naturally at402, release-finger guidance remains whole. No clipping or masks."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-shake-sweeping.png",
+      "sha256": "d7f131b77a861d409bb77ac99d1b86ec4701b3a4f170b45c1dee75c9b877d188",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Whole green sweep station, broom and SHAKE OR HOLD instruction;100% energy and footer complete. Static capture is settled availability after decay/cancellation, not proof of active sweep."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-motion-ready.png",
+      "sha256": "8ae3666c4cff618a287e3f5c64ef692081abb1c3d13db220e096f29960fc0e84",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Motion selected; explicit hold pad/swing/release-finger instruction and power visible. Whole controls, footer and native tabs; generic Swipe ball/arrow absent in Motion."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-motion-held.png",
+      "sha256": "b33adcbbec9d87fd792a5f71718e9b6cd3a3e488bbdaf9d519db27c6053f4d3e",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Actual49% held power legible; hold/swing title wraps naturally at402, release-finger guidance remains whole. No clipping or masks."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-shake-sweeping.png",
+      "sha256": "cf855f17af8d231ca8919413343de3ca7cfff395227326b6255ac11206655668",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Whole green sweep station, broom and SHAKE OR HOLD instruction;100% energy and footer complete. Static capture is settled availability after decay/cancellation, not proof of active sweep."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-final-browser-attitude/bowling-browser-403-motion-ready.png",
+      "sha256": "2fba1eb808f68ec7b5b0777fb6b01309850f4b53ce40ec00de3f26626638f347",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Motion selected; explicit hold pad/swing/release-finger instruction and power visible. Whole controls, footer and native tabs; generic Swipe ball/arrow absent in Motion."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-final-browser-attitude/bowling-browser-403-attitude-fallback.png",
+      "sha256": "a4899f82f59499d80f7261a7506473de5350d7f63fc8cfb7fc03c3bfd4bd3cdc",
+      "openedIndividually": true,
+      "exactCurrentSource": true,
+      "disposition": "PASS bounded visual",
+      "observation": "Selected Swipe, full Retry Motion and honest No motion data sentence; SWIPE UP art/action restored, power0%, footer whole."
+    }
+  ],
+  "originalCount": 8,
+  "runtimeReports": [
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/report.json",
+      "sha256": "8380d39d19f5fe3464af9ab44360e1bb2d6188e712909c8c3d009df2bffca851",
+      "method": "Controls.e8bfc016 predecessor differs only by resetting motionSweep/ShakeSweep in release(true); Bowling never allows shake sweep, so accepted five visual states and waiting/held resize branches are unchanged. Other five scoped product hashes exact current. Not claimed as current controls hash.",
+      "cases": [
+        {
+          "mode": "bowling",
+          "width": 320,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored"
+          ],
+          "throws": 1
+        },
+        {
+          "mode": "bowling",
+          "width": 402,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "Orientation cancellation: no throw",
+            "Actual host pause cancels armed throw",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored"
+          ],
+          "throws": 1
+        }
+      ]
+    },
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/report.json",
+      "sha256": "b6ecd60b720286efc89b485313eb652c73168476be86c64c4d69d7fbab908a99",
+      "method": "Exact current six scoped product hashes; actual nested /play→/games route and engine wire, synthetic sensor callbacks/events only.",
+      "cases": [
+        {
+          "mode": "curling",
+          "width": 320,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored",
+            "Actual resize during active shake clears sweep/history and next wire input false, retains Motion sensors",
+            "Two shake pulses activate own-team sweep; stale sensor releases sweep",
+            "Manual sweep remains usable independently"
+          ],
+          "throws": 1
+        },
+        {
+          "mode": "curling",
+          "width": 402,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "Orientation cancellation: no throw",
+            "Actual host pause cancels armed throw",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored",
+            "Actual resize during active shake clears sweep/history and next wire input false, retains Motion sensors",
+            "Two shake pulses activate own-team sweep; stale sensor releases sweep",
+            "Manual sweep remains usable independently"
+          ],
+          "throws": 1
+        }
+      ]
+    },
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-final-browser-attitude/report.json",
+      "sha256": "80e0e3e06c1b17a04b7894dbb60397bb913e28e2d27968a1f1c172b3af15bc26",
+      "method": "Exact current six scoped product hashes; actual nested /play→/games route and engine wire, synthetic sensor callbacks/events only.",
+      "cases": [
+        {
+          "mode": "bowling",
+          "width": 403,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Delayed browser permission with synthetic dialog blur still grants; no false readiness before data",
+            "Fresh acceleration with absent/stale attitude cancels armed hold;2.2s unavailable fallback selects Swipe, no throw",
+            "Retry motion button with fresh attitude restored: new hold/release sends one valid existing throw/token and reaches actual rolling"
+          ],
+          "throws": 1
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "qualifications": [
+    "Only eight representative exact-current originals independently opened, not owner24 total.",
+    "Native HTML/bridge readiness and sensor traces are synthetic fixtures with actual engine routes/wire; no physical Swift/CoreMotion execution claim.",
+    "No own browser, source edit, build, install or phone command.",
+    "Bowling predecessor ten native screenshots are accepted by owner only for unchanged inactive shake-reset branch, not exact current controls hash; none promoted to our current visual proof.",
+    "Static settled sweep screenshots show availability after decay/cancellation, not active sweep status; owner input-wire assertions are separate automated evidence.",
+    "Physical build114 failure root cause remains unobserved on hardware. Focused68/typecheck/parse results are owner evidence, not hardware validation."
+  ]
+}

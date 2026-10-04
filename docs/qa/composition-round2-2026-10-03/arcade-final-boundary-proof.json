@@ -1,0 +1,82 @@
+{
+  "report": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected/report.json",
+  "reviewed": [
+    {
+      "game": "kart",
+      "w": 1280,
+      "h": 720,
+      "file": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected/kart-tv-live-1280.png",
+      "pngHash": "6ef77fa6c8a87ed664e52ac5d16bfe954f96e4e4f54e9ab6a6040b77919a04cf",
+      "openedOriginal": true,
+      "ownerVisualAssessment": "No hard stage/rail step; fullheightwash, four whole cards and16px right cap inset retained."
+    },
+    {
+      "game": "kart",
+      "w": 1920,
+      "h": 1080,
+      "file": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected/kart-tv-live-1920.png",
+      "pngHash": "14205d835fc17ad2b5cabc6c8067a4ca29eb15b28c9c39b8d36942a5d84dc5b2",
+      "openedOriginal": true,
+      "ownerVisualAssessment": "No hard stage/rail step; fullheightwash, four whole cards and16px right cap inset retained."
+    },
+    {
+      "game": "taprace",
+      "w": 1280,
+      "h": 720,
+      "file": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected/taprace-tv-live-1280.png",
+      "pngHash": "540caf48bdba61dc34f2cc644ee8499b758c9c1949c68a5c56418b5a5ed84499",
+      "openedOriginal": true,
+      "ownerVisualAssessment": "Decorative apron absent; functional purple lane frame and checker finish retained."
+    },
+    {
+      "game": "taprace",
+      "w": 1920,
+      "h": 1080,
+      "file": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected/taprace-tv-live-1920.png",
+      "pngHash": "98ebdbdad3bf8b56bc73ad3ad81f2e0e1cf5f4418316d503e3ee0fe57d164db9",
+      "openedOriginal": true,
+      "ownerVisualAssessment": "Decorative apron absent; functional purple lane frame and checker finish retained."
+    },
+    {
+      "game": "punchmeter",
+      "w": 1280,
+      "h": 720,
+      "file": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected/punchmeter-tv-live-1280.png",
+      "pngHash": "1d8b750bee5d6bb9d16d5cc23ae06880741b35412d7c130e633c5c504bb7dadf",
+      "openedOriginal": true,
+      "ownerVisualAssessment": "Continuous fullviewport gym wall/floor; bag, ropes, mount and posts retained."
+    },
+    {
+      "game": "punchmeter",
+      "w": 1920,
+      "h": 1080,
+      "file": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected/punchmeter-tv-live-1920.png",
+      "pngHash": "420013856f2827d7ef5a89ead211452c38d085055987d209b8cd8ab8ccb41da4",
+      "openedOriginal": true,
+      "ownerVisualAssessment": "Continuous fullviewport gym wall/floor; bag, ropes, mount and posts retained."
+    }
+  ],
+  "sourceStable": true,
+  "ownedCurrentSourceMatchesCaptured": true,
+  "ownedSourceCount": 13,
+  "ownedHashes": {
+    "games/chaos/static/host.html": "e3cc464be8f0a00cef6819aaebbcecac6cf4dc26b782c7405b04276e7c7ed1db",
+    "games/kart/static/controller.html": "4adb5ad7cf10b204766f0063ffdc97fb0cf74b8101df813b147f3cfa393a27dc",
+    "games/kart/static/controller.js": "1ed1d7737148c7cb02b1a7559c075cd0f4d3d77cf58d2f03125cc6976a074537",
+    "games/kart/static/host.html": "956c03a6d1989759207bd50e745fb00cecd25f09417b5f661ed37344b886a66d",
+    "games/kart/static/host.js": "09b412658382ff143060f1a24c8c882ca840157df3e21d2c28df0dd4bef1255f",
+    "games/kart/static/styles.css": "721c08fd9fa54d7ae14cc010f2f552dc575e6f9d7914030bbfde23e86bdd4547",
+    "games/kart/static/track.js": "d190078d8cfe0cd6846f127bec75a375b20172381ffa1a59f590bbec0697fd55",
+    "games/arcade/public/app.js": "c7fc0e112a09f4dc0742aba60b01072f3c8e7d90a83f25096fd9afbcb5ef22ac",
+    "games/arcade/public/arcade-juice.js": "7935a831047c94ef90927dc4e510e9936c8c41bdb376967dee404b545acbe802",
+    "games/arcade/public/host.html": "23f4206edaa44ae7bfee651e7077297fce397908ae4008113d02d62a85cd8d5c",
+    "games/arcade/public/index.html": "f30d57aa39618ae532cf4f261923d7e241e75bc91315678d11d540e900ce4fe9",
+    "games/arcade/public/snake-polish.js": "7ac4f6313fbff7bbdc79f689d535640ae9457672ae2780f229d44dda6b47209c",
+    "games/arcade/public/style.css": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d"
+  },
+  "allEightPlaying": true,
+  "errors": [],
+  "changedFiles": [],
+  "noOwnerBrowserStarted": true,
+  "noPhoneRecapture": true
+}

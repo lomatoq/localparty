@@ -1,5 +1,23 @@
 const assert=require('node:assert/strict');const {Arcade,MODES}=require('../games/arcade/simulation');
-for(const mode of Object.keys(MODES)){const g=new Arcade(mode,()=>.5);for(let i=0;i<16;i++)g.join('p'+i,'Игрок '+i);assert.equal(g.join('overflow','Extra'),null);assert(g.start());assert.equal(g.players.length,16);g.input('p0',{x:1,y:.5,action:mode==='punchmeter'?'punch':'tap',power:.9});g.tick(.033);if(mode==='taprace')assert(g.players[0].progress>0);if(mode==='punchmeter')assert.equal(g.players[0].hits.length,1);if(mode==='flappy')assert(g.players[0].vy<0);if(mode==='hungry'||mode==='carryball')assert(g.players[0].x>100);if(mode==='snakelines')assert.equal(g.players[0].trail.length,1);g.timer=.01;g.tick(.02);assert.equal(g.phase,'finished');assert(g.start());assert.equal(g.phase,'playing');assert(g.players.every(p=>p.score===0&&p.hits.length===0));JSON.stringify(g.view());console.log('PASS',mode,'16 players/input/finish/replay');}
+for(const mode of Object.keys(MODES)){const g=new Arcade(mode,()=>.5);for(let i=0;i<16;i++)g.join('p'+i,'Игрок '+i);assert.equal(g.join('overflow','Extra'),null);assert(g.start());assert.equal(g.players.length,16);
+if(mode==='flappy'){
+ const player=g.players[0],before={y:player.y,vy:player.vy,lastTap:player.lastTap,input:{...player.input},timer:g.timer};
+ assert.equal(g.countdown,3,'Flappy starts with the authored three-second countdown');
+ g.input('p0',{x:1,y:.5,action:'tap'});
+ assert.equal(player.vy,before.vy,'Countdown blocks the flap impulse');
+ assert.equal(player.lastTap,before.lastTap,'Blocked flap does not consume the tap cooldown');
+ assert.deepEqual(player.input,before.input,'Countdown blocks movement input');
+ for(let i=0;i<20;i++)g.tick(.05);
+ assert(g.countdown>0,'Countdown remains active after one second');
+ assert.equal(player.y,before.y,'Bird does not move during countdown');
+ assert.equal(player.vy,before.vy,'Gravity is held during countdown');
+ assert.equal(g.time,0,'Gameplay clock waits for countdown');
+ assert.equal(g.timer,before.timer,'Round timer waits for countdown');
+ let ticks=0;while(g.countdown>0&&ticks++<61)g.tick(.05);
+ assert.equal(g.countdown,0,'Normal engine ticks complete countdown');
+ assert.equal(g.time,0);assert.equal(g.timer,before.timer);
+}
+g.input('p0',{x:1,y:.5,action:mode==='punchmeter'?'punch':'tap',power:.9});g.tick(.033);if(mode==='taprace')assert(g.players[0].progress>0);if(mode==='punchmeter')assert.equal(g.players[0].hits.length,1);if(mode==='flappy')assert(g.players[0].vy<0);if(mode==='hungry'||mode==='carryball')assert(g.players[0].x>100);if(mode==='snakelines')assert.equal(g.players[0].trail.length,1);g.timer=.01;g.tick(.02);assert.equal(g.phase,'finished');assert(g.start());assert.equal(g.phase,'playing');assert(g.players.every(p=>p.score===0&&p.hits.length===0));JSON.stringify(g.view());console.log('PASS',mode,'16 players/input/finish/replay');}
 const p=new Arcade('punchmeter');p.join('a','A');p.join('b','B');p.start();for(let i=0;i<3;i++){p.input('a',{action:'punch',power:1});p.input('b',{action:'punch',power:.5});for(let j=0;j<50;j++)p.tick(.04);}assert.equal(p.phase,'finished');assert.equal(p.players[0].score,3000);assert.equal(p.players[1].score,1650);
 const h=new Arcade('hungry');h.join('a','A');h.join('b','B');h.start();Object.assign(h.players[0],{mass:100,x:500,y:500});Object.assign(h.players[1],{mass:20,x:500,y:500,shield:0});h.tick(.03);assert(h.players[1].dead>0);for(let i=0;i<60;i++)h.tick(.03);assert.equal(h.players[1].dead,0);
 const c=new Arcade('carryball');c.join('a','A');c.join('b','B');c.start();Object.assign(c.ball,{x:1170,y:360,lock:0});c.tick(.03);assert.equal(c.teams[0],1);console.log('PASS punch totals, hungry absorption/respawn, carry goal');

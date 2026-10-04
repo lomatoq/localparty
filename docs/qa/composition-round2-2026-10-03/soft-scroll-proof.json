@@ -1,0 +1,356 @@
+{
+  "status": "frozen-renderer-verified",
+  "source": {
+    "public/game-ui-system.js": "41a19f3e4bfaf13d35cd67f6ecbfaa43f43a0496835d796029656d800c7d9eba",
+    "public/game-ui-system.css": "0267b72a28c42aa3d9a948741ffd0f028cbdb12957dd8e15f1f7a5e6632f951a"
+  },
+  "rendererReport": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/report.json",
+  "rendererReportSha256": "3dbfe551b674ce50abee17944b03d486cf89206c911a36bba5b96e7a0a3da3c3",
+  "checks": [
+    "At first row: no top fade; only bottom fade.",
+    "At middle: both edges fade.",
+    "At last row: no bottom fade; only top fade.",
+    "Content shrinks to nonoverflow: mask class and stale edge datasets clear.",
+    "Newly inserted scroll body discovered.",
+    "Fresh track remains unmasked.",
+    "Popup start/middle/end: backing unmasked; sticky heading/actions unmasked; content child edge fades only.",
+    "Shared dynamic mask overrides weapon drawer legacy !important permanent/local mask; last edge clears.",
+    "Actual native host panel at402/320 retains DOM/layout and unmasked backing/header; scroll content uses dynamic child masks. Native data is simulated, not physical-device proof."
+  ],
+  "errors": [],
+  "allElevenOriginalsOpenedIndividually": true,
+  "images": [
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/list-start-402.png",
+      "sha256": "2a9a7cf0f6d0504fb1bef0d1473cdbeb7d5c7acf69ea68084c9379bc14639d95"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/list-middle-402.png",
+      "sha256": "3dfc0b8aca412f104e7452e4406e7d2dae98643ecbdd331c9e903bb8929242f6"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/list-end-402.png",
+      "sha256": "e724dafd0fdb3b2d39ba352295e1ec11bfcd8d94b2924198ab88c5dc268551e3"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/popup-start-402.png",
+      "sha256": "5feb7293d61debae9beced008ce6a996a53688c6d33ea644bf311e217a0599a1"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/popup-middle-402.png",
+      "sha256": "82997ad98765607612ace95be22bef9cb842ae390d6fa5975369254793c470a1"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/popup-end-402.png",
+      "sha256": "b9cfe96bd1f665712ea6d80e536897e4bdd5bca6c28e378abd1bbfc0cb68c3dc"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/arsenal-start-402.png",
+      "sha256": "dbcd7c931747fa68b46f06ddbb669979d484494b21e8973b098cf52155388955"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/native-host-top-402.png",
+      "sha256": "bce7e0de9def2e4a991fac1685be491997698767882a17a2b0275a1079d215c7"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/native-host-middle-402.png",
+      "sha256": "63e0bd52344b483aced15b5dc564111e867ef5540c6fa5bbfd0db06d26092749"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/native-host-end-402.png",
+      "sha256": "7f49be48d3556361ac9b3a235617ad516b43bf77b5c85556609550ac0dca43d0"
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-confirm/native-host-end-320.png",
+      "sha256": "968d46c829f12f6a70f8ed155beabecb962e0c907640549ba9f1a686820c9796"
+    }
+  ],
+  "contentSelectors": [
+    "#statsBody",
+    "#rulesBody",
+    "#catalogBody",
+    "#catalogQuick",
+    "#nearbyList",
+    "#waitingContent",
+    "#waitingRoster",
+    ".waiting-goal",
+    ".waiting-rules-body",
+    ".hp-result-scroll",
+    ".hp-result-list",
+    ".hp-results",
+    "#resultStats",
+    "#tvBrowse",
+    "#tvPodiumTail",
+    ".company-people",
+    "#roomPlayers",
+    "#roster",
+    ".dialog-body",
+    ".dialog-content",
+    ".scroll-area",
+    ".scroll-content",
+    ".weapon-list",
+    ".shop-items",
+    ".arsenal-list",
+    ".lp-select-menu",
+    "#board",
+    "#players",
+    "#scoreList",
+    "#voteList",
+    "#playRoster",
+    "#quizRosterScroll",
+    "#ss-scoreboard",
+    "#ss-results",
+    ".party-standings-board",
+    ".player-list",
+    ".leaderboard",
+    ".score-panel",
+    "#messages",
+    "#explanation",
+    ".broadcast-feed",
+    ".poker-quickrules p"
+  ],
+  "panelSelectors": [
+    "dialog",
+    "[role=\"dialog\"]",
+    ".native-sheet",
+    ".sheet-card",
+    ".drawer-panel",
+    "#pauseOverlay",
+    ".overlay-panel",
+    "#lobbyOverlay",
+    "#tvSidebar",
+    ".company",
+    ".evening-console",
+    ".screen-standings",
+    ".screen-sidebar",
+    ".roster-card",
+    ".side-panel",
+    ".lp-duel-sidebar",
+    ".naval-console>details"
+  ],
+  "coverage36": {
+    "push": {
+      "family": "party",
+      "selectors": ".party-standings-board, .player-list, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "shrink": {
+      "family": "party",
+      "selectors": ".party-standings-board, .player-list, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "knives": {
+      "family": "party",
+      "selectors": ".party-standings-board, .player-list, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "bomb": {
+      "family": "party",
+      "selectors": ".party-standings-board, .player-list, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "western": {
+      "family": "party",
+      "selectors": ".party-standings-board, .player-list, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "taprace": {
+      "family": "arcade",
+      "selectors": ".score-panel, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "punchmeter": {
+      "family": "arcade",
+      "selectors": ".score-panel, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "flappy": {
+      "family": "arcade",
+      "selectors": ".score-panel, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "hungry": {
+      "family": "arcade",
+      "selectors": ".score-panel, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "snakelines": {
+      "family": "arcade",
+      "selectors": ".score-panel, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "carryball": {
+      "family": "arcade",
+      "selectors": ".score-panel, .hp-result-scroll, .hp-result-list",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "curling": {
+      "family": "sports",
+      "selectors": "#ss-scoreboard, #ss-results, .hp-result-scroll",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "bowling": {
+      "family": "sports",
+      "selectors": "#ss-scoreboard, #ss-results, .hp-result-scroll",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "swarm_gate": {
+      "family": "sports",
+      "selectors": "#ss-scoreboard, #ss-results, .hp-result-scroll",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "peek_shoot": {
+      "family": "sports",
+      "selectors": "#ss-scoreboard, #ss-results, .hp-result-scroll",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "poker": {
+      "family": "tabletop",
+      "selectors": "#players, .poker-quickrules p, .hp-result-scroll",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "airhockey": {
+      "family": "tabletop",
+      "selectors": "#players, .poker-quickrules p, .hp-result-scroll",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "mines": {
+      "family": "tabletop",
+      "selectors": "#players, .poker-quickrules p, .hp-result-scroll",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "tanks": {
+      "family": "game-specific/shared",
+      "selectors": "#board, #players, .overlay-panel, .lp-duel-sidebar",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "tankarena": {
+      "family": "game-specific/shared",
+      "selectors": "#board, #players, .overlay-panel, .lp-duel-sidebar",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "jenga": {
+      "family": "game-specific/shared",
+      "selectors": "#board, #players, .overlay-panel, .lp-duel-sidebar",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "western_duel": {
+      "family": "game-specific/shared",
+      "selectors": "#board, #players, .overlay-panel, .lp-duel-sidebar",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "sinyakquiz": {
+      "family": "game-specific/shared",
+      "selectors": "#quizRosterScroll, #board, #explanation, .screen-standings",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "warsaw": {
+      "family": "game-specific/shared",
+      "selectors": "#quizRosterScroll, #board, #explanation, .screen-standings",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "monster": {
+      "family": "game-specific/shared",
+      "selectors": ".player-list; dialogs/result lists (queue/canvas artwork intentionally excluded)",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "spy": {
+      "family": "game-specific/shared",
+      "selectors": "#voteList, #playRoster, .roster-card, .sheet-card",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "millionaire": {
+      "family": "game-specific/shared",
+      "selectors": "#scoreList, #explanation, #players",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "chaos": {
+      "family": "game-specific/shared",
+      "selectors": "#players, #board; shared result lists",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "kart": {
+      "family": "game-specific/shared",
+      "selectors": ".leaderboard, .side-panel",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "crocodile": {
+      "family": "game-specific/shared",
+      "selectors": "#board, #messages, .screen-standings, .screen-sidebar",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "drawguess": {
+      "family": "game-specific/shared",
+      "selectors": "#board, #messages, .screen-standings, .screen-sidebar",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "crane": {
+      "family": "game-specific/shared",
+      "selectors": "#players; whole rail remains unmasked",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "naval": {
+      "family": "game-specific/shared",
+      "selectors": "#players, #board, .broadcast-feed, .naval-console>details",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "marble_bloom": {
+      "family": "game-specific/shared",
+      "selectors": ".arsenal-list, .drawer-panel, .score-panel",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "pocket_siege": {
+      "family": "game-specific/shared",
+      "selectors": ".arsenal-list, .drawer-panel, .score-panel",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    },
+    "bow_club": {
+      "family": "game-specific/shared",
+      "selectors": "#board, #players; shared result lists",
+      "sharedPopupSelectors": "dialog, [role=dialog], #rulesBody, #statsBody, #catalogQuick, #roomPlayers, #waitingContent, #waitingRoster, .waiting-goal, .waiting-rules-body, #pauseOverlay",
+      "qualification": "Source registration audit; mask enabled only for actual bounded overflow. Not a browser assertion of every game/phase."
+    }
+  },
+  "limits": [
+    "Synthetic list/popup fixtures; actual bundled native host DOM uses simulated native snapshots, not physical device.",
+    "No claim that all36 live scroll states were driven; full fresh catalog review follows separately.",
+    "No masks on whole dialog/rail panels. Only content children at viewport edges receive panel masks.",
+    "Fresh remains excluded. Game artwork/canvas, fixed/pinned heading and footer actions remain unmasked.",
+    "No game engines, geometry, native footer or other product files edited."
+  ]
+}

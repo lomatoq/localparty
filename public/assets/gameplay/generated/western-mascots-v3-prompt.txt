@@ -1,0 +1,37 @@
+Built-in image_gen; transparent_background=true. New generation, no bitmap edits.
+
+Use case: stylized-concept. Asset type: production transparent game sprite atlas,
+ONE image, 4 columns by 2 rows, eight separate fully isolated pieces, equal cells,
+generous transparent padding between all pieces and canvas edges.
+Cute HeyPals-style toy mascots: plump pear/blob-shaped little creatures, glossy
+soft vinyl shading, large black oval eyes, tiny smile, rosy cheeks, tiny feet,
+tiny rounded limbs, restrained simple shapes, readable small silhouettes,
+NOT humanoid cowboys, no human hair or moustaches. They wear a simple broad brown
+cowboy hat, small bandana and western belt. All face slightly right, eye view
+frontal three-quarter with no extreme perspective. Four individually authored
+body colors in left-to-right order: bright lime green, violet, coral red,
+turquoise blue; color is their skin/body itself, not merely clothing.
+TOP ROW: four COMPLETE mascot cowboy body cutouts, same pose and visual size,
+no foreground/right shooting arm or gun attached, leave a clean round shoulder
+connection on their right side around upper-middle body. Complete hat and tiny
+feet fully visible; no cropped edges; no background, floor, shadow blob, text or
+cell/grid lines.
+BOTTOM ROW: four separate matching small colored rounded arm-and-hand cutouts
+holding a stylized dark charcoal/silver six-shooter pointing exactly horizontally
+right; colored upper-arm stump at far left, elbow slightly bent, hand wraps
+visible grip, full gun/barrel/muzzle visible at far right. Arms must be fully
+DISCONNECTED from bodies and isolated in their own cells; left-to-right arm colors
+match the four body colors above. Gun muzzle at right and roughly vertical center
+of its cutout. Each arm silhouette must form one clean connected piece with ample
+transparent padding. Cohesive premium toy-cartoon material, simple readable shading,
+same camera and lighting for all eight pieces. TRUE transparent alpha outside the
+pieces. No background of any kind, no added objects, no text, no watermark.
+Accurate eight-piece 4x2 sprite sheet layout essential.
+
+Original output (preserved unchanged):
+/Users/hlebhlyaba/.codex/generated_images/01a100eb-2b5c-7533-b152-96f37575dd91/exec-5f218088-e9e0-4dac-8dc3-c5a629a32067.png
+
+Workspace copy: western-mascots-v3.png.
+Frames, alpha measurements, measured contact hulls and rendering rig:
+western-mascots-v3.json. No hue tint, alpha removal, repainting or bitmap crop files.
+Canvas drawImage source frames reuse the original atlas at its native aspect ratio.

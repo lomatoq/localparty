@@ -17,7 +17,7 @@ body:not(.host) #hole .card.red{color:#c42c55!important}
 #actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;max-width:520px}#actions>*{min-width:0}#actions button{font-size:clamp(14px,4.4vw,20px);white-space:normal;overflow-wrap:anywhere;padding:12px 8px;min-height:52px}
 .joystick{--team-color:#c4ff71;position:relative;touch-action:none;width:min(78vw,310px);aspect-ratio:1;margin:22px auto 24px;border:2px solid #c7b1e63d;border-radius:50%;background:radial-gradient(circle,#3b304e 0%,#211e2d 62%,#151820 64%);box-shadow:inset 0 3px 20px #0006,0 1px #fff2}
 .joystick::before,.joystick::after{content:'';position:absolute;background:#c9b7de18;left:15%;right:15%;height:2px;top:50%}.joystick::after{transform:rotate(90deg)}
-#hockeyKnob{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);width:32%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff,var(--team-color) 40%,#596435);box-shadow:inset 0 0 0 6px #ffffff20,0 7px 0 #1118,0 12px 25px #0005}
+#hockeyKnob{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);width:32%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff,var(--team-color) 40%,#596435);box-shadow:inset 0 0 0 3px #ffffff16,0 6px 18px #05071038}
 .mine-controls{text-align:center}#mineCoordinate{font-size:54px;display:block;color:#d4ff8a;margin:16px 0}.dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:300px;margin:18px auto}.dpad button{min-height:64px;font-size:28px}.dpad [data-direction=up]{grid-column:2}.dpad [data-direction=left]{grid-column:1}#mineOpen{width:100%;max-width:350px;min-height:64px;background:#c4ff71;color:#172217;font-size:22px}.mine-cursor{position:absolute;left:-4px;right:-4px;bottom:-3px;border-radius:4px;background:#161020;color:white;font-size:10px;line-height:12px;z-index:2}
 @media(max-height:650px){body:not(.host) #hole{margin:10px 0 18px}body:not(.host) #hole .card{height:130px;width:88px}body:not(.host) .joystick{width:min(62vw,240px);margin:12px auto}}
 body[data-game=poker] .felt{position:relative;display:flex;flex-direction:column;justify-content:center;aspect-ratio:16/9;min-height:0;border:0;box-shadow:none;border-radius:0;background:transparent url('/assets/gameplay/tabletop/poker-table.webp') center/contain no-repeat;padding:0;isolation:isolate}
@@ -37,12 +37,12 @@ body.host[data-game=poker] #poker{display:grid;place-items:center;width:100%;hei
 body.host[data-game=poker] #players{align-self:end;width:100%;margin:0}
 body.host[data-game=poker] header{margin-bottom:0}body.host[data-game=poker] h1{font-size:32px;margin:4px 0}
 body:not(.host) .table-seats{display:none}
-body[data-game=mines] #grid{background:linear-gradient(145deg,#362b47,#151c26);border:2px solid #907da5;border-radius:20px;padding:12px;box-shadow:inset 0 2px 0 #ded0e54a,0 10px 0 #0c111c,0 14px 30px #0006}
+body[data-game=mines] #grid{background:linear-gradient(145deg,#362b47,#151c26);border:2px solid #907da5;border-radius:20px;padding:12px;box-shadow:inset 0 1px 0 #ded0e530,0 10px 32px -5px #04020b38}
 body[data-game=mines] #grid button{position:relative;background:transparent url('/assets/gameplay/tabletop/tile-covered.webp') center/100% 100% no-repeat;border:0;border-radius:6px;box-shadow:none;font-weight:900;font-style:italic;color:#d5edff;text-shadow:0 1px 2px #000}
 body[data-game=mines] #grid button.open{background-image:url('/assets/gameplay/tabletop/tile-open.webp');color:#d5edff}
 body[data-game=mines] #grid button.mine{background-image:url('/assets/gameplay/tabletop/mine.webp'),url('/assets/gameplay/tabletop/tile-open.webp');background-size:80% 80%,100% 100%;color:transparent}
 body[data-game=mines] #grid button[data-count="1"]{color:#82e3ff}body[data-game=mines] #grid button[data-count="2"]{color:#ccff90}body[data-game=mines] #grid button[data-count="3"]{color:#ffc5b0}body[data-game=mines] #grid button[data-count="4"]{color:#d8b7ff}
-body[data-game=airhockey] #rink{border:9px solid #67557f;border-radius:30px;box-shadow:0 0 0 2px #d1c7df,inset 0 0 30px #0006,0 12px 0 #21192c,0 20px 35px #0007}
+body[data-game=airhockey] #rink{border:9px solid #67557f;border-radius:30px;box-shadow:0 0 0 1px #d1c7df88,inset 0 0 24px #0000001c,0 12px 36px -6px #04020b38,0 4px 14px #04020b1f}
 body.host[data-game=airhockey] #tabletop{max-width:1600px;padding:10px 30px}body.host[data-game=airhockey] #rink{width:min(100%,1080px);height:auto;max-height:none;aspect-ratio:5/3;margin:auto}body.host[data-game=airhockey] h1{font-size:26px;margin:4px}body.host[data-game=airhockey] header{display:none}body.host[data-game=airhockey] #goals{font-size:34px;margin:0 0 8px}body.host[data-game=airhockey] #hockeyHelp{display:none}body.host[data-game=airhockey] #players{margin-top:18px}body.host[data-game=airhockey] #rink{width:min(100%,calc((100vh - 125px)*5/3))}
 @media(max-width:420px){body[data-game=poker] .felt{min-height:210px;padding:12% 13%}body[data-game=mines] #grid{padding:7px;gap:2px}body[data-game=airhockey] #rink{border-width:6px;border-radius:22px}}
 /* TV mines: reserve the middle for the board, all supporting copy at the sides. */
@@ -60,3 +60,388 @@ body.host[data-game=mines] #players:has(.player:nth-child(9)){grid-template-colu
 body.host[data-game=mines] #players .player{min-width:0;font-size:16px;padding:12px 10px}
 body.host[data-game=mines] #players:has(.player:nth-child(9)) .player{font-size:13px;padding:10px 7px}
 #error:empty{display:none}
+
+/* Playing TV compositions use the measured bottom of the shared notch. */
+body.host[data-game=poker] #tabletop{padding:calc(var(--party-stage-inset-top,0px) + 16px) 24px 16px;grid-template-rows:minmax(0,1fr)}
+body.host[data-game=poker] .felt{width:min(100%,calc((100dvh - calc(var(--party-stage-inset-top,0px) + 16px) - 16px)*16/9));max-width:1440px;max-height:100%;container-type:inline-size}
+body.host[data-game=poker] .seat{width:clamp(90px,10cqw,130px);padding:7px 9px;border-radius:14px}
+body.host[data-game=poker] .seat-name{font-size:clamp(12px,1.4cqw,17px)}
+body.host[data-game=poker] .seat-score{font-size:clamp(16px,1.8cqw,22px)}
+body.host[data-game=mines] #tabletop{padding-top:calc(var(--party-stage-inset-top,0px) + 16px);grid-template-rows:minmax(0,1fr);align-items:center;grid-template-columns:minmax(150px,1fr) minmax(0,min(52vw,calc(100dvh - calc(var(--party-stage-inset-top,0px) + 16px) - 28px))) minmax(150px,1fr)}
+body.host[data-game=mines] header{display:none}
+body.host[data-game=mines] #grid,body.host[data-game=mines] #mineSide,body.host[data-game=mines] #players{grid-row:1;align-self:center}
+body.host[data-game=airhockey] #tabletop{height:100dvh;min-height:0;padding:calc(var(--party-stage-inset-top,0px) + 16px) 24px 24px;display:grid;place-items:center}
+body.host[data-game=airhockey] :is(#goals,#players){display:none}
+body.host[data-game=airhockey] #airhockey{position:relative;width:min(100%,calc((100dvh - var(--party-stage-inset-top,0px) - 112px)*5/3));height:auto;min-height:0;display:grid;grid-template-rows:auto 44px;gap:12px;padding:0}
+body.host[data-game=airhockey] #rink{width:100%;height:auto;max-height:none;aspect-ratio:auto;margin:0}
+#hockeyHitters{position:static;width:100%;min-height:44px;pointer-events:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:24px;padding-inline:4px}
+.hockey-last-hitter{grid-column:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);align-items:center;padding:0;border:0;border-radius:0;background:none;color:#c4ff71;text-align:left;font-family:var(--hp-font-body,Onest,system-ui,sans-serif);font-style:normal}
+.hockey-last-hitter small{grid-column:1;display:block;font:500 11px/1.3 var(--hp-font-body,Onest,system-ui,sans-serif);color:#bfb5d1;letter-spacing:0;margin:0 0 3px;text-transform:none}
+.hockey-last-hitter strong{grid-column:1;display:block;font:550 15px/1.25 var(--hp-font-body,Onest,system-ui,sans-serif);color:#ede6f6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hockey-last-hitter[data-team="1"]{grid-column:2;text-align:right}
+.hockey-last-hitter[data-team="1"] :is(small,strong){grid-column:1}
+
+/* Short phone viewports keep the primary mine action above session controls. */
+@media(max-height:500px) and (orientation:portrait){
+ html.party-player[data-party-game=mines] body #tabletop{padding:8px 12px 12px}
+ html.party-player[data-party-game=mines] body header{margin-bottom:8px}
+ html.party-player[data-party-game=mines] body #mineHelp{font-size:13px;line-height:1.4;margin:8px 0}
+ html.party-player[data-party-game=mines] body #mineCoordinate{font-size:40px;line-height:1.1;margin:8px 0}
+ html.party-player[data-party-game=mines] body .dpad{gap:8px;margin:8px auto}
+ html.party-player[data-party-game=mines] body .dpad button{min-height:52px;font-size:24px}
+ html.party-player[data-party-game=mines] body #mineOpen{min-height:52px;font-size:20px;padding:10px 12px}
+}
+
+/* Primary action follows the shared title role without changing control geometry. */
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #mineOpen{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important;letter-spacing:-.025em!important}
+/* Center the rink itself, with its supplementary readout outside its geometry. */
+html.hp-ui.party-managed.party-host.party-display-only body.host[data-game=airhockey] #tabletop{
+ padding:var(--party-field-inset-top,0px) 24px 0!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only body.host[data-game=airhockey] #airhockey{
+ width:min(100%,calc((100dvh - var(--party-field-inset-top,0px) - 112px)*5/3));
+ display:block;
+}
+html.hp-ui.party-managed.party-host.party-display-only body.host[data-game=airhockey] #hockeyHitters{
+ position:absolute;top:calc(100% + 12px);left:0;right:0;
+}
+html.hp-ui.party-managed.party-host.party-display-only body.host[data-game=airhockey] #airhockey{width:min(100%,calc((100dvh - var(--party-field-inset-top,0px) - 136px)*5/3))}
+html.hp-ui.party-managed.party-host.party-display-only body.host[data-game=airhockey]{overflow:hidden}
+
+/* Numeric feedback and identities keep their roles in all three table games. */
+html.hp-ui.party-managed body .hp-player-name{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important}
+html.hp-ui.party-managed body :is(.tabletop-score,.seat-score,#myMineScore,.poker-chips,.poker-turn-label,#pot){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important}
+html.hp-ui.party-managed.party-host body.host[data-game=poker] .seat-name{font-size:clamp(14px,1.4cqw,20px)}
+html.hp-ui.party-managed.party-player body[data-game=mines] .mine-readout{display:flex;align-items:center;justify-content:center;gap:28px;margin:8px 0}
+html.hp-ui.party-managed.party-player body[data-game=mines] #mineCoordinate{margin:0!important}
+html.hp-ui.party-managed.party-player body[data-game=mines] .mine-score-readout{display:grid;justify-items:center;gap:2px}
+html.hp-ui.party-managed.party-player body[data-game=mines] .mine-score-readout small{font-size:12px;color:#c7b6e5}
+html.hp-ui.party-managed.party-player body[data-game=mines] #myMineScore{font-size:26px;line-height:1.1;color:#d1ff87}
+html.hp-ui.party-managed.party-host body[data-game=mines] #players .player{font-size:16px;min-height:44px}
+html.hp-ui.party-managed.party-host body[data-game=mines] #players{max-height:calc(100dvh - var(--party-field-inset-top,0px) - 40px);overflow:auto;scrollbar-width:none}
+html.hp-ui.party-managed.party-host body[data-game=mines] #players::-webkit-scrollbar{display:none}
+
+/* Public showdown cards face the centre of the table, outside the identity pill. */
+body.host[data-game=poker] .seat-hand{position:absolute;display:flex;justify-content:center;gap:5px;margin:0;pointer-events:none}
+body.host[data-game=poker] .seat[data-hand-anchor=below] .seat-hand{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+body.host[data-game=poker] .seat[data-hand-anchor=above] .seat-hand{bottom:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+body.host[data-game=poker] .seat[data-hand-anchor=right] .seat-hand{left:calc(100% + 8px);top:50%;transform:translateY(-50%)}
+body.host[data-game=poker] .seat[data-hand-anchor=left] .seat-hand{right:calc(100% + 8px);top:50%;transform:translateY(-50%)}
+html.hp-ui.party-managed.party-host body.host[data-game=poker] .seat-hand .card{display:grid;place-items:center;width:clamp(36px,4cqw,54px);height:clamp(52px,5.6cqw,76px);padding:3px!important;flex:none;min-height:0;background:#fff8ee!important;color:#211b2b!important;border:1px solid #fff!important;border-radius:7px!important;font:900 italic clamp(22px,2cqw,29px)/1 var(--hp-font-action);box-shadow:0 3px 10px #0006}
+html.hp-ui.party-managed.party-host body.host[data-game=poker] .seat-hand .card.red{color:#bc2149!important}
+html.hp-ui.party-managed.party-host body.host[data-game=poker] .seat-hand[data-revealed=false] .card{width:18px;height:26px;font-size:13px;background:linear-gradient(135deg,#66518c,#31283f)!important;color:#e7d9ff!important;border-color:#9881b0!important}
+
+/* The winner line occupies the central gap, clear of the bottom player cards. */
+body.host[data-game=poker] #handStatus{top:61%;bottom:auto;left:28%;right:28%;line-height:1.3}
+body.host[data-game=poker] #handStatus .hp-player-name{max-width:100%;vertical-align:bottom;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block}
+
+/* Pot sits below the top player pair and above the community cards. */
+body.host[data-game=poker] #pot{top:31%;line-height:1.1}
+
+body.host[data-game=poker] #pot{top:28%}
+body.host[data-game=poker] #community{top:38%}
+html.hp-ui.party-managed.party-host body.host[data-game=poker] .seat-hand[data-revealed=true] .card{display:flex;flex-direction:column;justify-content:center;gap:2px}
+html.hp-ui.party-managed.party-host body.host[data-game=poker] .seat-hand .poker-card-rank{font:900 italic clamp(22px,2cqw,29px)/1 var(--hp-font-action);max-width:100%}
+html.hp-ui.party-managed.party-host body.host[data-game=poker] .seat-hand .poker-card-suit{font:550 clamp(18px,1.7cqw,24px)/1 var(--hp-font-body);max-width:100%}
+
+/* Physical-lane polish 2026-10-02: chips travel, cards deal/flip once, mines cascade. Render only. */
+.poker-chip-fly{position:absolute;z-index:6;width:clamp(16px,1.9cqw,26px);aspect-ratio:1;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 50% 50%,#f4ecff 0 22%,#9b7bff 23% 58%,#f4ecff 59% 66%,#6c4fc4 67%);box-shadow:0 2px 0 #4a3389,0 6px 12px #0007;opacity:0}
+@media(prefers-reduced-motion:no-preference){
+ .card{animation:hp-card-deal .32s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--deal-i,0) * 70ms)}
+ .card.flip{animation:hp-card-flip .28s cubic-bezier(.2,.8,.2,1) both}
+ #grid button.reveal{animation:hp-tile-reveal .34s cubic-bezier(.2,.9,.25,1.25) both;animation-delay:var(--reveal-delay,0ms)}
+ #grid button.reveal-mine{animation:hp-tile-mine .42s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--reveal-delay,0ms)}
+}
+@keyframes hp-card-deal{from{opacity:0;transform:translateY(-14px) rotate(-6deg) scale(.94)}to{opacity:1;transform:none}}
+@keyframes hp-card-flip{from{transform:perspective(500px) rotateY(88deg);filter:brightness(1.4)}to{transform:none;filter:none}}
+@keyframes hp-tile-reveal{0%{transform:scale(.9);filter:brightness(1.9) saturate(1.3)}60%{transform:scale(1.05);filter:brightness(1.25)}100%{transform:none;filter:none}}
+@keyframes hp-tile-mine{0%{transform:scale(1.18);filter:brightness(2.2)}100%{transform:none;filter:none}}
+
+/* Codex UI: use the available stage and keep controllers on one width. */
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #tabletop .felt{max-width:none!important;width:min(100%,calc((100dvh - var(--party-stage-inset-top,0px) - 24px)*16/9))!important}
+html.hp-ui.party-managed.party-host[data-party-game=airhockey] body.host #tabletop #airhockey{width:min(100%,calc((100dvh - var(--party-field-inset-top,0px) - 64px)*5/3))!important;gap:8px!important;grid-template-rows:auto 36px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .player{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;border:0!important;background:transparent!important;min-height:56px;font-size:18px!important;padding:10px 12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .player b{font:italic 900 28px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player body main#tabletop{width:100%;max-width:480px;padding:16px!important;display:flex;flex-direction:column;justify-content:center;gap:12px}
+html.hp-ui.party-managed.party-player body main#tabletop #poker{width:100%;max-width:440px;margin:auto}
+html.hp-ui.party-managed.party-player body main#tabletop #myPokerStatus{margin:0 0 12px!important;padding:12px 16px!important;line-height:1.4!important}
+html.hp-ui.party-managed.party-player body main#tabletop #hole{margin:12px 0!important;gap:12px!important;min-height:90px}
+html.hp-ui.party-managed.party-player body main#tabletop #actions{margin:16px 0 0!important;gap:12px!important;width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
+html.hp-ui.party-managed.party-player body main#tabletop #actions button{min-height:56px!important;font-size:22px!important}
+html.hp-ui.party-managed.party-player body main#tabletop .poker-quickrules{margin-top:16px;width:100%;border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important}
+html.hp-ui.party-managed.party-player body main#tabletop .poker-quickrules summary{min-height:44px;font:italic 900 18px/1.2 KardiaFatRunner,sans-serif;cursor:pointer}
+html.hp-ui.party-managed.party-player body main#tabletop .poker-quickrules p{font:italic 400 14px/1.45 KardiaFitRunner,sans-serif;text-align:left;margin:12px 0}
+html.hp-ui.party-managed.party-player body main#tabletop .mine-controls{width:100%;max-width:440px;margin:auto;gap:16px!important}
+html.hp-ui.party-managed.party-player body main#tabletop .mine-readout strong{font:italic 900 28px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player body main#tabletop .dpad{gap:10px!important}
+html.hp-ui.party-managed.party-player body main#tabletop .dpad button{min-height:52px!important;border-radius:18px!important}
+html.hp-ui.party-managed.party-player body main#tabletop #mineOpen{width:100%;min-height:68px!important;font-size:24px!important}
+@media(max-height:500px){html.hp-ui.party-managed.party-player body main#tabletop{gap:8px!important}html.hp-ui.party-managed.party-player body main#tabletop #actions{margin-top:8px!important;gap:8px!important}html.hp-ui.party-managed.party-player body main#tabletop #actions button{min-height:48px!important;font-size:20px!important}html.hp-ui.party-managed.party-player body main#tabletop .mine-controls{gap:10px!important}}
+
+/* Group09: the table/rink leads; identities sit on deliberate rails. */
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #tabletop{padding:12px 12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #tabletop .felt{width:min(100%,calc((100dvh - 24px)*16/9))!important;max-width:none!important}
+/* Poker TV: lower the whole table composition beneath the measured notch.
+   The table's seats, cards and chip flights share this same fitted 16:9 frame. */
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #tabletop{
+ padding:calc(var(--party-native-inset-top,0px) + 16px) 12px 12px!important;
+ background:radial-gradient(ellipse at 50% 76%,#31544050 0%,#17312818 54%,transparent 78%),linear-gradient(160deg,#1c1629 0%,#141c21 46%,#111e1a 100%)!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #tabletop .felt{
+ width:min(100%,calc((100dvh - var(--party-native-inset-top,0px) - 28px)*16/9))!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host .felt::before{background:#16372bd1}
+/* Dense showdown: the pot is beside the top revealed pair, never behind it. */
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host .felt:has(.table-seats[data-dense=true]) #pot{
+ left:calc(50% - clamp(194px,15.8cqw,247px));right:auto;
+ width:clamp(132px,10.9cqw,170px);text-align:right;white-space:nowrap;
+}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host .seat{display:grid;grid-template-columns:46px minmax(0,1fr);column-gap:8px;align-items:center;width:clamp(160px,12cqw,220px);padding:8px 12px;min-height:66px;border-radius:18px;text-align:left}
+.seat-avatar{width:46px;height:54px;object-fit:contain;grid-column:1;grid-row:1/3;pointer-events:none}
+.seat-avatar[data-photo=true]{object-fit:cover;border-radius:50%;height:auto!important;aspect-ratio:1}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host .seat-name{grid-column:2;font-size:clamp(15px,1.25cqw,20px);line-height:1.15}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host .seat-score{grid-column:2;font-size:clamp(20px,1.8cqw,28px);line-height:1.2}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host .table-seats[data-dense=true] .seat{width:170px;grid-template-columns:36px minmax(0,1fr);gap:4px;padding:6px 8px}
+.table-seats[data-dense=true] .seat-avatar{width:36px;height:42px}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #handStatus{top:65%;left:26%;right:26%;font-size:20px}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #tabletop{padding:12px 12px!important;max-width:none!important;place-items:center}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #tabletop #airhockey{width:min(100%,calc((100dvh - 24px)*5/3))!important;max-width:none!important}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #rink{border-width:4px!important;border-radius:24px!important;aspect-ratio:5/3!important}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #hockeyHitters{top:auto;bottom:8px;left:16px;right:16px;width:auto}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host .hockey-last-hitter{max-width:240px;padding:6px 12px;background:#21182ce6;border-radius:12px}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host .hockey-last-hitter[data-team="1"]{justify-self:end}
+
+/* Mines groups the public standings and short rule beside one large board. */
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop{padding:12px 24px!important;grid-template-columns:minmax(260px,340px) minmax(0,min(100dvh - 24px,1056px));gap:32px;justify-content:center;align-items:center;max-width:none!important;height:100dvh}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid{grid-column:2;grid-row:1;width:100%;padding:8px;border:0!important;box-shadow:none!important;background:transparent!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #mineSide{grid-column:1;grid-row:1;width:100%;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #mineSide #status{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #mineHelp{font:400 italic 18px/1.4 var(--hp-font-body)!important;margin:0 0 24px!important;text-align:left}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #mineSide #players{display:grid!important;grid-template-columns:1fr!important;gap:12px!important;margin:0!important;max-height:calc(100dvh - 260px);overflow:auto}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .player{display:grid!important;grid-template-columns:28px 52px minmax(0,1fr) auto!important;align-items:center;gap:10px!important;min-height:84px!important;padding:10px 12px!important;border:1px solid #b7a0df40!important;border-radius:20px;background:#261f37!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .player:first-child{background:#3a3048!important;border-color:#d0ff8355!important}
+.tabletop-rank{font:900 italic 28px/1 var(--hp-font-action);color:#c7b3ef}
+.tabletop-avatar{width:52px;height:60px;object-fit:contain;pointer-events:none}
+.tabletop-avatar[data-photo=true]{height:52px;object-fit:cover;border-radius:50%}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #players .hp-player-name{font-size:18px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #players .tabletop-score{font-size:30px!important;padding-right:8px}
+
+/* Controller state precedes the endpoint. App chrome stays transparent. */
+html.hp-ui.party-managed.party-player body #tabletop :is(#eyebrow,#status){display:none!important}
+html.hp-ui.party-managed.party-player body #tabletop header{margin:0 0 16px!important}
+html.hp-ui.party-managed.party-player body #tabletop h1{font-size:22px!important;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #poker{display:flex;flex-direction:column;align-items:stretch;gap:12px}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #myPokerStatus{margin:0!important;padding:8px 12px!important;min-height:44px}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #hole{margin:0!important;gap:16px;min-height:0}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #hole .card{width:104px!important;height:146px!important;font-size:40px!important;border-radius:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #actions{margin:4px 0 0!important;gap:8px 12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #raiseLabel{font-size:14px;line-height:1.25}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #raise{font-size:20px;min-height:56px}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-quickrules{order:-1;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-quickrules summary{min-height:44px;font-size:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-quickrules p{margin:0 0 8px!important;max-height:86px;overflow:auto;overscroll-behavior:contain}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineHelp{font:400 italic 14px/1.4 var(--hp-font-body)!important;margin:0 0 16px!important;max-width:30ch;margin-inline:auto!important}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .mine-controls{display:flex;flex-direction:column;align-items:center;gap:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .mine-readout{width:100%;justify-content:space-evenly;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad{width:248px;max-width:100%;height:204px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:4px!important;margin:0!important;padding:8px;background:#261f37;border-radius:32px}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad button{padding:0;min-height:56px!important;border:0!important;border-radius:18px!important;background:#3a304e!important;display:grid;place-items:center}
+.dpad button .mine-direction-icon{width:28px;height:28px;fill:#f6f1ff;pointer-events:none}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad [data-direction=up]{grid-column:2;grid-row:1}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad [data-direction=left]{grid-column:1;grid-row:2}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad [data-direction=right]{grid-column:3;grid-row:2}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad [data-direction=down]{grid-column:2;grid-row:3}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineOpen{min-height:64px!important}
+.hockey-pilot{width:56px;height:64px;object-fit:contain;display:block;margin:0 auto;pointer-events:none}
+.hockey-pilot[data-photo=true]{object-fit:cover;border-radius:50%;height:56px}
+html.hp-ui.party-managed.party-player[data-party-game=airhockey] body #tabletop #goals{font-size:36px!important;margin:4px 0 8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=airhockey] body #tabletop #hockeyHelp{font-size:14px!important;line-height:1.35;margin:0 0 12px;max-width:30ch;margin-inline:auto}
+html.hp-ui.party-managed.party-player body #tabletop button{transition:transform 120ms cubic-bezier(.23,1,.32,1),background-color 120ms ease-out}
+@media(max-height:500px){
+ html.hp-ui.party-managed.party-player body #tabletop header{margin-bottom:8px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #poker{gap:6px}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #hole .card{width:78px!important;height:100px!important;font-size:32px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .mine-controls{gap:8px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad{height:164px;width:220px}
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad button{min-height:44px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineHelp{margin-bottom:8px!important}
+ .hockey-pilot{width:36px;height:38px}
+}
+
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-rank{grid-column:1;grid-row:1;align-self:center}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-avatar{grid-column:2;grid-row:1;align-self:center}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .hp-player-name{grid-column:3;grid-row:1;white-space:normal;line-height:1.25}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-score{grid-column:4;grid-row:1;justify-self:end}
+
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .player{grid-template-columns:46px 48px minmax(0,1fr) auto!important;gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-rank{display:flex;flex-direction:row;justify-content:center;gap:2px;min-width:0;width:46px;font-size:26px}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .hp-place-award{width:16px;height:18px;object-fit:contain}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .hp-place-digit{font-size:26px}
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #poker{gap:4px}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #myPokerStatus{padding:4px!important;min-height:30px}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #hole .card{height:84px!important;width:66px!important;font-size:28px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #actions{row-gap:4px!important;margin:0!important}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #actions button,html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #raise{min-height:48px!important;height:48px!important;padding:8px 12px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .dpad{height:144px;width:204px;padding:6px;gap:0!important}
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineOpen{min-height:52px!important}
+}
+
+/* Director correction: native keyboard editing stays; desktop stepper chrome recedes. */
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #raise{appearance:textfield;-moz-appearance:textfield;caret-color:#cfff85;transition:border-color 120ms ease-out}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #raise::-webkit-inner-spin-button,
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #raise::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+/* Short native iframe: preserve the Open endpoint's complete visible target. */
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop .mine-controls{gap:6px!important}
+}
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop header{margin-bottom:2px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineHelp{margin-bottom:2px!important}
+}
+
+/* Off-turn editing follows the same unavailable state as the betting actions. */
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #raise:disabled{opacity:.45;cursor:default}
+
+/* Keep the award and place number legible within the reserved rank track. */
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-rank{width:46px!important;min-width:46px!important;padding:0 4px 0 0!important;flex-direction:column;gap:0}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-rank .hp-place-award{width:24px!important;height:24px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-rank .hp-place-digit{font-size:20px!important;flex:none}
+
+/* Short controller: keep the entire steering disk above the persistent footer. */
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=airhockey] body #tabletop #hockeyJoy{width:min(62vw,160px);margin:4px auto 0}
+ html.hp-ui.party-managed.party-player[data-party-game=airhockey] body #tabletop #goals{font-size:32px!important;margin:4px 0!important}
+}
+
+/* Turn/winner identity and the controller owner's bankroll are distinct readouts. */
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #myPokerStatus{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-actor{min-width:0;text-align:left}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-bankroll{display:grid;justify-items:center;gap:1px}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-bankroll small{font:500 11px/1 var(--hp-font-body);color:#c7b6e5;white-space:nowrap}
+html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-bankroll .poker-chips{font-size:16px!important;line-height:1!important;color:#cfff85}
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #myPokerStatus{padding:0!important}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop #poker{gap:3px}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-bankroll{gap:0}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-bankroll small{font-size:10px}
+ html.hp-ui.party-managed.party-player[data-party-game=poker] body #tabletop .poker-bankroll .poker-chips{font-size:14px!important}
+}
+
+/* The survey field and ranking rail share their usable stage. The measured
+   match cap owns an intrinsic rail slot above the actual controls/readouts. */
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop{
+ padding:16px 24px!important;grid-template-columns:clamp(280px,25vw,340px) minmax(0,min(calc(100dvh - 32px),1056px));
+ gap:24px;grid-template-rows:minmax(0,1fr);align-items:center;
+ background:linear-gradient(90deg,#263d383d,transparent 60%)!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #mineSide{
+ --game-panel-fill:#263441;--game-panel-rim:#879fae;--game-panel-ink:#f3f8fb;--game-panel-muted:#c2d2dc;
+ max-height:100%;box-sizing:border-box;overflow:hidden;
+ padding:calc(var(--party-hud-height,104px) + 16px) 16px 16px!important;
+ /* Keep the existing box dimensions while removing the enclosing surface. */
+ border:1px solid transparent!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;backdrop-filter:none!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #mineSide #mineHelp{font-size:16px!important;color:#e1edf4;margin:0 0 16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #mineSide #players{max-height:calc(100dvh - var(--party-hud-height,104px) - 204px);gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .player{
+ min-height:clamp(62px,7.8dvh,84px)!important;padding:8px!important;background:#223541!important;border-color:#6b879655!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .player:first-child{background:#32464e!important;border-color:#bad78180!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .hp-player-name{font-size:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid{
+ max-height:100%;aspect-ratio:1;padding:8px;gap:4px;background:#111e2a!important;border-radius:18px;
+}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid button{
+ background:linear-gradient(150deg,#48616c,#253d4a 55%,#1d303d)!important;
+ border:2px solid #728993!important;border-radius:9px;box-shadow:inset 0 2px #c1d6dc66,inset 0 -3px #07172399!important;
+ color:#e7f4fa;text-shadow:none;
+}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid button.open{
+ background:linear-gradient(150deg,#d3e2e7,#a8bcc8 60%,#bdd0d8)!important;border-color:#647e8e!important;
+ box-shadow:inset 0 2px 5px #1b394b40!important;color:#143648;
+}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid button.open[data-count="1"]{color:#134e75}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid button.open[data-count="2"]{color:#28542f}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid button.open[data-count="3"]{color:#7b3425}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid button.open[data-count="4"]{color:#5b3270}
+html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #grid button.mine{
+ background:url('/assets/gameplay/tabletop/mine.webp') center/80% 80% no-repeat,linear-gradient(150deg,#e7c9b0,#a76b55)!important;color:transparent;
+}
+
+/* Existing table, seats and cards stay together beneath the centered cap. */
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #tabletop{
+ padding:calc(var(--party-stage-inset-top,0px) + 16px) 16px 16px!important;
+ background:#14231f!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #tabletop .felt{
+ width:min(100%,calc((100dvh - var(--party-stage-inset-top,0px) - 32px)*16/9))!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host .felt::before{
+ content:none!important;display:none!important;background:none!important;
+}
+
+/* The full physical rink retains its5:3 mapping and room for the cap/labels. */
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #tabletop{
+ padding:calc(var(--party-stage-inset-top,0px) + 16px) 16px 16px!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #tabletop #airhockey{
+ width:min(100%,calc((100dvh - var(--party-stage-inset-top,0px) - 40px)*5/3 + 8px))!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #rink{
+ aspect-ratio:auto!important;border-color:#879ba7!important;box-shadow:0 8px 24px #071b2938,inset 0 1px #edffffa8!important;
+}
+/* Defeat the legacy wing inset override on this actual rail. Its own measured
+   cap slot, rather than the whole viewport, determines the content start. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=mines] body.host main#tabletop #mineSide{
+ align-self:center!important;height:auto!important;max-height:100%;
+ padding-top:calc(var(--party-hud-height,104px) + 16px)!important;
+}
+
+/* Poker fits the entire original table and its attached seats/cards below the
+   actual shared header. The receiver environment still fills the viewport. */
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=poker] body.host #tabletop{
+ --poker-table-top:calc(var(--party-hud-bottom,112px) + 12px);
+ height:100dvh!important;padding:var(--poker-table-top) 16px 16px!important;
+ grid-template-rows:minmax(0,1fr);align-items:start;
+ background:#171522 url('/assets/gameplay/round3/2026-10-03/poker-lounge-v1.png') center/cover no-repeat!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=poker] body.host #poker{align-items:start!important}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=poker] body.host #tabletop .felt{
+ width:min(100%,calc((100dvh - var(--poker-table-top) - 16px) * 16/9))!important;
+ height:auto!important;aspect-ratio:16/9;max-height:100%;margin:0 auto!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #tabletop{
+ --hockey-field-top:0px;
+ height:100dvh!important;padding:0!important;
+ max-width:none!important;align-items:center!important;background:transparent!important;box-shadow:none!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #tabletop #airhockey{
+ width:min(100%,calc(100dvh * 5/3))!important;
+ height:auto!important;aspect-ratio:5/3;
+ margin:0 auto!important;display:block!important;align-self:center!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #rink{
+ width:100%!important;height:auto!important;aspect-ratio:5/3!important;max-height:none!important;margin:0!important;
+ border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host #hockeyHitters{
+ position:absolute!important;top:auto!important;bottom:12px;left:16px;right:16px;
+ width:auto;min-height:0;display:flex;justify-content:space-between;gap:24px;padding:0;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host .hockey-last-hitter{
+ width:min(30%,240px);padding:8px 12px;border-radius:12px;background:#152b36e8;
+}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=airhockey] body.host .hockey-last-hitter[data-team="1"]{margin-left:auto}
+
+/* Readable lime action paint also applies to its disabled feedback state. */
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineOpen{
+ background:#d1ff8b!important;color:#1b2a17!important;border:1px solid #edffcf!important;
+ opacity:1!important;filter:none!important;text-shadow:none!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineOpen:disabled{background:#b9d695!important;color:#293920!important;border-color:#d6ebbc!important;opacity:1!important}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #mineOpen :is(.hp-button-label,svg){color:inherit!important;fill:currentColor}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+:is(.seat-avatar,.tabletop-avatar,.hockey-pilot)[data-photo=true]{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#b4cfa2)}

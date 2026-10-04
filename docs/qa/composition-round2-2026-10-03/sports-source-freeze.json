@@ -1,0 +1,16 @@
+{
+  "frozenAt": "2026-10-03T08:54:39.848793+00:00",
+  "scope": "renewed brief material + Bow facts + symmetric Bowling lanes; no input/physics changes",
+  "files": {
+    "public/game-ui-themes.js": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+    "public/game-ui-themes.css": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+    "games/bow_club/public/tv.js": "41b487ebb1b2e171933bccc844595bcf5135e08af65ac8ca744f4ee4e82812a8",
+    "games/bow_club/public/style.css": "88ea6bacbeb7bd8b06b916d4e1f5b5a0b530c09c43812a23789729df535d43e9",
+    "games/bow_club/public/phone.js": "f45efca4646e366cfbc943b48c62001fdc4f426d8f83ec4b4edc31047ce507d7",
+    "games/sports_siege/public/style.css": "414ac6f37c43442c0e19121ceb0f0308c0a81900059f3daf32d983114365dbc7",
+    "games/sports_siege/public/scene-bowling.js": "55a980743ecc6746cf625f6faa45d2202f1890849365b5205d81ddbf3d4803bc",
+    "games/sports_siege/public/sports-controls.css": "d316da24201d4651f77304f2941bed18ffc31ebf956b0bb09cfefbf22e5ef260",
+    "games/sports_siege/public/controls.js": "5fece249bfba4b1baade1e154ba65a4b1b1f817868225ce52881d3cddf507b5e",
+    "games/sports_siege/public/host.js": "e4d6b8911815df145013bd74789550e2c28ed3315caef807d7f35a40f5bd3088"
+  }
+}

@@ -1,3 +1,4 @@
+@import url("/awards.css");
 /* One compact masthead; controls never participate in wordmark centring. */
 html body #brandHeader{position:sticky!important;top:0;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:60px!important;gap:0!important;height:auto!important;min-height:0!important;width:100%!important;margin:0!important;padding:env(safe-area-inset-top) 10px 6px!important;box-sizing:border-box}
 html body #brandHeader>.heypals-header-logo{display:block;position:absolute;top:calc(4px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:120px;height:52px;object-fit:contain;z-index:5;pointer-events:none}
@@ -179,8 +180,8 @@ html body.tv-screen .tv-startup .heypals-loading-logo{display:block;width:min(10
 html body.tv-screen #tvStage.tv-has-choice #tvSidebar{height:auto!important;max-height:none!important;align-self:stretch;margin-top:0!important;overflow-y:auto}
 html body.tv-screen #tvStage.tv-has-choice #tvSidebar>.company-people{flex:0 0 auto!important;min-height:160px!important;overflow:visible}
 html body.tv-screen #tvStage.tv-has-choice #tvSidebar>.tv-invite{min-height:190px!important}
-html body.tv-screen #tvStage>.tv-header{background:linear-gradient(180deg,#141321 0%,#141321bd 52%,#14132100 100%)!important}
-html body.native-shell.native-host-tab #brandHeader{background:linear-gradient(180deg,#282239 0%,#282239c9 55%,#28223900 100%)!important}
+html body.tv-screen #tvStage>.tv-header{background:linear-gradient(180deg,#141321 0%,#10111c 52%,#0c1019 100%)!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+html:root body.native-shell.native-host-tab header#brandHeader.app-header{background:linear-gradient(180deg,#282239 0%,#241f31 55%,#201c2b 100%)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html body.native-shell .intro #gameCount{position:relative;top:10px}
 /* The selected-game card joins the header without exposed backing strips. */
 html body.native-shell #choiceStrip::before{background:linear-gradient(180deg,#0d1017 0%,#0d1017 calc(100% - 22px),#0d1017c4 calc(100% - 14px),#0d101700 100%)!important;box-shadow:none!important}
@@ -292,3 +293,53 @@ html body.tv-screen #tvStartup::before,html body.tv-screen #tvStartup::after{pos
 html body.tv-screen #tvStartup .tv-startup-orbit{z-index:1}
 /* The heading/arrows occupy their own space; let the Fresh section grow. */
 @media(max-width:850px){html body:not(.tv-screen):not(.native-shell) .fresh-heading{margin-bottom:32px!important}}
+
+/* Host pick starts below the scrollport's 56px header fade. */
+html body.tv-screen #tvStage#tvStage.tv-has-choice #tvBrowse{padding-top:14px!important}
+
+/* Clear the selected card with a short fade instead of lowering the catalogue. */
+html body.tv-screen #tvStage.tv-has-choice #tvBrowse{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12px,#000 calc(100% - 56px),transparent 100%)!important;mask-image:linear-gradient(to bottom,transparent 0,#000 12px,#000 calc(100% - 56px),transparent 100%)!important}
+html body.is-player.in-game #brandHeader #hudTimer:not(:has(#hudProgress:not(:empty))){display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;padding:0 4px!important;gap:0!important}
+html body.is-player.in-game #brandHeader #hudProgress:empty{display:none!important}
+
+/* Header surfaces must not pick up moving ambient colors behind them. */
+html body.is-player.lobby-connected:not(.in-game) header#brandHeader.app-header{background:#0d1017!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+
+/* One measured inset around selection paint; button hit areas stay unchanged. */
+html body #catalogFilters::before,
+html body.native-shell #nativeCategories.catalog-filters::before{top:4px!important;bottom:4px!important;height:auto!important;transform:translateX(var(--tab-x,0px))!important}
+html body.native-shell #nativeCategories{justify-content:flex-start!important}
+html body.native-shell #nativeCategories>.filter-tab{flex:1 0 auto!important}
+/* Catalogue ordinals are display artwork, using the real italic display face. */
+html.hp-ui body .game>.art>.number{font-family:var(--hp-font-action,HeyPalsDisplay)!important;font-style:italic!important;font-weight:850!important;font-synthesis:none!important}
+
+/* The native hero's small lead-in is supporting Kardia copy as well. */
+html.hp-ui body.native-shell .intro>.eyebrow,html.hp-ui body.native-shell .headline-stage>.eyebrow{font-family:KardiaFit!important;font-style:normal!important;font-synthesis:none!important}
+
+/* Mobile catalogue art leaves more room for title/action copy on the left. */
+@media(max-width:700px){
+ html body:not(.tv-screen) :is(#games,#moreGames,#tableGames,#catalog,.fresh-track) .game>.art>.symbol{
+  left:70%!important;right:auto!important;top:3%!important;bottom:auto!important;
+  translate:-50% 0!important;transform:none!important;
+ }
+ html body.native-shell .intro>div>.eyebrow{width:100%;max-width:none;text-align:center;margin-inline:0;box-sizing:border-box}
+}
+/* The catalogue titles use the same untouched illustrated wordmarks as readiness. */
+html body .lp-catalog .game-info .lp-card-wordmark{position:relative;display:flex;align-items:center;justify-content:center;height:56px;min-height:56px;margin:0 0 8px;overflow:visible}
+html body .lp-catalog .lp-card-game-logo{display:block;width:100%;max-width:240px;height:56px;object-fit:contain;image-rendering:auto}
+html body .lp-catalog .lp-card-wordmark.is-loaded .lp-card-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+html body .lp-catalog .lp-card-wordmark:not(.is-loaded) .lp-card-game-logo{display:none}
+/* Larger wordmarks reserve their own row rather than scaling over the copy. */
+html body.native-shell .lp-catalog .game{--hp-card-logo-scale:1.2}
+html body.native-shell .lp-catalog .fresh-track>.game{--hp-card-logo-scale:1.7}
+@media(min-width:760px){html body.native-shell .lp-catalog .game.featured{--hp-card-logo-scale:1.7}}
+html body.tv-screen .lp-catalog .game{--hp-card-logo-scale:1.3}
+html body.tv-screen .lp-catalog .game.featured{--hp-card-logo-scale:2.6}
+html body:is(.native-shell,.tv-screen) .lp-catalog .game .game-info .lp-card-wordmark{height:calc(56px * var(--hp-card-logo-scale));min-height:calc(56px * var(--hp-card-logo-scale));flex:0 0 calc(56px * var(--hp-card-logo-scale));overflow:visible}
+html body:is(.native-shell,.tv-screen) .lp-catalog .game .lp-card-game-logo{flex:none;width:min(calc(100% * var(--hp-card-logo-scale)),calc(100% + 16px));max-width:calc(240px * var(--hp-card-logo-scale));height:calc(56px * var(--hp-card-logo-scale));object-fit:contain}
+/* TV caption effects follow the copy; short media slots must not fade ordinals.
+   The complete outer card still owns clipping. These paint rules do not resize it. */
+html body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art{overflow:visible!important;clip-path:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+html body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.art .symbol{-webkit-mask-image:linear-gradient(#000 40%,#000000ed 55%,#000000b3 72%,#0000004d 88%,transparent 100%)!important;mask-image:linear-gradient(#000 40%,#000000ed 55%,#000000b3 72%,#0000004d 88%,transparent 100%)!important}
+html body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card::after{-webkit-mask-image:linear-gradient(to bottom,transparent calc(100% - 106px),#00000045 calc(100% - 84px),#000000a0 calc(100% - 48px),#000 100%)!important;mask-image:linear-gradient(to bottom,transparent calc(100% - 106px),#00000045 calc(100% - 84px),#000000a0 calc(100% - 48px),#000 100%)!important}
+html body.tv-screen #tvStage .lp-catalog .game.lp-catalog-card>.game-info{background:linear-gradient(to bottom,transparent calc(28px + 56px * var(--hp-card-logo-scale) + 6px),#11132129 calc(28px + 56px * var(--hp-card-logo-scale) + 20px),#1113218c 100%)!important}

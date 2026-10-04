@@ -1,0 +1,86 @@
+[
+  {
+    "file": "public/assets/game-ui-themes-20261002/racing-flag.webp",
+    "size": [
+      139,
+      154
+    ],
+    "mode": "RGBA",
+    "alpha": [
+      0,
+      253
+    ],
+    "transparentPixels": 8977,
+    "sha256": "83ea0129b8c5136448bb6cdaa05a38061cfc88bf171e66800fff7d576eabb63d"
+  },
+  {
+    "file": "public/assets/game-ui-themes-20261002/curling-stone.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1183538,
+    "sha256": "99d5b98a43a1feec730f5d23beff3180bcf91c979e91e1fbd7c05f16d48417bb"
+  },
+  {
+    "file": "public/assets/game-ui-themes-20261002/bowling-pins.png",
+    "size": [
+      1312,
+      1199
+    ],
+    "mode": "RGBA",
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1140565,
+    "sha256": "7ee568b34a34ac3a33e290cddbbc7e8595ea780d9a3f0883b92ba60f467a9e12"
+  },
+  {
+    "file": "public/assets/game-ui-themes-20261002/poker-chips.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1207408,
+    "sha256": "07dc5f7e1d92dce4e666a6e28c28624144e29eb7257d4bdd26620e1e5f178829"
+  },
+  {
+    "file": "public/assets/game-ui-themes-20261002/drawing-pencils.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1267745,
+    "sha256": "37821c766158dcba542b8460ee00db9a6bb6bff882dc1700f3a3006b714d0455"
+  },
+  {
+    "file": "public/assets/game-ui-themes-20261002/wood-blocks.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1030738,
+    "sha256": "4cc29a908c6940a6eff1fda9c6bff41b4bd9e8d99e2c06aa3bdc569bdcbd5625"
+  }
+]

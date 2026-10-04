@@ -35,7 +35,7 @@ h1,h2,h3,.race-status,.playerName,.mTitle,.announcement b{font-family:inherit;fo
 
 #app{background:radial-gradient(ellipse at 80% 20%,#b4ff3910,transparent 50%),#0a0a0c}.arena{border:1px solid #ffffff12;border-radius:28px;background:#101014;box-shadow:0 24px 90px #0005}.hudTitle h2{font-size:32px}.hudTitle .sub{color:#a1a1aa;font-size:16px}.buildBadge{display:none}.objectiveStatus{background:#19191ed9;border-color:#ffffff16;border-radius:18px;backdrop-filter:blur(24px);padding:14px 18px}.objectiveStatus b{font-style:italic;font-weight:800}.panel{border-radius:32px;padding:32px}.p{background:#24242c99;border-color:#ffffff14}.p.on{background:#b4ff3910;border-color:#b4ff3940}.lobbyHead h1{font-size:48px}.award{background:#24242c99;padding:22px}.award b{font-style:italic;font-size:28px}.party-managed .lobbyHead .eyebrow,.party-managed .qr,.party-managed .joinUrl,.party-managed .hint,.party-managed #solo,.party-managed #changeCount{display:none}.party-managed .lobbyGrid{grid-template-columns:1fr}.party-managed .lobbyHead h1{font-size:32px}.party-managed .countPill{margin-top:16px}
 
-@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik.ttf') format('truetype');font-weight:300 900;font-style:normal;font-display:swap}@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:300 900;font-style:italic;font-display:swap}
+
 
 /* Keep progress outside collision space: targets can occupy every arena corner. */
 #game>.objectiveStatus{left:50%;right:auto;top:auto;bottom:6px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:12px;min-width:0;width:max-content;max-width:calc(100% - 32px);padding:8px 14px;text-align:center;border-radius:14px}
@@ -43,7 +43,18 @@ h1,h2,h3,.race-status,.playerName,.mTitle,.announcement b{font-family:inherit;fo
 .slot,.base{padding:12px;text-align:center;line-height:1.3;color:#b0bbce}
 .arm{background:linear-gradient(90deg,#d54d74,#ff6c94);border:1px solid #ff92ae66}
 .laser{background:linear-gradient(90deg,#df4b65,#ff8396 50%,#df4b65)}
+html.hp-ui.party-host .hudTitle{top:calc(var(--party-stage-inset-top,0px) + 12px)}
+
+/* Codex UI: central mission and readable progress share the viewport axis. */
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{left:50%!important;right:auto!important;transform:translateX(-50%)!important;width:calc(100% - 48px)!important;max-width:none!important;text-align:center;top:calc(var(--party-stage-inset-top,0px) + 12px)!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle h2{font-size:clamp(24px,1.8vw,32px)!important;margin:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .sub{font-size:clamp(16px,1.4vw,22px)!important;line-height:1.25!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game>.objectiveStatus{bottom:12px!important;padding:12px 20px!important;gap:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game>.objectiveStatus span{font-size:14px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game>.objectiveStatus b{font-size:26px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #arena{border:0!important;box-shadow:none!important;border-radius:0!important}
 </style>
+
 </head>
 <body><div id="app">
 <div class="top"><div class="brand">ONE CURSOR // CHAOS LAB</div><div class="topRight"><div class="lifeBox"><span>LIVES</span><b id="lives">♥♥♥</b></div><div class="timerBox" data-party-timer><span>TIME</span><b id="timer">--</b></div><div class="score"><span>TEAM SCORE</span><b id="score">0000</b></div></div></div>
@@ -60,9 +71,9 @@ h1,h2,h3,.race-status,.playerName,.mTitle,.announcement b{font-family:inherit;fo
     <div class="lobbyGrid"><div><div class="players" id="players"></div><button id="start" class="btn" disabled>НАЧАТЬ 15 УРОВНЕЙ</button><button id="solo" class="btn alt">ТЕСТ КЛАВИАТУРОЙ</button><div class="joinUrl" id="joinUrl">…</div><div class="hint">QR → имя → телефон автоматически получает свою часть управления.</div></div><div class="qr"><img src="/qr.png?fresh=4" alt="QR"></div></div>
   </div>
 </div></section>
-<section id="game" class="game">
+<section id="game" class="game" data-tv-hud-anchor>
   <div class="hudTitle"><div class="r" id="roundLabel">LEVEL 01 / 15</div><h2 id="roundTitle">Калибровка</h2><div class="sub" id="roundSub">Смотрите сюда — здесь всегда написано, что делать.</div><div class="roundProgress"><i id="progressBar"></i></div></div>
-  <div class="arena" id="arena"><div class="grid"></div><canvas id="trailCanvas"></canvas><div id="objects"></div><div class="mission"><div class="label">ЦЕЛЬ</div><div class="text" id="missionText">—</div><div class="detail" id="missionDetail">—</div></div><div class="objectiveStatus"><span>ПРОГРЕСС</span><b id="objectiveValue">—</b></div><div id="cursor"></div><div class="deathOverlay" id="deathOverlay"></div></div>
+  <div class="arena" id="arena"><div class="grid"></div><canvas id="trailCanvas"></canvas><div id="objects"></div><div class="mission"><div class="label">ЦЕЛЬ</div><div class="text" id="missionText">—</div><div class="detail" id="missionDetail">—</div></div><div class="objectiveStatus"><span>ПРОГРЕСС</span><b id="objectiveValue">—</b></div><div id="cursor"></div><div class="deathOverlay" id="damageFlash"></div></div>
   <div class="roles" id="roles"></div><div class="toast" id="toast"></div>
 </section>
 <section id="results" class="screen results"><div class="panel"><div class="eyebrow">EXPERIMENT COMPLETE</div><h1>15 уровней пережиты.</h1><div class="muted" id="resultText"></div><div class="awards" id="awards"></div><button class="btn" onclick="location.reload()">ЕЩЁ РАЗ</button></div></section>
@@ -116,7 +127,7 @@ function rect(x,y,w,h,cls='wall'){const e=document.createElement('div');e.classN
 function setSpawn(x,y){state.spawn={x,y};cursor.x=x;cursor.y=y;cursor.vx=0;cursor.vy=0;syncCursor()}
 function syncCursor(){const c=$('#cursor');c.style.left=cursor.x*100+'%';c.style.top=cursor.y*100+'%'}
 function burst(x,y,color='#51e5ff',count=10){for(let i=0;i<count;i++){const p=document.createElement('i');p.style.cssText=`position:absolute;left:${x*100}%;top:${y*100}%;width:6px;height:6px;border-radius:50%;background:${color};z-index:50;pointer-events:none;transform:translate(-50%,-50%)`;$('#objects').appendChild(p);const a=Math.random()*Math.PI*2,r=35+Math.random()*65;p.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},{transform:`translate(calc(-50% + ${Math.cos(a)*r}px),calc(-50% + ${Math.sin(a)*r}px)) scale(0)`,opacity:0}],{duration:350+Math.random()*260,easing:'cubic-bezier(.2,.7,.2,1)'}).onfinish=()=>p.remove()}}
-function flashScreen(){const o=$('#deathOverlay');o.classList.remove('hit');void o.offsetWidth;o.classList.add('hit');const a=$('#arena');a.classList.remove('shake');void a.offsetWidth;a.classList.add('shake')}
+function flashScreen(){const o=$('#damageFlash');o.classList.remove('hit');void o.offsetWidth;o.classList.add('hit');const a=$('#arena');a.classList.remove('shake');void a.offsetWidth;a.classList.add('shake')}
 function toast(t,ms=850){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast._t);toast._t=gameClock.setTimeout(()=>e.classList.remove('show'),ms)}
 function flash(t){toast(t,850)}
 function circleRectHit(cx,cy,r,w){const nx=clamp(cx,w.x,w.x+w.w),ny=clamp(cy,w.y,w.y+w.h);return dist(cx,cy,nx,ny)<r}
@@ -131,7 +142,15 @@ const canvas=$('#trailCanvas'),ctx=canvas.getContext('2d');let lastTrail=null;
 function resizeCanvas(){const r=$('#arena').getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);canvas.width=Math.max(1,Math.floor(r.width*dpr));canvas.height=Math.max(1,Math.floor(r.height*dpr));ctx.setTransform(dpr,0,0,dpr,0,0);canvas._w=r.width;canvas._h=r.height}
 function clearTrail(){if(!canvas._w)resizeCanvas();ctx.clearRect(0,0,canvas._w||canvas.width,canvas._h||canvas.height);lastTrail=null}
 function trailPoint(x,y,color='#51e5ff'){if(!canvas._w)resizeCanvas();const px=x*canvas._w,py=y*canvas._h;if(lastTrail){ctx.strokeStyle=color;ctx.lineWidth=7;ctx.lineCap='round';ctx.shadowBlur=14;ctx.shadowColor=color;ctx.beginPath();ctx.moveTo(lastTrail[0],lastTrail[1]);ctx.lineTo(px,py);ctx.stroke();ctx.shadowBlur=0}lastTrail=[px,py]}
-function fitArena(){const objective=$('.objectiveStatus');if(objective.parentElement!==$('#game'))$('#game').appendChild(objective);const f=ChaosContract.fit(Math.max(100,innerWidth-32),Math.max(100,innerHeight-160));const arena=$('#arena');arena.style.left=(16+f.x)+'px';arena.style.top=(105+f.y)+'px';arena.style.transform='scale('+f.scale+')';resizeCanvas();}window.addEventListener('resize',fitArena);gameClock.setTimeout(fitArena,0);
+function fitArena(){
+ const objective=$('.objectiveStatus'),title=$('.hudTitle'),game=$('#game');if(objective.parentElement!==title)title.appendChild(objective);
+ const hud=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--party-hud-bottom'))||0,managed=document.documentElement.classList.contains('party-managed');
+ const start=managed?hud+16:12,taskHeight=Math.max(44,title.getBoundingClientRect().height),gap=12,available=Math.max(100,innerHeight-start-16);
+ const f=ChaosContract.fit(Math.max(100,innerWidth-48),Math.max(100,available-taskHeight-gap));
+ const groupHeight=taskHeight+gap+600*f.scale,top=start+Math.max(0,(available-groupHeight)/2),arena=$('#arena');
+ game.style.setProperty('--chaos-composition-top',top+'px');game.style.setProperty('--chaos-grid-size',(42*f.scale)+'px');
+ arena.style.left=(24+f.x)+'px';arena.style.top=(top+taskHeight+gap)+'px';arena.style.transform='scale('+f.scale+')';resizeCanvas();
+}window.addEventListener('resize',fitArena);window.addEventListener('party-stage-resize',fitArena);new ResizeObserver(fitArena).observe($('.hudTitle'));gameClock.setTimeout(fitArena,0);
 
 function showGame(){fitArena();if(!solo&&players.filter(n=>connected[n]).length<2)return;sessionStarted=gameClock.performanceNow();sessionEvent=crypto.randomUUID();initAudio();$('#lobby').style.display='none';$('#game').style.display='block';players.forEach(n=>{if(!stats[n])stats[n]={presses:0,active:0,deaths:0,collects:0}});score=0;startRound(0)}
 function startRound(index,retry=false){
@@ -235,4 +254,88 @@ const keys={};addEventListener('keydown',e=>{keys[e.key]=true});addEventListener
 $('#applyCount').onclick=configureLobby;$('#count').addEventListener('keydown',e=>{if(e.key==='Enter')configureLobby()});$('#minusCount').onclick=()=>$('#count').value=Math.max(2,(Math.floor(Number($('#count').value)||4)-1));$('#plusCount').onclick=()=>$('#count').value=Math.max(2,(Math.floor(Number($('#count').value)||4)+1));$('#changeCount').onclick=()=>{if(players.length){toast('Сначала отключите телефоны',1400);return}lobbyConfigured=false;$('#lobbyStage').classList.add('hidden');$('#setupStage').style.display='block'};$('#start').onclick=showGame;$('#solo').onclick=()=>{solo=true;playerLimit=Math.max(2,Math.floor(Number($('#count').value)||4));players=Array.from({length:playerLimit},(_,i)=>`Игрок ${i+1}`);players.forEach(n=>{connected[n]=true;stats[n]={presses:0,active:0,deaths:0,collects:0}});$('#setupStage').style.display='none';$('#lobbyStage').classList.remove('hidden');showGame();toast('SOLO: стрелки + SPACE(click) + SHIFT(grab)',1800)};
 window.__OC_DEBUG={startRound,completeRound,die,getState:()=>({roundIndex,roundRemaining,state,cursor,score})};
 socket();resizeCanvas();requestAnimationFrame(loop);
-</script></body></html>
+</script>
+<style>
+/* Physical-lane polish 2026-10-02: cursor comet, press ripples, clear/hit beats, idle sweep. Presentation only. */
+.oc-ghost{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;pointer-events:none;z-index:34;border:2px solid #c6f4ff;opacity:0;will-change:transform,opacity}
+.oc-ripple{position:absolute;width:38px;height:38px;border-radius:50%;pointer-events:none;z-index:36;border:2px solid #fff;transform:translate(-50%,-50%)}
+.oc-sweep{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;border-radius:inherit}
+.oc-sweep::before{content:'';position:absolute;top:-10%;bottom:-10%;width:22%;left:-30%;background:linear-gradient(90deg,transparent,#51e5ff0d 40%,#d8ff4f12 50%,#51e5ff0d 60%,transparent);transform:skewX(-14deg)}
+@media(prefers-reduced-motion:no-preference){.oc-sweep::before{animation:oc-sweep 7.5s cubic-bezier(.45,0,.55,1) infinite}}
+@keyframes oc-sweep{0%{left:-30%}55%,100%{left:120%}}
+
+/* Codex UI: central mission and readable progress share the viewport axis. */
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{left:50%!important;right:auto!important;transform:translateX(-50%)!important;width:calc(100% - 48px)!important;max-width:none!important;text-align:center;top:calc(var(--party-stage-inset-top,0px) + 12px)!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle h2{font-size:clamp(24px,1.8vw,32px)!important;margin:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .sub{font-size:clamp(16px,1.4vw,22px)!important;line-height:1.25!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game>.objectiveStatus{bottom:12px!important;padding:12px 20px!important;gap:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game>.objectiveStatus span{font-size:14px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game>.objectiveStatus b{font-size:26px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #arena{border:0!important;box-shadow:none!important;border-radius:0!important}
+</style>
+<script>
+(()=>{'use strict';
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,arena=document.getElementById('arena');if(!arena)return;
+ const sweep=document.createElement('div');sweep.className='oc-sweep';sweep.setAttribute('aria-hidden','true');arena.prepend(sweep);
+ const ghosts=Array.from({length:reduce?0:6},()=>{const g=document.createElement('i');g.className='oc-ghost';g.setAttribute('aria-hidden','true');arena.append(g);return g;}),hist=[];
+ function ripple(color,size=2.4,ms=420,width=2){if(reduce)return;const r=document.createElement('i');r.className='oc-ripple';r.style.left=cursor.x*100+'%';r.style.top=cursor.y*100+'%';r.style.borderColor=color;r.style.borderWidth=width+'px';arena.append(r);r.animate([{transform:'translate(-50%,-50%) scale(.7)',opacity:.95},{transform:`translate(-50%,-50%) scale(${size})`,opacity:0}],{duration:ms,easing:'cubic-bezier(.2,.8,.2,1)'}).finished.finally(()=>r.remove());}
+ // Comet: lagged copies of the shared cursor brighten with speed and vanish at rest.
+ function tick(){const w=arena.clientWidth,h=arena.clientHeight;hist.unshift({x:cursor.x*w,y:cursor.y*h});hist.length=Math.min(hist.length,ghosts.length*2+2);const head=hist[0],tail=hist[Math.min(hist.length-1,6)]||head,speed=Math.hypot(head.x-tail.x,head.y-tail.y);ghosts.forEach((g,i)=>{const p=hist[Math.min(hist.length-1,(i+1)*2)]||head,k=1-i/ghosts.length,a=Math.min(1,speed/90)*k*.5;g.style.opacity=a.toFixed(3);g.style.transform=`translate(${p.x-15}px,${p.y-15}px) scale(${(.55+k*.4).toFixed(3)})`;});requestAnimationFrame(tick);}
+ if(ghosts.length)requestAnimationFrame(tick);
+ const baseSfx=sfx;sfx=function(kind){if(kind==='click')ripple('#d8ff4f',3.2,460,3);else if(kind==='hit')ripple('#ff5f87',4.2,520,4);else if(kind==='pickup')ripple('#51e5ff',2.8,420,3);else if(kind==='clear'){const r=arena.getBoundingClientRect();window.HeyPalsSprites?.burst(r.left+r.width/2,r.top+r.height*.45,{count:26,spread:Math.min(260,r.width*.3)});window.LocalPartyFeel?.emit('score',{id:'oc-clear:'+roundIndex+':'+roundToken,intensity:.7,x:r.left+r.width/2,y:r.top+r.height*.45,shake:false});}return baseSfx.apply(this,arguments);};
+ const baseInput=input;input=function(m){if(m&&m.control==='click'&&m.state==='down'&&roles[m.name]?.includes('click')&&roundActive)ripple('#ffffff',1.9,300,2);return baseInput.apply(this,arguments);};
+})();
+</script>
+</body></html>
+
+<style>html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{display:flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;min-height:44px!important}html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .eyebrow,html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .roundProgress{display:none!important}html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .sub{margin:0!important;max-width:58ch}</style>
+
+<style>
+/* Group05: level, task and real objective form one line; reclaim the bottom progress band. */
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{gap:20px!important;min-height:36px!important;flex-wrap:wrap;align-content:center}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .sub{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .r{font:italic 400 14px/1.2 KardiaFitRunner,sans-serif!important;color:#d0c4e8!important;letter-spacing:0}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle h2{font-size:26px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .objectiveStatus{position:static!important;display:flex;align-items:center;gap:8px;background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;transform:none!important;padding:0!important;min-width:0;max-width:none;text-align:left}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .objectiveStatus span{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .objectiveStatus b{font:italic 400 22px/1.1 KardiaFitRunner,sans-serif!important;color:#ccff9a}
+</style>
+
+<style>
+/* The common live HUD now supplies the real task name. Keep this measured,
+   compact task/objective group beneath the world instead of a second roofline. */
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{top:auto!important;bottom:8px!important;min-height:28px!important;gap:16px!important;flex-wrap:nowrap!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .r{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle h2{font-size:22px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .objectiveStatus b{font-size:22px!important}
+</style>
+
+<style>html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game{background:#101014!important}</style>
+
+<style>
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:var(--chaos-grid-size,42px) var(--chaos-grid-size,42px);mask-image:linear-gradient(to bottom,#000a,transparent)}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #arena{background:transparent!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #arena .grid{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #arena::after{box-shadow:none}
+</style>
+
+<style>
+/* Instruction and progress form one compact row attached to the centered world. */
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{top:var(--chaos-composition-top,calc(var(--party-hud-bottom,0px) + 16px))!important;bottom:auto!important;left:50%!important;width:min(960px,calc(100% - 48px))!important;min-height:44px!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:4px 20px!important;padding:10px 20px!important;text-align:left!important;border-radius:14px!important;background:linear-gradient(155deg,#344255,#242b40)!important;border:1px solid #9eced35e!important;box-shadow:0 8px 24px #070b1d30!important;isolation:isolate}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle::before{content:none}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle h2{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .sub{display:block!important;grid-column:1;grid-row:1;margin:0!important;max-width:none!important;font:400 16px/1.3 KardiaFit,sans-serif!important;color:#ded5eb!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .objectiveStatus{grid-column:2;grid-row:1;align-self:center!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .objectiveStatus b{font-size:22px!important;color:#d4ffa9!important}
+@media(min-width:1600px){html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{width:min(960px,calc(100% - 64px))!important;padding:12px 24px!important}html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle h2{font-size:26px!important}html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .sub{font-size:17px!important}}
+</style>
+
+<style>
+/* Task feedback follows the measured match header's width and reading axis. */
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{left:var(--party-hud-left,calc(50% - 300px))!important;transform:none!important;width:var(--party-hud-width,600px)!important;max-width:calc(100% - 48px)!important}
+/* The timer keeps its single cap; task feedback reads directly on the field. */
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;gap:2px 20px!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .sub{grid-column:1!important;grid-row:1 / 3!important;align-self:center!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle h2{display:block!important;grid-column:2!important;grid-row:1!important;width:100%!important;text-align:center!important;margin:0!important;font:700 14px/1.3 KardiaFitRunner,sans-serif!important;color:#d1cadb!important}
+html.hp-ui.party-managed.party-host[data-party-game=chaos] body #app #game .hudTitle .objectiveStatus{grid-column:2!important;grid-row:2!important;justify-content:center!important;text-align:center!important}
+</style>

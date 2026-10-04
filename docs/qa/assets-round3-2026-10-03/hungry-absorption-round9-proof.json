@@ -1,0 +1,255 @@
+{
+  "scope": "Hungry-only absorption rule and feedback; TV1280×720/1920×1080, two genuine browser-controller players. No injected state/mass, no phone PNG or physical-device claim.",
+  "rawReport": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/report.json",
+  "rawReportSha256": "4c4d72e6a69ac927c1262e2d64206924e064c8455488f697ef019897534039cf",
+  "captureWindow": {
+    "start": "2026-10-03T19:53:12.083Z",
+    "end": "2026-10-03T19:53:30.543Z"
+  },
+  "sourceEnd": {
+    "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3",
+    "games/arcade/simulation.js": "757b19513d580cfc0c9a6f451ba38030ab6d60666145355947f9a14155bb0704",
+    "games/arcade/public/app.js": "35bc84716ff9f3ad02a0015960933bfdd4084b776005f3c8c9f80df77b4cd6f0",
+    "games/arcade/public/host.html": "7e8e605e9103b8134fe2077c1f97b3872ef0e3bd40c364abf9e685d330902124",
+    "games/arcade/public/style.css": "845d1261510e061f9d10de584b362fa01a67ee18cf6b68e46362ab68e8396f73",
+    "games/arcade/public/arcade-juice.js": "c277bb61bace27bd8717e603c417e8b96b8df11b6d1ef815c88ca0f3f5cbe8c6",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-art.js": "7ef2c17b79bf952fcf0510e0d87b5d848089e33863007a7b1e620bd19849a1e4",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/i18n.js": "c2fa14cddfbd35225bf5fb0e50f240a0b05825355022a2f366d6514bd33bc5eb",
+    "public/assets/gameplay/generated/hungry-creatures-v2.js": "2e345232a2d193d6492c6cd3755092ee31f8c8e3e629dace2b8e010916bb561a",
+    "public/assets/gameplay/generated/hungry-creatures-v2.json": "46aa935e09b1d7a5460938fccc867086716e6fd4962809b3fbb9732d92f47482",
+    "public/assets/gameplay/generated/hungry-creatures-v2.png": "06c30d7bab7b34d259c3c18864a7aa8061fc7db49525bcf18ee348f9ef83d5f3"
+  },
+  "currentSourceMatchesCaptured": true,
+  "errors": [],
+  "changedFiles": [],
+  "rules": {
+    "previous": {
+      "massLead": "strictly greater than30%",
+      "distance": "target center within3*sqrt(attacker mass)"
+    },
+    "current": {
+      "massLead": "strictly greater than5%",
+      "distance": "<=90% sum of both rendered radii3.6*sqrt(mass)",
+      "reward": "70% victim mass, immediate mass+rounded score",
+      "preserved": "1.5s return,2s victim protection, mass-dependent speed, canonical bounds,120s match, food+3"
+    }
+  },
+  "actual": {
+    "beforeContact": {
+      "Morgan": {
+        "mass": 23,
+        "score": 23,
+        "dead": 0,
+        "shield": 0,
+        "x": 100,
+        "y": 100
+      },
+      "Alexandra LongSurname": {
+        "mass": 26,
+        "score": 26,
+        "dead": 0,
+        "shield": 0,
+        "x": 350.4417465472921,
+        "y": 151.13766721755448
+      }
+    },
+    "beforeAbsorption": {
+      "Morgan": {
+        "mass": 23,
+        "score": 23,
+        "dead": 0,
+        "shield": 0,
+        "x": 100,
+        "y": 100
+      },
+      "Alexandra LongSurname": {
+        "mass": 26,
+        "score": 26,
+        "dead": 0,
+        "shield": 0,
+        "x": 166.61577681499764,
+        "y": 114.17768558240206
+      }
+    },
+    "afterAbsorption": {
+      "Morgan": {
+        "mass": 20,
+        "score": 20,
+        "dead": 1.4666666666666666,
+        "shield": 0,
+        "x": 100,
+        "y": 100
+      },
+      "Alexandra LongSurname": {
+        "mass": 42.099999999999994,
+        "score": 42,
+        "dead": 0,
+        "shield": 0,
+        "x": 122.56336722143287,
+        "y": 104.83190415972254
+      }
+    },
+    "foodIdenticalAcrossAbsorption": true,
+    "returned": {
+      "Morgan": {
+        "mass": 20,
+        "score": 20,
+        "dead": 0,
+        "shield": 1.9666666666666666,
+        "x": 100,
+        "y": 100
+      },
+      "Alexandra LongSurname": {
+        "mass": 42.099999999999994,
+        "score": 42,
+        "dead": 0,
+        "shield": 0,
+        "x": 79.95213584361643,
+        "y": 95.58944038414911
+      }
+    },
+    "escapedAfterProtection": {
+      "Morgan": {
+        "mass": 20,
+        "score": 20,
+        "dead": 0,
+        "shield": 0,
+        "x": 283.990280070577,
+        "y": 99.33544039957708
+      },
+      "Alexandra LongSurname": {
+        "mass": 42.099999999999994,
+        "score": 42,
+        "dead": 0,
+        "shield": 0,
+        "x": 79.94100038560657,
+        "y": 95.58702508039109
+      }
+    },
+    "victimControllerFeedback": {
+      "status": "Back in 2s",
+      "help": "You were eaten. Your blob returns to the field shortly.",
+      "joystickDisabled": "true"
+    },
+    "feedback": [
+      {
+        "type": "score",
+        "id": "arcade:hungry:1:1",
+        "x": 0.3376852138413022,
+        "y": 0.15279305864016252,
+        "color": "#58dafa",
+        "intensity": 0.35,
+        "shake": false,
+        "canvasShaking": false
+      },
+      {
+        "type": "score",
+        "id": "arcade:hungry:1:2",
+        "x": 0.32509244992977687,
+        "y": 0.21376079943425283,
+        "color": "#58dafa",
+        "intensity": 0.35,
+        "shake": false,
+        "canvasShaking": false
+      },
+      {
+        "type": "elimination",
+        "id": "arcade:hungry:1:3",
+        "x": 0.08333333333333333,
+        "y": 0.1388888888888889,
+        "color": "#b9ff4d",
+        "intensity": 0.65,
+        "shake": false,
+        "canvasShaking": false
+      },
+      {
+        "type": "score",
+        "id": "arcade:hungry:1:4",
+        "x": 0.1081716164980421,
+        "y": 0.14776950764455063,
+        "color": "#58dafa",
+        "intensity": 0.35,
+        "shake": false,
+        "canvasShaking": false
+      }
+    ]
+  },
+  "tests": {
+    "focused": "25/25 PASS: absorption7, food/phase/feedback4, Carry10, countdown4",
+    "broad": "arcade-simulation.cjs PASS all6 modes + Hungry respawn; arcade-feel.cjs PASS",
+    "syntax": "simulation.js and app.js PASS",
+    "notClaimed": "No own full npm run, physical device or dense16 new-mechanic browser balance test."
+  },
+  "images": [
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-live-1280.png",
+      "sha256": "a378255828f26f7f7c1a1d10192f84f60a949347ea99c8ec64f8febbe9a56f74",
+      "openedIndividually": true,
+      "observation": "Both colored bodies and readable20/23 masses; continuous floor; existing join toast transient."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-live-1920.png",
+      "sha256": "498ff391f5378e3924eab5d78045bc966c637afbea80b392eb5b6331ef5875b5",
+      "openedIndividually": true,
+      "observation": "Both complete silhouettes, field/header intact; initial two-player state."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-grown-1280.png",
+      "sha256": "317af5e83846f539f5a9fb83877776d1d7fa46692aa3c8b73787b1a7751a7ce1",
+      "openedIndividually": true,
+      "observation": "Cyan26 versus lime23 after genuine food input; body growth and mass readout visible."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-grown-1920.png",
+      "sha256": "035f60b9c03e8b86ff5c58a119202283b2574e40f4392f45f879682d92b18b90",
+      "openedIndividually": true,
+      "observation": "Same26/23 natural size advantage below old30% requirement; intact colored bodies."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-absorbed-1920.png",
+      "sha256": "a6b29e570defd0657b4695e80daef0c1aa8c72210c46e002c18c37e1fcb70441",
+      "openedIndividually": true,
+      "observation": "Victim absent while returning; cyan42 larger; existing CHOMP/actor particles retained, cap legible."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-absorbed-1280.png",
+      "sha256": "9cc452d33be19b4a49663e530b00c3111cb84e5f7fda882349a8d43aea73ca0b",
+      "openedIndividually": true,
+      "observation": "Victim absent;42 mass and same continuous food field; localized feedback fades."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-returned-1280.png",
+      "sha256": "f75dd77ba22a4e6993cac471c70ca2317b17376f56e8afccd75806097b167c07",
+      "openedIndividually": true,
+      "observation": "Both bodies present and overlapping under actual spawn protection. Existing labels reposition; no visual shield ring is claimed."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-returned-1920.png",
+      "sha256": "57bfba3704d882332d2e2e9a1d4812e181e2204c5cc04c6ed1bcbf78fdb1da30",
+      "openedIndividually": true,
+      "observation": "Cyan42 distinctly larger than returned lime20; both visible, existing labels/leader lines displaced around overlap."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-absorption-round9-confirm/hungry-2-escape-1920.png",
+      "sha256": "15e82351126f8f37f51d7ce2c72af9701e1dfd26bb2b6bc4705d660441a8c94d",
+      "openedIndividually": true,
+      "observation": "Actual victim joystick escape separates lime20 from cyan42; both alive after shield expires."
+    }
+  ],
+  "limitations": [
+    "Existing shield has no visible halo; rule/protection established by authority and actual input escape.",
+    "Existing actor-local CHOMP, particles, label movement and dense overlap remain.",
+    "Snapshots span network intervals; exact collision instant is additionally covered by focused simulation tests.",
+    "Earlier9-final observer run failed only QA wrapper because shared API is frozen; raw history retained. Final confirmation wraps global API without altering gameplay.",
+    "Earlierround8 art/mask/food packets remain historical qualified; this current packet supersedes Hungry gameplay rules and feedback."
+  ]
+}

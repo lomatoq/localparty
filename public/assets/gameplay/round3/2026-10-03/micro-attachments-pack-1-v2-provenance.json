@@ -1,0 +1,251 @@
+{
+  "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5b-9a58-7b90-a8ae-78420115152d/exec-45a6a2ff-764e-4454-a210-8c6e734bb58a.png",
+  "asset": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+  "method": "builtin imagegen transparent background; original pixels copied unchanged",
+  "prompt": "A production transparent PNG atlas for minimal HeyPals game HEADER EDGE ATTACHMENTS, not free-floating icons. Exactly twelve separate complete attachments in a regular FOUR-COLUMN THREE-ROW grid. Equal rectangular cells; each object centered with at least20percent transparent padding on every side. No labels, captions or text. Strict orthographic TOP-DOWN view for EVERY piece: ZERO perspective, ZERO visible vertical side faces, ZERO isometric depth. Simple clean vector-like filled geometry, two-tone gentle material shading only, at most three colors per piece, broad shapes, no noisy texture, grain, woven fibers, tiny screws or photographic shading. Each item is a small purposeful cuff, strap, clip or corner overlap designed to sit across the side edge of an existing rounded UI panel: the attachment has a recognizable short straight seating edge or flat fastening tab that visibly hugs a panel boundary. Shape/readability over detail; must read at40pixels. No backing rectangle or drop-shadow plate surrounding the object; true alpha everywhere between sprites. Same restrained premium cartoon visual language, dark navy/plum structure, soft game-specific tint, few cream highlights. NO3D toy renders, no gradients as separate blobs, no humans, no UI screenshots, no full environment. Output one wide4:3 transparent sprite-sheet bitmap. Follow this EXACT row-major order:\nrow 1: 1. cream braided-rope hem represented by only three broad flat segments, folded around a cyan fastening tab; 2. teal shrinking-ring clamp: one arc and a short square edge cuff; 3. two simple flat crossed knife blades joined to a plum/coral edge sleeve; 4. charcoal bomb-shaped fuse plug with one muted gold fuse and a flat fastening lip\nrow 2: 1. warm brass horseshoe clasp with a single flat coral bandana knot; 2. olive armored corner plate with two broad round bolts; 3. gunmetal blue tank hatch edge clip with one muted violet slot and two broad bolts; 4. blue calibration cursor corner clamp with a clean white pointer silhouette\nrow 3: 1. small black/cream2-by-2 checkered flag fold on a teal panel cuff; 2. teal cartoon three-lobed paw grip curling flat over an edge tab; 3. navy magnifying lens fitted to a compact edge clasp, small lime highlight; 4. deep plum coin bezel with one muted brass rim and short panel grip\nAll twelve attachments complete, identical overhead view, generousalpha margins, clean sparse silhouettes. No unrelated decorative object. Cohesive material engineering with a tiny edge seat; no whole rectangular panel.",
+  "generated_metadata": {
+    "size": [
+      1448,
+      1086
+    ],
+    "mode": "RGBA",
+    "sha256": "4ed74e9386e84ecd5320c2f181ca42aba603672ae4261d07b024780c245b696e",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "cells": [
+      {
+        "game": "push",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          76,
+          121,
+          248,
+          217
+        ],
+        "optical": [
+          4,
+          4,
+          240,
+          209
+        ],
+        "pack": 1,
+        "cell": 0,
+        "seat": "right"
+      },
+      {
+        "game": "shrink",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          422,
+          104,
+          260,
+          247
+        ],
+        "optical": [
+          4,
+          4,
+          252,
+          239
+        ],
+        "pack": 1,
+        "cell": 1,
+        "seat": "right"
+      },
+      {
+        "game": "knives",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          785,
+          106,
+          264,
+          235
+        ],
+        "optical": [
+          4,
+          4,
+          256,
+          227
+        ],
+        "pack": 1,
+        "cell": 2,
+        "seat": "right"
+      },
+      {
+        "game": "bomb",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          1133,
+          56,
+          260,
+          305
+        ],
+        "optical": [
+          4,
+          4,
+          252,
+          297
+        ],
+        "pack": 1,
+        "cell": 3,
+        "seat": "right"
+      },
+      {
+        "game": "western",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          58,
+          420,
+          284,
+          239
+        ],
+        "optical": [
+          4,
+          4,
+          276,
+          231
+        ],
+        "pack": 1,
+        "cell": 4,
+        "seat": "right"
+      },
+      {
+        "game": "tanks",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          424,
+          420,
+          250,
+          239
+        ],
+        "optical": [
+          4,
+          4,
+          242,
+          231
+        ],
+        "pack": 1,
+        "cell": 5,
+        "seat": "right"
+      },
+      {
+        "game": "tankarena",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          765,
+          421,
+          273,
+          237
+        ],
+        "optical": [
+          4,
+          4,
+          265,
+          229
+        ],
+        "pack": 1,
+        "cell": 6,
+        "seat": "right"
+      },
+      {
+        "game": "chaos",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          1162,
+          437,
+          223,
+          229
+        ],
+        "optical": [
+          4,
+          4,
+          215,
+          221
+        ],
+        "pack": 1,
+        "cell": 7,
+        "seat": "right"
+      },
+      {
+        "game": "kart",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          67,
+          756,
+          252,
+          226
+        ],
+        "optical": [
+          4,
+          4,
+          244,
+          218
+        ],
+        "pack": 1,
+        "cell": 8,
+        "seat": "right"
+      },
+      {
+        "game": "monster",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          407,
+          751,
+          291,
+          240
+        ],
+        "optical": [
+          4,
+          4,
+          283,
+          232
+        ],
+        "pack": 1,
+        "cell": 9,
+        "seat": "right"
+      },
+      {
+        "game": "spy",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          754,
+          750,
+          296,
+          238
+        ],
+        "optical": [
+          4,
+          4,
+          288,
+          230
+        ],
+        "pack": 1,
+        "cell": 10,
+        "seat": "right"
+      },
+      {
+        "game": "millionaire",
+        "atlas": "/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+        "source": [
+          1115,
+          756,
+          286,
+          235
+        ],
+        "optical": [
+          4,
+          4,
+          278,
+          227
+        ],
+        "pack": 1,
+        "cell": 11,
+        "seat": "right"
+      }
+    ]
+  },
+  "status": "pending small live header review",
+  "opticalThreshold": 8,
+  "note": "Runtime sprite rectangles include visible alpha8 silhouette plus4px margin; source pixels unchanged. Alpha1-8 disconnected generator haze outside optical silhouette is excluded by atlas source rectangle."
+}

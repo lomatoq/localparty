@@ -1,0 +1,137 @@
+{
+  "scope": "Bounded TV-only Jenga scene backing soft edge; WebGL, tower/table, camera, physics and controls unchanged. Night Shift unchanged.",
+  "createdAt": "2026-10-03T13:21:52.764Z",
+  "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-jenga-soft-edge-final/report.json",
+  "reportSha256": "d93e5af74936d972f2b3d804a65c6aa4997533d95b949fc04fc0b50237e82328",
+  "sourceHashes": {
+    "games/jenga/public/style.css": "67ddbefb0b4b7619e93b987dded30996dd74624f4a0d6c9bec8f0220076aae5a",
+    "games/jenga/public/renderer3d.js": "e8a017964e2daa37bd213533a437fe75ad8981debbe0bcd6695618a5b68f1411",
+    "games/jenga/public/app.js": "4565cf50f201b23752eabdb49f0f69100ab7e278b089d38b0305854a72da6d56",
+    "games/jenga/public/host.html": "24f726beb1aad7b82042089ad1934faf6589c88637090f7775e1c66614a75bac",
+    "public/tv-information.css": "4cfd0282a8beb2450207903fd766cb549113ed1495238102e504f9c0fe831c17",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv.js": "00f7bd46e01685609c92d846ce56d9ed11fb5fa97850ea4f39fe35c82f3be21e",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198"
+  },
+  "sourceStart": {
+    "games/jenga/public/style.css": "67ddbefb0b4b7619e93b987dded30996dd74624f4a0d6c9bec8f0220076aae5a",
+    "games/jenga/public/renderer3d.js": "e8a017964e2daa37bd213533a437fe75ad8981debbe0bcd6695618a5b68f1411",
+    "games/jenga/public/app.js": "4565cf50f201b23752eabdb49f0f69100ab7e278b089d38b0305854a72da6d56",
+    "games/jenga/public/host.html": "24f726beb1aad7b82042089ad1934faf6589c88637090f7775e1c66614a75bac",
+    "public/tv-information.css": "4cfd0282a8beb2450207903fd766cb549113ed1495238102e504f9c0fe831c17",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv.js": "00f7bd46e01685609c92d846ce56d9ed11fb5fa97850ea4f39fe35c82f3be21e",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198"
+  },
+  "sourceEnd": {
+    "games/jenga/public/style.css": "67ddbefb0b4b7619e93b987dded30996dd74624f4a0d6c9bec8f0220076aae5a",
+    "games/jenga/public/renderer3d.js": "e8a017964e2daa37bd213533a437fe75ad8981debbe0bcd6695618a5b68f1411",
+    "games/jenga/public/app.js": "4565cf50f201b23752eabdb49f0f69100ab7e278b089d38b0305854a72da6d56",
+    "games/jenga/public/host.html": "24f726beb1aad7b82042089ad1934faf6589c88637090f7775e1c66614a75bac",
+    "public/tv-information.css": "4cfd0282a8beb2450207903fd766cb549113ed1495238102e504f9c0fe831c17",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv.js": "00f7bd46e01685609c92d846ce56d9ed11fb5fa97850ea4f39fe35c82f3be21e",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198"
+  },
+  "sourceDrift": [],
+  "errors": [],
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-jenga-soft-edge-final/jenga-tv-live-1280.png",
+      "sha256": "e98c8caaf0799e1f302c42c626ba3bad8dc8446e7f4bfa8e252380cca57e5164",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-jenga-soft-edge-final/jenga-tv-live-1920.png",
+      "sha256": "a2b40e0c7be5fed8d1860c122576f19f5d82e2be8b7bf99d53312f595cb1dbea",
+      "openedIndividually": true
+    }
+  ],
+  "actualPaint": [
+    {
+      "file": "jenga-tv-live-1280.png",
+      "w": 1280,
+      "h": 720,
+      "state": "live",
+      "presentation": {
+        "stage": {
+          "left": 0,
+          "top": 0,
+          "width": 896,
+          "height": 720,
+          "right": 896,
+          "bottom": 720
+        },
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 896,
+          "height": 720,
+          "right": 896,
+          "bottom": 720
+        },
+        "stageBackground": "none",
+        "backing": {
+          "content": "\"\"",
+          "display": "block",
+          "background": "radial-gradient(at 50% 55%, rgba(53, 48, 62, 0.533), rgb(21, 19, 31) 76%)",
+          "mask": "linear-gradient(to right, rgb(0, 0, 0) calc(100% - 64px), rgba(0, 0, 0, 0) 100%)",
+          "webkitMask": "linear-gradient(to right, rgb(0, 0, 0) calc(100% - 64px), rgba(0, 0, 0, 0) 100%)",
+          "zIndex": "-1"
+        },
+        "canvasMask": "none",
+        "canvasWebkitMask": "none",
+        "state": "playing",
+        "blocks": 36
+      }
+    },
+    {
+      "file": "jenga-tv-live-1920.png",
+      "w": 1920,
+      "h": 1080,
+      "state": "live",
+      "presentation": {
+        "stage": {
+          "left": 0,
+          "top": 0,
+          "width": 1536,
+          "height": 1080,
+          "right": 1536,
+          "bottom": 1080
+        },
+        "canvas": {
+          "left": 0,
+          "top": 0,
+          "width": 1536,
+          "height": 1080,
+          "right": 1536,
+          "bottom": 1080
+        },
+        "stageBackground": "none",
+        "backing": {
+          "content": "\"\"",
+          "display": "block",
+          "background": "radial-gradient(at 50% 55%, rgba(53, 48, 62, 0.533), rgb(21, 19, 31) 76%)",
+          "mask": "linear-gradient(to right, rgb(0, 0, 0) calc(100% - 64px), rgba(0, 0, 0, 0) 100%)",
+          "webkitMask": "linear-gradient(to right, rgb(0, 0, 0) calc(100% - 64px), rgba(0, 0, 0, 0) 100%)",
+          "zIndex": "-1"
+        },
+        "canvasMask": "none",
+        "canvasWebkitMask": "none",
+        "state": "playing",
+        "blocks": 36
+      }
+    }
+  ],
+  "acceptance": {
+    "bothOriginalsOpened": true,
+    "backgroundOnly64pxFade": true,
+    "canvasUnmaskedBothSizes": true,
+    "towerTableInkAndPositionsPreserved": true,
+    "wholeFourCrewBothSizes": true,
+    "actualPlaying36Blocks": true,
+    "phonesCaptured": false,
+    "physicalDeviceValidated": false
+  },
+  "checks": "Impeccable layout detector[]; computed pseudo display:block/mask fade, actual canvas masks:none; source stable"
+}

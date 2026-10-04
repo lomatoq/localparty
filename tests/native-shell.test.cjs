@@ -58,3 +58,12 @@ test('native host permits explicit force actions without granting games admin ac
 test('trusted host commands queue instead of being silently dropped while the model is working',()=>{const body=swift.slice(swift.indexOf('case "manage":'),swift.indexOf('case "network-set"'));assert.match(body,/model\.command\(command\)/);assert.doesNotMatch(body,/!model\.working|model\.ready/);});
 test('native display reconnect does not silently block a game launch',()=>{const server=read('server.js');assert.match(ui,/hasSharedScreen/);assert.match(ui,/externalDisplay:Number\(state\.native\?\.externalDisplays\)>0/);assert.match(server,/!screens\(\)&&m\.externalDisplay!==true/);});
 test('native locale is personal across both own surfaces; room override remains explicit',()=>{assert.match(swift,/for view in \[menu, controller\] \{ syncPersonalLanguage\(view\) \}/);assert.match(swift,/LocalParty\.language/);assert.match(ui,/acceptRoomLanguage\(state.languageOverride\)/);assert.match(ui,/forceRoomLanguage.*confirm\(/);assert.match(read('ios/LocalParty/ServerModel.swift'),/var languageOverride: PartyLanguageOverride\?/);assert.ok(html.indexOf('/i18n.js')<html.indexOf('/native-shell/host.js'));});
+test('native bundle scheme serves every shipped interface font format',()=>{
+ const css=read('public/game-ui-system.css');
+ const table=swift.match(/let mime = \[([^\n]+)\]/)[1];
+ const formats=new Set([...table.matchAll(/"([a-z0-9]+)"\s*:/g)].map(m=>m[1]));
+ for(const [,url]of css.matchAll(/src:url\(['"]([^'"]+)['"]\)/g)){
+  assert(formats.has(path.extname(url).slice(1)),`Native scheme blocks ${url}`);
+  assert(fs.existsSync(path.join(root,'public',url)),`Missing font ${url}`);
+ }
+});

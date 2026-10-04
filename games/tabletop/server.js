@@ -27,7 +27,8 @@ wss.on('connection',(ws,req)=>{let tokens=90,last=Date.now();ws.on('message',raw
 runtime.onPause(()=>{for(const p of players.values())if(p.target){p.target={x:p.x,y:p.y};p.axis=null;}});
 runtime.host({start});let last=Date.now(),elapsed=0;
 runtime.setInterval(()=>{const now=Date.now(),dt=Math.min(.05,(now-last)/1000);last=now;if(game?.phase==='playing')game.step(dt);
- if(game?.phase==='results'&&!reported){reported=true;const ps=game.view(null).players,best=Math.max(...ps.map(p=>p.score));runtime.report({gameId:mode,eventId,duration:(Date.now()-started)/1000,players:ps.map(p=>({id:p.id,name:p.name,score:p.score,won:p.score===best}))});}
- runtime.ui({phase:game?.phase||'waiting',label:mode==='poker'?'Poker Night':mode==='mines'?'Mine Together':'Air Hockey',progress:mode==='poker'&&game?`${game.hand} / 5`:''});elapsed+=dt;if(elapsed>=(mode==='airhockey'?.05:.2)){elapsed=0;broadcast();}
+ if(game?.phase==='results'&&!reported){reported=true;const ps=game.view(null).players,best=Math.max(...ps.map(p=>p.score));runtime.report({gameId:mode,eventId,duration:(Date.now()-started)/1000,ranking:{kind:mode==='airhockey'?'teams':'score'},players:ps.map(p=>({id:p.id,name:p.name,score:p.score,...(mode==='airhockey'?{team:p.team,teamScore:p.score}:{}),won:p.score===best}))});}
+ const remaining=game?.phase==='playing'?Math.max(0,(mode==='poker'?game.deadline:mode==='mines'?180:120)-game.t):null;
+ runtime.ui({phase:game?.phase||'waiting',endsAt:remaining===null?null:Date.now()+remaining*1000,label:mode==='poker'?'Poker Night':mode==='mines'?'Mine Together':'Air Hockey',progress:mode==='poker'&&game?`${game.hand} / 5`:''});elapsed+=dt;if(elapsed>=(mode==='airhockey'?.05:.2)){elapsed=0;broadcast();}
 },16);
 server.listen(Number(process.env.PORT||0),runtime.managed?'127.0.0.1':'0.0.0.0',()=>{console.log('Tabletop '+mode+' port '+server.address().port);process.send?.({type:'ready',port:server.address().port});});

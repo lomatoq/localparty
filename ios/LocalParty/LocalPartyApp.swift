@@ -22,7 +22,23 @@ struct PartyTVPresentation: Codable, Equatable {
 @main struct LocalPartyApp: App {
     @UIApplicationDelegateAdaptor(PartyAppDelegate.self) private var appDelegate
     @StateObject private var model = ServerModel.shared
-    var body: some Scene { WindowGroup { HostView(model: model).preferredColorScheme(.dark) } }
+    @StateObject private var guestConnection = JoinConnection()
+    @State private var showGuestJoin = false
+    var body: some Scene {
+        WindowGroup {
+            HostView(model: model).preferredColorScheme(.dark)
+                .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+                    if let url = activity.webpageURL { receiveGuestInvitation(url) }
+                }
+                .onOpenURL { receiveGuestInvitation($0) }
+                .sheet(isPresented: $showGuestJoin) { JoinConnectionView(connection: guestConnection) }
+        }
+    }
+    private func receiveGuestInvitation(_ url: URL) {
+        let clipID = (Bundle.main.bundleIdentifier ?? "com.localparty.launcher") + ".Join"
+        guard JoinInvitation.decode(url, clipBundleID: clipID) != nil else { return }
+        guestConnection.receive(url, clipBundleID: clipID); showGuestJoin = true
+    }
 }
 
 // Host menu uses the SAME bundled CSS, artwork and controls as the web launcher.
@@ -276,7 +292,6 @@ private struct PartySurfaces: UIViewControllerRepresentable {
         clearScreenTransition()
         guard isViewLoaded else { return }
         paintTabs(tab)
-        guard !UIAccessibility.isReduceMotionEnabled else { return }
         let fromController = store.showingController, toController = tab == "controller"
         let direction: CGFloat = (tabOrder.firstIndex(of: tab) ?? 0) >= (tabOrder.firstIndex(of: store.selectedTab) ?? 0) ? 1 : -1
         if fromController != toController {
@@ -290,6 +305,7 @@ private struct PartySurfaces: UIViewControllerRepresentable {
             outgoingWeb = fromController ? store.controller : store.menu
             return
         }
+        guard !UIAccessibility.isReduceMotionEnabled else { return }
         let current = fromController ? store.controller : store.menu
         // The current frame is already on screen: no synchronous WebKit commit needed.
         guard let content = current.snapshotView(afterScreenUpdates: false) else { return }
@@ -309,7 +325,7 @@ private struct PartySurfaces: UIViewControllerRepresentable {
             return ["hidden": web.isHidden, "alpha": web.alpha, "presentationAlpha": layer.opacity,
                     "translationX": web.transform.tx, "presentationTranslationX": layer.transform.m41]
         }
-        return ["tab": store.selectedTab, "running": screenAnimator?.isRunning == true, "timing": store.lastTransitionTiming,
+        return ["tab": store.selectedTab, "pending": store.tabTransitionPending, "running": screenAnimator?.isRunning == true, "timing": store.lastTransitionTiming,
                 "snapshotCount": view.subviews.filter { $0.accessibilityIdentifier == "party-tab-transition-snapshot" }.count,
                 "surfaces": surfaces]
     }
@@ -421,7 +437,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             guard !name.split(separator: "/").contains(".."), !name.contains("\\"), !name.contains("%") else { throw URLError(.noPermissionsToReadFile) }
             let base = root.resolvingSymlinksInPath().standardizedFileURL
             let file = base.appendingPathComponent(name).resolvingSymlinksInPath().standardizedFileURL
-            let mime = ["html":"text/html", "css":"text/css", "js":"text/javascript", "png":"image/png", "webp":"image/webp", "jpg":"image/jpeg", "jpeg":"image/jpeg", "svg":"image/svg+xml", "ttf":"font/ttf", "woff2":"font/woff2", "ico":"image/x-icon"]
+            let mime = ["html":"text/html", "css":"text/css", "js":"text/javascript", "png":"image/png", "webp":"image/webp", "jpg":"image/jpeg", "jpeg":"image/jpeg", "svg":"image/svg+xml", "otf":"font/otf", "ttf":"font/ttf", "woff2":"font/woff2", "ico":"image/x-icon"]
             guard file.path.hasPrefix(base.path + "/"), let type = mime[file.pathExtension.lowercased()],
                   file.pathExtension != "html" || name == "native-shell/index.html" else { throw URLError(.noPermissionsToReadFile) }
             let data = try Data(contentsOf: file)
@@ -458,9 +474,24 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     private let handler = PartyScriptHandler()
     private let shellURL = URL(string: "partyapp://local/native-shell/index.html")!
     private var controllerURL: URL?
+    private var joinedRoomID: String?
+    private var joinedRoomURL: URL?
     private var menuReady = false
     private var phase: ScenePhase = .active
     private var lastPayload = "", qrAddress = "", qrData = ""
+    private var wifiInviteQR = "", wifiInviteSSID = "", wifiInviteAddress = ""
+    private var singleScanURL: URL?
+    private var singleScanQR = ""
+    private var clipTestURL: URL?
+    private var clipTestQR = ""
+    private var clipTestTVActive = false
+    private var clipTestTVPublic = false
+    private var appClipBase: URL? {
+        guard Bundle.main.object(forInfoDictionaryKey: "HPAppClipLive") as? Bool == true,
+              let link = Bundle.main.object(forInfoDictionaryKey: "HPAppClipLink") as? String,
+              let url = URL(string: link) else { return nil }
+        return url
+    }
     private var hapticTasks: [DispatchWorkItem] = []
     private var lastHapticTime: TimeInterval = 0
     private var hapticGeneration = 0
@@ -468,7 +499,15 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     private let bowMotion = CMMotionManager()
     private var bowMotionDelivery = false
     private var bowMotionEpoch = 0
+    private let sportsMotion = CMMotionManager()
+    private var sportsMotionEpoch = 0
+    private var sportsMotionDelivery = false
+    private var sportsMotionSession = 0
+    private var sportsMotionReceived = 0, sportsMotionDelivered = 0
+    private var sportsMotionStale = 0, sportsMotionInvalid = 0
+    private var sportsDiagnosticLast: TimeInterval = 0
     private var hapticsEnabled: Bool { !UserDefaults.standard.bool(forKey: "LocalParty.hapticsDisabled") }
+
 
     override init() {
         let menuConfig = WKWebViewConfiguration()
@@ -479,6 +518,9 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         controllerConfig.mediaTypesRequiringUserActionForPlayback = []
         if let file = Bundle.main.url(forResource: "controller-bridge", withExtension: "js", subdirectory: "Server/public/native-shell"), let source = try? String(contentsOf: file, encoding: .utf8) {
             controllerConfig.userContentController.addUserScript(WKUserScript(source: source, injectionTime: .atDocumentStart, forMainFrameOnly: false))
+        }
+        if let file = Bundle.main.url(forResource: "nearby-rooms", withExtension: "js", subdirectory: "Server/public/native-shell"), let source = try? String(contentsOf: file, encoding: .utf8) {
+            controllerConfig.userContentController.addUserScript(WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
         }
         controller = WKWebView(frame: .zero, configuration: controllerConfig)
         super.init()
@@ -492,6 +534,9 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             view.navigationDelegate = self; view.uiDelegate = self
             view.isOpaque = false; view.backgroundColor = PartyWebStore.pageBackground; view.scrollView.backgroundColor = PartyWebStore.pageBackground
             view.scrollView.contentInsetAdjustmentBehavior = .never
+            view.scrollView.showsVerticalScrollIndicator = false
+            view.scrollView.showsHorizontalScrollIndicator = false
+            view.scrollView.pinchGestureRecognizer?.isEnabled = false
             // Elastic root scrolling moves even CSS-fixed chrome in WKWebView.
             // Keep menus anchored; nested web content still scrolls normally.
             view.scrollView.bounces = false
@@ -519,9 +564,10 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
                       let id = command["id"], id != self.auditCommandID,
                       let script = command["script"] else { return }
                 self.auditCommandID = id
+                if let tab = command["tab"] { self.selectTab(tab) }
                 let view = command["surface"] == "controller" ? self.controller : self.menu
                 view.evaluateJavaScript(script) { result, error in
-                    let output: [String: Any] = ["id": id, "result": result ?? NSNull(), "error": error?.localizedDescription ?? "",
+                    let output: [String: Any] = ["id": id, "result": result ?? NSNull(), "error": error?.localizedDescription ?? "", "scriptCount": self.controller.configuration.userContentController.userScripts.count,
                                                "nativeTabs": self.surfaceController?.tabTransitionDiagnostics() ?? [:]]
                     if let encoded = try? JSONSerialization.data(withJSONObject: output, options: [.fragmentsAllowed]) {
                         try? encoded.write(to: directory.appendingPathComponent("ui-audit-result.json"), options: .atomic)
@@ -542,28 +588,31 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             loadBundledCatalog()
         }
         if !menuStarted { menuStarted = true; reloadMenu() }
-        if model.ready, controllerURL != model.controllerURL {
-            controllerURL = model.controllerURL; controller.load(URLRequest(url: model.controllerURL))
+        if model.ready, controllerURL != (joinedRoomURL ?? model.controllerURL) {
+            controllerURL = joinedRoomURL ?? model.controllerURL; configureControllerBridge(); controller.load(URLRequest(url: controllerURL!))
+        }
+        if model.ready, !tabTransitionPending, let tab = queuedTab {
+            queuedTab = nil
+            selectTab(tab)
         }
         publish()
     }
     func setPhase(_ value: ScenePhase) {
         phase = value
         signalController(showingController && value == .active)
-        if value != .active { cancelHaptics(); bowMotion.stopGyroUpdates() }
+        if value != .active { cancelHaptics(); bowMotion.stopGyroUpdates(); stopSportsMotion(reason: "background") }
         if value == .active {
             surfaceController?.ensureDisplayRegistration()
             refreshSnapshot()
         }
     }
     func showController(_ value: Bool) {
-        guard !value || model?.ready == true else { return }
         loadError = nil
         showingController = value
         selectedTab = value ? "controller" : "games"
-        if !value { bowMotion.stopGyroUpdates() }
-        if value, let model, controllerURL != model.controllerURL {
-            controllerURL = model.controllerURL; controller.load(URLRequest(url: model.controllerURL))
+        if !value { bowMotion.stopGyroUpdates(); stopSportsMotion(reason: "controller-hidden") }
+        if value, let model, controllerURL != (joinedRoomURL ?? model.controllerURL) {
+            controllerURL = joinedRoomURL ?? model.controllerURL; configureControllerBridge(); controller.load(URLRequest(url: controllerURL!))
         }
         signalController(value && phase == .active)
         cancelHaptics()
@@ -573,6 +622,8 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     var lastTransitionTiming: [String: Any] = [:]
     #endif
     private var queuedTab: String?
+    private var tabPreparationID = 0
+    private var tabPreparationDeadline: DispatchWorkItem?
     func finishTabTransition() {
         tabTransitionPending = false
         guard let tab = queuedTab else { return }
@@ -581,12 +632,11 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     }
     func selectTab(_ tab: String) {
         guard ["games", "controller", "host"].contains(tab) else { return }
-        guard tab != "controller" || model?.ready == true else { return }
+        guard tab != "controller" || model?.ready == true else { queuedTab = tab; return }
         // Coalesce rapid taps instead of tearing down a half-visible screen.
         if tabTransitionPending { queuedTab = tab; return }
         queuedTab = nil
         guard tab != selectedTab else { return }
-        if tab == "controller", controller.isLoading { queuedTab = tab; return }
         tabTransitionPending = true
         #if DEBUG
         let began = CACurrentMediaTime()
@@ -596,6 +646,25 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         let prepared = CACurrentMediaTime()
         #endif
         let destination = tab == "controller" ? controller : menu
+        tabPreparationID += 1
+        let preparationID = tabPreparationID
+        // Hidden/off-screen WebKit can suspend rAF or font readiness. Native navigation
+        // must still complete, even while the controller document is loading.
+        let commit: () -> Void = { [weak self] in
+            guard let self, self.tabPreparationID == preparationID, self.tabTransitionPending else { return }
+            self.tabPreparationID += 1
+            self.tabPreparationDeadline?.cancel(); self.tabPreparationDeadline = nil
+            #if DEBUG
+            self.lastTransitionTiming = ["tab": tab, "prepareMs": (prepared - began) * 1000, "readyMs": (CACurrentMediaTime() - began) * 1000]
+            #endif
+            self.showController(tab == "controller")
+            self.selectedTab = tab
+            self.surfaceController?.updateNavigation()
+            if self.surfaceController == nil { self.finishTabTransition() }
+        }
+        let deadline = DispatchWorkItem(block: commit)
+        tabPreparationDeadline = deadline
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.65, execute: deadline)
         // Keep the outgoing snapshot opaque until WebKit has laid out the new tab.
         // Previously native animation raced the asynchronous host DOM update.
         destination.callAsyncJavaScript("""
@@ -603,15 +672,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             if (document.fonts) await document.fonts.ready;
             await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
             return true;
-            """, arguments: ["tab": tab], in: nil, in: .page) { [weak self] _ in
-                guard let self else { return }
-                #if DEBUG
-                self.lastTransitionTiming = ["tab": tab, "prepareMs": (prepared - began) * 1000, "readyMs": (CACurrentMediaTime() - began) * 1000]
-                #endif
-                self.showController(tab == "controller")
-                self.selectedTab = tab
-                self.surfaceController?.updateNavigation()
-            }
+            """, arguments: ["tab": tab], in: nil, in: .page) { _ in commit() }
     }
     private func signalController(_ visible: Bool) {
         let name = visible ? "party-native-resume" : "party-native-hide"
@@ -653,6 +714,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         }
     }
     private func publish() {
+        publishRooms()
         guard menuReady, deliveryFailures <= 5, let model else { return }
         guard !payloadInFlight else { publishAgain = true; return }
         var value: [String: Any] = ["catalog": [], "players": [], "leaderboard": [], "votes": []]
@@ -664,8 +726,13 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         let validCatalog = !liveGames.isEmpty
         let issue = model.ready && !validCatalog ? "Сервер не вернул каталог. Игры из приложения сохранены; запуск временно недоступен." : (lastGoodCatalog.isEmpty ? catalogError : "")
         if qrAddress != model.address { qrAddress = model.address; qrData = makeQR(qrAddress) }
+        if wifiInviteAddress != model.address || !model.networkEnabled {
+            let hadSingleScan = singleScanURL != nil || clipTestTVActive
+            wifiInviteQR = ""; wifiInviteSSID = ""; singleScanURL = nil; singleScanQR = ""; clipTestURL = nil; clipTestQR = ""; clipTestTVActive = false; clipTestTVPublic = false
+            if hadSingleScan { model.command(["type": "join-invitation-clear"], reportFailure: false) }
+        }
         value["native"] = ["ready": model.ready, "working": model.working, "address": model.address,
-                           "externalDisplays": model.externalDisplayCount, "qr": qrData,
+                           "externalDisplays": model.externalDisplayCount, "qr": singleScanQR.isEmpty ? qrData : singleScanQR, "wifiQR": wifiInviteQR, "wifiSSID": wifiInviteSSID, "singleScanAvailable": appClipBase != nil, "singleScanActive": singleScanURL != nil, "clipTestQR": clipTestQR, "clipTestTVActive": clipTestTVActive, "clipTestTVPublic": clipTestTVPublic,
                            "message": model.message ?? "", "connectionStatus": model.connectionStatus ?? "",
                            "backgroundStatus": model.backgroundStatus, "buildLabel": model.buildLabel,
                            "keepAwake": model.keepAwake, "haptics": hapticsEnabled,
@@ -691,6 +758,56 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             }
             if self.publishAgain { self.publishAgain = false; self.publish() }
         }
+    }
+    private func configureControllerBridge() {
+        guard let url = controllerURL, let scheme = url.scheme, let host = url.host else { return }
+        let origin = scheme + "://" + host + (url.port.map { ":\($0)" } ?? "")
+        guard let json = try? JSONSerialization.data(withJSONObject: [origin]),
+              let array = String(data: json, encoding: .utf8),
+              let file = Bundle.main.url(forResource: "controller-bridge", withExtension: "js", subdirectory: "Server/public/native-shell"),
+              let source = try? String(contentsOf: file, encoding: .utf8) else { return }
+        // Materialize values before clearing WebKit's live bridged script array.
+        let scripts = controller.configuration.userContentController.userScripts.map {
+            (source: $0.source, injectionTime: $0.injectionTime, mainFrameOnly: $0.isForMainFrameOnly)
+        }
+        controller.configuration.userContentController.removeAllUserScripts()
+        for script in scripts {
+            if script.source.contains("/* WKUserScript only.") {
+                controller.configuration.userContentController.addUserScript(WKUserScript(
+                    source: "window.__partyControllerOrigin = " + array + "[0];\n" + source,
+                    injectionTime: .atDocumentStart, forMainFrameOnly: false))
+            } else {
+                controller.configuration.userContentController.addUserScript(WKUserScript(
+                    source: script.source, injectionTime: script.injectionTime, forMainFrameOnly: script.mainFrameOnly))
+            }
+        }
+    }
+    private func publishRooms() {
+        guard let model else { return }
+        var rooms = model.nearbyRooms.map { room -> [String: Any] in
+            ["id": room.id, "name": room.name, "game": room.game, "phase": room.phase, "players": room.players]
+        }
+        rooms.insert(["id": "own", "name": "Your room", "game": model.active?.title ?? "",
+                      "phase": model.state?.active?.ui.phase ?? "lobby", "players": model.state?.players.count ?? 0], at: 0)
+        // Selected remote room remains explicitly returnable if its host disappears.
+        controller.callAsyncJavaScript("window.LocalPartyRooms?.update(rooms, selected)",
+            arguments: ["rooms": rooms, "selected": joinedRoomID ?? "own"], in: nil, in: .page, completionHandler: nil)
+    }
+    private func joinRoom(_ id: String) {
+        guard let model else { return }
+        var next: URL?
+        if id == "own" { next = model.controllerURL }
+        else if let room = model.nearbyRooms.first(where: { $0.id == id }), let base = NearbyRooms.roomURL(room.url) {
+            next = base.appendingPathComponent("play")
+        }
+        guard let next else { return } // stale cards cannot navigate to arbitrary URLs
+        guard next != controllerURL else { return }
+        signalController(false); cancelHaptics(); bowMotion.stopGyroUpdates(); stopSportsMotion()
+        joinedRoomID = id == "own" ? nil : id
+        joinedRoomURL = id == "own" ? nil : next
+        controllerURL = next; configureControllerBridge(); loadError = nil
+        controller.load(URLRequest(url: next))
+        publishRooms()
     }
     private func schedulePayloadRetry() {
         deliveryFailures += 1
@@ -734,20 +851,95 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             }
         }
     }
+    private func stopSportsMotion(reason: String = "reset") {
+        if sportsMotionSession > 0 {
+            model?.recordSportsMotionDiagnostic(["event": "native-stop", "reason": reason, "session": sportsMotionSession,
+                "received": sportsMotionReceived, "delivered": sportsMotionDelivered, "stale": sportsMotionStale, "invalid": sportsMotionInvalid])
+        }
+        sportsMotionEpoch += 1
+        sportsMotion.stopDeviceMotionUpdates()
+        sportsMotionDelivery = false
+        sportsMotionSession = 0
+    }
+    private func startSportsMotion(frame: WKFrameInfo, session: Int) {
+        stopSportsMotion()
+        let epoch = sportsMotionEpoch
+        sportsMotionSession = session
+        sportsMotionReceived = 0; sportsMotionDelivered = 0; sportsMotionStale = 0; sportsMotionInvalid = 0
+        model?.recordSportsMotionDiagnostic(["event": "native-start", "session": session, "available": sportsMotion.isDeviceMotionAvailable])
+        guard sportsMotion.isDeviceMotionAvailable else {
+            controller.evaluateJavaScript("window.__partySportsMotion?.({session:\(session),available:false})", in: frame, in: .page) { _ in }
+            return
+        }
+        sportsMotion.deviceMotionUpdateInterval = 1.0 / 30.0
+        // Keep the initial room direction, with CoreMotion correcting accumulated yaw.
+        let reference: CMAttitudeReferenceFrame = CMMotionManager.availableAttitudeReferenceFrames().contains(.xArbitraryCorrectedZVertical) ? .xArbitraryCorrectedZVertical : .xArbitraryZVertical
+        sportsMotion.showsDeviceMovementDisplay = false
+        sportsMotion.startDeviceMotionUpdates(using: reference, to: .main) { [weak self] sample, error in
+            guard let self, self.sportsMotionEpoch == epoch else { return }
+            guard self.phase == .active, self.showingController else { self.stopSportsMotion(reason: "inactive"); return }
+            guard let sample, error == nil else {
+                self.controller.evaluateJavaScript("window.__partySportsMotion?.({session:\(session),available:false})", in: frame, in: .page) { _ in }
+                self.model?.recordSportsMotionDiagnostic(["event": "native-error", "code": (error as NSError?)?.code ?? 0])
+                self.stopSportsMotion(reason: "sensor-error"); return
+            }
+            self.sportsMotionReceived += 1
+            if self.sportsMotionReceived == 1 { self.model?.recordSportsMotionDiagnostic(["event": "native-first-sample", "session": session]) }
+            guard ProcessInfo.processInfo.systemUptime - sample.timestamp <= 0.25 else { self.sportsMotionStale += 1; return }
+            guard !self.sportsMotionDelivery else { return }
+            let a = sample.userAcceleration, r = sample.rotationRate, q = sample.attitude.quaternion
+            let values = [a.x, a.y, a.z, r.x, r.y, r.z, q.x, q.y, q.z, q.w, sample.timestamp]
+            guard values.allSatisfy({ $0.isFinite }) else { self.sportsMotionInvalid += 1; return }
+            // CoreMotion user acceleration is in g and angular values are radians.
+            // The browser adapter consumes m/s², degrees and degrees/second.
+            let degrees = 180.0 / Double.pi
+            let payload: [String: Any] = ["session": session, "sourceTime": sample.timestamp,
+                "acceleration": ["x": a.x * 9.80665, "y": a.y * 9.80665, "z": a.z * 9.80665],
+                "rotation": ["x": r.x * degrees, "y": r.y * degrees, "z": r.z * degrees],
+                "gravity": ["x": sample.gravity.x, "y": sample.gravity.y, "z": sample.gravity.z],
+                "quaternion": ["x": q.x, "y": q.y, "z": q.z, "w": q.w]]
+            guard let data = try? JSONSerialization.data(withJSONObject: payload), let json = String(data: data, encoding: .utf8) else { return }
+            self.sportsMotionDelivery = true
+            self.controller.evaluateJavaScript("window.__partySportsMotion?.(\(json)) === true", in: frame, in: .page) { [weak self] result in
+                guard let self, self.sportsMotionEpoch == epoch else { return }
+                self.sportsMotionDelivery = false
+                switch result {
+                case .success(let accepted):
+                    if accepted as? Bool == true {
+                        self.sportsMotionDelivered += 1
+                        if self.sportsMotionDelivered == 1 { self.model?.recordSportsMotionDiagnostic(["event": "native-first-delivery", "session": session]) }
+                    } else {
+                        self.model?.recordSportsMotionDiagnostic(["event": "native-recipient-missing", "session": session])
+                        self.stopSportsMotion(reason: "recipient-missing")
+                    }
+                case .failure(let error):
+                    self.model?.recordSportsMotionDiagnostic(["event": "native-evaluation-error", "code": (error as NSError).code])
+                    self.stopSportsMotion(reason: "evaluation-error")
+                }
+            }
+        }
+    }
     private func trustedController(_ origin: WKSecurityOrigin) -> Bool {
-        guard let url = model?.controllerURL else { return false }
+        guard let url = controllerURL else { return false }
         return origin.protocol == url.scheme && origin.host == url.host && origin.port == url.port
     }
     func receive(_ message: WKScriptMessage) {
         guard let body = message.body as? [String: Any], let type = body["type"] as? String else { return }
         let shell = message.webView === menu && message.frameInfo.isMainFrame && message.frameInfo.request.url == shellURL
         let player = message.webView === controller && showingController && trustedController(message.frameInfo.securityOrigin)
+        if type == "sports-motion-start", message.webView === controller {
+            let path = message.frameInfo.request.url?.path ?? ""
+            let allowedPath = ["curling", "bowling"].contains { path == "/games/\($0)" || path.hasPrefix("/games/\($0)/") }
+            let reason = !player ? "untrusted-or-hidden" : phase != .active ? "inactive" : !allowedPath ? "wrong-game-frame" : "accepted"
+            model?.recordSportsMotionDiagnostic(["event": "native-request", "reason": reason])
+        }
         guard shell || player else { return }
         // Readiness is passive transport, not an action. Control Centre, startup
         // and AirPlay can leave the phone inactive when this message arrives.
         if shell && (type == "ready" || type == "resync") {
             menuReady = true; refreshSnapshot(); return
         }
+        if shell && type == "ui-assets", let stats = body["stats"] as? [String: Any] { model?.recordUIAssets(stats); return }
         guard phase == .active else { return } // all actions still require foreground
         let gamePath = message.frameInfo.request.url?.path ?? ""
         if player, gamePath == "/games/bow_club" || gamePath.hasPrefix("/games/bow_club/") {
@@ -755,8 +947,23 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             if type == "bow-gyro-stop" { bowMotion.stopGyroUpdates(); return }
             if type == "bow-gyro-start" { startBowMotion(frame: message.frameInfo); return }
         }
+        let sportsFrame = ["curling", "bowling"].contains { gamePath == "/games/\($0)" || gamePath.hasPrefix("/games/\($0)/") }
+        if player, sportsFrame {
+            if type == "sports-motion-diagnostic", let stats = body["stats"] as? [String: Any] {
+                // At most ten lifecycle entries per second; no continuous sample logging.
+                let now = ProcessInfo.processInfo.systemUptime
+                if now - sportsDiagnosticLast >= 0.1 { sportsDiagnosticLast = now; model?.recordSportsMotionDiagnostic(stats) }
+                return
+            }
+            if type == "sports-motion-stop" { stopSportsMotion(reason: "controller-stop"); return }
+            if type == "sports-motion-start", let session = body["session"] as? Int, session > 0 {
+                startSportsMotion(frame: message.frameInfo, session: session); return
+            }
+        }
         if type == "haptic-prepare", phase == .active, hapticsEnabled { uiImpact.prepare(); return }
         if type == "haptic" { playHaptics(body["pattern"]); return }
+        if type == "rooms-ready", message.webView === controller, message.frameInfo.isMainFrame, trustedController(message.frameInfo.securityOrigin) { publishRooms(); return }
+        if type == "join-room", player, message.frameInfo.isMainFrame, let id = body["id"] as? String { joinRoom(id); return }
         if type == "menu", player, message.frameInfo.isMainFrame { selectTab("games"); return }
         if type == "native-tab", message.frameInfo.isMainFrame, let tab = body["tab"] as? String { selectTab(tab); return }
         if type == "personal-language", message.frameInfo.isMainFrame,
@@ -776,13 +983,56 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             // tap here while a snapshot still reported `working` caused a silent lost
             // Start: WebKit showed its pending state, but no launch ever reached Node.
             if let command = body["command"] as? [String: Any], let kind = command["type"] as? String, allowed.contains(kind) { model.command(command) }
+        case "wifi-invite":
+            guard let ssid = body["ssid"] as? String, let password = body["password"] as? String,
+                  let security = body["security"] as? String, model.networkEnabled,
+                  let payload = wifiQRPayload(ssid: ssid, password: password, security: security) else { toast("Check the network name and password."); return }
+            if let base = appClipBase {
+                let invitation = JoinInvitation(version: 1, ssid: ssid, password: security == "nopass" ? "" : password, security: security, room: model.address)
+                guard let link = invitation.url(base: base) else { toast("Check the Wi-Fi details and App Clip configuration."); return }
+                singleScanURL = link; singleScanQR = makeQR(link.absoluteString)
+                clipTestURL = nil; clipTestQR = ""; clipTestTVActive = false; clipTestTVPublic = false
+                wifiInviteQR = ""
+            } else {
+                wifiInviteQR = makeQR(payload)
+                // TestFlight guests open the Clip first, then scan this secondary QR.
+                // It never replaces the working main LAN invitation.
+                clipTestURL = nil; clipTestQR = ""
+                let invitation = JoinInvitation(version: 1, ssid: ssid, password: security == "nopass" ? "" : password, security: security, room: model.address)
+                if let base = URL(string: "https://appclip.apple.com/id?p=" + (Bundle.main.bundleIdentifier ?? "com.localparty.launcher") + ".Join"),
+                   let link = invitation.url(base: base) {
+                    clipTestURL = link; clipTestQR = makeQR(link.absoluteString)
+                }
+            }
+            wifiInviteSSID = ssid; wifiInviteAddress = model.address
+            if let link = singleScanURL { model.command(["type": "join-invitation-set", "room": model.address, "url": link.absoluteString]) }
+            else if clipTestTVActive {
+                if let link = clipTestURL { model.command(["type": "join-invitation-set", "room": model.address, "url": link.absoluteString, "beta": !clipTestTVPublic]) }
+                else { clipTestTVActive = false; clipTestTVPublic = false; model.command(["type": "join-invitation-clear"], reportFailure: false) }
+            }
+        case "wifi-invite-clear":
+            let hadSingleScan = singleScanURL != nil || clipTestTVActive
+            wifiInviteQR = ""; wifiInviteSSID = ""; wifiInviteAddress = ""; singleScanURL = nil; singleScanQR = ""; clipTestURL = nil; clipTestQR = ""; clipTestTVActive = false; clipTestTVPublic = false
+            if hadSingleScan { model.command(["type": "join-invitation-clear"], reportFailure: false) }
+        case "copy-clip-test": if let link = clipTestURL { UIPasteboard.general.string = link.absoluteString; toast("TestFlight App Clip invitation copied") }
+        case "clip-test-tv-show":
+            guard let link = clipTestURL, model.networkEnabled, wifiInviteAddress == model.address else { return }
+            clipTestTVActive = true; clipTestTVPublic = false
+            model.command(["type": "join-invitation-set", "room": model.address, "url": link.absoluteString, "beta": true])
+        case "clip-public-tv-show":
+            guard let link = clipTestURL, model.networkEnabled, wifiInviteAddress == model.address else { return }
+            clipTestTVActive = true; clipTestTVPublic = true
+            model.command(["type": "join-invitation-set", "room": model.address, "url": link.absoluteString, "beta": false])
+        case "clip-test-tv-clear":
+            clipTestTVActive = false; clipTestTVPublic = false
+            model.command(["type": "join-invitation-clear"], reportFailure: false)
         case "network-set": if let enabled = body["enabled"] as? Bool { model.setNetworkEnabled(enabled) }
         case "awake-set": if let enabled = body["enabled"] as? Bool { model.keepAwake = enabled }
         case "haptics-set": if let enabled = body["enabled"] as? Bool { UserDefaults.standard.set(!enabled, forKey: "LocalParty.hapticsDisabled"); if !enabled { cancelHaptics() } }
         case "screen-refresh": surfaceController?.ensureDisplayRegistration(); model.externalDisplayReload += 1
         case "background-request": model.requestBackground()
-        case "copy-invite": if !model.address.isEmpty { UIPasteboard.general.string = model.address; toast("Адрес скопирован") }
-        case "share-invite": if !model.address.isEmpty { share(model.address) }
+        case "copy-invite": if !model.address.isEmpty { UIPasteboard.general.string = singleScanURL?.absoluteString ?? model.address; toast("Адрес скопирован") }
+        case "share-invite": if !model.address.isEmpty { share(singleScanURL?.absoluteString ?? model.address) }
         case "share-diagnostics": share(model.diagnosticsURL)
         default: break
         }
@@ -852,6 +1102,8 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // Disable WKWebView page magnification, not game-owned pointer gestures.
         webView.scrollView.pinchGestureRecognizer?.isEnabled = false
+        webView.scrollView.minimumZoomScale = 1
+        webView.scrollView.maximumZoomScale = 1
         syncPersonalLanguage(webView)
         if webView === menu {
             // Fallback when the first ready message was lost during app startup.
@@ -859,6 +1111,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         }
         else {
             signalController(showingController && phase == .active)
+            publishRooms()
             if !tabTransitionPending, let tab = queuedTab { queuedTab = nil; selectTab(tab) }
         }
     }
@@ -873,4 +1126,20 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         if webView === menu { reloadMenu() }
         else if let url = controllerURL { controller.load(URLRequest(url: url)) }
     }
+}
+
+// Pure encoder: no persistence, diagnostics, network requests or clipboard access.
+func wifiQRPayload(ssid: String, password: String, security: String) -> String? {
+    guard !ssid.isEmpty, ssid.utf8.count <= 32, !ssid.unicodeScalars.contains(where: { CharacterSet.controlCharacters.contains($0) }), ["WPA", "nopass"].contains(security) else { return nil }
+    if security == "WPA" {
+        let hex = password.count == 64 && password.allSatisfy { "0123456789abcdefABCDEF".contains($0) }
+        guard (8...63).contains(password.utf8.count) || hex,
+              !password.unicodeScalars.contains(where: { CharacterSet.controlCharacters.contains($0) }) else { return nil }
+    }
+    func escape(_ text: String) -> String {
+        var result = ""
+        for character in text { if ["\\", ";", ",", ":", "\""].contains(String(character)) { result.append("\\") }; result.append(character) }
+        return result
+    }
+    return "WIFI:T:\(security);S:\(escape(ssid));P:\(escape(security == "nopass" ? "" : password));;"
 }

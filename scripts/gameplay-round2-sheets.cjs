@@ -1,0 +1,7 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');
+const sharp=require(process.env.PARTY_SHARP||'sharp');
+const root=path.resolve(process.argv[2]||'.localparty-build/design-round2/gameplay/normal');
+const report=JSON.parse(fs.readFileSync(path.join(root,'report.json')));
+const state=process.env.QA_SHEET_STATE||'gameplay';
+(async()=>{const rows=report.games.filter(g=>g.captures?.some(f=>f.includes(state+'.png')));for(let start=0;start<rows.length;start+=2){const frames=[];let top=0;for(const row of rows.slice(start,start+2)){const label=Buffer.from(`<svg width="1993" height="44"><rect width="1993" height="44" fill="#302740"/><text x="20" y="30" fill="#fff" font-family="sans-serif" font-size="22">${row.id} — real ${state}; TV1280x720 / phone393x852 / phone320x568</text></svg>`);frames.push({input:label,left:0,top});top+=44;for(const [suffix,left]of[['tv-'+state+'.png',0],['phone-'+state+'.png',1280],['phone-'+state+'-320.png',1673]]){const file=path.join(root,row.id+'-'+suffix);if(fs.existsSync(file))frames.push({input:file,left,top});}top+=852;}const file=path.join(root,'sheet-'+String(start/2+1).padStart(2,'0')+'.png');await sharp({create:{width:1993,height:top,channels:4,background:'#141222'}}).composite(frames).png().toFile(file);console.log(path.basename(file),rows.slice(start,start+2).map(r=>r.id).join(','));}})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -2,6 +2,10 @@
  'use strict';
  const dictionary=root.PARTY_TRANSLATIONS||(root.PARTY_TRANSLATIONS=Object.create(null));
 const pairs=`
+Последняя партия|Last match
+Счёт команды|Team score
+командных очков|team points
+Банк|Pot
 HeyPals · сервер|HeyPals · server
 HeyPals — вечер начинается|HeyPals — your night starts here
 Ждём первых миллионеров…|Waiting for the first millionaires…
@@ -332,7 +336,7 @@ SOLO: стрелки + SPACE(click) + SHIFT(grab)|SOLO: arrows + SPACE (click) +
 Войди через главное лобби|Join through the main lobby
 В комнате уже 16 игроков|There are already 16 players in the room
 Не удалось начать игру:|Could not start the game:
-Мини-режим: вопрос и догадка|Mini mode: ask and guess
+Мини-режим: вопрос и догадка|Ask & guess
 Локация тебе неизвестна|You do not know the location
 Время вышло — голосуем!|Time is up — vote!
 Началось голосование|Voting started
@@ -433,6 +437,7 @@ SOLO: стрелки + SPACE(click) + SHIFT(grab)|SOLO: arrows + SPACE (click) +
 Продолжаем|Resuming
 Готовим игру|Preparing the game
 В компанию|Join the party
+В компании!|Joined the party!
 Состояние игры|Game status
 Ошибка обновления|Update error
 Автоподключение не удалось. Запустите START_WINDOWS.bat / START_MAC.command. Журнал — ~/.localparty-updates.|Automatic connection failed. Run START_WINDOWS.bat / START_MAC.command. Logs: ~/.localparty-updates.
@@ -1023,6 +1028,7 @@ QR-код для входа в игру|Game connection QR code
 Подключено только|Only connected
 Для старта нужно минимум|Minimum players required
 Открыть пульт|Open controller
+Боты доступны до старта матча.|Bots can be changed before the match starts.
 `;
  for(const line of pairs.split('\n')){const at=line.indexOf('|');if(at>0)dictionary[line.slice(0,at)]=line.slice(at+1);}
  if(typeof module!=='undefined'&&module.exports)module.exports=dictionary;

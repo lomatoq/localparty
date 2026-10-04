@@ -1,0 +1,146 @@
+{
+  "singleCombinedScan": true,
+  "targets": 34,
+  "rawFindings": 193,
+  "findingsByRule": [
+    {
+      "rule": "bounce-easing",
+      "severity": "warning",
+      "count": 6
+    },
+    {
+      "rule": "layout-transition",
+      "severity": "warning",
+      "count": 3
+    },
+    {
+      "rule": "codex-grid-background",
+      "severity": "advisory",
+      "count": 4
+    },
+    {
+      "rule": "gradient-text",
+      "severity": "warning",
+      "count": 11
+    },
+    {
+      "rule": "side-tab",
+      "severity": "warning",
+      "count": 27
+    },
+    {
+      "rule": "broken-image",
+      "severity": "warning",
+      "count": 14
+    },
+    {
+      "rule": "overused-font",
+      "severity": "warning",
+      "count": 3
+    },
+    {
+      "rule": "dark-glow",
+      "severity": "warning",
+      "count": 21
+    },
+    {
+      "rule": "repeating-stripes-gradient",
+      "severity": "advisory",
+      "count": 4
+    },
+    {
+      "rule": "low-contrast",
+      "severity": "warning",
+      "count": 6
+    },
+    {
+      "rule": "icon-tile-stack",
+      "severity": "warning",
+      "count": 1
+    },
+    {
+      "rule": "buried-raster",
+      "severity": "warning",
+      "count": 2
+    },
+    {
+      "rule": "undersized-ui-text",
+      "severity": "warning",
+      "count": 17
+    },
+    {
+      "rule": "all-caps-body",
+      "severity": "warning",
+      "count": 30
+    },
+    {
+      "rule": "gpt-thin-border-wide-shadow",
+      "severity": "advisory",
+      "count": 22
+    },
+    {
+      "rule": "kicker-above-heading",
+      "severity": "warning",
+      "count": 4
+    },
+    {
+      "rule": "organic-clip-path",
+      "severity": "warning",
+      "count": 3
+    },
+    {
+      "rule": "marquee",
+      "severity": "warning",
+      "count": 3
+    },
+    {
+      "rule": "radial-halo",
+      "severity": "warning",
+      "count": 3
+    },
+    {
+      "rule": "em-dash-overuse",
+      "severity": "advisory",
+      "count": 1
+    },
+    {
+      "rule": "hero-eyebrow-chip",
+      "severity": "warning",
+      "count": 1
+    },
+    {
+      "rule": "cramped-padding",
+      "severity": "warning",
+      "count": 6
+    },
+    {
+      "rule": "pulsing-dot",
+      "severity": "warning",
+      "count": 1
+    }
+  ],
+  "findingsByFile": {
+    "public/tv-show.css": 5,
+    "public/polish.css": 7,
+    "games/tankarena/public/app.js": 1,
+    "games/party/public/controller.css": 2,
+    "games/party/public/host.css": 1,
+    "games/tankarena/public/style.css": 2,
+    "games/quiz/public/screen.css": 1,
+    "games/tabletop/public/arena.css": 1,
+    "games/arcade_deluxe/public/style.css": 2,
+    "games/naval/public/screen.css": 1,
+    "games/arcade/public/host.html": 2,
+    "public/index.html": 67,
+    "public/tv.html": 37,
+    "public/native-shell/index.html": 64
+  },
+  "assessment": [
+    "This is a static scan, not a computed-style or interaction acceptance report. HTML targets traverse the shared cross-game stylesheet set and repeat inherited findings.",
+    "The requested incumbent game brand includes scene-matched gradients, selective glows and animated game feedback. No brand replacement or blanket detector suppression was performed.",
+    "Static HTML contrast reports combine tokens from distinct game/theme/host surfaces. Final real originals are the evidence for the corrected popup reading surfaces, actions, photos and gameplay overlays. No claim is made that all inherited detector findings are resolved.",
+    "The new sports-motion helper and sports-controls styling were independently scanned by their owner without findings. Existing Arial/bounce warnings in Pocket styling are outside the lower dock correction; new dock typography uses the approved family.",
+    "Full underlying-style refactoring is outside this targeted correction pass; raw findings are retained for later review.",
+    "All14 broken-image findings are dynamic img nodes with no initial src attribute, rather than failed literal file paths. The Arsenal node obtains its photo src from its row data; shared page image nodes are populated from runtime state or decoded profile/QR data. Actual decoded/failure-path captures and browser reports qualify affected paths; untouched hidden states are not claimed visually accepted."
+  ]
+}

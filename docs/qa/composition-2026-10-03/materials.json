@@ -1,0 +1,547 @@
+{
+  "status": "root-authorized implementation direction, not rendered acceptance",
+  "sharedHook": ".tv-info-dock",
+  "gameAttribute": "body[data-tv-game]",
+  "profiles": {
+    "push": {
+      "identity": "Arena rubber",
+      "top": "#30424a",
+      "base": "#1c2b32",
+      "fill": "linear-gradient(165deg,#30424a,#1c2b32)",
+      "rim": "#b0d9ca",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T unified cap + ordered arena rail; P existing movement stats",
+      "motifBrief": "Molded double seam and short arena-ring arc at rim; keep lime action and player rings distinct.",
+      "minimumContrast": {
+        "ink": 9.51,
+        "muted": 6.58
+      }
+    },
+    "shrink": {
+      "identity": "Tide-polished enamel",
+      "top": "#23444c",
+      "base": "#142f38",
+      "fill": "linear-gradient(165deg,#23444c,#142f38)",
+      "rim": "#8fe0dd",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T circular-family cap/rail; P movement stats",
+      "motifBrief": "A receding concentric edge arc, not a decorative timer; neutral white names.",
+      "minimumContrast": {
+        "ink": 9.52,
+        "muted": 6.58
+      }
+    },
+    "knives": {
+      "identity": "Dojo timber",
+      "top": "#493329",
+      "base": "#2f241d",
+      "fill": "linear-gradient(165deg,#493329,#2f241d)",
+      "rim": "#d8b887",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap/ordered rail; P `.knife-count` / existing stat backing",
+      "motifBrief": "Two engraved timber lines and one blade-slot corner; ammo/HP remain explicit, no steel pattern behind numbers.",
+      "minimumContrast": {
+        "ink": 10.66,
+        "muted": 7.37
+      }
+    },
+    "bomb": {
+      "identity": "Hazard casing",
+      "top": "#493127",
+      "base": "#2d211e",
+      "fill": "linear-gradient(165deg,#493127,#2d211e)",
+      "rim": "#e6ba76",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap/ordered rail; P movement/heat stats",
+      "motifBrief": "Bounded amber caution seam only at outer edge; real bomb heat color stays authoritative.",
+      "minimumContrast": {
+        "ink": 10.88,
+        "muted": 7.52
+      }
+    },
+    "western": {
+      "identity": "Sunset leather",
+      "top": "#4a322b",
+      "base": "#2f221e",
+      "fill": "linear-gradient(165deg,#4a322b,#2f221e)",
+      "rim": "#dfb38d",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T centered match cap; P existing Western stats",
+      "motifBrief": "Saddlery stitch across one edge; field DRAW/false-signal retains priority.",
+      "minimumContrast": {
+        "ink": 10.7,
+        "muted": 7.4
+      }
+    },
+    "tanks": {
+      "identity": "Armour instrument",
+      "top": "#35403a",
+      "base": "#202a25",
+      "fill": "linear-gradient(165deg,#35403a,#202a25)",
+      "rim": "#c6d5b5",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T centered match cap including real team score; P controller status card",
+      "motifBrief": "Sparse machined bolt corners and engraved instrument line; no camouflage under team/score text.",
+      "minimumContrast": {
+        "ink": 9.8,
+        "muted": 6.77
+      }
+    },
+    "tankarena": {
+      "identity": "Blue gunmetal",
+      "top": "#31404b",
+      "base": "#1d2c37",
+      "fill": "linear-gradient(165deg,#31404b,#1d2c37)",
+      "rim": "#a4d5e6",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T rail cap + actual ordered Arsenal rail; P `#combatStats`",
+      "motifBrief": "Fine machined vertical seam/vent at perimeter; team color remains marker, not full card wash.",
+      "minimumContrast": {
+        "ink": 9.7,
+        "muted": 6.71
+      }
+    },
+    "chaos": {
+      "identity": "Lab instrument casing",
+      "top": "#2e425a",
+      "base": "#1b2c43",
+      "fill": "linear-gradient(165deg,#2e425a,#1b2c43)",
+      "rim": "#92d7ed",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap + `.mission` task row; P `.roleBadge` / task backing",
+      "motifBrief": "Sparse cyan circuit termination and calibration ticks, never beneath hazards/targets.",
+      "minimumContrast": {
+        "ink": 9.33,
+        "muted": 6.45
+      }
+    },
+    "kart": {
+      "identity": "Asphalt pit board",
+      "top": "#3b3549",
+      "base": "#252332",
+      "fill": "linear-gradient(165deg,#3b3549,#252332)",
+      "rim": "#c5c1dc",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap + real `.side-panel`; P existing drive status/slider outer group",
+      "motifBrief": "Narrow checker edge and machined dividers; speed/lap identity order stays intact.",
+      "minimumContrast": {
+        "ink": 10.64,
+        "muted": 7.36
+      }
+    },
+    "monster": {
+      "identity": "Storybook cloth",
+      "top": "#3f304b",
+      "base": "#292034",
+      "fill": "linear-gradient(165deg,#3f304b,#292034)",
+      "rim": "#c5a6db",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap + existing queue/turn surface; P tool/confirm outer backing",
+      "motifBrief": "Quiet stitched edge; no restored full-screen backing or ornaments on the drawing surface.",
+      "minimumContrast": {
+        "ink": 10.98,
+        "muted": 7.59
+      }
+    },
+    "spy": {
+      "identity": "Ink-indigo dossier",
+      "top": "#26344a",
+      "base": "#182437",
+      "fill": "linear-gradient(165deg,#26344a,#182437)",
+      "rim": "#87b7d6",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap + roster/turn plane; P `#mySecretMini` / existing turn box",
+      "motifBrief": "Tab-shaped edge engraving, not a secret-location label; public/private copy unchanged.",
+      "minimumContrast": {
+        "ink": 11.4,
+        "muted": 7.88
+      }
+    },
+    "millionaire": {
+      "identity": "Brass quiz console",
+      "top": "#3e3445",
+      "base": "#272130",
+      "fill": "linear-gradient(165deg,#3e3445,#272130)",
+      "rim": "#d6c29b",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T content cap + money ladder; P existing question context",
+      "motifBrief": "Fine brass inset edge and progress-rail engraving; do not reskin four answer buttons.",
+      "minimumContrast": {
+        "ink": 10.7,
+        "muted": 7.4
+      }
+    },
+    "sinyakquiz": {
+      "identity": "Royal studio satin",
+      "top": "#3e2d54",
+      "base": "#281c39",
+      "fill": "linear-gradient(165deg,#3e2d54,#281c39)",
+      "rim": "#c6b1ed",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T content cap + roster; P existing question/status backing",
+      "motifBrief": "Soft satin edge catch and two studio corner bars; correct/wrong answer state remains unchanged.",
+      "minimumContrast": {
+        "ink": 11.16,
+        "muted": 7.72
+      }
+    },
+    "warsaw": {
+      "identity": "Violet mineral/plaster",
+      "top": "#3d3549",
+      "base": "#282333",
+      "fill": "linear-gradient(165deg,#3d3549,#282333)",
+      "rim": "#d9be95",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T content cap + roster; P existing compact question/status, outer red backing removed",
+      "motifBrief": "Quiet amber map-line corner; no new outer panel around all four answers.",
+      "minimumContrast": {
+        "ink": 10.57,
+        "muted": 7.31
+      }
+    },
+    "crocodile": {
+      "identity": "Theatre green lacquer",
+      "top": "#263d36",
+      "base": "#172d25",
+      "fill": "linear-gradient(165deg,#263d36,#172d25)",
+      "rim": "#a9cfb2",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T content cap + actual roster; P existing secret/role backing",
+      "motifBrief": "Tiny embossed speech/star edge; public actor scene never exposes secret word.",
+      "minimumContrast": {
+        "ink": 10.57,
+        "muted": 7.31
+      }
+    },
+    "jenga": {
+      "identity": "Warm timber",
+      "top": "#49392b",
+      "base": "#30251e",
+      "fill": "linear-gradient(165deg,#49392b,#30251e)",
+      "rim": "#dcb889",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T rail cap + existing borderless warm fading information rail; P selection outer backing",
+      "motifBrief": "Grain in existing paint, one warm divider; no hard outer rail card or dark texture under Stability.",
+      "minimumContrast": {
+        "ink": 10.02,
+        "muted": 6.93
+      }
+    },
+    "crane": {
+      "identity": "Dusk-blue worksite enamel",
+      "top": "#34434e",
+      "base": "#202e3a",
+      "fill": "linear-gradient(165deg,#34434e,#202e3a)",
+      "rim": "#e0b76e",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T rail cap + actual task/crew rail; P `.phone-status` / `.phone-meters`",
+      "motifBrief": "Amber survey seam and two small rivet corners; grounded crane art not decorated.",
+      "minimumContrast": {
+        "ink": 9.26,
+        "muted": 6.4
+      }
+    },
+    "naval": {
+      "identity": "Navy bridge enamel",
+      "top": "#24495a",
+      "base": "#153243",
+      "fill": "linear-gradient(165deg,#24495a,#153243)",
+      "rim": "#9dd7e5",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap + `.naval-console`, actual `.miniOcean` water; P existing targeting readout",
+      "motifBrief": "Restrained radar edge rings/brush seam; hit orange and miss white preserve distinct meaning.",
+      "minimumContrast": {
+        "ink": 8.76,
+        "muted": 6.06
+      }
+    },
+    "drawguess": {
+      "identity": "Paper-lavender artist desk",
+      "top": "#3b354b",
+      "base": "#292439",
+      "fill": "linear-gradient(165deg,#3b354b,#292439)",
+      "rim": "#c3bddc",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T content cap + existing public sidebar; P drawing-tools outer backing",
+      "motifBrief": "Pencil hatch at margin; preserve actual incumbent black dotted canvas, not a white substitute.",
+      "minimumContrast": {
+        "ink": 10.61,
+        "muted": 7.34
+      }
+    },
+    "western_duel": {
+      "identity": "Saloon ledger leather",
+      "top": "#48342b",
+      "base": "#2f251f",
+      "fill": "linear-gradient(165deg,#48342b,#2f251f)",
+      "rim": "#dab18b",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T match/rail cap + actual tournament wing; P existing next-pair backing",
+      "motifBrief": "One cream saddle stitch and brass divider; no second heavy queue card.",
+      "minimumContrast": {
+        "ink": 10.58,
+        "muted": 7.32
+      }
+    },
+    "taprace": {
+      "identity": "Violet timing enamel",
+      "top": "#3c354f",
+      "base": "#282139",
+      "fill": "linear-gradient(165deg,#3c354f,#282139)",
+      "rim": "#c4b4e4",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T attached cap + compact timing fascia; P `#arcadeStats`",
+      "motifBrief": "Checker lip and sparse route ticks; remove unrelated floating slabs from field.",
+      "minimumContrast": {
+        "ink": 10.51,
+        "muted": 7.27
+      }
+    },
+    "punchmeter": {
+      "identity": "Smoked plum vinyl",
+      "top": "#4a2d3c",
+      "base": "#30202c",
+      "fill": "linear-gradient(165deg,#4a2d3c,#30202c)",
+      "rim": "#dc9daa",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T compact match placard + result plane; P existing result/sense backing",
+      "motifBrief": "Single outer stitch matching bag/leather; bag swing and input feedback remain dominant.",
+      "minimumContrast": {
+        "ink": 11.01,
+        "muted": 7.61
+      }
+    },
+    "flappy": {
+      "identity": "Frosted flight desk",
+      "top": "#2c4258",
+      "base": "#1d2f42",
+      "fill": "linear-gradient(165deg,#2c4258,#1d2f42)",
+      "rim": "#a4dce7",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T attached cap + score panel; P `#arcadeStats`",
+      "motifBrief": "Pipe-rim/feather silhouette at edge only; no clouds beneath live text.",
+      "minimumContrast": {
+        "ink": 9.4,
+        "muted": 6.5
+      }
+    },
+    "hungry": {
+      "identity": "Snack-bar docket",
+      "top": "#443442",
+      "base": "#2c2230",
+      "fill": "linear-gradient(165deg,#443442,#2c2230)",
+      "rim": "#d8b5c3",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T attached cap + score panel; P `#arcadeStats`",
+      "motifBrief": "Embossed cutlery line at perimeter; no added food obstacles or grid pattern behind names.",
+      "minimumContrast": {
+        "ink": 10.5,
+        "muted": 7.26
+      }
+    },
+    "snakelines": {
+      "identity": "Circuit enamel",
+      "top": "#254b47",
+      "base": "#163731",
+      "fill": "linear-gradient(165deg,#254b47,#163731)",
+      "rim": "#95e2d5",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T attached cap + score panel; P `#arcadeStats`",
+      "motifBrief": "Two circuit corners and terminal ticks; trail/player colors retain contrast.",
+      "minimumContrast": {
+        "ink": 8.76,
+        "muted": 6.06
+      }
+    },
+    "carryball": {
+      "identity": "Graphite stadium board",
+      "top": "#3b3e48",
+      "base": "#252a33",
+      "fill": "linear-gradient(165deg,#3b3e48,#252a33)",
+      "rim": "#c7ddd0",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap with real team score + score panel; P team/stats backing",
+      "motifBrief": "Chalk/field-line edge, no new field boundary; team scores belong together.",
+      "minimumContrast": {
+        "ink": 9.68,
+        "muted": 6.7
+      }
+    },
+    "marble_bloom": {
+      "identity": "Botanical glaze/ceramic",
+      "top": "#2a4c4d",
+      "base": "#1a3439",
+      "fill": "linear-gradient(165deg,#2a4c4d,#1a3439)",
+      "rim": "#dbd5ad",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T cap + centered crew dock; P ammo/aim station outer backing",
+      "motifBrief": "Etched concentric edge rings and warm ceramic rim; ammo patterns/crosshair remain unobscured.",
+      "minimumContrast": {
+        "ink": 8.51,
+        "muted": 5.89
+      }
+    },
+    "pocket_siege": {
+      "identity": "Charcoal field instrument",
+      "top": "#383748",
+      "base": "#252633",
+      "fill": "linear-gradient(165deg,#383748,#252633)",
+      "rim": "#c4bfd8",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T compact cap + existing weapon/crew surfaces; P range/module outer panels",
+      "motifBrief": "Sparse corner ticks/brushed seam; remove muddy green backing while keeping lime active readouts and private deck.",
+      "minimumContrast": {
+        "ink": 10.54,
+        "muted": 7.29
+      }
+    },
+    "bow_club": {
+      "identity": "Archery timber/range enamel",
+      "top": "#47392d",
+      "base": "#2d2922",
+      "fill": "linear-gradient(165deg,#47392d,#2d2922)",
+      "rim": "#dfc79a",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T compact local heading + actual score rail; P `.bow-readout` / tracking plane",
+      "motifBrief": "Target-ring edge arc and fletching notch; four AR markers and canvas remain exact.",
+      "minimumContrast": {
+        "ink": 10.08,
+        "muted": 6.97
+      }
+    },
+    "poker": {
+      "identity": "Emerald velvet/felt",
+      "top": "#235442",
+      "base": "#14382d",
+      "fill": "linear-gradient(165deg,#235442,#14382d)",
+      "rim": "#dcc99e",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T compact cap + existing actual felt/attached seats; P existing pot/turn readout",
+      "motifBrief": "Fine weave inside felt, leather/brass table lip retained; no paint on fold/call/raise buttons.",
+      "minimumContrast": {
+        "ink": 7.88,
+        "muted": 5.45
+      }
+    },
+    "airhockey": {
+      "identity": "Cool rink enamel",
+      "top": "#294957",
+      "base": "#19323e",
+      "fill": "linear-gradient(165deg,#294957,#19323e)",
+      "rim": "#a6e5ee",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T compact cap + rink/last-hitter plane; P existing score/readout",
+      "motifBrief": "Perforated side lip and cool sheen outside puck path; no changed mallet/puck material.",
+      "minimumContrast": {
+        "ink": 8.72,
+        "muted": 6.03
+      }
+    },
+    "mines": {
+      "identity": "Graphite survey plates",
+      "top": "#39454a",
+      "base": "#253137",
+      "fill": "linear-gradient(165deg,#39454a,#253137)",
+      "rim": "#c3d9cb",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T board/rail cap + actual crew plane; P existing task readout",
+      "motifBrief": "Survey bracket corner; covered plate/open mineral well remain distinct, no invented prospector mechanic.",
+      "minimumContrast": {
+        "ink": 8.97,
+        "muted": 6.21
+      }
+    },
+    "curling": {
+      "identity": "Frosted rink equipment",
+      "top": "#214957",
+      "base": "#163642",
+      "fill": "linear-gradient(165deg,#214957,#163642)",
+      "rim": "#a2e0e7",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T local unified masthead + sliding score drawer; P accepted launch station outer panel",
+      "motifBrief": "Frost seam and partial house-ring edge, one existing stone cutout retained; gesture captions stay clear.",
+      "minimumContrast": {
+        "ink": 8.84,
+        "muted": 6.12
+      }
+    },
+    "bowling": {
+      "identity": "Walnut lane equipment",
+      "top": "#483b33",
+      "base": "#2f2a29",
+      "fill": "linear-gradient(165deg,#483b33,#2f2a29)",
+      "rim": "#e2c58f",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T local unified masthead + sliding score drawer; P accepted launch station outer panel",
+      "motifBrief": "Fine lane-grain wash and short brass lane ticks; no pin art behind score or power.",
+      "minimumContrast": {
+        "ink": 9.78,
+        "muted": 6.76
+      }
+    },
+    "swarm_gate": {
+      "identity": "Plum stone/guard equipment",
+      "top": "#3e3b4b",
+      "base": "#292736",
+      "fill": "linear-gradient(165deg,#3e3b4b,#292736)",
+      "rim": "#dbca9f",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T unified local masthead/gate readout + score drawer; P existing status/task backing",
+      "motifBrief": "Quiet shield/brass seam at edge; new courtyard, connected wall and gate use same flat authored palette, not cyan brick floor.",
+      "minimumContrast": {
+        "ink": 9.87,
+        "muted": 6.82
+      }
+    },
+    "peek_shoot": {
+      "identity": "Meadow gallery timber",
+      "top": "#4b3a30",
+      "base": "#302921",
+      "fill": "linear-gradient(165deg,#4b3a30,#302921)",
+      "rim": "#dfc18f",
+      "ink": "#f6f2ff",
+      "muted": "#d1cadb",
+      "surfaces": "T local unified masthead + score drawer; P existing status/task backing",
+      "motifBrief": "Two horizontal crate-grain lines and tiny meadow leaf at outside edge; white-flag guide stays whole.",
+      "minimumContrast": {
+        "ink": 9.79,
+        "muted": 6.77
+      }
+    }
+  }
+}

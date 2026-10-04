@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0B0D12" />
   <title>Kart Controller</title>
   <link rel="stylesheet" href="/static/styles.css" />
@@ -32,32 +32,33 @@
         <span id="colorDot" class="color-dot"></span>
         <strong id="driverName">DRIVER</strong>
       </div>
-      <div class="phone-stat"><span>МЕСТО</span><strong id="posText">—</strong></div>
-      <div class="phone-stat"><span>КРУГ</span><strong id="lapText">0/10</strong></div>
-      <div class="phone-stat"><span>ВРЕМЯ</span><strong data-party-timer id="timeText">00:00</strong></div>
+      <div class="phone-stat"><span class="hp-stat-label">МЕСТО</span><strong id="posText">—</strong></div>
+      <div class="phone-stat"><span class="hp-stat-label">КРУГ</span><strong id="lapText">0/10</strong></div>
+      <div class="phone-stat"><span class="hp-stat-label">ВРЕМЯ</span><strong data-party-timer id="timeText">00:00</strong></div>
     </header>
 
-    <div class="status-strip" id="statusStrip">ЖДЁМ СТАРТА</div>
+    <div class="status-strip" id="statusStrip" data-i18n-ui>ЖДЁМ СТАРТА</div>
 
+    <div class="phone-footer">
+      <div><span class="muted">ЛУЧШИЙ</span> <strong id="bestText">—</strong></div>
+      <div><span class="muted">СКОРОСТЬ</span> <strong id="speedText">0</strong></div>
+      <button id="swapHandBtn" class="swap-btn" aria-label="Сменить руки" title="Сменить руки"><span aria-hidden="true">⇄</span></button>
+    </div>
     <section id="controlsArea" class="controls-area right-handed">
       <div class="steering-zone">
         <div class="control-label">ПОВОРОТ</div>
-        <div class="slider-card"><div id="wheelPad" class="steer-buttons" role="group" aria-label="Steering"><button id="steerLeft" type="button" aria-label="Hold to steer left">← LEFT</button><button id="steerRight" type="button" aria-label="Hold to steer right">RIGHT →</button></div><b id="steerValue" aria-live="off">STRAIGHT</b><p>Hold to turn · release to straighten</p></div>
+        <div class="slider-card"><div id="wheelPad" class="steer-buttons" role="group" aria-label="Steering"><button id="steerLeft" type="button" aria-label="Hold to steer left">← LEFT</button><button id="steerRight" type="button" aria-label="Hold to steer right">RIGHT →</button></div><b id="steerValue" data-i18n-ui aria-live="off">STRAIGHT</b><p data-i18n-ui>Hold to turn · release to straighten</p></div>
       </div>
       <div class="gas-zone">
         <div class="control-label">ГАЗ</div>
         <button id="gasBtn" class="gas-btn" aria-label="Gas pedal">
-          <span class="gas-arrow">▲</span>
+          <span class="gas-arrow hp-button-icon" data-ui-icon="rocket" aria-hidden="true"></span>
           <span>ГАЗ</span>
         </button>
       </div>
     </section>
 
-    <footer class="phone-footer">
-      <div><span class="muted">ЛУЧШИЙ</span> <strong id="bestText">—</strong></div>
-      <div><span class="muted">СКОРОСТЬ</span> <strong id="speedText">0</strong></div>
-      <button id="swapHandBtn" class="swap-btn" aria-label="Сменить руки" title="Сменить руки"><span aria-hidden="true">⇄</span></button>
-    </footer>
+
   </div>
   <script src="/static/controller.js"></script>
 </body>

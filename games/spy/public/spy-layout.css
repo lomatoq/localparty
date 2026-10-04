@@ -1,0 +1,209 @@
+/* Spy separates the public conversation, the private role and the decisive guess.
+   The controller uses the iframe's available height, already clear of the shell dock. */
+html.hp-ui.party-managed.party-player[data-party-game=spy] .phone-shell{height:100dvh!important;min-height:0!important;width:100%;padding:12px 16px!important;overflow:hidden}
+html.hp-ui.party-managed.party-player[data-party-game=spy] :is(#revealView,#playView,#voteView,#resultView){height:100%;min-height:0!important;padding:0!important;gap:12px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .phone-head{flex:none;min-height:30px;justify-content:center;gap:8px;margin:0}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .round-chip{display:inline-flex;gap:6px;align-items:baseline;font:500 14px/1.2 var(--hp-font-body);padding:7px 12px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .round-chip b{font:italic 900 16px/1 var(--hp-font-action)}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #duelTag{font:italic 900 13px/1.2 var(--hp-font-action);color:var(--hp-accent);padding:7px 12px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .play-stack{display:flex;flex:1;min-height:0;flex-direction:column;justify-content:center;gap:16px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnBox{flex:none;margin:0;padding:20px;border-radius:24px;text-align:center;box-shadow:none!important;border-color:#d6bdff2b!important;background-color:#211b2c!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnBox.me{outline-color:#cfff8550}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnKicker{font:500 11px/1.3 var(--hp-font-body);letter-spacing:.12em;color:#b9b1c9;text-transform:uppercase}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle{display:flex;flex-direction:column;gap:4px;margin:8px 0 12px!important;line-height:1.15!important;font-size:24px!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle .turn-action{font:italic 900 24px/1.05 var(--hp-font-action);text-transform:uppercase;color:#f6f1ff}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle .turn-name{font:500 21px/1.2 var(--hp-font-body)!important;letter-spacing:0!important;text-transform:none!important;color:#d3c1ee;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnSub{font:italic 400 15px/1.4 var(--hp-font-copy)!important;max-width:31ch;margin:0 auto!important;color:#d2c7e4!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini{flex:none;margin:0;padding:14px 18px;border-radius:22px;text-align:center;background-color:#1e1929!important;color:#b9b1c9}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-mini-heading{display:flex;justify-content:center;align-items:center;gap:8px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-mini-icon{font-size:20px;flex:none;line-height:1}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini .secret-mini-title{font:italic 900 20px/1.2 var(--hp-font-action)!important;margin:0;letter-spacing:-.025em;text-transform:uppercase;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini .secret-mini-detail{font:italic 400 14px/1.4 var(--hp-font-copy)!important;margin:5px 0 0!important;color:#b9b1c9!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini.is-spy{outline-color:#f7a5db38}
+html.hp-ui.party-managed.party-player[data-party-game=spy] :is(#nextTurnPhone,#spyGuessBtn,#readyBtn,#confirmGuess){flex:none;width:100%;height:auto;min-height:60px!important;margin:0!important;padding:13px 12px!important;font:italic 900 20px/1.2 var(--hp-font-action)!important;border-radius:20px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #secretCard{flex:1;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;border-radius:28px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] :is(.secret-cover,.secret-content){padding:22px!important;gap:8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-cover b{font:italic 900 22px/1.15 var(--hp-font-action)!important;margin:8px 0!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-cover span{font:italic 400 14px/1.4 var(--hp-font-copy)!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-title{font:italic 900 28px/1.1 var(--hp-font-action)!important;margin:8px 0!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-role{font:500 16px/1.3 var(--hp-font-body);padding:8px 12px;border-radius:16px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-sub{font:italic 400 14px/1.4 var(--hp-font-copy)!important;margin-top:4px!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #voteView>h1{font:italic 900 28px/1.15 var(--hp-font-action)!important;text-align:center;margin:8px 0 0!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #voteView>p{text-align:center;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #voteList{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:none;gap:8px;margin:4px 0 0;padding:0 0 4px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #voteList::-webkit-scrollbar{display:none}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .vote-option{display:grid;grid-template-columns:30px minmax(0,1fr) 20px;gap:12px;min-height:56px!important;padding:10px 14px!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .vote-option .player-name{font:500 17px/1.3 var(--hp-font-body)!important;text-transform:none!important;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #guessSheet{padding:12px;align-items:center;background:#090713bd;backdrop-filter:blur(8px)}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .sheet-card{max-height:100%;overflow:auto;padding:20px;border-radius:24px;background:#282034;box-shadow:0 16px 48px #0005;animation:spy-sheet-in 220ms ease-out both}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .sheet-head{position:relative;min-height:44px;padding-inline:36px;justify-content:center;text-align:center}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #guessTitle{font:italic 900 22px/1.15 var(--hp-font-action)!important;margin:0}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #closeGuess{position:absolute;right:-8px;top:0;width:44px;min-height:44px;font-size:28px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .sheet-card>p{text-align:center;margin:8px 0 16px;font:italic 400 14px/1.4 var(--hp-font-copy)!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] .guess-label{display:block;font:500 13px/1.3 var(--hp-font-body);color:var(--hp-muted);margin-bottom:6px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #locationGuess{min-height:52px;margin:0 0 16px;border-radius:16px;font:500 16px/1.3 var(--hp-font-body)!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #guessSheet.closing{animation:spy-sheet-fade 220ms ease-in both}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #guessSheet.closing .sheet-card{animation:spy-sheet-out 220ms ease-in both}
+@keyframes spy-sheet-in{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes spy-sheet-out{to{opacity:0;transform:translateY(10px) scale(.94)}}
+@keyframes spy-sheet-fade{to{opacity:0}}
+@media(max-height:510px){
+ html.hp-ui.party-managed.party-player[data-party-game=spy] .play-stack{gap:8px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnBox{padding:12px 16px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle{gap:2px;margin:4px 0 8px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle .turn-action{font-size:22px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle .turn-name{font-size:19px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnSub{font-size:14px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini{padding:10px 14px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini .secret-mini-title{font-size:18px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] :is(#nextTurnPhone,#spyGuessBtn,#readyBtn,#confirmGuess){min-height:52px!important;font-size:18px!important;padding:10px 12px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] :is(.secret-cover,.secret-content){padding:16px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-cover b{font-size:20px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] .secret-title{font-size:24px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] :is(.finger,.secret-icon){font-size:36px!important;margin:0!important}
+}
+/* A small native controller has only358px below its shell chrome. Asking as
+   the spy needs both actions; compact spacing keeps them inside that field.
+   Longer names/translated copy can scroll without covering the round chips. */
+@media(max-height:390px){
+ html.hp-ui.party-managed.party-player[data-party-game=spy] .phone-shell{padding-block:8px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #playView{gap:6px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #playView .phone-head{min-height:28px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #playView .play-stack{justify-content:safe center;gap:6px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;padding-block:2px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #playView .play-stack::-webkit-scrollbar{display:none}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnBox{padding:8px 14px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle{margin:3px 0 5px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle .turn-action{font-size:20px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle .turn-name{font-size:18px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #turnSub{line-height:1.25!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini{padding:8px 14px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #mySecretMini .secret-mini-detail{font-size:12px!important;line-height:1.3!important;margin-top:3px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] :is(#nextTurnPhone,#spyGuessBtn){min-height:44px!important;padding:8px 12px!important}
+}
+@media(prefers-reduced-motion:reduce){.finger{animation:none!important}.sheet-card,#guessSheet.closing{animation:none!important}}
+
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .stage-card{width:min(calc(980 * var(--spy-tv-unit)),92vw);padding:calc(24 * var(--spy-tv-unit)) calc(32 * var(--spy-tv-unit))!important;border-radius:calc(24 * var(--spy-tv-unit))}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .stage-card h1{font-size:calc(48 * var(--spy-tv-unit))!important;line-height:1.1;margin:calc(16 * var(--spy-tv-unit)) 0}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .stage-card>p{font-size:calc(18 * var(--spy-tv-unit))}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .stage-card>.eyebrow{font-size:calc(12 * var(--spy-tv-unit))}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] #readyGrid{grid-template-columns:repeat(var(--spy-ready-count,4),minmax(0,1fr));width:min(100%,calc(230 * var(--spy-ready-count,4) * var(--spy-tv-unit)));margin:calc(24 * var(--spy-tv-unit)) auto}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .ready-item{padding:calc(16 * var(--spy-tv-unit)) calc(10 * var(--spy-tv-unit));gap:calc(8 * var(--spy-tv-unit));border-radius:calc(18 * var(--spy-tv-unit))}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .ready-item span{font-size:calc(30 * var(--spy-tv-unit))}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .ready-item .player-name{font-size:calc(17 * var(--spy-tv-unit))!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .ready-item small{font-size:calc(12 * var(--spy-tv-unit))}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .stage-footer{padding-top:calc(22 * var(--spy-tv-unit));font-size:calc(16 * var(--spy-tv-unit));justify-content:center}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .vote-orb{width:calc(160 * var(--spy-tv-unit));height:calc(160 * var(--spy-tv-unit));margin:calc(22 * var(--spy-tv-unit)) auto}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .vote-orb b{font:italic 900 calc(60 * var(--spy-tv-unit))/1 var(--hp-font-action)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] .vote-orb span{font-size:calc(14 * var(--spy-tv-unit))}
+
+/* Dialogue uses the scene itself; only the participant rows carry a surface. */
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=spy]{--spy-tv-unit:clamp(1px,.078125vw,1.5px)}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] body main.host-shell{max-width:none!important;padding:calc(var(--party-stage-inset-top,0px) + 16 * var(--spy-tv-unit)) calc(24 * var(--spy-tv-unit)) calc(24 * var(--spy-tv-unit))!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView{display:grid;grid-template-columns:calc(228 * var(--spy-tv-unit,1px)) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:calc(32 * var(--spy-tv-unit,1px))!important;align-items:center}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView.hidden{display:none!important}
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=spy] .timer-card{display:none!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .roster-card{grid-column:1;grid-row:1;align-self:center;display:flex;flex-direction:column;min-height:0!important;height:auto!important;max-height:100%;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;gap:calc(12 * var(--spy-tv-unit,1px))}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-card .section-head{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:8px}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView #playCount{margin:0;padding:0!important;min-height:0!important;background:none!important;font:italic 900 calc(18 * var(--spy-tv-unit,1px))/1.2 var(--hp-font-action)!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-card .pill{font:500 calc(13 * var(--spy-tv-unit,1px))/1.2 var(--hp-font-body);padding:6px 10px;white-space:nowrap}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView #playRoster{display:flex;flex-direction:column;gap:calc(8 * var(--spy-tv-unit,1px));margin:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:none;min-height:0;padding:2px}
+#playRoster::-webkit-scrollbar{display:none}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-item{display:grid;grid-template-columns:calc(38 * var(--spy-tv-unit,1px)) minmax(0,1fr);gap:calc(10 * var(--spy-tv-unit,1px));align-items:center;min-height:calc(56 * var(--spy-tv-unit,1px));padding:calc(10 * var(--spy-tv-unit,1px));border-radius:calc(16 * var(--spy-tv-unit,1px));border:1px solid #d6bdff24;background:#291f364d;flex:none}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-item.asker{border-color:#cfff8575;background:#38423070}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-item.target{border-color:#c7a7ff70;background:#382c4970}
+.spy-roster-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-item .player-name{font:500 calc(16 * var(--spy-tv-unit,1px))/1.15 var(--hp-font-body)!important;white-space:normal;overflow-wrap:anywhere;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-item small{font:italic 400 calc(12 * var(--spy-tv-unit,1px))/1.2 var(--hp-font-copy)!important;color:#d6c5eb}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView #playRoster[data-density=dense] .roster-item{min-height:calc(36 * var(--spy-tv-unit,1px));padding:calc(6 * var(--spy-tv-unit,1px));grid-template-columns:calc(26 * var(--spy-tv-unit,1px)) minmax(0,1fr)}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playRoster[data-density=dense] .roster-item:not(.asker):not(.target) small{display:none}
+.spy-roster-avatar{display:grid;place-items:center;width:100%;aspect-ratio:1}
+:is(.spy-identity-avatar,.spy-roster-avatar) :is(canvas,img){display:block;width:100%;height:100%;object-fit:contain}
+:is(.spy-identity-avatar,.spy-roster-avatar) .spy-photo{object-fit:cover;border-radius:50%}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .turn-card{grid-column:2;grid-row:1;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:0!important;height:auto!important;padding:0 calc(24 * var(--spy-tv-unit,1px))!important;gap:calc(36 * var(--spy-tv-unit,1px))!important;border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .duel{display:grid;grid-template-columns:minmax(0,1fr) calc(64 * var(--spy-tv-unit,1px)) minmax(0,1fr);gap:calc(24 * var(--spy-tv-unit,1px));align-items:center;width:100%;max-width:calc(820 * var(--spy-tv-unit,1px));margin:0}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .person{border:0!important;background:transparent!important;box-shadow:none!important;min-height:0!important;padding:0!important;display:flex;flex-direction:column;align-items:center;gap:calc(16 * var(--spy-tv-unit,1px));text-align:center;min-width:0}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .spy-identity-avatar{display:block;width:calc(160 * var(--spy-tv-unit,1px));height:calc(160 * var(--spy-tv-unit,1px))}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person-copy{display:flex;flex-direction:column;align-items:center;gap:calc(8 * var(--spy-tv-unit,1px));min-height:calc(98 * var(--spy-tv-unit,1px));width:100%;justify-content:flex-start}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person small{font:italic 900 calc(22 * var(--spy-tv-unit,1px))/1.2 var(--hp-font-action)!important;text-transform:uppercase;letter-spacing:0!important;color:#cfff85;margin:0}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person.answering small{color:#dac2ff}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .player-name{font:500 calc(28 * var(--spy-tv-unit,1px))/1.15 var(--hp-font-body)!important;white-space:normal;overflow-wrap:anywhere;text-overflow:clip;max-width:100%;margin:0;letter-spacing:0!important;text-transform:none!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .arrow{display:grid;place-items:center;align-self:center;padding-bottom:calc(70 * var(--spy-tv-unit,1px))}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .arrow svg{width:calc(44 * var(--spy-tv-unit,1px));height:calc(44 * var(--spy-tv-unit,1px));filter:brightness(0) saturate(100%) invert(91%) sepia(28%) saturate(546%) hue-rotate(35deg)}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView #questionTip{max-width:46ch;margin:0!important;font:italic 400 calc(20 * var(--spy-tv-unit,1px))/1.4 var(--hp-font-copy)!important;color:#e4d6f3;text-align:center;text-wrap:balance}
+/* The phone repeats the same relationship before private information and actions. */
+html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #playView .play-stack{gap:16px!important;padding:0!important;justify-content:center}
+html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #turnBox{padding:0!important;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #turnTitle{display:block;margin:0 0 12px!important;font:italic 900 24px/1.1 var(--hp-font-action)!important;text-transform:uppercase!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnTitle .turn-name{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.spy-phone-exchange{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr);gap:12px;align-items:center;margin-bottom:12px}
+.spy-phone-person{display:flex;flex-direction:column;align-items:center;min-width:0;gap:4px;text-align:center}
+.spy-phone-person .spy-identity-avatar{width:60px;height:60px;display:block}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #phoneExchange .player-name{font:500 15px/1.15 var(--hp-font-body)!important;overflow-wrap:anywhere;white-space:normal;overflow:visible;text-overflow:clip;min-height:35px;display:grid;place-items:center;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #phoneExchange small{font:italic 400 13px/1.2 var(--hp-font-copy)!important;color:#d6c5eb}
+.spy-exchange-arrow{width:24px;height:24px;filter:brightness(0) invert(1);align-self:center;margin-top:-32px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] #turnBox[data-turn=asking] .spy-phone-person:first-child small,html.hp-ui.party-managed.party-player[data-party-game=spy] #turnBox[data-turn=answering] .spy-phone-person:last-child small{color:#cfff85}
+html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #mySecretMini{margin:0!important;padding:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell :is(#nextTurnPhone,#spyGuessBtn){min-height:60px!important;font-size:20px!important;width:100%;display:flex;justify-content:center;align-items:center;gap:10px;touch-action:manipulation}
+html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell :is(#nextTurnPhone,#spyGuessBtn).hidden{display:none!important}
+.spy-action-icon,.secret-mini-icon{width:20px;height:20px;object-fit:contain;filter:brightness(0) invert(1)}
+@media(max-height:510px){
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #playView .play-stack{gap:10px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #turnTitle{font-size:22px!important;margin-bottom:8px!important}
+ .spy-phone-person .spy-identity-avatar{width:44px;height:44px}
+ .spy-phone-exchange{margin-bottom:8px;gap:8px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] #phoneExchange .player-name{font-size:14px!important;min-height:32px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #mySecretMini{padding:10px 14px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell :is(#nextTurnPhone,#spyGuessBtn){min-height:52px!important;font-size:18px!important}
+}
+@media(max-height:390px){
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #playView .play-stack{gap:6px!important;justify-content:safe center}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #turnTitle{font-size:20px!important;margin-bottom:4px!important}
+ .spy-phone-person .spy-identity-avatar{width:32px;height:32px}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell #turnSub{font-size:12px!important;line-height:1.25!important}
+ html.hp-ui.party-managed.party-player[data-party-game=spy] body main.phone-shell :is(#nextTurnPhone,#spyGuessBtn){min-height:44px!important}
+}
+
+#voteList .spy-identity-avatar{width:40px;height:40px;display:grid;place-items:center;flex:none}
+#readyGrid .spy-identity-avatar{width:64px;height:64px;display:grid;place-items:center;margin-inline:auto}
+
+/* Composition 2026-10-03: roster and exchange share a compact scene and cap. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] body main.host-shell{height:100dvh!important;padding:24px!important;display:flex;align-items:center;justify-content:center}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] body main.host-shell #playView{flex:none!important;width:min(1220px,100%)!important;min-height:0!important;max-height:100%;height:auto!important;grid-template-columns:clamp(240px,21vw,300px) minmax(0,1fr)!important;grid-template-rows:auto!important;gap:24px!important;padding-top:calc(var(--party-hud-height,88px) + 16px);align-items:center!important;--spy-tv-unit:clamp(1px,.0625vw,1.2px)}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .roster-card{align-self:center;max-height:calc(100dvh - var(--party-hud-height,88px) - 64px);padding:0!important;border:0!important;outline:0!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;overflow:auto;scrollbar-width:none}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .turn-card{padding:0!important;gap:24px!important;max-width:880px;align-self:center}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .duel{grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr)!important;gap:16px!important;max-width:100%!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .spy-identity-avatar{width:clamp(110px,8.3vw,160px)!important;height:clamp(110px,8.3vw,160px)!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person-copy{min-height:76px!important;gap:8px!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .player-name{font-size:clamp(22px,1.6vw,30px)!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person small{font-size:clamp(20px,1.25vw,24px)!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView #questionTip{font-size:clamp(18px,1.15vw,22px)!important;max-width:44ch!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-item:not(.asker):not(.target){background:linear-gradient(155deg,#26344a,#182437)!important;border-color:#87b7d640!important;box-shadow:inset 0 1px #87b7d620!important;color:#f6f2ff}
+/* Pass1 correction: the question scene has a closer conversation width. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] body main.host-shell #playView{width:min(1080px,100%)!important;grid-template-columns:300px minmax(0,1fr)!important;gap:24px!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .turn-card{max-width:756px!important}
+/* B task-header ownership: the exchange itself reserves its header row. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] body main.host-shell #playView{padding-top:0!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .turn-card{padding:calc(var(--party-hud-height,64px) + 16px) 0 0!important}
+
+/* Latest full brief: the dialogue and supporting roster use the available TV room. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] body main.host-shell #playView{width:min(1620px,100%)!important;grid-template-columns:clamp(360px,23.4375vw,450px) minmax(0,1fr)!important;--spy-tv-unit:clamp(1.5px,.078125vw,1.8px)}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .turn-card{max-width:none!important;padding-top:calc(var(--party-hud-height,64px) + 12px)!important;gap:36px!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .spy-identity-avatar{width:clamp(165px,12.5vw,240px)!important;height:clamp(165px,12.5vw,240px)!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person-copy{min-height:114px!important;gap:12px!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .player-name{font-size:clamp(33px,2.4vw,45px)!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person small{font-size:clamp(30px,1.875vw,36px)!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView #questionTip{font-size:clamp(27px,1.725vw,33px)!important}
+
+/* The roster starts at the task header and fills the complete exchange height. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=spy] body main.host-shell #playView{height:min(680px,calc(100dvh - 48px))!important;align-items:stretch!important;grid-template-rows:minmax(0,1fr)!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .roster-card{align-self:stretch;height:100%!important;max-height:none!important;overflow:hidden!important;justify-content:flex-start}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .roster-card .section-head{min-height:var(--party-hud-height,64px);flex:none}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView #playCount{font-size:clamp(28px,1.8vw,35px)!important;line-height:1.25}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView #playRoster{flex:1;min-height:0;max-height:none}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView #playRoster>.roster-item{flex:1 0 auto!important;align-items:center}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .turn-card{height:100%!important;align-self:stretch;box-sizing:border-box;justify-content:space-between!important}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView .duel{flex:1;min-height:0}
+html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] body main.host-shell #playView #questionTip{flex:none}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+:is(.spy-identity-avatar,.spy-roster-avatar) .spy-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#b6b3d5)}

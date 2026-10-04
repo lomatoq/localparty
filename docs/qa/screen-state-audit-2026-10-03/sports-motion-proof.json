@@ -1,0 +1,1572 @@
+{
+  "scope": "Optional Bowling/Curling motion throw and Curling shake sweeping; default Swipe/manual sweep retained. No gameplay/world/scoring changes. No native build/install.",
+  "sourceFreeze": {
+    "games/sports_siege/public/controls.js": "8fa62390474b37ab7787f46627a494435ff7508e844d3970f4e33f5055a38ff7",
+    "games/sports_siege/public/sports-controls.css": "4207f6f120c657d6d000444a7433e32894432a53b6ee89e768d4d8b639b421e4",
+    "public/sports-motion.js": "5681ff48e6fb450712d02a73497165f2743f84dbf491d0c80faf519093ed4a8e",
+    "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3",
+    "ios/LocalParty/LocalPartyApp.swift": "1168338ec2773d6cba66631135b0415f0991e62129716d76c67910fb4480862b"
+  },
+  "runtimeReports": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/report.json",
+      "sha256": "d63de58e6161a66db73bc624ad453f6f4a5b25db502a3cbe3d56983599bbd652",
+      "status": "passed",
+      "errors": [],
+      "sourceDrift": []
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/report.json",
+      "sha256": "ec9a39f1a9293ac3b628c0cc797c25e7cb7f21872d7e7ed03800e13e559a00fa",
+      "status": "passed",
+      "errors": [],
+      "sourceDrift": []
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-attitude-settled/report.json",
+      "sha256": "a0dbb3d13b4e121d18d6a08501638a46859002ac00e7a0327ae7a454951c381e",
+      "status": "passed",
+      "errors": [],
+      "sourceDrift": []
+    }
+  ],
+  "acceptedOriginals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-native-402-swipe.png",
+      "sha256": "7d1d049b08e03963bc24ca8716d3497e679c94cfe92ab71e752877524058af01",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 402,
+      "state": "swipe",
+      "observation": "Default Swipe selected; position/spin, complete gesture surface and native/browser footer remain visible. Existing start particles may still be visible; no claim of particle settlement.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 323.796875,
+            "w": 336,
+            "h": 311.203125,
+            "bottom": 635
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "swipe"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-native-402-permission-waiting.png",
+      "sha256": "cd26b211e42a1b53b7a43afa917a9daec980b6fcb73413ba4fde2022371b15bf",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 402,
+      "state": "permission-waiting",
+      "observation": "Explicit Enable has been clicked; waiting label is visible and disabled Enable cannot duplicate activation. Throw station is intentionally absent until first fresh sample.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-enable-motion",
+            "x": 16,
+            "y": 223,
+            "w": 370,
+            "h": 44,
+            "bottom": 267
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-native-402-motion-ready.png",
+      "sha256": "6f6a818c4f7aed16a1a7b9c759d2bbdf4518cdd4e05c43d8749db5f8311cf995",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 402,
+      "state": "motion-ready",
+      "observation": "Motion selected; Hold & swing and Release to throw are visible, live power zero, slider settings and full action surface fit. At320 compact status is conveyed in the gesture copy.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 336,
+            "h": 287.609375,
+            "bottom": 635
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-native-402-motion-held.png",
+      "sha256": "5dd1e9fd58ecd30bedd7e981cf09dd9572f8f9201f7e0717bb96ddfc2028b0ee",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 402,
+      "state": "motion-held",
+      "observation": "Real pointer hold plus synthetic sensor stream displays live49% power. Hold/release instructions and settings remain whole.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 336,
+            "h": 287.609375,
+            "bottom": 635
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-native-402-rolling.png",
+      "sha256": "30cd0a5d4802517dd531fcae2d49636562284ef7c4785fe4b56e2f14fa072743",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 402,
+      "state": "rolling",
+      "observation": "Existing accepted throw entered actual rolling phase; controller is watch or own-team sweep. Raw throw toast can transiently cover observer/sweep copy, preserved and excluded from settled-copy acceptance.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "watch",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-swipe.png",
+      "sha256": "b140566adfcb805f9ed50d60c5a57ffb5911cc8ff92b4d9f02edad17a17b8365",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 402,
+      "state": "swipe",
+      "observation": "Default Swipe selected; position/spin, complete gesture surface and native/browser footer remain visible. Existing start particles may still be visible; no claim of particle settlement.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 323.796875,
+            "w": 336,
+            "h": 311.203125,
+            "bottom": 635
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "swipe"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-permission-waiting.png",
+      "sha256": "dcb68f0b2850eb15c7d732975919f2d9aeae2ab1bc98557f6b331c643f67196f",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 402,
+      "state": "permission-waiting",
+      "observation": "Explicit Enable has been clicked; waiting label is visible and disabled Enable cannot duplicate activation. Throw station is intentionally absent until first fresh sample.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-enable-motion",
+            "x": 16,
+            "y": 223,
+            "w": 370,
+            "h": 44,
+            "bottom": 267
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-motion-ready.png",
+      "sha256": "3d8c387cc7ec1613054cfa2e38d2e491d78ef4a240646a7d29fc0b83e0518c59",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 402,
+      "state": "motion-ready",
+      "observation": "Motion selected; Hold & swing and Release to throw are visible, live power zero, slider settings and full action surface fit. At320 compact status is conveyed in the gesture copy.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 336,
+            "h": 287.609375,
+            "bottom": 635
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-motion-held.png",
+      "sha256": "b5d0ca23079617a5efa080d0d7f6fd38f5d5c6df3748f682be43acd64ca76368",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 402,
+      "state": "motion-held",
+      "observation": "Real pointer hold plus synthetic sensor stream displays live49% power. Hold/release instructions and settings remain whole.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 336,
+            "h": 287.609375,
+            "bottom": 635
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-rolling.png",
+      "sha256": "5de394d5175de0e8ae2ae161f317f26831c210fbb5ae6b67b36eea59f9670516",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 402,
+      "state": "rolling",
+      "observation": "Existing accepted throw entered actual rolling phase; controller is watch or own-team sweep. Raw throw toast can transiently cover observer/sweep copy, preserved and excluded from settled-copy acceptance.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 196.84375,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 240.84375
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 196.84375,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 240.84375
+          },
+          {
+            "id": "ss-sweep",
+            "x": 16,
+            "y": 279.4375,
+            "w": 370,
+            "h": 372.5625,
+            "bottom": 652
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "sweep",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-shake-sweeping.png",
+      "sha256": "81b98b3cdb0a04f5c08bd2c2736ebf91a365ece37eb58324ec4ed5213b93f902",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 402,
+      "state": "shake-sweeping",
+      "observation": "Actual own-team rolling, synthetic two shake pulses drive existing sweep channel, energy visibly drains, whole manual sweep surface remains available.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 664,
+        "scrollHeight": 664,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 196.84375,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 240.84375
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 196.84375,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 240.84375
+          },
+          {
+            "id": "ss-sweep",
+            "x": 17.850000381469727,
+            "y": 281.302490234375,
+            "w": 366.29998779296875,
+            "h": 368.8369140625,
+            "bottom": 650.139404296875
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "sweep",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-browser-402-swipe.png",
+      "sha256": "221d30cb5546d4794441a2cba37c57ee2cd197af6012449caba57ac259a16f43",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 402,
+      "state": "swipe",
+      "observation": "Default Swipe selected; position/spin, complete gesture surface and native/browser footer remain visible. Existing start particles may still be visible; no claim of particle settlement.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 323.796875,
+            "w": 336,
+            "h": 367.203125,
+            "bottom": 691
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "swipe"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-browser-402-permission-waiting.png",
+      "sha256": "a1fff31d213a7dcbe606102fcd5b9984be71d4cfcc00c97769a2870664a689a3",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 402,
+      "state": "permission-waiting",
+      "observation": "Explicit Enable has been clicked; waiting label is visible and disabled Enable cannot duplicate activation. Throw station is intentionally absent until first fresh sample.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-enable-motion",
+            "x": 16,
+            "y": 223,
+            "w": 370,
+            "h": 44,
+            "bottom": 267
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-browser-402-motion-ready.png",
+      "sha256": "f59cd16d82ffc470e1077c260409519398b99f0645a109d3723402cbb9acffbc",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 402,
+      "state": "motion-ready",
+      "observation": "Motion selected; Hold & swing and Release to throw are visible, live power zero, slider settings and full action surface fit. At320 compact status is conveyed in the gesture copy.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 336,
+            "h": 343.609375,
+            "bottom": 691
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-browser-402-motion-held.png",
+      "sha256": "d075232ca254d5b45782fcbfefd116047b57cacc5a65f40db099bf86a086c536",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 402,
+      "state": "motion-held",
+      "observation": "Real pointer hold plus synthetic sensor stream displays live49% power. Hold/release instructions and settings remain whole.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 336,
+            "h": 343.609375,
+            "bottom": 691
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-browser-402-rolling.png",
+      "sha256": "15cee14600448ef72b3374d6d99749a1ae0723fe169010336f2f9cde58806f7e",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 402,
+      "state": "rolling",
+      "observation": "Existing accepted throw entered actual rolling phase; controller is watch or own-team sweep. Raw throw toast can transiently cover observer/sweep copy, preserved and excluded from settled-copy acceptance.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "watch",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-browser-402-stale-fallback.png",
+      "sha256": "d84d26b8004697b53785b6225ce9cdf0616d0f02741a9f2b7d0e6abdffc7b447",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 402,
+      "state": "stale-fallback",
+      "observation": "Browser sensor events stopped; No motion data message and selected Swipe show graceful fallback without a false readiness claim.",
+      "actualGeometry": {
+        "width": 402,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 202.5,
+            "y": 168,
+            "w": 180.5,
+            "h": 44,
+            "bottom": 212
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "watch",
+        "input": "swipe"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/bowling-native-320-swipe.png",
+      "sha256": "ed152d6287a73ab710b84b3206e0c3e51e214b808614d6fa4dbb507f21aa4cdc",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 320,
+      "state": "swipe",
+      "observation": "Default Swipe selected; position/spin, complete gesture surface and native/browser footer remain visible. Existing start particles may still be visible; no claim of particle settlement.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 23,
+            "y": 265.796875,
+            "w": 274,
+            "h": 76,
+            "bottom": 341.796875
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "swipe"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/bowling-native-320-permission-waiting.png",
+      "sha256": "604e226d3c065ade2658778237bdc6f49216a1dc6529fe61e38a3d47e4fb478c",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 320,
+      "state": "permission-waiting",
+      "observation": "Explicit Enable has been clicked; waiting label is visible and disabled Enable cannot duplicate activation. Throw station is intentionally absent until first fresh sample.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-enable-motion",
+            "x": 12,
+            "y": 180,
+            "w": 296,
+            "h": 44,
+            "bottom": 224
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/bowling-native-320-motion-ready.png",
+      "sha256": "af3d573da4bb97c012dfd0502ea66c2427d6be97d5b3d4246a3a7fee4a72912e",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 320,
+      "state": "motion-ready",
+      "observation": "Motion selected; Hold & swing and Release to throw are visible, live power zero, slider settings and full action surface fit. At320 compact status is conveyed in the gesture copy.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 23,
+            "y": 265.796875,
+            "w": 274,
+            "h": 76,
+            "bottom": 341.796875
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/bowling-native-320-motion-held.png",
+      "sha256": "42b224a3f23d8bc12d14ae9107266024745e2d0f4008e0e4b6b9d9631fb4949f",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 320,
+      "state": "motion-held",
+      "observation": "Real pointer hold plus synthetic sensor stream displays live49% power. Hold/release instructions and settings remain whole.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 23,
+            "y": 265.796875,
+            "w": 274,
+            "h": 76,
+            "bottom": 341.796875
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/bowling-native-320-rolling.png",
+      "sha256": "6c21361b79bdf4035e04a6fe51f322c3fcf11f6625f0c9e69b1be52f190d33a1",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "bowling",
+      "width": 320,
+      "state": "rolling",
+      "observation": "Existing accepted throw entered actual rolling phase; controller is watch or own-team sweep. Raw throw toast can transiently cover observer/sweep copy, preserved and excluded from settled-copy acceptance.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "watch",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-swipe.png",
+      "sha256": "8d62a2580bc89bf27be8cf90912657015132eb374bb37b73aec1ee691c212341",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 320,
+      "state": "swipe",
+      "observation": "Default Swipe selected; position/spin, complete gesture surface and native/browser footer remain visible. Existing start particles may still be visible; no claim of particle settlement.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 23,
+            "y": 265.796875,
+            "w": 274,
+            "h": 76,
+            "bottom": 341.796875
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "swipe"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-permission-waiting.png",
+      "sha256": "3818a6c896836de80f5bfb07e35eab5efa8b29473d0624461bad5ae0b3809688",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 320,
+      "state": "permission-waiting",
+      "observation": "Explicit Enable has been clicked; waiting label is visible and disabled Enable cannot duplicate activation. Throw station is intentionally absent until first fresh sample.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-enable-motion",
+            "x": 12,
+            "y": 180,
+            "w": 296,
+            "h": 44,
+            "bottom": 224
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-motion-ready.png",
+      "sha256": "7c56961b549e18ae5dddeaef9269f5ed6dd2c5fa667d2f80946e010bf629ba36",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 320,
+      "state": "motion-ready",
+      "observation": "Motion selected; Hold & swing and Release to throw are visible, live power zero, slider settings and full action surface fit. At320 compact status is conveyed in the gesture copy.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 23,
+            "y": 265.796875,
+            "w": 274,
+            "h": 76,
+            "bottom": 341.796875
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-motion-held.png",
+      "sha256": "76d3eca5359ce99eddf0414a8b681d2812d0f25a355956147e611912f5d62ff5",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 320,
+      "state": "motion-held",
+      "observation": "Real pointer hold plus synthetic sensor stream displays live49% power. Hold/release instructions and settings remain whole.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 128,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 172
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 23,
+            "y": 265.796875,
+            "w": 274,
+            "h": 76,
+            "bottom": 341.796875
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-rolling.png",
+      "sha256": "e3c802023f43628ef4c772610ba5643770dac8235795e7cf048887263a316a14",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 320,
+      "state": "rolling",
+      "observation": "Existing accepted throw entered actual rolling phase; controller is watch or own-team sweep. Raw throw toast can transiently cover observer/sweep copy, preserved and excluded from settled-copy acceptance.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 152.84375,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 196.84375
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 152.84375,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 196.84375
+          },
+          {
+            "id": "ss-sweep",
+            "x": 12,
+            "y": 205.84375,
+            "w": 296,
+            "h": 144.15625,
+            "bottom": 350
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "sweep",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-shake-sweeping.png",
+      "sha256": "2049e208bf56c1443913422d200ad98f793be25f22280da479a3437111c75b1d",
+      "openedIndividually": true,
+      "native": true,
+      "mode": "curling",
+      "width": 320,
+      "state": "shake-sweeping",
+      "observation": "Actual own-team rolling, synthetic two shake pulses drive existing sweep channel, energy visibly drains, whole manual sweep surface remains available.",
+      "actualGeometry": {
+        "width": 320,
+        "height": 358,
+        "scrollHeight": 358,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 15,
+            "y": 152.84375,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 196.84375
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 161.5,
+            "y": 152.84375,
+            "w": 143.5,
+            "h": 44,
+            "bottom": 196.84375
+          },
+          {
+            "id": "ss-sweep",
+            "x": 13.479999542236328,
+            "y": 206.56375122070312,
+            "w": 293.03997802734375,
+            "h": 142.71469116210938,
+            "bottom": 349.2784423828125
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "sweep",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-attitude-settled/bowling-browser-403-motion-ready.png",
+      "sha256": "b5dc58da6794280e7c0be1cc171647775a1ca6d02eeba3c23001ac6080dba835",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 403,
+      "state": "strict-attitude-ready",
+      "observation": "Current fresh attitude readiness with whole Hold & swing/Release instructions.",
+      "actualGeometry": {
+        "width": 403,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 181,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 203,
+            "y": 168,
+            "w": 181,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 337,
+            "h": 343.609375,
+            "bottom": 691
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "motion"
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-attitude-settled/bowling-browser-403-attitude-fallback.png",
+      "sha256": "40f11ec8aa0df11d7b1a085e500d550db7c744cfddd3870deffd7a02fac5b060",
+      "openedIndividually": true,
+      "native": false,
+      "mode": "bowling",
+      "width": 403,
+      "state": "strict-attitude-fallback",
+      "observation": "After armed attitude interruption, selected Swipe and explicit No motion data copy are whole after selection paint settled. Zero throw on interrupted hold; fresh re-enable/new hold subsequently sent one validated shot.",
+      "actualGeometry": {
+        "width": 403,
+        "height": 720,
+        "scrollHeight": 720,
+        "controls": [
+          {
+            "id": "ss-mode-swipe",
+            "x": 19,
+            "y": 168,
+            "w": 181,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-mode-motion",
+            "x": 203,
+            "y": 168,
+            "w": 181,
+            "h": 44,
+            "bottom": 212
+          },
+          {
+            "id": "ss-throw-pad",
+            "x": 33,
+            "y": 347.390625,
+            "w": 337,
+            "h": 343.609375,
+            "bottom": 691
+          }
+        ]
+      },
+      "actualPhase": {
+        "phase": "playing",
+        "control": "aim",
+        "input": "swipe"
+      }
+    }
+  ],
+  "acceptedCount": 30,
+  "allOpenedCount": 43,
+  "sourceQualification": "The 17 accepted402 originals were captured immediately before one final CSS declaration inside @media(max-height:400px), enabling Motion hint small display. Their actual frame heights664(native)/720(browser) do not match that media query. Four non-CSS scoped source hashes are identical in both reports. The11 accepted320 originals are fresh at all current hashes. All28 first complete-run originals and11 correction originals were opened individually. Latest strict browser gate modifies helper browserMotion only; native quaternion emit/normalization path is unchanged. The controller waiting status now cancels armed attempts; native enabling already cancels before requesting. Existing fresh-attitude/native visuals are therefore qualified by unchanged exercised branches; new browser403 pair proves current strict gate. Root-owned server changed to3db5d420... before latest run; latest actual launcher/throw passed at that stable hash.",
+  "checks": {
+    "tests": 67,
+    "testsPassed": 67,
+    "testOutput": "/Users/hlebhlyaba/HeyPals/localparty/docs/qa/screen-state-audit-2026-10-03/sports-motion-tests.txt",
+    "pureMotionTests": 11,
+    "javascriptSyntax": "passed",
+    "swiftFullFileSyntax": "passed",
+    "swiftExactNewBridgeAPITypecheck": "passed against iOS17 simulator SDK, extracted unchanged new methods; no app linking/build",
+    "swiftWholeAppAdHocTypecheck": "not successful: standalone command omitted JoinShared dependencies and SwiftUI macro sandbox failed; no full app typecheck/build claim",
+    "impeccableDetector": [],
+    "runtime": "Five actual WebKit launcher/controller cases, native bridge fixtures402/320 both sports and browser DeviceMotion/DeviceOrientation fixture402 Bowling. Actual sensor data synthetic; no state injection or clock acceleration. Current single403 browser case also verifies delayed permission with synthetic dialog blur and both permission calls userActivation=true, stale attitude while acceleration stays fresh, zero interrupted throw, strict Swipe fallback, then fresh re-enable/one actual rolling throw. All processes closed."
+  },
+  "runtimeActions": [
+    {
+      "mode": "bowling",
+      "native": true,
+      "width": 402,
+      "actions": [
+        "Explicit Enable gesture; readiness only after valid fresh sensor sample",
+        "Orientation cancellation: no throw",
+        "Actual host pause cancels armed throw",
+        "One held swing/release sends one existing bounded throw/token; duplicate release ignored"
+      ],
+      "throwPayloads": [
+        {
+          "power": 0.4851235452338329,
+          "angle": 0.09773843811168233,
+          "spin": 0,
+          "position": 0,
+          "valid": true,
+          "turnToken": "3a1b174c-7ef4-45de-bfbb-ddedd70c18e3:1"
+        }
+      ]
+    },
+    {
+      "mode": "bowling",
+      "native": true,
+      "width": 320,
+      "actions": [
+        "Explicit Enable gesture; readiness only after valid fresh sensor sample",
+        "One held swing/release sends one existing bounded throw/token; duplicate release ignored"
+      ],
+      "throwPayloads": [
+        {
+          "power": 0.4851166551877335,
+          "angle": 0.09773843811168233,
+          "spin": 0,
+          "position": 0,
+          "valid": true,
+          "turnToken": "70e3790e-c4a6-4d85-b02f-4dad134104ff:3"
+        }
+      ]
+    },
+    {
+      "mode": "curling",
+      "native": true,
+      "width": 402,
+      "actions": [
+        "Explicit Enable gesture; readiness only after valid fresh sensor sample",
+        "Orientation cancellation: no throw",
+        "Actual host pause cancels armed throw",
+        "One held swing/release sends one existing bounded throw/token; duplicate release ignored",
+        "Two shake pulses activate own-team sweep; stale sensor releases sweep",
+        "Manual sweep remains usable independently"
+      ],
+      "throwPayloads": [
+        {
+          "power": 0.48512655725076814,
+          "angle": 0.09773843811168233,
+          "spin": 0,
+          "position": 0,
+          "valid": true,
+          "turnToken": "13f5f094-eb36-4e2b-85dd-ef961031e17b:2"
+        }
+      ]
+    },
+    {
+      "mode": "curling",
+      "native": true,
+      "width": 320,
+      "actions": [
+        "Explicit Enable gesture; readiness only after valid fresh sensor sample",
+        "One held swing/release sends one existing bounded throw/token; duplicate release ignored",
+        "Two shake pulses activate own-team sweep; stale sensor releases sweep",
+        "Manual sweep remains usable independently"
+      ],
+      "throwPayloads": [
+        {
+          "power": 0.4851127226828444,
+          "angle": 0.09773843811168233,
+          "spin": 0,
+          "position": 0,
+          "valid": true,
+          "turnToken": "9d6dee74-4536-41ba-8b69-ef5f43770c12:2"
+        }
+      ]
+    },
+    {
+      "mode": "bowling",
+      "native": false,
+      "width": 402,
+      "actions": [
+        "Explicit Enable gesture; readiness only after valid fresh sensor sample",
+        "Orientation cancellation: no throw",
+        "Actual host pause cancels armed throw",
+        "One held swing/release sends one existing bounded throw/token; duplicate release ignored",
+        "No fresh browser events falls back to Swipe"
+      ],
+      "throwPayloads": [
+        {
+          "power": 0.48511570458564296,
+          "angle": 0.09773843811168233,
+          "spin": 0,
+          "position": 0,
+          "valid": true,
+          "turnToken": "a8425718-1055-4107-92be-dd2ad6938fa5:1"
+        }
+      ]
+    },
+    {
+      "mode": "bowling",
+      "native": false,
+      "width": 403,
+      "actions": [
+        "Explicit Enable gesture; readiness only after valid fresh sensor sample",
+        "Delayed browser permission with synthetic dialog blur still grants; no false readiness before data",
+        "Fresh acceleration with absent/stale attitude cancels armed hold;2.2s unavailable fallback selects Swipe, no throw",
+        "Fresh attitude restored: new hold/release sends one valid existing throw/token and reaches actual rolling"
+      ],
+      "permissionCalls": [
+        {
+          "type": "DeviceMotionEvent",
+          "gesture": true
+        },
+        {
+          "type": "DeviceOrientationEvent",
+          "gesture": true
+        },
+        {
+          "type": "DeviceMotionEvent",
+          "gesture": true
+        },
+        {
+          "type": "DeviceOrientationEvent",
+          "gesture": true
+        }
+      ],
+      "throwPayloads": [
+        {
+          "power": 0.48497146227912885,
+          "angle": 0.09773843811168233,
+          "spin": 0,
+          "position": 0,
+          "valid": true,
+          "turnToken": "893d4cc8-cd30-4083-a085-d9ab6f28d9b0:1"
+        }
+      ]
+    }
+  ],
+  "behavior": "Hold own aim surface captures neutral automatically. Fresh filtered acceleration/rotation set bounded power; world-vertical heading sets aim; heading-removed local-Y twist adds spin. Release consumes attempt and sends existing validated turnToken once. Shake needs two distinct pulses, expires after280ms and stale250ms, gates own team rolling/energy, OR manual held sweep. Blur/pagehide/native hide/pause/reconnect/out-of-turn/pointercancel/orientation cancel attempts; pending browser permission dialog blur is preserved, explicit stop rejects late grants. Native separate processed CMMotionManager only trusted Bowling/Curling controller frame, stops background/hide; BowClub gyro unchanged. Browser readiness now requires fresh DeviceOrientation; gyro-only identity fallback was removed.",
+  "physicalLimit": "With long phone axis exactly vertical, wrist twist and world-heading rotation are physically identical. Aim takes priority; independent spin stays available using the existing slider. Flat/tilted holds preserve independent residual twist. Physical sensitivity/axis behavior/permission prompts require a new device build and human trial.",
+  "historicalFailures": [
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion",
+      "qualification": "Initial 320 layout clipped action and one activation click did not reach waiting; retained raw, rejected."
+    },
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-confirm",
+      "qualification": "Native four cases passed; browser fixture used forbidden WebKit DeviceOrientationEvent constructor and errored. Retained raw, rejected as final sensor proof."
+    },
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final",
+      "qualification": "320 lifecycle waiter attempted hidden action before actual phase settlement. Raw failure retained; no product state reset."
+    },
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded",
+      "qualification": "320 release explanation absent due incumbent container hiding small text; superseded by fresh compact correction.402 originals retained by media-exclusion source qualification."
+    },
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-attitude-confirm",
+      "qualification": "Strict gate behavior passed; immediate fallback PNG caught shared selected-color transition. Both originals opened, preserved, superseded by550ms paint-settled pair with no product source change."
+    }
+  ],
+  "browser": "All focused browser/server processes closed; slot released.",
+  "browserFallbackLimit": "Resolved: browser readiness and throw samples require fresh DeviceOrientation attitude (<=250ms). Missing/stale attitude invalidates sample/readiness and cancels held gesture immediately; after2.2s without valid events selects Swipe. Gravity acceleration fallback still works with fresh attitude. Native quaternion branch is unchanged.",
+  "independentReview": "Art director independently opened final320 Bowling/Curling motion-held, Curling shake-sweeping,402 Curling ready/shake and browser permission-waiting; no named visual blocker, scoped synthetic sensor/actual engine-wire review, no hardware acceptance. Final followup: art director opened both exact sports-motion-attitude-settled403 originals; whole Motion/hold/release guidance and visibly selected Swipe/No motion data/full station/footer confirmed. Named visual fallback closed, actual phase/token plus synthetic permission/sensor qualification only; no hardware acceptance."
+}

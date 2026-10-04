@@ -1,0 +1,446 @@
+{
+  "scope": "All 36 released games; final delivery TV only",
+  "rows": [
+    {
+      "game": "push",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "push-tv-live-1280.png",
+        "push-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "shrink",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "shrink-tv-live-1280.png",
+        "shrink-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "knives",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "knives-tv-live-1280.png",
+        "knives-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "bomb",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "bomb-tv-live-1280.png",
+        "bomb-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "western",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "western-tv-live-1280.png",
+        "western-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "tanks",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "tanks-tv-live-1280.png",
+        "tanks-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "tankarena",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "tankarena-tv-live-1280.png",
+        "tankarena-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "western_duel",
+      "owner": "arena",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "western_duel-tv-live-1280.png",
+        "western_duel-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "chaos",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "chaos-tv-live-1280.png",
+        "chaos-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "kart",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "kart-tv-live-1280.png",
+        "kart-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "taprace",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "taprace-tv-live-1280.png",
+        "taprace-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "punchmeter",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "punchmeter-tv-live-1280.png",
+        "punchmeter-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "flappy",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "flappy-tv-live-1280.png",
+        "flappy-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "hungry",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "hungry-tv-live-1280.png",
+        "hungry-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "snakelines",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "snakelines-tv-live-1280.png",
+        "snakelines-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "carryball",
+      "owner": "arcade",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "carryball-tv-live-1280.png",
+        "carryball-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "millionaire",
+      "owner": "quiz",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "millionaire-tv-live-1280.png",
+        "millionaire-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "sinyakquiz",
+      "owner": "quiz",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "sinyakquiz-tv-live-1280.png",
+        "sinyakquiz-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "warsaw",
+      "owner": "quiz",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "warsaw-tv-live-1280.png",
+        "warsaw-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "monster",
+      "owner": "social",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "monster-tv-live-1280.png",
+        "monster-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "spy",
+      "owner": "social",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "spy-tv-live-1280.png",
+        "spy-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "crocodile",
+      "owner": "social",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "crocodile-tv-live-1280.png",
+        "crocodile-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "drawguess",
+      "owner": "social",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "drawguess-tv-live-1280.png",
+        "drawguess-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "jenga",
+      "owner": "construction",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "jenga-tv-live-1280.png",
+        "jenga-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "crane",
+      "owner": "construction",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "crane-tv-live-1280.png",
+        "crane-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "naval",
+      "owner": "tabletop",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-eight-edge-corrected",
+      "screenshots": [
+        "naval-tv-live-1280.png",
+        "naval-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "poker",
+      "owner": "tabletop",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "poker-tv-live-1280.png",
+        "poker-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "airhockey",
+      "owner": "tabletop",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "airhockey-tv-live-1280.png",
+        "airhockey-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "mines",
+      "owner": "tabletop",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "mines-tv-live-1280.png",
+        "mines-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "marble_bloom",
+      "owner": "pocket",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "marble_bloom-tv-live-1280.png",
+        "marble_bloom-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "pocket_siege",
+      "owner": "pocket",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "pocket_siege-tv-live-1280.png",
+        "pocket_siege-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "bow_club",
+      "owner": "sports",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "bow_club-tv-live-1280.png",
+        "bow_club-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "curling",
+      "owner": "sports",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "curling-tv-live-1280.png",
+        "curling-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "bowling",
+      "owner": "sports",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "bowling-tv-live-1280.png",
+        "bowling-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "swarm_gate",
+      "owner": "sports",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "swarm_gate-tv-live-1280.png",
+        "swarm_gate-tv-live-1920.png"
+      ]
+    },
+    {
+      "game": "peek_shoot",
+      "owner": "sports",
+      "implementation": "captured actual gameplay on current qualified dependencies",
+      "visualAcceptance": "passed: exact originals reviewed at both TV sizes, source-qualified",
+      "phase": "playing",
+      "captureOrigin": "output/playwright/composition-round2-2026-10-03/final-tv36-1201",
+      "screenshots": [
+        "peek_shoot-tv-live-1280.png",
+        "peek_shoot-tv-live-1920.png"
+      ]
+    }
+  ],
+  "packet": "output/playwright/composition-round2-2026-10-03/qualified-final-tv36-edges/report.json",
+  "primaryFrames": 36,
+  "alternateTVFrames": 36,
+  "phoneFrames": 0,
+  "sourceVerifiedAt": "2026-10-03T12:21:12.708Z",
+  "mechanicalAcceptance": "passed: all 36 layout and composition guards",
+  "independentFinalAcceptance": "passed for captured compositions: director-tv36-edges-final.md/json",
+  "physicalDeviceValidated": false,
+  "independentReview": "docs/qa/composition-round2-2026-10-03/director-tv36-edges-final.md"
+}

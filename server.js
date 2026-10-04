@@ -10,6 +10,7 @@ const crypto = require('crypto');
 const {spawn} = require('child_process');
 const {WebSocketServer, WebSocket} = require('ws');
 const QRCode = require('qrcode');
+const clipInvitation=new (require('./lib/clip-invitation').ClipInvitation)();
 const controls=require('./lib/host-controls');
 const {ballot}=require('./lib/game-ballot');
 const {cssFallbacks}=require('./lib/browser-compat');
@@ -44,6 +45,12 @@ async function pauseBeforeSuspension(){
 }
 function roomInfo(){const data=state();if(data.active)data.active.session=sessionState();return {...data,enabled,selected,botCount,testMode,screens:screens(),servedSeconds:Math.floor(servedSeconds),executionAllowed,metrics:{...metrics,rssMB:Math.round(process.memoryUsage().rss/1048576)}};}
 async function manage(m){
+  if(['join-invitation-set','join-invitation-clear'].includes(m.type)){
+    if(!embedded)throw Error('App Clip invitations belong to the iPhone host.');
+    if(m.type==='join-invitation-set')clipInvitation.set(m,sharedURLs()[0]||'',networkAccess.boundAddress);
+    else clipInvitation.clear();
+    broadcast();return roomInfo(); // Credentials never enter persisted lifecycle data.
+  }
   if(m.type==='force-language'){
     if(!['en','ru'].includes(m.language))throw Error('Unsupported language');
     languageOverride={language:m.language,revision:crypto.randomUUID()};
@@ -53,6 +60,7 @@ async function manage(m){
     const on=m.type==='network-set'?m.enabled:m.type==='server-start';
     if(typeof on!=='boolean')throw Error('Укажите состояние доступа по Wi-Fi');
     if(on&&!addresses().length)throw Error('Подключитесь к Wi-Fi, чтобы пригласить другие устройства');
+    clipInvitation.clear();
     if(!on){active?.session.votes.clear();votes.clear();ballotArmed=false;ballotAttempt='';}
     const closingPublic=!on?[...clients].filter(ws=>ws.partyPublic):[];
     if(!on)await Promise.all(closingPublic.filter(ws=>ws.readyState===WebSocket.OPEN).map(ws=>new Promise(resolve=>{
@@ -67,12 +75,16 @@ async function manage(m){
   else if(m.type==='statistics-reset'){if(active||busy)throw Error('Завершите текущий матч перед сбросом статистики');profileStore.resetStatistics();tvDirector.lastMatch=null;tvDirector.dismiss();}
   else if(m.type==='bots-set'){
     // iPhone host: the bots are real controllers that the TV page runs in hidden frames.
-    if(active||busy)throw Error('Вернитесь в лобби перед сменой ботов.');
+    if(busy||(active&&(active.ui?.phase||'waiting')!=='waiting'))throw Error('Менять ботов можно в лобби или перед началом матча.');
     const requested=Number(m.count);
     if(!Number.isInteger(requested)||requested<0||requested>15)throw Error('Можно добавить от 0 до 15 ботов.');
     if(requested+connected().filter(p=>!p.testBot).length>16)throw Error('В комнате максимум 16 игроков.');
+    if(active&&requested+connected().filter(p=>!p.testBot).length>active.game.max)throw Error(`Для этой игры максимум ${active.game.max} игроков.`);
     if(requested>0&&!screens())throw Error('Боты играют через общий экран — подключи телевизор.');
-    botCount=requested;testMode=botCount>0;for(const c of clients)if(c.isHost||c.isDisplay)sendTestProfile(c);
+    botCount=requested;testMode=botCount>0;
+    // Once bots join this run, its outcome stays a test even if they are removed.
+    if(active&&testMode)active.session.testMode=true;
+    for(const c of clients)if(c.isHost||c.isDisplay)sendTestProfile(c);
   }
   else if(m.type==='kick'){kickPlayer(m.id);}
   else if(m.type==='dismiss-incident'){incident=null;}
@@ -90,10 +102,10 @@ async function manage(m){
   else if(m.type==='game-action'){if(!active||m.instance!==active.instance)throw Error('Эта игра уже завершена');const action=active.game.hostControls.actions.find(a=>a.id===m.action);if(!action||!action.phases.includes(active.ui?.phase)||(Array.isArray(active.ui?.hostActions)&&!active.ui.hostActions.includes(m.action)))throw Error('Действие сейчас недоступно');await hostCommand(active,m.action);}
   else if(m.type==='force-start'){
     if(!active||m.instance!==active.instance||(active.ui?.phase||'waiting')!=='waiting')throw Error('Игра уже началась или завершена');
-    const loaded=[...active.present].filter(id=>active.roster.some(p=>p.id===id));
-    if(loaded.length<(testMode?1:active.game.min))throw Error(`Подключено только ${loaded.length}. Для старта нужно минимум ${testMode?1:active.game.min}.`);
+    const loaded=loadedPlayers(active);
+    if(loaded.length<active.game.min)throw Error(`Подключено только ${loaded.length}. Для старта нужно минимум ${active.game.min}.`);
     active.startError=null;active.session.startRequested=true;
-    if(embedded)await hostCommand(active,'start');else for(const ws of clients)if(ws.isHost)send(ws,{type:'session-start',instance:active.instance});
+    if(embedded)await startEmbedded(active);else for(const ws of clients)if(ws.isHost)send(ws,{type:'session-start',instance:active.instance});
   }
   else if(m.type==='retry-start'){if(!active||m.instance!==active.instance||!active.startError)throw Error('Повторный запуск недоступен');active.startError=null;active.session.startRequested=false;checkSession();}
   else if(m.type==='launch'){incident=null;if(!enabled)throw Error('Сначала запустите сервер');if(embedded&&!screens()&&m.externalDisplay!==true)throw Error('Откройте экран /tv на телевизоре');await launch(m.id||selected);selected=active.game.id;}
@@ -151,7 +163,7 @@ const addresses = () => Object.entries(os.networkInterfaces()).flatMap(([name, l
 function sharedURLs(){if(embedded)return networkAccess.enabled&&addresses().some(x=>x.address===networkAccess.boundAddress)?[`https://${networkAccess.hostname}:${networkAccess.port}/`]:[];return addresses().map(x=>`${scheme}://${x.address}:${PORT}/`);}
 function inviteUrl(req){if(embedded)return sharedURLs()[0]||`http://${req?.headers.host||'localhost:'+PORT}/`;const ips=addresses();const selected=req&&new URL(req.url,'http://localhost').searchParams.get('host');const ip=ips.find(x=>x.address===selected)?.address||ips[0]?.address;return ip?`${scheme}://${ip}:${PORT}/`:`${scheme}://${req?.headers.host||'localhost:'+PORT}/`;}
 const connected = () => [...players.values()].filter(p=>p.socket?.readyState===WebSocket.OPEN);
-function state(){const standings=profileStore.leaderboard().map(publicStanding),online=new Set(connected().map(p=>p.id));return {type:'state',bootId,languageOverride,incident,tv:tvDirector.view({active,selected,sharing:sharedURLs().length>0,leaderboard:standings}),networkEnabled:embedded?networkAccess.enabled:true,votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot,token})=>{const stored=profileStore.get(token);return {id,name,hand,avatar:avatarRef(stored),testBot:!!testBot,gameReady:!!active?.present.has(id)};}),active:active?{id:active.game.id,instance:active.instance,startError:active.startError||null,settings:gameSettings[active.game.id],participants:active.roster.map(p=>p.id),roster:active.roster.map(p=>({...p,connected:online.has(p.id),gameReady:active.present.has(p.id)})),ready:[...active.present],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:standings,lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
+function state(){const standings=profileStore.leaderboard().map(publicStanding),online=new Set(connected().map(p=>p.id));return {type:'state',bootId,languageOverride,incident,tv:tvDirector.view({active,selected,sharing:sharedURLs().length>0,leaderboard:standings}),networkEnabled:embedded?networkAccess.enabled:true,invitation:clipInvitation.metadata(sharedURLs()[0]||'',embedded?networkAccess.boundAddress:''),votes:gameVotes(),ballot:ballot(catalog,connected(),votes),enabled,executionAllowed,selected,gameSettings,screens:screens(),players:connected().map(({id,name,hand,avatar,testBot,token})=>{const stored=profileStore.get(token);return {id,name,hand,avatar:avatarRef(stored),testBot:!!testBot,gameReady:!!active?.present.has(id)};}),active:active?{id:active.game.id,instance:active.instance,result:tvDirector.resultFor(active),startError:active.startError||null,settings:gameSettings[active.game.id],participants:active.roster.map(p=>p.id),roster:active.roster.map(p=>({...p,connected:online.has(p.id),gameReady:active.present.has(p.id)})),ready:[...active.present],ui:{...(active.ui||{phase:"waiting",endsAt:null,label:"Ожидание"}),serverNow:Date.now()}}:null,busy,catalog,gamePopularity:Object.fromEntries(catalog.map(g=>[g.id,profileStore.data.events.filter(e=>e.game===g.id).length])),totalMatches:profileStore.data.completed||profileStore.data.events.length,leaderboard:standings,lastResult:profileStore.data.events.at(-1)||null,urls:sharedURLs()};}
 function send(ws, data){
  // Readiness/identity acknowledgements are not disposable animation snapshots.
  // Dropping `joined` when a reconnect burst fills the buffer leaves a phone
@@ -183,6 +195,16 @@ function hostCommand(run,action){
   try{run.child.send({type:'party:host-command',id,action});}catch(e){finish(e);}
  });
 }
+function loadedPlayers(run){return [...run.present].filter(id=>run.roster.some(p=>p.id===id));}
+async function startEmbedded(run){
+ try{await hostCommand(run,'start');}
+ catch(error){
+  // Only the waiting run that sent this command owns its failed start intent.
+  // A delayed reply must not reset a game that has started or been replaced.
+  if(active===run&&(!run.ui||run.ui.phase==='waiting')){run.session.startRequested=false;run.startError=error.message;broadcast();}
+  throw error;
+ }
+}
 function checkSession(){
  if(!active)return;const run=active,ids=eligible();if(run.session.shouldExit(ids)){stop();return;}
  // Only bots that are actually in the room hold the start (they live on the TV page;
@@ -190,8 +212,8 @@ function checkSession(){
  const botReady=!run.session.testMode||testProfiles.slice(0,botCount).filter(p=>connected().some(c=>c.id===p.id)).every(p=>run.present.has(p.id));
  const online=new Set(connected().map(p=>p.id));
  const rosterReady=run.roster.filter(p=>!p.testBot).every(p=>run.session.spectators.has(p.id)||(online.has(p.id)&&run.ready.has(p.id)&&run.present.has(p.id)));
- if(!run.startError&&connected().length>=(testMode?1:run.game.min)&&rosterReady&&botReady&&(!run.ui||run.ui.phase==='waiting')&&run.session.shouldStart(ids)){
-  if(embedded)hostCommand(run,'start').catch(e=>{if(active===run){run.startError=e.message;broadcast();}});
+ if(!run.startError&&connected().length>=(testMode?1:run.game.min)&&loadedPlayers(run).length>=run.game.min&&rosterReady&&botReady&&(!run.ui||run.ui.phase==='waiting')&&run.session.shouldStart(ids)){
+  if(embedded)startEmbedded(run).catch(()=>{});
   else for(const ws of clients)if(ws.isHost)send(ws,{type:'session-start',instance:run.instance});
  }
  broadcast();
@@ -234,9 +256,16 @@ function transform(text, type, prefix, req){
   if(type.includes('text/html')){
     const contentLocale=['millionaire','sinyakquiz','warsaw','spy','monster','crocodile','drawguess'].includes(prefix.split('/').at(-1))?'<script src="/i18n-content.js"></script>':'';
     if(!/<head\b/i.test(text))text=text.replace(/<html([^>]*)>/i,'<html$1><head>').replace(/<body([^>]*)>/i,'</head><body$1>');
-    text=text.replace(/((?:src|href|action)\s*=\s*["'])\/(?!\/)/gi,`$1${prefix}/`);
-    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/browser-compat.js"></script><script src="/i18n-inherit.js"></script>${contentLocale}<script src="/i18n.js"></script><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script src="/game-feel.js"></script><script defer src="/game-art-dom.js"></script><script src="/tv-information.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
-    text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/game-feel.css"><script defer src="/motion.js"></script></head>');
+    // Shared launcher artwork stays at /assets. Only game-owned absolute
+    // resources belong under the managed game prefix (relative assets already
+    // resolve through the base element below).
+    text=text.replace(/((?:src|href|action)\s*=\s*["'])(\/(?!\/)[^"']*)/gi,(_,attribute,value)=>{
+      const asset=value.split(/[?#]/,1)[0];
+      const shared=asset.startsWith('/assets/')&&!asset.includes('..')&&fs.existsSync(path.join(__dirname,'public',asset));
+      return attribute+(shared?value:prefix+value);
+    });
+    text=text.replace(/<head([^>]*)>/i,`<head$1>${APP_HEAD}<base href="${prefix}/"><script src="/browser-compat.js"></script><script src="/i18n-inherit.js"></script>${contentLocale}<script src="/i18n.js"></script><script src="/game-clock-client.js"></script><script src="/game-art.js"></script><script src="/game-feel-state.js"></script><script src="/game-feel.js"></script><script defer src="/game-art-dom.js"></script><script src="/tv-information.js"></script><script src="/bridge.js" data-prefix="${prefix}"></script>`);
+    text=text.replace(/<\/head>/i,'<link rel="stylesheet" href="/game-polish.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/game-feel.css"><script defer src="/motion.js"></script><link rel="stylesheet" href="/game-ui-system.css"><script defer src="/game-ui-system.js"></script><link rel="stylesheet" href="/rankings-theme.css?v=111"><script defer src="/rankings-theme.js?v=111"></script><link rel="stylesheet" href="/icons.css"><script defer src="/icons.js"></script><link rel="stylesheet" href="/game-ui-themes.css"><script defer src="/game-ui-themes.js"></script><link rel="stylesheet" href="/game-ui-polish-20261004.css"></head>');
   }
   if(type.includes('text/css'))text=cssFallbacks(text);
   if(type.includes('text/html'))text=text.replace(/(<style[^>]*>)([\s\S]*?)(<\/style>)/gi,(_,a,b,c)=>a+cssFallbacks(b)+c);
@@ -286,24 +315,45 @@ const handler=async(req,res)=>{
       else{res.writeHead(up.statusCode,out);up.pipe(res);}
     });upstream.on('error',()=>{if(!res.headersSent)json(res,502,{error:'Сервер игры недоступен'});else res.end();});req.pipe(upstream);return;
   }
+  if(url.pathname==='/api/invite-qr'){
+    res.setHeader('Cache-Control','no-store');
+    if(req.method!=='GET')return json(res,405,{error:'Method not allowed'});
+    if(!tvAccess(req))return json(res,403,{error:'Display access required'});
+    const metadata=clipInvitation.metadata(sharedURLs()[0]||'',embedded?networkAccess.boundAddress:'');
+    if(!metadata||metadata.revision!==url.searchParams.get('revision'))return json(res,404,{error:'Invitation expired'});
+    const bytes=await clipInvitation.image(metadata.revision,url.searchParams.get('size')==='large');
+    const current=clipInvitation.metadata(sharedURLs()[0]||'',embedded?networkAccess.boundAddress:'');
+    if(!bytes||current?.revision!==metadata.revision)return json(res,404,{error:'Invitation expired'});
+    res.writeHead(200,{'Content-Type':'image/png','Content-Length':bytes.length,'X-Content-Type-Options':'nosniff'});return res.end(bytes);
+  }
   if(url.pathname==='/api/qr'){res.setHeader('Content-Type','image/png');const allowed=sharedURLs();const target=allowed.includes(url.searchParams.get('url'))?url.searchParams.get('url'):`${req.socket.encrypted?'https':'http'}://${req.headers.host}/`;return res.end(await qrBuffer(target,{margin:1,width:url.searchParams.get('size')==='large'?720:240}));}
   if(url.pathname==='/api/health')return json(res,200,{ok:true,pid:process.pid,build:'sports-siege-alpha.1'});
   if(url.pathname.startsWith('/assets/')){
     let name;try{name=decodeURIComponent(url.pathname).slice(1);if(/^assets\/games\/(curling|bowling|swarm_gate|peek_shoot)[.]webp$/.test(name))name=name.replace(/[.]webp$/,'.png');}catch{return json(res,400,{error:'Invalid path'});}
     const root=path.join(ROOT,'public','assets'),target=path.resolve(ROOT,'public',name);
     if(!target.startsWith(root+path.sep)||!fs.existsSync(target)||!fs.statSync(target).isFile())return json(res,404,{error:'Не найдено'});
-    const mime={'.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.ttf':'font/ttf','.woff2':'font/woff2','.json':'application/json'}[path.extname(target)];if(!mime)return json(res,404,{error:'Не найдено'});
+    const mime=['assets/gameplay/generated/western-mascot-rig-v3.js','assets/gameplay/generated/western-mascot-rig-v4.js','assets/gameplay/generated/push-sumo-art-v1.js','assets/gameplay/generated/hungry-creatures-v2.js'].includes(name)?'text/javascript; charset=utf-8':{'.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.otf':'font/otf','.ttf':'font/ttf','.woff2':'font/woff2','.json':'application/json'}[path.extname(target)];if(!mime)return json(res,404,{error:'Не найдено'});
+    res.writeHead(200,{'Content-Type':mime,'Cache-Control':'public,max-age=3600','X-Content-Type-Options':'nosniff'});fs.createReadStream(target).pipe(res);return;
+  }
+  if(url.pathname.startsWith('/audio/')){
+    let name;try{name=decodeURIComponent(url.pathname.slice('/audio/'.length));}catch{return json(res,400,{error:'Некорректный путь'});}
+    const root=path.resolve(ROOT,'public','audio'),target=path.resolve(root,name);
+    if(!target.startsWith(root+path.sep)||!fs.existsSync(target)||!fs.statSync(target).isFile())return json(res,404,{error:'Не найдено'});
+    const actual=fs.realpathSync(target);if(!actual.startsWith(fs.realpathSync(root)+path.sep))return json(res,404,{error:'Не найдено'});
+    const mime={'.wav':'audio/wav','.m4a':'audio/mp4','.json':'application/json','.txt':'text/plain; charset=utf-8','.md':'text/plain; charset=utf-8','.html':'text/html; charset=utf-8'}[path.extname(target)];
+    if(!mime)return json(res,404,{error:'Не найдено'});
     res.writeHead(200,{'Content-Type':mime,'Cache-Control':'public,max-age=3600','X-Content-Type-Options':'nosniff'});fs.createReadStream(target).pipe(res);return;
   }
   const isTV=url.pathname==='/tv',isHost=url.pathname==='/host';
   if(isTV)res.setHeader('Set-Cookie',`party_display=${displayKey}; Path=/; HttpOnly; SameSite=Strict`);
   if(isHost&&(embedded||!local(req)))return json(res,403,{error:'Экран ведущего открывается на компьютере, запустившем лаунчер.'});
-  const files={'/tv-information.js':'tv-information.js','/tv-information.css':'tv-information.css','/tv-show.js':'tv-show.js','/tv-show.css':'tv-show.css','/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/bot-policy.js':'bot-policy.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
-  files['/branding.css']='branding.css';files['/perf.css']='perf.css';files['/polish.css']='polish.css';files['/i18n.js']='i18n.js';files['/i18n-inherit.js']='i18n-inherit.js';files['/i18n-shell.js']='i18n-shell.js';files['/i18n-content.js']='i18n-content.js';files['/i18n-dictionary.js']='i18n-dictionary.js';
+  const files={'/tv-information.js':'tv-information.js','/tv-information.css':'tv-information.css','/tv-show.js':'tv-show.js','/tv-show.css':'tv-show.css','/updates.js':'updates.js','/updates.css':'updates.css','/site.webmanifest':'site.webmanifest','/browserconfig.xml':'browserconfig.xml','/favicon.ico':'favicon.ico','/game-feel.js':'game-feel.js','/game-feel.css':'game-feel.css','/motion.css':'motion.css','/motion.js':'motion.js','/sports-motion.js':'sports-motion.js','/browser-compat.js':'browser-compat.js','/play':'index.html','/tv':'tv.html','/tv-layout.js':'tv-layout.js','/tv.js':'tv.js','/tv.css':'tv.css','/':'index.html','/host':'index.html','/app.js':'app.js','/style.css':'style.css','/game-art-dom.js':'game-art-dom.js','/game-art.js':'game-art.js','/bridge.js':'bridge.js','/game-polish.css':'game-polish.css','/refresh.css':'refresh.css','/glass.css':'glass.css','/game-clock-client.js':'game-clock-client.js','/bot-policy.js':'bot-policy.js','/test-bot.js':'test-bot.js','/ux.css':'ux.css','/catalog-previews.css':'catalog-previews.css','/catalog-previews.js':'catalog-previews.js','/value-fit.js':'value-fit.js','/bots.js':'bots.js','/fresh.css':'fresh.css'};
+  for(const name of ['tv-invitation.js','icons.js','icons.css','button-progress.js','button-progress.css','game-ui-system.js','game-ui-system.css','game-message.js','game-message.css','rankings-theme.js','rankings-theme.css','match-results.js','game-logo-renderer.js','audio-system.js','audio-system.css','game-feel-state.js','game-ui-polish-20261004.css'])files['/'+name]=name;
+  files['/awards.css']='awards.css';files['/background-scene.css']='background-scene.css';files['/branding.css']='branding.css';files['/perf.css']='perf.css';files['/polish.css']='polish.css';files['/i18n.js']='i18n.js';files['/i18n-inherit.js']='i18n-inherit.js';files['/i18n-shell.js']='i18n-shell.js';files['/i18n-content.js']='i18n-content.js';files['/i18n-dictionary.js']='i18n-dictionary.js';files['/russian-fonts.css']='russian-fonts.css';files['/game-ui-themes.css']='game-ui-themes.css';files['/game-ui-themes.js']='game-ui-themes.js';files['/tv-menu-polish.css']='tv-menu-polish.css';
   const file=files[url.pathname];if(!file)return json(res,404,{error:'Не найдено'});
   if(embedded&&!staticCache.has(file))staticCache.set(file,fs.readFileSync(path.join(ROOT,'public',file)));let content=embedded?staticCache.get(file):fs.readFileSync(path.join(ROOT,'public',file));
   if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`);
-  if(file==='tv.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_DISPLAY_KEY=${JSON.stringify(displayKey)};`);
+  if(file==='tv.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_DISPLAY_KEY=${JSON.stringify(displayKey)};`).replace('<script defer src="/tv-show.js">','<script defer src="/tv-invitation.js"></script><script defer src="/tv-show.js">');
   if(file==='index.html'||file==='tv.html')content=content.toString().replace('<head>','<head><script src="/i18n-dictionary.js"></script><script src="/i18n-shell.js"></script><script src="/i18n.js"></script>').replace('</head>',`${APP_HEAD}${file==='index.html'&&!embedded?'<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script>':''}</head>`);
   if(file.endsWith('.css'))content=cssFallbacks(content.toString());
   const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.xml':'application/xml; charset=utf-8','.ico':'image/x-icon'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
@@ -332,6 +382,7 @@ wss.on('connection',(ws,req)=>{
     const m=JSON.parse(raw);
     if(m.type==='ping')return send(ws,{type:'pong'});
     if(m.type==='force-language'){if(!ws.isHost)throw Error('Host access required');await manage(m);return;}
+    if(m.type==='bots-set'){if(!ws.isHost)throw Error('Тестовый режим включает ведущий.');await manage(m);return;}
     if(m.type==='test-mode'||m.type==='bots-set'){if(!ws.isHost)throw Error('Тестовый режим включает ведущий.');if(active)throw Error('Вернитесь в лобби перед сменой режима.');const requested=m.type==='bots-set'?Number(m.count):(m.enabled?1:0);if(!Number.isInteger(requested)||requested<0||requested>15)throw Error('Можно добавить от 0 до 15 ботов.');if(requested+connected().filter(p=>!p.testBot).length>16)throw Error('В комнате максимум 16 игроков.');botCount=requested;testMode=botCount>0;for(const c of clients)if(c.isHost||c.isDisplay)sendTestProfile(c);broadcast();return;}
     if(['ready-set','spectate-set','pause-set','exit-vote'].includes(m.type)){
       if(!active||m.instance!==active.instance||!ws.player||ws.player.socket!==ws)throw Error('Сначала подключитесь к игре.');

@@ -298,26 +298,27 @@ body.tv-screen #tvPodiumMain .podium-seat:is([data-rank="6"],[data-rank="7"]) .p
 html body.guest-catalog #onboarding{align-content:start!important;grid-auto-rows:min-content!important;row-gap:0!important;min-height:0!important;padding:28px 20px calc(24px + env(safe-area-inset-bottom))!important}
 html body.guest-catalog #onboarding>h1{margin:6px 0 0!important;font-size:clamp(26px,7vw,36px)!important;line-height:1.15!important}
 html body.guest-catalog #onboarding>#joinForm{display:grid!important;grid-template-columns:minmax(0,1fr);gap:28px!important;margin:24px 0 0!important}
-html body.guest-catalog #onboarding .profile-photo-field{margin:0!important;padding:16px!important;row-gap:14px!important;grid-template-columns:72px minmax(0,1fr)!important;grid-template-rows:auto auto!important;grid-template-areas:none!important}
-html body.guest-catalog #onboarding .profile-photo-preview{grid-area:1/1!important;grid-row:1!important;align-self:center}
+html body.guest-catalog #onboarding .profile-photo-field{margin:0!important;padding:16px!important;row-gap:14px!important;grid-template-columns:72px minmax(0,1fr)!important;grid-template-rows:auto auto auto!important;grid-template-areas:none!important}
+html body.guest-catalog #onboarding .profile-photo-preview{grid-area:1/1/3/2!important;grid-row:1/3!important;align-self:center}
 html body.guest-catalog #onboarding .profile-photo-copy{display:contents!important}
 html body.guest-catalog #onboarding .profile-photo-copy>.eyebrow{grid-area:1/2!important;align-self:start!important;margin:0!important}
-html body.guest-catalog #onboarding .profile-photo-copy>b{grid-area:1/2!important;align-self:center!important;margin:0!important}
-html body.guest-catalog #onboarding .profile-photo-copy>small{grid-area:1/2!important;align-self:end!important;margin:0!important}
-html body.guest-catalog #onboarding .profile-photo-actions{grid-area:2/1/3/-1!important;margin:0!important;gap:8px 10px!important}
-html body.guest-catalog #onboarding #avatarStatus{grid-area:3/1/4/-1!important;margin:0!important;font-size:11px!important;line-height:1.4}
+html body.guest-catalog #onboarding .profile-photo-copy>b{grid-area:1/2!important;align-self:end!important;margin:0!important}
+html body.guest-catalog #onboarding .profile-photo-copy>small{grid-area:2/2!important;align-self:start!important;margin:0!important}
+html body.guest-catalog #onboarding .profile-photo-actions{grid-area:3/1/4/-1!important;margin:0!important;gap:8px 10px!important}
+html body.guest-catalog #onboarding #avatarStatus{grid-area:4/1/5/-1!important;margin:0!important;font-size:11px!important;line-height:1.4}
 html body.guest-catalog #onboarding #avatarStatus:empty{display:none!important}
 html body.guest-catalog #onboarding .profile-name-group{display:flex;flex-direction:column;gap:10px}
 html body.guest-catalog #onboarding label[for=name]{margin:0!important}
 html body.guest-catalog #onboarding #name{min-height:56px!important}
 html body.guest-catalog #onboarding fieldset{margin:0!important;gap:12px 22px!important}
 html body.guest-catalog #onboarding fieldset legend{margin:0 0 10px!important}
-html body.guest-catalog #onboarding .profile-submit-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin:0!important}
+html body.guest-catalog #onboarding .profile-submit-row{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:0!important}
+html body.guest-catalog #onboarding .profile-submit-row:has(.profile-cancel:not([hidden])){grid-template-columns:minmax(0,1fr) 48px}
 html body.guest-catalog #onboarding .profile-submit-row>button[type=submit]{width:100%;margin:0!important;min-height:54px!important}
 html body.guest-catalog #onboarding .profile-cancel{display:grid;place-items:center;width:54px;min-width:54px;height:54px;min-height:54px;margin:0;padding:0;border-radius:50%}
 html body.guest-catalog #onboarding .profile-cancel[hidden]{display:none!important}
 html body.guest-catalog #onboarding .profile-cancel svg{width:21px;height:21px}
-html body.profile-editing #onboarding .profile-submit-row>button[type=submit]{min-height:48px!important;padding-block:12px!important;font-size:13px!important}
+html body.profile-editing #onboarding .profile-submit-row>button[type=submit]{min-height:48px!important;padding-block:12px!important;font-size:18px!important}
 html body.profile-editing #onboarding .profile-cancel{width:48px;min-width:48px;height:48px;min-height:48px}
 @media(max-height:720px){html body.guest-catalog #onboarding>#joinForm{gap:22px!important;margin-top:20px!important}}
 /* Only the centre badge grows. The dark masthead keeps its original height. */
@@ -366,7 +367,7 @@ html body.in-game #sessionControls{padding-top:4px!important;padding-bottom:calc
  html body.is-player.in-game #waitingRules .waiting-details{margin:0 0 12px!important;width:100%!important;flex:none!important}
  html body.is-player.in-game #waitingRules .ready-actions{margin-top:auto!important;padding:12px 0 0!important;flex:none!important}
  html body.is-player.in-game #sessionControls{position:relative!important;flex:0 0 auto!important;min-height:72px;padding:4px 10px calc(16px + env(safe-area-inset-bottom))!important;background:linear-gradient(to bottom,#15132100,#151321 75%)!important;overflow:visible!important}
- html body.is-player.in-game>.app-header{background:#0b1016!important;box-shadow:none!important;border-bottom:0!important}
+ html body.is-player.in-game>.app-header{background:transparent!important;box-shadow:none!important;border-bottom:0!important}
  html body.is-player.in-game>.app-header,
  html body.native-controller.is-player.in-game>.app-header{height:calc(48px + env(safe-area-inset-top))!important;min-height:calc(48px + env(safe-area-inset-top))!important;max-height:calc(48px + env(safe-area-inset-top))!important;overflow:visible!important}
  html body.is-player.in-game #connection::before{flex:0 0 6px!important;width:6px!important;height:6px!important;min-width:6px;min-height:6px;border-radius:50%;transform:none!important}
@@ -381,13 +382,13 @@ html body.native-controller.is-player.in-game #sessionControls{padding-bottom:16
 html body.is-player.in-game{background:#151321!important}
 html body.is-player.in-game>.app-header,
 html body.is-player.in-game #play,
-html body.native-controller.is-player.in-game #play{background:#151321!important}
+html body.native-controller.is-player.in-game #play{background:transparent!important}
 html body.is-player.in-game #play,
 html body.native-controller.is-player.in-game #play{box-sizing:border-box!important;height:var(--controller-play-height,calc(100dvh - 48px))!important;max-height:var(--controller-play-height,calc(100dvh - 48px))!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;padding-bottom:0!important}
 html body.is-player.in-game #gameFrame{box-sizing:border-box!important;position:relative!important;inset:auto!important;flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important;width:100%!important;background:transparent!important;border:0!important}
-html body.is-player.in-game #sessionControls{position:relative!important;inset:auto!important;flex:0 0 auto!important;background:#151321!important}
-html body.is-player.in-game #sessionControls::before{display:none!important}
-html body.native-controller.is-player.in-game #partyNativeDock{background:#151321!important}
+html body.is-player.in-game #sessionControls{position:relative!important;inset:auto!important;flex:0 0 auto!important;background:transparent!important}
+html body.is-player.in-game #sessionControls::before{display:block!important;background:linear-gradient(180deg,#15132100 0%,#151321b8 42%,#151321 82%)!important}
+html body.native-controller.is-player.in-game #partyNativeDock{background:linear-gradient(180deg,#15132100,#151321e6 65%,#151321)!important}
 html body.native-controller.is-player.in-game #partyNativeDock::before{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 html body.is-player.in-game #play::after{display:none!important}
 /* Keep the game-entry caption and round progress readable on small phones. */
@@ -395,16 +396,18 @@ html body.is-player.in-game #waitingRules>.eyebrow{font-size:14px!important;line
 html body.is-player.in-game .app-header #hudTimer #hudProgress{font-size:12px!important;line-height:1.15!important;letter-spacing:0!important;white-space:nowrap}
 @media(min-width:375px){html body.is-player.in-game .app-header #hudTimer #hudProgress{font-size:13px!important}}
 html body.in-game #hudLabel[hidden]{display:none!important}
+html body.in-game .app-header #hudTimer :is(#hudValue,#hudProgress)[hidden]{display:none!important}
 /* Shared match notch: one primary value and one inset progress line. The tiny
    third caption duplicated TURN/GAME and pushed the useful text into the tip. */
 html body.in-game .app-header #hudTimer #hudLabel{display:none!important}
 html body.in-game .app-header #hudTimer{justify-content:flex-start!important;gap:3px!important}
 html body.in-game .app-header #hudTimer #hudProgress{box-sizing:border-box;max-width:100%!important;text-align:center;overflow:hidden;text-overflow:ellipsis}
+html body.in-game .app-header #hudTimer #hudValue{box-sizing:border-box;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:850px){
  html body.in-game .app-header #hudTimer,
  html body.is-player.in-game .app-header #hudTimer{padding:calc(4px + env(safe-area-inset-top)) 22px 12px!important}
  html body.in-game .app-header #hudTimer strong{line-height:1!important}
- html body.is-player.in-game .app-header #hudTimer.word-time strong{line-height:1!important}
+ html body.is-player.in-game .app-header #hudTimer.word-time #hudValue{width:100%;padding:2px 4px;line-height:1.32!important;overflow:visible;text-align:center}
 }
 @media(min-width:851px){
  html body.is-host.in-game .app-header #hudTimer{padding:18px 40px 22px!important;gap:6px!important}
@@ -459,3 +462,377 @@ html body.guest-catalog .guest-game.rank-hero{min-height:184px}
 html body.guest-catalog .guest-game:is(.rank-hero,.rank-big) .guest-art{height:112%;top:-6%;right:-5%;object-fit:contain;object-position:center}
 html body.guest-catalog .guest-game.rank-hero .guest-art{width:62%}
 html body.guest-catalog .guest-game.rank-hero .guest-copy{max-width:54%}
+
+/* Mobile readiness: bounded reading areas, always-visible participation actions. */
+@media(max-width:850px){
+ html body.is-player.in-game #waitingRules{display:grid!important;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(56px,1fr) auto auto auto;align-content:stretch!important;justify-content:stretch!important;gap:8px!important;padding:12px 16px!important;overflow:visible!important;box-sizing:border-box;min-width:0!important}
+ html body.is-player.in-game #waitingRules::before{inset:0!important;height:100%!important;max-width:100%;border-radius:inherit}
+ html body.is-player.in-game #waitingRules>.eyebrow{grid-row:1;order:initial!important;margin:0!important;text-align:center}
+ html body.is-player.in-game #waitingRules>#waitingTitle{grid-row:2;order:initial!important;margin:0!important;font-size:28px!important;line-height:1.12!important;min-width:0;overflow-wrap:anywhere}
+ html body.is-player.in-game #waitingRules>#waitingContent{grid-row:3;order:initial!important;display:block!important;height:100%!important;max-height:100%!important;align-self:stretch!important;min-height:0!important;min-width:0;overflow:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable both-edges;padding:0 2px;box-sizing:border-box}
+ html body.is-player.in-game #waitingRules .waiting-goal{margin:4px auto 10px!important;width:100%!important;overflow-wrap:anywhere}
+ html body.is-player.in-game #waitingRules .waiting-details,
+ html body.is-player.in-game #waitingRules .waiting-details[open]{width:100%!important;max-height:none!important;min-height:0!important;margin:0!important;overflow:visible!important;box-sizing:border-box;flex:none!important}
+ html body.is-player.in-game #waitingRules .waiting-details[open]>summary{position:static!important}
+ html body.is-player.in-game #waitingRules>#waitingRoster{grid-row:4;order:initial!important;max-height:64px;min-height:0;min-width:0;overflow:auto;align-content:start;flex-wrap:wrap;margin:0!important;padding:2px;box-sizing:border-box}
+ html body.is-player.in-game #waitingRules .waiting-player{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-sizing:border-box}
+ html body.is-player.in-game #waitingRules>.ready-actions{grid-row:5;order:initial!important;display:grid!important;grid-template-columns:1fr;gap:6px!important;margin:0!important;padding:0!important;min-width:0}
+ html body.is-player.in-game #waitingRules .ready-actions button{margin:0!important;width:100%;min-width:0;min-height:44px!important;height:44px;padding:8px 12px!important;box-sizing:border-box}
+ html body.is-player.in-game #waitingRules>#readyProgress{grid-row:6;order:initial!important;margin:0!important;font-size:12px!important;line-height:1.3!important;min-width:0;overflow-wrap:anywhere}
+}
+@media(max-width:850px){
+ html body.is-player.in-game #play:has(#waitingRules:not([hidden])){padding-top:0!important}
+ html body.is-player.in-game #waitingRules:has(.waiting-details[open]){padding:12px 16px!important}
+ html body.is-player.in-game #waitingRules:has(.waiting-details[open]) #waitingTitle{margin:0!important}
+ html body.is-player.in-game #waitingRules>#waitingRoster{max-height:76px}
+}
+/* Keep lifecycle visibility authoritative over the mobile grid presentation. */
+html body.is-player.in-game #waitingRules[hidden]{display:none!important}
+/* Waiting areas scroll by gesture; fades appear only where more content exists. */
+@media(max-width:850px){
+ html body.is-player.in-game #waitingRules :is(#waitingContent,#waitingRoster){scrollbar-width:none;scrollbar-gutter:auto;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 var(--waiting-fade-top,0px),#000 calc(100% - var(--waiting-fade-bottom,0px)),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 var(--waiting-fade-top,0px),#000 calc(100% - var(--waiting-fade-bottom,0px)),transparent 100%)}
+ html body.is-player.in-game #waitingRules :is(#waitingContent,#waitingRoster)::-webkit-scrollbar{display:none;width:0;height:0}
+ html body.is-player.in-game #waitingRules [data-scroll-before=true]{--waiting-fade-top:12px}
+ html body.is-player.in-game #waitingRules [data-scroll-after=true]{--waiting-fade-bottom:12px}
+ html body.is-player.in-game #waitingRules .waiting-player{font:550 12px/1.35 var(--hp-font-body)!important;padding:5px 9px!important}
+}
+@media(max-width:850px) and (max-height:650px){
+ html body.is-player.in-game #waitingRules,html body.is-player.in-game #waitingRules:has(.waiting-details[open]){gap:6px!important;padding:10px 16px!important}
+ html body.is-player.in-game #waitingRules>#waitingRoster{max-height:72px}
+ html body.is-player.in-game #waitingRules .waiting-goal{font-size:14px!important;line-height:1.35!important;margin:2px auto 8px!important}
+ html body.is-player.in-game #waitingRules .waiting-details summary{min-height:44px!important;padding-block:10px!important}
+}
+/* Shell semantic roles: personal names, statistics and supporting copy. */
+html.hp-ui body #statsDialog #statsName[data-no-translate],html.hp-ui body #statsDialog .profile-identity>b,html.hp-ui body #statsDialog .stats-identity>b{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui body #statsDialog :is(.profile-summary strong,.stat-metrics dd,.stats-score strong,.stats-place){font-family:var(--hp-font-numeric)!important;font-style:normal!important;font-weight:650!important}
+html.hp-ui body #statsDialog .stat-game h3{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important}
+html.hp-ui body #photoHint,html.hp-ui body #joinForm legend{font-family:var(--hp-font-copy)!important;font-style:italic!important;font-weight:400!important;font-size:14px!important}
+html body.native-shell #activeController,html body.native-shell #activeCard.is-compact .lp-deck-controller{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important}
+/* Align the two lobby column starts, without forcing equal card heights. */
+html body.tv-screen #tvStage#tvStage.tv-has-choice #tvSidebar{padding-top:26px!important}
+/* Shared selector labels use the approved heading face, retaining their geometry. */
+html body :is(#catalogFilters,.catalog-filters,.guest-filters)>button,
+html body:not(.tv-screen) .menu-labels>span,
+html body.native-shell #partyNativeDock.native-tabs button,
+html body.native-shell #partyNativeDock.native-tabs button>span{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important}
+html body.tv-screen #tvStage #preview.tv-choice .eyebrow,
+html body.native-shell #choiceStrip .native-choice-copy>.eyebrow{font-size:10px!important;letter-spacing:1px!important;line-height:1.25!important}
+/* One visual logo size across player, native-host and TV mastheads. */
+html body #brandHeader>.heypals-header-logo,
+html body.native-shell #brandHeader>.heypals-header-logo,
+html body.is-player.in-game #brandHeader>.heypals-header-logo{width:100px!important;height:44px!important;top:calc(10px + env(safe-area-inset-top))!important;object-fit:contain!important}
+html body.tv-screen .tv-header .heypals-tv-logo{width:100px!important;height:44px!important;object-fit:contain!important}
+/* The avatar owns its circular surface; the outer hit target has no second dark disc. */
+html body #brandHeader#brandHeader #editFromCatalog{background:transparent!important;box-shadow:none!important}
+html body #brandHeader #editFromCatalog .profile-chip-avatar{clip-path:circle(50%);overflow:hidden!important;isolation:isolate}
+
+/* Broadcast actions share the same two-row geometry regardless of label length. */
+html body.native-shell #tvDirectorControls .tv-control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;align-items:stretch;gap:8px}
+html body.native-shell #tvDirectorControls .tv-control-grid>button{height:100%!important;min-height:52px!important;margin:0!important;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:10px 12px!important}
+/* Desktop catalogue sits closer to the masthead while retaining the safe header gap. */
+html body.tv-screen #tvStage.tv-has-choice>#lobby{transform:translateY(-24px);height:calc(100% - 40px)!important}
+html body.tv-screen #tvStage:not(.tv-has-choice) #tvBrowse{transform:translateY(-24px)}
+html body.native-shell .intro .hero-pills{display:flex;align-items:center}
+html body.native-shell .intro .hero-pills #gameCount{top:0!important;margin-block:0!important;line-height:1.2}
+
+html body.native-shell #activeCard.is-compact .native-run-copy{padding-left:12px!important;box-sizing:border-box;min-width:0}
+/* Readiness has one centered introduction and a separate stable participation area. */
+@media(max-width:850px){
+ html body.is-player.in-game #waitingRules{grid-template-rows:minmax(0,1fr) auto auto auto!important}
+ html body.is-player.in-game #waitingRules>.waiting-intro{grid-row:1;display:flex;flex-direction:column;justify-content:center;gap:8px;min-height:0;min-width:0;overflow:hidden}
+ html body.is-player.in-game #waitingRules .waiting-intro>.eyebrow{margin:0!important;text-align:center;flex:none}
+ html body.is-player.in-game #waitingRules .waiting-intro>#waitingTitle{margin:0!important;font-size:28px!important;line-height:1.12!important;min-width:0;overflow-wrap:anywhere;flex:none}
+ html body.is-player.in-game #waitingRules .waiting-intro>#waitingContent{display:block!important;height:auto!important;max-height:100%!important;min-height:0!important;min-width:0;flex:0 1 auto!important;overflow:auto!important;padding:0 2px;box-sizing:border-box}
+ html body.is-player.in-game #waitingRules>#waitingRoster{grid-row:2}
+ html body.is-player.in-game #waitingRules>.ready-actions{grid-row:3}
+ html body.is-player.in-game #waitingRules>#readyProgress{grid-row:4}
+ html body.is-player.in-game #waitingRules .ready-actions #readyButton{height:56px!important;min-height:56px!important}
+ html body.is-player.in-game #waitingRules .waiting-details[open]>summary{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+}
+
+@media(max-width:850px){
+ html body.is-player.in-game #waitingRules{isolation:isolate}
+ html body.is-player.in-game #waitingRules>.waiting-art{position:absolute;z-index:-1;pointer-events:none;right:0;bottom:0;width:100%;height:58%;overflow:hidden}
+ html body.is-player.in-game #waitingRules>.waiting-art::before,html body.is-player.in-game #waitingRules>.waiting-art::after{position:absolute;top:0;font-size:62.5px;line-height:1;filter:drop-shadow(0 4px 10px #0005)}
+ html body.is-player.in-game #waitingRules>.waiting-art::before{content:var(--mobile-deco-left,'✨');left:4px;transform:rotate(-14deg)}
+ html body.is-player.in-game #waitingRules>.waiting-art::after{content:var(--mobile-deco-right,'⚡');right:12px;transform:rotate(12deg)}
+ html body.is-player.in-game #waitingTitle::before,html body.is-player.in-game #waitingTitle::after{display:none!important}
+}
+
+html body.is-player.in-game #waitingRules>.waiting-art>span{position:absolute;inset:0;background-image:var(--active-game-art);background-size:contain;background-repeat:no-repeat;background-position:center center;opacity:.35}
+
+html body.is-player.in-game #waitingRules .waiting-intro>*{order:0!important}
+html body.is-player.in-game #waitingRules>.waiting-intro{height:100%!important;max-height:100%!important;align-self:stretch!important;box-sizing:border-box}
+html body.is-player.in-game #waitingRules>.waiting-art::before,html body.is-player.in-game #waitingRules>.waiting-art::after{top:auto;bottom:0}
+html body.is-player.in-game #waitingRules .waiting-details[open]{background:rgba(33,28,46,.94)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+/* Compact popup titles are centered on the complete card, including close-button space. */
+html.hp-ui body :is(#confirmTitle,#confirmStop>h2,#rulesTitle,#roomTitle,#catalogDialog>h2,#joinDialog>h2,#startBotsTitle,#gameDetail #detailTitle),
+html.hp-ui body #statsName:not([data-no-translate]),
+html.hp-ui body .tv-audio-dialog .hp-audio-settings>legend{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important;text-align:center!important;line-height:1.15;overflow-wrap:anywhere}
+html body.native-shell :is(.native-start-bots-head,#gameDetail .native-sheet-head){display:grid!important;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center!important;gap:8px!important}
+html body.native-shell .native-start-bots-head>#startBotsTitle,
+html body.native-shell #gameDetail .native-sheet-head>#detailTitle{grid-column:2;grid-row:1;min-width:0;margin:0!important;font-size:22px!important}
+html body.native-shell :is(.native-start-bots-head,#gameDetail .native-sheet-head)>button{grid-column:3;grid-row:1;width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;justify-self:end}
+html body .tv-audio-dialog .hp-audio-settings>legend{width:100%;box-sizing:border-box;margin:0 auto;padding-inline:8px;font-size:22px!important}
+/* Green TV badges and display-only catalogue actions share the action typography. */
+html.hp-ui body.tv-screen #preview.tv-choice :is(#playersNeeded,#votes),
+html.hp-ui body.tv-screen #tvCatalog .start-game{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important;font-stretch:100%!important;font-variation-settings:normal!important;font-synthesis:none!important}
+/* Soften only decorative waiting artwork; text, controls and emoji remain crisp. */
+html body.is-player.in-game #waitingRules>.waiting-art>span{filter:blur(8px);transform:scale(1.04);transform-origin:center bottom}
+/* Matchmaking decoration belongs above the title, away from participation controls. */
+html body.is-player.in-game #waitingRules>.waiting-art::before,html body.is-player.in-game #waitingRules>.waiting-art::after{display:none!important}
+html body.is-player.in-game #waitingRules .waiting-emoji-row{position:relative;flex:none;height:46px;width:100%;pointer-events:none}
+html body.is-player.in-game #waitingRules .waiting-emoji-row::before,html body.is-player.in-game #waitingRules .waiting-emoji-row::after{position:absolute;top:-8px;font-size:62.5px;line-height:1;filter:drop-shadow(0 4px 10px #0005)}
+html body.is-player.in-game #waitingRules .waiting-emoji-row::before{content:var(--mobile-deco-left,'✨');left:calc(50% - 88px);transform:rotate(-14deg)}
+html body.is-player.in-game #waitingRules .waiting-emoji-row::after{content:var(--mobile-deco-right,'⚡');right:calc(50% - 88px);transform:rotate(12deg)}
+@media(max-width:850px) and (max-height:650px){
+ html body.is-player.in-game #waitingRules .waiting-intro{gap:4px}
+ html body.is-player.in-game #waitingRules>.waiting-intro>.eyebrow{display:none}
+ html body.is-player.in-game #waitingRules>#waitingRoster{max-height:44px}
+}
+/* Shared waiting atmosphere stays radial and subordinate to the foreground. */
+html body.is-player.in-game #waitingRules{background:#151321!important}
+html body.is-player.in-game #waitingRules::before{background:radial-gradient(ellipse at 50% 35%,color-mix(in srgb,var(--game-title-accent,#c8f58b) 15%,transparent),transparent 70%)!important}
+html body.is-player.in-game #waitingRules>.waiting-art{top:10%;bottom:auto;height:58%}
+html body.native-shell main .native-catalog-tools{--host-stack-gap:8px;gap:var(--host-stack-gap)!important;padding-top:var(--host-stack-gap)!important;padding-bottom:var(--host-stack-gap)!important}
+/* Match the category rail visually while retaining a 44px touch target. */
+html body.tv-screen .tv-audio-tools #tvAudioToggle.hp-audio-icon-button{position:relative;width:39px;height:39px;min-width:39px;min-height:39px;padding:8px}
+html body.tv-screen .tv-audio-tools #tvAudioToggle.hp-audio-icon-button::after{content:'';position:absolute;inset:-2.5px;border-radius:50%}
+/* TV catalogue descriptions are deliberately secondary to game titles. */
+html body.tv-screen #tvCatalog .game .game-info>p{opacity:.7!important}
+/* The masthead already exposes roomToggle; the legacy duplicate occupied the avatar slot. */
+html body.lobby-connected:not(.in-game) #brandHeader #mobileRoomStrip{display:none!important}
+/* Profile identity copy remains readable beside the portrait at narrow widths. */
+html body.guest-catalog #onboarding .profile-photo-copy>.eyebrow{font-size:12px!important;line-height:1.25!important;letter-spacing:.45px!important}
+html body.guest-catalog #onboarding #name{font-family:var(--hp-font-body)!important;font-weight:750!important;font-style:normal!important}
+html body.guest-catalog #onboarding #joinForm fieldset{justify-content:center!important;text-align:center!important}
+html body.guest-catalog #onboarding #joinForm fieldset>legend{width:100%;text-align:center!important;margin-inline:auto!important}
+html body.guest-catalog #onboarding .profile-photo-field{row-gap:16px!important;border:0;background:none;padding-inline:0!important;box-shadow:none}
+html body.guest-catalog #onboarding #photoTitle{font:italic 900 19px/1.2 var(--hp-font-action)}
+html body.guest-catalog #onboarding .profile-name-group>label{font-family:var(--hp-font-copy);font-style:italic;font-size:16px!important}
+html body.guest-catalog #onboarding #name{font-size:20px;caret-color:var(--lime)}
+html body.guest-catalog #onboarding .profile-submit-row>button[type=submit]{justify-content:center;gap:12px}
+html body.guest-catalog #onboarding .profile-submit-row>button[type=submit]>.hp-button-icon{position:static}
+html body.guest-catalog #onboarding .profile-photo-copy>small{font-size:13px!important;line-height:1.4}
+/* Only the bottom of the search/category stack owns the trailing fade. */
+html body.native-shell main #choiceStrip::before{top:-8px;bottom:-8px;background:#0d1017!important;-webkit-mask:none!important;mask:none!important}
+html:has(>body.native-shell),html body.native-shell{scrollbar-width:none}
+html:has(>body.native-shell)::-webkit-scrollbar,html body.native-shell::-webkit-scrollbar{display:none;width:0;height:0}
+html body.native-shell main #choiceMeta{display:flex;align-items:center;gap:5px;font-size:11px!important;line-height:1.2!important;font-weight:550!important}
+html body.native-shell main #choiceMeta .choice-clock{display:inline-block;flex:none;width:11px;height:11px;border:1px solid currentColor;border-radius:50%;position:relative;box-sizing:border-box}
+html body.native-shell main #choiceMeta .choice-clock::after{content:'';position:absolute;left:4px;top:1px;width:3px;height:4px;border-left:1px solid currentColor;border-bottom:1px solid currentColor;box-sizing:border-box}
+html body.tv-screen #tvStage.tv-has-choice #preview.tv-choice{padding-right:5px}
+html body.native-shell main #choiceMeta>span:not(.choice-clock){font-size:11px!important;font-weight:550!important;line-height:1.2!important;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Keep the contour on the painted card surface throughout the radius morph. */
+html body.native-shell #activeCard::after{box-shadow:inset 0 0 0 1px #c6b1ff55;transition:border-radius .18s cubic-bezier(.22,1,.36,1)}
+/* Independent viewport backing cannot be clipped by the animated deck's bounds. */
+body.native-shell main>.native-stack-backing{position:fixed;left:0;right:0;top:0;z-index:29;pointer-events:none;background:#0d1017}
+body.native-shell main>.native-stack-backing::after{content:'';position:absolute;left:0;right:0;top:100%;height:28px;background:linear-gradient(#0d1017,transparent)}
+html body.native-shell #activeCard::before,html body.native-shell main #choiceStrip::before{display:none}
+/* Ranking rows scroll inside their own region, never over the title or close action. */
+html body #statsDialog{overflow:hidden!important;max-height:calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important}
+html body #statsDialog[open]{display:flex!important;flex-direction:column;min-height:0}
+html body #statsDialog #statsBody{min-height:0!important;flex:1 1 auto!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;scrollbar-width:none}
+html body #statsDialog :is(#statsName,#closeStats){flex:0 0 auto;position:relative;z-index:1}
+
+html body #statsDialog #statsBody::-webkit-scrollbar{display:none;width:0;height:0}
+/* Clear podium hierarchy, then restrained rows with a distinct personal mark. */
+html body #statsDialog .stats-rank{--rank-ink:#dbc8ff;--rank-light:#c9aaff18;--rank-line:#cbb1ff33;position:relative;grid-template-columns:34px 54px minmax(0,1fr) auto;gap:10px;padding:16px 12px;min-height:100px;border:1px solid var(--rank-line)!important;border-radius:22px!important;background:radial-gradient(ellipse at 12% 0,var(--rank-light),transparent 75%),linear-gradient(135deg,#30273e,#211f32)!important;box-shadow:inset 0 1px 0 #f5e5ff0c,0 4px 14px #08061118!important}
+html body #statsDialog .stats-rank[data-place="1"]{--rank-ink:#ffdf9a;--rank-light:#f8d17a29;--rank-line:#e8c37670;background:radial-gradient(ellipse at 12% 0,#f8d17a25,transparent 75%),linear-gradient(135deg,#39303d,#282337)!important}
+html body #statsDialog .stats-rank[data-place="2"]{--rank-ink:#e1e8ff;--rank-light:#c8d5fa20;--rank-line:#c8d5fa60}
+html body #statsDialog .stats-rank[data-place="3"]{--rank-ink:#f4be9c;--rank-light:#e6a67e20;--rank-line:#e6a67e60}
+html body #statsDialog .stats-place{position:relative;display:flex;align-items:center;justify-content:center;width:34px;min-width:34px;height:42px;padding:0;border-radius:12px;color:var(--rank-ink);font:italic 900 23px/1 KardiaFatRunner;background:linear-gradient(145deg,var(--rank-light),#ffffff03);border:1px solid var(--rank-line);box-shadow:inset 0 1px 0 #ffffff12}
+html body #statsDialog .stats-rank:is([data-place="1"],[data-place="2"],[data-place="3"]) .stats-place{box-shadow:inset 0 1px 0 #ffffff22,0 3px 12px var(--rank-light)}
+html body #statsDialog .stats-place>.stats-crown{position:absolute;width:19px;height:15px;top:-11px;left:7px;filter:drop-shadow(0 2px 4px #e5b95540)}
+html body #statsDialog .stats-avatar{width:54px;height:54px;min-width:54px;border-radius:18px;font-size:22px}
+html body #statsDialog .stats-identity>b{font-family:KardiaFit!important;font-style:normal!important;font-weight:700!important;text-transform:none!important;font-size:16px!important;line-height:1.25}
+html body #statsDialog .stats-identity>small{font-family:KardiaFit!important;font-style:normal!important;text-transform:none;font-size:12px!important;line-height:1.3;opacity:.8;margin-top:5px}
+html body #statsDialog .stats-score>strong{font-family:KardiaFit!important;font-style:normal!important;font-size:22px!important;color:var(--rank-ink)}
+html body #statsDialog .stats-score>small{font-family:KardiaFit!important;font-style:normal!important;font-size:10px!important;opacity:.65}
+html body #statsDialog .stats-rank.is-self{border-color:#b7a0f6b3!important;box-shadow:inset 3px 0 0 #c7aeff,inset 0 1px 0 #f5e5ff15,0 4px 16px #8b62d818!important}
+html body #statsDialog .stats-you{display:inline-block;align-self:flex-start;margin-top:5px;padding:3px 7px;border-radius:7px;background:#b69bf126;color:#e0ceff;font:400 11px/1.1 KardiaFit!important;text-transform:uppercase}
+html body #statsDialog #statsName:focus{outline:none!important}
+html body #statsDialog .stats-rank[data-place] .stats-avatar{width:54px!important;height:54px!important;min-width:54px!important;max-width:54px!important}
+html body #statsDialog .stats-identity>b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+@media(max-width:360px){
+ html body #statsDialog .stats-rank{grid-template-columns:28px 44px minmax(0,1fr) auto;gap:8px;padding-inline:10px}
+ html body #statsDialog .stats-rank[data-place] .stats-avatar{width:44px!important;height:44px!important;min-width:44px!important;max-width:44px!important;border-radius:15px}
+ html body #statsDialog .stats-place{width:28px;min-width:28px;height:38px;font-size:21px}
+ html body #statsDialog .stats-place>.stats-crown{left:5px}
+ html body #statsDialog .stats-score>strong{font-size:20px!important}
+}
+/* Mobile catalog actions are one compact row; player count owns a separate row. */
+@media(max-width:850px){
+ html body.native-shell #catalog .game-bottom{display:flex!important;flex-flow:row nowrap!important;gap:8px!important;align-items:center!important}
+ html body.native-shell #catalog .game-info>.game-bottom:has(.lp-player-range){flex-wrap:wrap!important}
+ html body.native-shell #catalog .game-bottom>.lp-player-range{flex:0 0 100%;width:100%}
+ html body.native-shell #catalog .game-bottom>:is(.lp-card-open,.lp-direct-start){flex:1 1 0!important;width:auto!important;min-width:0!important;min-height:44px!important;height:44px!important;padding:8px 9px!important;font-size:14px!important;line-height:1.1!important;white-space:nowrap!important}
+ html body:not(.tv-screen) .game-bottom:has(.rules-link){display:flex!important;flex-flow:row nowrap!important;gap:8px!important}
+ html body:not(.tv-screen) .game-bottom>:is(.rules-link,.start-game){flex:1 1 0!important;min-width:0!important;width:auto!important;min-height:44px!important;height:44px!important;padding:8px!important;font-size:14px!important;white-space:nowrap!important}
+}
+
+/* A standings board, not a stack of unrelated cards. Place, identity and
+   score share continuous rails; depth belongs to the complete scoreboard. */
+html.hp-ui body #rankSection>.section-title{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:16px}
+html.hp-ui body #rankSection>.section-title .eyebrow{display:none}
+html.hp-ui body #rankSection>.section-title h2{font:900 italic 24px/1.15 KardiaFatRunner,sans-serif!important;margin:0;text-wrap:balance}
+html.hp-ui body #rankSection>.section-title>span{font:400 12px/1.35 KardiaFitRunner,sans-serif!important;color:#d0c1e2!important;text-transform:none!important}
+html.hp-ui body #rankSection :is(#leaderboard,#resultRows){display:grid;gap:0;border:1px solid #c6b1ff3d;border-radius:22px;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 0 20%,#ce92ff38,transparent 64%),radial-gradient(ellipse at 100% 80%,#91b9ff38,transparent 60%),linear-gradient(105deg,#442b58,#26233b 54%,#3c3157);box-shadow:0 8px 24px #08051135}
+html.hp-ui body #rankSection #leaderboard:empty{display:none}
+html.hp-ui body #rankSection :is(.rank-row,.result-row){position:relative;display:grid;grid-template-columns:28px minmax(0,1fr) max-content;gap:8px;align-items:center;min-height:64px;margin:0;padding:10px 12px;box-sizing:border-box;border:0;border-radius:0;background:linear-gradient(90deg,#ceb6ff0a,transparent 48%,#bdc4ef09)!important;box-shadow:none!important;overflow:visible;text-align:left;color:#f6efff;transform:none!important}
+html.hp-ui body #rankSection :is(.rank-row,.result-row)+:is(.rank-row,.result-row)::before{content:"";position:absolute;top:0;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,#d9c3f126 16%,#d9c3f126 84%,transparent);pointer-events:none}
+html.hp-ui body #rankSection :is(.rank-row,.result-row).champion{background:radial-gradient(ellipse at 0 10%,#f5c54f69,transparent 75%),linear-gradient(95deg,#a67b344d,#79644430 55%,#d6ad475c)!important}
+html.hp-ui body #rankSection .hp-place{width:28px!important;min-width:28px!important;padding:0 6px 0 0!important;gap:0;--hp-place-number-size:52px;--hp-place-number-gradient:linear-gradient(180deg,#eadcff,#be9afd 48%,#8154cd)}
+html.hp-ui body #rankSection .hp-place[data-place="1"]{--hp-place-number-gradient:linear-gradient(180deg,#fff6d4,#ffe47d 48%,#b78e35)}
+html.hp-ui body #rankSection .hp-place[data-place="2"]{--hp-place-number-gradient:linear-gradient(180deg,#f0fbff,#bbddff 48%,#799bcc)}
+html.hp-ui body #rankSection .hp-place[data-place="3"]{--hp-place-number-gradient:linear-gradient(180deg,#ffe9d5,#ffbf83 48%,#a85d58)}
+html.hp-ui body #rankSection .hp-place .hp-place-award{position:absolute;top:-5px;right:-9px;width:24px!important;height:26px!important;z-index:1}
+/* A gradient is explicitly requested for place numerals. It is confined to
+   the award rail; the large lettering does not change a row's flow height. */
+html.hp-ui body #rankSection .hp-place .hp-place-digit{position:absolute;top:50%;left:-8px;transform:translateY(-50%);display:block!important;width:max-content!important;height:auto!important;box-sizing:content-box;padding:0 12px 0 2px!important;overflow:visible!important;font-size:var(--hp-place-number-size)!important;line-height:1!important;letter-spacing:-1px;white-space:nowrap;background:var(--hp-place-number-gradient)!important;background-clip:text!important;-webkit-background-clip:text!important;color:transparent!important;-webkit-text-fill-color:transparent;text-shadow:none;opacity:1}
+html.hp-ui body #rankSection .hp-place[data-place-digits="2"]{--hp-place-number-size:48px;width:44px!important;min-width:44px!important}
+html.hp-ui body #rankSection .hp-place[data-place-digits]:not([data-place-digits="1"]):not([data-place-digits="2"]){--hp-place-number-size:30px}
+html.hp-ui body #rankSection .hp-place[data-place-digits="2"]::after{right:-6px}
+html.hp-ui body #rankSection :is(.rank-row,.result-row):has(.hp-place[data-place-digits="2"]){grid-template-columns:44px minmax(0,1fr) max-content}
+html.hp-ui body #rankSection .wide-score:has(.hp-place[data-place-digits="2"]){grid-template-columns:44px minmax(0,1fr)}
+html.hp-ui body #rankSection :is(.rank-identity,.last-result-identity){display:grid;grid-template-columns:32px minmax(0,1fr);gap:2px 8px;min-width:0;align-items:center}
+html.hp-ui body #rankSection .rank-avatar{display:grid!important;place-items:center;grid-row:1/3;width:32px;height:32px;min-width:32px;margin:0!important;border-radius:12px;overflow:visible;font:650 16px/1 KardiaFit,sans-serif!important;background:linear-gradient(145deg,#735489,#48415f);color:#f8edff}
+html.hp-ui body #rankSection .rank-avatar img{width:100%;height:100%;display:block;object-fit:cover;border-radius:inherit}
+/* The image owns its rounded crop; the initial badge paints above that crop. */
+html.hp-ui body #rankSection .rank-avatar.has-photo::after{z-index:2}
+html.hp-ui body #rankSection :is(.rank-name,.last-result-name){grid-column:2;min-width:0;font:550 15px/1.12 KardiaFit,sans-serif!important;white-space:normal;overflow-wrap:anywhere;text-transform:none!important;color:#f6f0ff!important}
+html.hp-ui body #rankSection :is(.rank-identity .rank-name,.last-result-identity .last-result-name){line-height:1.12!important}
+html.hp-ui body #rankSection .rank-history{grid-column:2;margin-top:4px;font:400 12px/1.3 KardiaFitRunner,sans-serif!important;color:#cfbfdf!important;text-transform:none!important}
+/* Last-match identities have one name row and no history beneath it. */
+html.hp-ui body #rankSection .last-result-identity :is(.rank-avatar,.last-result-name){grid-row:1}
+html.hp-ui body #rankSection :is(.rank-stats,.last-result-score){display:flex!important;flex-direction:column;gap:2px;align-items:center;justify-content:center;justify-items:center;text-align:center;margin:0;min-width:0}
+html.hp-ui body #rankSection :is(.rank-stats,.last-result-score)>strong{font:900 italic 26px/1.1 KardiaFatRunner,sans-serif!important;opacity:.84;color:#e3d4ff;padding-inline:10px!important;min-width:0;text-align:center;white-space:nowrap;overflow:visible!important}
+html.hp-ui body #rankSection .champion :is(.rank-stats,.last-result-score)>strong{color:#ffe4a0}
+html.hp-ui body #rankSection :is(.rank-row,.result-row)[data-place="2"]{background:radial-gradient(ellipse at 0 50%,#64d5ef38,transparent 74%),linear-gradient(95deg,#4b78a230,#6898bf18 55%,#639fc543)!important}
+html.hp-ui body #rankSection :is(.rank-row,.result-row)[data-place="3"]{background:radial-gradient(ellipse at 0 50%,#f59e6243,transparent 74%),linear-gradient(95deg,#98604c32,#c5796220 55%,#d7926940)!important}
+html.hp-ui body #rankSection [data-place="2"] :is(.rank-stats,.last-result-score)>strong{color:#b8eaff}
+html.hp-ui body #rankSection [data-place="3"] :is(.rank-stats,.last-result-score)>strong{color:#ffd0aa}
+html.hp-ui body #rankSection>.section-title h2 em{color:#caff7d!important}
+html.hp-ui body #rankSection :is(.rank-stats,.last-result-score)>small{display:block!important;font:400 11px/1.25 KardiaFitRunner,sans-serif!important;color:#d3c4e6!important;text-transform:none!important}
+html.hp-ui body #rankSection .wide-score{grid-template-columns:28px minmax(0,1fr)}
+html.hp-ui body #rankSection .wide-score>.hp-place{grid-row:1/3}
+html.hp-ui body #rankSection .wide-score>:is(.rank-stats,.last-result-score){grid-column:2;justify-self:end;width:max-content;max-width:100%}
+html.hp-ui body #rankSection #lastResult{margin-top:28px;padding:0;border:0!important;border-radius:22px;background:none!important;box-shadow:none}
+html.hp-ui body #rankSection #lastResult::before{content:none}
+html.hp-ui body #rankSection #resultTitle{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 12px;padding:0 2px;border:0;background:none;font:900 italic 18px/1.2 KardiaFatRunner,sans-serif!important;color:#f1e9ff}
+html.hp-ui body #rankSection .last-result-game{position:relative;display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:0;font:400 11px/1.25 KardiaFitRunner,sans-serif!important;color:#d1c1e5}
+html.hp-ui body #rankSection .last-match-logo{display:block;width:88px;height:40px;object-fit:contain;image-rendering:auto}
+html.hp-ui body #rankSection .rank-row:active{background-color:#ffffff0b!important}
+@media(hover:hover) and (pointer:fine){html.hp-ui body #rankSection .rank-row:hover{background-color:#ffffff0b!important;filter:brightness(1.08)}}
+/* At narrow widths the name owns the identity rail. Photo and history stay
+   together underneath, rather than forcing surnames into letter fragments. */
+@media(max-width:350px){
+ html.hp-ui body #rankSection .rank-identity{grid-template-columns:24px minmax(0,1fr);gap:4px 8px}
+ html.hp-ui body #rankSection .rank-identity .rank-name{grid-column:1/-1;grid-row:1}
+ html.hp-ui body #rankSection .rank-identity .rank-avatar{grid-column:1;grid-row:2;width:24px;height:24px;min-width:24px;border-radius:9px;font-size:12px!important}
+ html.hp-ui body #rankSection .rank-identity .rank-history{grid-column:2;grid-row:2}
+}
+
+/* Player details: one identity, one joined summary and a readable metric grid.
+   The body alone scrolls; name and dismissal retain their stable positions. */
+html.hp-ui body #statsDialog #statsName[data-no-translate]{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;gap:12px;font-size:22px!important;line-height:1.2!important;padding:0}
+html.hp-ui body #statsDialog #statsName .profile-avatar{width:44px;height:44px;border-radius:16px;font-size:20px;flex:none}
+html.hp-ui body #statsDialog #statsName .profile-name{min-width:0;font:550 22px/1.2 KardiaFit,sans-serif!important;text-transform:none!important;overflow-wrap:anywhere}
+html.hp-ui body #statsDialog:has(.profile-content){gap:16px}
+html.hp-ui body #statsDialog .profile-content{padding:0 0 8px;gap:16px}
+html.hp-ui body #statsDialog .profile-content .stats-back{align-self:flex-start;margin:0;padding:10px 12px;min-height:44px;font-size:14px!important}
+html.hp-ui body #statsDialog .profile-summary{gap:0;border:1px solid #c6b1ff38;border-radius:22px;background:linear-gradient(120deg,#413350d9,#29263ce8);overflow:hidden}
+html.hp-ui body #statsDialog .profile-summary>div{position:relative;padding:12px 8px;gap:4px;align-items:center;text-align:center;border:0;border-radius:0;background:none!important;min-width:0}
+html.hp-ui body #statsDialog .profile-summary>div+div::before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:1px;background:linear-gradient(transparent,#eadbff38,transparent)}
+html.hp-ui body #statsDialog .profile-summary .hp-award{width:28px;height:30px;margin:0}
+html.hp-ui body #statsDialog .profile-summary strong{font:650 22px/1.15 KardiaFit,sans-serif!important;white-space:nowrap;color:#f0dcff}
+html.hp-ui body #statsDialog .profile-summary small{font:400 12px/1.2 KardiaFitRunner,sans-serif!important;color:#d3c4e4!important;text-transform:none!important}
+html.hp-ui body #statsDialog .profile-earned{gap:12px;margin:0}
+html.hp-ui body #statsDialog .profile-earned .hp-award{width:32px;height:36px}
+html.hp-ui body #statsDialog .stat-game{padding:16px;border-radius:22px;background:linear-gradient(130deg,#392f46ef,#262339fa)!important;border-color:#c6b1ff38}
+html.hp-ui body #statsDialog .stat-game h3{font-size:18px!important;line-height:1.2!important}
+html.hp-ui body #statsDialog .stat-game-summary{font:400 13px/1.5 KardiaFitRunner,sans-serif!important;color:#d9cae6;text-transform:none!important;margin-top:8px}
+html.hp-ui body #statsDialog .stat-game-summary .hp-award{width:24px;height:26px;vertical-align:middle}
+html.hp-ui body #statsDialog .stat-metrics{gap:12px;margin-top:12px}
+html.hp-ui body #statsDialog .stat-metrics>div.has-award{display:grid;grid-template-columns:24px minmax(0,1fr);gap:4px 6px;align-items:center;min-height:44px;padding:0;background:none!important;border-radius:0}
+html.hp-ui body #statsDialog .stat-metrics>div>.hp-award{position:static;transform:none;grid-row:1/3;width:24px;height:28px}
+html.hp-ui body #statsDialog .stat-metrics dt{font:400 12px/1.25 KardiaFitRunner,sans-serif!important;color:#d5c5e5;text-transform:none!important}
+html.hp-ui body #statsDialog .stat-metrics dd{margin:0;grid-column:2;font:650 18px/1.2 KardiaFit,sans-serif!important;overflow-wrap:anywhere;color:#f3eaff}
+/* A narrow profile reads full metric names instead of breaking their last
+   letter; short-screen scrolling remains inside the existing content region. */
+@media(max-width:350px){html.hp-ui body #statsDialog .stat-metrics{grid-template-columns:minmax(0,1fr)}}
+
+/* The flex sheet reserves Got it; long rules scroll inside that reserved space. */
+@media(max-width:850px){html body #rulesDialog #rulesBody{overflow:auto!important;overscroll-behavior:contain;padding-bottom:16px!important}}
+
+/* UIKit's persistent dock sits above WKWebView even when its DOM stand-in is
+   hidden. Native statistics sheets reserve that same visible dock plus8px. */
+html body.native-controller #statsDialog{
+ position:fixed;top:calc(env(safe-area-inset-top) + 8px);bottom:calc(var(--native-tab-reserve,calc(56px + env(safe-area-inset-bottom))) + 8px);
+ margin:0 auto;height:auto;max-height:calc(100dvh - env(safe-area-inset-top) - var(--native-tab-reserve,calc(56px + env(safe-area-inset-bottom))) - 16px);
+}
+
+/* Give italic numerals their painted overhang, including their gradient mask.
+   The selected-game outline follows the existing left colour into lime. */
+html body.native-shell main #choiceStrip#choiceStrip::before,
+html body.native-shell main #activeCard#activeCard>.native-run-outline{content:"";display:block!important;position:absolute;inset:0;width:auto;transform:none;border-radius:inherit;box-sizing:border-box;padding:1px;z-index:3;pointer-events:none;background:linear-gradient(100deg,var(--pick-color,#9b7bff),#caff7d)!important;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0)!important;-webkit-mask-composite:xor!important;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0)!important;mask-composite:exclude!important}
+/* The compact lobby sidebar must still show four online players beside a
+   populated top three. Keep its ranking awards proportional to their rows. */
+html.hp-ui body.tv-screen #tvStage.roster-needs-space #tvLeaders>.mini-rank.hp-ranking-row{
+ min-height:30px!important;margin-block:1px!important;padding-block:2px!important;
+ grid-template-columns:42px minmax(0,1fr) max-content!important;column-gap:6px!important;
+}
+html.hp-ui body.tv-screen #tvStage.roster-needs-space #tvRanking{padding:6px 12px!important}
+html.hp-ui body.tv-screen #tvStage.roster-needs-space #tvLeaders>.mini-rank .hp-ranking-place{
+ width:42px!important;min-width:42px!important;height:26px!important;--hp-ranking-size:24px;
+}
+html.hp-ui body.tv-screen #tvStage.roster-needs-space #tvLeaders>.mini-rank .hp-ranking-cup{
+ width:17px!important;height:20px!important;
+}
+html.hp-ui body.tv-screen #tvStage.roster-needs-space #tvLeaders>.mini-rank>span{
+ display:flex;align-items:center;min-height:0;height:24px;
+}
+html.hp-ui body.tv-screen #tvStage.roster-needs-space #tvLeaders>.mini-rank .hp-award{
+ width:22px!important;height:24px!important;
+}
+
+/* Uploaded identities keep the same circular crop on TV, browser and native
+   surfaces. The ring belongs to the photo, never to freeform mascot artwork. */
+html body :is(.profile-photo-preview,.profile-chip-avatar,.avatar,.rank-avatar,.stats-avatar,.profile-avatar,.mini-avatar,.mobile-room-avatar,.room-avatar-chip,.tv-arrival-face).has-photo{border-radius:50%!important;outline:1.5px solid var(--photo-frame,var(--hp-accent,#cfff85));outline-offset:1px}
+html body :is(.profile-photo-preview,.profile-chip-avatar,.avatar,.rank-avatar,.stats-avatar,.profile-avatar,.mini-avatar,.mobile-room-avatar,.room-avatar-chip,.tv-arrival-face).has-photo>img{border-radius:50%!important;clip-path:circle(50%);object-fit:cover}
+html body:not(.tv-screen) .lp-avatar-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%!important;clip-path:circle(50%);opacity:0;z-index:1}
+html body:not(.tv-screen) .lp-avatar-image[data-decoded="true"]{opacity:1}
+html body:not(.tv-screen) .has-photo::after{z-index:2}
+
+/* Preserve the approved violet material while keeping underlying words out
+   of reading dialogs. Only the body scrolls; heading and actions stay whole. */
+html body:not(.tv-screen):not(.native-shell) :is(#rulesDialog,#statsDialog,#roomDialog,#joinDialog,#catalogDialog){background:linear-gradient(135deg,#302540,#20233a)!important}
+.profile-fields{display:contents}
+html body.profile-editing #onboarding{display:grid!important;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:start!important;overflow:hidden!important;height:min(94dvh,860px);background:linear-gradient(145deg,#211d32,#141923 62%,#171c29)!important}
+html body.native-controller.profile-editing #onboarding{height:min(860px,calc(100dvh - var(--native-tab-reserve) - 16px))}
+html body.profile-editing #onboarding>.join-mark{grid-column:1;grid-row:1!important}
+html body.profile-editing #onboarding>h1{grid-column:2;grid-row:1}
+html body.profile-editing #onboarding>#joinForm{grid-column:1/-1;grid-row:2;align-self:stretch}
+html body.profile-editing #onboarding>h1{flex:0 0 auto}
+html body.profile-editing #onboarding #joinForm{display:flex!important;flex-direction:column;min-height:0;gap:16px!important;overflow:hidden}
+html body.profile-editing #onboarding .profile-fields{display:grid!important;grid-template-columns:minmax(0,1fr);gap:28px;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:0 2px 12px;scrollbar-width:none;scrollbar-gutter:auto}
+html body.profile-editing #onboarding .profile-fields::-webkit-scrollbar{display:none;width:0;height:0}
+html body.profile-editing #onboarding .profile-submit-row{flex:0 0 auto}
+html body #joinDialog[open]{display:flex;flex-direction:column;gap:12px;overflow:hidden;max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));box-sizing:border-box}
+html body #joinDialog>:is(.eyebrow,h2,button){flex:0 0 auto;margin-block:0}
+html body #joinDialog .lp-invite-body{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;scrollbar-gutter:auto}
+html body #joinDialog .lp-invite-body::-webkit-scrollbar{display:none;width:0;height:0}
+html body #joinDialog .lp-invite-body .lp-join-qr{display:block;margin:12px auto;width:min(240px,100%);height:auto;aspect-ratio:1}
+html body #joinDialog #closeJoin{min-height:44px}
+html body #joinDialog h2:focus{outline:none}
+@media(max-height:650px){html body #joinDialog h2{font-size:clamp(24px,7vw,34px)!important;line-height:1.1;margin:0}html body #joinDialog .lp-invite-body .lp-join-qr{width:min(200px,100%)}html body #joinDialog .lp-invite-body p{margin-block:10px}}
+
+/* Players and audio scroll together without moving the heading/dismissal. */
+html body:not(.tv-screen) #roomDialog[open]{display:flex!important;flex-direction:column;overflow:hidden!important;max-height:calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom));box-sizing:border-box}
+html body #roomDialog>:is(.eyebrow,h2,.room-actions){flex:0 0 auto}
+html body #roomDialog .room-content{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;scrollbar-gutter:auto;padding:4px 2px}
+html body #roomDialog .room-content::-webkit-scrollbar{display:none;width:0;height:0}
+
+/* The run card shares the selected-game ring, rather than a second flat line. */
+html body.native-shell main #activeCard#activeCard{border-color:transparent!important}
+html body.native-shell main #activeCard#activeCard::after{box-shadow:none!important}

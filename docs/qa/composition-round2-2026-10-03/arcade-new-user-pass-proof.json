@@ -1,0 +1,202 @@
+{
+  "status": "targeted local confirmation passed; finalglobalcatalog pending root",
+  "sources": {
+    "games/arcade/public/app.js": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52",
+    "games/arcade/public/snake-polish.js": "c25ffd150e5ca2c4eb087a9b1c092174eecf1e394aa9e8f094d73475a197410a",
+    "games/arcade/simulation.js": "8a99d754d1147303ea6eb49230a0fa3660d703fc1728ddbd71d8afb6640779b0",
+    "games/arcade/server.js": "05d52dfcf1322d6f7b855ea80cd9cc29261570deb14a2cad74fa6c7ad9f1b779",
+    "games/arcade/carryball-hud.js": "a7a6245e4375cf778cc74050fd6bc3902b92a9ede536c0a04e8d4f37e59a644c",
+    "games/kart/static/host.js": "f620a2e629679599d4a71af9f3e0dbd98baafea48b881f5fadd7beda67fc92c3",
+    "games/kart/static/styles.css": "cf891fb25e102ff294b65afae0315fc4729d75b29c059b75fcb178d226bdaad1",
+    "lib/tv-playfield-bounds.js": "0ed0acc5c9772e802924a759593f86da16cfec3dc5c4537568c1e8e47fb1c68b",
+    "tests/carryball-visible-hud.test.js": "b302ff92615ffcc53b732f0a8544163be1735f5f1633fe5ea5a81e3596921429",
+    "public/assets/gameplay/round3/2026-10-03/punch-gym-v1.png": "8512359b2e972a6f578c5dd899913a86ca3b420b05200e83c4002ed229ece6f6",
+    "lib/party-runtime.js": "f1379701a182bdb6076f3d4efa16a680776fb7a2903471399dba7468a9f79f91"
+  },
+  "frames": [
+    {
+      "game": "kart",
+      "width": 1280,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/kart-tv-live-1280.png",
+      "sha256": "90a00c514b742c075e2600f28716a53f926cf2688f7d94774de6a7012208d4f5",
+      "opened": true,
+      "observation": "Forest/navy-teal individual cards match scene; four whole rows, complete cap and16px rightgap; continuous fullheight wash retained.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "kart",
+      "width": 1920,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/kart-tv-live-1920.png",
+      "sha256": "b3c4d2c3f0a0eb11b426eafaf766e3e4472334d5ea54d28b3b0580e3bac728ef",
+      "opened": true,
+      "observation": "Forest/navy-teal individual cards match scene; four whole rows, complete cap and16px rightgap; continuous fullheight wash retained.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "punchmeter",
+      "width": 1280,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/punchmeter-tv-live-1280.png",
+      "sha256": "7a5e9b9336cb4e7f917a040d0dd6be8590b09d8c146fde718dca171f40255671",
+      "opened": true,
+      "observation": "Generated gym fillsviewport at nativeaspect; original bag/rope/ringpost geometry intact; no duplicate decorative floorhorizon.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "punchmeter",
+      "width": 1920,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/punchmeter-tv-live-1920.png",
+      "sha256": "75612a99ea6b51d225bcd6d7b0234922bb742b9b286c0294a524c90d2bf3b258",
+      "opened": true,
+      "observation": "Generated gym fillsviewport at nativeaspect; original bag/rope/ringpost geometry intact; no duplicate decorative floorhorizon.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "flappy",
+      "width": 1280,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/flappy-tv-live-1280.png",
+      "sha256": "7a51e5ed3a15ca4ae97659dcb724cb89b1230eb417d8e27227589be5a90aa641",
+      "opened": true,
+      "observation": "Upper pipe reachesviewporttop; actual controller flaps verified; sky/world uniform; gap/pipe/player geometry intact.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "flappy",
+      "width": 1920,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/flappy-tv-live-1920.png",
+      "sha256": "65b5b0a91a19df412fceffd701d83b70eac94c52b576d73a9d4e3684fb586899",
+      "opened": true,
+      "observation": "Upper pipe reachesviewporttop; actual controller flaps verified; sky/world uniform; gap/pipe/player geometry intact.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "snakelines",
+      "width": 1280,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/snakelines-tv-live-1280.png",
+      "sha256": "932c37625d2525b3b4474bfb5b577e45a6fdc5b6986fc3d61d329b18bf00fd13",
+      "opened": true,
+      "observation": "Quiet circuitfloor fillsviewport, no ornamental edge/crossmarks; original worldcollision/trails preserved.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "snakelines",
+      "width": 1920,
+      "file": "output/playwright/composition-round3-2026-10-03/arcade-focused/snakelines-tv-live-1920.png",
+      "sha256": "5117dcaaac5defc7fb686d59b0eb3d6e76527b37442440fcc93a62f16a56f8a2",
+      "opened": true,
+      "observation": "Quiet circuitfloor fillsviewport, no ornamental edge/crossmarks; original worldcollision/trails preserved.",
+      "appAtCapture": "7649b59d0da453406374d415acdd33e9bc6030f7eed545d0f5dbe2bb00820ada"
+    },
+    {
+      "game": "carryball",
+      "width": 1280,
+      "file": "output/playwright/composition-round3-2026-10-03/carry-hud-confirm/carryball-tv-live-1280.png",
+      "sha256": "45644125fa38a2b08a032c6aa90b838301c060f0b98ba53174ebcb72e6ce5f29",
+      "opened": true,
+      "observation": "Fullheight field beneathcap; actual controlled actor approaches cap but whole body stays below; name placedclear.60canonical envelope samples pass andpausedgeometrydeliveredbeforeresume.",
+      "appAtCapture": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52"
+    },
+    {
+      "game": "carryball",
+      "width": 1920,
+      "file": "output/playwright/composition-round3-2026-10-03/carry-hud-confirm/carryball-tv-live-1920.png",
+      "sha256": "a9caad4494a0dc6cb18bf432d303b3ada6d6d7a92c1488a5c582ca019c2de308",
+      "opened": true,
+      "observation": "Fullheight field beneathcap; actual controlled actor approaches cap but whole body stays below; name placedclear.60canonical envelope samples pass andpausedgeometrydeliveredbeforeresume.",
+      "appAtCapture": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52"
+    }
+  ],
+  "focusedReport": "output/playwright/composition-round3-2026-10-03/arcade-focused/report.json",
+  "finalCarryReport": "output/playwright/composition-round3-2026-10-03/carry-hud-confirm/report.json",
+  "carrySamples": 60,
+  "minimumCssEnvelopeClearance": 1.726315796375303,
+  "pauseResize": {
+    "before": {
+      "time": 6.43333333333332,
+      "layout": {
+        "width": 1200,
+        "height": 720,
+        "exclusions": [
+          {
+            "x": 298,
+            "y": 0,
+            "w": 604,
+            "h": 115.59375
+          }
+        ]
+      }
+    },
+    "pausedAt": 6.43333333333332,
+    "paused": {
+      "time": 6.43333333333332,
+      "accepted": {
+        "width": 1200,
+        "height": 720,
+        "exclusions": [
+          {
+            "x": 246.5625,
+            "y": 0,
+            "w": 706.875,
+            "h": 92.9296875
+          }
+        ]
+      },
+      "players": [
+        {
+          "x": 252.3789473772049,
+          "y": 136.9296875
+        },
+        {
+          "x": 560.5960413996296,
+          "y": 176.484375
+        },
+        {
+          "x": 843.881795507509,
+          "y": 416.9112018744762
+        },
+        {
+          "x": 853.7957103486609,
+          "y": 392.6528393655242
+        },
+        {
+          "x": 836.2848467403004,
+          "y": 407.4108356296566
+        }
+      ],
+      "camera": {
+        "world": {
+          "width": 1200,
+          "height": 720
+        },
+        "scale": 1.0666666666666667,
+        "x": 0,
+        "y": 66,
+        "safeTop": 0,
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "uniform": true,
+        "responsiveLanes": false
+      },
+      "exclusions": [
+        {
+          "left": 265,
+          "top": 0,
+          "right": 1015,
+          "bottom": 163.125,
+          "width": 750,
+          "height": 163.125,
+          "kind": "match",
+          "mode": "centered-scoreboard"
+        }
+      ]
+    },
+    "acceptedBeforeResume": true
+  },
+  "errors": [],
+  "finalCaptureDrift": [],
+  "browserClosed": true,
+  "noDeliveredPhonePNGs": true,
+  "sourceQualificationNote": "First8frames predate finalexclusiveCarry guard in sharedapp.js and are targeted behavioral evidence only. Rootmustfreshcapture engineconsumers against final appa21017\u2026 beforebundlequalification.",
+  "historicalFailureNote": "FirstfocusedCarry assertion andbounded diagnostic retained JSON. Numerical0.147CSSpx envelopeintersection fromfield-effect/geometry delivery timing fixedwith2CSSpx authoritativeclearance; assertion notweakened. Unintended ownercreatedphonefailurePNG removed; diagnosisTVfailurePNG retained/opened."
+}

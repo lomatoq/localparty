@@ -1,0 +1,584 @@
+{
+  "version": 1,
+  "source": "atlas-stat-glyphs.png",
+  "styleProfile": "ui",
+  "chromaKeyed": false,
+  "frames": {
+    "crown": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 40,
+        "y": 56,
+        "w": 176,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/crown.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bomb": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 309,
+        "y": 40,
+        "w": 151,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 151,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/bomb.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "heart": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 552,
+        "y": 57,
+        "w": 176,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/heart.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "lightning": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 824,
+        "y": 44,
+        "w": 144,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 169
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/lightning.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "flag-lap": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1064,
+        "y": 49,
+        "w": 176,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 159
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/flag-lap.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "trophy": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1320,
+        "y": 53,
+        "w": 176,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/trophy.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "target": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 40,
+        "y": 302,
+        "w": 176,
+        "h": 165
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 165
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/target.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ghost": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 296,
+        "y": 303,
+        "w": 176,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 163
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/ghost.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shield": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 554,
+        "y": 296,
+        "w": 173,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 173,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/shield.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "clock": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 821,
+        "y": 296,
+        "w": 151,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 151,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/clock.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dagger": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1065,
+        "y": 296,
+        "w": 174,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/dagger.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bow": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1325,
+        "y": 296,
+        "w": 167,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 167,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/bow.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "flame": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 53,
+        "y": 552,
+        "w": 151,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 151,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/flame.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "grid": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 296,
+        "y": 557,
+        "w": 176,
+        "h": 166
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 166
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/grid.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "gate": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 553,
+        "y": 552,
+        "w": 175,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/gate.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "stone": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 808,
+        "y": 566,
+        "w": 176,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/stone.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "rocket": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1068,
+        "y": 552,
+        "w": 168,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 168,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/rocket.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "hit": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1322,
+        "y": 552,
+        "w": 172,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 172,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/hit.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "cross": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 40,
+        "y": 809,
+        "w": 176,
+        "h": 174
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/cross.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ranking": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 296,
+        "y": 839,
+        "w": 176,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 114
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/ranking.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "coin": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 553,
+        "y": 808,
+        "w": 174,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/coin.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pin": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 854,
+        "y": 808,
+        "w": 85,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 85,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/pin.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "brush": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1068,
+        "y": 808,
+        "w": 168,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 168,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/brush.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "chip": {
+      "atlas": "atlas-stat-glyphs.webp",
+      "frame": {
+        "x": 1321,
+        "y": 808,
+        "w": 174,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-stat-glyphs/chip.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

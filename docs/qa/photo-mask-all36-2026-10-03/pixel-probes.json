@@ -1,0 +1,422 @@
+[
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1280.png",
+    "game": "spy",
+    "width": 1280,
+    "box": {
+      "x": 42,
+      "y": 143.5,
+      "width": 57,
+      "height": 57,
+      "top": 143.5,
+      "right": 99,
+      "bottom": 200.5,
+      "left": 42
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1280.png",
+    "game": "spy",
+    "width": 1280,
+    "box": {
+      "x": 42,
+      "y": 270.125,
+      "width": 57,
+      "height": 57,
+      "top": 270.125,
+      "right": 99,
+      "bottom": 327.125,
+      "left": 42
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1280.png",
+    "game": "spy",
+    "width": 1280,
+    "box": {
+      "x": 517.5,
+      "y": 208,
+      "width": 165,
+      "height": 165,
+      "top": 208,
+      "right": 682.5,
+      "bottom": 373,
+      "left": 517.5
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1280.png",
+    "game": "spy",
+    "width": 1280,
+    "box": {
+      "x": 981.5,
+      "y": 212.9375,
+      "width": 165,
+      "height": 165,
+      "top": 212.9375,
+      "right": 1146.5,
+      "bottom": 377.9375,
+      "left": 981.5
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1920.png",
+    "game": "spy",
+    "width": 1920,
+    "box": {
+      "x": 168,
+      "y": 344.984375,
+      "width": 57,
+      "height": 57,
+      "top": 344.984375,
+      "right": 225,
+      "bottom": 401.984375,
+      "left": 168
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1920.png",
+    "game": "spy",
+    "width": 1920,
+    "box": {
+      "x": 168,
+      "y": 451.875,
+      "width": 57,
+      "height": 57,
+      "top": 451.875,
+      "right": 225,
+      "bottom": 508.875,
+      "left": 168
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1920.png",
+    "game": "spy",
+    "width": 1920,
+    "box": {
+      "x": 770.5,
+      "y": 346.59375,
+      "width": 240,
+      "height": 240,
+      "top": 346.59375,
+      "right": 1010.5,
+      "bottom": 586.59375,
+      "left": 770.5
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/spy-tv-live-1920.png",
+    "game": "spy",
+    "width": 1920,
+    "box": {
+      "x": 1383.5,
+      "y": 368.921875,
+      "width": 240,
+      "height": 240,
+      "top": 368.921875,
+      "right": 1623.5,
+      "bottom": 608.921875,
+      "left": 1383.5
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/marble_bloom-tv-live-1280.png",
+    "game": "marble_bloom",
+    "width": 1280,
+    "box": {
+      "x": 153,
+      "y": 632,
+      "width": 52,
+      "height": 52,
+      "top": 632,
+      "right": 205,
+      "bottom": 684,
+      "left": 153
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/marble_bloom-tv-live-1280.png",
+    "game": "marble_bloom",
+    "width": 1280,
+    "box": {
+      "x": 485,
+      "y": 632,
+      "width": 52,
+      "height": 52,
+      "top": 632,
+      "right": 537,
+      "bottom": 684,
+      "left": 485
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/marble_bloom-tv-live-1920.png",
+    "game": "marble_bloom",
+    "width": 1920,
+    "box": {
+      "x": 473,
+      "y": 992,
+      "width": 52,
+      "height": 52,
+      "top": 992,
+      "right": 525,
+      "bottom": 1044,
+      "left": 473
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/marble_bloom-tv-live-1920.png",
+    "game": "marble_bloom",
+    "width": 1920,
+    "box": {
+      "x": 805,
+      "y": 992,
+      "width": 52,
+      "height": 52,
+      "top": 992,
+      "right": 857,
+      "bottom": 1044,
+      "left": 805
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/pocket_siege-tv-live-1280.png",
+    "game": "pocket_siege",
+    "width": 1280,
+    "box": {
+      "x": 397,
+      "y": 562,
+      "width": 46,
+      "height": 46,
+      "top": 562,
+      "right": 443,
+      "bottom": 608,
+      "left": 397
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/pocket_siege-tv-live-1280.png",
+    "game": "pocket_siege",
+    "width": 1280,
+    "box": {
+      "x": 660.328125,
+      "y": 562,
+      "width": 46,
+      "height": 46,
+      "top": 562,
+      "right": 706.328125,
+      "bottom": 608,
+      "left": 660.328125
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/pocket_siege-tv-live-1920.png",
+    "game": "pocket_siege",
+    "width": 1920,
+    "box": {
+      "x": 499,
+      "y": 972,
+      "width": 46,
+      "height": 46,
+      "top": 972,
+      "right": 545,
+      "bottom": 1018,
+      "left": 499
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/pocket_siege-tv-live-1920.png",
+    "game": "pocket_siege",
+    "width": 1920,
+    "box": {
+      "x": 761.390625,
+      "y": 972,
+      "width": 46,
+      "height": 46,
+      "top": 972,
+      "right": 807.390625,
+      "bottom": 1018,
+      "left": 761.390625
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/bow_club-tv-live-1280.png",
+    "game": "bow_club",
+    "width": 1280,
+    "box": {
+      "x": 228.59375,
+      "y": 637.390625,
+      "width": 40,
+      "height": 40,
+      "top": 637.390625,
+      "right": 268.59375,
+      "bottom": 677.390625,
+      "left": 228.59375
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/bow_club-tv-live-1280.png",
+    "game": "bow_club",
+    "width": 1280,
+    "box": {
+      "x": 657,
+      "y": 637.390625,
+      "width": 40,
+      "height": 40,
+      "top": 637.390625,
+      "right": 697,
+      "bottom": 677.390625,
+      "left": 657
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/bow_club-tv-live-1920.png",
+    "game": "bow_club",
+    "width": 1920,
+    "box": {
+      "x": 343.390625,
+      "y": 982.609375,
+      "width": 52,
+      "height": 52,
+      "top": 982.609375,
+      "right": 395.390625,
+      "bottom": 1034.609375,
+      "left": 343.390625
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-bow-hockey/bow_club-tv-live-1920.png",
+    "game": "bow_club",
+    "width": 1920,
+    "box": {
+      "x": 983,
+      "y": 982.609375,
+      "width": 52,
+      "height": 52,
+      "top": 982.609375,
+      "right": 1035,
+      "bottom": 1034.609375,
+      "left": 983
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/curling-tv-live-1280.png",
+    "game": "curling",
+    "width": 1280,
+    "box": {
+      "x": 29,
+      "y": 653,
+      "width": 46,
+      "height": 46,
+      "top": 653,
+      "right": 75,
+      "bottom": 699,
+      "left": 29
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/curling-tv-live-1280.png",
+    "game": "curling",
+    "width": 1280,
+    "box": {
+      "x": 280.1875,
+      "y": 653,
+      "width": 46,
+      "height": 46,
+      "top": 653,
+      "right": 326.1875,
+      "bottom": 699,
+      "left": 280.1875
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/curling-tv-live-1920.png",
+    "game": "curling",
+    "width": 1920,
+    "box": {
+      "x": 43,
+      "y": 979.5,
+      "width": 69,
+      "height": 69,
+      "top": 979.5,
+      "right": 112,
+      "bottom": 1048.5,
+      "left": 43
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/curling-tv-live-1920.png",
+    "game": "curling",
+    "width": 1920,
+    "box": {
+      "x": 419.796875,
+      "y": 979.5,
+      "width": 69,
+      "height": 69,
+      "top": 979.5,
+      "right": 488.796875,
+      "bottom": 1048.5,
+      "left": 419.796875
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bowling-tv-live-1280.png",
+    "game": "bowling",
+    "width": 1280,
+    "box": {
+      "x": 29,
+      "y": 653,
+      "width": 46,
+      "height": 46,
+      "top": 653,
+      "right": 75,
+      "bottom": 699,
+      "left": 29
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bowling-tv-live-1280.png",
+    "game": "bowling",
+    "width": 1280,
+    "box": {
+      "x": 280.1875,
+      "y": 653,
+      "width": 46,
+      "height": 46,
+      "top": 653,
+      "right": 326.1875,
+      "bottom": 699,
+      "left": 280.1875
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bowling-tv-live-1920.png",
+    "game": "bowling",
+    "width": 1920,
+    "box": {
+      "x": 43,
+      "y": 979.5,
+      "width": 69,
+      "height": 69,
+      "top": 979.5,
+      "right": 112,
+      "bottom": 1048.5,
+      "left": 43
+    }
+  },
+  {
+    "file": "output/playwright/photo-mask-all36-2026-10-03/final-focused-refresh/bowling-tv-live-1920.png",
+    "game": "bowling",
+    "width": 1920,
+    "box": {
+      "x": 419.796875,
+      "y": 979.5,
+      "width": 69,
+      "height": 69,
+      "top": 979.5,
+      "right": 488.796875,
+      "bottom": 1048.5,
+      "left": 419.796875
+    }
+  }
+]

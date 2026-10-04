@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-10-03",
+  "method": "built-in image_gen, separate new-image calls",
+  "requestedSize": [
+    1920,
+    1080
+  ],
+  "screenshotsUsedOnlyForCompositionReference": [
+    "output/playwright/composition-round2-2026-10-03/final-tv36-1201/push-tv-live-1920.png",
+    "output/playwright/composition-round2-2026-10-03/final-tv36-1201/shrink-tv-live-1920.png"
+  ],
+  "assets": [
+    {
+      "mode": "push",
+      "prompt": "Use case: stylized-concept\nAsset type: opaque full-bleed 1920x1080 landscape background for a top-down party game called Push Pit; scene only, no UI.\nPrimary request: a flat minimal cartoon sumo courtyard environment, directly overhead orthographic view. A huge uninterrupted empty courtyard floor fills the central 80 percent of width and height. Quiet warm ivory and sandstone floor, very restrained broad stone material shading. A few simple low-profile sandstone courtyard edges and muted cyan accent pieces sit only at the extreme perimeter, subordinate to the playing area. Clean premium vector-like shapes, soft restrained shadows, no busy texture.\nComposition: landscape 16:9, full bleed. The engine will paint its own circular playing ring and colorful players above this image; the background must NOT contain a circle, arena outline, concentric rings, boundary markings, tracks, arrows, targets or floor guides. Keep the whole center low contrast and visually empty. Slightly subdued colors suitable beneath high-contrast foreground counters.\nAvoid: people, actors, characters, numbers, letters, logos, labels, user interface, scoreboard, baked playing ring, baked guides, ornamental dashes, corner brackets, photo texture, dramatic perspective, clutter. Output only the environmental background.",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-6485-73d2-b3bc-248fd473d3a8/exec-e905a730-16fd-4222-99dc-e7ae438c8fc7.png",
+      "destination": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v1.png",
+      "actualSize": [
+        1672,
+        941
+      ],
+      "modeFormat": "RGB",
+      "alphaExtrema": null,
+      "sha256": "4eeeb7f59be9e383a809901094197be7ca93280b9badc1278afe23a7d14252a7",
+      "byteIdenticalOriginal": true
+    },
+    {
+      "mode": "shrink",
+      "prompt": "Use case: stylized-concept\nAsset type: opaque full-bleed 1920x1080 landscape scene-only background for a top-down party game Last Circle.\nPrimary request: a minimal neon training chamber viewed directly from above, orthographic. Broad dark blue and teal stone/platform floor with a very large visually empty uninterrupted center occupying 80 percent of image width and height. Simple restrained beveled teal stone surroundings at the extreme outer perimeter, sparse subtle cyan/lime glow only on peripheral architectural edges. Clean premium flat vector-like cartoon materials with gently shaded planes, quiet low-contrast center. No tall structures or perspective intrusion into center.\nComposition: landscape16:9 full bleed; the game's engine paints a shrinking circle and players above this backdrop, so the environmental scene must contain NO circle, circular platform boundary, concentric rings, tracks, target, arrow or baked guides. The center must remain suitable for white player names and colorful tiny characters. Restrained illumination, not bright neon overload.\nAvoid: actors, people, characters, vehicles, numbers, letters, logos, UI, scoreboards, floor markings, circular arena, grid, decorative dashes, corner brackets, busy texture, photorealism. Output only the backdrop.",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-6485-73d2-b3bc-248fd473d3a8/exec-04d01330-e82c-41c0-b4ad-9ff8012194f9.png",
+      "destination": "public/assets/gameplay/round3/2026-10-03/last-circle-chamber-v1.png",
+      "actualSize": [
+        1672,
+        941
+      ],
+      "modeFormat": "RGB",
+      "alphaExtrema": null,
+      "sha256": "3c11c37bd8facff4bdd4fa362595af052b0697b6abea4c3fc81ecb6759a2543c",
+      "byteIdenticalOriginal": true
+    }
+  ]
+}

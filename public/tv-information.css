@@ -1,33 +1,448 @@
-/* Approved family content inside the original tapered / curved TV notch. */
-html body.tv-screen #play .gamebar.tv-information{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 320px minmax(0,1fr);align-items:start;gap:12px;box-sizing:border-box;height:104px;min-height:104px;flex:0 0 104px;margin-bottom:-40px;padding:0 24px;border:0;background:transparent;color:#f4f6f4;font-family:Rubik,system-ui,sans-serif;isolation:isolate;z-index:3;overflow:visible}
-html body.tv-screen #play .tv-information::before{content:'';position:absolute;inset:0 0 auto;height:64px;background:#242036;border-bottom:1px solid #c6b1ff36;z-index:-1}
-html body.tv-screen #play .tv-info-center{position:relative;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:104px;min-width:0;padding:8px 36px 14px;text-align:center}
-html body.tv-screen #play .tv-info-center::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#242036,#302744);z-index:0;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 108' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0H140L121 96Q119 107 109 107H31Q21 107 19 96Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 108' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0H140L121 96Q119 107 109 107H31Q21 107 19 96Z'/%3E%3C/svg%3E");-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-html body.tv-screen #play .tv-information #gameTitle{position:static;display:block;box-sizing:border-box;transform:none;clip-path:none;background:none;border:0;box-shadow:none;text-shadow:none;height:auto;width:100%;max-width:100%;min-width:0;margin:0;padding:0;font:italic 850 32px/1.12 Rubik,system-ui,sans-serif;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;color:#c8ff73}
-html body.tv-screen #play .tv-information #gameContext{display:block;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:20px;line-height:1.15;font-weight:600;color:#c6b1ff}
-html body.tv-screen #play .tv-info-wing{box-sizing:border-box;min-width:0;height:64px;display:flex;flex-direction:column;justify-content:center;gap:3px;overflow:hidden}
-html body.tv-screen #play .tv-info-right{text-align:right;align-items:flex-end}
-html body.tv-screen #play .tv-information #phase{position:static;display:block;max-width:100%;width:100%;margin:0;font:italic 800 28px/1.12 Rubik,system-ui,sans-serif;color:#f4f6f4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-html body.tv-screen #play .tv-information :is(#gameObjective,#gamePlayers,#gameMetric){display:block;max-width:100%;margin:0;font:500 20px/1.15 Rubik,system-ui,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#c6b1ff}
-html body.tv-screen #play .tv-information #gamePlayers{font-weight:700;color:#f4f6f4}
-html body.tv-screen #play .tv-information #gameObjective{color:#c8c0d4}
-html body.tv-screen #play .tv-information.is-paused #gameTitle,html body.tv-screen #play .tv-information.is-reconnecting #gameTitle{color:#c6b1ff}
-/* Start right under the 64 px HUD (the notch overlays it); a 104 px offset left the
-   game frame showing as a dark stripe between the header and this layer. */
-html body.tv-screen #play :is(#waiting,#paused){top:64px;padding-top:40px;box-sizing:border-box}
-html body.tv-screen.game-owns-hud #play .gamebar.tv-information{display:none}
-html body.tv-screen.game-owns-hud #play :is(#waiting,#paused){top:0}
-@media(max-width:1100px){html body.tv-screen #play .gamebar.tv-information{grid-template-columns:minmax(0,1fr) 280px minmax(0,1fr);gap:10px;padding-inline:18px}html body.tv-screen #play .tv-information #gameTitle{font-size:28px}}
+/* Shared match headers: real geometry, one material, complete numeric ink.
+   Field headers attach to screen top; rail/task headers follow their owner. */
+html body.tv-screen #play .gamebar.tv-information {
+ position:relative;display:block;box-sizing:border-box;height:104px;min-height:104px;
+ flex:0 0 104px;margin-bottom:-40px;padding:0;border:0;background:none;
+ color:var(--game-panel-ink,#f4f1fa);isolation:isolate;z-index:3;overflow:visible;transform:translateZ(0);
+}
+html body.tv-screen #play .gamebar.tv-information::before {content:none}
+html.hp-ui body.tv-screen #play .tv-info-dock {
+ position:absolute;left:var(--tv-hud-left,calc(50% - 300px));top:var(--tv-hud-top,0px);
+ width:var(--tv-hud-width,600px);max-width:100%;box-sizing:border-box;display:grid;
+ grid-template-columns:minmax(0,42fr) minmax(0,58fr);grid-template-areas:'primary stats' 'phase stats' 'actor stats';
+ align-items:center;gap:4px 20px;min-height:88px;padding:8px 24px;
+ border:0;border-radius:0 0 22px 22px;background:none;box-shadow:none;
+ isolation:isolate;pointer-events:none;color:var(--game-panel-ink,#f4f1fa);
+}
+html.hp-ui body.tv-screen #play .tv-info-dock::before {
+ content:'';position:absolute;inset:0;z-index:-1;border:0;border-radius:inherit;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 4%,transparent),transparent 50%),
+  var(--game-panel-fill,linear-gradient(180deg,#302744,#242036));
+ box-shadow:inset 0 1px 0 color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 12%,transparent),
+  inset 0 -2px 6px color-mix(in srgb,var(--game-panel-base,#242036) 72%,transparent),
+  0 5px 14px color-mix(in srgb,var(--game-panel-shadow,var(--game-panel-base,#242036)) 32%,transparent);
+ mask:none;-webkit-mask:none;
+}
+html.hp-ui body.tv-screen #play .tv-info-dock::after {content:none}
+/* Naval's painted surface extends into the existing gap; its content stays put. */
+html.hp-ui body.tv-screen[data-tv-game=naval] #play .tv-info-dock::before {
+ transform:scale(1.05);transform-origin:50% 50%;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-center {
+ grid-area:primary;position:static;display:flex;flex-direction:column;justify-content:center;
+ align-items:center;gap:2px;width:100%;height:auto;min-width:0;padding:0!important;overflow:visible;text-align:center;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-center::before {content:none}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-primary-readout {
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;max-width:100%;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameContext {
+ display:block;width:100%;max-width:100%;margin:0;padding:0;
+ font:900 24px/1.1 var(--hp-font-action);text-transform:uppercase;
+ color:var(--game-panel-ink,#f4f1fa);text-align:center;white-space:normal;text-wrap:balance;overflow-wrap:normal;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameContext .tv-info-game-logo {
+ display:none;width:100%;max-width:100%;height:44px;object-fit:contain;object-position:center;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameContext.has-game-logo .tv-info-game-logo {display:block}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameContext.has-game-logo .tv-info-game-name {
+ position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameTitle {
+ position:static;display:block;box-sizing:border-box;transform:none;clip-path:none;
+ background:none;border:0;box-shadow:none;text-shadow:none;width:100%;max-width:100%;min-width:0;
+ height:auto;max-height:none;margin:0;padding:2px 4px;font:900 30px/1.32 var(--hp-font-action);
+ font-variant-numeric:tabular-nums;color:var(--game-number-ink,#c8ff73);letter-spacing:0;
+ text-align:center;white-space:nowrap;overflow:visible;text-overflow:clip;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-primary-kind=actor] #gameTitle {
+ box-sizing:border-box;font:550 16px/1.32 var(--hp-font-body);color:var(--game-panel-muted);
+ text-transform:none;overflow:hidden;text-overflow:ellipsis;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-left {
+ grid-area:phase;position:static;display:block;width:100%;height:auto;min-width:0;margin:0;padding:0;
+ border:0;border-radius:0;background:none;box-shadow:none;overflow:visible;text-align:center;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-left:has(#phase[hidden]):has(#gameObjective[hidden]) {display:none}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #phase {
+ position:static;display:block;width:100%;max-width:100%;margin:0;
+ font:700 13px/1.3 var(--hp-font-action);color:var(--game-panel-muted,#c8bbdf);
+ white-space:normal;overflow:visible;text-transform:uppercase;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameObjective {display:none}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-actor {
+ grid-area:actor;display:block;width:100%;max-width:100%;min-width:0;
+ font:550 14px/1.32 var(--hp-font-body);color:var(--game-panel-muted,#c8bbdf);
+ text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-right:has(#gamePlayers) {
+ grid-area:stats;position:static;display:grid;grid-template-columns:repeat(var(--tv-readout-count,3),minmax(0,1fr));
+ width:100%;max-width:100%;height:auto;min-height:54px;align-items:center;align-content:center;
+ justify-content:center;gap:20px;--tv-readout-gap:20px;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;overflow:visible;text-align:center;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameMetric {display:contents;background:none;border:0;padding:0;box-shadow:none}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameMetric:empty {display:none}
+html.hp-ui body.tv-screen #play .gamebar.tv-information :is(#gamePlayers,.tv-stat) {
+ position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;
+ box-sizing:border-box;width:100%;max-width:100%;min-width:0;height:auto;min-height:54px;
+ margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;overflow:visible;text-align:center;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-stat::before {content:none}
+/* Facts have quiet separators in their existing gaps, never an outer border. */
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-right #gamePlayers:not([hidden])~#gameMetric>.tv-stat::before,
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-right #gameMetric>.tv-stat+.tv-stat::before,
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information[data-primary-kind=timer] .tv-info-right #gamePlayers:not([hidden])::before {
+ content:'';position:absolute;left:calc(var(--tv-readout-gap,20px)/-2 - .5px);top:50%;
+ width:1px;height:32px;transform:translateY(-50%);pointer-events:none;
+ background:color-mix(in srgb,var(--game-panel-muted,#c8bbdf) 28%,transparent);
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-right #gamePlayers[data-readout] {
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+ width:100%;max-width:100%;min-width:0;align-self:center;padding:0;white-space:normal;overflow-wrap:normal;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-right[data-readouts="3"]:has(#gamePlayers:is([data-readout=progress],[data-readout=timer])) {
+ grid-template-columns:minmax(76px,1.2fr) repeat(2,minmax(0,1fr));
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information :is(.tv-stat-label,.tv-progress-label,.tv-timer-label),
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gamePlayers :is(.tv-progress-label,.tv-timer-label) {
+ display:block;width:100%;max-width:100%;margin:0;font:550 12px/1.2 var(--hp-font-body);
+ color:var(--game-panel-muted,#c8bbdf);white-space:normal;text-wrap:balance;text-transform:none;
+ overflow:visible;overflow-wrap:normal;word-break:normal;text-align:center;flex-shrink:0;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information :is(.tv-stat-value,.tv-progress-value,.tv-timer-value),
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gamePlayers :is(.tv-progress-value,.tv-timer-value) {
+ display:block;box-sizing:border-box;flex-shrink:0;width:100%;max-width:100%;min-width:0;
+ height:auto;max-height:none;margin:0;padding:2px 4px;font:900 26px/1.32 var(--hp-font-action);
+ font-variant-numeric:tabular-nums;color:var(--game-panel-ink,#f4f1fa);letter-spacing:0;
+ white-space:nowrap;overflow:visible;text-overflow:clip;text-align:center;text-shadow:none;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-stat-value:is(.hp-player-name,.tv-text-value) {
+ font:550 13px/1.35 var(--hp-font-body)!important;text-transform:none!important;
+ overflow:hidden;text-overflow:ellipsis;
+}
+/* Rail owners reserve this intrinsic height inside their centered composition. */
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .tv-info-dock {
+ grid-template-columns:minmax(0,1fr);grid-template-areas:'primary' 'actor' 'stats' 'phase';
+ gap:6px;min-height:104px;padding:8px 16px;border-radius:16px;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information .tv-info-center {
+ display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information #gameContext {
+ text-align:left;align-self:start;font-size:clamp(20px,calc(var(--tv-hud-width,336px)/14),22px);
+ font-weight:900;line-height:1.15;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information .tv-info-primary-readout {min-width:64px}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information #gameTitle {font-size:28px}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information[data-primary-kind=actor] .tv-info-center {display:flex;gap:2px}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information[data-primary-kind=actor] #gameContext {text-align:center}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information[data-primary-kind=actor] #gameTitle {font-size:16px}
+html.hp-ui body.tv-screen[data-tv-game=crane] #play .gamebar.tv-information[data-primary-kind=state] .tv-info-center {
+ display:flex;align-items:flex-start;gap:2px;
+}
+html.hp-ui body.tv-screen[data-tv-game=crane] #play .gamebar.tv-information[data-primary-kind=state] .tv-info-primary-readout {
+ width:100%;min-width:0;align-items:flex-start;
+}
+html.hp-ui body.tv-screen[data-tv-game=crane] #play .gamebar.tv-information[data-primary-kind=state] #gameTitle {
+ font:550 16px/1.32 var(--hp-font-body);color:var(--game-panel-muted);text-align:left;
+ white-space:normal;overflow-wrap:break-word;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information .tv-info-right:has(#gamePlayers) {gap:12px;--tv-readout-gap:12px;min-height:54px}
+/* Interior task headers share a label/value baseline, without a receiver notch. */
+html.hp-ui body.tv-screen #play .tv-info-clock-label {display:none}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .tv-info-dock {
+ grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:'name clock stats' 'actor clock stats';
+ align-items:center;gap:0 12px;min-height:64px;padding:8px 16px;border-radius:16px;overflow:visible;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information .tv-info-center {display:contents}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information .tv-info-primary-readout {
+ grid-area:clock;align-self:center;min-width:76px;min-height:54px;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information #gameContext {
+ grid-area:name;align-self:start;font-size:clamp(20px,calc(var(--tv-hud-width,600px)/17),22px);
+ font-weight:900;line-height:1.15;
+ padding-inline:2px;text-align:left;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .tv-info-dock:has(>.tv-info-actor[hidden]) {
+ grid-template-areas:'name clock stats';
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information #gameContext {align-self:center}
+html.hp-ui body.tv-screen:is([data-tv-hud-mode=content-cap],[data-tv-hud-mode=rail-cap]) #play .gamebar.tv-information #gameContext .tv-info-game-logo {object-position:left center}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information[data-primary-kind=actor] #gameContext .tv-info-game-logo {object-position:center}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information .tv-info-clock-label {
+ display:block;margin:0;padding:0 6px;
+ font:550 12px/1.2 var(--hp-font-body);color:var(--game-panel-muted);text-align:center;white-space:nowrap;overflow:visible;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information #gameTitle {
+ width:auto;min-width:64px;max-width:180px;
+ padding:2px 6px;font-size:26px;text-align:center;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information .tv-info-left {display:none}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information .tv-info-right[data-readouts]:has(#gamePlayers) {
+ grid-template-columns:minmax(0,1fr);width:auto;max-width:180px;min-height:0;
+ align-self:center;align-content:center;gap:0;--tv-readout-gap:12px;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information #gameMetric {display:none}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information .tv-info-right #gamePlayers[data-readout] {
+ display:flex;flex-direction:column;justify-content:center;align-items:center;
+ gap:2px;box-sizing:border-box;min-height:54px;padding:0;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information #gamePlayers :is(.tv-stat-label,.tv-progress-label,.tv-timer-label) {
+ width:auto;padding:0 6px;white-space:nowrap;text-align:center;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information #gamePlayers :is(.tv-stat-value,.tv-progress-value,.tv-timer-value) {
+ box-sizing:content-box;width:auto;min-width:44px;padding:2px 6px;text-align:center;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information .tv-info-actor {text-align:left;padding-top:6px}
+/* Authored exceptions have one local surface, rather than a second enclosure. */
+html.hp-ui body.tv-screen:is([data-tv-game=jenga],[data-tv-game=crane]) #play .tv-info-dock::before {content:none}
+html.hp-ui body.tv-screen[data-tv-game=airhockey] #play .tv-info-dock {--game-number-ink:#16323a;--game-panel-shadow:#16323a}
+html body.tv-screen.game-owns-hud #play .gamebar.tv-information {display:none}
+html body.tv-screen #play :is(#waiting,#paused) {top:64px;padding-top:40px;box-sizing:border-box}
+html body.tv-screen.game-owns-hud #play :is(#waiting,#paused) {top:0}
+html body.tv-screen #play .gamebar.tv-information [hidden] {display:none!important}
 
-/* Each wing value is a discrete readout; text stays inside the tapered neck. */
-html body.tv-screen #play .tv-info-center{padding-inline:48px;overflow:hidden}
-html body.tv-screen #play .tv-information #gameTitle{font-size:clamp(20px,2.25vw,30px);line-height:1.15}
-html body.tv-screen #play .tv-information #gameContext{font-size:18px}
-html body.tv-screen #play .tv-info-right{flex-direction:row;align-items:center;justify-content:flex-end;gap:8px}
-html body.tv-screen #play .tv-info-right :is(#gamePlayers,#gameMetric){width:auto;min-width:0;padding:8px 12px;border:1px solid #c6b1ff38;border-radius:12px;background:linear-gradient(145deg,#ffffff0b,#ffffff03);font-size:18px;box-shadow:inset 0 1px #ffffff08}
-html body.tv-screen #play .tv-info-right :is(#gamePlayers,#gameMetric):empty{display:none}
+/* Discrete status updates and the established pause surface remain intact. */
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-stat-value.lp-motion-pulse {animation:tv-stat-tick 340ms cubic-bezier(.23,1,.32,1) both!important;transform-origin:center}
+@keyframes tv-stat-tick {0%{scale:1;filter:brightness(1)}30%{scale:1.14;filter:brightness(1.4)}100%{scale:1;filter:brightness(1)}}
+html.hp-ui body.tv-screen #play #paused {background:radial-gradient(ellipse 55% 45% at 50% 46%,#7a3f8f4d,transparent 72%),#1a1425f0!important}
+html.hp-ui body.tv-screen #play #paused::before {content:'';display:block;width:68px;height:68px;margin:0 auto 20px;border-radius:50%;background:linear-gradient(#f6f1ff,#f6f1ff) calc(50% - 8px) 50%/8px 26px no-repeat,linear-gradient(#f6f1ff,#f6f1ff) calc(50% + 8px) 50%/8px 26px no-repeat,#ffffff0d;box-shadow:inset 0 0 0 1.5px #d6bdff4d,0 0 42px #b07cff2e;animation:tv-pause-glyph 420ms cubic-bezier(.23,1,.32,1) both}
+html.hp-ui body.tv-screen #play #paused #pauseHint {margin-top:10px}
+@keyframes tv-pause-glyph {from{opacity:0;scale:.86}to{opacity:1;scale:1}}
+@media(prefers-reduced-motion:reduce) {html.hp-ui body.tv-screen #play #paused::before{animation:none}}
 
-/* Keep the entire notch inside its composited HUD layer; the negative margin
-   preserves the 64px game offset without relying on overflowing painted pixels. */
-html body.tv-screen #play .gamebar.tv-information{transform:translateZ(0)}
-html body.tv-screen #play .tv-info-center>span,html body.tv-screen #play .tv-info-center>strong{position:relative;z-index:1}
+/* Each real header has an explicit restrained game material. No edge motifs. */
+html.hp-ui body.tv-screen[data-tv-game=push] #play .tv-info-dock {--game-panel-base:#1c2b32;--game-panel-fill:linear-gradient(165deg,#30424a,#1c2b32);--game-panel-rim:#b0d9ca;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=shrink] #play .tv-info-dock {--game-panel-base:#142f38;--game-panel-fill:linear-gradient(165deg,#23444c,#142f38);--game-panel-rim:#8fe0dd;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=knives] #play .tv-info-dock {--game-panel-base:#2f241d;--game-panel-fill:linear-gradient(165deg,#493329,#2f241d);--game-panel-rim:#d8b887;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=bomb] #play .tv-info-dock {--game-panel-base:#2d211e;--game-panel-fill:linear-gradient(165deg,#493127,#2d211e);--game-panel-rim:#e6ba76;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=western] #play .tv-info-dock {--game-panel-base:#2f221e;--game-panel-fill:linear-gradient(165deg,#4a322b,#2f221e);--game-panel-rim:#dfb38d;--game-panel-ink:#fff0da;--game-panel-muted:#dec6ad}
+html.hp-ui body.tv-screen[data-tv-game=tanks] #play .tv-info-dock {--game-panel-base:#202a25;--game-panel-fill:linear-gradient(165deg,#35403a,#202a25);--game-panel-rim:#c6d5b5;--game-panel-ink:#e4f7ea;--game-panel-muted:#bdd9d5}
+html.hp-ui body.tv-screen[data-tv-game=tankarena] #play .tv-info-dock {--game-panel-base:#1d2c37;--game-panel-fill:linear-gradient(165deg,#31404b,#1d2c37);--game-panel-rim:#a4d5e6;--game-panel-ink:#e4f7ea;--game-panel-muted:#bdd9d5}
+html.hp-ui body.tv-screen[data-tv-game=chaos] #play .tv-info-dock {--game-panel-base:#1b2c43;--game-panel-fill:linear-gradient(165deg,#2e425a,#1b2c43);--game-panel-rim:#92d7ed;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=kart] #play .tv-info-dock {--game-panel-base:#132d33;--game-panel-fill:linear-gradient(165deg,#285152,#1b3c40 50%,#132d33);--game-panel-rim:#8ebba6;--game-panel-ink:#e9fff3;--game-panel-muted:#bddbd2}
+html.hp-ui body.tv-screen[data-tv-game=monster] #play .tv-info-dock {--game-panel-base:#123e45;--game-panel-fill:linear-gradient(160deg,#206975,#164d56 46%,#123e45);--game-panel-rim:#54c5c9;--game-panel-ink:#e1fff3;--game-panel-muted:#b1d7d5}
+html.hp-ui body.tv-screen[data-tv-game=spy] #play .tv-info-dock {--game-panel-base:#182437;--game-panel-fill:linear-gradient(165deg,#26344a,#182437);--game-panel-rim:#87b7d6;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=millionaire] #play .tv-info-dock {--game-panel-base:#272130;--game-panel-fill:linear-gradient(165deg,#3e3445,#272130);--game-panel-rim:#d6c29b;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=sinyakquiz] #play .tv-info-dock {--game-panel-base:#281c39;--game-panel-fill:linear-gradient(165deg,#3e2d54,#281c39);--game-panel-rim:#c6b1ed;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=warsaw] #play .tv-info-dock {--game-panel-base:#282333;--game-panel-fill:linear-gradient(165deg,#3d3549,#282333);--game-panel-rim:#d9be95;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=crocodile] #play .tv-info-dock {--game-panel-base:#172d25;--game-panel-fill:linear-gradient(165deg,#263d36,#172d25);--game-panel-rim:#a9cfb2;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=jenga] #play .tv-info-dock {--game-panel-base:#30251e;--game-panel-fill:linear-gradient(165deg,#49392b,#30251e);--game-panel-rim:#dcb889;--game-panel-ink:#fff0da;--game-panel-muted:#dec6ad}
+html.hp-ui body.tv-screen[data-tv-game=crane] #play .tv-info-dock {--game-panel-base:#202e3a;--game-panel-fill:linear-gradient(165deg,#34434e,#202e3a);--game-panel-rim:#e0b76e;--game-panel-ink:#e4f7ea;--game-panel-muted:#bdd9d5}
+html.hp-ui body.tv-screen[data-tv-game=naval] #play .tv-info-dock {--game-panel-base:#102d40;--game-panel-fill:linear-gradient(115deg,#255166,#102d40 50%,#0c2233);--game-panel-rim:#71b8c8;--game-panel-ink:#f0fff9;--game-panel-muted:#cce5df}
+html.hp-ui body.tv-screen[data-tv-game=drawguess] #play .tv-info-dock {--game-panel-base:#292439;--game-panel-fill:linear-gradient(165deg,#3b354b,#292439);--game-panel-rim:#c3bddc;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=western_duel] #play .tv-info-dock {--game-panel-base:#2f251f;--game-panel-fill:linear-gradient(165deg,#48342b,#2f251f);--game-panel-rim:#dab18b;--game-panel-ink:#fff0da;--game-panel-muted:#dec6ad}
+html.hp-ui body.tv-screen[data-tv-game=taprace] #play .tv-info-dock {--game-panel-base:#282139;--game-panel-fill:linear-gradient(165deg,#3c354f,#282139);--game-panel-rim:#c4b4e4;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=punchmeter] #play .tv-info-dock {--game-panel-base:#30202c;--game-panel-fill:linear-gradient(165deg,#4a2d3c,#30202c);--game-panel-rim:#dc9daa;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=flappy] #play .tv-info-dock {--game-panel-base:#1d2f42;--game-panel-fill:linear-gradient(165deg,#2c4258,#1d2f42);--game-panel-rim:#a4dce7;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=hungry] #play .tv-info-dock {--game-panel-base:#2c2230;--game-panel-fill:linear-gradient(165deg,#443442,#2c2230);--game-panel-rim:#d8b5c3;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=snakelines] #play .tv-info-dock {--game-panel-base:#163731;--game-panel-fill:linear-gradient(165deg,#254b47,#163731);--game-panel-rim:#95e2d5;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=carryball] #play .tv-info-dock {--game-panel-base:#252a33;--game-panel-fill:linear-gradient(165deg,#3b3e48,#252a33);--game-panel-rim:#c7ddd0;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=marble_bloom] #play .tv-info-dock {--game-panel-base:#1a3439;--game-panel-fill:linear-gradient(165deg,#2a4c4d,#1a3439);--game-panel-rim:#dbd5ad;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=pocket_siege] #play .tv-info-dock {--game-panel-base:#252633;--game-panel-fill:linear-gradient(165deg,#383748,#252633);--game-panel-rim:#c4bfd8;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=bow_club] #play .tv-info-dock {--game-panel-base:#2d2922;--game-panel-fill:linear-gradient(165deg,#47392d,#2d2922);--game-panel-rim:#dfc79a;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=poker] #play .tv-info-dock {--game-panel-base:#241c2e;--game-panel-fill:linear-gradient(165deg,#443449,#302337 50%,#241c2e);--game-panel-rim:#b9a1bf;--game-panel-ink:#f7eddc;--game-panel-muted:#cec0d2}
+html.hp-ui body.tv-screen[data-tv-game=airhockey] #play .tv-info-dock {--game-panel-base:#b6d9e1;--game-panel-fill:linear-gradient(165deg,#d8eff4,#b6d9e1);--game-panel-rim:#91bec8;--game-panel-ink:#16323a;--game-panel-muted:#32555e}
+html.hp-ui body.tv-screen[data-tv-game=mines] #play .tv-info-dock {--game-panel-base:#253137;--game-panel-fill:linear-gradient(165deg,#39454a,#253137);--game-panel-rim:#c3d9cb;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=curling] #play .tv-info-dock {--game-panel-base:#163642;--game-panel-fill:linear-gradient(165deg,#214957,#163642);--game-panel-rim:#a2e0e7;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=bowling] #play .tv-info-dock {--game-panel-base:#2f2a29;--game-panel-fill:linear-gradient(165deg,#483b33,#2f2a29);--game-panel-rim:#e2c58f;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=swarm_gate] #play .tv-info-dock {--game-panel-base:#292736;--game-panel-fill:linear-gradient(165deg,#3e3b4b,#292736);--game-panel-rim:#dbca9f;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+html.hp-ui body.tv-screen[data-tv-game=peek_shoot] #play .tv-info-dock {--game-panel-base:#302921;--game-panel-fill:linear-gradient(165deg,#4b3a30,#302921);--game-panel-rim:#dfc18f;--game-panel-ink:#f6f2ff;--game-panel-muted:#d1cadb}
+/* Chaos owns its task label beside the real objective below this timer cap. */
+html.hp-ui body.tv-screen[data-tv-game=chaos] #play .gamebar.tv-information .tv-info-left {display:none}
+
+/* Premium header · Claude header agent 2026-10-03 (second, bolder pass).
+   Paint only: no dock size, padding, top, left, width or grid change, so the
+   notch bottom line and every --party-*-inset-top stay where they were.
+   .tv-info-glass (built by tv.js) is an absolutely placed decorative slab:
+   - centre notch: sculpted SVG mask with concave shoulders flowing out of the
+     screen top and a lower edge that is deepest under the title;
+   - rail/content caps: the same glass with a gradient-stroke rim whose
+     brightest points sit on two opposite corners.
+   The slab is a convex lit glass: top bevel light, specular streak, game-tinted
+   rim and lower lip, inner shadow, crisp stroke, soft outer glow and drop. */
+@property --tv-hdr-lip {syntax:'<color>';inherits:true;initial-value:#c6b1ed}
+html.hp-ui body.tv-screen #play .tv-info-dock {
+ --tv-hdr-rim:var(--game-panel-rim,#c6b1ed);
+ --tv-hdr-lip:var(--tv-hdr-rim);
+ transition:--tv-hdr-lip 260ms cubic-bezier(.23,1,.32,1);
+}
+html.hp-ui body.tv-screen #play .tv-info-dock::before {
+ background:none;mask:none;-webkit-mask:none;
+ box-shadow:0 18px 38px -16px rgb(4 2 10/.7),0 6px 14px -6px rgb(4 2 10/.45),
+  0 0 34px -6px color-mix(in srgb,var(--tv-hdr-lip) 34%,transparent);
+}
+html.hp-ui body.tv-screen #play .tv-info-dock::after {content:none}
+html.hp-ui body.tv-screen #play .tv-info-glass {
+ position:absolute;inset:0;z-index:-1;display:block;pointer-events:none;overflow:hidden;
+ border-radius:18px;isolation:isolate;
+ background:
+  linear-gradient(112deg,transparent 30%,rgb(255 255 255/.075) 41%,rgb(255 255 255/.02) 47%,transparent 49%),
+  linear-gradient(104deg,transparent 14%,color-mix(in srgb,var(--tv-hdr-rim) 14%,transparent) 38%,color-mix(in srgb,#ffd2ef 10%,transparent) 55%,transparent 76%),
+  radial-gradient(62% 80% at 50% 122%,color-mix(in srgb,var(--tv-hdr-lip) 38%,transparent),transparent 72%),
+  linear-gradient(180deg,color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 15%,transparent),transparent 34%,transparent 62%,rgb(4 2 10/.3)),
+  var(--game-panel-fill,linear-gradient(180deg,#302744,#242036));
+ box-shadow:inset 0 1.5px 0 color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 30%,transparent),
+  inset 0 10px 18px -12px color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 22%,transparent),
+  inset 0 -2px 0 color-mix(in srgb,var(--tv-hdr-lip) 60%,transparent),
+  inset 0 -16px 22px -16px color-mix(in srgb,var(--tv-hdr-lip) 46%,transparent);
+ animation:tv-hdr-glass-in 560ms cubic-bezier(.23,1,.32,1) both;
+}
+/* Gradient stroke: brightest at top-left and bottom-right, quiet between. */
+html.hp-ui body.tv-screen #play .tv-info-glass::before {
+ content:'';position:absolute;inset:0;border-radius:inherit;border:1.5px solid transparent;
+ background:conic-gradient(from 200deg at 50% 50%,
+  color-mix(in srgb,var(--tv-hdr-rim) 30%,transparent),
+  color-mix(in srgb,var(--tv-hdr-rim) 95%,white 20%) 14%,
+  color-mix(in srgb,var(--tv-hdr-rim) 22%,transparent) 30%,
+  color-mix(in srgb,var(--tv-hdr-rim) 18%,transparent) 50%,
+  color-mix(in srgb,var(--tv-hdr-lip) 95%,white 15%) 64%,
+  color-mix(in srgb,var(--tv-hdr-rim) 22%,transparent) 80%,
+  color-mix(in srgb,var(--tv-hdr-rim) 30%,transparent)) border-box;
+ -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#000 0 0) padding-box exclude,linear-gradient(#000 0 0);
+}
+/* Light sweep: one slow pass every 8 s. */
+html.hp-ui body.tv-screen #play .tv-info-glass::after {
+ content:'';position:absolute;top:0;bottom:0;left:0;width:34%;
+ background:linear-gradient(100deg,transparent,rgb(255 255 255/.04) 30%,rgb(255 255 255/.16) 50%,rgb(255 255 255/.04) 70%,transparent);
+ transform:translateX(-110%) skewX(-14deg);animation:tv-hdr-sweep 8s cubic-bezier(.45,.05,.35,1) 1.4s infinite;
+}
+@keyframes tv-hdr-sweep {0%{transform:translateX(-110%) skewX(-14deg)}22%,100%{transform:translateX(320%) skewX(-14deg)}}
+@keyframes tv-hdr-glass-in {from{opacity:0;transform:translateY(-14px) scaleY(.9)}to{opacity:1;transform:none}}
+@keyframes tv-hdr-content-in {from{opacity:0}to{opacity:1}}
+html.hp-ui body.tv-screen #play .tv-info-dock>:not(.tv-info-glass) {animation:tv-hdr-content-in 320ms cubic-bezier(.23,1,.32,1) 160ms both}
+/* Centre notch: sculpted shape hanging from the screen top. The slab extends
+   28px past each side only for the concave shoulders; the box is unchanged. */
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .tv-info-dock::before {
+ top:0;left:6px;right:6px;bottom:4px;border-radius:0 0 40px 40px/0 0 22px 22px;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .tv-info-glass {
+ inset:0 -28px;border-radius:0;transform-origin:50% 0;
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0H656C640 0 628 9 628 28V74C628 94 617 102 596 104Q328 124 60 104C39 102 28 94 28 74V28C28 9 16 0 0 0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
+ mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0H656C640 0 628 9 628 28V74C628 94 617 102 596 104Q328 124 60 104C39 102 28 94 28 74V28C28 9 16 0 0 0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
+ box-shadow:none;
+}
+/* Notch stroke follows the sculpted contour (open path: no line on the screen edge). */
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .tv-info-glass::before {
+ border:0;border-radius:0;
+ background:
+  radial-gradient(46% 70% at 50% 100%,color-mix(in srgb,var(--tv-hdr-lip) 100%,white 30%),transparent 100%),
+  linear-gradient(180deg,color-mix(in srgb,var(--tv-hdr-rim) 30%,transparent),color-mix(in srgb,var(--tv-hdr-rim) 70%,transparent));
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0C16 0 28 9 28 28V74C28 94 39 102 60 104Q328 124 596 104C617 102 628 94 628 74V28C628 9 640 0 656 0' fill='none' stroke='%23000' stroke-width='3.2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
+ mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0C16 0 28 9 28 28V74C28 94 39 102 60 104Q328 124 596 104C617 102 628 94 628 74V28C628 9 640 0 656 0' fill='none' stroke='%23000' stroke-width='3.2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
+}
+/* Inner lip light inside the sculpted lower edge. */
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .tv-info-glass {
+ background:
+  radial-gradient(40% 26% at 50% 100%,color-mix(in srgb,var(--tv-hdr-lip) 42%,transparent),transparent 100%),
+  linear-gradient(112deg,transparent 30%,rgb(255 255 255/.075) 41%,rgb(255 255 255/.02) 47%,transparent 49%),
+  linear-gradient(104deg,transparent 14%,color-mix(in srgb,var(--tv-hdr-rim) 14%,transparent) 38%,color-mix(in srgb,#ffd2ef 10%,transparent) 55%,transparent 76%),
+  linear-gradient(180deg,rgb(4 2 10/.22),transparent 22%,color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 9%,transparent) 56%,transparent 74%,rgb(4 2 10/.26)),
+  var(--game-panel-fill,linear-gradient(180deg,#302744,#242036));
+}
+/* Authored exceptions keep no surface; Naval's painted surface stays enlarged. */
+html.hp-ui body.tv-screen:is([data-tv-game=jenga],[data-tv-game=crane]) #play .tv-info-glass {display:none}
+html.hp-ui body.tv-screen[data-tv-game=naval] #play .tv-info-glass {scale:1.05}
+/* Title lockup (centre notch): wordmark 15% larger, clock a hero capsule.
+   Logo +6.6px equals the clock's line-height saving (39.6 -> 33px), so the
+   column height is the same 89.6px as before. */
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameContext .tv-info-game-logo {height:50.6px}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gameContext .tv-info-game-logo {filter:drop-shadow(0 3px 6px rgb(4 2 10/.5))}
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameTitle {
+ width:auto;line-height:33px;padding:2px 18px;
+}
+/* Numeric heroes only: a text state (Spy's ASSIGNING ROLES) keeps its plain glow. */
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-primary-kind=value] #gameTitle {
+ text-shadow:0 2px 0 rgb(4 2 10/.4),0 0 14px color-mix(in srgb,var(--game-number-ink,#c8ff73) 46%,transparent);
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameTitle {
+ border-radius:999px;
+ background:radial-gradient(80% 120% at 50% 0%,color-mix(in srgb,var(--game-number-ink,#c8ff73) 12%,transparent),transparent 70%),rgb(4 2 10/.32);
+ box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--game-number-ink,#c8ff73) 26%,transparent),inset 0 -1px 0 rgb(255 255 255/.06),0 1px 0 rgb(255 255 255/.05);
+ text-shadow:0 2px 0 rgb(4 2 10/.4),0 0 14px color-mix(in srgb,var(--game-number-ink,#c8ff73) 46%,transparent);
+ transition:color 260ms cubic-bezier(.23,1,.32,1),text-shadow 260ms cubic-bezier(.23,1,.32,1),box-shadow 260ms cubic-bezier(.23,1,.32,1);
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameTitle {padding-inline:14px}
+html.hp-ui body.tv-screen:is([data-tv-game=jenga],[data-tv-game=crane]) #play .gamebar.tv-information #gameTitle {background:none;box-shadow:none}
+/* Airhockey's light rink material takes a light capsule, not a dark well. */
+html.hp-ui body.tv-screen[data-tv-game=airhockey] #play .gamebar.tv-information[data-family][data-primary-kind] #gameTitle {background:radial-gradient(80% 120% at 50% 0%,rgb(255 255 255/.7),rgb(255 255 255/.32) 70%);box-shadow:inset 0 0 0 1px rgb(22 50 58/.18),0 2px 6px -2px rgb(22 50 58/.25);text-shadow:0 1px 0 rgb(255 255 255/.6)}
+/* Wings: tinted quiet labels over bright lifted values; one faded rule
+   separates the lockup from the metrics, faded ticks between metrics. */
+html.hp-ui body.tv-screen #play .gamebar.tv-information :is(.tv-stat-label,.tv-progress-label,.tv-timer-label) {
+ font-weight:650;color:color-mix(in srgb,var(--game-panel-muted,#c8bbdf) 72%,var(--tv-hdr-rim));
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information :is(.tv-stat-value,.tv-progress-value):not(.hp-player-name,.tv-text-value,.tv-timer-value) {
+ text-shadow:0 2px 0 rgb(4 2 10/.38),0 0 16px color-mix(in srgb,var(--tv-hdr-rim) 26%,transparent);
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information #gamePlayers .tv-timer-value {
+ color:var(--game-number-ink,#c8ff73);text-shadow:0 2px 0 rgb(4 2 10/.38),0 0 14px color-mix(in srgb,var(--game-number-ink,#c8ff73) 44%,transparent);
+ transition:color 260ms cubic-bezier(.23,1,.32,1),text-shadow 260ms cubic-bezier(.23,1,.32,1);
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .gamebar.tv-information .tv-info-right:has(#gamePlayers) {position:relative}
+html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .gamebar.tv-information .tv-info-right:has(#gamePlayers)::before {
+ content:'';position:absolute;left:-10.5px;top:50%;width:1px;height:64px;transform:translateY(-50%);pointer-events:none;
+ background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--tv-hdr-rim) 60%,transparent) 50%,transparent);
+ box-shadow:0 0 8px color-mix(in srgb,var(--tv-hdr-rim) 40%,transparent);
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-right #gamePlayers:not([hidden])~#gameMetric>.tv-stat::before,
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-info-right #gameMetric>.tv-stat+.tv-stat::before,
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information[data-primary-kind=timer] .tv-info-right #gamePlayers:not([hidden])::before {
+ height:40px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--game-panel-muted,#c8bbdf) 40%,transparent) 50%,transparent);
+}
+/* Last ten seconds: clock, capsule, rim and lip warm to coral; one tick per
+   changed second (tv.js sets data-clock-urgent, motion.js adds the pulse). */
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-clock-urgent] .tv-info-dock {--tv-hdr-lip:#ff8f7e}
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-clock-urgent][data-primary-kind=timer] #gameTitle,
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-clock-urgent] #gamePlayers .tv-timer-value {
+ color:#ff9a86;text-shadow:0 2px 0 rgb(4 2 10/.4),0 0 18px rgb(255 120 98/.6);
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-clock-urgent][data-primary-kind=timer] #gameTitle {
+ box-shadow:inset 0 0 0 1px rgb(255 140 120/.5),0 0 18px -4px rgb(255 110 90/.55);
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-clock-urgent] :is(#gameTitle,.tv-timer-value).lp-motion-pulse {
+ animation:tv-clock-tick 320ms cubic-bezier(.23,1,.32,1) both!important;transform-origin:center;
+}
+@keyframes tv-clock-tick {0%{scale:1.1}100%{scale:1}}
+@media(prefers-reduced-motion:reduce) {
+ html.hp-ui body.tv-screen #play .tv-info-glass,
+ html.hp-ui body.tv-screen #play .tv-info-glass::after,
+ html.hp-ui body.tv-screen #play .tv-info-dock>:not(.tv-info-glass) {animation:none}
+ html.hp-ui body.tv-screen #play .tv-info-glass::after {opacity:0}
+ html.hp-ui body.tv-screen #play .gamebar.tv-information[data-clock-urgent] :is(#gameTitle,.tv-timer-value).lp-motion-pulse {animation:none!important}
+ html.hp-ui body.tv-screen #play .tv-info-dock {transition:none}
+}
+
+/* Pass 3 · quiz bar (content-cap): thicker glass, lit end caps, a light band
+   that ties the bar to the question below, and question progress pips.
+   Paint only; the bar box is unchanged. */
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .tv-info-glass {
+ background:
+  linear-gradient(90deg,color-mix(in srgb,var(--tv-hdr-rim) 70%,white 10%),transparent) 0 50%/3px 46% no-repeat,
+  linear-gradient(270deg,color-mix(in srgb,var(--tv-hdr-lip) 70%,white 10%),transparent) 100% 50%/3px 46% no-repeat,
+  linear-gradient(112deg,transparent 30%,rgb(255 255 255/.08) 41%,rgb(255 255 255/.02) 47%,transparent 49%),
+  linear-gradient(98deg,color-mix(in srgb,var(--tv-hdr-rim) 18%,transparent),transparent 30%,color-mix(in srgb,#ffd2ef 9%,transparent) 62%,color-mix(in srgb,var(--tv-hdr-rim) 16%,transparent)),
+  radial-gradient(48% 110% at 50% 140%,color-mix(in srgb,var(--tv-hdr-lip) 44%,transparent),transparent 72%),
+  linear-gradient(180deg,color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 18%,transparent),transparent 42%,transparent 60%,rgb(4 2 10/.34)),
+  var(--game-panel-fill,linear-gradient(180deg,#302744,#242036));
+ box-shadow:inset 0 2px 0 color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 36%,transparent),
+  inset 0 12px 16px -12px color-mix(in srgb,var(--game-panel-ink,#f4f1fa) 26%,transparent),
+  inset 0 -2.5px 0 color-mix(in srgb,var(--tv-hdr-lip) 72%,transparent),
+  inset 0 -18px 20px -16px color-mix(in srgb,var(--tv-hdr-lip) 52%,transparent),
+  0 18px 34px -16px rgb(4 2 10/.7),0 0 30px -8px color-mix(in srgb,var(--tv-hdr-lip) 46%,transparent);
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .tv-info-dock::before {box-shadow:none}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .tv-info-dock::after {
+ content:'';position:absolute;left:12%;right:12%;top:100%;height:22px;z-index:-2;pointer-events:none;
+ background:radial-gradient(50% 100% at 50% 0,color-mix(in srgb,var(--tv-hdr-lip) 30%,transparent),transparent 72%);
+ animation:tv-hdr-content-in 420ms cubic-bezier(.23,1,.32,1) 220ms both;
+}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information #gamePlayers[data-pips]::after {
+ content:'';position:absolute;left:50%;bottom:-3px;width:min(64px,100%);height:3px;transform:translateX(-50%);pointer-events:none;border-radius:2px;
+ background:linear-gradient(90deg,var(--game-number-ink,#c8ff73) calc(var(--tv-pip-done)/var(--tv-pip-total)*100%),color-mix(in srgb,var(--game-panel-muted,#c8bbdf) 26%,transparent) 0);
+ box-shadow:0 0 8px color-mix(in srgb,var(--game-number-ink,#c8ff73) 30%,transparent);
+ -webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(100%/var(--tv-pip-total) - 2px),transparent 0 calc(100%/var(--tv-pip-total)));
+ mask:repeating-linear-gradient(90deg,#000 0 calc(100%/var(--tv-pip-total) - 2px),transparent 0 calc(100%/var(--tv-pip-total)));
+ transition:background 260ms cubic-bezier(.23,1,.32,1);
+}
+@media(prefers-reduced-motion:reduce) {html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .tv-info-dock::after {animation:none}}

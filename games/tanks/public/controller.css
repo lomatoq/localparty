@@ -10,3 +10,61 @@ button{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touc
 
 #forwardBtn:disabled,#fireBtn:disabled{opacity:.38!important;filter:saturate(.3)!important;box-shadow:none!important;transform:none!important;cursor:default}
 
+
+/* The embedded header already identifies the player. Keep the surviving metric centred. */
+html.party-managed.party-player #controllerScreen>header{justify-content:center;text-align:center}
+html.party-managed.party-player #controllerScreen>header .score{margin-inline:auto;text-align:center}
+html.party-managed.party-player[data-tank-mode=survival] #scoreLabel{display:none}
+html.party-managed.party-player #scoreMain{font:italic 800 clamp(28px,8vw,40px)/1.15 var(--hp-font-display,system-ui)}
+html.party-managed.party-player body #scoreMain{font-family:KardiaFatRunner,system-ui!important;font-weight:900!important;font-style:italic!important}
+
+html.hp-ui.party-managed.party-player.party-session-active[data-party-game=tanks] body #controllerScreen{background:transparent!important}
+
+/* Combat polish 2026-10-02: tactile presses. A soft ring starts under the
+   finger, FIRE's glyph kicks back like recoil, and the controls spring once
+   when the tank respawns. Transform/opacity only; reduced motion: none. */
+#controls .control::before{content:"";position:absolute;left:var(--press-x,50%);top:var(--press-y,50%);width:180px;height:180px;margin:-90px 0 0 -90px;border-radius:50%;background:radial-gradient(circle,#ffffff66 0,#ffffff00 62%);opacity:0;transform:scale(.4);pointer-events:none;z-index:0}
+#controls .fire::before{background:radial-gradient(circle,#ffd2a8aa 0,#ff647800 62%)}
+#controls .control.pressed::before{animation:tank-press-ring .36s cubic-bezier(.23,1,.32,1) both}
+#controls .fire.pressed .hp-button-icon{animation:tank-fire-kick .22s cubic-bezier(.23,1,.32,1)}
+#controls.tank-respawned .control:not(:disabled){animation:tank-respawn .44s cubic-bezier(.34,1.56,.64,1)}
+@keyframes tank-press-ring{0%{opacity:.85;transform:scale(.4)}100%{opacity:0;transform:scale(1.9)}}
+@keyframes tank-fire-kick{0%{transform:none}30%{transform:translateY(6px) scale(.84)}100%{transform:none}}
+@keyframes tank-respawn{0%{transform:scale(.94)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){#controls .control::before,#controls .fire .hp-button-icon,#controls .control{animation:none!important}}
+
+/* Codex UI: telemetry stays above controls, with aligned icon/caption/hint rows. */
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen{display:flex!important;flex-direction:column;justify-content:center;gap:16px;padding:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen.hidden{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen>footer{position:static!important;inset:auto!important;display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 16px!important;min-height:60px;width:100%;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen>footer :is(#kills,#extraStat){font:italic 900 22px/1.2 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .status-card{margin:0!important;padding:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #scoreMain{font:italic 900 30px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(120px,1fr);gap:16px!important;width:100%;min-height:0!important;height:clamp(130px,38dvh,300px)!important;padding:0!important;flex:none}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls .control{width:100%!important;height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:44px 56px auto;align-content:center;justify-items:center;gap:12px!important;padding:16px 12px!important;border-radius:28px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls .control .hp-button-icon{width:38px;height:38px!important;align-self:center}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls .control .hp-button-label{font-size:22px!important;line-height:1.15!important;align-self:start;max-width:100%;text-align:center;margin:0}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls .control em{font:italic 400 13px/1.35 KardiaFitRunner,sans-serif!important;margin:0;text-align:center;min-height:2.7em}
+@media(max-height:480px){html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen{gap:10px!important}html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls .control{gap:6px!important;grid-template-rows:32px 42px auto;padding:12px 8px!important}html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls .control .hp-button-label{font-size:20px!important}}
+
+/* Group02 review: personal/team truth shares one compact readout above actions. */
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen>header{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .status-card{padding:12px 14px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .status-summary{display:flex!important;align-items:center;justify-content:center;gap:24px;letter-spacing:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .status-summary>.score{display:flex!important;flex-direction:row;align-items:baseline;gap:6px;text-align:center}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #scoreLabel{font-size:14px!important;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #modeText{font:italic 900 18px/1.2 KardiaFatRunner,sans-serif!important;text-align:center}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #statusText{font:italic 400 14px/1.35 KardiaFitRunner,sans-serif!important;text-align:center;margin-top:8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #controls .control .hp-button-label{align-self:start!important;height:56px!important;display:block!important;padding-top:0!important}
+
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .status-card.hp-info-card{outline:0!important;background-image:none!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen>footer{gap:10px!important;padding:8px 0!important;min-height:54px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen>footer :is(#kills,#extraStat){font:italic 400 14px/1.2 KardiaFitRunner,sans-serif!important;display:flex!important;align-items:center!important;gap:5px!important;white-space:nowrap!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen>footer :is(#kills,#extraStat) small{font:italic 400 12px/1.2 KardiaFitRunner,sans-serif!important;display:inline!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen>footer :is(#kills,#extraStat) b{font:italic 900 24px/1.2 KardiaFatRunner,sans-serif!important}
+
+/* Two-pass phone review: label health and remove only a visible parent duplicate. */
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen #modeText[hidden]{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .tank-health-readout{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:12px;color:#c9bfd9}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .tank-health-readout small{font:500 12px/1.3 var(--hp-font-body,KardiaFit,system-ui)}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .tank-health-readout b{font:italic 900 18px/1.2 KardiaFatRunner,system-ui;color:#f3edff;font-variant-numeric:tabular-nums}

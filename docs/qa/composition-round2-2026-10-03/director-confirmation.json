@@ -1,0 +1,1673 @@
+{
+  "status": "historical-candidate-pre-new-ranking-paint-and-crane16-proof",
+  "reviewer": "art_director independent TV design critic",
+  "reviewScope": "All 36 games: all 72 confirmation TV PNGs individually opened at 1280×720 and 1920×1080; two additional actual Peek friendly-penalty TV PNGs.",
+  "reportPath": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/report.json",
+  "reportSha256": "0808d2a3d2aa8b8e2acb24700e7e6a70b3fb1300272f6ba6ccf42b3e01146366",
+  "startedAt": "2026-10-03T09:23:49.377Z",
+  "finishedAt": "2026-10-03T09:28:51.781Z",
+  "method": "Real engine gameplay, browser player + real built-in test bots, normal clock. No injected state or scores.",
+  "captureSourceCount": 339,
+  "captureSourceEqual": true,
+  "captureErrors": [],
+  "captureChangedFiles": [],
+  "currentDrift": [
+    "public/rankings-theme.css",
+    "games/crane/public/client.js"
+  ],
+  "sourceHashes": {
+    "server.js": "96f4b2b9980266559a43ac8c8547255df43fa716054bc8815c5633c620fc587b",
+    "public/tv-menu-polish.css": "7895e27dbd65d0c6cceed07ac02e78fff68fc8d2fe85105052f5f3a92f60834c",
+    "public/russian-fonts.css": "f58e9ee2c8414e5c9ae040afed38027ba50158216a350b3b928f1d9138bb1ed5",
+    "public/game-ui-themes.css": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+    "public/game-ui-themes.js": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+    "public/assets/spectators-20261002/spectator-01-coral.png": "d618937f956edd20ed690afc49d9b55d85ae0e4c499793cdca56b715d43d82fb",
+    "public/assets/spectators-20261002/spectator-02-teal.png": "abf0ade349cd23377318f47c00e0b7d427818e384e01dd390eeb5162b0afa542",
+    "public/assets/spectators-20261002/spectator-03-violet.png": "479464d00494007ac1524739dfda12c7fa6c3e56bf11e843ebb30602cd415f87",
+    "public/assets/spectators-20261002/spectator-04-lime.png": "f0245eaafe25e5970a04bba04505fe091e35c1847c6799498a8a2910cac3cf49",
+    "public/assets/spectators-20261002/spectator-05-lavender.png": "539ad6d6e1b882f689c785d84a3166b42dc0cd5dda5959f07f207fde47cb9c21",
+    "public/assets/game-ui-themes-20261002/bowling-pins.png": "7ee568b34a34ac3a33e290cddbbc7e8595ea780d9a3f0883b92ba60f467a9e12",
+    "public/assets/game-ui-themes-20261002/curling-stone.png": "99d5b98a43a1feec730f5d23beff3180bcf91c979e91e1fbd7c05f16d48417bb",
+    "public/assets/game-ui-themes-20261002/drawing-pencils.png": "37821c766158dcba542b8460ee00db9a6bb6bff882dc1700f3a3006b714d0455",
+    "public/assets/game-ui-themes-20261002/poker-chips.png": "07dc5f7e1d92dce4e666a6e28c28624144e29eb7257d4bdd26620e1e5f178829",
+    "public/assets/game-ui-themes-20261002/provenance.json": "63cff2bf287fb62982e91a5f28883662661eb3f189ad85d044e58190a4c98ecd",
+    "public/assets/game-ui-themes-20261002/racing-flag.webp": "83ea0129b8c5136448bb6cdaa05a38061cfc88bf171e66800fff7d576eabb63d",
+    "public/assets/game-ui-themes-20261002/racing-flag.webp.json": "e8c7d23ae468e11ebd37e8c7d5e055ad9b01deff4f367e380f57b39ca1c905c8",
+    "public/assets/game-ui-themes-20261002/source-hashes.json": "fe571f054ab2a2df1e92455ed198ae71e17946a06c882cda7570357d11a28df3",
+    "public/assets/game-ui-themes-20261002/wood-blocks.png": "4cc29a908c6940a6eff1fda9c6bff41b4bd9e8d99e2c06aa3bdc569bdcbd5625",
+    "public/i18n.js": "c2fa14cddfbd35225bf5fb0e50f240a0b05825355022a2f366d6514bd33bc5eb",
+    "public/tv.html": "448906e12f173dd33b44e4b11385cdbe2c214eda5d9dd4b0e3970e9dd58fdc2e",
+    "public/tv.js": "873426d0c680f49d16aeb431d98c65a4a1c15c3bacc1fdd0263d3f23deed02e5",
+    "public/tv.css": "ff99ec9422bba72f6a72def5dee15f14950aacdbce884c4de2ed420e926f5571",
+    "public/tv-information.css": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+    "public/tv-information.js": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "ca399feb3d1ecd549dbe12ab1ff8cec598bea64be47b6d331cae55dcf9aa72fe",
+    "public/native-shell/controller-bridge.js": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+    "public/native-shell/tabs.js": "dc472e4d8f21cf648c1dfb6deb219c78e1988afaa93a1a8530255b0ec574015b",
+    "public/rankings-theme.css": "e1267b82b6e9964a90af309dc08751b2d93d40f883d1a0f0082f4b993652810a",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/polish.css": "da2a786f56e96bce201d4f7def4a1bb01aea2f2ffec1952aa560ecd6e95925c2",
+    "public/app.js": "16e1c07924cf5af1613cb737fb149d137e25aacebb2500cb89dc18d861b9d4de",
+    "public/value-fit.js": "b8aff23e4acafc8a943df1c0546c88ee3da5bbe9c7235a05d03c5cb11f586830",
+    "public/branding.css": "ce839546db30333e2043125bdab982115c329a173d2cabc2b66cc5084c13ca3a",
+    "public/background-scene.css": "b10f5c1389af61d51ea7e5162efd0f384f45442fb5cd7d2e8b18ae940c96d8cf",
+    "public/match-results.js": "22208ca92a54c2be19d74d5a4d774f52185d8c6dcda9393ffe0122b889c0a95f",
+    "public/tv-show.js": "dfae45a7a0ce9f5c84b91a1bbb04ed90903722ac6edb8c58d77e85fc9c55878d",
+    "public/tv-show.css": "60a9f4c6737a8edea31020b46996157057c93436a127a90ea47daf8985dd502e",
+    "public/native-shell/host.js": "eebbe2aebb414f5ab14ab0352f376dc2796f92a9d47c79cb198b5b064f420eec",
+    "public/native-shell/host-ui.css": "2e2145eea377aac9802ea652f3cd715fdca97f3feff090d21b6ad27e2adcc546",
+    "public/assets/gameplay/sports-siege/gallery-meadow-flat-v2.webp": "b09ae9325e89d7186b8e6a40e38a9a1c9abfa04068bf0b765103c9c5f2876379",
+    "public/assets/gameplay/sports-siege/gallery-meadow-flat-v3.webp": "fbcfd565be6d93c20f88aadbdeed608aa50529746d8b9b235bc24eaac6933050",
+    "games/sports_siege/public/assets/atlas-sports/banner-blank.webp": "f6f9768ca6661efc592d5fd6ba79778422dfc85992032e8697312a712c01a49b",
+    "games/sports_siege/public/assets/atlas-sports/bowling-ball-galaxy.webp": "401034c0548124a5bdb31e53f8f842519f31fa6a0e9c99838b1fa3b7a391b756",
+    "games/sports_siege/public/assets/atlas-sports/bowling-ball-lime.webp": "1c882fcd26019c583eb613da14bc67b6d22e6e67bf1d7357915fdb445b64a602",
+    "games/sports_siege/public/assets/atlas-sports/bowling-ball-marble.webp": "f55408af2e91144c877df1ca3980d69dd16f074686f2c83f01f8ed54edb6da36",
+    "games/sports_siege/public/assets/atlas-sports/bowling-pin.webp": "8bc7d6818c76b88f6222db4b5cfa4cb151f3337d2c8287ea879bd68976c79c26",
+    "games/sports_siege/public/assets/atlas-sports/broom.webp": "c7e27cd3504702234fe639aac8ef4eab60bffde2da5dc8ba20ce7ef0c430c2cc",
+    "games/sports_siege/public/assets/atlas-sports/curling-stone-coral.webp": "0b4946dd750ed9be5f93ce991508d7984ffea56bd88450302d2f04a9a24cfcf9",
+    "games/sports_siege/public/assets/atlas-sports/curling-stone-teal.webp": "5a062f4046bf7ecca62210d28635a11d7cf0ae063e788ac36eaf1268d3010943",
+    "games/sports_siege/public/assets/atlas-sports/fan-blob-a.webp": "ba78ae023785a50427716a2af4290b0cf3a5a714366f69242c3824f90effe6ac",
+    "games/sports_siege/public/assets/atlas-sports/fan-blob-b.webp": "6cfcdd1cc85e13086d110892b72355cd43b0beae942860d267a8a2c6a8a7a4a2",
+    "games/sports_siege/public/assets/atlas-sports/fan-blob-c.webp": "d809f43e6b7f70dbbfe93685f64ab14e73146479165c6a607798983057bf8fbb",
+    "games/sports_siege/public/assets/atlas-sports/gallery-friendly.webp": "d6c26902537c47c7def8f54f334e1140741379e5a6129d5b71c829bb7f916ca5",
+    "games/sports_siege/public/assets/atlas-sports/gallery-target-duck.webp": "323412cf090a07ce6dc40fd673d011150a76e8c4ecfa14222e92c56a9bfdc630",
+    "games/sports_siege/public/assets/atlas-sports/gallery-target-star.webp": "237344fb57df02b9e1d8fa39352c0123f1b5f7411719e3a67b2f872c89c61976",
+    "games/sports_siege/public/assets/atlas-sports/gate.webp": "75a4c5866070d4c49c5ce3ca90f51853d2d8aa37f75a884f1b85ce576df47b17",
+    "games/sports_siege/public/assets/atlas-sports/gold-target.webp": "68b3aec50279bd889f95cd690c119334a5c3f5d6ef3a51bed5435bfdb6e1c415",
+    "games/sports_siege/public/assets/atlas-sports/house-target.webp": "7813b72d7b786e76e11795bbda1613d3e4343bd0a67a86953a41465dceb3f7a0",
+    "games/sports_siege/public/assets/atlas-sports/lane-arrow.webp": "ab8d056c3f8cf7f90019f33d59ff6c2808437d8c245cc4482d6a4de8be46096d",
+    "games/sports_siege/public/assets/atlas-sports/pin-fallen.webp": "f873acbf4324cbb93ac96e941e2161150e3854c68b5aa5e79d705dc6bb3a9bdc",
+    "games/sports_siege/public/assets/atlas-sports/spare-badge.webp": "40ebcac540c3bdb11af1bae87f2a8a8396831a341001a5647db8ddb6a6aa4f51",
+    "games/sports_siege/public/assets/atlas-sports/strike-badge.webp": "786f067b20cb7b8b59d5f9ce896c8190a48ea656a12896f382482d419717c728",
+    "games/sports_siege/public/assets/atlas-sports/swarm-boss.webp": "9fa54647293d552b3e242076f18b46c29e13ebd3dfdc7ba0b21c6c2843679ba9",
+    "games/sports_siege/public/assets/atlas-sports/swarm-bug-a.webp": "73b5699301fdb195476fc0cc79dfbbd2f50de369fa88f4f550e0d012d0900776",
+    "games/sports_siege/public/assets/atlas-sports/swarm-bug-b.webp": "34cf8615302bf89685ca7386f43c1714fb1bac7f2fbcdb2fa49df4c83530d3f3",
+    "games/sports_siege/public/assets/atlas-sports.manifest.json": "4128dc8dc264324d9b3c16c85eca1b39a7a7a7296d209a629b75c110b82c1400",
+    "games/sports_siege/public/assets/atlas-sports.png": "ded58a112500bbe512c7ffa165bb4c62ee760bc925205acd4bd335635835ae9d",
+    "games/sports_siege/public/assets/atlas-sports.webp": "564fe978ff3f5eabeafeb3d1b5706de228d42bd0367431a768474728dc8bfdaf",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-hazard-v3.webp": "da64a000eadf0cc6ad67e2bc4583bc7ee6255e3ba79462b40f6eb14f67b71ee4",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-metal-v3.webp": "cf9eba74e67ac95b970837008f952025fce4d92919510187d99e9ba9fa4f0723",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-stone-v3.webp": "e89868ec0ade308780fe091d33b83a835b2bf08497dd07b2874b1d28026388c5",
+    "games/sports_siege/public/assets/covers-flat-v3/cover-wood-v3.webp": "a9e82ea4dac79972f1ce3f1a645c9a158d4b9e3694070c3d5102cc06355fe71c",
+    "games/sports_siege/public/assets/environment/gallery/bg-blue.png": "a8d9487a6db81b9f4c723250ac147bd4ba0322bc33fb7bbdc87b9bc10935e280",
+    "games/sports_siege/public/assets/environment/gallery/bg-wood.png": "9d6ec1811b54cace6132c546ac61366bd86878ca4b6496d32a56232c35f221cd",
+    "games/sports_siege/public/assets/environment/gallery/cloud-1.png": "f93365452e5a8a2f45cd610a1faf495f95ea3ed93fcda9df74b09360784e97f3",
+    "games/sports_siege/public/assets/environment/gallery/cloud-2.png": "fe067f61703fd227bf015aaa1c060dc8f7762bb5c21efabf5d9823e3dac72f28",
+    "games/sports_siege/public/assets/environment/gallery/crosshair-mask.png": "c552a05d6f0452a5d589ec06af19d14408d3938f8a0764fd62c9545a300c8b43",
+    "games/sports_siege/public/assets/environment/gallery/curtain-side.png": "0f131726e6641477692160b89389f46c448edfcc568e5fb50f4c50dc02f67723",
+    "games/sports_siege/public/assets/environment/gallery/curtain-top.png": "e7d168611e0d5663128bc594bfa8161656108feec68953612e83128b03b7e899",
+    "games/sports_siege/public/assets/ice-pebble.png": "51289f7b453f098ec3ea7a0d7cf88e2b29772245fe63d3d73839635d7bd9771f",
+    "games/sports_siege/public/assets/ice-pebble.seamless.png": "46f27b7ba89bda0ee64ecbea32631d30e3a5adeb30ee904a7f1e022cc883c949",
+    "games/sports_siege/public/assets/lane-wood.png": "0ff56a2b229a9b6aba119400e8ed18fb55db867774f15d42c7984696bbba8d6e",
+    "games/sports_siege/public/assets/swarm-v3/gate-closed-v3.webp": "76e570cc479cbca6ca1e0036b94d1314568b93c5f72f4d835ea98efa70dc2cfc",
+    "games/sports_siege/public/assets/swarm-v3/gate-damaged-v3.webp": "8764c795a0002aec73f468afbc032bf2d34bfd9e4058f42004a016850eb7382c",
+    "games/sports_siege/public/assets/swarm-v3/gate-open-v3.webp": "bd0712b6e528d905bd8244dcb57fde9a74d264ad46fc15d630b409288a30697a",
+    "games/sports_siege/public/assets/swarm-v3/turret-coral-v3.webp": "c7a502899576cbb3f3d315846ba0b3c3dc7bf6c854665ddd96d38747a1576301",
+    "games/sports_siege/public/assets/swarm-v3/turret-cream-v3.webp": "48e28777ab340aeb859745627448af1ed94e8893fded20d300bdbb4614bdec55",
+    "games/sports_siege/public/assets/swarm-v3/turret-cyan-v3.webp": "82c5e76739ad730fddbd0e32e4b84886a0292a498978374fedd7437707bbe6a1",
+    "games/sports_siege/public/assets/swarm-v3/turret-gold-v3.webp": "63cfdd36e8756ae3fec96e1e0b642fdbe0f04224db61774f4db73f4f152da071",
+    "games/sports_siege/public/assets/swarm-v3/turret-leaf-v3.webp": "a1f926b5855484ff8f9d7d87d328c74776fa7637a76128c0aa81bde7fdd6a384",
+    "games/sports_siege/public/assets/swarm-v3/turret-lime-v3.webp": "caaf0c913d5161a9e32d545443fc23a9a08e0bb191569874ee818de2c5387f91",
+    "games/sports_siege/public/assets/swarm-v3/turret-manifest-v3.json": "02b36e3f632da416bc9cad4f4cb84230cdf4280beb19fc370537f243d861f898",
+    "games/sports_siege/public/assets/swarm-v3/turret-mint-v3.webp": "863dbadbb24adaedf2dc3faaceb3d5d8f49ae5c6a475371a379990287b4fde27",
+    "games/sports_siege/public/assets/swarm-v3/turret-orange-v3.webp": "c777551068f6a005c0e8065bb6693c03f4512819b2749ad44bbc5b0e7bdd5247",
+    "games/sports_siege/public/assets/swarm-v3/turret-orchid-v3.webp": "9bbe5ebd300c42c92e9be3aede745c6198e1405291147f2f6512594cb64a2a34",
+    "games/sports_siege/public/assets/swarm-v3/turret-pink-v3.webp": "a497bdd4e629b0c5f4d6931b1e295cfa0fd75996ca06cde7840dd6134f93ea97",
+    "games/sports_siege/public/assets/swarm-v3/turret-raspberry-v3.webp": "d586314ab6f22f5432a40820af64cc3b4624f519b9d73b31f0465e792881a5d5",
+    "games/sports_siege/public/assets/swarm-v3/turret-royal-v3.webp": "02ff1ebbb0649dd0475958bb3c2bc9ac2afb31143925eb694a47c558c2020755",
+    "games/sports_siege/public/assets/swarm-v3/turret-sky-v3.webp": "b12cf782d47b52f075edf8aa2ec2d565eaa8d851257bb014425234040ab0b8fa",
+    "games/sports_siege/public/assets/swarm-v3/turret-steel-v3.webp": "a2b912b06413780b53b071fcdbf5734f1856e48894eea10479b7b318e28650c4",
+    "games/sports_siege/public/assets/swarm-v3/turret-teal-v3.webp": "554e1ab9cc2a4712db81d30167df2b79002b5364d9761ead823314615f90cb51",
+    "games/sports_siege/public/assets/swarm-v3/turret-violet-v3.webp": "d145800ef1919eeb63e90a01a3a41c1d77ad723d79dcc134c43039ae6a8c2486",
+    "games/sports_siege/public/assets/swarm-v3/wall-left-v3.webp": "d3cfe3db00e4c4699bc405908d88cc4610adae908d970f3b7ab4bdc723c6d278",
+    "games/sports_siege/public/assets/swarm-v3/wall-right-v3.webp": "c169f399a4c7b2532df59b9664d7780b48de68de13a20665bf8f91fbe22f3565",
+    "games/sports_siege/public/assets/swarm-v4/gate-closed-v4.png": "ce4eaddc7e3f1a03c5578ce43892f306726cd5cc6c9d7cf0f1a0dac03a19205f",
+    "games/sports_siege/public/assets/swarm-v4/gate-damaged-v4.png": "c51f636b856716f947abb571ceb9e723f0ff1f49adf8ce47cf2d88808a9c9e0c",
+    "games/sports_siege/public/assets/swarm-v4/gate-open-v4.png": "bb0d6dfe4b56c452ab5691ea990d307ec4654988d846016920db2c9841cac040",
+    "games/sports_siege/public/assets/swarm-v4/manifest.json": "0914a47352af3ac850d6e26c695d8247f4f0bce1240c774c5edeb0e15dab16cc",
+    "games/sports_siege/public/assets/swarm-v4/wall-long-v4.png": "d787111d7fe245874856ec8e103e3f2b217dec643c482b7cf9622b00780dff89",
+    "games/sports_siege/public/assets/targets-flat-v2/manifest.json": "b6b754d99a0835c5d5a31684c0f16e95dd8bc2f02b3ffae6a5986522de40a63a",
+    "games/sports_siege/public/assets/targets-flat-v2/target-beetle-v2.webp": "e148d89df007fd0d7f2348507f58add786a6099b3ea242303bf5940546b734f6",
+    "games/sports_siege/public/assets/targets-flat-v2/target-bonus-v2.webp": "f623de757b494b0f08bbee731fd0014e310fe405aecdc2f2abdb2bbd381528be",
+    "games/sports_siege/public/assets/targets-flat-v2/target-boss-v2.webp": "cb54d73b9ee8f0098412d2244d909a67eab1160f3f0f3a21eecda6364e7922a5",
+    "games/sports_siege/public/assets/targets-flat-v2/target-bug-v2.webp": "57335e8affd1745c1d42e61f83d8135180f883481b8bf4029aaedaf2ba27e695",
+    "games/sports_siege/public/assets/targets-flat-v2/target-chicken-v2.webp": "879ab69a5d2d7685f5480ab461f5132844ec20683acb558d7986480c696f50a6",
+    "games/sports_siege/public/assets/targets-flat-v2/target-friendly-v2.webp": "06e37374848048d09db1f32b9152737e5adde6f86635f99929a56aabfe1cf747",
+    "public/i18n-dictionary.js": "dc61fc0af6c600c9ce6202de212a2d73e2d5bc7164ec47b53fbce9aef54c52db",
+    "public/game-ui-system.css": "e4ce7b9be20b22aa48e9345e42e1f77dc7c8ce47dec2490c9e6948e7ed2ce085",
+    "public/game-polish.css": "fc59ca0ef6ab45449536d00d58bed2c7f4f348afce94b73d493f32931e3d21f2",
+    "public/game-feel.css": "9871f81d1f59a9042ac615f4709fbe5763ca309dfa94cc867426c944e2aad74c",
+    "games/party/knives-sectors.js": "942b804b5ca39d6f06d3642e91cd0340535d00256ee2d8a8ab1ef24ca9cb651b",
+    "games/party/public/action-glass.css": "1bdf86f662d23b13dbdde22bc387a2270301e3c3fece0cbbd5c3e673712f5bd2",
+    "games/party/public/controller.css": "24594c72e4f726d8b8754479ba836fe04fac211c696c7e6ea9408050a92c3371",
+    "games/party/public/controller.js": "45adf8b47edc649f10581764005270e39cbb6e31d02fc8dcf2724a62f61f018f",
+    "games/party/public/host.css": "83dde569fe670a5109b9ce0000f0e6f719f738e112ca90a50edadb73db90c227",
+    "games/party/public/host.html": "77649f865717007a9432a935ad053fabeb6e8b7af8b4b051416337b2799de138",
+    "games/party/public/host.js": "2ccb52be70974f710a120ffbef0039ef739ea539c99b1a1712bb894fd4956c17",
+    "games/party/public/index.html": "1bd51be3ee34b892d79f805259334e93316889f44df26b263ee411cab8c7f7da",
+    "games/party/public/net.js": "b21c8df9c465cf4876062275f13877dc3b52a81ba1050f896fc51b1140034bac",
+    "games/party/public/qr-lite.js": "5d1678ae01658f7578f22450aa79204f51bd74c7adb6332775157f25a4a4a7d6",
+    "games/party/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "games/tanks/public/action-glass.css": "01f50a8f49d7a234d043f292fe9a9478196b69b9d35d68260504554338850a70",
+    "games/tanks/public/controller.css": "87c8b7a6e06a97bb61fc3ff309a931dc718c86464990ddc5977a1d496f84e8a3",
+    "games/tanks/public/controller.js": "fb5898a293ee01be97f949fdb4715f6797ebfdf1fa20c2396db25e8bbe377783",
+    "games/tanks/public/host.css": "e02e016c29bd69fa7eb880a4e56e5ee0bff178dcd443cb39fae5dc4ada74a557",
+    "games/tanks/public/host.html": "2b3df93235952cc0e61cde1000f26756eee4251e5d11befebc8d7ac322e44711",
+    "games/tanks/public/host.js": "3bf14a4a3e31ba051c2d6ff9f5d75c6cba05d126c5e4d52f15136cc9c00a3854",
+    "games/tanks/public/index.html": "773f075e34c818939a32e032e5f25d24223f799b3d1e421ca00b567b49c9bf72",
+    "games/tanks/public/net.js": "b21c8df9c465cf4876062275f13877dc3b52a81ba1050f896fc51b1140034bac",
+    "games/tanks/public/qr-lite.js": "5d1678ae01658f7578f22450aa79204f51bd74c7adb6332775157f25a4a4a7d6",
+    "games/tanks/public/tank-fx.js": "64eb6025147d886309662f3b6d25188d3a66ff68af71f7e061d376140e3151b7",
+    "games/tanks/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/tanks/server.js": "445e4cf92b00c0ee9e47b5ff247c00c9d38e8ad2ac6d7eb08341a4cbe688128a",
+    "games/tankarena/powerups.js": "b7d66e10f8facc6da6f30aa087e8f9b7c5a7f255b0bdcda346899aed230cb92e",
+    "games/tankarena/public/action-glass.css": "2bac416cfe13b954b357b0b961b15269bb175ac5103afb8273932e22be4dec5c",
+    "games/tankarena/public/app.js": "322dd09639e1ed850aca2d4db147cbe1cb208bb917d79e35569c37cbfe681c4e",
+    "games/tankarena/public/host.html": "5bd8d7628e184836439373050c9c3744faa587e35de3a87e5947834aedeccd6f",
+    "games/tankarena/public/index.html": "37d94b965c87ab62fbe830771166f7a49abce083abb19da081387c5801024e49",
+    "games/tankarena/public/style.css": "410fe8c1df8e819c83562fb26856fe130c57b3bd193411c185420aa9ce37d9e6",
+    "games/tankarena/public/tank-fx.js": "c9e1e859f3cdcab4c6f693884585d68c89e2821bf6bee48ab96c13affe517d8b",
+    "games/tankarena/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/tankarena/server.js": "624b2a810e6b23065f430fdc168ed71a6da920770bb94fce613373cf94d2ec43",
+    "games/tankarena/weapons.js": "8ada974601417de5b396ad8a85d64bcb768e02f3234d7902b62fe5644aeae326",
+    "games/chaos/server.js": "f56ec5cab64d15ec28d1ee658ded58a6b3b30902253c3d9cf1a7e21f08b07562",
+    "games/chaos/static/controller.html": "8b568586a16809c1b730cee27bdb2f7f79c37f03f91a5fa2215188b22e2e1492",
+    "games/chaos/static/game-contract.js": "30deb8c4bdfdf8de1b173ea4dc2a397383db118b6bde177b0659b118fce12284",
+    "games/chaos/static/host.html": "e3cc464be8f0a00cef6819aaebbcecac6cf4dc26b782c7405b04276e7c7ed1db",
+    "games/kart/server.js": "bedada00317a5696b700cee20639f0029b4b11909d8004f883b1e1d9c73b0953",
+    "games/kart/static/controller.html": "4adb5ad7cf10b204766f0063ffdc97fb0cf74b8101df813b147f3cfa393a27dc",
+    "games/kart/static/controller.js": "1ed1d7737148c7cb02b1a7559c075cd0f4d3d77cf58d2f03125cc6976a074537",
+    "games/kart/static/host.html": "956c03a6d1989759207bd50e745fb00cecd25f09417b5f661ed37344b886a66d",
+    "games/kart/static/host.js": "7ec9447a6a301e54e70b8aafde40fd15c203c92beab4959d62103de7e5e73753",
+    "games/kart/static/styles.css": "e39987e0a2e7ec77011811b9119bc9a504d4fe2a5703f235721a462e25f82782",
+    "games/kart/static/track.js": "d190078d8cfe0cd6846f127bec75a375b20172381ffa1a59f590bbec0697fd55",
+    "games/monster/public/drawing.js": "43830afb97912d87686b3a01f31797e0fa306b71d40fd05b4d919cb39cab1fcf",
+    "games/monster/public/host.js": "d5fd40016d81838bdb10da4be155066b1056a1a8d0d38109c11f1a9ed3953c08",
+    "games/monster/public/index.html": "6c079c84dc75c918d0beb05365d95d58ee3537347816174f80e228bef9f34e41",
+    "games/monster/public/monster-glass.css": "21c4e1abf7c327764b416d346ebccb18e538110a5befd1075ad5b5d82e508853",
+    "games/monster/public/monster-polish.css": "d6187345816bcf80de3a7984fc3b34e55c6acf7671dab131c51e6ec024024a8b",
+    "games/monster/public/play.html": "53e2015214b81bbf4e1ceae4dad75f7a007fa61a1671007f8d247799d96018b0",
+    "games/monster/public/play.js": "b56ccca1d399f103e4abeee229f3131ebb71af6630dfee83345da9afe72160f0",
+    "games/monster/public/styles.css": "95898b57dd90903f1e68e5b7b18d752ea7caeea02bae5ce8168c3773883ba6c6",
+    "games/monster/server.js": "a82783b448693ecdf1dfa9d125ffc743813afc7c3aa3186066dbe0a174163000",
+    "games/spy/public/action-glass.css": "edbb6746802cf7e7c94d5f2383f70a727899a90bb7714959536b7fc625660227",
+    "games/spy/public/host.css": "604ac4034968d89fd027c8b932fbb0e2b428e2d9842cfc4a9e28dcb11f15cd1f",
+    "games/spy/public/host.html": "abaddc5bac2462bd67ba598a412379058a707d38c99692f1d736fd6aaa5421b7",
+    "games/spy/public/host.js": "58034c9e8c7b484d1bcbf4129da9888ed65f31e0c8b8c30e001fbf82eb3a9fe5",
+    "games/spy/public/index.html": "ddf08b170b7fec8d447830edf2d9199888aab681dc478f8823fda77cd9764688",
+    "games/spy/public/player.css": "d00faebf8f35c99f16f1f6f6db003af1531b04bec123af361e45567db61ecbf6",
+    "games/spy/public/player.js": "c122b63237f9558ea871efbd11f060019d9a28ceb458d1c6c1d9fc4b09fa38df",
+    "games/spy/public/shared.css": "2339d986c8b7db1fbbcfbbe73bbdcad8432b42fb440f456420ee81b07050ac04",
+    "games/spy/public/spy-layout.css": "74f9427f3e7ad3766e58fa98f2100c20ba1721fe847d85f55463fa3125ebcb59",
+    "games/spy/public/spy-polish.css": "eab4a2b15d1022b3f667b0b0bd124d1faa3527d2a8ffbbb0540484d9b9936583",
+    "games/spy/public/spy-polish.js": "ec6dbfc8cd417460f31da798e7df750cfb4d4949c00162abbe54b089a6d7ae44",
+    "games/spy/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/spy/server.js": "bad58e7cd4c3660dec7437da752f70076707ff14ed4c6689f0d9f4ea822334d6",
+    "games/millionaire/public/host.css": "a1ac7754cc8fa594f309ad3225ac3ba5910f675b9007ef9940f235e89e58720c",
+    "games/millionaire/public/host.html": "3b97e073cd07203a27a7ebc4a31bab1115e75ec210a3ea97777fe4516e28abe5",
+    "games/millionaire/public/host.js": "427f11427954b547e63e96a492311712197c5d57bf1d23d352fc6c1bdf19b35c",
+    "games/millionaire/public/index.html": "830d5b7ca748dc11ac207048ffaacb8b4990ae9e5e94a223146e4deb24c13308",
+    "games/millionaire/public/mq-polish.css": "e815b054a82d8a04a5490bec80631a280ea2d983c581c04d4a205e63c173ee7c",
+    "games/millionaire/public/player.css": "3f532bb5a18d38a773279b01bb6e4c84da3928cdb41f447d2a66ce52b925a253",
+    "games/millionaire/public/player.js": "6d0dc50a966ff944bdce3e8c381436dd2535edcc4ebd50634659ec5799be4257",
+    "games/millionaire/public/screen.css": "bd3684c8013bae040017ddb90943b201bec65aa0eff386b57c2e41f0d79664c4",
+    "games/millionaire/public/screen.js": "618fc2ab8834f496dd8bc79de63636a5e15364b6d476ad6b018988581d2559d8",
+    "games/millionaire/public/shared.css": "a98ab6caa595dc155be8f694aa4a01888c3521a507540b37d8aab33a0fedffa6",
+    "games/millionaire/public/tv-layout.css": "a6eaf3fb3b0a480ac29c937c6ff5a566d5bce74feab0226b4b1b6764d4b6ac5e",
+    "games/millionaire/server.js": "b1f879d53205a889ff90058b80c0d7f0ec5160cd79e76fa43044a0d23ded3411",
+    "games/quiz/engine.js": "ce09ca9eaed917904094321dbe00925e5a9a6052883d77eb992f442258aea126",
+    "games/quiz/public/app.js": "8ec1764da04012df55922ce6c49aacd0bc7dc44b0456c4caad660320bd5d28fb",
+    "games/quiz/public/index.html": "b923ac5a7d6cf791287c227ea766da8294c3d839ad04eb85532267d33b5eca80",
+    "games/quiz/public/quiz-polish.css": "6deacca6e709afd56a8f4ec77e7747deb7c5a04f103ea61654495f917cea9f41",
+    "games/quiz/public/quiz-polish.js": "c4322af1ff04bd98636c738e8c413a886a8742f65f9995b44f79950ceb341d9d",
+    "games/quiz/public/screen.css": "44e9530a1d0179e31f1eddabf154dcf4180e09476d0c1f081ccde1166d089efc",
+    "games/quiz/public/screen.js": "46e63a9a149c791bc484d49dd2d488d852e8385a97206da0c94d146018feafca",
+    "games/quiz/public/style.css": "9e9889e7f7f593151c435c1228377eda3c898f1fe472cd1dded0a7f3facaea46",
+    "games/quiz/server.js": "11c2e81a6ade0c7966f90056fba28085af714070b0a819c0f241fac22eb61587",
+    "games/crocodile/engine.js": "b524913d5e0c7b95955217f0e8da9f9725d6bcb64c3546d1d16950263b7de86f",
+    "games/crocodile/public/app.js": "a1b4f4f44fe73efc7c8b49e1f45450e17377fd861a3c843e9f55d4391b4e80b0",
+    "games/crocodile/public/controller-layout.css": "b1ea8d23e7e1101be09f517982a1508bb37e3490b7c72edd8c263e463eda3ab8",
+    "games/crocodile/public/croc-polish.css": "69baf9c0c6ccdaa48e8739f2b608613cdd394e3d32a890cc4a516b80bf6d0c2c",
+    "games/crocodile/public/croc-polish.js": "c3315b4e7f78d1eb36d5001bae6003c7df13714f0b2e25cc9b9d4d39232a092a",
+    "games/crocodile/public/index.html": "1a1472a6423993ebb2866c8e3be83e75620748c6541201054ee3faaca63ab756",
+    "games/crocodile/public/screen.css": "00acb0ab3b3a318dd5a811dba2276c1317a6b9f4cb972c65c05e2c7e3f5d961e",
+    "games/crocodile/public/screen.js": "e34aae03fd53f1f9cb6bb8263ddc74dffe97bff6a9cf8c68e66a1b50bdf2af55",
+    "games/crocodile/public/style.css": "d1c9b4145883e2e3702bfceff6ac2776b261333cef3161593c400c1a9b8961e8",
+    "games/crocodile/server.js": "406c3d7f48e21c9ff9c1d6c0f1719fa1817ce6e12ed4f167b3662b184d3c0bc9",
+    "games/jenga/physics.js": "cc1b6f58d0be7d953edc75cb289d93e3817b0c99ff4260b60fb689b45db2c884",
+    "games/jenga/public/action-glass.css": "e2d073a7faaea18a5d3e95605c6bcc00f00974c94953508a84a1f0f6829bd6eb",
+    "games/jenga/public/app.js": "4565cf50f201b23752eabdb49f0f69100ab7e278b089d38b0305854a72da6d56",
+    "games/jenga/public/controller.css": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+    "games/jenga/public/controller.js": "7638836e58d169d382ff3e33d200797b0562f10487d90a4bf9955c3658c836d0",
+    "games/jenga/public/host.html": "24f726beb1aad7b82042089ad1934faf6589c88637090f7775e1c66614a75bac",
+    "games/jenga/public/index.html": "68586a0580eaa171eec1cee6864a90d5aba778bf5ee0300a5e1b1fbe46b0543b",
+    "games/jenga/public/joystick.js": "89522db8a8c6502486d6b5e21f76520ed651bb0f6c96e7e8c8597280c47190eb",
+    "games/jenga/public/renderer3d.js": "e8a017964e2daa37bd213533a437fe75ad8981debbe0bcd6695618a5b68f1411",
+    "games/jenga/public/style.css": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+    "games/jenga/public/touch-feedback.js": "417a9c02bd9ccf0d635b0727a9bb5b2d90686da1f6bd09d2d2c6634bd8fbc236",
+    "games/jenga/server.js": "f430db56e1dee37a16dc3129c3ebd3f74d1d402eb5c4f1b2f948968966887017",
+    "games/crane/pendulum.js": "a88fac11fdf9153afd940c02270fc39921ea22044fb34de821d65a0acb039f98",
+    "games/crane/physics.js": "e534fc89df7e303187b8b457fbf6cd3d2cbe069f477e9702b32fa5bf49e26840",
+    "games/crane/public/client.js": "d5a5270173d526310f82f3732c941ac70c6865d9d64d206b489ba9fcb7a4bd68",
+    "games/crane/public/host.html": "b5c7c9704bca9086eb41ff136966539ee302c9b1a35af47d2b8590551538448c",
+    "games/crane/public/play.html": "3557b2074d5eef123f68edf318fe3b99ef046897af212b6aed66eba821002686",
+    "games/crane/public/style.css": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+    "games/crane/server.js": "b08610ac34d2323c1690d96b1ad613b306da88f877317d6745be0031295f5d60",
+    "games/naval/engine.js": "55f987d39d056153954ef3d6a4cdb44c36795259a4ecc700b240d7915b1396f2",
+    "games/naval/public/app.js": "5b16fd3e272a65b02636c1b3d0e9ee0431d2e10773d5670f542844443728f6a3",
+    "games/naval/public/broadcast.js": "4d252de1469e4b6c7c84941d293044a7cdbffbe799f5fa7387385ee31269cad3",
+    "games/naval/public/index.html": "f077b13682730557c685159e1c311a744c7c21c32c7d6e4d2068e7727cdde5f7",
+    "games/naval/public/screen.css": "133ad00e2c23cefa1d5d57bbcb469c2f0e22ae8431144d23bb691e9530fc1c1f",
+    "games/naval/public/screen.js": "4f85105a7d3e8678c5885d8c103508014622bcbb4005767bda5cf344c2067d9a",
+    "games/naval/public/style.css": "78c653f677ca08abd76001f68a487715a5d4984162e81e07be9ef0ab214dd54b",
+    "games/naval/server.js": "c1ac02623687595a1518b9a733380ad8bd103ac0a5ef1c41009e33c5d9d6242c",
+    "games/drawguess/engine.js": "544d42a6710ca978e2ad342203bc6c0dc15e7f9313b99f2aef1b695fd83c84c6",
+    "games/drawguess/public/app.js": "3c44e40c2d3c9849216b078864f6eaf8a57bbbdb90cebc445f0c6cf0b98e9c2d",
+    "games/drawguess/public/draw-polish.css": "0e4e57352b8de56f8942f86bfa1a01cbbf88830a6f09604207e59e5e3a4c0e56",
+    "games/drawguess/public/draw-polish.js": "40c8466d8f67dcc7561a23a44f07e91e581d84134dd0af935d8bb540ca2650ea",
+    "games/drawguess/public/index.html": "76d5e0d89878f1244d60bb14c7f3b758ec80f7275def82d6a2b1397908d61dfd",
+    "games/drawguess/public/screen.css": "e54f227e66dcfed5cd4577fc9711fe784bbea9b731659d816ef4ee1c86ca6ae5",
+    "games/drawguess/public/screen.js": "2ef9b93536201acd8293a8e782dfedf4e4cc89ce4f64aa3e024f4a85c8c2fcb7",
+    "games/drawguess/public/style.css": "a65e9390aa007b173dc7fa808c4f6317bcc9598e1bfa5abdecd03eea52d1220c",
+    "games/drawguess/server.js": "d24d2fa2713b40e1db2cd001aef8ddb9809bef2c2ff31d0c02595e6c42c6b251",
+    "games/western_duel/game.js": "ce7078f9df306aeeca4c5646758c9f5036b50fee3d3fcd4becc1532467454c5d",
+    "games/western_duel/public/app.js": "e0cab34545b9d0178c185aeb98884ca58549b8e1e560838c8f457aca5bc00b00",
+    "games/western_duel/public/host.html": "ed9280783fb18eddb47bd3a4f999340e10971c15b0ee1fb9207db2a204773cbb",
+    "games/western_duel/public/index.html": "90375ec17f36d04a84e3075df553bfa7b9a25f2e33c541fb9e8bccf8769db034",
+    "games/western_duel/public/style.css": "9f7e5486b350896011a367d725cdc06cafddc1fcc5e7f31e4dcb46453200ea60",
+    "games/western_duel/server.js": "a902a47c182434071de3d29361867e4d40958136cb5d21ebbfd55c65f3f9832d",
+    "games/arcade/controller-view.js": "2adfd28ba5b1ba237b6b509845e23f95badd859a7ac3cac56edffe53022ae57a",
+    "games/arcade/public/app.js": "d71cc82d3e5078ce91fe4bc806aa5ca4bff4269b5ea25ac8c273dd240e08e0b6",
+    "games/arcade/public/arcade-juice.js": "7935a831047c94ef90927dc4e510e9936c8c41bdb376967dee404b545acbe802",
+    "games/arcade/public/host.html": "23f4206edaa44ae7bfee651e7077297fce397908ae4008113d02d62a85cd8d5c",
+    "games/arcade/public/index.html": "f30d57aa39618ae532cf4f261923d7e241e75bc91315678d11d540e900ce4fe9",
+    "games/arcade/public/snake-polish.js": "7ac4f6313fbff7bbdc79f689d535640ae9457672ae2780f229d44dda6b47209c",
+    "games/arcade/public/style.css": "6ac1beb5da6c658c28a1392c151cac85c8075d0fa8cb2bab878e2d1737408ed6",
+    "games/arcade/report-metrics.js": "5944689f714c9e5fe823e807379f5b13bbb3f0503557dcf8154ca793ed07f407",
+    "games/arcade/server.js": "525c797ba0f178f42510a81e7bcc68685aeb7ed22433c9a09127a2d745abe3c8",
+    "games/arcade/simulation.js": "829b4b9780c3fd5f935c03f9b39749a7a42854998a3f2a4fc85e4f19180d5307",
+    "games/arcade_deluxe/public/air-defense-render.js": "ad4e9b14dfe7dba0ee76fb43cc7f5bb029456143d66fe4a8beb0718cfbc056ee",
+    "games/arcade_deluxe/public/controller.js": "1dfaf00b0f5a194cc6490d432bfb59c8b67f14573e1e46350afca90e24fb9b9c",
+    "games/arcade_deluxe/public/drone.css": "38d9c6dfa2abbb7a79b249e0aeb4214508ede9131fdba6d30a17f2ee6bf6f3f5",
+    "games/arcade_deluxe/public/explosion-timeline.js": "0061d231d5093b271afccc7057e5d3a81590719dc6ab70d0b5738a6ce07497e9",
+    "games/arcade_deluxe/public/explosion-waves.js": "87e284f9905736eb7d98c203894fc10f5409e24246c435055816bc50df5ad3d0",
+    "games/arcade_deluxe/public/geometry.js": "5ce01285c16c6bbee82aba7c735b1a4de17a26f14b88af0838b34cadd3787814",
+    "games/arcade_deluxe/public/host.html": "0af87262ea679492e02d6255696d34d8cf5ffe535f8e160a128b182ace05b728",
+    "games/arcade_deluxe/public/host.js": "231700d036c4d3342912203ed7d565f95c2018e6a9d244a58106a4ed1dced851",
+    "games/arcade_deluxe/public/index.html": "a0fee9e0c24b68c6d88fabb0db70d068f00128fd7889d307cba5c427d14e63af",
+    "games/arcade_deluxe/public/marble-layout.js": "3102789dacbd64f6072ae915182e704c4a336ee04ea0a31ef8447c5f8ab984e8",
+    "games/arcade_deluxe/public/net.js": "966ae77fb6bb7c562bf793f222adb3c4355db3fbd2a8c356011b30df2144d786",
+    "games/arcade_deluxe/public/palette.js": "c0e10cfbd1171aab4395a7242b66d2e61f7aaf447bb1804b32d4712d6447d144",
+    "games/arcade_deluxe/public/pocket-deck.css": "330c5f2cf193d1464e8fc835c08adb86e779f3bf1ac51f538045cdffe2a96106",
+    "games/arcade_deluxe/public/pocket-deck.js": "d054868a81f4f9f606aa670be5f24de8d7b57f5656e6a06e686b2abb5df8d5ff",
+    "games/arcade_deluxe/public/pocket-plasma.js": "50a5c95652b975be1f00cfca989cb9e88de92f6962ce1c719645d8635373bb92",
+    "games/arcade_deluxe/public/pocket-projectiles.js": "fabb8793b392f5d34b0e7f66f4e7af40fdc4179eb784e438f430b7677b6a7a0a",
+    "games/arcade_deluxe/public/render.js": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0",
+    "games/arcade_deluxe/public/siege-fx.js": "0e67186efcef0e862d18d398dd60d69a2c1bd6b68d27af3820efa1c33f732513",
+    "games/arcade_deluxe/public/snapshot-diagnostics.js": "baf5ad9e32afa0da2512f4049c0ac05cb6571d0f8520c21abde5357dcc182b9d",
+    "games/arcade_deluxe/public/style.css": "8ef401fc84989dd39fc29daca9436f4183983e2bcd29e84e0d32b5ad70203582",
+    "games/arcade_deluxe/server.js": "c99948d160a1ec24aeba30aeb82c38efe039f0d03638aebe4418b011829e7a4a",
+    "games/bow_club/public/net.js": "ec4a83a31ae31285c1d356c122f329db06eeb4bb2ad52f3dd7629791de0decc5",
+    "games/bow_club/public/phone.html": "b5ee0c04417c0c1859516dd625c2ffd3f4992bb2d104a4448c8dff1446c0afc0",
+    "games/bow_club/public/phone.js": "f45efca4646e366cfbc943b48c62001fdc4f426d8f83ec4b4edc31047ce507d7",
+    "games/bow_club/public/src/camera-policy.mjs": "b4aa4afc09e0f148589ad2d5b39c79be114ae121ba7d72feea46b7ccaed5c5f1",
+    "games/bow_club/public/src/camera-preview.mjs": "ff02bba13c91d4dd0e7cec8ab802bf70a74894c17534ee8d445c3464af61a133",
+    "games/bow_club/public/src/homography.mjs": "a1d3246b8cf4e42391eac417c0244650a008e4d70c4c1b52ebaac9794a16b089",
+    "games/bow_club/public/src/hybrid-tracker.mjs": "4c69b62cfdf47214927152eda05571e6f6dd649d3349b1ee56e9246ce3c2132e",
+    "games/bow_club/public/src/marker-tracker.mjs": "2470855689ca232324f24fdaaf26fd7954291b0217f61766e84bd89d3da27106",
+    "games/bow_club/public/src/markers.mjs": "ec44fb11a8165df4f39fad643bf334bccea9ea20aa21e46cbb7c6fde1fd7599c",
+    "games/bow_club/public/src/mini3d.mjs": "2dadba4c18ee48e1e4f92911377d6ffdd0f4cdb8f78409d065ca4f53489ea6a5",
+    "games/bow_club/public/src/range-scene.mjs": "6942687d6f488384f44d3e8c35b208ee3ad1b294d14cc48c47796bef89b22bcc",
+    "games/bow_club/public/src/tracking-worker.mjs": "0db71c757367d00ca3c7fbd2099b4b6ad02821d91d782a73a784cb8c774e2625",
+    "games/bow_club/public/style.css": "88ea6bacbeb7bd8b06b916d4e1f5b5a0b530c09c43812a23789729df535d43e9",
+    "games/bow_club/public/tv.html": "cb4fc8af6a52414b4c7a0cd52a844f9623bfa8af1417b505ef6ca25fc34e7217",
+    "games/bow_club/public/tv.js": "41b487ebb1b2e171933bccc844595bcf5135e08af65ac8ca744f4ee4e82812a8",
+    "games/bow_club/public/vendor/opencv.js": "b873c8211421da7b9bf41ae157a923f05a46a0b8d3e5904c44c6f3ad6d39a1bd",
+    "games/bow_club/server.js": "50f811f57f9f0d6ebf3d0a6e49bd7502942348b9e25efcd3c2424a5ecfa58863",
+    "games/tabletop/arcade.js": "0f1e0bef056b2edf5871b0c5748d6ddf38c8d3e1d8d449199bf6e93a270a71be",
+    "games/tabletop/poker.js": "2870b0b28b886684e84671179bee9a55c868e88ef448c741e9ad7d0db55158d9",
+    "games/tabletop/public/app.js": "350e270f66106561e1389d845c18cba7273b740d310fae503fedd7af48376bbc",
+    "games/tabletop/public/arena.css": "ad1644c5535b8dc0e44de8b9fa0ec7e2f611e922322f305eea3c27478a9a452c",
+    "games/tabletop/public/fx.js": "269208b1ecebea6718c68adc5b441da6bf2ba8fb60b151b70c26ffbe325e6832",
+    "games/tabletop/public/index.html": "a43c45b91ce84d371c87f24e4c9c9834c9995669dda5cbc484fd0683b0eb3043",
+    "games/tabletop/public/style.css": "f8f06f8418ab33fb694fce45507f867d5f40dd772d52b977d99c232324d0bbc6",
+    "games/tabletop/server.js": "d7e99c86f4411e1e7d51b3db5414877a12a836fefef402da1805603ff228e519",
+    "games/sports_siege/bowling.js": "b15cb59f6923401997c86690c67dbdcb4cf029a721f0ec3665079bf4a1980de0",
+    "games/sports_siege/curling.js": "6a17efefb9b0086461b68f01af0ffd7f4046caf8663dea220d80bcc56d264c1d",
+    "games/sports_siege/match.js": "cd962aa59e6c7c66c18a4957ba4e77b3f514aad8f007ca06743deeb75d222f47",
+    "games/sports_siege/public/bowling-extras.js": "e371dc2d4f190c19cba31fcd83315ff0973bd9c240fe1405d39b53018327a0ac",
+    "games/sports_siege/public/controls.js": "5fece249bfba4b1baade1e154ba65a4b1b1f817868225ce52881d3cddf507b5e",
+    "games/sports_siege/public/curling-extras.js": "e416e041a852e1c5686ff7c9a1a607a1e899bb155d3fdda408ca6e13ad2566a8",
+    "games/sports_siege/public/host.html": "83fc8987c458aacc1304a584266397b93a99a1378c8c6c46a8b199add43c8092",
+    "games/sports_siege/public/host.js": "e4d6b8911815df145013bd74789550e2c28ed3315caef807d7f35a40f5bd3088",
+    "games/sports_siege/public/index.html": "186310e07259edae4581f1a832c7543085299b0b85695f9cbbb3816f659b6e2e",
+    "games/sports_siege/public/net.js": "1445300c965b9a653343576bc92de9686a1955e01417bee0e9f723673aa4e53c",
+    "games/sports_siege/public/notice-copy.js": "0f1655e8d253553a77c06e8af91413216e145c128b9f28996374fe2068a069b4",
+    "games/sports_siege/public/scene-bowling.js": "55a980743ecc6746cf625f6faa45d2202f1890849365b5205d81ddbf3d4803bc",
+    "games/sports_siege/public/scene-curling.js": "f227c4371b317c40449dabb5fc5df53c77426aa06c8db3fbd281f15e0d3b5aa1",
+    "games/sports_siege/public/spectator-crowd.js": "7f3a87ef33d931a52604dfdc3d9cb698e91901ae9de1a59a53612540aab3cb85",
+    "games/sports_siege/public/spectator-seat.js": "0b2c6f03f37d69bd74f05f4147d3aebec5ad26fae8d870d6f392252db31624c6",
+    "games/sports_siege/public/sports-controls.css": "d316da24201d4651f77304f2941bed18ffc31ebf956b0bb09cfefbf22e5ef260",
+    "games/sports_siege/public/style.css": "414ac6f37c43442c0e19121ceb0f0308c0a81900059f3daf32d983114365dbc7",
+    "games/sports_siege/rules.js": "9365051a4997ae72a88fb1d1c84e05de9c47ee8c4bdff68d41a91213d060f6c9",
+    "games/sports_siege/server.js": "869ace6cf8137690364d0f953a39cd227175b6d3ddb2a7d6b13b542ce871a5f4"
+  },
+  "evidence": [
+    {
+      "game": "push",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/push-tv-live-1280.png",
+      "sha256": "ea131eb79652693ea8b04022052b90521c139b4448cb3f32b6fb357c2986953b",
+      "individuallyOpened": true
+    },
+    {
+      "game": "push",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/push-tv-live-1920.png",
+      "sha256": "eb33e77688fc3f9760aef353161defae3ca69d7f6dd94ca3a79bcfe38dc9bb28",
+      "individuallyOpened": true
+    },
+    {
+      "game": "shrink",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/shrink-tv-live-1280.png",
+      "sha256": "3816c809aaffd1d6118a66bfea27bf51abef17557898257705417f8030c8c0f0",
+      "individuallyOpened": true
+    },
+    {
+      "game": "shrink",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/shrink-tv-live-1920.png",
+      "sha256": "e506daec4bdf241093f8b86347a9b7aa86cc9ef157d4e533c702a7f4cb41ba08",
+      "individuallyOpened": true
+    },
+    {
+      "game": "knives",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/knives-tv-live-1280.png",
+      "sha256": "318e1b3e59ee79754dfb44bce0d99b8c698ccf76bde7ec6b22b66d1607fdd1cc",
+      "individuallyOpened": true
+    },
+    {
+      "game": "knives",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/knives-tv-live-1920.png",
+      "sha256": "a2d291ce61efaab95b55f0a29375aa3973c9542d4d3ab927e9f761fd75afd490",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bomb",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bomb-tv-live-1280.png",
+      "sha256": "51e5b0e7d9cde124d0b6050ee97bbfeaaa21a670b3615ada347f6f5906e0d88b",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bomb",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bomb-tv-live-1920.png",
+      "sha256": "2619bdf5fa19a381e23ab00e6776c20ca3fa1a4fe9188b7c8fd32ca84c7d4f03",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western-tv-live-1280.png",
+      "sha256": "ec4e03718056da29ba0fa701a782f76cee8fbb893ea8350865f76dd24fee2520",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western-tv-live-1920.png",
+      "sha256": "ffa2c10f3581c53fadc81080e144e008235c5046528c195a847a9c48eca01af9",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tanks",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tanks-tv-live-1280.png",
+      "sha256": "5efdc35ac835264c4ab37c9a8544a0f2def56bee22970654b565e47b4e04ee3d",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tanks",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tanks-tv-live-1920.png",
+      "sha256": "e62612777de2b1896268614ba644956b08fd8a4ededdc10b2a1d81e5a746dde9",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tankarena",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tankarena-tv-live-1280.png",
+      "sha256": "cc54e8a1a128d97e31486c2b69e8854b44d2b942eb10f3d31e5f8ba756890a1c",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tankarena",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tankarena-tv-live-1920.png",
+      "sha256": "2a02bd0397afe0aa5e11d0d1363d8b0110101382efa2de7da5ccb3772fd60f22",
+      "individuallyOpened": true
+    },
+    {
+      "game": "chaos",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/chaos-tv-live-1280.png",
+      "sha256": "d58258c644b84c45035ee76a766683015eb363be174af8f0197a563fc39b65ee",
+      "individuallyOpened": true
+    },
+    {
+      "game": "chaos",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/chaos-tv-live-1920.png",
+      "sha256": "35346429650ff160ba263625db40227a6022d659614b38d5b682469be30c6b2e",
+      "individuallyOpened": true
+    },
+    {
+      "game": "kart",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/kart-tv-live-1280.png",
+      "sha256": "319b740694c4ec6b910e56911e818018076d6201fe6aa133331f668868fdb688",
+      "individuallyOpened": true
+    },
+    {
+      "game": "kart",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/kart-tv-live-1920.png",
+      "sha256": "a10808cf4aa5b0f4c549b508a88cd897b2179db92e5abc2dbb8dbd86c8fdf556",
+      "individuallyOpened": true
+    },
+    {
+      "game": "monster",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/monster-tv-live-1280.png",
+      "sha256": "21eaea84db810d78a6a6fe76991978af8160cd63ede120796601c26ffb45fb08",
+      "individuallyOpened": true
+    },
+    {
+      "game": "monster",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/monster-tv-live-1920.png",
+      "sha256": "4b412fb70587eaffd1e9a06fdc2aad0c08d0de8143da37760b487b5a72a5c582",
+      "individuallyOpened": true
+    },
+    {
+      "game": "spy",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/spy-tv-live-1280.png",
+      "sha256": "2603bf95970b5477849785759ba05826cde8ef977834e7933809104dad7d28c3",
+      "individuallyOpened": true
+    },
+    {
+      "game": "spy",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/spy-tv-live-1920.png",
+      "sha256": "a686e29e4638c824903644a09fa2f001f098d0ca45652ade9205db8bbfcf8006",
+      "individuallyOpened": true
+    },
+    {
+      "game": "millionaire",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/millionaire-tv-live-1280.png",
+      "sha256": "26aeb31616f34161c1b48ae14ee64f24c889c0c9472d50828af5d5f93cc529cf",
+      "individuallyOpened": true
+    },
+    {
+      "game": "millionaire",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/millionaire-tv-live-1920.png",
+      "sha256": "49dea2cc1b37f73bc6d3b85243e10133a36bfa369cc5db4aa87d0338b8e814b4",
+      "individuallyOpened": true
+    },
+    {
+      "game": "sinyakquiz",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/sinyakquiz-tv-live-1280.png",
+      "sha256": "f89dd35ce8684ed8090ad464c8832fd746b48be5bdac3e62e3b1981385723297",
+      "individuallyOpened": true
+    },
+    {
+      "game": "sinyakquiz",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/sinyakquiz-tv-live-1920.png",
+      "sha256": "41c3905f063f4931b97afbba624fe4dcaa33c45985d8aec569d8f7e8587dd059",
+      "individuallyOpened": true
+    },
+    {
+      "game": "warsaw",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/warsaw-tv-live-1280.png",
+      "sha256": "053b50be76fc266bd489e30b7571f29444c1f3a332bcc01257fd7d859d6a33b9",
+      "individuallyOpened": true
+    },
+    {
+      "game": "warsaw",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/warsaw-tv-live-1920.png",
+      "sha256": "866ca8829dcb4932323b269fef59d0c6ac675645e50bc884626d98575f5aa004",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crocodile",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crocodile-tv-live-1280.png",
+      "sha256": "672557c41ab5ce13ed7899340607cde63b7f536714e8eeef3399713dfbf6b886",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crocodile",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crocodile-tv-live-1920.png",
+      "sha256": "7ed2f42e432d94ee44106fea9e92865d3d334deb11aaf148aac3ed2ddc8f675d",
+      "individuallyOpened": true
+    },
+    {
+      "game": "jenga",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/jenga-tv-live-1280.png",
+      "sha256": "0af31bda17dcbe7c171d7bef50a44ca2528dd98db25ba4230d8cec9afba371fd",
+      "individuallyOpened": true
+    },
+    {
+      "game": "jenga",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/jenga-tv-live-1920.png",
+      "sha256": "1e26b69404e5ab95bef658c7b34fc36bc0eabfb5e7cdb581656f9c6da3453d81",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crane",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crane-tv-live-1280.png",
+      "sha256": "254cf58e9c307aadc9cf7fc02256c321f9deeb32790167dd47722ca1798c8345",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crane",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crane-tv-live-1920.png",
+      "sha256": "d12b7d91938075960a22c7709f23d7e3e864b747d4a7d149c069a2775a8353bd",
+      "individuallyOpened": true
+    },
+    {
+      "game": "naval",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/naval-tv-live-1280.png",
+      "sha256": "622956db955d5a77ace3347bb46dd1861079406d672c516d65dc0fd423f4ad88",
+      "individuallyOpened": true
+    },
+    {
+      "game": "naval",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/naval-tv-live-1920.png",
+      "sha256": "62905e689562394527e8d6e78e9d3598819152b52b7aa995ec196805640e8692",
+      "individuallyOpened": true
+    },
+    {
+      "game": "drawguess",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/drawguess-tv-live-1280.png",
+      "sha256": "5c8e7c7ffdab1d12ae3667a98d5c0df6240c2f6fc085e450cd2a0b965f60b9ff",
+      "individuallyOpened": true
+    },
+    {
+      "game": "drawguess",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/drawguess-tv-live-1920.png",
+      "sha256": "2216ad8abcc6034125cdde5e64b4158471769170dcfae4df8089830dd9925f85",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western_duel",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western_duel-tv-live-1280.png",
+      "sha256": "361d418a65cd97322e1ecd344ccf56e60db48e6b029153eb54ef2c523151e5e8",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western_duel",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western_duel-tv-live-1920.png",
+      "sha256": "0753a44a80bb61752a9e5065594248598e9c8b729751edeebcd42c46cf5d442a",
+      "individuallyOpened": true
+    },
+    {
+      "game": "taprace",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/taprace-tv-live-1280.png",
+      "sha256": "2085942706709abae65dc204f40cf8bd22b3bf6eaddced2065bf56f96781a66a",
+      "individuallyOpened": true
+    },
+    {
+      "game": "taprace",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/taprace-tv-live-1920.png",
+      "sha256": "c8ac9c18ab5b69708d259e65b4c910716b8ecf448d634c3639e211e0beed4b3e",
+      "individuallyOpened": true
+    },
+    {
+      "game": "punchmeter",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/punchmeter-tv-live-1280.png",
+      "sha256": "8f4b7b382eb19321bfd3774f78d5450e95a5eb0667864548897521f20d6f3c2e",
+      "individuallyOpened": true
+    },
+    {
+      "game": "punchmeter",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/punchmeter-tv-live-1920.png",
+      "sha256": "4a42cb7c031bec48edc8cb347cc899e53e49bace9de4029d54c256de498456da",
+      "individuallyOpened": true
+    },
+    {
+      "game": "flappy",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/flappy-tv-live-1280.png",
+      "sha256": "0b9d4ac28e267903054a82ef734fd4f4b56891eeadf8718b50b1f6ee9651474c",
+      "individuallyOpened": true
+    },
+    {
+      "game": "flappy",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/flappy-tv-live-1920.png",
+      "sha256": "f7c2f3cc33ec8d9a38b3647956ab91d4452e06c1b49f09f112e0f0f43932c141",
+      "individuallyOpened": true
+    },
+    {
+      "game": "hungry",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/hungry-tv-live-1280.png",
+      "sha256": "5f232b6d24cecde1633cf9892775e74e7675a311aecd60c4d38d526f9b4b6d93",
+      "individuallyOpened": true
+    },
+    {
+      "game": "hungry",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/hungry-tv-live-1920.png",
+      "sha256": "3a2883df4b2036be8f8070ee036f328e4a31d3d778d0870e1cec894f91bdb579",
+      "individuallyOpened": true
+    },
+    {
+      "game": "snakelines",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/snakelines-tv-live-1280.png",
+      "sha256": "de74bf0af7460adcefabae04418796e5c77a1eade11d2ef941a7f47c4d3e8635",
+      "individuallyOpened": true
+    },
+    {
+      "game": "snakelines",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/snakelines-tv-live-1920.png",
+      "sha256": "6d62bbd870f0d2e613cd5d276d7cc301c5c0ad151aca524af100192073bbe684",
+      "individuallyOpened": true
+    },
+    {
+      "game": "carryball",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/carryball-tv-live-1280.png",
+      "sha256": "7a1b857d7be3c1cd9806eb289e5a2c2bd676008e4548b641978ac97ea96e8f77",
+      "individuallyOpened": true
+    },
+    {
+      "game": "carryball",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/carryball-tv-live-1920.png",
+      "sha256": "30f7ebd601a0844ba1134dc8f0ea5048164846144665168d203ca41c2283a4ee",
+      "individuallyOpened": true
+    },
+    {
+      "game": "marble_bloom",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/marble_bloom-tv-live-1280.png",
+      "sha256": "a68c07bf3033090b8f7d4f6b75492802733110bef78916fdb999613356b1ddca",
+      "individuallyOpened": true
+    },
+    {
+      "game": "marble_bloom",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/marble_bloom-tv-live-1920.png",
+      "sha256": "424c6abc5040d1e1d3b33a15b5aed2dd72c2c9fddbe2773c309f9171ee49814e",
+      "individuallyOpened": true
+    },
+    {
+      "game": "pocket_siege",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/pocket_siege-tv-live-1280.png",
+      "sha256": "9e5d4f3ca6bd00e2f08b79fb5f40300e85cd8c440ec84f4f103a654c41c6f757",
+      "individuallyOpened": true
+    },
+    {
+      "game": "pocket_siege",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/pocket_siege-tv-live-1920.png",
+      "sha256": "53e5d747dae1a9a8fa4fbecbe99d755bc77063b7c571280fc77e9059105e3b15",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bow_club",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bow_club-tv-live-1280.png",
+      "sha256": "a097452bf6169c2568615a5dddc2e4268f8e0454daf59d07219e7a2b01d4806f",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bow_club",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bow_club-tv-live-1920.png",
+      "sha256": "dc4d1d98671d3ae70aea74e2eb66a0f3e8bd84ff7961431c107f0b97900effbf",
+      "individuallyOpened": true
+    },
+    {
+      "game": "poker",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/poker-tv-live-1280.png",
+      "sha256": "778b60a443db17f9e684ca57e76aeed02f07731b1cb290d19a1593bd5cab5b33",
+      "individuallyOpened": true
+    },
+    {
+      "game": "poker",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/poker-tv-live-1920.png",
+      "sha256": "7260e5786592b6df544bb5c3e8c481f52016bd815da1089096448c5f298d646a",
+      "individuallyOpened": true
+    },
+    {
+      "game": "airhockey",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/airhockey-tv-live-1280.png",
+      "sha256": "168cbb706ed2b7ce94fc0ce434d0bacc55646dd03b71447136012f165c19bc86",
+      "individuallyOpened": true
+    },
+    {
+      "game": "airhockey",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/airhockey-tv-live-1920.png",
+      "sha256": "00472ce24f78337e258c7ee1cdc6d86da64ab24b5865cbcd655c8545c2967e01",
+      "individuallyOpened": true
+    },
+    {
+      "game": "mines",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/mines-tv-live-1280.png",
+      "sha256": "aa2eb31f40b1d6936cd00aee429fb57975405c6c0363e8bc03c842bab3e3460b",
+      "individuallyOpened": true
+    },
+    {
+      "game": "mines",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/mines-tv-live-1920.png",
+      "sha256": "5c6b1a496d4d4ec059684e3958749786ecd5bdd9c06e64915405ad252354c882",
+      "individuallyOpened": true
+    },
+    {
+      "game": "curling",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/curling-tv-live-1280.png",
+      "sha256": "e619c23ddaa86da72197f321d23a6a6bc2a55b65a112d4df7fc81c44f78e1ddd",
+      "individuallyOpened": true
+    },
+    {
+      "game": "curling",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/curling-tv-live-1920.png",
+      "sha256": "1686912e9cfa14161c29c709f27e43089dd666ceff085a97228ad29dee76aedd",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bowling",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bowling-tv-live-1280.png",
+      "sha256": "0f0b0396932eadb542b46b0288b5e52bcb2ccf9edd37427a13995ef000f927f6",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bowling",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bowling-tv-live-1920.png",
+      "sha256": "4cbd4df18d27f57d19e3982a166277e9efac5bc1748ef3ee9f3d7acf91b81007",
+      "individuallyOpened": true
+    },
+    {
+      "game": "swarm_gate",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/swarm_gate-tv-live-1280.png",
+      "sha256": "633516874022bf35d77906a5cf81a212fffad0ca3609eeef078e28ab338f8532",
+      "individuallyOpened": true
+    },
+    {
+      "game": "swarm_gate",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/swarm_gate-tv-live-1920.png",
+      "sha256": "1ec72bc45d9272ba053dd2d0e8e5f03fd0690466a168310ae070a998279ef1df",
+      "individuallyOpened": true
+    },
+    {
+      "game": "peek_shoot",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/peek_shoot-tv-live-1280.png",
+      "sha256": "4a29cc4cbfc3e8ee0adf132fae695f17b659699c34823eab8e122660500aaa9b",
+      "individuallyOpened": true
+    },
+    {
+      "game": "peek_shoot",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/peek_shoot-tv-live-1920.png",
+      "sha256": "fd53a6f63ea34214c1443cf4b16ddd44bd487f30360e3d6e4b3e03b27b48fca9",
+      "individuallyOpened": true
+    },
+    {
+      "game": "peek_shoot",
+      "height": 720,
+      "scope": "actual-friendly-penalty-English",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/peek-friendly-copy/2p-white-flag-penalty-tv-720.png",
+      "sha256": "13a58249af87ceb6052c7af3804d9e0ca68f7ad2a193b952b24cda100520a183",
+      "individuallyOpened": true
+    },
+    {
+      "game": "peek_shoot",
+      "height": 1080,
+      "scope": "actual-friendly-penalty-English",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/peek-friendly-copy/2p-white-flag-penalty-tv-1080.png",
+      "sha256": "7014ed0ddc36871df18d017447f7c0ec68d88a3f483b3f4727c0f9bc3704c7f8",
+      "individuallyOpened": true
+    }
+  ],
+  "judgments": [
+    {
+      "id": "push",
+      "judgment": "Teal compact cap and four rows form one centered rail beside the whole circular arena at both sizes. Title/time facts and co-place numerals are whole; eliminated local participant row is meaningfully subdued.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "push",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/push-tv-live-1280.png",
+          "sha256": "ea131eb79652693ea8b04022052b90521c139b4448cb3f32b6fb357c2986953b",
+          "individuallyOpened": true
+        },
+        {
+          "game": "push",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/push-tv-live-1920.png",
+          "sha256": "eb33e77688fc3f9760aef353161defae3ca69d7f6dd94ca3a79bcfe38dc9bb28",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "shrink",
+      "judgment": "Complete centered teal rail balances the uniformly round shrinking arena and warning rings. No decorative header dash or new cropped ink; full circle boundary is visible.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "shrink",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/shrink-tv-live-1280.png",
+          "sha256": "3816c809aaffd1d6118a66bfea27bf51abef17557898257705417f8030c8c0f0",
+          "individuallyOpened": true
+        },
+        {
+          "game": "shrink",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/shrink-tv-live-1920.png",
+          "sha256": "e506daec4bdf241093f8b86347a9b7aa86cc9ef157d4e533c702a7f4cb41ba08",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "knives",
+      "judgment": "Warm centered rail and safe one/two-line title balance the complete wheel, all four silhouettes and local ammo readouts. Live mixed score places1/2/2/4 are visible at1080; functional blade/sector effects remain.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "knives",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/knives-tv-live-1280.png",
+          "sha256": "318e1b3e59ee79754dfb44bce0d99b8c698ccf76bde7ec6b22b66d1607fdd1cc",
+          "individuallyOpened": true
+        },
+        {
+          "game": "knives",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/knives-tv-live-1920.png",
+          "sha256": "a2d291ce61efaab95b55f0a29375aa3973c9542d4d3ab927e9f761fd75afd490",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "bomb",
+      "judgment": "Three actual-human standings and warm cap form one centered group. Complete circular rim and carrier indicator are visible, with no arbitrary header decoration; perimeter ticks are functional arena art.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "bomb",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bomb-tv-live-1280.png",
+          "sha256": "51e5b0e7d9cde124d0b6050ee97bbfeaaa21a670b3615ada347f6f5906e0d88b",
+          "individuallyOpened": true
+        },
+        {
+          "game": "bomb",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bomb-tv-live-1920.png",
+          "sha256": "2619bdf5fa19a381e23ab00e6776c20ca3fa1a4fe9188b7c8fd32ca84c7d4f03",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "western",
+      "judgment": "Brown top-attached bottom-rounded cap, whole actor silhouettes and continuous western scene satisfy the current material/field brief.720 is ready state;1080 is between-round outcome with whole falling silhouettes and result readout, not an active DRAW proof.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "western",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western-tv-live-1280.png",
+          "sha256": "ec4e03718056da29ba0fa701a782f76cee8fbb893ea8350865f76dd24fee2520",
+          "individuallyOpened": true
+        },
+        {
+          "game": "western",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western-tv-live-1920.png",
+          "sha256": "ffa2c10f3581c53fadc81080e144e008235c5046528c195a847a9c48eca01af9",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "tanks",
+      "judgment": "Olive rectangular attached header unifies title/tally/time/in-game/points with balanced facts. Continuous world and both base circles are whole. Static pair does not establish all later tank crossings underneath the opaque header.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "tanks",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tanks-tv-live-1280.png",
+          "sha256": "5efdc35ac835264c4ab37c9a8544a0f2def56bee22970654b565e47b4e04ee3d",
+          "individuallyOpened": true
+        },
+        {
+          "game": "tanks",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tanks-tv-live-1920.png",
+          "sha256": "e62612777de2b1896268614ba644956b08fd8a4ededdc10b2a1d81e5a746dde9",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "tankarena",
+      "judgment": "Blue cap and four centered full-HP cards form one vertically centered rail, with complete contour and readable Points/Kills. Receiver is full height; green world boundary is uniformly projected with quiet authored apron, not a falsely enlarged physics world.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "tankarena",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tankarena-tv-live-1280.png",
+          "sha256": "cc54e8a1a128d97e31486c2b69e8854b44d2b942eb10f3d31e5f8ba756890a1c",
+          "individuallyOpened": true
+        },
+        {
+          "game": "tankarena",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/tankarena-tv-live-1920.png",
+          "sha256": "2a02bd0397afe0aa5e11d0d1363d8b0110101382efa2de7da5ccb3772fd60f22",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "chaos",
+      "judgment": "Blue attached rectangular header relates title/progress/calibration to centered Time Left. Functional grid and calibration instruction/task counter remain; arbitrary corner brackets are absent. Whole control target/cursor scene at both sizes.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "chaos",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/chaos-tv-live-1280.png",
+          "sha256": "d58258c644b84c45035ee76a766683015eb363be174af8f0197a563fc39b65ee",
+          "individuallyOpened": true
+        },
+        {
+          "game": "chaos",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/chaos-tv-live-1920.png",
+          "sha256": "35346429650ff160ba263625db40227a6022d659614b38d5b682469be30c6b2e",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "kart",
+      "judgment": "Named letterbox closure: continuous green scenery now occupies former top/bottom strips while the track stays uniformly scaled. Centered cap/rail and readable lap/speed facts preserved.720 bounded rail shows only part of fourth row, not proof of all four without scroll.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "kart",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/kart-tv-live-1280.png",
+          "sha256": "319b740694c4ec6b910e56911e818018076d6201fe6aa133331f668868fdb688",
+          "individuallyOpened": true
+        },
+        {
+          "game": "kart",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/kart-tv-live-1920.png",
+          "sha256": "a10808cf4aa5b0f4c549b508a88cd897b2179db92e5abc2dbb8dbd86c8fdf556",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "monster",
+      "judgment": "Teal plain rounded content cap has whole clock/Parts ink, two equal queue columns and nearby authored monster. Artwork stitches remain meaningful art; header stitches and random ornament are absent.1080 long actor name wraps within its queue tile.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "monster",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/monster-tv-live-1280.png",
+          "sha256": "21eaea84db810d78a6a6fe76991978af8160cd63ede120796601c26ffb45fb08",
+          "individuallyOpened": true
+        },
+        {
+          "game": "monster",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/monster-tv-live-1920.png",
+          "sha256": "4b412fb70587eaffd1e9a06fdc2aad0c08d0de8143da37760b487b5a72a5c582",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "spy",
+      "judgment": "Enlarged asker/answerer scene and adjacent four identity cards remain a coherent content group with quiet blue header. Names visibly follow engine sanitation/wrap, not hidden privacy data; no decorative lines.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "spy",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/spy-tv-live-1280.png",
+          "sha256": "2603bf95970b5477849785759ba05826cde8ef977834e7933809104dad7d28c3",
+          "individuallyOpened": true
+        },
+        {
+          "game": "spy",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/spy-tv-live-1920.png",
+          "sha256": "a686e29e4638c824903644a09fa2f001f098d0ca45652ade9205db8bbfcf8006",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "millionaire",
+      "judgment": "Named fact-centering closure: Time Left/turns label+number pairs now sit around full header midpoint at both sizes, actor quiet below game title. Complete ladder and actual correct-answer reveal stay readable; sampled dim answers are reveal state.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "millionaire",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/millionaire-tv-live-1280.png",
+          "sha256": "26aeb31616f34161c1b48ae14ee64f24c889c0c9472d50828af5d5f93cc529cf",
+          "individuallyOpened": true
+        },
+        {
+          "game": "millionaire",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/millionaire-tv-live-1920.png",
+          "sha256": "49dea2cc1b37f73bc6d3b85243e10133a36bfa369cc5db4aa87d0338b8e814b4",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "sinyakquiz",
+      "judgment": "Leaderboard and question/answers surface share complete top/bottom bounds; header and answer ink are whole. Violet studio composition is readable; ranking tiles shown here precede the newly requested ranking-paint revision.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "sinyakquiz",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/sinyakquiz-tv-live-1280.png",
+          "sha256": "f89dd35ce8684ed8090ad464c8832fd746b48be5bdac3e62e3b1981385723297",
+          "individuallyOpened": true
+        },
+        {
+          "game": "sinyakquiz",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/sinyakquiz-tv-live-1920.png",
+          "sha256": "41c3905f063f4931b97afbba624fe4dcaa33c45985d8aec569d8f7e8587dd059",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "warsaw",
+      "judgment": "Full participant column aligns the real question/answer surface rather than a floating heading; all four answers are whole. Quiet mineral material and safe facts retained; ranking paint is historical relative to the latest user revision.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "warsaw",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/warsaw-tv-live-1280.png",
+          "sha256": "053b50be76fc266bd489e30b7571f29444c1f3a332bcc01257fd7d859d6a33b9",
+          "individuallyOpened": true
+        },
+        {
+          "game": "warsaw",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/warsaw-tv-live-1920.png",
+          "sha256": "866ca8829dcb4932323b269fef59d0c6ac675645e50bc884626d98575f5aa004",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "crocodile",
+      "judgment": "Theatre roster top/bottom spans the actor/task surface, with plain green header and whole clock/Turn figures. Actor/privacy instruction remain grouped; latest ranking-paint request supersedes these purple participant tile fills.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "crocodile",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crocodile-tv-live-1280.png",
+          "sha256": "672557c41ab5ce13ed7899340607cde63b7f536714e8eeef3399713dfbf6b886",
+          "individuallyOpened": true
+        },
+        {
+          "game": "crocodile",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crocodile-tv-live-1920.png",
+          "sha256": "7ed2f42e432d94ee44106fea9e92865d3d334deb11aaf148aac3ed2ddc8f675d",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "jenga",
+      "judgment": "Only soft warm transparent-edge wash backs the centered task/Force/Selected/Crew group. No hard outer panel or extra cap texture. Whole tower/table rim and safe Blocks/Stability numbers remain; four current crew identities whole.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "jenga",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/jenga-tv-live-1280.png",
+          "sha256": "0af31bda17dcbe7c171d7bef50a44ca2528dd98db25ba4230d8cec9afba371fd",
+          "individuallyOpened": true
+        },
+        {
+          "game": "jenga",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/jenga-tv-live-1920.png",
+          "sha256": "1e26b69404e5ab95bef658c7b34fc36bc0eabfb5e7cdb581656f9c6da3453d81",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "crane",
+      "judgment": "Single blue-green backing and transparent shared cap preserve the whole crane/grounded base, with coherent YOUR BLOCK task and safe facts.1080 four rows whole;720 bounded scroll clips part of third-row description and hides fourth. Dense16 end remains explicitly open, not accepted.",
+      "status": "composition-qualified-dense-end-anchor-pending",
+      "originals": [
+        {
+          "game": "crane",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crane-tv-live-1280.png",
+          "sha256": "254cf58e9c307aadc9cf7fc02256c321f9deeb32790167dd47722ca1798c8345",
+          "individuallyOpened": true
+        },
+        {
+          "game": "crane",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/crane-tv-live-1920.png",
+          "sha256": "d12b7d91938075960a22c7709f23d7e3e864b747d4a7d149c069a2775a8353bd",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "naval",
+      "judgment": "Plain navy rectangle and complete sidebar match the full combined two-row board stack at both sizes. Safe leaderboard identity/fact axes and live feed; actual health visible. Current ordinal-place tile paint is superseded by the requested shared ranking revision.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "naval",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/naval-tv-live-1280.png",
+          "sha256": "622956db955d5a77ace3347bb46dd1861079406d672c516d65dc0fd423f4ad88",
+          "individuallyOpened": true
+        },
+        {
+          "game": "naval",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/naval-tv-live-1920.png",
+          "sha256": "62905e689562394527e8d6e78e9d3598819152b52b7aa995ec196805640e8692",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "drawguess",
+      "judgment": "Guesses/participants column aligns the real canvas bounds; title, artist and guidance sit together above. Canvas complete.720 guesses use a bounded clipped/scroll region, not proof of every message; participant paint precedes latest shared revision.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "drawguess",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/drawguess-tv-live-1280.png",
+          "sha256": "5c8e7c7ffdab1d12ae3667a98d5c0df6240c2f6fc085e450cd2a0b965f60b9ff",
+          "individuallyOpened": true
+        },
+        {
+          "game": "drawguess",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/drawguess-tv-live-1920.png",
+          "sha256": "2216ad8abcc6034125cdde5e64b4158471769170dcfae4df8089830dd9925f85",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "western_duel",
+      "judgment": "Warm centered cap/order/standings group balances the full western action scene. Current outcome prompt is centered in the actual field, complete falling rig/name/results. These are settled outcome images, not new WAIT/DRAW interaction proof.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "western_duel",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western_duel-tv-live-1280.png",
+          "sha256": "361d418a65cd97322e1ecd344ccf56e60db48e6b029153eb54ef2c523151e5e8",
+          "individuallyOpened": true
+        },
+        {
+          "game": "western_duel",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/western_duel-tv-live-1920.png",
+          "sha256": "0753a44a80bb61752a9e5065594248598e9c8b729751edeebcd42c46cf5d442a",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "taprace",
+      "judgment": "Race lanes now start beneath the attached header and use remaining field height; finish stripe/lane guides are functional. Whole four runners and bottom score band, safe label/number ink.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "taprace",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/taprace-tv-live-1280.png",
+          "sha256": "2085942706709abae65dc204f40cf8bd22b3bf6eaddced2065bf56f96781a66a",
+          "individuallyOpened": true
+        },
+        {
+          "game": "taprace",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/taprace-tv-live-1920.png",
+          "sha256": "c8ac9c18ab5b69708d259e65b4c910716b8ecf448d634c3639e211e0beed4b3e",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "punchmeter",
+      "judgment": "Restrained plum attached cap groups attempt/actor and vertically centered Time Left/Points/Leader. Whole red bag/rig and continuous ring scene; no header stitch/bracket or cropped glyph.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "punchmeter",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/punchmeter-tv-live-1280.png",
+          "sha256": "8f4b7b382eb19321bfd3774f78d5450e95a5eb0667864548897521f20d6f3c2e",
+          "individuallyOpened": true
+        },
+        {
+          "game": "punchmeter",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/punchmeter-tv-live-1920.png",
+          "sha256": "4a42cb7c031bec48edc8cb347cc899e53e49bace9de4029d54c256de498456da",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "flappy",
+      "judgment": "Named top-band closure: illustrated sky now continues behind cap-side negative space to screen top at both sizes. Pipe/player field retains its prior bounds and visible labels, blue attached header whole.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "flappy",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/flappy-tv-live-1280.png",
+          "sha256": "0b9d4ac28e267903054a82ef734fd4f4b56891eeadf8718b50b1f6ee9651474c",
+          "individuallyOpened": true
+        },
+        {
+          "game": "flappy",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/flappy-tv-live-1920.png",
+          "sha256": "f7c2f3cc33ec8d9a38b3647956ab91d4452e06c1b49f09f112e0f0f43932c141",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "hungry",
+      "judgment": "Whole purple arcade floor continues behind the attached header, with complete mouths/pickups/current score tags and no needless full-width bars. Static composition does not establish all larger-mouth boundary states.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "hungry",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/hungry-tv-live-1280.png",
+          "sha256": "5f232b6d24cecde1633cf9892775e74e7675a311aecd60c4d38d526f9b4b6d93",
+          "individuallyOpened": true
+        },
+        {
+          "game": "hungry",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/hungry-tv-live-1920.png",
+          "sha256": "3a2883df4b2036be8f8070ee036f328e4a31d3d778d0870e1cec894f91bdb579",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "snakelines",
+      "judgment": "Plain green top-attached cap with whole Round/Points/Leader; full continuous functional grid and trails occupy available scene. No arbitrary corner/line ornament, current active bot heads/labels readable.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "snakelines",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/snakelines-tv-live-1280.png",
+          "sha256": "de74bf0af7460adcefabae04418796e5c77a1eade11d2ef941a7f47c4d3e8635",
+          "individuallyOpened": true
+        },
+        {
+          "game": "snakelines",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/snakelines-tv-live-1920.png",
+          "sha256": "6d62bbd870f0d2e613cd5d276d7cc301c5c0ad151aca524af100192073bbe684",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "carryball",
+      "judgment": "Balanced title/team tally and centered metadata in top-attached rectangle; complete football field, both goals and uniformly round center circle with no dark top/bottom bars. Static pair not an own possession/PASS proof.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "carryball",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/carryball-tv-live-1280.png",
+          "sha256": "7a1b857d7be3c1cd9806eb289e5a2c2bd676008e4548b641978ac97ea96e8f77",
+          "individuallyOpened": true
+        },
+        {
+          "game": "carryball",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/carryball-tv-live-1920.png",
+          "sha256": "30f7ebd601a0844ba1134dc8f0ea5048164846144665168d203ca41c2283a4ee",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "marble_bloom",
+      "judgment": "Teal attached cap, safe Points/Queued and meaningful level identity over a full botanical scene. Complete curved chain/path, shape-coded marbles and bottom scores; functional aim guides retained.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "marble_bloom",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/marble_bloom-tv-live-1280.png",
+          "sha256": "a68c07bf3033090b8f7d4f6b75492802733110bef78916fdb999613356b1ddca",
+          "individuallyOpened": true
+        },
+        {
+          "game": "marble_bloom",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/marble_bloom-tv-live-1920.png",
+          "sha256": "424c6abc5040d1e1d3b33a15b5aed2dd72c2c9fddbe2773c309f9171ee49814e",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "pocket_siege",
+      "judgment": "Charcoal rectangular attached title/time/actor cap and centered Turn/Wind/Points fit the artillery scene. Whole round ammo card/roster and terrain, safe names; dark night sky is scene content, not blank letterboxing.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "pocket_siege",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/pocket_siege-tv-live-1280.png",
+          "sha256": "9e5d4f3ca6bd00e2f08b79fb5f40300e85cd8c440ec84f4f103a654c41c6f757",
+          "individuallyOpened": true
+        },
+        {
+          "game": "pocket_siege",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/pocket_siege-tv-live-1920.png",
+          "sha256": "53e5d747dae1a9a8fa4fbecbe99d755bc77063b7c571280fc77e9059105e3b15",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "bow_club",
+      "judgment": "Warm game-owned top-attached cap distinguishes Arrows/Time/Mode from quiet Aim.Draw.Release guidance. Whole native calibration markers and round targets;720 supporting score names deliberately strongly ellipsized, no geometry rebuild requested.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "bow_club",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bow_club-tv-live-1280.png",
+          "sha256": "a097452bf6169c2568615a5dddc2e4268f8e0454daf59d07219e7a2b01d4806f",
+          "individuallyOpened": true
+        },
+        {
+          "game": "bow_club",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bow_club-tv-live-1920.png",
+          "sha256": "dc4d1d98671d3ae70aea74e2eb66a0f3e8bd84ff7961431c107f0b97900effbf",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "poker",
+      "judgment": "Named seat-clearance closure: top participant card and full name line now lie below cap at both sizes with visible gap. Whole emerald felt/table contour and four seat/cards preserved; cap Hand/Pot/Current bet centered and safely readable.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "poker",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/poker-tv-live-1280.png",
+          "sha256": "778b60a443db17f9e684ca57e76aeed02f07731b1cb290d19a1593bd5cab5b33",
+          "individuallyOpened": true
+        },
+        {
+          "game": "poker",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/poker-tv-live-1920.png",
+          "sha256": "7260e5786592b6df544bb5c3e8c481f52016bd815da1089096448c5f298d646a",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "airhockey",
+      "judgment": "Pale ice attached cap has whole dark tally/title/time, full rink and round puck/strikers. Named Last touch dashes are absent; only meaningful player readout remains. Static images do not establish all moving crossings under the opaque cap.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "airhockey",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/airhockey-tv-live-1280.png",
+          "sha256": "168cbb706ed2b7ce94fc0ce434d0bacc55646dd03b71447136012f165c19bc86",
+          "individuallyOpened": true
+        },
+        {
+          "game": "airhockey",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/airhockey-tv-live-1920.png",
+          "sha256": "00472ce24f78337e258c7ee1cdc6d86da64ab24b5865cbcd655c8545c2967e01",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "mines",
+      "judgment": "Complete 10×10 board is safely separated from centered compact cap, guidance and four score rows. Cells and numbered bot markers remain whole and readable. Ranking paint shown precedes the latest shared revision.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "mines",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/mines-tv-live-1280.png",
+          "sha256": "aa2eb31f40b1d6936cd00aee429fb57975405c6c0363e8bc03c842bab3e3460b",
+          "individuallyOpened": true
+        },
+        {
+          "game": "mines",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/mines-tv-live-1920.png",
+          "sha256": "5c6b1a496d4d4ec059684e3958749786ecd5bdd9c06e64915405ad252354c882",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "curling",
+      "judgment": "Single teal top-attached masthead groups real throw/end/stone and team score with whole numerical ink. Whole ice lane, seated crowd and scoring house remain coherent at both sizes; bottom identities remain legible. This aim state does not independently prove held sweep or completed-score drawer behavior.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "curling",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/curling-tv-live-1280.png",
+          "sha256": "e619c23ddaa86da72197f321d23a6a6bc2a55b65a112d4df7fc81c44f78e1ddd",
+          "individuallyOpened": true
+        },
+        {
+          "game": "curling",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/curling-tv-live-1920.png",
+          "sha256": "1686912e9cfa14161c29c709f27e43089dd666ceff085a97228ad29dee76aedd",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "bowling",
+      "judgment": "Warm top-attached masthead relates frame and throw clock to the real lane. Both adjacent lane gaps are balanced; the deliberate left ball return is intact. Complete pins, ball and lane center remain visible with no nested heading; four bottom identities fit. Captured AIM does not establish pinsetter motion.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "bowling",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bowling-tv-live-1280.png",
+          "sha256": "0f0b0396932eadb542b46b0288b5e52bcb2ccf9edd37427a13995ef000f927f6",
+          "individuallyOpened": true
+        },
+        {
+          "game": "bowling",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/bowling-tv-live-1920.png",
+          "sha256": "4cbd4df18d27f57d19e3982a166277e9efac5bc1748ef3ee9f3d7acf91b81007",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "swarm_gate",
+      "judgment": "Quiet lavender floor and continuous joined wall/gate form one coherent orthographic world. Four distinct full-color turrets retain their silhouette/aspect and number chips; enemies and score popups are visible below attached dark cap. Real defense facts and gate-health bar are whole. Captured 100% gate does not establish damaged/open raster state.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "swarm_gate",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/swarm_gate-tv-live-1280.png",
+          "sha256": "633516874022bf35d77906a5cf81a212fffad0ca3609eeef078e28ab338f8532",
+          "individuallyOpened": true
+        },
+        {
+          "game": "swarm_gate",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/swarm_gate-tv-live-1920.png",
+          "sha256": "1ec72bc45d9272ba053dd2d0e8e5f03fd0690466a168310ae070a998279ef1df",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "peek_shoot",
+      "judgment": "Flat meadow, grounded covers and complete character art share a coherent camera/style. Warm attached cap groups hunt instruction, clock and streak without arbitrary corner marks. MG English event is whole; shot popups and actual white-flag targets remain visible. Transient hit effects are meaningful action feedback, not blanket ornament.",
+      "status": "captured-composition-preserved-latest-ranking-paint-pending",
+      "originals": [
+        {
+          "game": "peek_shoot",
+          "width": 1280,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/peek_shoot-tv-live-1280.png",
+          "sha256": "4a29cc4cbfc3e8ee0adf132fae695f17b659699c34823eab8e122660500aaa9b",
+          "individuallyOpened": true
+        },
+        {
+          "game": "peek_shoot",
+          "width": 1920,
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/confirmation/peek_shoot-tv-live-1920.png",
+          "sha256": "fd53a6f63ea34214c1443cf4b16ddd44bd487f30360e3d6e4b3e03b27b48fca9",
+          "individuallyOpened": true
+        },
+        {
+          "game": "peek_shoot",
+          "height": 720,
+          "scope": "actual-friendly-penalty-English",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/peek-friendly-copy/2p-white-flag-penalty-tv-720.png",
+          "sha256": "13a58249af87ceb6052c7af3804d9e0ca68f7ad2a193b952b24cda100520a183",
+          "individuallyOpened": true
+        },
+        {
+          "game": "peek_shoot",
+          "height": 1080,
+          "scope": "actual-friendly-penalty-English",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/peek-friendly-copy/2p-white-flag-penalty-tv-1080.png",
+          "sha256": "7014ed0ddc36871df18d017447f7c0ec68d88a3f483b3f4727c0f9bc3704c7f8",
+          "individuallyOpened": true
+        }
+      ]
+    }
+  ],
+  "namedClosures": [
+    "Kart continuous scene instead of stretched bottom strips",
+    "Flappy scene continues through former top band",
+    "Millionaire fact groups centered through header height",
+    "Poker top-seat name separated below cap at 1280",
+    "Hockey Last touch arbitrary dashes removed",
+    "Bowling actual lane gaps symmetric and catalog row valid",
+    "Peek actual friendly-fire penalty English and whole at both sizes"
+  ],
+  "remainingGates": [
+    "Latest explicit user ranking-list rejection: plain place tile and purple backing removal; current ranking theme differs from these originals.",
+    "Crane dense16 last-row/end-anchor visual proof; current client differs from these originals."
+  ],
+  "evidenceLimits": {
+    "automatic": "Capture report records equal 339-dependency start/end hashes, errors[] and changedFiles[]. This is recorded evidence, not a new test run by reviewer.",
+    "browserVisual": "74 original PNGs personally opened. Static pairs establish captured composition, whole glyphs and meaningful material, not every subsequent action/crossing or dense state.",
+    "physical": "No physical device, OS sensor, QR camera, AirPlay or hardware touch validation performed."
+  }
+}

@@ -3,6 +3,49 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');
 const express=require('express');
 const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-audit');fs.mkdirSync(out,{recursive:true});
+async function sampleDeckCompaction(page) {
+ return page.evaluate(async()=>{
+  const card=document.getElementById('activeCard'),catalog=document.getElementById('catalog');
+  const frames=n=>new Promise(resolve=>{function next(){if(--n<=0)resolve();else requestAnimationFrame(next);}requestAnimationFrame(next);});
+  const sample=(start=performance.now())=>{const r=card.getBoundingClientRect(),s=getComputedStyle(card),margin=parseFloat(s.marginBottom)||0,animations=card.getAnimations().filter(a=>a.playState==='running');return{t:performance.now()-start,scroll:scrollY,compact:card.classList.contains('is-compact'),statusDisplay:getComputedStyle(document.getElementById('activeStatus')).display,height:r.height,radius:parseFloat(s.borderTopLeftRadius),margin,slot:r.height+margin,top:r.top,anchor:catalog.getBoundingClientRect().top+scrollY,opacity:Number(s.opacity),heightRunning:animations.some(a=>a.effect?.getKeyframes().some(k=>'height'in k)),geometryRunning:animations.some(a=>a.transitionProperty?.includes('radius')||a.effect?.getKeyframes().some(k=>'height'in k||Object.keys(k).some(p=>/Radius$/.test(p))))};};
+  scrollTo(0,0);await frames(3);await Promise.allSettled(card.getAnimations().map(a=>a.finished));await document.fonts.ready;
+  const initial=sample(),steps=[],transitions=[];
+  async function step(y,expected){scrollTo(0,y);await frames(3);steps.push({expected,...sample()});}
+  async function transition(y,expected,label){const start=performance.now(),samples=[sample(start)];let scrollEventLatency=null,classMutationLatency=null;const onScroll=()=>{if(scrollEventLatency===null)scrollEventLatency=performance.now()-start;};const observer=new MutationObserver(()=>{if(classMutationLatency===null&&card.classList.contains('is-compact')===expected)classMutationLatency=performance.now()-start;});addEventListener('scroll',onScroll,{passive:true});observer.observe(card,{attributes:true,attributeFilter:['class']});scrollTo(0,y);await new Promise(resolve=>{function tick(){samples.push(sample(start));if(performance.now()-start<440)requestAnimationFrame(tick);else resolve();}requestAnimationFrame(tick);});removeEventListener('scroll',onScroll);observer.disconnect();const final=samples.at(-1);const classStart=samples.find(x=>x.compact===expected);const motionStart=samples.find(x=>Math.abs(x.height-samples[0].height)>.5);const settled=samples.find((x,i)=>i>0&&x.compact===expected&&!x.geometryRunning&&samples.slice(i).every(v=>Math.abs(v.height-final.height)<.5&&Math.abs(v.radius-final.radius)<.1&&v.compact===expected&&!v.geometryRunning));transitions.push({label,expected,classLatency:classStart?.t,motionLatency:motionStart?.t,settledAt:settled?.t,scrollEventLatency,classMutationLatency,eventToMutation:classMutationLatency-scrollEventLatency,final,samples});}
+  // Real incremental scrolling reaches both sides of the two thresholds.
+  // Thresholds (native-shell/host.js syncStick): collapse above 24px, expand at or below 8px.
+  for(const y of [4,8,16,24])await step(y,false);
+  await transition(48,true,'collapse');
+  for(const y of [40,24,10])await step(y,true);
+  await transition(8,false,'expand');
+  for(const y of [16,24])await step(y,false);
+  await transition(48,true,'collapse-again');
+  // Reverse during the morph: cancellation must preserve the occupied flow slot.
+  const interruptedStart=performance.now(),interrupted=[sample(interruptedStart)];
+  scrollTo(0,4);await frames(3);interrupted.push(sample(interruptedStart));scrollTo(0,48);
+  await new Promise(resolve=>{function tick(){interrupted.push(sample(interruptedStart));if(performance.now()-interruptedStart<460)requestAnimationFrame(tick);else resolve();}requestAnimationFrame(tick);});
+  return{width:innerWidth,height:innerHeight,initial,steps,transitions,interrupted};
+ });
+}
+function assertDeckCompaction(run){
+ const all=[run.initial,...run.steps,...run.transitions.flatMap(t=>t.samples),...run.interrupted];
+ const spread=key=>Math.max(...all.map(s=>s[key]))-Math.min(...all.map(s=>s[key]));
+ assert(run.initial.height>80,'Timing audit must start with a genuinely expanded active card');
+ assert(all.filter(s=>s.compact).every(s=>s.statusDisplay==='none'),'Compact deck hides Ready/waiting even when shared counter typography is present');
+ for(const step of run.steps)assert.equal(step.compact,step.expected,'Compaction hysteresis at scrollY='+step.scroll);
+ for(const t of run.transitions){
+  assert(t.classLatency<=55,`${run.width} ${t.label}: class response ${t.classLatency}ms must start within a couple of frames`);
+  assert(t.motionLatency<=75,`${run.width} ${t.label}: visible motion delayed ${t.motionLatency}ms`);
+  assert(t.settledAt>=140&&t.settledAt<=300,`${run.width} ${t.label}: geometry settles at ${t.settledAt}ms, expected about180ms and at most300ms`);
+  assert.equal(t.final.compact,t.expected);assert(t.samples.every(s=>s.opacity>.99),'Active card flickered during '+t.label);
+  const toggles=t.samples.slice(1).filter((s,i)=>s.compact!==t.samples[i].compact).length;assert.equal(toggles,1,'Exactly one mode change during '+t.label);
+ }
+ assert(spread('slot')<=2,`${run.width}: active-card flow slot changed ${spread('slot')}px during compaction`);
+ assert(spread('anchor')<=2,`${run.width}: catalogue content jumped ${spread('anchor')}px beyond scroll movement`);
+ assert(run.interrupted.at(-1).compact,'Interrupted expansion returns to compact mode');
+ assert(run.interrupted.every(s=>s.opacity>.99),'Interrupted morph flickers');
+ return{width:run.width,expandedHeight:run.initial.height,compactHeight:run.transitions[0].final.height,slotVariation:spread('slot'),catalogueJump:spread('anchor'),transitions:run.transitions.map(({label,classLatency,motionLatency,settledAt})=>({label,classLatency,motionLatency,settledAt}))};
+}
 (async()=>{
  const server=express().use(express.static(path.resolve('public'))).listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));
  const browser=await webkit.launch({headless:true});const report={errors:[],samples:[]};
@@ -15,7 +58,7 @@ const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-a
  await page.locator('#openHost').click();
  report.untranslated=await page.locator('#hostPanel').evaluate(root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),out=[];while(walker.nextNode()){const n=walker.currentNode;if(/[А-Яа-яЁё]/.test(n.nodeValue)&&!n.nodeValue.includes('Александра'))out.push(n.nodeValue.trim());}return out;});
  report.type=await page.locator('#botHint').evaluate(el=>({family:getComputedStyle(el).fontFamily,style:getComputedStyle(el).fontStyle,weight:getComputedStyle(el).fontWeight}));
- assert.equal(report.type.style,'italic');assert.equal(report.type.weight,'800');
+ assert.equal(report.type.style,'italic','Supporting copy uses the approved real italic role');assert.equal(report.type.weight,'400');assert.match(report.type.family,/KardiaFitRunner/);
  await page.evaluate(()=>{window.__sheetSamples=[];window.__sheetStart=performance.now();requestAnimationFrame(function sample(t){const d=document.querySelector('#hostPanel'),s=getComputedStyle(d);__sheetSamples.push({t:t-__sheetStart,open:d.open,opacity:Number(s.opacity),y:d.getBoundingClientRect().y,animations:d.getAnimations().map(a=>a.animationName)});if(t-__sheetStart<1800)requestAnimationFrame(sample);});});
  for(let i=0;i<16;i++){await page.evaluate(i=>{__snapshot.native.working=i%2===0;LocalPartyHost.update(__snapshot);},i);await page.waitForTimeout(100);}
  await page.screenshot({path:path.join(out,'panel-before-close.png')});
@@ -32,14 +75,29 @@ const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-a
  assert.equal(await page.evaluate(()=>__commands.filter(c=>c.type==='controller').length),1,'Top shortcut opens controller via existing native navigation');
  assert(await page.locator('#activeController').isVisible(),'Controller shortcut stays alongside match actions');
  await page.screenshot({path:path.join(out,'active-top.png')});
+ report.compaction=[];report.compactionSummary=[];await page.emulateMedia({reducedMotion:'no-preference'});
+ for(const width of [393,320]){await page.setViewportSize({width,height:width===320?568:852});const run=await sampleDeckCompaction(page);report.compaction.push(run);report.compactionSummary.push(assertDeckCompaction(run));}
+ await page.setViewportSize({width:393,height:852});
  await page.evaluate(()=>scrollTo(0,1200));await page.waitForTimeout(400);await page.screenshot({path:path.join(out,'active-scrolled.png')});
+ // Test the genuinely stuck stack, including each frame of manual expansion.
+ for(const width of [320,393]){
+  await page.setViewportSize({width,height:852});
+  const gaps=await page.evaluate(async()=>{const card=document.getElementById('activeCard'),search=document.querySelector('.native-search'),samples=[];for(let pass=0;pass<2;pass++){document.getElementById('activeMore').click();const start=performance.now();await new Promise(resolve=>{function tick(){samples.push(search.getBoundingClientRect().top-card.getBoundingClientRect().bottom);if(performance.now()-start<300)requestAnimationFrame(tick);else resolve();}requestAnimationFrame(tick);});}return samples;});
+  assert(gaps.every(gap=>gap>=7.9&&gap<=8.1),'Sticky search must keep its 8px gap throughout expansion at '+width);
+  (report.stuckMorph ||= []).push({width,minGap:Math.min(...gaps),maxGap:Math.max(...gaps)});
+ }
+
  report.active=await page.locator('#activeCard').boundingBox();
  assert(report.active.y>=0&&report.active.y<180,'Active game remains pinned after scrolling');
  const activeLaunch=page.locator('[data-game=push] .lp-direct-start');
- assert.match(await activeLaunch.textContent(),/^(Открыть пульт|Open controller)$/,'Active game card offers its controller');
+ // The approved active-card copy is now Play. Its navigation contract is
+ // verified from the emitted command below, independently of the label.
+ report.activeLaunchLabel=await activeLaunch.textContent();
+ assert.match(report.activeLaunchLabel,/^(Играть|Play)$/,'Active game card offers Play for the existing match');
  const commandCount=await page.evaluate(()=>__commands.length);
  await activeLaunch.click();
- assert.deepEqual(await page.evaluate(n=>__commands.slice(n).map(c=>c.type).filter(t=>!['launch-diagnostic','haptic','haptic-prepare'].includes(t)),commandCount),['controller'],'Active game card opens the controller without restarting');
+ report.activeLaunchCommands=await page.evaluate(n=>__commands.slice(n).map(c=>c.type).filter(t=>!['launch-diagnostic','haptic','haptic-prepare'].includes(t)),commandCount);
+ assert.deepEqual(report.activeLaunchCommands,['controller'],'Active game card opens the controller without restarting');
  await page.evaluate(()=>{window.__actionNode=document.querySelector('#activeActions button');__snapshot.active.roster=__snapshot.players.map(p=>({...p,connected:false}));LocalPartyHost.update(__snapshot);});
  assert(await page.evaluate(()=>__actionNode===document.querySelector('#activeActions button')),'Presence updates retain action DOM/focus');
  await page.locator('#openHost').click();await page.waitForTimeout(300);
@@ -94,10 +152,17 @@ const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/host-panel-a
  await page.locator('#choiceStart').click();
  const launch=await page.evaluate(()=>__commands.findLast(message=>message.type==='manage'&&message.command?.type==='launch'));
  assert.equal(launch.command.id,'push');assert.equal(launch.command.externalDisplay,true,'Launch must carry trusted native-display fallback');
+ await page.evaluate(()=>{__commands.length=0;__snapshot.screens=0;__snapshot.native.externalDisplays=0;__snapshot.native.working=true;LocalPartyHost.update(__snapshot);});
+ assert(!(await page.locator('#openController').isDisabled()),'Local controller navigation must work without TV and during unrelated room commands');
+ await page.locator('#openController').evaluate(el=>el.click());
+ assert(await page.evaluate(()=>__commands.some(m=>m.type==='controller'||m.type==='native-tab'&&m.tab==='controller')));
+ await page.evaluate(()=>{__commands.length=0;document.querySelector('#wifiInviteSSID').value='Party; room';document.querySelector('#wifiInvitePassword').value='test-password';document.querySelector('#wifiInviteForm').dispatchEvent(new Event('submit',{cancelable:true}));});
+ assert.equal(await page.locator('#wifiInvitePassword').inputValue(),'','Clear credentials after handing off to native QR encoder');
+ assert(await page.evaluate(()=>__commands.some(m=>m.type==='wifi-invite'&&m.ssid==='Party; room')));
  assert.deepEqual(report.untranslated,[],'Untranslated host panel copy');
  const dot=await page.locator('#connection').evaluate(el=>{const s=getComputedStyle(el,'::before');return {width:s.width,height:s.height,shrink:s.flexShrink};});assert.equal(dot.width,dot.height);assert.equal(dot.shrink,'0');report.connectionDot=dot;
  report.stable=report.samples.filter(s=>s.t>800).every(s=>s.open&&s.opacity>.99);
  assert(report.stable,'Host panel vanishes after entrance');assert(!report.closed,'Panel remains visible after closing');assert.equal(report.errors.length,0);
- console.log(JSON.stringify({stable:report.stable,closed:report.closed,active:report.active}));
+ console.log(JSON.stringify({stable:report.stable,closed:report.closed,active:report.active,compaction:report.compactionSummary}));
  }finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await browser.close();server.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

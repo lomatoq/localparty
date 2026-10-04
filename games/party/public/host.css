@@ -7,3 +7,68 @@ button,.joystick-zone,.joystick-base,.joystick-knob{-webkit-user-select:none;use
 
 html.party-managed.party-host[data-party-game=western] #game{width:100%!important;height:100%!important;object-fit:fill!important}
 
+/* The scene uses the full stage; measured HUD exclusion applies to labels only. */
+html.party-round-arena-tv body #game{
+ top:0!important;bottom:0!important;left:0!important;
+ width:100%!important;height:100%!important;
+ object-fit:contain;object-position:center;transform:none!important;
+}
+
+/* One centered field/roster composition. The receiver fits the authored world
+   uniformly; only its screen allocation changes. Shared HUD caps this real rail. */
+html.party-managed.party-host:is([data-party-game=push],[data-party-game=shrink],[data-party-game=bomb],[data-party-game=knives]){
+ --arena-rail-width:clamp(280px,20vw,360px);
+ --arena-field-width:min(calc(100vw - var(--arena-rail-width) - 48px),105dvh);
+ --arena-composition-left:calc((100vw - var(--arena-field-width) - var(--arena-rail-width) - 16px)/2);
+ --arena-metal-top:#344650;--arena-metal-bottom:#1a2837;--arena-rim:#98dce84d;
+}
+html.party-managed.party-host[data-party-game=bomb]{--arena-metal-top:#513745;--arena-metal-bottom:#261e2e;--arena-rim:#eea4aa4d}
+html.party-managed.party-host[data-party-game=knives]{--arena-metal-top:#444352;--arena-metal-bottom:#262533;--arena-rim:#d4c5ed4d}
+html.hp-ui.party-managed.party-host.party-round-arena-tv body canvas#game{
+ top:0!important;bottom:auto!important;left:var(--arena-composition-left)!important;
+ width:var(--arena-field-width)!important;height:100dvh!important;
+ object-fit:fill!important;object-position:center!important;background:transparent!important;
+}
+html.party-managed.party-host body .party-live-standings{
+ position:absolute;z-index:8;top:50%;bottom:auto;
+ left:calc(var(--arena-composition-left) + var(--arena-field-width) + 16px);right:auto;
+ width:var(--arena-rail-width);height:auto;max-height:calc(100dvh - 24px);transform:translateY(-50%);display:flex;flex-direction:column;
+ gap:0;padding:calc(var(--party-hud-height,136px) + 12px) 0 0;pointer-events:none;
+}
+html.party-managed.party-host body .party-live-standings[hidden]{display:none!important}
+.party-standings-board{display:flex;flex-direction:column;gap:8px;flex:0 1 auto;min-height:0;max-height:calc(100dvh - 24px - var(--party-hud-height,136px) - 12px);overflow:auto;scrollbar-width:none;overflow-anchor:none;overscroll-behavior:contain;pointer-events:auto;padding:0 2px 2px}
+.party-standings-board::-webkit-scrollbar{display:none}
+.party-standings-board:focus-visible{outline:2px solid #c6ff76;outline-offset:2px;border-radius:18px}
+.party-standings-board[data-scroll-above=false][data-scroll-below=true]{mask-image:linear-gradient(#000 calc(100% - 24px),transparent)}
+.party-standings-board[data-scroll-above=true][data-scroll-below=false]{mask-image:linear-gradient(transparent,#000 16px)}
+.party-standings-board[data-scroll-above=true][data-scroll-below=true]{mask-image:linear-gradient(transparent,#000 16px,#000 calc(100% - 24px),transparent)}
+.party-standing{
+ display:grid;grid-template-columns:24px 40px minmax(0,1fr) auto;align-items:center;gap:8px;
+ min-height:64px;flex:none;padding:10px 12px;border-radius:18px;color:#faf6ff;
+ background:linear-gradient(165deg,var(--arena-metal-top) 0%,var(--arena-metal-bottom) 65%);
+ border:1px solid var(--arena-rim);box-shadow:inset 0 1px 0 #ffffff19,inset 0 -8px 14px #06081526;
+}
+.party-standing .rank{color:var(--player);font:italic 900 22px/1.2 KardiaFatRunner,sans-serif}
+.party-standing strong{padding-inline:2px 8px;font:italic 900 30px/1.2 KardiaFatRunner,sans-serif;font-variant-numeric:tabular-nums}
+html.hp-ui.party-managed.party-host body .party-standing .name{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:500 17px/1.3 KardiaFit,sans-serif}
+.party-standing-portrait{width:40px;height:44px;object-fit:contain;filter:drop-shadow(0 3px 3px #09051266)}
+.party-standing.out .name{color:#c5bacf}.party-standing.out .party-standing-portrait{opacity:.5;filter:grayscale(.6)}
+@media(max-width:1400px){
+ .party-standing{grid-template-columns:20px 32px minmax(0,1fr) auto;gap:6px;min-height:56px;padding:8px 10px}
+ .party-standing-portrait{width:32px;height:36px}
+ html.hp-ui.party-managed.party-host body .party-standing .name{font-size:15px}
+ .party-standing strong{font-size:26px}.party-standing .rank{font-size:20px}
+}
+
+/* These actual roster faces use the local metal mapping rather than a generic
+   ranking-surface wash. The receiver bitmap now matches its CSS aspect. */
+html.hp-ui.party-managed.party-host body .party-standing{
+ background:linear-gradient(165deg,var(--arena-metal-top),var(--arena-metal-bottom) 65%)!important;
+ border-color:var(--arena-rim)!important;
+}
+
+/* Uploaded photographs are circles; transparent mascot silhouettes stay whole. */
+.party-standing-portrait[data-photo=true]{height:auto!important;aspect-ratio:1;object-fit:cover;border-radius:50%}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.party-standing-portrait[data-photo=true]{box-sizing:border-box;border:1.5px solid var(--color,#c8b2d5)}

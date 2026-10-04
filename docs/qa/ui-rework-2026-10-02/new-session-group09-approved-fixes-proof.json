@@ -1,0 +1,2667 @@
+{
+  "recordedAt": "2026-10-02T17:02:15.060860+00:00",
+  "status": "Focused affected proof complete; independent review and final root canonical gate separate.",
+  "runtimeSourceFrozen": true,
+  "hardwareValidated": false,
+  "tests": "10/10 focused Naval/Tabletop/Marble checks; Naval7/7 after short CSS; three JS syntax checks pass.",
+  "sourceHashes": {
+    "games/naval/public/app.js": "5b16fd3e272a65b02636c1b3d0e9ee0431d2e10773d5670f542844443728f6a3",
+    "games/naval/public/style.css": "78c653f677ca08abd76001f68a487715a5d4984162e81e07be9ef0ab214dd54b",
+    "games/tabletop/public/app.js": "2aa50b4ff48fe3f8b5adae2a6517f8a1c5b90458243c7c99cfee973e5f44a4f6",
+    "games/arcade_deluxe/public/controller.js": "1dfaf00b0f5a194cc6490d432bfb59c8b67f14573e1e46350afca90e24fb9b9c",
+    "games/arcade_deluxe/public/style.css": "27a30d94c6b43c9574318907b864012aa61c55c871fa645c8304003d62391aa2",
+    "public/game-ui-themes.css": "88a36b9642889a3dbf8f6356522f37ba5a0182fe6884868c9bae95e93e539047",
+    "public/game-ui-themes.js": "181d3d8a64e2ab474883ba0038c52949993fea31d674f95ef7d36f6b7ba6a850"
+  },
+  "runs": [
+    {
+      "report": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/report.json",
+      "startedAt": "2026-10-02T16:54:32.686Z",
+      "finishedAt": "2026-10-02T16:54:42.010Z",
+      "failure": "Cannot read properties of undefined (reading 'findIndex')",
+      "errors": [
+        {
+          "surface": "tv",
+          "error": "ResizeObserver loop completed with undelivered notifications."
+        }
+      ],
+      "changedFiles": [],
+      "qualification": "Use completed named rows only; later QA failure does not constitute a full-run pass."
+    },
+    {
+      "report": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/report.json",
+      "startedAt": "2026-10-02T16:56:37.056Z",
+      "finishedAt": "2026-10-02T16:56:49.588Z",
+      "failure": "frame.evaluate: Error: Scoped44pxrule missing",
+      "errors": [],
+      "changedFiles": [],
+      "qualification": "Use completed named rows only; later QA failure does not constitute a full-run pass."
+    },
+    {
+      "report": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/report.json",
+      "startedAt": "2026-10-02T16:59:58.552Z",
+      "finishedAt": "2026-10-02T17:00:07.360Z",
+      "failure": null,
+      "errors": [],
+      "changedFiles": [],
+      "qualification": "Completed proof; no app errors or watched-source drift."
+    }
+  ],
+  "games": [
+    {
+      "game": "naval",
+      "report": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/report.json",
+      "captures": [
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/naval-phone-current402.png",
+          "sha256": "f4d24d34c636f821a0358c91694d4fae673f0b14179ca29616b6483756929e91"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/naval-tv-current402.png",
+          "sha256": "4ed420b92997bfe3dd750f6b96aff2a4f8c87c7f5f645494014f937fc8ad0508"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/naval-phone-320-before.png",
+          "sha256": "06c7fd471f098ebe83434efccfae6072d149057807b96a498837b8667e423cab"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/naval-tv-320-before.png",
+          "sha256": "3b703fc6268763862c219b87c603c5d48caaca536e849282bf1f3f8be05770e7"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/naval-phone-320-after-shot.png",
+          "sha256": "fd7ab926697d56e012cae9ddbb5bf8c291b31b0d9081496b4b0210db4e823101"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/naval-phone-402-final.png",
+          "sha256": "ca34a632b6c693fec80ab582c57701f088fb787e77c192326633ce187c7129c7"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-four-confirm/naval-tv-health-facts.png",
+          "sha256": "0c2169bc29408090f7e064e5b7f0f6c342f5e7400788fabf059f2e7fb2ab0382"
+        }
+      ],
+      "actions": [
+        {
+          "action": "Actual320target centre tap",
+          "cell": "35",
+          "label": "F6",
+          "result": "miss",
+          "hardwareAccuracy": false
+        }
+      ],
+      "details": {
+        "naval320Before": {
+          "width": 320,
+          "height": 358,
+          "scrollWidth": 314,
+          "scrollHeight": 361,
+          "root": "party-managed party-player hp-ui lp-motion-ready party-session-active",
+          "controls": [
+            {
+              "x": 16,
+              "y": 16,
+              "w": 192,
+              "h": 44,
+              "right": 208,
+              "bottom": 60,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks",
+              "id": "target",
+              "disabled": false
+            },
+            {
+              "x": 16,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 132,
+              "text": "A1",
+              "id": "",
+              "disabled": false,
+              "cell": "0"
+            },
+            {
+              "x": 63.15625,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 132,
+              "text": "B1",
+              "id": "",
+              "disabled": false,
+              "cell": "1"
+            },
+            {
+              "x": 110.328125,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 132,
+              "text": "C1",
+              "id": "",
+              "disabled": false,
+              "cell": "2"
+            },
+            {
+              "x": 157.484375,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 132,
+              "text": "D1",
+              "id": "",
+              "disabled": false,
+              "cell": "3"
+            },
+            {
+              "x": 204.65625,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 132,
+              "text": "E1",
+              "id": "",
+              "disabled": false,
+              "cell": "4"
+            },
+            {
+              "x": 251.828125,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 132,
+              "text": "F1",
+              "id": "",
+              "disabled": false,
+              "cell": "5"
+            },
+            {
+              "x": 16,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 177,
+              "text": "A2",
+              "id": "",
+              "disabled": false,
+              "cell": "6"
+            },
+            {
+              "x": 63.15625,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 177,
+              "text": "B2",
+              "id": "",
+              "disabled": false,
+              "cell": "7"
+            },
+            {
+              "x": 110.328125,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 177,
+              "text": "C2",
+              "id": "",
+              "disabled": false,
+              "cell": "8"
+            },
+            {
+              "x": 157.484375,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 177,
+              "text": "D2",
+              "id": "",
+              "disabled": false,
+              "cell": "9"
+            },
+            {
+              "x": 204.65625,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 177,
+              "text": "E2",
+              "id": "",
+              "disabled": false,
+              "cell": "10"
+            },
+            {
+              "x": 251.828125,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 177,
+              "text": "F2",
+              "id": "",
+              "disabled": false,
+              "cell": "11"
+            },
+            {
+              "x": 16,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 222,
+              "text": "A3",
+              "id": "",
+              "disabled": false,
+              "cell": "12"
+            },
+            {
+              "x": 63.15625,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 222,
+              "text": "B3",
+              "id": "",
+              "disabled": false,
+              "cell": "13"
+            },
+            {
+              "x": 110.328125,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 222,
+              "text": "C3",
+              "id": "",
+              "disabled": false,
+              "cell": "14"
+            },
+            {
+              "x": 157.484375,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 222,
+              "text": "D3",
+              "id": "",
+              "disabled": false,
+              "cell": "15"
+            },
+            {
+              "x": 204.65625,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 222,
+              "text": "E3",
+              "id": "",
+              "disabled": false,
+              "cell": "16"
+            },
+            {
+              "x": 251.828125,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 222,
+              "text": "F3",
+              "id": "",
+              "disabled": false,
+              "cell": "17"
+            },
+            {
+              "x": 16,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 267,
+              "text": "A4",
+              "id": "",
+              "disabled": false,
+              "cell": "18"
+            },
+            {
+              "x": 63.15625,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 267,
+              "text": "B4",
+              "id": "",
+              "disabled": false,
+              "cell": "19"
+            },
+            {
+              "x": 110.328125,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 267,
+              "text": "C4",
+              "id": "",
+              "disabled": false,
+              "cell": "20"
+            },
+            {
+              "x": 157.484375,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 267,
+              "text": "D4",
+              "id": "",
+              "disabled": false,
+              "cell": "21"
+            },
+            {
+              "x": 204.65625,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 267,
+              "text": "E4",
+              "id": "",
+              "disabled": false,
+              "cell": "22"
+            },
+            {
+              "x": 251.828125,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 267,
+              "text": "F4",
+              "id": "",
+              "disabled": false,
+              "cell": "23"
+            },
+            {
+              "x": 16,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 312,
+              "text": "A5",
+              "id": "",
+              "disabled": false,
+              "cell": "24"
+            },
+            {
+              "x": 63.15625,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 312,
+              "text": "B5",
+              "id": "",
+              "disabled": false,
+              "cell": "25"
+            },
+            {
+              "x": 110.328125,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 312,
+              "text": "C5",
+              "id": "",
+              "disabled": false,
+              "cell": "26"
+            },
+            {
+              "x": 157.484375,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 312,
+              "text": "D5",
+              "id": "",
+              "disabled": false,
+              "cell": "27"
+            },
+            {
+              "x": 204.65625,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 312,
+              "text": "E5",
+              "id": "",
+              "disabled": false,
+              "cell": "28"
+            },
+            {
+              "x": 251.828125,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 312,
+              "text": "F5",
+              "id": "",
+              "disabled": false,
+              "cell": "29"
+            },
+            {
+              "x": 16,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 357,
+              "text": "A6",
+              "id": "",
+              "disabled": false,
+              "cell": "30"
+            },
+            {
+              "x": 63.15625,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 357,
+              "text": "B6",
+              "id": "",
+              "disabled": false,
+              "cell": "31"
+            },
+            {
+              "x": 110.328125,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 357,
+              "text": "C6",
+              "id": "",
+              "disabled": false,
+              "cell": "32"
+            },
+            {
+              "x": 157.484375,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 357,
+              "text": "D6",
+              "id": "",
+              "disabled": false,
+              "cell": "33"
+            },
+            {
+              "x": 204.65625,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 357,
+              "text": "E6",
+              "id": "",
+              "disabled": false,
+              "cell": "34"
+            },
+            {
+              "x": 251.828125,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 357,
+              "text": "F6",
+              "id": "",
+              "disabled": false,
+              "cell": "35"
+            }
+          ],
+          "parts": {
+            "#grid": {
+              "x": 16,
+              "y": 88,
+              "w": 282,
+              "h": 269,
+              "right": 298,
+              "bottom": 357,
+              "text": "A1B1C1D1E1F1A2B2C2D2E2F2A3B3C3D3E3F3A4B4C4D4E4F4A5B5C5D5E5F5A6B6C6D6E6F6"
+            },
+            "#reload": {
+              "x": 16,
+              "y": 62,
+              "w": 282,
+              "h": 24,
+              "right": 298,
+              "bottom": 86,
+              "text": "Cannon readyFIRE \u2713"
+            },
+            "#target": {
+              "x": 16,
+              "y": 16,
+              "w": 192,
+              "h": 44,
+              "right": 208,
+              "bottom": 60,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks"
+            },
+            "#own": {
+              "x": 210,
+              "y": 16,
+              "w": 88,
+              "h": 44,
+              "right": 298,
+              "bottom": 60,
+              "text": "My fleet \u00b7 private\u2022\u2022\u2022"
+            },
+            "#ownGrid": {
+              "x": 254,
+              "y": 16,
+              "w": 44,
+              "h": 44,
+              "right": 298,
+              "bottom": 60,
+              "text": "\u2022\u2022\u2022"
+            },
+            "#shot": {
+              "x": 16,
+              "y": 4,
+              "w": 282,
+              "h": 12,
+              "right": 298,
+              "bottom": 16,
+              "text": "\u0411\u043e\u0442 3 \u2192 Alexandra LongSurname: miss"
+            },
+            "#ballNow": null,
+            "#ballNext": null,
+            "#aimpad": null,
+            "#marbleFire": null,
+            "#angle": null,
+            "#power": null,
+            ".angle-well": null,
+            ".power-well": null
+          },
+          "cursorLabels": [],
+          "marblePreview": [],
+          "theme": {
+            "game": "naval",
+            "enabled": true,
+            "material": "naval bridge enamel",
+            "pilotOnly": false,
+            "targets": [
+              {
+                "selector": "#own",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "existing unboxed composition retained"
+                ],
+                "reason": null
+              },
+              {
+                "selector": "#target",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "authored interactive feedback retained"
+                ],
+                "reason": null
+              }
+            ],
+            "noDecorationReason": "existing game world, object or character art supplies identity",
+            "surfaces": [],
+            "art": [],
+            "preserved": []
+          }
+        },
+        "naval320MinBefore": 44,
+        "naval320After": {
+          "width": 320,
+          "height": 358,
+          "scrollWidth": 314,
+          "scrollHeight": 361,
+          "root": "party-managed party-player hp-ui lp-motion-ready party-session-active",
+          "controls": [
+            {
+              "x": 16,
+              "y": 16,
+              "w": 192,
+              "h": 44,
+              "right": 208,
+              "bottom": 60,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks",
+              "id": "target",
+              "disabled": false
+            },
+            {
+              "x": 16,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 132,
+              "text": "A1",
+              "id": "",
+              "disabled": false,
+              "cell": "0"
+            },
+            {
+              "x": 63.15625,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 132,
+              "text": "B1",
+              "id": "",
+              "disabled": false,
+              "cell": "1"
+            },
+            {
+              "x": 110.328125,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 132,
+              "text": "C1",
+              "id": "",
+              "disabled": false,
+              "cell": "2"
+            },
+            {
+              "x": 157.484375,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 132,
+              "text": "D1",
+              "id": "",
+              "disabled": false,
+              "cell": "3"
+            },
+            {
+              "x": 204.65625,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 132,
+              "text": "E1",
+              "id": "",
+              "disabled": false,
+              "cell": "4"
+            },
+            {
+              "x": 251.828125,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 132,
+              "text": "F1",
+              "id": "",
+              "disabled": false,
+              "cell": "5"
+            },
+            {
+              "x": 16,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 177,
+              "text": "A2",
+              "id": "",
+              "disabled": false,
+              "cell": "6"
+            },
+            {
+              "x": 63.15625,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 177,
+              "text": "B2",
+              "id": "",
+              "disabled": false,
+              "cell": "7"
+            },
+            {
+              "x": 110.328125,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 177,
+              "text": "C2",
+              "id": "",
+              "disabled": false,
+              "cell": "8"
+            },
+            {
+              "x": 157.484375,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 177,
+              "text": "D2",
+              "id": "",
+              "disabled": false,
+              "cell": "9"
+            },
+            {
+              "x": 204.65625,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 177,
+              "text": "E2",
+              "id": "",
+              "disabled": false,
+              "cell": "10"
+            },
+            {
+              "x": 251.828125,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 177,
+              "text": "F2",
+              "id": "",
+              "disabled": false,
+              "cell": "11"
+            },
+            {
+              "x": 16,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 222,
+              "text": "A3",
+              "id": "",
+              "disabled": false,
+              "cell": "12"
+            },
+            {
+              "x": 63.15625,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 222,
+              "text": "B3",
+              "id": "",
+              "disabled": false,
+              "cell": "13"
+            },
+            {
+              "x": 110.328125,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 222,
+              "text": "C3",
+              "id": "",
+              "disabled": false,
+              "cell": "14"
+            },
+            {
+              "x": 157.484375,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 222,
+              "text": "D3",
+              "id": "",
+              "disabled": false,
+              "cell": "15"
+            },
+            {
+              "x": 204.65625,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 222,
+              "text": "E3",
+              "id": "",
+              "disabled": false,
+              "cell": "16"
+            },
+            {
+              "x": 251.828125,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 222,
+              "text": "F3",
+              "id": "",
+              "disabled": false,
+              "cell": "17"
+            },
+            {
+              "x": 16,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 267,
+              "text": "A4",
+              "id": "",
+              "disabled": false,
+              "cell": "18"
+            },
+            {
+              "x": 63.15625,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 267,
+              "text": "B4",
+              "id": "",
+              "disabled": false,
+              "cell": "19"
+            },
+            {
+              "x": 110.328125,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 267,
+              "text": "C4",
+              "id": "",
+              "disabled": false,
+              "cell": "20"
+            },
+            {
+              "x": 157.484375,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 267,
+              "text": "D4",
+              "id": "",
+              "disabled": false,
+              "cell": "21"
+            },
+            {
+              "x": 204.65625,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 267,
+              "text": "E4",
+              "id": "",
+              "disabled": false,
+              "cell": "22"
+            },
+            {
+              "x": 251.828125,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 267,
+              "text": "F4",
+              "id": "",
+              "disabled": false,
+              "cell": "23"
+            },
+            {
+              "x": 16,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 312,
+              "text": "A5",
+              "id": "",
+              "disabled": false,
+              "cell": "24"
+            },
+            {
+              "x": 63.15625,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 312,
+              "text": "B5",
+              "id": "",
+              "disabled": false,
+              "cell": "25"
+            },
+            {
+              "x": 110.328125,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 312,
+              "text": "C5",
+              "id": "",
+              "disabled": false,
+              "cell": "26"
+            },
+            {
+              "x": 157.484375,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 312,
+              "text": "D5",
+              "id": "",
+              "disabled": false,
+              "cell": "27"
+            },
+            {
+              "x": 204.65625,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 312,
+              "text": "E5",
+              "id": "",
+              "disabled": false,
+              "cell": "28"
+            },
+            {
+              "x": 251.828125,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 312,
+              "text": "F5",
+              "id": "",
+              "disabled": false,
+              "cell": "29"
+            },
+            {
+              "x": 16,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 357,
+              "text": "A6",
+              "id": "",
+              "disabled": false,
+              "cell": "30"
+            },
+            {
+              "x": 63.15625,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 357,
+              "text": "B6",
+              "id": "",
+              "disabled": false,
+              "cell": "31"
+            },
+            {
+              "x": 110.328125,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 357,
+              "text": "C6",
+              "id": "",
+              "disabled": false,
+              "cell": "32"
+            },
+            {
+              "x": 157.484375,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 357,
+              "text": "D6",
+              "id": "",
+              "disabled": false,
+              "cell": "33"
+            },
+            {
+              "x": 204.65625,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 357,
+              "text": "E6",
+              "id": "",
+              "disabled": false,
+              "cell": "34"
+            },
+            {
+              "x": 251.828125,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 357,
+              "text": "F6",
+              "id": "",
+              "disabled": false,
+              "cell": "35"
+            }
+          ],
+          "parts": {
+            "#grid": {
+              "x": 16,
+              "y": 88,
+              "w": 282,
+              "h": 269,
+              "right": 298,
+              "bottom": 357,
+              "text": "A1B1C1D1E1F1A2B2C2D2E2F2A3B3C3D3E3F3A4B4C4D4E4F4A5B5C5D5E5F5A6B6C6D6E6F6"
+            },
+            "#reload": {
+              "x": 16,
+              "y": 62,
+              "w": 282,
+              "h": 24,
+              "right": 298,
+              "bottom": 86,
+              "text": "Cannon readyFIRE \u2713"
+            },
+            "#target": {
+              "x": 16,
+              "y": 16,
+              "w": 192,
+              "h": 44,
+              "right": 208,
+              "bottom": 60,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks"
+            },
+            "#own": {
+              "x": 210,
+              "y": 16,
+              "w": 88,
+              "h": 44,
+              "right": 298,
+              "bottom": 60,
+              "text": "My fleet \u00b7 private\u2022\u2022\u2022"
+            },
+            "#ownGrid": {
+              "x": 254,
+              "y": 16,
+              "w": 44,
+              "h": 44,
+              "right": 298,
+              "bottom": 60,
+              "text": "\u2022\u2022\u2022"
+            },
+            "#shot": {
+              "x": 16,
+              "y": 4,
+              "w": 282,
+              "h": 12,
+              "right": 298,
+              "bottom": 16,
+              "text": "\u0411\u043e\u0442 3 \u2192 Alexandra LongSurname: miss"
+            },
+            "#ballNow": null,
+            "#ballNext": null,
+            "#aimpad": null,
+            "#marbleFire": null,
+            "#angle": null,
+            "#power": null,
+            ".angle-well": null,
+            ".power-well": null
+          },
+          "cursorLabels": [],
+          "marblePreview": [],
+          "theme": {
+            "game": "naval",
+            "enabled": true,
+            "material": "naval bridge enamel",
+            "pilotOnly": false,
+            "targets": [
+              {
+                "selector": "#own",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "existing unboxed composition retained"
+                ],
+                "reason": null
+              },
+              {
+                "selector": "#target",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "authored interactive feedback retained"
+                ],
+                "reason": null
+              }
+            ],
+            "noDecorationReason": "existing game world, object or character art supplies identity",
+            "surfaces": [],
+            "art": [],
+            "preserved": []
+          }
+        },
+        "naval320MinAfter": 44,
+        "naval320AfterShot": {
+          "width": 320,
+          "height": 358,
+          "scrollWidth": 314,
+          "scrollHeight": 361,
+          "root": "party-managed party-player hp-ui lp-motion-ready party-session-active",
+          "controls": [
+            {
+              "x": 16,
+              "y": 16,
+              "w": 192,
+              "h": 44,
+              "right": 208,
+              "bottom": 60,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks",
+              "id": "target",
+              "disabled": false
+            },
+            {
+              "x": 16,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 132,
+              "text": "A1",
+              "id": "",
+              "disabled": true,
+              "cell": "0"
+            },
+            {
+              "x": 63.15625,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 132,
+              "text": "B1",
+              "id": "",
+              "disabled": true,
+              "cell": "1"
+            },
+            {
+              "x": 110.328125,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 132,
+              "text": "C1",
+              "id": "",
+              "disabled": true,
+              "cell": "2"
+            },
+            {
+              "x": 157.484375,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 132,
+              "text": "D1",
+              "id": "",
+              "disabled": true,
+              "cell": "3"
+            },
+            {
+              "x": 204.65625,
+              "y": 88,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 132,
+              "text": "E1",
+              "id": "",
+              "disabled": true,
+              "cell": "4"
+            },
+            {
+              "x": 251.828125,
+              "y": 88,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 132,
+              "text": "F1",
+              "id": "",
+              "disabled": true,
+              "cell": "5"
+            },
+            {
+              "x": 16,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 177,
+              "text": "A2",
+              "id": "",
+              "disabled": true,
+              "cell": "6"
+            },
+            {
+              "x": 63.15625,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 177,
+              "text": "B2",
+              "id": "",
+              "disabled": true,
+              "cell": "7"
+            },
+            {
+              "x": 110.328125,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 177,
+              "text": "C2",
+              "id": "",
+              "disabled": true,
+              "cell": "8"
+            },
+            {
+              "x": 157.484375,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 177,
+              "text": "D2",
+              "id": "",
+              "disabled": true,
+              "cell": "9"
+            },
+            {
+              "x": 204.65625,
+              "y": 133,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 177,
+              "text": "E2",
+              "id": "",
+              "disabled": true,
+              "cell": "10"
+            },
+            {
+              "x": 251.828125,
+              "y": 133,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 177,
+              "text": "F2",
+              "id": "",
+              "disabled": true,
+              "cell": "11"
+            },
+            {
+              "x": 16,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 222,
+              "text": "A3",
+              "id": "",
+              "disabled": true,
+              "cell": "12"
+            },
+            {
+              "x": 63.15625,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 222,
+              "text": "B3",
+              "id": "",
+              "disabled": true,
+              "cell": "13"
+            },
+            {
+              "x": 110.328125,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 222,
+              "text": "C3",
+              "id": "",
+              "disabled": true,
+              "cell": "14"
+            },
+            {
+              "x": 157.484375,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 222,
+              "text": "D3",
+              "id": "",
+              "disabled": true,
+              "cell": "15"
+            },
+            {
+              "x": 204.65625,
+              "y": 178,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 222,
+              "text": "E3",
+              "id": "",
+              "disabled": true,
+              "cell": "16"
+            },
+            {
+              "x": 251.828125,
+              "y": 178,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 222,
+              "text": "F3",
+              "id": "",
+              "disabled": true,
+              "cell": "17"
+            },
+            {
+              "x": 16,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 267,
+              "text": "A4",
+              "id": "",
+              "disabled": true,
+              "cell": "18"
+            },
+            {
+              "x": 63.15625,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 267,
+              "text": "B4",
+              "id": "",
+              "disabled": true,
+              "cell": "19"
+            },
+            {
+              "x": 110.328125,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 267,
+              "text": "C4",
+              "id": "",
+              "disabled": true,
+              "cell": "20"
+            },
+            {
+              "x": 157.484375,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 267,
+              "text": "D4",
+              "id": "",
+              "disabled": true,
+              "cell": "21"
+            },
+            {
+              "x": 204.65625,
+              "y": 223,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 267,
+              "text": "E4",
+              "id": "",
+              "disabled": true,
+              "cell": "22"
+            },
+            {
+              "x": 251.828125,
+              "y": 223,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 267,
+              "text": "F4",
+              "id": "",
+              "disabled": true,
+              "cell": "23"
+            },
+            {
+              "x": 16,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 312,
+              "text": "A5",
+              "id": "",
+              "disabled": true,
+              "cell": "24"
+            },
+            {
+              "x": 63.15625,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 312,
+              "text": "B5",
+              "id": "",
+              "disabled": true,
+              "cell": "25"
+            },
+            {
+              "x": 110.328125,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 312,
+              "text": "C5",
+              "id": "",
+              "disabled": true,
+              "cell": "26"
+            },
+            {
+              "x": 157.484375,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 312,
+              "text": "D5",
+              "id": "",
+              "disabled": true,
+              "cell": "27"
+            },
+            {
+              "x": 204.65625,
+              "y": 268,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 312,
+              "text": "E5",
+              "id": "",
+              "disabled": true,
+              "cell": "28"
+            },
+            {
+              "x": 251.828125,
+              "y": 268,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 312,
+              "text": "F5",
+              "id": "",
+              "disabled": true,
+              "cell": "29"
+            },
+            {
+              "x": 16,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 62.15625,
+              "bottom": 357,
+              "text": "A6",
+              "id": "",
+              "disabled": true,
+              "cell": "30"
+            },
+            {
+              "x": 63.15625,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 109.328125,
+              "bottom": 357,
+              "text": "B6",
+              "id": "",
+              "disabled": true,
+              "cell": "31"
+            },
+            {
+              "x": 110.328125,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 156.484375,
+              "bottom": 357,
+              "text": "C6",
+              "id": "",
+              "disabled": true,
+              "cell": "32"
+            },
+            {
+              "x": 157.484375,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 203.65625,
+              "bottom": 357,
+              "text": "D6",
+              "id": "",
+              "disabled": true,
+              "cell": "33"
+            },
+            {
+              "x": 204.65625,
+              "y": 313,
+              "w": 46.171875,
+              "h": 44,
+              "right": 250.828125,
+              "bottom": 357,
+              "text": "E6",
+              "id": "",
+              "disabled": true,
+              "cell": "34"
+            },
+            {
+              "x": 251.828125,
+              "y": 313,
+              "w": 46.15625,
+              "h": 44,
+              "right": 297.984375,
+              "bottom": 357,
+              "text": "\u2022",
+              "id": "",
+              "disabled": true,
+              "cell": "35"
+            }
+          ],
+          "parts": {
+            "#grid": {
+              "x": 16,
+              "y": 88,
+              "w": 282,
+              "h": 269,
+              "right": 298,
+              "bottom": 357,
+              "text": "A1B1C1D1E1F1A2B2C2D2E2F2A3B3C3D3E3F3A4B4C4D4E4F4A5B5C5D5E5F5A6B6C6D6E6\u2022"
+            },
+            "#reload": {
+              "x": 16,
+              "y": 62,
+              "w": 282,
+              "h": 24,
+              "right": 298,
+              "bottom": 86,
+              "text": "Reloading cannon2.4s"
+            },
+            "#target": {
+              "x": 16,
+              "y": 16,
+              "w": 192,
+              "h": 44,
+              "right": 208,
+              "bottom": 60,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks"
+            },
+            "#own": {
+              "x": 210,
+              "y": 16,
+              "w": 88,
+              "h": 44,
+              "right": 298,
+              "bottom": 60,
+              "text": "My fleet \u00b7 private\u2022\u2022\u2022"
+            },
+            "#ownGrid": {
+              "x": 254,
+              "y": 16,
+              "w": 44,
+              "h": 44,
+              "right": 298,
+              "bottom": 60,
+              "text": "\u2022\u2022\u2022"
+            },
+            "#shot": {
+              "x": 16,
+              "y": 4,
+              "w": 282,
+              "h": 12,
+              "right": 298,
+              "bottom": 16,
+              "text": "Alexandra LongSurname \u2192 \u0411\u043e\u0442 1: miss"
+            },
+            "#ballNow": null,
+            "#ballNext": null,
+            "#aimpad": null,
+            "#marbleFire": null,
+            "#angle": null,
+            "#power": null,
+            ".angle-well": null,
+            ".power-well": null
+          },
+          "cursorLabels": [],
+          "marblePreview": [],
+          "theme": {
+            "game": "naval",
+            "enabled": true,
+            "material": "naval bridge enamel",
+            "pilotOnly": false,
+            "targets": [
+              {
+                "selector": "#own",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "existing unboxed composition retained"
+                ],
+                "reason": null
+              },
+              {
+                "selector": "#target",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "authored interactive feedback retained"
+                ],
+                "reason": null
+              }
+            ],
+            "noDecorationReason": "existing game world, object or character art supplies identity",
+            "surfaces": [],
+            "art": [],
+            "preserved": []
+          }
+        },
+        "naval320Shell": {
+          "footer": {
+            "top": 440,
+            "bottom": 512,
+            "height": 72
+          },
+          "frame": {
+            "top": 82,
+            "bottom": 440,
+            "height": 358
+          },
+          "scroll": 568,
+          "viewport": 568
+        },
+        "naval402After": {
+          "width": 402,
+          "height": 664,
+          "scrollWidth": 402,
+          "scrollHeight": 664,
+          "root": "party-managed party-player hp-ui lp-motion-ready party-session-active",
+          "controls": [
+            {
+              "x": 16,
+              "y": 63.140625,
+              "w": 274,
+              "h": 44,
+              "right": 290,
+              "bottom": 107.140625,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks",
+              "id": "target",
+              "disabled": false
+            },
+            {
+              "x": 16,
+              "y": 173.390625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 74.328125,
+              "bottom": 231.71875,
+              "text": "A1",
+              "id": "",
+              "disabled": true,
+              "cell": "0"
+            },
+            {
+              "x": 78.328125,
+              "y": 173.390625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 136.65625,
+              "bottom": 231.71875,
+              "text": "B1",
+              "id": "",
+              "disabled": true,
+              "cell": "1"
+            },
+            {
+              "x": 140.65625,
+              "y": 173.390625,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 199,
+              "bottom": 231.734375,
+              "text": "C1",
+              "id": "",
+              "disabled": true,
+              "cell": "2"
+            },
+            {
+              "x": 203,
+              "y": 173.390625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 261.328125,
+              "bottom": 231.71875,
+              "text": "D1",
+              "id": "",
+              "disabled": true,
+              "cell": "3"
+            },
+            {
+              "x": 265.328125,
+              "y": 173.390625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 323.65625,
+              "bottom": 231.71875,
+              "text": "E1",
+              "id": "",
+              "disabled": true,
+              "cell": "4"
+            },
+            {
+              "x": 327.65625,
+              "y": 173.390625,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 386,
+              "bottom": 231.734375,
+              "text": "F1",
+              "id": "",
+              "disabled": true,
+              "cell": "5"
+            },
+            {
+              "x": 16,
+              "y": 235.734375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 74.328125,
+              "bottom": 294.0625,
+              "text": "A2",
+              "id": "",
+              "disabled": true,
+              "cell": "6"
+            },
+            {
+              "x": 78.328125,
+              "y": 235.734375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 136.65625,
+              "bottom": 294.0625,
+              "text": "B2",
+              "id": "",
+              "disabled": true,
+              "cell": "7"
+            },
+            {
+              "x": 140.65625,
+              "y": 235.734375,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 199,
+              "bottom": 294.078125,
+              "text": "C2",
+              "id": "",
+              "disabled": true,
+              "cell": "8"
+            },
+            {
+              "x": 203,
+              "y": 235.734375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 261.328125,
+              "bottom": 294.0625,
+              "text": "D2",
+              "id": "",
+              "disabled": true,
+              "cell": "9"
+            },
+            {
+              "x": 265.328125,
+              "y": 235.734375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 323.65625,
+              "bottom": 294.0625,
+              "text": "E2",
+              "id": "",
+              "disabled": true,
+              "cell": "10"
+            },
+            {
+              "x": 327.65625,
+              "y": 235.734375,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 386,
+              "bottom": 294.078125,
+              "text": "F2",
+              "id": "",
+              "disabled": true,
+              "cell": "11"
+            },
+            {
+              "x": 16,
+              "y": 298.078125,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 74.328125,
+              "bottom": 356.40625,
+              "text": "A3",
+              "id": "",
+              "disabled": true,
+              "cell": "12"
+            },
+            {
+              "x": 78.328125,
+              "y": 298.078125,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 136.65625,
+              "bottom": 356.40625,
+              "text": "B3",
+              "id": "",
+              "disabled": true,
+              "cell": "13"
+            },
+            {
+              "x": 140.65625,
+              "y": 298.078125,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 199,
+              "bottom": 356.421875,
+              "text": "C3",
+              "id": "",
+              "disabled": true,
+              "cell": "14"
+            },
+            {
+              "x": 203,
+              "y": 298.078125,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 261.328125,
+              "bottom": 356.40625,
+              "text": "D3",
+              "id": "",
+              "disabled": true,
+              "cell": "15"
+            },
+            {
+              "x": 265.328125,
+              "y": 298.078125,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 323.65625,
+              "bottom": 356.40625,
+              "text": "E3",
+              "id": "",
+              "disabled": true,
+              "cell": "16"
+            },
+            {
+              "x": 327.65625,
+              "y": 298.078125,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 386,
+              "bottom": 356.421875,
+              "text": "F3",
+              "id": "",
+              "disabled": true,
+              "cell": "17"
+            },
+            {
+              "x": 16,
+              "y": 360.421875,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 74.328125,
+              "bottom": 418.75,
+              "text": "A4",
+              "id": "",
+              "disabled": true,
+              "cell": "18"
+            },
+            {
+              "x": 78.328125,
+              "y": 360.421875,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 136.65625,
+              "bottom": 418.75,
+              "text": "B4",
+              "id": "",
+              "disabled": true,
+              "cell": "19"
+            },
+            {
+              "x": 140.65625,
+              "y": 360.421875,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 199,
+              "bottom": 418.765625,
+              "text": "C4",
+              "id": "",
+              "disabled": true,
+              "cell": "20"
+            },
+            {
+              "x": 203,
+              "y": 360.421875,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 261.328125,
+              "bottom": 418.75,
+              "text": "D4",
+              "id": "",
+              "disabled": true,
+              "cell": "21"
+            },
+            {
+              "x": 265.328125,
+              "y": 360.421875,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 323.65625,
+              "bottom": 418.75,
+              "text": "E4",
+              "id": "",
+              "disabled": true,
+              "cell": "22"
+            },
+            {
+              "x": 327.65625,
+              "y": 360.421875,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 386,
+              "bottom": 418.765625,
+              "text": "F4",
+              "id": "",
+              "disabled": true,
+              "cell": "23"
+            },
+            {
+              "x": 16,
+              "y": 422.765625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 74.328125,
+              "bottom": 481.09375,
+              "text": "A5",
+              "id": "",
+              "disabled": true,
+              "cell": "24"
+            },
+            {
+              "x": 78.328125,
+              "y": 422.765625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 136.65625,
+              "bottom": 481.09375,
+              "text": "B5",
+              "id": "",
+              "disabled": true,
+              "cell": "25"
+            },
+            {
+              "x": 140.65625,
+              "y": 422.765625,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 199,
+              "bottom": 481.109375,
+              "text": "C5",
+              "id": "",
+              "disabled": true,
+              "cell": "26"
+            },
+            {
+              "x": 203,
+              "y": 422.765625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 261.328125,
+              "bottom": 481.09375,
+              "text": "D5",
+              "id": "",
+              "disabled": true,
+              "cell": "27"
+            },
+            {
+              "x": 265.328125,
+              "y": 422.765625,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 323.65625,
+              "bottom": 481.09375,
+              "text": "E5",
+              "id": "",
+              "disabled": true,
+              "cell": "28"
+            },
+            {
+              "x": 327.65625,
+              "y": 422.765625,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 386,
+              "bottom": 481.109375,
+              "text": "F5",
+              "id": "",
+              "disabled": true,
+              "cell": "29"
+            },
+            {
+              "x": 16,
+              "y": 485.109375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 74.328125,
+              "bottom": 543.4375,
+              "text": "A6",
+              "id": "",
+              "disabled": true,
+              "cell": "30"
+            },
+            {
+              "x": 78.328125,
+              "y": 485.109375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 136.65625,
+              "bottom": 543.4375,
+              "text": "B6",
+              "id": "",
+              "disabled": true,
+              "cell": "31"
+            },
+            {
+              "x": 140.65625,
+              "y": 485.109375,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 199,
+              "bottom": 543.453125,
+              "text": "C6",
+              "id": "",
+              "disabled": true,
+              "cell": "32"
+            },
+            {
+              "x": 203,
+              "y": 485.109375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 261.328125,
+              "bottom": 543.4375,
+              "text": "D6",
+              "id": "",
+              "disabled": true,
+              "cell": "33"
+            },
+            {
+              "x": 265.328125,
+              "y": 485.109375,
+              "w": 58.328125,
+              "h": 58.328125,
+              "right": 323.65625,
+              "bottom": 543.4375,
+              "text": "E6",
+              "id": "",
+              "disabled": true,
+              "cell": "34"
+            },
+            {
+              "x": 327.65625,
+              "y": 485.109375,
+              "w": 58.34375,
+              "h": 58.34375,
+              "right": 386,
+              "bottom": 543.453125,
+              "text": "\u2022",
+              "id": "",
+              "disabled": true,
+              "cell": "35"
+            }
+          ],
+          "parts": {
+            "#grid": {
+              "x": 16,
+              "y": 173.390625,
+              "w": 370,
+              "h": 370.0625,
+              "right": 386,
+              "bottom": 543.453125,
+              "text": "A1B1C1D1E1F1A2B2C2D2E2F2A3B3C3D3E3F3A4B4C4D4E4F4A5B5C5D5E5F5A6B6C6D6E6\u2022"
+            },
+            "#reload": {
+              "x": 16,
+              "y": 119.140625,
+              "w": 370,
+              "h": 46.25,
+              "right": 386,
+              "bottom": 165.390625,
+              "text": "Reloading cannon1.8s"
+            },
+            "#target": {
+              "x": 16,
+              "y": 63.140625,
+              "w": 274,
+              "h": 44,
+              "right": 290,
+              "bottom": 107.140625,
+              "text": "\u0411\u043e\u0442 1 \u00b7 5 decks\u0411\u043e\u0442 2 \u00b7 5 decks\u0411\u043e\u0442 3 \u00b7 5 decks"
+            },
+            "#own": {
+              "x": 298,
+              "y": 41.546875,
+              "w": 88,
+              "h": 69.59375,
+              "right": 386,
+              "bottom": 111.140625,
+              "text": "My fleet \u00b7 private\u2022\u2022\u2022"
+            },
+            "#ownGrid": {
+              "x": 341.46875,
+              "y": 49.921875,
+              "w": 44.53125,
+              "h": 52.828125,
+              "right": 386,
+              "bottom": 102.75,
+              "text": "\u2022\u2022\u2022"
+            },
+            "#shot": {
+              "x": 16,
+              "y": 16,
+              "w": 370,
+              "h": 17.546875,
+              "right": 386,
+              "bottom": 33.546875,
+              "text": "Alexandra LongSurname \u2192 \u0411\u043e\u0442 1: miss"
+            },
+            "#ballNow": null,
+            "#ballNext": null,
+            "#aimpad": null,
+            "#marbleFire": null,
+            "#angle": null,
+            "#power": null,
+            ".angle-well": null,
+            ".power-well": null
+          },
+          "cursorLabels": [],
+          "marblePreview": [],
+          "theme": {
+            "game": "naval",
+            "enabled": true,
+            "material": "naval bridge enamel",
+            "pilotOnly": false,
+            "targets": [
+              {
+                "selector": "#own",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "existing unboxed composition retained"
+                ],
+                "reason": null
+              },
+              {
+                "selector": "#target",
+                "matched": 1,
+                "visible": 1,
+                "painted": 0,
+                "omissions": [
+                  "authored interactive feedback retained"
+                ],
+                "reason": null
+              }
+            ],
+            "noDecorationReason": "existing game world, object or character art supplies identity",
+            "surfaces": [],
+            "art": [],
+            "preserved": []
+          }
+        },
+        "navalHealthFacts": [
+          {
+            "name": "\u25cf Alexandra LongSurname",
+            "facts": "5\u2665 \u00b7 Hits 0/1 \u00b7 Sunk 0"
+          },
+          {
+            "name": "\u25cf \u0411\u043e\u0442 1",
+            "facts": "5\u2665 \u00b7 Hits 0/1 \u00b7 Sunk 0"
+          },
+          {
+            "name": "\u25cf \u0411\u043e\u0442 2",
+            "facts": "5\u2665 \u00b7 Hits 0/1 \u00b7 Sunk 0"
+          },
+          {
+            "name": "\u25cf \u0411\u043e\u0442 3",
+            "facts": "5\u2665 \u00b7 Hits 0/1 \u00b7 Sunk 0"
+          }
+        ]
+      }
+    },
+    {
+      "game": "mines",
+      "report": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/report.json",
+      "captures": [
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/mines-phone-current402.png",
+          "sha256": "745e3c8abd8ce2ae3dcb6d55639bc1566cee26eddf80f7f98984e204d5beb88e"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/mines-tv-current402.png",
+          "sha256": "26a0ca5c9cdad7b4b7a0a954a514d5d3ae12475a48edb04f74a0442d8a23fd8b"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/mines-phone-actual-open.png",
+          "sha256": "dfb3e770dbfa8b7c88ab76bf0ba8c8024921e96ccc65d3ae8e4fa6a11eee85de"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/mines-tv-actual-open.png",
+          "sha256": "b6f9978614a131f2f918f4596ab3ad1a945fce746a09a54d2a6b0a7a264559be"
+        }
+      ],
+      "actions": [
+        {
+          "action": "Actual direction controls and Open Tile",
+          "before": 0,
+          "after": "1"
+        }
+      ],
+      "details": {
+        "compactCursorLabels": [
+          "Ale",
+          "B3",
+          "B2",
+          "B1"
+        ]
+      }
+    },
+    {
+      "game": "marble_bloom",
+      "report": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/report.json",
+      "captures": [
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/marble_bloom-phone-current402.png",
+          "sha256": "8d08cbeb11e6d619e3585ff46ee66e3c9057a96889988e7318de2fd533328ae6"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/marble_bloom-tv-current402.png",
+          "sha256": "e44b13715557fc93f21f68fe1ef302cc17ef054449245b2543ed9727db957a5b"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/marble_bloom-phone-swap.png",
+          "sha256": "d7243a8ee1b5acae13779dad4715bc4ea5fdacce3a5bb4d183d44f2814ce7550"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/marble_bloom-tv-swap.png",
+          "sha256": "37a18839e498f3bd1e0087547ded0bb170896e2cfd1d3ff44f16ebf2161251f8"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/marble_bloom-phone-actual-fire.png",
+          "sha256": "fd596fc5d95786d5c08020f479b39241e4ea1392154d4e157302acdca0c613fd"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-three-confirm/marble_bloom-tv-actual-fire.png",
+          "sha256": "641ca38f042cdb99a141e13f86c1d463bc2b70dfccb57cb5572dfce38fd19800"
+        }
+      ],
+      "actions": [
+        {
+          "action": "Actual Swap",
+          "before": 1,
+          "after": 3
+        },
+        {
+          "action": "Actual aim drag and Fire",
+          "player": {
+            "id": "e557ebb6df2c0124",
+            "name": "Alexandra LongSurname",
+            "color": "#c4ff38",
+            "hand": "right",
+            "connected": true,
+            "participant": true,
+            "score": 0,
+            "bot": false,
+            "nextShot": 2.2399999999999975,
+            "aim": {
+              "x": 954.585635359116,
+              "y": 48.563535911602244
+            },
+            "shotsFired": 1,
+            "matches": 0,
+            "bestCombo": 0,
+            "nextSwap": 1.6499999999999995,
+            "botAt": 0,
+            "ball": 1,
+            "nextBall": 0,
+            "actionSeq": 2,
+            "origin": {
+              "x": 752,
+              "y": 396
+            }
+          }
+        }
+      ],
+      "details": {
+        "preSwap": {
+          "id": "e557ebb6df2c0124",
+          "name": "Alexandra LongSurname",
+          "color": "#c4ff38",
+          "hand": "right",
+          "connected": true,
+          "participant": true,
+          "score": 0,
+          "bot": false,
+          "nextShot": 0,
+          "aim": {
+            "x": 700,
+            "y": 190
+          },
+          "shotsFired": 0,
+          "matches": 0,
+          "bestCombo": 0,
+          "nextSwap": 0,
+          "botAt": 0,
+          "ball": 1,
+          "nextBall": 3,
+          "origin": {
+            "x": 752,
+            "y": 396
+          }
+        },
+        "afterSwap": {
+          "id": "e557ebb6df2c0124",
+          "name": "Alexandra LongSurname",
+          "color": "#c4ff38",
+          "hand": "right",
+          "connected": true,
+          "participant": true,
+          "score": 0,
+          "bot": false,
+          "nextShot": 0,
+          "aim": {
+            "x": 700,
+            "y": 190
+          },
+          "shotsFired": 0,
+          "matches": 0,
+          "bestCombo": 0,
+          "nextSwap": 1.6499999999999995,
+          "botAt": 0,
+          "ball": 3,
+          "nextBall": 1,
+          "actionSeq": 1,
+          "origin": {
+            "x": 752,
+            "y": 396
+          }
+        }
+      }
+    },
+    {
+      "game": "pocket_siege",
+      "report": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/report.json",
+      "captures": [
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/pocket_siege-phone-current402.png",
+          "sha256": "1fc3b40e0e8cb38f2c53438494da4a1f9efa0df0ed4061feabfa4e50fee605f3"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/pocket_siege-tv-current402.png",
+          "sha256": "7c4612d90faab012f2e32ab184249f5eea45e8c1a21408abcf776114a99764e8"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/pocket_siege-phone-actual-aim.png",
+          "sha256": "bd57a6dfcc2027d44f9b4fa03231ec96678ce6be120c23071fe0c7fa248af11b"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/pocket_siege-tv-actual-aim.png",
+          "sha256": "7ca16d1d47d547d72369b8e825f76f7a35246fc38b1a401e69c4b7cacc15fcff"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/pocket_siege-phone-actual-fire.png",
+          "sha256": "900d23a803a8f1e461138bc9a3f12d8fdf59fd9bacd4aa4616786263bed44340"
+        },
+        {
+          "file": "output/playwright/ui-rework-2026-10-02/group09-fresh/approved-pocket-confirm/pocket_siege-tv-actual-fire.png",
+          "sha256": "a644bc2a379ce0d2b1d390d4ee7b5f4e01e145f471839e9c056f0fb5c73cc061"
+        }
+      ],
+      "actions": [
+        {
+          "action": "Actual range drag",
+          "id": "angle",
+          "before": "45",
+          "after": "142",
+          "bounds": {
+            "x": 22,
+            "y": 409,
+            "width": 161,
+            "height": 44
+          }
+        },
+        {
+          "action": "Actual range drag",
+          "id": "power",
+          "before": "65",
+          "after": "82",
+          "bounds": {
+            "x": 219,
+            "y": 409,
+            "width": 161,
+            "height": 44
+          }
+        },
+        {
+          "action": "Actual Fire",
+          "stage": "flight"
+        }
+      ],
+      "details": {
+        "rangeGeometry": {
+          "before": {
+            "#angle": [
+              22,
+              333,
+              161,
+              32
+            ],
+            "#power": [
+              219,
+              333,
+              161,
+              32
+            ],
+            ".angle-well": [
+              10,
+              209,
+              185,
+              168
+            ],
+            ".power-well": [
+              207,
+              209,
+              185,
+              168
+            ],
+            ".deck-angle": [
+              22,
+              259,
+              161,
+              62
+            ],
+            ".deck-power": [
+              219,
+              259,
+              161,
+              62
+            ],
+            ".move-controls": [
+              10,
+              421,
+              382,
+              48
+            ],
+            "#tankFire": [
+              10,
+              481,
+              382,
+              64
+            ]
+          },
+          "after": {
+            "#angle": [
+              22,
+              327,
+              161,
+              44
+            ],
+            "#power": [
+              219,
+              327,
+              161,
+              44
+            ],
+            ".angle-well": [
+              10,
+              209,
+              185,
+              168
+            ],
+            ".power-well": [
+              207,
+              209,
+              185,
+              168
+            ],
+            ".deck-angle": [
+              22,
+              259,
+              161,
+              62
+            ],
+            ".deck-power": [
+              219,
+              259,
+              161,
+              62
+            ],
+            ".move-controls": [
+              10,
+              421,
+              382,
+              48
+            ],
+            "#tankFire": [
+              10,
+              481,
+              382,
+              64
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "originalsPersonallyViewed": "All affected current/action originals for Naval, Mines, Marble, Pocket.",
+  "navalShortLimit": "320 grid lastrow bottom357 within358 iframe; footer begins440shellY. Fit is tight, not a generous field/footer gutter. Browser synthesized center tap only; physical thumb accuracy not validated.",
+  "independentReview": {
+    "directorTV": "Naval health +8Mines/Marble/Pocket originals independently inspected; named TV fixes confirmed.",
+    "phone08": "All10 originals independently opened; Naval32044/40258.33, Mines1S, MarbleSwap/ownshots1, Pocket44/drag/flight confirmed; no new named phone correction.",
+    "pocketFinalFrameLimit": "Actual142degreeFire\u2192flight; shell exitsleft, finalPNG alone is phase evidence."
+  },
+  "subsequentBoundary": {
+    "scope": "New root-approved Hockey TV label-only HUD avoidance",
+    "appJsSha256": "aafd1eaeb5c561190fadc620cac91ced679dde6db3e580224a8ca58a0fbc222b",
+    "syntax": "pass",
+    "visualProof": "Awaiting granted1920/1280 normalengine proof; previous source/capture hashes retained as historical boundary."
+  }
+}

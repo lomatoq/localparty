@@ -1,0 +1,312 @@
+[
+  {
+    "atlas": "01-push-shrink",
+    "ids": [
+      "push",
+      "shrink"
+    ],
+    "titles": [
+      "PUSH PIT",
+      "LAST CIRCLE"
+    ],
+    "prompt": "Use case: logo-brand.\nAsset type: native-resolution transparent production game wordmark atlas, two isolated game logos for HeyPals, high-resolution square canvas at least 2048 × 2048 if supported.\nCreate TWO distinct beautifully hand-drawn and softly dimensional typographic logos, arranged in two separate wide horizontal rows. TOP ROW exact text \"PUSH PIT\". BOTTOM ROW exact text \"LAST CIRCLE\". Each wordmark is dominant, legible bold custom rounded angular lettering with expressive motion, editorial hand-painted craftsmanship, soft toy-console depth, warm ivory highlights, saturated violet sides. Related premium playful family, not identical fonts. Upper PUSH PIT: ivory and vivid violet chunky forward-leaning letters with cyan bumper-ring accents, a tiny stylized impact spark and two pucks integrated beside words. Lower LAST CIRCLE: cyan and violet rounded lettering wrapped by one tapering broken circular orbit to suggest a shrinking arena; small lime spark, no platform scene.\nBackground must be genuine empty TRANSPARENT ALPHA. Each complete logo, including every glow, shadow and decoration, must fit into its own row bounded horizontally 12% to 88% and vertically: TOP 8% to 38%; BOTTOM 62% to 92%. At least 24% empty transparent vertical gap between rows, generous outer clear margins. Logos never touch one another. Draw no dividers, no checkerboard, no background plates, no numbered labels, no extra words, no HeyPals text, no borders, no watermark. Entire texts spelled EXACTLY and unmistakably, no cropped letters. Text should occupy most of each logo; embellishments small and subordinate. Avoid generic flat type, photographic rendering or clutter. Deliver only this two-logo transparent atlas, using highest native resolution supported; do not simulate resolution through blurred upscale."
+  },
+  {
+    "atlas": "02-knives-bomb",
+    "key": "02-knives-bomb",
+    "ids": [
+      "knives",
+      "bomb"
+    ],
+    "titles": [
+      "COLOR KNIVES",
+      "BOMB TAG"
+    ],
+    "themes": [
+      "coral-pink and cyan lettering; a small colorful spinning segmented target and one stylized toy throwing knife beside the word; sharp confident letter ends",
+      "violet letters with warm orange fire edge; tiny round toy bomb with a bright fuse spark integrated into the letter O; dynamic tag streak"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"COLOR KNIVES\". Theme: coral-pink and cyan lettering; a small colorful spinning segmented target and one stylized toy throwing knife beside the word; sharp confident letter ends. \nBOTTOM ROW exact text: \"BOMB TAG\". Theme: violet letters with warm orange fire edge; tiny round toy bomb with a bright fuse spark integrated into the letter O; dynamic tag streak.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "03-western-tanks",
+    "key": "03-western-tanks",
+    "ids": [
+      "western",
+      "tanks"
+    ],
+    "titles": [
+      "ONE SHOT WESTERN",
+      "LOCAL TANKS"
+    ],
+    "themes": [
+      "warm golden western slab letterforms with softly rounded ends, violet depth, tiny sheriff star and orange sunset ray; friendly saloon arcade",
+      "bold lime and ivory armored slab letters with violet toy-metal bevels; tiny tread mark and cute tank barrel flourish, two tiny bolt details"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"ONE SHOT WESTERN\". Theme: warm golden western slab letterforms with softly rounded ends, violet depth, tiny sheriff star and orange sunset ray; friendly saloon arcade. \nBOTTOM ROW exact text: \"LOCAL TANKS\". Theme: bold lime and ivory armored slab letters with violet toy-metal bevels; tiny tread mark and cute tank barrel flourish, two tiny bolt details.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "04-tankarena-chaos",
+    "key": "04-tankarena-chaos",
+    "ids": [
+      "tankarena",
+      "chaos"
+    ],
+    "titles": [
+      "TANK ARSENAL",
+      "ONE CURSOR CHAOS"
+    ],
+    "themes": [
+      "lime armored letters with violet rounded steel depth, a rocket fin and small playful barrel silhouettes integrated, powerful arcade",
+      "violet and cyan elastic wonky lettering; one white mouse pointer arrow and two small diverging motion trails, teamwork controlled chaos"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"TANK ARSENAL\". Theme: lime armored letters with violet rounded steel depth, a rocket fin and small playful barrel silhouettes integrated, powerful arcade. \nBOTTOM ROW exact text: \"ONE CURSOR CHAOS\". Theme: violet and cyan elastic wonky lettering; one white mouse pointer arrow and two small diverging motion trails, teamwork controlled chaos.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "05-kart-monster",
+    "key": "05-kart-monster",
+    "ids": [
+      "kart",
+      "monster"
+    ],
+    "titles": [
+      "WI-FI KART PARTY",
+      "PASS THE MONSTER"
+    ],
+    "themes": [
+      "coral-red and lime racing letters with violet bevels, tiny checkered flag and a Wi-Fi arc above the hyphen; cheerful speedy go-kart logo",
+      "cyan and violet amusing creature letterforms with tiny eyes on a letter and a pencil flourish; adorable hand-drawn monster-building party, not scary"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"WI-FI KART PARTY\". Theme: coral-red and lime racing letters with violet bevels, tiny checkered flag and a Wi-Fi arc above the hyphen; cheerful speedy go-kart logo. \nBOTTOM ROW exact text: \"PASS THE MONSTER\". Theme: cyan and violet amusing creature letterforms with tiny eyes on a letter and a pencil flourish; adorable hand-drawn monster-building party, not scary.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "06-spy-millionaire",
+    "key": "06-spy-millionaire",
+    "ids": [
+      "spy",
+      "millionaire"
+    ],
+    "titles": [
+      "SPY",
+      "SINYAK MILLIONAIRE"
+    ],
+    "themes": [
+      "ivory and violet bold mysterious compact lettering, a tiny magnifying glass and hat silhouette, playful secret identity detective",
+      "warm golden and cyan prestigious quiz lettering with violet depth, one small faceted diamond and a golden glint; SINYAK spelled S I N Y A K"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"SPY\". Theme: ivory and violet bold mysterious compact lettering, a tiny magnifying glass and hat silhouette, playful secret identity detective. \nBOTTOM ROW exact text: \"SINYAK MILLIONAIRE\". Theme: warm golden and cyan prestigious quiz lettering with violet depth, one small faceted diamond and a golden glint; SINYAK spelled S I N Y A K.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "07-sinyakquiz-warsaw",
+    "key": "07-sinyakquiz-warsaw",
+    "ids": [
+      "sinyakquiz",
+      "warsaw"
+    ],
+    "titles": [
+      "SINYAK: PARTY QUIZ",
+      "WARSAW DISCOVERIES"
+    ],
+    "themes": [
+      "lime and violet lively quizshow lettering with tiny microphone and question mark flourish; keep colon after SINYAK exactly, SINYAK spelled S I N Y A K",
+      "warm ivory-gold and lime adventurous city lettering with violet depth, a tiny stylized tram and small skyline roof flourish, do not add city photo"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"SINYAK: PARTY QUIZ\". Theme: lime and violet lively quizshow lettering with tiny microphone and question mark flourish; keep colon after SINYAK exactly, SINYAK spelled S I N Y A K. \nBOTTOM ROW exact text: \"WARSAW DISCOVERIES\". Theme: warm ivory-gold and lime adventurous city lettering with violet depth, a tiny stylized tram and small skyline roof flourish, do not add city photo.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "08-crocodile-jenga",
+    "key": "08-crocodile-jenga",
+    "ids": [
+      "crocodile",
+      "jenga"
+    ],
+    "titles": [
+      "CHARADES",
+      "CAREFUL, JENGA!"
+    ],
+    "themes": [
+      "lime and ivory animated theatrical letters with violet sides, two small expressive hand silhouettes and comic gesture spark, not crocodile imagery",
+      "warm wood-gold large letterforms with violet depth, one tiny leaning block stack beside the word, comma after CAREFUL and exclamation after JENGA"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"CHARADES\". Theme: lime and ivory animated theatrical letters with violet sides, two small expressive hand silhouettes and comic gesture spark, not crocodile imagery. \nBOTTOM ROW exact text: \"CAREFUL, JENGA!\". Theme: warm wood-gold large letterforms with violet depth, one tiny leaning block stack beside the word, comma after CAREFUL and exclamation after JENGA.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "09-crane-naval",
+    "key": "09-crane-naval",
+    "ids": [
+      "crane",
+      "naval"
+    ],
+    "titles": [
+      "NIGHT SHIFT",
+      "QUICK BATTLESHIPS"
+    ],
+    "themes": [
+      "warm golden industrial rounded block letters with cyan neon edges and violet depth, a tiny crane hook suspending one block",
+      "cyan ivory nautical lettering with violet sides, tiny toy battleship bow and sea-splash flourish; readable adventurous arcade"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"NIGHT SHIFT\". Theme: warm golden industrial rounded block letters with cyan neon edges and violet depth, a tiny crane hook suspending one block. \nBOTTOM ROW exact text: \"QUICK BATTLESHIPS\". Theme: cyan ivory nautical lettering with violet sides, tiny toy battleship bow and sea-splash flourish; readable adventurous arcade.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "10-drawguess-western_duel",
+    "key": "10-drawguess-western_duel",
+    "ids": [
+      "drawguess",
+      "western_duel"
+    ],
+    "titles": [
+      "DRAW & GUESS",
+      "TWO AT SUNSET"
+    ],
+    "themes": [
+      "ivory violet lettering with lime paint strokes and one playful pencil and cyan brush flourish; keep actual ampersand",
+      "violet and orange-gold western duel lettering, tiny cowboy hat and two warm sunset rays, balanced inviting two-player logo"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"DRAW & GUESS\". Theme: ivory violet lettering with lime paint strokes and one playful pencil and cyan brush flourish; keep actual ampersand. \nBOTTOM ROW exact text: \"TWO AT SUNSET\". Theme: violet and orange-gold western duel lettering, tiny cowboy hat and two warm sunset rays, balanced inviting two-player logo.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "11-taprace-punchmeter",
+    "key": "11-taprace-punchmeter",
+    "ids": [
+      "taprace",
+      "punchmeter"
+    ],
+    "titles": [
+      "TAP RACE",
+      "PUNCH METER"
+    ],
+    "themes": [
+      "golden and violet fast forward-leaning lettering with little running shoe and speed streaks, energetic rapid tapping arcade",
+      "coral-pink ivory punchy chunky lettering with violet sidewalls and tiny boxing glove impact spark, readable bold power-meter arcade"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"TAP RACE\". Theme: golden and violet fast forward-leaning lettering with little running shoe and speed streaks, energetic rapid tapping arcade. \nBOTTOM ROW exact text: \"PUNCH METER\". Theme: coral-pink ivory punchy chunky lettering with violet sidewalls and tiny boxing glove impact spark, readable bold power-meter arcade.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "12-flappy-hungry",
+    "key": "12-flappy-hungry",
+    "ids": [
+      "flappy",
+      "hungry"
+    ],
+    "titles": [
+      "MULTIPLAYER FLAPPY",
+      "HUNGRY ARENA"
+    ],
+    "themes": [
+      "cyan and ivory winged playful lettering with violet depth, tiny friendly yellow bird and two feather strokes, precise MULTIPLAYER spelling",
+      "lime and gold friendly round chunky lettering with violet depth, tiny donut and a bite taken from a letter, playful food arena"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"MULTIPLAYER FLAPPY\". Theme: cyan and ivory winged playful lettering with violet depth, tiny friendly yellow bird and two feather strokes, precise MULTIPLAYER spelling. \nBOTTOM ROW exact text: \"HUNGRY ARENA\". Theme: lime and gold friendly round chunky lettering with violet depth, tiny donut and a bite taken from a letter, playful food arena.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "13-snakelines-carryball",
+    "key": "13-snakelines-carryball",
+    "ids": [
+      "snakelines",
+      "carryball"
+    ],
+    "titles": [
+      "SNAKE LINES",
+      "CARRY BALL"
+    ],
+    "themes": [
+      "lime and violet curving elastic lettering with cyan trail line and tiny friendly snake eyes, arcade trail survival",
+      "cyan ivory and lime sports lettering with violet depth, tiny rugby ball tucked beside letters and one pass trajectory curve"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"SNAKE LINES\". Theme: lime and violet curving elastic lettering with cyan trail line and tiny friendly snake eyes, arcade trail survival. \nBOTTOM ROW exact text: \"CARRY BALL\". Theme: cyan ivory and lime sports lettering with violet depth, tiny rugby ball tucked beside letters and one pass trajectory curve.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "14-marble_bloom-pocket_siege",
+    "key": "14-marble_bloom-pocket_siege",
+    "ids": [
+      "marble_bloom",
+      "pocket_siege"
+    ],
+    "titles": [
+      "MARBLE BLOOM",
+      "POCKET SIEGE"
+    ],
+    "themes": [
+      "lime and lavender lush rounded letters with tiny polished colored marbles and one blossom petal flourish, chain puzzle",
+      "lavender ivory chunky fortress-like lettering with lime accents, a tiny cannon and one toy explosion spark, destructive terrain artillery"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"MARBLE BLOOM\". Theme: lime and lavender lush rounded letters with tiny polished colored marbles and one blossom petal flourish, chain puzzle. \nBOTTOM ROW exact text: \"POCKET SIEGE\". Theme: lavender ivory chunky fortress-like lettering with lime accents, a tiny cannon and one toy explosion spark, destructive terrain artillery.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas.",
+    "selectedSource": "originals/14-marble_bloom-pocket_siege-v2-safe.png",
+    "edits": [
+      {
+        "reason": "Tiny orange effect reached source boundary; safely contain all effect tips.",
+        "prompt": "Use case: precise-object-edit. Edit this TWO-logo transparent atlas, preserving exact top text \"MARBLE BLOOM\" and bottom text \"POCKET SIEGE\", all letter spelling and the illustrated ivory/violet/lime toy-console style, colors, tiny marbles/flowers/castle/cannon details. Correct one production problem: the orange explosion tip at the far right of bottom POCKET SIEGE reaches the image edge. Recompose the lower logo approximately10% narrower and a little more central so EVERY flame tip, flying stone, shadow, and glow is entirely contained, leaving at least60pixels completely transparent empty space on its right and bottom at native source size. Keep MARBLE BLOOM top logo entirely visible, similar placement; keep a wide completely empty transparent gap between the two rows. Retain the two-row square atlas composition and native sharp lettering. No new text, no background, no dividing line, no checkerboard, no black plate, no flat replacement. Genuine transparent alpha. Both entire logos safely inside clear outer margins, all effect tips fully visible.",
+        "original": "originals/14-marble_bloom-pocket_siege.png",
+        "result": "originals/14-marble_bloom-pocket_siege-v2-safe.png"
+      }
+    ]
+  },
+  {
+    "atlas": "15-bow_club-poker",
+    "key": "15-bow_club-poker",
+    "ids": [
+      "bow_club",
+      "poker"
+    ],
+    "titles": [
+      "BOW CLUB",
+      "POKER NIGHT"
+    ],
+    "themes": [
+      "warm gold and jade softly carved rounded lettering with violet depth, one small bow and arrow crossing beside text, archery skill club",
+      "ivory violet classy yet playful bold lettering with one crimson heart suit and gold chip, a small star glint, no gambling slogan"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"BOW CLUB\". Theme: warm gold and jade softly carved rounded lettering with violet depth, one small bow and arrow crossing beside text, archery skill club. \nBOTTOM ROW exact text: \"POKER NIGHT\". Theme: ivory violet classy yet playful bold lettering with one crimson heart suit and gold chip, a small star glint, no gambling slogan.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "16-airhockey-mines",
+    "key": "16-airhockey-mines",
+    "ids": [
+      "airhockey",
+      "mines"
+    ],
+    "titles": [
+      "AIR HOCKEY",
+      "MINE TOGETHER"
+    ],
+    "themes": [
+      "icy cyan ivory rounded athletic letters with violet depth, small hockey puck and cyan swipe arc, high-speed tabletop arcade",
+      "lime ivory and violet teamwork puzzle lettering with a small mine tile and a tiny flag, one gold detection glint, no explosions dominating"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"AIR HOCKEY\". Theme: icy cyan ivory rounded athletic letters with violet depth, small hockey puck and cyan swipe arc, high-speed tabletop arcade. \nBOTTOM ROW exact text: \"MINE TOGETHER\". Theme: lime ivory and violet teamwork puzzle lettering with a small mine tile and a tiny flag, one gold detection glint, no explosions dominating.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "17-curling-bowling",
+    "key": "17-curling-bowling",
+    "ids": [
+      "curling",
+      "bowling"
+    ],
+    "titles": [
+      "ICE & NERVES",
+      "POCKET STRIKE"
+    ],
+    "themes": [
+      "icy cyan and coral warm accented lettering with violet depth, tiny curling stone with polished handle and one clean ice glide swoosh; actual ampersand",
+      "lavender ivory and golden lively athletic letters with tiny bowling ball and one tipped ivory pin, upbeat arcade strike"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"ICE & NERVES\". Theme: icy cyan and coral warm accented lettering with violet depth, tiny curling stone with polished handle and one clean ice glide swoosh; actual ampersand. \nBOTTOM ROW exact text: \"POCKET STRIKE\". Theme: lavender ivory and golden lively athletic letters with tiny bowling ball and one tipped ivory pin, upbeat arcade strike.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  },
+  {
+    "atlas": "18-swarm_gate-peek_shoot",
+    "key": "18-swarm_gate-peek_shoot",
+    "ids": [
+      "swarm_gate",
+      "peek_shoot"
+    ],
+    "titles": [
+      "DON'T BITE THE GATE!",
+      "WHO'S POPPING UP?"
+    ],
+    "themes": [
+      "lime ivory and coral cartoon letters with violet sidewalls, tiny cute bug and a small wooden gate element; preserve apostrophe in DON'T and ending exclamation",
+      "coral ivory and cyan springy surprise lettering with violet depth, tiny popping toy target from a violet hatch; preserve apostrophe in WHO'S and ending question mark"
+    ],
+    "prompt": "Use case: logo-brand. Asset type: two-game transparent native-resolution typographic logo atlas for the HeyPals console.\nCreate exactly TWO distinct finished hand-illustrated game wordmarks in two entirely isolated horizontal rows. A coherent premium playful toy-console family: expressive chunky custom lettering, strongly legible at small size, modest forward lean, warm ivory highlight planes, deep violet sides, cyan/lime/magenta accents, soft dimensional craftsmanship. Match the PUSH PIT / LAST CIRCLE family already described: large text dominates, one or two tiny integrated thematic embellishments, no full scene, no disc backgrounds, no generic black plates. Make each game's lettering distinct according to its mechanic.\nTOP ROW exact text: \"DON'T BITE THE GATE!\". Theme: lime ivory and coral cartoon letters with violet sidewalls, tiny cute bug and a small wooden gate element; preserve apostrophe in DON'T and ending exclamation. \nBOTTOM ROW exact text: \"WHO'S POPPING UP?\". Theme: coral ivory and cyan springy surprise lettering with violet depth, tiny popping toy target from a violet hatch; preserve apostrophe in WHO'S and ending question mark.\nGenuine transparent alpha everywhere outside wordmarks. Highest supported native square resolution. Keep TOP entire logo inside x8–92%, y5–40%; BOTTOM entire logo inside x8–92%, y60–95%. A broad completely empty transparent horizontal gap of20% canvas height between, and clear empty outside margins; all shadows/sparks belong entirely to one row, never cross. No borders, no cells drawn, no labels, no extra words, no HeyPals brand text, no watermark. Exact spelling and punctuation matter. Draw all letters fully, no cutoffs; no faint small subtitles. Each whole title can stack in2balanced lines but keep the wordmark wide. Produce only this TWO-logo atlas."
+  }
+]

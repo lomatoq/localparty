@@ -1,0 +1,401 @@
+{
+  "createdAt": "2026-10-03T10:59:44.454426+00:00",
+  "verdict": "Named four-row clipping, sixteen-player end reach and actual award-copy correction confirmed in this current bounded packet. No all36 or physical approval.",
+  "sourceHashes": {
+    "games/crane/public/client.js": "fe9304238c892ae286b85cc2730c2798606b0ca601b56d50f85679e2ae31345b",
+    "games/crane/public/style.css": "7eb17f6530a0c6d0bdf0c6fff0e29b9b79df50d2d30ec423f751127cc0867b81",
+    "games/crane/server.js": "37caa9e00029d9b5dcc0b53e8702e206440c0155b848562e5c54878d5fb285a2",
+    "public/tv-information.css": "d7caa8359033306217afe2703dd56e065e99d36c5fdfcec6c15f7ee58d5cb649",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/assets/gameplay/crane-city-minimal-20261003-v1.png": "9974e8226aa01f46008e4e5856360cc2ab1f8465196bf938f69d3307ebfe0465"
+  },
+  "currentSourceMatch": {
+    "games/crane/public/client.js": true,
+    "games/crane/public/style.css": true,
+    "games/crane/server.js": true,
+    "public/tv-information.css": true,
+    "public/game-ui-system.js": true,
+    "public/game-ui-system.css": true,
+    "public/game-polish.css": true,
+    "public/rankings-theme.css": true,
+    "public/assets/gameplay/crane-city-minimal-20261003-v1.png": true
+  },
+  "originalCount": 31,
+  "runs": [
+    {
+      "run": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four",
+      "reportSha256": "c3047ae37ca103b38401120346451c0f7eae2095c817e62d47716e934d8974b1",
+      "errors": [],
+      "sourceDrift": [],
+      "observation": "Four full crew rows with coherent two-line Alexandra LongSurname at1280/1920. Open city uses one navy/teal canvas wash, no rectangular rail backing. Task/facts/readout remain grouped. Phone320/402 active arrows/Drop fit; real drop advances Blocks to1 and bot turn visibly mutes controls. Rules expanded/collapsed remain readable.",
+      "capCycleSummary": null,
+      "scrollMeasurements": {},
+      "feedbackCopyProof": [
+        {
+          "renderedCue": "Perfect! +145",
+          "actualGain": 145,
+          "impactGain": 145
+        }
+      ],
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-phone-drop-feedback-320.png",
+          "sha256": "222bc49967a212cea9832646b3cb664ae2f5117a73b7329d3b4fbe1c738b5402",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-phone-drop-feedback-402.png",
+          "sha256": "f23d551bc8ea93d40edfc51e3b178b7ef6b3a226f0d941c7f4880e72661e51d6",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-phone-gameplay.png",
+          "sha256": "a89c82c248d86a4e0d1a677dbc3c5615065a07a33e2a62e085e7b4c3b232f86e",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-phone-live-320.png",
+          "sha256": "43043d0241bbbcac3f01aa36e843246df81f9dccaf8e30101d564412e3e15617",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-phone-live-402.png",
+          "sha256": "0625d0f53065fae7d4ed9ad878733f7d7559dd3d54b719750117590c7f6e7830",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-phone-matchmaking-rules.png",
+          "sha256": "1a9830616dfce08963888140303aaa78f9ff0bedf20336f6b6deedb69e3ed7c4",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-phone-matchmaking.png",
+          "sha256": "2784c30468b19299a4ba04a504d9c75a5328d1f9030be42ee85ac338ba4025f6",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-tv-drop-feedback-1280.png",
+          "sha256": "027d577b0ffa72037c7f8b15b84c24b98123acfc91f4aad67e9d5f2523982dd6",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-tv-drop-feedback-1920.png",
+          "sha256": "47a308466713e10928046f45bb6bf3a4cea0566d158b1296bb9c76b1c569a5b0",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-tv-gameplay.png",
+          "sha256": "a2aedfaa07fb42d13d86290d58d01bcac35093c590700c8c79c9ebb30225264f",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-tv-live-1280.png",
+          "sha256": "a3a59667ec313ff55081e3c857c1070a6dfd5e76ed1b16bc1ad06ec3a8cf800b",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-tv-live-1920.png",
+          "sha256": "e3809f16a365445372eb1dd7e2a8f870c4fdfcf3ba36749523c01e684cc31a3c",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/crane-tv-matchmaking.png",
+          "sha256": "155abcff48b7f276758a82c23eb080cb550dddf4705b11dfde1a4f9323b36959",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/main-phone-lobby.png",
+          "sha256": "ed0594cef229779b6064386a9d2c8aee599237e5bbd1c51ee5686ef0dfd6717f",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-four/main-tv-lobby.png",
+          "sha256": "30d80e2b3d957ac183a829ba7daaf3005d0fd7261041eb3b61f74349f0db3663",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        }
+      ]
+    },
+    {
+      "run": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080",
+      "reportSha256": "185f31916d2e66a0123ccde53369c5ba04c94e270c8e057df4b30154aa238515",
+      "errors": [],
+      "sourceDrift": [],
+      "observation": "End/cap-cycle/after-update PNGs contain last Bot13 row and whole score axis; upper partial row fades. Manual-middle image shows middle players with both edge fades, not bottom. Normal clock engine progresses; center+147 feedback is complete. Landing diagnostic+91 agrees cap91.",
+      "capCycleSummary": {
+        "seen": [
+          "untimed",
+          "aiming"
+        ],
+        "transitions": 4,
+        "samples": 21,
+        "allEndsReached": true,
+        "allLastRowsContained": true
+      },
+      "scrollMeasurements": {
+        "endAfterLiveUpdate45RAF": {
+          "scrollTop": 800,
+          "max": 800,
+          "clientHeight": 507,
+          "scrollHeight": 1307,
+          "lastBottom": 963.53125,
+          "listBottom": 963.5625,
+          "capHeight": 251.38,
+          "clock": "90",
+          "message": "Your block"
+        },
+        "endAfterPNG45RAF": {
+          "scrollTop": 806,
+          "max": 806,
+          "clientHeight": 501,
+          "scrollHeight": 1307,
+          "lastBottom": 963.59375,
+          "listBottom": 963.5625,
+          "capHeight": 257.55,
+          "clock": "\u2014",
+          "message": "Block falling\u2026"
+        },
+        "manualMiddleBefore": {
+          "scrollTop": 402,
+          "max": 800,
+          "clientHeight": 507,
+          "scrollHeight": 1307,
+          "lastBottom": 1361.53125,
+          "listBottom": 963.5625,
+          "capHeight": 251.38,
+          "clock": "90",
+          "message": "Your block"
+        },
+        "manualMiddleAfterLiveUpdate": {
+          "scrollTop": 402,
+          "max": 806,
+          "clientHeight": 501,
+          "scrollHeight": 1307,
+          "lastBottom": 1367.59375,
+          "listBottom": 963.5625,
+          "capHeight": 257.55,
+          "clock": "\u2014",
+          "message": "Block falling\u2026"
+        }
+      },
+      "feedbackCopyProof": [
+        {
+          "renderedCue": "Perfect! +149",
+          "actualGain": 149,
+          "impactGain": 149
+        },
+        {
+          "renderedCue": "Perfect! +147",
+          "actualGain": 147,
+          "impactGain": 147
+        }
+      ],
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-phone-matchmaking-rules.png",
+          "sha256": "2781439fb9d7cfb132b7153d664c2bd8692d9f6c4293d9060675d50559672c48",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-phone-roster-end.png",
+          "sha256": "bb188648465de638783abe6eabc1460abeea7ceeb683b3e7bfa0535f00e1974f",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-tv-cap-cycle-aiming.png",
+          "sha256": "612c81e7db563a5dc3d55c959ca9359680b3659756764b7e30c4fa92c6c9f4c5",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-tv-cap-cycle-untimed.png",
+          "sha256": "6a55bc54252ccc7f15196f6f87b635c25c84ebe7e56b8b204939baf414e17e63",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-tv-end-after-live-update.png",
+          "sha256": "0b960b40e95c00ad4c7cd627d8c24c747c574fa3ded5083c63dd1e3116b583ba",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-tv-manual-middle-after-update.png",
+          "sha256": "b9c7b1e6430bef6f23bc74d912d5db147e679ebddc4bffa59006db06d874b2f0",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-tv-roster-diagnostic-end.png",
+          "sha256": "243db5291783bbb0aba9acae0fb1b540ab23604046e2376eca40036b9d5aa8c2",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen1080/crane-tv-roster-end.png",
+          "sha256": "8248bcf61570aeced29e31fcd077a016430e9ecb6325eb23cf434919f02289e9",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        }
+      ]
+    },
+    {
+      "run": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720",
+      "reportSha256": "2d540da1f062a48830909e38339fa220dc27ced23d8a74fe1e4f2cc3f1fc529f",
+      "errors": [],
+      "sourceDrift": [],
+      "observation": "End/cap-cycle/after-update PNGs contain last Bot15 row. Actual diagnostic Perfect!+145 agrees center+145 and cap145. Manual middle stays in middle as cap dimensions change. City/open rail remain integrated at short TV height.",
+      "capCycleSummary": {
+        "seen": [
+          "aiming",
+          "untimed"
+        ],
+        "transitions": 4,
+        "samples": 21,
+        "allEndsReached": true,
+        "allLastRowsContained": true
+      },
+      "scrollMeasurements": {
+        "endAfterLiveUpdate45RAF": {
+          "scrollTop": 1081,
+          "max": 1081,
+          "clientHeight": 226,
+          "scrollHeight": 1307,
+          "lastBottom": 607.96875,
+          "listBottom": 608,
+          "capHeight": 159.58,
+          "clock": "\u2014",
+          "message": "Contact \u00b7 waiting for the block to settle"
+        },
+        "endAfterPNG45RAF": {
+          "scrollTop": 1060,
+          "max": 1060,
+          "clientHeight": 255,
+          "scrollHeight": 1315,
+          "lastBottom": 595.9521484375,
+          "listBottom": 603.5625,
+          "capHeight": 148.13,
+          "clock": "90",
+          "message": "Your block"
+        },
+        "manualMiddleBefore": {
+          "scrollTop": 526,
+          "max": 1063,
+          "clientHeight": 244,
+          "scrollHeight": 1307,
+          "lastBottom": 1140.890625,
+          "listBottom": 603.5625,
+          "capHeight": 159.58,
+          "clock": "\u2014",
+          "message": "Block falling\u2026"
+        },
+        "manualMiddleAfterLiveUpdate": {
+          "scrollTop": 521,
+          "max": 1052,
+          "clientHeight": 255,
+          "scrollHeight": 1307,
+          "lastBottom": 1134.640625,
+          "listBottom": 603.5625,
+          "capHeight": 148.13,
+          "clock": "90",
+          "message": "Your block"
+        }
+      },
+      "feedbackCopyProof": [
+        {
+          "renderedCue": "Perfect! +145",
+          "actualGain": 145,
+          "impactGain": 145
+        },
+        {
+          "renderedCue": "Perfect! +146",
+          "actualGain": 146,
+          "impactGain": 146
+        },
+        {
+          "renderedCue": "Perfect! +148",
+          "actualGain": 148,
+          "impactGain": 148
+        }
+      ],
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-phone-matchmaking-rules.png",
+          "sha256": "2781439fb9d7cfb132b7153d664c2bd8692d9f6c4293d9060675d50559672c48",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-phone-roster-end.png",
+          "sha256": "11878df2a42ff630c6f6f063e4a0f2a2c2db6b1aa6126ba60d67831453cf3028",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-tv-cap-cycle-aiming.png",
+          "sha256": "69100462dc7e28da79cd4239e07772da150de033334cf044543efbc4e116b8e4",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-tv-cap-cycle-untimed.png",
+          "sha256": "7f3d37dd575e248289be5ac7d8071df15090a5498624d1957d345ab939c2aed7",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-tv-end-after-live-update.png",
+          "sha256": "4fac292a15bd059e677d6a89ff66a5a487908edf7dbf85ad7cd52270de512bdd",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-tv-manual-middle-after-update.png",
+          "sha256": "6f8617a3d1e9a97a602b211226fe00ecff06080709857b9a694711e2545d4ea6",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-tv-roster-diagnostic-end.png",
+          "sha256": "cbb928900eae1720897343505f3dbafec484fa1f5dfde41620fb8eb37e10ae8a",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-refinement-confirm-sixteen720/crane-tv-roster-end.png",
+          "sha256": "1743f7f1cc44a66812896ed1fa9774f58cef0fb669743fadb5eface1cd59b919",
+          "hashMatchesOwner": true,
+          "independentlyOpened": true
+        }
+      ]
+    }
+  ],
+  "qualifications": [
+    "Images reviewed individually; no prior acceptance carried.",
+    "This run records21samples/4cap transitions at each sixteen-player TV resolution, all ends/last rows contained. Not a claim about every future timing.",
+    "Manual middle1080 stays402;720526\u2192521 with clientheight244\u2192255/max1063\u21921052. Position remains in middle; absolute pixel equality is not claimed.",
+    "main-tv-lobby.png is boot87/100, not settled TV catalog.",
+    "crane-phone-roster-end.png at both16p sizes is Contact/watch-landing controller, not phone roster-end evidence.",
+    "Cyrillic bot participant names are literals, not untranslated UI.",
+    "No native bridge/physical-device validation."
+  ]
+}

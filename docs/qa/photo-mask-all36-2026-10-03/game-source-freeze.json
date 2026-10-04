@@ -1,0 +1,23 @@
+{
+  "games/sports_siege/public/style.css": "1f3f5d9cb1a680b0549f5e9ae6895013d438ad2d2233b0abc4ab64809ed80ecc",
+  "games/bow_club/public/style.css": "bfe86492e54b6bf97a5fc6f052d28c69dfd9feaed009233a03439dd6427e16b7",
+  "games/crocodile/public/screen.css": "11250be6e3a766a5318c3ffc2f85d0a9e8b5034896b73b16ba10c6b78fa57d09",
+  "games/drawguess/public/screen.css": "d06a14cf5282770c8b517a4ce3d9c71fd3e1bebd5b67616bb2cb67fc0e43efca",
+  "games/arcade_deluxe/public/style.css": "eaebc0513c1c782cfda442420e2edfbf24436bc251c0c07a0fcfffb91383ef7f",
+  "games/arcade/public/style.css": "845d1261510e061f9d10de584b362fa01a67ee18cf6b68e46362ab68e8396f73",
+  "games/party/public/host.css": "96f69d063e4093e63c42a8baa100f60ff0325defe88e31f71cd8fdcd2b95c30a",
+  "games/party/public/controller.css": "29d9e9ebb78ffd1b69f2cccb210c659e747166b86c1dcf3c4b3b0b776869b7de",
+  "games/tankarena/public/style.css": "bf4b1496eff895efc3f4dbb28c2b91b9a1147d88612c336a04de464cbe1be843",
+  "games/quiz/public/screen.css": "0152aac688bbdfd1e7264ac2aef5e40376ddef6a0747d77610ff2622b0bf7522",
+  "games/millionaire/public/tv-layout.css": "2b65ebf779d3ff46c54d01b14e94f7eedc2f57aedcdc53ff4b98850128fc314a",
+  "games/naval/public/screen.css": "2ce84fe5cd7ffe771a541cb425a7d880c34ddcafe2366b0f705af66fd387486b",
+  "games/tabletop/public/arena.css": "9013de1b4da0a9a00354a6b917f40b8e2b3b5a0483c7d5404b6cf6d10b98fb8f",
+  "games/spy/public/spy-layout.css": "27972d2d11a3e99964f05ad2c34411b9c1cdf18745d5f6f8429dfb5e04768b93",
+  "games/jenga/public/style.css": "14d2d5c98f1a7a9b15d9279eab2d1487b4dd1906c6a3c1c4ed48f88646ae037b",
+  "games/crane/public/style.css": "e6b95095c2014b71fec86cdb570b8e96132c5ab189911d0de26765624ae84bd7",
+  "games/western_duel/public/style.css": "11aebc122b3e9a09b9beca36405699b3ab98d92ea1cdae6a19b7e8446d41f920",
+  "games/kart/static/styles.css": "846d3b91ec79c603b7a725a5596dad9387429995de19966cdef4af3d525d9dd3",
+  "games/sports_siege/public/host.js": "5070b8a1af4ce10c0eb04009d9f11285b610fa60361e05b8b78c74b370c9ae83",
+  "games/arcade_deluxe/public/host.js": "d3eefa7209d923c07f59b1d9701efe94c35b8d77f30831ca4f56fc075f682a89",
+  "games/bow_club/public/tv.js": "7dcae587bc668b4311ab26ed35d5296ced8310e620070d659f6cf6fd6000ba2a"
+}

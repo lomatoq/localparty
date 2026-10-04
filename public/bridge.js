@@ -12,6 +12,40 @@
  window.PartyI18n?.protectPlayers([...window.PARTY_ROSTER,profile]);
  const player=!!profile.id;
  const displayOnly=window.parent!==window&&window.parent.PARTY_DISPLAY_ONLY===true;
+ // Shared stage geometry is measured once in the bridge, not guessed by each game.
+ if(displayOnly){
+  const frame=parent.document.getElementById('gameFrame'),hud=parent.document.querySelector('#play .gamebar');
+  let stageSignature='';
+  const syncStage=()=>{
+   const rect=frame?.getBoundingClientRect(),dock=parent.document.querySelector('#play .tv-info-dock');
+   const scale=rect?.height>0&&innerHeight>0?rect.height/innerHeight:1;
+   const mode=hud?.dataset.layout||'centered-scoreboard',live=parent.document.body.classList.contains('tv-field-fullscreen');
+   const bounds=dock?.getBoundingClientRect(),shown=!!bounds&&bounds.width>0&&bounds.height>0&&!parent.document.body.classList.contains('game-owns-hud');
+   const left=shown?(bounds.left-rect.left)/scale:0,top=shown?(bounds.top-rect.top)/scale:0,width=shown?bounds.width/scale:0,height=shown?bounds.height/scale:0,bottom=shown?Math.max(0,top+height):0;
+   // Full-field games place the header over the scene. Exclusions protect
+   // important labels; a global inset would shrink or shift the whole world.
+   const globalTop=live?0:bottom;
+   const exclusions=shown?[{left,top,right:left+width,bottom:top+height,width,height,kind:'match',mode}]:[];
+   window.PARTY_HUD_EXCLUSIONS=exclusions;
+   document.documentElement.dataset.partyHudMode=mode;
+   const values={'--party-stage-inset-top':globalTop,'--party-native-inset-top':globalTop,'--party-wing-inset-top':globalTop,'--party-field-inset-top':globalTop,'--party-hud-left':left,'--party-hud-width':width,'--party-hud-height':height,'--party-hud-bottom':bottom,'--party-rail-hud-bottom':mode==='rail-cap'?bottom:0};
+   for(const[name,value]of Object.entries(values)){const next=Math.round(value*100)/100+'px';if(document.documentElement.style.getPropertyValue(name)!==next)document.documentElement.style.setProperty(name,next);}
+   const signature=JSON.stringify({mode,values});if(signature!==stageSignature){stageSignature=signature;window.dispatchEvent(new Event('party-stage-resize'));}
+  };
+  let stageFrame=0;const scheduleStage=()=>{if(stageFrame)return;stageFrame=requestAnimationFrame(()=>{stageFrame=0;syncStage();});};
+  window.addEventListener('message',event=>{if(event.source===parent&&event.origin===location.origin&&event.data?.type==='party-tv-stage-geometry'&&event.data.instance===instance)scheduleStage();});
+  const scheduleComposition=()=>{scheduleStage();parent.postMessage({type:'party-tv-layout',instance},location.origin);};
+  const stageObserver=new ResizeObserver(scheduleStage);if(frame)stageObserver.observe(frame);if(hud)stageObserver.observe(hud);
+  const dock=parent.document.querySelector('#play .tv-info-dock');if(dock)stageObserver.observe(dock);
+  const watchComposition=()=>{
+   const observer=new ResizeObserver(scheduleComposition);document.querySelectorAll('[data-tv-hud-anchor],[data-tv-hud-cluster],[data-tv-hud-rail]').forEach(node=>observer.observe(node));
+   new MutationObserver(records=>{if(records.some(record=>record.type==='childList'||record.attributeName==='data-tv-hud-rail'||record.attributeName==='data-tv-hud-anchor'||record.attributeName==='data-tv-hud-cluster')){document.querySelectorAll('[data-tv-hud-anchor],[data-tv-hud-cluster],[data-tv-hud-rail]').forEach(node=>observer.observe(node));scheduleComposition();}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-tv-hud-anchor','data-tv-hud-cluster','data-tv-hud-rail']});
+   scheduleComposition();
+  };
+  window.addEventListener('resize',scheduleComposition);document.addEventListener('DOMContentLoaded',watchComposition,{once:true});syncStage();
+
+ }
+
  // Forward only a bounded, allowlisted information object, never the game state.
  const publishTVInformation=window.LocalPartyTVInformation?.createPublisher({
   enabled:displayOnly&&!player,instance,
@@ -28,6 +62,20 @@
   let announced=false;const reveal=()=>{if(announced)return;announced=true;parent.postMessage({type:'party-visual-ready',instance},location.origin);};
   const deadline=setTimeout(reveal,350);Promise.resolve(document.fonts?.ready).then(()=>{clearTimeout(deadline);setTimeout(reveal,0);},reveal);
  });
+ // Route a release back to the control that received the press even when WebKit
+ // loses capture or delivers the final event to another element.
+ if(player){
+  const heldPointers=new Map();
+  const cancel=(id,event)=>{const target=heldPointers.get(id);heldPointers.delete(id);if(target?.isConnected)target.dispatchEvent(new PointerEvent('pointercancel',{bubbles:true,pointerId:id,pointerType:event?.pointerType||'touch'}));};
+  document.addEventListener('pointerdown',e=>heldPointers.set(e.pointerId,e.target),true);
+  for(const type of ['pointerup','pointercancel','lostpointercapture'])window.addEventListener(type,e=>{
+   const target=heldPointers.get(e.pointerId);if(!target)return;
+   if(type==='lostpointercapture'||!(e.target instanceof Node)||!target.contains(e.target))cancel(e.pointerId,e);else heldPointers.delete(e.pointerId);
+  },true);
+  window.addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&e.buttons===0&&heldPointers.has(e.pointerId))cancel(e.pointerId,e);},true);
+  const releaseAll=()=>{for(const id of [...heldPointers.keys()])cancel(id);};
+  window.addEventListener('blur',releaseAll);window.addEventListener('pagehide',releaseAll);window.addEventListener('offline',releaseAll);
+ }
  const nativeConnections=new Set(),ioConnections=new Set();let lastResume=0,lastStatus='connecting';
  const announce=(status,message='')=>{lastStatus=status;if(window.parent!==window)window.parent.postMessage({type:'party-game-status',status,message,instance},location.origin);};
  const nativeGet=Storage.prototype.getItem,nativeSet=Storage.prototype.setItem,nativeRemove=Storage.prototype.removeItem;
@@ -45,9 +93,11 @@
  const rewrite=value=>{const u=new URL(value,location.href);if(u.host===location.host&&!u.pathname.startsWith(prefix+'/'))u.pathname=prefix+u.pathname;return u.href;};
  const NativeSocket=window.WebSocket;
  window.WebSocket=class extends NativeSocket{
-  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native)announce('connecting');});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1)){if(player)window.dispatchEvent(new Event('blur'));announce('connecting');}});this.addEventListener('message',event=>{
+  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native)announce('connecting');});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1)){window.LocalPartyFeel?.reset();if(player)window.dispatchEvent(new Event('blur'));announce('connecting');}});this.addEventListener('message',event=>{
    try{const m=JSON.parse(event.data);
     if(m.type==='state')publishTVInformation?.(m.data||m);
+    if(['joined','resumed','identity'].includes(m.type))window.LocalPartyFeel?.identify(m.data?.id||m.id);
+    if(['state','selfState'].includes(m.type))window.LocalPartyFeel?.observe(m.data||m,{channel:m.type});
     window.PartyI18n?.protectPlayers(m.data?.players||m.players||[]);
     // Reuse the board already delivered to the TV. Bots don't open an extra
     // host socket or ask controllers to download world geometry for their AI.
@@ -69,7 +119,10 @@
    }
    return emit(event,...args);
   };
-  socket.on('connect',()=>announce('connecting'));socket.on('disconnect',()=>{if(player)window.dispatchEvent(new Event('blur'));announce('connecting');});
+  for(const event of ['state','game:state','state:public','lobby'])socket.on(event,s=>{window.PartyI18n?.protectPlayers(s?.players||s?.data?.players||[]);if(event!=='lobby')window.LocalPartyFeel?.observe(s?.data||s,{channel:event});});
+  socket.on('joined',s=>window.LocalPartyFeel?.identify(s?.id));
+  socket.on('selfState',s=>window.LocalPartyFeel?.observe(s,{channel:'selfState',selfId:s?.id}));
+  socket.on('connect',()=>announce('connecting'));socket.on('disconnect',()=>{window.LocalPartyFeel?.reset();if(player)window.dispatchEvent(new Event('blur'));announce('connecting');});
   if(displayOnly&&!player)for(const name of ['state','game:state','state:public'])socket.on(name,s=>publishTVInformation?.(s));
   return socket;
  };
@@ -99,7 +152,7 @@
  function applyUI(ui){if(!ui)return;const root=document.documentElement,previous=root.dataset.partyPhase,changed=previous!==ui.phase;if(changed)root.dataset.partyPhase=ui.phase;if(ui.phase!=='paused')root.classList.toggle('party-session-active',['countdown','playing','reveal','results'].includes(ui.phase));window.PARTY_UI=ui;if(changed){if(ui.phase==='paused')window.dispatchEvent(new Event('blur'));root.classList.remove('party-phase-enter');requestAnimationFrame(()=>{root.classList.add('party-phase-enter');clearTimeout(applyUI.timer);applyUI.timer=setTimeout(()=>root.classList.remove('party-phase-enter'),260);});window.dispatchEvent(new CustomEvent('party-phase-change',{detail:ui}));if(['reveal','results'].includes(ui.phase)&&!['reveal','results'].includes(previous))window.LocalPartyFeel?.emit('round-result',{id:`${window.parent.PARTY_INSTANCE||prefix}:${ui.phase}`,intensity:.42,shake:false,haptic:true});}}
  let startInstance='';
  function requestStart(instance){if(player||displayOnly||startInstance===instance)return;const id=prefix.split('/').at(-1),selectors={push:'button[data-mode="push"]',shrink:'button[data-mode="shrink"]',knives:'button[data-mode="knives"]',bomb:'button[data-mode="bomb"]',western:'button[data-mode="western"]',tanks:'button[data-mode="survival"]',kart:'#startBtn',spy:'#startBtn',monster:'#startGame'};let tries=0;const attempt=()=>{if(startInstance===instance)return;const b=document.querySelector(selectors[id]||'#start');if(document.readyState==='complete'&&b&&!b.disabled){startInstance=instance;b.click();return;}if(tries++<50)setTimeout(attempt,100);};attempt();}
- window.addEventListener('message',e=>{if(e.source!==window.parent||e.origin!==location.origin)return;if(e.data?.type==='party-resume')resume();if(e.data?.type==='party-release')window.dispatchEvent(new Event('blur'));if(e.data?.type==='party-ui'){window.PARTY_SESSION=e.data.session;window.PARTY_GAME=e.data.game;if(Array.isArray(e.data.roster))window.PARTY_ROSTER=e.data.roster;applyUI(e.data.ui);}if(e.data?.type==='party-start')requestStart(e.data.instance);});
+ window.addEventListener('message',e=>{if(e.source!==window.parent||e.origin!==location.origin)return;if(e.data?.type==='party-resume')resume();if(e.data?.type==='party-release')window.dispatchEvent(new Event('blur'));if(e.data?.type==='party-ui'){window.PARTY_SESSION=e.data.session;window.PARTY_GAME=e.data.game;if(Array.isArray(e.data.roster)){window.PARTY_ROSTER=e.data.roster;window.PartyI18n?.protectPlayers(e.data.roster);}applyUI(e.data.ui);}if(e.data?.type==='party-start')requestStart(e.data.instance);});
  if(window.parent.PARTY_TEST_BOT){window.PARTY_TEST_CONNECTIONS={native:nativeConnections,io:ioConnections};document.addEventListener('DOMContentLoaded',()=>{const policy=document.createElement('script');policy.src='/bot-policy.js';policy.onload=()=>{const script=document.createElement('script');script.src='/test-bot.js';document.head.append(script);};document.head.append(policy);});}
 })();
 

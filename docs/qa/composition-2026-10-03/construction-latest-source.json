@@ -1,0 +1,15 @@
+{
+  "status": "pending fresh browser slot",
+  "scope": "latest user Jenga/Crane simplification",
+  "sha256": {
+    "games/jenga/public/style.css": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+    "games/jenga/public/controller.css": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+    "games/crane/public/style.css": "ea606c994033c7cb8326c3610a4cf8abf0e4359177650dd52af64ca27f280a2a"
+  },
+  "invariants": [
+    "existing44pxJenga layer controls retained",
+    "no game mechanics/input/scoring/assets/locale/footer edits",
+    "actual rail marker unchanged",
+    "centered intrinsic group with measured cap+12px reservation"
+  ]
+}

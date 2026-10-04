@@ -1,0 +1,42 @@
+{
+  "status": "named-visual-closure-final-catalog-pending",
+  "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/kart-tap-local-fit-confirm/report.json",
+  "reportSha256": "b8d6f2d407acf07ae52713f5fe1fc47d725d714816e3b80013f8e3e730a47b27",
+  "capturedErrors": [],
+  "capturedSourceDrift": [],
+  "currentSourceDrift": [
+    "games/crane/public/client.js"
+  ],
+  "games": [
+    {
+      "id": "kart",
+      "judgment": "All four complete readable cards at both TV sizes, including whole two-line Alexandra at720. Hard common rail rectangle and sharp bottom termination removed; full-height road/forest-toned wash remains behind individual authored cards. Whole course and actual live racers preserved."
+    },
+    {
+      "id": "taprace",
+      "judgment": "Unwanted common finish-strip outline is absent at both TV sizes. Four complete individual cards and full robot lanes retained."
+    }
+  ],
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/kart-tap-local-fit-confirm/kart-tv-live-1280.png",
+      "sha256": "237c98186270fc264984cca112a43944c2ec37c65ec6bd21f3f9e61d8dbbcdf4",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/kart-tap-local-fit-confirm/kart-tv-live-1920.png",
+      "sha256": "085716af20b457a2838a64b499cf31d559800f3378df602e507a0aa7c0c60cac",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/kart-tap-local-fit-confirm/taprace-tv-live-1280.png",
+      "sha256": "8d8c75518580a408e9d1ca3fc36dd171bf19376358916bc52dcaf559e9b41a98",
+      "individuallyOpened": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/kart-tap-local-fit-confirm/taprace-tv-live-1920.png",
+      "sha256": "75879e4f35cf47472f9816d565636a9ed73e3be9f1d3d9091fdc180962f6f34f",
+      "individuallyOpened": true
+    }
+  ]
+}

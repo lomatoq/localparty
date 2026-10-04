@@ -1,0 +1,39 @@
+{
+  "status": "ready-for-human-visual-approval",
+  "games": 36,
+  "mainMenu": true,
+  "tvSizes": [
+    [
+      1280,
+      720
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "originals": 74,
+  "primaryPanels": 37,
+  "runtimeSourcesUnchanged": 695,
+  "guards": {
+    "layout-check": "passed",
+    "composition-check": "passed",
+    "micro-attachments-check": "passed"
+  },
+  "automatedTests": {
+    "passed": 609,
+    "failed": 0,
+    "log": "output/playwright/composition-round3-2026-10-03/npm-test-round7.log"
+  },
+  "independentReview": {
+    "A12PlusMain": "docs/qa/composition-round3-2026-10-03/director-independent-final-round7.json",
+    "B12": "docs/qa/composition-round3-2026-10-03/quiz-independent-final-round7.json",
+    "C12": "docs/qa/composition-round3-2026-10-03/social-independent-final-round7.json"
+  },
+  "priorRawFailuresPreserved": true,
+  "savedNotes": 76,
+  "gallery": "http://127.0.0.1:17807/?pass=tv36-final-2026-10-03",
+  "mainMenuNetwork": "disabled in current gallery pair; separate12state QR-on/off proof retained",
+  "physicalDeviceVerification": false,
+  "nextBuild": "only after human approval; no new build/install/publish performed"
+}

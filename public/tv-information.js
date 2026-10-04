@@ -12,6 +12,16 @@
   ['sports_siege','turn','curling bowling'],['sports_siege','mission','swarm_gate'],['sports_siege','live','peek_shoot']
  ];
  const registry=Object.freeze(Object.fromEntries(groups.flatMap(([engine,family,ids])=>ids.split(' ').map(id=>[id,Object.freeze({engine,family})]))));
+ // The approved catalog wordmarks are shared with waiting/results surfaces.
+ const logoFor=id=>Object.hasOwn(registry,id)?'/assets/game-logos-v1/logos/'+encodeURIComponent(id)+'.png?v=1':null;
+ // Presentation ownership is independent of the game's rules/clock family.
+ const compositionGroups=[
+  ['centered-scoreboard','tanks western marble_bloom pocket_siege taprace punchmeter flappy hungry snakelines carryball chaos poker airhockey'],
+  ['rail-cap','push shrink knives bomb tankarena kart western_duel jenga crane naval mines'],
+  ['content-cap','monster spy crocodile drawguess sinyakquiz warsaw millionaire'],
+  ['game-owned','bow_club curling bowling swarm_gate peek_shoot']
+ ];
+ const compositions=Object.freeze(Object.fromEntries(compositionGroups.flatMap(([mode,ids])=>ids.split(' ').map(id=>[id,mode]))));
  // Editorial summaries of catalog rules, not claims about live state.
  const objectives={
  push:['Вытолкни остальных с арены.','Push rivals out. Stay inside.'],
@@ -70,14 +80,18 @@
   const actor=value=>{const name=typeof value==='object'?text(value?.name):text(players.find(p=>p.id===value)?.name);if(name){out.actor=name;out.sources.actor='public-snapshot';}};
   const progress=(a,b,label)=>{if(finite(a)&&finite(b)){out.progress=`${label} ${a} / ${b}`;out.sources.progress='public-snapshot';}};
   const metric=(key,label,value)=>{if(finite(value)||typeof value==='string')out.metrics.push({key,label,value:typeof value==='string'?text(value):value,source:'public-snapshot'});};
-  const scored=players.filter(p=>finite(p.score));if(scored.length){const leader=scored.reduce((a,b)=>b.score>a.score?b:a);metric('leader','Лидер',leader.name);metric('score','Очки',leader.score);}
+  const scored=players.filter(p=>finite(p.score));if(scored.length&&id!=='airhockey'){const leader=scored.reduce((a,b)=>b.score>a.score?b:a);metric('leader','Лидер',leader.name);metric('score','Очки',leader.score);}
   // Public snapshots sometimes contain internal deadlines (Western's secret
   // random draw moment). Only explicitly public phase clocks enter the HUD.
   const publicDeadlinePhases={millionaire:['question','reveal'],sinyakquiz:['question','reveal'],warsaw:['question','reveal'],crocodile:['turn','between'],drawguess:['drawing','reveal'],naval:['battle'],western_duel:['countdown','reveal']};
   if(!isPaused&&publicDeadlinePhases[id]?.includes(rawPhase))wall(s.endsAt);
   if(id==='western_duel'&&['waitingSignal','draw'].includes(rawPhase))out.timer=null;
   if(config.engine==='party'||id==='tanks'){
-   progress(status.round,status.maxRounds,'Раунд');if(rawPhase==='playing')remaining(status.timer);if(rawPhase==='countdown')remaining(status.countdown,'Старт');
+   if(id==='tanks'&&['ctf','coop'].includes(status.mode)){
+    out.progress=null;out.sources.progress=null;
+    if(status.mode==='ctf'&&finite(status.redScore)&&finite(status.blueScore))metric('teams','Флаги',`${status.redScore} : ${status.blueScore}`);
+   }else progress(status.round,status.maxRounds,'Раунд');
+   if(rawPhase==='playing')remaining(status.timer);if(rawPhase==='countdown')remaining(status.countdown,'Старт');
    if(players.some(p=>typeof p.alive==='boolean'))metric('alive','В игре',players.filter(p=>p.alive&&p.connected!==false).length);
   }
   if(config.engine==='arcade'||id==='tankarena'){
@@ -98,12 +112,22 @@
   }
   if(id==='kart'){metric('laps','Кругов',s.laps);metric('raceTime','Время гонки, с',s.race_time);if(s.status==='countdown')remaining(s.countdown,'Старт');}
   if(id==='monster'){actor(s.activePlayerId);progress(s.completed,s.total,'Частей');if(rawPhase==='playing')wall(s.turnDeadline);}
-  if(id==='spy'){if(s.currentTurn?.asker){actor(s.currentTurn.asker);const target=text(s.currentTurn.target?.name);if(target)metric('target','Отвечает',target);}if(rawPhase==='playing')wall(s.timerEndsAt);}
+  if(id==='spy'){
+   // Spy's reveal assigns private roles; it is not a round-result screen.
+   // Public phase owns its instruction even when the parent UI packet lags.
+   const instructions={reveal:'Посмотрите роль на телефоне',playing:s.duel?'Мини-режим: вопрос и догадка':'Найдите шпиона',voting:'Голосование'};
+   if(instructions[rawPhase]){out.progress=instructions[rawPhase];out.sources.progress='public-snapshot';}
+   if(rawPhase==='reveal'&&!isPaused)out.phaseLabel='Раздача ролей';
+   if(rawPhase==='playing'&&s.currentTurn?.asker){actor(s.currentTurn.asker);const target=text(s.currentTurn.target?.name);if(target)metric('target','Отвечает',target);}
+   else{out.actor=null;out.sources.actor=null;}
+   if(rawPhase==='voting'&&finite(s.voteCount)){const eligible=players.filter(p=>!p.spectator).length;metric('votes','Голосов',`${s.voteCount} / ${eligible}`);}
+   if(rawPhase==='playing')wall(s.timerEndsAt);else out.timer=null;
+  }
   if(id==='millionaire'){actor(s.activePlayerId);progress(s.turnsUsed,s.settings?.maxTurns,'Ходов');metric('turnsLeft','Осталось ходов',s.turnsLeft);}
   if(config.engine==='quiz'){progress(finite(s.round)?Math.min(s.round+1,s.total):null,s.total,'Вопрос');metric('submitted','Ответов',s.submitted);}
-  if(id==='crocodile'){actor(s.actor);metric('guessed','Угадано',s.turnGuessed);metric('skipped','Пропущено',s.turnSkips);}
+  if(id==='crocodile'){actor(s.actor);progress(finite(s.turn)?Math.min(s.turn+1,s.settings?.turns):null,s.settings?.turns,'Ход');metric('guessed','Угадано',s.turnGuessed);metric('skipped','Пропущено',s.turnSkips);}
   if(id==='drawguess'){actor(s.artistId??s.artist);progress(finite(s.turn)?Math.min(s.turn+1,s.total):null,s.total,'Ход');}
-  if(id==='jenga'){actor(s.currentId);if(rawPhase==='playing')wall(s.turnEnds);metric('moves','Блоков',s.moves);metric('stability','Устойчивость',s.stability?.level);if(s.settling&&!isPaused)out.phaseLabel='Башня успокаивается';}
+  if(id==='jenga'){actor(s.currentId);if(rawPhase==='playing')wall(s.turnEnds);if(finite(s.stability?.safety))metric('stability','Устойчивость',`${Math.round(Math.max(0,Math.min(1,s.stability.safety))*100)}%`);if(s.settling&&!isPaused)out.phaseLabel='Башня успокаивается';}
   if(id==='crane'){actor(s.activeId);metric('height','Этажей',s.height);metric('lives','Жизни',s.lives);progress(finite(s.turns)?Math.min(s.turns+(rawPhase==='results'?0:1),s.maxTurns):null,s.maxTurns,'Ход');if(rawPhase==='playing'&&s.turnStage==='aiming')wall(s.deadline);}
   if(id==='western_duel'&&Array.isArray(s.duel?.pair)){const names=s.duel.pair.map(pid=>text(players.find(p=>p.id===pid)?.name)).filter(Boolean);if(names.length){out.actor=names.join(' × ');out.sources.actor='public-snapshot';}}
   if(id==='bow_club'){if(rawPhase==='playing')remaining(s.remaining);metric('arrows','Стрел на игрока',s.arrows);}
@@ -119,15 +143,22 @@
   if(isPaused&&out.timer)out.timer.paused=true;
   return out;
  }
- function createPublisher({game,ui=()=>null,instance,send,now=()=>Date.now(),enabled=true}){
-  let last=-Infinity,signature='';
+ function createPublisher({game,ui=()=>null,instance,send,now=()=>Date.now(),enabled=true,schedule=(fn,ms)=>setTimeout(fn,ms),cancel=timer=>clearTimeout(timer)}){
+  let last=-Infinity,signature='',pending=null,timer=null;
   return function publish(snapshot){
    if(!enabled||!snapshot||typeof snapshot!=='object')return false;
-   const at=now();if(at-last<250)return false;
+   const at=now();if(at-last<250){
+    // Keep the latest snapshot instead of losing a quiet game's final update
+    // (role-ready, roster, question). High-rate games still publish at4Hz.
+    pending=snapshot;
+    if(timer===null)timer=schedule(()=>{timer=null;const latest=pending;pending=null;publish(latest);},250-(at-last));
+    return false;
+   }
+   if(timer!==null){cancel(timer);timer=null;}pending=null;
    const info=normalize({game:typeof game==='function'?game():game,ui:ui(),snapshot,now:at});
    const next=JSON.stringify(info);if(next===signature&&at-last<1000)return false;
    signature=next;last=at;send({type:'party-tv-information',instance,info});return true;
   };
  }
- return Object.freeze({registry,normalize,createPublisher,objectives,pocketStageLabel:stage=>pocketStages[stage]||null});
+ return Object.freeze({registry,logoFor,compositions,compositionFor:id=>compositions[id]||'centered-scoreboard',normalize,createPublisher,objectives,pocketStageLabel:stage=>pocketStages[stage]||null});
 });

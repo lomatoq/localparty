@@ -1,0 +1,17 @@
+/* Approved raster awards: retain full alpha art inside generous optical boxes. */
+html body .hp-award{display:inline-block;width:38px;height:42px;object-fit:contain;flex-shrink:0;vertical-align:middle;pointer-events:none;filter:drop-shadow(0 2px 3px #09051525);clip-path:none;mask:none}
+html body #statsDialog .stats-place.has-award{height:52px;background:none;border:0;box-shadow:none;padding:0;overflow:visible}
+html body #statsDialog .stats-place .hp-award{width:44px;height:52px;max-width:none}
+html body .rank-number .hp-award{width:44px;height:50px;max-width:none}
+html body .mini-rank .hp-award{width:36px;height:42px}
+html body .result-row>.hp-award{width:34px;height:40px;margin-right:8px}
+html body #statsDialog .profile-summary>div>.hp-award{display:block;margin:0 auto 8px;width:42px;height:44px}
+html body #statsDialog .stat-game-summary>.hp-award{width:28px;height:30px;margin-right:6px}
+html body #statsDialog .stat-metrics>div.has-award{position:relative;padding-left:36px;min-height:48px}
+html body #statsDialog .stat-metrics>div>.hp-award{position:absolute;left:0;top:50%;transform:translateY(-50%);width:30px;height:34px}
+html body .podium-rank{display:flex;align-items:center;justify-content:center;gap:5px}
+html body .podium-rank>.podium-award{width:48px;height:48px}
+html body .podium-crown img{object-fit:contain}
+html body .profile-earned{display:flex;justify-content:center;align-items:center;gap:12px;margin:12px 0}
+html body .profile-earned .hp-award{width:48px;height:52px}
+@media(max-width:350px){html body #statsDialog .stats-place .hp-award{width:36px;height:46px}html body #statsDialog .stat-metrics>div.has-award{padding-left:30px}html body #statsDialog .stat-metrics>div>.hp-award{width:26px;height:30px}}

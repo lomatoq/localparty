@@ -1,0 +1,585 @@
+{
+  "version": 1,
+  "source": "atlas-fx-celebration.png",
+  "styleProfile": "ui",
+  "chromaKeyed": false,
+  "frames": {
+    "confetti-rect": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 96,
+        "y": 75,
+        "w": 65,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 65,
+        "h": 106
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/confetti-rect.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "confetti-star": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 345,
+        "y": 89,
+        "w": 79,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 79,
+        "h": 79
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/confetti-star.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confetti-diamond": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 607,
+        "y": 88,
+        "w": 66,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 66,
+        "h": 80
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/confetti-diamond.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confetti-circle": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 868,
+        "y": 100,
+        "w": 56,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 56
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/confetti-circle.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confetti-swirl": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1118,
+        "y": 55,
+        "w": 69,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 69,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/confetti-swirl.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confetti-heart": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1373,
+        "y": 98,
+        "w": 70,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 61
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/confetti-heart.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "firework-burst-gold": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 66,
+        "y": 319,
+        "w": 125,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 130
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/firework-burst-gold.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "firework-burst-violet": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 324,
+        "y": 324,
+        "w": 121,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 121,
+        "h": 120
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/firework-burst-violet.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "firework-burst-lime": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 574,
+        "y": 324,
+        "w": 133,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 133,
+        "h": 120
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/firework-burst-lime.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "sparkle-4": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 858,
+        "y": 341,
+        "w": 77,
+        "h": 87
+      },
+      "sourceSize": {
+        "w": 77,
+        "h": 87
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/sparkle-4.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "sparkle-cluster": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1097,
+        "y": 323,
+        "w": 111,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 111,
+        "h": 122
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/sparkle-cluster.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "glow-orb": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1360,
+        "y": 335,
+        "w": 97,
+        "h": 98
+      },
+      "sourceSize": {
+        "w": 97,
+        "h": 98
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/glow-orb.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "crown-pop": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 67,
+        "y": 583,
+        "w": 123,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 123,
+        "h": 114
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/crown-pop.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "trophy-pop": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 305,
+        "y": 575,
+        "w": 158,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 158,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/trophy-pop.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "star-pop": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 576,
+        "y": 577,
+        "w": 129,
+        "h": 127
+      },
+      "sourceSize": {
+        "w": 129,
+        "h": 127
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/star-pop.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "thumbs-up": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 848,
+        "y": 586,
+        "w": 97,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 97,
+        "h": 108
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/thumbs-up.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "party-popper": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1086,
+        "y": 568,
+        "w": 132,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/party-popper.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "balloon-violet": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1365,
+        "y": 575,
+        "w": 87,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 87,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/balloon-violet.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "balloon-lime": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 83,
+        "y": 827,
+        "w": 91,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 91,
+        "h": 139
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/balloon-lime.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "balloon-pink": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 339,
+        "y": 827,
+        "w": 90,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 139
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/balloon-pink.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ribbon-banner": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 552,
+        "y": 856,
+        "w": 176,
+        "h": 81
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 81
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/ribbon-banner.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "laurel": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 827,
+        "y": 838,
+        "w": 139,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 139,
+        "h": 116
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/laurel.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "medal-ribbon": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1089,
+        "y": 846,
+        "w": 127,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 127,
+        "h": 100
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/medal-ribbon.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "spotlight-cone": {
+      "atlas": "atlas-fx-celebration.webp",
+      "frame": {
+        "x": 1352,
+        "y": 837,
+        "w": 112,
+        "h": 118
+      },
+      "sourceSize": {
+        "w": 112,
+        "h": 118
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-celebration/spotlight-cone.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

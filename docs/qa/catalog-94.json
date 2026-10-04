@@ -1,0 +1,18 @@
+{
+  "build": 94,
+  "checks": [
+    "TV720/1080: small title23/copy14, big34/18",
+    "Phone320/393: artwork left70%, top3%, eyebrow centered",
+    "Fresh native393: icon15px",
+    "No horizontal page overflow"
+  ],
+  "viewed": [
+    "tv-lobby-720.png",
+    "controller-scrolled-320.png",
+    "host-cards-320.png",
+    "host-cards-393.png",
+    "host-lobby-393.png",
+    "host-fresh-393.png"
+  ],
+  "method": "Local WebKit with native tabs user-script; host uses native bridge fixture"
+}

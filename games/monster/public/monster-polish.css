@@ -1,0 +1,6 @@
+/* Monster polish (social lane, 2026-10-02): the finished monster fits the TV
+   with its credits visible (it used to run off the bottom edge). */
+html.party-host #revealPanel .reveal-stage{min-height:0;padding:14px}
+html.party-host #revealPanel .reveal-stage canvas{max-height:max(220px,calc(100dvh - 392px));width:auto}
+html.party-host #revealPanel .credits{margin-top:12px;justify-content:center}
+html.party-host #revealPanel .credit{border-radius:999px}

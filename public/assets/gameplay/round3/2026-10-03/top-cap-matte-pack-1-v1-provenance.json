@@ -1,0 +1,409 @@
+{
+  "status": "generated-candidate-pending-actual-paired-placement-review",
+  "method": "built-in image_gen.imagegen, transparent_background=true, original pixels copied unchanged",
+  "asset": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v1.png",
+  "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5e-56f7-7f60-9b2b-1e57bf6a60c3/exec-2d54fd3d-02dc-4626-8722-0b03bec7db69.png",
+  "size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "sha256": "2737734a13a074698ec6cacc923c3277ddb20b6829ad58d8f4979220085e735b",
+  "prompt_file": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v1-prompt.txt",
+  "prompt": "Use case: stylized-concept.\nAsset type: production transparent PNG atlas of nine small TOP-HEADER EDGE ATTACHMENTS for a matte party-game UI.\nA square THREE COLUMN by THREE ROW grid, EXACTLY NINE separate complete sprites, no labels or text. Equal square cells, every sprite precisely centered in its cell and occupying no more than 50 percent of cell width or height; large fully transparent margins between sprites and around the sheet. True transparent alpha background, no colored or white background.\nStyle: extremely minimal, clean filled graphic silhouettes in strict orthographic overhead view. These are FLAT MATTE ENGINEERING APPLIQUES, not toy objects and not 3D renders. NO perspective, isometric depth or visible vertical side faces. Each sprite uses just one matte midtone base, one broad darker SOLID shade shape, and at most one small lighter semantic detail. NO gradients, gloss, reflections, bright specular dots, highlights, bevels, black outlines, heavy contours, drop shadows, grain, texture, stitches, tiny screws, decorative dashes or surrounding plates. Edges are defined by the silhouette and flat color alone. Quiet muted colors matching charcoal/plum/navy/teal matte interface caps.\nEvery sprite has an identical short straight VERTICAL SEATING TAB on its LEFT, directly joined to the object on its right. Tab is a quiet flat cuff portion, not an extra rectangle behind the whole sprite. This tab hugs a header's vertical side edge. The sprite must remain meaningful when horizontally mirrored for the opposite edge. Do not draw the header itself. Small-size shape readability is essential. Exactly the listed nine objects, consistent visual weight, all complete and unclipped.\nExact row-major content:\nRow1: (1) Western: muted clay/plum rounded sheriff-star cuff, plain broad five-point star with a small dusty cream center; (2) Tanks: desaturated olive tank-track cuff, a short overhead tread silhouette with two broad muted sage bars, no tank body; (3) Chaos: slate-blue cursor-arrow cuff, one cream arrowhead with a quiet navy seat.\nRow2: (4) TapRace: teal finish cuff, only four broad alternating slate/cream squares in one compact flat flag silhouette; (5) Punchmeter: muted terracotta boxing-glove cuff with three broad knuckle lobes, no seam marks; (6) Flappy: dusty sky-blue wing cuff with just three broad feather forms.\nRow3: (7) Hungry: muted amber burger-wrapper cuff, four broad FLAT graphic layers, no seeds, crumbs or texture; (8) SnakeLines: muted jade bent-snake cuff, simple broad right-angle shape with one small cream eye, no scales; (9) CarryBall: desaturated turquoise ball-holding cuff, flat cream ball disk with one simple curved teal stripe, no shine.\n",
+  "prompt_sha256": "838e06f90c76720cf4aa6bd4324545bf1718e320c9c2b6716c533eee31d48b84",
+  "cells": [
+    {
+      "id": "western",
+      "cell": [
+        0,
+        0,
+        418,
+        418
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          27,
+          63,
+          396,
+          417
+        ],
+        "32": [
+          93,
+          143,
+          350,
+          353
+        ],
+        "128": [
+          94,
+          144,
+          350,
+          352
+        ],
+        "240": [
+          95,
+          144,
+          349,
+          351
+        ]
+      }
+    },
+    {
+      "id": "tanks",
+      "cell": [
+        418,
+        0,
+        836,
+        418
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          5,
+          71,
+          418,
+          378
+        ],
+        "32": [
+          57,
+          189,
+          380,
+          340
+        ],
+        "128": [
+          58,
+          189,
+          379,
+          340
+        ],
+        "240": [
+          59,
+          190,
+          378,
+          339
+        ]
+      }
+    },
+    {
+      "id": "chaos",
+      "cell": [
+        836,
+        0,
+        1254,
+        418
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          0,
+          21,
+          396,
+          408
+        ],
+        "32": [
+          77,
+          148,
+          319,
+          385
+        ],
+        "128": [
+          78,
+          149,
+          318,
+          385
+        ],
+        "240": [
+          79,
+          149,
+          318,
+          384
+        ]
+      }
+    },
+    {
+      "id": "taprace",
+      "cell": [
+        0,
+        418,
+        418,
+        836
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          69,
+          43,
+          418,
+          418
+        ],
+        "32": [
+          87,
+          122,
+          373,
+          292
+        ],
+        "128": [
+          88,
+          123,
+          373,
+          291
+        ],
+        "240": [
+          89,
+          124,
+          372,
+          291
+        ]
+      }
+    },
+    {
+      "id": "punchmeter",
+      "cell": [
+        418,
+        418,
+        836,
+        836
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          1,
+          7,
+          414,
+          418
+        ],
+        "32": [
+          80,
+          95,
+          359,
+          309
+        ],
+        "128": [
+          80,
+          95,
+          359,
+          308
+        ],
+        "240": [
+          81,
+          96,
+          358,
+          307
+        ]
+      }
+    },
+    {
+      "id": "flappy",
+      "cell": [
+        836,
+        418,
+        1254,
+        836
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          43,
+          15,
+          350,
+          380
+        ],
+        "32": [
+          69,
+          112,
+          343,
+          326
+        ],
+        "128": [
+          69,
+          113,
+          342,
+          325
+        ],
+        "240": [
+          70,
+          114,
+          341,
+          324
+        ]
+      }
+    },
+    {
+      "id": "hungry",
+      "cell": [
+        0,
+        836,
+        418,
+        1254
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          0,
+          1,
+          418,
+          418
+        ],
+        "32": [
+          92,
+          58,
+          376,
+          262
+        ],
+        "128": [
+          93,
+          59,
+          376,
+          262
+        ],
+        "240": [
+          94,
+          60,
+          375,
+          261
+        ]
+      }
+    },
+    {
+      "id": "snakelines",
+      "cell": [
+        418,
+        836,
+        836,
+        1254
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          0,
+          5,
+          418,
+          395
+        ],
+        "32": [
+          91,
+          70,
+          380,
+          262
+        ],
+        "128": [
+          92,
+          70,
+          379,
+          262
+        ],
+        "240": [
+          93,
+          71,
+          378,
+          261
+        ]
+      }
+    },
+    {
+      "id": "carryball",
+      "cell": [
+        836,
+        836,
+        1254,
+        1254
+      ],
+      "bbox_local_by_alpha_threshold": {
+        "1": [
+          0,
+          9,
+          370,
+          394
+        ],
+        "32": [
+          71,
+          67,
+          340,
+          272
+        ],
+        "128": [
+          72,
+          68,
+          340,
+          272
+        ],
+        "240": [
+          73,
+          69,
+          339,
+          271
+        ]
+      }
+    }
+  ],
+  "scope": "TOP18 only; accepted SIDE18 unchanged",
+  "visual_qualifications": [
+    "No thick black outlines, bevels or highlight beads; simple matte broad silhouettes and joined seats.",
+    "Generated pixels have mild tonal variation; equal cell margins are not literal50percent silhouette size.",
+    "Pack2 has visible peripheral flecks in preview requiring alpha/component inspection; not silently approved.",
+    "No actual44px paired attachment or runtime integration inspected.",
+    "At alpha32 every cell has exactly one connected silhouette; preview flecks are alpha1\u201331 peripheral noise (see component checks). Original remains unedited; downstream alpha normalization is root-owned."
+  ],
+  "alpha_component_checks": [
+    {
+      "id": "western",
+      "alpha32_main_component_pixels": 26765,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 3117
+    },
+    {
+      "id": "tanks",
+      "alpha32_main_component_pixels": 41282,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 2701
+    },
+    {
+      "id": "chaos",
+      "alpha32_main_component_pixels": 32495,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 2948
+    },
+    {
+      "id": "taprace",
+      "alpha32_main_component_pixels": 39193,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 2156
+    },
+    {
+      "id": "punchmeter",
+      "alpha32_main_component_pixels": 45895,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 3189
+    },
+    {
+      "id": "flappy",
+      "alpha32_main_component_pixels": 37439,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 2047
+    },
+    {
+      "id": "hungry",
+      "alpha32_main_component_pixels": 47020,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 2881
+    },
+    {
+      "id": "snakelines",
+      "alpha32_main_component_pixels": 28837,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 3438
+    },
+    {
+      "id": "carryball",
+      "alpha32_main_component_pixels": 40172,
+      "alpha32_detached_component_pixels": 0,
+      "alpha32_components": 1,
+      "low_alpha_pixels_1_to31": 2182
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-03T21:17:22.061007+00:00",
+  "installed": {
+    "name": "HeyPals",
+    "bundleIdentifier": "com.localparty.launcher",
+    "bundleVersion": "116",
+    "version": "0.11.7"
+  },
+  "launch": {
+    "processIdentifier": 36126,
+    "terminatedExisting": true
+  },
+  "tests": {
+    "pass": 676,
+    "fail": 0,
+    "log": ".localparty-build/build116-final-all-tests.log",
+    "postSuiteIntegrationsPassed": true,
+    "pocketJuiceBrowserPassed": [
+      "full",
+      "reduced"
+    ]
+  },
+  "product": {
+    "passed": true,
+    "sourceDrift": [],
+    "bundleMismatch": [],
+    "bundledRuntimeChecks": 1717,
+    "versions": [
+      {
+        "CFBundleIdentifier": "com.localparty.launcher",
+        "CFBundleShortVersionString": "0.11.7",
+        "CFBundleVersion": "116"
+      },
+      {
+        "CFBundleIdentifier": "com.localparty.launcher.Join",
+        "CFBundleShortVersionString": "0.11.7",
+        "CFBundleVersion": "116"
+      }
+    ]
+  },
+  "sourceFreeze": "integration-source-freeze116-final.json",
+  "limits": [
+    "Hands-free controller integration uses synthetic sensor samples; actual gesture feel on116 requires user trial.",
+    "Claude final graphics were retained; this installation does not claim a new all36-state visual audit."
+  ]
+}

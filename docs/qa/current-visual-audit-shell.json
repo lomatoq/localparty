@@ -1,0 +1,176 @@
+{
+  "auditedAt": "2026-09-27T22:47:59.731696+00:00",
+  "revision": "feed1aee127419658c49ef9123c9f53880634509",
+  "workingTreeFiles": {
+    "public/app.js": "dd226564da3b9d2cf30ba24e329fe70dba19fb0812c78bbd487c20d3bf3abbcc",
+    "public/polish.css": "29dd664ea314301c3a6cbe83f8869560e26c7cd09fffef41f7db9fc1c975f2f1",
+    "public/ux.css": "625fa06f3adcb3a9b47545abb71fda004c710699bbc054450b24f54a276a8177",
+    "public/game-ui-system.css": "ef9f9fb134d774b302bc69e341e7e08e92fc08323bbe4c053baa40f8bbd886ec",
+    "public/native-shell/host.js": "d94c9eb4c84bd000a2239298c7667c1ae5be1311072497fe6fde3b5a27df695b"
+  },
+  "screens": [
+    {
+      "id": "001",
+      "title": "Вход в комнату",
+      "status": "verified",
+      "note": "393×852: фото/help и handedness теперь лёгким курсивом; форма и Save целиком.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/captures/shell-join.png",
+      "sha256": "8e60240433e6513f86e44f5c1dc3057bc40ea4c6e377fefa813628a4c2f86190",
+      "capturedAt": "2026-09-27T22:46:24.543313+00:00",
+      "method": "Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.",
+      "visuallyInspected": true
+    },
+    {
+      "id": "010",
+      "title": "Выбор хоста",
+      "status": "verified",
+      "note": "Host pick и JOIN THE PARTY верхние края совпадают: 110px; высоты карточек сохранены независимо. Actual WebKit geometry assertion + visual inspection.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/tv-column-alignment/captures/010.png",
+      "sha256": "3073866c42b49c41691d6161c689c36e3915055d413a80d9effc02c1e7786838",
+      "capturedAt": "2026-09-27T22:51:21.564703+00:00",
+      "method": "Real selected-game TV chooser",
+      "visuallyInspected": true
+    },
+    {
+      "id": "011",
+      "title": "Выбор хоста",
+      "status": "verified",
+      "note": "Host pick и JOIN THE PARTY верхние края совпадают: 165px; высоты карточек сохранены независимо. Actual WebKit geometry assertion + visual inspection.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/tv-column-alignment/captures/011.png",
+      "sha256": "e13a85ce1feb4a74ca445e58da8fe013aac01d91ce7ffa8fbfc3ade4ebd875e9",
+      "capturedAt": "2026-09-27T22:51:22.526741+00:00",
+      "method": "Real selected-game TV chooser",
+      "visuallyInspected": true
+    },
+    {
+      "id": "014",
+      "title": "Отсчёт Flappy",
+      "status": "pass",
+      "note": "Fresh normal-speed recapture shows actual3-second disabled action countdown, instructions and footer fit. Fast statistics-run image rejected as countdown evidence.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-countdown/captures/shell-flappy-countdown.png",
+      "sha256": "4f400faea04e2cf629627a539b673ef000ed74329e7f73e63b69402f32fb23c0",
+      "capturedAt": "2026-09-27T22:28:04.521002+00:00",
+      "method": "Actual two-phone Flappy countdown, normal speed TEST_FAST=0",
+      "visuallyInspected": true
+    },
+    {
+      "id": "020",
+      "title": "Панель управления",
+      "status": "needs-polish",
+      "note": "Scrollable long host sheet; no horizontal overflow or blank viewport. Some supporting descriptions/action labels upright; shared semantic roles incomplete.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/host/panel-before-close.png",
+      "sha256": "d73b31560feae7bcaa3e979d765bbc94c3ada2b6e83e5896ebf68d6b4d4e9440",
+      "capturedAt": "2026-09-27T22:46:54.358649+00:00",
+      "method": "Production native-shell DOM with explicit mocked native bridge/snapshot, real taps and scroll; not physical iOS capture",
+      "visuallyInspected": true
+    },
+    {
+      "id": "021",
+      "title": "Активная игра в хабе",
+      "status": "verified",
+      "note": "Host fixture393: Controller italic; открытая активная карточка целиком, кнопки не перекрыты.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/host/active-top.png",
+      "sha256": "02f9c71b5a67e1da7c309e1b672369af8eb6dcd699a5e9c0ab7d2f664a7f5a21",
+      "capturedAt": "2026-09-27T22:47:00.645070+00:00",
+      "method": "Production native-shell DOM with explicit mocked native bridge/snapshot, real taps and scroll; not physical iOS capture",
+      "visuallyInspected": true
+    },
+    {
+      "id": "022",
+      "title": "Закреплённая панель",
+      "status": "verified",
+      "note": "Host fixture393: закреплённая компактная карточка с italic Controller; поиск/фильтры под ней без наложения.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/host/active-scrolled.png",
+      "sha256": "2646ca9fbe18449c88ae4117729bcead9f27c5320d57642344b85dfd89bdb043",
+      "capturedAt": "2026-09-27T22:47:06.098733+00:00",
+      "method": "Production native-shell DOM with explicit mocked native bridge/snapshot, real taps and scroll; not physical iOS capture",
+      "visuallyInspected": true
+    },
+    {
+      "id": "030",
+      "title": "Игроки в комнате",
+      "status": "pass",
+      "note": "Two-player room dialog and audio settings fit; long name wraps within card, close action visible.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/captures/shell-room-roster.png",
+      "sha256": "c73b2e76f31e3ec04fddce70b71214df877cffbc917bb28f07705cdab8cad9f4",
+      "capturedAt": "2026-09-27T22:46:30.588603+00:00",
+      "method": "Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.",
+      "visuallyInspected": true
+    },
+    {
+      "id": "031",
+      "title": "Топ · до первой партии",
+      "status": "pass",
+      "note": "Empty rankings explain next step; primary exit fits. Focus ring visible from browser keyboard focus, not clipping.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/captures/shell-top-empty.png",
+      "sha256": "21a1ec1d88eea99f87ea6e300220b91bb9fb73592de3a9642d09ee1986334a0c",
+      "capturedAt": "2026-09-27T22:46:31.460310+00:00",
+      "method": "Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.",
+      "visuallyInspected": true
+    },
+    {
+      "id": "032",
+      "title": "Топ · после партии",
+      "status": "verified",
+      "note": "393×852: имена upright, длинное имя переносится; score40 numeric; обе строки и возврат видны.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/captures/shell-top-populated.png",
+      "sha256": "0ef63ccd4cf8a805346b13f6c2ad0bbe8d022b6027aca58eeee54149d238d132",
+      "capturedAt": "2026-09-27T22:46:35.062226+00:00",
+      "method": "Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.",
+      "visuallyInspected": true
+    },
+    {
+      "id": "033",
+      "title": "Статистика игрока",
+      "status": "verified",
+      "note": "393×852: имя без CAPS upright; показатели numeric; Best переведено, смешанного рекорд больше нет; карточка целиком.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/captures/shell-player-statistics.png",
+      "sha256": "4b5ca1b12d796a08ab6652e947d15fa54fd89e49caac14a5da772f90f50537c4",
+      "capturedAt": "2026-09-27T22:46:35.855384+00:00",
+      "method": "Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.",
+      "visuallyInspected": true
+    },
+    {
+      "id": "034",
+      "title": "Правила игры из паузы",
+      "status": "pass",
+      "note": "Rules, controls, victory condition and join-in-progress copy readable; back and confirm visible.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/captures/shell-game-rules.png",
+      "sha256": "ce985a62955749acdc3b607d69300bb9f76024045803b1db10cb4412053dbaf1",
+      "capturedAt": "2026-09-27T22:46:36.802247+00:00",
+      "method": "Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.",
+      "visuallyInspected": true
+    },
+    {
+      "id": "035",
+      "title": "Редактирование профиля",
+      "status": "verified",
+      "note": "393×852: italic photo/help и handedness, длинное имя и Save доступны.",
+      "screenshot": "/Users/hlebhlyaba/HeyPals/localparty/.localparty-build/current-shell-audit/captures/shell-profile.png",
+      "sha256": "fe5902e0bf0300ac6b0695b500a62ad73d3400cb4a8a50a95aad5cd24ac5cd37",
+      "capturedAt": "2026-09-27T22:46:32.378248+00:00",
+      "method": "Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.",
+      "visuallyInspected": true
+    }
+  ],
+  "limits": [
+    "Phone screenshots393×852; TV1280×720 and1920×1080. Not an all-width check.",
+    "Host020–022 use native-bridge fixture, not real hardware.",
+    "Statistics populated by real Flappy match with TEST_FAST=1; countdown recaptured separately at normal speed.",
+    "First host timing run under parallel WebKit failed58ms versus55ms class-start threshold. Isolated retry passed33ms class response and~200ms settling. No assertion weakened.",
+    "No production edits during active full-game capture; remaining scoped polish/fixes queued."
+  ],
+  "postAuditChanges": {
+    "status": "targeted-recapture-visually-verified",
+    "files": [
+      "public/polish.css",
+      "public/app.js"
+    ],
+    "changes": [
+      "Stats identity names upright; numeric metrics role; Best label translatable",
+      "Photo helper and handedness legend lighter italic",
+      "Host controller action semantic italic"
+    ],
+    "limitation": "WebKit393px shell; native host uses explicitly mocked native bridge/snapshot, not physical iOS. ID014 retains prior real normal-speed countdown evidence."
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "status": "passed-scoped-waiting-header-review",
+  "reviewedAt": "2026-10-03T19:32:04.067523+00:00",
+  "games": [
+    "push",
+    "shrink",
+    "knives",
+    "bomb",
+    "western",
+    "tanks",
+    "tankarena",
+    "chaos",
+    "kart",
+    "monster",
+    "spy",
+    "millionaire",
+    "sinyakquiz",
+    "warsaw",
+    "crocodile",
+    "jenga",
+    "crane",
+    "naval",
+    "drawguess",
+    "western_duel",
+    "taprace",
+    "punchmeter",
+    "flappy",
+    "hungry",
+    "snakelines",
+    "carryball",
+    "marble_bloom",
+    "pocket_siege",
+    "bow_club",
+    "poker",
+    "airhockey",
+    "mines",
+    "curling",
+    "bowling",
+    "swarm_gate",
+    "peek_shoot"
+  ],
+  "waitingScreens": 38,
+  "individuallyOpenedOriginals": 4,
+  "contactSheetsOpened": [
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-contact-1.png",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-contact-2.png"
+  ],
+  "sourcesCurrent": {
+    "public/tv.css": "e4274926ce1b47cd5074fe6cd29bee8150b36cabceb0adf4850d5ac117dfec90",
+    "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77",
+    "public/tv.html": "fe1c89db188b4eb10338b38e751c5c24b3a6e21ad9fb0f6d8469097d4964f2e4",
+    "public/tv-show.css": "5a106e22297045794ae35a1db9a47348d056e1164788cd0d128f7d670645842a"
+  },
+  "captureReports": [
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/report.json",
+      "sha256": "69872e2fa7cfda8a8b7232c4f0ee98bb703fe20c79e04333d3da72e4904e9600"
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/report.json",
+      "sha256": "122a68006b31dd7ae58e3fcf01c690ba4d6e76ce03aa4fcf2d62de8302d20876"
+    }
+  ],
+  "qualification": "26 valid first-segment game rows +10 successful replacement rows; first run has no passed field after subsequent roster race, so not relabeled as global passing run. Rest report passed=true/liveTransition=true. All36 reviewed for waiting-header removal only, not all-gameplay/physical device.",
+  "images": [
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/bomb-waiting-1280.png",
+      "sha256": "cb5a7e8d1e84bce1d51d460c24c06a40cf056a7f67bbe496c14cbfd56f73ee24",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/carryball-waiting-1280.png",
+      "sha256": "34de09e959077c1449aa679c9ab33708549756f5d012c9bebe1c113e8afa5edd",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/chaos-waiting-1280.png",
+      "sha256": "2534cb1ac60540605f772cfd95627a24d9e42158921aa47651f6d5f2cf5ac549",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/crane-waiting-1280.png",
+      "sha256": "aaa72e7528bbba72c9886a45d97a1ae4bff7c0a30b6a378111f4042db04a50b2",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/crocodile-waiting-1280.png",
+      "sha256": "5d532194d12554060bdf78fc6ec1f19e70ae209a650c63f0c2d1509e3995e4e6",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/drawguess-waiting-1280.png",
+      "sha256": "d4baac30d68b9d4d8b86872e7295e1e804d095e02a7be7276820a420aa1e6c73",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/flappy-waiting-1280.png",
+      "sha256": "a9a5051e671622b8209a5e9624fa081acb5319640a588c7b9f78cc32ed1b59ef",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/hungry-waiting-1280.png",
+      "sha256": "f6e17f49971446cd418b3366ba95536f4d93eaf982b281b2f9ceaf3d96a939bb",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/jenga-waiting-1280.png",
+      "sha256": "76b06aa1bace012aa9ac577f34936d89b990b27ec25af940c08e5a8fe17ce0b7",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/kart-waiting-1280.png",
+      "sha256": "58e2ad4fbb910cee065485f2b80ef224d357f043c66bf6fe1bf1997571cfcd3a",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/knives-waiting-1280.png",
+      "sha256": "6f4b16b859c12da1f78b687c0cc660b7adb7c565280db359e77ea8088e5521a1",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/millionaire-waiting-1280.png",
+      "sha256": "ceaaaa0a2d94c019fb212726db7418fb8a871bf45481b010d5a7994d2751d400",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/monster-waiting-1280.png",
+      "sha256": "edd32a94417ba6511cefad396de6880a4a94ca8e8385fe433ab5706d4e3cf11d",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/naval-waiting-1280.png",
+      "sha256": "5c25a81f6d219c9569a63c91a81a6ddb56eacd38d0f8b5730118d300e322c393",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/naval-waiting-1920.png",
+      "sha256": "cd36ef69b7737e1a4ba9004ede8ba25cd6ae0d02cf933a0f4e8aaf1ba1d78b8a",
+      "review": "individual-original",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/punchmeter-waiting-1280.png",
+      "sha256": "cf62d4de52704ddd02067a5c92b31ca6a5ec0de2387a38a06804a0b0f444a57b",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/push-waiting-1280.png",
+      "sha256": "f13e25bb0e01c4afc7044221ee2ded2b4b058b22362c499accf3cca6564dbacf",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/shrink-waiting-1280.png",
+      "sha256": "0c18461bf842dfb2ce045d02a64be68bd3907604bbcc9fc8dba8e1365fe7576c",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/sinyakquiz-waiting-1280.png",
+      "sha256": "b25798d9089ea10c1dee042250111ba6766f682d32b591a423d5903e1ed991bc",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/snakelines-waiting-1280.png",
+      "sha256": "1e24eb71c4024b24a46a456382fa74cd52a1bab1d4f3c8613956fcd19b6934eb",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/spy-waiting-1280.png",
+      "sha256": "1f28fd1aac8fddc5ce01f10455ad3f7dd3baf2ffebf4598c1e171bd8a039ca9f",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/tankarena-waiting-1280.png",
+      "sha256": "57ccd07c9376d9748a657eb2565139b359b9809a6e4f933249031c20eddd098c",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/tanks-waiting-1280.png",
+      "sha256": "ba82425a3233f0554310b2054bf87f553811d758dc2667480be6c8b45f011bab",
+      "review": "individual-original",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/taprace-waiting-1280.png",
+      "sha256": "36a6a47eae45c4b70244f5f0605fe31e340ba9512cdca56db2fba17009f5544c",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/warsaw-waiting-1280.png",
+      "sha256": "109b66d222f672105ea6eb8cf807f8a894b0c05c4a7c3063793c43cc0de57ec7",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/western-waiting-1280.png",
+      "sha256": "e24700e54411546dd9c98315915e216f2ee0e2fd92d72cbede5777d2bdb1939b",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/western_duel-waiting-1280.png",
+      "sha256": "1caff91bc378b0a99bf0b9051d9a4cfceec5827db56a61612c72f076eb93c404",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/airhockey-waiting-1280.png",
+      "sha256": "59b986900a7f67948ca78e9b66ec6ec6839e02fce5b2aad2dd1e64854990b1a0",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/bow_club-waiting-1280.png",
+      "sha256": "167366992ab1ccb760ba8916d5b500e90fb24d6ccd090464c2cc73ef7745ee81",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/bowling-waiting-1280.png",
+      "sha256": "c9b810e41e8c6cdd43341a404e004baa4026aecfb021c65a072237d470d6e3ad",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/curling-waiting-1280.png",
+      "sha256": "7703b972842011bb78f5b5b9c9133c7396762c2a0d64ea9fb1f99679d0b5b784",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/curling-waiting-1920.png",
+      "sha256": "6f3d988b6557575753c2afbab2b730ae04e67fc84a8e1440455eb1f36ea5fb32",
+      "review": "individual-original",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/marble_bloom-waiting-1280.png",
+      "sha256": "a8af50aae0c3447441703d59cc501e3fe75a2d11194555ee11614aa96c4953f8",
+      "review": "individual-original",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/mines-waiting-1280.png",
+      "sha256": "8c5ee27dbadafad710aa7c0442a5d9ad7c0b304fd7af9f59e4b71ff36a267b25",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/peek_shoot-waiting-1280.png",
+      "sha256": "a459bccfae8f2198380a2853c00395cd6b138a42cadb1af59e62fad6ea5df30c",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/pocket_siege-waiting-1280.png",
+      "sha256": "ce23ce592c2d4cf6026ed62a3bec36d1c8d47781ddf7b70b6500535fa3a6a575",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/poker-waiting-1280.png",
+      "sha256": "fbda0d20d3011713e2d0bb80ac33867e68a82359e0d7e7fae709c0c6040b0303",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114-rest/swarm_gate-waiting-1280.png",
+      "sha256": "7c277ff96f1eaea255d2d7da84785351b854a51916873662fff229f805efc163",
+      "review": "contact-sheet",
+      "observation": "Platform logo/tabs/audio absent; game waiting logo, preparation guidance, roster and readiness whole."
+    }
+  ],
+  "blockers": [],
+  "combinedReport": {
+    "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/matchmaking-header114/combined-report.json",
+    "sha256": "6955f942325af267738dacbdedccd62a28467f242c93f7e0b97b22ca9ff191e5",
+    "qualification": "Root merged36 valid game rows and38 original PNGs; constituent raw reports retained. Root lobby/live checks, not independent hardware replay."
+  }
+}

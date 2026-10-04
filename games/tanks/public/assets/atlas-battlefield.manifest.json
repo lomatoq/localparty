@@ -1,0 +1,586 @@
+{
+  "version": 1,
+  "source": "atlas-battlefield.png",
+  "styleProfile": "sprite",
+  "chromaKeyed": false,
+  "frames": {
+    "crate": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 63,
+        "y": 57,
+        "w": 130,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/crate.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "barrel": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 330,
+        "y": 48,
+        "w": 109,
+        "h": 161
+      },
+      "sourceSize": {
+        "w": 109,
+        "h": 161
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/barrel.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "sandbags": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 552,
+        "y": 86,
+        "w": 176,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 84
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/sandbags.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "rubble": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 808,
+        "y": 59,
+        "w": 176,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 138
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/rubble.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "tree-bush": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1070,
+        "y": 44,
+        "w": 165,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 165,
+        "h": 169
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/tree-bush.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "rock": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1338,
+        "y": 59,
+        "w": 141,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 141,
+        "h": 138
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/rock.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pickup-machinegun": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 58,
+        "y": 313,
+        "w": 141,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 141,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/pickup-machinegun.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pickup-shield": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 314,
+        "y": 313,
+        "w": 141,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 141,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/pickup-shield.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pickup-heal": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 570,
+        "y": 313,
+        "w": 141,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 141,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/pickup-heal.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pickup-boost": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 826,
+        "y": 313,
+        "w": 140,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/pickup-boost.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pickup-flame": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1081,
+        "y": 313,
+        "w": 142,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 142,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/pickup-flame.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pickup-mine": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1337,
+        "y": 313,
+        "w": 142,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 142,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/pickup-mine.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "tank-body-top": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 43,
+        "y": 553,
+        "w": 170,
+        "h": 174
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/tank-body-top.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "tank-turret-top": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 313,
+        "y": 552,
+        "w": 142,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 142,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/tank-turret-top.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "tank-tracks": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 552,
+        "y": 554,
+        "w": 176,
+        "h": 173
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 173
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/tank-tracks.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "tank-wreck": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 808,
+        "y": 553,
+        "w": 176,
+        "h": 174
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/tank-wreck.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "flag-red": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1088,
+        "y": 552,
+        "w": 128,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/flag-red.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "flag-blue": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1343,
+        "y": 552,
+        "w": 130,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/flag-blue.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "base-pad": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 40,
+        "y": 819,
+        "w": 176,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 155
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/base-pad.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "spawn-ring": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 308,
+        "y": 826,
+        "w": 153,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 153,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/spawn-ring.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "crater": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 552,
+        "y": 819,
+        "w": 176,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/crater.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "oil-puddle": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 808,
+        "y": 842,
+        "w": 176,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 109
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/oil-puddle.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "tire-stack": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1064,
+        "y": 824,
+        "w": 176,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/tire-stack.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "fence": {
+      "atlas": "atlas-battlefield.webp",
+      "frame": {
+        "x": 1320,
+        "y": 847,
+        "w": 176,
+        "h": 98
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 98
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-battlefield/fence.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

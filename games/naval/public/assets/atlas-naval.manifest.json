@@ -1,0 +1,585 @@
+{
+  "version": 1,
+  "source": "atlas-naval.png",
+  "styleProfile": "sprite",
+  "chromaKeyed": false,
+  "frames": {
+    "ship-1": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 86,
+        "y": 40,
+        "w": 84,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 84,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/ship-1.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "ship-2": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 345,
+        "y": 40,
+        "w": 78,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 78,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/ship-2.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ship-3": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 605,
+        "y": 40,
+        "w": 70,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/ship-3.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ship-4": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 864,
+        "y": 40,
+        "w": 65,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 65,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/ship-4.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ship-5": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1095,
+        "y": 40,
+        "w": 115,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 115,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/ship-5.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ship-sunk": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1326,
+        "y": 45,
+        "w": 165,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 165,
+        "h": 167
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/ship-sunk.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "splash-miss": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 45,
+        "y": 306,
+        "w": 166,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 166,
+        "h": 157
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/splash-miss.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "hit-fire": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 336,
+        "y": 296,
+        "w": 96,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/hit-fire.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shell": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 557,
+        "y": 355,
+        "w": 167,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 167,
+        "h": 59
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/shell.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ocean-tile": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 818,
+        "y": 306,
+        "w": 157,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/ocean-tile.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "buoy": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1082,
+        "y": 315,
+        "w": 140,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 139
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/buoy.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "wake": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1320,
+        "y": 326,
+        "w": 176,
+        "h": 117
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 117
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/wake.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "periscope": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 54,
+        "y": 565,
+        "w": 148,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 148,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/periscope.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "radar": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 330,
+        "y": 568,
+        "w": 108,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 108,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/radar.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "anchor": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 577,
+        "y": 562,
+        "w": 126,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 126,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/anchor.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "life-ring": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 833,
+        "y": 581,
+        "w": 126,
+        "h": 118
+      },
+      "sourceSize": {
+        "w": 126,
+        "h": 118
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/life-ring.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "rock-island": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1064,
+        "y": 580,
+        "w": 176,
+        "h": 121
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 121
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/rock-island.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "seagull": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1320,
+        "y": 587,
+        "w": 176,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 107
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/seagull.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "smoke-column": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 81,
+        "y": 808,
+        "w": 95,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 95,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/smoke-column.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "target-crosshair": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 312,
+        "y": 824,
+        "w": 145,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 145,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/target-crosshair.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "flag-a": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 577,
+        "y": 824,
+        "w": 127,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 127,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/flag-a.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "flag-b": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 834,
+        "y": 824,
+        "w": 125,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/flag-b.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bubble-cluster": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1107,
+        "y": 823,
+        "w": 90,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/bubble-cluster.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "debris-wood": {
+      "atlas": "atlas-naval.webp",
+      "frame": {
+        "x": 1321,
+        "y": 839,
+        "w": 174,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 115
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-naval/debris-wood.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

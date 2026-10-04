@@ -1,0 +1,34 @@
+[
+  {
+    "file": "public/assets/gameplay/round3/2026-10-03/poker-lounge-v1.png",
+    "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5b-9a58-7b90-a8ae-78420115152d/exec-a0025d9c-024a-4535-9b81-55e57da7fec6.png",
+    "sha256": "63e61e452cc87aa75fe20ae6484e441191bd481e8a79a5a9a9ef7172f56a127b",
+    "used": true,
+    "prompt": "Generate a polished background bitmap for HeyPals 'Poker Night', landscape 16:9, full bleed. This is ONLY a background behind an existing large purple poker table drawn by the game; DO NOT draw a table, chairs, people, cards, text, numbers, logos or UI. Minimal flat cartoon vector-like casino lounge seen from above, coherent navy/plum and muted burgundy carpet with a few broad, understated geometric inlays, discreet warm brass edge details. Keep the middle 80 percent almost empty and low contrast because the existing oval table and four player labels occupy it. Peripheral material detail should feel like a premium playful party game, not photorealistic casino, not busy, not tiny pattern noise. Soft consistent shading, gentle darker corners, seamless full scene with no bordered box or cut edge; no neon rainbow, no hard white highlights. Palette should harmonize with purple padded table rim and lime gameplay accents. Output a single opaque wide environment image, no transparency needed.",
+    "method": "builtin imagegen; opaque bitmap; original unchanged",
+    "size": [
+      1672,
+      940
+    ],
+    "mode": "RGB"
+  },
+  {
+    "file": "public/assets/gameplay/round3/2026-10-03/punch-gym-v1.png",
+    "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5b-9a58-7b90-a8ae-78420115152d/exec-a86d9b59-39a8-4ce9-9790-31e5e5d61e8d.png",
+    "sha256": "8512359b2e972a6f578c5dd899913a86ca3b420b05200e83c4002ed229ece6f6",
+    "used": true,
+    "prompt": "Create a single landscape 16:9 full-bleed bitmap background for the HeyPals Punch Meter game. Minimal flat cartoon vector-style premium boxing gym, charcoal navy walls with muted blue/plum shading and a wide matte dark floor occupying the lower third, sparse broad softly lit wall panels and a pair of small boxing-glove silhouettes hanging at the far lateral edges. The center is EMPTY: the game itself draws the large red hanging punch bag, suspension, three ropes and ring posts in front, so NO punch bag, people, ring ropes, ring posts or duplicated foreground equipment. No text, logo, numbers, HUD, colored stripe borders or busy textures. Quiet playful console-game material treatment with rounded architectural forms, restrained warm red accent detail on the far edges, low contrast. Camera looks slightly downward at the room, mild broad floor perspective, even floor under the center; soft lighting and subtle vignette, no harsh hotspots. The bitmap must fill an entire TV viewport without a framed rectangle. Keep the central 75 percent plain enough for the existing red bag and lime/white feedback to remain dominant.",
+    "method": "builtin imagegen; opaque bitmap; original unchanged",
+    "size": [
+      1672,
+      941
+    ],
+    "mode": "RGB"
+  },
+  {
+    "file": "output/imagegen/round3-unused/micro-props-unused-perspective-v1.png",
+    "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5b-9a58-7b90-a8ae-78420115152d/exec-27a71043-6a14-4041-8d8d-d916e3a5ae55.png",
+    "sha256": "446cc7e6e6fcb820600d43705d60fb940be3a6285af7b15708f75218892c0bab",
+    "used": false
+  }
+]

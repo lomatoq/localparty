@@ -28,7 +28,12 @@
       available -= 8;
       if (available < 20) return;
       ctx.font = `${s.fontStyle} ${s.fontWeight} ${base}px ${s.fontFamily}`;
-      const width = ctx.measureText(text).width + Math.max(0,text.length-1) * (parseFloat(s.letterSpacing) || 0);
+      // Status captions use uppercase italic ink. Its visible right edge can
+      // extend past the advance width even when the string itself fits.
+      const rendered = el.id === 'hudValue' && s.textTransform === 'uppercase' ? text.toLocaleUpperCase(document.documentElement.lang || 'en') : text;
+      const measured = ctx.measureText(rendered);
+      const inkWidth = Math.max(measured.width, (measured.actualBoundingBoxLeft || 0) + (measured.actualBoundingBoxRight || 0));
+      const width = inkWidth + Math.max(0,rendered.length-1) * (parseFloat(s.letterSpacing) || 0);
       const size = Math.min(base, Math.max(10, base * Math.min(1, available / Math.max(1,width))));
       const desired = size.toFixed(2) + 'px';
       if (el.style.fontSize !== desired) el.style.setProperty('font-size', desired, 'important');

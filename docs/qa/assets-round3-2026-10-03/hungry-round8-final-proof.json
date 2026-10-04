@@ -1,0 +1,165 @@
+{
+  "createdAt": "2026-10-03T18:16:48.971Z",
+  "scope": "Hungry Arena, TV only: two and sixteen real engine players; four fresh final originals, no injected states or scores, no phone or physical-device claim.",
+  "sourceStart": {
+    "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3",
+    "games/arcade/simulation.js": "a0e111a837266e5bc34c63ada42251cdaf44d7016d0667979dbb70622346af13",
+    "games/arcade/public/app.js": "11b0c15abfd79fd9f926c755d02a33ca393a29d43c5ca3c2510168cb44180df2",
+    "games/arcade/public/host.html": "7e8e605e9103b8134fe2077c1f97b3872ef0e3bd40c364abf9e685d330902124",
+    "games/arcade/public/style.css": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d",
+    "games/arcade/public/arcade-juice.js": "c277bb61bace27bd8717e603c417e8b96b8df11b6d1ef815c88ca0f3f5cbe8c6",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-art.js": "bb4287e0651d1828cd8eebc692a92c81a2a5dd53be7624fc183d3a171e9dbb16",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/i18n.js": "c2fa14cddfbd35225bf5fb0e50f240a0b05825355022a2f366d6514bd33bc5eb",
+    "public/assets/gameplay/generated/hungry-creatures-v2.js": "2e345232a2d193d6492c6cd3755092ee31f8c8e3e629dace2b8e010916bb561a",
+    "public/assets/gameplay/generated/hungry-creatures-v2.json": "46aa935e09b1d7a5460938fccc867086716e6fd4962809b3fbb9732d92f47482",
+    "public/assets/gameplay/generated/hungry-creatures-v2.png": "06c30d7bab7b34d259c3c18864a7aa8061fc7db49525bcf18ee348f9ef83d5f3"
+  },
+  "sourceEnd": {
+    "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3",
+    "games/arcade/simulation.js": "a0e111a837266e5bc34c63ada42251cdaf44d7016d0667979dbb70622346af13",
+    "games/arcade/public/app.js": "11b0c15abfd79fd9f926c755d02a33ca393a29d43c5ca3c2510168cb44180df2",
+    "games/arcade/public/host.html": "7e8e605e9103b8134fe2077c1f97b3872ef0e3bd40c364abf9e685d330902124",
+    "games/arcade/public/style.css": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d",
+    "games/arcade/public/arcade-juice.js": "c277bb61bace27bd8717e603c417e8b96b8df11b6d1ef815c88ca0f3f5cbe8c6",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-art.js": "bb4287e0651d1828cd8eebc692a92c81a2a5dd53be7624fc183d3a171e9dbb16",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/i18n.js": "c2fa14cddfbd35225bf5fb0e50f240a0b05825355022a2f366d6514bd33bc5eb",
+    "public/assets/gameplay/generated/hungry-creatures-v2.js": "2e345232a2d193d6492c6cd3755092ee31f8c8e3e629dace2b8e010916bb561a",
+    "public/assets/gameplay/generated/hungry-creatures-v2.json": "46aa935e09b1d7a5460938fccc867086716e6fd4962809b3fbb9732d92f47482",
+    "public/assets/gameplay/generated/hungry-creatures-v2.png": "06c30d7bab7b34d259c3c18864a7aa8061fc7db49525bcf18ee348f9ef83d5f3"
+  },
+  "currentSourceMatches": true,
+  "errors": [],
+  "changedFiles": [],
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-2-live-1280.png",
+      "sha256": "29050a641afe201ed1b42d9b0701c45777f866b5a63d337151ca8b1c6ce5daae",
+      "openedIndividually": true,
+      "observation": "New lime and cyan creatures have colored centers and intact silhouettes at720p. Floor backing extends through the margins; the unchanged join toast is transient.",
+      "artReady": true,
+      "variants": [
+        0,
+        1
+      ],
+      "clippedBodies": 0
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-2-live-1920.png",
+      "sha256": "02e462b1889f935936af0a9a3f4d4a029dd04ece62f4fc1acb17b8328cc8cbb8",
+      "openedIndividually": true,
+      "observation": "At1080p, native aspect and body colors remain intact. No central rectangular field cut; header facts remain separate.",
+      "artReady": true,
+      "variants": [
+        0,
+        1
+      ],
+      "clippedBodies": 0
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-16-live-1280.png",
+      "sha256": "e23f7f4276cd4232cd4b968f9b0c616332b15a79288c64da1dd65f849334fa33",
+      "openedIndividually": true,
+      "observation": "Sixteen real players show all eight existing colors. Actor-only impact bubbles remain; every rendered body envelope is inside the frame.",
+      "artReady": true,
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "clippedBodies": 0
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-16-live-1920.png",
+      "sha256": "82e47a2eb3f6c813d09cf5de9868bbd50afcb99b7b47184097e1a892a39a0116",
+      "openedIndividually": true,
+      "observation": "Dense sixteen-player1080p scene: colored mouths and body shading remain intact. Actor collisions and brief impact rings remain localized.",
+      "artReady": true,
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "clippedBodies": 0
+    }
+  ],
+  "correction": {
+    "cause1": "Food bob was indexed by mutablearray position. Stablefood IDs preserveeachitem phase throughsplice.",
+    "cause2": "Hungry gain>8 usedaddTrauma(.45), shifting wholeforeground; removedonlythiscall, keptactorsquash/CHOMP/burst.",
+    "priorSourceCanBeReconstructedWithOnlyTraumaCall": true,
+    "oldJuice": "8851c052175965126b1c4f1eae902d51a7f230d7f30b7f1c3c9d3da8f610bc8b",
+    "newJuice": "c277bb61bace27bd8717e603c417e8b96b8df11b6d1ef815c88ca0f3f5cbe8c6"
+  },
+  "retainedHistoricalActionEvidence": {
+    "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/report.json",
+    "sourceQualification": "Previous actualoneeat69unchanged andleftedge2TVstates predate effect-onlytraumaremoval; sourcecurrentother19dependencies match, userinput/collision/camera/foodhelper unchanged. NotfreshcurrentJuice screenshots.",
+    "foodTransition": [
+      {
+        "removed": [
+          {
+            "id": 15,
+            "x": 417.42234511216003,
+            "y": 64.58009198144944,
+            "kind": 3
+          }
+        ],
+        "added": [
+          {
+            "id": 71,
+            "x": 318.77941787479597,
+            "y": 344.99588442811626,
+            "kind": 1
+          }
+        ],
+        "retained": 69,
+        "retainedUnchanged": true,
+        "massBefore": 20,
+        "massAfter": 23
+      }
+    ]
+  },
+  "tests": {
+    "combined": "17/17PASS: Hungry3+Carry10+Flappy4",
+    "regressionBefore": "Actual Juice observer20→29 hadsceneShakeX=-0.6790229547448943",
+    "regressionAfter": "Actual Juice observer20→29 shake{x:0,y:0}, peractorsquash.x remains!=1",
+    "syntax": "app.js/simulation.js/helper/Juice PASS",
+    "arcadeReportMetrics": "PASS",
+    "legacyBroadSmoke": "Initial Flappy countdown fixture failure is retained in earlier raw history. Shared HUD owner corrected only the fixture: countdown blocks input/cooldown/movement, then live flap is accepted. Current all six-mode arcade-simulation.cjs and arcade-feel.cjs both PASS (verified after Hungry absorption change)."
+  },
+  "asset": {
+    "path": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/generated/hungry-creatures-v2.png",
+    "sha256": "06c30d7bab7b34d259c3c18864a7aa8061fc7db49525bcf18ee348f9ef83d5f3",
+    "nativeDimensions": "1774×887RGBA",
+    "alpha": "Originalpixelsunchanged; all8cell boundaries alpha≥8 zero,4pxframepadding, preserveaspect",
+    "prompt": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/generated/hungry-creatures-v2-prompt.txt"
+  },
+  "qualification": "Only the current four normal-clock two- and sixteen-player captured scenes are approved by this self-review. Earlier real pointer eat and left edge at mass26 are separately source-qualified. Other maximum-mass/rim states and physical hardware remain unverified.",
+  "subsequentGameplayChange": "This packet records the earlier art/mask/food freeze. Hungry-only absorption mechanics subsequently changed in simulation.js and controller hint in app.js; current gameplay evidence is hungry-absorption-round9. Atlas/helper and clipping code remain unchanged."
+}

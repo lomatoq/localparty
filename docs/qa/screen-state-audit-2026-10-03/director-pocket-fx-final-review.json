@@ -1,0 +1,62 @@
+{
+  "reviewedAt": "2026-10-03T20:11:26.710902+00:00",
+  "reviewer": "art_director",
+  "status": "PASS bounded Super Nova/Hedge score-feedback visual review",
+  "report": {
+    "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-effects-2026-10-04/burst-feedback-confirm/report.json",
+    "sha256": "40f214d8299d2a987d71246bc190f667a53f66d3e17031eea7bcd8565fefe1bf",
+    "errors": [],
+    "changedFiles": [],
+    "rowCount": 2
+  },
+  "images": [
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-effects-2026-10-04/burst-feedback-confirm/super_nova-feedback-1280.png",
+      "sha256": "4589795a406b3abcad4d6dc181e4726eb7f8bc88a8dae55daf22bfca6e2e6601",
+      "openedIndividually": true,
+      "observation": "Gold +5 is whole and legible above the right tank, separated from the bright radial burst. No score clipping; the large effect extends past the bottom viewport and is not claimed wholly contained.",
+      "disposition": "PASS score-feedback readability"
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-effects-2026-10-04/burst-feedback-confirm/hedge-feedback-1280.png",
+      "sha256": "c846f1d301cf58097d9c7fff511ccaef207ff43c06bbe40d4f6d53aa23aa5865",
+      "openedIndividually": true,
+      "observation": "Gold +1 is whole and legible above the right tank with ample dark contrast. Tank/player marks and ground-contact particles remain visible; no score mask/clipping.",
+      "disposition": "PASS score-feedback readability"
+    }
+  ],
+  "sourceExpected": {
+    "games/arcade_deluxe/public/render.js": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0",
+    "games/arcade_deluxe/public/siege-fx.js": "b49a23fec6ce22c0b97d6928fe69af6818291d35bd7b9cb5e9b7d7916f8c19e2",
+    "games/arcade_deluxe/public/pocket-plasma.js": "50a5c95652b975be1f00cfca989cb9e88de92f6962ce1c719645d8635373bb92",
+    "games/arcade_deluxe/public/pocket-projectiles.js": "fabb8793b392f5d34b0e7f66f4e7af40fdc4179eb784e438f430b7677b6a7a0a",
+    "games/arcade_deluxe/public/explosion-waves.js": "87e284f9905736eb7d98c203894fc10f5409e24246c435055816bc50df5ad3d0",
+    "games/arcade_deluxe/public/net.js": "966ae77fb6bb7c562bf793f222adb3c4355db3fbd2a8c356011b30df2144d786",
+    "games/arcade_deluxe/core/tanks.cjs": "a7a5c2d8d0871b5f32662e681484b90b23551efc74be07c0ca62bdccde5724e2",
+    "games/arcade_deluxe/core/pocket-runtime.cjs": "e107a675f890ae5ef2c0b5b9d856cb28524b6d47f1f8abda60c4327c5ad937a2",
+    "games/arcade_deluxe/core/snapshot-view.cjs": "8bd12aab30c98eb3a6e7d8c8cd834911ea7dd51ad10ea87c04cd7123b644ed4b"
+  },
+  "sourceCurrent": {
+    "games/arcade_deluxe/public/render.js": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0",
+    "games/arcade_deluxe/public/siege-fx.js": "b49a23fec6ce22c0b97d6928fe69af6818291d35bd7b9cb5e9b7d7916f8c19e2",
+    "games/arcade_deluxe/public/pocket-plasma.js": "50a5c95652b975be1f00cfca989cb9e88de92f6962ce1c719645d8635373bb92",
+    "games/arcade_deluxe/public/pocket-projectiles.js": "fabb8793b392f5d34b0e7f66f4e7af40fdc4179eb784e438f430b7677b6a7a0a",
+    "games/arcade_deluxe/public/explosion-waves.js": "87e284f9905736eb7d98c203894fc10f5409e24246c435055816bc50df5ad3d0",
+    "games/arcade_deluxe/public/net.js": "966ae77fb6bb7c562bf793f222adb3c4355db3fbd2a8c356011b30df2144d786",
+    "games/arcade_deluxe/core/tanks.cjs": "a7a5c2d8d0871b5f32662e681484b90b23551efc74be07c0ca62bdccde5724e2",
+    "games/arcade_deluxe/core/pocket-runtime.cjs": "e107a675f890ae5ef2c0b5b9d856cb28524b6d47f1f8abda60c4327c5ad937a2",
+    "games/arcade_deluxe/core/snapshot-view.cjs": "8bd12aab30c98eb3a6e7d8c8cd834911ea7dd51ad10ea87c04cd7123b644ed4b"
+  },
+  "currentMismatches": [],
+  "changedSourceHashes": {
+    "games/arcade_deluxe/core/tanks.cjs": "a7a5c2d8d0871b5f32662e681484b90b23551efc74be07c0ca62bdccde5724e2",
+    "games/arcade_deluxe/public/siege-fx.js": "b49a23fec6ce22c0b97d6928fe69af6818291d35bd7b9cb5e9b7d7916f8c19e2"
+  },
+  "findings": [],
+  "qualifications": [
+    "Controlled authoritative normal-physics actual-cannon contact through real localhost WebSocket/production Connection/full Canvas2D Renderer at accelerated replay cadence, not ordinary live-room or physical phone proof.",
+    "The raw report kind mentions321, but this final report actually has two rows: super_nova and hedge. No new321 visual acceptance is made.",
+    "Owner delivery/paint counts and prior normal-clock16shots remain separate evidence; independent lane reviewed the two PNGs and current source equality only.",
+    "No full effect-envelope, transient pixel equivalence, shader, build or install claim; no own source edit/browser."
+  ]
+}

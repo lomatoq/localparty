@@ -1,0 +1,51 @@
+/* Millionaire polish (social lane, 2026-10-02): final-answer beat, reveal,
+   ladder climb, phone lock-in and countdown tension. Typography and layout
+   from docs/qa/gameplay-millionaire-round3.md are untouched. */
+
+/* TV · locked pick during the final-answer beat */
+html.party-host body.party-screen #game #answers .answer.locked{border-color:#ffd36b!important;background:linear-gradient(180deg,#ffd36b26,#ffd36b10)!important;box-shadow:0 0 0 1px #ffd36b55,0 10px 34px #ffd36b26}
+html.party-host body.party-screen #game #answers .answer.locked .letter{color:#ffd36b!important}
+html.party-host body.party-screen #game #answers .answer.correct{position:relative;isolation:isolate;overflow:hidden}
+/* Ladder: 15 rungs on every bar, the fill climbs instead of jumping. */
+html.party-host body.party-screen #game .miniBar{position:relative}
+html.party-host body.party-screen #game .miniBar i{transition:width .9s cubic-bezier(.23,1,.32,1)}
+html.party-host body.party-screen #game .miniBar::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 calc(100% / 15 - 2px),#0d0a18 calc(100% / 15 - 2px) calc(100% / 15))}
+html.party-host body.party-screen #game .scoreItem{position:relative}
+
+@media (prefers-reduced-motion:no-preference){
+ html.party-host body.party-screen #game #answers.final-answer .answer:not(.locked){animation:mq-dim .32s cubic-bezier(.23,1,.32,1) both}
+ html.party-host body.party-screen #game #answers .answer.locked{animation:mq-lock 1.1s cubic-bezier(.23,1,.32,1) both}
+ html.party-host body.party-screen #game #answers .answer.correct{animation:mq-correct .72s cubic-bezier(.23,1,.32,1) both}
+ html.party-host body.party-screen #game #answers .answer.correct::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:linear-gradient(105deg,transparent 28%,#efffd055 48%,transparent 68%);transform:translateX(-115%);animation:mq-sheen .95s cubic-bezier(.23,1,.32,1) .12s both}
+ html.party-host body.party-screen #game #answers .answer.wrong{animation:mq-wrong .44s cubic-bezier(.36,.07,.19,.97) both}
+ html.party-host body.party-screen #game #answers:has(.correct) .answer:not(.correct):not(.wrong){animation:mq-dim .4s cubic-bezier(.23,1,.32,1) .05s both}
+ html.party-host body.party-screen #game .scoreItem.climb{animation:mq-climb 1.2s cubic-bezier(.23,1,.32,1) both}
+ html.party-host body.party-screen #game .scoreItem.climb .money{animation:mq-money .5s cubic-bezier(.23,1,.32,1) both}
+}
+@keyframes mq-dim{to{filter:saturate(.4) brightness(.7)}}
+@keyframes mq-lock{0%{transform:scale(1)}18%{transform:scale(1.03)}40%{transform:scale(1.01)}100%{transform:scale(1.015)}}
+@keyframes mq-correct{0%{transform:scale(.99);box-shadow:0 0 0 0 #b4ff3980}35%{transform:scale(1.04)}100%{transform:scale(1);box-shadow:0 0 0 16px #b4ff3900}}
+@keyframes mq-sheen{to{transform:translateX(115%)}}
+@keyframes mq-wrong{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+@keyframes mq-climb{0%{box-shadow:0 0 0 0 #cfff8566}30%{box-shadow:0 0 0 3px #cfff854d,0 0 28px #cfff8526}100%{box-shadow:0 0 0 0 #cfff8500}}
+@keyframes mq-money{0%{transform:scale(1)}40%{transform:scale(1.14)}100%{transform:none}}
+
+/* Phone · lock-in and countdown */
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswer.locked{opacity:1!important;border-color:#ffd36b!important;background:linear-gradient(180deg,#ffd36b2b,#ffd36b12)!important;box-shadow:0 0 0 1px #ffd36b66,0 8px 26px #ffd36b22}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswer.locked .letter{color:#ffd36b!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .final-answer .phoneAnswer:not(.locked){opacity:.42!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer.urgent #secondsRemaining{color:#ff8fd0!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer.urgent .phoneTimer i{background:linear-gradient(90deg,#ff8fd0,#ff596f)!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #reveal[data-outcome=pending] .centerCard{border-color:#ffd36b66!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #reveal[data-outcome=pending] #moneyNow{color:#ffd36b!important}
+@media (prefers-reduced-motion:no-preference){
+ html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswer.locked{animation:mq-lock-phone .42s cubic-bezier(.23,1,.32,1) both}
+ html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #reveal[data-outcome=pending] #resultEmoji{animation:mq-breathe 1.1s ease-in-out both}
+}
+@keyframes mq-lock-phone{0%{transform:scale(.97);box-shadow:0 0 0 0 #ffd36b80}45%{transform:scale(1.02)}100%{transform:none;box-shadow:0 0 0 12px #ffd36b00}}
+@keyframes mq-breathe{0%{transform:scale(.9)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+/* Smoked violet show-console material on the existing selectable surfaces. */
+html.hp-ui.party-managed[data-party-game=millionaire] body.party-screen main :is(#answers .answer,#phoneAnswers .phoneAnswer):not(.picked):not(.selected):not(.locked):not(.correct):not(.wrong){
+ background:linear-gradient(180deg,#40313f,#2b2230)!important;
+ box-shadow:inset 0 1px 0 #ead9c923,inset 0 -1px 0 #100d1780!important;border-color:#b6997138!important;
+}

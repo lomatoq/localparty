@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-10-02T16:33:28.063403+00:00",
+  "status": "source-ready; browser HOLD; new explicit scope not frozen",
+  "ownedPresentation": [
+    "games/tankarena/public/app.js",
+    "games/tankarena/public/style.css",
+    "games/tankarena/public/tank-fx.js"
+  ],
+  "sourceHashes": {
+    "games/tankarena/public/app.js": "baa2d456f69413ee9937a452822a906f4a61c7a816e7fcdfbb125cb534c3e55c",
+    "games/tankarena/public/style.css": "799f2499be6fff9ae989d79f7e3687c8ef7d7158dcf944ec7d7cf38b5cbc1f50",
+    "games/tankarena/public/tank-fx.js": "c9e1e859f3cdcab4c6f693884585d68c89e2821bf6bee48ab96c13affe517d8b",
+    "output/playwright/ui-rework-2026-10-02/group02-fullheight-actions.cjs": "afcdc02f3cd43f56139d5d92c982fa38cc5dbae9cfac20ea60d453bfc1a8209e"
+  },
+  "checks": [
+    "app.js syntax passed",
+    "tank-fx.js syntax passed",
+    "fresh harness syntax passed",
+    "Impeccable layout detection []"
+  ],
+  "pending": [
+    "Parent removes Tankarena shared geometry/compact override block currently game-polish.css986\u2013995",
+    "Parent flush-right side-tab composition",
+    "Coordinator grants one browser slot",
+    "Fresh normal-clock4/16\u00d71280/1920 originals, moving top path, actual tail access and independent review"
+  ],
+  "constraint": "Fullheight receiver is not fullheight authoritative world: complete1200\u00d7720 world stays uniformly projected; report receiver/world/greenBoundary separately. Quiet outside-boundary material adds no playable cells or obstacles."
+}

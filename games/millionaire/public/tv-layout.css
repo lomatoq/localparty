@@ -1,0 +1,168 @@
+/* Host-only layout: fit the current question and every answer below the shared HUD. */
+html.party-host body.party-screen #game.gameGrid {
+  grid-template-columns:minmax(220px,26%) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr);
+  gap:20px;
+  min-height:0;
+}
+html.party-host body.party-screen #game>.stage { min-height:0; }
+html.party-host body.party-screen #game .scoreboard { min-height:0;padding:20px; }
+html.party-host body.party-screen #game #scoreList { min-height:0;overflow:auto; }
+html.party-host body.party-screen #game .activeBanner {
+  flex:0 0 58px;height:58px;margin-bottom:12px;padding:0 18px;
+}
+html.party-host body.party-screen #game .activeBanner b { font-size:22px; }
+html.party-host body.party-screen #game .questionWrap {
+  min-height:0;padding:18px 22px;gap:12px;justify-content:center;
+}
+html.party-host body.party-screen #game #questionText {
+  flex:0 0 auto;font-size:clamp(24px,2.1vw,40px);line-height:1.16;margin:0;
+}
+html.party-host body.party-screen #game #answers { flex:0 0 auto;gap:10px; }
+html.party-host body.party-screen #game #answers .answer {
+  min-height:64px;padding:12px 16px;gap:12px;font-size:18px!important;
+}
+html.party-host body.party-screen #game #answers .text { font-size:clamp(17px,1.4vw,24px);line-height:1.25; }
+html.party-host body.party-screen #game #answers .letter { width:34px;height:34px;flex-basis:34px; }
+html.party-host body.party-screen #game #explanation {
+  flex:0 1 auto;min-height:0;margin:0;padding:10px 14px;font-size:14px;line-height:1.35;overflow:auto;
+}
+@media(min-height:760px) {
+  html.party-host body.party-screen #game .questionWrap { gap:20px;padding:28px; }
+  html.party-host body.party-screen #game #answers .answer { min-height:86px; }
+  html.party-host body.party-screen #game #explanation { font-size:18px; }
+}
+/* Narrowing the ladder must not truncate participant identities. */
+html.party-host body.party-screen #game .scoreTop b {
+  min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.2;
+}
+
+/* One current-player identity in the shared TV masthead. The local question and
+   money ladder are equally tall panels, with a centered task rather than a
+   second answering banner repeating the same name. Standalone hosting retains
+   that banner because it has no shared masthead. */
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=millionaire] body.party-screen #game .activeBanner{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .questionWrap{
+  border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0;
+  padding:24px!important;justify-content:center;gap:16px;text-align:center;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .questionMeta{justify-content:center}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .questionMeta.party-prop-heading{
+  padding-inline:0!important;background-image:none!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game #questionText{
+  font:italic 900 clamp(26px,2.2vw,40px)/1.16 KardiaFatRunner,sans-serif!important;
+  margin:0;letter-spacing:-.025em;text-transform:uppercase!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game #answers .text{
+  font:italic 400 clamp(20px,1.7vw,26px)/1.25 KardiaFitRunner,sans-serif!important;
+  text-transform:none!important;letter-spacing:0!important;overflow-wrap:anywhere;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game #answers .letter{
+  font:italic 900 20px/1 KardiaFatRunner,sans-serif!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .scoreboard>.eyebrow{
+  font:italic 900 16px/1.25 KardiaFatRunner,sans-serif!important;text-align:center;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .scoreTop{
+  display:grid;grid-template-columns:26px minmax(0,1fr) max-content;gap:8px;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .scoreTop b{
+  font:550 18px/1.2 KardiaFit,sans-serif!important;text-transform:none!important;letter-spacing:0!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .money{
+  font:italic 900 21px/1.2 KardiaFatRunner,sans-serif!important;color:#caff72!important;white-space:nowrap;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game #scoreList{
+  scrollbar-width:none;overscroll-behavior:contain;padding-block:2px;flex:1;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game #scoreList::-webkit-scrollbar{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game #explanation{
+  font:italic 400 16px/1.35 KardiaFitRunner,sans-serif!important;text-transform:none!important;
+  padding:12px 16px;max-height:108px;text-align:center;scrollbar-width:none;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .turnMeta{
+  padding-top:12px;flex:none;gap:16px;font:400 14px/1.4 KardiaFit,sans-serif!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game .turnMeta b{
+  font:italic 900 18px/1.2 KardiaFatRunner,sans-serif!important;color:#fff;
+}
+
+/* Final user request: remove the outer question-card finish, keeping its geometry. */
+html.hp-ui.party-managed.party-host.party-display-only[data-party-game=millionaire] body.party-screen #game>.stage{
+ background:transparent!important;border-color:transparent!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+
+/* Codex UI: a wider ladder, clean rungs and a top-aligned question. */
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen main.hostShell #game.gameGrid{grid-template-columns:clamp(340px,32vw,560px) minmax(0,1fr)!important;gap:24px!important}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen main.hostShell #game .questionWrap{justify-content:flex-start!important;padding:20px 24px!important;gap:20px!important}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .scoreItem{padding:14px 16px!important;margin-top:12px!important;border-radius:18px!important;background:#211c30!important;border:1px solid #cfb8fa20!important}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .scoreItem.active{border-color:#ceff7580!important;background:#303a31!important}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .miniBar{height:8px!important;border-radius:4px!important;background:#ffffff12!important;margin-top:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .miniBar i{border-radius:4px!important;background:#c9ff77!important}
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .money{font-size:clamp(24px,2vw,32px)!important}
+
+/* Group07: a useful identity/progression rail instead of an empty tower. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell{max-width:none!important;padding:168px 32px 12px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game.gameGrid{grid-template-columns:480px minmax(0,1fr)!important;gap:48px!important;align-items:start!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game .scoreboard{height:auto!important;max-height:100%!important;padding:16px!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList{flex:0 1 auto!important;max-height:calc(100dvh - 280px)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .scoreItem{padding:12px 16px!important;background:#c6abf810!important;border:0!important;margin-top:12px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .scoreItem.active{background:#c8ff7318!important;outline:1px solid #c8ff7380;outline-offset:-1px}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen #game .scoreTop{grid-template-columns:24px 52px minmax(0,1fr) auto!important;gap:12px!important;align-items:center!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen #game .scoreTop b{font:500 19px/1.12 KardiaFit,sans-serif!important}
+.mq-place{font:italic 900 24px/1 KardiaFatRunner,sans-serif;color:#cbb2ff}.mq-identity{display:grid;place-items:center;width:52px;height:56px}.mq-identity img{width:100%;height:100%;object-fit:contain}.mq-identity .mq-photo{height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%}
+.mq-progress{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:12px;align-items:center;padding-top:12px;font:400 13px/1.2 KardiaFit,sans-serif;color:#d8c8ec}.mq-next-prize{white-space:nowrap}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .miniBar{height:4px!important;margin:0!important;background:#cbb2ff28!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .miniBar::after{display:none!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game .questionWrap{padding:24px 32px!important;gap:24px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #questionText{font:italic 900 clamp(32px,2.85vw,54px)/1.13 KardiaFatRunner,sans-serif!important;text-wrap:balance!important;max-width:1080px;margin-inline:auto}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers{gap:16px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers .answer{min-height:104px!important;padding:20px 24px!important;border-left-width:1px!important;gap:20px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers .text{font:italic 400 28px/1.2 KardiaFitRunner,sans-serif!important;overflow-wrap:normal!important}
+@media(max-height:700px) and (min-width:1101px){html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell{padding-top:148px!important}html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game.gameGrid{grid-template-columns:380px minmax(0,1fr)!important;gap:24px!important}html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #questionText{font-size:34px!important}}
+
+/* Shared show cap + current task + money ladder form one centered composition. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell{
+ height:100dvh!important;box-sizing:border-box;justify-content:center!important;padding:24px!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game.gameGrid[data-tv-hud-cluster]{
+ flex:0 1 auto!important;height:auto!important;width:100%;max-height:calc(100dvh - 48px);box-sizing:border-box;
+ padding:0!important;
+ grid-template-columns:clamp(280px,24vw,424px) minmax(0,1fr)!important;grid-template-rows:minmax(0,auto)!important;gap:24px!important;align-items:stretch!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>[data-tv-hud-anchor]{height:auto!important;align-self:stretch!important;justify-content:flex-start!important;padding-top:calc(var(--party-hud-height,64px) + 16px)!important;box-sizing:border-box}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>.scoreboard{height:auto!important;align-self:stretch!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList{flex:1 1 auto!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game .questionWrap{
+ justify-content:flex-start!important;gap:20px!important;padding:8px 16px!important;flex:1 1 auto!important;height:auto!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #questionText{font-size:clamp(28px,2.5vw,48px)!important;line-height:1.12!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers .answer{min-height:clamp(72px,8.4vh,96px)!important;padding:16px 20px!important;gap:16px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers .text{font-size:clamp(20px,1.5vw,28px)!important;overflow-wrap:anywhere!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList{max-height:calc(100dvh - var(--party-hud-height,104px) - 160px)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen #game .scoreTop{grid-template-columns:28px 44px minmax(0,1fr) auto!important;gap:8px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen #game .mq-identity{width:44px;height:48px}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .scoreItem:not(.active){background:linear-gradient(140deg,#4f405929,transparent 70%),#282331!important;box-shadow:inset 0 1px 0 #dbc09b24!important}
+@media(max-height:740px) and (min-width:1101px){
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game.gameGrid[data-tv-hud-cluster]{grid-template-columns:320px minmax(0,1fr)!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game .scoreTop b{font-size:16px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .money{font-size:24px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game .questionWrap{gap:12px!important;padding-block:0!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers{gap:12px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers .answer{min-height:64px!important;padding:12px 16px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #questionText{font-size:30px!important}
+}
+
+/* The money ladder is a transparent list owner; its individual rungs retain material. */
+html.hp-ui.party-managed.party-host[data-party-game=millionaire] body.party-screen #game>.scoreboard{
+ background:none!important;border-color:transparent!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+
+/* The authored question/header sets the row height; the ladder fills that height. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>.scoreboard{contain:size!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList{flex:1 1 0!important;min-height:0!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList .scoreItem:not(.active){background:linear-gradient(145deg,#3c2f3d,#29212e)!important}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.mq-identity .mq-photo{box-sizing:border-box;border:1.5px solid var(--player,#ceb894)}

@@ -1,0 +1,18 @@
+✔ measured cap projection keeps moving human and bot runner envelopes visible at both TV sizes (12.49075ms)
+✔ only the active authenticated host can replace finite, sequenced Carry geometry (0.30025ms)
+✔ Carry cap exclusion leaves outside loose-ball momentum, directional pass and goals unchanged (0.972041ms)
+✔ a loose ball inside a new HUD exclusion is recovered and reflected immediately (0.627666ms)
+✔ normal and fast passes bounce at the cap without tunnelling or repeated inward motion (0.393125ms)
+✔ a pass crossing an interior HUD box cannot skip it even when its endpoint is clear (0.158583ms)
+✔ rounded cap corners reflect approaching balls and let outgoing balls escape (0.132958ms)
+✔ held ball, explicit pass and close player pickup stay accessible along the cap (0.560791ms)
+✔ both goals and original outer-wall bounce remain intact with the cap (0.1645ms)
+✔ HUD resize keeps carried possession and tackles still release a visible ball (0.178834ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77.392875

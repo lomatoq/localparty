@@ -1,0 +1,192 @@
+/* Ranking ink and geometry belong to the adapter; cards keep authored paint.
+   Every rule requires an adapter class; launcher #rankSection is independent. */
+.hp-ranking-row,.hp-ranking-podium,.hp-ranking-local-podium{
+ --hp-ranking-gradient:linear-gradient(180deg,#eadcff 8%,#be9afd 48%,#8154cd 100%);
+ --hp-ranking-ink:#e4d1ff;--hp-ranking-tint:#be9afd16;--hp-ranking-line:#be9afd30;
+}
+:is(.hp-ranking-row,.hp-ranking-podium,.hp-ranking-local-podium)[data-hp-rank="1"]{--hp-ranking-gradient:linear-gradient(180deg,#fff6d4 8%,#ffe47d 48%,#b78e35 100%);--hp-ranking-ink:#ffe5a3;--hp-ranking-tint:#f3cf7724;--hp-ranking-line:#f3cf7745}
+:is(.hp-ranking-row,.hp-ranking-podium,.hp-ranking-local-podium)[data-hp-rank="2"]{--hp-ranking-gradient:linear-gradient(180deg,#f0fbff 8%,#bbddff 48%,#799bcc 100%);--hp-ranking-ink:#d7edff;--hp-ranking-tint:#a9d4ff1f;--hp-ranking-line:#a9d4ff40}
+:is(.hp-ranking-row,.hp-ranking-podium,.hp-ranking-local-podium)[data-hp-rank="3"]{--hp-ranking-gradient:linear-gradient(180deg,#ffe9d5 8%,#ffbf83 48%,#a85d58 100%);--hp-ranking-ink:#ffd0aa;--hp-ranking-tint:#edaa8120;--hp-ranking-line:#edaa8140}
+html.hp-ui body .hp-ranking-row{
+ border-color:var(--hp-ranking-line);min-width:0;
+}
+/* A list is a transparent layout/scroll owner, not another card under its rows.
+   The named-panel selector matches the generic finish's ID specificity. */
+html.hp-ui body .hp-ranking-native-list,
+html.hp-ui body .hp-result-list,
+html.hp-ui.party-managed:is(.party-host,.party-player)[data-party-game] body :is(.panel,.screen-standings,.scoreboard,.leader-card):not([data-hp-theme-preserve]):has(> :is(#players,#board,#leaderboard,#resultStats).hp-ranking-native-list){
+ background:none!important;box-shadow:none!important;outline:none!important;border-color:transparent!important;
+}
+html.hp-ui body .hp-ranking-row:not([data-hp-ranking-layout="shared"]){
+ border-radius:14px!important;padding-inline:10px!important;
+ background-clip:padding-box;
+}
+html.hp-ui body .hp-ranking-row:not([data-hp-ranking-layout="shared"]):not([data-hp-ranking-layout="author"]){
+ margin-block:6px;border:1px solid var(--hp-ranking-line)!important;
+}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="crane"].turn{border-color:#c8ff7380!important}
+html.hp-ui.party-managed.party-host[data-party-game] body .hp-ranking-native-list{
+ display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;gap:8px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game] body :is(#players,#board,#leaderboard,#resultStats).hp-ranking-native-list>.hp-ranking-row{
+ margin:0!important;flex:none!important;border:1px solid var(--hp-ranking-line)!important;border-radius:14px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game] body #players.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout="crane"].turn{border-color:#c8ff7380!important}
+html.hp-ui.party-managed.party-host[data-party-game] body #players.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout="crane"]::after{display:none}
+html.hp-ui body .hp-ranking-row .hp-ranking-place,
+html.hp-ui body :is(#sharedMatchResults,#liveTop,#tvLeaders) .hp-ranking-row .hp-ranking-place{
+ position:relative;display:inline-flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:1px!important;align-self:center!important;flex:none;width:56px!important;min-width:56px!important;height:42px;grid-row:1/-1;
+ padding:0!important;overflow:visible!important;--hp-ranking-size:44px;height:42px!important;
+ background:none!important;border-color:transparent!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+html.hp-ui body .hp-ranking-row .hp-ranking-place::after{
+ content:none!important;
+}
+html.hp-ui body .hp-ranking-row .hp-ranking-place::before{content:none!important}
+/* Legacy managed standings use createPlace without the ranking adapter.
+   Remove its rank>3 shield only; keep the authored number box and medals. */
+html.hp-ui.party-managed[data-party-game] body .hp-place:not(.hp-ranking-place):not([data-place="1"]):not([data-place="2"]):not([data-place="3"]):not([data-place=""])>.hp-place-digit{
+ background:none!important;
+}
+html.hp-ui body .hp-ranking-row .hp-ranking-place:is([data-hp-digits="2"]),
+html.hp-ui body :is(#sharedMatchResults,#liveTop,#tvLeaders) .hp-ranking-row .hp-ranking-place[data-hp-digits="2"]{--hp-ranking-size:32px}
+html.hp-ui body .hp-ranking-row .hp-ranking-place:is([data-hp-digits="3"]),
+html.hp-ui body :is(#sharedMatchResults,#liveTop,#tvLeaders) .hp-ranking-row .hp-ranking-place[data-hp-digits="3"]{--hp-ranking-size:24px}
+html.hp-ui body .hp-ranking-row .hp-ranking-place:is([data-hp-digits="4"]),
+html.hp-ui body :is(#sharedMatchResults,#liveTop,#tvLeaders) .hp-ranking-row .hp-ranking-place[data-hp-digits="4"]{--hp-ranking-size:20px}
+html.hp-ui body .hp-ranking-place>:is(.hp-ranking-digit,.hp-place-digit),
+html.hp-ui body :is(#sharedMatchResults,#liveTop,#tvLeaders) .hp-ranking-row .hp-ranking-place>:is(.hp-ranking-digit,.hp-place-digit){
+ position:static!important;left:auto!important;top:auto!important;translate:0 var(--hp-ranking-ink-offset,0px)!important;transform:none!important;order:0;flex:none;margin-right:-9px!important;
+ display:block!important;width:auto!important;height:auto!important;padding:2px 12px 2px 2px!important;
+ box-sizing:content-box!important;white-space:nowrap;overflow:visible!important;
+ font:900 italic var(--hp-ranking-size,32px)/1.05 KardiaFatRunner,sans-serif!important;
+ letter-spacing:normal!important;background:var(--hp-ranking-gradient)!important;
+ background-clip:text!important;-webkit-background-clip:text!important;color:transparent!important;-webkit-text-fill-color:transparent!important;
+ text-shadow:none!important;border:0!important;border-radius:0!important;
+}
+html.hp-ui body .hp-ranking-place>.hp-ranking-cup,
+html.hp-ui body :is(#sharedMatchResults,#liveTop,#tvLeaders) .hp-ranking-row .hp-ranking-place>.hp-ranking-cup{
+ position:static!important;left:auto!important;right:auto!important;top:auto!important;order:1;flex:none;
+ translate:none!important;width:24px!important;height:27px!important;max-width:none!important;
+ object-fit:contain;opacity:1;pointer-events:none;filter:none!important;
+ background:none!important;border-color:transparent!important;outline:none!important;box-shadow:none!important;
+}
+html.hp-ui body .hp-ranking-row .hp-ranking-identity{min-width:0}
+html.hp-ui body .hp-ranking-row .hp-ranking-score{
+ opacity:.84;overflow:visible!important;white-space:nowrap;flex-shrink:0;min-width:0;
+ box-sizing:content-box;padding-inline:4px 10px;color:var(--hp-ranking-ink)!important;
+ font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important;font-weight:900!important;
+}
+html.hp-ui body .hp-ranking-row .hp-ranking-score[data-hp-value-size="medium"]{font-size:22px!important}
+html.hp-ui body .hp-ranking-row .hp-ranking-score[data-hp-value-size="long"]{font-size:18px!important}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="shared"]{grid-template-columns:56px minmax(0,1fr) max-content!important}
+html.hp-ui body #sharedMatchResults .hp-result-columns{grid-template-columns:56px minmax(0,1fr) max-content}
+/* Engine row heights and positioning remain authored. Reserve the whole place
+   rail rather than letting two digits paint into an adjacent avatar/name. */
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="classic"]{display:grid!important;grid-template-columns:64px minmax(0,1fr) max-content!important;column-gap:10px!important;align-items:center}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="crane"]{grid-template-columns:64px 12px minmax(0,1fr) max-content!important}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"]{
+ display:grid!important;grid-template-columns:64px 12px minmax(0,1fr)!important;
+ grid-template-rows:auto auto;column-gap:10px!important;row-gap:3px!important;
+ align-items:center;min-height:60px;padding:8px!important;margin-bottom:6px;
+ border:1px solid var(--hp-ranking-line)!important;border-radius:14px!important;
+}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-pos{grid-column:1;grid-row:1/3}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-dot{grid-column:2;grid-row:1;align-self:center}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-name{grid-column:3;grid-row:1;min-width:0}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-name>strong{
+ display:block;font:550 18px/1.22 KardiaFit,sans-serif!important;
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere;
+}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-meta{
+ grid-column:3;grid-row:2;display:flex;flex-wrap:wrap;align-items:baseline;
+ justify-content:flex-start;gap:3px 10px;text-align:left;min-width:0;
+}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-meta>span{font:400 italic 12px/1.25 KardiaFitRunner,sans-serif!important;white-space:nowrap}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-meta>span:last-child{margin-left:auto}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="kart"] .leader-meta>strong{
+ font:900 italic 16px/1.2 KardiaFatRunner,sans-serif!important;padding-inline:1px 6px;
+}
+html.hp-ui[data-party-game="kart"] body .leader-card>.row.between{display:flex;flex-direction:column;align-items:center;gap:5px}
+html.hp-ui[data-party-game="kart"] body .leader-card>.row.between>.card-title{font:900 italic 20px/1.1 KardiaFatRunner,sans-serif!important;letter-spacing:0!important}
+html.hp-ui[data-party-game="kart"] body .leader-card>.row.between>.tiny{font:400 italic 14px/1.25 KardiaFitRunner,sans-serif!important;letter-spacing:0!important;margin:0}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="arsenal"] .arsenal-identity{grid-template-columns:64px minmax(0,1fr)!important}
+html.hp-ui.party-managed.party-host[data-party-game] body #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout="arsenal"]{
+ min-height:0!important;padding:7px 10px!important;border-left:3px solid var(--player-color)!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game] body #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout="arsenal"] .hp-ranking-place{height:32px!important;--hp-ranking-size:30px}
+html.hp-ui.party-managed.party-host[data-party-game] body #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout="arsenal"] .arsenal-name{white-space:normal!important;overflow:visible!important;text-overflow:clip;line-height:1.2!important}
+html.hp-ui.party-managed.party-host[data-party-game] body #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout="arsenal"] .arsenal-metrics{margin-top:3px!important;gap:6px}
+html.hp-ui.party-managed.party-host[data-party-game] body #board.hp-ranking-native-list>.hp-ranking-row[data-hp-ranking-layout="arsenal"] .arsenal-score{font-size:22px!important;line-height:1.15!important}
+html.hp-ui body .hp-ranking-row[data-hp-ranking-layout="tanks"]{grid-template-columns:64px minmax(0,1fr) max-content max-content!important}
+html.hp-ui body .hp-ranking-row:not([data-hp-ranking-layout="shared"]) .hp-ranking-place{width:64px!important;min-width:64px!important;--hp-ranking-size:32px}
+html.hp-ui body .hp-ranking-row:not([data-hp-ranking-layout="shared"]) .hp-ranking-place[data-hp-digits="2"]{--hp-ranking-size:26px}
+html.hp-ui body .hp-ranking-row:not([data-hp-ranking-layout="shared"]) .hp-ranking-place[data-hp-digits="3"]{--hp-ranking-size:20px}
+html.hp-ui body .hp-ranking-row:not([data-hp-ranking-layout="shared"]) .hp-ranking-cup{width:22px!important;height:25px!important}
+@media(max-width:420px){
+ html.hp-ui body #sharedMatchResults .hp-ranking-row{grid-template-columns:56px minmax(0,1fr) 86px!important;column-gap:8px!important;min-height:68px!important}
+ html.hp-ui body #sharedMatchResults .hp-result-columns{grid-template-columns:56px minmax(0,1fr) 86px;column-gap:8px}
+ html.hp-ui body #sharedMatchResults .hp-ranking-row .hp-ranking-place{grid-column:1;grid-row:1;align-self:center!important}
+ html.hp-ui body #sharedMatchResults .hp-ranking-row .hp-ranking-identity{grid-column:2;grid-row:1}
+ html.hp-ui body #sharedMatchResults .hp-ranking-row .hp-ranking-identity:not(:has(.hp-result-self)),
+ html.hp-ui body #sharedMatchResults .hp-ranking-row .hp-ranking-identity:has(.hp-result-self)>span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;line-height:1.25}
+ html.hp-ui body #sharedMatchResults .hp-ranking-row .hp-ranking-score{grid-column:3;grid-row:1;justify-self:stretch;text-align:right;box-sizing:border-box;width:86px;font-size:var(--hp-ranking-score-size,27px)!important}
+}
+/* Catalogue branding has display:grid!important, which can defeat [hidden].
+   Match state is authoritative even while native tabs reconnect. */
+html.hp-ui body:is(.in-game,.hp-has-match-result) #catalogFilters{display:none!important}
+html.hp-ui body.hp-has-match-result :is(#hudTimer,#gameRules,#sessionPause){display:none!important}
+/* The stage podium keeps its physical plinth arrangement and existing reveal. */
+/* A bright physical plinth needs dark ink, while the same medal palette stays
+   luminous on the dark list rows. This also keeps places ahead of points. */
+html.hp-ui body :is(.hp-ranking-podium,.hp-ranking-local-podium) .hp-ranking-place{
+ position:relative;display:inline-flex;align-items:center;justify-content:center;gap:4px;
+ width:auto;min-height:0;height:auto;flex:none;--hp-ranking-size:54px;vertical-align:middle;
+}
+html.hp-ui body :is(.hp-ranking-podium,.hp-ranking-local-podium) .hp-ranking-place>:is(.hp-ranking-digit,.hp-place-digit){
+ position:static!important;translate:0 var(--hp-ranking-ink-offset,0px)!important;transform:none!important;order:0;
+ padding:0 12px 0 2px!important;line-height:1.05!important;margin-right:-9px!important;
+ -webkit-text-stroke:.8px #211329;filter:drop-shadow(0 1px 0 #211329) drop-shadow(0 2px 1px #21132990);
+}
+html.hp-ui body .hp-ranking-podium .hp-ranking-place[data-hp-digits="2"]{--hp-ranking-size:40px}
+html.hp-ui body :is(.hp-ranking-podium,.hp-ranking-local-podium) .hp-ranking-cup{
+ position:static!important;translate:none!important;order:1;flex:none;
+ width:38px!important;height:43px!important;margin:0!important;
+}
+html.hp-ui body .hp-ranking-podium .podium-plinth{gap:4px}
+html.hp-ui body.tv-screen #tvPodium .hp-ranking-podium .podium-points{
+ opacity:.84;overflow:visible!important;padding-inline:2px 6px;margin:0;
+ font:400 italic 20px/1.1 KardiaFitRunner,sans-serif!important;
+ color:color-mix(in srgb,var(--medal) 28%,#201728)!important;
+}
+html.hp-ui body .hp-ranking-podium .podium-name{border-bottom:1px solid var(--hp-ranking-line);padding-bottom:6px}
+html.hp-ui body .hp-ranking-local-podium .hp-ranking-place{margin-inline:auto;--hp-ranking-size:40px}
+html.hp-ui body .hp-ranking-local-podium .hp-ranking-cup{width:30px!important;height:34px!important}
+html.hp-ui body .hp-ranking-local-podium .hp-ranking-score{opacity:.84;padding-inline:4px 10px;overflow:visible!important;color:var(--hp-ranking-ink);font:400 italic 18px/1.1 KardiaFitRunner,sans-serif!important}
+/* Compact lower plinths reserve a rank line and a score line. The medal-sized
+   hero rank must not consume the 52px tail plinth or clip its score. */
+html.hp-ui body #tvPodiumMain .hp-ranking-podium:not(.is-medal) .hp-ranking-place{--hp-ranking-size:26px}
+html.hp-ui body #tvPodiumMain .hp-ranking-podium:not(.is-medal) .podium-plinth{padding:4px;gap:3px}
+html.hp-ui body.tv-screen #tvPodium #tvPodiumMain .hp-ranking-podium:not(.is-medal) .podium-points{font-size:16px!important;line-height:1.05;margin:0}
+html.hp-ui body #tvPodiumMain .hp-ranking-podium:not(.is-medal) .podium-plinth small{line-height:1;font-size:8px}
+html.hp-ui body .podium-tail .hp-ranking-podium .hp-ranking-place{--hp-ranking-size:24px}
+html.hp-ui body .podium-tail .hp-ranking-podium .hp-ranking-place[data-hp-digits="2"]{--hp-ranking-size:24px}
+html.hp-ui body .podium-tail .hp-ranking-podium .podium-plinth{padding:2px 4px;gap:2px}
+html.hp-ui body .podium-tail .hp-ranking-podium .hp-ranking-cup{width:24px!important;height:27px!important}
+html.hp-ui body.tv-screen #tvPodium .podium-tail .hp-ranking-podium .podium-points{font-size:14px!important;line-height:1.05;margin:0;padding-inline:2px 6px}
+/* Sixteen-person podiums keep every tail plinth inside the fitted TV stage.
+   Remove spare deck margins, retaining authored plinth/portrait/name sizes. */
+html.hp-ui body.tv-screen #tvPodium.has-tail{padding-block:16px}
+html.hp-ui body.tv-screen #tvPodium.has-tail .tv-board-heading{margin-bottom:4px!important}
+html.hp-ui body.tv-screen #tvPodium.has-tail #tvPodiumMain{padding-top:4px}
+html.hp-ui body.tv-screen #tvPodium.has-tail .podium-tail{padding-top:4px!important}
+/* Clip a photo to its own circle, never the small identity bubble above it. */
+html.hp-ui body .hp-ranking-podium .podium-portrait{overflow:visible!important;isolation:isolate}
+html.hp-ui body .hp-ranking-podium .podium-portrait>img{border-radius:inherit}
+html.hp-ui body .hp-ranking-podium .podium-portrait.hp-ranking-photo::after{
+ content:attr(data-hp-initial);position:absolute;right:-5px;bottom:-4px;z-index:4;
+ display:grid;place-items:center;width:24px;height:24px;border:3px solid #17131f;border-radius:50%;
+ background:#c8ff73;color:#172018;font:650 14px/1 KardiaFit,sans-serif;overflow:visible;
+}
+html.hp-ui body .hp-ranking-row .avatar.has-photo{overflow:visible!important}
+html.hp-ui body .hp-ranking-row .avatar.has-photo::after{z-index:2}

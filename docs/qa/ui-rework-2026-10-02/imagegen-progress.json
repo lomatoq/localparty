@@ -1,0 +1,956 @@
+{
+  "version": 1,
+  "tool": "built-in image_gen",
+  "requested": 32,
+  "generated": 32,
+  "validated": 0,
+  "integrated": 0,
+  "assets": [
+    {
+      "id": "fx-impact-combat",
+      "priority": 1,
+      "path": "public/assets/fx/atlas-fx-combat.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals combat and impact VFX sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals VFX sprite style: same soft toy arcade language as gameplay sprites, playful and non-graphic, large simple shapes, small fixed palette (cream, gold, orange, violet, lime, cyan, pink), bright soft cores with smooth falloff, no photographic smoke, no gore, no realistic fire texture. Readable over dark fields at 48-160px. CAMERA: exact top-down radial effects centred in each cell; directional flashes/tracers point RIGHT as stated; same centre and scale envelope per stage; identical camera and light in every cell; no cast shadow on the background. Effects are sprites for additive or normal blending over dark fields; keep cores bright and edges soft. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: explosion stage 1: tight bright cream-gold core flash with small lime sparks; explosion stage 2: puffy orange-gold fireball, rounded cartoon billows; explosion stage 3: fireball breaking into soft violet-grey smoke puffs with embers; explosion stage 4: dissipating soft plum smoke ring, a few fading embers; muzzle flash seen from the front: four-point cream-gold star burst; muzzle flash from the side: elongated cone flash pointing right. Row 2 left to right: single soft round smoke puff, light lavender-grey, semi-transparent edges; cluster of three smaller smoke puffs, lavender-grey; low ground dust puff, warm sand colour, flattened; radial spark burst of 8 short tapered cream-gold streaks; white-cream impact star with soft glow, comic hit flash; thin glowing shockwave ring, cream to transparent, perfect circle. Row 3 left to right: top-down scorch mark decal, soft dark plum blotch with charred speckles; handful of small chunky debris pieces, neutral grey-violet, tintable (TINTABLE); scatter of 6 glowing ember dots, gold to pink; short glowing bullet tracer streak pointing right, cream core, gold glow; tiny brass shell casing, toy style; water splash crown, cyan-white droplets, cartoon. Row 4 left to right: burst of tiny ice crystals and frost dust, cyan-white; puff of 5 soft cream feathers; cute cartoon 'poof' cloud with a tiny friendly x-eyes star (elimination, not gory); glowing lime plus sign pickup glow; translucent cyan shield bubble, hollow sphere outline; bundle of 5 curved speed lines pointing right, cream. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1044454
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-88e99de9-8c96-4346-a9e3-177984c06f61.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL fx-impact-combat content in padding band: explosion-1(2720px), explosion-2(2538px), explosion-3(3180px), explosion-4(2773px), muzzle-flash-front(639px), muzzle-flash-side(232px), smoke-puff-a(1089px), smoke-puff-b(713px), dust-puff(909px), spark-burst(1651px), hit-flash(298px), shockwave-ring(1723px), scorch-decal(524px), ember-dots(106px), tracer(577px), water-splash(758px), ice-dust(1454px), feather-burst(1199px), skull-poof(1624px), heal-plus(933px), shield-bubble(2252px), speed-lines(1959px)"
+      },
+      "attempts": 2,
+      "updated": "2026-10-02T09:52:27.515Z",
+      "repair_note": "Targeted built-in edit shrank glow leakage but did not pass strict cell padding.",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid.",
+      "used_prompt": "Edit target: combat VFX sprite atlas. Preserve EXACT the same 24 subjects, palette, ordering, toy style, 6 columns and 4 rows, output 1536x1024 transparent PNG. Repair ONLY placement, scale, and leaked glow. Each cell is 256x256. Center item centers at x=128,384,640,896,1152,1408; y=128,384,640,896. SHRINK every entire sprite INCLUDING all sparks, shadows and glow to maximum 110x110 pixels. Everything beyond 55px from each center must have exactly alpha=0. Remove the vast diffuse colored background bloom entirely. No diffuse large halo, no floor, no backplate. All 40px bands along each of the invisible cell edges must be completely alpha zero. Maintain bright small cream cores, local softly rounded edges only. 24 isolated tiny compact sprites on otherwise genuine clear transparent alpha. No text or grid guides.",
+      "initial_used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals combat and impact VFX sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals VFX sprite style: same soft toy arcade language as gameplay sprites, playful and non-graphic, large simple shapes, small fixed palette (cream, gold, orange, violet, lime, cyan, pink), bright soft cores with smooth falloff, no photographic smoke, no gore, no realistic fire texture. Readable over dark fields at 48-160px. CAMERA: exact top-down radial effects centred in each cell; directional flashes/tracers point RIGHT as stated; same centre and scale envelope per stage; identical camera and light in every cell; no cast shadow on the background. Effects are sprites for additive or normal blending over dark fields; keep cores bright and edges soft. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: explosion stage 1: tight bright cream-gold core flash with small lime sparks; explosion stage 2: puffy orange-gold fireball, rounded cartoon billows; explosion stage 3: fireball breaking into soft violet-grey smoke puffs with embers; explosion stage 4: dissipating soft plum smoke ring, a few fading embers; muzzle flash seen from the front: four-point cream-gold star burst; muzzle flash from the side: elongated cone flash pointing right. Row 2 left to right: single soft round smoke puff, light lavender-grey, semi-transparent edges; cluster of three smaller smoke puffs, lavender-grey; low ground dust puff, warm sand colour, flattened; radial spark burst of 8 short tapered cream-gold streaks; white-cream impact star with soft glow, comic hit flash; thin glowing shockwave ring, cream to transparent, perfect circle. Row 3 left to right: top-down scorch mark decal, soft dark plum blotch with charred speckles; handful of small chunky debris pieces, neutral grey-violet, tintable (TINTABLE); scatter of 6 glowing ember dots, gold to pink; short glowing bullet tracer streak pointing right, cream core, gold glow; tiny brass shell casing, toy style; water splash crown, cyan-white droplets, cartoon. Row 4 left to right: burst of tiny ice crystals and frost dust, cyan-white; puff of 5 soft cream feathers; cute cartoon 'poof' cloud with a tiny friendly x-eyes star (elimination, not gory); glowing lime plus sign pickup glow; translucent cyan shield bubble, hollow sphere outline; bundle of 5 curved speed lines pointing right, cream. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nPRODUCTION PLACEMENT: output must be exactly 1536x1024 pixels; transparent alpha PNG, sprites deliberately compact (maximum 140x140 each) centered at x=128,384,640,896,1152,1408 and y=128,384,640,896. All pixels in the 40px padding bands must have alpha zero."
+    },
+    {
+      "id": "fx-celebration",
+      "priority": 1,
+      "path": "public/assets/fx/atlas-fx-celebration.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals celebration and confetti sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: single curled confetti ribbon piece, lime (TINTABLE); five-point confetti star, gold; diamond confetti, pink; round confetti dot, cyan; spiral streamer piece, violet; small heart confetti, pink. Row 2 left to right: firework burst, gold radial streaks with dots; firework burst, violet and pink; firework burst, lime and cyan; four-point twinkle sparkle, cream; cluster of three twinkles of different sizes; soft round glow orb, cream to transparent. Row 3 left to right: small golden crown with motion sparkles (winner pop); small golden trophy with sparkles; big puffy gold star with shine; cartoon thumbs-up hand, cream glove, friendly; party popper cone shooting streamers; glossy violet party balloon with string. Row 4 left to right: glossy lime party balloon; glossy pink party balloon; blank curved ribbon banner, violet with gold edge, no text; golden laurel wreath, open at top; ribbon tails only, violet and lime, for under medals; soft spotlight cone pointing down, cream transparent. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1323655
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-1a769d5d-83fc-4499-922b-d091cc11415b.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL fx-celebration content in padding band: confetti-rect(385px), confetti-swirl(625px), firework-burst-gold(99px), crown-pop(56px), trophy-pop(89px), balloon-lime(801px), balloon-pink(1027px), ribbon-banner(403px), laurel(86px), spotlight-cone(322px)"
+      },
+      "attempts": 1,
+      "updated": "2026-10-02T09:53:29.214Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid.",
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals celebration and confetti sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: single curled confetti ribbon piece, lime (TINTABLE); five-point confetti star, gold; diamond confetti, pink; round confetti dot, cyan; spiral streamer piece, violet; small heart confetti, pink. Row 2 left to right: firework burst, gold radial streaks with dots; firework burst, violet and pink; firework burst, lime and cyan; four-point twinkle sparkle, cream; cluster of three twinkles of different sizes; soft round glow orb, cream to transparent. Row 3 left to right: small golden crown with motion sparkles (winner pop); small golden trophy with sparkles; big puffy gold star with shine; cartoon thumbs-up hand, cream glove, friendly; party popper cone shooting streamers; glossy violet party balloon with string. Row 4 left to right: glossy lime party balloon; glossy pink party balloon; blank curved ribbon banner, violet with gold edge, no text; golden laurel wreath, open at top; ribbon tails only, violet and lime, for under medals; soft spotlight cone pointing down, cream transparent. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nOVERRIDING SCALE REQUIREMENT: tiny compact sprites, each sprite and ALL effects occupy at most 96x96px in its 256x256 cell. Leave enormous transparent gutters. Each row has 6 objects centered at x=128,384,640,896,1152,1408; exactly 4 rows at y=128,384,640,896. Output EXACTLY 1536x1024. All alpha outside each 96x96 safe box is ZERO. No broad bloom or soft backdrop. The entire canvas is empty transparent except these 24 compact objects; no grid guides."
+    },
+    {
+      "id": "ui-stat-glyphs-3d",
+      "priority": 2,
+      "path": "public/assets/icons/atlas-stat-glyphs.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals UI stat icon atlas, small 3D toy icons, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Icons must read at 18-24px; strong silhouette, minimal internal detail. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: winner crown; round cartoon bomb with lit fuse; puffy heart (health/lives); lightning bolt (best/speed); checkered racing flag (lap); gold trophy (points/total). Row 2 left to right: bullseye target (kills/accuracy); friendly ghost (deaths); round shield (status/defense); round stopwatch (time/round); throwing knife; bow with arrow. Row 3 left to right: flame (streak); bowling frame grid square; castle gate; curling stone; rocket (speed); comic impact star (attempts). Row 4 left to right: red x mark (false start); podium steps 1-2-3 (place); gold coin (money); bowling pin; curling broom; poker chip. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 2074
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-eab28719-b1fe-4a7f-8bd9-d1fef6964ed8.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL ui-stat-glyphs-3d content in padding band: crown(15562px), bomb(16012px), heart(16968px), lightning(17417px), flag-lap(16454px), trophy(15216px), target(34078px), ghost(34560px), shield(34560px), clock(34560px), dagger(34560px), bow(34438px), flame(34560px), grid(34560px), gate(34560px), stone(34560px), rocket(34560px), hit(34560px), cross(34560px), ranking(34560px), coin(34560px), pin(34560px), brush(34550px), chip(34560px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals UI stat icon atlas, small 3D toy icons, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Icons must read at 18-24px; strong silhouette, minimal internal detail. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: winner crown; round cartoon bomb with lit fuse; puffy heart (health/lives); lightning bolt (best/speed); checkered racing flag (lap); gold trophy (points/total). Row 2 left to right: bullseye target (kills/accuracy); friendly ghost (deaths); round shield (status/defense); round stopwatch (time/round); throwing knife; bow with arrow. Row 3 left to right: flame (streak); bowling frame grid square; castle gate; curling stone; rocket (speed); comic impact star (attempts). Row 4 left to right: red x mark (false start); podium steps 1-2-3 (place); gold coin (money); bowling pin; curling broom; poker chip. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T09:59:56.635Z",
+      "visual_inspection": "Alpha exists but only2074 fully transparent pixels across1.57Mpixel canvas; backdrop nearlyopaque. Requires background extraction via imagegen."
+    },
+    {
+      "id": "round-outcome-illustrations",
+      "priority": 1,
+      "path": "public/assets/rounds/atlas-round-outcomes.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals round outcome character illustrations, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals premium catalogue illustration style, matching public/assets/games/*.webp (e.g. bomb.webp) and the blob mascots in public/assets/branding/heypals-hero.png: sculpted chunky toy-like 3D forms, saturated lime/purple/coral/cyan colours with gold trim accents, carefully controlled soft studio light, three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, expressive friendly faces with big glossy eyes. NO dark cartoon outlines, NO flat vector, NO blown highlights, NO smeary glow. CAMERA: three-quarter front view, full body, character centred and standing on an invisible ground line at the same height in every cell; identical camera and light in every cell; no cast shadow on the background. Characters are the HeyPals blob mascots from the hero image (round glossy bodies, big eyes, tiny limbs); same proportions in every cell. Composition: EXACT regular grid of 4 columns x 2 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 384x512. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 4x2 equal invisible cells of 384x512px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 304x432px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: cheerful round blob character holding a smoking defused bomb, relieved grin; blob character wearing a big gold crown, arms up; dizzy blob character with spinning stars, comic and friendly; blob character standing on a glowing bullseye centre. Row 2 left to right: blob cowboy blowing smoke off a toy revolver; two blob characters high-fiving; blob character flying out of a ring with motion lines; blob character pointing forward with a 'go' pose. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1112743
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-3f96fdc7-14bc-42d6-99f7-fce7daf3f115.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL round-outcome-illustrations content in padding band: survived-bomb(1331px), winner-crown(611px), fastest-draw(1637px), draw-tie(3560px), knocked-out(2384px), next-round(411px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals round outcome character illustrations, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals premium catalogue illustration style, matching public/assets/games/*.webp (e.g. bomb.webp) and the blob mascots in public/assets/branding/heypals-hero.png: sculpted chunky toy-like 3D forms, saturated lime/purple/coral/cyan colours with gold trim accents, carefully controlled soft studio light, three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, expressive friendly faces with big glossy eyes. NO dark cartoon outlines, NO flat vector, NO blown highlights, NO smeary glow. CAMERA: three-quarter front view, full body, character centred and standing on an invisible ground line at the same height in every cell; identical camera and light in every cell; no cast shadow on the background. Characters are the HeyPals blob mascots from the hero image (round glossy bodies, big eyes, tiny limbs); same proportions in every cell. Composition: EXACT regular grid of 4 columns x 2 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 384x512. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 4x2 equal invisible cells of 384x512px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 304x432px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: cheerful round blob character holding a smoking defused bomb, relieved grin; blob character wearing a big gold crown, arms up; dizzy blob character with spinning stars, comic and friendly; blob character standing on a glowing bullseye centre. Row 2 left to right: blob cowboy blowing smoke off a toy revolver; two blob characters high-fiving; blob character flying out of a ring with motion lines; blob character pointing forward with a 'go' pose. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Every full illustration, all props and groundline accents must fit within centered 180x280px envelope of its 384x512px cell. Centers x=192,576,960,1344 and y=256,768. Fully transparent surrounding space with zero alpha. Absolutely no broad glow/shadow. Large empty invisible gutters between 8 illustrations.\n",
+      "updated": "2026-10-02T09:54:25.584Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "avatar-mascots",
+      "priority": 2,
+      "path": "public/assets/avatars/atlas-mascots.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals default player avatar mascot set, a single transparent PNG 1024x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals premium catalogue illustration style, matching public/assets/games/*.webp (e.g. bomb.webp) and the blob mascots in public/assets/branding/heypals-hero.png: sculpted chunky toy-like 3D forms, saturated lime/purple/coral/cyan colours with gold trim accents, carefully controlled soft studio light, three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, expressive friendly faces with big glossy eyes. NO dark cartoon outlines, NO flat vector, NO blown highlights, NO smeary glow. CAMERA: front head-and-shoulders bust, centred for a circular crop, same head size in every cell; identical camera and light in every cell; no cast shadow on the background. Each mascot is a head-and-shoulders bust centred for a circular crop, facing slightly toward the viewer. Composition: EXACT regular grid of 4 columns x 4 rows on a 1024x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 4x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: lime blob mascot, happy wink; violet blob mascot, big grin; pink blob mascot with tiny horns; cyan blob mascot wearing sunglasses. Row 2 left to right: gold blob mascot with headphones; orange blob mascot surprised; mint blob mascot with a leaf sprout; lavender blob mascot sleepy smile. Row 3 left to right: red blob mascot determined; teal blob mascot with cap; peach blob mascot with bow; indigo blob mascot with star antenna. Row 4 left to right: lime-violet two-tone blob laughing; pink-gold blob with crown-shaped hair; cyan-lime blob with freckles; plum blob with tiny mustache. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": true,
+        "zeroAlpha": 1104854
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-8cd8aea6-a30a-46b3-ba3f-996b6d972f5e.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": "FAIL avatar-mascots content in padding band: mascot-01(3459px), mascot-02(3371px), mascot-03(3387px), mascot-04(3392px), mascot-05(2824px), mascot-06(820px), mascot-07(1675px), mascot-08(1285px), mascot-09(80px), mascot-10(23px), mascot-11(78px), mascot-12(800px), mascot-13(691px), mascot-14(833px), mascot-15(370px), mascot-16(299px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals default player avatar mascot set, a single transparent PNG 1024x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals premium catalogue illustration style, matching public/assets/games/*.webp (e.g. bomb.webp) and the blob mascots in public/assets/branding/heypals-hero.png: sculpted chunky toy-like 3D forms, saturated lime/purple/coral/cyan colours with gold trim accents, carefully controlled soft studio light, three-quarter view, beautiful manufactured materials with subtle microtexture, broad restrained highlights, expressive friendly faces with big glossy eyes. NO dark cartoon outlines, NO flat vector, NO blown highlights, NO smeary glow. CAMERA: front head-and-shoulders bust, centred for a circular crop, same head size in every cell; identical camera and light in every cell; no cast shadow on the background. Each mascot is a head-and-shoulders bust centred for a circular crop, facing slightly toward the viewer. Composition: EXACT regular grid of 4 columns x 4 rows on a 1024x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 4x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: lime blob mascot, happy wink; violet blob mascot, big grin; pink blob mascot with tiny horns; cyan blob mascot wearing sunglasses. Row 2 left to right: gold blob mascot with headphones; orange blob mascot surprised; mint blob mascot with a leaf sprout; lavender blob mascot sleepy smile. Row 3 left to right: red blob mascot determined; teal blob mascot with cap; peach blob mascot with bow; indigo blob mascot with star antenna. Row 4 left to right: lime-violet two-tone blob laughing; pink-gold blob with crown-shaped hair; cyan-lime blob with freckles; plum blob with tiny mustache. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1024x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:01:56.190Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "tv-lobby-ambient-props",
+      "priority": 3,
+      "path": "public/assets/fx/atlas-lobby-props.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals ambient lobby props, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 2 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x512. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x2 equal invisible cells of 256x512px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x432px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: floating violet balloon; floating lime balloon; puffy gold star; tiny game controller toy; glossy die; small confetti cluster. Row 2 left to right: pink puffy heart; puffy music note; small crown; big sparkle; party ticket stub without text; party cupcake. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1296072
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-975e193f-f364-4fa0-823b-2cc5676d0833.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL tv-lobby-ambient-props content in padding band: float-star(310px), float-controller(1712px), float-heart(1249px), float-crown(683px), float-ticket(1315px), float-cupcake(47px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals ambient lobby props, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 2 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x512. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x2 equal invisible cells of 256x512px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x432px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: floating violet balloon; floating lime balloon; puffy gold star; tiny game controller toy; glossy die; small confetti cluster. Row 2 left to right: pink puffy heart; puffy music note; small crown; big sparkle; party ticket stub without text; party cupcake. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x140 pixels each, center of its cell, all shadows and glows INCLUDED in 90x140 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:11:42.522Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "party-arena-floor",
+      "priority": 2,
+      "path": "games/party/public/assets/arena-floor.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-texture. Asset: production HeyPals round arena floor texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Top-down soft rubber/plastic arena floor with subtle concentric pressed rings and tiny sparkle specks, deep plum and violet, very low contrast so discs stay readable. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-4e8c0637-d68e-4d82-8481-9986f823d875.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-texture. Asset: production HeyPals round arena floor texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Top-down soft rubber/plastic arena floor with subtle concentric pressed rings and tiny sparkle specks, deep plum and violet, very low contrast so discs stay readable. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1024x1024 pixels.\n",
+      "updated": "2026-10-02T10:02:20.286Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "party-arena-props",
+      "priority": 2,
+      "path": "games/party/public/assets/atlas-arena.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals party arena sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); cells explicitly described as front/side view (knife-stuck, tumbleweed, cactus, sign, knives) use a straight side view instead; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: neon-free glossy violet bumper ring segment, top-down; dark pit edge arc segment with soft drop shadow, top-down; warm orange heat halo ring, top-down; cartoon bomb seen from above with fuse; small bright fuse spark; top-down blast scorch decal. Row 2 left to right: glossy player disc seen from top, neutral white for tinting, with soft bevel (TINTABLE); cartoon eyes overlay for a disc, happy; cartoon eyes overlay, scared; cartoon eyes overlay, dizzy spirals; tiny crown sitting on a disc, top-down; comic impact star, top-down. Row 3 left to right: inward pointing glowing chevron, red-pink; small lime 'safe' floor marker dot; colour sector target wheel face, 6 colour sectors, top view, no text; toy throwing knife, violet handle; toy throwing knife, lime handle; toy throwing knife, pink handle. Row 4 left to right: toy throwing knife, cyan handle; knife embedded at an angle, seen from front; metal clang spark star; cartoon tumbleweed; small cartoon cactus; blank wooden saloon sign board, no text. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1090411
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-a0ee1b37-893a-4da9-bf4c-20f824507f6f.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL party-arena-props content in padding band: bumper-ring(3050px), pit-edge(5233px), bomb-holder-halo(4716px), bomb-top(914px), fuse-spark(18px), scorch(4315px), disc-skin-base(992px), disc-crown(540px), push-impact(31px), shrink-chevron(1238px), safe-zone-marker(162px), knife-board-face(1369px), knife-a(66px), knife-b(52px), knife-c(53px), knife-d(672px), knife-stuck(1736px), clang-spark(171px), tumbleweed(1304px), cactus(600px), draw-sign(3843px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals party arena sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); cells explicitly described as front/side view (knife-stuck, tumbleweed, cactus, sign, knives) use a straight side view instead; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: neon-free glossy violet bumper ring segment, top-down; dark pit edge arc segment with soft drop shadow, top-down; warm orange heat halo ring, top-down; cartoon bomb seen from above with fuse; small bright fuse spark; top-down blast scorch decal. Row 2 left to right: glossy player disc seen from top, neutral white for tinting, with soft bevel (TINTABLE); cartoon eyes overlay for a disc, happy; cartoon eyes overlay, scared; cartoon eyes overlay, dizzy spirals; tiny crown sitting on a disc, top-down; comic impact star, top-down. Row 3 left to right: inward pointing glowing chevron, red-pink; small lime 'safe' floor marker dot; colour sector target wheel face, 6 colour sectors, top view, no text; toy throwing knife, violet handle; toy throwing knife, lime handle; toy throwing knife, pink handle. Row 4 left to right: toy throwing knife, cyan handle; knife embedded at an angle, seen from front; metal clang spark star; cartoon tumbleweed; small cartoon cactus; blank wooden saloon sign board, no text. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:02:53.334Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "flappy-sky",
+      "priority": 2,
+      "path": "games/arcade/public/assets/flappy-sky.png",
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals Flappy parallax layer, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. dusk sky gradient with soft clouds and a low sun, no ground Horizontally seamless (left edge continues the right edge). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1672,
+        "height": 941,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-b49a7a5f-e85c-4fb9-b815-319e82a2ce2f.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals Flappy parallax layer, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. dusk sky gradient with soft clouds and a low sun, no ground Horizontally seamless (left edge continues the right edge). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x1080 pixels, aspect ratio 1920:1080, full canvas.\n",
+      "updated": "2026-10-02T10:03:33.887Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "flappy-hills-far",
+      "priority": 2,
+      "path": "games/arcade/public/assets/flappy-hills-far.png",
+      "expected": {
+        "width": 1920,
+        "height": 540,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals Flappy parallax layer, 1920x540 transparent PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. far rolling purple hills silhouette band along the bottom third, transparent above Horizontally seamless (left edge continues the right edge). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1983,
+        "height": 793,
+        "hasAlpha": true,
+        "zeroAlpha": 999405
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-0b7ff1ac-8ef3-49ba-ab9b-a843125962e5.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals Flappy parallax layer, 1920x540 transparent PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. far rolling purple hills silhouette band along the bottom third, transparent above Horizontally seamless (left edge continues the right edge). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x540 pixels, aspect ratio 1920:540, full canvas.\n",
+      "updated": "2026-10-02T10:03:53.605Z",
+      "visual_inspection": "Hill layer has clear upperalpha and appropriate low horizon; blue/magenta edge fringes visible. Aspect1983x793 differs requested1920x540; requires repair."
+    },
+    {
+      "id": "flappy-hills-near",
+      "priority": 2,
+      "path": "games/arcade/public/assets/flappy-hills-near.png",
+      "expected": {
+        "width": 1920,
+        "height": 540,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals Flappy parallax layer, 1920x540 transparent PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. near rounded green-violet hills with tiny trees, bottom band, transparent above Horizontally seamless (left edge continues the right edge). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 2172,
+        "height": 724,
+        "hasAlpha": true,
+        "zeroAlpha": 1095738
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-74472aa4-d32c-4a85-a86c-4e2e3a1f567f.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals Flappy parallax layer, 1920x540 transparent PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. near rounded green-violet hills with tiny trees, bottom band, transparent above Horizontally seamless (left edge continues the right edge). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x540 pixels, aspect ratio 1920:540, full canvas.\n",
+      "updated": "2026-10-02T10:04:40.832Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "arcade-sprites",
+      "priority": 1,
+      "path": "games/arcade/public/assets/atlas-arcade.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals arcade sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: side view facing RIGHT for birds, runners, feather, punch bag, glove, arch, bench, stopwatch, foam hand; exact top-down orthographic for snake, hungry blob, track tile, goals, player ring, ball, food; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: round flappy bird, lime (TINTABLE); round flappy bird wings up; round flappy bird wings down; green pipe body segment, vertical, tileable top/bottom; green pipe cap; single feather. Row 2 left to right: tap-race runner blob mid-stride (TINTABLE); runner blob other stride; checkered finish arch, no text; running track lane tile, top-down; glossy red punching bag hanging; boxing glove punch pose. Row 3 left to right: cute snake head top-down, tintable (TINTABLE); round snake body segment, tintable (TINTABLE); hungry blob open mouth top-down (TINTABLE); small pile of cartoon snacks; glossy rugby/soccer hybrid party ball; small goal frame seen top-down, left. Row 4 left to right: small goal frame seen top-down, right; team ring marker under a player, top-down (TINTABLE); toy gym bench (punchmeter dressing); big stopwatch prop; foam finger cheer hand; speed dust puff trail. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1138529
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-913abba0-84d7-4185-adff-59a1ece13807.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL arcade-sprites content in padding band: bird-a(2449px), bird-b(2165px), bird-c(2672px), pipe-body(5003px), pipe-cap(3095px), feather(585px), runner-a(904px), runner-b(808px), finish-arch(4071px), track-tile(2537px), punch-bag(2305px), glove(122px), snake-head(107px), goal-right(891px), player-ring(545px), gym-bench(776px), stopwatch(957px), cheer-foam-hand(869px), speed-dust(272px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals arcade sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: side view facing RIGHT for birds, runners, feather, punch bag, glove, arch, bench, stopwatch, foam hand; exact top-down orthographic for snake, hungry blob, track tile, goals, player ring, ball, food; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: round flappy bird, lime (TINTABLE); round flappy bird wings up; round flappy bird wings down; green pipe body segment, vertical, tileable top/bottom; green pipe cap; single feather. Row 2 left to right: tap-race runner blob mid-stride (TINTABLE); runner blob other stride; checkered finish arch, no text; running track lane tile, top-down; glossy red punching bag hanging; boxing glove punch pose. Row 3 left to right: cute snake head top-down, tintable (TINTABLE); round snake body segment, tintable (TINTABLE); hungry blob open mouth top-down (TINTABLE); small pile of cartoon snacks; glossy rugby/soccer hybrid party ball; small goal frame seen top-down, left. Row 4 left to right: small goal frame seen top-down, right; team ring marker under a player, top-down (TINTABLE); toy gym bench (punchmeter dressing); big stopwatch prop; foam finger cheer hand; speed dust puff trail. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T09:55:59.745Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "carryball-pitch",
+      "priority": 2,
+      "path": "games/arcade/public/assets/carryball-pitch.png",
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals arcade field background, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. top-down cartoon football pitch with mown stripes and soft stadium light pools, lines in cream. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1672,
+        "height": 941,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-eb148316-dffa-44db-af10-b4b1bef4b950.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals arcade field background, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. top-down cartoon football pitch with mown stripes and soft stadium light pools, lines in cream. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x1080 pixels, aspect ratio 1920:1080, full canvas.\n",
+      "updated": "2026-10-02T10:05:01.139Z",
+      "visual_inspection": "Topdown full soccerfield/stadium present; baked pitchlines and goals visible, must be checked against collision geometry before use. Requested1920x1080 returned1672x941."
+    },
+    {
+      "id": "hungry-floor",
+      "priority": 2,
+      "path": "games/arcade/public/assets/hungry-floor.png",
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals arcade field background, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. top-down tiled play floor, soft violet rubber tiles. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1672,
+        "height": 941,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-11697fe7-b1d3-4b2e-b671-bbec9f156406.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals arcade field background, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. top-down tiled play floor, soft violet rubber tiles. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x1080 pixels, aspect ratio 1920:1080, full canvas.\n",
+      "updated": "2026-10-02T10:05:40.770Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "taprace-track",
+      "priority": 2,
+      "path": "games/arcade/public/assets/taprace-track.png",
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals arcade field background, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. top-down running track with 4 lanes and soft rubber texture, horizontal. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1672,
+        "height": 941,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-e8d46262-110a-455a-a8d6-7683c3daaf9a.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals arcade field background, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. top-down running track with 4 lanes and soft rubber texture, horizontal. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x1080 pixels, aspect ratio 1920:1080, full canvas.\n",
+      "updated": "2026-10-02T10:06:01.308Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "combat-arena-props",
+      "priority": 1,
+      "path": "games/tanks/public/assets/atlas-battlefield.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals top-down battlefield sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: wooden supply crate, top-down; red explosive barrel; sandbag wall segment; rubble pile; round bush top-down; chunky rock. Row 2 left to right: pickup token: machine gun icon on glossy disc; pickup token: shield; pickup token: heal plus; pickup token: lightning boost; pickup token: flamethrower; pickup token: mine. Row 3 left to right: toy tank hull top-down, neutral white for tinting (TINTABLE); toy tank turret top-down, neutral white (TINTABLE); tread marks decal; burnt toy tank wreck, top-down; capture flag, red; capture flag, blue. Row 4 left to right: team base floor pad; spawn glow ring; shell crater decal; oil puddle decal; tire stack obstacle; short fence segment. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1053598
+      },
+      "source": "/Users/hlebhlyaba/HeyPals/localparty/games/tanks/public/assets/atlas-battlefield.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL combat-arena-props content in padding band: crate(2662px), barrel(1442px), sandbags(2909px), rubble(2480px), tree-bush(2448px), rock(961px), tank-body-top(1563px), tank-turret-top(606px), tank-tracks(898px), tank-wreck(1861px), flag-red(513px), flag-blue(531px), base-pad(4148px), spawn-ring(3068px), crater(2223px), oil-puddle(513px), tire-stack(1622px), fence(1312px)"
+      },
+      "attempts": 2,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals top-down battlefield sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: wooden supply crate, top-down; red explosive barrel; sandbag wall segment; rubble pile; round bush top-down; chunky rock. Row 2 left to right: pickup token: machine gun icon on glossy disc; pickup token: shield; pickup token: heal plus; pickup token: lightning boost; pickup token: flamethrower; pickup token: mine. Row 3 left to right: toy tank hull top-down, neutral white for tinting (TINTABLE); toy tank turret top-down, neutral white (TINTABLE); tread marks decal; burnt toy tank wreck, top-down; capture flag, red; capture flag, blue. Row 4 left to right: team base floor pad; spawn glow ring; shell crater decal; oil puddle decal; tire stack obstacle; short fence segment. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:17:18.244Z",
+      "visual_inspection": "Toy-style family present. Required camera is exact top-down but several props show three-quarter depth. Solid object alpha in40px padding bands: crate2662pixels>8/2444pixels>200,max253; sandbags2909>8/2564>200,max254; base-pad4148>8/3738>200,max254. Failure is real subject geometry beyond safe box, not tiny antialiasing. No inter-sprite collision visually.",
+      "repair_note": "Compact alternate generation reduced some leakage but still failed16cells and drifted into realistic/detail-heavy materials. Original toy-style raw selected at canonical path; alternate preserved at atlas-battlefield-raw-v2.png."
+    },
+    {
+      "id": "combat-ground",
+      "priority": 2,
+      "path": "games/tankarena/public/assets/arena-ground.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-texture. Asset: production HeyPals battle arena ground texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Top-down soft toy battlefield ground: muted olive-violet turf with tiny pebbles and faint grid wear. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-d082e7e9-51be-49a7-8da4-a53cb43e2adc.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-texture. Asset: production HeyPals battle arena ground texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Top-down soft toy battlefield ground: muted olive-violet turf with tiny pebbles and faint grid wear. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1024x1024 pixels.\n",
+      "updated": "2026-10-02T10:06:52.601Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "marble-set",
+      "priority": 2,
+      "path": "games/arcade_deluxe/public/assets/atlas-marbles.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals marble set sprite atlas, a single transparent PNG 1024x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 4 columns x 4 rows on a 1024x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 4x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: glossy glass marble, violet swirl; glossy marble lime; glossy marble pink; glossy marble cyan. Row 2 left to right: glossy marble gold; glossy marble orange; special rainbow marble; special bomb marble. Row 3 left to right: flower petal, soft pink; flower petal, lime; blooming flower burst; pop ring. Row 4 left to right: marble shooter cannon toy, top-down; marble track curve segment; end hole with swirl; combo star badge without text. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": true,
+        "zeroAlpha": 1091876
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-5bd0c320-bd0a-4a3f-ac85-ea72c7dba3cd.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": "FAIL marble-set content in padding band: marble-violet(367px), marble-lime(355px), marble-pink(356px), marble-cyan(338px), marble-bomb(523px), pop-ring(727px), shooter(2457px), track-curve(2143px), hole(1415px), combo-star(276px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals marble set sprite atlas, a single transparent PNG 1024x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 4 columns x 4 rows on a 1024x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 4x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: glossy glass marble, violet swirl; glossy marble lime; glossy marble pink; glossy marble cyan. Row 2 left to right: glossy marble gold; glossy marble orange; special rainbow marble; special bomb marble. Row 3 left to right: flower petal, soft pink; flower petal, lime; blooming flower burst; pop ring. Row 4 left to right: marble shooter cannon toy, top-down; marble track curve segment; end hole with swirl; combo star badge without text. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1024x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:07:30.317Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "quiz-studio-backdrop",
+      "priority": 2,
+      "path": "games/quiz/public/assets/studio-backdrop.png",
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals quiz show TV studio backdrop, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Soft-focus cartoon game-show studio: curved stage, gentle violet and gold stage lights, empty centre area for question cards, no screens with text. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1672,
+        "height": 941,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-9faf4143-11c2-486e-8412-bc8e6484d956.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals quiz show TV studio backdrop, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Soft-focus cartoon game-show studio: curved stage, gentle violet and gold stage lights, empty centre area for question cards, no screens with text. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x1080 pixels, aspect ratio 1920:1080, full canvas.\n",
+      "updated": "2026-10-02T10:08:10.764Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "millionaire-stage",
+      "priority": 2,
+      "path": "games/millionaire/public/assets/stage-backdrop.png",
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals million-money quiz stage backdrop, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Dramatic circular quiz stage with radial light beams in violet and gold, glossy floor reflections, empty centre, no text, no real-show trademarks. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1672,
+        "height": 941,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-de80011e-6d32-49e2-8d7d-12be53edea6e.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals million-money quiz stage backdrop, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Dramatic circular quiz stage with radial light beams in violet and gold, glossy floor reflections, empty centre, no text, no real-show trademarks. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x1080 pixels, aspect ratio 1920:1080, full canvas.\n",
+      "updated": "2026-10-02T10:08:29.376Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "social-props",
+      "priority": 1,
+      "path": "games/quiz/public/assets/atlas-social.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals social and quiz game props atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: round answer letter badge blank (letter added in code), violet; same badge, lime; same badge, pink; same badge, cyan; big glossy lime check mark; big glossy pink cross. Row 2 left to right: cartoon money bag; lifeline token 50:50 icon without digits: half-split circle; lifeline token: old phone; lifeline token: three raised hands; word card back with tiny crocodile mascot, no text; friendly cartoon crocodile mascot charades pose. Row 3 left to right: small sheet of paper with curled corner; fat paint brush cursor; crayon cursor; eraser cursor; closed spy dossier folder, purple, with blank stamp area; round 'secret' stamp graphic without text: just a ring with a star. Row 4 left to right: fedora hat; magnifying glass; paper strip for monster parts; pencil; hourglass; blank speech bubble. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1121852
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-aea0c287-d19c-4622-90fd-5b921c1e2516.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL social-props content in padding band: answer-badge-a(691px), answer-badge-b(676px), answer-badge-c(701px), answer-badge-d(679px), correct-check(180px), wrong-cross(309px), money-bag(743px), lifeline-5050(271px), lifeline-phone(258px), lifeline-audience(249px), crocodile-card-back(741px), crocodile-mascot(581px), draw-brush(131px), draw-crayon(152px), spy-dossier(58px), spy-stamp(238px), spy-hat(1180px), spy-magnifier(2144px), monster-paper(3px), monster-pencil(1345px), timer-hourglass(2115px), speech-bubble(1496px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals social and quiz game props atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: HeyPals UI/award icon style, matching public/assets/awards/awards-atlas.png and the approved HeyPals logo: puffy chunky rounded sculpted toy shapes, glossy cream highlights, rich purple sides, lime and magenta accents, gold/silver/bronze where meaningful, soft gentle shading, restrained glossy highlights, clean silhouettes, legible at 18-48px, no realistic metal noise, NO dark outlines. CAMERA: straight front view, slight three-quarter, centred, like the awards atlas; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: round answer letter badge blank (letter added in code), violet; same badge, lime; same badge, pink; same badge, cyan; big glossy lime check mark; big glossy pink cross. Row 2 left to right: cartoon money bag; lifeline token 50:50 icon without digits: half-split circle; lifeline token: old phone; lifeline token: three raised hands; word card back with tiny crocodile mascot, no text; friendly cartoon crocodile mascot charades pose. Row 3 left to right: small sheet of paper with curled corner; fat paint brush cursor; crayon cursor; eraser cursor; closed spy dossier folder, purple, with blank stamp area; round 'secret' stamp graphic without text: just a ring with a star. Row 4 left to right: fedora hat; magnifying glass; paper strip for monster parts; pencil; hourglass; blank speech bubble. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T09:57:31.630Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "draw-paper-texture",
+      "priority": 3,
+      "path": "games/drawguess/public/assets/paper.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-texture. Asset: production HeyPals drawing paper texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Very subtle warm-white sketch paper fibre texture, almost flat, for a drawing canvas; also provide in-style dark variant mood not required. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-abe65984-ed4b-4c5a-8bbf-9d9e47fa4620.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-texture. Asset: production HeyPals drawing paper texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Very subtle warm-white sketch paper fibre texture, almost flat, for a drawing canvas; also provide in-style dark variant mood not required. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1024x1024 pixels.\n",
+      "updated": "2026-10-02T10:12:10.622Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "jenga-wood-albedo",
+      "priority": 1,
+      "path": "games/jenga/public/assets/wood-block.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-texture. Asset: production HeyPals light maple wood texture for toy blocks, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Clean pale maple wood grain, straight fine grain, soft warm tone, no knots, low contrast, for 3D block albedo. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-f81870f1-41e0-4b1a-8350-1326124a5b16.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 2,
+      "used_prompt": "Edit the supplied wood material texture. Change ONLY output pixel dimensions to exactly 1024 pixels wide by exactly 1024 pixels high. Preserve pale maple low-contrast grain, horizontal grain direction, seamless edges, flat opaque albedo with no lighting, no other objects. Important mandatory deliverable is a 1024x1024 PNG (1,048,576pixels), not1254square. Resize/resample the whole image to1024square with all texture retained.\n",
+      "updated": "2026-10-02T10:15:09.924Z",
+      "repair_note": "Size-only built-in edit explicitly requesting1024x1024 returned1254x1254 again.",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "jenga-table",
+      "priority": 2,
+      "path": "games/jenga/public/assets/table-top.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-texture. Asset: production HeyPals round wooden table top, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Top-down warm walnut wooden tabletop texture with subtle turned rings. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-c9a2dce7-97d3-481f-9040-4b2f467b0018.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-texture. Asset: production HeyPals round wooden table top, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Top-down warm walnut wooden tabletop texture with subtle turned rings. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1024x1024 pixels, aspect ratio 1024:1024, full canvas.\n",
+      "updated": "2026-10-02T10:09:03.068Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "kart-track-kit",
+      "priority": 1,
+      "path": "games/kart/static/assets/atlas-kart.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals kart track kit atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: toy go-kart top-down, neutral white for tint (TINTABLE); driver helmet top-down (TINTABLE); boost pad with chevrons, top-down; floating item box, rainbow glossy; cartoon banana peel; oil slick decal. Row 2 left to right: checkered finish line strip, horizontal; start grid marking; traffic cone; tire wall barrier segment; red-white barrier segment; round tree top-down. Row 3 left to right: small grandstand block top-down; waving checkered flag; skid mark decal; boost spark trail; tiny podium; direction arrow sign, no text. Row 4 left to right: pit garage roof top-down; puddle decal; crowd of blobs top-down; light pole top-down; short bridge segment top-down; speed ring hoop. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1141863
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-f1e0a090-8cfb-450d-a613-78971d55e01d.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL kart-track-kit content in padding band: kart-body(5840px), kart-driver(926px), boost-pad(4132px), item-box(1449px), banana(1636px), oil(1762px), finish-line(2252px), start-grid(1161px), cone(584px), tire-wall(720px), barrier-candy(1431px), tree(723px), grandstand(3622px), flag-checkered(421px), spark-trail(4px), trophy-podium(583px), arrow-sign(979px), pit-garage(6487px), crowd-blob(201px), light-pole(1433px), bridge(3430px), speed-ring(1315px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals kart track kit atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: toy go-kart top-down, neutral white for tint (TINTABLE); driver helmet top-down (TINTABLE); boost pad with chevrons, top-down; floating item box, rainbow glossy; cartoon banana peel; oil slick decal. Row 2 left to right: checkered finish line strip, horizontal; start grid marking; traffic cone; tire wall barrier segment; red-white barrier segment; round tree top-down. Row 3 left to right: small grandstand block top-down; waving checkered flag; skid mark decal; boost spark trail; tiny podium; direction arrow sign, no text. Row 4 left to right: pit garage roof top-down; puddle decal; crowd of blobs top-down; light pole top-down; short bridge segment top-down; speed ring hoop. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T09:58:27.776Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "table-games-kit",
+      "priority": 1,
+      "path": "games/tabletop/public/assets/atlas-table.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals table games kit atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); cards, chip stack and pot pile as a slight three-quarter top view; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: poker chip white/violet edge; poker chip red; poker chip lime; poker chip plum/gold; stack of chips; playing card back with HeyPals blob pattern, no text. Row 2 left to right: blank card front, cream, rounded corners (rank drawn in code); dealer button disc without letters, gold; pile of chips (pot); air hockey puck glossy; air hockey mallet lime; air hockey mallet violet. Row 3 left to right: goal mouth glow; cute cartoon mine with spikes (not realistic); small flag marker for mines; raised covered tile; open tile flat; gem reward. Row 4 left to right: mini cartoon explosion; blank small number plate; felt table corner ornament; drink cup prop; gold coin; timer chip. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1039081
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-3137f786-7c12-4a76-8273-b0095ab3e453.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL table-games-kit content in padding band: chip-white(465px), chip-red(468px), chip-green(461px), chip-black(464px), chip-stack(1131px), card-back(1852px), card-blank-front(699px), pot-pile(97px), mallet-a(8px), mallet-b(410px), goal-glow(857px), mine(143px), flag-marker(188px), gem(39px), explosion-mini(794px), number-plate(160px), felt-corner(3483px), cup-holder(748px), coin-gold(205px), timer-chip(1107px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals table games kit atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); cards, chip stack and pot pile as a slight three-quarter top view; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: poker chip white/violet edge; poker chip red; poker chip lime; poker chip plum/gold; stack of chips; playing card back with HeyPals blob pattern, no text. Row 2 left to right: blank card front, cream, rounded corners (rank drawn in code); dealer button disc without letters, gold; pile of chips (pot); air hockey puck glossy; air hockey mallet lime; air hockey mallet violet. Row 3 left to right: goal mouth glow; cute cartoon mine with spikes (not realistic); small flag marker for mines; raised covered tile; open tile flat; gem reward. Row 4 left to right: mini cartoon explosion; blank small number plate; felt table corner ornament; drink cup prop; gold coin; timer chip. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T09:59:21.347Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "airhockey-rink",
+      "priority": 2,
+      "path": "games/tabletop/public/assets/hockey-rink.png",
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals air hockey rink top-down, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Glossy cartoon air-hockey table top-down with tiny air holes, cream-lavender surface, centre circle and goal creases in violet and lime, no text. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1672,
+        "height": 941,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-aed69951-641a-42dd-a0fa-d4c3afafa303.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals air hockey rink top-down, 1920x1080 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Glossy cartoon air-hockey table top-down with tiny air holes, cream-lavender surface, centre circle and goal creases in violet and lime, no text. Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1920x1080 pixels, aspect ratio 1920:1080, full canvas.\n",
+      "updated": "2026-10-02T10:09:21.909Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "naval-kit",
+      "priority": 2,
+      "path": "games/naval/public/assets/atlas-naval.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals naval battle kit atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: toy ship length 1 top-down (TINTABLE); toy ship length 2; toy ship length 3; toy ship length 4; toy aircraft carrier length 5; sinking ship half under water. Row 2 left to right: water splash ring (miss); small fire on deck (hit); flying shell; ocean cell tile top-down; buoy marker; ship wake decal. Row 3 left to right: periscope; radar dish; anchor; life ring; tiny rock island; seagull. Row 4 left to right: smoke column; crosshair marker; team flag violet; team flag lime; bubbles; floating wood debris. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1186474
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-808bb56c-a9b9-4248-be3d-387fe3abb195.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL naval-kit content in padding band: ship-1(3199px), ship-2(3274px), ship-3(3136px), ship-4(2997px), ship-5(5364px), ship-sunk(6244px), splash-miss(5903px), hit-fire(5034px), shell(2102px), ocean-tile(8220px), buoy(8366px), wake(7599px), periscope(1126px), radar(1904px), anchor(682px), life-ring(1397px), rock-island(2161px), seagull(803px), smoke-column(1750px), debris-wood(645px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals naval battle kit atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: exact 90-degree orthographic top-down view, no perspective, no visible horizon, objects facing UP; no cast shadow (sprites rotate in game); identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: toy ship length 1 top-down (TINTABLE); toy ship length 2; toy ship length 3; toy ship length 4; toy aircraft carrier length 5; sinking ship half under water. Row 2 left to right: water splash ring (miss); small fire on deck (hit); flying shell; ocean cell tile top-down; buoy marker; ship wake decal. Row 3 left to right: periscope; radar dish; anchor; life ring; tiny rock island; seagull. Row 4 left to right: smoke column; crosshair marker; team flag violet; team flag lime; bubbles; floating wood debris. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:10:16.144Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "bow-crane-chaos-kit",
+      "priority": 3,
+      "path": "games/bow_club/public/assets/atlas-misc.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals misc props atlas (archery, crane, one-cursor), a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: straight front view for target face, arrows, quiver, bow, crane lights, floor blocks, chaos props; side view for birds/clouds/sun/moon; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: archery target face front, 5 rings violet/lime/gold, no numbers; arrow with fletching; arrow stuck at angle; quiver; bow; hay bale stand. Row 2 left to right: crane red beacon light; hanging work light; building floor block style A; building floor block style B; blank star badge for PERFECT (text in code); construction dust cloud. Row 3 left to right: big cartoon pointer hand (chaos); chunky arrow cursor; golden key pickup; cartoon door; big push button; friendly spike block. Row 4 left to right: coin; swirl portal; soft cloud; distant bird; cartoon sun; cartoon moon. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 988053
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-2bc178a3-5ae9-4b3e-942a-f81cb411163d.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL bow-crane-chaos-kit content in padding band: target-face(4470px), arrow(2043px), arrow-stuck(4587px), quiver(3546px), bow-prop(1451px), hay-bale(5841px), crane-beacon(4824px), crane-worklight(2596px), floor-block-a(3665px), floor-block-b(5107px), perfect-badge(2577px), dust-cloud(4169px), cursor-hand(1477px), cursor-arrow(1120px), chaos-key(625px), chaos-door(3540px), chaos-button(1912px), chaos-spike(4426px), chaos-coin(110px), chaos-portal(5113px), cloud-a(213px), bird-silhouette(59px), sun(490px), moon(550px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals misc props atlas (archery, crane, one-cursor), a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: straight front view for target face, arrows, quiver, bow, crane lights, floor blocks, chaos props; side view for birds/clouds/sun/moon; identical camera and light in every cell; no cast shadow on the background. Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: archery target face front, 5 rings violet/lime/gold, no numbers; arrow with fletching; arrow stuck at angle; quiver; bow; hay bale stand. Row 2 left to right: crane red beacon light; hanging work light; building floor block style A; building floor block style B; blank star badge for PERFECT (text in code); construction dust cloud. Row 3 left to right: big cartoon pointer hand (chaos); chunky arrow cursor; golden key pickup; cartoon door; big push button; friendly spike block. Row 4 left to right: coin; swirl portal; soft cloud; distant bird; cartoon sun; cartoon moon. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:13:06.377Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "sports-kit",
+      "priority": 2,
+      "path": "games/sports_siege/public/assets/atlas-sports.png",
+      "expected": {
+        "width": 1536,
+        "height": 1024,
+        "alpha": true
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-sprite-atlas. Asset: production HeyPals sports sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: near-orthographic three-quarter view for balls, pins, stones, brooms, fans, bugs and targets; exact top-down for house-target and lane-arrow; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: bowling ball marble swirl violet (TINTABLE); bowling ball galaxy sparkle; bowling ball lime; bowling pin front; fallen pin; blank starburst badge for STRIKE text in code. Row 2 left to right: blank ribbon badge for SPARE; lane arrow decal; curling stone coral handle 3/4; curling stone turquoise handle 3/4; curling broom; curling house rings top-down. Row 3 left to right: cheering fan blob; fan blob with foam finger; fan blob with scarf; stadium banner blank; cute swarm bug enemy; armored bug. Row 4 left to right: boss bug; castle gate; shooting gallery tin duck target; star target; white flag friendly target; golden bonus target. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.",
+      "actual": {
+        "width": 1536,
+        "height": 1024,
+        "hasAlpha": true,
+        "zeroAlpha": 1014244
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-e6b8a475-ce15-4ca7-8793-c4993cfdfbf2.png",
+      "validation": {
+        "sizeOK": true,
+        "alphaOK": true,
+        "grid": "FAIL sports-kit content in padding band: bowling-ball-marble(7684px), bowling-ball-galaxy(5701px), bowling-ball-lime(5029px), bowling-pin(3002px), pin-fallen(2808px), strike-badge(6938px), spare-badge(3838px), lane-arrow(3746px), curling-stone-coral(5186px), curling-stone-teal(5459px), broom(4040px), house-target(6768px), fan-blob-a(1088px), fan-blob-b(1235px), fan-blob-c(3243px), banner-blank(1589px), swarm-bug-a(1234px), swarm-bug-b(2236px), swarm-boss(4869px), gate(4982px), gallery-target-duck(679px), gallery-target-star(533px), gallery-friendly(864px), gold-target(454px)"
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-sprite-atlas. Asset: production HeyPals sports sprite atlas, a single transparent PNG 1536x1024. Attached reference images are STYLE ONLY. STYLE: LocalParty soft toy arcade / orthographic / upper-left light (project standard, docs/gameplay-art/README.md). Cohesive premium playful toy 3D render: simple chunky rounded forms, clean crisp silhouettes, broad soft upper-left key light with soft ambient fill, restrained broad highlights, NO texture noise. Large colour regions, at most four material regions per object, NO tiny rivets, scratches, micro-panels, thin antennae or decorative greebles. NO dark cartoon outlines, NO flat vector clip-art. Must read clearly at 48-120 screen pixels. Match public/assets/gameplay/atlas-actors.webp and atlas-props.webp. CAMERA: near-orthographic three-quarter view for balls, pins, stones, brooms, fans, bugs and targets; exact top-down for house-target and lane-arrow; identical camera and light in every cell; no cast shadow on the background. Cells marked TINTABLE: paint the paintable body panels in neutral pearl white / light grey with dark charcoal details and keep white eyes/specular highlights, so the game can recolour them per player (selective mask tinting, docs/gameplay-art/integration.md). Composition: EXACT regular grid of 6 columns x 4 rows on a 1536x1024 canvas (or larger, same ratio). Each cell is 256x256. Each item centered in its own cell with at least 40px fully transparent padding on ALL sides and at least 40px clear transparent gap to neighbours, including glows and shadows. All items of similar apparent size unless a cell says otherwise. Genuine alpha transparency. STRICT PLACEMENT: the canvas is divided into 6x4 equal invisible cells of 256x256px. Every item, including its glow, shadow, sparks and motion lines, must stay completely inside its own centered 176x176px safe box (40px empty margin inside every cell edge), so neighbouring items are separated by at least 80px and nothing touches, crosses or overlaps a cell border or another item. Do not draw the grid or any guide lines. Leave unused space empty rather than enlarging items. Row 1 left to right: bowling ball marble swirl violet (TINTABLE); bowling ball galaxy sparkle; bowling ball lime; bowling pin front; fallen pin; blank starburst badge for STRIKE text in code. Row 2 left to right: blank ribbon badge for SPARE; lane arrow decal; curling stone coral handle 3/4; curling stone turquoise handle 3/4; curling broom; curling house rings top-down. Row 3 left to right: cheering fan blob; fan blob with foam finger; fan blob with scarf; stadium banner blank; cute swarm bug enemy; armored bug. Row 4 left to right: boss bug; castle gate; shooting gallery tin duck target; star target; white flag friendly target; golden bonus target. Treat as one consistent designed family with consistent scale. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell. BACKGROUND: genuine transparent alpha, no checkerboard, no colored backdrop. If true transparency is not possible, use a perfectly uniform flat #FF00A8 background instead (no gradient, no shadow, no pink light spill on the objects); it will be chroma-keyed.\nFINAL PRODUCTION SAFETY: exact 1536x1024px. Tiny compact object sizes only 90x90 pixels each, center of its cell, all shadows and glows INCLUDED in 90x90 pixels. No floor or backdrop. Vast fully transparent invisible gutters. All alpha outside each object envelope zero.\n",
+      "updated": "2026-10-02T10:10:49.757Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    },
+    {
+      "id": "bowling-lane-wood",
+      "priority": 3,
+      "path": "games/sports_siege/public/assets/lane-wood.png",
+      "expected": {
+        "width": 512,
+        "height": 2048,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-background. Asset: production HeyPals bowling lane maple boards texture, 512x2048 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Long vertical maple lane boards, 39 thin boards, glossy lacquer feel, no arrows (added in code). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 768,
+        "height": 2048,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-0f4be0c9-07a7-45d7-86dd-5f2c39f87e95.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-background. Asset: production HeyPals bowling lane maple boards texture, 512x2048 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Long vertical maple lane boards, 39 thin boards, glossy lacquer feel, no arrows (added in code). Keep important content away from all edges; safe to crop to 16:9 and to 9:16 portrait centre. No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 512x2048 pixels, tall portrait 1:4, full canvas.\n",
+      "updated": "2026-10-02T10:13:19.964Z",
+      "visual_inspection": "Vertical toy maple planks, no markings; visible broad left light gradient. Requested512x2048 returned768x2048."
+    },
+    {
+      "id": "curling-ice",
+      "priority": 3,
+      "path": "games/sports_siege/public/assets/ice-pebble.png",
+      "expected": {
+        "width": 1024,
+        "height": 1024,
+        "alpha": false
+      },
+      "status": "RAW_NEEDS_REPAIR",
+      "integration": "not_integrated",
+      "prompt": "Use case: game-texture. Asset: production HeyPals curling ice pebble texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Milky white-cyan ice with fine pebble dots and very faint scratches, very low contrast. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.",
+      "actual": {
+        "width": 1254,
+        "height": 1254,
+        "hasAlpha": false,
+        "zeroAlpha": 0
+      },
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc03-c3ef-78a0-b633-bb8714da2b6d/exec-7cb706d8-0980-4ea8-a9e0-73f9f5272124.png",
+      "validation": {
+        "sizeOK": false,
+        "alphaOK": true,
+        "grid": ""
+      },
+      "attempts": 1,
+      "used_prompt": "Use case: game-texture. Asset: production HeyPals curling ice pebble texture, 1024x1024 opaque PNG. STYLE: HeyPals environment texture style: soft stylized toy-world materials (not photographic), low contrast and low frequency so gameplay objects stay readable on top, gentle upper-left light, palette anchored in deep plum/indigo (#151321, #221d30) with violet (#9b7bff), lime (#c8ff73), pink (#ff8fd0), gold (#ffd36b), cyan (#7ee7ff) accents. Milky white-cyan ice with fine pebble dots and very faint scratches, very low contrast. Must tile seamlessly on all four edges (wrap-around continuity, no visible seam, no vignette, no central focal object). No text, letters, numbers, logos or watermarks unless the cell explicitly asks for them. No photorealism, no realistic metal noise, no harsh black outlines, no drop backgrounds, no frames around cells, no labels, no cropping, no overlap between cells, no extra decorations outside each cell.\nExact output dimensions 1024x1024 pixels.\n",
+      "updated": "2026-10-02T10:14:04.533Z",
+      "visual_inspection": "Not yet individually visuallyapproved; acceptance alreadyfails size/grid."
+    }
+  ],
+  "updated": "2026-10-02T10:17:53.964Z",
+  "tool_calls": 35,
+  "completion": "Full32requestedrawsourcesgenerated; acceptance requirements unresolved.",
+  "final_audit": {
+    "canonical_files": 32,
+    "missing": [],
+    "total_bytes": 53238371,
+    "atlases_grid_pass": 0,
+    "atlases_grid_fail": 16,
+    "singles_exact_size_pass": 0,
+    "singles_exact_size_fail": 16,
+    "limitation": "Native generator repeatedly ignores exact sizing and strict cell padding. 35 built-in calls including 3 bounded diagnostic repairs. No pixel edits, key removal, resizing, slicing, code integration, API fallback, or credentials used."
+  },
+  "handoff": "Claude processing/integration remains separate. No raw output is accepted for integration yet; all32 require size/grid repair and visual approval. Existing gameplay art unchanged. All requested canonical PNGs saved, with failed diagnostic variants preserved beside them."
+}

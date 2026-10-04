@@ -1,0 +1,35 @@
+{
+  "method": "built-in image_gen; two separate original generations",
+  "owner": "art_director; assets only",
+  "assets": [
+    {
+      "game": "knives",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/knives-training-floor-v1.png",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5e-56f7-7f60-9b2b-1e57bf6a60c3/exec-bac4cc48-fc01-43bc-b78d-ca4dfab079f4.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "f77d7e43ee778179420ca8d65c7b5f45d42db5dbf9e18e3b52d9fc1b31cadcf1",
+      "prompt": "Use case: stylized-concept\nAsset type: full-screen 16:9 game backdrop only, Color Knives.\nCreate a wide flat top-down cartoon dungeon/training-room floor in a quiet dark plum, charcoal and muted copper-stone palette. Orthographic camera looks directly down, no perspective or horizon, no visible wall faces. Large simple rounded stone tiles, clean readable broad shapes, sparse peripheral room details such as shallow stone edging and a few copper training fittings confined to the outermost edges. The broad center covering at least 75% of width and height is open empty low-contrast floor so a colorful spinning wheel and players can be rendered over it by the game. Restrained matte soft shading, polished playful cartoon art, no noisy texture or glossy 3D realism. Full-bleed scene reaches all four image edges, no inset rectangular stage, vignette frame or border. The right third must stay quiet beneath an overlaid scoreboard. No wheel, knives, targets, characters, game arena circle, text, symbols, UI, logo or watermark. Landscape 16:9.",
+      "inspection": "Original and workspace copy individually opened. Quiet plum stone center, copper peripheral training/dungeon details. No wheel, actors, arena UI or text baked. Peripheral equipment has mild illustrated depth; central floor has top-down projection. Bright flame details remain confined to corners."
+    },
+    {
+      "game": "bomb",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/bomb-storage-yard-v1.png",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5e-56f7-7f60-9b2b-1e57bf6a60c3/exec-1626586e-c8e4-46fa-9412-f9e8008430cd.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "9c6cd581ef8435c33ef7e248c4c03a80d57b0e734f7a315ec6d1cf270ad76b77",
+      "prompt": "Use case: stylized-concept\nAsset type: full-screen 16:9 game backdrop only, Bomb Tag.\nCreate a wide flat top-down minimal cartoon bomb-storage yard FLOOR. Camera orthographic straight down, no horizon and no perspective. Warm charcoal, muted slate, dusty copper and restrained plum palette. Large readable broad graphic shapes and clean matte cartoon shading. Sparse storage crates and low steel plinths seen from directly above only at the outermost perimeter, not inside the broad open center. Center covering75% of width and height must be an empty quiet low-contrast ground for a game arena overlay and moving colorful characters. Slightly softened peripheral detail, calm floor, no photoreal texture, no dramatic lights or clutter. Full-bleed ground reaches all four edges with no inset rectangular stage/backplate. Keep right third quiet under a scoreboard. No actual bombs, characters, wheels, arena circles, targets, UI, text, warning text, labels, stripes, logos or watermark. Landscape16:9.",
+      "inspection": "Original and workspace copy individually opened. Empty charcoal center with low-contrast marks; crates/steel plinths restricted to perimeter. No bomb, actors, arena/UI or text baked."
+    }
+  ],
+  "integrationOwner": "group06",
+  "integrationRules": [
+    "Full-view cover background, static below gameplay/effects, native aspect preserved.",
+    "Never bake or replace wheel/collision obstacles/players/effects; retain authoritative projection.",
+    "Ensure existing opaque canvas floor does not conceal generated backdrop and no hard canvas/backdrop seam at rail.",
+    "Root and group06 independently judge live720/1080; asset preview is not live acceptance."
+  ]
+}

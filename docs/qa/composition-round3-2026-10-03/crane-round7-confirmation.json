@@ -1,0 +1,346 @@
+{
+  "scope": "Read-only actual Crane TV confirmation, unchanged canonical harness and guard; no source edits.",
+  "replacementRow": "report.json games[0]",
+  "freshDirectory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm",
+  "report": {
+    "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm/report.json",
+    "sha256": "2d0bd19c2f222b6562e772b5b9f0d5939e395c13afa916d1dd941684340d9466"
+  },
+  "guard": {
+    "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm/composition-check.json",
+    "sha256": "e0d45184c513033f2a959b73062739fce2fc421815384d65cbe381bb01593f9e",
+    "result": {
+      "status": "passed",
+      "captured": 1,
+      "distinctRenderedCapPaints": 1,
+      "scope": "Actual rendered cap attachment, on-screen bounds, identity and surface paint. Aesthetics, material quality, balance, camera grounding and action visibility require independent original-image review.",
+      "findings": []
+    }
+  },
+  "sourceQualification": {
+    "sourceCount": 695,
+    "freshStartVersusCanonicalEnd": [],
+    "freshEndVersusCanonicalEnd": [],
+    "changedFiles": [],
+    "errors": []
+  },
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm/crane-tv-gameplay.png",
+      "sha256": "0daaa51ab8cf0e4da99bd1c6fed11c98b5df022f2256cd55ba0271d67c6c3724",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm/crane-tv-live-1280.png",
+      "sha256": "026c40cfa74a4b256ffd6d1691bea3087988827d5ebf43d8bf8012984e062dd2",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm/crane-tv-live-1920.png",
+      "sha256": "b79eadee04750d0c662aae7c7dcc4b072c1461d3d03c52afdb299952ea236d12",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm/crane-tv-matchmaking.png",
+      "sha256": "7e3fd2bfc462d86ebc539f7a534b0e24996c88ddd0bf33030196804941fc2f47",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/freshcrane-round7-confirm/main-tv-lobby.png",
+      "sha256": "9743b0380790bdff44b273e70f53859b770d4c3bf18d92d47d5bbdcd591c40f0",
+      "openedIndividually": true
+    }
+  ],
+  "freshAdjacentMeasurements": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "file": "crane-tv-live-1280.png",
+      "dock": {
+        "x": 920,
+        "y": 40.5,
+        "width": 336,
+        "height": 151.171875
+      },
+      "rail": {
+        "x": 920,
+        "y": 40.5,
+        "width": 336,
+        "height": 639.28125
+      }
+    },
+    {
+      "viewport": [
+        1920,
+        1080
+      ],
+      "file": "crane-tv-live-1920.png",
+      "dock": {
+        "x": 1560,
+        "y": 112,
+        "width": 336,
+        "height": 248.375
+      },
+      "rail": {
+        "x": 1560,
+        "y": 112,
+        "width": 336,
+        "height": 855.6875
+      }
+    }
+  ],
+  "historicalAdjacentMeasurements": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "file": "crane-tv-live-1280.png",
+      "dock": {
+        "x": 920,
+        "y": 40.5,
+        "width": 336,
+        "height": 151.171875
+      },
+      "rail": {
+        "x": 920,
+        "y": 40.5,
+        "width": 336,
+        "height": 639.28125
+      }
+    },
+    {
+      "viewport": [
+        1920,
+        1080
+      ],
+      "file": "crane-tv-live-1920.png",
+      "dock": {
+        "x": 1560,
+        "y": 112,
+        "width": 336,
+        "height": 248.375
+      },
+      "rail": {
+        "x": 1560,
+        "y": 112,
+        "width": 336,
+        "height": 855.6875
+      }
+    }
+  ],
+  "historicalViewportSettles": [
+    {
+      "surface": "tv",
+      "w": 1280,
+      "h": 720,
+      "state": "live",
+      "at": "2026-10-03T15:38:07.181Z",
+      "geometry": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "frame": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "dock": [
+          [
+            920,
+            40.5,
+            336,
+            151.2
+          ]
+        ],
+        "fields": [
+          {
+            "rect": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "bitmap": [
+              1280,
+              720
+            ]
+          },
+          {
+            "rect": [
+              920,
+              40.5,
+              336,
+              639.3
+            ],
+            "bitmap": null
+          }
+        ]
+      }
+    },
+    {
+      "surface": "tv",
+      "w": 1920,
+      "h": 1080,
+      "state": "live",
+      "at": "2026-10-03T15:38:08.165Z",
+      "geometry": {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "frame": [
+          0,
+          0,
+          1920,
+          1080
+        ],
+        "dock": [
+          [
+            1560,
+            123,
+            336,
+            226.8
+          ]
+        ],
+        "fields": [
+          {
+            "rect": [
+              0,
+              0,
+              1920,
+              1080
+            ],
+            "bitmap": [
+              1920,
+              1080
+            ]
+          },
+          {
+            "rect": [
+              1560,
+              123,
+              336,
+              834.1
+            ],
+            "bitmap": null
+          }
+        ]
+      }
+    }
+  ],
+  "freshViewportSettles": [
+    {
+      "surface": "tv",
+      "w": 1280,
+      "h": 720,
+      "state": "live",
+      "at": "2026-10-03T15:38:07.181Z",
+      "geometry": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "frame": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "dock": [
+          [
+            920,
+            40.5,
+            336,
+            151.2
+          ]
+        ],
+        "fields": [
+          {
+            "rect": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "bitmap": [
+              1280,
+              720
+            ]
+          },
+          {
+            "rect": [
+              920,
+              40.5,
+              336,
+              639.3
+            ],
+            "bitmap": null
+          }
+        ]
+      }
+    },
+    {
+      "surface": "tv",
+      "w": 1920,
+      "h": 1080,
+      "state": "live",
+      "at": "2026-10-03T15:38:08.165Z",
+      "geometry": {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "frame": [
+          0,
+          0,
+          1920,
+          1080
+        ],
+        "dock": [
+          [
+            1560,
+            123,
+            336,
+            226.8
+          ]
+        ],
+        "fields": [
+          {
+            "rect": [
+              0,
+              0,
+              1920,
+              1080
+            ],
+            "bitmap": [
+              1920,
+              1080
+            ]
+          },
+          {
+            "rect": [
+              1560,
+              123,
+              336,
+              834.1
+            ],
+            "bitmap": null
+          }
+        ]
+      }
+    }
+  ],
+  "diagnosis": "Historical 720 capture records a cap intrinsic-height change (165.6 to 151.171875 px) and centered rail shift (33 to 40.5 px) while the parent cap top still reads 33. The unchanged fresh run has matching cap and rail top at both viewports. This supports a transient cross-frame rAF/postMessage resettling race rather than a reproduced persistent grouping defect. Exact trigger of the intrinsic-height change is unproven. No guard tolerance or source was changed.",
+  "preservedHistoricalEvidence": {
+    "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/report.json",
+    "reportSha256": "ab7ca230f0c9e060528e55affef1c6ed80d3b7c53997e61f97d5f52cead5a082",
+    "failed720": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/crane-tv-live-1280.png",
+    "failed720Sha256": "026c40cfa74a4b256ffd6d1691bea3087988827d5ebf43d8bf8012984e062dd2"
+  },
+  "browser": "Closed; slot 2 released."
+}

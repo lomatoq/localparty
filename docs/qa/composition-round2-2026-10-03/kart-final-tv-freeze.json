@@ -1,0 +1,88 @@
+{
+  "evidence": "output/playwright/composition-round2-2026-10-03/kart-final-tv-confirm/report.json",
+  "proofs": [
+    {
+      "w": 1280,
+      "h": 720,
+      "whole4": true,
+      "cardGeometryUnchangedExceptXMinus16": true,
+      "capRightInset": 16,
+      "rail": {
+        "left": 964,
+        "top": 71.25,
+        "right": 1264,
+        "bottom": 648.75,
+        "width": 300,
+        "height": 577.5
+      },
+      "scenery": {
+        "left": 0,
+        "top": 0,
+        "right": 1280,
+        "bottom": 720,
+        "width": 1280,
+        "height": 720
+      },
+      "wash": {
+        "content": "\"\"",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "right": "0px",
+        "width": "348px",
+        "height": "720px",
+        "background": "rgba(0, 0, 0, 0) linear-gradient(90deg, rgba(23, 68, 86, 0), rgba(23, 68, 86, 0.72) 30%, rgba(25, 53, 75, 0.918) 72%, rgba(20, 43, 67, 0.95)) repeat scroll 0% 0% / auto padding-box border-box",
+        "border": "0px none rgb(237, 242, 237)",
+        "shadow": "none",
+        "pointerEvents": "none",
+        "zIndex": "0",
+        "viewportHeight": 720
+      }
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "whole4": true,
+      "cardGeometryUnchangedExceptXMinus16": true,
+      "capRightInset": 16.015625,
+      "rail": {
+        "left": 1484,
+        "top": 190.734375,
+        "right": 1904,
+        "bottom": 889.265625,
+        "width": 420,
+        "height": 698.53125
+      },
+      "scenery": {
+        "left": 0,
+        "top": 0,
+        "right": 1920,
+        "bottom": 1080,
+        "width": 1920,
+        "height": 1080
+      },
+      "wash": {
+        "content": "\"\"",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "right": "0px",
+        "width": "468px",
+        "height": "1080px",
+        "background": "rgba(0, 0, 0, 0) linear-gradient(90deg, rgba(23, 68, 86, 0), rgba(23, 68, 86, 0.72) 30%, rgba(25, 53, 75, 0.918) 72%, rgba(20, 43, 67, 0.95)) repeat scroll 0% 0% / auto padding-box border-box",
+        "border": "0px none rgb(237, 242, 237)",
+        "shadow": "none",
+        "pointerEvents": "none",
+        "zIndex": "0",
+        "viewportHeight": 1080
+      }
+    }
+  ],
+  "all2OriginalTVsOpened": true,
+  "errors": [],
+  "changedFiles": [],
+  "stylesheetHash": "9379a77a0c9c34199d32af45f14b5e4c10a0c16938fb8e4021350b01974faaad",
+  "hostHash": "09b412658382ff143060f1a24c8c882ca840157df3e21d2c28df0dd4bef1255f",
+  "sharedHeaderHash": "e5aea0087b1ce8b0c3b0baae800ad54b30e2bf8641a1c595dfa1bd13f537cba7",
+  "noMobileScreenshots": true
+}

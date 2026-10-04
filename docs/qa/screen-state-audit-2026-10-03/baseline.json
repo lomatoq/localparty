@@ -1,0 +1,17 @@
+{
+  "finishedAt": "2026-10-03T17:18:08.388053+00:00",
+  "tests": 609,
+  "passed": 609,
+  "failed": 0,
+  "additionalGameChecks": [
+    "party",
+    "tanks",
+    "shrink",
+    "spy",
+    "millionaire"
+  ],
+  "nativeHostBrowserRegression": "passed before source edits",
+  "firstRestrictedRun": "local port listen EPERM, permitted rerun passed",
+  "installedBuild": 112,
+  "physicalUIAudit": "not performed in this pass"
+}

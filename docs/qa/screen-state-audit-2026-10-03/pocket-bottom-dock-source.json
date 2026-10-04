@@ -1,0 +1,164 @@
+[
+  {
+    "players": 2,
+    "startedAt": "2026-10-03T17:44:37.955Z",
+    "finishedAt": "2026-10-03T17:44:53.012Z",
+    "errors": [],
+    "changedFiles": [],
+    "freeze": {
+      "games/arcade_deluxe/public/host.js": {
+        "start": "327e5685c9caf1352e0b520a8f905e48939df203e69f581ffb3b70160898f1ba",
+        "end": "327e5685c9caf1352e0b520a8f905e48939df203e69f581ffb3b70160898f1ba"
+      },
+      "games/arcade_deluxe/public/render.js": {
+        "start": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0",
+        "end": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0"
+      },
+      "games/arcade_deluxe/public/style.css": {
+        "start": "792274be07a7e13be5c818345a05029a943c36312c52eeec7cce436e6e1d4dfb",
+        "end": "792274be07a7e13be5c818345a05029a943c36312c52eeec7cce436e6e1d4dfb"
+      }
+    },
+    "screens": [
+      "pocket_siege-tv-matchmaking.png",
+      "pocket_siege-tv-gameplay.png",
+      "pocket_siege-tv-live-1280.png",
+      "pocket_siege-tv-live-1920.png"
+    ],
+    "field": [
+      {
+        "id": "game",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "right": 1920,
+          "bottom": 1080,
+          "text": "",
+          "font": "16px",
+          "fontFamily": "KardiaFit, sans-serif",
+          "gridColumns": "none",
+          "scrollWidth": 1920,
+          "clientWidth": 1920
+        },
+        "parent": "",
+        "inline": null
+      }
+    ],
+    "ownerAttestedRuntimeFreeze": {
+      "file": "games/arcade_deluxe/core/pocket-runtime.cjs",
+      "sha256": "f3900dc8de8de0202b7e5ea6dfae625f6b46ee88bc02c26fa813ade00a31cf12",
+      "method": "arena_layout confirmed frozen before final capture and unchanged after17:45:18; .cjs omitted by generic hash watcher",
+      "acceptanceScope": "layout only; subsequent damage fix needs separate runtime proof"
+    }
+  },
+  {
+    "players": 4,
+    "startedAt": "2026-10-03T17:44:53.809Z",
+    "finishedAt": "2026-10-03T17:45:05.577Z",
+    "errors": [],
+    "changedFiles": [],
+    "freeze": {
+      "games/arcade_deluxe/public/host.js": {
+        "start": "327e5685c9caf1352e0b520a8f905e48939df203e69f581ffb3b70160898f1ba",
+        "end": "327e5685c9caf1352e0b520a8f905e48939df203e69f581ffb3b70160898f1ba"
+      },
+      "games/arcade_deluxe/public/render.js": {
+        "start": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0",
+        "end": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0"
+      },
+      "games/arcade_deluxe/public/style.css": {
+        "start": "792274be07a7e13be5c818345a05029a943c36312c52eeec7cce436e6e1d4dfb",
+        "end": "792274be07a7e13be5c818345a05029a943c36312c52eeec7cce436e6e1d4dfb"
+      }
+    },
+    "screens": [
+      "pocket_siege-tv-matchmaking.png",
+      "pocket_siege-tv-gameplay.png",
+      "pocket_siege-tv-live-1280.png",
+      "pocket_siege-tv-live-1920.png"
+    ],
+    "field": [
+      {
+        "id": "game",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "right": 1920,
+          "bottom": 1080,
+          "text": "",
+          "font": "16px",
+          "fontFamily": "KardiaFit, sans-serif",
+          "gridColumns": "none",
+          "scrollWidth": 1920,
+          "clientWidth": 1920
+        },
+        "parent": "",
+        "inline": null
+      }
+    ],
+    "ownerAttestedRuntimeFreeze": {
+      "file": "games/arcade_deluxe/core/pocket-runtime.cjs",
+      "sha256": "f3900dc8de8de0202b7e5ea6dfae625f6b46ee88bc02c26fa813ade00a31cf12",
+      "method": "arena_layout confirmed frozen before final capture and unchanged after17:45:18; .cjs omitted by generic hash watcher",
+      "acceptanceScope": "layout only; subsequent damage fix needs separate runtime proof"
+    }
+  },
+  {
+    "players": 6,
+    "startedAt": "2026-10-03T17:45:06.337Z",
+    "finishedAt": "2026-10-03T17:45:18.000Z",
+    "errors": [],
+    "changedFiles": [],
+    "freeze": {
+      "games/arcade_deluxe/public/host.js": {
+        "start": "327e5685c9caf1352e0b520a8f905e48939df203e69f581ffb3b70160898f1ba",
+        "end": "327e5685c9caf1352e0b520a8f905e48939df203e69f581ffb3b70160898f1ba"
+      },
+      "games/arcade_deluxe/public/render.js": {
+        "start": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0",
+        "end": "084f61b04b7927bcfac367348f14aa71f1133556d1907e52017ad5ad93a6f0e0"
+      },
+      "games/arcade_deluxe/public/style.css": {
+        "start": "792274be07a7e13be5c818345a05029a943c36312c52eeec7cce436e6e1d4dfb",
+        "end": "792274be07a7e13be5c818345a05029a943c36312c52eeec7cce436e6e1d4dfb"
+      }
+    },
+    "screens": [
+      "pocket_siege-tv-matchmaking.png",
+      "pocket_siege-tv-gameplay.png",
+      "pocket_siege-tv-live-1280.png",
+      "pocket_siege-tv-live-1920.png"
+    ],
+    "field": [
+      {
+        "id": "game",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "right": 1920,
+          "bottom": 1080,
+          "text": "",
+          "font": "16px",
+          "fontFamily": "KardiaFit, sans-serif",
+          "gridColumns": "none",
+          "scrollWidth": 1920,
+          "clientWidth": 1920
+        },
+        "parent": "",
+        "inline": null
+      }
+    ],
+    "ownerAttestedRuntimeFreeze": {
+      "file": "games/arcade_deluxe/core/pocket-runtime.cjs",
+      "sha256": "f3900dc8de8de0202b7e5ea6dfae625f6b46ee88bc02c26fa813ade00a31cf12",
+      "method": "arena_layout confirmed frozen before final capture and unchanged after17:45:18; .cjs omitted by generic hash watcher",
+      "acceptanceScope": "layout only; subsequent damage fix needs separate runtime proof"
+    }
+  }
+]

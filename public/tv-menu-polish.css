@@ -1,0 +1,130 @@
+/* Main TV menu only. The shared game HUD and field never match these selectors. */
+/* The menu owns the shared wash, outside the sidebar's scrolling clip. Its
+   radial stops reach transparency well before the lobby's own bounds. */
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby{
+ --menu-sidebar-center:153px;
+ background-image:radial-gradient(ellipse 290px 360px at calc(100% - var(--menu-sidebar-center)) 48%,#9275cd20 0%,#8262b713 38%,#73549500 78%),radial-gradient(ellipse 230px 220px at calc(100% - var(--menu-sidebar-center)) 12%,#8cbfa817 0%,#8cbfa800 76%);
+ background-repeat:no-repeat;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage.roster-mid #lobby{--menu-sidebar-center:174px}
+html.hp-ui body.tv-screen #tvStage#tvStage.roster-big #lobby{--menu-sidebar-center:214px}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar{
+ isolation:isolate;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar::before{
+ content:none;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>section{
+ background:radial-gradient(ellipse at 16% 0%,#b4a9d91c,transparent 65%),linear-gradient(152deg,#343248f7,#262c3bf7 48%,#202632fa)!important;
+ border-color:#b2a7d047!important;border-radius:22px!important;
+ box-shadow:inset 0 1px 0 #efe8ff24,inset 0 -1px 0 #11132096,0 10px 24px -10px #08041185!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>.tv-invite{
+ background:radial-gradient(ellipse at 20% 0%,#e6ffc835,transparent 65%),linear-gradient(150deg,#3b5047f7,#293c3cf7 52%,#282e3df7)!important;
+ border-color:#cee7b959!important;
+ box-shadow:inset 0 1px 0 #efffcd47,inset 0 -1px 0 #142529ad,0 10px 24px -10px #08041185!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar :is(.tv-invite>.eyebrow,.section-title>h2,#tvRanking>h3){
+ font:italic 900 18px/1.2 var(--hp-font-action,KardiaFatRunner),sans-serif!important;
+ letter-spacing:0!important;color:#f4edff!important;text-shadow:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar .tv-invite>.eyebrow{
+ margin:0!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar .section-title{
+ align-items:center!important;gap:8px!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar .section-title .spark{
+ font-size:20px!important;line-height:1!important;color:#c8ff73!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #count{
+ font:italic 900 12px/1.2 var(--hp-font-action,KardiaFatRunner),sans-serif!important;
+ color:#c8ff73!important;white-space:nowrap;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #players .player{
+ background:linear-gradient(155deg,#19252fa6,#232c3abf)!important;border-color:#b0c2cf20!important;
+ box-shadow:inset 0 1px 3px #050c1959,inset 0 -1px 0 #d5dcf412!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #players .player b{
+ color:#f4edff!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #qr{
+ width:128px!important;height:128px!important;margin:12px auto 0!important;
+ border-radius:14px!important;
+ box-shadow:0 3px 10px #081f293d,inset 0 1px 0 #fff!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #qrCaption{
+ display:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #address{
+ position:absolute!important;width:1px!important;height:1px!important;
+ padding:0!important;margin:-1px!important;overflow:hidden!important;
+ clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;
+}
+/* The disconnected setup instruction remains. A live invite contains the QR alone. */
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar .tv-invite:has(#qr:not([hidden])) #inviteHint{
+ display:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #inviteHint{
+ color:#d6e6dd!important;font-size:14px!important;line-height:1.35!important;
+ margin:10px 0 2px!important;
+}
+
+/* The old full-width right wash began at the hero's top edge. The artwork
+   and both backing layers now fade inside tilted ovals, independently of text. */
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage>.heypals-hero{
+ right:204px!important;top:-12px!important;
+ -webkit-mask-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20640%20370%27%20preserveAspectRatio%3D%27none%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27f%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27white%27%2F%3E%3Cstop%20offset%3D%27.58%27%20stop-color%3D%27white%27%2F%3E%3Cstop%20offset%3D%27.76%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.85%27%2F%3E%3Cstop%20offset%3D%27.9%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.28%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27white%27%20stop-opacity%3D%270%27%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Cellipse%20cx%3D%27360%27%20cy%3D%27185%27%20rx%3D%27270%27%20ry%3D%27158%27%20transform%3D%27rotate%2818%20360%20185%29%27%20fill%3D%27url%28%23f%29%27%2F%3E%3C%2Fsvg%3E")!important;
+ mask-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20640%20370%27%20preserveAspectRatio%3D%27none%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27f%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27white%27%2F%3E%3Cstop%20offset%3D%27.58%27%20stop-color%3D%27white%27%2F%3E%3Cstop%20offset%3D%27.76%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.85%27%2F%3E%3Cstop%20offset%3D%27.9%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.28%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27white%27%20stop-opacity%3D%270%27%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Cellipse%20cx%3D%27360%27%20cy%3D%27185%27%20rx%3D%27270%27%20ry%3D%27158%27%20transform%3D%27rotate%2818%20360%20185%29%27%20fill%3D%27url%28%23f%29%27%2F%3E%3C%2Fsvg%3E")!important;
+ -webkit-mask-size:100% 100%;mask-size:100% 100%;
+ -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+ -webkit-mask-composite:source-over;mask-composite:add;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage::before,html.hp-ui body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage::after{
+ left:auto!important;right:204px!important;top:-12px!important;bottom:auto!important;
+ width:calc(370px * 1637 / 960)!important;height:440px!important;
+ -webkit-mask-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20640%20440%27%20preserveAspectRatio%3D%27none%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27f%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.7%27%2F%3E%3Cstop%20offset%3D%27.35%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.7%27%2F%3E%3Cstop%20offset%3D%27.65%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.4%27%2F%3E%3Cstop%20offset%3D%27.87%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.12%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27white%27%20stop-opacity%3D%270%27%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Cellipse%20cx%3D%27390%27%20cy%3D%27220%27%20rx%3D%27215%27%20ry%3D%27225%27%20transform%3D%27rotate%2828%20390%20220%29%27%20fill%3D%27url%28%23f%29%27%2F%3E%3C%2Fsvg%3E")!important;
+ mask-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20640%20440%27%20preserveAspectRatio%3D%27none%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27f%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.7%27%2F%3E%3Cstop%20offset%3D%27.35%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.7%27%2F%3E%3Cstop%20offset%3D%27.65%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.4%27%2F%3E%3Cstop%20offset%3D%27.87%27%20stop-color%3D%27white%27%20stop-opacity%3D%27.12%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27white%27%20stop-opacity%3D%270%27%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Cellipse%20cx%3D%27390%27%20cy%3D%27220%27%20rx%3D%27215%27%20ry%3D%27225%27%20transform%3D%27rotate%2828%20390%20220%29%27%20fill%3D%27url%28%23f%29%27%2F%3E%3C%2Fsvg%3E")!important;
+ -webkit-mask-size:100% 100%;mask-size:100% 100%;
+ -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage::before{opacity:.22!important}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby>.intro>.headline-stage::after{background:#151321!important;opacity:.12!important}
+
+/* Distinct menu materials; every reflection fits the card's own border box. */
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>section::after,
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>section::before{
+ box-sizing:border-box;inset:0!important;border-radius:inherit!important;pointer-events:none;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>section::after{
+ border:0!important;background:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>.tv-invite::after{
+ background:linear-gradient(162deg,#f2ffdf12 0%,#f2ffdf05 16%,transparent 38%)!important;
+ box-shadow:inset 0 1px 0 #f2ffcf24;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>.tv-invite::before{
+ content:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>.company-people:not(.tv-invite)::after{
+ box-shadow:inset 0 1px 0 #dcd4ef12,inset 0 -1px 0 #10152570;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>.mini-ranking{
+ background:radial-gradient(ellipse at 50% 100%,#edb55b26 0%,transparent 64%),linear-gradient(148deg,#3b2d4cf7,#251d35f7)!important;
+ border-color:#d7b98a70!important;
+ box-shadow:inset 0 1px 0 #ffe7ba24,inset 0 -1px 0 #f8cc7524,0 8px 24px #08041140!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar>.mini-ranking::before{
+ animation:none!important;background:linear-gradient(148deg,#ffe1a657,transparent 28%,transparent 72%,#f0bf7057)!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank{
+ background:linear-gradient(122deg,#615463dd,#38344ae8)!important;border-color:#d5d9f04d!important;
+ box-shadow:inset 0 1px 0 #ffffff1d,inset 0 -1px 0 #080a1b40!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank:first-child{
+ background:linear-gradient(122deg,#866140e6,#645145e8 42%,#45374ee8)!important;border-color:#efca7f7a!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank:nth-child(3){
+ background:linear-gradient(122deg,#744e4be0,#473247e8)!important;border-color:#dc9c7870!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank :is(b,span){color:#fff6e7!important}

@@ -1,0 +1,58 @@
+[
+  {
+    "file": "kardia-fit-runner.otf",
+    "mappedCodepoints": 521,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 273688
+  },
+  {
+    "file": "kardia-slim-runner.otf",
+    "mappedCodepoints": 523,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 272436
+  },
+  {
+    "file": "kardia-thick-runner.otf",
+    "mappedCodepoints": 521,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 269476
+  },
+  {
+    "file": "kardia-fit.otf",
+    "mappedCodepoints": 521,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 266252
+  },
+  {
+    "file": "kardia-fat.otf",
+    "mappedCodepoints": 521,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 257464
+  },
+  {
+    "file": "kardia-fat-runner.otf",
+    "mappedCodepoints": 521,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 266512
+  },
+  {
+    "file": "kardia-slim.otf",
+    "mappedCodepoints": 521,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 268888
+  },
+  {
+    "file": "kardia-thick.otf",
+    "mappedCodepoints": 514,
+    "asciiLatinAndDigits": true,
+    "cyrillicCodepoints": 0,
+    "bytes": 264992
+  }
+]

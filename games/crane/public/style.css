@@ -12,7 +12,7 @@ h1,h2,h3,.race-status,.playerName,.mTitle,.announcement b{font-family:inherit;fo
 
 .host-shell{gap:20px;padding:20px;grid-template-columns:minmax(0,1fr) 280px}.stage{background:#0e0e12;border-color:#ffffff12;border-radius:32px}.stage header h1{font-size:36px}.stage header p{display:none}.hud{top:100px;right:24px;gap:18px}.hud strong{font-weight:800;font-style:italic}.hud small{font-size:11px}.announcement{left:28px;right:28px;bottom:24px;padding:18px}.announcement b{font-size:24px}.announcement span{color:#b4ff39}.brand{display:none}.scores{min-height:180px}.join{grid-template-columns:76px 1fr}.join img{width:76px}.phone{padding:16px;max-width:500px}.phone-status{padding:18px}.phone-status b{font-size:24px;font-style:italic;font-weight:800}.phone-status p{font-size:14px}.phone-meters{padding:14px 0}.phone-meters strong{font-size:40px;font-weight:800;font-style:italic}.phone-header{border-bottom:1px solid #ffffff12;padding-bottom:16px}.phone-header h2{font-size:24px}.arrow{background:#28282dcc;color:#fafafa;border:1px solid #ffffff14;min-height:104px;border-radius:24px}.arrow.held{background:#b4ff39;color:#0a0a0c}.mini-scene{background:#101014;border:1px solid #ffffff14;border-radius:24px}.drop{border-radius:24px;min-height:76px}.phone-hint{font-size:14px;line-height:1.5}.party-managed .stage header,.party-managed .join img,.party-managed #joinUrl{display:none}.party-managed .hud{top:24px}.party-managed .join{display:block}.party-managed .join button{width:100%}@media(max-width:900px){.host-shell{grid-template-columns:1fr}.hud{left:auto;right:20px;top:100px}.stage{min-height:650px}}
 
-@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik.ttf') format('truetype');font-weight:300 900;font-style:normal;font-display:swap}@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:300 900;font-style:italic;font-display:swap}
+
 /* Phone is a remote control; the building stays on the shared display. */
 body[data-role=player] #scene{display:none!important}
 body[data-role=player] .phone{height:100dvh;min-height:0;box-sizing:border-box;display:flex;flex-direction:column;padding:12px 16px}
@@ -25,7 +25,7 @@ body[data-role=player] .phone-meters{padding:4px 0;flex:none}
 body[data-role=player] .phone-meters>div:has([data-party-timer]){display:none}
 .party-managed body[data-role=host] .hud>div:has([data-party-timer]){display:none}
 body[data-role=player] .directions{margin-top:auto;flex:none;gap:12px}
-body[data-role=player] .arrow{min-height:86px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;line-height:1}
+body[data-role=player] .arrow{min-height:86px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;line-height:1}
 body[data-role=player] .arrow small{font-size:13px;line-height:1.2}
 body[data-role=player] #drop{min-height:64px;flex:none;display:flex;justify-content:center;align-items:center;margin:0;font-size:17px}
 body[data-role=player] .phone-hint{font-size:12px;line-height:1.35;margin:0}
@@ -36,3 +36,160 @@ body[data-role=player] #progress{font-size:10px;line-height:1.3}
 .stage{background:linear-gradient(to top,#07182b 0%,#07182bdd 12%,#07182b22 30%,#07182b11 100%),url('/assets/gameplay/crane-city.webp') center top/cover no-repeat #07182b}
 
 .stage{background-position:center 64%!important}
+
+/* One top summary frees the construction foundation at the bottom of the stage. */
+html.party-managed.party-host.party-session-active[data-party-game=crane] body[data-role=host] .host-shell{padding-top:calc(var(--party-stage-inset-top,0px) + 16px)!important}
+body[data-role=host] .stage #scene{height:100%;object-position:center bottom}
+body[data-role=host] .stage-top{position:absolute;z-index:2;left:16px;right:16px;top:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;border:1px solid #ffffff24;border-radius:22px;background:#141725e8;backdrop-filter:blur(16px)}
+body[data-role=host] .stage-top .announcement{position:static;min-width:0;flex:1;text-align:left;padding:0;border:0;border-radius:0;background:none;box-shadow:none;backdrop-filter:none;gap:4px}
+body[data-role=host] .stage-top .announcement b{font-size:clamp(17px,1.8vw,24px);line-height:1.15;overflow-wrap:anywhere}
+body[data-role=host] .stage-top .announcement span{font-size:11px}
+body[data-role=host] .stage-top .announcement small{font-size:12px;line-height:1.35}
+body[data-role=host] .stage-top .hud{position:static;flex:none;gap:18px;background:none!important;padding:0;align-items:center}
+body[data-role=host] .stage-top .hud strong{font-size:34px}
+body[data-role=host] .stage-top .hud #lives{font-size:18px;white-space:nowrap}
+@media(max-width:1100px){body[data-role=host] .stage-top{left:12px;right:12px;top:12px;padding:12px;gap:12px}body[data-role=host] .stage-top .hud{gap:10px}body[data-role=host] .stage-top .announcement small{font-size:11px}}
+body[data-role=host] .stage-top .announcement b{color:#f7f2ff}
+body[data-role=host] .stage-top .announcement span{color:#c8ff73}
+body[data-role=host] .stage-top .announcement small{color:#c8bfd8}
+
+/* Stage and crew are equal peers; only the long roster scrolls. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell{align-items:stretch}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell>aside{height:100%;align-self:stretch;min-height:0;overflow:hidden;padding:16px!important;gap:0!important;background:var(--panel);border:1px solid var(--line);border-radius:28px}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell>aside>.rules{flex:none;max-height:40%;overflow:auto;margin:0;padding:0;border:0;background:none;box-shadow:none;scrollbar-width:none}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell>aside>.scores{flex:1;min-height:0;margin:0;display:flex;flex-direction:column;padding:12px 0 0;border:0;background:none;box-shadow:none;border-radius:0}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .scores h2{position:relative;justify-content:center;align-items:center;min-height:32px;font-family:var(--hp-font-display)!important;font-size:22px!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase!important;padding-inline:52px}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .scores h2 #count{position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:var(--hp-font-display)!important;font-size:16px!important;font-weight:900!important;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body #players{flex:1;min-height:0;overflow:auto;margin-top:14px;scrollbar-width:none}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body #players::-webkit-scrollbar{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player{display:grid;grid-template-columns:24px 12px minmax(0,1fr) max-content;gap:8px;align-items:center;padding:12px 10px;width:100%;border:0;min-width:0;min-height:68px;margin:0;border-radius:14px}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player::after{content:'';position:absolute;left:10px;right:10px;bottom:0;height:1px;background:var(--line);pointer-events:none}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player .rank{font-family:var(--hp-font-display)!important;font-size:14px!important;font-style:italic!important;font-weight:900!important;width:auto;min-width:0;text-align:center}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player .avatar{width:11px;height:11px}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player .details strong{font-family:var(--hp-font-body)!important;font-size:16px!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;letter-spacing:0!important;line-height:1.2;min-width:0}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player .details small{display:block;font-family:var(--hp-font-body)!important;font-size:12px!important;font-style:normal!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important;line-height:1.25;margin-top:4px;overflow-wrap:normal}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player .score{font-family:var(--hp-font-display)!important;font-size:28px!important;font-weight:900!important;font-style:italic!important;text-align:center;min-width:0;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .stage-top .announcement{text-align:center}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .stage-top .announcement b{font-family:var(--hp-font-display)!important;font-weight:900!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .stage-top .hud strong{font-family:var(--hp-font-display)!important;font-style:italic!important;font-weight:900!important}
+html.hp-ui.party-managed[data-party-game=crane] body .rules summary{justify-content:center;font-family:var(--hp-font-display)!important;font-size:18px!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase!important;gap:12px}
+html.hp-ui.party-managed[data-party-game=crane] body .rules summary::after{margin-left:0}
+
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .player .score{min-width:3ch;padding-inline:2px}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .stage-top .announcement span{font-family:var(--hp-font-body)!important;font-size:16px!important;font-weight:550!important;font-style:normal!important;text-transform:none!important;letter-spacing:0!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .crane-columns{display:flex;justify-content:flex-end;padding:10px 10px 0;font-family:var(--hp-font-display)!important;font-size:12px;font-style:italic;font-weight:900;text-transform:uppercase;line-height:1.2;color:var(--muted)}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body #players{margin-top:6px}
+
+/* Altitude dims the complete authored skyline, including canvas letterboxing. */
+body[data-role=host] .stage{background-image:linear-gradient(to bottom,rgba(3,5,22,var(--crane-space-top,0)),rgba(8,17,34,var(--crane-space-bottom,0))),linear-gradient(to top,#07182b 0%,#07182bdd 12%,#07182b22 30%,#07182b11 100%),url('/assets/gameplay/crane-city.webp');background-size:cover,cover,cover}
+
+/* Codex UI: align the compact work readout with the crew wing. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell .stage-top{padding:12px 16px!important;gap:16px!important;align-items:center;background:#211d30e6!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell .stage-top .announcement{display:flex!important;flex-direction:column;gap:4px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell .stage-top .announcement span{font:italic 900 18px/1.2 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body .host-shell .stage-top .announcement b{font:500 clamp(16px,1.4vw,22px)/1.25 KardiaFit,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #controller{display:flex!important;flex-direction:column;justify-content:center;gap:12px!important;height:100%;min-height:0}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #controller[hidden]{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status{padding:12px!important;min-height:0}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .directions{margin-top:8px!important;gap:12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-meters strong{font:italic 900 28px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #drop{font-size:22px!important;min-height:72px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #progress{display:none}
+
+/* Group08: open night scene, compact turn-and-crew wing, grounded foundation. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell{position:relative;display:block!important;height:100dvh!important;padding:0!important;min-height:0!important;background:#07182b}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage{position:absolute;inset:0 384px 0 0;min-height:0!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside{position:absolute;right:24px;top:calc(var(--party-field-inset-top,150px) + 24px);width:336px;height:auto!important;max-height:calc(100% - var(--party-field-inset-top,150px) - 48px);padding:0!important;gap:20px!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:auto}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage-top{position:static!important;display:flex!important;flex-direction:column;gap:14px!important;align-items:stretch!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;backdrop-filter:none}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage-top .announcement{text-align:left!important;gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage-top .announcement #active{font:550 20px/1.25 KardiaFit,sans-serif!important;text-transform:none!important;white-space:normal!important;overflow-wrap:anywhere;color:#f8f1ff}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage-top .announcement #message{font:italic 900 24px/1.1 KardiaFatRunner,sans-serif!important;color:#c8ff73}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage-top .hud{justify-content:flex-start;text-align:left;gap:24px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside .scores{flex:none!important;padding:16px 0 0!important;border-top:1px solid #ffffff20!important;border-radius:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside .scores h2{justify-content:flex-start;padding:0!important;margin:0 0 6px!important;font-size:20px!important;min-height:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell #players{flex:none!important;max-height:420px}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player{grid-template-columns:32px 44px minmax(0,1fr) 44px!important;padding:10px 0!important;gap:8px!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player .avatar{width:44px!important;height:44px!important;object-fit:contain;border-radius:0!important;background:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player .avatar.has-photo{object-fit:cover;border-radius:50%!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player .details strong{white-space:normal!important;overflow-wrap:anywhere!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player .details small{font-size:11px!important;line-height:1.3}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside>.rules{order:2;max-height:none;padding:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status{border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;text-align:center;padding:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status #active{font:italic 900 28px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status #message{margin-top:8px!important;font-size:14px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-hint{text-align:center;color:#c9bedb;line-height:1.35}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .crane-tools{display:grid;gap:12px}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .directions{margin-top:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .directions .arrow{height:104px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #drop{min-height:80px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status{outline:none!important;background-image:none!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status::before,html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status::after{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-hint{display:block!important;max-width:30ch;margin:0 auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player{grid-template-columns:56px 44px minmax(0,1fr) 44px!important}
+
+/* Match the shipped award and points widths so live scores stay inside the crew. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player{grid-template-columns:64px 44px minmax(0,1fr) 64px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player .score{min-width:0!important;width:100%!important;box-sizing:border-box}
+/* Shared central display identifies the operator once; the wing carries placement state. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage-top #active{display:none!important}
+
+/* Small controllers keep the current operator whole above the movement station. */
+@media(max-width:350px){
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #controller{gap:8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status{flex:none!important;overflow:visible!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-status #active{display:block;white-space:normal!important;overflow-wrap:anywhere;font-size:22px!important;line-height:1.25!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-meters{margin:8px 0!important;padding:2px 0!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-hint{font-size:12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .crane-tools{gap:8px}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .directions .arrow{height:80px!important;min-height:80px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #drop{min-height:64px!important;font-size:20px!important}
+
+}
+
+/* One enamel worksite rail owns its cap, active block and competition crew. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]{--game-panel-fill:#142b3a;--game-panel-rim:#c99f63;--game-panel-ink:#fff5e5;--game-panel-muted:#c6d9e4;top:50%!important;bottom:auto!important;height:fit-content!important;max-height:calc(100dvh - 48px)!important;transform:translateY(-50%);display:flex!important;flex-direction:column;padding:calc(var(--party-hud-height,136px) + 12px) 16px 16px!important;gap:16px!important;overflow:hidden;background:linear-gradient(150deg,#284d56,#173c42)!important;border:0!important;border-radius:22px!important;box-shadow:none!important;color:#fff5e5}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside .stage-top{flex:none!important;gap:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside .scores{display:flex!important;flex-direction:column;flex:0 1 auto!important;min-height:0!important;max-height:calc(100dvh - var(--party-hud-height,136px) - 250px)!important;overflow:hidden;border-top-color:#78a8a650!important;padding-top:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell #players{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow:auto!important;scrollbar-width:none}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside .player{background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside .player .details small{color:#c6d9e4!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-meters{background:linear-gradient(150deg,#284d56,#173c42)!important;border:1px solid #78a8a650!important;border-radius:18px!important;padding:12px!important;margin:0!important;color:#fff5e5}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone .phone-meters small{color:#c6d9e4!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body main.phone #controller{justify-content:center!important;gap:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside :is(.scores,.rules){background:none!important;box-shadow:none!important;backdrop-filter:none!important}
+/* Floors/lives are in the shared rail cap; the local rail keeps only the placement task. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage-top .hud{display:none!important}
+
+/* A single blue-green surface, without a second worksite backing or ornaments. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]{--game-panel-fill:#284d56;--game-panel-rim:#78a8a6;--game-panel-ink:#eff9f6;--game-panel-muted:#c2dbd9;outline:none!important;backdrop-filter:none!important;color:#eff9f6}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]::before,html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]::after{display:none!important;background:none!important;box-shadow:none!important}
+/* Crew shares the single rail wash even after the ranking adapter marks its rows. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail] #players.hp-ranking-native-list>.player.hp-ranking-row[data-hp-ranking-layout=crane]{background:none!important;border:0!important;border-radius:0!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important}
+
+/* A small crew fits the passive TV without shortening score or identity ink. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) #players>.player{grid-template-columns:64px 36px minmax(0,1fr) 64px!important;gap:6px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) #players>.player .avatar{width:36px!important;height:36px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) #players>.player .details strong{font-size:15.5px!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
+@media(max-height:800px){
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))){gap:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) .stage-top .announcement #progress{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) .stage-top .announcement{gap:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) .scores{padding-top:8px!important;max-height:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) .scores h2{margin-bottom:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) .crane-columns{padding-top:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) #players{margin-top:2px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) #players>.player{padding-top:6px!important;padding-bottom:6px!important;min-height:0!important}
+}
+
+/* One painted night canvas runs beneath the open information rail. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .stage{inset:0!important;background:none!important;background-image:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell #scene{object-fit:fill!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]{background:none!important;background-image:none!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail] .scores{border-top:1px solid #b9dcd526!important}
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail] .scores::before{content:"";display:block;flex:none;height:1px;margin-bottom:8px;background:linear-gradient(90deg,#b9dcd526,transparent)}
+
+/* The canvas wash replaces the older generic violet wing overlay. */
+html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell::after{content:none!important;display:none!important;background:none!important}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.player .avatar.has-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#a8c6b5)}

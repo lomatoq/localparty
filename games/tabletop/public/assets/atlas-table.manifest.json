@@ -1,0 +1,584 @@
+{
+  "version": 1,
+  "source": "atlas-table.png",
+  "styleProfile": "sprite",
+  "chromaKeyed": false,
+  "frames": {
+    "chip-white": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 57,
+        "y": 54,
+        "w": 143,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 143,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/chip-white.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "chip-red": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 312,
+        "y": 54,
+        "w": 145,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 145,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/chip-red.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "chip-green": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 569,
+        "y": 54,
+        "w": 142,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 142,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/chip-green.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "chip-black": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 824,
+        "y": 54,
+        "w": 145,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 145,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/chip-black.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "chip-stack": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1084,
+        "y": 45,
+        "w": 136,
+        "h": 166
+      },
+      "sourceSize": {
+        "w": 136,
+        "h": 166
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/chip-stack.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "card-back": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1345,
+        "y": 49,
+        "w": 127,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 127,
+        "h": 159
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/card-back.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "card-blank-front": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 66,
+        "y": 297,
+        "w": 124,
+        "h": 174
+      },
+      "sourceSize": {
+        "w": 124,
+        "h": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/card-blank-front.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dealer-button": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 309,
+        "y": 311,
+        "w": 151,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 151,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/dealer-button.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pot-pile": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 553,
+        "y": 309,
+        "w": 174,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/pot-pile.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "puck": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 819,
+        "y": 316,
+        "w": 155,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 155,
+        "h": 136
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/puck.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "mallet-a": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1072,
+        "y": 307,
+        "w": 160,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/mallet-a.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "mallet-b": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1329,
+        "y": 307,
+        "w": 159,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/mallet-b.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "goal-glow": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 43,
+        "y": 581,
+        "w": 171,
+        "h": 119
+      },
+      "sourceSize": {
+        "w": 171,
+        "h": 119
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/goal-glow.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "mine": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 296,
+        "y": 560,
+        "w": 176,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 160
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/mine.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "flag-marker": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 571,
+        "y": 554,
+        "w": 139,
+        "h": 172
+      },
+      "sourceSize": {
+        "w": 139,
+        "h": 172
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/flag-marker.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "tile-covered": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 826,
+        "y": 567,
+        "w": 141,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 141,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/tile-covered.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "tile-open": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1077,
+        "y": 578,
+        "w": 150,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/tile-open.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "gem": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1333,
+        "y": 572,
+        "w": 151,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 151,
+        "h": 137
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/gem.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "explosion-mini": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 43,
+        "y": 820,
+        "w": 170,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/explosion-mini.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "number-plate": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 302,
+        "y": 853,
+        "w": 165,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 165,
+        "h": 86
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/number-plate.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "felt-corner": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 561,
+        "y": 810,
+        "w": 158,
+        "h": 172
+      },
+      "sourceSize": {
+        "w": 158,
+        "h": 172
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/felt-corner.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "cup-holder": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 842,
+        "y": 808,
+        "w": 109,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 109,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/cup-holder.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "coin-gold": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1077,
+        "y": 821,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/coin-gold.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "timer-chip": {
+      "atlas": "atlas-table.webp",
+      "frame": {
+        "x": 1331,
+        "y": 818,
+        "w": 155,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 155,
+        "h": 157
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-table/timer-chip.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

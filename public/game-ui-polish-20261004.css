@@ -1,0 +1,133 @@
+/* HeyPals in-game panel polish · 2026-10-04 (Claude game-UI-panels agent).
+   Loaded LAST in game frames (server.js injection), /play, /tv and the native shell.
+   Visual properties only: colour, gradients, shadows, rims, text-shadow.
+   No box geometry (no width/height/padding/margin/position/display/gap/font-size/
+   letter-spacing changes), so every panel keeps its measured place.
+   Pause/Lobby, the TV header notch and authored per-game theme fills are untouched.
+   Shadows are deliberately tight (negative spread) so they never reach the
+   clipping edge of a scrolling rail or a rounded group. */
+
+/* ---------------------------------------------------------------- tokens */
+.hp-ui{
+ --hpp-sentinel:on;                          /* QA A/B toggle probe */
+ --hpp-rim:#dccaf53d;                         /* fine lavender rim */
+ --hpp-sheen:inset 0 1px 0 #fff4ff33;         /* top inner highlight */
+ --hpp-floor:inset 0 -1px 0 #f6d8ef12;        /* quiet lower lip */
+ --hpp-volume:inset 0 -16px 24px -16px #080512b8; /* soft inner falloff */
+ --hpp-lift:0 1px 2px #05030c4d,0 10px 20px -11px #05030ce0;
+ /* top light as an inset glow: paints only where the card already paints its
+    shape, never restates authored backgrounds (lists keep background:none) */
+ --hpp-toplight:inset 0 20px 24px -22px #ffffff17;
+ --hpp-lift-tv:0 1px 2px #05030c45,0 12px 24px -15px #05030cd6;
+ --hpp-label:#cdc3de;
+ --hpp-ink-shadow:0 1px 0 #0a061270,0 2px 9px #0a06124d;
+}
+
+/* ------------------------------------------------ phone passive info cards
+   Approved treatment stays untouched (its background layers: pearlescent tint
+   and centred short top/bottom lines are NOT restated here). Added through
+   box-shadow only: a crisper rim, a top sheen + top light, inner volume and a
+   tight lift so the card reads as a physical tile instead of a flat film. */
+html.hp-ui:is(.party-host,.party-player,.party-managed) body .hp-info-card:not(.western-stats):not(.combat-stats):where(:not(.hp-ranking-native-list,.hp-result-list,:has(>.hp-ranking-native-list))),
+html.hp-ui.party-managed.party-player body :is(.western-stats,.combat-stats).hp-info-card>div,
+html.hp-ui.party-managed.party-player[data-party-game=western] body #westernControls .western-stats.hp-info-card>div{
+ outline-color:var(--hpp-rim)!important;
+ box-shadow:var(--hpp-sheen),var(--hpp-toplight),var(--hpp-floor),var(--hpp-volume),var(--hpp-lift)!important;
+}
+/* Stat groups carry one outer contour; the inner dividers fade before the
+   rim so they never cross the centred accent lines or make T-joints. */
+html.hp-ui.party-player .hp-stat-group>.hp-stat+.hp-stat,
+html.hp-ui.party-managed.party-player body .hp-stat-group>.hp-stat+.hp-stat{
+ border-image:linear-gradient(180deg,transparent 16%,#dcc8f547 50%,transparent 84%) 1!important;
+}
+html.hp-ui.party-managed.party-player body :is(.hp-stat,#knifeControls,#punchResult) .hp-stat-label{color:var(--hpp-label)!important}
+html.hp-ui.party-player body :is(.hp-stat-value,.hp-stat-group strong.hp-number,.hp-stat-group b.hp-number,.western-stats strong,.combat-stats strong,.combat-stats b){
+ text-shadow:var(--hpp-ink-shadow);
+}
+
+/* ------------------------------------------------ TV display-only cards
+   Same material as the phone cards, scaled for distance viewing. A panel that
+   directly owns a ranking list stays a transparent layout owner (the
+   rankings-theme rule); it must never receive this paint. Exclusions sit in
+   :where() so this rule keeps exactly the specificity of the original finish
+   in game-ui-system.css and loses to the same per-game overrides it lost to. */
+html.hp-ui.party-managed.party-host.party-display-only body:not([data-game-phase=finished]) :is(
+ .hp-info-card:not(.western-stats):not(.combat-stats),
+ .ss-heading,.ss-gate-health,.ss-player-card,
+ .scoreboard,.activeBanner,
+ .roster-card,
+ .panel:has(>#board),.panel:has(>#messages)
+):not([data-hp-theme-preserve]):where(:not(.hp-ranking-native-list,.hp-result-list,:has(>.hp-ranking-native-list))),
+html.hp-ui.party-managed.party-host.party-display-only:is([data-party-game=sinyakquiz],[data-party-game=warsaw],[data-party-game=crocodile]) body:not([data-game-phase=finished]) .stage.panel:not([data-hp-theme-preserve]):where(:not(:has(>.hp-ranking-native-list))){
+ outline-color:var(--hpp-rim)!important;
+ box-shadow:var(--hpp-sheen),var(--hpp-toplight),var(--hpp-floor),var(--hpp-volume),var(--hpp-lift-tv)!important;
+}
+
+/* ------------------------------------------------ TV live standings rail
+   (Bomb Tag, Push, Last Circle, Color Knives). Authored metal fill kept;
+   the row gains a brighter top edge and a tight lift inside the 8px gap. */
+html.hp-ui.party-managed.party-host body .party-live-standings .party-standing{
+ box-shadow:inset 0 1px 0 #ffffff26,inset 0 -8px 14px #06081526,0 1px 2px #05030c40,0 6px 12px -8px #05030cc0!important;
+}
+html.hp-ui.party-managed.party-host body .party-live-standings .party-standing strong{text-shadow:var(--hpp-ink-shadow)}
+html.hp-ui.party-managed.party-host body .party-live-standings .party-standing .rank{text-shadow:0 1px 0 #0a061280}
+
+/* ------------------------------------------------ arcade instrument cards
+   (Tap Race, Punch Meter, Flappy, Hungry, Snake Lines, Carry Ball). Their
+   authored game-tinted gradient and rim stay; the flat 24px haze becomes a
+   tight lift with a top sheen and inner volume. */
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult){
+ box-shadow:inset 0 1px 0 #fff4ff2b,inset 0 -14px 22px -16px #0805129e,0 1px 2px #05030c38,0 9px 18px -11px #05030cc4!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult)>.hp-stat+.hp-stat{
+ border-image:linear-gradient(180deg,transparent 16%,#e6d6f54d 50%,transparent 84%) 1!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult) strong{text-shadow:var(--hpp-ink-shadow)}
+
+/* ------------------------------------------------ flat lime primaries
+   Most primary actions already carry a top sheen and a pressed lip. These
+   four were flat slabs; they gain the same inner sheen + inner lip (painted
+   inside the box, so the visual bounds do not grow). Pressed/disabled keep
+   their authored feedback. */
+html.hp-ui.party-managed.party-player body :is(#guessed,#drop,#mineOpen,#ss-ability).hp-action-primary:not(:disabled):not(:active):not(.is-pressed):not(.party-pressed):not([aria-disabled=true]){
+ box-shadow:inset 0 2px 0 #ffffff52,inset 0 -4px 0 #26371624,0 8px 22px -12px #b4ff3966!important;
+}
+
+/* ------------------------------------------------ TV ranking rows
+   Shared adapter rows gain a top sheen so the rim reads as a lit edge, not a
+   wire outline. Fill stays authored (lists remain transparent owners). Scores
+   are solid ink and get crisp depth; the gradient place digits are left alone
+   (a shadow would bleed through their clipped text). */
+html.hp-ui.party-managed.party-host[data-party-game] body .hp-ranking-row:not([data-hp-ranking-layout="crane"]):not(.active):not(.turn){
+ box-shadow:inset 0 1px 0 #fff4ff1c,inset 0 -10px 18px -14px #0805128a!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game] body .hp-ranking-row .hp-ranking-score{text-shadow:0 1px 0 #0a061266,0 2px 8px #0a061240}
+
+/* ------------------------------------------------ flat secondary keys
+   Dark secondary controls that had no depth at all (sh=none in the probe):
+   Crane Left/Right, Kart hand swap, Charades Skip, Mines pad, Jenga layer up,
+   Tanks hand swap, Chaos cursor keys, Poker Fold/Call/Raise, Marble Swap,
+   Punch Meter motion toggle. One "key" finish: a lit top edge and an inner
+   lower lip, both inside the box. Pressed, active, selected and disabled
+   states keep their authored look. */
+html.hp-ui.party-managed.party-player body :is(
+ [data-party-game=crane] #left,[data-party-game=crane] #right,
+ [data-party-game=kart] #swapHandBtn,
+ [data-party-game=crocodile] #skip,
+ [data-party-game=mines] .dpad>button,
+ [data-party-game=jenga] #layerUp,[data-party-game=jenga] #layerDown,
+ [data-party-game=tanks] #swapHand,
+ [data-party-game=chaos] button.ctrl,
+ [data-party-game=poker] :is([data-action=fold],#call,#raiseButton),
+ [data-party-game=marble_bloom] #swap,
+ [data-party-game=punchmeter] #motion,
+ [data-party-game=drawguess] #clear
+):not(:disabled):not(:active):not(.active):not(.pressed):not(.is-pressed):not(.party-pressed):not(.selected):not([aria-pressed=true]):not([aria-disabled=true]){
+ box-shadow:inset 0 1px 0 #ffffff1f,inset 0 -3px 0 #05030c38,inset 0 -12px 18px -14px #05030c66!important;
+}
+
+/* Kart throttle is a primary pedal whose idle state is a dark slab; it takes
+   the key finish (keeping its authored drop shadow) until it lights up. */
+html.hp-ui.party-managed.party-player[data-party-game=kart] body #gasBtn.hp-action-primary:not(.active):not(:active):not(:disabled){
+ box-shadow:inset 0 1px 0 #ffffff1f,inset 0 -3px 0 #05030c38,inset 0 -12px 18px -14px #05030c66,0 16px 40px #00000033!important;
+}

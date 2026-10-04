@@ -1,0 +1,1116 @@
+{
+  "finishedAt": "2026-10-03T20:03:01.775827+00:00",
+  "scope": [
+    "public/motion.js catalog IIFE only",
+    "public/motion.css legacy catalog pending/art-loading rules only",
+    "public/motion.css shared player/room-player/stats-rank animation rule and dedicated keyframe"
+  ],
+  "productionHashes": {
+    "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+    "public/motion.css": "3f40ea46548eebe7d639893b0f770e5fdd7b592d5f2cb9538107640dd8f4a261"
+  },
+  "repro": "All catalog cards already existed. IO visibility, decode readiness, four concurrent animations and120ms paced queue held cards at opacity0 after large scroll jumps. Covers could remain hidden beyond1200ms because timeout did not clear art-loading.",
+  "fix": "Cards and covers visible by default; no reveal queue/IO/decode blocking. Covers promoted to eager. First visible entry gets translate-only180ms; identity Set prevents replay on remount/filter/lobby/reconnect.",
+  "sourcesFrozenDuringConfirmations": true,
+  "checksPassed": 26,
+  "screensIndividuallyOpened": 34,
+  "screens": [
+    {
+      "phase": "initial-complete",
+      "id": "web-320-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/web-320-first-far.png",
+      "sha256": "ef0d493d1ebf305bf4323690a43e9637e8caa6531973cf80e99c3a0aff5babdb",
+      "originalOpened": true,
+      "observation": "First jump/reverse/end catalog cards present but opacity0; blank reading region reproduces the defect."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "web-320-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/web-320-reverse.png",
+      "sha256": "4d8fa8fa977b8832ed6cb994f4d9be4400a2bec24a265730845d6d80f6015285",
+      "originalOpened": true,
+      "observation": "First jump/reverse/end catalog cards present but opacity0; blank reading region reproduces the defect."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "web-320-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/web-320-last-far.png",
+      "sha256": "a93bf55a85df5fde318648c414eec6051630c3a035767be7dad049fdec2c25a3",
+      "originalOpened": true,
+      "observation": "First jump/reverse/end catalog cards present but opacity0; blank reading region reproduces the defect."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "native-320-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/native-320-first-far.png",
+      "sha256": "abba0a66385b0150e6bae2a562bc6ad56d3d515ca39771def2eee754c0c8a566",
+      "originalOpened": true,
+      "observation": "Observed queue-dependent visibility: first far jump hides task cards; later reveal can catch up. Existing catalog dimensions and authored masks retained."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "native-320-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/native-320-reverse.png",
+      "sha256": "0a6c74041fbc89f84d08f0351b65093d262099312143b07eea5ec83c1f7c94b0",
+      "originalOpened": true,
+      "observation": "Observed queue-dependent visibility: first far jump hides task cards; later reveal can catch up. Existing catalog dimensions and authored masks retained."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "native-320-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/native-320-last-far.png",
+      "sha256": "71bfd5bad560aafecc5e4087b437aa8fe4001d69dbf59afaf6550033461d266f",
+      "originalOpened": true,
+      "observation": "Observed queue-dependent visibility: first far jump hides task cards; later reveal can catch up. Existing catalog dimensions and authored masks retained."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "web-393-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/web-393-first-far.png",
+      "sha256": "bb8e3525f2a076afc209fa29c65772ad53c9dd5b0331dcd1ff520d18361daff9",
+      "originalOpened": true,
+      "observation": "First jump/reverse/end catalog cards present but opacity0; blank reading region reproduces the defect."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "web-393-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/web-393-reverse.png",
+      "sha256": "c2af96ae57ff28909d710fadcc22854861ca1c9dae7469ed291a6a207a9b1703",
+      "originalOpened": true,
+      "observation": "First jump/reverse/end catalog cards present but opacity0; blank reading region reproduces the defect."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "web-393-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/web-393-last-far.png",
+      "sha256": "e3b0c99b403ce74ed21410396503318cc8a85e5a828308ddd0a0a911d30368d4",
+      "originalOpened": true,
+      "observation": "First jump/reverse/end catalog cards present but opacity0; blank reading region reproduces the defect."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "native-393-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/native-393-first-far.png",
+      "sha256": "af9f13f1dbb86a16449c46288b64981d9f5202157b8e1cd717486dc13543269d",
+      "originalOpened": true,
+      "observation": "Observed queue-dependent visibility: first far jump hides task cards; later reveal can catch up. Existing catalog dimensions and authored masks retained."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "native-393-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/native-393-reverse.png",
+      "sha256": "f0f68655adbae3547b92897605f5ab4da556e8cdaa4f200388279856f10eadf1",
+      "originalOpened": true,
+      "observation": "Observed queue-dependent visibility: first far jump hides task cards; later reveal can catch up. Existing catalog dimensions and authored masks retained."
+    },
+    {
+      "phase": "initial-complete",
+      "id": "native-393-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/native-393-last-far.png",
+      "sha256": "688dc1ad115a69d78011afca84e28c3ae64f96bd0ff14f62d8b82ef9bada9c5e",
+      "originalOpened": true,
+      "observation": "Observed queue-dependent visibility: first far jump hides task cards; later reveal can catch up. Existing catalog dimensions and authored masks retained."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "web-320-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/web-320-first-far.png",
+      "sha256": "eca2148ee1983ba8e07ea591e42b5ef38766963e71135d45633faa684f05d0fe",
+      "originalOpened": true,
+      "observation": "Target and surrounding catalog rows immediately visible; titles, art and controls paint. Partial row under sticky header is intentionally scrolled, not an initial overlap claim."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "web-320-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/web-320-reverse.png",
+      "sha256": "4bf2435a5931c57d02e8b0e84e5ab473128866abeacaca94da7288882b02e5ab",
+      "originalOpened": true,
+      "observation": "Target and surrounding catalog rows immediately visible; titles, art and controls paint. Partial row under sticky header is intentionally scrolled, not an initial overlap claim."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "web-320-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/web-320-last-far.png",
+      "sha256": "5eba223caff97949c32228f5af5e06c5a7b2c10c587b1c196764ed0eb4c8cbe9",
+      "originalOpened": true,
+      "observation": "Target and surrounding catalog rows immediately visible; titles, art and controls paint. Partial row under sticky header is intentionally scrolled, not an initial overlap claim."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "native-320-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/native-320-first-far.png",
+      "sha256": "7ae249e20cb04c5fac00cb37f08b3f031e5d7263f7998fef45c53cda9fc57f60",
+      "originalOpened": true,
+      "observation": "Target native catalog cards immediately visible with real logos/material, readable fully visible row copy. Authored Fresh rail and masks retained; vertically partial buttons must be reached by scrolling."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "native-320-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/native-320-reverse.png",
+      "sha256": "ce022d3046c2e9bf313646075f9d3c85f7d2558cc10723c7578cbaa17520eb05",
+      "originalOpened": true,
+      "observation": "Target native catalog cards immediately visible with real logos/material, readable fully visible row copy. Authored Fresh rail and masks retained; vertically partial buttons must be reached by scrolling."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "native-320-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/native-320-last-far.png",
+      "sha256": "a99d257d502eec7963f4150af1c56aeb49a34721cf8674d9429fa748d647c3a9",
+      "originalOpened": true,
+      "observation": "Target native catalog cards immediately visible with real logos/material, readable fully visible row copy. Authored Fresh rail and masks retained; vertically partial buttons must be reached by scrolling."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "web-393-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/web-393-first-far.png",
+      "sha256": "155f1818ae58484564c154be73f85267de58c4074433f3371166e610404727b0",
+      "originalOpened": true,
+      "observation": "Target and surrounding catalog rows immediately visible; titles, art and controls paint. Partial row under sticky header is intentionally scrolled, not an initial overlap claim."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "web-393-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/web-393-reverse.png",
+      "sha256": "158d720bd9d68d9853c48e1b040e798edac72c61e991eea898098e6aa8470627",
+      "originalOpened": true,
+      "observation": "Target and surrounding catalog rows immediately visible; titles, art and controls paint. Partial row under sticky header is intentionally scrolled, not an initial overlap claim."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "web-393-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/web-393-last-far.png",
+      "sha256": "92956f9b3fb39bfb044016666fe1d7ae3102e6bf81b496574ee132d42d57371e",
+      "originalOpened": true,
+      "observation": "Target and surrounding catalog rows immediately visible; titles, art and controls paint. Partial row under sticky header is intentionally scrolled, not an initial overlap claim."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "native-393-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/native-393-first-far.png",
+      "sha256": "f3116d573cfab755c63176d47b62895c2b6137b8a387715763a47e136052ff98",
+      "originalOpened": true,
+      "observation": "Target native catalog cards immediately visible with real logos/material, readable fully visible row copy. Authored Fresh rail and masks retained; vertically partial buttons must be reached by scrolling."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "native-393-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/native-393-reverse.png",
+      "sha256": "d74026a22ec8c6db4b77a7b4ff76bec109c48b225f7c97fb6a6828deb91715f6",
+      "originalOpened": true,
+      "observation": "Target native catalog cards immediately visible with real logos/material, readable fully visible row copy. Authored Fresh rail and masks retained; vertically partial buttons must be reached by scrolling."
+    },
+    {
+      "phase": "confirmation-final",
+      "id": "native-393-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/native-393-last-far.png",
+      "sha256": "395cfe050aabd1051191a260a2ef1966f94917aa2b63391f702a1c384d9d12e9",
+      "originalOpened": true,
+      "observation": "Target native catalog cards immediately visible with real logos/material, readable fully visible row copy. Authored Fresh rail and masks retained; vertically partial buttons must be reached by scrolling."
+    },
+    {
+      "phase": "pocket-picker",
+      "id": "pocket-320-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/pocket-picker/pocket-320-first-far.png",
+      "sha256": "fbfbddfba449d9ea3a84282799fab885440bc7245b84c9b085ada4d3435ab552",
+      "originalOpened": true,
+      "observation": "Actual321-weapon picker: target far/reverse/end rows and icons readable at opacity1; intended mask fades only partial edge rows. Close, header and Pause/Lobby remain whole."
+    },
+    {
+      "phase": "pocket-picker",
+      "id": "pocket-320-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/pocket-picker/pocket-320-reverse.png",
+      "sha256": "4505d5d63369fb642be824b9b5f9e76c7c5fc22db4f723829a448c6b527b1ff9",
+      "originalOpened": true,
+      "observation": "Actual321-weapon picker: target far/reverse/end rows and icons readable at opacity1; intended mask fades only partial edge rows. Close, header and Pause/Lobby remain whole."
+    },
+    {
+      "phase": "pocket-picker",
+      "id": "pocket-320-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/pocket-picker/pocket-320-last-far.png",
+      "sha256": "1ab050005404f4ed373fc126cfcac9d8c7cb5b09e6a2976aeb67ea40f01559da",
+      "originalOpened": true,
+      "observation": "Actual321-weapon picker: target far/reverse/end rows and icons readable at opacity1; intended mask fades only partial edge rows. Close, header and Pause/Lobby remain whole."
+    },
+    {
+      "phase": "pocket-picker",
+      "id": "pocket-393-first-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/pocket-picker/pocket-393-first-far.png",
+      "sha256": "eabf326a7bbe935b5ab80c16f2e5e60b9163df3668cb4058c0f8a68b40ba81e5",
+      "originalOpened": true,
+      "observation": "Actual321-weapon picker: target far/reverse/end rows and icons readable at opacity1; intended mask fades only partial edge rows. Close, header and Pause/Lobby remain whole."
+    },
+    {
+      "phase": "pocket-picker",
+      "id": "pocket-393-reverse",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/pocket-picker/pocket-393-reverse.png",
+      "sha256": "b139cb6ce2a546561fabc0f85c5bf924658612b8b7a262cfc5dd8b624c8fbb56",
+      "originalOpened": true,
+      "observation": "Actual321-weapon picker: target far/reverse/end rows and icons readable at opacity1; intended mask fades only partial edge rows. Close, header and Pause/Lobby remain whole."
+    },
+    {
+      "phase": "pocket-picker",
+      "id": "pocket-393-last-far",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/pocket-picker/pocket-393-last-far.png",
+      "sha256": "5c06622ccd58f6d072191536825ad7bc907283d09d7ac17e1d73c647fe37cd63",
+      "originalOpened": true,
+      "observation": "Actual321-weapon picker: target far/reverse/end rows and icons readable at opacity1; intended mask fades only partial edge rows. Close, header and Pause/Lobby remain whole."
+    },
+    {
+      "phase": "row-initial",
+      "id": "rows-320-actual-remount",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/row-initial/rows-320-actual-remount.png",
+      "sha256": "3113e64d6231abfa1ca1f1a9e1c77c2d3395ba799e3951bd64668f9d5800f2f7",
+      "originalOpened": true,
+      "observation": "Actual already-open Players sheet after a real peer disconnect redraw. Screenshot shows settled context; exact first-frame opacity proof is recorded in metrics, not inferred from later screenshot. Approved card/mask/action geometry retained."
+    },
+    {
+      "phase": "row-initial",
+      "id": "rows-393-actual-remount",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/row-initial/rows-393-actual-remount.png",
+      "sha256": "c81769df88c1116804fc3f8524eee144ac3c0ab491cabcd052b280ee1863ca3e",
+      "originalOpened": true,
+      "observation": "Actual already-open Players sheet after a real peer disconnect redraw. Screenshot shows settled context; exact first-frame opacity proof is recorded in metrics, not inferred from later screenshot. Approved card/mask/action geometry retained."
+    },
+    {
+      "phase": "row-confirmation",
+      "id": "rows-320-actual-remount",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/row-confirmation/rows-320-actual-remount.png",
+      "sha256": "b7a39aec257d3a37affba358bebc6c388b60b4ecd7d50c44e771bb82aeeb0174",
+      "originalOpened": true,
+      "observation": "Actual already-open Players sheet after a real peer disconnect redraw. Screenshot shows settled context; exact first-frame opacity proof is recorded in metrics, not inferred from later screenshot. Approved card/mask/action geometry retained."
+    },
+    {
+      "phase": "row-confirmation",
+      "id": "rows-393-actual-remount",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/row-confirmation/rows-393-actual-remount.png",
+      "sha256": "d39e5041b561f17206041966b9414c7239dfe873fd5d9153cc289c090e813707",
+      "originalOpened": true,
+      "observation": "Actual already-open Players sheet after a real peer disconnect redraw. Screenshot shows settled context; exact first-frame opacity proof is recorded in metrics, not inferred from later screenshot. Approved card/mask/action geometry retained."
+    }
+  ],
+  "reports": [
+    {
+      "folder": "initial-complete",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/initial-complete/report.json",
+      "status": "captured",
+      "startedAt": "2026-10-03T19:45:39.010Z",
+      "finishedAt": "2026-10-03T19:45:56.966Z",
+      "changedFiles": [],
+      "sourceStart": {
+        "public/motion.js": "eb81cec11b1e940bfb701d9ee04d01c9e5bfac5e0f334753fd7934db60c5fc14",
+        "public/motion.css": "4d7f1501d8d166475fbd9e6f7e4165b8be2e63af2dcedff49ef5d636519fb42b",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77"
+      },
+      "sourceEnd": {
+        "public/motion.js": "eb81cec11b1e940bfb701d9ee04d01c9e5bfac5e0f334753fd7934db60c5fc14",
+        "public/motion.css": "4d7f1501d8d166475fbd9e6f7e4165b8be2e63af2dcedff49ef5d636519fb42b",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77"
+      },
+      "checks": [
+        {
+          "id": "web-320-first-far",
+          "pass": false
+        },
+        {
+          "id": "web-320-reverse",
+          "pass": false
+        },
+        {
+          "id": "web-320-last-far",
+          "pass": false
+        },
+        {
+          "id": "web-320-return-visible",
+          "pass": true
+        },
+        {
+          "id": "native-320-first-far",
+          "pass": false
+        },
+        {
+          "id": "native-320-reverse",
+          "pass": false
+        },
+        {
+          "id": "native-320-last-far",
+          "pass": false
+        },
+        {
+          "id": "native-320-return-visible",
+          "pass": true
+        },
+        {
+          "id": "web-393-first-far",
+          "pass": false
+        },
+        {
+          "id": "web-393-reverse",
+          "pass": false
+        },
+        {
+          "id": "web-393-last-far",
+          "pass": false
+        },
+        {
+          "id": "web-393-return-visible",
+          "pass": false
+        },
+        {
+          "id": "native-393-first-far",
+          "pass": false
+        },
+        {
+          "id": "native-393-reverse",
+          "pass": false
+        },
+        {
+          "id": "native-393-last-far",
+          "pass": false
+        },
+        {
+          "id": "native-393-return-visible",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "folder": "confirmation-final",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/confirmation-final/report.json",
+      "status": "captured",
+      "startedAt": "2026-10-03T19:52:14.963Z",
+      "finishedAt": "2026-10-03T19:52:35.720Z",
+      "changedFiles": [],
+      "sourceStart": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "399e216ab9e8575b1ed7c2a27fb045ed87a459141510fbee57cf462e61790628",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77"
+      },
+      "sourceEnd": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "399e216ab9e8575b1ed7c2a27fb045ed87a459141510fbee57cf462e61790628",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77"
+      },
+      "checks": [
+        {
+          "id": "web-320-first-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "poker",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "airhockey",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "mines",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "curling",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "web-320-reverse",
+          "count": 36,
+          "visible": [
+            {
+              "id": "chaos",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "kart",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "monster",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "spy",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "web-320-last-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "swarm_gate",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "peek_shoot",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "web-320-return-visible",
+          "pass": true
+        },
+        {
+          "id": "native-320-first-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "spy",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "millionaire",
+              "opacity": 1,
+              "hit": null
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "native-320-reverse",
+          "count": 36,
+          "visible": [
+            {
+              "id": "curling",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "bowling",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "native-320-last-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "naval",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "drawguess",
+              "opacity": 1,
+              "hit": null
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "native-320-return-visible",
+          "pass": true
+        },
+        {
+          "id": "web-393-first-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "poker",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "airhockey",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "mines",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "curling",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "bowling",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "swarm_gate",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "peek_shoot",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "web-393-reverse",
+          "count": 36,
+          "visible": [
+            {
+              "id": "chaos",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "kart",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "monster",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "spy",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "millionaire",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "sinyakquiz",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "warsaw",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "web-393-last-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "curling",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "bowling",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "swarm_gate",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "peek_shoot",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "web-393-return-visible",
+          "pass": true
+        },
+        {
+          "id": "native-393-first-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "spy",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "millionaire",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "sinyakquiz",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "warsaw",
+              "opacity": 1,
+              "hit": null
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "native-393-reverse",
+          "count": 36,
+          "visible": [
+            {
+              "id": "curling",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "bowling",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "tankarena",
+              "opacity": 1,
+              "hit": null
+            },
+            {
+              "id": "push",
+              "opacity": 1,
+              "hit": null
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "native-393-last-far",
+          "count": 36,
+          "visible": [
+            {
+              "id": "crocodile",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "naval",
+              "opacity": 1,
+              "hit": true
+            },
+            {
+              "id": "drawguess",
+              "opacity": 1,
+              "hit": true
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "native-393-return-visible",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "folder": "pocket-picker",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/pocket-picker/report.json",
+      "status": "passed",
+      "startedAt": "2026-10-03T19:55:28.451Z",
+      "finishedAt": "2026-10-03T19:55:37.020Z",
+      "changedFiles": [],
+      "sourceStart": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "399e216ab9e8575b1ed7c2a27fb045ed87a459141510fbee57cf462e61790628",
+        "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+        "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+        "games/arcade_deluxe/public/controller.js": "1dfaf00b0f5a194cc6490d432bfb59c8b67f14573e1e46350afca90e24fb9b9c",
+        "games/arcade_deluxe/public/style.css": "b0e77f37894eb2d5a28a8c5636a318d461ba9e81311d6d8e71d4c61e6237a549",
+        "games/arcade_deluxe/public/net.js": "966ae77fb6bb7c562bf793f222adb3c4355db3fbd2a8c356011b30df2144d786"
+      },
+      "sourceEnd": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "399e216ab9e8575b1ed7c2a27fb045ed87a459141510fbee57cf462e61790628",
+        "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+        "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+        "games/arcade_deluxe/public/controller.js": "1dfaf00b0f5a194cc6490d432bfb59c8b67f14573e1e46350afca90e24fb9b9c",
+        "games/arcade_deluxe/public/style.css": "b0e77f37894eb2d5a28a8c5636a318d461ba9e81311d6d8e71d4c61e6237a549",
+        "games/arcade_deluxe/public/net.js": "966ae77fb6bb7c562bf793f222adb3c4355db3fbd2a8c356011b30df2144d786"
+      },
+      "checks": [
+        {
+          "id": "pocket-320-first-far",
+          "pass": true,
+          "visible": [
+            {
+              "id": "lollipop",
+              "title": "Lollipop",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "cyclone",
+              "title": "Cyclone",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "slingshot",
+              "title": "Slingshot",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "id": "pocket-320-reverse",
+          "pass": true,
+          "visible": [
+            {
+              "id": "laser",
+              "title": "Laser",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "super_skipper",
+              "title": "Super Skipper",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "crater_maker",
+              "title": "Crater Maker",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "id": "pocket-320-last-far",
+          "pass": true,
+          "visible": [
+            {
+              "id": "ion_cannon",
+              "title": "Ion Cannon",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "backtrack",
+              "title": "Backtrack",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "oil_slick",
+              "title": "Oil Slick",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "id": "pocket-320-actual-selection",
+          "pass": true,
+          "weapon": "oil_slick"
+        },
+        {
+          "id": "pocket-393-first-far",
+          "pass": true,
+          "visible": [
+            {
+              "id": "lollipop",
+              "title": "Lollipop",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "cyclone",
+              "title": "Cyclone",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "slingshot",
+              "title": "Slingshot",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "hot_seat",
+              "title": "Hot Seat",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "id": "pocket-393-reverse",
+          "pass": true,
+          "visible": [
+            {
+              "id": "laser",
+              "title": "Laser",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "super_skipper",
+              "title": "Super Skipper",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "crater_maker",
+              "title": "Crater Maker",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "big_dirtball",
+              "title": "Big Dirtball",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "id": "pocket-393-last-far",
+          "pass": true,
+          "visible": [
+            {
+              "id": "quantum_cube",
+              "title": "Quantum Cube",
+              "inViewport": true,
+              "eligible": false,
+              "opacity": 1,
+              "hidden": false,
+              "hit": false,
+              "disabled": false
+            },
+            {
+              "id": "missile_turret",
+              "title": "Missile Turret",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "ion_cannon",
+              "title": "Ion Cannon",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "backtrack",
+              "title": "Backtrack",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            },
+            {
+              "id": "oil_slick",
+              "title": "Oil Slick",
+              "inViewport": true,
+              "eligible": true,
+              "opacity": 1,
+              "hidden": false,
+              "hit": true,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "id": "pocket-393-actual-selection",
+          "pass": true,
+          "weapon": "oil_slick"
+        }
+      ]
+    },
+    {
+      "folder": "row-initial",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/row-initial/report.json",
+      "status": "captured",
+      "checks": [
+        {
+          "id": "rows-320-actual-remount",
+          "pass": false
+        },
+        {
+          "id": "rows-393-actual-remount",
+          "pass": false
+        }
+      ],
+      "sourceStart": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "399e216ab9e8575b1ed7c2a27fb045ed87a459141510fbee57cf462e61790628",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/polish.css": "d486088ceadee436bd6e0586131789c11595f3a996fa5dc530a3d663799d8415"
+      },
+      "sourceEnd": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "399e216ab9e8575b1ed7c2a27fb045ed87a459141510fbee57cf462e61790628",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/polish.css": "d486088ceadee436bd6e0586131789c11595f3a996fa5dc530a3d663799d8415"
+      },
+      "changedFiles": [],
+      "startedAt": "2026-10-03T20:00:20.522Z",
+      "finishedAt": "2026-10-03T20:00:24.692Z"
+    },
+    {
+      "folder": "row-confirmation",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/fast-scroll/row-confirmation/report.json",
+      "status": "captured",
+      "checks": [
+        {
+          "id": "rows-320-actual-remount",
+          "pass": true
+        },
+        {
+          "id": "rows-393-actual-remount",
+          "pass": true
+        }
+      ],
+      "sourceStart": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "3f40ea46548eebe7d639893b0f770e5fdd7b592d5f2cb9538107640dd8f4a261",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/polish.css": "d486088ceadee436bd6e0586131789c11595f3a996fa5dc530a3d663799d8415"
+      },
+      "sourceEnd": {
+        "public/motion.js": "b135308eefe9e374c59ea8411e89269a161852332fae71a241fc0e0ba805a0fc",
+        "public/motion.css": "3f40ea46548eebe7d639893b0f770e5fdd7b592d5f2cb9538107640dd8f4a261",
+        "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+        "public/polish.css": "d486088ceadee436bd6e0586131789c11595f3a996fa5dc530a3d663799d8415"
+      },
+      "changedFiles": [],
+      "startedAt": "2026-10-03T20:01:21.284Z",
+      "finishedAt": "2026-10-03T20:01:25.564Z"
+    }
+  ],
+  "qaHarnessCorrections": [
+    "Native assets served by QA-local route, matching repository native browser-test method.",
+    "Baseline native hit-test sampled hidden text title when card had no nested button; final samples actual button or root card and excludes clipped centers. Baseline opacity observations remain valid.",
+    "First confirmation stopped at native #closeRules, which belongs to browser route. Corrected only harness to native data-close=gameDetail, then reran fresh confirmation-final. Raw earlier report retained."
+  ],
+  "limitations": [
+    "No physical iPhone/WKWebView validation, rubber-band GPU raster starvation or real high-latency network tested.",
+    "First catalog settle is decorative and never gates text, controls or covers. Network-decoded artwork itself still depends on resource availability.",
+    "Native catalog receives actual manage snapshot via shipped normal JS bridge; automation stub represents platform transport only. No native build/device claim.",
+    "Actual focused remount test exercised room-player through real roster updates. player and stats-rank share the same corrected animation declaration; no new separate ranking gameplay/session was generated for this bounded follow-up."
+  ],
+  "rowCorrection": "Coordinator-authorized follow-up: shared roster/ranking row animation now translate-only180ms. Actual Players peer disconnect at320/393 gives opacity1 on first and second frames (previous first0, second0.396/0.431).",
+  "qualification": "Catalog/picker confirmations are source-frozen snapshots before the later authorized row-only animation change. Catalog IIFE and catalog pending/art-loading CSS unchanged by that follow-up; no catalog rerun. Final focused row run has sourceStart=sourceEnd. Do not treat earlier motion.css hash as final current hash.",
+  "existingRegression": {
+    "path": "tests/catalog-reveal-browser.cjs",
+    "sha256": "ebb0380f351b0c1cecf5f5dee720f4f6f3b3e14c050e61bc045be028dd1274d4",
+    "ranOnce": true,
+    "exitCode": 0,
+    "cases": [
+      "host320",
+      "host393",
+      "guest320",
+      "guest393"
+    ],
+    "checks": [
+      "Immediate card/title/button visibility before500ms delayed cover response",
+      "Actual immediate button click",
+      "Far/reverse/end viewport hit tests",
+      "No party-lobby-enter replay",
+      "No logical-identity remount replay",
+      "Stable layout before/after decode",
+      "Reduced-motion initial content, no entrances"
+    ],
+    "productionHashesStillMatchFinalFreeze": true,
+    "finishedAt": "2026-10-03T20:07:12.975328+00:00"
+  }
+}

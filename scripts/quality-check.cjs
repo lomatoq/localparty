@@ -1,0 +1,9 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'.localparty-build/quality');fs.mkdirSync(out,{recursive:true});
+// Use the installed test browser, or explicitly point at a workspace runtime.
+try{require.resolve(process.env.PARTY_PLAYWRIGHT||'playwright');}catch{console.error('Browser checks require Playwright. Set PARTY_PLAYWRIGHT to your installed playwright package.');process.exit(1);}
+const checks=[['unit','scripts/test.cjs'],['arcade-simulation','tests/arcade-simulation.cjs'],['arcade-finals','tests/arcade-natural-end.cjs'],['pocket-963-shots','scripts/audit-pocket-runtime.cjs',path.join(out,'pocket-runtime.json')],['all-games','tests/i18n-all-games.cjs'],['input-recovery','tests/input-release-browser.cjs'],['host-panel','tests/host-panel-browser.cjs'],['sticky-host','tests/native-now-playing-browser.cjs'],['results-countdown-layout','tests/game-quality-browser.cjs'],['pocket-art','tests/pocket-projectile-coverage-browser.cjs'],['pocket-visibility','tests/pocket-projectile-visibility-browser.cjs'],['siege-effects','tests/siege-fx-browser.cjs']];
+const results=[];
+for(const [name,file,...args]of checks){console.log('CHECK '+name);const started=Date.now(),log=path.join(out,name+'.log'),fd=fs.openSync(log,'w');let r;try{r=spawnSync(process.execPath,[file,...args],{cwd:root,env:{...process.env,I18N_OUTPUT:path.join(out,'all-games')},stdio:['ignore',fd,fd],timeout:600000});}finally{fs.closeSync(fd);}results.push({name,passed:r.status===0,milliseconds:Date.now()-started,log,error:r.error?.message});console.log((r.status===0?'PASS ':'FAIL ')+name);fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(results,null,2)+'\n');}
+process.exitCode=results.some(r=>!r.passed)?1:0;console.log('Report: '+path.join(out,'report.json'));

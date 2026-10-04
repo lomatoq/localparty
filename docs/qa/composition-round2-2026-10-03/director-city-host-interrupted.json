@@ -1,0 +1,567 @@
+{
+  "status": "historical-interrupted-not-final",
+  "scope": "30 games / 60 individually opened original TV PNGs at 1280x720 and 1920x1080",
+  "report": "output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/report.json",
+  "reviews": [
+    {
+      "id": "push",
+      "judgment": "Whole cyan circular field plus vertically centered attached cap/list. Individual muted teal cards and plain co-place1 numerals; no additional list backplate/place tile. Own OUT portrait is correctly dimmed."
+    },
+    {
+      "id": "shrink",
+      "judgment": "Complete shrinking circle and warning rings preserved; centered teal cap/list with whole four rows, plain co-places, no outer list enclosure. Off-field own-name indicator is a world-state label."
+    },
+    {
+      "id": "knives",
+      "judgment": "Whole colorful wheel and four full mascots/ammo anchors. Warm compact rail follows field center; plain rank numerals (actual−3/−3→place3 at1280), no separate tile/backplate. Names/points contained."
+    },
+    {
+      "id": "bomb",
+      "judgment": "Full warm circular arena/carrier and three actual human identities; centered compact warm cap and individual rows, plain co-place1 ranks. No extra list wrapper/place tile."
+    },
+    {
+      "id": "western",
+      "judgment": "Full four cowboy silhouettes and sunset scene; attached warm top rectangle, centered round/time facts and whole READY/name baselines. Captures show pre-draw READY, not later shot state."
+    },
+    {
+      "id": "tanks",
+      "judgment": "Whole green world, both bases and moving tanks; single attached olive score/time cap with generous side space. No standalone score list; these frames do not prove every top HUD crossing."
+    },
+    {
+      "id": "tankarena",
+      "judgment": "Full uniformly projected green world with quiet apron, attached tactical rail, wholefour cards atboth sizes. Points/Kills axes and fullwidthHP aligned; plain co-place1 ranks. No extra purple score-list backing."
+    },
+    {
+      "id": "chaos",
+      "judgment": "Whole black calibration grid and cursor/CLICK target. Blue top-attached cap and task/counter strip group meaningfully; no rank list/place decoration."
+    },
+    {
+      "id": "kart",
+      "judgment": "Complete winding course, continuous lower scenery and purple track-edge material preserved. Four individual charcoal scorecards; short1280 fourthrow is intentionally continuation-faded, fullyvisible1920. Separate rectangular charcoal-violet whole-rail underlay remains, observed for latest extra-list-backplate scope."
+    },
+    {
+      "id": "monster",
+      "judgment": "Compact teal content cap with whole time/parts ink; aligned two-column task queue and nearby complete mascot. Functional current-part lime cards retained; no standings list/enclosure."
+    },
+    {
+      "id": "spy",
+      "judgment": "Content cap/role roster/conversation form one centered cluster. Role-specific individual asking/listening/answering cards are functional; no extra outer roster backing. Long names contained atboth sizes."
+    },
+    {
+      "id": "sinyakquiz",
+      "judgment": "Actual five-player live state now captured atbothsizes. Plain co-place1, individual muted cards and outer Race-list backing removed. Whole question/options and groupedclock retained; question-panel surface is task content, not extra ranking wrapper."
+    },
+    {
+      "id": "millionaire",
+      "judgment": "Ladder outer backplate now removed: four individual muted score/progress cards and plain co-place1 align question cluster. Whole time/turn facts and options; active lime identity remains useful state."
+    },
+    {
+      "id": "warsaw",
+      "judgment": "Race-list outer purple enclosure removed; plain co-place1 and four individual authored muted cards. Whole question/answers and shared content cap remain aligned. Tiny bottom-center glint on question panel is not rank decoration."
+    },
+    {
+      "id": "crocodile",
+      "judgment": "Whole actor/troupe/content cluster with explicit TURN and fullsecret-safe copy. Plain co-place1 ranks; individual green cards inside larger green troupe surface. Larger surface observed under clarified extra-list-backplate scope (not purple)."
+    },
+    {
+      "id": "jenga",
+      "judgment": "Whole tower/table, floating centered Force/Selected/Crew facts over one soft warm wash. Current shared purple overlay gone; no hard outer panel/row enclosures/place tiles. Four names/blocks and whole Stability100% readable."
+    },
+    {
+      "id": "crane",
+      "judgment": "New minimal city continues fullwidth beneath rail; only quiet navy wash, no hard enclosing panel. Whole four crewrows/plain01, coherent longname, clear separators and facts atboth sizes. Full crane/foundation/footing retained."
+    },
+    {
+      "id": "naval",
+      "judgment": "Whole combined four-board stack, navy attached bridge cap and actual health/hitfacts. Individual navy scorecards/plain1 have no purple common ranking sub-panel or place pad; full-height bridge surface remains intentional own composition. Live feed bottom clear."
+    },
+    {
+      "id": "drawguess",
+      "judgment": "Outer Artists/Guessers ranking backplate removed; four individual muted cards/plain1 and full names. Functional Guesses card stays distinct from standings, whole drawing canvas/task cap preserved."
+    },
+    {
+      "id": "western_duel",
+      "judgment": "Whole sunset field/two actors and warm attached rail; WAIT/WAIT at1280 and DRAW/FIRE at1920 agree. Four plain co-place1 cards and actual forthcoming queue preserved, no purple rank sub-panel."
+    },
+    {
+      "id": "taprace",
+      "judgment": "Whole racer lanes and robotart, groupedtopcap. Common bottom scorestrip fill removed but thin enclosing rounded outline remains; individualcards preserved. Outline noted for clarified latest backplate scope."
+    },
+    {
+      "id": "punchmeter",
+      "judgment": "Whole bag/ring and warm backedtitle/attempt cap; supporting actor/facts visible. No standings wrapper/place pad. Physical sensor behavior not established by staticTV."
+    },
+    {
+      "id": "flappy",
+      "judgment": "Actual livebirds with whole continuous sky/pipefield. Blue toprectangle, full numbers/no arbitrary dash/stitch; no ranking list. Top pipe endpoints are gamefield boundary, not a croppedbackgroundband."
+    },
+    {
+      "id": "hungry",
+      "judgment": "Whole four-mouth playfield, authored floor andfood; cap above world labels/points. Functional onworld scoretags retained, no list enclosure. These frames do not expand physicaledge collision approval."
+    },
+    {
+      "id": "snakelines",
+      "judgment": "Whole neontrail grid and alive bots/ownOUT effect captured; green toprectangle factgroup. No score-list backing/place pad; functional line colors andworldnames preserved."
+    },
+    {
+      "id": "carryball",
+      "judgment": "Complete pitch/goals and robots, one attached slate teamtally/time cap. No standings list/place tile. Natural robot cluster does not establish possession controls in staticTV."
+    },
+    {
+      "id": "marble_bloom",
+      "judgment": "Whole chain/track with actual combo effects and symbolmarbles. Teal title/level/points/queued cap plus separate teal individual scorecards, no common enclosing list backing/place pad."
+    },
+    {
+      "id": "pocket_siege",
+      "judgment": "Complete terrain/cannons and attached slate cap with turn, wind, points and quiet actor. Upper-right individual two-by-two cards have no additional common list backplate or place pad; retain them under the explicit scope clarification."
+    },
+    {
+      "id": "bow_club",
+      "judgment": "Whole meadow, calibration markers and targets; warm single owner header groups Arrows, Time and Mode above quiet Aim/Draw/Release guidance. Bottom individual scorecards and visible BULLSEYE +100 feedback remain complete. Functional calibration markers are preserved."
+    },
+    {
+      "id": "poker",
+      "judgment": "Authored purple table fully fits below the header at both sizes, with roughly 50px/70px clearance at 1280/1920. Four bankroll seat cards, names, Pot and turn remain whole. Purple table art is distinct from an extra list backplate."
+    }
+  ],
+  "qualifications": [
+    "Root stopped the 31-row capture following a newly authorized title/material and Host Panel batch. No final all36 approval.",
+    "Crocodile troupe and Naval bridge functional paired surfaces may remain. Kart fourth-card clipping and whole rail underlay are assigned corrections. Taprace outer rim is assigned removal.",
+    "Static visual inspection is separate from actual interaction proof, automatic checks and physical-device validation.",
+    "The generated city integration and all previous composition observations are historical relative to the next title/material source freeze."
+  ],
+  "captureQualification": {
+    "startedAt": "2026-10-03T10:26:08.018Z",
+    "finishedAt": "2026-10-03T10:30:21.752Z",
+    "capturedRows": 31,
+    "errors": [],
+    "changedFiles": [
+      "public/native-shell/host-ui.css"
+    ],
+    "failure": "page.setViewportSize: Target page, context or browser has been closed",
+    "reportSha256": "5f12ab1f28b81ed3c4d880dcf8978375661d6f321b379584c97a56a638ae878b",
+    "watchedDependencies": 595
+  },
+  "originals": [
+    {
+      "game": "push",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/push-tv-live-1280.png",
+      "sha256": "13061247cb6a4696e2c6e3755456787ccc28ab353655a93625c31717bb5d59a9",
+      "individuallyOpened": true
+    },
+    {
+      "game": "push",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/push-tv-live-1920.png",
+      "sha256": "84cde79b0f64c1488daae317e2514a164515e99bda734d067bf52b666d6a40dc",
+      "individuallyOpened": true
+    },
+    {
+      "game": "shrink",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/shrink-tv-live-1280.png",
+      "sha256": "c266578fe2b9565615f1fcf5614910724a09ebf1cd936aad49d25b3832a836b4",
+      "individuallyOpened": true
+    },
+    {
+      "game": "shrink",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/shrink-tv-live-1920.png",
+      "sha256": "18d708021da4bf8382a6a5cae4debcdcb635056f6acc76dba75742fd7492b138",
+      "individuallyOpened": true
+    },
+    {
+      "game": "knives",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/knives-tv-live-1280.png",
+      "sha256": "56b572573d7bf8b2b628e8b9b190aef9ff2b8f0db0976a0510bd51f8633e53f1",
+      "individuallyOpened": true
+    },
+    {
+      "game": "knives",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/knives-tv-live-1920.png",
+      "sha256": "cc2f241a760a34fad1c3651b12792c89156c7805eea61efb873901b6b60e3301",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bomb",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/bomb-tv-live-1280.png",
+      "sha256": "3a7eaf4946b55f1fc0d4bb59b24f7ced9b0d42424e991792242d6d1c6ad611b0",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bomb",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/bomb-tv-live-1920.png",
+      "sha256": "fbae92000cd632552fb781a32a63b05491c7fdd221ee501b5c6a21aa66642628",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/western-tv-live-1280.png",
+      "sha256": "c52466fbc70030241fdf57139499da9fbe3c6be5a5608ca942e95ae3582aee96",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/western-tv-live-1920.png",
+      "sha256": "c62cdfeb811bd1ae948d110537c3f97eca3fd3e08976eb1fc010dbbed81a8dba",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tanks",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/tanks-tv-live-1280.png",
+      "sha256": "4e6ef7cdf62bb1951ae33bfe5fdc77a4d6e470d6df95b2c671008c482cbeefff",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tanks",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/tanks-tv-live-1920.png",
+      "sha256": "e017167be90da06ecd2dba890dbc259e213d6c3b65da5da049f8be1dc812051d",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tankarena",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/tankarena-tv-live-1280.png",
+      "sha256": "05fd2429c09bbd4382bff0ef2a3d1504fad95d595b5a16d0b32d5a6869d0c5b5",
+      "individuallyOpened": true
+    },
+    {
+      "game": "tankarena",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/tankarena-tv-live-1920.png",
+      "sha256": "2c4fad9d75ffdd9233ff72378e77af82a2ad7224651cff9ef78a4bd80b7ac345",
+      "individuallyOpened": true
+    },
+    {
+      "game": "chaos",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/chaos-tv-live-1280.png",
+      "sha256": "447a867a8c8b8faf8d019135e596a6d05e2fe429c454ed3c33ceb270b2c1768f",
+      "individuallyOpened": true
+    },
+    {
+      "game": "chaos",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/chaos-tv-live-1920.png",
+      "sha256": "b03e7460fce946eb9779b4dd7c50d54233e18f2b3a630048fde934a0eaa22919",
+      "individuallyOpened": true
+    },
+    {
+      "game": "kart",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/kart-tv-live-1280.png",
+      "sha256": "76b42630e085b058a424503448775b450eb0794fac3285e68e6200663a922ae1",
+      "individuallyOpened": true
+    },
+    {
+      "game": "kart",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/kart-tv-live-1920.png",
+      "sha256": "e915269c05c3f224693cd0605c6ce1ec466b8426fa88537f1487c784fa8fe1c3",
+      "individuallyOpened": true
+    },
+    {
+      "game": "monster",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/monster-tv-live-1280.png",
+      "sha256": "67e71e2cf1dcc13372093a449da5a7eb6a3a43749d3c42b3138106224cb1c1ae",
+      "individuallyOpened": true
+    },
+    {
+      "game": "monster",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/monster-tv-live-1920.png",
+      "sha256": "8514f7fe30e16cdd0ad9b616681cb5ea09be6b73755d3acf236cf72a5472ffe0",
+      "individuallyOpened": true
+    },
+    {
+      "game": "spy",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/spy-tv-live-1280.png",
+      "sha256": "b3b310904dfe40b5538c91eb7ced5838eb253141a4775cf15b52838ec5442208",
+      "individuallyOpened": true
+    },
+    {
+      "game": "spy",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/spy-tv-live-1920.png",
+      "sha256": "710132db6093119660ac09d45a9ebb44b5d2e98f484332f936add15438a03095",
+      "individuallyOpened": true
+    },
+    {
+      "game": "sinyakquiz",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/sinyakquiz-tv-live-1280.png",
+      "sha256": "cf47d74eecb8a1ce646d3ada3b40a3d763f6027551efcef11bc46b504e88860e",
+      "individuallyOpened": true
+    },
+    {
+      "game": "sinyakquiz",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/sinyakquiz-tv-live-1920.png",
+      "sha256": "6298b0086462356d8ae6ab7fda7de44b42121c5a9f5c17163906351fa17d9744",
+      "individuallyOpened": true
+    },
+    {
+      "game": "millionaire",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/millionaire-tv-live-1280.png",
+      "sha256": "39af9c720ddefc2bb3618bc3438be3d742cfcaff225fab88b390b5829fa8edb8",
+      "individuallyOpened": true
+    },
+    {
+      "game": "millionaire",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/millionaire-tv-live-1920.png",
+      "sha256": "d6604ac52243009f0ad01095959fa566938e2d046e75d057f8ab4d06cff27c70",
+      "individuallyOpened": true
+    },
+    {
+      "game": "warsaw",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/warsaw-tv-live-1280.png",
+      "sha256": "8fc2c7f4890ee5ddaf737be41c98109c9afab651a116bb226a5f125290e83f3a",
+      "individuallyOpened": true
+    },
+    {
+      "game": "warsaw",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/warsaw-tv-live-1920.png",
+      "sha256": "9335f9493f3203132822d0a2ca0715518e4a160e8bbb2559b348f6ec7fb415cc",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crocodile",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/crocodile-tv-live-1280.png",
+      "sha256": "961dee71113ddd7500e8541e8f5782b3299ef90ccf74329976e9e9dc476ac132",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crocodile",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/crocodile-tv-live-1920.png",
+      "sha256": "48e59d5ece656d9791a71ae7c3ce397532c50ffacb19bdab6c856455c1999002",
+      "individuallyOpened": true
+    },
+    {
+      "game": "jenga",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/jenga-tv-live-1280.png",
+      "sha256": "cb30deec73a579ea817ceb312af875233c735112e0f7cc68471ff61cf30e1a4a",
+      "individuallyOpened": true
+    },
+    {
+      "game": "jenga",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/jenga-tv-live-1920.png",
+      "sha256": "07b53ba9958d5038d93755c251b87cceea0ca08fb0491df26c10aa8b5c297343",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crane",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/crane-tv-live-1280.png",
+      "sha256": "aeb30bad3533f90d925d56a0c0d2886cc53f070c81d0678fe37ccf0cfbe12cd1",
+      "individuallyOpened": true
+    },
+    {
+      "game": "crane",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/crane-tv-live-1920.png",
+      "sha256": "4500dae0fd1bf39e1507ecf3856793e5ace6b0a1ab285dfa6bc96f6c89f601d0",
+      "individuallyOpened": true
+    },
+    {
+      "game": "naval",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/naval-tv-live-1280.png",
+      "sha256": "e0b2b5aa62a8945dc41111b2223587e0c32128a234bd3aa320e8692dd3d7aab9",
+      "individuallyOpened": true
+    },
+    {
+      "game": "naval",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/naval-tv-live-1920.png",
+      "sha256": "96b91e2a0d3968a851d243a19c8aa915732baf0df2aaec5366df9dc5c331d740",
+      "individuallyOpened": true
+    },
+    {
+      "game": "drawguess",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/drawguess-tv-live-1280.png",
+      "sha256": "46d5e24a36edae511a423715ea1803301eda7dca634ed40e4ef0616ada39a108",
+      "individuallyOpened": true
+    },
+    {
+      "game": "drawguess",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/drawguess-tv-live-1920.png",
+      "sha256": "0fbcc1d32622b4bc3692efbbec7329d06c3b093f9d1949c5c66b2fd4f3a6a702",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western_duel",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/western_duel-tv-live-1280.png",
+      "sha256": "f3975fab5038da163bf5a0e8998b134cd31bf4af7a3541fb9cc8202081dbda0d",
+      "individuallyOpened": true
+    },
+    {
+      "game": "western_duel",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/western_duel-tv-live-1920.png",
+      "sha256": "45b4a33bbe0815b20243009fb5b226385b55577ac26dbec80b07a876bd4b793d",
+      "individuallyOpened": true
+    },
+    {
+      "game": "taprace",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/taprace-tv-live-1280.png",
+      "sha256": "53780f72cec28686741fda7329bfaecadd3fa01595e9239b565d69e9ebb931e7",
+      "individuallyOpened": true
+    },
+    {
+      "game": "taprace",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/taprace-tv-live-1920.png",
+      "sha256": "f3e4e57a61fc6ececa813ca4c6e925456b3585a58a966eb8fc09f90ee15b3ce2",
+      "individuallyOpened": true
+    },
+    {
+      "game": "punchmeter",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/punchmeter-tv-live-1280.png",
+      "sha256": "111ecbb51f6a3d415a621583169228baf102443ef52cf584de3348c41fa55c3c",
+      "individuallyOpened": true
+    },
+    {
+      "game": "punchmeter",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/punchmeter-tv-live-1920.png",
+      "sha256": "fbcef70ce42a8eaf577eed216de7c0e0d0e3ab2b481d486acce80ca0e8d05840",
+      "individuallyOpened": true
+    },
+    {
+      "game": "flappy",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/flappy-tv-live-1280.png",
+      "sha256": "ec0fdfb69b5a2e185a04d2d028e77532b29826d66b3fccec7c24272666ccb1fe",
+      "individuallyOpened": true
+    },
+    {
+      "game": "flappy",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/flappy-tv-live-1920.png",
+      "sha256": "81d14eb58f921b2088daa56a06cca6eb58be38476de9d1129d776bef9cfd09ae",
+      "individuallyOpened": true
+    },
+    {
+      "game": "hungry",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/hungry-tv-live-1280.png",
+      "sha256": "5d6f79b6c07efc570b97dedfbf76f0013dce84ccc92f32ec682413b4d916f194",
+      "individuallyOpened": true
+    },
+    {
+      "game": "hungry",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/hungry-tv-live-1920.png",
+      "sha256": "cac54f6ce47c2bc9aad0793fb7519facd32f7f875b8033f0b11b7d90fc455715",
+      "individuallyOpened": true
+    },
+    {
+      "game": "snakelines",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/snakelines-tv-live-1280.png",
+      "sha256": "d6fd4d938e664de7d678a5a0701d267bb7b9d38010d966effddd1e446a053578",
+      "individuallyOpened": true
+    },
+    {
+      "game": "snakelines",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/snakelines-tv-live-1920.png",
+      "sha256": "229e4913c5b11d2421e4fc93434362b45d06e55e73c87de55284f307aefe8adc",
+      "individuallyOpened": true
+    },
+    {
+      "game": "carryball",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/carryball-tv-live-1280.png",
+      "sha256": "d00021db11deaee6efcd3b582e96735bbb36b3eb5f33ebec12282e30f8a5bc45",
+      "individuallyOpened": true
+    },
+    {
+      "game": "carryball",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/carryball-tv-live-1920.png",
+      "sha256": "033581e31de30aa55f5ee7529a144f5c8a856893875579f488a7913a3e37e662",
+      "individuallyOpened": true
+    },
+    {
+      "game": "marble_bloom",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/marble_bloom-tv-live-1280.png",
+      "sha256": "2fb22b0cc375916287f9cff48acb4aa99159a51ebbe47000f10d12b5d9963ad9",
+      "individuallyOpened": true
+    },
+    {
+      "game": "marble_bloom",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/marble_bloom-tv-live-1920.png",
+      "sha256": "0624db17c6a9f7abd6ab41ca8f486e86cdf3a9e42a8a787f23c56b9244a1f563",
+      "individuallyOpened": true
+    },
+    {
+      "game": "pocket_siege",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/pocket_siege-tv-live-1280.png",
+      "sha256": "ed5eb18a5909e54b08af59a0e7855b2bf8cb3718a08f0282337c6dbaa170a8ca",
+      "individuallyOpened": true
+    },
+    {
+      "game": "pocket_siege",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/pocket_siege-tv-live-1920.png",
+      "sha256": "078eeccc84944d86d2e76a2d7738f1c896ef19e5c9df8d791b3b527afaee0073",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bow_club",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/bow_club-tv-live-1280.png",
+      "sha256": "645dcba4d5b96fba6d3625f5790f41cd34554f90f05d163f98dff54275b8c774",
+      "individuallyOpened": true
+    },
+    {
+      "game": "bow_club",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/bow_club-tv-live-1920.png",
+      "sha256": "8a6f18a413b3ba2b92d6309447e454044671d52d1c076ef0d4afc162bc6dbd1d",
+      "individuallyOpened": true
+    },
+    {
+      "game": "poker",
+      "width": 1280,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/poker-tv-live-1280.png",
+      "sha256": "199872bf15cb1905579d56588fbf4b9279f7b8c9b9e3bf5891844f1b9a259ab2",
+      "individuallyOpened": true
+    },
+    {
+      "game": "poker",
+      "width": 1920,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/final-catalog-city-host-100823/poker-tv-live-1920.png",
+      "sha256": "d083e027b59e850a0e85e22b7266d2085531aae0142780e2b9b7792ed6fd3e78",
+      "individuallyOpened": true
+    }
+  ]
+}

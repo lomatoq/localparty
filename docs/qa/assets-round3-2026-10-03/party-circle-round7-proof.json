@@ -1,0 +1,557 @@
+{
+  "scope": "Round7 named Party corrections only: rendered playable circle scale for Push/LastCircle/Bomb; flat Push sumo motion; quiet Bomb floor. Knives drum/targets and Western excluded.",
+  "rawReport": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/report.json",
+  "rawReportSHA256": "8cf8d49d87e16a80ee698920cca40ff5dabe0603da7da390560c28df5ae3c091",
+  "finishedAt": "2026-10-03T15:27:48.022Z",
+  "method": "Normal-clock actual launcher, two real browser humans; no bots; real Ready, joystick pointer drag/release, Pause and Resume controls. TV-only PNGs. No injected state/physics/clock, no phone PNGs, no physical device claim.",
+  "sourceStart": {
+    "games/party/public/host.js": "39744592a1284e695bcaca00cc210264327bbdbf7ce0fa98c4934e96165dee36",
+    "games/party/public/host.html": "f898a0d247704ad78afbb8a15f62ec082e7c6bb9efab61f6cee2fb62012b93b6",
+    "games/party/public/host.css": "83dde569fe670a5109b9ce0000f0e6f719f738e112ca90a50edadb73db90c227",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "server.js": "3b7becf42738d64347f0b3904517c05d1afad139267e7f6b240bfd05920a0d8e",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png": "42c8dcfa042d273917938500a8afca38e23e84e787bf9f4afd4afb3ab11464f7",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-micro-assets.js": "beb39568c5b7860cb7aecd0cfd1be96662ae1be5228b1c6c134b313a85861cf6",
+    "public/game-ui-micro-assets.css": "f4a4bf3b4108b5672814a93f4a6fe63b9a72420fe8b91754b26a1890d6750932",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548",
+    "public/assets/gameplay/generated/push-sumo-art-v1.js": "8fcaab03f7556e38a74940b1522083fcb4ec0a880b30fbfae92a169a50902e42",
+    "public/assets/gameplay/generated/push-sumo-v1.png": "f10adb6abcaf46a53fc63afb2353d64a5f08e37cebdf8b4c393d85387fdfc07c",
+    "public/assets/gameplay/generated/push-sumo-v1.json": "3a34dee31c2644d9b64afc0cd51f15b1339d0a61dda1ba6f415a3f7a024f7003",
+    "games/party/public/controller.js": "45adf8b47edc649f10581764005270e39cbb6e31d02fc8dcf2724a62f61f018f",
+    "public/app.js": "16e1c07924cf5af1613cb737fb149d137e25aacebb2500cb89dc18d861b9d4de",
+    "public/assets/gameplay/round3/2026-10-03/bomb-storage-yard-v1.png": "9c6cd581ef8435c33ef7e248c4c03a80d57b0e734f7a315ec6d1cf270ad76b77",
+    "public/assets/gameplay/round3/2026-10-03/last-circle-chamber-v1.png": "3c11c37bd8facff4bdd4fa362595af052b0697b6abea4c3fc81ecb6759a2543c"
+  },
+  "sourceEnd": {
+    "games/party/public/host.js": "39744592a1284e695bcaca00cc210264327bbdbf7ce0fa98c4934e96165dee36",
+    "games/party/public/host.html": "f898a0d247704ad78afbb8a15f62ec082e7c6bb9efab61f6cee2fb62012b93b6",
+    "games/party/public/host.css": "83dde569fe670a5109b9ce0000f0e6f719f738e112ca90a50edadb73db90c227",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "server.js": "3b7becf42738d64347f0b3904517c05d1afad139267e7f6b240bfd05920a0d8e",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png": "42c8dcfa042d273917938500a8afca38e23e84e787bf9f4afd4afb3ab11464f7",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-micro-assets.js": "beb39568c5b7860cb7aecd0cfd1be96662ae1be5228b1c6c134b313a85861cf6",
+    "public/game-ui-micro-assets.css": "f4a4bf3b4108b5672814a93f4a6fe63b9a72420fe8b91754b26a1890d6750932",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548",
+    "public/assets/gameplay/generated/push-sumo-art-v1.js": "8fcaab03f7556e38a74940b1522083fcb4ec0a880b30fbfae92a169a50902e42",
+    "public/assets/gameplay/generated/push-sumo-v1.png": "f10adb6abcaf46a53fc63afb2353d64a5f08e37cebdf8b4c393d85387fdfc07c",
+    "public/assets/gameplay/generated/push-sumo-v1.json": "3a34dee31c2644d9b64afc0cd51f15b1339d0a61dda1ba6f415a3f7a024f7003",
+    "games/party/public/controller.js": "45adf8b47edc649f10581764005270e39cbb6e31d02fc8dcf2724a62f61f018f",
+    "public/app.js": "16e1c07924cf5af1613cb737fb149d137e25aacebb2500cb89dc18d861b9d4de",
+    "public/assets/gameplay/round3/2026-10-03/bomb-storage-yard-v1.png": "9c6cd581ef8435c33ef7e248c4c03a80d57b0e734f7a315ec6d1cf270ad76b77",
+    "public/assets/gameplay/round3/2026-10-03/last-circle-chamber-v1.png": "3c11c37bd8facff4bdd4fa362595af052b0697b6abea4c3fc81ecb6759a2543c"
+  },
+  "errors": [],
+  "changedFiles": [],
+  "images": [
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/push-tv-moving-1280.png",
+      "sha256": "e0735779a046125aa1ccc5f46bd144ce790bb81ead67ebd2f487552f44fc712d",
+      "personallyOpenedOriginal": true,
+      "observations": "Two live top-down wrestlers in the quiet teal circle, normal straight rotation, native aspect and footprint shadows intact. Circle has visible sand gap below top steps and above bottom masonry. Names and timer/roster readable; no panel intrusion.",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "push",
+      "canonicalRadius": 292,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 192.3,
+        "right": 791.7,
+        "top": 60.30000000000001,
+        "bottom": 659.7
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        14.000000038528238,
+        14.000000038528214
+      ],
+      "sessionPaused": false,
+      "quietFloorCached": true,
+      "courtAlignmentOffsetPx": 0,
+      "backgroundEdgesCovered": true,
+      "drawTransformSamples": 64,
+      "maxUniformScaleError": 0,
+      "maxOrthogonalityError": 0,
+      "sumoFrame": [
+        {
+          "id": "p1",
+          "x": 640,
+          "y": 264.5980932374696,
+          "radius": 24,
+          "vx": 0,
+          "vy": 11.822282706719589,
+          "ghost": false,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 3.141592653589793,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 640,
+          "y": 388.91244594449347,
+          "radius": 24,
+          "vx": 0,
+          "vy": -76.35316976678156,
+          "ghost": false,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/push-tv-paused-1280.png",
+      "sha256": "6f45f8b72759f06dd4aba51de0d95c34680aae17dccba8590075386c0863d497",
+      "personallyOpenedOriginal": true,
+      "observations": "Real Pause overlay covers the subdued field; both wrestlers remain in their frozen pose. Name roles/readout preserved and circle stays below staircase.",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "push",
+      "canonicalRadius": 292,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 192.3,
+        "right": 791.7,
+        "top": 60.30000000000001,
+        "bottom": 659.7
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        14.000000038528238,
+        14.000000038528214
+      ],
+      "sessionPaused": true,
+      "quietFloorCached": true,
+      "courtAlignmentOffsetPx": 0,
+      "backgroundEdgesCovered": true,
+      "drawTransformSamples": 64,
+      "maxUniformScaleError": 0,
+      "maxOrthogonalityError": 0,
+      "sumoFrame": [
+        {
+          "id": "p1",
+          "x": 640,
+          "y": 267.03543396109797,
+          "radius": 24,
+          "vx": 0,
+          "vy": 9.556485848526947,
+          "ghost": false,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 3.141592653589793,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 640,
+          "y": 370.7619946429327,
+          "radius": 24,
+          "vx": 0,
+          "vy": -76.39259495738972,
+          "ghost": false,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/push-tv-paused-resize-1920.png",
+      "sha256": "03bfa4c63e2f800d38ffce6a7a0034cc16792ecba53befa6d39d9057e7d8e950",
+      "personallyOpenedOriginal": true,
+      "observations": "Same real paused two-player state at1080p; aligned entry and visible top/bottom gap. Pause message, roster and field remain within viewport.",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "push",
+      "canonicalRadius": 292,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 322.44999999999993,
+        "right": 1221.5500000000002,
+        "top": 90.44999999999993,
+        "bottom": 989.5500000000001
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        21.000000057792345,
+        21.000000057792345
+      ],
+      "sessionPaused": true,
+      "quietFloorCached": true,
+      "courtAlignmentOffsetPx": 0,
+      "backgroundEdgesCovered": true,
+      "drawTransformSamples": 64,
+      "maxUniformScaleError": 0,
+      "maxOrthogonalityError": 2.1158995567206787e-32,
+      "sumoFrame": [
+        {
+          "id": "p1",
+          "x": 640,
+          "y": 267.03543396109797,
+          "radius": 24,
+          "vx": 0,
+          "vy": 9.556485848526947,
+          "ghost": false,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 3.141592653589793,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 640,
+          "y": 370.7619946429327,
+          "radius": 24,
+          "vx": 0,
+          "vy": -76.39259495738972,
+          "ghost": false,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/push-tv-resumed-1920.png",
+      "sha256": "e387b8ccec3d756ee0773336745b271b698d628f8671d85639f60407b4c036dc",
+      "personallyOpenedOriginal": true,
+      "observations": "Actual resume, both wrestlers approach each other face-to-face in plane; bodies stay round without former collision squash. Names move to clear above/below placements. Clear stair gap and right-side UI separation.",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "push",
+      "canonicalRadius": 292,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 322.44999999999993,
+        "right": 1221.5500000000002,
+        "top": 90.44999999999993,
+        "bottom": 989.5500000000001
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        21.00000005779239,
+        21.00000005779239
+      ],
+      "sessionPaused": false,
+      "quietFloorCached": true,
+      "courtAlignmentOffsetPx": 0,
+      "backgroundEdgesCovered": true,
+      "drawTransformSamples": 64,
+      "maxUniformScaleError": 0,
+      "maxOrthogonalityError": 2.1158995567206787e-32,
+      "sumoFrame": [
+        {
+          "id": "p1",
+          "x": 640,
+          "y": 272.92106360015146,
+          "radius": 24,
+          "vx": 0,
+          "vy": 4.930146007793561,
+          "ghost": false,
+          "ready": true,
+          "variant": "coral",
+          "nativeFrame": {
+            "x": 100,
+            "y": 675,
+            "w": 454,
+            "h": 498
+          },
+          "width": 43.75903614457832,
+          "height": 48,
+          "rotation": 3.141592653589793,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        },
+        {
+          "id": "p2",
+          "x": 640,
+          "y": 323.7134740662256,
+          "radius": 24,
+          "vx": 0,
+          "vy": -39.41057968627867,
+          "ghost": false,
+          "ready": true,
+          "variant": "cyan",
+          "nativeFrame": {
+            "x": 701,
+            "y": 675,
+            "w": 453,
+            "h": 498
+          },
+          "width": 43.66265060240964,
+          "height": 48,
+          "rotation": 0,
+          "bounds": {
+            "left": -24,
+            "right": 24,
+            "top": -24,
+            "bottom": 24
+          }
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/bomb-tv-live-1280.png",
+      "sha256": "e0b95d26eb535558ba7a22a601650787b54b2cb7eef1cd161ad655ba746d679c",
+      "personallyOpenedOriginal": true,
+      "observations": "Quieter plum radial circle with no fine hex grid/dotmotes; existing top-down storage perimeter retained. Real holder bomb/glow, four obstacles, two actors and names readable; ring separated from perimeter/rail.",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "bomb",
+      "canonicalRadius": 300,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 192.3,
+        "right": 791.7,
+        "top": 60.30000000000001,
+        "bottom": 659.7
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        13.999999561623948,
+        13.999999561623925
+      ],
+      "sessionPaused": false,
+      "quietFloorCached": true
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/bomb-tv-live-1920.png",
+      "sha256": "cea39a10d18f2eedc84d58a597bcdd6db11338c0633cf74f44d98a413348f1a3",
+      "personallyOpenedOriginal": true,
+      "observations": "Same real holder/obstacles at1080p; ring and actors fit with surrounding yard clearance. Quiet surface, holder fuse/outline and readable name hierarchy retained.",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "bomb",
+      "canonicalRadius": 300,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 322.44999999999993,
+        "right": 1221.5500000000002,
+        "top": 90.44999999999993,
+        "bottom": 989.5500000000001
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        20.999999342435935,
+        20.99999934243589
+      ],
+      "sessionPaused": false,
+      "quietFloorCached": true
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/shrink-tv-live-1280.png",
+      "sha256": "c58cf466b715b3073d2991119d257c348ea82bea7ac6e89e839f3edc2457f8ac",
+      "personallyOpenedOriginal": true,
+      "observations": "True shrinking playable circle reduced consistently, inside cyan chamber edges/door. Original mascot art and existing Last Circle texture/effects retained; two names and rail readable.",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "shrink",
+      "canonicalRadius": 292,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 219.2,
+        "right": 764.8,
+        "top": 87.19999999999999,
+        "bottom": 632.8
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        14.00000019972637,
+        14.000000199726323
+      ],
+      "sessionPaused": false,
+      "quietFloorCached": false
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/party-circle-round7-live/shrink-tv-live-1920.png",
+      "sha256": "73607ee58f581501ce21bfbdfc68ad5f818c5b4f19955abff295704257662718",
+      "personallyOpenedOriginal": true,
+      "observations": "Shrinking field still fits inside chamber at1080p, visible perimeter clearance and no title/roster collision. Original actors and readable larger-TV name role retained.",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "shrink",
+      "canonicalRadius": 292,
+      "displayScale": 0.9,
+      "circleScreen": {
+        "left": 359.70000000000005,
+        "right": 1184.3,
+        "top": 127.70000000000005,
+        "bottom": 952.3
+      },
+      "playerBoundsInsideActualCanvas": true,
+      "actualCSSNameFontFromPaintBox": [
+        20.999999843537843,
+        20.999999843537793
+      ],
+      "sessionPaused": false,
+      "quietFloorCached": false
+    }
+  ],
+  "checks": {
+    "actualAll3CameraFitMultiplier": 0.9,
+    "pushStairArenaAlignmentBothTV": true,
+    "allCapturedActorsIncludingBombHolderBoundsWithinCanvas": true,
+    "actualNameFontMinCSSPixels": 13.999999561623925,
+    "nameRole720And1080": "14px at720,21px at1080 (unchanged responsive name role, not reduced by arena scale)",
+    "realJoystickHeld": {
+      "held": "true",
+      "joy": {
+        "x": 0,
+        "y": -0.12190934065934066
+      }
+    },
+    "realJoystickReleased": {
+      "held": "false",
+      "joy": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "initialMeasuredHumanMovementWorldPx": 16.672433660629736,
+    "pausedEnginePositionsEqual": true,
+    "pausedEngineTimerEqual": true,
+    "rendererGuardPreflight": "docs/qa/assets-round3-2026-10-03/party-circle-round7-renderer-preflight.json",
+    "syntax": "PASS",
+    "PartyActions": "PASS",
+    "visualClock": "PASS"
+  },
+  "cause": "The existing200ms collision squash scales x/y differently, causing the sumo perspective-like distortion. Native sprite helper itself uses translation plus flat rotation only. Live Push sumos now skip the anisotropic transform; uniform ghost drop and contact flashes remain.",
+  "qualifications": [
+    "Normal-clock two-human gameplay, no bots; 16-player dense/continuous rim motion is not covered by this bounded packet. Current screenshots establish ring/stair clearance and captured actor fit, not every possible future pose.",
+    "Canvas drawImage was wrapped only for read-only measurement of actual sumo paint matrices; rendering result/state/input paths were not altered.",
+    "LastCircle uses the same0.9 camera fit factor; actual canonical shrinking radius is not changed.",
+    "Bomb perimeter asset remains unchanged after inspection; only fine grid and ambient dotmotes removed. No new generation or asset-edit claim.",
+    "Previous round6/round5 packets remain historical and are not carried as approval of this source.",
+    "Native sprite arm ink extends beyond collision disc as previously measured; no crop observed, additional0.9 display margin preserved.",
+    "No phone PNG, physical-device or build claim."
+  ],
+  "browserAndServerClosed": true,
+  "productEditsAfterCapture": false
+}

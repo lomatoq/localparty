@@ -12,7 +12,7 @@ async function inspect(frame){return frame.evaluate(()=>{
 (async()=>{try{
  for(let i=0;i<200&&!/localhost:(\d+)/.test(log);i++)await sleep(50);assert.match(log,/localhost:(\d+)/);const origin='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];
  const api=async body=>{const r=await fetch(origin+'/api/manage',{method:body?'POST':'GET',headers:{Authorization:'Bearer locale-audit','Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});const state=await r.json();if(!r.ok)throw Error(JSON.stringify(state));return state;};
- browser=await webkit.launch({headless:true});const tv=await browser.newPage({viewport:{width:1280,height:720}}),phone=await browser.newPage({viewport:{width:393,height:852},isMobile:true,hasTouch:true}),localeRequests=[];
+ browser=await webkit.launch({headless:true});const tv=await browser.newPage({viewport:{width:1280,height:720}}),phone=await browser.newPage({viewport:{width:Number(process.env.QA_WIDTH)||393,height:Number(process.env.QA_HEIGHT)||852},isMobile:true,hasTouch:true}),localeRequests=[];
  phone.on('request',request=>{const pathname=new URL(request.url()).pathname;if(pathname.startsWith('/i18n'))localeRequests.push(pathname);});
  for(const [surface,p]of[['tv',tv],['phone',phone]])p.on('pageerror',e=>report.errors.push({surface,error:e.message}));
  await tv.goto(origin+'/tv');await phone.goto(origin+'/play');await phone.locator('#name').fill('Анна');await phone.locator('#joinForm button[type=submit]').click();await phone.locator('#home').waitFor();report.lobby=await inspect(phone.mainFrame());
@@ -25,12 +25,12 @@ async function inspect(frame){return frame.evaluate(()=>{
    assert.equal(row.waitingAlignment.align,'center');assert(row.waitingAlignment.offset<1,'Loading subtitle must share the title centre');assert(row.waitingAlignment.overflow<2,'Loading subtitle must wrap within the screen');
    await phone.screenshot({path:path.join(output,game.id+'-waiting.png')});await phone.locator('#readyButton').click();
    for(let i=0;i<40;i++){if(!['waiting','countdown'].includes((await api()).active?.ui?.phase))break;await sleep(200);}await sleep(250);
-   const frame=phone.frames().find(f=>f.url().includes('/games/'+game.id+'/'));await frame.waitForFunction(()=>!!window.PartyI18n);row.controller=await inspect(frame);row.shell=await inspect(phone.mainFrame());
+   const frame=phone.frames().find(f=>f.url().includes('/games/'+game.id+'/'));await frame.waitForFunction(()=>!!window.PartyI18n);row.controller=await inspect(frame);row.shell=await inspect(phone.mainFrame());row.layout=await frame.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert(row.layout.scroll<=row.layout.width+1,'Controller has horizontal overflow: '+JSON.stringify(row.layout));
    row.translationRequests=localeRequests.slice(requestOffset);assert(!row.translationRequests.includes('/i18n-dictionary.js'),'game frame must reuse shell UI vocabulary');
    assert.equal(row.translationRequests.includes('/i18n-content.js'),['millionaire','sinyakquiz','warsaw','spy','monster','crocodile','drawguess'].includes(game.id),'only word/quiz games load content banks');
    const screen=tv.frames().find(f=>f.url().includes('/games/'+game.id+'/'));if(screen)row.screen=await inspect(screen);
    await phone.screenshot({path:path.join(output,game.id+'.png')});
-   await phone.evaluate(()=>PartyI18n.setLanguage('ru'));assert.equal(await frame.evaluate(()=>PartyI18n.language),'en');await phone.evaluate(()=>PartyI18n.setLanguage('en'));assert.equal(await frame.evaluate(()=>PartyI18n.language),'en');
+   await phone.evaluate(()=>PartyI18n.setLanguage('ru'));assert.equal(await frame.evaluate(()=>PartyI18n.language),'ru','Explicit Russian choice propagates to the current game');await phone.evaluate(()=>PartyI18n.setLanguage('en'));assert.equal(await frame.evaluate(()=>PartyI18n.language),'en');
    console.log('LOCALE',game.id,JSON.stringify(row.controller.residual));
   }catch(error){row.error=error.message;console.log('FAIL',game.id,error.message);}await api({type:'stop'});await phone.locator('#home').waitFor();fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2));
  }

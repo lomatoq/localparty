@@ -1,0 +1,657 @@
+{
+  "scope": "Independent round2 TV composition review; historical acceptance superseded",
+  "catalogReport": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/report.json",
+  "reportSHA": "a57dd0926145f5d79ba980a9895c3f5ec3cc1278521ca03ed685aa38cf8988c5",
+  "startedAt": "2026-10-03T08:58:07.329Z",
+  "finishedAt": "2026-10-03T09:03:16.595Z",
+  "dependencyCount": 337,
+  "sourceStartEndEqual": true,
+  "currentMismatches": [],
+  "images": {
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/push-tv-live-1280.png": "4d2a38fc1ac541e864401a6869e2bc0c9d62a371902ac2b9b8e0b07fe660fd97",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/push-tv-live-1920.png": "854a2d7e826e6a190983a5bc9dec5e2c8ba12fe2e553990aa6fea46571f2a66d",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/shrink-tv-live-1280.png": "900c6bd102b1d2bd26a77a02e6954ee9fcc69b19d05421bc0a33dee3f88bbd69",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/shrink-tv-live-1920.png": "ea6e6b3a0a4b256642a92f07d331c56292879d1fc4a8bb8a3be58d062b678726",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/knives-tv-live-1280.png": "cccc89c726e64f6ced3128611beafcac88f4a40c5602677accdfe58a0fcf5a46",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/knives-tv-live-1920.png": "23b959e5ae9116882ce7aab1db0f7a33bc062592a57bb7d5c287e10555f8db2c",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bomb-tv-live-1280.png": "af012ebd28f1c3bf444f5bd04d1392712c4b9cf2d35365dbccb249713486372f",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bomb-tv-live-1920.png": "fb18092aa446787f507dc1b3535fbfa8d3af671db1c4dc645e6790c8c2f55f6f",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western-tv-live-1280.png": "91538af9877bf950f5b655529c4be74c76826900c20a4244f2884059dd437d0f",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western-tv-live-1920.png": "f03b775af3a4f0d5adcda512b813ba58e7dc5c4831d1a3e9512776f36a81ad1b",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tanks-tv-live-1280.png": "b66f9ae01bc1ea716fbc8d6801a33aa2ae8aacf837f470ef36006b753eb01328",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tanks-tv-live-1920.png": "9cb531ef50fcfe8f454232d476621bb3f9962d3ca4d45f3b032edf271324b3b5",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tankarena-tv-live-1280.png": "f3540acb766f84863caf60708d8d38fb25c2790715b740d9f94524776e29bb38",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tankarena-tv-live-1920.png": "d1d6985a7b1edd942f736aa09abe377c7b4ee1e1c4fc7682e617aa9992077833",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/chaos-tv-live-1280.png": "8d69121d706ecc132f846903b938c881702017da60f46140f6e67557463cd549",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/chaos-tv-live-1920.png": "aba3b2adaa248306efc1eac50a95240e68b38d103905d0349694cb46e43d6937",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/kart-tv-live-1280.png": "ca8abe58e93bed8ae11913d1f560c46bb2b88629d32f5c364926ac75c1fdf391",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/kart-tv-live-1920.png": "01bf0bf8dc05a9dd35ff9bf122cd8224c2364594e06990d222044ca3b6adfee8",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/monster-tv-live-1280.png": "3285821bb1f0a5a80c31b99540e4047ac9b9e43da6f2c92dd3af1cd76f9a6bce",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/monster-tv-live-1920.png": "5e61013ee62a899ea5bfdb615eaf4fc1c1e87dbf59f7feb5da97298c91de2e06",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/spy-tv-live-1280.png": "0480adfdc092fe530cbb4ae677253251d3cd98da9058d147403eaed2fc8d150c",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/spy-tv-live-1920.png": "5ad4293c588ab7d5570544fe3ec331e2848d529118b5acfe167fddea48686c6d",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/millionaire-tv-live-1280.png": "1815e49148df9cb2545b86ca5695ddf86a054f7f63c86c082a955960016683c1",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/millionaire-tv-live-1920.png": "0dfd52e6ee571be25fc08638ee9bb066dbe8c6124bde96e3ba5f3fe223561598",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/sinyakquiz-tv-live-1280.png": "c033859e6c4dda563dfd205b51e1e73df4b84506e050eba5961daf4befb5bc53",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/sinyakquiz-tv-live-1920.png": "7eb627c6064f5d1f7c01de20d614645ced9c4c6d852876ef8b427c820429bf2e",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/warsaw-tv-live-1280.png": "77e887dc5417438d13b7b026dbf7e4d7464d0c76d4e0001be77294693eb7c40e",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/warsaw-tv-live-1920.png": "28c17e7cb7bd23335f011e87c27d7f46b1962fff30e19e1d70067102259c9055",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crocodile-tv-live-1280.png": "3f59515151412fd5b7e8cb942f4bda265a4f954e4747b9ed6ef61a259bb9a24a",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crocodile-tv-live-1920.png": "1d0d5346e892c9a57f3b40922f317f468c36a774915a2b5e97a3f43d626b27e9",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/jenga-tv-live-1280.png": "bd48baecfff171c7d1fc83713d7ff0d451f0d5c3498f9f7ec727d0dd07323fe4",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/jenga-tv-live-1920.png": "4eddadf23c27d087a57dd14529e911533766d502ac18ef84c67e2400b5d11a0f",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crane-tv-live-1280.png": "6d87dbce52abdcf5c175d74f80dd3515dbb6dff7526e4a2940754fe8b97275e0",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crane-tv-live-1920.png": "bb6dce8c32c8387ded9e168c7095a5d7c32bec985f3083afc84b5fadcbf69c81",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/naval-tv-live-1280.png": "1c76f353549c843ea9e3461d9c718f7f39f775ce45b2935dda8780bcbed49b97",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/naval-tv-live-1920.png": "feccda7e6aff34feea4da3a3892bd752beecc421f8cb28e43e713caf9f84dba3",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/drawguess-tv-live-1280.png": "3f452fdeec8299a461c81d69838fc5603ebba0e777b17bc609f5d8a7af8a1777",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/drawguess-tv-live-1920.png": "6f9c6aac35f21e72a8bb100d12b8549f76c62ce89f403a63ccd68909f11c5ba5",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western_duel-tv-live-1280.png": "246384c6c1c385b026c06b41252e1f1472401b308fb1eaff3ee948bea6c85c99",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western_duel-tv-live-1920.png": "65e14873a9167b1c4e9be345f088a0cb4fa5c801cf1456075cbe0b0f09ad3657",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/taprace-tv-live-1280.png": "b45293839eafdce8d487c616f64ce0253458d023c2da45e330afd80359592145",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/taprace-tv-live-1920.png": "250b2fb048103691d937f58916db95ba2ba7580efa752f729cd8506c83c8794d",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/punchmeter-tv-live-1280.png": "8b1813b2af85afc54ab96f57d2aa666db948f119fd65ec5bd49a868c44de08f3",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/punchmeter-tv-live-1920.png": "3cb12d7d1f20c669f20098cbe6feb949f8a3981265cc4b91ab8f581b2a92ef3e",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/flappy-tv-live-1280.png": "f6b1e2b8c5aee027cd9a34832e62d57184a8382e54ff658a0b60f98f245b44cc",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/flappy-tv-live-1920.png": "6d2806ae417bdb974aefad001f892c6dc551fbaab83831ee739875f5e005b2e3",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/hungry-tv-live-1280.png": "32a1d15b7499da6cdda84db7d4b9dc82d9800d794eb9ee7f9c6f961cd751aeb5",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/hungry-tv-live-1920.png": "974ac53c54bcdd7e7882c9477046b26b46d2d62dd93347f5497ec371c6b8d056",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/snakelines-tv-live-1280.png": "3c62504fd9801c214445bd3a3d919b4a6d650fc9be0b9c9fa53b0e5d9e848969",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/snakelines-tv-live-1920.png": "4d8c3f8deb9f4c82bc499f46c76ab46fd6dad9b9256bb4a8eccbb42a62cc60cf",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/carryball-tv-live-1280.png": "3c9a3245981d32aa548e09d4bc0d6f69188a3cfbc7b7ac786a8458e11b870300",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/carryball-tv-live-1920.png": "49534c5bc86bbcc91db5545fa0ae86f9bf5f8b60dc2fc09752a0411f314d69f8",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/marble_bloom-tv-live-1280.png": "162be3f2f426d8b910c9e0acfcc458c08374f63fc8afd8fbe0714d3dc3a0210c",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/marble_bloom-tv-live-1920.png": "26296aa8e7edec7710db8987fb27c9e65229c6d98697d90daceb9fe86049af37",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/pocket_siege-tv-live-1280.png": "2854178fbd667ccc85102cf131801bc05d191bd6023cec95a045cd73da359756",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/pocket_siege-tv-live-1920.png": "f7fd303749894358d2bb79c2b5ac476ad9b3c4f83815dad4996cf38ebb7c438f",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bow_club-tv-live-1280.png": "ac75c76e080d5d8fa550b50c9213948f7aeaeaca09bd64ad789cc7c5ec3ba8cf",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bow_club-tv-live-1920.png": "67062c178916e6c160ffed83638c21004fea8d10e0ad5b16458ab09c9120bed1",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/poker-tv-live-1280.png": "c190087aafe1dd35d8f84a4edec5316ca312a73b189959ccf9b2de0aecdf1e0e",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/poker-tv-live-1920.png": "2e4928793f08bd337f674db3ed88761f79d267b26ecafb75a88f10289910b964",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/airhockey-tv-live-1280.png": "7c0c21cfc005bbb1bb1a7a6201472c059e6ce7a42670a4a4db17ddf20c2f946a",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/airhockey-tv-live-1920.png": "ce8f1ac4f68b711d489eae344a3a17c2c51561efcc7667d3ac35516b575869c9",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/mines-tv-live-1280.png": "d63e10671dc6c499de08c61f5e7d5afd6ecd7fc2be46594b2d2055c9a2ad99af",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/mines-tv-live-1920.png": "2b5eacd1e45602162a7b6804cfc6273ea7dad09af1c384e6d0be4a3428ac61e5",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/curling-tv-live-1280.png": "52e5aaae53eb9a893c9ba5ff1cc91506a4d5205218cadceae30bee6312393600",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/curling-tv-live-1920.png": "963ba06aa66854f6ee3bc76ad5e2051b51c4a79fcc5d72ff9045a4024b7b11e0",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/swarm_gate-tv-live-1280.png": "ae6763eb1ddfdfaf892bf9207ce3356a7294a1a4ccdcfbfc153ed4f0c7522462",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/swarm_gate-tv-live-1920.png": "e10b3495d0f0c4a6b3b8f324a653fab0f8575d2ddc9e6b72f7af3f690a3c6711",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/peek_shoot-tv-live-1280.png": "ff402ba8f8448f9ec1e9635076924ecb67a04e86439235abfe86d6eb43e8166b",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/peek_shoot-tv-live-1920.png": "ae4ef1d990403809130281e71fd4997a84f404f00d03a3ec6ac0bdcdc7914f3f",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/sports/bowling/2p-playing-tv-720.png": "a9ca6d9deccd7225ac07034fcf4346c470efdadc4891dd61ed554745d40ff7ce",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/sports/bowling/2p-playing-tv-1080.png": "e63969d4fa2141ad13c37d451219e6723e8882de467bd746d89d1a1d482144ed",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/sports/bowling/2p-spin-selected-tv-1080.png": "d37005395f39b2e137a02f6cd07c689ef40d86c01ef8654e75cf98660aac4a73",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/jenga-phone-live-402.png": "ba132ea6c40515fbea9d094514486d90b96e99638ba803c36ae69a48e7400e05",
+    "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crane-phone-live-402.png": "5fd7df3aa78a7ea84e5767842f2be75773591791127b1cde6261240cce272087"
+  },
+  "method": "Each listed original was individually opened; no montage, detector-only or source-intent approval.",
+  "matrix": [
+    {
+      "id": "push",
+      "judgment": "The cap and four score rows form a visibly centered group beside the full circular field. Quiet teal material, safe timer/round ink and no header ornament; the eliminated human row is intentionally muted.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/push-tv-live-1280.png",
+          "sha256": "4d2a38fc1ac541e864401a6869e2bc0c9d62a371902ac2b9b8e0b07fe660fd97"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/push-tv-live-1920.png",
+          "sha256": "854a2d7e826e6a190983a5bc9dec5e2c8ba12fe2e553990aa6fea46571f2a66d"
+        }
+      ]
+    },
+    {
+      "id": "shrink",
+      "judgment": "The complete cap/roster group is centered beside the shrinking world and warning rings. Title/time sit on one clear axis; no stretched cap or decorative header pattern remains.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/shrink-tv-live-1280.png",
+          "sha256": "900c6bd102b1d2bd26a77a02e6954ee9fcc69b19d05421bc0a33dee3f88bbd69"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/shrink-tv-live-1920.png",
+          "sha256": "ea6e6b3a0a4b256642a92f07d331c56292879d1fc4a8bb8a3be58d062b678726"
+        }
+      ]
+    },
+    {
+      "id": "knives",
+      "judgment": "The warm full-rounded rail is centered against the wheel/actors, with readable score axes and native circular geometry. At1080 the title uses two complete lines; it does not clip or crowd the clock.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/knives-tv-live-1280.png",
+          "sha256": "cccc89c726e64f6ced3128611beafcac88f4a40c5602677accdfe58a0fcf5a46"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/knives-tv-live-1920.png",
+          "sha256": "23b959e5ae9116882ce7aab1db0f7a33bc062592a57bb7d5c287e10555f8db2c"
+        }
+      ]
+    },
+    {
+      "id": "bomb",
+      "judgment": "The warm charcoal cap and three actual-player rows form one centered group, balancing the full circle. Round and active count have equal visual weight and safe ink; functional arena boundary ticks are retained.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bomb-tv-live-1280.png",
+          "sha256": "af012ebd28f1c3bf444f5bd04d1392712c4b9cf2d35365dbccb249713486372f"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bomb-tv-live-1920.png",
+          "sha256": "fb18092aa446787f507dc1b3535fbfa8d3af671db1c4dc645e6790c8c2f55f6f"
+        }
+      ]
+    },
+    {
+      "id": "western",
+      "judgment": "The new brown rectangle is attached to screen top with only bottom corners rounded. Warm ivory title replaces generic violet; the title/timer and two fact columns have balanced spacing. The scene fills the height without a separate dark letterbox.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western-tv-live-1280.png",
+          "sha256": "91538af9877bf950f5b655529c4be74c76826900c20a4244f2884059dd437d0f"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western-tv-live-1920.png",
+          "sha256": "f03b775af3a4f0d5adcda512b813ba58e7dc5c4831d1a3e9512776f36a81ad1b"
+        }
+      ]
+    },
+    {
+      "id": "tanks",
+      "judgment": "A single olive rectangular header distributes title/tally and three facts coherently with safe numeric ink. Full-height field and circular base markers retain their geometry. Static images do not establish visibility of later targets moving behind the opaque top header.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tanks-tv-live-1280.png",
+          "sha256": "b66f9ae01bc1ea716fbc8d6801a33aa2ae8aacf837f470ef36006b753eb01328"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tanks-tv-live-1920.png",
+          "sha256": "9cb531ef50fcfe8f454232d476621bb3f9962d3ca4d45f3b032edf271324b3b5"
+        }
+      ]
+    },
+    {
+      "id": "tankarena",
+      "judgment": "Complete rounded blue-gunmetal cap and four HP cards form a vertically centered rail with no chopped cap edge. Points/Kills share readable axes and HP uses the full card width. The full-height receiver contains the uniformly projected green-boundary world plus quiet apron, not a falsely expanded physics field.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tankarena-tv-live-1280.png",
+          "sha256": "f3540acb766f84863caf60708d8d38fb25c2790715b740d9f94524776e29bb38"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/tankarena-tv-live-1920.png",
+          "sha256": "d1d6985a7b1edd942f736aa09abe377c7b4ee1e1c4fc7682e617aa9992077833"
+        }
+      ]
+    },
+    {
+      "id": "chaos",
+      "judgment": "Bracket-free top-attached blue rectangle groups title/progress and Time Left into two clear regions; calibration context is subordinate. The task bar aligns underneath and the functional cursor/grid remains the primary field.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/chaos-tv-live-1280.png",
+          "sha256": "8d69121d706ecc132f846903b938c881702017da60f46140f6e67557463cd549"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/chaos-tv-live-1920.png",
+          "sha256": "aba3b2adaa248306efc1eac50a95240e68b38d103905d0349694cb46e43d6937"
+        }
+      ]
+    },
+    {
+      "id": "kart",
+      "judgment": "Asphalt cap and roster share the corresponding track bounds and the long title/clock remain readable. Explicit brief miss: the field still has a full-width 60px top strip and 60px bottom strip at720 (118px each at1080), giving the track a letterboxed appearance. At720 only three complete score cards and part of fourth are visible in the bounded scrolling rail.",
+      "finding": "Clarify and correct needless scene letterboxing while preserving uniform track/world geometry; use continuous scenery rather than stretching the track.",
+      "status": "needs_focused_confirmation",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/kart-tv-live-1280.png",
+          "sha256": "ca8abe58e93bed8ae11913d1f560c46bb2b88629d32f5c364926ac75c1fdf391"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/kart-tv-live-1920.png",
+          "sha256": "01bf0bf8dc05a9dd35ff9bf122cd8224c2364594e06990d222044ca3b6adfee8"
+        }
+      ]
+    },
+    {
+      "id": "monster",
+      "judgment": "Teal rounded header, two-column queue, supporting actor and nearby monster form a compact centered task/art group. Clock and Parts ink is whole; no added stitches or floating taper. Actual stitches on the original creature are retained art.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/monster-tv-live-1280.png",
+          "sha256": "3285821bb1f0a5a80c31b99540e4047ac9b9e43da6f2c92dd3af1cd76f9a6bce"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/monster-tv-live-1920.png",
+          "sha256": "5e61013ee62a899ea5bfdb615eaf4fc1c1e87dbf59f7feb5da97298c91de2e06"
+        }
+      ]
+    },
+    {
+      "id": "spy",
+      "judgment": "The enlarged asker/answerer and participant board form a legible centered conversation. The quiet blue header is attached to the conversation region and its timer/status ink is whole. Long names wrap in the large actor region; native name truncation is not introduced by this layout.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/spy-tv-live-1280.png",
+          "sha256": "0480adfdc092fe530cbb4ae677253251d3cd98da9058d147403eaed2fc8d150c"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/spy-tv-live-1920.png",
+          "sha256": "5ad4293c588ab7d5570544fe3ec331e2848d529118b5acfe167fddea48686c6d"
+        }
+      ]
+    },
+    {
+      "id": "millionaire",
+      "judgment": "The ladder and question/answers form a centered paired composition with clear actor context. The sampled state is a correct-answer reveal. Explicit brief miss: Time Left/turns are aligned near the top of the95px header rather than vertically centered over its full height (approximately16logicalpx above the panel center; same proportion at1080).",
+      "finding": "Center the two complete label/value groups vertically within the full title/status block; preserve actor as a quiet separate line.",
+      "status": "needs_focused_confirmation",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/millionaire-tv-live-1280.png",
+          "sha256": "1815e49148df9cb2545b86ca5695ddf86a054f7f63c86c082a955960016683c1"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/millionaire-tv-live-1920.png",
+          "sha256": "0dfd52e6ee571be25fc08638ee9bb066dbe8c6124bde96e3ba5f3fe223561598"
+        }
+      ]
+    },
+    {
+      "id": "sinyakquiz",
+      "judgment": "The participant board and full task surface now share top/bottom bounds, with dominant question and equally spaced answers. Quiet studio material and whole clock/question ink; no decorative brackets or stripe. Lower task space is reserved within this matching paired surface.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/sinyakquiz-tv-live-1280.png",
+          "sha256": "c033859e6c4dda563dfd205b51e1e73df4b84506e050eba5961daf4befb5bc53"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/sinyakquiz-tv-live-1920.png",
+          "sha256": "7eb627c6064f5d1f7c01de20d614645ced9c4c6d852876ef8b427c820429bf2e"
+        }
+      ]
+    },
+    {
+      "id": "warsaw",
+      "judgment": "The participant board aligns the complete question/answer surface; the mineral header and answer surfaces remain quiet. Long question wraps completely at1080 and both fact groups are readable. No arbitrary etching is added.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/warsaw-tv-live-1280.png",
+          "sha256": "77e887dc5417438d13b7b026dbf7e4d7464d0c76d4e0001be77294693eb7c40e"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/warsaw-tv-live-1920.png",
+          "sha256": "28c17e7cb7bd23335f011e87c27d7f46b1962fff30e19e1d70067102259c9055"
+        }
+      ]
+    },
+    {
+      "id": "crocodile",
+      "judgment": "The theatre-green participant board and task column now share coherent top/bottom composition bounds. Actor, secret-preserving guidance and turn facts read as one centered group; the rectangle has no stitch motif and timer/turn ink is whole.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crocodile-tv-live-1280.png",
+          "sha256": "3f59515151412fd5b7e8cb942f4bda265a4f954e4747b9ed6ef61a259bb9a24a"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crocodile-tv-live-1920.png",
+          "sha256": "1d0d5346e892c9a57f3b40922f317f468c36a774915a2b5e97a3f43d626b27e9"
+        }
+      ]
+    },
+    {
+      "id": "jenga",
+      "judgment": "The former hard/texture backing is absent: task, force/selection and crew float over one soft warm wash with transparent perimeter. Warm title/stat ink fits the timber scene; the complete right group balances the tower. Functional force/selection divisions remain, not arbitrary decoration.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/jenga-tv-live-1280.png",
+          "sha256": "bd48baecfff171c7d1fc83713d7ff0d451f0d5c3498f9f7ec727d0dd07323fe4"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/jenga-tv-live-1920.png",
+          "sha256": "4eddadf23c27d087a57dd14529e911533766d502ac18ef84c67e2400b5d11a0f"
+        }
+      ]
+    },
+    {
+      "id": "crane",
+      "judgment": "One blue-green surface replaces the former stacked dark cap/card; shared cap itself does not add another backing. Game title, actor and facts lead the local block/crew in a centered rail beside the whole crane/footing scene. At720 the bounded crew scroll region shows three complete rows; it does not prove visibility of its fourth row without scrolling.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crane-tv-live-1280.png",
+          "sha256": "6d87dbce52abdcf5c175d74f80dd3515dbb6dff7526e4a2940754fe8b97275e0"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crane-tv-live-1920.png",
+          "sha256": "bb6dce8c32c8387ded9e168c7095a5d7c32bec985f3083afc84b5fadcbf69c81"
+        }
+      ]
+    },
+    {
+      "id": "naval",
+      "judgment": "The new plain navy rectangle and full-height bridge span exactly the combined board-label/grid stack. All four identities/score/fact rows are readable, with the feed at the bottom rather than a floor-pinned detached board. At1080 the long title wraps safely; no stretched trapezoid remains.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/naval-tv-live-1280.png",
+          "sha256": "1c76f353549c843ea9e3461d9c718f7f39f775ce45b2935dda8780bcbed49b97"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/naval-tv-live-1920.png",
+          "sha256": "feccda7e6aff34feea4da3a3892bd752beecc421f8cb28e43e713caf9f84dba3"
+        }
+      ]
+    },
+    {
+      "id": "drawguess",
+      "judgment": "Guesses and participant board align to the actual canvas top/bottom, while the header/artist guidance sits above that task column. Quiet materials and complete timer/turn glyphs; the bottom message preview is a scrolling region. Cyrillic bot guesses are player content, not a translated interface label.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/drawguess-tv-live-1280.png",
+          "sha256": "3f452fdeec8299a461c81d69838fc5603ebba0e777b17bc609f5d8a7af8a1777"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/drawguess-tv-live-1920.png",
+          "sha256": "6f9c6aac35f21e72a8bb100d12b8549f76c62ce89f403a63ccd68909f11c5ba5"
+        }
+      ]
+    },
+    {
+      "id": "western_duel",
+      "judgment": "Warm compact cap and local schedule/scoreboard form a centered complete rail. Game title leads supporting duelists; current WAIT signal is now centered in the actual action field rather than high at the top. No upper decorative dash remains.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western_duel-tv-live-1280.png",
+          "sha256": "246384c6c1c385b026c06b41252e1f1472401b308fb1eaff3ee948bea6c85c99"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/western_duel-tv-live-1920.png",
+          "sha256": "65e14873a9167b1c4e9be345f088a0cb4fa5c801cf1456075cbe0b0f09ad3657"
+        }
+      ]
+    },
+    {
+      "id": "taprace",
+      "judgment": "The top-attached cap has safe title/time and equal fact columns, without an ornamental stripe. The race field begins directly below it and consumes the available height above the attached bottom score row; functional finish/checker lane art remains.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/taprace-tv-live-1280.png",
+          "sha256": "b45293839eafdce8d487c616f64ce0253458d023c2da45e330afd80359592145"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/taprace-tv-live-1920.png",
+          "sha256": "250b2fb048103691d937f58916db95ba2ba7580efa752f729cd8506c83c8794d"
+        }
+      ]
+    },
+    {
+      "id": "punchmeter",
+      "judgment": "The plum rectangular header clearly groups game/attempt/actor before time and points. Full bag/ring scenery fits below it with only a small meaningful separation; no top brackets, texture flourish or cropped bag.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/punchmeter-tv-live-1280.png",
+          "sha256": "8b1813b2af85afc54ab96f57d2aa666db948f119fd65ec5bd49a868c44de08f3"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/punchmeter-tv-live-1920.png",
+          "sha256": "3cb12d7d1f20c669f20098cbe6feb949f8a3981265cc4b91ab8f581b2a92ef3e"
+        }
+      ]
+    },
+    {
+      "id": "flappy",
+      "judgment": "Flight-blue rectangular cap has whole title/clock/facts and no decorative brackets. Explicit brief miss: sky scenery begins abruptly below a full-width plain purple band,110px high at720 and157px at1080; the empty areas beside the attached header read as a top bar rather than continuous full-field sky.",
+      "finding": "Continue decorative sky behind the header/side negative space without moving pipe/player/world coordinates or hiding their active field.",
+      "status": "needs_focused_confirmation",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/flappy-tv-live-1280.png",
+          "sha256": "f6b1e2b8c5aee027cd9a34832e62d57184a8382e54ff658a0b60f98f245b44cc"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/flappy-tv-live-1920.png",
+          "sha256": "6d2806ae417bdb974aefad001f892c6dc551fbaab83831ee739875f5e005b2e3"
+        }
+      ]
+    },
+    {
+      "id": "hungry",
+      "judgment": "The warm quiet cap balances four fact regions while continuous arena scenery fills the full height behind it. Mouths, pickups and their score labels are readable in the sampled field, without the former top/bottom cutoff strip.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/hungry-tv-live-1280.png",
+          "sha256": "32a1d15b7499da6cdda84db7d4b9dc82d9800d794eb9ee7f9c6f961cd751aeb5"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/hungry-tv-live-1920.png",
+          "sha256": "974ac53c54bcdd7e7882c9477046b26b46d2d62dd93347f5497ec371c6b8d056"
+        }
+      ]
+    },
+    {
+      "id": "snakelines",
+      "judgment": "The green rectangular header is attached to the top over a continuous grid. Round/points/leader are clearly grouped; functional grid and actual trails remain, with no arbitrary header brackets.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/snakelines-tv-live-1280.png",
+          "sha256": "3c62504fd9801c214445bd3a3d919b4a6d650fc9be0b9c9fa53b0e5d9e848969"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/snakelines-tv-live-1920.png",
+          "sha256": "4d8c3f8deb9f4c82bc499f46c76ab46fd6dad9b9256bb4a8eccbb42a62cc60cf"
+        }
+      ]
+    },
+    {
+      "id": "carryball",
+      "judgment": "The bottom-rounded top rectangle presents title/tally and three fact groups over a full-height stadium field. Both goals and field boundary/circle are complete; no dark letterbox bars or isolated floating title remain.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/carryball-tv-live-1280.png",
+          "sha256": "3c9a3245981d32aa548e09d4bc0d6f69188a3cfbc7b7ac786a8458e11b870300"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/carryball-tv-live-1920.png",
+          "sha256": "49534c5bc86bbcc91db5545fa0ae86f9bf5f8b60dc2fc09752a0411f314d69f8"
+        }
+      ]
+    },
+    {
+      "id": "marble_bloom",
+      "judgment": "Botanical teal top-attached rectangle and complete bottom participant strip sit over continuous pale botanical scenery. Points/Queued are evenly grouped and the whole chain/path is visible without a dark top/bottom bar; shape-coded marbles remain.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/marble_bloom-tv-live-1280.png",
+          "sha256": "162be3f2f426d8b910c9e0acfcc458c08374f63fc8afd8fbe0714d3dc3a0210c"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/marble_bloom-tv-live-1920.png",
+          "sha256": "26296aa8e7edec7710db8987fb27c9e65229c6d98697d90daceb9fe86049af37"
+        }
+      ]
+    },
+    {
+      "id": "pocket_siege",
+      "judgment": "The pleasant charcoal rectangle balances game/time/actor with turn/wind/points, and local ammo/roster panels keep complete rounded contours. Terrain/trajectory world fills the available scene; no ornamental header pattern. The darker sky is scene content, not a separate cutoff bar.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/pocket_siege-tv-live-1280.png",
+          "sha256": "2854178fbd667ccc85102cf131801bc05d191bd6023cec95a045cd73da359756"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/pocket_siege-tv-live-1920.png",
+          "sha256": "f7fd303749894358d2bb79c2b5ac476ad9b3c4f83815dad4996cf38ebb7c438f"
+        }
+      ]
+    },
+    {
+      "id": "bow_club",
+      "judgment": "The authored rectangular cap now separates Arrows/Time/Mode fact cells from quiet Aim/Draw/Release guidance. Whole targets and retained functional calibration markers remain; warm title/logo material fits the meadow. At720 compact roster names are strongly ellipsized, a bounded density qualification rather than a new geometry defect.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bow_club-tv-live-1280.png",
+          "sha256": "ac75c76e080d5d8fa550b50c9213948f7aeaeaca09bd64ad789cc7c5ec3ba8cf"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/bow_club-tv-live-1920.png",
+          "sha256": "67062c178916e6c160ffed83638c21004fea8d10e0ad5b16458ab09c9120bed1"
+        }
+      ]
+    },
+    {
+      "id": "poker",
+      "judgment": "Emerald rectangular cap and full table have game-specific shading and safe facts, with no dark letterbox. Concrete contour conflict: the cap overlaps the upper-right corner of the top-left participant seat at both sizes, especially720 where its name line is at the same height as the cap bottom.",
+      "finding": "Give the top participant seat a small measured clearance below the header so its complete identity card/name remains visible; preserve table scale and seating relationships.",
+      "status": "needs_focused_confirmation",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/poker-tv-live-1280.png",
+          "sha256": "c190087aafe1dd35d8f84a4edec5316ca312a73b189959ccf9b2de0aecdf1e0e"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/poker-tv-live-1920.png",
+          "sha256": "2e4928793f08bd337f674db3ed88761f79d267b26ecafb75a88f10289910b964"
+        }
+      ]
+    },
+    {
+      "id": "airhockey",
+      "judgment": "The pale ice rectangle is attached to the top with dark readable title/tally/time and balanced side room. The rink fills available height with complete circular markings and puck/strikers in these states; no extraneous upper/lower bars. Moving targets behind the opaque cap are not re-proved by static images.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/airhockey-tv-live-1280.png",
+          "sha256": "7c0c21cfc005bbb1bb1a7a6201472c059e6ce7a42670a4a4db17ddf20c2f946a"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/airhockey-tv-live-1920.png",
+          "sha256": "ce8f1ac4f68b711d489eae344a3a17c2c51561efcc7667d3ac35516b575869c9"
+        }
+      ]
+    },
+    {
+      "id": "mines",
+      "judgment": "The complete slate cap/guidance/score group is vertically centered beside the whole10×10 board. Safe board inset avoids the prior cap/start conflict; facts, tied ranks and numbered cursor markers remain distinguishable. Functional tile grid is preserved.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/mines-tv-live-1280.png",
+          "sha256": "d63e10671dc6c499de08c61f5e7d5afd6ecd7fc2be46594b2d2055c9a2ad99af"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/mines-tv-live-1920.png",
+          "sha256": "2b5eacd1e45602162a7b6804cfc6273ea7dad09af1c384e6d0be4a3428ac61e5"
+        }
+      ]
+    },
+    {
+      "id": "curling",
+      "judgment": "The authored ice-blue group keeps logo/phase/real team/end facts coherent over the complete rink and seated crowd. Title/fact ink and participant numbers are whole; no nested violet card or arbitrary cap ornament. Actual arena signage remains world art.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/curling-tv-live-1280.png",
+          "sha256": "52e5aaae53eb9a893c9ba5ff1cc91506a4d5205218cadceae30bee6312393600"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/curling-tv-live-1920.png",
+          "sha256": "963ba06aa66854f6ee3bc76ad5e2051b51c4a79fcc5d72ff9045a4024b7b11e0"
+        }
+      ]
+    },
+    {
+      "id": "swarm_gate",
+      "judgment": "The whole orthographic scene has native-aspect turret silhouettes, one continuous wall/gate and quiet floor, without the former white center strip. The quiet local header groups phase/wave/enemy/gate facts; actual score effects remain below it in these captures. No automatic corner ornament.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/swarm_gate-tv-live-1280.png",
+          "sha256": "ae6763eb1ddfdfaf892bf9207ce3356a7294a1a4ccdcfbfc153ed4f0c7522462"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/swarm_gate-tv-live-1920.png",
+          "sha256": "e10b3495d0f0c4a6b3b8f324a653fab0f8575d2ddc9e6b72f7af3f690a3c6711"
+        }
+      ]
+    },
+    {
+      "id": "peek_shoot",
+      "judgment": "The meadow-timber rectangular local header has coherent logo/task/time/streak groups. Complete cover rows/characters occupy the field, with actual white flag distinguishable at1080. Flat camera and world art remain intact; no unrelated decor or nested cap fill.",
+      "status": "no_named_current_TV_brief_miss",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/peek_shoot-tv-live-1280.png",
+          "sha256": "ff402ba8f8448f9ec1e9635076924ecb67a04e86439235abfe86d6eb43e8166b"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/peek_shoot-tv-live-1920.png",
+          "sha256": "ae4ef1d990403809130281e71fd4997a84f404f00d03a3ec6ac0bdcdc7914f3f"
+        }
+      ]
+    },
+    {
+      "id": "bowling",
+      "judgment": "Owner provisional originals show a walnut game-owned rectangular header, symmetric neighbouring lane pitch and complete lane/pins. The left ball-return body is intentional. Initial1080 join toast is excluded from score-card readability; settled spin-selected1080 shows both complete identity cards. Catalog live row timed out and has no originals, so this is separate owner evidence, not catalog closure.",
+      "status": "owner_provisional_catalog_missing",
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/sports/bowling/2p-playing-tv-720.png",
+          "sha256": "a9ca6d9deccd7225ac07034fcf4346c470efdadc4891dd61ed554745d40ff7ce"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/sports/bowling/2p-playing-tv-1080.png",
+          "sha256": "e63969d4fa2141ad13c37d451219e6723e8882de467bd746d89d1a1d482144ed"
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/sports/bowling/2p-spin-selected-tv-1080.png",
+          "sha256": "d37005395f39b2e137a02f6cd07c689ef40d86c01ef8654e75cf98660aac4a73"
+        }
+      ]
+    }
+  ],
+  "supplementaryPhoneNotes": [
+    {
+      "id": "jenga",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/jenga-phone-live-402.png",
+      "judgment": "Full-width warm support station, meaningful layer +/- and slot choices above large rounded real tower preview; whole footer. No named402 fit issue in this choose state; no fresh held-input or320 proof inferred."
+    },
+    {
+      "id": "crane",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/catalog/crane-phone-live-402.png",
+      "judgment": "Blocks/attempts blue-green fact group above left/right and dominant Drop. Actor/guidance readable; footer whole. No named402 fit issue in this own-turn state; dynamic settling/off-turn not inferred."
+    }
+  ],
+  "limits": [
+    "Bowling catalog row has no captures and an about:blank/timeout failure despite top errors empty. Owner originals are separate provenance.",
+    "No blanket all36 product, interaction or physical-device approval.",
+    "Static TV originals do not prove all moving target crossings behind opaque header, all dense roster scroll ends, results, pause or held states.",
+    "Other reviewers' named PAUSE/Peek/Crane/Hockey findings are independent evidence, not falsely counted as my own fresh observations.",
+    "Report source start/end matched337 dependencies and current files at review checkpoint; later focused source revisions require replacement evidence."
+  ]
+}

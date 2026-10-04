@@ -1,0 +1,1133 @@
+{
+  "createdAt": "2026-10-03T11:59:36.301Z",
+  "scope": "Named TV-only ground shadow/cable origin paint correction; only games/crane/public/client.js changed.",
+  "sourceHashes": {
+    "games/crane/public/client.js": "14f7ac7865062701efc9e0c9343d26832dff8c31b92de8f417c6b401503b63a4",
+    "games/crane/public/style.css": "7eb17f6530a0c6d0bdf0c6fff0e29b9b79df50d2d30ec423f751127cc0867b81",
+    "games/crane/server.js": "37caa9e00029d9b5dcc0b53e8702e206440c0155b848562e5c54878d5fb285a2",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/tv-information.css": "e5aea0087b1ce8b0c3b0baae800ad54b30e2bf8641a1c595dfa1bd13f537cba7",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af"
+  },
+  "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/report.json",
+  "reportSha256": "876e81f464fe69fbc158ad0622a599b526b2555f5b7c9b557049f0032768aca7",
+  "sourceStart": {
+    "games/crane/public/client.js": "14f7ac7865062701efc9e0c9343d26832dff8c31b92de8f417c6b401503b63a4",
+    "games/crane/public/style.css": "7eb17f6530a0c6d0bdf0c6fff0e29b9b79df50d2d30ec423f751127cc0867b81",
+    "games/crane/server.js": "37caa9e00029d9b5dcc0b53e8702e206440c0155b848562e5c54878d5fb285a2",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/tv-information.css": "e5aea0087b1ce8b0c3b0baae800ad54b30e2bf8641a1c595dfa1bd13f537cba7",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af"
+  },
+  "sourceEnd": {
+    "games/crane/public/client.js": "14f7ac7865062701efc9e0c9343d26832dff8c31b92de8f417c6b401503b63a4",
+    "games/crane/public/style.css": "7eb17f6530a0c6d0bdf0c6fff0e29b9b79df50d2d30ec423f751127cc0867b81",
+    "games/crane/server.js": "37caa9e00029d9b5dcc0b53e8702e206440c0155b848562e5c54878d5fb285a2",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/tv-information.css": "e5aea0087b1ce8b0c3b0baae800ad54b30e2bf8641a1c595dfa1bd13f537cba7",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af"
+  },
+  "sourceDrift": [],
+  "errors": [],
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-camera-settled-1280.png",
+      "sha256": "f4724b0ac62f3737ede7221efda12f5c73259d6a80a8f41882f7c8904182ebce",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-camera-settled-1920.png",
+      "sha256": "a732b69534145aa5d1a3dd6bca47fe35a9ce205fe6ab7e7d2a19bd4df9450577",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-drop-feedback-1280.png",
+      "sha256": "e8dea4cbd4badd027e8df82cd61bde097de02aa631a192a275ac92c99aeec259",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-drop-feedback-1920.png",
+      "sha256": "3327b6e01775413013d690a835cf74b7164a47869cd7a473966233239eada49c",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-live-1280.png",
+      "sha256": "076f64820ef779d8ae2ee2fb65c17b447b093774ff8cdc7591133fbf1ce42f04",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-live-1920.png",
+      "sha256": "1b6e827869f5a0a471bc3db891d8ee115d0a64a9c1524e18d994671495a0b415",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-settled-contact-1280.png",
+      "sha256": "14145d23daf225ac8a8bea6fd6854f4c4ec8e3797b63d0a086edfc91d05248f3",
+      "openedIndividually": true
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-ground-final/crane-tv-settled-contact-1920.png",
+      "sha256": "e361cf0d48e43735c4aa635947aa0351d24318fd65aa637c7d3bbac4d750f068",
+      "openedIndividually": true
+    }
+  ],
+  "paintScreens": [
+    {
+      "file": "crane-tv-live-1280.png",
+      "w": 1280,
+      "h": 720,
+      "state": "live",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 526.7540837738636,
+            "y": 418.18200859990725
+          },
+          "anchor": {
+            "x": 550,
+            "y": 296
+          },
+          "cableEnd": {
+            "x": 533.8564282141195,
+            "y": 380.85163620085444
+          },
+          "hookCenter": {
+            "x": 530.1183521929322,
+            "y": 400.49920062140853
+          },
+          "angle": 0.18800945761303414,
+          "loadAngle": -0.09336263966272325,
+          "ropeLength": 124.37369435174128
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": 261,
+            "spriteBottom": 296,
+            "cableOriginY": 296
+          }
+        },
+        "zoom": 0.92,
+        "camera": 77.21739130434776,
+        "safeTop": 172.32142857142858,
+        "worldTop": 170,
+        "worldBottom": 838,
+        "rigScreenTop": 227.43999999999994,
+        "visibleBottom": 842,
+        "cssScale": 0.8145454545454546,
+        "altitude": 0,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1280,
+          "viewportHeight": 720,
+          "actorWidth": 896,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "right": 1280,
+          "bottom": 720
+        },
+        "canvasBuffer": {
+          "width": 1280,
+          "height": 720
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.19138755980861788,
+          "width": 1280,
+          "height": 720.3827751196172
+        },
+        "gradient": {
+          "startX": 768,
+          "endX": 1280,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 920,
+          "top": 42,
+          "width": 336,
+          "height": 636.25,
+          "right": 1256,
+          "bottom": 678.25
+        },
+        "paintedInCanvas": true
+      }
+    },
+    {
+      "file": "crane-tv-live-1920.png",
+      "w": 1920,
+      "h": 1080,
+      "state": "live",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 531.6865956805989,
+            "y": 418.87386243908503
+          },
+          "anchor": {
+            "x": 550,
+            "y": 296
+          },
+          "cableEnd": {
+            "x": 537.2883278529756,
+            "y": 381.28901713317805
+          },
+          "hookCenter": {
+            "x": 534.3400477622511,
+            "y": 401.07051466260276
+          },
+          "angle": 0.14795320032260037,
+          "loadAngle": -0.07343837388621909,
+          "ropeLength": 124.23110258089578
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": 261,
+            "spriteBottom": 296,
+            "cableOriginY": 296
+          }
+        },
+        "zoom": 0.92,
+        "camera": 77.21739130434776,
+        "safeTop": 132.22222222222223,
+        "worldTop": 170,
+        "worldBottom": 838,
+        "rigScreenTop": 227.43999999999994,
+        "visibleBottom": 842,
+        "cssScale": 1.2705882352941176,
+        "altitude": 0,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1920,
+          "viewportHeight": 1080,
+          "actorWidth": 1536,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1920,
+          "height": 1080,
+          "right": 1920,
+          "bottom": 1080
+        },
+        "canvasBuffer": {
+          "width": 1920,
+          "height": 1080
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.2870813397129268,
+          "width": 1920,
+          "height": 1080.5741626794259
+        },
+        "gradient": {
+          "startX": 1152,
+          "endX": 1920,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 1560,
+          "top": 110.5,
+          "width": 336,
+          "height": 858.6875,
+          "right": 1896,
+          "bottom": 969.1875
+        },
+        "paintedInCanvas": true
+      }
+    },
+    {
+      "file": "crane-tv-drop-feedback-1280.png",
+      "w": 1280,
+      "h": 720,
+      "state": "drop-feedback",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 572.2514822713985,
+            "y": 418.33709648611597
+          },
+          "anchor": {
+            "x": 550,
+            "y": 296
+          },
+          "cableEnd": {
+            "x": 565.4513584589705,
+            "y": 380.95049037997615
+          },
+          "hookCenter": {
+            "x": 569.0303709918273,
+            "y": 400.6276514884708
+          },
+          "angle": -0.17991975736870294,
+          "loadAngle": 0.08933714732722543,
+          "ropeLength": 124.34425455133666
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": 261,
+            "spriteBottom": 296,
+            "cableOriginY": 296
+          }
+        },
+        "zoom": 0.92,
+        "camera": 77.21739130434776,
+        "safeTop": 172.32142857142858,
+        "worldTop": 170,
+        "worldBottom": 838,
+        "rigScreenTop": 227.43999999999994,
+        "visibleBottom": 842,
+        "cssScale": 0.8145454545454546,
+        "altitude": 0,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1280,
+          "viewportHeight": 720,
+          "actorWidth": 896,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "right": 1280,
+          "bottom": 720
+        },
+        "canvasBuffer": {
+          "width": 1280,
+          "height": 720
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.19138755980861788,
+          "width": 1280,
+          "height": 720.3827751196172
+        },
+        "gradient": {
+          "startX": 768,
+          "endX": 1280,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 920,
+          "top": 24,
+          "width": 336,
+          "height": 672,
+          "right": 1256,
+          "bottom": 696
+        },
+        "paintedInCanvas": true
+      }
+    },
+    {
+      "file": "crane-tv-drop-feedback-1920.png",
+      "w": 1920,
+      "h": 1080,
+      "state": "drop-feedback",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 535.268088186475,
+            "y": 304.01747325020676
+          },
+          "anchor": {
+            "x": 577.1096801757812,
+            "y": 185.97136609025708
+          },
+          "cableEnd": {
+            "x": 547.9633364433063,
+            "y": 268.200847617724
+          },
+          "hookCenter": {
+            "x": 541.2816268344477,
+            "y": 287.05170321376755
+          },
+          "angle": 0.34063479456093537,
+          "loadAngle": -0.1696165384355456,
+          "ropeLength": 125.24217434960917
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": 150.97136609025708,
+            "spriteBottom": 185.97136609025708,
+            "cableOriginY": 185.97136609025708
+          }
+        },
+        "zoom": 0.9122771924357187,
+        "camera": 84.96508888040557,
+        "safeTop": 132.22222222222223,
+        "worldTop": 59.97136609025708,
+        "worldBottom": 838,
+        "rigScreenTop": 132.2222222222221,
+        "visibleBottom": 842,
+        "cssScale": 1.2705882352941176,
+        "altitude": 1,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1920,
+          "viewportHeight": 1080,
+          "actorWidth": 1536,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1920,
+          "height": 1080,
+          "right": 1920,
+          "bottom": 1080
+        },
+        "canvasBuffer": {
+          "width": 1920,
+          "height": 1080
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.2870813397129268,
+          "width": 1920,
+          "height": 1080.5741626794259
+        },
+        "gradient": {
+          "startX": 1152,
+          "endX": 1920,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 1560,
+          "top": 110.5,
+          "width": 336,
+          "height": 858.6875,
+          "right": 1896,
+          "bottom": 969.1875
+        },
+        "paintedInCanvas": true
+      }
+    },
+    {
+      "file": "crane-tv-settled-contact-1280.png",
+      "w": 1280,
+      "h": 720,
+      "state": "settled-contact",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 607.267360633225,
+            "y": 306.90308191075604
+          },
+          "anchor": {
+            "x": 577.1096801757812,
+            "y": 185.96624095383115
+          },
+          "cableEnd": {
+            "x": 598.0729682287367,
+            "y": 270.0321835176834
+          },
+          "hookCenter": {
+            "x": 602.9121221258358,
+            "y": 289.43791951403745
+          },
+          "angle": -0.24438299064933636,
+          "loadAngle": 0.12145871526870754,
+          "ropeLength": 124.64030323781243
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": 150.96624095383115,
+            "spriteBottom": 185.96624095383115,
+            "cableOriginY": 185.96624095383115
+          }
+        },
+        "zoom": 0.8607320230545837,
+        "camera": 140.23710219574832,
+        "safeTop": 172.32142857142858,
+        "worldTop": 59.96624095383115,
+        "worldBottom": 838,
+        "rigScreenTop": 172.32142857142858,
+        "visibleBottom": 842,
+        "cssScale": 0.8145454545454546,
+        "altitude": 1,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1280,
+          "viewportHeight": 720,
+          "actorWidth": 896,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "right": 1280,
+          "bottom": 720
+        },
+        "canvasBuffer": {
+          "width": 1280,
+          "height": 720
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.19138755980861788,
+          "width": 1280,
+          "height": 720.3827751196172
+        },
+        "gradient": {
+          "startX": 768,
+          "endX": 1280,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 920,
+          "top": 24,
+          "width": 336,
+          "height": 672,
+          "right": 1256,
+          "bottom": 696
+        },
+        "paintedInCanvas": true
+      }
+    },
+    {
+      "file": "crane-tv-settled-contact-1920.png",
+      "w": 1920,
+      "h": 1080,
+      "state": "settled-contact",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 563.4762302212112,
+            "y": 198.89277644181735
+          },
+          "anchor": {
+            "x": 581.5887451171875,
+            "y": 75.99139985564862
+          },
+          "cableEnd": {
+            "x": 569.0166137001465,
+            "y": 161.29883875358973
+          },
+          "hookCenter": {
+            "x": 566.1006223954437,
+            "y": 181.08512174739374
+          },
+          "angle": 0.14632112602237035,
+          "loadAngle": -0.07262766706627112,
+          "ropeLength": 124.22886767024896
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": 40.99139985564862,
+            "spriteBottom": 75.99139985564862,
+            "cableOriginY": 75.99139985564862
+          }
+        },
+        "zoom": 0.7992915582826552,
+        "camera": 215.4328697391818,
+        "safeTop": 132.22222222222223,
+        "worldTop": -50.00860014435138,
+        "worldBottom": 838,
+        "rigScreenTop": 132.2222222222221,
+        "visibleBottom": 841.9999999999999,
+        "cssScale": 1.2705882352941176,
+        "altitude": 2,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1920,
+          "viewportHeight": 1080,
+          "actorWidth": 1536,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1920,
+          "height": 1080,
+          "right": 1920,
+          "bottom": 1080
+        },
+        "canvasBuffer": {
+          "width": 1920,
+          "height": 1080
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.2870813397129268,
+          "width": 1920,
+          "height": 1080.5741626794259
+        },
+        "gradient": {
+          "startX": 1152,
+          "endX": 1920,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 1560,
+          "top": 94.5,
+          "width": 336,
+          "height": 891.25,
+          "right": 1896,
+          "bottom": 985.75
+        },
+        "paintedInCanvas": true
+      }
+    },
+    {
+      "file": "crane-tv-camera-settled-1280.png",
+      "w": 1280,
+      "h": 720,
+      "state": "camera-settled",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 565.5340618541288,
+            "y": 89.65914340434836
+          },
+          "anchor": {
+            "x": 575.4970550537109,
+            "y": -34.004991903011444
+          },
+          "cableEnd": {
+            "x": 568.5856419972836,
+            "y": 51.7818697613061
+          },
+          "hookCenter": {
+            "x": 566.9795471850969,
+            "y": 71.71727694185466
+          },
+          "angle": 0.08039130427434153,
+          "loadAngle": -0.039882232966461,
+          "ropeLength": 124.06482013371846
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": -69.00499190301144,
+            "spriteBottom": -34.004991903011444,
+            "cableOriginY": -34.004991903011444
+          }
+        },
+        "zoom": 0.6709934616797735,
+        "camera": 416.91987715118165,
+        "safeTop": 172.32142857142858,
+        "worldTop": -160.00499190301144,
+        "worldBottom": 838,
+        "rigScreenTop": 172.3882082097315,
+        "visibleBottom": 842.0430325004274,
+        "cssScale": 0.8145454545454546,
+        "altitude": 3,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1280,
+          "viewportHeight": 720,
+          "actorWidth": 896,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "right": 1280,
+          "bottom": 720
+        },
+        "canvasBuffer": {
+          "width": 1280,
+          "height": 720
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.19138755980861788,
+          "width": 1280,
+          "height": 720.3827751196172
+        },
+        "gradient": {
+          "startX": 768,
+          "endX": 1280,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 920,
+          "top": 24,
+          "width": 336,
+          "height": 672,
+          "right": 1256,
+          "bottom": 696
+        },
+        "paintedInCanvas": true
+      }
+    },
+    {
+      "file": "crane-tv-camera-settled-1920.png",
+      "w": 1920,
+      "h": 1080,
+      "state": "camera-settled",
+      "presentation": {
+        "rig": {
+          "apex": {
+            "x": 584.2209863284658,
+            "y": -23.192515097481703
+          },
+          "anchor": {
+            "x": 614.9198532104492,
+            "y": -144.01681453042326
+          },
+          "cableEnd": {
+            "x": 593.5786496458558,
+            "y": -60.022314679319955
+          },
+          "hookCenter": {
+            "x": 588.6535636893348,
+            "y": -40.6382096362472
+          },
+          "angle": 0.24881363107191004,
+          "loadAngle": -0.12366970073430675,
+          "ropeLength": 124.66327350626914
+        },
+        "groundContacts": {
+          "foundation": {
+            "spriteTop": 780,
+            "spriteBottom": 824,
+            "shadowY": 825
+          },
+          "footing": {
+            "spriteTop": 750,
+            "spriteBottom": 830,
+            "shadowY": 831
+          },
+          "trolley": {
+            "centerY": -179.01681453042326,
+            "spriteBottom": -144.01681453042326,
+            "cableOriginY": -144.01681453042326
+          }
+        },
+        "zoom": 0.6405800822601211,
+        "camera": 476.43863831611253,
+        "safeTop": 132.22222222222223,
+        "worldTop": -270.0168145304233,
+        "worldBottom": 838,
+        "rigScreenTop": 132.22970886092102,
+        "visibleBottom": 842.0032110584169,
+        "cssScale": 1.2705882352941176,
+        "altitude": 4,
+        "reducedMotion": false,
+        "background": {
+          "src": "http://127.0.0.1:55759/assets/gameplay/crane-city-minimal-20261003-v1.png",
+          "loaded": true,
+          "viewportWidth": 1920,
+          "viewportHeight": 1080,
+          "actorWidth": 1536,
+          "assetWidth": 1672,
+          "assetHeight": 941
+        }
+      },
+      "background": {
+        "assetPath": "/assets/gameplay/crane-city-minimal-20261003-v1.png",
+        "loaded": true,
+        "naturalWidth": 1672,
+        "naturalHeight": 941,
+        "canvasBounds": {
+          "left": 0,
+          "top": 0,
+          "width": 1920,
+          "height": 1080,
+          "right": 1920,
+          "bottom": 1080
+        },
+        "canvasBuffer": {
+          "width": 1920,
+          "height": 1080
+        },
+        "coverFitRect": {
+          "x": 0,
+          "y": -0.2870813397129268,
+          "width": 1920,
+          "height": 1080.5741626794259
+        },
+        "gradient": {
+          "startX": 1152,
+          "endX": 1920,
+          "stops": [
+            [
+              0,
+              "rgba(7,24,43,0)"
+            ],
+            [
+              0.62,
+              "rgba(18,48,61,.70)"
+            ],
+            [
+              1,
+              "rgba(13,39,53,.84)"
+            ]
+          ]
+        },
+        "railBounds": {
+          "left": 1560,
+          "top": 110.5,
+          "width": 336,
+          "height": 858.6875,
+          "right": 1896,
+          "bottom": 969.1875
+        },
+        "paintedInCanvas": true
+      }
+    }
+  ],
+  "feedbackCopyProof": [
+    {
+      "rawCue": "Идеально! +148",
+      "renderedCue": "Perfect! +148",
+      "actualGain": 148,
+      "impactGain": 148,
+      "players": [
+        {
+          "id": "69c55174bfbd03ca",
+          "score": 86,
+          "perfects": 0
+        },
+        {
+          "id": "8998bab83e1f3e9a",
+          "score": 148,
+          "perfects": 1
+        },
+        {
+          "id": "478bcd532069107d",
+          "score": 0,
+          "perfects": 0
+        },
+        {
+          "id": "2ce954618cbf7e5d",
+          "score": 0,
+          "perfects": 0
+        }
+      ]
+    },
+    {
+      "rawCue": "Идеально! +147",
+      "renderedCue": "Perfect! +147",
+      "actualGain": 147,
+      "impactGain": 147,
+      "players": [
+        {
+          "id": "69c55174bfbd03ca",
+          "score": 86,
+          "perfects": 0
+        },
+        {
+          "id": "8998bab83e1f3e9a",
+          "score": 148,
+          "perfects": 1
+        },
+        {
+          "id": "478bcd532069107d",
+          "score": 147,
+          "perfects": 1
+        },
+        {
+          "id": "2ce954618cbf7e5d",
+          "score": 0,
+          "perfects": 0
+        }
+      ]
+    }
+  ],
+  "geometryEvidence": {
+    "assetAlphaBounds": {
+      "foundation": {
+        "sourceSize": [
+          874,
+          142
+        ],
+        "alpha20Bounds": [
+          0,
+          1,
+          874,
+          142
+        ],
+        "draw": [
+          550,
+          780,
+          270,
+          44
+        ],
+        "bottom": 824,
+        "shadowY": 825
+      },
+      "footing": {
+        "sourceSize": [
+          636,
+          351
+        ],
+        "alpha20Bounds": [
+          1,
+          0,
+          636,
+          351
+        ],
+        "draw": [
+          110,
+          750,
+          145,
+          80
+        ],
+        "bottom": 830,
+        "shadowY": 831
+      },
+      "trolley": {
+        "sourceSize": [
+          352,
+          454
+        ],
+        "alpha20Bounds": [
+          4,
+          5,
+          348,
+          451
+        ],
+        "drawCenterY": "beamY+3",
+        "drawHeight": 70,
+        "cableOriginY": "beamY+38"
+      }
+    },
+    "checks": "PASS extracted actual craneRigGeometry at beamY220/0/-300; endpoint equals complete trolley bottom; cable below anchor; shadows below feet and paint before both sprites; client syntax PASS"
+  },
+  "qualification": "Drop1920 raw roster/task fade during actual score-feedback transition preserved and excluded from list-clarity acceptance. Other whole4p originals establish list; named ground/cable pixels remain visible. No new16 proof requested: unchanged observers and previouslyqualified31 retained; prior31 not used as evidence of new paint.",
+  "physicalDeviceValidated": false
+}

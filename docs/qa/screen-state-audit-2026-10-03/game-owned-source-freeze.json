@@ -1,0 +1,12 @@
+{
+  "games/tabletop/public/arena.css": "81478bce6c9348be0723e43793851412cf45cc27b87ed2b4c7932be4da686c49",
+  "games/party/public/host.js": "ee8ed2354d64e9ecd6b43fe8ba46f4ccc44f4a9081a6e4c19fc2ac56776125b8",
+  "games/party/public/host.css": "d5793581411ce07cf6fe253c40b67e0195dc1abdfb3e65c23240379224887f33",
+  "games/party/public/controller.js": "5eff4d883031e4939952c0f4a01b77702da962d73839c1887b15e2c38d759c60",
+  "games/party/public/controller.css": "d21b07445a2db00f69f017f619acb0f9f78372829493dd1e366e863e89911c22",
+  "games/tankarena/public/app.js": "206c556ce06c92ff43b4fbdb4f0b905bb11655db762b03cdd1412b0149b76b1d",
+  "games/tankarena/public/style.css": "311439b767fd492d8074fa87a2de969fd6497c43bccb96ecde0997f957bc186c",
+  "games/quiz/public/screen.css": "d4f15ad1a8c342edfe790127d88af40f7826462f301ac96ce8ed216b89e925e3",
+  "games/millionaire/public/tv-layout.css": "1a71d994eea9cd34a23d6338b01a9f4043538bccd91dfa6237e00363fde6f156",
+  "games/naval/public/screen.css": "83b7e5fbf713c00bab8f4911e2dbd782cb8aafe367ac564e9b2c72540104765e"
+}

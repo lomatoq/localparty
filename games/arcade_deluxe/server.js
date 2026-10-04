@@ -71,12 +71,23 @@ wss.on('connection',(ws,req)=>{
  });
  ws.on('close',()=>{if(ws.pid&&sockets.get(ws.pid)===ws){sockets.delete(ws.pid);game.disconnect(ws.pid);runtime.presence(ws.pid,false);broadcast();}});ws.on('error',()=>{});
 });
-runtime.host({start,reset:()=>{if(game.phase!=='results')return false;game.reset();broadcast();return true;},available:()=>game.phase==='waiting'?['start']:game.phase==='results'?['reset']:[]});runtime.onPause(()=>broadcast());
+runtime.host({start,reset:()=>{if(game.phase!=='results')return false;game.reset();broadcast();return true;},available:()=>game.phase==='waiting'?['start']:game.phase==='results'?['reset']:[]});runtime.onPause(()=>{broadcast();publishUI();});
+function publishUI(){
+ const p=game.active?.();
+ const pocketDeadline=['aim','drone','loadout'].includes(game.stage)?game.stage==='drone'?game.drone?.deadline:game.stage==='loadout'?game.loadoutDeadline:game.deadline:null;
+ // Versus has a match clock; co-op levels deliberately have no deadline.
+ // Runtime applies the pause offset when publishing this simulation deadline.
+ const deadline=mode==='pocket_siege'?pocketDeadline:game.arenaMode==='versus'&&game.phase==='playing'?game.duration:null;
+ runtime.ui({phase:game.phase,stage:game.stage,label:mode==='pocket_siege'?'Ход':'Да фінішу',currentPlayer:p?.name,endsAt:Number.isFinite(deadline)?runtime.now()+Math.max(0,deadline-game.t)*1000:null,progress:mode==='pocket_siege'?`Ход ${Math.min(game.turn+1,(game.rounds||10)*(game.order?.length||1))} / ${(game.rounds||10)*(game.order?.length||1)}`:`Узровень ${game.level+1}`});
+}
 let last=runtime.now(),acc=0,frameNo=0;
 const loop=runtime.setInterval(()=>{
  const now=runtime.now();acc=Math.min(.15,acc+Math.max(0,(now-last)/1000));last=now;
  if(!runtime.paused)while(acc>=1/60){game.step(1/60);acc-=1/60;}else acc=0;
- if(++frameNo%3===0){broadcast(frameNo%6===0);const p=game.active?.();runtime.ui({phase:game.phase,stage:game.stage,label:mode==='pocket_siege'?'Ход':'Да фінішу',currentPlayer:p?.name,endsAt:['aim','drone','loadout'].includes(game.stage)?runtime.now()+Math.max(0,(game.stage==='drone'?game.drone?.deadline:game.stage==='loadout'?game.loadoutDeadline:game.deadline)-game.t)*1000:null,progress:mode==='pocket_siege'?`Ход ${game.turn+1} / ${(game.rounds||10)*(game.order?.length||1)}`:`Узровень ${game.level+1}`});if(game.result&&reported!==game.result.eventId){reported=game.result.eventId;runtime.report(game.result);}}
+ if(++frameNo%3===0){
+  broadcast(frameNo%6===0);publishUI();
+  if(game.result&&reported!==game.result.eventId){reported=game.result.eventId;runtime.report(game.result);}
+ }
 },1000/60);
 const heartbeat=setInterval(()=>{for(const ws of wss.clients){if(!ws.alive)ws.terminate();else{ws.alive=false;ws.ping();}}},12000);heartbeat.unref();
 const port=Number(process.env.PORT||process.env.ARCADE_PORT||(mode==='pocket_siege'?4101:4100));

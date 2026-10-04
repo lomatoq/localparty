@@ -15,3 +15,93 @@
 .western-stats small{font-size:9px;font-weight:900;letter-spacing:.1em;color:#a87954}.western-stats b{font-size:20px}
 button,#joystickZone,#joystickBase,#joystickKnob{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none}button{min-height:54px;transition:transform .12s,filter .12s}button:active{transform:scale(.96);filter:brightness(1.15)}#fireBtn:disabled{pointer-events:none}#roundLabel{font-size:26px}.mini-stat strong,.stat-value{font-size:32px}@media(max-width:420px){.controller-screen{padding:12px}button{font-size:18px}}
 .mode-label{max-width:45vw;overflow-wrap:anywhere;font-size:11px}.round-label{white-space:nowrap}.who b{max-width:24vw}
+/* Numeric outcomes share the title face; identities and copy retain their roles. */
+html.party-managed.party-player body :is(#moveStatA,#knivesLeft,#roundScore,#totalScore,#westernWins,#westernBest,#westernFalse){font-family:KardiaFatRunner,system-ui!important;font-weight:900!important;font-style:italic!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=western] body #westernControls .western-stats :is(#westernWins,#westernBest,#westernFalse){font-family:KardiaFatRunner,system-ui!important;font-weight:900!important;font-style:italic!important}
+
+/* Between rounds / match end: one passive outcome card over the shared wall.
+   The emoji is the illustration, the name stays upright and readable. */
+html.party-managed.party-player .waiting{background:transparent;padding:24px 16px}
+.waiting .round-card{box-sizing:border-box;display:grid;justify-items:center;gap:10px;width:min(100%,340px);padding:28px 22px 26px;border-radius:22px;background-color:#221d30e6;text-align:center;animation:round-card-in 420ms cubic-bezier(.23,1,.32,1) both}
+.waiting .round-card .round-emoji{display:block;font-size:52px;line-height:1.1;margin-bottom:4px;animation:round-emoji-in 560ms cubic-bezier(.34,1.4,.64,1) 90ms both}
+.waiting .round-card b{font-family:var(--hp-font-body,KardiaFit),sans-serif;font-style:normal;font-weight:650;font-size:21px;line-height:1.3;text-transform:none;letter-spacing:0;color:#f6f1ff;overflow-wrap:anywhere}
+.waiting .round-card span:not(.round-emoji){margin:0;max-width:30ch;font-family:var(--hp-font-copy,KardiaFitRunner),sans-serif;font-style:italic;font-weight:450;font-size:15px;line-height:1.45;color:#b9b1c9}
+@keyframes round-card-in{from{opacity:0;translate:0 12px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+@keyframes round-emoji-in{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+@media(prefers-reduced-motion:reduce){.waiting .round-card,.waiting .round-card .round-emoji{animation:none}}
+
+/* Party polish 2026-10-02: tiered outcome colour, state tone and bomb hand-off flashes.
+   Colour carries meaning only; motion is one-shot (see controller.js accent()). */
+html.party-player body #knifeControls #feedback[data-outcome=good]{color:#c8ff73!important}
+html.party-player body #knifeControls #feedback[data-outcome=bad]{color:#ffb38a!important}
+html.party-player body #knifeControls #feedback:is([data-outcome=danger],[data-outcome=clang]){color:#ff8fa3!important}
+html.party-player body .move-stats #moveStatB[data-tone=safe]{color:#c8ff73!important}
+html.party-player body .move-stats #moveStatB[data-tone=hot]{color:#ffb14d!important}
+html.party-player body .move-stats #moveStatB[data-tone=out]{color:#ff8fa3!important}
+html.party-player body .move-controls.has-bomb .joystick-knob{background:linear-gradient(145deg,#ff6a6f,#ffb14d)!important;box-shadow:0 10px 24px #0008,0 0 36px #ff4e5a66,inset 0 1px 1px #ffffff88!important}
+html.party-player body .move-controls.bomb-caught .joystick-base{animation:party-bomb-caught 420ms cubic-bezier(.23,1,.32,1)}
+html.party-player body .move-controls.bomb-passed .joystick-base{animation:party-bomb-passed 420ms cubic-bezier(.23,1,.32,1)}
+@keyframes party-bomb-caught{from{box-shadow:0 0 0 3px #ff6a6f,0 0 70px #ff4e5acc}to{box-shadow:0 0 0 0 #ff6a6f00,0 0 0 #ff4e5a00}}
+@keyframes party-bomb-passed{from{box-shadow:0 0 0 3px #c8ff73,0 0 60px #c8ff7399}to{box-shadow:0 0 0 0 #c8ff7300,0 0 0 #c8ff7300}}
+@media(prefers-reduced-motion:reduce){html.party-player body .move-controls:is(.bomb-caught,.bomb-passed) .joystick-base{animation:none}}
+
+/* Codex UI 2026-10-02: read the round first, then act. DOM order matches visual order. */
+html.hp-ui.party-managed.party-player body main#moveControls{grid-template-rows:auto minmax(0,1fr)!important;align-content:center;gap:16px;padding:16px!important;overflow:hidden}
+html.hp-ui.party-managed.party-player body main#moveControls .move-stats{grid-row:1;align-self:end;min-height:64px;position:static!important}
+html.hp-ui.party-managed.party-player body main#moveControls .joystick-zone{grid-row:2;justify-content:flex-start;padding-top:8px;gap:16px}
+html.hp-ui.party-managed.party-player body main#moveControls{display:flex!important;flex-direction:column;justify-content:center}
+html.hp-ui.party-managed.party-player body main#moveControls .joystick-base{width:min(66vw,40dvh,260px);height:min(66vw,40dvh,260px)}
+html.hp-ui.party-managed.party-player body main:is(#knifeControls,#westernControls){justify-content:center;gap:16px;padding:16px!important;overflow:hidden}
+html.hp-ui.party-managed.party-player body main#knifeControls .knife-stats,html.hp-ui.party-managed.party-player body main#westernControls .western-stats{width:100%;max-width:440px;min-height:64px;height:auto;margin:0}
+html.hp-ui.party-managed.party-player body main#knifeControls button#throwBtn,html.hp-ui.party-managed.party-player body main#westernControls button#fireBtn{width:100%!important;max-width:440px;min-height:clamp(130px,35dvh,290px)!important;height:clamp(130px,35dvh,290px)!important;max-height:none;aspect-ratio:auto!important;flex:none;border-radius:32px!important;padding:20px}
+html.hp-ui.party-managed.party-player body main#knifeControls button#throwBtn span,html.hp-ui.party-managed.party-player body main#westernControls button#fireBtn span{font-size:clamp(40px,12vw,62px)!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-player body main#westernControls .western-stats>div{min-height:64px!important;padding:10px 6px!important;gap:6px;justify-content:center}
+html.hp-ui.party-managed.party-player body main#westernControls .western-stats small{font-size:12px!important;min-height:0!important;line-height:1.25!important}
+html.hp-ui.party-managed.party-player body :is(.move-stats,.knife-stats,.western-stats) :is(b,strong){font:italic 900 clamp(24px,6.4vw,30px)/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player body #moveStatB{font-size:clamp(19px,5vw,24px)!important}
+@media(max-height:520px){html.hp-ui.party-managed.party-player body main:is(#knifeControls,#westernControls){gap:10px}html.hp-ui.party-managed.party-player body main#moveControls .joystick-base{width:min(58vw,37dvh,220px);height:min(58vw,37dvh,220px)}html.hp-ui.party-managed.party-player body main#knifeControls .knife-count b{font-size:30px!important}}
+
+html.hp-ui.party-managed.party-player body main#moveControls.hidden{display:none!important}
+
+/* Read all guidance before the thumb reaches the joystick. */
+html.hp-ui.party-managed.party-player body main#moveControls .joystick-zone{gap:12px}
+html.hp-ui.party-managed.party-player body main#moveControls .joy-tip{position:static;order:0;max-width:30ch;line-height:1.3;font-size:14px!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-player body main#moveControls .joystick-base{order:1}
+.waiting .round-mascot{width:96px;height:108px;object-fit:contain;filter:drop-shadow(0 5px 5px #0b061766)}
+html.hp-ui.party-managed.party-player body #westernControls .western-stats>div{justify-content:center!important}
+html.hp-ui.party-managed.party-player body #westernControls .western-stats small{min-height:2.5em;display:flex;align-items:center;justify-content:center}
+
+/* Spectators get a calm identity scene instead of an inert giant control. */
+.out-mascot{display:none;width:min(40vw,160px);height:min(40vw,160px);object-fit:contain;filter:drop-shadow(0 8px 8px #07041277)}
+html.hp-ui.party-managed.party-player body #joystickZone[data-out=true] #joystickBase{display:none!important}
+html.hp-ui.party-managed.party-player body #joystickZone[data-out=true] .out-mascot{display:block}
+html.hp-ui.party-managed.party-player body #joystickZone[data-out=true]{padding-top:8px;gap:20px}
+
+/* A two-line label reserves the same height in every Western metric. */
+html.hp-ui.party-managed.party-player[data-party-game=western] body main#westernControls .western-stats>div{display:grid!important;grid-template-rows:44px 28px;gap:8px!important;align-content:center!important;justify-items:center;min-height:104px!important}
+html.hp-ui.party-managed.party-player[data-party-game=western] body main#westernControls .western-stats small{display:flex!important;align-items:center;justify-content:center;min-height:44px!important;height:44px!important;margin:0!important;text-align:center}
+html.hp-ui.party-managed.party-player[data-party-game=western] body main#westernControls .western-stats b{align-self:center;line-height:28px!important;margin:0!important}
+
+/* Available actions stay large; exhausted or completed actions explain the wait. */
+html.hp-ui.party-managed.party-player body main#knifeControls button#throwBtn:disabled,
+html.hp-ui.party-managed.party-player body main#westernControls button#fireBtn:disabled{background:#292337!important;color:#f4edff!important;border-color:#baa2e23d!important;box-shadow:inset 0 1px #ffffff18!important;filter:none!important;opacity:1!important;transform:none!important}
+html.hp-ui.party-managed.party-player body main#knifeControls button#throwBtn:disabled>span,
+html.hp-ui.party-managed.party-player body main#westernControls button#fireBtn:disabled>span{font-size:clamp(28px,8vw,38px)!important;line-height:1.15!important;max-width:100%;text-align:center;text-wrap:balance}
+html.hp-ui.party-managed.party-player body main#knifeControls button#throwBtn:disabled>small,
+html.hp-ui.party-managed.party-player body main#westernControls button#fireBtn:disabled>small{color:#c9bedb!important;opacity:1!important;max-width:26ch;text-align:center}
+html.hp-ui.party-managed.party-player body main#moveControls #joystickZone[data-held=true] #joystickBase{border-color:#c8ff7380!important}
+html.hp-ui.party-managed.party-player body main#moveControls #joystickZone[data-held=true] #joystickKnob{filter:brightness(1.1)}
+
+/* A completed turn is a spectator scene, with no disabled action surface. */
+html.hp-ui.party-managed.party-player body main:is(#knifeControls,#westernControls)[data-spectator=true]>button{display:none!important}
+.action-spectator{display:grid;justify-items:center;gap:12px;width:100%;text-align:center;padding:8px 0}
+.action-spectator[hidden]{display:none!important}
+.action-spectator strong{font:650 23px/1.2 var(--hp-font-body,KardiaFit),sans-serif;color:#f4edff;text-wrap:balance;max-width:24ch}
+.action-spectator img{width:min(40vw,160px);height:min(40vw,160px);object-fit:contain;filter:drop-shadow(0 8px 8px #07041277)}
+.action-spectator p{margin:0;max-width:28ch;font:450 14px/1.35 var(--hp-font-copy,KardiaFitRunner),sans-serif;color:#b9b1c9}
+
+/* Photo-only crop, including earned outcome and spectator identities. */
+:is(.round-mascot,#outMascot,.action-spectator img)[data-photo=true]{height:auto!important;aspect-ratio:1;object-fit:cover;border-radius:50%}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+:is(.round-mascot,#outMascot,.action-spectator img)[data-photo=true]{box-sizing:border-box;border:1.5px solid var(--color,#c8b2d5)}

@@ -1,0 +1,3 @@
+button.hp-button-progress{position:relative!important;isolation:isolate;overflow:hidden!important}
+button.hp-button-progress::after{content:''!important;position:absolute!important;inset:0!important;z-index:-1!important;pointer-events:none!important;border-radius:inherit!important;background:rgba(255,255,255,.25)!important;width:calc(var(--hp-button-progress,0)*100%)!important;height:100%!important;transform:none!important;transition:width .2s ease!important;box-shadow:none!important}
+@media(prefers-reduced-motion:reduce){button.hp-button-progress::after{transition:none!important}}

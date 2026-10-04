@@ -1,0 +1,1215 @@
+{
+  "at": "2026-10-03T19:43:52.349Z",
+  "scope": "All36 game routes /20 engines, uploaded photo paths distinct from default mascot artwork",
+  "engines": {
+    "party": {
+      "games": [
+        "push",
+        "shrink",
+        "knives",
+        "bomb",
+        "western"
+      ],
+      "renderFamily": "Canvas shared photo helper +DOM",
+      "sourceReferences": [
+        {
+          "file": "games/party/public/controller.css",
+          "line": 103,
+          "text": "/* Photo-only crop, including earned outcome and spectator identities. */"
+        },
+        {
+          "file": "games/party/public/controller.css",
+          "line": 104,
+          "text": ":is(.round-mascot,#outMascot,.action-spectator img)[data-photo=true]{height:auto!important;aspect-ratio:1;object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/party/public/controller.css",
+          "line": 107,
+          "text": ":is(.round-mascot,#outMascot,.action-spectator img)[data-photo=true]{box-sizing:border-box;border:1.5px solid var(--color,#c8b2d5)}"
+        },
+        {
+          "file": "games/party/public/controller.js",
+          "line": 52,
+          "text": " const src=window.PartyArt?.mascotSource({seed:window.PARTY_PROFILE?.id||self?.name,avatar:window.PARTY_PROFILE?.avatar})||'/assets/avatars/atlas-mascots/mascot-01.webp';"
+        },
+        {
+          "file": "games/party/public/controller.js",
+          "line": 54,
+          "text": " scene.querySelector('img').dataset.photo=String(!!window.PARTY_PROFILE?.avatar);if(scene.querySelector('img').getAttribute('src')!==src)scene.querySelector('img').src=src;"
+        },
+        {
+          "file": "games/party/public/controller.js",
+          "line": 94,
+          "text": "  if(out){const src=window.PartyArt?.mascotSource({seed:window.PARTY_PROFILE?.id||s.name,avatar:window.PARTY_PROFILE?.avatar})||'/assets/avatars/atlas-mascots/mascot-01.webp';$('outMascot').dataset.photo=String(!!window.PARTY_PROFILE?.avatar);if($('outMascot').getAttribute('src')!==src)$('outMascot').src=src;}"
+        },
+        {
+          "file": "games/party/public/controller.js",
+          "line": 136,
+          "text": "  const portrait=document.createElement('img');portrait.className='round-mascot';portrait.dataset.photo=String(!!window.PARTY_PROFILE?.avatar);portrait.alt='';portrait.src=window.PartyArt?.mascotSource({seed:window.PARTY_PROFILE?.id||self?.name,avatar:window.PARTY_PROFILE?.avatar})||'/assets/avatars/atlas-mascots/mascot-01.webp';card.append(portrait);"
+        },
+        {
+          "file": "games/party/public/host.css",
+          "line": 54,
+          "text": ".party-standing-portrait{width:40px;height:44px;object-fit:contain;filter:drop-shadow(0 3px 3px #09051266)}"
+        },
+        {
+          "file": "games/party/public/host.css",
+          "line": 55,
+          "text": ".party-standing.out .name{color:#c5bacf}.party-standing.out .party-standing-portrait{opacity:.5;filter:grayscale(.6)}"
+        },
+        {
+          "file": "games/party/public/host.css",
+          "line": 58,
+          "text": " .party-standing-portrait{width:32px;height:36px}"
+        },
+        {
+          "file": "games/party/public/host.css",
+          "line": 70,
+          "text": "/* Uploaded photographs are circles; transparent mascot silhouettes stay whole. */"
+        },
+        {
+          "file": "games/party/public/host.css",
+          "line": 71,
+          "text": ".party-standing-portrait[data-photo=true]{height:auto!important;aspect-ratio:1;object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/party/public/host.css",
+          "line": 74,
+          "text": ".party-standing-portrait[data-photo=true]{box-sizing:border-box;border:1.5px solid var(--color,#c8b2d5)}"
+        },
+        {
+          "file": "games/party/public/host.js",
+          "line": 91,
+          "text": " return {seed:profile?.id||p.name||p.id,avatar:profile?.avatar||p.avatar};"
+        },
+        {
+          "file": "games/party/public/host.js",
+          "line": 110,
+          "text": " const mascot=wrestler||art?.drawMascot(ctx,0,-p.radius*.08,p.radius*2,p.radius*2,partyIdentity(p));"
+        },
+        {
+          "file": "games/party/public/host.js",
+          "line": 232,
+          "text": " const mascotHeight=h,mascot=art?.drawMascot(ctx,0,35-h/2,bw,h,partyIdentity(p));"
+        },
+        {
+          "file": "games/party/public/host.js",
+          "line": 237,
+          "text": " if(mascot)art.drawMascot(ctx,0,35-mascotHeight/2,bw,mascotHeight,partyIdentity(p));"
+        },
+        {
+          "file": "games/party/public/host.js",
+          "line": 373,
+          "text": " westernRoundNoticeKey=key;return westernRoundNotice.show({key,text:g.winnerText,portrait:winner?window.PartyArt?.mascotSource(partyIdentity(winner)):'',anchor:point(640,145),avoid});"
+        },
+        {
+          "file": "games/party/public/host.js",
+          "line": 599,
+          "text": " board.replaceChildren(...players.map((p,i)=>{const row=document.createElement('div');row.className='party-standing'+(!p.alive?' out':'');const rank=document.createElement('span'),name=document.createElement('span'),points=document.createElement('strong'),place=playerPlace(players,i,mode);row.dataset.hpRank=String(place);rank.className='rank';rank.dataset.place=rank.dataset.hpRank=String(place);rank.textContent=place;name.className='name';name.textContent=p.name;name.title=(window.PARTY_ROSTER||[]).find(q=>String(q.name||'').trim().slice(0,20)===p.name)?.name||p.name;name.setAttribute('aria-label',name.title);points.textContent=scoreValue(p,m"
+        },
+        {
+          "file": "games/party/public/index.html",
+          "line": 29,
+          "text": "        <img id=\"outMascot\" class=\"out-mascot\" alt=\"\" src=\"/assets/avatars/atlas-mascots/mascot-01.webp\"><div id=\"joystickBase\" class=\"joystick-base\"><div id=\"joystickKnob\" class=\"joystick-knob\"></div></div>"
+        },
+        {
+          "file": "games/party/public/index.html",
+          "line": 39,
+          "text": "      <section class=\"action-spectator\" hidden aria-live=\"polite\"><strong></strong><img alt=\"\" src=\"/assets/avatars/atlas-mascots/mascot-01.webp\"><p></p></section>"
+        },
+        {
+          "file": "games/party/public/index.html",
+          "line": 47,
+          "text": "      <section class=\"action-spectator\" hidden aria-live=\"polite\"><strong></strong><img alt=\"\" src=\"/assets/avatars/atlas-mascots/mascot-01.webp\"><p></p></section>"
+        }
+      ]
+    },
+    "tanks": {
+      "games": [
+        "tanks"
+      ],
+      "renderFamily": "No native uploaded portrait renderer found; vehicles/names/default markers remain authored",
+      "sourceReferences": []
+    },
+    "tankarena": {
+      "games": [
+        "tankarena"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/tankarena/public/app.js",
+          "line": 92,
+          "text": "  if(!row){row=document.createElement('div');row.className='stat';row.innerHTML='<div class=\"arsenal-identity\"><span class=\"arsenal-rank\"></span><img class=\"arsenal-avatar\" alt=\"\"><span class=\"arsenal-name hp-player-name\" data-no-translate></span></div><div class=\"arsenal-metrics\"><span class=\"arsenal-points\"><small>\u041e\u0447\u043a\u0438</small><strong class=\"arsenal-score\">0</strong></span><span class=\"arsenal-kills\"><small>\u0423\u0431\u0438\u0439\u0441\u0442\u0432\u0430</small><strong class=\"arsenal-kill-count\">0</strong></span></div><div class=\"arsenal-health\"><span></span><div class=\"arsenal-health-track\" aria-hidden=\"true\"><i></i></div></div>';arsenalRows.set(p.id,row);}"
+        },
+        {
+          "file": "games/tankarena/public/app.js",
+          "line": 95,
+          "text": "  const avatar=row.querySelector('.arsenal-avatar'),profile=window.PARTY_ROSTER?.find(member=>member.id===p.id),identity=profile?.avatar||p.name||p.id;"
+        },
+        {
+          "file": "games/tankarena/public/app.js",
+          "line": 96,
+          "text": "  avatar.dataset.photo=String(!!profile?.avatar);if(avatar.dataset.identity!==identity){let seed=0;for(const c of String(p.name||p.id))seed=(seed*31+c.charCodeAt(0))>>>0;avatar.src=window.PartyArt?.mascotSource?.({seed:p.name||p.id,avatar:profile?.avatar})||profile?.avatar||'/assets/avatars/atlas-mascots/mascot-'+String(1+seed%16).padStart(2,'0')+'.webp';avatar.dataset.identity=identity;}"
+        },
+        {
+          "file": "games/tankarena/public/style.css",
+          "line": 75,
+          "text": " html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-avatar{width:32px;height:40px;object-fit:contain;justify-self:center}"
+        },
+        {
+          "file": "games/tankarena/public/style.css",
+          "line": 101,
+          "text": " html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-avatar{width:24px;height:30px}"
+        },
+        {
+          "file": "games/tankarena/public/style.css",
+          "line": 136,
+          "text": "/* Match the uploaded-photo identity contract without clipping mascot art. */"
+        },
+        {
+          "file": "games/tankarena/public/style.css",
+          "line": 137,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=tankarena] body.arena-host #board .arsenal-avatar[data-photo=true]{height:auto!important;aspect-ratio:1;object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/tankarena/public/style.css",
+          "line": 140,
+          "text": ".arsenal-avatar[data-photo=true]{box-sizing:border-box;border:1.5px solid var(--player,#b6ba99)}"
+        }
+      ]
+    },
+    "chaos": {
+      "games": [
+        "chaos"
+      ],
+      "renderFamily": "No native uploaded portrait renderer found; vehicles/names/default markers remain authored",
+      "sourceReferences": []
+    },
+    "kart": {
+      "games": [
+        "kart"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/kart/static/host.js",
+          "line": 61,
+          "text": "function kartPortrait(node,p){"
+        },
+        {
+          "file": "games/kart/static/host.js",
+          "line": 63,
+          "text": " const key=JSON.stringify([profile.id,profile.name,profile.avatar]);if(node.dataset.identity===key)return;node.dataset.identity=key;"
+        },
+        {
+          "file": "games/kart/static/host.js",
+          "line": 65,
+          "text": " const image=new Image();image.alt='';image.className=profile.avatar?'kart-photo':'kart-mascot';image.src=profile.avatar||window.PartyArt?.mascotSource?.({seed:profile.id||profile.name})||'/assets/avatars/atlas-mascots/mascot-'+String(1+seed%16).padStart(2,'0')+'.webp';node.replaceChildren(image);"
+        },
+        {
+          "file": "games/kart/static/host.js",
+          "line": 106,
+          "text": "      if(row.color!==p.color){row.color=p.color;row.element.style.setProperty('--racer-color',p.color);}kartPortrait(row.dot,p);"
+        },
+        {
+          "file": "games/kart/static/styles.css",
+          "line": 127,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-dot img.kart-photo{object-fit:cover;border-radius:50%;width:48px;height:48px}"
+        },
+        {
+          "file": "games/kart/static/styles.css",
+          "line": 192,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5))) .leader-dot img.kart-photo{width:36px!important;height:36px!important}"
+        },
+        {
+          "file": "games/kart/static/styles.css",
+          "line": 211,
+          "text": ".leader-dot img.kart-photo{box-sizing:border-box;border:1.5px solid var(--player,#8ebba6)}"
+        }
+      ]
+    },
+    "monster": {
+      "games": [
+        "monster"
+      ],
+      "renderFamily": "No native uploaded portrait renderer found; vehicles/names/default markers remain authored",
+      "sourceReferences": [
+        {
+          "file": "games/monster/public/host.js",
+          "line": 78,
+          "text": "    row.innerHTML=`<div class=\"avatar\">${i+1}</div><div class=\"name\"></div><div class=\"dot ${p.connected?'online':''}\"></div><button class=\"kick\" title=\"\u0423\u0434\u0430\u043b\u0438\u0442\u044c\">\u00d7</button>`;"
+        },
+        {
+          "file": "games/monster/public/monster-glass.css",
+          "line": 2,
+          "text": "body{font-weight:400;background:radial-gradient(ellipse at 20% 0%,#b4ff390a,transparent 48%),radial-gradient(ellipse at 90% 90%,#8b5cf61a,transparent 60%),#0a0a0c!important}h1,h2,h3,.active-player,.prompt{font-style:italic;font-weight:800!important;text-transform:uppercase;letter-spacing:-.04em}.eyebrow{font-weight:700;font-size:10px;letter-spacing:.15em}.panel,.phone-card{background:linear-gradient(140deg,#1c1c24c4,#101016e8);border:1px solid #ffffff12;backdrop-filter:blur(22px);box-shadow:inset 0 1px 0 #ffffff06,0 18px 50px #0003}.btn{border-radius:999px;min-height:48px;font-weight:700;transition:transform 180ms cubic-bezier(.2,.8,.2,1),box"
+        },
+        {
+          "file": "games/monster/public/styles.css",
+          "line": 6,
+          "text": ".host-page{min-height:100vh;background:radial-gradient(circle at 85% 0%,#2b2419 0,transparent 28%),var(--bg)}.host-shell{width:min(1480px,94vw);margin:0 auto;padding:32px 0 56px}.host-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px}.host-header h1{font-size:clamp(42px,5vw,82px);line-height:.82;margin:10px 0 0;letter-spacing:-.07em}.host-header h1 span{color:var(--orange)}.round-badge{background:var(--lime);color:#111;border-radius:999px;padding:12px 18px;font-weight:1000}.lobby-grid{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:20px}.setup-card,.qr-card,.players-card{background:var(--panel2);"
+        }
+      ]
+    },
+    "spy": {
+      "games": [
+        "spy"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/spy/public/host.css",
+          "line": 1,
+          "text": "body{overflow-x:hidden}.host-shell{min-height:100vh;padding:28px 34px 36px;max-width:1600px;margin:auto}.topbar{height:70px;display:flex;justify-content:space-between;align-items:flex-start}.logo{font-weight:900;font-size:28px;letter-spacing:-.06em}.logo span{color:var(--lime)}.small{font-size:12px;margin-top:3px}.top-right{display:flex;gap:10px}.view{min-height:calc(100vh - 120px)}.hidden{display:none!important}.lobby-grid{display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:1fr auto;gap:20px}.hero-card{padding:34px;display:flex;flex-direction:column;justify-content:space-between}.hero-card h1{font-size:clamp(42px,5vw,76px);lin"
+        },
+        {
+          "file": "games/spy/public/host.html",
+          "line": 14,
+          "text": "    <div class=\"turn-card\" data-tv-hud-anchor data-tv-hud-owns-actor><div class=\"duel\"><div class=\"person asking\"><span id=\"askEmoji\" class=\"spy-identity-avatar\" aria-hidden=\"true\"></span><div class=\"person-copy\"><small>Asking</small><b id=\"askName\" class=\"player-name\" data-no-translate>\u2014</b></div></div><div class=\"arrow\" aria-hidden=\"true\"><svg aria-hidden=\"true\" class=\"\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"currentColor\" viewBox=\"1.88 1.88 6.25 6.25\"><path d=\"M8.122 5.067c-.03.352-.373.616-1.06 1.145l-.915.705c-.578.445-.868.668-1.127.624a.6.6 0 0 1-.258-.112c-.103-.077-.165-.204-.21-.399-.094-.407-.141-.611-.257-"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 18,
+          "text": "  $('#playersList').innerHTML = ps.length ? ps.map(p=>`<div class=\"player-row\"><div class=\"avatar\">${esc(p.emoji)}</div><b class=\"player-name\" data-no-translate>${esc(p.name)}</b><span class=\"status\">${p.connected?'online':'offline'}</span><button class=\"kick\" data-kick=\"${p.id}\">\u00d7</button></div>`).join('') : '<div class=\"empty\">\u041f\u043e\u043a\u0430 \u043d\u0438\u043a\u043e\u0433\u043e. \u041f\u0443\u0441\u0442\u044c \u043f\u0435\u0440\u0432\u044b\u0439 \u0438\u0433\u0440\u043e\u043a \u0441\u043a\u0430\u043d\u0438\u0440\u0443\u0435\u0442 QR \ud83d\udc46</div>';"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 22,
+          "text": "function renderReveal(){ const ps=(state.players||[]).filter(p=>!p.spectator); $('#readyGrid').style.setProperty('--spy-ready-count',Math.min(4,Math.max(1,ps.length))); const ready=ps.filter(p=>p.ready).length; $('#readyCount').textContent=`${ready} / ${ps.length}`; $('#readyGrid').innerHTML=ps.map(p=>`<div class=\"ready-item ${p.ready?'ready':''}\"><span class=\"spy-identity-avatar\" aria-hidden=\"true\"></span><b class=\"player-name\" data-no-translate>${esc(p.name)}</b><small>${p.ready?'\u0433\u043e\u0442\u043e\u0432':'\u0441\u043c\u043e\u0442\u0440\u0438\u0442 \u0440\u043e\u043b\u044c\u2026'}</small></div>`).join(''); [...$('#readyGrid').children].forEach((row,i)=>identityAvatar(row.querySelector('.spy-identity-avatar'),ps[i])); "
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 23,
+          "text": "function identityAvatar(node,p){"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 24,
+          "text": " const profile=(window.PARTY_ROSTER||[]).find(x=>x.id===p?.id)||p||{},key=JSON.stringify([profile.id,profile.name,profile.avatar]);if(node.dataset.identity===key)return;node.dataset.identity=key;"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 25,
+          "text": " if(profile.avatar){const image=new Image();image.src=profile.avatar;image.alt='';image.className='spy-photo';node.replaceChildren(image);return;}"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 26,
+          "text": " const image=new Image();let seed=0;for(const ch of String(profile.id||profile.name||'?'))seed=(seed*31+ch.codePointAt(0))>>>0;image.src='/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';image.alt='';image.className='spy-mascot';node.textContent=Array.from(profile.name||'?')[0];image.onload=()=>{if(node.dataset.identity===key)node.replaceChildren(image);};"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 31,
+          "text": "  const t=state.currentTurn; if(t?.asker&&t?.target){identityAvatar($('#askEmoji'),t.asker);$('#askName').textContent=t.asker.name;identityAvatar($('#targetEmoji'),t.target);$('#targetName').textContent=t.target.name}"
+        },
+        {
+          "file": "games/spy/public/host.js",
+          "line": 35,
+          "text": "  $('#playRoster').replaceChildren(...state.players.map(p=>{const row=document.createElement('div'),avatar=document.createElement('span'),copy=document.createElement('div'),name=document.createElement('b'),status=document.createElement('small');const asking=t?.asker?.id===p.id,answering=t?.target?.id===p.id;row.className='roster-item'+(asking?' asker':answering?' target':'');avatar.className='spy-roster-avatar';identityAvatar(avatar,p);name.className='player-name';name.dataset.noTranslate='';name.textContent=p.name;status.textContent=asking?'Asking':answering?'Answering':p.connected?'Listening':'Offline';copy.className='spy-roster-copy';copy."
+        },
+        {
+          "file": "games/spy/public/index.html",
+          "line": 5,
+          "text": "  <section id=\"lobbyView\" class=\"screen hidden\"><div class=\"phone-head\"><div class=\"brand smallbrand\">SPY<span>!</span></div><span class=\"pill\"><i class=\"dot\"></i>\u0432 \u043b\u043e\u0431\u0431\u0438</span></div><div class=\"center-stack\"><div class=\"me-avatar\" id=\"lobbyEmoji\">\ud83d\ude42</div><h2 id=\"lobbyName\">\u0418\u0433\u0440\u043e\u043a</h2><p class=\"muted\">\u0416\u0434\u0451\u043c, \u043f\u043e\u043a\u0430 \u0432\u0435\u0434\u0443\u0449\u0438\u0439 \u0437\u0430\u043f\u0443\u0441\u0442\u0438\u0442 \u0440\u0430\u0443\u043d\u0434</p><div class=\"counter\"><b id=\"lobbyCount\">0</b><span>\u0438\u0433\u0440\u043e\u043a\u043e\u0432 \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u043e</span></div></div><div class=\"bottom-note\">\u041d\u0435 \u0437\u0430\u043a\u0440\u044b\u0432\u0430\u0439 \u044d\u0442\u0443 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443. \u042d\u043a\u0440\u0430\u043d \u043d\u0435 \u0434\u043e\u043b\u0436\u0435\u043d \u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0432\u043e \u0432\u0440\u0435\u043c\u044f \u0438\u0433\u0440\u044b.</div></section>"
+        },
+        {
+          "file": "games/spy/public/index.html",
+          "line": 12,
+          "text": "      <div id=\"turnBox\" class=\"turn-box\"><h2 id=\"turnTitle\"></h2><div id=\"phoneExchange\" class=\"spy-phone-exchange\"><div class=\"spy-phone-person\"><span id=\"phoneAskerAvatar\" class=\"spy-identity-avatar\" aria-hidden=\"true\"></span><b id=\"phoneAskerName\" class=\"player-name\" data-no-translate></b><small>Asking</small></div><svg aria-hidden=\"true\" class=\"spy-exchange-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"currentColor\" viewBox=\"1.88 1.88 6.25 6.25\"><path d=\"M8.122 5.067c-.03.352-.373.616-1.06 1.145l-.915.705c-.578.445-.868.668-1.127.624a.6.6 0 0 1-.258-.112c-.103-.077-.165-.204-.21-.399-.094-.407-.141-.611-.257-.716a"
+        },
+        {
+          "file": "games/spy/public/player.css",
+          "line": 1,
+          "text": "html,body{min-height:100%;overscroll-behavior:none}.phone-shell{min-height:100dvh;max-width:560px;margin:auto;position:relative}.screen{min-height:100dvh;padding:24px 20px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column}.hidden{display:none!important}.brand{font-weight:900;font-size:26px;letter-spacing:-.07em}.brand span{color:var(--lime)}.smallbrand{font-size:21px}.join-hero{margin:auto 0 28px}.big-icon{font-size:64px}.join-hero h1{font-size:58px;line-height:.9;letter-spacing:-.075em;margin:16px 0}.join-hero p{color:var(--muted);line-height:1.55;font-size:15px}.join-form{display:flex;flex-direction:column;gap:12px"
+        },
+        {
+          "file": "games/spy/public/player.js",
+          "line": 20,
+          "text": "function identityAvatar(node,p){"
+        },
+        {
+          "file": "games/spy/public/player.js",
+          "line": 21,
+          "text": " const profile=(window.PARTY_ROSTER||[]).find(x=>x.id===p?.id)||p||{},key=JSON.stringify([profile.id,profile.name,profile.avatar]);if(node.dataset.identity===key)return;node.dataset.identity=key;"
+        },
+        {
+          "file": "games/spy/public/player.js",
+          "line": 22,
+          "text": " if(profile.avatar){const image=new Image();image.src=profile.avatar;image.alt='';image.className='spy-photo';node.replaceChildren(image);return;}"
+        },
+        {
+          "file": "games/spy/public/player.js",
+          "line": 23,
+          "text": " const image=new Image();let seed=0;for(const ch of String(profile.id||profile.name||'?'))seed=(seed*31+ch.codePointAt(0))>>>0;image.src='/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';image.alt='';image.className='spy-mascot';node.textContent=Array.from(profile.name||'?')[0];image.onload=()=>{if(node.dataset.identity===key)node.replaceChildren(image);};"
+        },
+        {
+          "file": "games/spy/public/player.js",
+          "line": 32,
+          "text": " identityAvatar($('#phoneAskerAvatar'),t?.asker);identityAvatar($('#phoneTargetAvatar'),t?.target);$('#phoneAskerName').textContent=t?.asker?.name||'\u2014';$('#phoneTargetName').textContent=t?.target?.name||'\u2014';"
+        },
+        {
+          "file": "games/spy/public/player.js",
+          "line": 64,
+          "text": "let voteLocked=false; function renderVote(){const me=privateState?.player;if(!me)return; const already=publicState.players.find(p=>p.id===me.id)?.hasVoted;voteLocked=already;$('#voteStatus').textContent=already?'\u0433\u043e\u043b\u043e\u0441 \u043f\u0440\u0438\u043d\u044f\u0442 \u2713':'\u0432\u044b\u0431\u0435\u0440\u0438 \u0438\u0433\u0440\u043e\u043a\u0430';const voteScroll=$('#voteList').scrollTop;$('#voteList').innerHTML=publicState.players.filter(p=>p.id!==me.id).map(p=>`<button class=\"vote-option\" data-vote=\"${p.id}\" ${already?'disabled':''}><span class=\"emoji spy-identity-avatar\" aria-hidden=\"true\"></span><b class=\"player-name\" data-no-translate>${esc(p.name)}</b><span>\u2192</span></button>`).join('');$('#voteList').scrollTop=voteScroll;document.querySele"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 119,
+          "text": ".spy-roster-avatar{display:grid;place-items:center;width:100%;aspect-ratio:1}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 120,
+          "text": ":is(.spy-identity-avatar,.spy-roster-avatar) :is(canvas,img){display:block;width:100%;height:100%;object-fit:contain}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 121,
+          "text": ":is(.spy-identity-avatar,.spy-roster-avatar) .spy-photo{object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 125,
+          "text": "html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .spy-identity-avatar{display:block;width:calc(160 * var(--spy-tv-unit,1px));height:calc(160 * var(--spy-tv-unit,1px))}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 140,
+          "text": ".spy-phone-person .spy-identity-avatar{width:60px;height:60px;display:block}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 152,
+          "text": " .spy-phone-person .spy-identity-avatar{width:44px;height:44px}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 161,
+          "text": " .spy-phone-person .spy-identity-avatar{width:32px;height:32px}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 166,
+          "text": "#voteList .spy-identity-avatar{width:40px;height:40px;display:grid;place-items:center;flex:none}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 167,
+          "text": "#readyGrid .spy-identity-avatar{width:64px;height:64px;display:grid;place-items:center;margin-inline:auto}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 175,
+          "text": "html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .spy-identity-avatar{width:clamp(110px,8.3vw,160px)!important;height:clamp(110px,8.3vw,160px)!important}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 191,
+          "text": "html.hp-ui.party-managed.party-host.party-session-active[data-party-game=spy] #playView .person .spy-identity-avatar{width:clamp(165px,12.5vw,240px)!important;height:clamp(165px,12.5vw,240px)!important}"
+        },
+        {
+          "file": "games/spy/public/spy-layout.css",
+          "line": 209,
+          "text": ":is(.spy-identity-avatar,.spy-roster-avatar) .spy-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#b6b3d5)}"
+        }
+      ]
+    },
+    "millionaire": {
+      "games": [
+        "millionaire"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/millionaire/public/host.js",
+          "line": 4,
+          "text": "function identityImage(node,p){const profile=(window.PARTY_ROSTER||[]).find(x=>x.id===p.id)||p,key=JSON.stringify([profile.id,profile.name,profile.avatar]);if(node.dataset.identity===key)return;node.dataset.identity=key;let seed=0;for(const ch of String(profile.id||profile.name||'?'))seed=(seed*31+ch.codePointAt(0))>>>0;const image=new Image();image.alt='';image.src=profile.avatar||'/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';image.className=profile.avatar?'mq-photo':'mq-mascot';node.replaceChildren(image);}"
+        },
+        {
+          "file": "games/millionaire/public/tv-layout.css",
+          "line": 114,
+          "text": ".mq-place{font:italic 900 24px/1 KardiaFatRunner,sans-serif;color:#cbb2ff}.mq-identity{display:grid;place-items:center;width:52px;height:56px}.mq-identity img{width:100%;height:100%;object-fit:contain}.mq-identity .mq-photo{height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/millionaire/public/tv-layout.css",
+          "line": 168,
+          "text": ".mq-identity .mq-photo{box-sizing:border-box;border:1.5px solid var(--player,#ceb894)}"
+        }
+      ]
+    },
+    "quiz": {
+      "games": [
+        "sinyakquiz",
+        "warsaw"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/quiz/public/app.js",
+          "line": 4,
+          "text": "function identityImage(node,p){const profile=(window.PARTY_ROSTER||[]).find(x=>x.id===p.id)||p,key=JSON.stringify([profile.id,profile.name,profile.avatar]);if(node.dataset.identity===key)return;node.dataset.identity=key;let seed=0;for(const ch of String(profile.id||profile.name||'?'))seed=(seed*31+ch.codePointAt(0))>>>0;const image=new Image();image.alt='';image.src=profile.avatar||'/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';image.className=profile.avatar?'quiz-photo':'quiz-mascot';node.replaceChildren(image);}"
+        },
+        {
+          "file": "games/quiz/public/screen.css",
+          "line": 187,
+          "text": ".quiz-identity{display:grid;place-items:center;width:52px;height:64px}.quiz-identity img{width:100%;height:100%;object-fit:contain}.quiz-identity .quiz-photo{height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/quiz/public/screen.css",
+          "line": 283,
+          "text": ".quiz-identity .quiz-photo{box-sizing:border-box;border:1.5px solid var(--player,#cbb5dd)}"
+        }
+      ]
+    },
+    "crocodile": {
+      "games": [
+        "crocodile"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 70,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{display:block;width:clamp(140px,12vw,230px);height:clamp(140px,12vw,230px);object-fit:contain;flex:none}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 71,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait.has-photo{border-radius:50%;object-fit:cover}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 75,
+          "text": "html.hp-ui.party-managed.party-player[data-party-game=crocodile] body.party-screen #actorPortrait{display:none!important}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 85,
+          "text": ".social-roster-avatar{display:grid;place-items:center;width:36px;height:40px;flex:none;font:500 20px var(--hp-font-body)}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 86,
+          "text": ".social-roster-avatar img{width:100%;height:100%;object-fit:contain}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 89,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{width:clamp(180px,16vw,300px);height:clamp(180px,16vw,300px)}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 90,
+          "text": ".social-roster-avatar.has-photo img{border-radius:50%;object-fit:cover}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 91,
+          "text": ".social-roster-avatar.offline{opacity:.5}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 97,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{width:clamp(120px,9.6vw,184px)!important;height:clamp(120px,9.6vw,184px)!important}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 122,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{width:clamp(162px,12.96vw,248px)!important;height:clamp(162px,12.96vw,248px)!important}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 131,
+          "text": ".social-roster-avatar.has-photo{height:36px;aspect-ratio:1}"
+        },
+        {
+          "file": "games/crocodile/public/screen.css",
+          "line": 132,
+          "text": ".social-roster-avatar.has-photo img,#actorPortrait.has-photo{height:auto!important;aspect-ratio:1;border-radius:50%;object-fit:cover;box-sizing:border-box;border:1.5px solid var(--player,#b2cb8d)}"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 36,
+          "text": " let portrait=document.getElementById('actorPortrait');if(!portrait){portrait=new Image();portrait.id='actorPortrait';portrait.alt='';document.getElementById('actor').before(portrait);}"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 38,
+          "text": " const src=player.avatar||'/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';if(portrait.dataset.source!==src){portrait.dataset.source=src;portrait.src=src;}portrait.classList.toggle('has-photo',!!player.avatar);"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 48,
+          "text": "  let avatar = row.querySelector('.social-roster-avatar');"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 49,
+          "text": "  if (!avatar) { avatar = document.createElement('span'); avatar.className = 'social-roster-avatar'; avatar.setAttribute('aria-hidden', 'true'); row.querySelector('.rank').after(avatar); }"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 52,
+          "text": "  const src = player.avatar || '/assets/avatars/atlas-mascots/mascot-' + String(seed % 16 + 1).padStart(2, '0') + '.webp';"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 53,
+          "text": "  if (avatar.dataset.source !== src) {"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 54,
+          "text": "   avatar.dataset.source = src; avatar.textContent = String(p.name || '?').slice(0, 1);"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 55,
+          "text": "   const image = new Image(); image.alt = ''; image.onload = () => { if (avatar.dataset.source === src) avatar.replaceChildren(image); }; image.src = src;"
+        },
+        {
+          "file": "games/crocodile/public/screen.js",
+          "line": 57,
+          "text": "  avatar.classList.toggle('has-photo', !!player.avatar); avatar.classList.toggle('offline', !p.online);"
+        }
+      ]
+    },
+    "jenga": {
+      "games": [
+        "jenga"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/jenga/public/app.js",
+          "line": 3,
+          "text": "function crewPortrait(p){const profile=(window.PARTY_ROSTER||[]).find(q=>q.id===p.id)||p;let seed=0;for(const c of String(p.id||p.name))seed=(seed*31+c.charCodeAt(0))>>>0;return profile.avatar||'/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';}"
+        },
+        {
+          "file": "games/jenga/public/app.js",
+          "line": 10,
+          "text": "const key=JSON.stringify(state.players.map(p=>[p.id,p.moves,p.connected]))+state.currentId+state.phase;if(key!==boardKey){boardKey=key;$('board').innerHTML=[...state.players].sort((a,b)=>b.moves-a.moves).map((p,i)=>`<div class=\"stat ${p.id===state.currentId&&playing?'active':''}\"><span class=\"crew-place\">${1+state.players.filter(q=>q.moves>p.moves).length}</span><img class=\"crew-avatar ${(window.PARTY_ROSTER||[]).find(q=>q.id===p.id)?.avatar?'has-photo':''}\" src=\"${esc(crewPortrait(p))}\" alt=\"\"><span class=\"hp-player-name\" data-no-translate>${esc(p.name)}<small>${p.connected?'':' \u00b7 \u043e\u0444\u043b\u0430\u0439\u043d'}</small></span><b class=\"jenga-block-count\">${p.moves"
+        },
+        {
+          "file": "games/jenga/public/controller.css",
+          "line": 60,
+          "text": "html.hp-ui.party-managed.party-player[data-party-game=jenga] body main.phone #board .crew-avatar{width:32px;height:32px}"
+        },
+        {
+          "file": "games/jenga/public/style.css",
+          "line": 29,
+          "text": ".crew-avatar{width:44px;height:44px;object-fit:contain}.crew-avatar.has-photo{object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/jenga/public/style.css",
+          "line": 115,
+          "text": ".crew-avatar.has-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#c8b493)}"
+        }
+      ]
+    },
+    "crane": {
+      "games": [
+        "crane"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/crane/public/client.js",
+          "line": 63,
+          "text": "function renderPlayers(){const key=JSON.stringify([state.activeId,state.players.map(p=>[p.id,p.name,p.color,p.score,p.placed,p.perfects,p.misses,p.connected])]);if(key===rankingRenderKey)return;rankingRenderKey=key;const list=$('#players');crewEndAnchor??=watchCrewEnd(list);crewEndAnchor.remember();const existing=new Map([...list.children].map(e=>[e.dataset.id,e])),tops=new Map([...list.children].map(e=>[e.dataset.id,e.offsetTop]));const ranked=[...state.players].sort((a,b)=>b.score-a.score);ranked.forEach((p,i)=>{let row=existing.get(p.id);if(!row){row=document.createElement('div');row.dataset.id=p.id;row.innerHTML='<span class=\"rank\"></span"
+        },
+        {
+          "file": "games/crane/public/style.css",
+          "line": 1,
+          "text": ":root{color-scheme:dark;--bg:#0c151d;--panel:#14232d;--mint:#bcf781;--text:#f1f4e9;--muted:#93a8ae;--line:#29404b}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}button,input{font:inherit}button{border:0;border-radius:16px;background:var(--mint);color:#152218;min-height:52px;padding:14px 20px;font-weight:850;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none;transition:transform .12s,background .12s,box-shadow .12s}button:active,button.held{transform:scale(.96);box-shadow:0 0 28"
+        },
+        {
+          "file": "games/crane/public/style.css",
+          "line": 68,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crane] body .player .avatar{width:11px;height:11px}"
+        },
+        {
+          "file": "games/crane/public/style.css",
+          "line": 112,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player .avatar{width:44px!important;height:44px!important;object-fit:contain;border-radius:0!important;background:none!important}"
+        },
+        {
+          "file": "games/crane/public/style.css",
+          "line": 113,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell .player .avatar.has-photo{object-fit:cover;border-radius:50%!important}"
+        },
+        {
+          "file": "games/crane/public/style.css",
+          "line": 171,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=crane] body[data-role=host] main.host-shell aside[data-tv-hud-rail]:has(#players>.player):not(:has(#players>.player:nth-child(5))) #players>.player .avatar{width:36px!important;height:36px!important}"
+        },
+        {
+          "file": "games/crane/public/style.css",
+          "line": 195,
+          "text": ".player .avatar.has-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#a8c6b5)}"
+        }
+      ]
+    },
+    "naval": {
+      "games": [
+        "naval"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/naval/public/broadcast.js",
+          "line": 34,
+          "text": "  const board=$('board');if(board){const rows=new Map([...board.children].map(row=>[row.dataset.id,row]));for(const player of s.players){const row=rows.get(player.id);if(!row)continue;board.append(row);let avatar=row.querySelector('.crew-avatar');if(!avatar){avatar=document.createElement('img');avatar.className='crew-avatar';avatar.alt='';avatar.draggable=false;row.querySelector('.rank').after(avatar);}const person=(window.PARTY_ROSTER||[]).find(p=>p.id===player.id||p.name===player.name)||player;const source=window.PartyArt?.mascotSource({seed:person.id||player.name,avatar:person.avatar})||'/assets/avatars/atlas-mascots/mascot-01.webp';if(ava"
+        },
+        {
+          "file": "games/naval/public/broadcast.js",
+          "line": 54,
+          "text": "   const person=(window.PARTY_ROSTER||[]).find(p=>p.id===player.id||p.name===player.name)||player;const botNumber=online.length>8&&person.testBot?player.name.match(/^(?:\u0411\u043e\u0442|Bot)\\s+(\\d+)$/iu):null;name.textContent=botNumber?(window.PartyI18n?.language==='ru'?'\u0411':'B')+botNumber[1]:player.name;name.title=player.name;name.setAttribute('aria-label',player.name);health.textContent=s.phase==='lobby'?'':' \u00b7 '+player.health+'\u2665';const identity=document.createElement('img');identity.className='fleet-avatar';identity.alt='';identity.draggable=false;identity.dataset.photo=String(!!person.avatar);identity.src=window.PartyArt?.mascotSource({seed:person.id||"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 132,
+          "text": ".fleet-avatar{width:40px;height:48px;object-fit:contain;flex:none;pointer-events:none}"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 133,
+          "text": ".fleet-avatar[data-photo=true]{object-fit:cover;border-radius:50%;height:auto!important;aspect-ratio:1}"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 138,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .fleet-avatar{width:26px;height:32px}"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 238,
+          "text": "   line, with separate avatar, identity/status and score tracks. */"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 258,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar{grid-column:2;grid-row:1;width:30px;height:36px;object-fit:contain;pointer-events:none}"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 259,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar[data-photo=true]{height:30px;border-radius:50%;object-fit:cover}"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 301,
+          "text": "/* Name and facts share an identity block; facts use the avatar's width too."
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 315,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar{width:28px;height:28px;object-fit:contain}"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 316,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar[data-photo=true]{height:28px}"
+        },
+        {
+          "file": "games/naval/public/screen.css",
+          "line": 325,
+          "text": ":is(.crew-avatar,.fleet-avatar)[data-photo=true]{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#88b6c5)}"
+        }
+      ]
+    },
+    "drawguess": {
+      "games": [
+        "drawguess"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/drawguess/public/screen.css",
+          "line": 93,
+          "text": ".social-roster-avatar{display:grid;place-items:center;width:36px;height:40px;flex:none;font:500 20px var(--hp-font-body)}"
+        },
+        {
+          "file": "games/drawguess/public/screen.css",
+          "line": 94,
+          "text": ".social-roster-avatar img{width:100%;height:100%;object-fit:contain}"
+        },
+        {
+          "file": "games/drawguess/public/screen.css",
+          "line": 99,
+          "text": ".social-roster-avatar.has-photo img{border-radius:50%;object-fit:cover}"
+        },
+        {
+          "file": "games/drawguess/public/screen.css",
+          "line": 100,
+          "text": ".social-roster-avatar.offline{opacity:.5}"
+        },
+        {
+          "file": "games/drawguess/public/screen.css",
+          "line": 158,
+          "text": ".social-roster-avatar.has-photo{height:36px;aspect-ratio:1}"
+        },
+        {
+          "file": "games/drawguess/public/screen.css",
+          "line": 159,
+          "text": ".social-roster-avatar.has-photo img{height:auto!important;aspect-ratio:1;border-radius:50%;object-fit:cover;box-sizing:border-box;border:1.5px solid var(--player,#b4accf)}"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "line": 42,
+          "text": "  let avatar = row.querySelector('.social-roster-avatar');"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "line": 43,
+          "text": "  if (!avatar) { avatar = document.createElement('span'); avatar.className = 'social-roster-avatar'; avatar.setAttribute('aria-hidden', 'true'); row.querySelector('.rank').after(avatar); }"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "line": 46,
+          "text": "  const src = player.avatar || '/assets/avatars/atlas-mascots/mascot-' + String(seed % 16 + 1).padStart(2, '0') + '.webp';"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "line": 47,
+          "text": "  if (avatar.dataset.source !== src) {"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "line": 48,
+          "text": "   avatar.dataset.source = src; avatar.textContent = String(p.name || '?').slice(0, 1);"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "line": 49,
+          "text": "   const image = new Image(); image.alt = ''; image.onload = () => { if (avatar.dataset.source === src) avatar.replaceChildren(image); }; image.src = src;"
+        },
+        {
+          "file": "games/drawguess/public/screen.js",
+          "line": 51,
+          "text": "  avatar.classList.toggle('has-photo', !!player.avatar); avatar.classList.toggle('offline', !p.online);"
+        }
+      ]
+    },
+    "western_duel": {
+      "games": [
+        "western_duel"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/western_duel/public/app.js",
+          "line": 27,
+          "text": "function duelPortrait(node,p){"
+        },
+        {
+          "file": "games/western_duel/public/app.js",
+          "line": 29,
+          "text": " const image=new Image();image.alt='';image.className=profile.avatar?'duel-photo':'duel-mascot';image.src=profile.avatar||window.PartyArt?.mascotSource?.({seed:profile.id||profile.name})||'/assets/avatars/atlas-mascots/mascot-'+String(1+seed%16).padStart(2,'0')+'.webp';node.replaceChildren(image);"
+        },
+        {
+          "file": "games/western_duel/public/app.js",
+          "line": 33,
+          "text": "const queueKey=JSON.stringify([state.index,state.queue,state.players.map(p=>[p.id,p.name])]);if($('queue').dataset.key!==queueKey){$('queue').dataset.key=queueKey;$('queue').innerHTML=state.queue.length?state.queue.slice(0,5).map((pair,i)=>`<div class=\"duel-next\" data-duel-number=\"${state.index+i+1}\"><span class=\"duel-next-index\">${state.index+i+1}</span><span class=\"duel-next-pair\"><span data-no-translate>${esc(name(pair[0]))}</span><span class=\"duel-versus\">\u00d7</span><span data-no-translate>${esc(name(pair[1]))}</span></span></div>`).join(''):`<span class=\"duel-queue-empty\">${state.phase==='waiting'?'\u041f\u0430\u0440\u044b \u043f\u043e\u044f\u0432\u044f\u0442\u0441\u044f \u043f\u043e\u0441\u043b\u0435 \u0441\u0442\u0430\u0440\u0442\u0430':'\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044f\u044f \u043f\u0430\u0440"
+        },
+        {
+          "file": "games/western_duel/public/style.css",
+          "line": 56,
+          "text": "html.hp-ui.party-managed[data-party-game=western_duel] body .duel-portrait{width:44px;height:48px;display:grid;place-items:center}"
+        },
+        {
+          "file": "games/western_duel/public/style.css",
+          "line": 57,
+          "text": "html.hp-ui.party-managed[data-party-game=western_duel] body .duel-portrait img{width:100%;height:100%;object-fit:contain}"
+        },
+        {
+          "file": "games/western_duel/public/style.css",
+          "line": 58,
+          "text": "html.hp-ui.party-managed[data-party-game=western_duel] body .duel-portrait img.duel-photo{object-fit:cover;border-radius:50%;height:44px}"
+        },
+        {
+          "file": "games/western_duel/public/style.css",
+          "line": 113,
+          "text": ".duel-portrait img.duel-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#d0af86)}"
+        }
+      ]
+    },
+    "arcade": {
+      "games": [
+        "taprace",
+        "punchmeter",
+        "flappy",
+        "hungry",
+        "snakelines",
+        "carryball"
+      ],
+      "renderFamily": "Canvas world + DOM uploaded roster",
+      "sourceReferences": [
+        {
+          "file": "games/arcade/public/app.js",
+          "line": 39,
+          "text": "   const avatar=document.createElement('span'),name=document.createElement('span'),label=document.createElement('span'),detail=document.createElement('small'),score=document.createElement('b');"
+        },
+        {
+          "file": "games/arcade/public/app.js",
+          "line": 40,
+          "text": "   avatar.className='avatar';name.append(label,detail);row.append(avatar,name,score);row.parts={avatar,label,detail,score};arcadeRows.set(p.id,row);}"
+        },
+        {
+          "file": "games/arcade/public/app.js",
+          "line": 41,
+          "text": "  const {avatar,label,detail,score}=row.parts;"
+        },
+        {
+          "file": "games/arcade/public/app.js",
+          "line": 42,
+          "text": "  const identity=window.PARTY_ROSTER?.find?.(q=>q.id===p.id)||p,src=window.PartyArt?.mascotSource?.({seed:p.id,avatar:identity.avatar||identity.photo,color:p.color});"
+        },
+        {
+          "file": "games/arcade/public/app.js",
+          "line": 43,
+          "text": "  if(src&&avatar.dataset.src!==src){avatar.dataset.src=src;const portrait=document.createElement('img');portrait.src=src;portrait.alt='';portrait.className=identity.avatar||identity.photo?'player-photo':'player-mascot';avatar.replaceChildren(portrait);}"
+        },
+        {
+          "file": "games/arcade/public/app.js",
+          "line": 44,
+          "text": "  if(avatar.style.getPropertyValue('--color')!==p.color)avatar.style.setProperty('--color',p.color);"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 1,
+          "text": "*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:PartyRubik,Rubik,system-ui;color:#f4f7ed;background:transparent}button,input{font:inherit}button{border:1px solid #ffffff20;border-radius:22px;padding:16px 24px;background:#ffffff08;color:inherit;font-weight:850;cursor:pointer}.primary{background:linear-gradient(120deg,#d7ffa0,#b8f358);color:#17240a;box-shadow:inset 0 2px #efffdc,0 5px #739a36;border:1px solid #e5ffc0;font-size:22px;font-weight:900}.primary:active{transform:translateY(3px);box-shadow:inset 0 2px #efffdc,0 2px #739a36}[hidden]{display:none!important}.panel{border:1px solid #ffffff20;border-radius:28px;backg"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 22,
+          "text": "html.party-host .runner-row .avatar{width:26px;height:26px;font-size:13px}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 46,
+          "text": " html.party-host .runner-row .avatar{width:24px;height:24px;font-size:12px}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 88,
+          "text": "html.party-managed.party-host #board .runner-row .avatar{width:28px;height:28px;font-size:16px;background:#211b31}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 91,
+          "text": "html.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row .avatar{display:none}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 99,
+          "text": " html.party-managed.party-host #board .runner-row .avatar{width:34px;height:34px;font-size:20px}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 161,
+          "text": "html.hp-ui.party-managed.party-host #board .runner-row .avatar{display:grid!important;width:36px;height:36px;background:transparent;border:0;overflow:visible}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 162,
+          "text": "html.hp-ui.party-managed.party-host #board .runner-row .avatar img{width:100%;height:100%;object-fit:contain}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 163,
+          "text": "html.hp-ui.party-managed.party-host #board .runner-row .avatar .player-photo{border-radius:50%;object-fit:cover}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 165,
+          "text": "html.hp-ui.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row .avatar{width:28px;height:28px}"
+        },
+        {
+          "file": "games/arcade/public/style.css",
+          "line": 234,
+          "text": "html.hp-ui.party-host #board .runner-row .avatar .player-photo{height:auto!important;aspect-ratio:1;border-radius:50%;object-fit:cover;box-sizing:border-box;border:1.5px solid var(--color,#b5bed2)}"
+        }
+      ]
+    },
+    "arcade_deluxe": {
+      "games": [
+        "marble_bloom",
+        "pocket_siege"
+      ],
+      "renderFamily": "Canvas world + DOM uploaded roster",
+      "sourceReferences": [
+        {
+          "file": "games/arcade_deluxe/public/host.js",
+          "line": 11,
+          "text": "// Room photos remain authoritative; approved brand cutouts represent no-photo identities."
+        },
+        {
+          "file": "games/arcade_deluxe/public/host.js",
+          "line": 12,
+          "text": "function identityArt(player){const roster=window.PARTY_ROSTER||[],profile=roster.find(p=>p.id===player.id)||roster.find(p=>p.name===player.name);let seed=0;for(const ch of String(player.id))seed=(Math.imul(seed,31)+ch.charCodeAt(0))>>>0;return profile?.avatar||player.avatar||`/assets/avatars/atlas-mascots/mascot-${String(seed%16+1).padStart(2,'0')}.webp`;}"
+        },
+        {
+          "file": "games/arcade_deluxe/public/host.js",
+          "line": 55,
+          "text": " const sk=s.players.map(p=>p.id+':'+p.name).join('|');if(sk!==scoreKey){scoreKey=sk;$('scores').replaceChildren();for(const p of s.players){const chip=document.createElement('div');chip.className='score-chip';chip.dataset.pid=p.id;chip.style.setProperty('--player',p.color);const dot=document.createElement('img');dot.className='player-art';dot.src=identityArt(p);dot.dataset.photo=String(!!((window.PARTY_ROSTER||[]).find(q=>q.id===p.id||q.name===p.name)?.avatar||p.avatar));dot.alt='';dot.decoding='async';const person=document.createElement('div');person.className='person';const name=document.createElement('small');name.textContent=p.name;name.c"
+        },
+        {
+          "file": "games/arcade_deluxe/public/style.css",
+          "line": 320,
+          "text": "html.hp-ui.party-host body .player-art[data-photo=true]{height:auto!important;aspect-ratio:1;border-radius:50%;object-fit:cover;box-sizing:border-box;border:1.5px solid var(--player,#c6b98f)}"
+        }
+      ]
+    },
+    "bow_club": {
+      "games": [
+        "bow_club"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/bow_club/public/style.css",
+          "line": 40,
+          "text": "/* Group10: marker-safe TV identity and a complete portrait aiming/controller task. */"
+        },
+        {
+          "file": "games/bow_club/public/style.css",
+          "line": 47,
+          "text": ".bow-score-avatar{width:52px;height:56px;object-fit:contain;grid-column:1;grid-row:1/3}"
+        },
+        {
+          "file": "games/bow_club/public/style.css",
+          "line": 48,
+          "text": ".bow-score-avatar.is-photo{border-radius:12px;object-fit:cover}"
+        },
+        {
+          "file": "games/bow_club/public/style.css",
+          "line": 56,
+          "text": " html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip .bow-score-avatar{width:40px;height:44px;object-fit:contain}"
+        },
+        {
+          "file": "games/bow_club/public/style.css",
+          "line": 123,
+          "text": "html.hp-ui .bow-score-avatar.is-photo{height:auto!important;aspect-ratio:1;border-radius:50%!important;object-fit:cover!important;box-sizing:border-box;border:1.5px solid var(--player,#b1d391)}"
+        },
+        {
+          "file": "games/bow_club/public/tv.js",
+          "line": 18,
+          "text": "  $('scores').replaceChildren(...state.players.map(p=>{const item=document.createElement('div');item.className='score-chip';item.setAttribute('data-hp-theme-preserve','');item.style.setProperty('--player',p.color);item.dataset.playerId=p.id;const b=document.createElement('b');b.className='hp-player-name';b.dataset.noTranslate='';b.textContent=p.name;const span=document.createElement('span'),points=document.createElement('strong');points.className='bow-points';points.textContent=p.score;span.textContent=`${p.shots}/${state.arrows||10}`+(state.mode==='teams'?` \u2022 ${p.team===0?'A':'B'}`:'')+(p.connected?'':' \u00b7 offline');const avatar=document.createElement('img');avatar.className='bow-score-avatar';avatar.alt='';let seed=0;for(const ch of String(p.id||p.name))seed=(Math.imul(seed,31)+ch.charCodeAt(0))>>>0;const profile=(window.PARTY_ROSTER||[]).find(q=>q.id===p.id)|| (window.PARTY_ROSTER||[]).find(q=>q.name===p.name);const photo=profile?.avatar||p.avatar;avatar.src=photo||'/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';avatar.classList.toggle('is-photo',!!photo);item.append(avatar,b,points,span);return item;}));"
+        }
+      ]
+    },
+    "tabletop": {
+      "games": [
+        "poker",
+        "airhockey",
+        "mines"
+      ],
+      "renderFamily": "DOM uploaded identity branch",
+      "sourceReferences": [
+        {
+          "file": "games/tabletop/public/app.js",
+          "line": 18,
+          "text": " const avatar=person.avatar||player.avatar;image.dataset.photo=String(!!avatar);"
+        },
+        {
+          "file": "games/tabletop/public/app.js",
+          "line": 19,
+          "text": " image.src=window.PartyArt?.mascotSource({seed:person.id||player.name,avatar})||'/assets/avatars/atlas-mascots/mascot-01.webp';"
+        },
+        {
+          "file": "games/tabletop/public/app.js",
+          "line": 27,
+          "text": " const key=JSON.stringify([s.players.map(p=>[p.id,p.name,p.score,p.connected,p.folded]),s.turn]);if(key!==rosterKey){rosterKey=key;$('players').replaceChildren(...[...s.players].sort((a,b)=>s.mode==='mines'?b.score-a.score:0).map((p,i)=>{const el=document.createElement('div');el.dataset.playerId=p.id;el.className='player'+(p.id===s.turn?' turn':'')+(p.folded?' folded':'');const name=document.createElement('span');name.className='hp-player-name';name.dataset.noTranslate='';name.textContent=p.name+(p.connected?'':' \u00b7 '+t('offline','\u043d\u0435\u0442 \u0441\u0432\u044f\u0437\u0438'));const score=document.createElement('b');score.className='tabletop-score';score.textContent=p.score;co"
+        },
+        {
+          "file": "games/tabletop/public/app.js",
+          "line": 71,
+          "text": " s.players.forEach((p,i)=>{let n=seatNodes.get(p.id);if(!n){const seat=document.createElement('div');seat.dataset.playerId=p.id;const name=document.createElement('span');name.className='seat-name hp-player-name';name.dataset.noTranslate='';const score=document.createElement('b');score.className='seat-score';const hand=document.createElement('div');hand.className='seat-hand';const chips=document.createElement('i');chips.className='seat-chips';seat.append(identityImage(p,'seat-avatar'),name,score,hand,chips);n={seat,name,score,hand,chips};seatNodes.set(p.id,n);}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 200,
+          "text": ".seat-avatar{width:46px;height:54px;object-fit:contain;grid-column:1;grid-row:1/3;pointer-events:none}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 201,
+          "text": ".seat-avatar[data-photo=true]{object-fit:cover;border-radius:50%;height:auto!important;aspect-ratio:1}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 205,
+          "text": ".table-seats[data-dense=true] .seat-avatar{width:36px;height:42px}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 224,
+          "text": ".tabletop-avatar{width:52px;height:60px;object-fit:contain;pointer-events:none}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 225,
+          "text": ".tabletop-avatar[data-photo=true]{height:52px;object-fit:cover;border-radius:50%}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 255,
+          "text": ".hockey-pilot[data-photo=true]{object-fit:cover;border-radius:50%;height:56px}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 271,
+          "text": "html.hp-ui.party-managed.party-host[data-party-game=mines] body.host #tabletop #players .tabletop-avatar{grid-column:2;grid-row:1;align-self:center}"
+        },
+        {
+          "file": "games/tabletop/public/arena.css",
+          "line": 447,
+          "text": ":is(.seat-avatar,.tabletop-avatar,.hockey-pilot)[data-photo=true]{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#b4cfa2)}"
+        }
+      ]
+    },
+    "sports_siege": {
+      "games": [
+        "curling",
+        "bowling",
+        "swarm_gate",
+        "peek_shoot"
+      ],
+      "renderFamily": "Three scene, DOM uploaded roster (no photo texture path)",
+      "sourceReferences": [
+        {
+          "file": "games/sports_siege/match.js",
+          "line": 21,
+          "text": "      p={id:profile.id,name:String(profile.name||'\u0418\u0433\u0440\u043e\u043a').replace(/[<>\\u0000-\\u001f]/g,'').slice(0,24),hand:profile.hand==='left'?'left':'right',avatar:profile.avatar||null,"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "line": 66,
+          "text": "  const badge=document.createElement('span');badge.className='ss-player-avatar';"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "line": 67,
+          "text": "  const avatar=document.createElement('img');avatar.className='ss-player-photo';avatar.alt='';avatar.hidden=true;avatar.addEventListener('error',()=>{avatar.hidden=true;badge.classList.remove('has-photo');});"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "line": 68,
+          "text": "  const initial=text('i','');const number=text('em','');badge.append(avatar,initial,number);"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "line": 71,
+          "text": "  const score=text('strong','0');score.className='ss-player-score';const metric=document.createElement('span');metric.className='ss-score-metric';const label=text('small','Points');label.setAttribute('data-no-translate','');metric.append(label,score);card.append(badge,copy,metric);const mascot=document.createElement('img');mascot.className='ss-brand-mascot';mascot.alt='';let seed=0;for(const ch of String(p.id||p.name))seed=(Math.imul(seed,31)+ch.charCodeAt(0))>>>0;mascot.src='/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';badge.prepend(mascot);card._ui={avatar,badge,initial,number,name,detail,bar:bar.firstChi"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "line": 98,
+          "text": "    const ui=card._ui;card.dataset.playerId=p.id;ui.mascot.hidden=!!p.avatar;ui.name.textContent=p.name;ui.name.title=p.name;ui.initial.textContent=(p.name.trim()[0]||'?').toLocaleUpperCase('ru-RU');ui.number.textContent=p.number;ui.score.textContent=p.score;"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "line": 99,
+          "text": "    if(p.avatar&&ui.avatar.dataset.src!==p.avatar){ui.avatar.dataset.src=p.avatar;ui.avatar.hidden=false;ui.badge.classList.add('has-photo');ui.avatar.src=p.avatar;}else if(!p.avatar){ui.avatar.dataset.src='';ui.avatar.removeAttribute('src');ui.avatar.hidden=true;ui.badge.classList.remove('has-photo');}"
+        },
+        {
+          "file": "games/sports_siege/public/host.js",
+          "line": 214,
+          "text": "      // Quiet flat masonry belongs to the world, with no photographic shading."
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 67,
+          "text": ".ss-player-card{width:auto;max-width:none;min-width:0;height:66px;display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:7px;padding:8px 9px 8px 7px;border-radius:16px;overflow:hidden}.ss-player-card:before{width:3px}.ss-player-avatar{position:relative;width:42px;height:42px;border:2px solid var(--ss-player);border-radius:12px;background:color-mix(in srgb,var(--ss-player) 20%,#171b22);display:grid;place-items:center;overflow:visible;box-shadow:0 0 14px color-mix(in srgb,var(--ss-player) 16%,transparent)}.ss-player-avatar img{position:absolute;inset:0;width:100%;height:100%;border-radius:10px;object-fit:cover}.ss-pla"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 77,
+          "text": " .ss-scoreboard{bottom:max(6px,env(safe-area-inset-bottom));width:calc(100vw - 12px);grid-template-columns:repeat(var(--ss-cols,2),minmax(0,104px));gap:4px}.ss-player-card{height:56px;grid-template-columns:34px minmax(0,1fr) auto;gap:6px;padding:6px 7px 6px 5px;border-radius:13px}.ss-player-avatar{width:34px;height:34px;border-radius:10px}.ss-player-avatar img{border-radius:8px}.ss-player-avatar>i{font-size:15px}.ss-player-copy b{font-size:10px}.ss-player-copy small{font-size:7px}.ss-player-score{font-size:18px!important}.ss-gate-health{bottom:clamp(102px,16dvh,145px);width:132px;padding:6px 12px}.ss-gate-health strong{font-size:20px}.ss-anno"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 81,
+          "text": " .ss-host-top{top:max(40px,calc(env(safe-area-inset-top) + 34px))}.ss-scoreboard{width:calc(100vw - 8px);max-width:none;grid-template-columns:repeat(var(--ss-cols,2),minmax(0,37px));gap:2px}.ss-player-card{height:44px;display:grid;grid-template-columns:24px 1fr;padding:5px 3px;gap:2px}.ss-player-avatar{width:24px;height:28px}.ss-player-copy{display:none}.ss-player-score{font-size:12px!important;text-align:center}.ss-gate-health{bottom:94px;width:112px}.ss-gate-health small{font-size:6px}.ss-gate-health strong{font-size:17px}body[data-ss-score-rows=\"2\"] .ss-gate-health{bottom:112px}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 92,
+          "text": ".ss-scoreboard:is([data-count=\"1\"],[data-count=\"2\"]) .ss-player-avatar{width:46px;height:46px}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 100,
+          "text": " .ss-scoreboard:is([data-count=\"1\"],[data-count=\"2\"]) .ss-player-avatar{width:42px;height:42px}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 107,
+          "text": " .ss-scoreboard:not([data-count=\"1\"]):not([data-count=\"2\"]) .ss-player-avatar{width:38px;height:38px}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 118,
+          "text": " .ss-scoreboard:is([data-count=\"1\"],[data-count=\"2\"]) .ss-player-avatar{width:32px;height:32px}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 162,
+          "text": " body[data-ss-role=\"host\"] .ss-scoreboard .ss-player-avatar{width:38px;height:38px;background:#211d32;box-shadow:none}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 163,
+          "text": " body[data-ss-role=\"host\"] .ss-player-avatar>em{right:-5px;bottom:-5px;font-size:10px;min-width:19px;height:19px;line-height:17px}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 168,
+          "text": " body[data-ss-role=\"host\"][data-ss-score-rows=\"2\"] .ss-player-avatar{grid-row:1/3;width:28px!important;height:28px!important}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 195,
+          "text": " body[data-ss-role=\"host\"] .ss-scoreboard .ss-player-avatar{grid-row:auto;width:calc(36px * var(--ss-tv-scale))!important;height:calc(36px * var(--ss-tv-scale))!important}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 196,
+          "text": " body[data-ss-role=\"host\"] .ss-player-avatar>em{font-size:calc(11px * var(--ss-tv-scale));min-width:calc(20px * var(--ss-tv-scale));height:calc(20px * var(--ss-tv-scale));line-height:calc(18px * var(--ss-tv-scale))}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 204,
+          "text": " body[data-ss-role=\"host\"][data-ss-dense=\"true\"] .ss-player-avatar{display:none}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 347,
+          "text": " html.hp-ui.party-host body[data-ss-role=host] .ss-player-avatar{display:grid!important;width:calc(46px * var(--ss-tv-scale))!important;height:calc(46px * var(--ss-tv-scale))!important;background:transparent;border:0;border-radius:0;box-shadow:none;grid-row:auto}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 348,
+          "text": " html.hp-ui.party-host body[data-ss-role=host] .ss-player-avatar>i{display:none}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 356,
+          "text": " html.hp-ui.party-host body[data-ss-role=host][data-ss-dense=true] .ss-player-avatar{display:none!important}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 442,
+          "text": ".ss-player-avatar.has-photo{border-radius:50%;background:transparent;box-shadow:none}"
+        },
+        {
+          "file": "games/sports_siege/public/style.css",
+          "line": 443,
+          "text": ".ss-player-avatar .ss-player-photo{height:auto!important;aspect-ratio:1;border-radius:50%!important;object-fit:cover;box-sizing:border-box;border:1.5px solid var(--ss-player,#d2bb97)}"
+        }
+      ]
+    }
+  }
+}

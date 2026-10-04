@@ -1,0 +1,551 @@
+{
+  "status": "generated-final-narrow-candidate-pending-root-paired-placement",
+  "scope": "OnlyTOP18newpairedcaps; acceptedSIDE18unchanged",
+  "method": "built-in image_gen.imagegen transparent_background true; one targeted built-in correction per sheet; no raster postprocessing; generated original copied unchanged",
+  "asset": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+  "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5e-56f7-7f60-9b2b-1e57bf6a60c3/exec-83ed6b18-6109-4326-8a7d-426dc98b6864.png",
+  "rejected_initial": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5e-56f7-7f60-9b2b-1e57bf6a60c3/exec-2eb85eee-14cf-46f2-b2bd-34d22fa97276.png",
+  "size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "sha256": "70e861ef321eac0724ff8e46c4ff59fe93ebe0abe5d9342eb0ee8d83c3811e72",
+  "prompts": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-prompt.txt",
+      "text": "Production asset: one genuinely transparent PNG atlas containing exactly NINE separate matte TOP-HEADER EDGE ATTACHMENTS in a regular THREE-COLUMN THREE-ROW square grid. Equal square cells. Each complete object centered in its own cell with substantial transparent padding all around. No labels, captions, numbers or text. No UI panel itself.\nCRITICAL NEW GEOMETRY: every one of the NINE objects is a VERTICAL, TALL, NARROW silhouette. TOTAL visible width INCLUDING THE TAB is approximately TWO THIRDS of visible height (width:height =2:3, like24wide by36tall). Never wider than0.8 times its height. Consistent optical size across all nine. NO broad horizontal objects or flanges. The overall body must feel like a slim vertical cuff, with game-specific organic contour, not a wide icon on a stem. Entire silhouette remains complete and unclipped.\nEach piece has a SMALL SHORT INWARD SEATING TAB midway down its LEFT edge. The tab joins the main narrow body directly and adds only a very small fraction to total width; it fits over a vertical header boundary. The opposite side partner will be a horizontal mirror. Do not add a broad rectangular backing, wide handle, horizontal base or shadow plate. Narrowness applies to the whole object including tab.\nCamera/style: STRICT ORTHOGRAPHIC TOP-DOWN for all nine. Zero perspective, zero isometric angle, zero visible side faces. Minimal textureless MATTE flat filled graphic art, not3D toys. Two solid muted game-specific tones plus at most one tiny cream semantic detail. One broad quiet darker solid shape allowed, no gradients, glossy highlights, reflections, bevels, black outlines, thick contour, cast shadows, grain, texture, stitches, tiny bolts or decorative dashes. Cohesive colors matching quiet charcoal/plum/navy/teal game UI caps. Simple shapes readable at24\u00d736pixels.\nTrue alpha background between all silhouettes and throughout margins. EXACT NINE objects in this row-major order:\nRow1:1.Western muted clay/plum narrow sheriff cuff: a tall compact five-point badge, modest cream central dot, slim rounded organic outer shape.2.Tanks desaturated olive VERTICAL tread cuff: a narrow upright track silhouette with two broad horizontal sage bars contained inside the narrow body.3.Chaos slate-blue cursor cuff: a tall upward cream arrow nested in a narrow navy arrowhead contour.\nRow2:4.TapRace teal VERTICAL finish cuff: a slim hanging flag with four broad slate/cream squares stacked in a narrow2\u00d72 arrangement.5.Punchmeter muted terracotta upright boxing-glove cuff: tall glove body with three modest knuckle lobes at top and narrow wrist below.6.Flappy dusty sky-blue upright wing cuff: tall curved wing with three broad feathers stacked vertically, no wide horizontal wingspan.\nRow3:7.Hungry muted amber VERTICAL wrapper cuff: tall burger-wrapper grip with four broad flat layers, all layers fit narrow vertical silhouette, no seeds or crumbs.8.SnakeLines muted jade VERTICAL bent-snake cuff: slim upright snake shape with one small cream eye, no horizontal tail extension or scales.9.CarryBall desaturated turquoise VERTICAL ball-holder cuff: small cream ball disk inside the upper portion of a tall narrow teal grip, one simple stripe, no shine.\n",
+      "sha256": "a753877947ceded494b229a23fb0e9f6929fe91d552ac90634d2b8979363a360"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-correction-prompt.txt",
+      "text": "Correct this production atlas only: preserve EXACT nine narrow matte game silhouettes and their row-major order. Remove EVERY colored glow/halo/background/ambient wash completely, leaving pure transparent alpha everywhere outside clean object silhouettes. Make the objects themselves fully opaque matte flat fills. Rearrange on a SQUARE canvas with exactly THREE columns and THREE rows of equal square cells, each tall narrow sprite centered with generous transparent margins. Keep total object width including short left seat below0.8of height, preferably2:3. No outlines, gloss, texture, cast shadows or new details. Do not bake checkerboard or black background. Output genuine transparent PNG.\n",
+      "sha256": "df6c15d1a6e5570df54f42f7723c2787fc92472d2d77a0d00eefd4065cf07d3b"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/round3/2026-10-03/top-cap-matte-v2-proportion-prompt.txt",
+      "text": "Proportion/layout correction ONLY for this production transparent atlas. Preserve all nine game identities, matte flat style, muted colors and the small left seating tabs. Make EVERY COMPLETE optical silhouette INCLUDING TAB exactly about TWO THIRDS as wide as tall, target200px width by300px height. Current narrow straps are too skinny; widen their organic body so width/height .60\u2013.72, never greater than .75. Arrange the nine complete pieces centered in equal square cells of a square3\u00d73grid. Make each actual silhouette at most300px tall in a1254px square canvas so no silhouette crosses a cell boundary; generous truealpha padding. Keep all pixels outside silhouettes transparent ZERO, no halo/flecks/shadow/texture. Flat overhead only, no 3D sideface, gloss or black contour. Do not add/delete shapes or change row-major order.\n"
+    }
+  ],
+  "cells": [
+    {
+      "id": "western",
+      "cell": [
+        0,
+        0,
+        418,
+        418
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          210,
+          48,
+          406,
+          414
+        ],
+        "32": [
+          245,
+          50,
+          404,
+          401
+        ],
+        "128": [
+          246,
+          51,
+          403,
+          401
+        ],
+        "240": [
+          246,
+          51,
+          403,
+          400
+        ]
+      },
+      "optical_ratio_alpha32": 0.453,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        245,
+        50,
+        404,
+        401
+      ],
+      "main_connected_ratio": 0.453,
+      "detached_pixels_alpha32": 0
+    },
+    {
+      "id": "tanks",
+      "cell": [
+        418,
+        0,
+        836,
+        418
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          41,
+          47,
+          418,
+          402
+        ],
+        "32": [
+          131,
+          51,
+          418,
+          396
+        ],
+        "128": [
+          132,
+          51,
+          277,
+          396
+        ],
+        "240": [
+          133,
+          52,
+          276,
+          395
+        ]
+      },
+      "optical_ratio_alpha32": 0.8319,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        131,
+        51,
+        277,
+        396
+      ],
+      "main_connected_ratio": 0.4232,
+      "detached_pixels_alpha32": 35
+    },
+    {
+      "id": "chaos",
+      "cell": [
+        836,
+        0,
+        1254,
+        418
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          0,
+          21,
+          302,
+          414
+        ],
+        "32": [
+          0,
+          50,
+          156,
+          401
+        ],
+        "128": [
+          0,
+          51,
+          155,
+          401
+        ],
+        "240": [
+          0,
+          51,
+          154,
+          400
+        ]
+      },
+      "optical_ratio_alpha32": 0.4444,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        0,
+        50,
+        156,
+        401
+      ],
+      "main_connected_ratio": 0.4444,
+      "detached_pixels_alpha32": 0
+    },
+    {
+      "id": "taprace",
+      "cell": [
+        0,
+        418,
+        418,
+        836
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          71,
+          22,
+          403,
+          418
+        ],
+        "32": [
+          241,
+          24,
+          400,
+          418
+        ],
+        "128": [
+          242,
+          24,
+          400,
+          418
+        ],
+        "240": [
+          242,
+          25,
+          399,
+          418
+        ]
+      },
+      "optical_ratio_alpha32": 0.4036,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        241,
+        24,
+        400,
+        357
+      ],
+      "main_connected_ratio": 0.4775,
+      "detached_pixels_alpha32": 639
+    },
+    {
+      "id": "punchmeter",
+      "cell": [
+        418,
+        418,
+        836,
+        836
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          39,
+          9,
+          418,
+          418
+        ],
+        "32": [
+          106,
+          26,
+          312,
+          418
+        ],
+        "128": [
+          107,
+          27,
+          311,
+          418
+        ],
+        "240": [
+          108,
+          27,
+          310,
+          418
+        ]
+      },
+      "optical_ratio_alpha32": 0.5255,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        106,
+        26,
+        312,
+        352
+      ],
+      "main_connected_ratio": 0.6319,
+      "detached_pixels_alpha32": 541
+    },
+    {
+      "id": "flappy",
+      "cell": [
+        836,
+        418,
+        1254,
+        836
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          0,
+          1,
+          386,
+          418
+        ],
+        "32": [
+          8,
+          6,
+          173,
+          418
+        ],
+        "128": [
+          8,
+          6,
+          172,
+          418
+        ],
+        "240": [
+          9,
+          7,
+          172,
+          418
+        ]
+      },
+      "optical_ratio_alpha32": 0.4005,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        8,
+        6,
+        173,
+        366
+      ],
+      "main_connected_ratio": 0.4583,
+      "detached_pixels_alpha32": 665
+    },
+    {
+      "id": "hungry",
+      "cell": [
+        0,
+        836,
+        418,
+        1254
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          17,
+          0,
+          408,
+          418
+        ],
+        "32": [
+          233,
+          0,
+          405,
+          347
+        ],
+        "128": [
+          233,
+          0,
+          404,
+          346
+        ],
+        "240": [
+          234,
+          0,
+          403,
+          345
+        ]
+      },
+      "optical_ratio_alpha32": 0.4957,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        233,
+        0,
+        405,
+        347
+      ],
+      "main_connected_ratio": 0.4957,
+      "detached_pixels_alpha32": 0
+    },
+    {
+      "id": "snakelines",
+      "cell": [
+        418,
+        836,
+        836,
+        1254
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          17,
+          0,
+          334,
+          354
+        ],
+        "32": [
+          123,
+          0,
+          289,
+          349
+        ],
+        "128": [
+          124,
+          0,
+          289,
+          348
+        ],
+        "240": [
+          125,
+          0,
+          288,
+          347
+        ]
+      },
+      "optical_ratio_alpha32": 0.4756,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        123,
+        0,
+        289,
+        349
+      ],
+      "main_connected_ratio": 0.4756,
+      "detached_pixels_alpha32": 0
+    },
+    {
+      "id": "carryball",
+      "cell": [
+        836,
+        836,
+        1254,
+        1254
+      ],
+      "bboxes_alpha_local": {
+        "1": [
+          0,
+          0,
+          239,
+          356
+        ],
+        "32": [
+          3,
+          0,
+          161,
+          346
+        ],
+        "128": [
+          4,
+          0,
+          161,
+          345
+        ],
+        "240": [
+          4,
+          0,
+          160,
+          345
+        ]
+      },
+      "optical_ratio_alpha32": 0.4566,
+      "ratio_le_0_8": true,
+      "main_connected_bbox_alpha32": [
+        3,
+        0,
+        161,
+        346
+      ],
+      "main_connected_ratio": 0.4566,
+      "detached_pixels_alpha32": 0
+    }
+  ],
+  "qualifications": [
+    "Main connected alpha32 silhouette ratios <=.8 for all18; total alpha bbox may include detached generated flecks, which are recorded separately. Root-owned runtime normalization must use primary connected silhouette.",
+    "Sheet1 halo background rejected and corrected; sheet2 Curling raised sideface rejected and changed to flat topdown oval.",
+    "Mild tonal variation and lowalpha fringe remain generated-original characteristics; root owns runtime metadata normalization.",
+    "Small actual24\u00d736 mirrored pair placement not inspected; no runtime edits."
+  ],
+  "original_before_proportion": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5e-56f7-7f60-9b2b-1e57bf6a60c3/exec-e9a07f43-00ff-49e4-8b39-b2de57331603.png",
+  "main_global_components_alpha32": [
+    {
+      "bbox_global": [
+        187,
+        57,
+        405,
+        424
+      ],
+      "pixels": 54100,
+      "ratio": 0.594,
+      "id": "western"
+    },
+    {
+      "bbox_global": [
+        520,
+        57,
+        725,
+        425
+      ],
+      "pixels": 58805,
+      "ratio": 0.5571,
+      "id": "tanks"
+    },
+    {
+      "bbox_global": [
+        856,
+        58,
+        1071,
+        425
+      ],
+      "pixels": 54988,
+      "ratio": 0.5858,
+      "id": "chaos"
+    },
+    {
+      "bbox_global": [
+        175,
+        462,
+        409,
+        801
+      ],
+      "pixels": 63456,
+      "ratio": 0.6903,
+      "id": "taprace"
+    },
+    {
+      "bbox_global": [
+        500,
+        463,
+        769,
+        801
+      ],
+      "pixels": 65148,
+      "ratio": 0.7959,
+      "id": "punchmeter"
+    },
+    {
+      "bbox_global": [
+        861,
+        449,
+        1081,
+        813
+      ],
+      "pixels": 51841,
+      "ratio": 0.6044,
+      "id": "flappy"
+    },
+    {
+      "bbox_global": [
+        173,
+        834,
+        409,
+        1190
+      ],
+      "pixels": 67531,
+      "ratio": 0.6629,
+      "id": "hungry"
+    },
+    {
+      "bbox_global": [
+        522,
+        837,
+        737,
+        1191
+      ],
+      "pixels": 53507,
+      "ratio": 0.6073,
+      "id": "snakelines"
+    },
+    {
+      "bbox_global": [
+        865,
+        838,
+        1068,
+        1190
+      ],
+      "pixels": 53877,
+      "ratio": 0.5767,
+      "id": "carryball"
+    }
+  ],
+  "qualification": "Ratios refer complete connected silhouettes including short seat; actualmain bounds global rather than assumed equal-cell boxes. Root-owned metadata normalization uses these.",
+  "current_geometry_qualification": "Final main_global_components_alpha32 supersedes earlier per-cell ratio measurements. Most ratios .58\u2013.69; Tanks .557 and Punch .7959 are explicit deviations from preferred .60\u2013.72. All18 satisfy human<=.8. Root reviews actualcontain placement inmax27pxwide36\u201340pxhigh slot."
+}

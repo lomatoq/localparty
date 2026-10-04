@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Монстр по кругу — Host</title>
-  <link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/monster-glass.css" />
+  <link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/monster-glass.css" /><link rel="stylesheet" href="/monster-polish.css" />
 </head>
 <body class="host-page">
   <main class="host-shell">
@@ -60,21 +60,23 @@
       </div>
     </section>
 
-    <section id="gamePanel" class="panel game-panel hidden">
+    <section id="gamePanel" class="panel game-panel hidden" data-tv-hud-cluster data-tv-hud-owns-actor>
+      <div class="monster-composition-copy" data-tv-hud-anchor>
       <div class="status-top">
         <div>
-          <div class="eyebrow">СЕЙЧАС РИСУЕТ</div>
+          <h2 class="monster-task-title">Draw your part</h2>
           <div id="hostTurnTimer" data-party-timer class="turn-timer">90 сек</div><button id="skipTurn" class="btn secondary">Пропустить ход</button><div id="activePlayer" class="active-player">—</div>
         </div>
         <div id="progressText" class="progress-text">0 / 0</div>
       </div>
       <div id="queue" class="queue"></div>
       <div class="secret-box">
-        <div class="secret-icon">🙈</div>
+        <img class="secret-icon" src="../../assets/icons/game-pack/paintbrush.svg" alt="">
         <div>
           <b>На большом экране рисунок скрыт.</b>
           <span>Следующий игрок увидит только узкую полоску стыка.</span>
         </div>
+      </div>
       </div>
     </section>
 

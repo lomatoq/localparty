@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-10-03T14:15:07.013Z",
+  "method": "Read-only VM runtime of actual v4 helper with decoded mockImage/actualmetadata/stubcanvas; not browser/physical evidence",
+  "checks": 96,
+  "assertions": [
+    "ready actualmetadata sizes",
+    "finite muzzle/shadow",
+    "ground y+1",
+    "dead/startled/idle states",
+    "each arm renders UNDERbody"
+  ],
+  "helperSha256": "e66a7d93a756084ca73e707c24b322e2d134736707ad70e0ce3279c2adff3013",
+  "metadataSha256": "4a73e7034c0ead1926f3cba66024bc0d26508197442f68d677e95a58098da157",
+  "errors": []
+}

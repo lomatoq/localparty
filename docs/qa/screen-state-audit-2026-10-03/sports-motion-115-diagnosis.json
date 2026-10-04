@@ -1,0 +1,279 @@
+{
+  "createdAt": "2026-10-03T20:05:44.781020+00:00",
+  "scope": "Motion setup UX, native lifecycle observability and layout-only cancellation correction; physical build114 failure root cause not observed on hardware.",
+  "currentSources": {
+    "public/sports-motion.js": "1d7c9a931394d59a95c3f2a3f69df9dbb127d7c2b7b4418f48ec0a9c4f66d801",
+    "games/sports_siege/public/controls.js": "71eca23ea0fecb0922f0eee3c40bfce015f54143e0947207090363f05f79df63",
+    "games/sports_siege/public/sports-controls.css": "4207f6f120c657d6d000444a7433e32894432a53b6ee89e768d4d8b639b421e4",
+    "ios/LocalParty/LocalPartyApp.swift": "9f6b94d431f9d2eba8a744281a5f5fcd2d85222b758c975d2c1c03b76b092bb9",
+    "ios/LocalParty/ServerModel.swift": "e39e20bf8096fbf6ad8a033c22993bd439ea26ac9a627ab29c20e587e8caff94",
+    "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3"
+  },
+  "tests": {
+    "focused": "68/68 pass",
+    "jsSyntax": "pass",
+    "swiftParse": "pass",
+    "extractedBridgeIOS17APITypecheck": "pass; compile/typecheck only, not linked app/hardware"
+  },
+  "runtime": [
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/report.json",
+      "sha256": "8380d39d19f5fe3464af9ab44360e1bb2d6188e712909c8c3d009df2bffca851",
+      "method": "Controls.e8bfc016 predecessor differs only by resetting motionSweep/ShakeSweep in release(true); Bowling never allows shake sweep, so accepted five visual states and waiting/held resize branches are unchanged. Other five scoped product hashes exact current. Not claimed as current controls hash.",
+      "cases": [
+        {
+          "mode": "bowling",
+          "width": 320,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored"
+          ],
+          "throws": 1
+        },
+        {
+          "mode": "bowling",
+          "width": 402,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "Orientation cancellation: no throw",
+            "Actual host pause cancels armed throw",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored"
+          ],
+          "throws": 1
+        }
+      ]
+    },
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/report.json",
+      "sha256": "b6ecd60b720286efc89b485313eb652c73168476be86c64c4d69d7fbab908a99",
+      "method": "Exact current six scoped product hashes; actual nested /play\u2192/games route and engine wire, synthetic sensor callbacks/events only.",
+      "cases": [
+        {
+          "mode": "curling",
+          "width": 320,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored",
+            "Actual resize during active shake clears sweep/history and next wire input false, retains Motion sensors",
+            "Two shake pulses activate own-team sweep; stale sensor releases sweep",
+            "Manual sweep remains usable independently"
+          ],
+          "throws": 1
+        },
+        {
+          "mode": "curling",
+          "width": 402,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Actual layout-only resize during setup preserves selected Motion/request; resize while held cancels neutral without throw or losing ready sensors",
+            "Orientation cancellation: no throw",
+            "Actual host pause cancels armed throw",
+            "One held swing/release sends one existing bounded throw/token; duplicate release ignored",
+            "Actual resize during active shake clears sweep/history and next wire input false, retains Motion sensors",
+            "Two shake pulses activate own-team sweep; stale sensor releases sweep",
+            "Manual sweep remains usable independently"
+          ],
+          "throws": 1
+        }
+      ]
+    },
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-final-browser-attitude/report.json",
+      "sha256": "80e0e3e06c1b17a04b7894dbb60397bb913e28e2d27968a1f1c172b3af15bc26",
+      "method": "Exact current six scoped product hashes; actual nested /play\u2192/games route and engine wire, synthetic sensor callbacks/events only.",
+      "cases": [
+        {
+          "mode": "bowling",
+          "width": 403,
+          "actions": [
+            "Single explicit Motion gesture starts sensors; readiness only after valid fresh sensor sample",
+            "Delayed browser permission with synthetic dialog blur still grants; no false readiness before data",
+            "Fresh acceleration with absent/stale attitude cancels armed hold;2.2s unavailable fallback selects Swipe, no throw",
+            "Retry motion button with fresh attitude restored: new hold/release sends one valid existing throw/token and reaches actual rolling"
+          ],
+          "throws": 1
+        }
+      ]
+    }
+  ],
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-320-swipe.png",
+      "sha256": "bd9cf06fbdede503005b572a5acd559e42a77d0984209eff74b3d5a35d2e134c",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-320-permission-waiting.png",
+      "sha256": "11ee3ad3e79b389abb83304d7a4df5064bd38d3bcbd47312bac7653dc5dd03e2",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-320-motion-ready.png",
+      "sha256": "1fcc1369a699c1d845cbe5dc2ae20aa76acecba652b6b574cddadcf6e18335d6",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-320-motion-held.png",
+      "sha256": "5e98f460a19aeb585160920eeb83141d7e7c9650a54d504b84615c3b467cdf10",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-320-rolling.png",
+      "sha256": "d85b1c3d531241317fad400d3b226f4c641d9492564c30d13e81b2805ef24a71",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-402-swipe.png",
+      "sha256": "af38cb049d7fd7afeaaa413d0327197699f4e35110c7a627db2f8559937f025d",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-402-permission-waiting.png",
+      "sha256": "8f15e827ed369ca2733217832fa5acb30a5be18b60faae41a56fce53bae5deb0",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-402-motion-ready.png",
+      "sha256": "16a228fc61b82ec1dc6f191a31d2839e60b9b5fc8874d22aa2f291e84aef495b",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-402-motion-held.png",
+      "sha256": "cf05e8499927369c52f6a43d3af106bbf080b1b23d321062f114457a4aad15f6",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-touch-final/bowling-native-402-rolling.png",
+      "sha256": "454b1c78f7fcde76b0278df77fe812b37548f36771208804c96681881b611dcd",
+      "opened": true,
+      "exactCurrentSource": false,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-swipe.png",
+      "sha256": "c9b62316cb3664ff81d262589c6564c318fc146f52104c0f319a2d9b09fcabfc",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-permission-waiting.png",
+      "sha256": "8e9c0e4f70e2df0ad708ac0092664134629eec30f25180035b6917d782f4491b",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-motion-ready.png",
+      "sha256": "8d3b48868103565369cfbf4a3b05d4f6187a70a30c41c8aaf6eafda866544d5b",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-motion-held.png",
+      "sha256": "a8615a19ce2421b8a055d3cf392b953ad8e06822caebdff3076b5d35fe14dad5",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-rolling.png",
+      "sha256": "5f034c3e792596cee5b690e3564d982cc47cc0f31d7f3461b4d40de01fe3a591",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-320-shake-sweeping.png",
+      "sha256": "d7f131b77a861d409bb77ac99d1b86ec4701b3a4f170b45c1dee75c9b877d188",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole station and release guidance, motion pad generic Swipe art absent, footer whole; settled sweep screenshots prove available station after decay/cancellation, sweep activation proven by actual input wire, not static active-status ink."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-swipe.png",
+      "sha256": "2f22c8aca127cd47ea5fe393af970077c5eea3a1e5e95f762dedb2687fd61561",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-permission-waiting.png",
+      "sha256": "1bcad43a75149df6a9e598f414a882e3e54690451689bb6ee1dd69ed67285850",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-motion-ready.png",
+      "sha256": "8ae3666c4cff618a287e3f5c64ef692081abb1c3d13db220e096f29960fc0e84",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-motion-held.png",
+      "sha256": "b33adcbbec9d87fd792a5f71718e9b6cd3a3e488bbdaf9d519db27c6053f4d3e",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-rolling.png",
+      "sha256": "e2d0182bf271ab716c79e2ba6e017bddb90685693aae15bf5b3137bc278c2d02",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-sweep-resize-final/curling-native-402-shake-sweeping.png",
+      "sha256": "cf855f17af8d231ca8919413343de3ca7cfff395227326b6255ac11206655668",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole station and release guidance, motion pad generic Swipe art absent, footer whole; settled sweep screenshots prove available station after decay/cancellation, sweep activation proven by actual input wire, not static active-status ink."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-final-browser-attitude/bowling-browser-403-motion-ready.png",
+      "sha256": "2fba1eb808f68ec7b5b0777fb6b01309850f4b53ce40ec00de3f26626638f347",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-115-final-browser-attitude/bowling-browser-403-attitude-fallback.png",
+      "sha256": "a4899f82f59499d80f7261a7506473de5350d7f63fc8cfb7fc03c3bfd4bd3cdc",
+      "opened": true,
+      "exactCurrentSource": true,
+      "observation": "Whole labels/status/controls/footer; truthful waiting/ready/fallback selected state. Motion pad shows hold/swing/release finger instruction and no generic Swipe art."
+    }
+  ],
+  "historicalFailures": [
+    "sports-motion-115-setup: EPERM localhost; no browser evidence",
+    "sports-motion-115-setup-confirm: intermittent mouse Motion click not delivered, original lacked event trace; no native transport diagnosis",
+    "sports-motion-115-layout-resize-repro: controlled actual WebKit height358\u2192350, start\u2192cancel resize\u2192stop\u2192Swipe with phase playing/visible/ownTurn",
+    "sports-motion-115-final: mouse click delivered no start/diagnostic; not cancellation, not proved physical cause"
+  ],
+  "hardware": "No phone commands, app build/install or real CoreMotion hardware trial in this lane. New diagnostics are ready for parent-coordinated build115 trial. Existing installed114 physical failure remains unqualified."
+}

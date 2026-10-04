@@ -1,0 +1,175 @@
+{
+  "scope": "Approved Snake Lines camera-only fix; actual rendered alive actors and labels, paused resize and host reconnect. No full-catalog or physical-device acceptance claim.",
+  "changedProductFile": "games/arcade/public/app.js",
+  "sourceSha256": "626c7e8db674c9871fd4a5d5bd4ac64d4607fc0ff4080860f19927dfba95961e",
+  "unchangedSources": {
+    "games/arcade/public/snake-polish.js": "c25ffd150e5ca2c4eb087a9b1c092174eecf1e394aa9e8f094d73475a197410a",
+    "games/arcade/server.js": "05d52dfcf1322d6f7b855ea80cd9cc29261570deb14a2cad74fa6c7ad9f1b779",
+    "games/arcade/simulation.js": "8a99d754d1147303ea6eb49230a0fa3660d703fc1728ddbd71d8afb6640779b0"
+  },
+  "change": "Snake uses existing measured cap bottom+16 uniform-fit branch for unchanged1200x720 world; Snake-only name card inverse scaling uses actual camera, preserving14CSSpx. Existing fullviewport floor draws negative space. No obstacles/teleports/resets/spawn/rule/input changes.",
+  "openedOriginals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/snakelines-hud-camera-final/snakelines-tv-hud-camera-1280.png",
+      "sha256": "880d9d3c25fc726c42cea8734f6d24a63a89046be64a2d248c437a31944d56d8",
+      "viewport": [
+        1280,
+        720
+      ],
+      "aliveFirstRowActorsBefore": 4,
+      "aliveFirstRowActorsAfter": 4,
+      "allAliveRenderedEnvelopesClearBeforeAndAfter": true,
+      "qaRenderedEnvelopeWorld": 20,
+      "actualLabelFontCssPx": [
+        13.999999,
+        14.0
+      ],
+      "camera": {
+        "world": {
+          "width": 1200,
+          "height": 720
+        },
+        "scale": 0.8200138888888888,
+        "x": 147.99166666666673,
+        "y": 129.59,
+        "safeTop": 129.59,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "uniform": true,
+        "responsiveLanes": false
+      },
+      "cap": [
+        {
+          "left": 340,
+          "top": 0,
+          "right": 940,
+          "bottom": 113.59375,
+          "width": 600,
+          "height": 113.59375,
+          "kind": "match",
+          "mode": "centered-scoreboard"
+        }
+      ],
+      "ownerVisualVerdict": "Heads+names whole, header clear, uniform trails and floor/grid continuous to viewport edges; no decorative boundary/blank strip."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/snakelines-hud-camera-final/snakelines-tv-hud-camera-1920.png",
+      "sha256": "c6668975429ae1aede8b3d6b443a46bcb00e11d9e7c0388dbb6643f98cde4280",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "aliveFirstRowActorsBefore": 4,
+      "aliveFirstRowActorsAfter": 4,
+      "allAliveRenderedEnvelopesClearBeforeAndAfter": true,
+      "qaRenderedEnvelopeWorld": 20,
+      "actualLabelFontCssPx": [
+        14.0
+      ],
+      "camera": {
+        "world": {
+          "width": 1200,
+          "height": 720
+        },
+        "scale": 1.241125,
+        "x": 215.32499999999993,
+        "y": 186.39,
+        "safeTop": 186.39,
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "uniform": true,
+        "responsiveLanes": false
+      },
+      "cap": [
+        {
+          "left": 510,
+          "top": 0,
+          "right": 1410,
+          "bottom": 170.390625,
+          "width": 900,
+          "height": 170.390625,
+          "kind": "match",
+          "mode": "centered-scoreboard"
+        }
+      ],
+      "ownerVisualVerdict": "Heads+names whole, header clear, uniform trails and floor/grid continuous to viewport edges; no decorative boundary/blank strip."
+    }
+  ],
+  "pausedResize": {
+    "beforeTime": 0.49999999999999994,
+    "afterTime": 0.49999999999999994,
+    "canonicalPositionsAliveAndTrailLengthsUnchanged": true,
+    "geometryUpdatedBeforeResume": true,
+    "cameraBefore": {
+      "world": {
+        "width": 1200,
+        "height": 720
+      },
+      "scale": 0.8414027777777777,
+      "x": 135.15833333333336,
+      "y": 114.19,
+      "safeTop": 114.19,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "uniform": true,
+      "responsiveLanes": false
+    },
+    "cameraAfter": {
+      "world": {
+        "width": 1200,
+        "height": 720
+      },
+      "scale": 1.2731944444444445,
+      "x": 196.08333333333326,
+      "y": 163.3,
+      "safeTop": 163.3,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "uniform": true,
+      "responsiveLanes": false
+    }
+  },
+  "actualHostReconnect": {
+    "roundRosterAndNonResetClockPreserved": true,
+    "beforeTime": 1.700000000000002,
+    "afterTime": 1.700000000000002,
+    "afterCamera": {
+      "world": {
+        "width": 1200,
+        "height": 720
+      },
+      "scale": 1.241125,
+      "x": 215.32499999999993,
+      "y": 186.39,
+      "safeTop": 186.39,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "uniform": true,
+      "responsiveLanes": false
+    },
+    "afterAliveActorEnvelopesClear": true
+  },
+  "tests": {
+    "syntax": "PASS",
+    "existingCarryVisibleHudAndControllerPayload": "4 tests PASS",
+    "existingSnakePolish": "PASS floor/turn effects/paused snapshot/round reset/reduced motion",
+    "existingArcadePacketProjection": "PASS real local host4905B/phone476B; projected phone fields excluded",
+    "legacyArcadeSimulation": "Existing Flappy immediatevy<0 assertion fails because untouched simulation has3s countdown. Test only imports unchanged simulation; not caused by app camera-only change. No test weakening or unrelated fix."
+  },
+  "runtimeErrors": [],
+  "watchedSourceDrift": [],
+  "phonePngs": false,
+  "browserAndServerClosed": true,
+  "independentVerdict": "Requested from existing art_director; pending.",
+  "historicalHarnessAttempt": "snakelines-hud-camera-confirm:720 image clear and paused canonical geometry passed;1920 image captured during Resuming cover and later hostreload evaluation hit navigation race. Kept historical; final harness waits transition and reacquires actualcurrentframe. No product correction after initial camera edit."
+}

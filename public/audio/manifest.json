@@ -1,0 +1,82 @@
+{
+  "verified": "2026-09-27",
+  "assets": [
+    {
+      "path": "music/battle.m4a",
+      "bytes": 550405,
+      "sha256": "b1d78fe5982ff0e5bbbae9d01ef699af08e182bd781d765255f086af99b6a12e",
+      "license": "CC0-1.0",
+      "author": "Not Jam"
+    },
+    {
+      "path": "music/lobby.m4a",
+      "bytes": 1234568,
+      "sha256": "996617a8e9e175afba40b314ed07ae624a299bbf15f25927aea43fafb2cbe326",
+      "license": "CC0-1.0",
+      "author": "Not Jam"
+    },
+    {
+      "path": "music/matchmaking.m4a",
+      "bytes": 1442106,
+      "sha256": "d0cbe453d582672a39fbfb38cf324035559d248ca2b3740216e7b7f3042db919",
+      "license": "CC0-1.0",
+      "author": "Not Jam"
+    },
+    {
+      "path": "sfx/back.wav",
+      "bytes": 5422,
+      "sha256": "7f6b13303332c8bbaecf609f97ad1ead1a7121bf7d2960549169d7ea8455fd03",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    },
+    {
+      "path": "sfx/click.wav",
+      "bytes": 8610,
+      "sha256": "ecf529849d4b7230aad98784cb0165e51857b5a522ee628f080bc0b3ff0bd54e",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    },
+    {
+      "path": "sfx/confirm.wav",
+      "bytes": 47584,
+      "sha256": "d2b2bc044ba11009c3dfd26a4267a63ec6258de8c6c1ca000faacc18d2b45eed",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    },
+    {
+      "path": "sfx/countdown.wav",
+      "bytes": 1836,
+      "sha256": "06a5d0710a04e0e1ceab41d8d5947a02e1228b2c686140501b8c5723aa056b8b",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    },
+    {
+      "path": "sfx/error.wav",
+      "bytes": 17648,
+      "sha256": "12f07abcd93e47f2e4c806dad41647c397375fa06015903096cb4a21016ee669",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    },
+    {
+      "path": "sfx/hit.wav",
+      "bytes": 10622,
+      "sha256": "f25c31094b825b0b22edd4e1a73cc867d4531de61a922baf6fc39b5759f5c370",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    },
+    {
+      "path": "sfx/ready.wav",
+      "bytes": 25608,
+      "sha256": "e1b61c9fbf1037bd63d28a86860a0716eb33d8c6cd8dd86e9fe19df09a4b574b",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    },
+    {
+      "path": "sfx/win.wav",
+      "bytes": 244524,
+      "sha256": "ef3dda79cb64d460f19e8fc035f83401f8714e3d9cf03eaecb10d717388c02b9",
+      "license": "CC0-1.0",
+      "author": "Kenney"
+    }
+  ]
+}

@@ -10,6 +10,14 @@ export class SiegeFX {
  setWeapons(weapons){this.weapons=weapons||{};}
  clear(){this.pool.push(...this.items);this.items.length=0;this.labels.length=0;this.plasma.clear();}
  acquire(values){const item=this.pool.pop()||{};for(const key of Object.keys(item))delete item[key];Object.assign(item,values);this.items.push(item);return item;}
+ trimBudget(){
+  // Preserve score glyphs through a burst's ordinary particles. Both pools
+  // remain bounded; older feedback retires first beyond64 simultaneous glyphs.
+  let damage=this.items.filter(p=>p.kind==='damage').length;
+  const remove=new Set();for(const p of this.items)if(p.kind==='damage'&&damage>64){remove.add(p);damage--;}
+  let excess=this.items.length-remove.size-MAX_ITEMS;for(const p of this.items)if(excess>0&&p.kind!=='damage'){remove.add(p);excess--;}
+  if(remove.size){let write=0;for(const p of this.items){if(remove.has(p))this.pool.push(p);else this.items[write++]=p;}this.items.length=write;}
+ }
  sprite(color,smoke=false){
   const key=color+smoke;if(this.sprites.has(key))return this.sprites.get(key);
   const el=document.createElement('canvas');el.width=el.height=128;const c=el.getContext('2d'),g=c.createRadialGradient(64,64,0,64,64,64);
@@ -25,7 +33,7 @@ export class SiegeFX {
   }
   if(e.kind==='score'){
    this.acquire({kind:'damage',x:e.x,y:e.y,originX:e.x,originY:e.y,age:0,life:2.6,vx:0,vy:0,phase:(e.id||0)*2.39996,value:(e.value>0?'+':'')+e.value,color:e.color||'#ffe083'});
-   if(this.items.length>MAX_ITEMS)this.pool.push(...this.items.splice(0,this.items.length-MAX_ITEMS));return true;
+   this.trimBudget();return true;
   }
   if(!['blast','muzzle','split','bounce','dirt','warp','spark','land','beam','coat','stuck','jump'].includes(e.kind))return false;
   const authoredMaterial=['blast','dirt','split','coat'].includes(e.kind)&&this.plasma.emit(e);
@@ -69,7 +77,7 @@ export class SiegeFX {
   }
   // TV/WebKit must never pay an unbounded cost when a chain weapon fans out.
   // Preserve the newest authored stages and recycle the rest.
-  if(this.items.length>MAX_ITEMS){const removed=this.items.splice(0,this.items.length-MAX_ITEMS);this.pool.push(...removed);}return true;
+  this.trimBudget();return true;
  }
  draw(c,dt,simulationTime=null){
   dt=clamp(dt,0,.05);c.save();c.lineCap='round';

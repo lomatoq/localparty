@@ -7,19 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143671E2522298F2B0D7423A /* JoinConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFD9EA6C9D3C58D8D85F0B8 /* JoinConnectionView.swift */; };
+		165838DAE7FEBAAA3785EA1F /* kardia-fit-runner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2ECBDAA18882BEE670BDBFF6 /* kardia-fit-runner.otf */; };
+		1D75D0D2C9E990DDEA9D9834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EAD77A9036214D17E1A03C7 /* Assets.xcassets */; };
 		2C981EEA9705749D162F601F /* NodeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D8A3A3D62B2EDD5DA858D4 /* NodeBridge.m */; };
 		5E18F48D4734258A5FFFF6A5 /* LocalPartyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A19ED3933ABCA42B1EAC69 /* LocalPartyApp.swift */; };
 		678BC668D4188F9C4AAAE77E /* NativePhysics/wasm-rt-impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 4686177316D54E59823B69E4 /* NativePhysics/wasm-rt-impl.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
 		6CB19E5EF0B2A6407673BCFC /* NativePhysics/wasm-rt-mem-impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 43F3C3DAF5B3163D8E76C365 /* NativePhysics/wasm-rt-mem-impl.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
+		6E1F31F02BB1FF878725EAA4 /* JoinInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C05B44D417D578846E142 /* JoinInvitation.swift */; };
 		719CD58F255347A33105A7CB /* ServerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A8398904667FF15427A09 /* ServerModel.swift */; };
+		8601AE0ECAC08C0EE785DC40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 688B56D52C076B8FD70BE9CD /* Foundation.framework */; };
 		9059CFD73241BD340596A271 /* NativePhysics/PhysicsBridge.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0C70042C77E2D2D99751ADCB /* NativePhysics/PhysicsBridge.cc */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
+		A2935A32554A3EFFAD7A2AE2 /* kardia-fit.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CED396B763727ED754998E4 /* kardia-fit.otf */; };
 		AAAAAAAAAAAAAAAAAAAAAAA1 /* Vendor/NodeMobile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAAAAAAAAAAAAAAAAAAAAA3 /* Vendor/NodeMobile.xcframework */; };
 		AAAAAAAAAAAAAAAAAAAAAAA2 /* Vendor/NodeMobile.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAAAAAAAAAAAAAAAAAAAAAA3 /* Vendor/NodeMobile.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AB9800000000000000000001 /* NearbyRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9800000000000000000002 /* NearbyRooms.swift */; };
+		AD16536AE8EBEA4BE58859AF /* kardia-fat-runner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B418127F5A507DCE52810 /* kardia-fat-runner.otf */; };
+		B620716E2D30B90745112B8A /* JoinConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFD9EA6C9D3C58D8D85F0B8 /* JoinConnectionView.swift */; };
 		BE228F61486C2DCB7F7443DA /* NativePhysics/rapier2d.c in Sources */ = {isa = PBXBuildFile; fileRef = 73F1AC09BA2467F994357C9E /* NativePhysics/rapier2d.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
+		C65C9DC1EA8A4DFAAF53DC85 /* JoinInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C05B44D417D578846E142 /* JoinInvitation.swift */; };
 		CCCCCCCCCCCCCCCCCCCCCCC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCCCCCCCCCCCCCCCCCCCCCC2 /* Assets.xcassets */; };
+		CEA762624FA2F7CD4C1F1496 /* kardia-fat-runner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B418127F5A507DCE52810 /* kardia-fat-runner.otf */; };
+		D066CEF3939E0D9C1D5A9949 /* HeyPalsJoinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5120BEB08C10BB0C1C938FB /* HeyPalsJoinApp.swift */; };
+		D134B730E9B9399FA3F36C1C /* kardia-fit.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CED396B763727ED754998E4 /* kardia-fit.otf */; };
 		DDDDDDDDDDDDDDDDDDDDDDD1 /* NativePhysics/RuntimeBridge.cc in Sources */ = {isa = PBXBuildFile; fileRef = DDDDDDDDDDDDDDDDDDDDDDD2 /* NativePhysics/RuntimeBridge.cc */; };
 		EEEEEEEEEEEEEEEEEEEEEEE1 /* BackgroundTaskCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEEEEEEEEEEEEEEEEEEEEE2 /* BackgroundTaskCompletion.swift */; };
 		F0F0F0F0F0F0F0F0F0F0F001 /* ExternalDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0F0F0F0F0F0F0F0F0F002 /* ExternalDisplay.swift */; };
+		F71EA401CE682EE4E59B5F7E /* kardia-fit-runner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2ECBDAA18882BEE670BDBFF6 /* kardia-fit-runner.otf */; };
 		FE23BEE5725BE4121AC631C8 /* NativePhysics/rapier3d.c in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E5259322970FC0805DCC5 /* NativePhysics/rapier3d.c */; settings = {COMPILER_FLAGS = "-O2 -DWASM_RT_USE_MMAP=0 -DWASM_RT_MEMCHECK_BOUNDS_CHECK=1 -DWASM_RT_INSTALL_SIGNAL_HANDLER=0 -DNDEBUG"; }; };
 /* End PBXBuildFile section */
 
@@ -40,13 +54,23 @@
 /* Begin PBXFileReference section */
 		0112DAE3F84CB4DF5179BE01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C70042C77E2D2D99751ADCB /* NativePhysics/PhysicsBridge.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NativePhysics/PhysicsBridge.cc; sourceTree = SOURCE_ROOT; };
+		186195EFE769C2889C84764A /* HeyPalsJoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeyPalsJoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EAD77A9036214D17E1A03C7 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2ECBDAA18882BEE670BDBFF6 /* kardia-fit-runner.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "kardia-fit-runner.otf"; path = "Fonts/kardia-fit-runner.otf"; sourceTree = "<group>"; };
 		38A007151ABE87CC01A5B6E9 /* LocalParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = LocalParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CFD9EA6C9D3C58D8D85F0B8 /* JoinConnectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JoinConnectionView.swift; sourceTree = "<group>"; };
+		3F4B418127F5A507DCE52810 /* kardia-fat-runner.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "kardia-fat-runner.otf"; path = "Fonts/kardia-fat-runner.otf"; sourceTree = "<group>"; };
 		43F3C3DAF5B3163D8E76C365 /* NativePhysics/wasm-rt-mem-impl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/wasm-rt-mem-impl.c"; sourceTree = SOURCE_ROOT; };
 		4686177316D54E59823B69E4 /* NativePhysics/wasm-rt-impl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NativePhysics/wasm-rt-impl.c"; sourceTree = SOURCE_ROOT; };
 		526A8398904667FF15427A09 /* ServerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerModel.swift; sourceTree = "<group>"; };
+		688B56D52C076B8FD70BE9CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		73F1AC09BA2467F994357C9E /* NativePhysics/rapier2d.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NativePhysics/rapier2d.c; sourceTree = SOURCE_ROOT; };
 		7E0E5259322970FC0805DCC5 /* NativePhysics/rapier3d.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NativePhysics/rapier3d.c; sourceTree = SOURCE_ROOT; };
+		8CED396B763727ED754998E4 /* kardia-fit.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "kardia-fit.otf"; path = "Fonts/kardia-fit.otf"; sourceTree = "<group>"; };
 		AAAAAAAAAAAAAAAAAAAAAAA3 /* Vendor/NodeMobile.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Vendor/NodeMobile.xcframework; sourceTree = SOURCE_ROOT; };
+		AB8C05B44D417D578846E142 /* JoinInvitation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JoinInvitation.swift; sourceTree = "<group>"; };
+		AB9800000000000000000002 /* NearbyRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRooms.swift; sourceTree = "<group>"; };
+		C5120BEB08C10BB0C1C938FB /* HeyPalsJoinApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeyPalsJoinApp.swift; sourceTree = "<group>"; };
 		CA84D1343B96BAA8137C943E /* Server */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Server; sourceTree = "<group>"; };
 		CCCCCCCCCCCCCCCCCCCCCCC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1A19ED3933ABCA42B1EAC69 /* LocalPartyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPartyApp.swift; sourceTree = "<group>"; };
@@ -57,6 +81,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		438B823BE94FAD21C96AD534 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8601AE0ECAC08C0EE785DC40 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7561BFB015D8F536760CB671 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,6 +107,7 @@
 				CCCCCCCCCCCCCCCCCCCCCCC2 /* Assets.xcassets */,
 				D9D8A3A3D62B2EDD5DA858D4 /* NodeBridge.m */,
 				526A8398904667FF15427A09 /* ServerModel.swift */,
+				AB9800000000000000000002 /* NearbyRooms.swift */,
 				EEEEEEEEEEEEEEEEEEEEEEE2 /* BackgroundTaskCompletion.swift */,
 				F0F0F0F0F0F0F0F0F0F0F002 /* ExternalDisplay.swift */,
 				D1A19ED3933ABCA42B1EAC69 /* LocalPartyApp.swift */,
@@ -82,6 +115,18 @@
 				0112DAE3F84CB4DF5179BE01 /* Info.plist */,
 			);
 			path = LocalParty;
+			sourceTree = "<group>";
+		};
+		4D624E33E441E278565BC815 /* HeyPalsJoin */ = {
+			isa = PBXGroup;
+			children = (
+				C5120BEB08C10BB0C1C938FB /* HeyPalsJoinApp.swift */,
+				3F4B418127F5A507DCE52810 /* kardia-fat-runner.otf */,
+				8CED396B763727ED754998E4 /* kardia-fit.otf */,
+				2ECBDAA18882BEE670BDBFF6 /* kardia-fit-runner.otf */,
+				2EAD77A9036214D17E1A03C7 /* Assets.xcassets */,
+			);
+			path = HeyPalsJoin;
 			sourceTree = "<group>";
 		};
 		97977E08305CA48B0030B34A /* Recovered References */ = {
@@ -92,12 +137,32 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		9E548139F6FBA7B4E87D3915 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AB8C05B44D417D578846E142 /* JoinInvitation.swift */,
+				3CFD9EA6C9D3C58D8D85F0B8 /* JoinConnectionView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A68910AF5CDEE3757DC53673 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				688B56D52C076B8FD70BE9CD /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		B28B7AF69320201D1CF206EB = {
 			isa = PBXGroup;
 			children = (
 				482182478A3ECD4745BEA917 /* LocalParty */,
 				FBDC4F23F93125BBEEAE800C /* Products */,
 				97977E08305CA48B0030B34A /* Recovered References */,
+				9E548139F6FBA7B4E87D3915 /* Shared */,
+				D5D92573CE55B83D3C7A879E /* Frameworks */,
+				4D624E33E441E278565BC815 /* HeyPalsJoin */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,10 +179,19 @@
 			name = "Native physics";
 			sourceTree = "<group>";
 		};
+		D5D92573CE55B83D3C7A879E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A68910AF5CDEE3757DC53673 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FBDC4F23F93125BBEEAE800C /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				38A007151ABE87CC01A5B6E9 /* LocalParty.app */,
+				186195EFE769C2889C84764A /* HeyPalsJoin.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,6 +218,23 @@
 			productReference = 38A007151ABE87CC01A5B6E9 /* LocalParty.app */;
 			productType = "com.apple.product-type.application";
 		};
+		29A0BCEDE46051F3700BC930 /* HeyPalsJoin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72F88685E914D4028E001745 /* Build configuration list for PBXNativeTarget "HeyPalsJoin" */;
+			buildPhases = (
+				60EAD64CD83662E371C8C6A6 /* Sources */,
+				438B823BE94FAD21C96AD534 /* Frameworks */,
+				61861BD24CF684EC0ADF156A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeyPalsJoin;
+			productName = HeyPalsJoin;
+			productReference = 186195EFE769C2889C84764A /* HeyPalsJoin.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -155,6 +246,18 @@
 				TargetAttributes = {
 					0E8A3AD980EC179856012B7E = {
 						CreatedOnToolsVersion = 26.0;
+					};
+					29A0BCEDE46051F3700BC930 = {
+						CreatedOnToolsVersion = 27.0;
+						ParentApp = 0E8A3AD980EC179856012B7E;
+						SystemCapabilities = {
+							com.apple.HotspotConfiguration = {
+								enabled = 1;
+							};
+							com.apple.OnDemandInstallCapable = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -173,6 +276,7 @@
 			projectRoot = "";
 			targets = (
 				0E8A3AD980EC179856012B7E /* LocalParty */,
+				29A0BCEDE46051F3700BC930 /* HeyPalsJoin */,
 			);
 		};
 /* End PBXProject section */
@@ -183,6 +287,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCCCCCCCCCCCCCCCCCCCCCC1 /* Assets.xcassets in Resources */,
+				CEA762624FA2F7CD4C1F1496 /* kardia-fat-runner.otf in Resources */,
+				D134B730E9B9399FA3F36C1C /* kardia-fit.otf in Resources */,
+				165838DAE7FEBAAA3785EA1F /* kardia-fit-runner.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61861BD24CF684EC0ADF156A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD16536AE8EBEA4BE58859AF /* kardia-fat-runner.otf in Resources */,
+				A2935A32554A3EFFAD7A2AE2 /* kardia-fit.otf in Resources */,
+				F71EA401CE682EE4E59B5F7E /* kardia-fit-runner.otf in Resources */,
+				1D75D0D2C9E990DDEA9D9834 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +326,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		60EAD64CD83662E371C8C6A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D066CEF3939E0D9C1D5A9949 /* HeyPalsJoinApp.swift in Sources */,
+				C65C9DC1EA8A4DFAAF53DC85 /* JoinInvitation.swift in Sources */,
+				143671E2522298F2B0D7423A /* JoinConnectionView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BCE16DD0260827ECF338C787 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,9 +348,12 @@
 				6CB19E5EF0B2A6407673BCFC /* NativePhysics/wasm-rt-mem-impl.c in Sources */,
 				2C981EEA9705749D162F601F /* NodeBridge.m in Sources */,
 				719CD58F255347A33105A7CB /* ServerModel.swift in Sources */,
+				AB9800000000000000000001 /* NearbyRooms.swift in Sources */,
 				EEEEEEEEEEEEEEEEEEEEEEE1 /* BackgroundTaskCompletion.swift in Sources */,
 				F0F0F0F0F0F0F0F0F0F0F001 /* ExternalDisplay.swift in Sources */,
 				5E18F48D4734258A5FFFF6A5 /* LocalPartyApp.swift in Sources */,
+				6E1F31F02BB1FF878725EAA4 /* JoinInvitation.swift in Sources */,
+				B620716E2D30B90745112B8A /* JoinConnectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,11 +365,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_TEAM = UNGUHT4M6C;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = LocalParty/Info.plist;
-				MARKETING_VERSION = 0.11.1;
+				MARKETING_VERSION = 0.11.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.localparty.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -253,11 +384,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_TEAM = UNGUHT4M6C;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = LocalParty/Info.plist;
-				MARKETING_VERSION = 0.11.1;
+				MARKETING_VERSION = 0.11.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.localparty.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -266,6 +397,37 @@
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
+		};
+		7A7745AE43B05FFBB5057621 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = HeyPalsJoin/HeyPalsJoin.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 98;
+				DEVELOPMENT_TEAM = UNGUHT4M6C;
+				GENERATE_INFOPLIST_FILE = NO;
+				HP_PARENT_BUNDLE_IDENTIFIER = com.localparty.launcher;
+				INFOPLIST_FILE = HeyPalsJoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.11.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HP_PARENT_BUNDLE_IDENTIFIER).Join";
+				PRODUCT_NAME = HeyPalsJoin;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) APPCLIP";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		89E1FD6268CC0F221A2BE178 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -284,9 +446,40 @@
 					"@executable_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_OBJC_BRIDGING_HEADER = LocalParty/NodeBridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DC770FF5F037637569CBEEB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = HeyPalsJoin/HeyPalsJoin.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 98;
+				DEVELOPMENT_TEAM = UNGUHT4M6C;
+				GENERATE_INFOPLIST_FILE = NO;
+				HP_PARENT_BUNDLE_IDENTIFIER = com.localparty.launcher;
+				INFOPLIST_FILE = HeyPalsJoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.11.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HP_PARENT_BUNDLE_IDENTIFIER).Join";
+				PRODUCT_NAME = HeyPalsJoin;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG APPCLIP";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,6 +510,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		72F88685E914D4028E001745 /* Build configuration list for PBXNativeTarget "HeyPalsJoin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A7745AE43B05FFBB5057621 /* Release */,
+				DC770FF5F037637569CBEEB5 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "LocalParty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

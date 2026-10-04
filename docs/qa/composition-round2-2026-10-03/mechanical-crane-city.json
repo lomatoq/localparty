@@ -1,0 +1,305 @@
+{
+  "reviewer": "group06 independent mechanical critic",
+  "reviewedAt": "2026-10-03T10:30:51.250792+00:00",
+  "ownerPacket": "docs/qa/composition-round2-2026-10-03/construction-open-city-proof.json",
+  "ownerPacketSha256": "f8c2cd87cc0dc57f3004c1d1f344d8d66be4d8a30b60668cd13c245a0ccb7157",
+  "openedOriginals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-phone-drop-feedback-320.png",
+      "sha256": "3fca55d9f91cfaf0254b4736da5a9fd6bf5a43f18ee2652c96cb032167888a96",
+      "openedIndividually": true,
+      "observation": "Actual other actor Bot3, Blocks1 or2/Attempts3, disabled arrows/Drop and off-turn guidance fit at320/402. Falling caption on402, already next state at320."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-phone-drop-feedback-402.png",
+      "sha256": "f4b5f539b243c78ad258341e25218991ddbda9af0db07713d6207635162c3788",
+      "openedIndividually": true,
+      "observation": "Actual other actor Bot3, Blocks1 or2/Attempts3, disabled arrows/Drop and off-turn guidance fit at320/402. Falling caption on402, already next state at320."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-phone-gameplay.png",
+      "sha256": "a89c82c248d86a4e0d1a677dbc3c5615065a07a33e2a62e085e7b4c3b232f86e",
+      "openedIndividually": true,
+      "observation": "Own turn0Blocks/3Attempts, hold arrows thenDrop instructions, active Left/Right/Drop and independent Pause/Lobby readable atcapturedwidth."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-phone-live-320.png",
+      "sha256": "7bd2294f1a30d3e1deebef3c8699eda38994f381869fc1df58a7ef7f488c1b0d",
+      "openedIndividually": true,
+      "observation": "Own turn0Blocks/3Attempts, hold arrows thenDrop instructions, active Left/Right/Drop and independent Pause/Lobby readable atcapturedwidth."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-phone-live-402.png",
+      "sha256": "5fd7df3aa78a7ea84e5767842f2be75773591791127b1cde6261240cce272087",
+      "openedIndividually": true,
+      "observation": "Own turn0Blocks/3Attempts, hold arrows thenDrop instructions, active Left/Right/Drop and independent Pause/Lobby readable atcapturedwidth."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-phone-matchmaking-rules.png",
+      "sha256": "1a9830616dfce08963888140303aaa78f9ff0bedf20336f6b6deedb69e3ed7c4",
+      "openedIndividually": true,
+      "observation": "Preparing task, wordmark, Ready and independent footer readable. Expanded Rules/Controls at sixteen has real bounded soft continuation; does not expose all sixteen names at once."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-phone-matchmaking.png",
+      "sha256": "2784c30468b19299a4ba04a504d9c75a5328d1f9030be42ee85ac338ba4025f6",
+      "openedIndividually": true,
+      "observation": "Preparing task, wordmark, Ready and independent footer readable. Expanded Rules/Controls at sixteen has real bounded soft continuation; does not expose all sixteen names at once."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-tv-drop-feedback-1280.png",
+      "sha256": "de31d4aeb46efd252265b3b9c793562f08dde27344260e6657b87ec7926c3d67",
+      "openedIndividually": true,
+      "observation": "Allfour complete crew rows, Alexandra LongSurname as complete two-line identity, award/name/score columns and task facts readable. Full city/crane, rail transparent; no hard purple panel or rectangular place pad."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-tv-drop-feedback-1920.png",
+      "sha256": "6826bfdc3d14545f57bff7bf6d24e5dea81f42072c48c7885aacfaa282f3f82d",
+      "openedIndividually": true,
+      "observation": "Allfour complete crew rows, Alexandra LongSurname as complete two-line identity, award/name/score columns and task facts readable. Full city/crane, rail transparent; no hard purple panel or rectangular place pad."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-tv-gameplay.png",
+      "sha256": "91b9620f2343d4c5c87bd849853e0ee0630c73afd86570d80d986b4586fd8af9",
+      "openedIndividually": true,
+      "observation": "Allfour complete crew rows, Alexandra LongSurname as complete two-line identity, award/name/score columns and task facts readable. Full city/crane, rail transparent; no hard purple panel or rectangular place pad."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-tv-live-1280.png",
+      "sha256": "e2c543269959a00a052b6ae85298ca688dfd0d1ea245748ffd3242528da2ed9e",
+      "openedIndividually": true,
+      "observation": "Allfour complete crew rows, Alexandra LongSurname as complete two-line identity, award/name/score columns and task facts readable. Full city/crane, rail transparent; no hard purple panel or rectangular place pad."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-tv-live-1920.png",
+      "sha256": "2e532e31baf5ec2d4f0edb3d156d5ae39a3fdcfca6156bd1019b12b8aec1ea01",
+      "openedIndividually": true,
+      "observation": "Allfour complete crew rows, Alexandra LongSurname as complete two-line identity, award/name/score columns and task facts readable. Full city/crane, rail transparent; no hard purple panel or rectangular place pad."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/crane-tv-matchmaking.png",
+      "sha256": "b305aad73bb6f85ecbf1b99583a3e5f41e0a2857c5015c0ef1b3913a197ba7dd",
+      "openedIndividually": true,
+      "observation": "Preparing game, full Night Shift wordmark, four waiting names and0/4ready visible; no live list claim."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/main-phone-lobby.png",
+      "sha256": "ed0594cef229779b6064386a9d2c8aee599237e5bbd1c51ee5686ef0dfd6717f",
+      "openedIndividually": true,
+      "observation": "Phone lobby hero, category tabs,36games/search/votes and first Push Pit card rendered. No gameplay/control claim."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four/main-tv-lobby.png",
+      "sha256": "cd263f13ffd478628b4be80fd29d5849012660154fd19efd3e3736e1088d2c65",
+      "openedIndividually": true,
+      "observation": "Actual HeyPals boot preparing screen89/100; cannot accept settled main menu from this original."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-phone-matchmaking-rules.png",
+      "sha256": "2781439fb9d7cfb132b7153d664c2bd8692d9f6c4293d9060675d50559672c48",
+      "openedIndividually": true,
+      "observation": "Preparing task, wordmark, Ready and independent footer readable. Expanded Rules/Controls at sixteen has real bounded soft continuation; does not expose all sixteen names at once."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-phone-roster-end.png",
+      "sha256": "bb188648465de638783abe6eabc1460abeea7ceeb683b3e7bfa0535f00e1974f",
+      "openedIndividually": true,
+      "observation": "Filename is not a roster: actual Contact/waiting-to-settle, Blocks0/Attempts3, WatchLanding and disabled arrows/Drop. Fits clear of footer."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-tv-cap-cycle-aiming.png",
+      "sha256": "d99a04e412e4e0e450ab334d55dabb3440c35db7fad498f55c80d78088f1a626",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-tv-cap-cycle-untimed.png",
+      "sha256": "21d071e7710bcdce1179db1b4f4e7db62a9c1cf40e094317745f454fe4e4dbad",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-tv-end-after-live-update.png",
+      "sha256": "050e0c39aad5820b17410d5e9c6ded61c99ddf7de20e52aa9c7727222abfbd53",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-tv-manual-middle-after-update.png",
+      "sha256": "7963b2fa2dd2a5cf009d0da5125b4879bb9b17cc6bc7e78f79e621bf5ac7b0c6",
+      "openedIndividually": true,
+      "observation": "Manual middle window contains other crew names and dynamic soft fades at both continuing edges. Current actor/cap/field visible. This is deliberately not an end-state proof."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-tv-roster-diagnostic-end.png",
+      "sha256": "a830499cb39d74df83b98c84d89924ee0ab476a375cdc4634d0999826fb053c1",
+      "openedIndividually": true,
+      "observation": "Whole last crew row visible and city/crane/feedback visible; cue PERFECT+150 conflicts with actual center+144(at1080) or+145(at720). Diagnostic result copy not accepted as internally consistent."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080/crane-tv-roster-end.png",
+      "sha256": "14a5837b24d11576e3d435e54f5ed62fc62260a6b65814edde307777fda11805",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-phone-matchmaking-rules.png",
+      "sha256": "2781439fb9d7cfb132b7153d664c2bd8692d9f6c4293d9060675d50559672c48",
+      "openedIndividually": true,
+      "observation": "Preparing task, wordmark, Ready and independent footer readable. Expanded Rules/Controls at sixteen has real bounded soft continuation; does not expose all sixteen names at once."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-phone-roster-end.png",
+      "sha256": "bb188648465de638783abe6eabc1460abeea7ceeb683b3e7bfa0535f00e1974f",
+      "openedIndividually": true,
+      "observation": "Filename is not a roster: actual Contact/waiting-to-settle, Blocks0/Attempts3, WatchLanding and disabled arrows/Drop. Fits clear of footer."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-tv-cap-cycle-aiming.png",
+      "sha256": "6ea93d7b8744d90bab67d53dae6e43700f4a3aca285c2a99b8e4a642e48bde35",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-tv-cap-cycle-untimed.png",
+      "sha256": "1f75ef48a6dd9818776d0292e4e3834805a1e5d76b57b05bd1e8fe8d17deca31",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-tv-end-after-live-update.png",
+      "sha256": "bb0965f9221fc6e7f66c8aa51f576b813f70a77d27a4cdb37e8997c30f9f0cf1",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-tv-manual-middle-after-update.png",
+      "sha256": "edba7469f54a3bba03d30d06d8263ca4bbf6af1d00f5a9c39512890a5219af4b",
+      "openedIndividually": true,
+      "observation": "Manual middle window contains other crew names and dynamic soft fades at both continuing edges. Current actor/cap/field visible. This is deliberately not an end-state proof."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-tv-roster-diagnostic-end.png",
+      "sha256": "8e990297a20d61fcf27304274a60aadd6dc272156521f7f1b45679e1b1cf00fb",
+      "openedIndividually": true,
+      "observation": "Whole last crew row visible and city/crane/feedback visible; cue PERFECT+150 conflicts with actual center+144(at1080) or+145(at720). Diagnostic result copy not accepted as internally consistent."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720/crane-tv-roster-end.png",
+      "sha256": "2317fccecc3aa13d4ba011078a411a36b85f5ad12c4fa78de1db22b522008a1e",
+      "openedIndividually": true,
+      "observation": "Sixteencrew scroll window reaches whole last row at captured end/cap phase; ranks/avatar/name/stats/points legible without rectangular place pad or purple rail. Full city/crane field, phase facts protected. Screenshot proves captured containment, not continuous exact-max identity."
+    }
+  ],
+  "sourceAtCapture": {
+    "games/crane/public/client.js": "29be6f004314c4bf050b1e4edcf035b1482994b8e186a251d5d4a8f323c0214b",
+    "games/crane/public/style.css": "7eb17f6530a0c6d0bdf0c6fff0e29b9b79df50d2d30ec423f751127cc0867b81",
+    "public/assets/gameplay/crane-city-minimal-20261003-v1.png": "9974e8226aa01f46008e4e5856360cc2ab1f8465196bf938f69d3307ebfe0465",
+    "public/tv-information.css": "fdfdb74a17fa3cec0e1093aefcc0f99c769e4ed0d7b9366751e8ff669c6f3a1f",
+    "public/tv-information.js": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+    "public/game-ui-system.js": "41a19f3e4bfaf13d35cd67f6ecbfaa43f43a0496835d796029656d800c7d9eba",
+    "public/game-ui-system.css": "0267b72a28c42aa3d9a948741ffd0f028cbdb12957dd8e15f1f7a5e6632f951a",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/native-shell/host-ui.css": "21daf9d8019ff2bb8d159c65854c9eb2172a651df752e7615f4cd939ff1a66de"
+  },
+  "sourceDriftNow": [
+    {
+      "path": "public/native-shell/host-ui.css",
+      "capture": "21daf9d8019ff2bb8d159c65854c9eb2172a651df752e7615f4cd939ff1a66de",
+      "current": "0c499033e011fa67dcb17af6b040d2177f2994d539cbd859b94e3b74427ea500"
+    }
+  ],
+  "qualifiedVerdict": "Named four-player clipping and visible sixteen-player final-row/manual-scroll issues closed at capture. Exact-max blanket claim withheld; diagnostic feedback copy inconsistency remains.",
+  "findings": [
+    {
+      "priority": "P2",
+      "topic": "Feedback award text",
+      "images": [
+        "construction-city-final-sixteen1080/crane-tv-roster-diagnostic-end.png",
+        "construction-city-final-sixteen720/crane-tv-roster-diagnostic-end.png"
+      ],
+      "observation": "Right cue PERFECT! +150 contradicts actual center award +144 / +145 and cap points144 /145. Render-copy inconsistency reported to root; no engine change inferred."
+    },
+    {
+      "priority": "Evidence qualification",
+      "topic": "Filenames do not establish states",
+      "observation": "main-tv-lobby is boot89/100, not settled menu. Both crane-phone-roster-end images show active Contact with disabled controls, not a phone roster."
+    }
+  ],
+  "runMetrics": [
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-four",
+      "reportSha256": "bbf4813e05b487df6992d5d9c07b170866aac8838360069c50ab71176f0db395",
+      "errors": [],
+      "sourceDrift": [],
+      "capCycleSummary": null,
+      "strictEndExceptions": null
+    },
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen1080",
+      "reportSha256": "f4aa17e143f9f29780a5c16e795e22e11ff24b4b5c0335928a25b78bb4818b50",
+      "errors": [],
+      "sourceDrift": [],
+      "capCycleSummary": {
+        "seen": [
+          "untimed",
+          "aiming"
+        ],
+        "transitions": 4,
+        "samples": 20,
+        "allEndsReached": true,
+        "allLastRowsContained": true
+      },
+      "strictEndExceptions": []
+    },
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-city-final-sixteen720",
+      "reportSha256": "e21c99fd2a0033288392ca3f9ea4912874f557afa84dd7db7706f6025f4b6c3c",
+      "errors": [],
+      "sourceDrift": [],
+      "capCycleSummary": {
+        "seen": [
+          "untimed",
+          "aiming"
+        ],
+        "transitions": 4,
+        "samples": 17,
+        "allEndsReached": false,
+        "allLastRowsContained": true
+      },
+      "strictEndExceptions": [
+        {
+          "label": "2RAF-after-untimed-PNG",
+          "mode": "untimed",
+          "scrollTop": 1063,
+          "max": 1067,
+          "lastBottom": 603.5130615234375,
+          "listBottom": 603.5625,
+          "clock": "\u2014",
+          "message": "Perfect! +150"
+        },
+        {
+          "label": null,
+          "mode": "aiming",
+          "scrollTop": 1068,
+          "max": 1071,
+          "lastBottom": 597.9282836914062,
+          "listBottom": 603.5625,
+          "clock": "90",
+          "message": "Your block"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "No physical-device proof.",
+    "Manual boundary was explicit wheel-intent event plus actual element scrollTo, not hardware wheel evidence.",
+    "Current unrelated drift includes removed shared main purple overlay rule already locally disabled for Crane, and native HostPanel CSS; latest root catalog remains separate current-source gate."
+  ]
+}

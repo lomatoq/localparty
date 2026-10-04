@@ -1,0 +1,205 @@
+{
+  "branch": "heypals/ux-polish",
+  "artDirector": "art_director",
+  "integration": "root",
+  "concurrency": "Completed independent critics: group06 MAIN/QR/online, group08 mobile, art_director TV/gameplay; browser processes closed except user review server.",
+  "rules": "Actual skill instructions, visible before/after, fresh TV1920x1080 + phone402x874 for every game; bounded critique/correction; preserve Claude physics/effects and original comments",
+  "groups": [
+    {
+      "id": "01",
+      "name": "arena-party",
+      "games": [
+        "push",
+        "shrink",
+        "knives",
+        "bomb",
+        "western"
+      ],
+      "agent": "group01",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "group01-progress.md"
+      ]
+    },
+    {
+      "id": "02",
+      "name": "tanks",
+      "games": [
+        "tanks",
+        "tankarena"
+      ],
+      "agent": "group02",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "group02-fresh-progress.md",
+        "group02-spectator-art-progress.md"
+      ]
+    },
+    {
+      "id": "03",
+      "name": "arcade-deluxe",
+      "games": [
+        "marble_bloom",
+        "pocket_siege"
+      ],
+      "agent": "group03",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "group03-progress.md"
+      ]
+    },
+    {
+      "id": "04",
+      "name": "arcade",
+      "games": [
+        "taprace",
+        "punchmeter",
+        "flappy",
+        "hungry",
+        "snakelines",
+        "carryball"
+      ],
+      "agent": "group04",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "group04-progress.md"
+      ]
+    },
+    {
+      "id": "05",
+      "name": "precision-controls",
+      "games": [
+        "chaos",
+        "kart",
+        "western_duel"
+      ],
+      "agent": "group05",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "new-session-group05-progress.md",
+        "catalog-ui-material-direction-group05.md"
+      ]
+    },
+    {
+      "id": "06",
+      "name": "social",
+      "games": [
+        "monster",
+        "spy",
+        "crocodile",
+        "drawguess"
+      ],
+      "agent": "group06",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "new-session-group06-progress.md"
+      ]
+    },
+    {
+      "id": "07",
+      "name": "quiz",
+      "games": [
+        "sinyakquiz",
+        "warsaw",
+        "millionaire"
+      ],
+      "agent": "group07",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "new-session-group07-progress.md"
+      ]
+    },
+    {
+      "id": "08",
+      "name": "construction",
+      "games": [
+        "jenga",
+        "crane"
+      ],
+      "agent": "group08",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "group08-progress.md"
+      ]
+    },
+    {
+      "id": "09",
+      "name": "tabletop",
+      "games": [
+        "naval",
+        "poker",
+        "airhockey",
+        "mines"
+      ],
+      "agent": "group09",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "new-session-group09-progress.md"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "sports",
+      "games": [
+        "bow_club",
+        "curling",
+        "bowling",
+        "swarm_gate",
+        "peek_shoot"
+      ],
+      "agent": "group10",
+      "status": "source-frozen-reviewed",
+      "acceptance": "final-catalog-1734-plus-independent-reviews-and-qualified-focused-proofs",
+      "evidence": [
+        "new-session-group10-progress.md"
+      ]
+    }
+  ],
+  "runtimeInvestigation": "agent-limit-investigation.md",
+  "newThreadId": "01a0fc5b-9a58-7b90-a8ae-78420115152d",
+  "runtimeVerifiedAt": "2026-10-02T11:28:24.400666+00:00",
+  "lastResumedAt": "2026-10-02",
+  "resumeReason": "User explicitly resumed all existing agents after interrupted turn; preserve completed evidence, no replacement agents.",
+  "lastUserScope": "Complete36-game critical UI/control/art polish, actual browser originals and final local simulator assembly.",
+  "sportsControls": {
+    "agent": "sports_controls",
+    "status": "frozen-reviewed-local-simulator-build-verified",
+    "evidence": "sports-controls-progress.md",
+    "latest": "FIRE/PULSE and FIRE/MG above aim; true320 ready/active captions confirmed"
+  },
+  "finalReview": {
+    "status": "complete-for-browser-review-and-local-simulator-assembly",
+    "catalogGames": 36,
+    "gameplayOriginals": 72,
+    "independentReviewers": {
+      "tvAndConstructionPhones": "art_director",
+      "other34Phones": "group08",
+      "mainMenuQRAndOnline": "group06"
+    },
+    "catalog": "final-catalog-1734/report.json",
+    "layout": "final-catalog-1734/layout-check.json",
+    "menu": "final-menu-guarded-1003/report.json",
+    "build": "local-assembly-final-1003/report.json",
+    "gallery": "review-final-1003",
+    "galleryURL": "http://127.0.0.1:17807",
+    "physicalDeviceVerified": false,
+    "qualifications": [
+      "Actual captured browser states, not all possible gameplay states or physical sensor/AR/haptic/AirPlay tests.",
+      "Earlier intermittent hidden test-bot readiness stalls did not recur in diagnostic and final complete captures; no unsupported lifecycle patch.",
+      "Hockey central HUD name avoidance confirmed; exact historical top-right timer-edge scene not reproduced.",
+      "Prior failed menu captures retained; TV catalogue now keeps the original image and guarded first1280/late1920 captures pass.",
+      "Results demonstrate real engine outcomes with12xQAclock for3 representative games; no normal-clock physics claim.",
+      "Main native controls unchanged after TV-only renderer fix; current TV menu supersedes older TV lobby image.",
+      "14 game states have explicit no-adapter-paint qualifications; their existing controls/feedback/geometry are preserved."
+    ]
+  }
+}

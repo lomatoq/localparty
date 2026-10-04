@@ -1,0 +1,73 @@
+[
+  {
+    "game": "peek_shoot",
+    "status": "passed",
+    "count": 28,
+    "ownerChanged": [],
+    "sharedChanged": [],
+    "errors": [],
+    "checks": [
+      "Explicit managed room English",
+      "TV1080 2p",
+      "phone402 2p",
+      "Actual pointer aim/fire awards score and retains player identity",
+      "Real friendly target applies penalty; six accurate hits charge a manually activated machine gun",
+      "Pause freezes actual state; resume and reload retain identity and score"
+    ]
+  },
+  {
+    "game": "bowling",
+    "status": "passed",
+    "count": 28,
+    "ownerChanged": [],
+    "sharedChanged": [],
+    "errors": [],
+    "checks": [
+      "Explicit managed room English",
+      "TV1080 2p",
+      "phone402 2p",
+      "Actual swipe launches ball",
+      "Pause freezes actual state; resume and reload retain identity and score"
+    ]
+  },
+  {
+    "game": "swarm_gate",
+    "status": "passed",
+    "count": 36,
+    "ownerChanged": [],
+    "sharedChanged": [],
+    "errors": [],
+    "checks": [
+      "Explicit managed room English",
+      "Real wave16 roster",
+      "Real wave16 phone",
+      "Actual pointer aim/fire awards score and retains player identity",
+      "Actual pulse sets cooldown and held fire reaches authoritative overheating",
+      "Pause freezes actual state; resume and reload retain identity and score",
+      "Actual wave16 enemy approach and gate health closed\u2192damaged\u2192broken, no state injection"
+    ]
+  },
+  {
+    "game": "curling",
+    "status": "passed",
+    "count": 40,
+    "ownerChanged": [],
+    "sharedChanged": [],
+    "errors": [],
+    "checks": [
+      "Explicit managed room English",
+      "TV1080 2p",
+      "phone402 2p",
+      "Actual swipe launches stone; held sweep consumes energy",
+      "Pause freezes actual state; resume and reload retain identity and score"
+    ]
+  },
+  {
+    "game": "bow_club",
+    "count": 12,
+    "ownerChanged": [],
+    "errors": [],
+    "actualReleases": 10,
+    "resultPhase": "results"
+  }
+]

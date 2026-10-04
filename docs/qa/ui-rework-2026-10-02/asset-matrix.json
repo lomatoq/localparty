@@ -1,0 +1,738 @@
+[
+  {
+    "id": "fx-impact-combat",
+    "priority": 1,
+    "output": {
+      "path": "public/assets/fx/atlas-fx-combat.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Slice into public/assets/fx/sprites/*.webp + manifest.json (same schema as public/assets/gameplay/manifest.json). Then let tank-fx.js / party host / LocalPartyFeel draw sprite frames instead of plain circles; keep procedural path as fallback."
+    },
+    "used_by": [
+      {
+        "game": "tanks, tankarena, pocket_siege, swarm_gate, peek_shoot, naval, bomb, curling",
+        "surface": "TV canvas",
+        "where": "explosions, hits, muzzle flashes, smoke, scorch decals"
+      }
+    ]
+  },
+  {
+    "id": "fx-celebration",
+    "priority": 1,
+    "output": {
+      "path": "public/assets/fx/atlas-fx-celebration.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Slice to public/assets/fx/celebration/*.webp; HeyPalsSprites.burst can pick random sprites instead of clip-path shapes."
+    },
+    "used_by": [
+      {
+        "game": "all",
+        "surface": "TV and phone",
+        "where": "round wins, Ready burst (HeyPalsSprites), result screens, podium, arrivals"
+      }
+    ]
+  },
+  {
+    "id": "ui-stat-glyphs-3d",
+    "priority": 2,
+    "output": {
+      "path": "public/assets/icons/atlas-stat-glyphs.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Slice to public/assets/icons/stat/*.png (64px and 128px). Switch the CSS mask to background-image for these keys. Flat SVG stays as fallback."
+    },
+    "used_by": [
+      {
+        "game": "all",
+        "surface": "phone controllers",
+        "where": "stat labels (HeyPalsStatGlyphs); currently flat SVG masks"
+      }
+    ]
+  },
+  {
+    "id": "round-outcome-illustrations",
+    "priority": 1,
+    "output": {
+      "path": "public/assets/rounds/atlas-round-outcomes.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Map winnerText kind -> key in games/party/public/controller.js; show image above the name, keep emoji fallback."
+    },
+    "used_by": [
+      {
+        "game": "push, shrink, knives, bomb, western",
+        "surface": "phone between-rounds card (.round-card) and TV round banner",
+        "where": "replaces the leading emoji"
+      }
+    ]
+  },
+  {
+    "id": "avatar-mascots",
+    "priority": 2,
+    "output": {
+      "path": "public/assets/avatars/atlas-mascots.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Seeded by name hash like HeyPalsAvatar.hue; render as circular head-and-shoulders crop. Photo keeps priority; gradient stays as fallback."
+    },
+    "used_by": [
+      {
+        "game": "shell",
+        "surface": "phone lobby, TV roster, podium, arrivals",
+        "where": "default avatar when a player has no photo"
+      }
+    ]
+  },
+  {
+    "id": "tv-lobby-ambient-props",
+    "priority": 3,
+    "output": {
+      "path": "public/assets/fx/atlas-lobby-props.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Optional ambient layer in tv-show; max 6 on screen, 10-14% opacity, paused in games."
+    },
+    "used_by": [
+      {
+        "game": "shell",
+        "surface": "TV lobby",
+        "where": "slow drifting background life behind catalogue (low opacity)"
+      }
+    ]
+  },
+  {
+    "id": "party-arena-floor",
+    "priority": 2,
+    "output": {
+      "path": "games/party/public/assets/arena-floor.png",
+      "format": "png (convert to webp)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "seamless_tile": true
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Use as pattern fill clipped to arena circle in games/party/public/host.js"
+    },
+    "used_by": [
+      {
+        "game": "push, shrink, bomb",
+        "surface": "TV arena",
+        "where": "inside the circular field"
+      }
+    ]
+  },
+  {
+    "id": "party-arena-props",
+    "priority": 2,
+    "output": {
+      "path": "games/party/public/assets/atlas-arena.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Wire per key in games/party/public/host.js; discs tint by player colour."
+    },
+    "used_by": [
+      {
+        "game": "push, shrink, bomb, knives, western",
+        "surface": "TV",
+        "where": "arena details, disc faces, knives, western dressing"
+      }
+    ]
+  },
+  {
+    "id": "flappy-sky",
+    "priority": 2,
+    "output": {
+      "path": "games/arcade/public/assets/flappy-sky.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Draw as scrolling layers in games/arcade/public/arcade-juice.js"
+    },
+    "used_by": [
+      {
+        "game": "flappy",
+        "surface": "TV",
+        "where": "parallax background layers"
+      }
+    ]
+  },
+  {
+    "id": "flappy-hills-far",
+    "priority": 2,
+    "output": {
+      "path": "games/arcade/public/assets/flappy-hills-far.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 540,
+      "alpha": true,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Draw as scrolling layers in games/arcade/public/arcade-juice.js"
+    },
+    "used_by": [
+      {
+        "game": "flappy",
+        "surface": "TV",
+        "where": "parallax background layers"
+      }
+    ]
+  },
+  {
+    "id": "flappy-hills-near",
+    "priority": 2,
+    "output": {
+      "path": "games/arcade/public/assets/flappy-hills-near.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 540,
+      "alpha": true,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Draw as scrolling layers in games/arcade/public/arcade-juice.js"
+    },
+    "used_by": [
+      {
+        "game": "flappy",
+        "surface": "TV",
+        "where": "parallax background layers"
+      }
+    ]
+  },
+  {
+    "id": "arcade-sprites",
+    "priority": 1,
+    "output": {
+      "path": "games/arcade/public/assets/atlas-arcade.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Add to public/assets/gameplay manifest or a games/arcade manifest; use in games/arcade/public/app.js renderers."
+    },
+    "used_by": [
+      {
+        "game": "taprace, punchmeter, flappy, hungry, snakelines, carryball",
+        "surface": "TV",
+        "where": "characters and props"
+      }
+    ]
+  },
+  {
+    "id": "carryball-pitch",
+    "priority": 2,
+    "output": {
+      "path": "games/arcade/public/assets/carryball-pitch.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Draw behind the field in games/arcade/public/arcade-juice.js"
+    },
+    "used_by": [
+      {
+        "game": "carryball",
+        "surface": "TV",
+        "where": "field background"
+      }
+    ]
+  },
+  {
+    "id": "hungry-floor",
+    "priority": 2,
+    "output": {
+      "path": "games/arcade/public/assets/hungry-floor.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Draw behind the field in games/arcade/public/arcade-juice.js"
+    },
+    "used_by": [
+      {
+        "game": "hungry",
+        "surface": "TV",
+        "where": "field background"
+      }
+    ]
+  },
+  {
+    "id": "taprace-track",
+    "priority": 2,
+    "output": {
+      "path": "games/arcade/public/assets/taprace-track.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Draw behind the field in games/arcade/public/arcade-juice.js"
+    },
+    "used_by": [
+      {
+        "game": "taprace",
+        "surface": "TV",
+        "where": "field background"
+      }
+    ]
+  },
+  {
+    "id": "combat-arena-props",
+    "priority": 1,
+    "output": {
+      "path": "games/tanks/public/assets/atlas-battlefield.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Replace canvas pickup shapes and add props in games/tankarena/public/app.js and games/tanks/public/host.js"
+    },
+    "used_by": [
+      {
+        "game": "tanks, tankarena",
+        "surface": "TV",
+        "where": "arena props, pickups, tanks"
+      }
+    ]
+  },
+  {
+    "id": "combat-ground",
+    "priority": 2,
+    "output": {
+      "path": "games/tankarena/public/assets/arena-ground.png",
+      "format": "png (convert to webp)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "seamless_tile": true
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Pattern fill in arena renderers"
+    },
+    "used_by": [
+      {
+        "game": "tanks, tankarena",
+        "surface": "TV",
+        "where": "arena floor"
+      }
+    ]
+  },
+  {
+    "id": "marble-set",
+    "priority": 2,
+    "output": {
+      "path": "games/arcade_deluxe/public/assets/atlas-marbles.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Use in render.js marble draw; keep canvas fallback"
+    },
+    "used_by": [
+      {
+        "game": "marble_bloom",
+        "surface": "TV and phone",
+        "where": "marbles, pops, combos"
+      }
+    ]
+  },
+  {
+    "id": "quiz-studio-backdrop",
+    "priority": 2,
+    "output": {
+      "path": "games/quiz/public/assets/studio-backdrop.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "CSS background on TV screen in games/quiz/public/screen.css at ~35% under a dark veil"
+    },
+    "used_by": [
+      {
+        "game": "sinyakquiz, warsaw",
+        "surface": "TV",
+        "where": "behind question and answers"
+      }
+    ]
+  },
+  {
+    "id": "millionaire-stage",
+    "priority": 2,
+    "output": {
+      "path": "games/millionaire/public/assets/stage-backdrop.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Background in games/millionaire/public/screen.css under veil"
+    },
+    "used_by": [
+      {
+        "game": "millionaire",
+        "surface": "TV",
+        "where": "stage behind ladder and question"
+      }
+    ]
+  },
+  {
+    "id": "social-props",
+    "priority": 1,
+    "output": {
+      "path": "games/quiz/public/assets/atlas-social.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Wire per game in the *-polish.{js,css} files from the social lane"
+    },
+    "used_by": [
+      {
+        "game": "sinyakquiz, warsaw, millionaire, crocodile, drawguess, spy, monster",
+        "surface": "TV and phone",
+        "where": "badges, lifelines, cards, tools, props"
+      }
+    ]
+  },
+  {
+    "id": "draw-paper-texture",
+    "priority": 3,
+    "output": {
+      "path": "games/drawguess/public/assets/paper.png",
+      "format": "png (convert to webp)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "seamless_tile": true
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Pattern fill under strokes"
+    },
+    "used_by": [
+      {
+        "game": "drawguess, monster",
+        "surface": "TV and phone canvas",
+        "where": "drawing board background"
+      }
+    ]
+  },
+  {
+    "id": "jenga-wood-albedo",
+    "priority": 1,
+    "output": {
+      "path": "games/jenga/public/assets/wood-block.png",
+      "format": "png (convert to webp)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "seamless_tile": true
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "THREE.TextureLoader in games/jenga/public/renderer3d.js; keep procedural fallback"
+    },
+    "used_by": [
+      {
+        "game": "jenga",
+        "surface": "TV 3D",
+        "where": "block material map"
+      }
+    ]
+  },
+  {
+    "id": "jenga-table",
+    "priority": 2,
+    "output": {
+      "path": "games/jenga/public/assets/table-top.png",
+      "format": "png (convert to webp)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "seamless_tile": true
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "renderer3d.js table material"
+    },
+    "used_by": [
+      {
+        "game": "jenga",
+        "surface": "TV 3D",
+        "where": "table under tower"
+      }
+    ]
+  },
+  {
+    "id": "kart-track-kit",
+    "priority": 1,
+    "output": {
+      "path": "games/kart/static/assets/atlas-kart.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Wire in games/kart/static/host.js renderer"
+    },
+    "used_by": [
+      {
+        "game": "kart",
+        "surface": "TV",
+        "where": "karts, track dressing, items"
+      }
+    ]
+  },
+  {
+    "id": "table-games-kit",
+    "priority": 1,
+    "output": {
+      "path": "games/tabletop/public/assets/atlas-table.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "games/tabletop/public/app.js + arena.css"
+    },
+    "used_by": [
+      {
+        "game": "poker, airhockey, mines",
+        "surface": "TV and phone",
+        "where": "chips, cards, pucks, tiles"
+      }
+    ]
+  },
+  {
+    "id": "airhockey-rink",
+    "priority": 2,
+    "output": {
+      "path": "games/tabletop/public/assets/hockey-rink.png",
+      "format": "png (convert to webp)",
+      "width": 1920,
+      "height": 1080,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "drop_in_replacement",
+      "notes": "Same aspect as hockey-field.webp; can replace that file path after review"
+    },
+    "used_by": [
+      {
+        "game": "airhockey",
+        "surface": "TV",
+        "where": "rink"
+      }
+    ]
+  },
+  {
+    "id": "naval-kit",
+    "priority": 2,
+    "output": {
+      "path": "games/naval/public/assets/atlas-naval.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "games/naval/public/broadcast.js"
+    },
+    "used_by": [
+      {
+        "game": "naval",
+        "surface": "TV and phone",
+        "where": "ships, hits, misses, ocean"
+      }
+    ]
+  },
+  {
+    "id": "bow-crane-chaos-kit",
+    "priority": 3,
+    "output": {
+      "path": "games/bow_club/public/assets/atlas-misc.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Per game renderers"
+    },
+    "used_by": [
+      {
+        "game": "bow_club, crane, chaos",
+        "surface": "TV",
+        "where": "targets, arrows, crane lights, chaos level props"
+      }
+    ]
+  },
+  {
+    "id": "sports-kit",
+    "priority": 2,
+    "output": {
+      "path": "games/sports_siege/public/assets/atlas-sports.png",
+      "format": "png (convert to webp after slicing)",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "chroma_fallback": "#FF00A8"
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Use as billboards/decals in scene-bowling.js, scene-curling.js, host.js"
+    },
+    "used_by": [
+      {
+        "game": "bowling, curling, swarm_gate, peek_shoot",
+        "surface": "TV",
+        "where": "textures for 3D billboards and 2D sprites"
+      }
+    ]
+  },
+  {
+    "id": "bowling-lane-wood",
+    "priority": 3,
+    "output": {
+      "path": "games/sports_siege/public/assets/lane-wood.png",
+      "format": "png (convert to webp)",
+      "width": 512,
+      "height": 2048,
+      "alpha": false,
+      "seamless_tile": false
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Texture map for lane mesh"
+    },
+    "used_by": [
+      {
+        "game": "bowling",
+        "surface": "TV 3D",
+        "where": "lane albedo"
+      }
+    ]
+  },
+  {
+    "id": "curling-ice",
+    "priority": 3,
+    "output": {
+      "path": "games/sports_siege/public/assets/ice-pebble.png",
+      "format": "png (convert to webp)",
+      "width": 1024,
+      "height": 1024,
+      "alpha": false,
+      "seamless_tile": true
+    },
+    "integration": {
+      "status": "needs_wiring",
+      "notes": "Texture map for ice mesh"
+    },
+    "used_by": [
+      {
+        "game": "curling",
+        "surface": "TV 3D",
+        "where": "ice albedo"
+      }
+    ]
+  }
+]

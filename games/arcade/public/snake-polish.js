@@ -1,11 +1,10 @@
 /* Snake Lines presentation only. World coordinates remain 1200x720. */
 (()=>{'use strict';const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let scene='',lastTime=-1,previous=new Map(),sparks=[];
-window.paintSnakeArena=(q,s)=>{q.save();const floor=q.createLinearGradient(0,0,1200,720);floor.addColorStop(0,'#182e40');floor.addColorStop(.48,'#101d30');floor.addColorStop(1,'#211f38');q.fillStyle=floor;q.fillRect(0,0,1200,720);
-const light=q.createRadialGradient(410,240,30,600,360,680);light.addColorStop(0,'#75ddd90b');light.addColorStop(1,'#03081665');q.fillStyle=light;q.fillRect(0,0,1200,720);
-q.lineWidth=1;for(let x=0;x<=1200;x+=40){q.strokeStyle=x%160?'#91c6e409':'#91c6e414';q.beginPath();q.moveTo(x,10);q.lineTo(x,710);q.stroke();}for(let y=0;y<=720;y+=40){q.strokeStyle=y%160?'#91c6e409':'#91c6e414';q.beginPath();q.moveTo(10,y);q.lineTo(1190,y);q.stroke();}
-for(let x=80;x<1200;x+=160)for(let y=80;y<720;y+=160){q.strokeStyle='#83b6d528';q.beginPath();q.moveTo(x-4,y);q.lineTo(x+4,y);q.moveTo(x,y-4);q.lineTo(x,y+4);q.stroke();}
-q.lineWidth=2;q.shadowBlur=12;q.shadowColor='#61d9e8';q.strokeStyle='#69c9db80';q.beginPath();q.roundRect(10,10,1180,700,16);q.stroke();q.shadowBlur=0;
-for(const y of [10,710])for(let x=45;x<1190;x+=60){q.fillStyle=y===10?'#81dfed70':'#ba9ce580';q.fillRect(x,y-1,18,2);}q.restore();};
+window.paintSnakeArena=(q,s,{extraX=0,extraY=0}={})=>{q.save();const floor=q.createLinearGradient(0,0,1200,720);floor.addColorStop(0,'#182e40');floor.addColorStop(.48,'#101d30');floor.addColorStop(1,'#211f38');q.fillStyle=floor;q.fillRect(-extraX,-extraY,1200+extraX*2,720+extraY*2);
+const light=q.createRadialGradient(410,240,30,600,360,680);light.addColorStop(0,'#75ddd90b');light.addColorStop(1,'#03081665');q.fillStyle=light;q.fillRect(-extraX,-extraY,1200+extraX*2,720+extraY*2);
+q.lineWidth=1;for(let x=-Math.ceil(extraX/40)*40;x<=1200+extraX;x+=40){q.strokeStyle=x%160?'#91c6e409':'#91c6e414';q.beginPath();q.moveTo(x,-extraY);q.lineTo(x,720+extraY);q.stroke();}for(let y=-Math.ceil(extraY/40)*40;y<=720+extraY;y+=40){q.strokeStyle=y%160?'#91c6e409':'#91c6e414';q.beginPath();q.moveTo(-extraX,y);q.lineTo(1200+extraX,y);q.stroke();}
+// The circuit floor continues to the viewport; collision walls stay in simulation.
+q.restore();};
 window.drawSnakeAmbient=(g,s)=>{const key=s.round+':'+s.phase;if(key!==scene||s.time<lastTime){scene=key;previous.clear();sparks=[];}const fresh=s.time!==lastTime;lastTime=s.time;if(s.phase!=='playing')return;
 g.save();for(const p of s.players){if(!p.alive)continue;const old=previous.get(p.id),a=p.angle||0;if(fresh&&old&&!reduced){const turn=Math.abs(Math.atan2(Math.sin(a-old.angle),Math.cos(a-old.angle)));if(turn>.045&&s.time-old.lastSpark>.08){sparks.push({x:p.x-Math.cos(a)*12,y:p.y-Math.sin(a)*12,a:a+Math.PI+(a>old.angle?-.7:.7),color:p.color,time:s.time});old.lastSpark=s.time;}}if(fresh)previous.set(p.id,{angle:a,lastSpark:old?.lastSpark??s.time});
 // Short wake and shoulder lights follow the actual heading, never extend the lethal trail.

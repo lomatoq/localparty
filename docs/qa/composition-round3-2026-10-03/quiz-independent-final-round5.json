@@ -1,0 +1,322 @@
+{
+  "scope": "Independent direct original-PNG review of12 assigned games at1280x720 and1920x1080. Read-only production review; no physical-device claim.",
+  "captureDirectory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5",
+  "sourceQualification": "Pending coordinator final whole-capture hash qualification",
+  "records": [
+    {
+      "game": "push",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/push-tv-live-1280.png",
+      "sha256": "be33bae2e621c66d12bc3993f1918298fc7a43fcb7ebd2c60809f5f86c1c9d5b",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole courtyard backdrop and circular actual field fit; right HUD/roster stay grouped; full timer and round values, contained logo, no decorative cuffs. Human name uses ellipsis at720; all score digits visible."
+      ]
+    },
+    {
+      "game": "push",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/push-tv-live-1920.png",
+      "sha256": "d44825aebe05d391667ae4b4002f79c2040ff685c2827877e510dda7d501eccd",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole courtyard backdrop and circular actual field fit; right HUD/roster stay grouped; full timer and round values, contained logo, no decorative cuffs. Human name uses ellipsis at720; all score digits visible."
+      ]
+    },
+    {
+      "game": "shrink",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/shrink-tv-live-1280.png",
+      "sha256": "edb56d0c10fa84ab57caed910c5bf08279f9045f7e38f3bfe904fe501f07fe1a",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Complete cave scene and circle remain within viewport; teal quiet HUD/rows readable; logo keeps aspect, full timer/round/in-game values; no decorative cuffs or detached field frame."
+      ]
+    },
+    {
+      "game": "shrink",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/shrink-tv-live-1920.png",
+      "sha256": "64edbf0a39c085ebf6f3c0bd11ed240f1a1060e3f221aed2080c8448d2bdd3c0",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Complete cave scene and circle remain within viewport; teal quiet HUD/rows readable; logo keeps aspect, full timer/round/in-game values; no decorative cuffs or detached field frame."
+      ]
+    },
+    {
+      "game": "knives",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/knives-tv-live-1280.png",
+      "sha256": "4d1fbcad3aebda94cd59c2305e0cdf579861744b5ae9a74a3563435701cf19eb",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Complete dojo wheel and four surrounding mascots visible; knife/readout values fit, warm quiet HUD preserves hierarchy; negative score digits fully visible; no decorative cuffs."
+      ]
+    },
+    {
+      "game": "knives",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/knives-tv-live-1920.png",
+      "sha256": "c3f5ba3fb0a34e201b9c5065dc80ed1159f9dca5a698a711ae0ab795ec49f0c1",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Complete dojo wheel and four surrounding mascots visible; knife/readout values fit, warm quiet HUD preserves hierarchy; negative score digits fully visible; no decorative cuffs."
+      ]
+    },
+    {
+      "game": "bomb",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/bomb-tv-live-1280.png",
+      "sha256": "e38179bd292263384b47fde9b68fd69bf0c518023102866ff3731285b9d3b949",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole warehouse and arena ring fit at both sizes; actual bomb holder highlighted, named three-player scene readable; warm HUD and full1/7 and three-player values; no decorative cuffs."
+      ]
+    },
+    {
+      "game": "bomb",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/bomb-tv-live-1920.png",
+      "sha256": "805dd7b532f14d47598499fae575c927d8ac091c35fb98573f6a10a19dd50b00",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole warehouse and arena ring fit at both sizes; actual bomb holder highlighted, named three-player scene readable; warm HUD and full1/7 and three-player values; no decorative cuffs."
+      ]
+    },
+    {
+      "game": "western",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/western-tv-live-1280.png",
+      "sha256": "90f4432a8e78bf3de9315ec58736958690b69bd5cb1ae5d12d33daa9cfa3d14c",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Full sunset scene, four bodies and names remain within viewport; v4 arms/hands meet the bodies and face opposing guns. At720 ready poses shown; at1080 actual between-round draw42ms winner notice and downed poses shown. Header ratio and result values fit; contained logo; no decorative cuffs."
+      ]
+    },
+    {
+      "game": "western",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/western-tv-live-1920.png",
+      "sha256": "c50f7cc2f217d8277e7186cd85ea672c2ecaeb8af42e105c07f1ec4d76020021",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Full sunset scene, four bodies and names remain within viewport; v4 arms/hands meet the bodies and face opposing guns. At720 ready poses shown; at1080 actual between-round draw42ms winner notice and downed poses shown. Header ratio and result values fit; contained logo; no decorative cuffs."
+      ]
+    },
+    {
+      "game": "western_duel",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/western_duel-tv-live-1280.png",
+      "sha256": "e6ee75e1706a3494a67ee4c56711c73f4a8b076036b9211cee3ecf668bb3561e",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Unrounded full scene has a soft fade into right rail; both complete v4 mascot bodies and gun/arm joints fit. WAIT notice and score cards remain readable.720 header shows full matchup;1080 supporting matchup/leader text uses ellipsis but full identities remain below and in cards. Duel1/4 and all score digits complete; no cuffs."
+      ]
+    },
+    {
+      "game": "western_duel",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/western_duel-tv-live-1920.png",
+      "sha256": "91e1f5c01dcf43653d7818dc1f300a26a52abff2537afcbd58c64d0246757cea",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Unrounded full scene has a soft fade into right rail; both complete v4 mascot bodies and gun/arm joints fit. WAIT notice and score cards remain readable.720 header shows full matchup;1080 supporting matchup/leader text uses ellipsis but full identities remain below and in cards. Duel1/4 and all score digits complete; no cuffs."
+      ]
+    },
+    {
+      "game": "naval",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/naval-tv-live-1280.png",
+      "sha256": "d5698bbcfdf52281ce2b0a69953f2fcf604f684f60dbc37e38158fc6576e78dc",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "All four complete6x6 grids and fleet identity headers are within viewport at both sizes, including last row/column. Console bounds match fleet block bottom; full timer, in-game and score values readable. Cool blue surfaces, no obstructing masks or cuffs."
+      ]
+    },
+    {
+      "game": "naval",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/naval-tv-live-1920.png",
+      "sha256": "197563fd969f0c4c50c74511dfcfd4f98a0dfa363997fc7458bdb738e5bfdac3",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "All four complete6x6 grids and fleet identity headers are within viewport at both sizes, including last row/column. Console bounds match fleet block bottom; full timer, in-game and score values readable. Cool blue surfaces, no obstructing masks or cuffs."
+      ]
+    },
+    {
+      "game": "taprace",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/taprace-tv-live-1280.png",
+      "sha256": "e41e4631abf20b33cd4a5ab1f2334d5ac0a99a15260a83d0a745ee8632d19962",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Four full lanes, robots, side labels and finish strip remain in bounds; scoreboard row and timer fit with complete three-digit values. The field has lane structure rather than an unrelated striped backing. Logo aspect preserved; no cuffs."
+      ]
+    },
+    {
+      "game": "taprace",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/taprace-tv-live-1920.png",
+      "sha256": "d0841f7e67ef73667bd19343b5317199abf1d4ff57071a423b043587b59cc058",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Four full lanes, robots, side labels and finish strip remain in bounds; scoreboard row and timer fit with complete three-digit values. The field has lane structure rather than an unrelated striped backing. Logo aspect preserved; no cuffs."
+      ]
+    },
+    {
+      "game": "punchmeter",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/punchmeter-tv-live-1280.png",
+      "sha256": "f25d0c3874fa76587488d7fa9fd6844a2992655212d92c5d2307f10ccedace0b",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole gym scene and complete hanging bag/chain visible; cap fits actual attempt1/3, timer, points and actor. Bag contrast remains strong against navy scene, floor within viewport; contained logo and no cuffs."
+      ]
+    },
+    {
+      "game": "punchmeter",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/punchmeter-tv-live-1920.png",
+      "sha256": "17e0547c1199ba2bbdb3961e921e18484a57a71d3c0595eaf377b9a08978a1b2",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole gym scene and complete hanging bag/chain visible; cap fits actual attempt1/3, timer, points and actor. Bag contrast remains strong against navy scene, floor within viewport; contained logo and no cuffs."
+      ]
+    },
+    {
+      "game": "flappy",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/flappy-tv-live-1280.png",
+      "sha256": "666e55f7f73ef0c848d51c9e4f09da0861089e5d43f02312b280815b63501d11",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole floating-island backdrop fills viewport, pipes have clean openings and no unrelated striped panel. Bird labels remain contrast-backed, full timer/in-game/points values and contained logo fit; no cuffs."
+      ]
+    },
+    {
+      "game": "flappy",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/flappy-tv-live-1920.png",
+      "sha256": "63b3f8deeea87edbc05874c9cc6ca4ac3604f442b07d2f98d41b63f40b8464a4",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole floating-island backdrop fills viewport, pipes have clean openings and no unrelated striped panel. Bird labels remain contrast-backed, full timer/in-game/points values and contained logo fit; no cuffs."
+      ]
+    },
+    {
+      "game": "hungry",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/hungry-tv-live-1280.png",
+      "sha256": "4a26e0ef9736cbe6a5340b6bdc4809682e5ade359dfd2a5b3ba8facb9811de6a",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole tiled arena fills viewport, food and four player heads/score capsules contrast clearly. Full header numbers and contained logo fit; no unrelated striped panel or cuffs."
+      ]
+    },
+    {
+      "game": "hungry",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/hungry-tv-live-1920.png",
+      "sha256": "49b0c1a149f232ddc4c5e43a154c12ac8ad6171606883e64592b01f928f58c9e",
+      "openedIndividually": true,
+      "status": "no_specific_blocker_observed",
+      "findings": [
+        "Whole tiled arena fills viewport, food and four player heads/score capsules contrast clearly. Full header numbers and contained logo fit; no unrelated striped panel or cuffs."
+      ]
+    },
+    {
+      "game": "snakelines",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/snakelines-tv-live-1280.png",
+      "sha256": "6ebd8ab278a2401198a72890ccf4824fd82e91928ffef849bbcfcd45ae9864e0",
+      "openedIndividually": true,
+      "status": "requires_runtime_occlusion_confirmation",
+      "findings": [
+        "Whole grid and three bot trail heads/names are visible with complete timer/round/points header. Possible player occlusion: green trail enters opaque top cap; green head/name are not visible in either original. At720 trail y~100 is inside cap bottom~114; at1080 trail y~150 is inside cap bottom~170. Requires actual green-player coordinates/status confirmation."
+      ]
+    },
+    {
+      "game": "snakelines",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/snakelines-tv-live-1920.png",
+      "sha256": "64170cd6766c6c9c0dfd434a1c11d028d857f1edb655650ad9d78092012e55ad",
+      "openedIndividually": true,
+      "status": "requires_runtime_occlusion_confirmation",
+      "findings": [
+        "Whole grid and three bot trail heads/names are visible with complete timer/round/points header. Possible player occlusion: green trail enters opaque top cap; green head/name are not visible in either original. At720 trail y~100 is inside cap bottom~114; at1080 trail y~150 is inside cap bottom~170. Requires actual green-player coordinates/status confirmation."
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "game": "snakelines",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/snakelines-tv-live-1280.png",
+      "sha256": "6ebd8ab278a2401198a72890ccf4824fd82e91928ffef849bbcfcd45ae9864e0",
+      "severity": "possible_P1",
+      "finding": "Whole grid and three bot trail heads/names are visible with complete timer/round/points header. Possible player occlusion: green trail enters opaque top cap; green head/name are not visible in either original. At720 trail y~100 is inside cap bottom~114; at1080 trail y~150 is inside cap bottom~170. Requires actual green-player coordinates/status confirmation.",
+      "qualification": "PNG evidence establishes hidden green head/name, but cannot establish the player position/status. Coordinator must verify actual state before deciding acceptance. No redesign or source change requested."
+    },
+    {
+      "game": "snakelines",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-clean-round5/snakelines-tv-live-1920.png",
+      "sha256": "64170cd6766c6c9c0dfd434a1c11d028d857f1edb655650ad9d78092012e55ad",
+      "severity": "possible_P1",
+      "finding": "Whole grid and three bot trail heads/names are visible with complete timer/round/points header. Possible player occlusion: green trail enters opaque top cap; green head/name are not visible in either original. At720 trail y~100 is inside cap bottom~114; at1080 trail y~150 is inside cap bottom~170. Requires actual green-player coordinates/status confirmation.",
+      "qualification": "PNG evidence establishes hidden green head/name, but cannot establish the player position/status. Coordinator must verify actual state before deciding acceptance. No redesign or source change requested."
+    }
+  ],
+  "reviewedOriginalCount": 24,
+  "reviewedGameCount": 12,
+  "completedAt": "2026-10-03T14:44:32.105970+00:00",
+  "limitations": [
+    "No production edits or browser automation were used in this independent review.",
+    "Originals reflect actual time advancing between viewport captures; do not assume same instant.",
+    "Whole-source/capture-hash qualification remains with coordinator.",
+    "No physical TV/device acceptance claim."
+  ]
+}

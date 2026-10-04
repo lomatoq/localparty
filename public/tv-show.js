@@ -6,7 +6,7 @@
   const make=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;};
   // Place #1 centrally, then #2 left, #3 right, #4 left, #5 right, ...
   function podiumOrder(rows) {const out=[];rows.forEach((r,i)=>i%2?out.unshift(r):out.push(r));return out;}
-  const crown='/assets/branding/podium-crown.svg';
+  const crown='/assets/awards/crown.png';
   const safeAvatar=value=>typeof value==='string'&&value.length<145000&&(/^data:image\/(jpeg|png|webp);base64,[A-Za-z\d+/]+=*$/.test(value)||/^\/api\/avatar\/[a-f0-9]{16}\?v=\d+$/.test(value));
   const number=value=>new Intl.NumberFormat(window.PartyI18n?.language==='ru'?'ru-RU':'en-US',{maximumFractionDigits:1}).format(Number.isFinite(value)?value:0);
 
@@ -43,9 +43,22 @@
       text('tvLoadStatus',!connected?(elapsed>8000?'Ждём связь с iPhone…':'Соединяем общий экран…'):!state?.catalog?.length?'Получаем каталог игр…':'Собираем интерфейс вечера…');
       startupTimer=setTimeout(tickStartup,80);
     }
-    function showTransition(title,{wait=false}={}) {
+    // A game start shows its own wordmark; pause/lobby transitions stay typographic.
+    function transitionLogo(gameId) {
+      const logo=document.getElementById('tvTransitionLogo');if(!logo)return null;
+      transition.classList.remove('has-logo');logo.hidden=true;logo.onload=logo.onerror=null;
+      if(!gameId){logo.removeAttribute('src');return null;}
+      const src='/assets/game-logos-v1/logos/'+encodeURIComponent(gameId)+'.png?v=1';
+      const reveal=()=>{if(!logo.naturalWidth)return;logo.hidden=false;transition.classList.add('has-logo');};
+      logo.onload=reveal;logo.onerror=()=>{logo.hidden=true;transition.classList.remove('has-logo');};
+      if(logo.getAttribute('src')!==src)logo.src=src;else if(logo.complete)reveal();
+      return logo;
+    }
+    function showTransition(title,{wait=false,gameId=null}={}) {
       const generation=++transitionGeneration;clearTimeout(transitionTimer);transitionAnimation?.cancel();transition.hidden=false;text('tvTransitionTitle',title);
+      const logo=transitionLogo(gameId),hero=logo&&!logo.hidden?logo:document.getElementById('tvTransitionTitle');
       transitionAnimation=animate(transition,[{opacity:0},{opacity:1}],{duration:120});
+      animate(hero,[{opacity:0,transform:'translate3d(0,14px,0) scale(.94)'},{opacity:1,transform:'translate3d(0,0,0) scale(1)'}],{duration:wait?460:240,easing:'cubic-bezier(.23,1,.32,1)'});
       const leave=()=>{if(transitionGeneration!==generation)return;transitionAnimation?.cancel();transitionAnimation=animate(transition,[{opacity:1},{opacity:0}],{duration:260});transitionTimer=setTimeout(()=>{if(transitionGeneration===generation)transition.hidden=true;},reduced()?0:270);};
       transitionTimer=setTimeout(leave,wait?900:180);
     }
@@ -63,18 +76,32 @@
       const photos=new Map([...(state?.leaderboard||[]),...(state?.players||[])].map(p=>[p.id,p.avatar]));
       const key=board.key+JSON.stringify(board.rows.map(r=>[r.id,r.name,photos.get(r.id)]));
       if(key===boardKey)return;boardKey=key;
+      const heading=document.getElementById('tvBoardTitle');
+      heading.classList.remove('has-game-logo');heading.removeAttribute('aria-label');
       text('tvBoardTitle',board.title);text('tvBoardSubtitle',board.subtitle);
+      if(board.kind==='match'&&state?.catalog?.some(game=>game.id===board.game)){
+        const logo=make('img','tv-board-game-logo');logo.alt=board.title;logo.dataset.hpGameLogo='';
+        logo.src='/assets/game-logos-v1/logos/'+encodeURIComponent(board.game)+'.png?v=1';
+        // Keep the readable title until the original wordmark actually loads.
+        logo.onload=()=>{if(boardKey!==key)return;heading.replaceChildren(logo);heading.classList.add('has-game-logo');heading.setAttribute('aria-label',board.title);};
+      }
       const rows=board.rows.slice(0,16).map((row,index)=>({...row,rank:row.rank||index+1})),mainRows=rows.slice(0,7),tailRows=rows.slice(7);
       const build=(list,tail=false)=>podiumOrder(list).map(row=>{
         const card=make('article','podium-seat'+(row.rank===1?' is-winner':''));
         card.dataset.rank=String(row.rank||0);card.setAttribute('aria-label',`${row.rank?row.rank+' место':'Участник'}: ${row.name}`);
         const hue=row.rank===1?'#ffd45c':row.rank===2?'#dfe6f5':row.rank===3?'#e89a62':funColors[((row.rank||4)-4)%funColors.length];card.style.setProperty('--medal',hue);if(row.rank>=1&&row.rank<=3)card.classList.add('is-medal');
         const h=tail?52:row.rank===1?194:row.rank===2?148:row.rank===3?119:Math.max(58,100-(row.rank||9)*6);card.style.setProperty('--plinth-height',h+'px');
-        const portrait=make('div','podium-portrait');portrait.append(make('span','podium-initial',Array.from(row.name||'?')[0].toUpperCase()));
+        const portrait=make('div','podium-portrait');portrait.append(make('span','podium-initial',Array.from(row.name||'?')[0].toUpperCase()));window.HeyPalsAvatar?.paint(portrait,row.name);
         if(safeAvatar(photos.get(row.id))){const img=new Image();img.src=photos.get(row.id);img.alt='';img.onerror=()=>img.remove();portrait.append(img);}
+        else{
+          let seed=0;for(const ch of String(row.name||'HeyPals'))seed=(seed*31+ch.charCodeAt(0))>>>0;
+          const img=new Image();img.className='podium-mascot';img.alt='';img.decoding='async';
+          img.onload=()=>{if(img.parentElement===portrait)portrait.classList.add('has-mascot');};
+          img.onerror=()=>img.remove();img.src='/assets/avatars/atlas-mascots/mascot-'+String(1+seed%16).padStart(2,'0')+'.webp';portrait.append(img);
+        }
         if(row.rank===1){const decoration=make('div','podium-crown');const image=make('img','');image.src=crown;image.alt='';decoration.append(image);portrait.append(decoration);}
-        const name=make('h3','podium-name',row.name);name.title=row.name;
-        const base=make('div','podium-plinth'),points=make('span','podium-points',number(row.points??row.score));points.style.setProperty('--score-size',Math.max(16,Math.min(tail?16:mainRows.length>4?26:34,(tail?16:mainRows.length>4?26:34)*6/Math.max(6,points.textContent.length)))+'px');base.append(make('strong','podium-rank',row.rank?String(row.rank):'—'),points,make('small','', 'очков'));
+        const name=make('h3','podium-name hp-player-name',row.name);name.title=row.name;name.dataset.noTranslate='';
+        const base=make('div','podium-plinth'),points=make('span','podium-points',number(board.ranking?.kind==='teams'?row.teamScore:row.points??row.score));points.style.setProperty('--score-size',Math.max(16,Math.min(tail?16:mainRows.length>4?26:34,(tail?16:mainRows.length>4?26:34)*6/Math.max(6,points.textContent.length)))+'px');const rank=make('strong','podium-rank',row.rank?String(row.rank):'—');if(row.rank>=1&&row.rank<=3){const cup=make('img','hp-award podium-award');cup.src='/assets/awards/'+['cup-gold','cup-silver','cup-bronze'][row.rank-1]+'.png';cup.alt='';rank.prepend(cup);}base.append(rank,points,make('small','', board.ranking?.kind==='teams'?'командных очков':'очков'));
         card.append(portrait,name,base);return card;
       });
       const main=document.getElementById('tvPodiumMain'),tail=document.getElementById('tvPodiumTail');
@@ -96,10 +123,12 @@
     }
     function updateOverlay() {
       const mode=state?.tv?.mode||'none',board=state?.tv?.board,validMode=mode==='podium'&&!board?'none':mode;
-      const url=state?.networkEnabled!==false?state?.urls?.[0]||'':'';
+      const invitation=window.HeyPalsTVInvitation.presentation(state,true);
       const qr=document.getElementById('tvLargeQR');
-      if(url&&qr.dataset.url!==url){qr.dataset.url=url;qr.src='/api/qr?size=large&url='+encodeURIComponent(url);}
-      text('tvLargeAddress',url);text('tvInviteCount',`${state?.players?.length||0} / 16 уже в компании`);
+      if(invitation.src&&qr.getAttribute('src')!==invitation.src)qr.src=invitation.src;
+      if(!invitation.src)qr.removeAttribute('src');
+      const hint=qr.nextElementSibling;if(hint)hint.textContent=invitation.hint;
+      text('tvLargeAddress',invitation.room);const ru=(window.PartyI18n?.language||document.documentElement.lang||'ru').startsWith('ru');text('tvInviteCount',`${state?.players?.length||0} / 16 ${ru?'уже в компании':'already here'}`);
       if(validMode==='podium')buildPodium(board);
       if(validMode!==overlayMode){
         overlayMode=validMode;const generation=++overlayGeneration;overlayAnimation?.cancel();
@@ -124,11 +153,29 @@
       view.scrollTo({top:Math.max(0,view.scrollTop+(card.getBoundingClientRect().top-view.getBoundingClientRect().top)/scale-36),behavior:reduced()?'auto':'smooth'});
       animate(card,[{filter:'brightness(1.3)'},{filter:'brightness(1)'}],{duration:540});
     }
+    // Arrivals: a newcomer gets a short welcome card with their avatar, bottom
+    // left, away from the catalogue focus. Not on first load or on reconnects
+    // of people already seen this session; at most three stacked.
+    const seenPlayers=new Set();let seededPlayers=false;
+    function welcome(players){
+      const fresh=[];for(const p of players||[]){if(!p?.id||p.testBot)continue;if(!seenPlayers.has(p.id)){seenPlayers.add(p.id);if(seededPlayers)fresh.push(p);}}
+      if(!seededPlayers){seededPlayers=true;return;}
+      if(state?.active||!fresh.length)return;
+      let host=document.getElementById('tvArrivals');
+      if(!host){host=make('div','tv-arrivals');host.id='tvArrivals';host.setAttribute('aria-live','polite');(document.getElementById('tvStage')||document.body).append(host);}
+      for(const p of fresh.slice(0,3)){
+        const card=make('div','tv-arrival'),face=make('span','tv-arrival-face',Array.from(p.name||'?')[0].toUpperCase());
+        if(safeAvatar(p.avatar)){const img=make('img');img.src=p.avatar;img.alt='';face.replaceChildren(img);face.classList.add('has-photo');}else window.HeyPalsAvatar?.paint(face,p.name);
+        const copy=make('span','tv-arrival-copy'),name=make('b','',p.name);name.dataset.noTranslate='';copy.append(name,make('small','','В компании!'));card.append(face,copy);host.append(card);
+        while(host.children.length>3)host.firstElementChild.remove();
+        setTimeout(()=>{card.classList.add('is-leaving');setTimeout(()=>card.remove(),400);},2600);
+      }
+    }
     function update(next) {
-      state=next;
+      state=next;welcome(state?.players);
       if(!boot&&state?.bootId){boot=state.bootId;try{if(sessionStorage.getItem('lp-tv-intro:'+boot))finishStartup(true);}catch{}}
       const instance=state?.active?.instance||null;
-      if(lastInstance!==instance){if(done)showTransition(instance?(state.catalog.find(g=>g.id===state.active.id)?.title||'Готовим игру'):'В компанию',{wait:!!instance});lastInstance=instance;}
+      if(lastInstance!==instance){if(done)showTransition(instance?(state.catalog.find(g=>g.id===state.active.id)?.title||'Готовим игру'):'В компанию',{wait:!!instance,gameId:instance?state.active.id:null});lastInstance=instance;}
       updatePause();updateOverlay();requestAnimationFrame(followFocus);
       requestAnimationFrame(alignRoster);
       if(!done&&state?.active)finishStartup(true);

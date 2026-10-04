@@ -1,0 +1,29 @@
+{
+  "createdAt": "2026-10-03T19:32:53.655411+00:00",
+  "version": "0.11.7",
+  "build": 114,
+  "installedOnPhysicalDevice": true,
+  "method": "in-place upgrade; no uninstall",
+  "device": "iPhone17Pro",
+  "bundleIdentifier": "com.localparty.launcher",
+  "launch": "confirmed successful via devicectl",
+  "sourceDeltaSince643TestFreeze": [
+    "public/tv.css"
+  ],
+  "focusedTests": 61,
+  "matchmakingGamesChecked": 36,
+  "waitingOriginals": 38,
+  "bundledRuntimeHashesMatched": 292,
+  "mainAndClipVersionMatch": true,
+  "productValidators": "passed",
+  "deepSignatureCheck": "passed",
+  "physicalMotionGameplay": "not tested",
+  "uploaded": false,
+  "logs": [
+    ".localparty-build/build-device-114.log",
+    ".localparty-build/install114.log",
+    ".localparty-build/launch114.log",
+    ".localparty-build/installed114.log"
+  ],
+  "review": "director-matchmaking-header114-review.md"
+}

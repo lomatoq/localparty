@@ -1,0 +1,112 @@
+/* Curling/Bowling phone: one round summary, then the control for the actual phase.
+   The native parent retains the shared fading header and Pause/Lobby. */
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]){--sports-space:16px;gap:var(--sports-space)!important;padding:12px 16px!important}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) [hidden]{display:none!important}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-controller-head{gap:12px;min-height:44px}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-name{font-size:14px!important;line-height:1.3!important;color:#dbcde9;letter-spacing:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-utilities .ss-quiet{background:transparent;border-color:#cbb1ee30}
+.ss-sports-match{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid #c6ade723;flex:none;min-width:0}
+html.hp-ui.party-player body[data-ss-role=controller] .ss-sports-match .ss-personal-detail{display:block!important;margin:0;white-space:normal;font:550 14px/1.25 var(--hp-font-body)!important;color:#d9cbe8}
+html.hp-ui.party-player body[data-ss-role=controller] .ss-sports-match #ss-personal{display:block!important;margin:0!important;flex:none}
+html.hp-ui.party-player body[data-ss-role=controller] .ss-sports-score{display:flex!important;flex-direction:row;align-items:baseline;gap:6px;padding:0!important;margin:0;white-space:nowrap}
+html.hp-ui.party-player body[data-ss-role=controller] .ss-sports-score #ss-personal-score{font-size:24px!important;line-height:1!important;color:#f2eaff}
+.ss-sports-score>span{font:500 12px/1.2 var(--hp-font-body)!important;margin:0!important;color:#d9cbe8}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-controller-status{display:flex!important;align-items:stretch;gap:10px;padding:0!important}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-turn{font-size:24px!important;line-height:1.15!important;text-align:left}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-current-name{display:block;margin:0;font-size:14px!important;white-space:normal;overflow-wrap:anywhere}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-meter{grid-template-columns:auto 1fr;gap:12px;width:100%;margin:0}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-meter small{font-size:12px!important}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-sports:not([hidden]){gap:12px;flex:1;min-height:0}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-controller-foot{display:none!important}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-throw-settings{gap:20px;padding:0 2px 4px}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-throw-settings label{font-size:14px!important;gap:6px}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-throw-settings input{accent-color:var(--ss-lime);touch-action:none}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-pad{flex:1;min-height:108px;border-radius:24px!important;background:linear-gradient(180deg,#3a294954,#20172b22)!important;border:1px solid #b68ada55;box-shadow:none!important}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-hint{top:20px;display:flex;flex-direction:column;gap:6px;line-height:1.15!important}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-hint b{font:italic 900 24px/1.15 var(--hp-font-action)}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-hint small{font:500 13px/1.3 var(--hp-font-body);color:#d9cbe8}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-art{width:72px;height:72px;left:calc(50% - 36px);bottom:20px}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-swipe-arrow{display:block;top:48%;opacity:.45}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-power{font-size:24px!important;color:#c8ff73}
+html.hp-ui.party-player body[data-ss-role=controller][data-ss-mode=curling] #ss-sweep{display:flex;flex:1;min-height:108px!important;height:auto;max-height:340px;flex-direction:column;align-items:center;justify-content:center;gap:20px;border-radius:24px!important;background:linear-gradient(145deg,#c8ff73,#aee956)!important;box-shadow:none;font:italic 900 26px/1.15 var(--hp-font-action)!important;color:#203312;touch-action:none}
+#ss-sweep img{width:96px;height:96px;object-fit:contain;pointer-events:none}
+#ss-sweep-label{max-width:100%;display:block;white-space:normal;text-align:center}
+html.hp-ui.party-player body[data-ss-role=controller][data-ss-mode=curling] #ss-sweep.pressed{background:#82e8e9!important;transform:scale(.99)}
+html.hp-ui.party-player body[data-ss-role=controller][data-ss-mode=curling] #ss-sweep:disabled{opacity:.65}
+#ss-observer{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:24px 20px;text-align:center;color:#dfd0ec}
+#ss-observer img{width:104px;height:104px;object-fit:contain;opacity:.8}
+#ss-observer>span{max-width:26ch;font:500 16px/1.4 var(--hp-font-body)}
+@media(max-height:520px){
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]){gap:10px!important;padding:8px 12px!important}
+ .ss-sports-match{padding-bottom:8px}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-turn{font-size:21px!important}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-controller-status{gap:6px}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-hint{top:12px;gap:4px}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-hint b{font-size:20px}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-hint small{font-size:12px;display:block}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-throw-art{width:48px;height:48px;left:calc(50% - 24px);bottom:12px}
+ html.hp-ui.party-player body[data-ss-role=controller][data-ss-mode=curling] #ss-throw-art{width:32px;height:32px;left:calc(50% - 16px);bottom:8px}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) .ss-swipe-arrow{display:none}
+ #ss-sweep img{width:64px;height:64px}#ss-observer{padding:12px;gap:16px}#ss-observer img{width:80px;height:80px}
+}
+
+/* Position/spin and the gesture belong to the same instrument, using shared panel tokens. */
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station{display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;border-radius:var(--hp-radius,22px);background:var(--hp-panel,#262035);border:1px solid var(--hp-line,#d6bdff2b)}
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station[hidden]{display:none!important}
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station .ss-throw-settings{padding:0 0 12px;border-bottom:1px solid var(--hp-line,#d6bdff2b)}
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-pad{border:0!important;border-radius:0!important;background:transparent!important}
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint{top:16px;left:0;right:0}
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint small{font:500 13px/1.3 var(--hp-font-body)!important;color:#d9cbe8!important}
+html.hp-ui.party-player body[data-ss-role=controller][data-ss-mode=curling] #ss-sweep{max-height:none}
+@media(max-height:520px){html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station{padding:12px}html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station .ss-throw-settings{padding-bottom:8px}html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint{top:12px}html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint small{font-size:12px!important}}
+
+/* Power is the live gesture readout, separated from the preselected slider percentages. */
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;gap:6px 12px;align-items:center;text-align:left}
+#ss-launch-station #ss-throw-hint>b{grid-column:1;grid-row:1}
+#ss-launch-station #ss-throw-hint>small{grid-column:1;grid-row:2;max-width:22ch}
+.ss-gesture-power{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.ss-gesture-power>span{font:500 12px/1.2 var(--hp-font-body);color:#d9cbe8}
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-power{position:static;font:italic 900 26px/1.15 var(--hp-font-action)!important}
+
+html.hp-ui.party-player body[data-ss-role=controller][data-ss-mode=curling] .ss-sports-match .ss-personal-detail{color:var(--ss-team)!important}
+
+/* Paint the accepted control station, preserving its actions, gesture footprint and feedback. */
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station{background:var(--sports-edge),var(--sports-panel)!important;border-color:color-mix(in srgb,var(--sports-rim) 50%,transparent)!important;box-shadow:inset 0 1px 0 #ffffff10}
+html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station .ss-throw-settings{border-bottom-color:color-mix(in srgb,var(--sports-rim) 25%,transparent)}
+html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=swarm_gate],[data-ss-mode=peek_shoot]) #ss-aim-pad{background:var(--sports-edge),var(--sports-panel)!important;border-color:color-mix(in srgb,var(--sports-rim) 55%,transparent)!important}
+
+/* Optional sensor controls belong to the same station; the gesture keeps its space. */
+#ss-motion-controls{display:flex;flex-direction:column;gap:8px;flex:none;min-width:0}
+.ss-input-modes{display:flex;padding:3px;background:#20172b80;border-radius:14px;gap:3px}
+.ss-input-modes button{flex:1;min-width:0;min-height:44px;padding:8px 12px;border:0;border-radius:11px;background:transparent;color:#dfd0ec;font:italic 900 16px/1.2 var(--hp-font-action);touch-action:manipulation}
+.ss-input-modes button[aria-pressed=true]{background:#c8ff73;color:#203312}
+#ss-enable-motion{min-height:44px;padding:10px 16px;border:1px solid #b68ada66;border-radius:12px;background:#493459;color:#f2eaff;font:italic 900 16px/1.2 var(--hp-font-action);touch-action:manipulation}
+#ss-motion-status{color:#dfd0ec;font:500 12px/1.3 var(--hp-font-body);text-wrap:pretty}
+.ss-input-modes button:active,#ss-enable-motion:active{transform:scale(.98)}
+.ss-input-modes button:focus-visible,#ss-enable-motion:focus-visible{outline:2px solid #c8ff73;outline-offset:2px}
+#ss-motion-controls button{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+body[data-ss-input-mode=motion] .ss-swipe-arrow{display:none!important}
+@media(max-height:520px){#ss-motion-controls{gap:5px}.ss-input-modes button{min-height:44px}html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint b{font-size:18px!important}html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-art{bottom:6px;width:28px;height:28px;left:calc(50% - 14px)}}
+@media(max-height:400px){
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]){gap:6px!important}
+ html.hp-ui.party-player body[data-ss-role=controller]:is([data-ss-mode=curling],[data-ss-mode=bowling]) #ss-sports{gap:6px!important}
+ .ss-sports-match{padding-bottom:6px}
+ #ss-motion-status[data-ready=true]{display:none}
+ html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station{padding:10px}
+ html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station .ss-throw-settings{padding-bottom:6px}
+ html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint{top:8px;gap:4px 8px}
+ html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-throw-hint small{font-size:12px!important}
+ html.hp-ui.party-player body[data-ss-role=controller] #ss-launch-station #ss-power{font-size:22px!important}
+ body[data-ss-input-mode=motion] #ss-throw-art{display:none!important}
+ html.hp-ui.party-player body[data-ss-role=controller][data-ss-input-mode=motion] #ss-launch-station #ss-throw-hint small{display:block!important}
+}
+
+/* Motion is a sensor readout, never a touch hold or a bank of launch sliders. */
+#ss-motion-throw{flex:1;display:flex;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px 4px;text-align:center}
+#ss-motion-throw[hidden]{display:none!important}
+#ss-motion-throw img{width:88px;height:88px;object-fit:contain}
+#ss-motion-throw b{font:italic 900 26px/1.15 var(--hp-font-action)}
+#ss-motion-throw p{max-width:30ch;margin:0;color:#dfd0ec;font:500 15px/1.45 var(--hp-font-body)}
+#ss-motion-throw strong{font:italic 900 32px/1.2 var(--hp-font-action);color:var(--ss-lime)}
+body[data-ss-input-mode=motion] .ss-throw-settings,body[data-ss-input-mode=motion] #ss-throw-pad{display:none!important}
+@media(max-height:520px){#ss-motion-throw{gap:10px;padding:12px 4px}#ss-motion-throw img{width:48px;height:48px}#ss-motion-throw b{font-size:22px}#ss-motion-throw p{font-size:13px}}

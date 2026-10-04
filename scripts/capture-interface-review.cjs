@@ -1,0 +1,220 @@
+'use strict';
+// Fresh visual audit of real launcher/engine states. Own outputs only.
+const {spawn}=require('node:child_process'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');
+const output=path.resolve(process.env.QA_OUTPUT||'output/playwright/game-interface-review/captures');fs.mkdirSync(output,{recursive:true});
+const captureCompositionEvidence=require('./qa/capture-composition-evidence.cjs');
+const results=process.env.QA_RESULTS==='1',rate=results?Number(process.env.QA_CLOCK_RATE||12):1;
+const tvOnly=process.env.QA_TV_ONLY==='1',mainOnly=process.env.QA_MAIN_ONLY==='1';
+const clock=path.resolve('scripts/capture-qa-clock.cjs');
+const child=spawn(process.execPath,[...(results?['--require',clock]:[]),'server.js'],{env:{...process.env,...(results?{NODE_OPTIONS:[process.env.NODE_OPTIONS||'','--require='+clock].join(' '),QA_CLOCK_RATE:String(rate)}:{}),PARTY_EMBEDDED:'1',PARTY_INTERNAL_PORT:'0',PARTY_EPHEMERAL:'1',PARTY_PORT:'0',PARTY_NO_BROWSER:'1',PARTY_ADMIN_KEY:'round2-visual'}});
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));let log='',browser;
+const sportsArtFiles=()=>{const files=[];const walk=d=>{for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(/\.(?:webp|png|json)$/.test(e.name))files.push(p);}};walk('games/sports_siege/public/assets');return files;};
+const presentationAssets=()=>{const files=[];const walk=d=>{if(!fs.existsSync(d))return;for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(/\.(?:webp|png|svg|json)$/.test(e.name))files.push(p);}};for(const d of ['public/assets/spectators-20261002','public/assets/game-ui-themes-20261002','games/crane/public/assets','games/tanks/public/assets/tank-rig-v1','public/assets/gameplay','public/assets/game-logos-v1/logos'])walk(d);return files;};
+const hashes=()=>Object.fromEntries(['server.js','scripts/qa/capture-composition-evidence.cjs','scripts/qa/check-micro-attachments-evidence.cjs','lib/party-runtime.js','lib/tv-playfield-bounds.js','public/game-logo-renderer.js','public/assets/gameplay/generated/western-mascot-rig-v3.js','public/assets/gameplay/generated/western-mascot-rig-v4.js','public/assets/gameplay/generated/push-sumo-art-v1.js',...['public/game-message.js','public/game-message.css','public/game-ui-micro-assets.js','public/game-ui-micro-assets.css','public/tv-menu-polish.css','public/russian-fonts.css','public/game-ui-themes.css','public/game-ui-themes.js','public/game-ui-themes.json'].filter(f=>fs.existsSync(f)),...presentationAssets(),'public/i18n.js','public/tv.html','public/tv.js','public/tv.css','public/tv-information.css','public/tv-information.js','public/bridge.js','public/game-art.js','public/game-ui-system.js','public/native-shell/controller-bridge.js','public/native-shell/tabs.js','public/rankings-theme.css','public/rankings-theme.js','public/polish.css','public/app.js','public/value-fit.js','public/branding.css','public/background-scene.css','public/match-results.js','public/tv-show.js','public/tv-show.css','public/native-shell/host.js','public/native-shell/index.html','public/native-shell/host-ui.css','public/assets/gameplay/sports-siege/gallery-meadow-flat-v2.webp','public/assets/gameplay/sports-siege/gallery-meadow-flat-v3.webp',...sportsArtFiles(),...fs.readdirSync('games/sports_siege/public/assets/targets-flat-v2').filter(f=>f.endsWith('.webp')).map(f=>'games/sports_siege/public/assets/targets-flat-v2/'+f),'public/i18n-dictionary.js','public/game-ui-system.css','public/game-polish.css','public/game-feel.css',...require('../lib/catalog').map(g=>g.engine||g.id).filter((s,i,a)=>a.indexOf(s)===i).flatMap(g=>{const p=path.join('games',g);if(!fs.existsSync(p))return[];const files=[];const walk=d=>{for(const e of fs.readdirSync(d,{withFileTypes:true})){const f=path.join(d,e.name);if(e.isDirectory()&&!['node_modules','.git','assets'].includes(e.name))walk(f);else if(e.isFile()&&/\.(css|js|mjs|html)$/.test(e.name))files.push(f);}};walk(p);return files;})].map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex')]));
+const report={startedAt:new Date().toISOString(),method:results?'Real engine outcomes, minimum host settings, server QA clock '+rate+'x; no injected results/scores. Does not validate real-time physics.':'Real engine gameplay, browser player + real built-in test bots, normal clock. No injected state or scores.',revisionStart:hashes(),games:[],errors:[]};
+report.captureSurfaces=tvOnly?['tv']:['tv','phone'];
+child.stdout.on('data',d=>log+=d);child.stderr.on('data',d=>log+=d);
+const save=()=>fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2));
+async function until(fn,label,timeout=30000){const end=Date.now()+timeout;while(Date.now()<end){const value=await fn();if(value)return value;await sleep(100);}throw Error(label);}
+async function activeFrame(page){const element=await page.$('#gameFrame');return element?element.contentFrame():null;}
+async function committedTVFrame(page,id){return until(async()=>{const frame=await activeFrame(page);if(!frame||!frame.url().includes('/games/'+id+'/'))return false;return await frame.evaluate(expected=>document.documentElement.dataset.partyGame===expected&&document.documentElement.classList.contains('party-host')&&document.readyState!=='loading',id).catch(()=>false)?frame:false;},'actual TV game route ready: '+id);}
+async function themeProof(frame){
+ await frame.waitForFunction(()=>{
+  if([...document.styleSheets].some(s=>s.href?.includes('/game-ui-themes.css')))return true;
+  const d=window.HeyPalsGameThemes?.diagnostics?.();
+  return d?.enabled&&d.noDecorationReason&&d.targets?.length===0&&d.surfaces?.length===0&&![...document.querySelectorAll('[data-hp-theme-surface]')].some(e=>e.getClientRects().length);
+ },null,{timeout:10000});
+ return frame.evaluate(()=>{
+ const sheets=[...document.styleSheets].filter(s=>s.href?.includes('/game-ui-themes.css')),diagnostics=window.HeyPalsGameThemes?.diagnostics?.();
+ const authoredOnly=!sheets.length&&diagnostics?.enabled&&diagnostics.noDecorationReason&&diagnostics.targets?.length===0&&diagnostics.surfaces?.length===0&&![...document.querySelectorAll('[data-hp-theme-surface]')].some(e=>e.getClientRects().length);
+ if(!sheets.length&&!authoredOnly)throw Error('Theme stylesheet missing on actual game route with eligible painted surfaces');
+ const animations=document.getAnimations().map(a=>({animation:a,time:a.currentTime,state:a.playState}));
+ animations.forEach(({animation,time})=>{animation.pause();animation.currentTime=time;});
+ const elements=[...document.querySelectorAll('button,input,select,summary,canvas,[role=application],[role=group],[data-hp-theme-surface],.person,.seat,.party-standing')].filter(e=>e.getClientRects().length);
+ const measure=()=>elements.map((e,i)=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return{i,id:e.id,tag:e.tagName,box:[r.x,r.y,r.width,r.height],font:s.font,fontFamily:s.fontFamily,padding:s.padding,borderWidth:s.borderWidth,canvas:e.tagName==='CANVAS'?[e.width,e.height]:null};});
+ const feedback=()=>elements.filter(e=>e.matches('button,input,select,[role=application],[role=group]')).map(e=>{const s=getComputedStyle(e);return{id:e.id,disabled:e.disabled,pressed:e.matches(':active,.pressed,.down,.active,.selected,[aria-pressed=true]'),focus:e.matches(':focus'),background:s.backgroundImage,color:s.color,opacity:s.opacity,transform:s.transform,filter:s.filter,outline:s.outline};});
+ sheets.forEach(s=>s.disabled=true);const before=measure(),feedbackBefore=feedback();sheets.forEach(s=>s.disabled=false);const after=measure(),feedbackAfter=feedback();
+ const changed=after.flatMap((a,i)=>JSON.stringify(a)!==JSON.stringify(before[i])?[{before:before[i],after:a}]:[]);
+ animations.forEach(({animation,time,state})=>{animation.currentTime=time;if(state==='running')animation.play();else if(state==='finished')animation.finish();});
+ return{method:authoredOnly?'Authored-only surface: explicit diagnostics confirm zero eligible themed targets; no optional theme stylesheet loaded. Actual layout, controls and original image remain independently inspected.':'Same task stylesheet comparison with existing animation clocks held at identical currentTime then restored; real engine state unchanged.',authoredOnly:!!authoredOnly,role:document.documentElement.classList.contains('party-host')?'host':'phone',url:location.href,sourceGeometryUnchanged:changed.length===0,measured:elements.length,changed,feedbackBefore,feedbackAfter,theme:diagnostics};
+ });}
+async function frameMetrics(frame){if(!frame)return null;return frame.evaluate(()=>{const measure=e=>{if(!e)return null;const r=e.getBoundingClientRect(),s=getComputedStyle(e);return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom,text:e.textContent.trim().slice(0,100),font:s.fontSize,fontFamily:s.fontFamily,gridColumns:s.gridTemplateColumns,scrollWidth:e.scrollWidth,clientWidth:e.clientWidth};};const controls=[...document.querySelectorAll('button,summary,select,input')].filter(e=>e.getClientRects().length&&getComputedStyle(e).visibility==='visible').map(e=>{const r=e.getBoundingClientRect();return{id:e.id,text:e.textContent?.trim().slice(0,75),type:e.type,disabled:e.disabled,x:r.x,y:r.y,w:r.width,h:r.height,bottom:r.bottom,size:getComputedStyle(e).fontSize};});return{url:location.href,backgroundPlane:{root:getComputedStyle(document.documentElement).backgroundColor,body:getComputedStyle(document.body).backgroundColor,pseudo:getComputedStyle(document.body,'::before').display},rootClasses:document.documentElement.className,rootGame:document.documentElement.dataset.partyGame,bodyClasses:document.body.className,width:innerWidth,height:innerHeight,scrollWidth:document.documentElement.scrollWidth,scrollHeight:document.documentElement.scrollHeight,controls,offscreenControls:controls.filter(c=>c.x<-1||c.x+c.w>innerWidth+1||c.y<-1||c.bottom>innerHeight+1),canvases:[...document.querySelectorAll("canvas")].filter(e=>e.getClientRects().length).map(e=>({id:e.id,box:measure(e),parent:e.parentElement?.id,inline:e.getAttribute("style")})),fonts:document.fonts.status,phase:window.PARTY_UI?.phase,language:window.PartyI18n?.language,theme:window.HeyPalsGameThemes?.diagnostics?.(),bowGeometry:document.getElementById('touchPad')?Object.fromEntries(['#hand','.phone-hud','#touchPad','.shoot-hud'].map(q=>[q,measure(document.querySelector(q))])):undefined,gameGeometry:Object.fromEntries(['.jenga-host .stage','.jenga-host aside','#board','.block-info','.host-rules','#missionCard','#mText','#tower','.arena-status','.naval-console','.naval-console details','.naval-console .screen-standings','.naval-broadcast .stage','#oceanOverview','.score-strip','#battle','#own','#ownGrid','#reload','#grid','#target','.host-shell>.stage','.host-shell>aside','.scores','#players','.stage-top'].filter(q=>document.querySelector(q)).map(q=>[q,measure(document.querySelector(q))])),fleetCards:[...document.querySelectorAll('#oceanOverview .oceanCard')].map(measure),fleetCells:[...document.querySelectorAll('#oceanOverview .miniOcean span')].slice(0,36).map(measure),scoreCards:[...document.querySelectorAll('.score-chip')].map(e=>({card:measure(e),name:measure(e.querySelector('small')),score:measure(e.querySelector('strong'))})),craneRows:[...document.querySelectorAll('#players .player')].map(e=>({card:measure(e),rank:measure(e.querySelector('.rank')),name:measure(e.querySelector('strong')),points:measure(e.querySelector('.score'))})),jengaView:window.jengaView?{phase:window.jengaView.getState()?.phase,selected:window.jengaView.getState()?.selected,blocks:window.jengaView.getState()?.blocks?.length,currentId:window.jengaView.getState()?.currentId,stability:window.jengaView.getState()?.stability}:undefined};});}
+(async()=>{try{
+ await until(()=>/localhost:(\d+)/.test(log),'launcher port');const origin='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];
+ const api=async body=>{const r=await fetch(origin+'/api/manage',{signal:AbortSignal.timeout(15000),method:body?'POST':'GET',headers:{Authorization:'Bearer round2-visual','Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});const s=await r.json();if(!r.ok)throw Error(JSON.stringify(s));return s;};
+ await api({type:'force-language',language:process.env.QA_LANGUAGE||'en'});
+ browser=await webkit.launch({headless:true});const context=await browser.newContext();await context.addInitScript(()=>localStorage.setItem('local-party-language','en'));
+ const tv=await context.newPage();await tv.setViewportSize({width:Number(process.env.TV_WIDTH)||1280,height:Number(process.env.TV_HEIGHT)||720});const mobileContext=await browser.newContext({viewport:{width:402,height:874},isMobile:true,hasTouch:true,deviceScaleFactor:3});await mobileContext.addInitScript(()=>localStorage.setItem('local-party-language','en'));
+ if(process.env.QA_NATIVE==='1')await mobileContext.addInitScript({content:"window.webkit={messageHandlers:{partyShell:{postMessage(){}}}};window.__partyPersistentTabs=true;\n"+fs.readFileSync('public/native-shell/controller-bridge.js','utf8')+'\n;'+fs.readFileSync('public/native-shell/tabs.js','utf8')});
+ const phone=await mobileContext.newPage();
+ let currentCaptureGame=null;for(const [surface,p]of[['tv',tv],['phone',phone]])p.on('pageerror',e=>report.errors.push({surface,game:currentCaptureGame,error:e.message,stack:e.stack,capturedAt:new Date().toISOString()}));
+ async function rankings(p){return Promise.all(p.frames().map(f=>f.evaluate(()=>{const measure=e=>{const r=e.getBoundingClientRect(),c=getComputedStyle(e);return{x:r.x,y:r.y,w:r.width,h:r.height,bottom:r.bottom,right:r.right,font:c.fontSize,opacity:c.opacity,text:e.textContent.trim().slice(0,120)};};return{url:location.pathname,phase:window.PARTY_UI?.phase,rows:[...document.querySelectorAll('.hp-ranking-row,.hp-ranking-podium,.hp-ranking-local-podium')].filter(e=>e.getClientRects().length).map(e=>({row:measure(e),rank:e.dataset.hpRank,place:(()=>{const p=e.querySelector('.hp-ranking-place');return p?measure(p):null;})(),digit:(()=>{const p=e.querySelector('.hp-ranking-digit,.hp-place-digit');return p?measure(p):null;})(),score:(()=>{const p=e.querySelector('.hp-ranking-score');return p?measure(p):null;})(),identity:(()=>{const p=e.querySelector('.hp-ranking-identity');return p?measure(p):null;})()})),scoreboards:document.querySelectorAll('.hp-ranking-scoreboard').length};}).catch(e=>({error:e.message,url:f.url()}))));}
+ async function fullCapture(state,row,game){
+  row.rankingScreens??=[];
+  for(const [surface,p,sizes]of[['tv',tv,process.env.QA_TV_BOTH==='1'?[[1280,720],[1920,1080]]:[[1920,1080]]],['phone',phone,[[402,874]]]])for(const [w,h]of sizes){
+   if(tvOnly&&surface==='phone')continue;
+   await p.bringToFront();
+   await p.setViewportSize({width:w,height:h});
+   for(const f of p.frames())await f.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.querySelectorAll('.hp-ranking-cup,.hp-place-award,.podium-award')].filter(i=>i.getClientRects().length).map(i=>i.decode().catch(()=>{})));}).catch(()=>{});
+   // WebKit can expose the new boxes while a screenshot still contains the
+   // preceding viewport's composited pixels. Allow painting, then require
+   // stable field/cap/canvas geometry across three samples before two more frames.
+   await sleep(550);let previous='',steady=0,settled=null;
+   const deadline=Date.now()+5000;
+   while(Date.now()<deadline&&steady<2){
+    settled=await p.evaluate(()=>{
+     const rect=e=>{const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height].map(n=>Math.round(n*10)/10);};
+     const frame=document.getElementById('gameFrame'),doc=frame?.contentDocument;
+     return{viewport:[innerWidth,innerHeight],frame:frame?rect(frame):null,
+      dock:[...document.querySelectorAll('.tv-info-dock')].filter(e=>e.getClientRects().length).map(rect),
+      fields:doc?[...doc.querySelectorAll('[data-tv-hud-anchor],[data-tv-hud-rail],[data-tv-hud-cluster],canvas')].filter(e=>e.getClientRects().length).map(e=>({rect:rect(e),bitmap:e.tagName==='CANVAS'?[e.width,e.height]:null})):[]};
+    });
+    const signature=JSON.stringify(settled);steady=signature===previous?steady+1:0;previous=signature;if(steady<2)await sleep(100);
+   }
+   if(steady<2)throw Error('Viewport composition did not settle: '+game.id+' '+surface+' '+w);
+   // Built-in bots use offscreen srcdoc iframes. Their DOM is "visible" to
+   // automation, but their RAF is suspended and they are not screenshot surfaces.
+   for(const f of [p.mainFrame(),await activeFrame(p)].filter(Boolean)){
+    await f.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))).catch(()=>{});
+   }
+   row.viewportSettles??=[];row.viewportSettles.push({surface,w,h,state,at:new Date().toISOString(),geometry:settled});
+   if(game.id==='western'&&surface==='phone'){const live=await activeFrame(p);await live.waitForFunction(()=>[...document.querySelectorAll('main')].filter(e=>e.getClientRects().length).every(e=>Number(getComputedStyle(e).opacity)>=.98),null,{timeout:2000});}
+   const file=game.id+'-'+surface+'-'+state+'-'+w+'.png';await p.screenshot({path:path.join(output,file)});row.captures.push(file);row.rankingScreens.push({surface,w,h,state,file,frames:await rankings(p)});if(state==='live'){row.compositionScreens??=[];row.compositionScreens.push({surface,w,h,file,evidence:await captureCompositionEvidence(p)});const settled=await frameMetrics(await activeFrame(p));if(surface==='tv'&&w===1920)row.tv=settled;if(surface==='phone'&&w===402)row.phone393=settled;}if(surface==='tv'&&state==='live'){row.tvField=await p.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return{y:r.y,bottom:r.bottom,height:r.height};};const bar=document.querySelector('#play .gamebar'),notch=bar.querySelector('.tv-info-center');return{fullscreen:document.body.classList.contains('tv-field-fullscreen'),gutterLogical:Number(document.getElementById('gameFrame').dataset.fieldGutter),frame:rect(document.getElementById('gameFrame')),notch:rect(notch),hudDebug:{classes:document.body.className,grid:getComputedStyle(bar).gridTemplateColumns,vars:bar.getAttribute('style'),boxes:[...bar.children].map(e=>({class:e.className,x:e.getBoundingClientRect().x,width:e.getBoundingClientRect().width,gridColumn:getComputedStyle(e).gridColumn,gridRow:getComputedStyle(e).gridRow}))},hudVisible:bar.offsetHeight>0,scale:parseFloat(document.getElementById('tvStage').style.zoom)||1,height:innerHeight};});}if(surface==='phone'&&state==='live'){row.phoneChrome=await p.evaluate(()=>{const style=(id,pseudo)=>getComputedStyle(document.getElementById(id),pseudo);const box=id=>{const r=document.getElementById(id).getBoundingClientRect();return{y:r.y,bottom:r.bottom,height:r.height};};return{header:box('brandHeader'),footer:box('sessionControls'),headerGradient:style('brandHeader','::before').backgroundImage,footerGradient:style('sessionControls','::before').backgroundImage,playBackground:style('play').backgroundColor};});}
+   if(surface==='phone'&&state==='finish'){
+    const proof=await p.evaluate(()=>{const box=e=>{if(!e)return null;const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,bottom:r.bottom};};return{native:document.body.classList.contains('native-controller'),tabs:!!window.LocalPartyTabs,dock:!!document.querySelector('#partyNativeDock.native-tabs'),bodyClasses:document.body.className,filtersHidden:document.getElementById('catalogFilters').hidden,filtersDisplay:getComputedStyle(document.getElementById('catalogFilters')).display,header:box(document.getElementById('brandHeader')),resultHeader:box(document.querySelector('.hp-result-header')),scroll:box(document.querySelector('.hp-result-scroll')),firstRow:box(document.querySelector('.hp-result-row'))};});
+    row.nativeFinishProof??=[];row.nativeFinishProof.push({w,h,...proof});if(proof.filtersDisplay!=='none')throw Error('Catalogue tabs visible during actual finish');if(process.env.QA_NATIVE==='1'&&(!proof.native||!proof.tabs||!proof.dock))throw Error('Native bridge/tabs not bootstrapped');
+   }
+  }
+  await tv.setViewportSize({width:1920,height:1080});await phone.setViewportSize({width:402,height:874});save();
+ }
+ await tv.goto(origin+'/tv');await phone.goto(origin+'/play');await phone.locator('#name').fill('Alexandra LongSurname');await phone.locator('#joinForm button[type=submit]').click();await phone.locator('#home').waitFor();
+ await tv.locator('#tvStartup').waitFor({state:'hidden',timeout:30000});
+ await tv.locator('#tvSceneTransition').waitFor({state:'hidden',timeout:30000});
+ report.mainCapturedAt=new Date().toISOString();
+ for(const[surface,p]of[['tv',tv],['phone',phone]]){if(tvOnly&&surface==='phone')continue;await p.bringToFront();await p.evaluate(()=>document.fonts.ready);await sleep(600);await p.screenshot({path:path.join(output,'main-'+surface+'-lobby.png')});}
+ const selected=process.env.AUDIT_GAMES?.split(','),extraPlayerGames=new Set((process.env.QA_EXTRA_PLAYER_GAMES||'carryball').split(',').filter(Boolean));
+ const playerCounts=Object.fromEntries((process.env.QA_PLAYER_COUNTS||'').split(',').filter(Boolean).map(item=>{const [id,n]=item.split(':');if(!id||!Number.isInteger(Number(n))||Number(n)<1||Number(n)>16)throw Error('Invalid QA_PLAYER_COUNTS '+item);return[id,Number(n)];}));
+ for(const game of (await api()).catalog.filter(g=>!mainOnly&&(!selected||selected.includes(g.id)))){
+  currentCaptureGame=game.id;const row={id:game.id,settings:{},phases:[],captures:[],actions:[],startedAt:new Date().toISOString()};report.games.push(row);let extraContext,extraPhone,thirdContext,thirdPhone,stopFlapping=false,flapTask;console.log('START',game.id,results?'results':'normal');
+  const capture=async state=>{const s=await api();row.captureStates??=[];row.captureStates.push({state,ui:s.active?.ui,capturedAt:new Date().toISOString(),result:state==='results'?s.active?.result:undefined});for(const [surface,p]of[['phone',phone],['tv',tv]]){if(tvOnly&&surface==='phone')continue;await p.bringToFront();for(const f of p.frames())await f.evaluate(()=>document.fonts.ready).catch(()=>{});await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));const file=game.id+'-'+surface+'-'+state+'.png';await p.screenshot({path:path.join(output,file)});row.captures.push(file);}save();};
+  try{
+   if(results)for(const field of game.hostControls?.settings||[]){let value=field.initial;if(['maxRounds','laps','count','seconds','minutes','maxTurns','turns','rounds','arrows','frames','ends','waves','levels'].includes(field.id))value=field.options[0].value;row.settings[field.id]=value;}
+   if(game.id==='tanks')row.settings.mode='ctf';if(Object.keys(row.settings).length)await api({type:'settings',id:game.id,settings:row.settings});
+   if(extraPlayerGames.has(game.id)&&game.id!=='bomb'){extraContext=await browser.newContext({viewport:{width:402,height:874},isMobile:true,hasTouch:true});await extraContext.addInitScript(()=>localStorage.setItem('local-party-language','en'));extraPhone=await extraContext.newPage();extraPhone.on('pageerror',e=>report.errors.push({surface:'extra-phone',game:game.id,error:e.message}));await extraPhone.goto(origin+'/play');await extraPhone.locator('#name').fill('Morgan SecondPlayer');await extraPhone.locator('#joinForm button[type=submit]').click();await extraPhone.locator('#home').waitFor();row.actions.push('joined second real browser controller before launch');}
+   // Bomb's three-person minimum is verified with three actual loaded controllers.
+   // A previous capture's bot readiness stayed false; keep that failed fixture recorded.
+   if(game.id==='bomb'){
+    for(const [slot,name] of [['second','Morgan SecondPlayer'],['third','Jordan ThirdPlayer']]){
+     const c=await browser.newContext({viewport:{width:402,height:874},isMobile:true,hasTouch:true});await c.addInitScript(()=>localStorage.setItem('local-party-language','en'));
+     const p=await c.newPage();p.on('pageerror',e=>report.errors.push({surface:slot+'-phone',game:game.id,error:e.message}));await p.goto(origin+'/play');await p.locator('#name').fill(name);await p.locator('#joinForm button[type=submit]').click();await p.locator('#home').waitFor();
+     if(slot==='second'){extraContext=c;extraPhone=p;}else{thirdContext=c;thirdPhone=p;}
+    }
+    row.actions.push('Bomb minimum: three real browser controllers, no bots');
+   }
+   const targetCount=playerCounts[game.id];if(targetCount)row.requestedPlayers=targetCount;const count=game.id==='bomb'?0:Math.min(targetCount?targetCount-1-(extraPhone?1:0):Number(process.env.QA_BOTS)||3,game.max-1-(extraPhone?1:0));await api({type:'bots-set',count});await until(async()=>(await api()).players.filter(p=>p.testBot).length===count,'bot roster');await api({type:'launch',id:game.id});await phone.waitForFunction(id=>document.querySelector('#gameFrame').src.includes('/games/'+id+'/'),game.id);await phone.waitForFunction(()=>!document.getElementById('readyButton').disabled,null,{timeout:30000});
+   if(['push','spy','crane','pocket_siege','millionaire','poker'].includes(game.id)){
+    await tv.locator('#waiting').waitFor({state:'visible'});await tv.locator('#tvSceneTransition').waitFor({state:'hidden'});await sleep(700);await capture('matchmaking');
+    const details=phone.locator('#waitingContent details');if(!tvOnly&&await details.count()){await details.first().evaluate(e=>e.open=true);await sleep(300);await phone.screenshot({path:path.join(output,game.id+'-phone-matchmaking-rules.png')});row.captures.push(game.id+'-phone-matchmaking-rules.png');await details.first().evaluate(e=>e.open=false);}
+   }
+   if(process.env.QA_WAITING_ONLY==='1')continue;
+   if(extraPhone){await extraPhone.waitForFunction(id=>document.querySelector('#gameFrame').src.includes('/games/'+id+'/'),game.id);await extraPhone.waitForFunction(()=>!document.getElementById('readyButton').disabled,null,{timeout:30000});await extraPhone.locator('#readyButton').click();row.actions.push('second real browser controller loaded and ready');}
+   if(thirdPhone){await thirdPhone.waitForFunction(id=>document.querySelector('#gameFrame').src.includes('/games/'+id+'/'),game.id);await thirdPhone.waitForFunction(()=>!document.getElementById('readyButton').disabled,null,{timeout:30000});await thirdPhone.locator('#readyButton').click();row.actions.push('third real Bomb controller loaded and ready');}
+   await phone.locator('#readyButton').click();
+   let lastPhase='',lastAction=0,hasGameplay=false;const start=Date.now(),deadline=Number(process.env.QA_GAME_TIMEOUT)|| (results?150000:30000);
+   while(Date.now()-start<deadline){const snap=await api(),ui=snap.active?.ui,phase=ui?.phase;if(phase!==lastPhase){row.phases.push({phase,afterMs:Date.now()-start,progress:ui?.progress});lastPhase=phase;console.log('PHASE',game.id,phase,ui?.progress);}
+    if(phase==='waiting'&&Date.now()-start>3000&&Date.now()-lastAction>2000){try{await api({type:'force-start',instance:snap.active.instance});row.actions.push('force-start loaded clients');}catch(e){row.actions.push('force-start rejected: '+e.message);}lastAction=Date.now();}
+    if(game.id==='spy'&&phase==='playing'&&ui.progress?.includes('роль')){const f=await activeFrame(phone);if(f&&await f.locator('#secretCard').count()){if(process.env.QA_SHARED_STATES==='1'&&!row.sharedRoleBrief){row.sharedRoleBrief=true;await fullCapture('role-brief',row,game);}await f.locator('#secretCard').dispatchEvent('pointerdown',{pointerId:1,pointerType:'touch',bubbles:true});await sleep(350);await f.locator('#secretCard').dispatchEvent('pointerup',{pointerId:1,pointerType:'touch',bubbles:true});await f.locator('#readyBtn').evaluate(el=>{if(!el.disabled)el.click();});row.actions.push('held secret card and confirmed role');}}
+    const liveFrame=await activeFrame(phone);
+    if(game.id==='flappy'&&phase==='playing'&&liveFrame&&!flapTask){
+     const screen=tv.frames().find(f=>f.url().includes('/games/flappy/'));
+     row.actions.push('Actual touch flaps on the loaded controller; read-only world observation, no state or score injection');row.flapCount=0;
+     flapTask=(async()=>{while(!stopFlapping){
+      const flight=await screen.evaluate(()=>{const s=window.PARTY_BOT_VIEW,p=s?.players?.find(p=>p.name==='Alexandra LongSurname'),pipe=s?.pipes?.find(t=>t.x>(p?.x||230)-45);return{countdown:s?.countdown,alive:p?.alive,y:p?.y,vy:p?.vy,target:pipe?.gap||340};});
+      if(flight.countdown<=0&&flight.alive&&flight.y>flight.target+8&&flight.vy>0&&await liveFrame.locator('#action').isEnabled()){
+       const box=await liveFrame.locator('#action').boundingBox();if(box){await phone.touchscreen.tap(box.x+box.width/2,box.y+box.height/2);row.flapCount++;row.flightSamples??=[];row.flightSamples.push(flight);}
+      }
+      await sleep(80);
+     }})().catch(e=>{row.flappyTapError=e.message;});
+    }
+    if(game.id==='bow_club'&&liveFrame&&await liveFrame.locator('#touch').isVisible().catch(()=>false)){await liveFrame.locator('#touch').evaluate(el=>el.click());row.actions.push('clicked actual touch aiming button; camera not tested');}
+    if(results&&liveFrame&&Date.now()-lastAction>800&&game.id==='monster'&&await liveFrame.locator('#doneBtn').isVisible().catch(()=>false)){
+      const b=await liveFrame.locator('#drawCanvas').boundingBox();if(b){await phone.mouse.move(b.x+b.width*.35,b.y+b.height*.2);await phone.mouse.down();await phone.mouse.move(b.x+b.width*.65,b.y+b.height*.75,{steps:12});await phone.mouse.up();await liveFrame.locator('#doneBtn').click();await liveFrame.locator('#confirmSubmit').click();row.actions.push('drew actual canvas stroke, Done, confirm submit');lastAction=Date.now();}
+    }
+    if(results&&liveFrame&&Date.now()-lastAction>800&&game.id==='crane'&&await liveFrame.locator('#drop').isEnabled().catch(()=>false)){await liveFrame.locator('#drop').click();row.actions.push('actual player Drop button');lastAction=Date.now();}
+    if(!results&&['playing','reveal'].includes(phase)&&!hasGameplay){if(game.id==='flappy'){const screen=await activeFrame(tv);await until(()=>screen.evaluate(()=>window.PARTY_BOT_VIEW?.countdown<=0),'real Flappy countdown complete');await sleep(200);}else await sleep(game.id==='millionaire'?80:game.id==='swarm_gate'?5500:1300);const current=(await api()).active?.ui?.phase;if(['playing','reveal'].includes(current)){if(game.id==='spy'&&!(await liveFrame.locator('#playView').isVisible()))continue;if(game.id==='millionaire'&&process.env.QA_ACTIVE_QUESTION==='1'&&!(await liveFrame.locator('#answer').isVisible()))continue;hasGameplay=true;row.gameplayPhase=(await api()).active?.ui?.phase;const f=await activeFrame(phone);const screen=await committedTVFrame(tv,game.id);row.actions.push('actual TV route and game identity ready before gameplay measurements');row.phone393=await frameMetrics(f);row.tv=await frameMetrics(screen);row.themeProofs=[];for(const [surface,frame]of [['phone',f],['tv',screen]])if(frame)row.themeProofs.push({surface,...await themeProof(frame)});row.partyLabels=screen?await screen.evaluate(()=>window.PartyNameLabels||null):null;row.arcadeLabels=screen?await screen.evaluate(()=>window.ArcadeNameLabels||null):null;await capture('gameplay');
+      await fullCapture('live',row,game);
+      if(game.id==='flappy'){
+       row.activeFlightProof=await screen.evaluate(()=>{const s=window.PARTY_BOT_VIEW,p=s.players.find(p=>p.name==='Alexandra LongSurname');return{phase:s.phase,time:s.time,countdown:s.countdown,alive:p.alive,y:p.y,score:p.score};});
+       if(!row.activeFlightProof.alive||!row.flapCount||row.flappyTapError)throw Error('Active flight was not verified through actual controller taps');
+      }
+      if(game.id==='push'){await api({type:'pause',paused:true});await phone.locator('#pauseOverlay').waitFor({state:'visible'});await sleep(500);await capture('pause');await api({type:'pause',paused:false});await phone.locator('#pauseOverlay').waitFor({state:'hidden'});}
+
+      if(screen&&['hungry','carryball'].includes(game.id)){
+       row.arcadeLabelSamples=[];for(let i=0;i<12;i++){row.arcadeLabelSamples.push(await screen.evaluate(()=>({at:performance.now(),labels:window.ArcadeNameLabels||[],state:window.PARTY_BOT_VIEW?{teams:window.PARTY_BOT_VIEW.teams,players:window.PARTY_BOT_VIEW.players.map(p=>({id:p.id,x:p.x,y:p.y,mass:p.mass,dead:p.dead,team:p.team,score:p.score})),ball:window.PARTY_BOT_VIEW.ball}:null})));await sleep(75);}
+      }
+      if(game.id==='crane'&&process.env.QA_SHARED_STATES==='1'){
+       await until(()=>f.locator('#drop').isEnabled(),'real human Crane Drop enabled',45000);
+       await f.locator('#drop').click();row.actions.push('actual human Drop for shared falling/feedback caption');
+       await until(async()=>/падает|садится|Результат хода|falling|feedback/i.test((await api()).active?.ui?.label||''),'Crane falling or feedback',5000);
+       row.sharedDropUI=(await api()).active?.ui;await fullCapture('drop-feedback',row,game);
+      }
+      if(game.id==='crane'&&process.env.QA_ROSTER_SCROLL==='1'){await screen.locator('#players').evaluate(e=>e.scrollTop=e.scrollHeight);await sleep(200);row.tvRosterEnd=await frameMetrics(screen);await capture('roster-end');await screen.locator('#players').evaluate(e=>e.scrollTop=0);}
+      if(game.id==='jenga'&&process.env.QA_JENGA_PULL==='1'){
+       const block=f.locator('#blocks button:not([disabled])').first();if(await block.count()){await block.click();await until(()=>f.locator('#jengaJoystick').getAttribute('aria-disabled').then(v=>v==='false'),'Jenga selected block enabled joystick',4000);const joy=await f.locator('#jengaJoystick').boundingBox();await phone.mouse.move(joy.x+joy.width/2,joy.y+joy.height/2);await phone.mouse.down();await phone.mouse.move(joy.x+joy.width/2,joy.y+joy.height*.85,{steps:6});await sleep(1400);row.jengaHeld=await screen.evaluate(()=>window.jengaView.getState());await capture('pull-held');await phone.mouse.up();await sleep(250);row.actions.push('actual block selection, enabled joystick pull, then release');row.jengaAfterPull=await screen.evaluate(()=>window.jengaView.getState());row.tvAfterPull=await frameMetrics(screen);await capture('extraction');}
+      }
+      if(game.id==='carryball'&&process.env.QA_ARCADE_EVENT==='1'){
+       const before=await screen.evaluate(()=>[...window.PARTY_BOT_VIEW.teams]),joy=await f.locator('#joy').boundingBox();let held=false,reached=false;const stop=Date.now()+60000;
+       while(Date.now()<stop){const s=await screen.evaluate(()=>window.PARTY_BOT_VIEW),p=s.players.find(p=>p.name==='Alexandra LongSurname');if(s.phase!=='playing')break;
+        if(s.teams.some((v,i)=>v>before[i])){reached=true;row.carryGoal={before,after:s.teams,ball:s.ball,players:s.players};if(held)await phone.mouse.up();held=false;await sleep(120);row.arcadeAfterGoal=await screen.evaluate(()=>window.ArcadeNameLabels);await capture('goal');await phone.setViewportSize({width:320,height:568});await sleep(200);await phone.screenshot({path:path.join(output,game.id+'-phone-goal-320.png')});row.captures.push(game.id+'-phone-goal-320.png');await phone.setViewportSize({width:402,height:874});break;}
+        if(p&&joy){const target=s.ball.owner===p.id?{x:p.team===0?1185:15,y:360}:s.ball,dx=target.x-p.x,dy=target.y-p.y,n=Math.max(1,Math.hypot(dx,dy));if(!held){await phone.mouse.move(joy.x+joy.width/2,joy.y+joy.height/2);await phone.mouse.down();held=true;}await phone.mouse.move(joy.x+joy.width/2+dx/n*joy.width*.3,joy.y+joy.height/2+dy/n*joy.width*.3);}
+        await sleep(250);
+       }
+       if(held)await phone.mouse.up();row.actions.push(reached?'real joystick movement and authoritative goal captured':'real joystick movement; goal not reached within60s');
+      }
+      if(game.id==='spy'&&process.env.QA_SPY_BOTH==='1'){
+       row.spyTurns=[];const end=Date.now()+16000;
+       while(Date.now()<end&&row.spyTurns.length<2){
+        const title=(await f.locator('#turnTitle').textContent()).trim(),kind=/^Ask\s/i.test(title)?'asking':/^Answer\s/i.test(title)?'answering':null;
+        if(kind&&!row.spyTurns.some(t=>t.kind===kind)){await sleep(200);row.spyTurns.push({kind,title,phone393:await frameMetrics(f)});await capture(kind);await phone.setViewportSize({width:320,height:568});await sleep(300);row.spyTurns.at(-1).phone320=await frameMetrics(f);await phone.screenshot({path:path.join(output,game.id+'-phone-'+kind+'-320.png')});row.captures.push(game.id+'-phone-'+kind+'-320.png');await phone.setViewportSize({width:402,height:874});}
+        if(kind==='asking'&&await f.locator('#nextTurnPhone').isVisible()){await f.locator('#nextTurnPhone').click();row.actions.push('actual player Next question button');}
+        await sleep(180);
+       }
+       if(row.spyTurns.length!==2)row.error='Actual Spy Ask/Answer both-state coverage incomplete';
+      }
+      break;}}
+    if(results&&!row.resultLiveCaptured&&['playing','reveal'].includes(phase)){row.resultLiveCaptured=true;await fullCapture('live-in-finish-run',row,game);}
+    if(phase==='results'){await until(()=>phone.locator('#sharedMatchResults').isVisible(),'shared phone results',10000);await sleep(450);row.mobileEffects=await phone.evaluate(()=>window.HeyPalsMatchResults?.diagnostics?.());await phone.screenshot({path:path.join(output,game.id+'-phone-fireworks.png')});row.captures.push(game.id+'-phone-fireworks.png');await sleep(1750);row.final=await api();row.tvEffects=await tv.evaluate(()=>({state:window.LocalPartyTVShow?.diagnostics?.(),canvas:(()=>{const c=document.getElementById('tvFireworks'),r=c?.getBoundingClientRect();let lit=0;try{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;for(let i=3;i<d.length;i+=4)if(d[i]>0)lit++;}catch{}return{width:c?.width,height:c?.height,display:c?getComputedStyle(c).display:null,box:r?{x:r.x,y:r.y,w:r.width,h:r.height}:null,lit};})(),podiumVisible:!!document.getElementById('tvPodium')?.getClientRects().length}));await capture('results');await fullCapture('finish',row,game);await phone.setViewportSize({width:320,height:568});await sleep(250);await phone.screenshot({path:path.join(output,game.id+'-phone-results-320.png')});row.captures.push(game.id+'-phone-results-320.png');await phone.setViewportSize({width:402,height:874});break;}
+    if(results&&Date.now()-lastAction>800){const action=game.hostControls?.actions?.find(a=>['end','finish','reveal','next','beginVote','finishVote'].includes(a.id)&&a.phases.includes(phase)&&(!Array.isArray(ui?.hostActions)||ui.hostActions.includes(a.id)));if(action){try{await api({type:'game-action',instance:snap.active.instance,action:action.id});row.actions.push(action.id);}catch(e){row.actions.push('action rejected '+action.id+': '+e.message);}lastAction=Date.now();}}
+    await sleep(120);
+   }
+   if(!row.captures.length){row.error='No requested state before '+deadline+'ms';row.lastActive=(await api()).active;await capture('last-observed');}
+   console.log(row.error?'UNCOVERED':'CAPTURED',game.id);
+  }catch(e){row.error=e.message;row.lastActive=(await api()).active;console.log('FAIL',game.id,e.message);await phone.screenshot({path:path.join(output,game.id+'-failure.png')}).catch(()=>{});}
+  finally{stopFlapping=true;await flapTask;await api({type:'stop'}).catch(()=>{});await extraContext?.close().catch(()=>{});await thirdContext?.close().catch(()=>{});await phone.setViewportSize({width:402,height:874});await phone.locator('#home').waitFor({timeout:15000}).catch(()=>{});row.finishedAt=new Date().toISOString();save();}
+ }
+ // Final lobby is real launcher state after all games: actual roster and QR,
+ // with natural notification exit, never substituted scores or DOM imagery.
+ if(tvOnly&&!selected){
+  currentCaptureGame=null;
+  await api({type:'bots-set',count:3});
+  await until(async()=>(await api()).players.length===4,'final lobby actual four-player roster');
+  const qrEnabled=process.env.QA_MAIN_QR==='1';
+  const network=qrEnabled?await api({type:'network-set',enabled:true}):await api();
+  if(qrEnabled&&(!network.networkEnabled||!network.urls?.length))throw Error('Actual invitation network unavailable for main-menu review');
+  await tv.locator('#qr').waitFor({state:qrEnabled?'visible':'hidden'});
+  await tv.locator('#tvSceneTransition').waitFor({state:'hidden'});
+  await sleep(8000);
+  report.mainCapturedAt=new Date().toISOString();report.mainScreens=[];
+  for(const [w,h]of [[1280,720],[1920,1080]]){
+   await tv.bringToFront();await tv.setViewportSize({width:w,height:h});
+   await tv.evaluate(async()=>{await document.fonts.ready;await Promise.allSettled([...document.images].filter(i=>i.src).map(i=>i.decode()));});
+   await sleep(650);await tv.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+   const metrics=await tv.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom};};return{viewport:[innerWidth,innerHeight],fonts:document.fonts.status,count:document.getElementById('count').textContent,qr:{loaded:document.getElementById('qr').naturalWidth,hidden:document.getElementById('qr').hidden},cards:[...document.querySelectorAll('#tvSidebar>section')].filter(e=>e.getClientRects().length).map(e=>({rect:rect(e),material:getComputedStyle(e).backgroundImage})),scrollWidth:document.documentElement.scrollWidth};});
+   if((qrEnabled&&(metrics.qr.hidden||!metrics.qr.loaded))||metrics.fonts!=='loaded'||metrics.scrollWidth>w+1||metrics.cards.some(c=>c.rect.right>w+1||c.rect.bottom>h+1))throw Error('Main menu geometry or QR not ready '+w);
+   const file='main-tv-lobby-'+w+'.png',capturedAt=new Date().toISOString();
+   await tv.screenshot({path:path.join(output,file)});report.mainScreens.push({file,w,h,capturedAt,metrics,networkEnabled:!!network.networkEnabled});save();
+  }
+ }
+
+}finally{report.finishedAt=new Date().toISOString();report.revisionEnd=hashes();report.changedFiles=[...new Set([...Object.keys(report.revisionStart),...Object.keys(report.revisionEnd)])].filter(f=>report.revisionStart[f]!==report.revisionEnd[f]);save();fs.writeFileSync(path.join(output,'server.log'),log);await browser?.close();child.kill();}})().catch(e=>{report.failure=e.message;save();console.error(e);process.exitCode=1;});

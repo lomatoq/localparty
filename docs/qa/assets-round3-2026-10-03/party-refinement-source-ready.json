@@ -1,0 +1,37 @@
+{
+  "createdAt": "2026-10-03T14:17:10.693Z",
+  "scope": "Party presentation only; own browser not started; bounded current gameplay/rig/notice review pending other assigned lanes",
+  "checks": [
+    "host.js syntax PASS",
+    "Party engine existing action tests PASS",
+    "VisualClock existing interpolation/pause/phase tests PASS",
+    "all5 HTML route transforms preserve v4JS/noticeCSS/noticeJS global paths PASS",
+    "Reaction actual animation0..1000 has positive name-to-plate clearance PASS",
+    "v4 actualhelper96palette/early/fall/age cases finite/contact/arm-order PASS"
+  ],
+  "minimumReactionGapWorldPx": 7.152858397893219,
+  "qualifiedCheck": {
+    "nominalGap": 8,
+    "initialAssertion": ">=7.9px through animation FAILED",
+    "cause": "Existing reaction pop overshoots1.0584 and temporarily reduces gap to7.153px; fixed font descender allowance still stays clear, exact8px allframes not claimed",
+    "productSourceChangedForThisAssertion": false
+  },
+  "assetAlignment": {
+    "path": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png",
+    "entryNormalized": 0.38098086124401914,
+    "circle1920Normalized": 0.40208333333333335,
+    "circle1280Normalized": 0.384375,
+    "qualifier": "Root explicitly selected closest edited candidate for actual1280/1920 review; exact1920center not claimed; no whole-scene CSS shift"
+  },
+  "sourceHashes": {
+    "games/party/public/host.js": "19a48daa4c7e1aaf060c3190c20aae6d7fd72b66942a9d63a780a820553c4bf8",
+    "games/party/public/host.html": "31894a48b9663a9fceb8cc346a8ceaebf3d3c067753ee2e9a870d448757f7c57",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png": "42c8dcfa042d273917938500a8afca38e23e84e787bf9f4afd4afb3ab11464f7",
+    "public/assets/gameplay/generated/western-mascot-rig-v4.js": "e66a7d93a756084ca73e707c24b322e2d134736707ad70e0ce3279c2adff3013",
+    "public/assets/gameplay/generated/western-mascots-v4.json": "4a73e7034c0ead1926f3cba66024bc0d26508197442f68d677e95a58098da157",
+    "public/assets/gameplay/generated/western-mascot-bodies-v4.png": "4bb1dc5e5916fe84be5017f19fc940d747ded916a42082cda6f87cdc0c594e46",
+    "public/assets/gameplay/generated/western-mascot-arms-v4.png": "f9a3cf6b79d115fb90c3cf5a5a0cdbaf6e5d8b2b48e279035550fc5b329c8f30",
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548"
+  }
+}

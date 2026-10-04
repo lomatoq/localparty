@@ -10,7 +10,8 @@
     "ios:prepare": "python3 scripts/prepare-ios.py",
     "test:iphone": "node tests/iphone-server.cjs",
     "test:iphone-controls": "node tests/iphone-controls.cjs",
-    "test:session": "node tests/session-network.cjs"
+    "test:session": "node tests/session-network.cjs",
+    "test:quality": "node scripts/quality-check.cjs"
   },
   "engines": {
     "node": ">=20"

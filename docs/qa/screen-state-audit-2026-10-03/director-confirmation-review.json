@@ -1,0 +1,1196 @@
+{
+  "status": "scoped-independent-visual-confirmation-complete",
+  "opened": [
+    {
+      "id": "push-waiting-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/push-waiting-1280.png",
+      "sha256": "36261ce373eb40ca0ccf3a84bcc6c2624fea0ac68030b67748ab898c116bbcc6",
+      "independentlyOpened": true,
+      "observation": "Dedicated waiting only, no premature gameplay panels."
+    },
+    {
+      "id": "naval-waiting-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/naval-waiting-1920.png",
+      "sha256": "1158bc41995780b28639aff00dbf2bc2f38761b3a54abf7d6d5a7960535ef094",
+      "independentlyOpened": true,
+      "observation": "Dedicated waiting only, no premature gameplay panels."
+    },
+    {
+      "id": "invite-open-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/invite-open-1280.png",
+      "sha256": "ece961ec3456f2335f219624ea74a2513f27b00f68c8b0d79c892f5ab5fcd08c",
+      "independentlyOpened": true,
+      "observation": "Full readable dialog/QR, occupancy caption EN."
+    },
+    {
+      "id": "punch-results-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/punch-results-1280.png",
+      "sha256": "ad887f7572f235c5fed98725d4e965fd8afbd3b7cd1420a93ab43e869cc0fd8b",
+      "independentlyOpened": true,
+      "observation": "Two-person real tied result; circular uploaded illustration and freeform mascot preserved, former top stripe and name underline absent. Human-photo and dense16 not demonstrated."
+    },
+    {
+      "id": "punch-results-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/punch-results-1920.png",
+      "sha256": "43b322e2134308c8ae3645dca6cacc21523ed7cdd7f25fc0e51bb429ffdcc332",
+      "independentlyOpened": true,
+      "observation": "Two-person real tied result; circular uploaded illustration and freeform mascot preserved, former top stripe and name underline absent. Human-photo and dense16 not demonstrated."
+    },
+    {
+      "id": "bomb-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-gameplay/bomb-tv-live-1280.png",
+      "sha256": "c0616a95632b837db9780cb777b4b1ed54967da67092e82fa008461f066588cb",
+      "independentlyOpened": true,
+      "observation": "Circular uploaded illustration in field/rail, freeform mascots preserved."
+    },
+    {
+      "id": "bomb-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-gameplay/bomb-tv-live-1920.png",
+      "sha256": "baa6c53ab689ac221d9c323bc91f05b0f8c0b630def96721505bd1b48322828a",
+      "independentlyOpened": true,
+      "observation": "Circular uploaded illustration in field/rail, freeform mascots preserved."
+    },
+    {
+      "id": "tankarena-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-gameplay/tankarena-tv-live-1280.png",
+      "sha256": "fd1d15c90c8f24190de9b2586d5172105915317adaa61d9b4206ddc9986262bf",
+      "independentlyOpened": true,
+      "observation": "Full roster upload circle and separate mascot shapes readable."
+    },
+    {
+      "id": "airhockey-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-gameplay/airhockey-tv-live-1280.png",
+      "sha256": "3d65256accad78779e6f0fb26ba25e24a31f2ea3a800be864d916ba600bc7a60",
+      "independentlyOpened": true,
+      "observation": "Intended fullheight uniformly fit rink. 1920 puck/trail at x~500,y80 partly occluded by cap left edge~510; intentional overlay limitation explicitly retained by root; no all-target visibility claim. 1280 moving puck lower-right whole."
+    },
+    {
+      "id": "airhockey-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-gameplay/airhockey-tv-live-1920.png",
+      "sha256": "929651c6935f59036b5c5977c8e3139e74769ae253e87d135d2078096c12cee8",
+      "independentlyOpened": true,
+      "observation": "Intended fullheight uniformly fit rink. 1920 puck/trail at x~500,y80 partly occluded by cap left edge~510; intentional overlay limitation explicitly retained by root; no all-target visibility claim. 1280 moving puck lower-right whole."
+    },
+    {
+      "id": "native-photo-loaded-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final/native-photo-loaded-402.png",
+      "sha256": "7c97c361f284fe08d8f326c0d663911e222efe8088d6d2a49684b34a25100791",
+      "independentlyOpened": true,
+      "observation": "Historical/superseded native final packet: preview circular; Rooms catalog ghost remains and owner confirms corrected-specificity final-current pending. Profile ghost forwarded browser popup owner."
+    },
+    {
+      "id": "native-rooms-320-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final/native-rooms-320-middle.png",
+      "sha256": "fed23d78fef9c184d4d8fdf5669a974738d500a11ab1cfffd5ae2aceab6e5b8b",
+      "independentlyOpened": true,
+      "observation": "Historical/superseded native final packet: preview circular; Rooms catalog ghost remains and owner confirms corrected-specificity final-current pending. Profile ghost forwarded browser popup owner."
+    },
+    {
+      "id": "native-rooms-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final/native-rooms-320-end.png",
+      "sha256": "e776ab47d1737d8214d0c1fb0f27ce91b55e567c7c13bcbc895e7fa8a02735ef",
+      "independentlyOpened": true,
+      "observation": "Historical/superseded native final packet: preview circular; Rooms catalog ghost remains and owner confirms corrected-specificity final-current pending. Profile ghost forwarded browser popup owner."
+    },
+    {
+      "id": "native-rooms-402-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final/native-rooms-402-middle.png",
+      "sha256": "cf4e261bab70aeac4490ca4294fec9ad31904a449a9d3ffb55c9f2172bff9ed9",
+      "independentlyOpened": true,
+      "observation": "Historical/superseded native final packet: preview circular; Rooms catalog ghost remains and owner confirms corrected-specificity final-current pending. Profile ghost forwarded browser popup owner."
+    },
+    {
+      "id": "native-profile-end-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final/native-profile-end-320.png",
+      "sha256": "a3306bfa1e9377cef610651ff6f4e84e05a2cad88ffbd3a7220c6cbd29483529",
+      "independentlyOpened": true,
+      "observation": "Historical/superseded native final packet: preview circular; Rooms catalog ghost remains and owner confirms corrected-specificity final-current pending. Profile ghost forwarded browser popup owner."
+    },
+    {
+      "id": "en-actual-upload-profile-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/confirmation-final/en-actual-upload-profile-402.png",
+      "sha256": "d79c8be2c7700d04740ee033d9f6bd6a73be76c0f0db481217d089af4904d115",
+      "independentlyOpened": true,
+      "observation": "Circular uploaded identity and clean Rules reading body. Fault screenshot does not demonstrate error; failed fault/scroll checks superseded by owner corrected harness pending. No physical-human-photo claim."
+    },
+    {
+      "id": "ru-actual-nonsquare-profile-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/confirmation-final/ru-actual-nonsquare-profile-402.png",
+      "sha256": "4283ca4db41fbcaa8dc9fcb0402ad3bca5b74c07242f204f37df1c315cf6546b",
+      "independentlyOpened": true,
+      "observation": "Circular uploaded identity and clean Rules reading body. Fault screenshot does not demonstrate error; failed fault/scroll checks superseded by owner corrected harness pending. No physical-human-photo claim."
+    },
+    {
+      "id": "en-players-photo-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/confirmation-final/en-players-photo-402.png",
+      "sha256": "7b139db94267078a1e74f83f5d16254afbb6d3a1ef8113840e1c792e9e5731c6",
+      "independentlyOpened": true,
+      "observation": "Circular uploaded identity and clean Rules reading body. Fault screenshot does not demonstrate error; failed fault/scroll checks superseded by owner corrected harness pending. No physical-human-photo claim."
+    },
+    {
+      "id": "en-players-photo-error-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/confirmation-final/en-players-photo-error-402.png",
+      "sha256": "ff80368f7cdafa92067389d9894986a9d17a2504200c2dd9a3f89aae68c6514a",
+      "independentlyOpened": true,
+      "observation": "Circular uploaded identity and clean Rules reading body. Fault screenshot does not demonstrate error; failed fault/scroll checks superseded by owner corrected harness pending. No physical-human-photo claim."
+    },
+    {
+      "id": "en-paused-rules-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/confirmation-final/en-paused-rules-402.png",
+      "sha256": "7366a43ffce07d6d5b6ce03df763cdeae01d193e93bce9f0c731c48562a425a3",
+      "independentlyOpened": true,
+      "observation": "Circular uploaded identity and clean Rules reading body. Fault screenshot does not demonstrate error; failed fault/scroll checks superseded by owner corrected harness pending. No physical-human-photo claim."
+    },
+    {
+      "id": "push-playing-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/push-playing-1280.png",
+      "sha256": "b2401744f752919a8c5174efb4a77fa9001f7a6aa2208549a4e4b8bc09b270ca",
+      "independentlyOpened": true,
+      "observation": "Real playing field, no Ready card residue.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "push-paused-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/push-paused-1280.png",
+      "sha256": "af79a8d0da324cb4d65b3de0124eeaefbfd1249a89045c877f2da56da94a3a13",
+      "independentlyOpened": true,
+      "observation": "Complete pause/dimming with state-appropriate cap.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "push-paused-invite-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/push-paused-invite-1280.png",
+      "sha256": "e95d31bb227e21ba0486c35c353d303c80857f5671570ba11096b0e954a6d1f8",
+      "independentlyOpened": true,
+      "observation": "Whole invite body; no pause copy ghost in reading surface.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "push-resumed-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/push-resumed-1280.png",
+      "sha256": "f2fdc45d09967fc27b0d72ece6ff49c55def7ee842968d199b501c4dd1c136bf",
+      "independentlyOpened": true,
+      "observation": "Live restored with no Ready/pause residue.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "returned-lobby-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-confirmation/returned-lobby-1280.png",
+      "sha256": "e6657227150097f85198640037f7f2a9207d9b990bffa408644379b82ea6b128",
+      "independentlyOpened": true,
+      "observation": "Selected catalog restored; game cap/field removed.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "en-profile-bottom-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-profile-bottom-320.png",
+      "sha256": "43d0f7352e834b6675ee3f64a46639dfdc4895f2b5e4695e9bb5f03f7506b912",
+      "independentlyOpened": true,
+      "observation": "Save/Back complete, opaque reading body; old ghost absent.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "en-paused-rules-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-paused-rules-402.png",
+      "sha256": "7366a43ffce07d6d5b6ce03df763cdeae01d193e93bce9f0c731c48562a425a3",
+      "independentlyOpened": true,
+      "observation": "Whole Rules reading surface and actions; no underlying instruction ghost.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "en-players-photo-delayed-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-delayed-402.png",
+      "sha256": "2611b6eef544eaa16f5974a4a6cdcb0d80404301e9d700d477117809be043bbe",
+      "independentlyOpened": true,
+      "observation": "New detached-node redraw shows initials while src held.",
+      "qualification": "Scoped dataURL decoder fault is synthetic; upload/room/browser actual; fixtures illustrated/screenshot, not photograph acquisition."
+    },
+    {
+      "id": "en-players-photo-recovered-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-recovered-402.png",
+      "sha256": "bb0b6d14e87966a6da950cfea86a6e6c2a41b4ceb04df197e1cfffb347019c26",
+      "independentlyOpened": true,
+      "observation": "Decoded original uploads circular, identity badges/names intact.",
+      "qualification": "Scoped dataURL decoder fault is synthetic; upload/room/browser actual; fixtures illustrated/screenshot, not photograph acquisition."
+    },
+    {
+      "id": "en-players-photo-error-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-error-402.png",
+      "sha256": "f0682ea174ccd27fcbbc5de983bafe358d152bf94c455480bbf4fcdd430f0fc8",
+      "independentlyOpened": true,
+      "observation": "Exercised decoder failure gives procedural initials; no broken photo.",
+      "qualification": "Scoped dataURL decoder fault is synthetic; upload/room/browser actual; fixtures illustrated/screenshot, not photograph acquisition."
+    },
+    {
+      "id": "en-players-photo-restored-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-restored-402.png",
+      "sha256": "89af29791657cb337139d084808da33adadd34bce2ee6f1153d25512bf37cb32",
+      "independentlyOpened": true,
+      "observation": "Original uploaded sources restored as complete circles.",
+      "qualification": "Scoped dataURL decoder fault is synthetic; upload/room/browser actual; fixtures illustrated/screenshot, not photograph acquisition."
+    },
+    {
+      "id": "pocket_siege-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/before-2/pocket_siege-tv-live-1280.png",
+      "sha256": "42f22d3c16ee3155f333eb25fc86cc6fb0746d3ab82407e079e9176525252b73",
+      "independentlyOpened": true,
+      "observation": "Historical before dock.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "pocket_siege-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/before-2/pocket_siege-tv-live-1920.png",
+      "sha256": "260f939be4789a8aa2ae7700779945516ba1e9595fb5159fb21caa529c90dffd",
+      "independentlyOpened": true,
+      "observation": "Historical before dock.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "pocket_siege-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/after-2/pocket_siege-tv-live-1280.png",
+      "sha256": "4b6282df88a9e11b2593468919c2565084fd4cb9de8c445db467a26ecc50df01",
+      "independentlyOpened": true,
+      "observation": "Weapon and crew attached bottom group; all captured participant cards complete, no tank-name/field cover in initial aim state.720 six crew in2rows,1080 six in1row. Not all terrain/flight/damage acceptance.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "pocket_siege-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/after-2/pocket_siege-tv-live-1920.png",
+      "sha256": "82b25bba2147daeef2c07813a463e4cbc3dc4896614ef13469c61c864edcb981",
+      "independentlyOpened": true,
+      "observation": "Weapon and crew attached bottom group; all captured participant cards complete, no tank-name/field cover in initial aim state.720 six crew in2rows,1080 six in1row. Not all terrain/flight/damage acceptance.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "pocket_siege-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/after-4/pocket_siege-tv-live-1280.png",
+      "sha256": "af29b5427d10b5f8aaf56152ecb906980f088ed69240423033fdf6309ecc0074",
+      "independentlyOpened": true,
+      "observation": "Weapon and crew attached bottom group; all captured participant cards complete, no tank-name/field cover in initial aim state.720 six crew in2rows,1080 six in1row. Not all terrain/flight/damage acceptance.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "pocket_siege-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/after-4/pocket_siege-tv-live-1920.png",
+      "sha256": "25e1b22a0e9518ce33b09644d7a6ab6832da1f781b4d4d234aceb50b64f6011b",
+      "independentlyOpened": true,
+      "observation": "Weapon and crew attached bottom group; all captured participant cards complete, no tank-name/field cover in initial aim state.720 six crew in2rows,1080 six in1row. Not all terrain/flight/damage acceptance.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "pocket_siege-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/after-6/pocket_siege-tv-live-1280.png",
+      "sha256": "e5cea704cdd26a8e159aa22732249244b8c31603dbb4362425ededb734af1bee",
+      "independentlyOpened": true,
+      "observation": "Weapon and crew attached bottom group; all captured participant cards complete, no tank-name/field cover in initial aim state.720 six crew in2rows,1080 six in1row. Not all terrain/flight/damage acceptance.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "pocket_siege-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/pocket-bottom-dock-2026-10-03/after-6/pocket_siege-tv-live-1920.png",
+      "sha256": "1a27c0569f2d6780e9b72e0b25a1fe7a4e1ec913191165c31f9302340cd0986b",
+      "independentlyOpened": true,
+      "observation": "Weapon and crew attached bottom group; all captured participant cards complete, no tank-name/field cover in initial aim state.720 six crew in2rows,1080 six in1row. Not all terrain/flight/damage acceptance.",
+      "qualification": "actual WebKit; no hardware claim"
+    },
+    {
+      "id": "native-rooms-320-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-rooms-320-middle.png",
+      "sha256": "3b1a5c7d26fffc5138a707ee5c3d3fc6058b0178b9f927b19db8f7a5f8c83e6a",
+      "independentlyOpened": true,
+      "observation": "Opaque Rooms surface removes catalog ghost; continuing rows fade at edges, header/actions clear. Superseded for native usable-bottom after later scoped correction pending.",
+      "qualification": "Actual native-route HTML/bridge; Swift readiness/discovery simulated."
+    },
+    {
+      "id": "native-rooms-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-rooms-320-end.png",
+      "sha256": "edeaec7b1d4fcc29ed7bbdb835c9458328ae9a7fda3d453da9865e7c60fac577",
+      "independentlyOpened": true,
+      "observation": "Opaque Rooms surface removes catalog ghost; continuing rows fade at edges, header/actions clear. Superseded for native usable-bottom after later scoped correction pending.",
+      "qualification": "Actual native-route HTML/bridge; Swift readiness/discovery simulated."
+    },
+    {
+      "id": "native-host-320-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-host-320-top.png",
+      "sha256": "44f18ae9db44479d20199ecd5e37826025cce27a6f04eafa636fa45d7c41ff52",
+      "independentlyOpened": true,
+      "observation": "Fixed title/close; coherent single outer surface; continuing-content fades, last content whole.",
+      "qualification": "Actual native-route HTML/bridge; Swift transport simulated."
+    },
+    {
+      "id": "native-host-320-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-host-320-middle.png",
+      "sha256": "16ab9e0584c41afefa4821b04ca06bda82c469132b329738c116eb16b3c16911",
+      "independentlyOpened": true,
+      "observation": "Fixed title/close; coherent single outer surface; continuing-content fades, last content whole.",
+      "qualification": "Actual native-route HTML/bridge; Swift transport simulated."
+    },
+    {
+      "id": "native-host-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-host-320-end.png",
+      "sha256": "bca77346238bdf4d880a3b17f5383c6d91cc70b2aade78e6e50cec5679c574a4",
+      "independentlyOpened": true,
+      "observation": "Fixed title/close; coherent single outer surface; continuing-content fades, last content whole.",
+      "qualification": "Actual native-route HTML/bridge; Swift transport simulated."
+    },
+    {
+      "id": "native-deck-compact-bots0-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-compact-bots0-320.png",
+      "sha256": "d69176785a7c947ab3c87667119d88efaf8027487aabe3f50451179276998403",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-compact-bots4-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-compact-bots4-320.png",
+      "sha256": "04a4181beefa3cf830dcf54e4a45df6a37d273aef4915c1fc4a5f35d0df93b76",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-compact-bots16-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-compact-bots16-320.png",
+      "sha256": "4797b33807330e2230c1cacacdccca5d74cccbebcd10598ba93681cf45f8ac6e",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-middle-bots0-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-middle-bots0-320.png",
+      "sha256": "5fc2175b558816c2155103b8031c2517be6c8385a5813dafefbc6126eb514e49",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-middle-bots4-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-middle-bots4-320.png",
+      "sha256": "8d7a9c8eb143f56813f761d1dac8d235a50d751d0904c9d56d7f025a5af0e305",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-middle-bots16-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-middle-bots16-320.png",
+      "sha256": "c53b3a14b6ef8de4e23d1d5a953f8922388b0b21ef232c22babab7cc43a71337",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-expanded-bots0-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-expanded-bots0-320.png",
+      "sha256": "664e35966d2335f37a6d542dc48825b2ced8e3e39c45a7ed635a7faaab94bf9a",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-expanded-bots4-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-expanded-bots4-320.png",
+      "sha256": "57aca4037aec871f41f4d10b7cecc23bef9307b84b429d0b7e916342fbb1f2b0",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-expanded-bots16-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-expanded-bots16-320.png",
+      "sha256": "34430b374905a8136e1b7c78731099154bb2b4585d5c1a40cb6622c55ddc8f7b",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-rooms-402-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-rooms-402-middle.png",
+      "sha256": "d00eae024700a34cdfdb8d764ee84324ed8ccd0c6b1220c8d6e4d2f0dc91e8ed",
+      "independentlyOpened": true,
+      "observation": "Opaque Rooms surface removes catalog ghost; continuing rows fade at edges, header/actions clear. Superseded for native usable-bottom after later scoped correction pending.",
+      "qualification": "Actual native-route HTML/bridge; Swift readiness/discovery simulated."
+    },
+    {
+      "id": "native-rooms-402-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-rooms-402-end.png",
+      "sha256": "8c385df23c0586dab01e60481cf629c11ad45ca50dc005a011a4c01f34c1a17a",
+      "independentlyOpened": true,
+      "observation": "Opaque Rooms surface removes catalog ghost; continuing rows fade at edges, header/actions clear. Superseded for native usable-bottom after later scoped correction pending.",
+      "qualification": "Actual native-route HTML/bridge; Swift readiness/discovery simulated."
+    },
+    {
+      "id": "native-host-402-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-host-402-top.png",
+      "sha256": "9c5acc9046e9b4822b4c237664019cb4f91de8321c4cd351691a820dae79989a",
+      "independentlyOpened": true,
+      "observation": "Fixed title/close; coherent single outer surface; continuing-content fades, last content whole.",
+      "qualification": "Actual native-route HTML/bridge; Swift transport simulated."
+    },
+    {
+      "id": "native-host-402-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-host-402-middle.png",
+      "sha256": "48124fac44f611a72249fe511ca7ea3ad7ec54e5533f0a7516bd7a66da8a9f99",
+      "independentlyOpened": true,
+      "observation": "Fixed title/close; coherent single outer surface; continuing-content fades, last content whole.",
+      "qualification": "Actual native-route HTML/bridge; Swift transport simulated."
+    },
+    {
+      "id": "native-host-402-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-host-402-end.png",
+      "sha256": "35ac1df24ec07d3292527fa4cd2bad2fa55624fd1dc7caae67c81e7612d807b3",
+      "independentlyOpened": true,
+      "observation": "Fixed title/close; coherent single outer surface; continuing-content fades, last content whole.",
+      "qualification": "Actual native-route HTML/bridge; Swift transport simulated."
+    },
+    {
+      "id": "native-deck-compact-bots0-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-compact-bots0-402.png",
+      "sha256": "4c920bd6f3b3f83f02bef8a638e965d29362344b92bd2b05770a1048d0f2b8ab",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-compact-bots4-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-compact-bots4-402.png",
+      "sha256": "9122af7f2e5036f017ad87d8cf86cae259d5f7d3a27affeb9461dd813dd14edb",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-compact-bots16-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-compact-bots16-402.png",
+      "sha256": "024a33f3e744854e9bf692ee8d7d74d3db40e79ed382771b9514fb22b54b9737",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-middle-bots0-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-middle-bots0-402.png",
+      "sha256": "fa04b2878aae2a5e4eb57bc3c209b798007a9a8c48b9fab262432490b016448c",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-middle-bots4-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-middle-bots4-402.png",
+      "sha256": "3abe9357a09609f90ae4f99fd3b6fa9a1f49702d7fafa6a21fd3ca51860910bc",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-middle-bots16-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-middle-bots16-402.png",
+      "sha256": "e2b4684356b566468a175260b9cdbaf6b2df256612f794fa17080af134624575",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-expanded-bots0-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-expanded-bots0-402.png",
+      "sha256": "e31987bef724069da950e0717a62ffbdffe1a5eeb5f641738098814ceb2618b9",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-expanded-bots4-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-expanded-bots4-402.png",
+      "sha256": "8735982e08266ff43b49dfe5f0acd49edb0566e1b9f62136bc750ac5e1b34eda",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-deck-expanded-bots16-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-expanded-bots16-402.png",
+      "sha256": "11789cea382c7ec37ea3c054f19f101d104a5777d85a5bd3ff7635eb9b50abf7",
+      "independentlyOpened": true,
+      "observation": "Compact has Controller/menu only; middle has fullwidth2button rows; expanded retains fullwidth settings+two rows. Whole cards/labels atcapturedsize. Bot count notpainted so count variants intentionally visuallysame.",
+      "qualification": "Deck0/4/16 requested snapshot edges simulated, engine actualmax15bots+human; no paused-game bot mutation or Swift hardware claim."
+    },
+    {
+      "id": "native-profile-end-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-profile-end-320.png",
+      "sha256": "97795017308127abad59b4319980eac4afb45c23cd0b144fcb78c1983a19d1ca",
+      "independentlyOpened": true,
+      "observation": "Ready heading clear; Save/Back whole; no old Rooms ghost.",
+      "qualification": "Swift transport simulated; native usable-bottom superseding fix pending."
+    },
+    {
+      "id": "native-game-detail-end-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-game-detail-end-320.png",
+      "sha256": "988bffaa4e2d9b4ab0ca775c0d815176a0e26a2665a3b4c319b352ba610c24ca",
+      "independentlyOpened": true,
+      "observation": "Fixed heading/44close, continuing-body fade; Rounds/PlayTogether/OpenController complete.",
+      "qualification": "Swift transport simulated; native usable-bottom superseding fix pending."
+    },
+    {
+      "id": "naval-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-dense-photo/naval-tv-live-1280.png",
+      "sha256": "654253e21cc6b748f7f121b7113f2f8710fd68720837f561c9a7e87ac658d1b3",
+      "independentlyOpened": true,
+      "observation": "Decoded illustrated upload circular in fleet and crew; freeform mascots preserved, actual16players.",
+      "qualification": "Actual isolated engine, square raster illustration fixture\u2014not human-photo acquisition."
+    },
+    {
+      "id": "naval-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-dense-photo/naval-tv-live-1920.png",
+      "sha256": "58e512e7c09d533577ffd78c071632a897a15c07037285ada38cde5d3f12b4e7",
+      "independentlyOpened": true,
+      "observation": "Decoded illustrated upload circular in fleet and crew; freeform mascots preserved, actual16players.",
+      "qualification": "Actual isolated engine, square raster illustration fixture\u2014not human-photo acquisition."
+    },
+    {
+      "id": "poker-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-dense-photo/poker-tv-live-1280.png",
+      "sha256": "6d0fed7055fd83ca9151fcc28da20bcedeb849eaee3a8d17475cc614b47b5ba9",
+      "independentlyOpened": true,
+      "observation": "Decoded illustrated upload circular at seat, actual8players, no square corners.",
+      "qualification": "Actual isolated engine, square raster illustration fixture\u2014not human-photo acquisition."
+    },
+    {
+      "id": "poker-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-dense-photo/poker-tv-live-1920.png",
+      "sha256": "1a1c8cdacfd6a551c8c80b41f969346508c1de185da120dcb37f22866942bd4f",
+      "independentlyOpened": true,
+      "observation": "Decoded illustrated upload circular at seat, actual8players, no square corners.",
+      "qualification": "Actual isolated engine, square raster illustration fixture\u2014not human-photo acquisition."
+    },
+    {
+      "id": "airhockey-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-dense-photo/airhockey-tv-live-1280.png",
+      "sha256": "0ab93c53d67591418ed4378de249f95db1618f2303ed32b69271f00e14ed9f1b",
+      "independentlyOpened": true,
+      "observation": "Fullheight uniformly fitted rink; opaque cap intentionally hides top-moving puck in1920 per user scope. No all-target visibility claim.",
+      "qualification": "Actual isolated engine, square raster illustration fixture\u2014not human-photo acquisition."
+    },
+    {
+      "id": "airhockey-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-dense-photo/airhockey-tv-live-1920.png",
+      "sha256": "6e99b093f890038bb7ab29faef85dfe3705e3f201f43729151c9cac768b4a918",
+      "independentlyOpened": true,
+      "observation": "Fullheight uniformly fitted rink; opaque cap intentionally hides top-moving puck in1920 per user scope. No all-target visibility claim.",
+      "qualification": "Actual isolated engine, square raster illustration fixture\u2014not human-photo acquisition."
+    },
+    {
+      "id": "native-matchmaking-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-matchmaking-320.png",
+      "sha256": "feded0d3f990f5cc7916077e501b2b1e0d4c851b2631bf953e2805a416f44e14",
+      "independentlyOpened": true,
+      "observation": "Dedicated Waiting/Ready, no local gameplay controller; roster scroll fading, no cap leak.",
+      "qualification": "Native HTML/bridge/tabs actual; Swift transport simulated. Superseding owner correction pending."
+    },
+    {
+      "id": "native-paused-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-paused-402.png",
+      "sha256": "3fdd30c419d29c9fd2f63eaeeeac74d515173c45cd343afd67c5cce663a7354b",
+      "independentlyOpened": true,
+      "observation": "Paused card and Resume/Lobby state appropriate, whole body.",
+      "qualification": "Native HTML/bridge/tabs actual; Swift transport simulated. Superseding owner correction pending."
+    },
+    {
+      "id": "native-results-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-results-402.png",
+      "sha256": "3b20d86a492e2afd838d34db1f7d0512f60877d77d75fb905fa50f51113435e5",
+      "independentlyOpened": true,
+      "observation": "Actual Flappy result list and disabled Pause, no playing frame.",
+      "qualification": "Native HTML/bridge/tabs actual; Swift transport simulated. Superseding owner correction pending."
+    },
+    {
+      "id": "native-deck-results-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-deck-results-320.png",
+      "sha256": "7c25ac797f0f64be7784d38a51fa13ead4050380d92eca8dace5db1dfa7028a5",
+      "independentlyOpened": true,
+      "observation": "Concrete pending defect: Play again but subtitle stale Finish in with no numeric countdown.",
+      "qualification": "Native HTML/bridge/tabs actual; Swift transport simulated. Superseding owner correction pending."
+    },
+    {
+      "id": "native-confirm-stop-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-confirm-stop-320.png",
+      "sha256": "b9c3111265390ca70d3021b44ee4bd3bba0ec8e4baedd5b25a3d90e1b49dcd92",
+      "independentlyOpened": true,
+      "observation": "Concrete pending defect: faint underlying EVERYONE'S HERE visible through bottom below Confirm. Whole buttons/outline.",
+      "qualification": "Native HTML/bridge/tabs actual; Swift transport simulated. Superseding owner correction pending."
+    },
+    {
+      "id": "native-start-bots-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/confirmed/native-start-bots-320.png",
+      "sha256": "e6729a253807f894d9a80e7571737d36f6b131be5fb789bac13f0742255b008f",
+      "independentlyOpened": true,
+      "observation": "Truthful insufficient-player copy,0count, disabled Start, whole44close.",
+      "qualification": "Native HTML/bridge/tabs actual; Swift transport simulated. Superseding owner correction pending."
+    },
+    {
+      "id": "flappy-countdown-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/flappy-countdown-before/flappy-countdown-1280.png",
+      "sha256": "d8cf6db01c3fe202fe7c463e778ba0744717c82b84dc7f71b53ee089253293d5",
+      "independentlyOpened": true,
+      "observation": "Before: hard inset darkslab.",
+      "qualification": "Normal3second countdown/two actualbrowsercontrollers/no injectedstate."
+    },
+    {
+      "id": "flappy-countdown-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/flappy-countdown-before/flappy-countdown-1920.png",
+      "sha256": "4d2116197c5382a0795df9b61a19f4765021ea9125032ed30acf20026bac91dc",
+      "independentlyOpened": true,
+      "observation": "Before: hard inset darkslab.",
+      "qualification": "Normal3second countdown/two actualbrowsercontrollers/no injectedstate."
+    },
+    {
+      "id": "flappy-countdown-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/flappy-countdown-final/flappy-countdown-1280.png",
+      "sha256": "32bd36166e5cfe2703c4b333be10293faeb2eba12c7f9f1c885f999dcdbb2010",
+      "independentlyOpened": true,
+      "observation": "Uniform fullviewport dim; former rectangle absent. Same ring/timer/hint complete.",
+      "qualification": "Normal3second countdown/two actualbrowsercontrollers/no injectedstate."
+    },
+    {
+      "id": "flappy-countdown-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/flappy-countdown-final/flappy-countdown-1920.png",
+      "sha256": "6b3bc9800e51310d4adc61b288095a06d841ea97cae8663f7935709c0e12bbc5",
+      "independentlyOpened": true,
+      "observation": "Uniform fullviewport dim; former rectangle absent. Same ring/timer/hint complete.",
+      "qualification": "Normal3second countdown/two actualbrowsercontrollers/no injectedstate."
+    },
+    {
+      "id": "sonic_blast-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/sonic_blast-1280.png",
+      "sha256": "b802bbac4bc089e4d568790d97d42210664e952781d3a357e87bb93243e4d412",
+      "independentlyOpened": true,
+      "observation": "Visible +1 contact feedback and impact/beam paint. No named readability blocker in captured frame.",
+      "qualification": "Isolated authoritative contact/handler fixture rendered currentproductionCanvas2D. Not actual room/dock/phone."
+    },
+    {
+      "id": "sniper_rifle-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/sniper_rifle-1280.png",
+      "sha256": "9ac29e6288319bd501631d1940d2e28730ddcd6f5a85567e00a6a7c7060f0037",
+      "independentlyOpened": true,
+      "observation": "Visible +100 contact feedback and impact/beam paint. No named readability blocker in captured frame.",
+      "qualification": "Isolated authoritative contact/handler fixture rendered currentproductionCanvas2D. Not actual room/dock/phone."
+    },
+    {
+      "id": "laser-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/laser-1280.png",
+      "sha256": "517a2c3a3cd841642756a65161093df79bbc28651de0e790a134b24d62df7a5f",
+      "independentlyOpened": true,
+      "observation": "Visible +70 contact feedback and impact/beam paint. No named readability blocker in captured frame.",
+      "qualification": "Isolated authoritative contact/handler fixture rendered currentproductionCanvas2D. Not actual room/dock/phone."
+    },
+    {
+      "id": "zapper-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/zapper-1280.png",
+      "sha256": "a9844247dd6ed96db616a83eacfbfdc6d1d97ab8a392147b91722fc22a77db1f",
+      "independentlyOpened": true,
+      "observation": "Visible +40 contact feedback and impact/beam paint. No named readability blocker in captured frame.",
+      "qualification": "Isolated authoritative contact/handler fixture rendered currentproductionCanvas2D. Not actual room/dock/phone."
+    },
+    {
+      "id": "tesla_coil-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/tesla_coil-1280.png",
+      "sha256": "515aec4b573af3add599bc3186901fe999b9da81397da0217aa887f7a1eea2c3",
+      "independentlyOpened": true,
+      "observation": "Visible +10 contact feedback and impact/beam paint. No named readability blocker in captured frame.",
+      "qualification": "Isolated authoritative contact/handler fixture rendered currentproductionCanvas2D. Not actual room/dock/phone."
+    },
+    {
+      "id": "pebble-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/pebble-1280.png",
+      "sha256": "ba11172119378958724defaa16a8aca0f1174577efe155f4f42355a5b5b06635",
+      "independentlyOpened": true,
+      "observation": "Visible +60 contact feedback and impact/beam paint. No named readability blocker in captured frame.",
+      "qualification": "Isolated authoritative contact/handler fixture rendered currentproductionCanvas2D. Not actual room/dock/phone."
+    },
+    {
+      "id": "native-rooms-320-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rooms-320-top.png",
+      "sha256": "0bf303b79a2a2471c2c7c4dc4a75647892933cdf1b56e35a2613843678a1781a",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rooms-320-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rooms-320-middle.png",
+      "sha256": "e49d87dea2a5dcbfd09ab9b20ee751eb4fcbda5507104f8118ae71a6cb1b1535",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rooms-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rooms-320-end.png",
+      "sha256": "aebad0903a23aef9c356b30f7680db47b054d139a1a8861f6131ad547c5fed79",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rooms-402-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rooms-402-top.png",
+      "sha256": "1e686054705399e629851bee93731d24a90b53cdaa06e33a5f04c19c566740b7",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rooms-402-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rooms-402-middle.png",
+      "sha256": "beec4f8aa6200352cebbe2a6338c1473575fb06481eb1e3a3e291886e4b3115c",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rooms-402-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rooms-402-end.png",
+      "sha256": "8df7771c9e57bc7bd2eb8d32c6e7aaf26fdb0683815baf335d6c240634f2c30c",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-players-320-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-players-320-top.png",
+      "sha256": "908b0aa37e3e794ae856623e71c3e42cdcb6c319d89f9e7e81e77a34fffe09e7",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-players-320-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-players-320-middle.png",
+      "sha256": "ddd6cb679b22d580cc5aab69106436d5cc8ecaf07121939a9fa327f3ca5c8e8c",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-players-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-players-320-end.png",
+      "sha256": "3a4135c14258c431a9e6a8c176f9bc7358dc7f29e8990a06ab2ef68eefe3b9a1",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-players-402-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-players-402-top.png",
+      "sha256": "193166172c8de55f3c0eba1a17a809d943ad484fbc084a72664a5c335f18af73",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-players-402-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-players-402-middle.png",
+      "sha256": "8ca71fca7fa32e79e20d6126b3b8894abaed9cedef010abb9410959946afb406",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-players-402-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-players-402-end.png",
+      "sha256": "970d06da54e912a3a96cb0f832073556154c3a431b5a6ccfdca38eb536316d52",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rules-320-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rules-320-top.png",
+      "sha256": "503ff2bd4124a33a0199b164a99bcade4c37806e7bb32fa8f4f8440972e45f95",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rules-320-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rules-320-middle.png",
+      "sha256": "6f8bf182d18205696c0887e692a76f250cb51526177c9d55406fb86d69566780",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rules-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rules-320-end.png",
+      "sha256": "d079c25fcfe205ee67f00c980a5867a40f78cd1960837e862835e9965b688c81",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rules-402-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rules-402-top.png",
+      "sha256": "1815a7b4ff6a1e5a2fdc8d7149ad7d323d46ee39f76a711388434c26aab1fc3a",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rules-402-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rules-402-middle.png",
+      "sha256": "1815a7b4ff6a1e5a2fdc8d7149ad7d323d46ee39f76a711388434c26aab1fc3a",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-rules-402-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-rules-402-end.png",
+      "sha256": "1815a7b4ff6a1e5a2fdc8d7149ad7d323d46ee39f76a711388434c26aab1fc3a",
+      "independentlyOpened": true,
+      "observation": "Opaque reading surface, fixed heading/actions whole. Continuing-content fade where applicable; final row/lastcopy clear.320 action above persistent native56px reserve.",
+      "qualification": "Actual native-route shippedHTML/bridge, simulated Swifttransport. Finalrun stillfinishing; no finalglobal/current-source approval yet."
+    },
+    {
+      "id": "native-deck-results-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-deck-results-320.png",
+      "sha256": "2cabf4df0982d2638362e6d2d67aade2b999ff72e656db28e170264eba63c25d",
+      "independentlyOpened": true,
+      "observation": "Match over replaces stale Finish in; complete Play again action."
+    },
+    {
+      "id": "native-confirm-stop-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-confirm-stop-320.png",
+      "sha256": "cd5d351b2bd41b9c79f2076295fadad582900b00fd166a0e7e514bce9fa0f1ca",
+      "independentlyOpened": true,
+      "observation": "Opaque confirmation body and action row; catalog ghost removed. Outside popup remains visible intentionally."
+    },
+    {
+      "id": "native-profile-end-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-profile-end-320.png",
+      "sha256": "97795017308127abad59b4319980eac4afb45c23cd0b144fcb78c1983a19d1ca",
+      "independentlyOpened": true,
+      "observation": "Save Profile and Back complete; opaque profile body above native tabs."
+    },
+    {
+      "id": "native-game-detail-end-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-game-detail-end-320.png",
+      "sha256": "988bffaa4e2d9b4ab0ca775c0d815176a0e26a2665a3b4c319b352ba610c24ca",
+      "independentlyOpened": true,
+      "observation": "Fixed title/close and complete final Rules/Rounds/action region."
+    },
+    {
+      "id": "native-host-320-top",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-host-320-top.png",
+      "sha256": "44f18ae9db44479d20199ecd5e37826025cce27a6f04eafa636fa45d7c41ff52",
+      "independentlyOpened": true,
+      "observation": "One reading surface with fixed title/close; lower fade marks continuation."
+    },
+    {
+      "id": "native-host-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/native-host-320-end.png",
+      "sha256": "bca77346238bdf4d880a3b17f5383c6d91cc70b2aade78e6e50cec5679c574a4",
+      "independentlyOpened": true,
+      "observation": "Final diagnostics readable; fixed title/close and whole ending content."
+    },
+    {
+      "id": "bowling-native-320-motion-held",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/bowling-native-320-motion-held.png",
+      "sha256": "42b224a3f23d8bc12d14ae9107266024745e2d0f4008e0e4b6b9d9631fb4949f",
+      "independentlyOpened": true,
+      "observation": "Motion release instruction wholly visible; actual49% held-power feedback and footer fit. Synthetic sensor input."
+    },
+    {
+      "id": "curling-native-320-motion-held",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-motion-held.png",
+      "sha256": "76d3eca5359ce99eddf0414a8b681d2812d0f25a355956147e611912f5d62ff5",
+      "independentlyOpened": true,
+      "observation": "Motion ready/release instruction whole at320;49% power and both modes visible. Synthetic sensor input."
+    },
+    {
+      "id": "curling-native-320-shake-sweeping",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-320-instruction-confirm/curling-native-320-shake-sweeping.png",
+      "sha256": "2049e208bf56c1443913422d200ad98f793be25f22280da479a3437111c75b1d",
+      "independentlyOpened": true,
+      "observation": "Sweeping95% energy and full manual sweep station/footer visible. Synthetic shake reaches actual game wire."
+    },
+    {
+      "id": "curling-native-402-motion-ready",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-motion-ready.png",
+      "sha256": "3d8c387cc7ec1613054cfa2e38d2e491d78ef4a240646a7d29fc0b83e0518c59",
+      "independentlyOpened": true,
+      "observation": "Ready instruction, zero-power task and controls whole; simulated native transport/sensor samples."
+    },
+    {
+      "id": "curling-native-402-shake-sweeping",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/curling-native-402-shake-sweeping.png",
+      "sha256": "81b98b3cdb0a04f5c08bd2c2736ebf91a365ece37eb58324ec4ed5213b93f902",
+      "independentlyOpened": true,
+      "observation": "Sweeping95% truthful state, quiet mode status and footer whole."
+    },
+    {
+      "id": "bowling-browser-402-permission-waiting",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-final-bounded/bowling-browser-402-permission-waiting.png",
+      "sha256": "a1fff31d213a7dcbe606102fcd5b9984be71d4cfcc00c97769a2870664a689a3",
+      "independentlyOpened": true,
+      "observation": "Waiting for motion, disabled enable state, no false ready claim. Browser permission fixture, not OS permission sheet."
+    },
+    {
+      "id": "curling-direct-switch-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/curling-launch-races/curling-direct-switch-1280.png",
+      "sha256": "0939af18aaeceb4af9599d5182f0f5301928b84188664f4d18addc6815487314",
+      "independentlyOpened": true,
+      "observation": "Direct Bowling-playing to Curling shows actual Throw, stone1/8 and both players; no readiness residue."
+    },
+    {
+      "id": "curling-reload-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/curling-launch-races/curling-reload-1280.png",
+      "sha256": "ef9229ada1014c8c559fb931ce96bf816eb4e949c441e49ad613322318b118e8",
+      "independentlyOpened": true,
+      "observation": "Actual controller reload reaches Throw with both players; no waiting residue."
+    },
+    {
+      "id": "curling-native-resume-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/curling-launch-races/curling-native-resume-1280.png",
+      "sha256": "d3abdd39ee815649e9c5143100f90f09b56866f1bc1b2cc1882c66a7445a8bea",
+      "independentlyOpened": true,
+      "observation": "Browser party-native-resume path reaches Throw; not physical native lifecycle validation."
+    },
+    {
+      "id": "curling-suspended-rejoin-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/curling-prestart-rejoin/curling-suspended-rejoin-1280.png",
+      "sha256": "072742379a412b67685f0b890bed2869a0da8c66856ac17dfd2741601a077241",
+      "independentlyOpened": true,
+      "observation": "Real controller close/rejoin plus host resume reaches Throw with both players; no stall in tested sequence."
+    },
+    {
+      "id": "native-ranking-profile-320",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-two-player-rankings-photo/native-ranking-profile-320.png",
+      "sha256": "f06dd8ee1eac63f472c3c681ddad02e73e9b62e747f42c0bfa98a1b5f58ddb8b",
+      "independentlyOpened": true,
+      "observation": "Decoded uploaded illustration is circular in ranking profile; whole fixed Back to game. Actual two UI-joined players and recorded results; simulated native transport."
+    },
+    {
+      "id": "native-ranking-profile-402",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-two-player-rankings-photo/native-ranking-profile-402.png",
+      "sha256": "35efdf3e5d0cb5d65d8e9ec910f6bdd984cd188e77dc01cd84af522e3dc65a25",
+      "independentlyOpened": true,
+      "observation": "Decoded uploaded illustration is circular in ranking profile; whole fixed Back to game. Actual two UI-joined players and recorded results; simulated native transport."
+    },
+    {
+      "id": "hungry-16-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-16-live-1280.png",
+      "sha256": "116ff3d5cd2ef8e8588fe7f067c794ec12cfaec079e480d2213b91ba72a11b30",
+      "independentlyOpened": true,
+      "observation": "Historical art/food/eat/left-edge evidence before final no-camera-trauma change. New full-body art and continuous floor visible; canonical actor overlap/edge clipping remains."
+    },
+    {
+      "id": "hungry-16-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-16-live-1920.png",
+      "sha256": "741af38244d36c662d9bb29a7f67fd20f833a07dac4d87c543faf0316212bbac",
+      "independentlyOpened": true,
+      "observation": "Historical art/food/eat/left-edge evidence before final no-camera-trauma change. New full-body art and continuous floor visible; canonical actor overlap/edge clipping remains."
+    },
+    {
+      "id": "hungry-2-after-eat-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-after-eat-1920.png",
+      "sha256": "ca0f980366cfac3192e2a19252a8f63df574bf4a998c2f57c87efda6ee1ad731",
+      "independentlyOpened": true,
+      "observation": "Historical art/food/eat/left-edge evidence before final no-camera-trauma change. New full-body art and continuous floor visible; canonical actor overlap/edge clipping remains."
+    },
+    {
+      "id": "hungry-2-left-edge-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-left-edge-1280.png",
+      "sha256": "4f462fbfad6fa5b2d809afeccc97848dbdc6d0b2fbbd336c6119ea3e50f98757",
+      "independentlyOpened": true,
+      "observation": "Historical art/food/eat/left-edge evidence before final no-camera-trauma change. New full-body art and continuous floor visible; canonical actor overlap/edge clipping remains."
+    },
+    {
+      "id": "hungry-2-left-edge-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-left-edge-1920.png",
+      "sha256": "85f5f5b5f82c0c7a133ef6905e7bb4813ccafb6836bedd78d1bd552e7d2bbd12",
+      "independentlyOpened": true,
+      "observation": "Historical art/food/eat/left-edge evidence before final no-camera-trauma change. New full-body art and continuous floor visible; canonical actor overlap/edge clipping remains."
+    },
+    {
+      "id": "hungry-2-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-live-1280.png",
+      "sha256": "5141dfe8bd9e482633f9b544fa44771b642b245ca99fdb8324f8f7dfa1d4e7f5",
+      "independentlyOpened": true,
+      "observation": "Historical art/food/eat/left-edge evidence before final no-camera-trauma change. New full-body art and continuous floor visible; canonical actor overlap/edge clipping remains."
+    },
+    {
+      "id": "hungry-2-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-live-1920.png",
+      "sha256": "d2f59146dfea13faa826a2f98a9e712380c5d8cbc2fe634ca64576a0f004b5ae",
+      "independentlyOpened": true,
+      "observation": "Historical art/food/eat/left-edge evidence before final no-camera-trauma change. New full-body art and continuous floor visible; canonical actor overlap/edge clipping remains."
+    },
+    {
+      "id": "hungry-16-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-16-live-1280.png",
+      "sha256": "e23f7f4276cd4232cd4b968f9b0c616332b15a79288c64da1dd65f849334fa33",
+      "independentlyOpened": true,
+      "observation": "Final2/16 live field with new whole-body creatures and food, no new visible mask/art blocker. Static image does not prove absence of shake; source regression separately does."
+    },
+    {
+      "id": "hungry-16-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-16-live-1920.png",
+      "sha256": "82e47a2eb3f6c813d09cf5de9868bbd50afcb99b7b47184097e1a892a39a0116",
+      "independentlyOpened": true,
+      "observation": "Final2/16 live field with new whole-body creatures and food, no new visible mask/art blocker. Static image does not prove absence of shake; source regression separately does."
+    },
+    {
+      "id": "hungry-2-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-2-live-1280.png",
+      "sha256": "29050a641afe201ed1b42d9b0701c45777f866b5a63d337151ca8b1c6ce5daae",
+      "independentlyOpened": true,
+      "observation": "Final2/16 live field with new whole-body creatures and food, no new visible mask/art blocker. Static image does not prove absence of shake; source regression separately does."
+    },
+    {
+      "id": "hungry-2-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-no-shake/hungry-2-live-1920.png",
+      "sha256": "02e462b1889f935936af0a9a3f4d4a029dd04ece62f4fc1acb17b8328cc8cbb8",
+      "independentlyOpened": true,
+      "observation": "Final2/16 live field with new whole-body creatures and food, no new visible mask/art blocker. Static image does not prove absence of shake; source regression separately does."
+    },
+    {
+      "id": "burn_barrel-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/burn_barrel-1280.png",
+      "sha256": "09af10bf59be3369b020e7d9ed96aee9f6695698e0ac4753d0e6ec7282158fe9",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "burn_barrel-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/burn_barrel-1920.png",
+      "sha256": "9e9e67eba06064053de3d9891a97ab6498c5ff6b4b58f2cf061d9df9dd4c2b11",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "chalk_dust-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/chalk_dust-1280.png",
+      "sha256": "dc7ec13262424313625c60fe8d8838e242f80bab7f6dfc8165a02d057692d062",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "chalk_dust-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/chalk_dust-1920.png",
+      "sha256": "3e80ba50c6e05223da50b328a4b39a383b13c4965c508edaaf82aed96b89f224",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "laser-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/laser-1920.png",
+      "sha256": "ec2c3498e7d85c75807317458f08e71a5a91fd534b185f637288f8067581600c",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "pebble-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/pebble-1920.png",
+      "sha256": "c87f10ef411f99c199e48e2543875e4f5bcc7512761c3d187468ba4270a2e8ce",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "sniper_rifle-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/sniper_rifle-1920.png",
+      "sha256": "fdf4a5bcaab694da668ee6b50b36820e65079639cda4d0cccbb47a8f1372c1cd",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "sonic_blast-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/sonic_blast-1920.png",
+      "sha256": "56b977cf652a5b42a61c8563588f2fd6b50bef73503fde317b5e98353b127f95",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "tesla_coil-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/tesla_coil-1920.png",
+      "sha256": "40483208a57d408f9160d9796d7828b0d0d3725471e29b531796f099ef679018",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "wacky_tank-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/wacky_tank-1280.png",
+      "sha256": "38021292973882d4cfcb227ed3cd0542b3ee0c5e7209b2ec6239062d5ea8a2ec",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "wacky_tank-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/wacky_tank-1920.png",
+      "sha256": "d13328240425a49aec97b412a07095e3fa80cd8878b116e55cc303de02d2af64",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "zapper-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/qa/pocket-damage-2026-10-03/browser-confirm/zapper-1920.png",
+      "sha256": "651cb7dbc97157f73573ff53c8929acce199340d13ec5bd38cfdc9cf36da3ff9",
+      "independentlyOpened": true,
+      "observation": "Isolated authoritative contact/material-handler fixture rendered by current production Renderer; damage/effects visible. Not live-room/dock/phone evidence."
+    },
+    {
+      "id": "bowling-browser-403-motion-ready",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-attitude-settled/bowling-browser-403-motion-ready.png",
+      "sha256": "b5dc58da6794280e7c0be1cc171647775a1ca6d02eeba3c23001ac6080dba835",
+      "independentlyOpened": true,
+      "observation": "Whole Motion ready/Hold & Swing/release task and controls."
+    },
+    {
+      "id": "bowling-browser-403-attitude-fallback",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/sports-motion-attitude-settled/bowling-browser-403-attitude-fallback.png",
+      "sha256": "40f11ec8aa0df11d7b1a085e500d550db7c744cfddd3870deffd7a02fac5b060",
+      "independentlyOpened": true,
+      "observation": "Settled selected Swipe, No motion data message and intact Swipe up station/footer. Synthetic stale-attitude trace, real engine/token proof separately."
+    }
+  ],
+  "waitingManifest": "director-waiting-final-review.json",
+  "blockers": [],
+  "physical": "No actual Swift hardware, camera/library, physical keyboard/touch/AirPlay/motion validation.",
+  "updatedAt": "2026-10-03T18:24:13.181803+00:00",
+  "browserQualification": [
+    "WebKit emulation, not physical iPhone camera/library or WKWebView.",
+    "Fixtures: uploaded square raster illustration and opaque nonsquareJPEG screenshot; no personal/humanphoto claim.",
+    "12prior history rows are persisted QA fixtures, separate from actual completed Push match.",
+    "TEST_FAST accelerates real engine results; wait/play/pause actual server/engine.",
+    "Catalog stability uses actual button handler programmatically to isolate popupopen from Playwright offscreen-target scrollIntoView; no physicaltouch assertion.",
+    "Rank portraits intentionally hidden by approved shared CSS; visible image proof preview/header/Players/details.",
+    "Unsettled entrance images show authored transition translucency; settledreading surface qualified separately.",
+    "Owned hashes only; outsideownership parallel changes not globallyqualified."
+  ],
+  "nativeDeckQualification": "Native bridge transport simulated; deck0/4/16 count snapshots synthetic, actualengine max15bots+human. No paused-game botmutation claim.",
+  "nativeQualification": {
+    "packet": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/final-native-verified/report.json",
+    "currentSourceHashesMatch": true,
+    "transport": "actual shipped HTML/bridge and server state, simulated Swift readiness/discovery; deck16 edge is synthetic"
+  },
+  "motionQualification": {
+    "packets": [
+      "sports-motion-final-bounded",
+      "sports-motion-320-instruction-confirm"
+    ],
+    "syntheticSensors": true,
+    "currentScopedUIHashesMatch": true,
+    "sourceBoundary": "server.js changed after both runs;402 CSS superseded only <=400h instruction rule. Actual run guards passed, no global current-source claim."
+  },
+  "curlingQualification": {
+    "actualBrowserCases": [
+      "direct switch",
+      "controller reload",
+      "browser native-resume event",
+      "real closed controller/suspended host/rejoin"
+    ],
+    "physical112": "historical failure unconfirmed and unreproduced; offline-context case did not drop its websocket and is not true offline proof"
+  }
+}

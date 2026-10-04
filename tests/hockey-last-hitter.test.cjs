@@ -1,0 +1,5 @@
+const {test}=require('node:test'),assert=require('node:assert/strict');
+const {Hockey}=require('../games/tabletop/arcade');
+const players=n=>Array.from({length:n},(_,i)=>({id:'p'+i,name:'Player '+i,connected:true}));
+test('last hitter is empty before contact and records an actual approaching contact only',()=>{const h=new Hockey(players(4),()=>.25);assert.deepEqual(h.view().lastHitters,[null,null]);h.serveAt=0;const p=h.players[0];p.x=180;p.y=300;p.target={x:180,y:300};h.puck={x:235,y:300,vx:-240,vy:0};h.step(1/120);assert.deepEqual(h.view().lastHitters,['p0',null]);const snapshot=h.view();snapshot.lastHitters[0]='mutated';assert.equal(h.lastHitters[0],'p0');h.resetPuck();assert.deepEqual(h.view().lastHitters,[null,null]);});
+test('separating overlap does not claim a hit; team two records independently',()=>{const h=new Hockey(players(4),()=>.25);h.serveAt=0;const p=h.players[1];p.x=820;p.y=300;p.target={x:820,y:300};h.puck={x:765,y:300,vx:-240,vy:0};h.step(1/120);assert.deepEqual(h.view().lastHitters,[null,null]);h.puck={x:765,y:300,vx:240,vy:0};h.step(1/120);assert.deepEqual(h.view().lastHitters,[null,'p1']);});

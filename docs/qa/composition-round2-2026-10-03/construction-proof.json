@@ -1,0 +1,119 @@
+{
+  "captureReport": "output/playwright/composition-round2-2026-10-03/construction/report.json",
+  "reviewedOriginals": [
+    "crane-phone-drop-feedback-320.png",
+    "crane-phone-drop-feedback-402.png",
+    "crane-phone-gameplay.png",
+    "crane-phone-live-320.png",
+    "crane-phone-live-402.png",
+    "crane-phone-matchmaking-rules.png",
+    "crane-phone-matchmaking.png",
+    "crane-phone-roster-end.png",
+    "crane-tv-drop-feedback-1280.png",
+    "crane-tv-drop-feedback-1920.png",
+    "crane-tv-gameplay.png",
+    "crane-tv-live-1280.png",
+    "crane-tv-live-1920.png",
+    "crane-tv-matchmaking.png",
+    "crane-tv-roster-end.png",
+    "jenga-phone-extraction.png",
+    "jenga-phone-gameplay.png",
+    "jenga-phone-live-320.png",
+    "jenga-phone-live-402.png",
+    "jenga-phone-pull-held.png",
+    "jenga-phone-support-selected-320.png",
+    "jenga-phone-support-selected-402.png",
+    "jenga-tv-extraction.png",
+    "jenga-tv-gameplay.png",
+    "jenga-tv-live-1280.png",
+    "jenga-tv-live-1920.png",
+    "jenga-tv-pull-held.png",
+    "jenga-tv-support-selected-1280.png",
+    "jenga-tv-support-selected-1920.png",
+    "main-phone-lobby.png",
+    "main-tv-lobby.png"
+  ],
+  "reviewedCount": 31,
+  "sourceQualified": {
+    "games/jenga/public/style.css": {
+      "start": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+      "end": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+      "current": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3"
+    },
+    "games/jenga/public/controller.css": {
+      "start": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+      "end": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+      "current": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74"
+    },
+    "games/crane/public/style.css": {
+      "start": "ea606c994033c7cb8326c3610a4cf8abf0e4359177650dd52af64ca27f280a2a",
+      "end": "ea606c994033c7cb8326c3610a4cf8abf0e4359177650dd52af64ca27f280a2a",
+      "current": "ea606c994033c7cb8326c3610a4cf8abf0e4359177650dd52af64ca27f280a2a"
+    },
+    "public/tv-information.css": {
+      "start": "25fd74939d27dc0ae75d31af883c087de5a9f86f3dfadbca33122e66d90164d8",
+      "end": "25fd74939d27dc0ae75d31af883c087de5a9f86f3dfadbca33122e66d90164d8",
+      "current": "25fd74939d27dc0ae75d31af883c087de5a9f86f3dfadbca33122e66d90164d8"
+    },
+    "public/tv-information.js": {
+      "start": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+      "end": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+      "current": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae"
+    },
+    "public/game-ui-themes.css": {
+      "start": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+      "end": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+      "current": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a"
+    },
+    "public/game-ui-themes.js": {
+      "start": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+      "end": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+      "current": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75"
+    },
+    "public/tv.css": {
+      "start": "ff99ec9422bba72f6a72def5dee15f14950aacdbce884c4de2ed420e926f5571",
+      "end": "ff99ec9422bba72f6a72def5dee15f14950aacdbce884c4de2ed420e926f5571",
+      "current": "ff99ec9422bba72f6a72def5dee15f14950aacdbce884c4de2ed420e926f5571"
+    },
+    "public/tv.js": {
+      "start": "e836033e10ef6287dc90dd58657ca730f22f65527b350b1787146fb2c84c7466",
+      "end": "e836033e10ef6287dc90dd58657ca730f22f65527b350b1787146fb2c84c7466",
+      "current": "e836033e10ef6287dc90dd58657ca730f22f65527b350b1787146fb2c84c7466"
+    },
+    "public/native-shell/host-ui.css": {
+      "start": "2e2145eea377aac9802ea652f3cd715fdca97f3feff090d21b6ad27e2adcc546",
+      "end": "2e2145eea377aac9802ea652f3cd715fdca97f3feff090d21b6ad27e2adcc546",
+      "current": "2e2145eea377aac9802ea652f3cd715fdca97f3feff090d21b6ad27e2adcc546"
+    },
+    "public/native-shell/controller-bridge.js": {
+      "start": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+      "end": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+      "current": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b"
+    },
+    "public/rankings-theme.css": {
+      "start": "e1267b82b6e9964a90af309dc08751b2d93d40f883d1a0f0082f4b993652810a",
+      "end": "e1267b82b6e9964a90af309dc08751b2d93d40f883d1a0f0082f4b993652810a",
+      "current": "e1267b82b6e9964a90af309dc08751b2d93d40f883d1a0f0082f4b993652810a"
+    },
+    "public/rankings-theme.js": {
+      "start": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+      "end": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+      "current": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d"
+    },
+    "public/bridge.js": {
+      "start": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+      "end": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+      "current": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb"
+    }
+  },
+  "captureErrors": [],
+  "unrelatedSourceDrift": [
+    "games/kart/static/styles.css",
+    "games/arcade/public/snake-polish.js"
+  ],
+  "acceptance": {
+    "jenga": "accepted for stated desktop/browser surfaces",
+    "crane": "pending: ranking row enclosure; falling-caption title overlap"
+  },
+  "physicalDeviceVerified": false
+}

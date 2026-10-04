@@ -1,0 +1,585 @@
+{
+  "version": 1,
+  "source": "atlas-fx-combat-raw-v1.png",
+  "styleProfile": "fx",
+  "chromaKeyed": false,
+  "frames": {
+    "explosion-1": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 40,
+        "y": 47,
+        "w": 176,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 163
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/explosion-1.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "explosion-2": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 296,
+        "y": 48,
+        "w": 176,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 160
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/explosion-2.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "explosion-3": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 552,
+        "y": 47,
+        "w": 176,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 163
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/explosion-3.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "explosion-4": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 808,
+        "y": 53,
+        "w": 176,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/explosion-4.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "muzzle-flash-front": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1065,
+        "y": 40,
+        "w": 174,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/muzzle-flash-front.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "muzzle-flash-side": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1320,
+        "y": 76,
+        "w": 176,
+        "h": 104
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 104
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/muzzle-flash-side.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "smoke-puff-a": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 44,
+        "y": 301,
+        "w": 168,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 168,
+        "h": 167
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/smoke-puff-a.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "smoke-puff-b": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 299,
+        "y": 305,
+        "w": 170,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 159
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/smoke-puff-b.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dust-puff": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 552,
+        "y": 347,
+        "w": 176,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/dust-puff.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "spark-burst": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 812,
+        "y": 296,
+        "w": 168,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 168,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/spark-burst.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "hit-flash": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1086,
+        "y": 296,
+        "w": 133,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 133,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/hit-flash.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shockwave-ring": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1320,
+        "y": 298,
+        "w": 176,
+        "h": 173
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 173
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/shockwave-ring.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "scorch-decal": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 40,
+        "y": 562,
+        "w": 176,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/scorch-decal.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "debris-chunks": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 304,
+        "y": 562,
+        "w": 161,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 161,
+        "h": 157
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/debris-chunks.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "ember-dots": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 552,
+        "y": 567,
+        "w": 176,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/ember-dots.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "tracer": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 808,
+        "y": 609,
+        "w": 176,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 63
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/tracer.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shell-casing": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1091,
+        "y": 586,
+        "w": 122,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 122,
+        "h": 108
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/shell-casing.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "water-splash": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1320,
+        "y": 563,
+        "w": 176,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 155
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/water-splash.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "ice-dust": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 40,
+        "y": 813,
+        "w": 176,
+        "h": 166
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 166
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/ice-dust.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "feather-burst": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 296,
+        "y": 809,
+        "w": 176,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 175
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/feather-burst.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "skull-poof": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 552,
+        "y": 819,
+        "w": 176,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/skull-poof.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "heal-plus": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 812,
+        "y": 808,
+        "w": 168,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 168,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/heal-plus.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shield-bubble": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1064,
+        "y": 812,
+        "w": 176,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 169
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/shield-bubble.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "speed-lines": {
+      "atlas": "atlas-fx-combat.webp",
+      "frame": {
+        "x": 1320,
+        "y": 825,
+        "w": 176,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-fx-combat/speed-lines.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

@@ -1,0 +1,526 @@
+{
+  "scope": "Narrow observer-sequence and normal-clock16 cap-cycle proof; sharedCSSdrift and raw paint mismatches are explicit limitations",
+  "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/report.json",
+  "reportSha256": "a01ea056ccf995cd691827a6c4a276ccf45bd9d4dcfd583d79daef37f025c195",
+  "errors": [],
+  "changedFiles": [
+    "public/tv-information.css"
+  ],
+  "checks": {
+    "endBeforeLiveUpdate": {
+      "scrollTop": 798,
+      "max": 798,
+      "clientHeight": 512,
+      "scrollHeight": 1310,
+      "lastBottom": 961.5993041992188,
+      "listBottom": 963.5625,
+      "turn": "Бот 3",
+      "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 30 Blocks · 0 accurate · 0 miss002Бот 150 Blocks · 0 accurate · 0 miss002Бот 10 Blocks · 0 accurate · 0 miss002Бот 110 Blocks · 0 accurate · 0 miss002Бот 20 Blocks · 0 accurate · 0 miss002Бот 90 Blocks · 0 accurate · 0 miss002Бот 100 Blocks · 0 accurate · 0 miss002Бот 80 Blocks · 0 accurate · 0 miss002Бот 140 Blocks · 0 accurate · 0 miss002Бот 130 Blocks · 0 accurate · 0 miss002Бот 70 Blocks · 0 accurate · 0 miss002Бот 60 Blocks · 0 accurate · 0 miss002Бот 50 Blocks · 0 accurate · 0 miss002Бот 40 Blocks · 0 accurate · 0 miss002Бот 120 Blocks · 0 accurate · 0 miss0",
+      "markedRows": 16,
+      "clock": "90",
+      "message": "Your block",
+      "capHeight": 254.97
+    },
+    "endAfterLiveUpdate45RAF": {
+      "scrollTop": 795,
+      "max": 795,
+      "clientHeight": 512,
+      "scrollHeight": 1307,
+      "lastBottom": 963.21875,
+      "listBottom": 963.5625,
+      "turn": "Бот 15",
+      "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 31 Blocks · 0 accurate · 0 miss8303Бот 150 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss0",
+      "markedRows": 16,
+      "clock": "90",
+      "message": "Your block",
+      "capHeight": 254.97
+    },
+    "endAfterLiveUpdatePNG": {
+      "scrollTop": 795,
+      "max": 795,
+      "clientHeight": 512,
+      "scrollHeight": 1307,
+      "lastBottom": 963.21875,
+      "listBottom": 963.5625,
+      "turn": "Бот 15",
+      "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 31 Blocks · 0 accurate · 0 miss8303Бот 150 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss0",
+      "markedRows": 16,
+      "clock": "89",
+      "message": "Your block",
+      "capHeight": 254.97
+    },
+    "endAfterPNG45RAF": {
+      "scrollTop": 799,
+      "max": 799,
+      "clientHeight": 508,
+      "scrollHeight": 1307,
+      "lastBottom": 963.5,
+      "listBottom": 963.5625,
+      "turn": "Бот 15",
+      "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 31 Blocks · 0 accurate · 0 miss8303Бот 150 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss0",
+      "markedRows": 16,
+      "clock": "—",
+      "message": "Block falling…",
+      "capHeight": 259.34
+    },
+    "capCycleSummary": {
+      "seen": [
+        "untimed",
+        "aiming"
+      ],
+      "transitions": 4,
+      "samples": 18,
+      "allEndsReached": true,
+      "allLastRowsContained": true
+    },
+    "capCycles": [
+      {
+        "scrollTop": 799,
+        "max": 799,
+        "clientHeight": 508,
+        "scrollHeight": 1307,
+        "lastBottom": 963.5,
+        "listBottom": 963.5625,
+        "turn": "Бот 15",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 31 Blocks · 0 accurate · 0 miss8303Бот 150 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Block falling…",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 28
+      },
+      {
+        "scrollTop": 817,
+        "max": 817,
+        "clientHeight": 490,
+        "scrollHeight": 1307,
+        "lastBottom": 967.5625,
+        "listBottom": 968,
+        "turn": "Бот 15",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 31 Blocks · 0 accurate · 0 miss8303Бот 150 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Contact · waiting for the block to settle",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "label": "immediately-after-untimed-PNG"
+      },
+      {
+        "scrollTop": 817,
+        "max": 817,
+        "clientHeight": 490,
+        "scrollHeight": 1307,
+        "lastBottom": 967.5625,
+        "listBottom": 968,
+        "turn": "Бот 15",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 31 Blocks · 0 accurate · 0 miss8303Бот 150 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Contact · waiting for the block to settle",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "label": "2RAF-after-untimed-PNG"
+      },
+      {
+        "scrollTop": 809,
+        "max": 809,
+        "clientHeight": 508,
+        "scrollHeight": 1317,
+        "lastBottom": 963.5,
+        "listBottom": 963.5625,
+        "turn": "Бот 15",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Perfect! +150",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 580
+      },
+      {
+        "scrollTop": 799,
+        "max": 799,
+        "clientHeight": 508,
+        "scrollHeight": 1307,
+        "lastBottom": 963.5051879882812,
+        "listBottom": 963.5625,
+        "turn": "Бот 15",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Perfect! +150",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 762
+      },
+      {
+        "scrollTop": 799,
+        "max": 799,
+        "clientHeight": 508,
+        "scrollHeight": 1307,
+        "lastBottom": 963.5,
+        "listBottom": 963.5625,
+        "turn": "Бот 15",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Perfect! +150",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 945
+      },
+      {
+        "scrollTop": 805,
+        "max": 805,
+        "clientHeight": 512,
+        "scrollHeight": 1317,
+        "lastBottom": 953.3809204101562,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "90",
+        "message": "Your block",
+        "capHeight": 254.97,
+        "mode": "aiming",
+        "afterMs": 1128
+      },
+      {
+        "scrollTop": 795,
+        "max": 795,
+        "clientHeight": 512,
+        "scrollHeight": 1307,
+        "lastBottom": 963.21875,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "90",
+        "message": "Block falling…",
+        "capHeight": 254.97,
+        "mode": "aiming",
+        "label": "immediately-after-aiming-PNG"
+      },
+      {
+        "scrollTop": 795,
+        "max": 795,
+        "clientHeight": 512,
+        "scrollHeight": 1307,
+        "lastBottom": 963.21875,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "90",
+        "message": "Block falling…",
+        "capHeight": 254.97,
+        "mode": "aiming",
+        "label": "2RAF-after-aiming-PNG"
+      },
+      {
+        "scrollTop": 795,
+        "max": 795,
+        "clientHeight": 512,
+        "scrollHeight": 1307,
+        "lastBottom": 963.21875,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Block falling…",
+        "capHeight": 254.97,
+        "mode": "untimed",
+        "afterMs": 1646
+      },
+      {
+        "scrollTop": 799,
+        "max": 799,
+        "clientHeight": 508,
+        "scrollHeight": 1307,
+        "lastBottom": 963.5,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Block falling…",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 1827
+      },
+      {
+        "scrollTop": 799,
+        "max": 799,
+        "clientHeight": 508,
+        "scrollHeight": 1307,
+        "lastBottom": 963.5,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Block falling…",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 2011
+      },
+      {
+        "scrollTop": 817,
+        "max": 817,
+        "clientHeight": 490,
+        "scrollHeight": 1307,
+        "lastBottom": 967.5625,
+        "listBottom": 968,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Contact · waiting for the block to settle",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 2194
+      },
+      {
+        "scrollTop": 817,
+        "max": 817,
+        "clientHeight": 490,
+        "scrollHeight": 1307,
+        "lastBottom": 967.5625,
+        "listBottom": 968,
+        "turn": "Бот 1",
+        "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 151 Blocks · 1 accurate · 0 miss14403Бот 31 Blocks · 0 accurate · 0 miss8304Бот 10 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Contact · waiting for the block to settle",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 2378
+      },
+      {
+        "scrollTop": 800,
+        "max": 800,
+        "clientHeight": 508,
+        "scrollHeight": 1308,
+        "lastBottom": 963.0859985351562,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Бот 11 Blocks · 1 accurate · 0 miss14902Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14703Бот 151 Blocks · 1 accurate · 0 miss14404Бот 31 Blocks · 0 accurate · 0 miss8305Бот 110 Blocks · 0 accurate · 0 miss005Бот 20 Blocks · 0 accurate · 0 miss005Бот 90 Blocks · 0 accurate · 0 miss005Бот 100 Blocks · 0 accurate · 0 miss005Бот 80 Blocks · 0 accurate · 0 miss005Бот 140 Blocks · 0 accurate · 0 miss005Бот 130 Blocks · 0 accurate · 0 miss005Бот 70 Blocks · 0 accurate · 0 miss005Бот 60 Blocks · 0 accurate · 0 miss005Бот 50 Blocks · 0 accurate · 0 miss005Бот 40 Blocks · 0 accurate · 0 miss005Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Perfect! +150",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 2581
+      },
+      {
+        "scrollTop": 799,
+        "max": 799,
+        "clientHeight": 508,
+        "scrollHeight": 1307,
+        "lastBottom": 963.5,
+        "listBottom": 963.5625,
+        "turn": "Бот 1",
+        "scoreText": "01Бот 11 Blocks · 1 accurate · 0 miss14902Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14703Бот 151 Blocks · 1 accurate · 0 miss14404Бот 31 Blocks · 0 accurate · 0 miss8305Бот 110 Blocks · 0 accurate · 0 miss005Бот 20 Blocks · 0 accurate · 0 miss005Бот 90 Blocks · 0 accurate · 0 miss005Бот 100 Blocks · 0 accurate · 0 miss005Бот 80 Blocks · 0 accurate · 0 miss005Бот 140 Blocks · 0 accurate · 0 miss005Бот 130 Blocks · 0 accurate · 0 miss005Бот 70 Blocks · 0 accurate · 0 miss005Бот 60 Blocks · 0 accurate · 0 miss005Бот 50 Blocks · 0 accurate · 0 miss005Бот 40 Blocks · 0 accurate · 0 miss005Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Perfect! +150",
+        "capHeight": 259.34,
+        "mode": "untimed",
+        "afterMs": 2762
+      },
+      {
+        "scrollTop": 800,
+        "max": 800,
+        "clientHeight": 512,
+        "scrollHeight": 1312,
+        "lastBottom": 961.9716186523438,
+        "listBottom": 963.5625,
+        "turn": "Бот 11",
+        "scoreText": "01Бот 11 Blocks · 1 accurate · 0 miss14902Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14703Бот 151 Blocks · 1 accurate · 0 miss14404Бот 31 Blocks · 0 accurate · 0 miss8305Бот 110 Blocks · 0 accurate · 0 miss005Бот 20 Blocks · 0 accurate · 0 miss005Бот 90 Blocks · 0 accurate · 0 miss005Бот 100 Blocks · 0 accurate · 0 miss005Бот 80 Blocks · 0 accurate · 0 miss005Бот 140 Blocks · 0 accurate · 0 miss005Бот 130 Blocks · 0 accurate · 0 miss005Бот 70 Blocks · 0 accurate · 0 miss005Бот 60 Blocks · 0 accurate · 0 miss005Бот 50 Blocks · 0 accurate · 0 miss005Бот 40 Blocks · 0 accurate · 0 miss005Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "—",
+        "message": "Your block",
+        "capHeight": 254.97,
+        "mode": "untimed",
+        "afterMs": 2980
+      },
+      {
+        "scrollTop": 800,
+        "max": 800,
+        "clientHeight": 512,
+        "scrollHeight": 1312,
+        "lastBottom": 958.2201538085938,
+        "listBottom": 963.5625,
+        "turn": "Бот 11",
+        "scoreText": "01Бот 11 Blocks · 1 accurate · 0 miss14902Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14703Бот 151 Blocks · 1 accurate · 0 miss14404Бот 31 Blocks · 0 accurate · 0 miss8305Бот 110 Blocks · 0 accurate · 0 miss005Бот 20 Blocks · 0 accurate · 0 miss005Бот 90 Blocks · 0 accurate · 0 miss005Бот 100 Blocks · 0 accurate · 0 miss005Бот 80 Blocks · 0 accurate · 0 miss005Бот 140 Blocks · 0 accurate · 0 miss005Бот 130 Blocks · 0 accurate · 0 miss005Бот 70 Blocks · 0 accurate · 0 miss005Бот 60 Blocks · 0 accurate · 0 miss005Бот 50 Blocks · 0 accurate · 0 miss005Бот 40 Blocks · 0 accurate · 0 miss005Бот 120 Blocks · 0 accurate · 0 miss0",
+        "markedRows": 16,
+        "clock": "90",
+        "message": "Your block",
+        "capHeight": 254.97,
+        "mode": "aiming",
+        "afterMs": 3162
+      }
+    ],
+    "manualSimulationBoundary": "Explicit wheel intent event followed by actual element scrollTo; no game-state/style/score injection",
+    "manualMiddleBefore": {
+      "scrollTop": 400,
+      "max": 795,
+      "clientHeight": 512,
+      "scrollHeight": 1307,
+      "lastBottom": 1358.21875,
+      "listBottom": 963.5625,
+      "turn": "Бот 11",
+      "scoreText": "01Бот 11 Blocks · 1 accurate · 0 miss14902Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14703Бот 151 Blocks · 1 accurate · 0 miss14404Бот 31 Blocks · 0 accurate · 0 miss8305Бот 110 Blocks · 0 accurate · 0 miss005Бот 20 Blocks · 0 accurate · 0 miss005Бот 90 Blocks · 0 accurate · 0 miss005Бот 100 Blocks · 0 accurate · 0 miss005Бот 80 Blocks · 0 accurate · 0 miss005Бот 140 Blocks · 0 accurate · 0 miss005Бот 130 Blocks · 0 accurate · 0 miss005Бот 70 Blocks · 0 accurate · 0 miss005Бот 60 Blocks · 0 accurate · 0 miss005Бот 50 Blocks · 0 accurate · 0 miss005Бот 40 Blocks · 0 accurate · 0 miss005Бот 120 Blocks · 0 accurate · 0 miss0",
+      "markedRows": 16,
+      "clock": "90",
+      "message": "Your block",
+      "capHeight": 254.97
+    },
+    "manualMiddleAfterLiveUpdate": {
+      "scrollTop": 400,
+      "max": 795,
+      "clientHeight": 512,
+      "scrollHeight": 1307,
+      "lastBottom": 1358.21875,
+      "listBottom": 963.5625,
+      "turn": "Бот 2",
+      "scoreText": "01Бот 11 Blocks · 1 accurate · 0 miss14902Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 111 Blocks · 1 accurate · 0 miss14704Бот 151 Blocks · 1 accurate · 0 miss14405Бот 31 Blocks · 0 accurate · 0 miss8306Бот 20 Blocks · 0 accurate · 0 miss006Бот 90 Blocks · 0 accurate · 0 miss006Бот 100 Blocks · 0 accurate · 0 miss006Бот 80 Blocks · 0 accurate · 0 miss006Бот 140 Blocks · 0 accurate · 0 miss006Бот 130 Blocks · 0 accurate · 0 miss006Бот 70 Blocks · 0 accurate · 0 miss006Бот 60 Blocks · 0 accurate · 0 miss006Бот 50 Blocks · 0 accurate · 0 miss006Бот 40 Blocks · 0 accurate · 0 miss006Бот 120 Blocks · 0 accurate · 0 miss0",
+      "markedRows": 16,
+      "clock": "90",
+      "message": "Your block",
+      "capHeight": 254.97
+    }
+  },
+  "sources": {
+    "games/crane/public/client.js": {
+      "start": "0587acf6dd3efe6dbf0e3eebc0cf29b7f5baed0f2476d52bd51d607415b7d0b6",
+      "end": "0587acf6dd3efe6dbf0e3eebc0cf29b7f5baed0f2476d52bd51d607415b7d0b6",
+      "current": "0587acf6dd3efe6dbf0e3eebc0cf29b7f5baed0f2476d52bd51d607415b7d0b6",
+      "matches": true
+    },
+    "games/crane/public/style.css": {
+      "start": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+      "end": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+      "current": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+      "matches": true
+    },
+    "games/jenga/public/style.css": {
+      "start": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+      "end": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+      "current": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+      "matches": true
+    },
+    "games/jenga/public/controller.css": {
+      "start": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+      "end": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+      "current": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+      "matches": true
+    },
+    "public/tv-information.css": {
+      "start": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+      "end": "fdfdb74a17fa3cec0e1093aefcc0f99c769e4ed0d7b9366751e8ff669c6f3a1f",
+      "current": "fdfdb74a17fa3cec0e1093aefcc0f99c769e4ed0d7b9366751e8ff669c6f3a1f",
+      "matches": false
+    },
+    "public/tv-information.js": {
+      "start": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+      "end": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+      "current": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+      "matches": true
+    },
+    "public/game-ui-themes.css": {
+      "start": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+      "end": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+      "current": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+      "matches": true
+    },
+    "public/game-ui-themes.js": {
+      "start": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+      "end": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+      "current": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+      "matches": true
+    },
+    "public/rankings-theme.css": {
+      "start": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+      "end": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+      "current": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+      "matches": true
+    },
+    "public/rankings-theme.js": {
+      "start": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+      "end": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+      "current": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+      "matches": true
+    },
+    "public/bridge.js": {
+      "start": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+      "end": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+      "current": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+      "matches": true
+    },
+    "public/native-shell/controller-bridge.js": {
+      "start": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+      "end": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+      "current": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+      "matches": true
+    }
+  },
+  "originals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-phone-matchmaking-rules.png",
+      "sha256": "2781439fb9d7cfb132b7153d664c2bd8692d9f6c4293d9060675d50559672c48",
+      "individuallyOpened": true,
+      "qualification": "opened actual original"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-phone-roster-end.png",
+      "sha256": "bb188648465de638783abe6eabc1460abeea7ceeb683b3e7bfa0535f00e1974f",
+      "individuallyOpened": true,
+      "qualification": "opened actual original"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-tv-cap-cycle-aiming.png",
+      "sha256": "034cc275d3359310bdde630a1f47d35674b3199f8b5359847552c97cf5f77695",
+      "individuallyOpened": true,
+      "qualification": "opened actual original"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-tv-cap-cycle-untimed.png",
+      "sha256": "31da1d00c1235e927f73f22c2dbb78ae901ba90d853cc165c57234c64a4a3080",
+      "individuallyOpened": true,
+      "qualification": "raw final small line clipped despite adjacent measured containment; preserve and exclude full-row visual acceptance"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-tv-end-after-live-update.png",
+      "sha256": "88beb432e42e19251fe1471b605d86ef61fd72e4eb9a019006f0241d6dc21005",
+      "individuallyOpened": true,
+      "qualification": "opened actual original"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-tv-manual-middle-after-update.png",
+      "sha256": "f3bf1e5f2b8f278d60de9ce55809668daa7a33e75025fe0da6cb09ec16a90f33",
+      "individuallyOpened": true,
+      "qualification": "opened actual original"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-tv-roster-diagnostic-end.png",
+      "sha256": "9ae1df09c1b2554871a79f1947eb56c160fb168840c2945a5769d6b1983d289f",
+      "individuallyOpened": true,
+      "qualification": "raw blank crew area, preserve and exclude from visual acceptance"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-race-final/crane-tv-roster-end.png",
+      "sha256": "7b44f8bcfcdd828ca24c7d47228d05b9204df6a378eae002c4e5ef191779a644",
+      "individuallyOpened": true,
+      "qualification": "opened actual original"
+    }
+  ],
+  "deterministicCheck": {
+    "path": "/private/tmp/test-crane-end-observer.cjs",
+    "content": "const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');\nconst src=fs.readFileSync('games/crane/public/client.js','utf8');const fn=src.slice(src.indexOf('function watchCrewEnd('),src.indexOf('function renderPlayers('));\nlet frames=new Map(),next=0,resize;const context={requestAnimationFrame(f){frames.set(++next,f);return next;},cancelAnimationFrame(id){frames.delete(id);},ResizeObserver:class{constructor(f){resize=f;}observe(){}}};vm.createContext(context);vm.runInContext(fn,context);\nconst listeners={},list={children:[{}],scrollHeight:1307,clientHeight:508,_top:0,get scrollTop(){return this._top;},set scrollTop(v){this._top=Math.max(0,Math.min(v,this.scrollHeight-this.clientHeight));},addEventListener(t,f){listeners[t]=f;}};const anchor=context.watchCrewEnd(list);const flush=()=>{for(let i=0;i<10&&frames.size;i++){const batch=[...frames.values()];frames.clear();batch.forEach(f=>f());}assert.equal(frames.size,0);};\nanchor.remember();resize();assert.equal(list.scrollTop,0,'first load remains at top');\nlist.scrollTop=799;listeners.scroll();list.clientHeight=490;resize();assert.equal(list.scrollTop,817,'new cap height restores end');\nlist._top=799;listeners.scroll();flush();assert.equal(list.scrollTop,817,'delayed layout scroll at prior reached end preserves intent');\nlist.clientHeight=512;resize();listeners.scroll();flush();assert.equal(list.scrollTop,795,'reverse cap height preserves end');\nlist.scrollTop=408;listeners.scroll();list.clientHeight=490;resize();anchor.remember();anchor.restore();flush();assert.equal(list.scrollTop,408,'different manual scroll remains at middle');\nlist.scrollTop=817;listeners.scroll();listeners.wheel();list.scrollTop=799;listeners.scroll();list.clientHeight=512;resize();anchor.restore();flush();assert.equal(list.scrollTop,799,'explicit manual intent overrides prior-end tracking');\nconsole.log('PASS: first-load top, delayed height scroll, reverse cap cycle, middle retention, explicit manual override');\n",
+    "result": "PASS firstloadtop, delayed799→817, reversecapcycle, middle408, explicitmanualwheel override"
+  },
+  "physicalDevice": false
+}

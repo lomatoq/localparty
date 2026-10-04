@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "assertions": 423,
+  "waitingGames": 36,
+  "waitingScreens": 72,
+  "waitingObservedFrames": 6545,
+  "photoGames": [
+    "bomb",
+    "tankarena",
+    "millionaire",
+    "sinyakquiz",
+    "naval-16",
+    "poker-8"
+  ],
+  "hockeyUniformFullHeight": true,
+  "openVisualFinding": "Opaque shared Air Hockey cap can hide moving puck; presentation decision belongs to root, no rule change made.",
+  "phaseProof": [
+    "waiting-all36",
+    "playing-affected5",
+    "pause-host-rejoin-resume-hockey-millionaire",
+    "normal-two-human-bowling-stop-curling-start"
+  ],
+  "notCovered": [
+    "physical-device session-switch failure",
+    "all36 results/rejoin replay",
+    "native gyro input"
+  ],
+  "at": "2026-10-03T17:53:20.002Z"
+}

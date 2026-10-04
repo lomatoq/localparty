@@ -1,0 +1,79 @@
+[
+  {
+    "path": "music/battle.m4a",
+    "duration": 35.69342403628118,
+    "channels": 2,
+    "sampleRate": 44100,
+    "peak": 1.0339161157608032
+  },
+  {
+    "path": "music/lobby.m4a",
+    "duration": 80,
+    "channels": 2,
+    "sampleRate": 44100,
+    "peak": 1.0990517139434814
+  },
+  {
+    "path": "music/matchmaking.m4a",
+    "duration": 91.40625850340136,
+    "channels": 2,
+    "sampleRate": 44100,
+    "peak": 0.8320143818855286
+  },
+  {
+    "path": "sfx/back.wav",
+    "duration": 0.0609750566893424,
+    "channels": 1,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  },
+  {
+    "path": "sfx/click.wav",
+    "duration": 0.09712018140589569,
+    "channels": 1,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  },
+  {
+    "path": "sfx/confirm.wav",
+    "duration": 0.5390022675736962,
+    "channels": 1,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  },
+  {
+    "path": "sfx/countdown.wav",
+    "duration": 0.020317460317460317,
+    "channels": 1,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  },
+  {
+    "path": "sfx/error.wav",
+    "duration": 0.09979591836734694,
+    "channels": 2,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  },
+  {
+    "path": "sfx/hit.wav",
+    "duration": 0.11993197278911565,
+    "channels": 1,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  },
+  {
+    "path": "sfx/ready.wav",
+    "duration": 0.28984126984126984,
+    "channels": 1,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  },
+  {
+    "path": "sfx/win.wav",
+    "duration": 1.3859410430839003,
+    "channels": 2,
+    "sampleRate": 44100,
+    "peak": 0.54931640625
+  }
+]

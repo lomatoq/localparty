@@ -1,0 +1,1804 @@
+{
+  "version": 1,
+  "generatedWith": "built-in image_gen",
+  "generatedAt": "2026-09-30T15:50:11.449Z",
+  "status": "complete",
+  "catalogCount": 36,
+  "logoCount": 36,
+  "noUpscale": true,
+  "alpha": "Native generated RGBA preserved inside crops; only isolated alpha=1/255 margin noise excluded when selecting crop bounds. Full originals retained.",
+  "sources": [
+    {
+      "file": "originals/01-push-shrink.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 636,
+      "transparentSplitGap": 89,
+      "sha256": "6600ff5d181e8befa1882ff841b6dfaf4753c1f884efd530f5cc78bfd9e0c891",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/02-knives-bomb.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 616,
+      "transparentSplitGap": 102,
+      "sha256": "751873b3a77e9fc96225b32b1a3f4954bebe5e95a7f4570a8fd5a48f828c6742",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/03-western-tanks.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 676,
+      "transparentSplitGap": 143,
+      "sha256": "4c737f8b092862b8ea60ac23d568a04819beb50b4e5650f7c51b71ada8e7b09c",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/04-tankarena-chaos.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 637,
+      "transparentSplitGap": 138,
+      "sha256": "cb273f8d8a6bb8e808ead18b48f29e927499b11a1b92d65fdb2656fd48a62e04",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/05-kart-monster.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 678,
+      "transparentSplitGap": 189,
+      "sha256": "b813fe6cdadd5cb113e689aba3f7e0525c931ddb5a1a4b4cb16ce591b075ec01",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/06-spy-millionaire.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 617,
+      "transparentSplitGap": 135,
+      "sha256": "f0a550c1361e0ec141d7c87cb27e37da70dff8dda6da1f339dbee2e7be7a04a2",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/07-sinyakquiz-warsaw.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 614,
+      "transparentSplitGap": 123,
+      "sha256": "e46a3c9223af199c2d11bedcb7f48e5a95e172405bfa06570bbfa193e296d70c",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/08-crocodile-jenga.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 607,
+      "transparentSplitGap": 198,
+      "sha256": "a1941d116e008635df27e91a864c3ebf925bea2f8ef50c47acae737f2719f261",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/09-crane-naval.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 684,
+      "transparentSplitGap": 160,
+      "sha256": "2f14208fd350eb633fbd0dd5ac35d9cae65929fd9ce01b268e7c011bfc0cac22",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/10-drawguess-western_duel.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 659,
+      "transparentSplitGap": 108,
+      "sha256": "29a12e0ab6b879bd72924c9e729806612b1f3e4035905eba7d0b8d9f8f07d250",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/11-taprace-punchmeter.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 664,
+      "transparentSplitGap": 108,
+      "sha256": "6e54947e009ae867bbdc5353b10a6a529d65af8ac313d247bfe1fca7dbf14e00",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/12-flappy-hungry.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 632,
+      "transparentSplitGap": 142,
+      "sha256": "a6b69b4718736eb18325e00042d8295c34be57795410af8ee052dcf803f2a633",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/13-snakelines-carryball.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 623,
+      "transparentSplitGap": 118,
+      "sha256": "cfa9afce70fd411678838efb88d2a093f4134e51e38866bf8d03a09bf8a49a2c",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/14-marble_bloom-pocket_siege-v2-safe.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 640,
+      "transparentSplitGap": 72,
+      "sha256": "32bccbd3a981189b16cb94270f0cc9568cad0b06befaba493c6dd8c496b37574",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/15-bow_club-poker.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 671,
+      "transparentSplitGap": 103,
+      "sha256": "87d598ef1774978b6d0c366b5ff05196fbc4f89ee9e36c25eaaa6f60d1989911",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/16-airhockey-mines.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 702,
+      "transparentSplitGap": 122,
+      "sha256": "7d572d0e78cd99a7058e1bf9dd60c17312317eb2eb262ed47dbffb04d64fe7fb",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/17-curling-bowling.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 637,
+      "transparentSplitGap": 121,
+      "sha256": "9a8d5c9bacf943df8b4880e7aa099fbdf76f70a00d84ee99b569668a6e926e8a",
+      "trueAlpha": true
+    },
+    {
+      "file": "originals/18-swarm_gate-peek_shoot.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "splitRow": 658,
+      "transparentSplitGap": 98,
+      "sha256": "4062dc49bcd583a8ff0b3540927409c99847f3361d8c99f5a847d3d61ddc13a9",
+      "trueAlpha": true
+    }
+  ],
+  "atlases": [
+    {
+      "file": "atlases/games-01.png",
+      "width": 7168,
+      "height": 3456,
+      "ids": [
+        "push",
+        "shrink",
+        "knives",
+        "bomb",
+        "western",
+        "tanks",
+        "tankarena",
+        "chaos",
+        "kart",
+        "monster",
+        "spy",
+        "millionaire"
+      ],
+      "cellWidth": 1792,
+      "cellHeight": 1152,
+      "minimumPaddingEachSide": 256,
+      "sha256": "fb06eb09517f8d3868935480ccd0abc98d9dc7f88520a91684a6d35da80b98dc"
+    },
+    {
+      "file": "atlases/games-02.png",
+      "width": 7168,
+      "height": 3456,
+      "ids": [
+        "sinyakquiz",
+        "warsaw",
+        "crocodile",
+        "jenga",
+        "crane",
+        "naval",
+        "drawguess",
+        "western_duel",
+        "taprace",
+        "punchmeter",
+        "flappy",
+        "hungry"
+      ],
+      "cellWidth": 1792,
+      "cellHeight": 1152,
+      "minimumPaddingEachSide": 256,
+      "sha256": "22e117c65741ffed96a940a389924396af55619e56dc76db4e38888194616e2f"
+    },
+    {
+      "file": "atlases/games-03.png",
+      "width": 7168,
+      "height": 3456,
+      "ids": [
+        "snakelines",
+        "carryball",
+        "marble_bloom",
+        "pocket_siege",
+        "bow_club",
+        "poker",
+        "airhockey",
+        "mines",
+        "curling",
+        "bowling",
+        "swarm_gate",
+        "peek_shoot"
+      ],
+      "cellWidth": 1792,
+      "cellHeight": 1152,
+      "minimumPaddingEachSide": 256,
+      "sha256": "fc97539925bb230833ebf264d9836b1764daf3613c959b1e468f3f2cc8e221fd"
+    }
+  ],
+  "masterAtlas": {
+    "file": "atlases/master-atlas36.png",
+    "width": 10752,
+    "height": 6912,
+    "cellWidth": 1792,
+    "cellHeight": 1152,
+    "minimumPaddingEachSide": 256,
+    "sha256": "bd7f510f332c8daf2a01ff393fa15296909d628e99aeec42dd0f46bee3c29f10"
+  },
+  "logos": [
+    {
+      "id": "push",
+      "name": "Push Pit",
+      "text": "PUSH PIT",
+      "path": "/assets/game-logos-v1/logos/push.png",
+      "file": "logos/push.png",
+      "nativeWidth": 1143,
+      "nativeHeight": 582,
+      "contentWidth": 1095,
+      "contentHeight": 534,
+      "source": "originals/01-push-shrink.png",
+      "sourceRect": {
+        "x": 98,
+        "y": 58,
+        "width": 1095,
+        "height": 534
+      },
+      "padding": 24,
+      "sha256": "3d3f790289d5034ba452833248d8d7c4fc89263262ac04640837a3132369a4ca",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 324,
+        "y": 285,
+        "width": 1143,
+        "height": 582,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 324,
+        "y": 285,
+        "width": 1143,
+        "height": 582
+      }
+    },
+    {
+      "id": "shrink",
+      "name": "Last Circle",
+      "text": "LAST CIRCLE",
+      "path": "/assets/game-logos-v1/logos/shrink.png",
+      "file": "logos/shrink.png",
+      "nativeWidth": 1084,
+      "nativeHeight": 572,
+      "contentWidth": 1036,
+      "contentHeight": 524,
+      "source": "originals/01-push-shrink.png",
+      "sourceRect": {
+        "x": 131,
+        "y": 681,
+        "width": 1036,
+        "height": 524
+      },
+      "padding": 24,
+      "sha256": "0aad70301dc27ac3b59e7bfeeb9db3b579c9e9ddf1151f65d4182861829c89bc",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 2146,
+        "y": 290,
+        "width": 1084,
+        "height": 572,
+        "cell": {
+          "x": 1792,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 2146,
+        "y": 290,
+        "width": 1084,
+        "height": 572
+      }
+    },
+    {
+      "id": "knives",
+      "name": "Color Knives",
+      "text": "COLOR KNIVES",
+      "path": "/assets/game-logos-v1/logos/knives.png",
+      "file": "logos/knives.png",
+      "nativeWidth": 1222,
+      "nativeHeight": 553,
+      "contentWidth": 1174,
+      "contentHeight": 505,
+      "source": "originals/02-knives-bomb.png",
+      "sourceRect": {
+        "x": 60,
+        "y": 60,
+        "width": 1174,
+        "height": 505
+      },
+      "padding": 24,
+      "sha256": "8b41765a0f68bcde1dd928102da5ed5db5d0031ce4c565313920e0bb95cffa1e",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 3869,
+        "y": 299,
+        "width": 1222,
+        "height": 553,
+        "cell": {
+          "x": 3584,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 3869,
+        "y": 299,
+        "width": 1222,
+        "height": 553
+      }
+    },
+    {
+      "id": "bomb",
+      "name": "Bomb Tag",
+      "text": "BOMB TAG",
+      "path": "/assets/game-logos-v1/logos/bomb.png",
+      "file": "logos/bomb.png",
+      "nativeWidth": 1170,
+      "nativeHeight": 603,
+      "contentWidth": 1122,
+      "contentHeight": 555,
+      "source": "originals/02-knives-bomb.png",
+      "sourceRect": {
+        "x": 72,
+        "y": 667,
+        "width": 1122,
+        "height": 555
+      },
+      "padding": 24,
+      "sha256": "7c16fd9eb251d92886e76fdbcd33c4b7dc405438df79e7081cdfa7d07d7aab4c",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 5687,
+        "y": 274,
+        "width": 1170,
+        "height": 603,
+        "cell": {
+          "x": 5376,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 5687,
+        "y": 274,
+        "width": 1170,
+        "height": 603
+      }
+    },
+    {
+      "id": "western",
+      "name": "One Shot Western",
+      "text": "ONE SHOT WESTERN",
+      "path": "/assets/game-logos-v1/logos/western.png",
+      "file": "logos/western.png",
+      "nativeWidth": 1185,
+      "nativeHeight": 586,
+      "contentWidth": 1137,
+      "contentHeight": 538,
+      "source": "originals/03-western-tanks.png",
+      "sourceRect": {
+        "x": 67,
+        "y": 67,
+        "width": 1137,
+        "height": 538
+      },
+      "padding": 24,
+      "sha256": "aae50f8fb99476556342ba628ecea69e83faf7729bef3a5553097a7e42e91642",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 303,
+        "y": 1435,
+        "width": 1185,
+        "height": 586,
+        "cell": {
+          "x": 0,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 7471,
+        "y": 283,
+        "width": 1185,
+        "height": 586
+      }
+    },
+    {
+      "id": "tanks",
+      "name": "Local Tanks",
+      "text": "LOCAL TANKS",
+      "path": "/assets/game-logos-v1/logos/tanks.png",
+      "file": "logos/tanks.png",
+      "nativeWidth": 1191,
+      "nativeHeight": 520,
+      "contentWidth": 1143,
+      "contentHeight": 472,
+      "source": "originals/03-western-tanks.png",
+      "sourceRect": {
+        "x": 67,
+        "y": 748,
+        "width": 1143,
+        "height": 472
+      },
+      "padding": 24,
+      "sha256": "71d692131e6d44cd585ad6ce6aa693aaf047854f4896c98af326d6d816913d74",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 2092,
+        "y": 1468,
+        "width": 1191,
+        "height": 520,
+        "cell": {
+          "x": 1792,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 9260,
+        "y": 316,
+        "width": 1191,
+        "height": 520
+      }
+    },
+    {
+      "id": "tankarena",
+      "name": "Tank Arsenal",
+      "text": "TANK ARSENAL",
+      "path": "/assets/game-logos-v1/logos/tankarena.png",
+      "file": "logos/tankarena.png",
+      "nativeWidth": 1245,
+      "nativeHeight": 531,
+      "contentWidth": 1197,
+      "contentHeight": 483,
+      "source": "originals/04-tankarena-chaos.png",
+      "sourceRect": {
+        "x": 35,
+        "y": 85,
+        "width": 1197,
+        "height": 483
+      },
+      "padding": 24,
+      "sha256": "7eae8fda6ed4e132bf0576fb62e3178042a3ddd07e2e85927ca1ea0938f0b54f",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 3857,
+        "y": 1462,
+        "width": 1245,
+        "height": 531,
+        "cell": {
+          "x": 3584,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 273,
+        "y": 1462,
+        "width": 1245,
+        "height": 531
+      }
+    },
+    {
+      "id": "chaos",
+      "name": "One Cursor Chaos",
+      "text": "ONE CURSOR CHAOS",
+      "path": "/assets/game-logos-v1/logos/chaos.png",
+      "file": "logos/chaos.png",
+      "nativeWidth": 1230,
+      "nativeHeight": 551,
+      "contentWidth": 1182,
+      "contentHeight": 503,
+      "source": "originals/04-tankarena-chaos.png",
+      "sourceRect": {
+        "x": 41,
+        "y": 706,
+        "width": 1182,
+        "height": 503
+      },
+      "padding": 24,
+      "sha256": "272373b56c583ee67fd61233af1e020547e12591e14b840f919ef54d735ebb4c",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 5657,
+        "y": 1452,
+        "width": 1230,
+        "height": 551,
+        "cell": {
+          "x": 5376,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 2073,
+        "y": 1452,
+        "width": 1230,
+        "height": 551
+      }
+    },
+    {
+      "id": "kart",
+      "name": "Wi-Fi Kart Party",
+      "text": "WI-FI KART PARTY",
+      "path": "/assets/game-logos-v1/logos/kart.png",
+      "file": "logos/kart.png",
+      "nativeWidth": 1261,
+      "nativeHeight": 523,
+      "contentWidth": 1213,
+      "contentHeight": 475,
+      "source": "originals/05-kart-monster.png",
+      "sourceRect": {
+        "x": 22,
+        "y": 109,
+        "width": 1213,
+        "height": 475
+      },
+      "padding": 24,
+      "sha256": "46de983e6607100cb697a530c306d4b5b4a426dc01570ac93036f1b0c7422541",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 265,
+        "y": 2618,
+        "width": 1261,
+        "height": 523,
+        "cell": {
+          "x": 0,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 3849,
+        "y": 1466,
+        "width": 1261,
+        "height": 523
+      }
+    },
+    {
+      "id": "monster",
+      "name": "Pass the Monster",
+      "text": "PASS THE MONSTER",
+      "path": "/assets/game-logos-v1/logos/monster.png",
+      "file": "logos/monster.png",
+      "nativeWidth": 1235,
+      "nativeHeight": 497,
+      "contentWidth": 1187,
+      "contentHeight": 449,
+      "source": "originals/05-kart-monster.png",
+      "sourceRect": {
+        "x": 50,
+        "y": 773,
+        "width": 1187,
+        "height": 449
+      },
+      "padding": 24,
+      "sha256": "87eef60128cf816f809569370b812dd7d03e4ddb2c079d3439e39e55ff9a805a",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 2070,
+        "y": 2631,
+        "width": 1235,
+        "height": 497,
+        "cell": {
+          "x": 1792,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 5654,
+        "y": 1479,
+        "width": 1235,
+        "height": 497
+      }
+    },
+    {
+      "id": "spy",
+      "name": "Spy",
+      "text": "SPY",
+      "path": "/assets/game-logos-v1/logos/spy.png",
+      "file": "logos/spy.png",
+      "nativeWidth": 1062,
+      "nativeHeight": 560,
+      "contentWidth": 1014,
+      "contentHeight": 512,
+      "source": "originals/06-spy-millionaire.png",
+      "sourceRect": {
+        "x": 145,
+        "y": 38,
+        "width": 1014,
+        "height": 512
+      },
+      "padding": 24,
+      "sha256": "3c709d22d811df3cb24277c7084214d8ebfcec5f6437084a56d373e9de785fb5",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 3949,
+        "y": 2600,
+        "width": 1062,
+        "height": 560,
+        "cell": {
+          "x": 3584,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 7533,
+        "y": 1448,
+        "width": 1062,
+        "height": 560
+      }
+    },
+    {
+      "id": "millionaire",
+      "name": "Sinyak Millionaire",
+      "text": "SINYAK MILLIONAIRE",
+      "path": "/assets/game-logos-v1/logos/millionaire.png",
+      "file": "logos/millionaire.png",
+      "nativeWidth": 1234,
+      "nativeHeight": 571,
+      "contentWidth": 1186,
+      "contentHeight": 523,
+      "source": "originals/06-spy-millionaire.png",
+      "sourceRect": {
+        "x": 41,
+        "y": 685,
+        "width": 1186,
+        "height": 523
+      },
+      "padding": 24,
+      "sha256": "7ba068daa7035fd01e7a74794b2b9899b059d9111214b4e0b437d4fb2ba227ef",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-01.png",
+        "path": "/assets/game-logos-v1/atlases/games-01.png",
+        "x": 5655,
+        "y": 2594,
+        "width": 1234,
+        "height": 571,
+        "cell": {
+          "x": 5376,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 9239,
+        "y": 1442,
+        "width": 1234,
+        "height": 571
+      }
+    },
+    {
+      "id": "sinyakquiz",
+      "name": "Sinyak: Party Quiz",
+      "text": "SINYAK: PARTY QUIZ",
+      "path": "/assets/game-logos-v1/logos/sinyakquiz.png",
+      "file": "logos/sinyakquiz.png",
+      "nativeWidth": 1203,
+      "nativeHeight": 504,
+      "contentWidth": 1155,
+      "contentHeight": 456,
+      "source": "originals/07-sinyakquiz-warsaw.png",
+      "sourceRect": {
+        "x": 66,
+        "y": 97,
+        "width": 1155,
+        "height": 456
+      },
+      "padding": 24,
+      "sha256": "0fbff3c8bea39aae1aef90ecc7954ccba5d729c85fcfe4d661f1b21f278cea48",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 294,
+        "y": 324,
+        "width": 1203,
+        "height": 504,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 294,
+        "y": 2628,
+        "width": 1203,
+        "height": 504
+      }
+    },
+    {
+      "id": "warsaw",
+      "name": "Warsaw Discoveries",
+      "text": "WARSAW DISCOVERIES",
+      "path": "/assets/game-logos-v1/logos/warsaw.png",
+      "file": "logos/warsaw.png",
+      "nativeWidth": 1226,
+      "nativeHeight": 565,
+      "contentWidth": 1178,
+      "contentHeight": 517,
+      "source": "originals/07-sinyakquiz-warsaw.png",
+      "sourceRect": {
+        "x": 42,
+        "y": 676,
+        "width": 1178,
+        "height": 517
+      },
+      "padding": 24,
+      "sha256": "4ae75d828a4e78e25d96e5b463b0aa0706bb24f7b2554d44b619f8f9cf54ae21",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 2075,
+        "y": 293,
+        "width": 1226,
+        "height": 565,
+        "cell": {
+          "x": 1792,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 2075,
+        "y": 2597,
+        "width": 1226,
+        "height": 565
+      }
+    },
+    {
+      "id": "crocodile",
+      "name": "Charades",
+      "text": "CHARADES",
+      "path": "/assets/game-logos-v1/logos/crocodile.png",
+      "file": "logos/crocodile.png",
+      "nativeWidth": 1224,
+      "nativeHeight": 471,
+      "contentWidth": 1176,
+      "contentHeight": 423,
+      "source": "originals/08-crocodile-jenga.png",
+      "sourceRect": {
+        "x": 44,
+        "y": 85,
+        "width": 1176,
+        "height": 423
+      },
+      "padding": 24,
+      "sha256": "853b5812b29144011686ee16ee35c8b05da551d8cf4197b9021171542b60e2c0",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 3868,
+        "y": 340,
+        "width": 1224,
+        "height": 471,
+        "cell": {
+          "x": 3584,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 3868,
+        "y": 2644,
+        "width": 1224,
+        "height": 471
+      }
+    },
+    {
+      "id": "jenga",
+      "name": "Careful, Jenga!",
+      "text": "CAREFUL, JENGA!",
+      "path": "/assets/game-logos-v1/logos/jenga.png",
+      "file": "logos/jenga.png",
+      "nativeWidth": 1227,
+      "nativeHeight": 541,
+      "contentWidth": 1179,
+      "contentHeight": 493,
+      "source": "originals/08-crocodile-jenga.png",
+      "sourceRect": {
+        "x": 43,
+        "y": 706,
+        "width": 1179,
+        "height": 493
+      },
+      "padding": 24,
+      "sha256": "f67df6c4f73688ff3a995991d5b398391076d9c5aa4350d8af5727b71727e310",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 5658,
+        "y": 305,
+        "width": 1227,
+        "height": 541,
+        "cell": {
+          "x": 5376,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 5658,
+        "y": 2609,
+        "width": 1227,
+        "height": 541
+      }
+    },
+    {
+      "id": "crane",
+      "name": "Night Shift",
+      "text": "NIGHT SHIFT",
+      "path": "/assets/game-logos-v1/logos/crane.png",
+      "file": "logos/crane.png",
+      "nativeWidth": 1127,
+      "nativeHeight": 568,
+      "contentWidth": 1079,
+      "contentHeight": 520,
+      "source": "originals/09-crane-naval.png",
+      "sourceRect": {
+        "x": 111,
+        "y": 84,
+        "width": 1079,
+        "height": 520
+      },
+      "padding": 24,
+      "sha256": "2a51e70eaa9df7e4ada4e2d6a67543d750ad98941238c3cadf95e48ed384938b",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 332,
+        "y": 1444,
+        "width": 1127,
+        "height": 568,
+        "cell": {
+          "x": 0,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 7500,
+        "y": 2596,
+        "width": 1127,
+        "height": 568
+      }
+    },
+    {
+      "id": "naval",
+      "name": "Quick Battleships",
+      "text": "QUICK BATTLESHIPS",
+      "path": "/assets/game-logos-v1/logos/naval.png",
+      "file": "logos/naval.png",
+      "nativeWidth": 1228,
+      "nativeHeight": 509,
+      "contentWidth": 1180,
+      "contentHeight": 461,
+      "source": "originals/09-crane-naval.png",
+      "sourceRect": {
+        "x": 36,
+        "y": 764,
+        "width": 1180,
+        "height": 461
+      },
+      "padding": 24,
+      "sha256": "f80e0d9afba72bfce1f6e8bba0950ba9468674cc8a2fcf5f8315764a9205d50c",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 2074,
+        "y": 1473,
+        "width": 1228,
+        "height": 509,
+        "cell": {
+          "x": 1792,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 9242,
+        "y": 2625,
+        "width": 1228,
+        "height": 509
+      }
+    },
+    {
+      "id": "drawguess",
+      "name": "Draw & Guess",
+      "text": "DRAW & GUESS",
+      "path": "/assets/game-logos-v1/logos/drawguess.png",
+      "file": "logos/drawguess.png",
+      "nativeWidth": 1244,
+      "nativeHeight": 560,
+      "contentWidth": 1196,
+      "contentHeight": 512,
+      "source": "originals/10-drawguess-western_duel.png",
+      "sourceRect": {
+        "x": 39,
+        "y": 93,
+        "width": 1196,
+        "height": 512
+      },
+      "padding": 24,
+      "sha256": "48ad78e36dd12b74a916d261cd4c6aae910785274edbd1ec61cf0858a198ad57",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 3858,
+        "y": 1448,
+        "width": 1244,
+        "height": 560,
+        "cell": {
+          "x": 3584,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 274,
+        "y": 3752,
+        "width": 1244,
+        "height": 560
+      }
+    },
+    {
+      "id": "western_duel",
+      "name": "Two at Sunset",
+      "text": "TWO AT SUNSET",
+      "path": "/assets/game-logos-v1/logos/western_duel.png",
+      "file": "logos/western_duel.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 559,
+      "contentWidth": 1206,
+      "contentHeight": 511,
+      "source": "originals/10-drawguess-western_duel.png",
+      "sourceRect": {
+        "x": 30,
+        "y": 713,
+        "width": 1206,
+        "height": 511
+      },
+      "padding": 24,
+      "sha256": "02202a645b11d84ea99298200275bf69a4aef45f522153645f443d0213788f12",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 5645,
+        "y": 1448,
+        "width": 1254,
+        "height": 559,
+        "cell": {
+          "x": 5376,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 2061,
+        "y": 3752,
+        "width": 1254,
+        "height": 559
+      }
+    },
+    {
+      "id": "taprace",
+      "name": "Tap Race",
+      "text": "TAP RACE",
+      "path": "/assets/game-logos-v1/logos/taprace.png",
+      "file": "logos/taprace.png",
+      "nativeWidth": 1235,
+      "nativeHeight": 502,
+      "contentWidth": 1187,
+      "contentHeight": 454,
+      "source": "originals/11-taprace-punchmeter.png",
+      "sourceRect": {
+        "x": 37,
+        "y": 156,
+        "width": 1187,
+        "height": 454
+      },
+      "padding": 24,
+      "sha256": "671074113869cf2cd5838bdf92ba9450c9541398bace2ba59417a8cd3bd03aa7",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 278,
+        "y": 2629,
+        "width": 1235,
+        "height": 502,
+        "cell": {
+          "x": 0,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 3862,
+        "y": 3781,
+        "width": 1235,
+        "height": 502
+      }
+    },
+    {
+      "id": "punchmeter",
+      "name": "Punch Meter",
+      "text": "PUNCH METER",
+      "path": "/assets/game-logos-v1/logos/punchmeter.png",
+      "file": "logos/punchmeter.png",
+      "nativeWidth": 1255,
+      "nativeHeight": 536,
+      "contentWidth": 1207,
+      "contentHeight": 488,
+      "source": "originals/11-taprace-punchmeter.png",
+      "sourceRect": {
+        "x": 38,
+        "y": 718,
+        "width": 1207,
+        "height": 488
+      },
+      "padding": 24,
+      "sha256": "75df5ac6de24ffb01ba0e8f64cf66fc49277c319e68b508b6633d9f0cfd57140",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 2060,
+        "y": 2612,
+        "width": 1255,
+        "height": 536,
+        "cell": {
+          "x": 1792,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 5644,
+        "y": 3764,
+        "width": 1255,
+        "height": 536
+      }
+    },
+    {
+      "id": "flappy",
+      "name": "Multiplayer Flappy",
+      "text": "MULTIPLAYER FLAPPY",
+      "path": "/assets/game-logos-v1/logos/flappy.png",
+      "file": "logos/flappy.png",
+      "nativeWidth": 1200,
+      "nativeHeight": 501,
+      "contentWidth": 1152,
+      "contentHeight": 453,
+      "source": "originals/12-flappy-hungry.png",
+      "sourceRect": {
+        "x": 55,
+        "y": 108,
+        "width": 1152,
+        "height": 453
+      },
+      "padding": 24,
+      "sha256": "dbd464310c4f03ce6534c2632d7768bb2bcb77de5b1cf8d86415caa1cd6d6041",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 3880,
+        "y": 2629,
+        "width": 1200,
+        "height": 501,
+        "cell": {
+          "x": 3584,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 7464,
+        "y": 3781,
+        "width": 1200,
+        "height": 501
+      }
+    },
+    {
+      "id": "hungry",
+      "name": "Hungry Arena",
+      "text": "HUNGRY ARENA",
+      "path": "/assets/game-logos-v1/logos/hungry.png",
+      "file": "logos/hungry.png",
+      "nativeWidth": 1144,
+      "nativeHeight": 528,
+      "contentWidth": 1096,
+      "contentHeight": 480,
+      "source": "originals/12-flappy-hungry.png",
+      "sourceRect": {
+        "x": 80,
+        "y": 703,
+        "width": 1096,
+        "height": 480
+      },
+      "padding": 24,
+      "sha256": "a31a803832f518e5facff627f2b0c1b45255348994e43143431fc77e4c610766",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-02.png",
+        "path": "/assets/game-logos-v1/atlases/games-02.png",
+        "x": 5700,
+        "y": 2616,
+        "width": 1144,
+        "height": 528,
+        "cell": {
+          "x": 5376,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 9284,
+        "y": 3768,
+        "width": 1144,
+        "height": 528
+      }
+    },
+    {
+      "id": "snakelines",
+      "name": "Snake Lines",
+      "text": "SNAKE LINES",
+      "path": "/assets/game-logos-v1/logos/snakelines.png",
+      "file": "logos/snakelines.png",
+      "nativeWidth": 1190,
+      "nativeHeight": 553,
+      "contentWidth": 1142,
+      "contentHeight": 505,
+      "source": "originals/13-snakelines-carryball.png",
+      "sourceRect": {
+        "x": 77,
+        "y": 59,
+        "width": 1142,
+        "height": 505
+      },
+      "padding": 24,
+      "sha256": "8f5d328d6869dae1c0d02f81d32fe863dd9905772e2e7aabe067c29afbb028e6",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 301,
+        "y": 299,
+        "width": 1190,
+        "height": 553,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 301,
+        "y": 4907,
+        "width": 1190,
+        "height": 553
+      }
+    },
+    {
+      "id": "carryball",
+      "name": "Carry Ball",
+      "text": "CARRY BALL",
+      "path": "/assets/game-logos-v1/logos/carryball.png",
+      "file": "logos/carryball.png",
+      "nativeWidth": 1129,
+      "nativeHeight": 561,
+      "contentWidth": 1081,
+      "contentHeight": 513,
+      "source": "originals/13-snakelines-carryball.png",
+      "sourceRect": {
+        "x": 114,
+        "y": 682,
+        "width": 1081,
+        "height": 513
+      },
+      "padding": 24,
+      "sha256": "1a1784d65b2ad927f168b74b3c540160b53a3d65814b557f7d13413159e23580",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 2123,
+        "y": 295,
+        "width": 1129,
+        "height": 561,
+        "cell": {
+          "x": 1792,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 2123,
+        "y": 4903,
+        "width": 1129,
+        "height": 561
+      }
+    },
+    {
+      "id": "marble_bloom",
+      "name": "Marble Bloom",
+      "text": "MARBLE BLOOM",
+      "path": "/assets/game-logos-v1/logos/marble_bloom.png",
+      "file": "logos/marble_bloom.png",
+      "nativeWidth": 1245,
+      "nativeHeight": 598,
+      "contentWidth": 1197,
+      "contentHeight": 550,
+      "source": "originals/14-marble_bloom-pocket_siege-v2-safe.png",
+      "sourceRect": {
+        "x": 26,
+        "y": 54,
+        "width": 1197,
+        "height": 550
+      },
+      "padding": 24,
+      "sha256": "d232d2d687e1208d38ca1da670e146c43eca1d4de5c6a3e43e1db6785efd9b66",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 3857,
+        "y": 277,
+        "width": 1245,
+        "height": 598,
+        "cell": {
+          "x": 3584,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 3857,
+        "y": 4885,
+        "width": 1245,
+        "height": 598
+      }
+    },
+    {
+      "id": "pocket_siege",
+      "name": "Pocket Siege",
+      "text": "POCKET SIEGE",
+      "path": "/assets/game-logos-v1/logos/pocket_siege.png",
+      "file": "logos/pocket_siege.png",
+      "nativeWidth": 1169,
+      "nativeHeight": 576,
+      "contentWidth": 1121,
+      "contentHeight": 528,
+      "source": "originals/14-marble_bloom-pocket_siege-v2-safe.png",
+      "sourceRect": {
+        "x": 76,
+        "y": 676,
+        "width": 1121,
+        "height": 528
+      },
+      "padding": 24,
+      "sha256": "c9c7a1e517940c4d84ecdb877e75c5ac8719c4cb1e0763475d3657cb7f699a58",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 5687,
+        "y": 288,
+        "width": 1169,
+        "height": 576,
+        "cell": {
+          "x": 5376,
+          "y": 0,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 5687,
+        "y": 4896,
+        "width": 1169,
+        "height": 576
+      }
+    },
+    {
+      "id": "bow_club",
+      "name": "Bow Club",
+      "text": "BOW CLUB",
+      "path": "/assets/game-logos-v1/logos/bow_club.png",
+      "file": "logos/bow_club.png",
+      "nativeWidth": 1110,
+      "nativeHeight": 617,
+      "contentWidth": 1062,
+      "contentHeight": 569,
+      "source": "originals/15-bow_club-poker.png",
+      "sourceRect": {
+        "x": 121,
+        "y": 51,
+        "width": 1062,
+        "height": 569
+      },
+      "padding": 24,
+      "sha256": "bc68ae77a1578fd7fc79491e17a15e032847399a921c3fb1d1e8726472e45efd",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 341,
+        "y": 1419,
+        "width": 1110,
+        "height": 617,
+        "cell": {
+          "x": 0,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 7509,
+        "y": 4875,
+        "width": 1110,
+        "height": 617
+      }
+    },
+    {
+      "id": "poker",
+      "name": "Poker Night",
+      "text": "POKER NIGHT",
+      "path": "/assets/game-logos-v1/logos/poker.png",
+      "file": "logos/poker.png",
+      "nativeWidth": 1101,
+      "nativeHeight": 532,
+      "contentWidth": 1053,
+      "contentHeight": 484,
+      "source": "originals/15-bow_club-poker.png",
+      "sourceRect": {
+        "x": 113,
+        "y": 723,
+        "width": 1053,
+        "height": 484
+      },
+      "padding": 24,
+      "sha256": "cf754be37e9d23f68bdd7444f7d9118348de7025f0417707218570a276f97bb6",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 2137,
+        "y": 1462,
+        "width": 1101,
+        "height": 532,
+        "cell": {
+          "x": 1792,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 9305,
+        "y": 4918,
+        "width": 1101,
+        "height": 532
+      }
+    },
+    {
+      "id": "airhockey",
+      "name": "Air Hockey",
+      "text": "AIR HOCKEY",
+      "path": "/assets/game-logos-v1/logos/airhockey.png",
+      "file": "logos/airhockey.png",
+      "nativeWidth": 1204,
+      "nativeHeight": 566,
+      "contentWidth": 1156,
+      "contentHeight": 518,
+      "source": "originals/16-airhockey-mines.png",
+      "sourceRect": {
+        "x": 50,
+        "y": 123,
+        "width": 1156,
+        "height": 518
+      },
+      "padding": 24,
+      "sha256": "18e9a1049fdc0b6de02ea6a67cd39da8dcf055147990b96269a675235101a29f",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 3878,
+        "y": 1445,
+        "width": 1204,
+        "height": 566,
+        "cell": {
+          "x": 3584,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 294,
+        "y": 6053,
+        "width": 1204,
+        "height": 566
+      }
+    },
+    {
+      "id": "mines",
+      "name": "Mine Together",
+      "text": "MINE TOGETHER",
+      "path": "/assets/game-logos-v1/logos/mines.png",
+      "file": "logos/mines.png",
+      "nativeWidth": 1200,
+      "nativeHeight": 499,
+      "contentWidth": 1152,
+      "contentHeight": 451,
+      "source": "originals/16-airhockey-mines.png",
+      "sourceRect": {
+        "x": 62,
+        "y": 763,
+        "width": 1152,
+        "height": 451
+      },
+      "padding": 24,
+      "sha256": "a97a7b293831cb51a3fe73b0affcae845faf33a08fe4d7cce024898d52fbd156",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 5672,
+        "y": 1478,
+        "width": 1200,
+        "height": 499,
+        "cell": {
+          "x": 5376,
+          "y": 1152,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 2088,
+        "y": 6086,
+        "width": 1200,
+        "height": 499
+      }
+    },
+    {
+      "id": "curling",
+      "name": "Ice & Nerves",
+      "text": "ICE & NERVES",
+      "path": "/assets/game-logos-v1/logos/curling.png",
+      "file": "logos/curling.png",
+      "nativeWidth": 1236,
+      "nativeHeight": 567,
+      "contentWidth": 1188,
+      "contentHeight": 519,
+      "source": "originals/17-curling-bowling.png",
+      "sourceRect": {
+        "x": 50,
+        "y": 58,
+        "width": 1188,
+        "height": 519
+      },
+      "padding": 24,
+      "sha256": "4d6542b67d1f4dd91c51a8537954dcf632b58c7837d936e57b6a872be36391bf",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 278,
+        "y": 2596,
+        "width": 1236,
+        "height": 567,
+        "cell": {
+          "x": 0,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 3862,
+        "y": 6052,
+        "width": 1236,
+        "height": 567
+      }
+    },
+    {
+      "id": "bowling",
+      "name": "Pocket Strike",
+      "text": "POCKET STRIKE",
+      "path": "/assets/game-logos-v1/logos/bowling.png",
+      "file": "logos/bowling.png",
+      "nativeWidth": 1167,
+      "nativeHeight": 553,
+      "contentWidth": 1119,
+      "contentHeight": 505,
+      "source": "originals/17-curling-bowling.png",
+      "sourceRect": {
+        "x": 100,
+        "y": 698,
+        "width": 1119,
+        "height": 505
+      },
+      "padding": 24,
+      "sha256": "ba63221eb98d0a6a0a91b5e520c8bd3fedfcf171c9a7cd7cb01a8049581a6540",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 2104,
+        "y": 2603,
+        "width": 1167,
+        "height": 553,
+        "cell": {
+          "x": 1792,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 5688,
+        "y": 6059,
+        "width": 1167,
+        "height": 553
+      }
+    },
+    {
+      "id": "swarm_gate",
+      "name": "Don't Bite the Gate!",
+      "text": "DON'T BITE THE GATE!",
+      "path": "/assets/game-logos-v1/logos/swarm_gate.png",
+      "file": "logos/swarm_gate.png",
+      "nativeWidth": 1225,
+      "nativeHeight": 627,
+      "contentWidth": 1177,
+      "contentHeight": 579,
+      "source": "originals/18-swarm_gate-peek_shoot.png",
+      "sourceRect": {
+        "x": 43,
+        "y": 30,
+        "width": 1177,
+        "height": 579
+      },
+      "padding": 24,
+      "sha256": "1870ad30c660e690e24889595957eed5e30451f5c24cc37a1a6135faded3d934",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 3867,
+        "y": 2566,
+        "width": 1225,
+        "height": 627,
+        "cell": {
+          "x": 3584,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 7451,
+        "y": 6022,
+        "width": 1225,
+        "height": 627
+      }
+    },
+    {
+      "id": "peek_shoot",
+      "name": "Who's Popping Up?",
+      "text": "WHO'S POPPING UP?",
+      "path": "/assets/game-logos-v1/logos/peek_shoot.png",
+      "file": "logos/peek_shoot.png",
+      "nativeWidth": 1240,
+      "nativeHeight": 550,
+      "contentWidth": 1192,
+      "contentHeight": 502,
+      "source": "originals/18-swarm_gate-peek_shoot.png",
+      "sourceRect": {
+        "x": 36,
+        "y": 707,
+        "width": 1192,
+        "height": 502
+      },
+      "padding": 24,
+      "sha256": "3bb01960723cc36f56100d6709949cbc7c1031db8ee899f6663c64b678c79116",
+      "upscaled": false,
+      "atlas": {
+        "file": "atlases/games-03.png",
+        "path": "/assets/game-logos-v1/atlases/games-03.png",
+        "x": 5652,
+        "y": 2605,
+        "width": 1240,
+        "height": 550,
+        "cell": {
+          "x": 5376,
+          "y": 2304,
+          "width": 1792,
+          "height": 1152
+        }
+      },
+      "masterAtlas": {
+        "file": "atlases/master-atlas36.png",
+        "path": "/assets/game-logos-v1/atlases/master-atlas36.png",
+        "x": 9236,
+        "y": 6061,
+        "width": 1240,
+        "height": 550
+      }
+    }
+  ]
+}

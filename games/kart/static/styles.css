@@ -50,7 +50,7 @@ h1,h2,h3,.race-status,.playerName,.mTitle,.announcement b{font-family:inherit;fo
 
 .host-shell{gap:20px;padding:20px}.game-stage{background:#0e0e12;border-radius:32px;border:1px solid #ffffff14}.brand-block{display:none}.side-panel{gap:14px}.card{padding:20px}.top-hud{border-radius:24px;padding:18px 22px}.race-status{font-size:32px}.bottom-hint{display:none}.leader-name strong{font-size:16px}.leader-name span,.leader-meta span{font-size:12px}.leader-meta strong{font-size:16px}.leader-row{padding:14px 8px}.btn{font-size:14px;min-height:50px;border-radius:16px}.phone-hud,.status-strip,.phone-footer{background:#19191e99;border:1px solid #ffffff14;backdrop-filter:blur(20px);border-radius:20px}.phone-hud{padding:16px 12px}.phone-stat strong{font-style:italic;font-weight:800;font-size:26px}.status-strip{font-weight:700;color:#b4ff39;padding:14px}.slider-card{background:#28282dcc;border:1px solid #ffffff1a;border-radius:26px;padding:22px 16px}.steer-slider::-webkit-slider-thumb{background:#b4ff39;box-shadow:0 0 30px #b4ff3933}.gas-btn{background:#28282dcc;border:1px solid #ffffff18;color:#b4ff39;border-radius:28px;box-shadow:0 16px 40px #0003}.gas-btn:active,.gas-btn.pressed{background:#b4ff39;color:#0a0a0c;box-shadow:0 0 32px #b4ff3940}.phone-footer{padding:16px 12px}.phone-footer strong{font-size:18px}.control-label{margin-bottom:14px}.party-managed .join-card,.party-managed .top-hud .eyebrow{display:none}.party-managed .top-hud{justify-content:space-between}.winner-banner{background:#19191eee;border:1px solid #b4ff3944;color:#b4ff39;font-style:italic;font-weight:800;text-transform:uppercase;backdrop-filter:blur(24px);animation:lp-enter 350ms ease-out}
 
-@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik.ttf') format('truetype');font-weight:300 900;font-style:normal;font-display:swap}@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:300 900;font-style:italic;font-display:swap}
+
 
 body.controller-page,body.host-page{background:radial-gradient(ellipse at 80% 0%,#b4ff3910,transparent 50%),#0a0a0c}.phone-screen{font-weight:400}.phone-stat span,.phone-footer{font-weight:400}.slider-card p{font-size:14px;font-weight:400}
 .controls-area.race-ended,#controlsArea.race-ended{opacity:.38;filter:saturate(.3)}
@@ -68,3 +68,144 @@ body.controller-page,body.host-page{background:radial-gradient(ellipse at 80% 0%
 html.party-managed.party-player .controller-page #gasBtn{height:100%!important;min-height:150px!important;flex:1}
 .controller-page .slider-card label,.controller-page .slider-marks{font-size:11px;line-height:1.35;white-space:normal}
 @media(max-height:600px){.steer-touchpad{height:85px}html.party-managed.party-player .controller-page #gasBtn{min-height:120px!important}}
+
+/* Gameplay audit: keep the field and ranking on the same outer frame;
+   the entire 16:9 track remains contained inside that frame. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .host-shell{grid-template-columns:minmax(0,1fr) clamp(300px,29vw,510px)!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .game-stage{width:100%!important;height:100%!important;aspect-ratio:auto!important;align-self:stretch!important;max-height:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .side-panel{overflow:hidden}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .controls-card{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-card{display:flex;flex-direction:column;margin:0;height:100%;min-height:0}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leaderboard{flex:1;min-height:0;max-height:none;scrollbar-width:none;overflow-anchor:none}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leaderboard::-webkit-scrollbar{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-row{gap:10px;grid-template-columns:28px 9px minmax(0,1fr) auto}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name strong{font-family:var(--hp-font-name,KardiaFit,system-ui)!important;font-weight:550!important;font-style:normal!important;text-transform:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page :is(.leader-pos,.leader-meta strong){font-family:var(--hp-font-action,KardiaFatRunner,system-ui)!important;font-weight:900!important;font-style:italic!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-card>.row{flex-wrap:wrap;justify-content:center;text-align:center;gap:8px}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-card>.row .tiny{width:100%;margin:0}
+/* Lap/place are core race feedback, also on a short controller. */
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-hud{display:grid!important;grid-template-columns:1fr 1fr;padding:8px!important;gap:8px!important;min-height:48px}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat{flex-direction:row;justify-content:center;gap:6px;padding:0;border:0;background:none!important;min-width:0}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat span{font-size:12px;letter-spacing:0}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat strong{font-family:var(--hp-font-action,KardiaFatRunner,system-ui)!important;font-size:22px!important;line-height:1.1;font-style:italic!important;font-weight:900!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen{height:100dvh;min-height:0;grid-template-rows:auto auto minmax(0,1fr) auto;overflow:hidden}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-footer>div{display:flex;align-items:center;gap:6px}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-footer>div:first-child{display:none!important}
+
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-row{grid-template-columns:28px 9px minmax(0,1fr);column-gap:10px;row-gap:4px}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-pos{grid-column:1;grid-row:1/3}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-dot{grid-column:2;grid-row:1}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name{grid-column:3;grid-row:1}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-meta{grid-column:3;grid-row:2;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left}
+
+/* Fill the frame uniformly; the small overscan trims scenery outside the circuit. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page #gameCanvas{object-fit:cover!important;object-position:center}
+
+/* Codex UI: stable racing telemetry sits above the driver's hands. */
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen{grid-template-rows:auto auto auto minmax(0,1fr)!important;gap:12px!important;padding:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-hud{width:100%!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;padding:10px 8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat{flex-direction:column!important;gap:6px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat strong{font-size:26px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-footer{position:static!important;inset:auto!important;display:flex!important;justify-content:center;align-items:center;gap:12px;min-height:52px;padding:10px 12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-footer strong{font:italic 900 28px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #controlsArea{gap:12px!important;grid-template-rows:minmax(72px,1fr) minmax(72px,1fr)!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #gasBtn{width:100%;height:100%;font-size:24px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #gasBtn .gas-arrow{width:30px;height:30px;display:inline-block;background:currentColor;mask:url('/assets/icons/game-pack/rocket.svg') center/contain no-repeat;-webkit-mask:url('/assets/icons/game-pack/rocket.svg') center/contain no-repeat}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-row{grid-template-columns:36px 12px minmax(0,1fr)!important;gap:6px 12px!important;padding:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name strong{font-size:clamp(16px,1.2vw,22px)!important;line-height:1.2!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-meta{display:grid!important;grid-template-columns:1fr auto!important;gap:8px!important;align-items:baseline}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-pos{font-size:26px!important}
+
+/* Group05: readable racing columns and stable hands. The full circuit stays contained. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .host-shell{grid-template-columns:minmax(0,1fr) 360px!important;gap:16px!important;padding:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-card{height:auto!important;padding:12px!important;background:none!important;border:0!important;box-shadow:none!important;gap:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leaderboard{display:flex;flex-direction:column;gap:8px}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-row{grid-template-columns:42px 48px minmax(0,1fr) 86px!important;grid-template-rows:auto!important;gap:12px!important;padding:12px!important;min-height:90px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-pos{grid-column:1!important;grid-row:1!important;font-size:28px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-dot{grid-column:2!important;grid-row:1!important;display:grid;place-items:center;width:48px!important;height:56px!important;border-radius:0!important;background:none!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-dot img{width:100%;height:100%;object-fit:contain}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-dot img.kart-photo{object-fit:cover;border-radius:50%;width:48px;height:48px}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name{grid-column:3!important;grid-row:1!important;min-width:0}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name strong{font-size:18px!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name>span{display:block!important;font:italic 400 13px/1.2 KardiaFitRunner,sans-serif!important;color:#c9bcdd;margin-top:6px}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-meta{grid-column:4!important;grid-row:1!important;display:flex!important;flex-direction:column;align-items:flex-end!important;justify-content:center;gap:6px!important;text-align:right!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-meta strong{font:italic 400 18px/1.1 KardiaFitRunner,sans-serif!important;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-meta span{font:italic 400 12px/1.2 KardiaFitRunner,sans-serif!important;color:#c9bcdd;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page #gameCanvas{object-fit:contain!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important;background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:0!important;gap:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat{background:none!important;border:0!important;box-shadow:none!important;padding:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .status-strip{background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:4px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-footer{background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:8px 52px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-footer strong{font:italic 400 30px/1 KardiaFitRunner,sans-serif!important;white-space:nowrap}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #controlsArea{width:100%;gap:16px!important;grid-template-rows:minmax(80px,1fr) minmax(100px,1.15fr)!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .steer-buttons{width:100%;padding:0!important;gap:12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #steerValue{text-align:center;font:italic 400 14px/1.1 KardiaFitRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #gasBtn{width:100%!important;margin:0!important}
+@media(max-height:450px){html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen{gap:8px!important;padding:8px 16px!important}html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #controlsArea{gap:12px!important}}
+
+
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .side-panel{padding-top:calc(var(--party-stage-inset-top,0px) + 8px)!important;overflow:hidden!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-card>.row{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-row{grid-template-columns:40px 44px minmax(0,1fr) 76px!important;grid-template-rows:auto auto!important;gap:6px 10px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-pos,html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-dot{grid-row:1/3!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name{display:contents!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name strong{grid-column:3/5!important;grid-row:1!important;font-size:18px!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-name>span{grid-column:3!important;grid-row:2!important;margin-top:0!important;font-size:13px!important;align-self:start}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .leader-meta{grid-column:4!important;grid-row:2!important;gap:4px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page .game-stage{border:0!important;box-shadow:none!important;border-radius:0!important;background:#153c39!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-footer{position:relative!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .steering-zone{padding:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .slider-card{padding:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #wheelPad{margin:0!important;width:100%!important}
+
+
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page #gameCanvas{object-fit:fill!important}
+
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #steerValue{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #gasBtn:is(.active,:active),html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #gasBtn:is(.active,:active)>span{color:#101014!important}
+
+/* Short native frames keep both swapped control rows above the shared footer. */
+@media(max-height:450px){
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen #controlsArea{grid-template-rows:repeat(2,minmax(72px,1fr))!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen :is(#gasBtn,.steer-buttons,.steer-buttons button){min-height:72px!important}
+}
+
+/* Hold feedback changes fill and ink together, including the first release frame. */
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen :is(#gasBtn,.steer-buttons button){transition:transform 120ms ease-out,filter 120ms ease-out,border-color 180ms ease-out,box-shadow 180ms ease-out!important}
+@media(prefers-reduced-motion:reduce){html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen :is(#gasBtn,.steer-buttons button){transition:none!important}}
+
+/* The race and pit-board occupy separate cells; the measured rail cap owns its slot. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell{display:grid!important;grid-template-columns:minmax(0,1fr) clamp(300px,23vw,420px) 16px!important;grid-template-rows:minmax(0,1fr)!important;--kart-composition-height:min(calc(100dvh - 32px),max(600px,calc((100vw - clamp(300px,23vw,420px)) * .5625)));height:var(--kart-composition-height)!important;min-height:0!important;gap:0!important;padding:0!important;background:transparent!important;margin-block:auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell>.game-stage{grid-column:1;grid-row:1;min-width:0!important;width:100%!important;height:100%!important;max-height:none!important;aspect-ratio:auto!important;align-self:stretch!important;justify-self:stretch!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell #gameCanvas{inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell>.side-panel{grid-column:2;grid-row:1;height:auto;max-height:100%;align-self:center!important;min-height:0!important;padding:calc(var(--party-hud-height,104px) + 16px) 16px 16px!important;overflow:hidden!important;gap:0!important;background:transparent!important;position:relative;border-left:1px solid transparent}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell>.side-panel::before{content:none}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leader-card{padding:0!important;gap:0!important;flex:0 1 auto;min-height:0;max-height:calc(var(--kart-composition-height) - var(--party-hud-height,104px) - 32px);overflow:hidden}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard{margin:0;gap:10px!important;overflow:auto;max-height:calc(var(--kart-composition-height) - var(--party-hud-height,104px) - 32px)}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leader-row{background:linear-gradient(150deg,#28524e,#173544 68%,#142b40)!important;border:1px solid #a5ddcf3d!important;border-radius:14px!important;box-shadow:none!important;min-height:92px!important}
+@media(min-width:1600px){html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leader-row{min-height:116px!important;padding:16px!important}html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leader-name strong{font-size:20px!important}}
+
+/* Small crews show every complete card; larger crews retain their original scroller. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5))){gap:8px!important;overflow:visible!important;mask:none!important;-webkit-mask:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5)))>.leader-row{min-height:clamp(84px,9vh,112px)!important;padding:clamp(6px,1vh,10px) 8px!important;grid-template-columns:32px 36px minmax(0,1fr) clamp(78px,5.7vw,104px)!important;gap:4px 8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5))) .leader-dot{width:36px!important;height:42px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5))) .leader-dot img.kart-photo{width:36px!important;height:36px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5))) .leader-name strong{font-size:clamp(16px,1.1vw,20px)!important;line-height:1.15!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5))) .leader-meta{gap:2px!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell .leaderboard:has(>.leader-row):not(:has(>.leader-row:nth-child(5))) .leader-meta strong{font-size:clamp(16px,1.1vw,20px)!important}
+
+/* The whole track and pit rail share a centered frame. The rail top stays stable. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page{display:flex!important;align-items:center!important;min-height:100dvh!important}
+#kartScenery{display:none;pointer-events:none}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page>#kartScenery{display:block!important;position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;border:0!important;border-radius:0!important;z-index:0!important}
+/* The road-toned wash belongs to the full scene, independent of the centered crew. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page::after{content:''!important;position:fixed!important;inset:0 0 0 auto!important;width:calc(clamp(300px,23vw,420px) + 48px)!important;height:100dvh!important;background:linear-gradient(90deg,#17445600,#174456b8 30%,#19354bea 72%,#142b43f2)!important;border:0!important;border-radius:0!important;box-shadow:none!important;pointer-events:none!important;z-index:2!important}
+/* One wash crosses the stage edge above its paint, while information stays above the wash. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page>main.host-shell{position:relative!important;z-index:auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page>main.host-shell>.game-stage{z-index:1!important}
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page>main.host-shell>.side-panel{z-index:3!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat>.hp-stat-label{font:400 clamp(15px,4.2vw,18px)/1.25 KardiaFit,sans-serif!important;letter-spacing:0!important;color:#e0d6f0!important;text-transform:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page #driveScreen .phone-stat>[data-hp-glyph]::before{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;max-width:24px!important;max-height:24px!important;margin-inline-end:7px!important;vertical-align:-5px!important}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.leader-dot img.kart-photo{box-sizing:border-box;border:1.5px solid var(--player,#8ebba6)}

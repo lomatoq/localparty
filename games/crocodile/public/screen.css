@@ -30,5 +30,103 @@ html:has(.party-screen),body.party-screen{background:#0a0a0c!important;color:#ff
 @media(max-width:360px){.party-screen .screen-podium strong{font-size:22px!important;letter-spacing:-.04em}.party-screen .screen-podium h3{font-size:14px!important}.party-screen .screen-podium article{padding:20px 5px}}
 
 /* The final approved type treatment applies to every interface label and control. */
-body.party-screen,body.party-screen *{font-family:Rubik,PartyRubik,system-ui,sans-serif!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important}
+
 .party-screen label,.party-screen p,.party-screen button,.party-screen select,.party-screen .person{overflow-wrap:anywhere}.party-screen .person{min-width:0}.party-screen .person strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.party-screen .person small{line-height:1.3}.party-screen select{max-width:100%}
+
+/* TV content roles: readable identities and copy beside expressive headings. */
+html.hp-ui:is(.party-host,.party-player) body.party-screen{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;text-transform:none!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(p,small,label,summary,input,select,.muted,.sub,.subtitle,#status,#turnStats,#messages,.person small,.scoreFooter,.explanation){font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(h1,h2,h3,.boardTitle,.answer,.answer .text,.answer .letter,.eyebrow){font-family:var(--hp-font-display)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(.person strong,.scoreTop b,.activeBanner b,.finalItem>b,.screen-podium h3){font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(.rank,.points,.money,#timer,.screen-podium strong,.finalItem>span){font-family:var(--hp-font-numeric)!important;font-style:normal!important;font-weight:650!important;text-transform:none!important;letter-spacing:-.025em!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen .person small{font-size:13px!important;line-height:1.4!important}
+html.hp-ui.party-host body.party-screen :is(.panel,.stage,.questionWrap,.screen-standings){border-radius:24px}
+html.hp-ui.party-host body.screen-managed main>details{display:none!important}
+
+html.hp-ui.party-host body.party-screen[data-game-phase=turn] #actor{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;font-size:clamp(26px,2.5vw,36px)!important;line-height:1.2!important}
+
+html.hp-ui.party-player body.party-screen :is(button,.phoneAnswer,.answer){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important}
+html.hp-ui.party-player body.party-screen :is(#guess,#name,textarea){font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;text-transform:none!important}
+
+/* Codex UI: rankings to the left, task to the right, with a shared top baseline. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main>.screen-workspace{grid-template-columns:clamp(300px,28vw,460px) minmax(0,1fr)!important;gap:24px!important;align-items:stretch!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main>.screen-workspace>.screen-sidebar{grid-column:1!important;grid-row:1!important;min-width:0!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main>.screen-workspace>.stage{grid-column:2!important;grid-row:1!important;justify-content:flex-start!important;padding:24px!important;gap:16px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings{padding:20px!important;width:100%!important;min-width:0;overflow:hidden}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .row{grid-template-columns:32px minmax(0,1fr) auto!important;gap:12px!important;padding:12px!important;min-width:0}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .person{min-width:0!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .person strong{font:500 clamp(16px,1.2vw,22px)/1.2 KardiaFit,sans-serif!important;text-transform:none!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .points{font:italic 900 clamp(24px,2vw,32px)/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player body.party-screen main .stage{gap:12px!important}
+
+/* Charades places the actual performer on an open stage beside a compact troupe. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace{grid-template-columns:clamp(300px,24vw,390px) minmax(0,1fr)!important;gap:32px!important;align-items:center!important;padding-top:calc(var(--party-stage-inset-top,0px) + 24px)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.screen-sidebar{height:auto!important;max-height:100%;align-self:center!important;overflow:auto!important;scrollbar-width:none}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.stage{align-self:center!important;min-height:0!important;display:flex;flex-direction:column;align-items:center;justify-content:center!important;gap:20px!important;padding:32px!important;border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;text-align:center}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings{flex:none!important;height:auto!important;max-height:100%;padding:20px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #board .row{height:68px!important;border-radius:18px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #board .person strong{white-space:nowrap!important;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen .stage>:is(.eyebrow,.timebar){display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{display:block;width:clamp(140px,12vw,230px);height:clamp(140px,12vw,230px);object-fit:contain;flex:none}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait.has-photo{border-radius:50%;object-fit:cover}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actor{margin:0!important;background:none!important;padding:0!important;min-height:0!important;font:500 clamp(28px,2.5vw,42px)/1.2 var(--hp-font-body)!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #status{max-width:42ch;margin:0!important;font:italic 400 clamp(18px,1.6vw,26px)/1.4 var(--hp-font-copy)!important;color:#e2d2f0!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #turnStats{margin:0!important;border:0!important;background:transparent!important;padding:0!important;font:italic 400 clamp(16px,1.25vw,21px)/1.4 var(--hp-font-copy)!important;color:#cfff85}
+html.hp-ui.party-managed.party-player[data-party-game=crocodile] body.party-screen #actorPortrait{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=crocodile] body.party-screen main .stage{border:0!important;background:transparent!important;box-shadow:none!important;padding-inline:12px!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=crocodile] body.party-screen main #secretPanel{border-radius:24px!important;min-height:100px!important}
+
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.stage{outline:none!important;background-color:transparent!important;background-image:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #board .person small{font-size:12px!important;line-height:1.15!important;margin-top:3px!important}
+
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings #board .row{grid-template-columns:32px 36px minmax(0,1fr) auto!important;gap:8px!important;padding:6px 10px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings #board .person strong{font:500 16px/1.1 var(--hp-font-body)!important;white-space:normal!important;overflow:visible!important;text-overflow:clip;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #board .person small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.social-roster-avatar{display:grid;place-items:center;width:36px;height:40px;flex:none;font:500 20px var(--hp-font-body)}
+.social-roster-avatar img{width:100%;height:100%;object-fit:contain}
+
+/* The performer leads the open stage without consuming the roster. */
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{width:clamp(180px,16vw,300px);height:clamp(180px,16vw,300px)}
+.social-roster-avatar.has-photo img{border-radius:50%;object-fit:cover}
+.social-roster-avatar.offline{opacity:.5}
+
+/* Composition 2026-10-03: actor, turn and troupe share one theatre scene. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main:has(>.screen-workspace){height:100dvh!important;max-width:none!important;display:flex!important;align-items:center;justify-content:center;padding:24px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace{width:min(1160px,100%)!important;height:auto!important;max-height:100%;grid-template-columns:clamp(290px,23vw,340px) minmax(0,1fr)!important;grid-template-rows:auto!important;gap:32px!important;padding:calc(var(--party-hud-height,88px) + 16px) 0 0!important;align-items:center!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.stage{height:auto!important;padding:0!important;gap:16px!important;overflow:visible!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{width:clamp(120px,9.6vw,184px)!important;height:clamp(120px,9.6vw,184px)!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actor{font-size:clamp(26px,1.9vw,36px)!important;max-width:100%}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #status{font-size:clamp(18px,1.2vw,22px)!important;max-width:44ch!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #turnStats{font-size:clamp(16px,1vw,20px)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings{background:linear-gradient(150deg,#263d36,#172d25)!important;border-color:#a9cfb254!important;color:#f6f2ff!important;box-shadow:inset 0 1px #a9cfb220!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings.hp-info-card{background-image:linear-gradient(150deg,#263d36,#172d25)!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.screen-sidebar{max-height:calc(100dvh - var(--party-hud-height,88px) - 64px)!important;overflow:auto!important}
+/* Pass1 correction: troupe names get a useful column, with the performer nearby. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace{width:min(1060px,100%)!important;grid-template-columns:360px minmax(0,1fr)!important;gap:24px!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #board .row{height:auto!important;min-height:68px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings:has(>#board){background-color:#172d25!important;background-image:linear-gradient(150deg,#263d36,#172d25)!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important;border-color:#a9cfb254!important}
+/* B task-header ownership: performer, identity and turn follow their own header. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace{padding-top:0!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.stage{padding:calc(var(--party-hud-height,64px) + 16px) 0 0!important}
+
+/* Troupe panel shares the complete task column's top and bottom edges. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace{align-items:stretch!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.screen-sidebar{height:auto!important;max-height:none!important;align-self:stretch!important;overflow:hidden!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.stage{align-self:stretch!important;padding-top:calc(var(--party-hud-height,64px) + 12px)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-sidebar>.screen-standings:has(>#board){height:100%!important;min-height:0!important;box-sizing:border-box;display:flex;flex-direction:column;flex:1 1 auto!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings #board{min-height:0;overflow:auto;overscroll-behavior:contain}
+
+/* Performer, troupe rows and spacing grow as one bounded theatre composition. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace{width:min(1431px,100%)!important;height:min(713px,calc(100dvh - 72px))!important;grid-template-columns:min(34%,486px) minmax(0,1fr)!important;gap:32px!important;grid-template-rows:minmax(0,1fr)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen main>.screen-workspace>.stage{gap:22px!important;justify-content:center!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #actorPortrait{width:clamp(162px,12.96vw,248px)!important;height:clamp(162px,12.96vw,248px)!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen[data-game-phase=turn] #actor{font-size:clamp(35px,2.565vw,49px)!important;line-height:1.2!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #status{font-size:clamp(24px,1.62vw,30px)!important}
+html.hp-ui.party-managed.party-host[data-party-game=crocodile] body.party-screen #turnStats{font-size:clamp(22px,1.35vw,27px)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings{padding:27px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings .boardTitle{font-size:clamp(24px,1.5vw,30px)!important;margin-bottom:22px}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=crocodile] body.party-screen .screen-standings #board{flex:1 1 0!important;height:auto!important;zoom:1.35}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.social-roster-avatar.has-photo{height:36px;aspect-ratio:1}
+.social-roster-avatar.has-photo img,#actorPortrait.has-photo{height:auto!important;aspect-ratio:1;border-radius:50%;object-fit:cover;box-sizing:border-box;border:1.5px solid var(--player,#b2cb8d)}

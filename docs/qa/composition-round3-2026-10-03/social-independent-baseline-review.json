@@ -1,0 +1,277 @@
+{
+  "reviewedAt": "2026-10-03T13:53:50.736Z",
+  "status": "superseded baseline; latest user new artwork direction requires fresh final packet",
+  "method": "Individually opened22 actual normal-clock TV gameplay original PNGs. Read-only visual review; no source edits, no browser launched, no physical-device claim.",
+  "captureReport": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/report.json",
+  "captureFinishedAt": "2026-10-03T13:46:12.554Z",
+  "changedFiles": [],
+  "errors": [
+    {
+      "surface": "tv",
+      "game": "mines",
+      "error": "ResizeObserver loop completed with undelivered notifications.",
+      "stack": "",
+      "capturedAt": "2026-10-03T13:45:35.235Z"
+    }
+  ],
+  "images": [
+    {
+      "game": "drawguess",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/drawguess-tv-live-1280.png",
+      "sha256": "381c350f6ac0b94e2f58da2b57b2538f61d9cddfcf384ee57c5183370a4371b7",
+      "openedIndividually": true,
+      "note": "Actual canvas and full sidebar share top/bottom at both sizes. Guesses larger; score list has individual cards and continuation fade, no outer backing or native scrollbar. Header logo and pencil cuff clear of stats. Root also independently reviews this owned source."
+    },
+    {
+      "game": "drawguess",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/drawguess-tv-live-1920.png",
+      "sha256": "93c283fac84e1725dc74b68a6c313c6f22c8db41929ae6ab4a614db59963f2a9",
+      "openedIndividually": true,
+      "note": "Actual canvas and full sidebar share top/bottom at both sizes. Guesses larger; score list has individual cards and continuation fade, no outer backing or native scrollbar. Header logo and pencil cuff clear of stats. Root also independently reviews this owned source."
+    },
+    {
+      "game": "carryball",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/carryball-tv-live-1280.png",
+      "sha256": "c46d62802ba21d1c2884665c649ffcf9ab932926b35f50e5245ffe8f462322dc",
+      "openedIndividually": true,
+      "note": "Whole grass field and both goals visible. Cap and football cuff do not intersect stats or player labels. Normal player proximity is engine state."
+    },
+    {
+      "game": "carryball",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/carryball-tv-live-1920.png",
+      "sha256": "d47d2184a2154c2e494c966bf5bee55ceb98c3f6edfeb1557845cf47d81484d4",
+      "openedIndividually": true,
+      "note": "Whole grass field and both goals visible. Cap and football cuff do not intersect stats or player labels. Normal player proximity is engine state."
+    },
+    {
+      "game": "marble_bloom",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/marble_bloom-tv-live-1280.png",
+      "sha256": "869380b7e3b5ebd5f188dea30ac159f7db936ce999b490612f8a21ef0be58013",
+      "openedIndividually": true,
+      "note": "Whole curved track and three bottom score cards visible. Cap/logo/paired marble cuff fit above track without stat collision."
+    },
+    {
+      "game": "marble_bloom",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/marble_bloom-tv-live-1920.png",
+      "sha256": "bf9fe27e093536e3fd59165a250d07b5a489a930a7770ae44e7ba1ec93cf20b9",
+      "openedIndividually": true,
+      "note": "Whole curved track and three bottom score cards visible. Cap/logo/paired marble cuff fit above track without stat collision."
+    },
+    {
+      "game": "pocket_siege",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/pocket_siege-tv-live-1280.png",
+      "sha256": "62b4a350576c9e90be13e09dd349b865f359f7b37c30ea8eef35c5f772a4a8ac",
+      "openedIndividually": true,
+      "note": "Terrain and all four tanks visible. Header separates turn/wind/points; cuff clears digits. Existing weapon and roster structures preserved."
+    },
+    {
+      "game": "pocket_siege",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/pocket_siege-tv-live-1920.png",
+      "sha256": "f48073895d5a83cc613cf9c1c4a74644f6c03097c0c30610623dd4046ea468bf",
+      "openedIndividually": true,
+      "note": "Terrain and all four tanks visible. Header separates turn/wind/points; cuff clears digits. Existing weapon and roster structures preserved."
+    },
+    {
+      "game": "poker",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/poker-tv-live-1280.png",
+      "sha256": "7bbbb659a0270d5e761496ecbb6d119e251e4537cfbfef02987f068b2f211077",
+      "openedIndividually": true,
+      "note": "Authored purple table and room retained; no extra felt overlay. Seats and cards fit; chip cuff touches header edge clear of current-bet ink."
+    },
+    {
+      "game": "poker",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/poker-tv-live-1920.png",
+      "sha256": "cafad950253444416a9895390c1b2ce1606a354d0a07649e9e5b813215e1df76",
+      "openedIndividually": true,
+      "note": "Authored purple table and room retained; no extra felt overlay. Seats and cards fit; chip cuff touches header edge clear of current-bet ink."
+    },
+    {
+      "game": "airhockey",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/airhockey-tv-live-1280.png",
+      "sha256": "3a5b8b3abb8ce3ff495895afeb0e20ffa1d5dae803e388e51e6ffd3df17e60ff",
+      "openedIndividually": true,
+      "note": "Whole rink and both goals fit with cap above. No extra dark rectangle around field; last-touch callouts remain inside corners. Puck cuff clears timer."
+    },
+    {
+      "game": "airhockey",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/airhockey-tv-live-1920.png",
+      "sha256": "073b8795f2e5d914b8846a3d95806cbb84b0e2a4892bb900923ab37a25b33c58",
+      "openedIndividually": true,
+      "note": "Whole rink and both goals fit with cap above. No extra dark rectangle around field; last-touch callouts remain inside corners. Puck cuff clears timer."
+    },
+    {
+      "game": "mines",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/mines-tv-live-1280.png",
+      "sha256": "3d2fbefc18c91b2b938dc951903e6ac1e946f91d5c81cd7672e9d89aa9c30da3",
+      "openedIndividually": true,
+      "note": "Board and roster whole; tied second ranks retained; long name wraps. Micro flag extends into first board tile at1920, approximatelyx626–640/y285–327. At1280 tip reaches tile rim by about2px. Packet also records ResizeObserver loop notification warning."
+    },
+    {
+      "game": "mines",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/mines-tv-live-1920.png",
+      "sha256": "8401ad9ad64576c9c845df1a0dd561df986cb374bb69874b30dfd455db957d06",
+      "openedIndividually": true,
+      "note": "Board and roster whole; tied second ranks retained; long name wraps. Micro flag extends into first board tile at1920, approximatelyx626–640/y285–327. At1280 tip reaches tile rim by about2px. Packet also records ResizeObserver loop notification warning."
+    },
+    {
+      "game": "curling",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/curling-tv-live-1280.png",
+      "sha256": "e24d61900e73aa3bf671ad8e06c694c458b5b83777b11e0addf94b6c9077bcbf",
+      "openedIndividually": true,
+      "note": "Full perspective ice scene, target, throw stone and bottom five-player rail remain visible. Cap separates phase/team/end metrics; stone cuff clear of stats."
+    },
+    {
+      "game": "curling",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/curling-tv-live-1920.png",
+      "sha256": "fa187099a05731f1574f98ff8ae4ae99f1bd0cb546aaa3e805035669acb15f1e",
+      "openedIndividually": true,
+      "note": "Full perspective ice scene, target, throw stone and bottom five-player rail remain visible. Cap separates phase/team/end metrics; stone cuff clear of stats."
+    },
+    {
+      "game": "bowling",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/bowling-tv-live-1280.png",
+      "sha256": "dc9298ec3537d5a235d284ae5192024b6af652df900b9da52e325d17e716a2b2",
+      "openedIndividually": true,
+      "note": "Whole active lane, pins, ball and bottom four-player rail visible. Header readable; pin cuff clear of time/frame."
+    },
+    {
+      "game": "bowling",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/bowling-tv-live-1920.png",
+      "sha256": "797e30b95dcef99cd34b5cfe092d6d75276ef80bf8526dc1032a772e217a74fc",
+      "openedIndividually": true,
+      "note": "Whole active lane, pins, ball and bottom four-player rail visible. Header readable; pin cuff clear of time/frame."
+    },
+    {
+      "game": "swarm_gate",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/swarm_gate-tv-live-1280.png",
+      "sha256": "a3c77d2336f75897366a64840431fb6f3949991dbb69993e4cc44146550dcee6",
+      "openedIndividually": true,
+      "note": "Gate, attackers, crosshair and full bottom player row visible. Wave/gate metrics fit; hinge cuff clears gate percentage."
+    },
+    {
+      "game": "swarm_gate",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/swarm_gate-tv-live-1920.png",
+      "sha256": "b00898ac2a39d7ea1a1cca42f354e87918d81d820abf729f77a303462eef0f09",
+      "openedIndividually": true,
+      "note": "Gate, attackers, crosshair and full bottom player row visible. Wave/gate metrics fit; hinge cuff clears gate percentage."
+    },
+    {
+      "game": "peek_shoot",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/peek_shoot-tv-live-1280.png",
+      "sha256": "b3e7678f7bac5e7b137ed48ef26b44e8c7e9f4f29326f9055c7aa91092840d1e",
+      "openedIndividually": true,
+      "note": "All three target rows and bottom four-player rail visible. Temporary machine-gun announcement remains below cap; target cuff clears streak and time."
+    },
+    {
+      "game": "peek_shoot",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-micro/peek_shoot-tv-live-1920.png",
+      "sha256": "fba6413074cc6c12a187a8856b794b29e527b754bf148757ce0f042c7cfc7a4a",
+      "openedIndividually": true,
+      "note": "All three target rows and bottom four-player rail visible. Temporary machine-gun announcement remains below cap; target cuff clears streak and time."
+    }
+  ],
+  "blockers": [
+    {
+      "game": "mines",
+      "kind": "visual",
+      "note": "Board and roster whole; tied second ranks retained; long name wraps. Micro flag extends into first board tile at1920, approximatelyx626–640/y285–327. At1280 tip reaches tile rim by about2px. Packet also records ResizeObserver loop notification warning."
+    },
+    {
+      "game": "bow_club",
+      "kind": "evidence",
+      "note": "Both live TV originals absent: captures empty; frame.waitForFunction timed out. Root acknowledges known fixture and will replace in next round."
+    }
+  ],
+  "missing": [
+    "bow_club-tv-live-1280.png",
+    "bow_club-tv-live-1920.png"
+  ]
+}

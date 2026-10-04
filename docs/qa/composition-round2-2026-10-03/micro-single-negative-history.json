@@ -1,0 +1,730 @@
+{
+  "status": "needs-correction",
+  "expectedRecords": 72,
+  "checkedRecords": 0,
+  "checked": [],
+  "skipped": [],
+  "findings": [
+    {
+      "game": "push",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "push",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "shrink",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "shrink",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "knives",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "knives",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "bomb",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "bomb",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "western",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "western",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "tanks",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "tanks",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "tankarena",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "tankarena",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "chaos",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "chaos",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "kart",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "kart",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "monster",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "monster",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "spy",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "spy",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "millionaire",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "millionaire",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "sinyakquiz",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "sinyakquiz",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "warsaw",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "warsaw",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "crocodile",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "crocodile",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "jenga",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "jenga",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "crane",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "crane",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "naval",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "naval",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "drawguess",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "drawguess",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "western_duel",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "western_duel",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "taprace",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "taprace",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "punchmeter",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "punchmeter",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "flappy",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "flappy",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "hungry",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "hungry",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "snakelines",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "snakelines",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "carryball",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "carryball",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "marble_bloom",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "marble_bloom",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "pocket_siege",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "pocket_siege",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "bow_club",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "bow_club",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "poker",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "poker",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "airhockey",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "airhockey",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "mines",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "mines",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "curling",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "curling",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "bowling",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "bowling",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "swarm_gate",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "swarm_gate",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "peek_shoot",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1280,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    },
+    {
+      "game": "peek_shoot",
+      "file": null,
+      "check": "incomplete-36-by-2-live-evidence",
+      "details": {
+        "width": 1920,
+        "eligibleRecords": 0,
+        "expected": 1
+      }
+    }
+  ],
+  "scope": "Fresh actual TV canvas alpha/pixel bounds, authored game/pack/cell, visible UI size, cap identity/contact/gutter and protected ink. No phone or state injection. Geometry/pixels do not replace independent original-image aesthetic review."
+}

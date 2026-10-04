@@ -1,0 +1,930 @@
+{
+  "updatedAt": "2026-10-03T17:23:18.007Z",
+  "status": "initial-batch-reviewed-fixes-pending",
+  "independentOriginals": [
+    {
+      "id": "tv-selected-lobby-1280",
+      "file": "tv-selected-lobby-1280.png",
+      "surface": "tv",
+      "capturedAt": "2026-10-03T17:19:29.521Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "actualPhase": "lobby",
+      "paused": false,
+      "sha256": "d58d5a223d219c2abbbaaa56439c3b110385af88c01d1a588fa697c394bbb996",
+      "geometry": {
+        "play": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "waiting": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/tv-selected-lobby-1280.png",
+      "independentlyOpened": true,
+      "observation": "Selected game stays in catalog; no live cap or field shown."
+    },
+    {
+      "id": "tv-matchmaking-1280",
+      "file": "tv-matchmaking-1280.png",
+      "surface": "tv",
+      "capturedAt": "2026-10-03T17:19:34.441Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "actualPhase": "waiting",
+      "paused": false,
+      "sha256": "4039ce844abc6058d6d440bb196715ba004ba2a5a08894047316e87d627f6a93",
+      "geometry": {
+        "play": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 1280,
+          "height": 656
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 128,
+          "width": 1280,
+          "height": 552
+        },
+        "waiting": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 128,
+          "width": 1280,
+          "height": 592
+        },
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/tv-matchmaking-1280.png",
+      "independentlyOpened": true,
+      "observation": "Confirmed defect: gameplay cap shows Round0/7/In game0 above duplicate matchmaking wordmark before readiness."
+    },
+    {
+      "id": "browser-matchmaking-402",
+      "file": "browser-matchmaking-402.png",
+      "surface": "browser",
+      "capturedAt": "2026-10-03T17:19:35.964Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "waiting",
+      "paused": false,
+      "sha256": "4a14470936405fea7eefb8836a6d0b9394dd8526e35c02040c63fe02a3fcc4b6",
+      "geometry": {
+        "play": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 402,
+          "height": 810
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "none",
+          "visibility": "hidden",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "waiting": null,
+        "waitingRules": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 402,
+          "height": 738
+        },
+        "pauseOverlay": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/browser-matchmaking-402.png",
+      "independentlyOpened": true,
+      "observation": "Dedicated readiness/rules/roster/Ready all present; controller gameplay controls withheld. Header retains waiting/round0 metadata."
+    },
+    {
+      "id": "native-active-compact-402",
+      "file": "native-active-compact-402.png",
+      "surface": "native-simulated",
+      "capturedAt": "2026-10-03T17:19:38.552Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "waiting",
+      "paused": false,
+      "sha256": "0ab9108525dd0ca374acc7202e65dc93918e15f1f198b2eeb79ea9d23272d0dc",
+      "geometry": {
+        "play": null,
+        "gameFrame": null,
+        "waiting": null,
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 15,
+          "y": 83,
+          "width": 372,
+          "height": 200
+        },
+        "activeActions": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 32,
+          "y": 166,
+          "width": 338,
+          "height": 100
+        },
+        "hostPanel": {
+          "hidden": false,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "0",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/native-active-compact-402.png",
+      "independentlyOpened": true,
+      "observation": "Settled compact deck Controller/Bots and lower Start/Back row span equal full-width columns."
+    },
+    {
+      "id": "native-active-expanded-waiting-402",
+      "file": "native-active-expanded-waiting-402.png",
+      "surface": "native-simulated",
+      "capturedAt": "2026-10-03T17:19:40.946Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "waiting",
+      "paused": false,
+      "sha256": "f4552728ec9e8a5718fe73776d7ba43726d4cbc3b85325670a460eb0213952b6",
+      "geometry": {
+        "play": null,
+        "gameFrame": null,
+        "waiting": null,
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 15,
+          "y": 83,
+          "width": 372,
+          "height": 252
+        },
+        "activeActions": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 32,
+          "y": 166,
+          "width": 338,
+          "height": 152
+        },
+        "hostPanel": {
+          "hidden": false,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "0",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/native-active-expanded-waiting-402.png",
+      "independentlyOpened": true,
+      "observation": "Fully expanded waiting deck adds whole-width settings row; lower actions remain full-width."
+    },
+    {
+      "id": "tv-playing-1280",
+      "file": "tv-playing-1280.png",
+      "surface": "tv",
+      "capturedAt": "2026-10-03T17:19:47.337Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "actualPhase": "playing",
+      "paused": false,
+      "sha256": "4b825ab4311cedc769f9306f2e38f908e83bd2a6d2777b7c90097a449ffca305",
+      "geometry": {
+        "play": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "waiting": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/tv-playing-1280.png",
+      "independentlyOpened": true,
+      "observation": "Actual two-player playing field/rail whole and waiting presentation absent."
+    },
+    {
+      "id": "browser-playing-402",
+      "file": "browser-playing-402.png",
+      "surface": "browser",
+      "capturedAt": "2026-10-03T17:19:48.901Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "playing",
+      "paused": false,
+      "sha256": "67c7d05f93e6df29d9b559b66d95505b8fcfb2defcf5355035c637c707684620",
+      "geometry": {
+        "play": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 402,
+          "height": 810
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 82,
+          "width": 402,
+          "height": 720
+        },
+        "waiting": null,
+        "waitingRules": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "pauseOverlay": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/browser-playing-402.png",
+      "independentlyOpened": true,
+      "observation": "Actual active stats/help/input visible; no leftover waiting card."
+    },
+    {
+      "id": "native-active-expanded-playing-402",
+      "file": "native-active-expanded-playing-402.png",
+      "surface": "native-simulated",
+      "capturedAt": "2026-10-03T17:19:51.156Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "playing",
+      "paused": false,
+      "sha256": "098e4527a77260bcbd9857eb8330dd3c3c25207dc0716918a3561c390d653e59",
+      "geometry": {
+        "play": null,
+        "gameFrame": null,
+        "waiting": null,
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 15,
+          "y": 83,
+          "width": 372,
+          "height": 248
+        },
+        "activeActions": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 32,
+          "y": 162,
+          "width": 338,
+          "height": 152
+        },
+        "hostPanel": {
+          "hidden": false,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "0",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/native-active-expanded-playing-402.png",
+      "independentlyOpened": true,
+      "observation": "Fully expanded playing deck coherent, Pause/Back row fills width; middleware transport simulated."
+    },
+    {
+      "id": "native-host-panel-top-402",
+      "file": "native-host-panel-top-402.png",
+      "surface": "native-simulated",
+      "capturedAt": "2026-10-03T17:19:54.310Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "playing",
+      "paused": false,
+      "sha256": "d4cf5ac8f5b791cb25b5fc50deed9dbf01a3ea990cd3616e177081cee59d966b",
+      "geometry": {
+        "play": null,
+        "gameFrame": null,
+        "waiting": null,
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 15,
+          "y": 83,
+          "width": 372,
+          "height": 248
+        },
+        "activeActions": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 32,
+          "y": 162,
+          "width": 338,
+          "height": 152
+        },
+        "hostPanel": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 12,
+          "y": 12,
+          "width": 378,
+          "height": 850
+        }
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/native-host-panel-top-402.png",
+      "independentlyOpened": true,
+      "observation": "One rounded outer surface; title/close whole; inner scroll beginning exposes director controls."
+    },
+    {
+      "id": "native-host-panel-end-402",
+      "file": "native-host-panel-end-402.png",
+      "surface": "native-simulated",
+      "capturedAt": "2026-10-03T17:19:57.133Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "playing",
+      "paused": false,
+      "sha256": "94d9d0c184746b713bdfc195ba89fe6722e0ffeebe3bce191100396104524899",
+      "geometry": {
+        "play": null,
+        "gameFrame": null,
+        "waiting": null,
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 15,
+          "y": 83,
+          "width": 372,
+          "height": 248
+        },
+        "activeActions": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 32,
+          "y": 162,
+          "width": 338,
+          "height": 152
+        },
+        "hostPanel": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 12,
+          "y": 12,
+          "width": 378,
+          "height": 850
+        }
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/native-host-panel-end-402.png",
+      "independentlyOpened": true,
+      "observation": "Header remains fixed; lower preferences/statistics contained; no rectangular inner backing visible."
+    },
+    {
+      "id": "browser-paused-402",
+      "file": "browser-paused-402.png",
+      "surface": "browser",
+      "capturedAt": "2026-10-03T17:19:59.300Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "playing",
+      "paused": true,
+      "sha256": "9ee91d5cac37f8b2635098d4aaf6748f18e834a09ffc1f66ff8c53f20b64f4af",
+      "geometry": {
+        "play": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 402,
+          "height": 810
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "hidden",
+          "opacity": "1",
+          "x": 0,
+          "y": 82,
+          "width": 402,
+          "height": 720
+        },
+        "waiting": null,
+        "waitingRules": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "pauseOverlay": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 402,
+          "height": 738
+        },
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/browser-paused-402.png",
+      "independentlyOpened": true,
+      "observation": "Actual paused panel/action/footer whole; normal gameplay input covered."
+    },
+    {
+      "id": "tv-paused-1280",
+      "file": "tv-paused-1280.png",
+      "surface": "tv",
+      "capturedAt": "2026-10-03T17:20:00.427Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "actualPhase": "playing",
+      "paused": true,
+      "sha256": "416c6d77c2c1fae6215a0f5bde0fbd2772879c69e0efceff8ef6371f6ce08ed0",
+      "geometry": {
+        "play": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "waiting": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/tv-paused-1280.png",
+      "independentlyOpened": true,
+      "observation": "Pause message whole with dimmed field and separate paused cap."
+    },
+    {
+      "id": "browser-paused-rules-402",
+      "file": "browser-paused-rules-402.png",
+      "surface": "browser",
+      "capturedAt": "2026-10-03T17:20:02.880Z",
+      "viewport": {
+        "width": 402,
+        "height": 874
+      },
+      "actualPhase": "playing",
+      "paused": true,
+      "sha256": "688591e617b9eaef83eaef0170be4848cbff3313572e0bc55c0ec31a0d5ef06f",
+      "geometry": {
+        "play": {
+          "hidden": false,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 402,
+          "height": 810
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "hidden",
+          "opacity": "1",
+          "x": 0,
+          "y": 82,
+          "width": 402,
+          "height": 720
+        },
+        "waiting": null,
+        "waitingRules": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "pauseOverlay": {
+          "hidden": false,
+          "display": "grid",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 64,
+          "width": 402,
+          "height": 738
+        },
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/browser-paused-rules-402.png",
+      "independentlyOpened": true,
+      "observation": "Outer rules/rim/actions whole, but unrelated underlying pause words bleed through reading gaps; sent browser owner for narrow opacity review."
+    },
+    {
+      "id": "tv-return-lobby-1280",
+      "file": "tv-return-lobby-1280.png",
+      "surface": "tv",
+      "capturedAt": "2026-10-03T17:20:07.009Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "actualPhase": "lobby",
+      "paused": false,
+      "sha256": "585fad7b3d288b992ff58a5929addb4fe5e7f78e6e9a73791e90e76e78ccda91",
+      "geometry": {
+        "play": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "gameFrame": {
+          "hidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "waiting": {
+          "hidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "waitingRules": null,
+        "pauseOverlay": null,
+        "activeCard": null,
+        "activeActions": null,
+        "hostPanel": null
+      },
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/tv-return-lobby-1280.png",
+      "independentlyOpened": true,
+      "observation": "After real stop, field/cap removed and original selected catalog restored."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/initial-complete/en-players-photo-402.png",
+      "sha256": "d3900fbc77bbf26df1766cb9db99a13cb2ed2dd2a032ba85c4af5197d9b6a130",
+      "independentlyOpened": true,
+      "qualification": "Owner initial original independently viewed; source window belongs to adjacent owner report, not director room."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/initial-complete/en-player-profile-402.png",
+      "sha256": "4bce73303703e350f8060f5e242bc0e4c78430649b61f2f8a4e9db4b8091d62c",
+      "independentlyOpened": true,
+      "qualification": "Owner initial original independently viewed; source window belongs to adjacent owner report, not director room."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/initial-complete/en-square-upload-decoded-402.png",
+      "sha256": "1618329ced2761d4d38b5ace300fb4bf08acb9c7ddeb600782d596541f63c316",
+      "independentlyOpened": true,
+      "qualification": "Owner initial original independently viewed; source window belongs to adjacent owner report, not director room."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/initial-complete/en-rank-scroll-end-402.png",
+      "sha256": "1b66ff71e7eec3da05be2e0c7fec2e66d356b410c76d94b75270270f3ca2201f",
+      "independentlyOpened": true,
+      "qualification": "Owner initial original independently viewed; source window belongs to adjacent owner report, not director room."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-before/push-waiting-1280.png",
+      "sha256": "f5bb44cde2c75f9caafe1e042d03b51b960b34554fd2819392610b8a8d8fcada",
+      "independentlyOpened": true,
+      "qualification": "Owner initial original independently viewed; source window belongs to adjacent owner report, not director room."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-before/naval-waiting-1920.png",
+      "sha256": "1c63bea9e731e4400776c93656d26217978470df6f701ea4e1035619d7300bbb",
+      "independentlyOpened": true,
+      "qualification": "Owner initial original independently viewed; source window belongs to adjacent owner report, not director room."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/tv-before/invite-open-1280.png",
+      "sha256": "6bcbba30b8faaee7f6c3f9e1bc469e0aa18d619c1a6051f179af8c37990db124",
+      "independentlyOpened": true,
+      "qualification": "Owner initial original independently viewed; source window belongs to adjacent owner report, not director room."
+    },
+    {
+      "id": "airhockey-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/initial-gameplay/airhockey-tv-live-1280.png",
+      "sha256": "514dbc36b25ff929ced68fe80a5a22bde22bf6bfca4363a22eba81e011b3a47c",
+      "independentlyOpened": true,
+      "observation": "Initial rink reserves header height, contrary to requested fullheight layout."
+    },
+    {
+      "id": "airhockey-tv-live-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/initial-gameplay/airhockey-tv-live-1920.png",
+      "sha256": "85ce7e7036e7e79b19ab54d7de3f5fb0bc5ea0e060c9c1720833c16784e56b85",
+      "independentlyOpened": true,
+      "observation": "Initial rink is inset below cap; whole initial field, superseded by fullheight correction."
+    },
+    {
+      "id": "bomb-tv-live-1280",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/initial-gameplay/bomb-tv-live-1280.png",
+      "sha256": "12020b9db6466867885212f56234a787b3c8de63ee1eafdf8a7aa29b42888912",
+      "independentlyOpened": true,
+      "observation": "Uploaded illustrated square fixture visible uncropped in field and rail, confirmed circular-crop repro."
+    },
+    {
+      "id": "native-players-402-middle",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/initial/native-players-402-middle.png",
+      "sha256": "a183e7f31bf87ab3852c228ee21bfec942c03bbe3456052553d275402187aee5",
+      "independentlyOpened": true,
+      "observation": "Native player list visible; no new named crop defect in this initial fixture."
+    },
+    {
+      "id": "native-rooms-320-end",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/native/initial/native-rooms-320-end.png",
+      "sha256": "6a7b2b61ad25819da1e7cb045628a065a4f21bbc6fe954d847b2961ef29f8a21",
+      "independentlyOpened": true,
+      "observation": "Catalog text leaks behind nearby room dialog lower reading/actions region."
+    }
+  ],
+  "independentRoom": {
+    "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/director-room-retry/report.json",
+    "sha256": "bc48d6caf48f0ce8c089091b4c296ea89c58e541fb57c62b8dbf1706c7bac8e7",
+    "errors": [],
+    "changedFiles": [],
+    "checks": [
+      "Closing pause rules preserves authoritative paused overlay"
+    ]
+  },
+  "excludedHarnessRuns": [
+    {
+      "report": "director-initial/report.json",
+      "reason": "Sandbox localhost listen EPERM; no screenshots, not app defect."
+    },
+    {
+      "report": "director-initial-permitted/report.json",
+      "reason": "QA shared profile between two pages reused identity; corrected separate context, no screenshots. Not app defect."
+    }
+  ],
+  "blockers": [
+    {
+      "id": "TV-WAIT-01",
+      "owner": "shared_hud",
+      "status": "confirmed-await-after",
+      "finding": "Confirmed defect: gameplay cap shows Round0/7/In game0 above duplicate matchmaking wordmark before readiness."
+    },
+    {
+      "id": "PHOTO-01",
+      "owner": "quiz_layout",
+      "status": "confirmed-await-after",
+      "finding": "Players loaded-photo wrapper rounded-square while upload preview is circular. Detail initial uses seeded mascot, cannot claim same uploaded photo persisted."
+    },
+    {
+      "id": "POPUP-GHOST-01",
+      "owner": "quiz_layout",
+      "status": "owner-review-requested",
+      "finding": "Outer rules/rim/actions whole, but unrelated underlying pause words bleed through reading gaps; sent browser owner for narrow opacity review."
+    },
+    {
+      "id": "TV-INVITE-EN-01",
+      "owner": "shared_hud",
+      "status": "confirmed-authorized-owner-fix",
+      "finding": "Dynamic occupancy caption Russian in otherwise English invite popup."
+    },
+    {
+      "id": "BOMB-PHOTO-01",
+      "owner": "arcade_layout",
+      "status": "root-reported-await-independent-original",
+      "finding": "Human uploaded photo square on Bomb canvas; freeform mascot rule preserved."
+    },
+    {
+      "id": "PODIUM-RIM-01",
+      "owner": "shared_hud",
+      "status": "user-requested-await-after",
+      "finding": "Remove upper stripe/reflection on podium surfaces."
+    },
+    {
+      "id": "HOCKEY-CAP-01",
+      "owner": "arcade_layout",
+      "status": "root-reported-await-independent-original",
+      "finding": "Fullscreen TV cap overlaps rink."
+    },
+    {
+      "id": "NATIVE-DECK-01",
+      "owner": "social_layout",
+      "status": "settled402-no-defect-middle320-pending",
+      "finding": "Actual settled compact/full rows fill width; transition and320 proof pending."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+/* Russian uses the existing Cyrillic-capable local faces; English keeps Kardia. */
+@font-face{font-family:HeyPalsRussian;src:url('/assets/fonts/Rubik.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:HeyPalsRussian;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
+/* Legacy labels and literal Cyrillic names can select Kardia directly. Only
+   Cyrillic glyphs use these aliases; Latin letters/numerals keep their faces. */
+@font-face{font-family:KardiaFit;src:url('/assets/fonts/Rubik.ttf') format('truetype');font-weight:100 900;font-style:normal;unicode-range:U+0400-052F,U+2DE0-2DFF,U+A640-A69F;font-display:swap}
+@font-face{font-family:KardiaFit;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:100 900;font-style:italic;unicode-range:U+0400-052F,U+2DE0-2DFF,U+A640-A69F;font-display:swap}
+@font-face{font-family:KardiaFitRunner;src:url('/assets/fonts/Rubik.ttf') format('truetype');font-weight:100 900;font-style:normal;unicode-range:U+0400-052F,U+2DE0-2DFF,U+A640-A69F;font-display:swap}
+@font-face{font-family:KardiaFitRunner;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:100 900;font-style:italic;unicode-range:U+0400-052F,U+2DE0-2DFF,U+A640-A69F;font-display:swap}
+@font-face{font-family:KardiaFatRunner;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:100 900;font-style:italic;unicode-range:U+0400-052F,U+2DE0-2DFF,U+A640-A69F;font-display:swap}
+
+html.hp-ui:lang(ru){--hp-font-body:HeyPalsRussian,sans-serif;--hp-font-action:HeyPalsRussian,sans-serif;--hp-font-display:HeyPalsRussian,sans-serif;--hp-font-copy:HeyPalsRussian,sans-serif;--hp-font-numeric:HeyPalsRussian,sans-serif;--hp-font-section:HeyPalsRussian,sans-serif;--hp-font-celebration:HeyPalsRussian,sans-serif}
+html.hp-ui:lang(ru) body{font-family:HeyPalsRussian,sans-serif!important}
+html.hp-ui:lang(ru) body :is(h1,h2,h3,h4,.hp-heading,.hp-game-title,.hp-state-title,button,.hp-action,.hp-action-primary,.hp-selector-label,input,textarea,select,option,.hp-copy,.hp-stat-label,.hp-player-name,.hp-number,.hp-result-name,.hp-result-value,.hp-result-score,.hp-place-digit,.hp-ranking-identity,.hp-ranking-score,.hp-ranking-digit,.hp-ranking-place,.hp-menu-counter-value,.hp-menu-counter-label,.podium-rank,.podium-points,.podium-name,#roundLabel,#roundBadge,#roundNum,#phoneRound,.round-label,.round-badge,.tv-progress-value,#hudProgress,#progress,#hudValue,#phase,#actor,#artist,#status,#secret,#revealWord,.brush-width-label,.brush-control,.tool-caption){font-family:HeyPalsRussian,sans-serif!important}
+html.hp-ui:lang(ru) body button>:is(span,b,strong):not(.hp-button-icon):not(.ui-icon):not(.hp-player-name){font-family:HeyPalsRussian,sans-serif!important}

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#11100f" />
   <title>Монстр по кругу</title>
   <link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/monster-glass.css" />
@@ -49,10 +49,10 @@
 
       <div id="toolDock" class="tool-dock">
         <div class="colors" id="colors"></div>
-        <input id="brushSize" type="range" min="3" max="42" value="11" />
-        <button id="undoBtn" class="tool-btn">↶</button>
-        <button id="clearBtn" class="tool-btn">⌫</button>
-        <button id="doneBtn" class="btn primary done-btn">Готово ✓</button>
+        <label class="brush-control" for="brushSize"><span>Толщина кисти</span><input id="brushSize" type="range" min="3" max="42" value="11" aria-label="Brush width" /></label>
+        <button id="undoBtn" class="tool-btn" aria-label="Undo last stroke"><img src="../../assets/icons/game-pack/arrow-left.svg" alt="" aria-hidden="true"><span class="tool-caption">Отменить мазок</span></button>
+        <button id="clearBtn" class="tool-btn" aria-label="Clear drawing"><img src="../../assets/icons/game-pack/cross.svg" alt="" aria-hidden="true"><span class="tool-caption">Очистить</span></button>
+        <button id="doneBtn" class="btn primary done-btn"><span>Готово</span><img src="../../assets/icons/game-pack/tick.svg" alt="" aria-hidden="true"></button>
       </div>
     </section>
 

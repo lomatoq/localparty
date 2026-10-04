@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#090d12"><title>Local Party Controller</title><link rel="stylesheet" href="controller.css"><link rel="stylesheet" href="action-glass.css"></head>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090d12"><title>Local Party Controller</title><link rel="stylesheet" href="controller.css"><link rel="stylesheet" href="action-glass.css"></head>
 <body>
   <section id="joinScreen" class="screen join-screen">
     <div class="join-card">
@@ -23,23 +23,29 @@
     <div id="waiting" class="waiting"><b>ЖДЁМ СТАРТ НА КОМПЬЮТЕРЕ</b><span>Ты уже подключён.</span></div>
 
     <main id="moveControls" class="move-controls hidden">
-      <div id="joystickZone" class="joystick-zone">
-        <div id="joystickBase" class="joystick-base"><div id="joystickKnob" class="joystick-knob"></div></div>
-        <div id="joyTip" class="joy-tip">ВЕДИ ПАЛЬЦЕМ</div>
-      </div>
       <div class="move-stats"><div><small id="moveLabelA">ПОБЕДЫ</small><b id="moveStatA">0</b></div><div><small id="moveLabelB">СТАТУС</small><b id="moveStatB">READY</b></div></div>
+      <div id="joystickZone" class="joystick-zone">
+        <div id="joyTip" class="joy-tip hp-copy">Веди пальцем</div>
+        <img id="outMascot" class="out-mascot" alt="" src="/assets/avatars/atlas-mascots/mascot-01.webp"><div id="joystickBase" class="joystick-base"><div id="joystickKnob" class="joystick-knob"></div></div>
+      </div>
+
     </main>
 
     <main id="knifeControls" class="knife-controls hidden">
-      <div id="feedback" class="feedback">ПОПАДИ В СВОЙ ЦВЕТ</div>
-      <button id="throwBtn" class="throw-btn"><span>THROW</span><small>ТАПНИ В НУЖНЫЙ МОМЕНТ</small></button>
-      <div class="knife-stats"><div><small>НОЖИ</small><b id="knivesLeft">0</b></div><div><small>РАУНД</small><b id="roundScore">0</b></div><div><small>ВСЕГО</small><b id="totalScore">0</b></div></div>
+      <div id="feedback" class="feedback" data-feedback-role="instruction">Попади в свой цвет</div>
+      <div class="knife-count"><small>НОЖИ</small><b id="knivesLeft">0</b></div>
+      <div class="knife-stats"><div><small>РАУНД</small><b id="roundScore">0</b></div><div><small>ВСЕГО</small><b id="totalScore">0</b></div></div>
+      <button id="throwBtn" class="throw-btn"><span>THROW</span><small>Тапни в нужный момент</small></button>
+      <section class="action-spectator" hidden aria-live="polite"><strong></strong><img alt="" src="/assets/avatars/atlas-mascots/mascot-01.webp"><p></p></section>
+
     </main>
 
     <main id="westernControls" class="western-controls hidden">
-      <div id="westernFeedback" class="western-feedback">СМОТРИ НА БОЛЬШОЙ ЭКРАН</div>
-      <button id="fireBtn" class="fire-btn"><span>FIRE</span><small>НЕ СТРЕЛЯЙ ДО DRAW!</small></button>
-      <div class="western-stats"><div><small>ПОБЕДЫ</small><b id="westernWins">0</b></div><div><small>ЛУЧШАЯ</small><b id="westernBest">—</b></div><div><small>ФАЛЬСТАРТЫ</small><b id="westernFalse">0</b></div></div>
+      <div id="westernFeedback" class="western-feedback" data-feedback-role="instruction">Смотри на большой экран</div>
+      <div class="western-stats"><div><small>Победы</small><b id="westernWins">0</b></div><div><small>Лучшая</small><b id="westernBest">—</b></div><div><small>Фальстарты</small><b id="westernFalse">0</b></div></div>
+      <button id="fireBtn" class="fire-btn"><span>FIRE</span><small class="hp-copy">Не стреляй до DRAW!</small></button>
+      <section class="action-spectator" hidden aria-live="polite"><strong></strong><img alt="" src="/assets/avatars/atlas-mascots/mascot-01.webp"><p></p></section>
+
     </main>
   </section>
 <script src="net.js"></script><script src="controller.js"></script>

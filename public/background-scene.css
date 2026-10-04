@@ -1,0 +1,437 @@
+/* Authored quiet wall, shared by host, controller and television shells.
+   Never place this treatment inside authored game canvases or iframes. */
+html body{--hp-wall-image:url('/assets/backgrounds/brick-wall-wide-v1.png');--hp-wall-opacity:.14}
+@media(max-width:850px){html body{--hp-wall-image:url('/assets/backgrounds/brick-wall-mobile-v1.png')}}
+html body:not(.in-game),html body.game-waiting{background-color:#151321!important;isolation:isolate}
+html body:not(.in-game)::before,html body.game-waiting::before{
+ content:'';position:fixed;inset:-3px;z-index:0;pointer-events:none;
+ background:var(--hp-wall-image) center center/cover no-repeat!important;
+ opacity:var(--hp-wall-opacity)!important;filter:blur(1px)!important;
+ animation:none!important;transform:none!important;
+}
+html body:not(.in-game)>.ambient,html body.game-waiting>.ambient,
+html body.tv-screen #tvStage>.ambient{background:none!important}
+html body .ambient i{display:none!important}
+html body.tv-screen::after{display:none!important}
+html body.tv-screen.in-game::before{display:none!important}
+html body.tv-screen.tv-field-fullscreen::before{display:none!important}
+html body.tv-screen #tvStartup::before{
+ background:var(--hp-wall-image) center/cover no-repeat!important;
+ opacity:var(--hp-wall-opacity)!important;filter:blur(1px)!important;
+}
+html body.tv-screen #tvStartup::after{background:none!important}
+/* Existing game artwork remains above the wall on readiness screens. */
+html body.is-player.in-game.game-waiting #play,
+html body.native-controller.is-player.in-game.game-waiting #play,
+html body.is-player.in-game.game-waiting #waitingRules{background:transparent!important}
+html body.is-player.in-game.game-waiting #waitingRules::before,
+html body.is-player.in-game.game-waiting #play::after{background:none!important}
+
+/* One gradient layer begins behind masthead contents, never at top:100%. */
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader.app-header,
+html body.tv-screen #tvStage>header.tv-header{
+ background:transparent!important;isolation:isolate;overflow:visible!important;
+ box-shadow:none!important;border-bottom:0!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader.app-header::before,
+html body.tv-screen #tvStage>header.tv-header::before{
+ content:'';display:block!important;position:absolute!important;inset:0 0 -88px!important;
+ z-index:-1!important;width:auto!important;height:auto!important;opacity:1!important;
+ pointer-events:none;transform:none!important;
+ background:linear-gradient(180deg,#151321 0%,#151321 calc(100% - 88px),#151321d9 calc(100% - 60px),#15132166 calc(100% - 28px),transparent 100%)!important;
+ -webkit-mask:none!important;mask:none!important;
+}
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader.app-header::after{display:none!important}
+/* Gameplay starts directly below the measured masthead. Its fading backing
+   must never reach the first turn, money, role, or drawing readout. */
+html body.is-player.in-game header#brandHeader#brandHeader.app-header::before,
+html body.tv-screen.tv-in-game #tvStage>header.tv-header::before{
+ inset:0!important;
+ background:linear-gradient(180deg,#151321 0%,#151321eb 32%,#15132180 72%,transparent 100%)!important;
+}
+@media(max-width:850px){
+ html body.is-player.in-game.game-waiting{background-color:#11101c!important;--hp-wall-opacity:.11}
+ html body.is-player.in-game.game-waiting #waitingRules>.waiting-intro{
+  justify-content:flex-start!important;padding-top:14px!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-emoji-row{height:66px!important}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-emoji-row::before,
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-emoji-row::after{font-size:78px!important;top:-6px!important}
+ html body.is-player.in-game.game-waiting #waitingRules>.waiting-art{top:0!important;height:64%!important}
+ html body.is-player.in-game.game-waiting #waitingRules>.waiting-art>span{transform:scale(1.18)!important;transform-origin:center top}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details{
+  background:#292336ed!important;border-color:#bca2ee45!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details>summary{
+  position:relative!important;display:flex!important;align-items:center!important;width:100%!important;
+  padding:10px 40px 10px 0!important;box-sizing:border-box;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details>summary::after{
+  position:absolute!important;right:8px!important;top:50%!important;
+  margin:-5px 0 0!important;width:9px!important;height:9px!important;
+ }
+}
+
+/* Host sticky rows share one measured backing beneath every foreground row. */
+html body.native-shell main>.native-stack-backing{
+ background:linear-gradient(#151321f1,#151321f1),var(--hp-wall-image) center top/cover,#151321!important;
+ -webkit-mask-image:linear-gradient(#000 calc(100% - 48px),transparent)!important;
+ mask-image:linear-gradient(#000 calc(100% - 48px),transparent)!important;
+}
+html body.native-shell main>.native-stack-backing::after{display:none!important}
+html body.native-shell.stack-backed:not(.native-host-tab) header#brandHeader#brandHeader.app-header::before{display:none!important}
+html body.native-shell #choiceStrip::before,
+html body.native-shell #activeCard::before,
+html body.native-shell .native-catalog-tools::before,
+html body.native-shell .native-catalog-tools::after{display:none!important}
+html body.native-shell :is(main,#catalog){background:transparent!important}
+/* Very quiet texture on dark information surfaces, never on authored game pictures. */
+html body.native-shell :is(#hostPanel,.native-card,#activeCard,#choiceStrip),
+html body.is-player :is(.waiting-details,.profile-summary>div,.stat-game,.phone-meta){
+ background-color:#242036!important;
+ background-image:linear-gradient(#242036f4,#242036f4),var(--hp-wall-image)!important;
+ background-position:center,center!important;background-size:auto,cover!important;
+}
+html body.native-shell #hostPanel{
+ background-color:#211c2d!important;
+ background-image:linear-gradient(#211c2df1,#211c2df1),var(--hp-wall-image)!important;
+}
+html body.native-shell #hostPanel .native-sheet-head{
+ position:sticky;top:-16px;z-index:5;isolation:isolate;background:transparent!important;
+}
+html body.native-shell #hostPanel .native-sheet-head::before{
+ content:'';position:absolute;inset:-22px -22px -12px;z-index:-1;pointer-events:none;
+ background:linear-gradient(#211c2d 0%,#211c2d calc(100% - 12px),transparent 100%);
+}
+/* Hero art owns its backdrop: the wall cannot shine through the characters. */
+html body:not(.tv-screen) .intro{
+ position:relative;isolation:isolate;background:#151321!important;
+}
+html body:not(.tv-screen) .intro::after{
+ content:'';position:absolute;left:calc(50% - 50vw);right:calc(50% - 50vw);
+ top:100%;height:56px;z-index:-1;pointer-events:none;
+ background:linear-gradient(#151321,transparent);
+}
+html body:not(.tv-screen) .intro .headline-stage{background:#151321!important}
+html body:not(.tv-screen) .intro .headline-stage::after{
+ inset:0 0 -90px!important;background:linear-gradient(180deg,transparent 0%,#15132122 55%,#151321 100%)!important;
+}
+html body:not(.tv-screen) .intro .headline-stage>.heypals-hero{
+ clip-path:none!important;
+ -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 24%,#000 52%,#0008 68%,transparent 94%,transparent 100%)!important;
+ mask-image:linear-gradient(180deg,transparent 0%,#000 24%,#000 52%,#0008 68%,transparent 94%,transparent 100%)!important;
+}
+@media(max-width:850px){
+ html body:not(.tv-screen) .intro .headline-stage>.heypals-hero{
+  top:16px!important;height:calc(100% + 90px)!important;
+  object-position:62% 25%!important;
+ }
+ html body:not(.tv-screen) .intro .headline-stage{padding-top:28px!important;padding-bottom:46px!important}
+ html body.native-shell .native-catalog-tools{margin-top:24px!important}
+ html body.is-player .guest-catalog-tools{margin-top:24px!important}
+}
+/* overflow-x:hidden made body a non-scrolling ancestor and defeated sticky in WebKit. */
+html body.is-player.lobby-connected:not(.in-game){overflow-x:clip!important;overflow-y:visible!important}
+/* Dense settings need quiet, fully opaque inner cards. */
+html body.native-shell #hostPanel .native-card{
+ background:#242036!important;background-image:none!important;
+ opacity:1!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+html body.native-shell #hostPanel{
+ background-image:linear-gradient(#211c2dfa,#211c2dfa),var(--hp-wall-image)!important;
+}
+
+/* Search is a reading surface, not a window into moving catalogue artwork. */
+html body.native-shell .native-search input,
+html body.is-player .guest-catalog-tools input[type="search"]{
+ background-color:#262132!important;
+ opacity:1!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ border-color:#c6b1ff48!important;
+}
+
+/* Full-screen Host tab shares the panel colour; hidden catalogue backing cannot tint it. */
+html body.native-shell.native-host-tab header#brandHeader#brandHeader.app-header::before{
+ background:linear-gradient(180deg,#211c2d 0%,#211c2d calc(100% - 88px),#211c2dd9 calc(100% - 60px),#211c2d66 calc(100% - 28px),transparent 100%)!important;
+}
+html body.native-shell.native-host-tab #hostPanel .native-sheet-head{top:0}
+
+/* Controller hero continues behind the catalogue title and search.
+   Its bottom follows the real catalogue title; the90pxcrossfade centres at its top edge. */
+html body.is-player:not(.in-game) #home .intro{background:transparent!important}
+html body.is-player:not(.in-game) #home .intro::after{display:none!important}
+html body.is-player:not(.in-game) #home .headline-stage::before{
+ content:'';position:absolute;top:0;left:0;right:0;height:var(--hero-art-height,520px);
+ z-index:-3;pointer-events:none;background:#151321;
+ -webkit-mask-image:linear-gradient(#000 calc(100% - 90px),transparent);
+ mask-image:linear-gradient(#000 calc(100% - 90px),transparent);
+}
+html body.is-player:not(.in-game) #home .headline-stage>.heypals-hero{
+ top:0!important;height:var(--hero-art-height,520px)!important;
+ -webkit-mask-image:linear-gradient(transparent 0px,#000 100px,#000 calc(100% - 90px),transparent 100%)!important;
+ mask-image:linear-gradient(transparent 0px,#000 100px,#000 calc(100% - 90px),transparent 100%)!important;
+}
+html body.is-player:not(.in-game) #home .headline-stage::after{
+ top:0!important;bottom:auto!important;height:var(--hero-art-height,520px);
+ background:linear-gradient(transparent 0%,#15132118 45%,#151321b3 calc(100% - 56px),transparent 100%)!important;
+}
+html body.is-player:not(.in-game) #catalogSection>.section-title{background:transparent!important}
+
+html body.is-player:not(.in-game) #home .headline-stage{background:transparent!important}
+html body.is-player:not(.in-game) #home .headline-stage::after{display:none!important}
+html body.is-player:not(.in-game) #home .headline-stage>.heypals-hero{filter:brightness(.82)}
+
+/* Only the search fill is 90% opaque; its label and icon remain fully legible. */
+html body.is-player .guest-catalog-tools input[type="search"]{background-color:#262132e6!important}
+html body.native-shell .native-search input{background:linear-gradient(115deg,#292436e6,#211e2de6)!important}
+html body:not(.tv-screen) .return-entry-help{
+ background:none!important;margin-top:36px!important;box-shadow:none!important;
+}
+
+/* Short mastheads must finish before the next foreground card/title. */
+html body.native-shell.native-host-tab header#brandHeader#brandHeader.app-header::before{
+ inset:0 0 -12px!important;
+ background:linear-gradient(#211c2d 0%,#211c2d calc(100% - 12px),transparent 100%)!important;
+}
+html body.tv-screen #tvStage>header.tv-header::before{
+ inset:0 0 -16px!important;
+ background:linear-gradient(#151321 0%,#151321 calc(100% - 24px),transparent 100%)!important;
+}
+
+/* Keep the longer lobby header solid through its category row, but end before the hero title at rest. */
+html body.is-player:not(.in-game) header#brandHeader#brandHeader.app-header::before{
+ inset:0 0 -48px!important;
+ background:linear-gradient(#151321 0%,#151321 calc(100% - 48px),#151321b3 calc(100% - 28px),transparent 100%)!important;
+}
+
+/* Supporting copy stays on the quiet upper area, not across the bright character. */
+html body.is-player:not(.in-game) #home .headline-stage>.eyebrow{
+ order:-1;margin:0 0 14px!important;color:#d4c4ef!important;opacity:1!important;
+}
+html body.is-player:not(.in-game) .return-entry-help{transform:translateY(24px)}
+html body.is-player:not(.in-game) .return-entry-help>summary{
+ position:relative;isolation:isolate;text-shadow:0 2px 4px #060310e6,0 0 12px #09031380;
+}
+html body.is-player:not(.in-game) .return-entry-help>summary::before{
+ content:'';position:absolute;left:50%;top:50%;width:min(110%,360px);height:100px;
+ transform:translate(-50%,-50%);z-index:-1;pointer-events:none;
+ background:radial-gradient(ellipse,#151321f0 0%,#151321c4 42%,transparent 78%);
+ filter:blur(20px);
+}
+
+html body.is-player:not(.in-game) #home .headline-stage>.eyebrow{text-shadow:0 2px 4px #060310e6,0 0 12px #09031380}
+
+/* Extended hero artwork is decoration below the following foreground notice.
+   A static notice otherwise paints before the positioned hero stacking context. */
+html body.native-shell main>.intro{position:relative;z-index:0;isolation:isolate}
+html body.native-shell #message.native-notice{
+ position:relative;z-index:1;isolation:isolate;background:#242036!important;
+}
+html body .intro .headline-stage>.heypals-hero{pointer-events:none}
+
+/* Host Panel has two pinned foreground rows. Keep the local title directly
+   below the masthead and cover their join; only its lower edge fades away. */
+html body.native-shell.native-host-tab #hostPanel[open]{padding-top:var(--host-head,76px)!important}
+html body.native-shell.native-host-tab #hostPanel .native-sheet-head{
+ top:0!important;padding-top:20px;
+}
+html body.native-shell.native-host-tab #hostPanel .native-sheet-head::before{
+ inset:0 -16px -12px!important;
+ background:linear-gradient(#211c2d 0%,#211c2d calc(100% - 12px),transparent 100%)!important;
+}
+html body.native-shell,html body.native-shell .native-sheet{scrollbar-width:none!important;touch-action:pan-x pan-y}
+html body.native-shell::-webkit-scrollbar,html body.native-shell ::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+
+/* Matchmaking: center the introduction, keep the rules header outside its scroll,
+   and keep the centered game illustration softly faded at its own edges. */
+@media(max-width:850px){
+ html body.is-player.in-game.game-waiting header#brandHeader#brandHeader.app-header::before{
+  inset:0!important;
+  background:linear-gradient(180deg,#151321 0%,#151321eb 32%,#15132180 72%,transparent 100%)!important;
+ }
+ html body.is-player.hp-has-match-result header#brandHeader#brandHeader.app-header::before{
+  inset:0!important;
+  background:linear-gradient(180deg,#151321 0%,#151321eb 32%,#15132180 72%,transparent 100%)!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules>.waiting-intro{
+  justify-content:center!important;padding-top:0!important;padding-bottom:15px!important;gap:8px!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules>.waiting-intro>.eyebrow{
+  font-size:16px!important;line-height:1.4!important;text-shadow:0 2px 14px #0009;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-intro>#waitingContent{
+  display:flex!important;flex-direction:column;overflow:hidden!important;
+  flex:0 1 auto!important;max-height:none!important;
+  -webkit-mask-image:none!important;mask-image:none!important;padding:0!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) .waiting-intro>#waitingContent{flex:1 1 auto!important}
+ /* The closed control owns its full tap target even when six roster bubbles
+    and the native tab reserve leave little room. Only the description shrinks
+    and scrolls; expanded rules retain their existing inner scrolling layout. */
+ html body.is-player.in-game.game-waiting #waitingRules:not(:has(.waiting-details[open])) .waiting-intro>#waitingContent{min-height:58px!important;gap:8px!important}
+ html body.is-player.in-game.game-waiting #waitingRules:not(:has(.waiting-details[open])) #waitingContent>.waiting-goal{flex:0 1 auto!important;margin:0!important}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-goal{
+  /* Keep whole lines above the expanding rules. A flex-shrunk paragraph can
+     stop halfway through a line, even when its content is scrollable. */
+  flex:0 0 auto;min-height:0;max-height:3lh;overflow:auto;scrollbar-width:none;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-goal::-webkit-scrollbar{display:none}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details{
+  display:flex;flex-direction:column;flex:0 0 auto!important;min-height:48px!important;
+  max-height:none!important;overflow:hidden!important;margin:0 auto!important;padding:0 16px!important;
+  background:rgba(41,35,54,.70)!important;
+  width:min(100%,256px)!important;box-sizing:border-box;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details[open]{flex:1 1 auto!important;min-height:0!important;width:100%!important}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details>summary{
+  position:static!important;display:flex!important;align-items:center!important;justify-content:space-between!important;
+  flex:none;min-height:48px!important;width:100%!important;padding:12px 0!important;
+  gap:12px;box-sizing:border-box;list-style:none;font-family:'KardiaFatRunner',sans-serif!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase;font-size:18px!important;line-height:1.2!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details>summary::after{display:none!important}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-summary-label{display:block;line-height:1.2}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-summary-icon{
+  display:block;width:20px;height:20px;flex:0 0 20px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;transform:none;transition:none;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details[open] .waiting-summary-icon{transform:scaleY(-1)}
+ /* The browser places non-summary children inside its own details-content
+    wrapper. It must shrink too, or the rules keep their full intrinsic height
+    behind the clipped card and never become a scroll region. */
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details::details-content{
+  display:flex;flex-direction:column;flex:1 1 0;min-height:0;overflow:hidden;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details>.waiting-rules-body{
+  flex:1 1 auto;overflow:auto;min-height:0;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:none;padding:20px 0 12px;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-rules-body::-webkit-scrollbar{display:none}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-rule-goal{display:none}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-rules-body>div>b{
+  display:block;text-align:center;font-family:'KardiaFatRunner',sans-serif!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase;font-size:16px!important;line-height:1.3;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules>.waiting-art{
+  top:0!important;bottom:0!important;left:0!important;right:0!important;
+  width:100%!important;max-width:none!important;height:100%!important;overflow:visible!important;
+  -webkit-mask-image:linear-gradient(transparent 0%,#000 12%,#000 72%,transparent 100%);
+  mask-image:linear-gradient(transparent 0%,#000 12%,#000 72%,transparent 100%);
+ }
+ html body.is-player.in-game.game-waiting #waitingRules>.waiting-art>span{
+  background-position:center center!important;background-size:contain!important;transform:none!important;opacity:.27!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules>#waitingRoster{
+  translate:0 -15px;gap:6px!important;
+ }
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-player{
+  border-color:#dacaff30!important;box-shadow:inset 0 1px 0 #ffffff0b,0 3px 9px #0002;
+ }
+ html body.is-player.in-game.game-waiting #sessionControls{padding-inline:16px!important}
+}
+@media(max-width:850px) and (max-height:650px){
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) .waiting-goal{display:none!important}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-details[open] .waiting-rule-goal{display:block}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-emoji-row{height:40px!important}
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-emoji-row::before,
+ html body.is-player.in-game.game-waiting #waitingRules .waiting-emoji-row::after{font-size:54px!important}
+}
+@media(max-width:850px) and (max-height:700px){
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open])>.waiting-intro{gap:4px!important}
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) .waiting-emoji-row{height:28px!important}
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) .waiting-emoji-row::before,
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) .waiting-emoji-row::after{font-size:40px!important;top:-6px!important}
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) #waitingTitle{font-size:24px!important}
+ html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) .waiting-goal{font-size:13px!important;margin-bottom:4px!important}
+}
+@media(min-height:701px) and (max-width:850px){
+ html body.is-player.in-game.game-waiting #waitingRules:not(:has(.waiting-details[open]))>.waiting-intro{
+  padding-top:clamp(32px,9dvh,80px)!important;
+ }
+}
+/* Authored slanted glyphs extend past their advance width. Reserve ink space,
+   and remove the inherited overflow clip from the TV welcome headline. */
+html body.tv-screen .intro .headline-stage h1{
+ overflow:visible!important;padding-inline:6px .32em!important;box-sizing:content-box;
+}
+
+/* One calm entrance and one shared exit; no nested text arrival replay. */
+html body dialog[open]:not(.lp-dialog-closing),html body.native-shell dialog[open]:not(.lp-dialog-closing){
+ animation:lp-shared-dialog-in 240ms cubic-bezier(.2,.78,.2,1) both!important;transition:none!important;translate:none;scale:none;
+}
+html body dialog[open]:not(.lp-dialog-closing)>*,html body.native-shell dialog[open]:not(.lp-dialog-closing)>*{animation:none!important;opacity:1;translate:none}
+@keyframes lp-shared-dialog-in{from{opacity:0;translate:0 14px;scale:.965;transform:none}to{opacity:1;translate:0 0;scale:1;transform:none}}
+html body dialog[open].lp-dialog-closing,
+html body.native-shell dialog[open].lp-dialog-closing{
+ animation:lp-shared-dialog-out 180ms cubic-bezier(.23,1,.32,1) both!important;
+ transition:none!important;pointer-events:none;transform-origin:center center;
+}
+html body dialog[open].lp-dialog-closing>*,html body.native-shell dialog[open].lp-dialog-closing>*{
+ animation:none!important;opacity:1;translate:none;
+}
+html body dialog[open].lp-dialog-closing::backdrop,html body.native-shell dialog[open].lp-dialog-closing::backdrop{
+ animation:lp-shared-backdrop-out 180ms ease-out both!important;
+}
+@keyframes lp-shared-dialog-out{from{opacity:var(--lp-close-opacity,1);translate:var(--lp-close-translate,0 0);scale:var(--lp-close-scale,1);transform:var(--lp-close-transform,none)}to{opacity:0;translate:0 8px;scale:.96;transform:none}}
+@keyframes lp-shared-backdrop-out{from{opacity:1}to{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+ html body dialog[open]:not(.lp-dialog-closing),html body.native-shell dialog[open]:not(.lp-dialog-closing),
+ html body dialog[open].lp-dialog-closing.sheet-closing,html body.native-shell dialog[open].lp-dialog-closing.sheet-closing,
+ html body dialog[open]::backdrop,html body.native-shell dialog[open]::backdrop,
+ html body dialog[open].lp-dialog-closing.sheet-closing::backdrop,html body.native-shell dialog[open].lp-dialog-closing.sheet-closing::backdrop{animation:none!important}
+}
+
+/* Illustrated title assets replace the separate emoji/title pair after decoding.
+   Real heading text remains for i18n, accessibility and a failed image fallback. */
+html body.is-player.in-game.game-waiting #waitingTitle .waiting-game-logo{display:none;pointer-events:none}
+html body.is-player.in-game.game-waiting #waitingTitle.waiting-logo-loaded{position:relative;margin-block:0!important;line-height:0!important;overflow:visible!important}
+html body.is-player.in-game.game-waiting #waitingTitle.waiting-logo-loaded .waiting-game-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+html body.is-player.in-game.game-waiting #waitingTitle.waiting-logo-loaded .waiting-game-logo{display:block;width:min(264px,76vw);height:126px;max-width:100%;object-fit:contain;margin:auto;filter:none;image-rendering:auto}
+html body.is-player.in-game.game-waiting #waitingRules:has(#waitingTitle.waiting-logo-loaded) .waiting-emoji-row{display:none!important}
+@media(max-width:850px) and (max-height:650px){html body.is-player.in-game.game-waiting #waitingTitle.waiting-logo-loaded .waiting-game-logo{width:min(242px,76vw);height:98px}}
+@media(max-width:850px) and (max-height:700px){html body.is-player.in-game.game-waiting #waitingRules:has(.waiting-details[open]) #waitingTitle.waiting-logo-loaded .waiting-game-logo{width:min(208px,68vw);height:56px}}
+
+/* Phone gameplay and results share a quiet wall, with separate fading chrome.
+   Keep texture beneath the header/footer so their gradients remain visible;
+   a solid #play surface would make the fade look like a hard strip. */
+html body.is-player.in-game{isolation:isolate;--hp-wall-opacity:.047}
+html body.is-player.in-game::before{
+ content:'';display:block!important;position:fixed;inset:-12px;z-index:-1;
+ pointer-events:none;background:linear-gradient(#151321f0,#151321f4),var(--hp-wall-image) center/cover no-repeat!important;
+ opacity:1!important;filter:blur(5px)!important;animation:none!important;transform:none!important;
+}
+/* ID specificity also beats the native-controller viewport rule in polish.css. */
+html body.is-player:is(.in-game,.hp-has-match-result) #play#play{background:transparent!important}
+html body.is-player:is(.in-game,.hp-has-match-result) header#brandHeader#brandHeader.app-header::before{
+ display:block!important;inset:0!important;
+ background:linear-gradient(180deg,#151321 0%,#151321eb 32%,#15132180 72%,transparent 100%)!important;
+}
+html body.is-player:is(.in-game,.hp-has-match-result) #sessionControls{
+ isolation:isolate;background:transparent!important;border:0!important;box-shadow:none!important;
+}
+html body.is-player:is(.in-game,.hp-has-match-result) #sessionControls::before{
+ content:'';display:block!important;position:absolute;inset:-28px 0 0;z-index:-1;
+ pointer-events:none;border:0;border-radius:0;
+ background:linear-gradient(180deg,transparent 0%,#15132199 42%,#151321 100%)!important;
+}
+/* Results expose the continuous parent wall, not a second brighter crop. */
+html.hp-ui body.is-player .hp-match-results{background:transparent}
+html.hp-ui body.is-player .hp-match-results::before{display:none}
+
+/* Pause and the shared result stage use one viewport-wide backdrop beneath both
+   fading chrome edges. Keep the live iframe mounted, but stop its opaque canvas
+   from painting behind those shared surfaces. A tinted #play-only pause plane
+   would otherwise draw hard seams at the masthead and Pause/Lobby dock. */
+@media(max-width:850px){
+ html body.is-player.in-game:is(.hp-has-match-result,:has(#pauseOverlay:not([hidden]))) #gameFrame{visibility:hidden!important}
+ html body.is-player.in-game:has(#pauseOverlay:not([hidden])) #sharedMatchResults{visibility:hidden!important}
+ html.hp-ui body.is-player.in-game #pauseOverlay{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+}
+/* A short native viewport reserves the system tab bar as well as Pause/Lobby.
+   Fit the whole pause card, including its rounded bottom and Language control,
+   in the space above that dock; the dock itself keeps its approved geometry. */
+@media(max-width:850px) and (max-height:650px){
+ html.hp-ui body.is-player.in-game #pauseOverlay{padding:12px!important}
+ html.hp-ui body.is-player.in-game #pauseOverlay>div{padding:16px!important;gap:8px!important}
+ html.hp-ui body.is-player.in-game #pauseOverlay h2{font-size:32px!important;line-height:1.2!important}
+ html.hp-ui body.is-player.in-game #pauseOverlay :is(#sessionRules,#resumeButton){height:48px!important;min-height:48px!important;padding:6px 12px!important;margin:0!important}
+ html.hp-ui body.is-player.in-game #resumeButton>.hp-button-icon{width:32px!important;height:32px!important;min-width:32px!important;flex:0 0 32px!important}
+}

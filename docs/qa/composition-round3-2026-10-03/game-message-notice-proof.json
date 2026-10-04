@@ -1,0 +1,74 @@
+{
+  "scope": "Western actual round-result notification only; no new verdict for character-rig geometry or full catalogue.",
+  "method": "Actual normal-clock Western round resolved by ordinary controller input and built-in bot controllers. No injected state/scores; TV PNGs only.",
+  "openedOriginals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/western-game-message-final/western-tv-round-winner-1280.png",
+      "sha256": "3e9d4e4d26825f3edca1ba5224ad7aeff03c649724851b181c7fa2f90b0689d0",
+      "width": 1280,
+      "height": 720,
+      "capGapCssPx": 29.921875,
+      "exactWinnerText": true,
+      "font": "KardiaFit, sans-serif",
+      "fontStyle": "normal",
+      "color": "rgb(255, 243, 223)",
+      "portraitLoaded": true,
+      "noticeRect": {
+        "left": 497,
+        "top": 145,
+        "right": 783.40625,
+        "bottom": 225,
+        "width": 286.40625,
+        "height": 80
+      }
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/western-game-message-final/western-tv-round-winner-1920.png",
+      "sha256": "c2cccd2d7e3d72915b89ac6bc31441556f4d2ca848c7144f33af8757b3ce9ffe",
+      "width": 1920,
+      "height": 1080,
+      "capGapCssPx": 44.859375,
+      "exactWinnerText": true,
+      "font": "KardiaFit, sans-serif",
+      "fontStyle": "normal",
+      "color": "rgb(255, 243, 223)",
+      "portraitLoaded": true,
+      "noticeRect": {
+        "left": 745.5,
+        "top": 217.5,
+        "right": 1175.109375,
+        "bottom": 337.5,
+        "width": 429.609375,
+        "height": 120
+      }
+    }
+  ],
+  "ownerVisualFindings": {
+    "compactCopperMaterial": true,
+    "resultUprightCream": true,
+    "noOldBlackCardOrThinShineLine": true,
+    "clearHeaderAndImportantActorsInBothOriginals": true
+  },
+  "hiddenOnActualNextPhase": true,
+  "runtimeErrors": [],
+  "changedFiles": [],
+  "sources": {
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548",
+    "games/party/public/host.js": "19a48daa4c7e1aaf060c3190c20aae6d7fd72b66942a9d63a780a820553c4bf8",
+    "games/party/public/host.html": "31894a48b9663a9fceb8cc346a8ceaebf3d3c067753ee2e9a870d448757f7c57",
+    "public/assets/gameplay/generated/western-mascot-rig-v4.js": "e66a7d93a756084ca73e707c24b322e2d134736707ad70e0ce3279c2adff3013",
+    "public/assets/gameplay/generated/western-mascots-v4.json": "4a73e7034c0ead1926f3cba66024bc0d26508197442f68d677e95a58098da157",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/game-ui-micro-assets.js": "216dfb7b5a658b960dead6089e6d192851e24cb9c250a37ada578d5988c2ca37",
+    "public/game-ui-micro-assets.css": "d6054e1bde40468ee74560301a5668eb72969c80cb75076bd06cccdd6ab070a3"
+  },
+  "browserAndServerClosed": true,
+  "phoneCaptures": false,
+  "historicalAttempts": [
+    "western-game-message/report.json: character rig early ReferenceError, root/pocket corrected; no originals obtained",
+    "western-game-message-confirm: first actual pair, shared generic paragraph classification overrode intended result voice; preserved historical pair"
+  ],
+  "independentVerdict": "Art director independently opened both final originals: cream/upright copy, portrait/trophy, copper material and clear cap/actor placement accepted; no named notice blocker. Director saved exact PNG hashes in director-western-notice-confirmation.json. Scope is the notice only."
+}

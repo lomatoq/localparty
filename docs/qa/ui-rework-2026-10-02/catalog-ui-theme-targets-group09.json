@@ -1,0 +1,552 @@
+{
+  "scope": "Paint only; authored geometry, ink, state keylines and feedback preserved. Four pilots independently reviewed; all36 diagnostics enabled for canonical capture.",
+  "profiles": {
+    "push": {
+      "material": "matte arena rubber",
+      "top": "#303b43",
+      "base": "#1d2931",
+      "edge": "#a3bcb959",
+      "phone": [
+        "#joystickBase"
+      ],
+      "host": [
+        ".party-live-standings .party-standing"
+      ],
+      "art": null
+    },
+    "shrink": {
+      "material": "tidal blue enamel",
+      "top": "#1e3742",
+      "base": "#14262f",
+      "edge": "#82cad359",
+      "phone": [
+        "#joystickBase"
+      ],
+      "host": [
+        ".party-live-standings .party-standing"
+      ],
+      "art": null
+    },
+    "knives": {
+      "material": "dark dojo timber",
+      "top": "#3c3029",
+      "base": "#29241e",
+      "edge": "#ce969c59",
+      "phone": [
+        ".knife-count",
+        ".knife-stats .hp-stat"
+      ],
+      "host": [
+        ".party-live-standings .party-standing"
+      ],
+      "art": null
+    },
+    "bomb": {
+      "material": "warm hazard casing",
+      "top": "#3c2c25",
+      "base": "#271e1c",
+      "edge": "#e1aa6c59",
+      "phone": [
+        "#joystickBase",
+        ".move-stats .hp-stat"
+      ],
+      "host": [
+        ".party-live-standings .party-standing"
+      ],
+      "art": null
+    },
+    "western": {
+      "material": "sunset leather",
+      "top": "#423027",
+      "base": "#2b211e",
+      "edge": "#dbaa7659",
+      "phone": [
+        ".western-stats .hp-stat"
+      ],
+      "host": [
+        ".result-card"
+      ],
+      "art": null
+    },
+    "tanks": {
+      "material": "olive armour",
+      "top": "#2d382e",
+      "base": "#1c2620",
+      "edge": "#b5c99b59",
+      "phone": [
+        "#controllerScreen .status-card"
+      ],
+      "host": [
+        "#modeHud"
+      ],
+      "art": null
+    },
+    "tankarena": {
+      "material": "blue gunmetal",
+      "top": "#293640",
+      "base": "#1b252e",
+      "edge": "#a2c5d35c",
+      "phone": [
+        "#combatStats",
+        "#joy"
+      ],
+      "host": [
+        ".host-rules",
+        "#board .person"
+      ],
+      "art": null
+    },
+    "chaos": {
+      "material": "cobalt console",
+      "top": "#283648",
+      "base": "#1b2537",
+      "edge": "#a3bde459",
+      "phone": [
+        ".roleBadge"
+      ],
+      "host": [
+        ".mission"
+      ],
+      "art": null
+    },
+    "kart": {
+      "material": "charcoal race console",
+      "top": "#303b43",
+      "base": "#1d2931",
+      "edge": "#d4dedd59",
+      "phone": [
+        "#driveScreen .slider-card"
+      ],
+      "host": [
+        ".side-panel .card",
+        ".leader-row"
+      ],
+      "art": "racing-flag.webp",
+      "decorPhone": [],
+      "decorHost": [
+        ".side-panel"
+      ],
+      "artOnly": true
+    },
+    "monster": {
+      "material": "mint drawing desk",
+      "top": "#243d39",
+      "base": "#182d29",
+      "edge": "#9ad5c15c",
+      "phone": [
+        "#toolDock",
+        "#confirmView"
+      ],
+      "host": [
+        ".secret-box",
+        ".status-top"
+      ],
+      "art": "drawing-pencils.png",
+      "decorPhone": [
+        "#toolDock",
+        "#confirmView"
+      ],
+      "decorHost": [
+        ".secret-box"
+      ]
+    },
+    "spy": {
+      "material": "midnight dossier",
+      "top": "#2b3243",
+      "base": "#1b2231",
+      "edge": "#a7bdd75c",
+      "phone": [
+        "#mySecretMini",
+        "#turnBox",
+        ".sheet-card"
+      ],
+      "host": [
+        ".turn-card",
+        ".roster-card"
+      ],
+      "art": null
+    },
+    "millionaire": {
+      "material": "champagne quiz podium",
+      "top": "#3a3124",
+      "base": "#27231d",
+      "edge": "#ddcc995c",
+      "phone": [
+        ".questionMini",
+        ".centerCard"
+      ],
+      "host": [
+        ".questionWrap",
+        ".scoreboard"
+      ],
+      "art": null
+    },
+    "sinyakquiz": {
+      "material": "royal quiz desk",
+      "top": "#352b46",
+      "base": "#231e32",
+      "edge": "#d3b8e959",
+      "phone": [
+        ".stage.panel"
+      ],
+      "host": [
+        ".screen-standings"
+      ],
+      "art": null
+    },
+    "warsaw": {
+      "material": "city red enamel",
+      "top": "#432b31",
+      "base": "#2d1f26",
+      "edge": "#e0b7b659",
+      "phone": [
+        ".stage.panel"
+      ],
+      "host": [
+        ".screen-standings"
+      ],
+      "art": null
+    },
+    "crocodile": {
+      "material": "jungle green desk",
+      "top": "#2b3c2d",
+      "base": "#1d2b22",
+      "edge": "#b1d29f59",
+      "phone": [
+        "#secretPanel"
+      ],
+      "host": [
+        ".screen-standings"
+      ],
+      "art": null
+    },
+    "jenga": {
+      "material": "dark timber station",
+      "top": "#413227",
+      "base": "#2c241d",
+      "edge": "#d3b18359",
+      "phone": [
+        "main.phone.jenga-console .jenga-selection"
+      ],
+      "host": [
+        ".jenga-turn-panel",
+        ".jenga-host aside"
+      ],
+      "art": null
+    },
+    "crane": {
+      "material": "construction steel",
+      "top": "#3c3630",
+      "base": "#282623",
+      "edge": "#d7bd8b59",
+      "phone": [
+        ".phone-meters",
+        ".phone-status"
+      ],
+      "host": [
+        ".panel.scores",
+        ".panel.rules"
+      ],
+      "art": "wood-blocks.png",
+      "decorPhone": [],
+      "decorHost": [
+        ".panel.rules"
+      ]
+    },
+    "naval": {
+      "material": "naval bridge enamel",
+      "top": "#253945",
+      "base": "#172b36",
+      "edge": "#8dbdcf59",
+      "phone": [
+        "#own",
+        "#target"
+      ],
+      "host": [
+        ".naval-console .person",
+        ".naval-console details"
+      ],
+      "art": null
+    },
+    "drawguess": {
+      "material": "teal artist desk",
+      "top": "#24413c",
+      "base": "#192d2a",
+      "edge": "#a4d6c959",
+      "phone": [
+        "#drawingTools"
+      ],
+      "host": [
+        ".screen-standings",
+        ".screen-sidebar>.panel"
+      ],
+      "art": "drawing-pencils.png",
+      "decorPhone": [
+        "#drawingTools"
+      ],
+      "decorHost": [
+        ".screen-sidebar>.panel"
+      ]
+    },
+    "western_duel": {
+      "material": "aged saddle leather",
+      "top": "#44312a",
+      "base": "#2e231f",
+      "edge": "#d4a48059",
+      "phone": [
+        ".glass"
+      ],
+      "host": [
+        ".glass"
+      ],
+      "art": null
+    },
+    "taprace": {
+      "material": "race timing console",
+      "top": "#39352b",
+      "base": "#27251f",
+      "edge": "#e0ca9459",
+      "phone": [
+        "#arcadeStats",
+        ".punch-sense"
+      ],
+      "host": [
+        ".score-panel"
+      ],
+      "art": "racing-flag.webp",
+      "decorPhone": [],
+      "decorHost": [
+        ".score-panel"
+      ]
+    },
+    "punchmeter": {
+      "material": "boxing gym rubber",
+      "top": "#42272d",
+      "base": "#2c1d24",
+      "edge": "#d88f9a59",
+      "phone": [
+        "#punchResult",
+        ".punch-sense"
+      ],
+      "host": [
+        ".score-panel"
+      ],
+      "art": null
+    },
+    "flappy": {
+      "material": "sky-blue arcade console",
+      "top": "#243d4b",
+      "base": "#1b2939",
+      "edge": "#96d6e459",
+      "phone": [
+        "#arcadeStats"
+      ],
+      "host": [
+        ".score-panel"
+      ],
+      "art": null
+    },
+    "hungry": {
+      "material": "garden arena console",
+      "top": "#2b3d2f",
+      "base": "#1b2b21",
+      "edge": "#b5d8a859",
+      "phone": [
+        "#joy",
+        "#arcadeStats"
+      ],
+      "host": [
+        ".score-panel"
+      ],
+      "art": null
+    },
+    "snakelines": {
+      "material": "electric circuit enamel",
+      "top": "#203c35",
+      "base": "#172c27",
+      "edge": "#8ed7b959",
+      "phone": [
+        "#joy",
+        "#arcadeStats"
+      ],
+      "host": [
+        ".score-panel"
+      ],
+      "art": null
+    },
+    "carryball": {
+      "material": "court rubber",
+      "top": "#403329",
+      "base": "#2b261f",
+      "edge": "#d8bd9159",
+      "phone": [
+        "#joy",
+        ".arcade-team",
+        "#arcadeStats"
+      ],
+      "host": [
+        ".score-panel"
+      ],
+      "art": null
+    },
+    "marble_bloom": {
+      "material": "cool glass console",
+      "top": "#263f46",
+      "base": "#1b2c35",
+      "edge": "#b3dce759",
+      "phone": [
+        "#aimpad",
+        "#marbleControls .marble-ammo"
+      ],
+      "host": [
+        ".score-chip"
+      ],
+      "art": null
+    },
+    "pocket_siege": {
+      "material": "field equipment",
+      "top": "#303c31",
+      "base": "#202b24",
+      "edge": "#bbcf9a59",
+      "phone": [
+        "#tankModule .range-card",
+        "#arsenal .drawer-panel"
+      ],
+      "host": [
+        ".retro-bar"
+      ],
+      "art": null
+    },
+    "bow_club": {
+      "material": "archery timber console",
+      "top": "#3c3029",
+      "base": "#29241e",
+      "edge": "#d3bb8f59",
+      "phone": [
+        ".bow-readout"
+      ],
+      "host": [
+        ".tv-score"
+      ],
+      "art": "wood-blocks.png",
+      "decorPhone": [],
+      "decorHost": []
+    },
+    "poker": {
+      "material": "deep green felt",
+      "top": "#23483a",
+      "base": "#14352b",
+      "edge": "#d7dfbb59",
+      "phone": [
+        "#tabletop #actions button[data-action=fold]",
+        "#tabletop #call",
+        "#tabletop #raise"
+      ],
+      "host": [
+        ".seat"
+      ],
+      "secondaryControls": true,
+      "art": "poker-chips.png",
+      "decorPhone": [],
+      "decorHost": []
+    },
+    "airhockey": {
+      "material": "cool rink equipment",
+      "top": "#273f49",
+      "base": "#1b2d36",
+      "edge": "#a1d7e259",
+      "phone": [
+        "#tabletop #hockeyJoy"
+      ],
+      "host": [
+        ".hockey-last-hitter"
+      ],
+      "art": null
+    },
+    "mines": {
+      "material": "slate survey console",
+      "top": "#34393b",
+      "base": "#242c2c",
+      "edge": "#bacba959",
+      "phone": [
+        "#tabletop .dpad"
+      ],
+      "host": [
+        "#tabletop #players .player"
+      ],
+      "art": null
+    },
+    "curling": {
+      "material": "accepted curling ice",
+      "top": "#193c4b",
+      "base": "#102d3a",
+      "edge": "#a5d5df59",
+      "phone": [],
+      "host": [
+        ".ss-sheet"
+      ],
+      "art": "curling-stone.png",
+      "decorPhone": [],
+      "decorHost": [
+        ".ss-sheet"
+      ],
+      "preserve": [
+        "#ss-score-drawer",
+        "#ss-launch-station",
+        "#ss-throw-pad",
+        "#ss-sweep",
+        ".ss-controller-status"
+      ]
+    },
+    "bowling": {
+      "material": "bowling lane equipment",
+      "top": "#40322a",
+      "base": "#2b241f",
+      "edge": "#dac5a259",
+      "phone": [],
+      "host": [
+        ".ss-sheet"
+      ],
+      "art": "bowling-pins.png",
+      "decorPhone": [],
+      "decorHost": [
+        ".ss-sheet"
+      ],
+      "preserve": [
+        "#ss-score-drawer",
+        "#ss-launch-station",
+        "#ss-throw-pad",
+        ".ss-controller-status"
+      ]
+    },
+    "swarm_gate": {
+      "material": "garden gate equipment",
+      "top": "#2e3b2e",
+      "base": "#1d2a22",
+      "edge": "#b7c99b59",
+      "phone": [
+        ".ss-controller-status",
+        "#ss-aim-pad"
+      ],
+      "host": [
+        "#ss-gate-health",
+        ".ss-sheet"
+      ],
+      "art": null
+    },
+    "peek_shoot": {
+      "material": "gallery timber equipment",
+      "top": "#42332b",
+      "base": "#2b241f",
+      "edge": "#d4ba9559",
+      "phone": [
+        ".ss-controller-status",
+        "#ss-aim-pad"
+      ],
+      "host": [
+        ".ss-sheet"
+      ],
+      "art": null
+    }
+  }
+}

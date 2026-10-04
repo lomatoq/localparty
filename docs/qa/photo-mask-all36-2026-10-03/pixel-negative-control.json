@@ -1,0 +1,56 @@
+{
+  "qualification": "Same full-upload fixtures before/after. Matching first Bowling roster portrait discriminates rounded-square from circle; full geometry verified independently.",
+  "rows": [
+    {
+      "file": "output/playwright/photo-mask-all36-2026-10-03/before-sports/bowling-tv-live-1280.png",
+      "manualMatchingFirstPortraitProbe": {
+        "corner": [
+          33,
+          657
+        ],
+        "interior": [
+          44,
+          668
+        ]
+      },
+      "cornerRGB": [
+        239,
+        71,
+        89
+      ],
+      "interiorRGB": [
+        239,
+        71,
+        89
+      ],
+      "cornerIsFixture": true,
+      "interiorIsFixture": true
+    },
+    {
+      "file": "output/playwright/photo-mask-all36-2026-10-03/final-catalog/bowling-tv-live-1280.png",
+      "manualMatchingFirstPortraitProbe": {
+        "corner": [
+          33,
+          657
+        ],
+        "interior": [
+          44,
+          668
+        ]
+      },
+      "cornerRGB": [
+        69,
+        57,
+        50
+      ],
+      "interiorRGB": [
+        239,
+        71,
+        89
+      ],
+      "cornerIsFixture": false,
+      "interiorIsFixture": true
+    }
+  ],
+  "pass": true
+}

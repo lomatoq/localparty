@@ -1,0 +1,45 @@
+# Integration 118 · Bowling / Curling review
+
+2026-10-04. Independent bounded integration review; actual launcher, two WebKit phone controllers, real pointer swipes/sweep holds, server state observed through WebSockets. One browser process at a time. No score/state/physics injection. Read AGENTS.md, latest game-polish-lanes.md, regression rules, design contract and sports scene briefs. Impeccable context/manual visual checks plus a mechanical scan supported the review; this is not a complete dual-agent Impeccable critique. Questions skipped: root assigned a concrete review/fix scope.
+
+## Findings and disposition
+
+- **P2 fixed and visually confirmed: Curling measure camera hides a valid scoring candidate behind player cards.** Fresh `curling/05-measure-tv-1080.png`: s8 at (-1.188,-6.653), distance 2.631 from the button, touches the 2.6 house; lower body overlaps the roster. A far non-scoring coral stone also overlaps the HUD. `06-score-tv-720.png` recovers. Hardcoded bottom -.82 permits content below the measured safe bottom (~-.739 at720p); subsequent ceiling clamp/interpolation also invalidates destination fitting. Root explicitly authorized the correction and logged the lane. Only `scene-curling.js` changed: final projection guard during last-stone reveal/end/results keeps house/stone body bounds inside measured HUD/roster bounds +10px, pulling camera back within existing room limits. Aim, ordinary rolling, styles, inputs and physics remain unchanged. Source syntax check passed.
+- **P2 shared resource routing fixed by root and verified.** Original Bowling/Curling controllers returned404 for game-prefixed `assets/icons/game-pack/{switch,mute,arrow-up}.svg`, `assets/icons/atlas-stat-glyphs/{pin,hit}.webp`, and `assets/gameplay/sports-siege/sprites/turret-pulse.webp`. These are actual launcher requests, including hidden controller markup, not fixture-only assets. Pre-existing Bowling before report has the same12 console404s. Fresh reduced Bowling launched after root's shared `server.js` correction: all six assets HTTP200 for both phones and `errors=[]`.
+- **P2 capture harness defect resolved in review-only copy.** Original Bowling reduced run fails `timeout: reveal` because it waits6s for slowCam, which reduced motion intentionally disables. Its impact/scatter originals are already next-turn `aim`, so the later reveal wait is for an expired phase. Review-only harness skips that impossible wait; two real throws (strike/gutter), reset/return/display, actual pause freeze/resume pass. Original source capture script is untouched.
+- **P3 visual polish observation:** additive pin ghosts make the impact pin briefly read as an opaque white silhouette, visible both in original after and fresh `bowling/04-impact-slowmo-tv-720.png`. Consider reducing ghost gain; no demonstrated input/scoring obstruction. Not used as a release blocker.
+- **Existing WebGL warning needs a separate diagnosis:** `WebGL: INVALID_VALUE: glTexSubImage2DRobustANGLE: Offset overflows texture dimensions.` occurs once in fresh Curling. Also present twice in Claude before report, so cannot attribute it to new ice/arena modules. No page exception or observed missing gameplay texture; do not call the run console-clean.
+
+## Verified behavior and performance
+
+- `node --test tests/bowling-physics-regression.test.js tests/curling-physics.test.js tests/bowling-stress.test.js`: **26/26 pass**, including scoring once, render-rate independence, curl symmetry, takeouts, out/hog decisions and extreme Bowling containment. No repeated physics run after camera-only correction.
+- Bowling normal720p: passed,20 TV originals,10 recorded throws plus the performance throw; strike/double/turkey/gutter/spare, reset/return/display examined. Idle56.3fps, CPU p95 2ms,89 draws; combined rolling/reveal/reset49.7fps, CPU p95 2ms,max10ms,83 draws. CPU timing excludes GPU completion and is not device performance proof.
+- Bowling reduced720p: bounded2 throws,13 TV originals plus phone aim/pause. No slow-motion cut, actual pause freezes engine and resumes, no errors after shared asset correction. Not a whole-match reduced-motion test.
+- Curling full3-end run: passed,24 real throws,35 originals,3 score events for3 ends; reload keeps6 valid stones; pause freezes engine; reduced-motion throw, final TV+phone results. Fresh rolling-draw avg17.14ms,p95 21ms, GPU-sync callback avg7.21ms,p95 11ms,181.6 draw calls. Takeout avg16.74ms,p95 23ms. These probes include a1px readPixels sync; not directly comparable to Bowling CPU timings.
+- Performance concern: Curling crowd accounts for ~775k of ~800k visible triangles in the supplied diagnostics; new arena adds roughly10k triangles. Existing Claude after run recorded rolling p95 47ms/max94ms under its load, while this isolated run is better. Full quality on desktop does not establish smooth AirPlay/iPhone performance. Low-detail crowd/transparent-overdraw fallback remains sensible if device evidence shows stutter.
+- Authored game worlds, clear central ball/stone, score hierarchy, swipe/sweep controls and Pause/Lobby capsules read coherently in viewed originals. New modules use bounded pools/instancing/merged static geometry and scene-owned disposal. No new demonstrated physics/input defect.
+
+## Evidence, freshness and limits
+
+Evidence root: `output/playwright/integration118-sports/`. `source-before.json` records SHA256 at09:59:28UTC for nine sports rendering modules, sports server/physics/controls/host/style/index, motion.js, panel CSS and original capture scripts. Initial sports sources had no drift before the authorized camera change. Root subsequently changed shared launcher `server.js`; original normal captures predate that asset correction. Final `source-after.json` records only the expected scene-curling.js drift; other initially hashed files are unchanged. Corrected scene SHA256: `75676fc7944d5f85d1b97aeedb30971fee217e38b5e17e8e2f4fa7af72a4a643`. `camera-fix.diff` reconstructs the exact initial file hash and contains only the measurement projection correction.
+
+Originals visually opened (not montage substitutes):
+- `.localparty-build/bowling-art-feel/before/{aim,b-impact}-tv-720.png`.
+- `.localparty-build/bowling-art-feel/after/{01-aim-idle,04-impact-slowmo,06-reset-machine,08-display-final}-tv-720.png`.
+- `.localparty-build/curling-art-feel/before/05-measure-tv-720.png`.
+- `.localparty-build/curling-art-feel/after/{01-aim,03-sweep,04-contact,05s-settle,05-measure,06-score}-tv-720.png`, and `{01-aim,08-paused}-phone-393.png`.
+- Fresh `bowling/{01-aim-idle,04-impact-slowmo,g1-gutter-roll,r05-reveal-10}-tv-720.png`.
+- Fresh `curling/{01-aim,03-sweep,06-score,09b-reduced-roll,10-result}-tv-720.png`, `05-measure-tv-1080.png`, `{03-sweep,08-paused,10-result}-phone-393.png`.
+- Fresh `bowling-reduced/04-impact-tv-720-reduced.png`, `aim-phone-393.png`, `paused-phone-393.png`.
+
+Inspected source: scene-bowling.js, bowling-extras.js, bowling-alley.js, bowling-feel.js; scene-curling.js, curling-extras.js, curling-arena.js, curling-feel.js, curling-ice.js; relevant host.js update/geometry loop, sports server static routes, controller asset references, and both source capture scripts.
+
+Mechanical detector:17 findings in `impeccable-detector.json` (glow3, layout-transition1, undersized text3, cramped padding2, tiny text2, hairline/wide-shadow4, side-tab1, radial halo1). This scans incumbent controller CSS via index.html; advisory patterns do not override approved violet/lime game treatments. First output truncated; rerun only to persist complete evidence. No injected browser overlay.
+
+Limits: phone393px only in this review; no320px/max-player/high-score stress capture, no physical iPhone Motion permission/calibration/drift/spin test, no AirPlay/device performance or post-game hardware restart verification. Current controls/physics/motion files are hash-checked against the review start, not independently proven identical to a build117 binary. No commits made by this reviewer. Three promised Claude art-feel/panel markdown reports were absent at review start; captures/reports JSON supplied concrete evidence instead.
+
+## Camera confirmation and handoff
+
+One confirmation round, serial full/reduced WebKit runs of one real8-throw end each. Both passed bounded-first-end. Viewed `curling-confirm/{full,reduced}/{05-measure-tv-720,05-measure-tv-1080,06-score-tv-720}.png`: house and stone bodies now clear of HUD/roster in both motion modes. No page errors or console errors in either confirmation; shared assets HTTP200. No camera regression seen in captured measure/score states. Full confirmation5 targeted originals; reduced4. Original full3-end/reload/pause results predate the camera fix; the fix is restricted to measurement/end/results camera, with confirmation evidence on the changed states.
+
+All browser/server capture processes exited and cleaned up. Reviewer touched only scene-curling.js after explicit root authorization, lane claim, this report and review evidence. No commits. Bounded review is complete; physical Motion/AirPlay validation remains outside this review.

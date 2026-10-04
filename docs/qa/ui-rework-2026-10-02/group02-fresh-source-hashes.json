@@ -1,0 +1,34 @@
+{
+  "status": "Owned source FROZEN; two critical original phone passes completed fresh correction16-v2, errors[]/watched drift[]. Canonical shared header/transition and exact livecriticalHP1 visual proof pending; Tanks death/basecapture/device gaps explicit.",
+  "files": {
+    "games/tanks/public/host.js": "3bf14a4a3e31ba051c2d6ff9f5d75c6cba05d126c5e4d52f15136cc9c00a3854",
+    "games/tanks/public/index.html": "773f075e34c818939a32e032e5f25d24223f799b3d1e421ca00b567b49c9bf72",
+    "games/tanks/public/controller.css": "87c8b7a6e06a97bb61fc3ff309a931dc718c86464990ddc5977a1d496f84e8a3",
+    "games/tanks/public/controller.js": "fb5898a293ee01be97f949fdb4715f6797ebfdf1fa20c2396db25e8bbe377783",
+    "games/tankarena/public/app.js": "521cfba2f66d722d638739fc0b6833b1aecc54390aa2f2501c2aba23bfd7915a",
+    "games/tankarena/public/style.css": "7219538c63adcc86fd09c980374ac91f6062dbb9825cb495d7a1102e37d27632",
+    "scripts/qa/group02-real-shots.cjs": "067669c111c58dedf15e0d5488c9b7d3b1638f03328e530a35b9bd2cae093b8a",
+    "games/tankarena/public/index.html": "37d94b965c87ab62fbe830771166f7a49abce083abb19da081387c5801024e49",
+    "public/tv.js": "9ce58b6ccc561bd38f9bb14d5c2526f1677e737d6863837e7ef29020f09d53bc",
+    "public/tv-information.css": "c8cf5660778c520af05bbb8adc669a562e241c8c60eb169618977ac40a7ee49b",
+    "output/playwright/ui-rework-2026-10-02/group02-fresh-actions.cjs": "5fcc338113e5d5db3aa2f91b853442420eb56bb8c49941455132f73b5e0072d9",
+    "games/tankarena/public/tank-fx.js": "ec5d6fae3fb3beefd5a9ea74ef7904a00b858a5e2d0662c164e6230bdaa289fe",
+    "public/game-feel.css": "9871f81d1f59a9042ac615f4709fbe5763ca309dfa94cc867426c944e2aad74c",
+    "public/native-shell/tabs.js": "dc472e4d8f21cf648c1dfb6deb219c78e1988afaa93a1a8530255b0ec574015b"
+  },
+  "recordedAt": "2026-10-02T12:50:19.669562+00:00",
+  "evidence": "output/playwright/ui-rework-2026-10-02/group02-fresh-final-correction-16-v2/report.json",
+  "originals": {
+    "tanks-phone-live-402.png": "75da387ee6299564bbf07fffc83d68a30e86ca2f1539582adf2714dfad535f4f",
+    "tanks-phone-held-shot.png": "02741bda04679fbd20c4a6f0f21fbf4821d6e7655d308e1f775507044cee8fbf",
+    "tanks-phone-held-drive.png": "d15e4ad137ac8e28f386dfdb0546968e68b54afdb00c34557ce16c14b295e10d",
+    "tanks-phone-pause.png": "2a4ea9d8ba0a4e89e2feed0a6237e440b97d124bebefe535749138ec63d9d5ef",
+    "tankarena-tv-top-target.png": "99f0ee76304b22031aa02de19979630e69c0876411a87bcb8c77a08088c024dc",
+    "tankarena-tv-kill-feed-strip.png": "eac4d1c436c92c7f5d846f4d3af6fee4c69b593a5b6378c03d26e6f23e1090cd",
+    "tankarena-phone-live-402.png": "d54662fcf0fc47b241191e00bf8d45c057430de834b271ac50bc687a7d1e5c71",
+    "tankarena-phone-top-crossing-2.png": "f0d596f25cc0680d02aa6199dcbd6c890c2694986142482e441cf1d8dd2231a1",
+    "tankarena-phone-critical-health-6.png": "80b70d51caf5040930d4a1801bc342938829d19b4443fa63fa7d25aff82e92c6",
+    "tankarena-phone-top-crossing-3.png": "d533e6b6997280f89cbc621eaaaa30cf9b54129e6e0eeb2779c5c4a967bd8768",
+    "tankarena-phone-pause.png": "aa17e7908cc48bd1295848b41f07555e397a6ca0becb1f1ecff7acf5f31a07e7"
+  }
+}

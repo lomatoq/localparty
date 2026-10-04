@@ -67,4 +67,5 @@ function rayCircle(ox,oz,dx,dz,cx,cz,r,max=80) {
   const near=t-Math.sqrt(Math.max(0,r*r-d2));
   return near<=max ? Math.max(0,near) : null;
 }
-module.exports={clamp,finite,COLORS,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,insideRect,rayCircle};
+const SIEGE_TURRET_Z=4.22;
+module.exports={SIEGE_TURRET_Z,clamp,finite,COLORS,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,insideRect,rayCircle};

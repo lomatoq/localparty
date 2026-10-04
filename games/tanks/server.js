@@ -9,6 +9,25 @@ let PORT = Number(process.env.PORT || 0);
 const runtime=require('../../lib/party-runtime');let matchId='',matchStarted=0,reported=false;
 const TICK_RATE = 60;
 const WORLD = { w: 1280, h: 720 };
+const tvPlayfield = require('../../lib/tv-playfield-bounds');
+let tvHost = null, tvLayout = { width: WORLD.w, height: WORLD.h, exclusions: [] }, tvGeometryReceived = false;
+function tankEnvelope(entity) { return tvGeometryReceived ? Math.max(36, entity.radius * 2.35 + 12) : entity.radius; }
+function recoverTank(entity) {
+  const point = tvPlayfield.recover(entity, tankEnvelope(entity), tvLayout,
+    (x, y) => blockedAt(x, y, entity.radius));
+  if (point) { entity.x = point.x; entity.y = point.y; }
+}
+function updateTVBounds(socket, payload) {
+  if (socket !== tvHost || !socket.data.isHost || !Number.isSafeInteger(payload?.sequence) ||
+      payload.sequence < 0 || payload.sequence <= (socket.data.layoutSequence ?? -1) || payload.height !== WORLD.h) return false;
+  const layout = tvPlayfield.normalizeLayout(payload, { width: WORLD.w, baseHeight: WORLD.h });
+  if (!layout) return false;
+  socket.data.layoutSequence = payload.sequence; tvLayout = layout; tvGeometryReceived = true;
+  for (const entity of [...players.values(), ...bots]) if (entity.alive) recoverTank(entity);
+  // Geometry is also accepted during pause, when the normal state tick is stopped.
+  broadcastHosts('state', snapshot());
+  return true;
+}
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
 const MIME = {
@@ -233,6 +252,7 @@ function spawnFor(p, index = 0) {
   p.respawnTimer = 0;
   p.fireCd = 0.4;
   p.input.forward = p.input.fire = false;
+  recoverTank(p);
 }
 
 function resetFlags() {
@@ -303,6 +323,7 @@ function createBot(type, x, y, hp) {
     color: type === 'boss' ? '#ff3f62' : '#ff934f'
   };
   bots.push(b);
+  recoverTank(b);
   return b;
 }
 
@@ -328,12 +349,14 @@ function blockedAt(x, y, r) {
   return walls.some(w => circleRectCollision(x, y, r, w));
 }
 function moveEntity(e, dx, dy) {
+  const envelope = tankEnvelope(e);
+  const hudBlocked = (x, y) => tvLayout.exclusions.some(rect => tvPlayfield.overlaps(x, y, envelope, rect));
   let nx = e.x + dx;
-  if (!blockedAt(nx, e.y, e.radius)) e.x = nx;
+  if (!blockedAt(nx, e.y, e.radius) && !hudBlocked(nx, e.y)) e.x = nx;
   let ny = e.y + dy;
-  if (!blockedAt(e.x, ny, e.radius)) e.y = ny;
-  e.x = clamp(e.x, 24 + e.radius, WORLD.w - 24 - e.radius);
-  e.y = clamp(e.y, 24 + e.radius, WORLD.h - 24 - e.radius);
+  if (!blockedAt(e.x, ny, e.radius) && !hudBlocked(e.x, ny)) e.y = ny;
+  e.x = clamp(e.x, Math.max(24 + e.radius, envelope), WORLD.w - Math.max(24 + e.radius, envelope));
+  e.y = clamp(e.y, Math.max(24 + e.radius, envelope), WORLD.h - Math.max(24 + e.radius, envelope));
 }
 
 function fireBullet(owner, ownerType = 'player') {
@@ -637,6 +660,7 @@ function updateCoop(dt) {
 function snapshot() {
   return {
     world: WORLD,
+    playfield: tvLayout,
     effects: combatEffects,
     walls,
     game: { ...game },
@@ -756,10 +780,12 @@ function handleMessage(socket, msg) {
   if (event === 'registerHost') {
     if(!socket.trustedHost)return;
     socket.data.isHost = true;
+    if (socket.data.layoutSequence === undefined) { tvHost = socket; socket.data.layoutSequence = -1; }
     socket.send('state', snapshot());
     socket.send('lobby', lobbyState());
     return;
   }
+  if (event === 'responsiveHudInsets') { updateTVBounds(socket, payload); return; }
   if (event === 'join') {
     const data = {...(payload || {})};const identity=runtime.identify(data,socket);if(runtime.managed&&!identity)return socket.send('error','Войдите через общее лобби');if(identity){data.token='party:'+identity.id;data.name=identity.name;data.handedness=identity.hand;}
     let p = null;
@@ -768,6 +794,8 @@ function handleMessage(socket, msg) {
       if (p) {
         p.connected = true;
         p.socketId = socket.id;
+        p.input.forward = p.input.fire = false;
+        p.input.at = 0;
         p.name = cleanName(data.name || p.name);
         p.handedness = data.handedness === 'left' ? 'left' : 'right';
         socket.data.playerId = p.id;
@@ -854,11 +882,11 @@ runtime.setInterval(() => {
     if (game.mode === 'ctf') updateCTF(dt);
     if (game.mode === 'coop') updateCoop(dt);
   }
-  if(game.status==='finished'&&!reported){reported=true;const ps=[...players.values()],best=Math.max(...ps.map(p=>p.roundWins));runtime.report({gameId:'tanks',eventId:matchId,duration:(Date.now()-matchStarted)/1000,players:ps.map(p=>({id:p.partyId||p.id,name:p.name,score:p.score,won:game.mode==='survival'?p.roundWins===best:game.mode==='ctf'?(p.team==='red'?game.redScore>=game.blueScore:game.blueScore>=game.redScore):game.winnerText.includes('Команда победила'),metrics:{kills:p.kills,deaths:p.deaths,captures:p.captures,roundWins:p.roundWins}}))});}
+  if(game.status==='finished'&&!reported){reported=true;const ps=[...players.values()],best=Math.max(...ps.map(p=>p.roundWins));runtime.report({gameId:'tanks',eventId:matchId,duration:(Date.now()-matchStarted)/1000,...(game.mode==='ctf'?{ranking:{kind:'teams'}}:game.mode==='coop'?{ranking:{kind:'score'}}:{}),players:ps.map(p=>({id:p.partyId||p.id,name:p.name,score:p.score,...(game.mode==='ctf'?{team:p.team,teamScore:p.team==='red'?game.redScore:game.blueScore}:{}),won:game.mode==='survival'?p.roundWins===best:game.mode==='ctf'?(p.team==='red'?game.redScore>=game.blueScore:game.blueScore>=game.redScore):game.winnerText.includes('Команда победила'),metrics:{kills:p.kills,deaths:p.deaths,captures:p.captures,roundWins:p.roundWins}}))});}
   broadcastAcc += dt;
   if (broadcastAcc >= 1/30) {
     broadcastAcc = 0;
-    runtime.ui?.({phase:game.status==='lobby'?'waiting':game.status==='finished'?'results':game.status==='between'?'reveal':'playing',endsAt:game.timer>0&&game.status==='playing'?Date.now()+game.timer*1000:null,label:'До конца боя',progress:`Раунд ${game.round} / ${game.maxRounds}`});
+    runtime.ui?.({phase:game.status==='lobby'?'waiting':game.status==='finished'?'results':game.status==='between'?'reveal':'playing',endsAt:game.timer>0&&game.status==='playing'?Date.now()+game.timer*1000:null,label:'До конца боя',progress:game.mode==='ctf'?`Флаги ${game.redScore} : ${game.blueScore}`:game.mode==='coop'?'Защищайте реактор':`Раунд ${game.round} / ${game.maxRounds}`});
     const state = snapshot();
     broadcastHosts('state', state);
     for (const p of getConnectedPlayers()) {

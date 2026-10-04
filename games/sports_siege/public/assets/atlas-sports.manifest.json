@@ -1,0 +1,585 @@
+{
+  "version": 1,
+  "source": "atlas-sports.png",
+  "styleProfile": "sprite",
+  "chromaKeyed": false,
+  "frames": {
+    "bowling-ball-marble": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 40,
+        "y": 41,
+        "w": 176,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 175
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/bowling-ball-marble.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "bowling-ball-galaxy": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 296,
+        "y": 40,
+        "w": 176,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/bowling-ball-galaxy.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bowling-ball-lime": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 552,
+        "y": 40,
+        "w": 176,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/bowling-ball-lime.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bowling-pin": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 857,
+        "y": 40,
+        "w": 79,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 79,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/bowling-pin.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pin-fallen": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1064,
+        "y": 76,
+        "w": 176,
+        "h": 105
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 105
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/pin-fallen.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "strike-badge": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1320,
+        "y": 50,
+        "w": 176,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/strike-badge.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "spare-badge": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 40,
+        "y": 341,
+        "w": 176,
+        "h": 87
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 87
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/spare-badge.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "lane-arrow": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 310,
+        "y": 306,
+        "w": 148,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 148,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/lane-arrow.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "curling-stone-coral": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 552,
+        "y": 303,
+        "w": 176,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 163
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/curling-stone-coral.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "curling-stone-teal": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 808,
+        "y": 303,
+        "w": 176,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 163
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/curling-stone-teal.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "broom": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1090,
+        "y": 296,
+        "w": 124,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 124,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/broom.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "house-target": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1320,
+        "y": 298,
+        "w": 176,
+        "h": 172
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 172
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/house-target.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "fan-blob-a": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 40,
+        "y": 576,
+        "w": 176,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/fan-blob-a.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "fan-blob-b": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 296,
+        "y": 554,
+        "w": 176,
+        "h": 173
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 173
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/fan-blob-b.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "fan-blob-c": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 552,
+        "y": 578,
+        "w": 176,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/fan-blob-c.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "banner-blank": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 808,
+        "y": 582,
+        "w": 176,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 116
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/banner-blank.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "swarm-bug-a": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1074,
+        "y": 557,
+        "w": 157,
+        "h": 166
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 166
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/swarm-bug-a.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "swarm-bug-b": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1320,
+        "y": 554,
+        "w": 176,
+        "h": 172
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 172
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/swarm-bug-b.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "swarm-boss": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 41,
+        "y": 808,
+        "w": 174,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/swarm-boss.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "gate": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 296,
+        "y": 820,
+        "w": 176,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 153
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/gate.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "gallery-target-duck": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 570,
+        "y": 809,
+        "w": 140,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 175
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/gallery-target-duck.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "gallery-target-star": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 821,
+        "y": 808,
+        "w": 150,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/gallery-target-star.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "gallery-friendly": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1079,
+        "y": 808,
+        "w": 147,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 147,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/gallery-friendly.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "gold-target": {
+      "atlas": "atlas-sports.webp",
+      "frame": {
+        "x": 1340,
+        "y": 813,
+        "w": 136,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 136,
+        "h": 167
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-sports/gold-target.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

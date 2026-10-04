@@ -1,0 +1,313 @@
+{
+  "status": "36-current1280-originals-independently-reviewed",
+  "scope": "Actual waiting originals, no all-phase acceptance",
+  "opened": [
+    {
+      "id": "push",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/push-tv-matchmaking-1280.png",
+      "sha256": "cfd5735b0c4451d44bb83774e093e5c096131e23972971a2b48d89d5117a21c8",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "shrink",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/shrink-tv-matchmaking-1280.png",
+      "sha256": "9ea875a7277ff6d73ee44a86154ef2dbffa97ba05815f45f8c75a56fcd669e69",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "knives",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/knives-tv-matchmaking-1280.png",
+      "sha256": "f177545ceafb39f2495e26ed792ef8880d90cc6f32e9e0092a9209c6af2e14f2",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "bomb",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/bomb-tv-matchmaking-1280.png",
+      "sha256": "d1a1d53a467ca68da921bda330250a1d0db43eacd6d94f6739e03922c72c2627",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "western",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/western-tv-matchmaking-1280.png",
+      "sha256": "c5607013a6e279cf7fe9f0173292652c0f97275fd1072fe6e5d812c09914b7f9",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "tanks",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/tanks-tv-matchmaking-1280.png",
+      "sha256": "ebd28ae20e1fc3c8baeb974103aab8b6aafe2b3454d7fe2a42dd558054c03f54",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "tankarena",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/tankarena-tv-matchmaking-1280.png",
+      "sha256": "3c6145951f7c0f906182b1ab58ea9212cfcb653a328f2b1b5401550bb3fd8670",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "chaos",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/chaos-tv-matchmaking-1280.png",
+      "sha256": "10a10d792f007373bdf95be75c5202d1c93eccfbb63f46a83b7456444f6ba343",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "kart",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/kart-tv-matchmaking-1280.png",
+      "sha256": "24b82da876d451e564fbebe828532932c96073fd9716e8a94802e9facbffc556",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "monster",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/monster-tv-matchmaking-1280.png",
+      "sha256": "49e500c7a76a97ebc3f356f3c0f5087e59ccfd057bd504e0eda648bb0e889283",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "spy",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/spy-tv-matchmaking-1280.png",
+      "sha256": "d95d6db82c63408550dac691785d5a6dbbd2904f41005432605a0613fd38e65c",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "millionaire",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/millionaire-tv-matchmaking-1280.png",
+      "sha256": "47a403da552493d7f8d76bf74baf51264c8c4e33fbde29ff1ad753f6bc7131bb",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "sinyakquiz",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/sinyakquiz-tv-matchmaking-1280.png",
+      "sha256": "99427c96d0d087d5af1b43dfcc2b41300684238da9f1516de6f0335c4b11f1bf",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "warsaw",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/warsaw-tv-matchmaking-1280.png",
+      "sha256": "4532aec3fcb2f181dbd0c276095cc9201da6e8dbf5a1a22914bba3cf93a11b7d",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "crocodile",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/crocodile-tv-matchmaking-1280.png",
+      "sha256": "fcf02d9afc9b8c39c11d6926d3cf16af166808dd2d3685f55868d028c7fdd2b5",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "jenga",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/jenga-tv-matchmaking-1280.png",
+      "sha256": "fcfe9c96287d8620cd59abaa0679acd8e31210f4fbb2abf98e8215b59fd38871",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "crane",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/crane-tv-matchmaking-1280.png",
+      "sha256": "88b6b9edbb403a50680f76f2f9615c387acbd67a043c732afbadfc4b8bf5d13b",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "naval",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/naval-tv-matchmaking-1280.png",
+      "sha256": "d3cc8fb8abccfd910738cfed8cee0f86809d937a5021144f77a8efcf72740594",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "drawguess",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/drawguess-tv-matchmaking-1280.png",
+      "sha256": "c8ec6697a3039a529c37d23e52f3311645713f30d5f53a2a83687d5fe3103dfb",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "western_duel",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/western_duel-tv-matchmaking-1280.png",
+      "sha256": "6c2f66a926b807b7b8fc10118c82f799cf444835ac4c21a3158daf3e58f21665",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "taprace",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/taprace-tv-matchmaking-1280.png",
+      "sha256": "9e875a2d77ee58724d656e526560803c80f1d4d1a752948a9844a6032be10572",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "punchmeter",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/punchmeter-tv-matchmaking-1280.png",
+      "sha256": "37c382357b22a5babed75e7a9f6e159b384d21bb40fd2e37fc99ac3ad89dba6a",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "flappy",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/flappy-tv-matchmaking-1280.png",
+      "sha256": "2ebf4d66164f8a915025d00589c9fbc16b15a4376da087e9f73278213525672f",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "hungry",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/hungry-tv-matchmaking-1280.png",
+      "sha256": "21350e621ae9b10a4f004edf4117f77bb41376f4c049ea3eabc564559b91a063",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "snakelines",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/snakelines-tv-matchmaking-1280.png",
+      "sha256": "4b9cb833a4d776c35150148088912799f00e3725bbecfecdc0b18fb714be9402",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "carryball",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/carryball-tv-matchmaking-1280.png",
+      "sha256": "e9deeacb636caecdac50800f6c9243eacff4a98d7fe4eaa720300a2a8345e51c",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "marble_bloom",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/marble_bloom-tv-matchmaking-1280.png",
+      "sha256": "2533d48068c4f193153eec1139cfb21954c6f72f1c4f9af91ffa67d020336319",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "pocket_siege",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/pocket_siege-tv-matchmaking-1280.png",
+      "sha256": "1a6492f930e1cc29fd3d7ee9f96d81c66361e5c60ebc260bb124906ff79fb7fc",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "bow_club",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/bow_club-tv-matchmaking-1280.png",
+      "sha256": "080754e0498f1ea5bfd45a99765d671589147d06bb86f4f2562c4065e40c5d10",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "poker",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/poker-tv-matchmaking-1280.png",
+      "sha256": "4e854992f4791c46ae39e27d88f8d7a72a95425e074b845f4f2372e618173880",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "airhockey",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/airhockey-tv-matchmaking-1280.png",
+      "sha256": "d4e49a6356bcfe180c502e616c2b9ed795c956209f2863fbcb6b6f30b856469c",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "mines",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/mines-tv-matchmaking-1280.png",
+      "sha256": "7813b2bf815cd263a6fec0fd81878a2a590dd51acb56f57fa7a9708337bc17a6",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "curling",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/curling-tv-matchmaking-1280.png",
+      "sha256": "2173c592f6b86c3019c56b2ee8666c5b6238849d9de18baef17b365a12f7d0c1",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "bowling",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/bowling-tv-matchmaking-1280.png",
+      "sha256": "b7252d793b96a146db1460eca87ea9d149dedf7776507d3880789676c11b45f4",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "swarm_gate",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/swarm_gate-tv-matchmaking-1280.png",
+      "sha256": "f99efb937f906cb0c73e95e9dcf8c7e2f54e9dc82801a1b55d7c17bc50df25cc",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "peek_shoot",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/peek_shoot-tv-matchmaking-1280.png",
+      "sha256": "1605a60ca4bf32608f3e5470f386914866abb120b7b6ab6dfe052a793362f1af",
+      "independentlyOpened": true,
+      "observation": "Dedicated Preparing the game, Ready roster and approved wordmark visible. Gameplay cap, field and rail absent in captured waiting state."
+    },
+    {
+      "id": "bomb-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/bomb-tv-matchmaking-1920.png",
+      "sha256": "61b23281897633b078d560468c4917abc25c027d26d703ab06081e2d94eaa2a9",
+      "independentlyOpened": true,
+      "observation": "Representative1080 original: only dedicated readiness screen, no game cap/rail/field leak; wordmark and roster whole."
+    },
+    {
+      "id": "tankarena-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/tankarena-tv-matchmaking-1920.png",
+      "sha256": "3b818ea607141bfe9b7fe4342b34dc6d70c6a7fe3a9a550da18ca9ea42cc062b",
+      "independentlyOpened": true,
+      "observation": "Representative1080 original: only dedicated readiness screen, no game cap/rail/field leak; wordmark and roster whole."
+    },
+    {
+      "id": "monster-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/monster-tv-matchmaking-1920.png",
+      "sha256": "dcdb883e4b0529ceaf08303daff2ae2efd475322719b8df19c75df419db905a2",
+      "independentlyOpened": true,
+      "observation": "Representative1080 original: only dedicated readiness screen, no game cap/rail/field leak; wordmark and roster whole."
+    },
+    {
+      "id": "sinyakquiz-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/sinyakquiz-tv-matchmaking-1920.png",
+      "sha256": "f0910bb725925312f151a5e1cee327ee9d78e26c7538fdacf3076cd00312636f",
+      "independentlyOpened": true,
+      "observation": "Representative1080 original: only dedicated readiness screen, no game cap/rail/field leak; wordmark and roster whole."
+    },
+    {
+      "id": "airhockey-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/airhockey-tv-matchmaking-1920.png",
+      "sha256": "580a4f620e65eb2f58dcf68696735e8673e60bccdd17a5491b93b8a437c0bfcb",
+      "independentlyOpened": true,
+      "observation": "Representative1080 original: only dedicated readiness screen, no game cap/rail/field leak; wordmark and roster whole."
+    },
+    {
+      "id": "bowling-1920",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/final-waiting/bowling-tv-matchmaking-1920.png",
+      "sha256": "363822352444c7d205dd0d1d159ddd493a8f6627ab5a0c01457c19b054bd8b53",
+      "independentlyOpened": true,
+      "observation": "Representative1080 original: only dedicated readiness screen, no game cap/rail/field leak; wordmark and roster whole."
+    }
+  ],
+  "updatedAt": "2026-10-03T17:40:57.094752+00:00",
+  "reportSHA": "30af6d96674d403df90344ced9a0b94a6efa9b9036582d0c27a6c90905bd0bf6",
+  "qualification": {
+    "finishedAt": "2026-10-03T17:33:08.495Z",
+    "errors": [],
+    "rowErrors": [],
+    "captureDrift": [
+      "public/native-shell/host-ui.css"
+    ],
+    "scope": "TV waiting dependencies stable within capture; native host-ui.css concurrent drift is retained, not claimed global freeze. 1920 images recorded by owner/automatic checks, not all independently opened here.",
+    "leaks": 0,
+    "independentSizes": "All36 at1280 plus6 representative1920; remaining1920 automated/owner proof only."
+  }
+}

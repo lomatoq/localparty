@@ -2,3 +2,142 @@ body{min-height:100dvh}.phone{min-height:100dvh;padding:18px max(16px,env(safe-a
 /* LOCAL PARTY glass system — charcoal, lime and readable touch targets. */
 :root{--bg:#101412;--panel:#1b231f;--panel2:#222e27;--ink:#f0f5ee;--muted:#adbbb0;--gold:#c8ff73;--pink:#b5cea5;--cyan:#a1ccbf;--green:#c8ff73;--line:#425346;color-scheme:dark}html,body{background:#101412!important;color:#f0f5ee}body{background:radial-gradient(ellipse at 85% 0,#25362a,transparent 55%),#101412!important}header{background:transparent;border-color:#34463a}.panel,.glass,.stage{background:linear-gradient(135deg,#26342ae6,#18231de6)!important;border:1px solid #60786755;box-shadow:0 18px 60px #0004,inset 0 1px #eefde914;backdrop-filter:blur(18px)}button,input,select{border-color:#506457;background:#28372e;color:#eff7ef}button{min-height:52px;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}button:active{transform:scale(.975)}button:focus-visible{outline:3px solid #c8ff73;outline-offset:3px}.btn:not(.secondary):not(.danger),#start,#next,#guessed,#joinButton{background:#c8ff73!important;color:#15200f!important;box-shadow:0 8px 28px #a3db4920}.points,#timer,.money,.correctGuess{color:#c8ff73!important}.timebar i{background:#c8ff73}#answers button,#answers .answer,.phoneAnswer,.answer{background:#29372f;border-color:#506452;color:#f1f5ee}#answers .correct,.answer.correct,.phoneAnswer.correct{background:#4b6333;border-color:#c8ff73}#answers .wrong,.answer.wrong,.phoneAnswer.wrong{background:#603a40}#answers b,.letter{background:#455741;color:#e5f8de}.teamScore,#explanation{background:#26392d;color:#eff8ec}.row{border-color:#455548}.person small,.eyebrow,small,#status{color:#b8cbbb}.logoMark{background:#c8ff73;color:#182414;box-shadow:none}.quickrules{border-left:3px solid #c8ff73;padding:10px 14px;background:#27382b55;border-radius:0 12px 12px 0}.muted,.rules p,details p{color:#b8cbbb}a{color:#c8ff73}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
+
+/* Keep all four live answers inside a managed mobile controller. */
+html.party-managed.party-player body.screen-phone .phone{height:100dvh;min-height:0;overflow:hidden}
+html.party-managed.party-player body.screen-phone #answer{height:100%;min-height:0;display:flex;gap:6px}
+html.party-managed.party-player body.screen-phone #answer.hidden{display:none!important}
+html.party-managed.party-player body.screen-phone #answer .statusTop{margin:0;flex:none;align-items:center}
+html.party-managed.party-player body.screen-phone #answer .pill{padding:6px 10px;font-size:14px!important;line-height:1.2}
+html.party-managed.party-player body.screen-phone #answer .questionMini{flex:0 1 auto;min-height:0;margin:0!important}
+html.party-managed.party-player body.screen-phone #answer #phoneQuestion{font-size:18px!important;line-height:1.2!important;margin:4px 0!important}
+html.party-managed.party-player body.screen-phone #answer .phoneAnswers{margin:0;gap:6px;flex:1;min-height:0;grid-template-rows:repeat(4,minmax(44px,1fr))}
+html.party-managed.party-player body.screen-phone #answer .phoneAnswer{min-height:44px!important;padding:6px 10px!important;gap:10px}
+html.party-managed.party-player body.screen-phone #answer .phoneAnswer .letter{width:30px;height:30px;flex-basis:30px;font-size:16px}
+html.party-managed.party-player body.screen-phone #answer .phoneAnswer .txt{font-size:14px;line-height:1.2}
+html.party-managed.party-player body.screen-phone #answer .phoneTimer{flex:none;margin:0;height:4px}
+
+/* Millionaire controller: the question owns the hierarchy; choices remain readable
+   copy. Use the iframe's actual available height, with the same 16px edge as the
+   session footer. A large phone must not inflate four short answers into slabs. */
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .phone{
+  width:100%;height:100dvh;min-height:0;padding:12px 16px!important;gap:0;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .view{
+  height:100%;min-height:0;min-width:0;gap:12px;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer{
+  justify-content:center;gap:10px;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .statusTop{
+  flex:none;align-items:center;margin:0;gap:12px;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .statusTop .pill{
+  min-height:32px;padding:6px 12px;font:italic 900 16px/1.2 KardiaFatRunner,sans-serif!important;
+  white-space:nowrap;letter-spacing:0;text-transform:uppercase!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone :is(#myMoney,#moneyPill,#moneyNow,#finalMoney){
+  font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important;font-weight:900!important;
+  font-variant-numeric:tabular-nums;color:#caff72!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .questionMini{
+  flex:0 0 auto;margin:0!important;text-align:center;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #phoneCat{
+  font:italic 900 13px/1.3 KardiaFatRunner,sans-serif!important;letter-spacing:.06em;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer #phoneQuestion{
+  font:italic 900 20px/1.15 KardiaFatRunner,sans-serif!important;text-transform:uppercase!important;
+  margin:6px 0 0!important;letter-spacing:-.025em;overflow-wrap:anywhere;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswers{
+  flex:0 1 376px;min-height:208px;max-height:376px;margin:0;gap:8px;
+  grid-template-rows:repeat(4,minmax(46px,1fr));
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswer{
+  min-height:46px!important;padding:8px 12px!important;gap:12px;border-radius:22px;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswer .letter{
+  width:30px;height:30px;flex:0 0 30px;font:italic 900 18px/1 KardiaFatRunner,sans-serif!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswer .txt{
+  min-width:0;font:italic 400 17px/1.2 KardiaFitRunner,sans-serif!important;letter-spacing:0!important;
+  text-transform:none!important;overflow-wrap:anywhere;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard{
+  width:100%;min-width:0;max-height:100%;margin:auto 0;padding:20px!important;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard :is(h1,p){margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard h1{
+  font:italic 900 26px/1.12 KardiaFatRunner,sans-serif!important;letter-spacing:-.025em;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard p{
+  font:italic 400 16px/1.35 KardiaFitRunner,sans-serif!important;text-transform:none!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .heroEmoji{flex:none;font-size:44px;line-height:1;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .wait-player-name{
+  display:block;margin:6px 0;font:400 17px/1.3 KardiaFit,sans-serif!important;
+  text-transform:none!important;overflow-wrap:anywhere;letter-spacing:0!important;color:#fff;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .wait-copy{
+  display:block;font:italic 400 16px/1.35 KardiaFitRunner,sans-serif!important;
+  text-transform:none!important;letter-spacing:0!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .wait-label{
+  display:block;font:400 13px/1.3 KardiaFit,sans-serif!important;text-transform:none!important;letter-spacing:0!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #miniRank{
+  display:block!important;margin:0;width:100%;padding:10px 12px;text-align:center;background:#ffffff04;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #miniRank b{
+  font:italic 900 17px/1.3 KardiaFatRunner,sans-serif!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #miniRank .muted{
+  font:italic 400 14px/1.3 KardiaFitRunner,sans-serif!important;text-transform:none!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard .pulse{
+  margin:0;font:italic 400 14px/1.35 KardiaFitRunner,sans-serif!important;text-transform:none!important;
+}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .moneyNow{margin:0;font-size:38px!important;line-height:1.15}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #reveal[data-outcome=incorrect] .centerCard{border-color:#ff758d55!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #reveal[data-outcome=correct] .centerCard{border-color:#caff7255!important}
+@media(max-height:480px){
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .phone{padding-block:8px!important}
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer{gap:8px}
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone #answer .phoneAnswer .txt{font-size:16px!important}
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard{padding:16px!important;gap:10px}
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard h1{font-size:24px!important}
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .heroEmoji{font-size:36px!important}
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .centerCard p{font-size:14px!important}
+  html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone .wait-copy{font-size:14px!important}
+}
+
+/* Codex UI: money, question and timing precede the answer controls. */
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body main.phone #answer{gap:12px!important;padding:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body main.phone #answer .statusTop{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 4px!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body main.phone #answer #myMoney{font:italic 900 28px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body main.phone #answer .questionMini{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body main.phone #answer .phoneAnswers{gap:10px!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body main.phone #answer .phoneAnswer{border-radius:20px!important;min-height:60px!important;padding:12px!important;display:flex;align-items:center;gap:12px}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body main.phone #secondsRemaining:empty{display:none!important}
+
+/* Group07: readable answer tracks, meaningful money before the action. */
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer{justify-content:center!important;padding:0!important;gap:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer #myMoney{font:italic 900 38px/1 KardiaFatRunner,sans-serif!important;background:none!important;border:0!important;padding:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .phoneAnswer{border-left-width:1px!important;gap:16px!important;padding:12px 16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .phoneAnswer .letter{background:var(--answer-accent)!important;color:#191226!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .phoneAnswer .txt{font:italic 400 18px/1.25 KardiaFitRunner,sans-serif!important;overflow-wrap:normal!important}
+@media(hover:none){.party-screen .phoneAnswer:hover{transform:none!important}}
+/* Named 320×568 correction: all four answers remain above the session footer. */
+/* Phone review: the next actual prize shares the existing money/turn HUD. */
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .mq-turn-context{display:grid;justify-items:end;gap:2px;min-width:0}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .mq-turn-context>.pill{min-height:0!important;padding:3px 8px!important;font-size:12px!important;line-height:1!important}
+html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer #phoneNextPrize{font:500 12px/1.15 KardiaFit,sans-serif!important;letter-spacing:0;color:#cfbce8!important;white-space:nowrap}
+@media(max-height:480px){
+ html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer{gap:8px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer #myMoney{font-size:30px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .phoneAnswers{min-height:194px!important;gap:6px!important;grid-template-rows:repeat(4,minmax(44px,1fr))!important}
+ html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .phoneAnswer{min-height:44px!important;padding:8px 12px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=millionaire] body.screen-phone main.phone #answer .phoneAnswer .txt{font-size:16px!important;line-height:1.2!important}
+}

@@ -1,2 +1,123 @@
 :root{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#eff5e8;background:#0f1f26;color-scheme:dark}*{box-sizing:border-box}body{margin:0;overscroll-behavior:none}button,input,select{font:inherit}button{cursor:pointer;border:0;background:#f7cf79;color:#254449;border-radius:16px;padding:15px 24px;min-height:48px;font-weight:800;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:active{transform:scale(.98)}button:disabled{opacity:.45;cursor:default}.secondary{background:#306068;color:#fff}input,select{background:#234c52;color:#fff;border:1px solid #729c9860;padding:13px;border-radius:10px;min-height:46px}label{display:block;font-size:13px;color:#aac4bd}h1,p{margin:0}small{letter-spacing:.12em;font-size:11px}#setup{max-width:450px;min-height:100dvh;margin:auto;padding:max(32px,env(safe-area-inset-top)) 26px max(24px,env(safe-area-inset-bottom));background:radial-gradient(ellipse at top,#2b6263,transparent 75%)}#setup>small{color:#d7d9b1}#setup h1{font-size:82px;line-height:.86;letter-spacing:-.06em;margin:36px 0 27px;color:#f4d898}#setup h1 span{display:block;font-size:15px;font-weight:500;letter-spacing:0;margin-top:18px;color:#e0e9d3}#setup p{font-size:14px;line-height:1.6;color:#b9d0c9}#setup input{width:100%;margin-top:7px}#setup label{margin-top:24px}#setup button{display:block;width:100%;margin-top:14px}#setup .note{font-size:11px;margin-top:20px;color:#9abbb4}#error{color:#ffd293!important;font-size:13px;padding:8px}#view{position:fixed;inset:0;overflow:hidden;background:#09141a}video,#overlay2D,#bow{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}#bow,#overlay2D{pointer-events:none}#bow{z-index:2}#overlay2D{z-index:3}.phone-hud{position:absolute;z-index:8;top:0;left:0;right:0;padding:max(12px,env(safe-area-inset-top)) 12px 28px;background:linear-gradient(#08141fd6,transparent 78%);display:flex;align-items:flex-start;gap:10px}.phone-hud>div{flex:1;text-align:center;padding-top:10px}.phone-hud strong{font-size:12px}.phone-hud small{display:block;font-size:9px;letter-spacing:.01em;margin-top:6px;color:#bdd7d5}.mini{padding:9px 13px;min-width:42px;min-height:42px;background:#0d2530cc;color:#d9ebe5;border:1px solid #b8d4dd33;border-radius:14px;backdrop-filter:blur(6px)}.shoot-hud{position:absolute;z-index:8;bottom:0;left:0;right:0;display:flex;flex-direction:column;align-items:flex-end;padding:28px 18px max(18px,env(safe-area-inset-bottom));background:linear-gradient(transparent,#07141fa0 68%,#07141fd8);pointer-events:none}.shoot-hud>*{pointer-events:auto}#draw{width:112px;height:112px;min-width:112px;min-height:112px;border-radius:999px;display:grid;place-items:center;box-shadow:0 10px 28px #0008,inset 0 2px 0 #fff8,inset 0 -7px 18px #0005;font-size:16px;letter-spacing:.02em;touch-action:none;background:radial-gradient(circle at 35% 30%,#ffd998,#f2ae4f 48%,#ac5a20 100%);color:#10222a;padding:10px;text-align:center}#draw small{display:block;margin-top:4px;font-size:10px;letter-spacing:0;font-weight:600;opacity:.78}#score{font-size:14px;margin:0 4px 12px;text-shadow:0 2px 5px #000;background:#08151cb3;padding:7px 10px;border-radius:999px;border:1px solid #d3eff326}#calibrate{margin-top:12px;background:#0d2530d8;color:#e6f8fb}#calibrationHint{font-size:9px;letter-spacing:0;margin-top:7px;color:#b5d0ce}.left-hand .shoot-hud{align-items:flex-start}#feedback{position:absolute;top:35%;left:0;right:0;text-align:center;z-index:9;font-weight:900;font-size:42px;color:#ffde85;text-shadow:0 4px 18px #000;pointer-events:none}#touchPad{position:absolute;inset:150px 12px auto;aspect-ratio:16/9;z-index:5;touch-action:none}[hidden],.hidden{display:none!important}.tv{height:100dvh;display:flex;align-items:center;justify-content:center;background:#14393c}.tv #stage{position:relative;aspect-ratio:16/9;width:min(100vw,177.7778dvh);height:min(100dvh,56.25vw);background:#c3e6ee}.tv canvas{position:absolute;inset:0;width:100%;height:100%}.tv #board{pointer-events:none}.tv-heading{position:absolute;top:7%;left:18%;right:18%;text-align:center;color:#214953;pointer-events:none}.tv-heading small{font-size:clamp(8px,.8vw,12px);letter-spacing:.18em}.tv h1{font-size:clamp(22px,4.2vw,62px);letter-spacing:-.065em;line-height:.95;margin:9px 0}.tv-heading p{font-size:clamp(10px,1.1vw,16px)}.tv-scores{position:absolute;bottom:6%;left:16%;right:16%;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;pointer-events:none}.score-chip{padding:7px 13px;background:#edf7e5e0;color:#214c4b;border-radius:9px;border-top:3px solid var(--player);font-weight:750;font-size:13px}.score-chip span{font-size:10px;letter-spacing:0;display:block;color:#568277}.tv-controls{position:absolute;left:20%;right:20%;top:67%;display:flex;flex-wrap:wrap;gap:9px;align-items:end;justify-content:center;padding:16px;background:#17464ce8;border-radius:16px}.tv-controls label{font-size:10px}.tv-controls select{display:block;min-height:36px;padding:8px}.tv-controls button{min-height:42px;font-size:13px}.tv-controls small{flex-basis:100%;text-align:center;letter-spacing:0;overflow-wrap:anywhere;color:#cee1cb}.tv #error{position:absolute;bottom:0;left:0;right:0;text-align:center}.tv.is-playing .tv-controls{display:none}.managed .tv-controls{display:none}@media(max-height:660px){#setup h1{font-size:62px;margin:25px 0}#setup{padding-top:22px}.shoot-hud{padding-bottom:12px}#draw{width:92px;height:92px;min-width:92px;min-height:92px;font-size:14px}#calibrationHint{display:none}}
 @media (orientation:portrait){#view::after{content:'Поверни телефон горизонтально';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#09141ee6;color:#fff;padding:12px 16px;border-radius:16px;z-index:20;font-weight:700;letter-spacing:.02em;pointer-events:none}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* Primary action follows the shared title role without changing control geometry. */
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body #setup #start{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important;letter-spacing:-.025em!important}
+
+/* Embedded setup shares the console identity; keep one clear game title. */
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body #setup>small{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body #setup h1{font-size:28px!important;line-height:1.12!important;text-align:center!important;margin:12px 0 20px!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body #setup h1 br{display:none}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body #setup h1 br:after{content:" "}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body #setup h1 span{margin-top:12px;font-size:14px!important;line-height:1.4!important}
+
+/* Keep the translated handedness label readable and the touch target below its HUD. */
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body .phone-hud #hand{width:110px!important;min-width:110px!important;flex:0 0 110px;min-height:48px;height:48px;padding:8px 10px!important;font-size:12px!important;line-height:1.1!important;white-space:nowrap;overflow-wrap:normal;word-break:normal}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body .phone-hud #hand::after{display:none}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body .phone-hud{min-height:68px;height:68px;padding:10px!important;background:linear-gradient(#171320df,#1713207a 68%,transparent)!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body .phone-hud>div{min-width:0}
+@media(orientation:portrait){html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.touch-mode #touchPad{inset:88px 12px auto!important;max-height:none!important;width:auto!important;aspect-ratio:16/9}}
+
+/* Keep the AR markers untouched; make the separate public score rail readable. */
+html.hp-ui.party-managed.party-host[data-party-game=bow_club] .tv-scores{bottom:4%;gap:10px;align-items:stretch}
+html.hp-ui.party-managed.party-host[data-party-game=bow_club] .score-chip{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;min-width:82px;max-width:240px;padding:8px 12px;text-align:center}
+html.hp-ui.party-managed.party-host[data-party-game=bow_club] .score-chip .hp-player-name{grid-column:1/-1;font-family:var(--hp-font-body)!important;font-size:16px;font-weight:550!important;font-style:normal!important;text-transform:none!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html.hp-ui.party-managed.party-host[data-party-game=bow_club] .score-chip .bow-points{font-family:var(--hp-font-action)!important;font-size:24px;font-weight:900;font-style:italic;line-height:1;color:#d4ff8b}
+html.hp-ui.party-managed.party-host[data-party-game=bow_club] .score-chip>span{align-self:center;font-size:14px!important;line-height:1.2}
+
+/* Codex UI: points and aiming guidance precede the touch surface. */
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout{position:absolute;z-index:8;left:16px;right:16px;top:76px;display:flex;flex-direction:column;gap:8px;align-items:center;padding:12px 16px;border-radius:18px;background:#211c30d9;pointer-events:none}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout #score{margin:0!important;font:italic 900 24px/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout #calibrationHint{font:italic 400 14px/1.3 KardiaFitRunner,sans-serif!important;text-align:center;margin:0;letter-spacing:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view #touchPad{top:172px!important;bottom:152px!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .shoot-hud{padding-top:16px!important;gap:12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view #draw{font-size:24px!important;min-height:72px!important}
+@media(max-height:500px){html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout{top:54px;padding:8px 12px;gap:4px}html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout #score{font-size:22px!important}html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view #touchPad{top:134px!important;bottom:112px!important}}
+
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout{background:transparent!important;border:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout #score{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;box-shadow:none!important}
+
+/* Group10: marker-safe TV identity and a complete portrait aiming/controller task. */
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading{display:flex!important;align-items:center;justify-content:center;gap:24px;left:18%;right:18%;top:2.5%;text-align:left;background:transparent!important;color:#f5eeff;z-index:4}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading>small{display:none}
+.bow-tv-wordmark{width:180px;height:76px;object-fit:contain;flex:none}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv #phase{font:italic 400 20px/1.25 var(--hp-font-copy)!important;color:#f6edff;text-shadow:0 2px 8px #191225}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-scores{left:17%;right:17%;bottom:3%;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:12px;flex-wrap:nowrap;align-items:stretch}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip{min-width:0;max-width:none;display:grid;grid-template-columns:52px minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;gap:4px 12px;padding:12px 16px;border-radius:16px;background:#282137de;font-size:16px}
+.bow-score-avatar{width:52px;height:56px;object-fit:contain;grid-column:1;grid-row:1/3}
+.bow-score-avatar.is-photo{border-radius:12px;object-fit:cover}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip .hp-player-name{grid-column:2;grid-row:1;text-align:left;font-size:18px!important}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip .bow-points{grid-column:3;grid-row:1/3;font-size:30px;color:#d1ff8b}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip>span{grid-column:2;grid-row:2;text-align:left;font-size:14px!important}
+/* Keep the four720p cards' outer bounds while giving short names their full
+   number. Identity stays above shots; points retain a separate protected track. */
+@media(max-width:1400px){
+ html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip{grid-template-columns:40px minmax(0,1fr) max-content;column-gap:8px;padding-inline:10px;min-height:82px;height:82px}
+ html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip .bow-score-avatar{width:40px;height:44px;object-fit:contain}
+ html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip .bow-points{font-size:24px}
+}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view{background:transparent!important}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone .phone-hud{height:64px;min-height:64px;align-items:center;padding:8px 16px!important;gap:8px;background:transparent!important;flex:none}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone .phone-hud>div{padding:0;min-width:0}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #tracking{font:550 15px/1.2 var(--hp-font-body)!important;color:#f0e4fa}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #metrics{font:italic 400 12px/1.2 var(--hp-font-copy)!important;color:#d9c7e9;margin:4px 0 0!important}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone .phone-hud #back{width:44px;height:44px;min-width:44px;padding:10px!important}
+.phone-hud #back img{width:22px;height:22px;filter:brightness(0) invert(1)}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone .phone-hud #hand{min-width:90px!important;width:90px!important;flex:0 0 90px;height:44px;min-height:44px;font-size:12px!important;padding:8px!important}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view .bow-readout{top:76px;left:16px;right:16px;padding:0!important;gap:12px!important}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #score{display:flex;align-items:center;justify-content:center;gap:24px;margin:0!important;font-size:16px!important;text-shadow:none}
+#score>span{display:grid;grid-template-columns:36px auto;grid-template-rows:1fr auto;align-items:center;gap:0 8px;min-width:100px}
+#score>span>img{width:32px;height:36px;object-fit:contain;grid-row:1/3}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #score strong{font:italic 900 30px/1 var(--hp-font-action)!important;color:#f6f0ff}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #score small{font:italic 400 14px/1.25 var(--hp-font-copy)!important;letter-spacing:0;color:#dcccE8}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #calibrationHint{font-size:14px!important;color:#e4d2f1;line-height:1.25!important}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone.touch-mode #view #touchPad{left:16px!important;right:16px!important;top:188px!important;bottom:auto!important;width:auto!important;aspect-ratio:16/9!important;max-height:none!important;border-radius:24px;overflow:hidden}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view .shoot-hud{left:16px;right:16px;bottom:8px;align-items:stretch;padding:0!important;background:transparent!important;gap:8px}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #draw{width:100%!important;height:88px;min-height:88px!important;min-width:0;border-radius:24px!important;display:flex!important;flex-direction:row;gap:16px;align-items:center;justify-content:center;padding:8px 16px!important;box-shadow:inset 0 -4px 0 #26371625!important}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #draw>img{width:56px;height:56px;object-fit:contain}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #draw>.bow-action-copy{display:flex;flex-direction:column;gap:4px;text-align:left}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #draw b{font:italic 900 26px/1 var(--hp-font-action)!important}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #draw small{font:italic 400 16px/1.2 var(--hp-font-copy)!important;margin:0!important}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #calibrate{min-height:44px;margin:0;align-self:center}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #feedback{top:44%;font-size:28px}
+@media(max-height:500px){
+ html.hp-ui.party-player[data-party-game=bow_club] body.phone #view .bow-readout{top:64px;gap:8px}
+ html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #score strong{font-size:26px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone.touch-mode #view #touchPad{top:148px!important;right:16px!important;max-height:calc(100dvh - 232px)!important;aspect-ratio:16/9!important}
+ html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #draw{height:72px;min-height:72px!important}
+ html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #draw>img{width:44px;height:44px}
+}
+
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone .phone-hud #hand{width:44px!important;min-width:44px!important;flex:0 0 44px}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone .phone-hud :is(#hand,#back)>img{display:block!important;width:24px!important;height:24px!important;opacity:1;filter:brightness(0) invert(1)}
+
+/* Touch aiming and release form one reachable group; camera keeps its full-screen preview. */
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone.touch-mode #view .shoot-hud{top:calc(var(--bow-touch-bottom,396px) + 20px);bottom:auto!important;padding-top:0!important}
+
+/* The incumbent score/readout surfaces belong to the timber-and-enamel archery range. */
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading{padding:12px 24px;border-radius:0 0 28px 28px;top:0;background:linear-gradient(145deg,#47392df5,#2d2922f5)!important;border-bottom:1px solid #dfc79a80;box-shadow:0 5px 14px #19162326}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .score-chip{background:linear-gradient(145deg,#47392df5,#2d2922f5)!important;border:1px solid #dfc79a55;color:#f6f2ff}
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone #view .bow-readout{background:linear-gradient(90deg,transparent,#47392d70 18%,#2d292280 82%,transparent)!important;border:0!important;box-shadow:none!important;border-radius:0}
+html.hp-ui.party-player[data-party-game=bow_club] body.phone #view #calibrationHint{font:400 14px/1.25 var(--hp-font-body)!important}
+
+/* Bow facts are explicit; the instruction is quiet and belongs to the same heading. */
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-copy{display:flex;flex-direction:column;gap:8px;min-width:0}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-facts{display:flex;gap:24px;align-items:center}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-fact{display:flex;flex-direction:column;gap:3px;min-width:0}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-fact small{font:500 clamp(12px,1vw,16px)/1.2 var(--hp-font-body)!important;color:#e6d5b9;letter-spacing:0}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-fact strong{font:italic 900 clamp(22px,1.8vw,30px)/1.32 var(--hp-font-action)!important;color:#fff3dd;font-variant-numeric:tabular-nums}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-fact:last-child strong{font:600 clamp(16px,1.3vw,22px)/1.32 var(--hp-font-body)!important}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv #phase{margin:0;font:400 clamp(14px,1.1vw,18px)/1.3 var(--hp-font-body)!important;color:#e6d5b9;text-shadow:none}
+
+/* Public reading order: approved identity + live time, then match facts + guidance. */
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);left:25%;right:25%;gap:clamp(24px,1.875vw,36px);padding:clamp(12px,.9375vw,18px) clamp(24px,1.875vw,36px)}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-identity{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-tv-wordmark{width:clamp(180px,15.625vw,300px);height:clamp(98px,8.516vw,164px);max-width:100%;object-fit:contain}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-identity .bow-match-fact{flex-direction:row;align-items:center;justify-content:center;gap:8px}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-identity .bow-match-fact strong{font:italic 900 clamp(32px,2.5vw,48px)/1.25 var(--hp-font-action)!important;color:#d1ff8b;padding:0 8px 0 2px}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-copy{gap:clamp(16px,1.25vw,24px);padding-left:clamp(24px,1.875vw,36px);border-left:1px solid #dfc79a55}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-facts{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(16px,1.25vw,24px);align-items:start}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-fact strong{padding-right:8px;overflow-wrap:normal}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+html.hp-ui .bow-score-avatar.is-photo{height:auto!important;aspect-ratio:1;border-radius:50%!important;object-fit:cover!important;box-sizing:border-box;border:1.5px solid var(--player,#b1d391)}

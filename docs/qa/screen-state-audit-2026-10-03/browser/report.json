@@ -1,0 +1,442 @@
+{
+  "scope": "Browser/root photo and popup hardening; no physical-device claim.",
+  "completedAt": "2026-10-03T17:52:53.541350+00:00",
+  "productionFilesChanged": [
+    "public/app.js",
+    "public/polish.css",
+    "public/index.html"
+  ],
+  "preservedReadOnly": [
+    "public/style.css",
+    "public/native-shell/**",
+    "games/**",
+    "TV common",
+    "server.js",
+    "lib/profile-store.js"
+  ],
+  "qualifiedOwnedHashes": {
+    "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+    "public/polish.css": "b102ddc26fe18c5b1de8eddba17ee12e32fb38331c7c37675a9af8ffe04e56c9",
+    "public/style.css": "19e32296d3b794d93765c779479922badff70703fbb8e86d97873df1412cbd9f",
+    "public/index.html": "a0f461012d64aac936274b9880968e121e14e27bed1ce0b11da62e9714fb749b"
+  },
+  "qualifiedCurrentHashes": {
+    "public/app.js": "74cb619cfdceb0afe2e9e2acd205eb3368bf3806efe76286cf72cfdde49750f5",
+    "public/polish.css": "b102ddc26fe18c5b1de8eddba17ee12e32fb38331c7c37675a9af8ffe04e56c9",
+    "public/style.css": "19e32296d3b794d93765c779479922badff70703fbb8e86d97873df1412cbd9f",
+    "public/index.html": "a0f461012d64aac936274b9880968e121e14e27bed1ce0b11da62e9714fb749b"
+  },
+  "rawRuns": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/report.json",
+      "finishedAt": "2026-10-03T17:44:51.664Z",
+      "changedOwnedFiles": [],
+      "status": "38captures complete; raw exit1 from unexercised fault preserved;5otherchecks pass.3supersededfaultscreens not accepted."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/report.json",
+      "finishedAt": "2026-10-03T17:47:09.052Z",
+      "changedOwnedFiles": [],
+      "status": "Bounded4captures exit0,4checks pass, real detached-node redraw fault exercised."
+    }
+  ],
+  "checks": {
+    "catalogBackgroundHandlerStable": {
+      "id": "catalog-background-stability",
+      "method": "Scroll650 intentional; programmatic actual button handler isolates modal-open from Playwright scrollIntoView on offscreen target.",
+      "before": {
+        "y": 650,
+        "top": -204
+      },
+      "during": {
+        "y": 650,
+        "top": -204
+      },
+      "after": {
+        "y": 650,
+        "top": -204
+      },
+      "pass": true
+    },
+    "profileActions320": true,
+    "uploadErrorClearsOnSuccess": true,
+    "faultConfirmationChecks": [
+      {
+        "id": "photo-delay-exercised",
+        "pass": true
+      },
+      {
+        "id": "photo-error-fallback",
+        "method": "All new actual roster image src assignments receive explicit corrupt data URL; real peer join forces actual detached-node rendering.",
+        "pass": true
+      },
+      {
+        "id": "visible-photo-circle",
+        "pass": true
+      },
+      {
+        "id": "dialog-viewport-clearance",
+        "pass": true
+      }
+    ],
+    "pageErrors": [],
+    "tests": "6/6 node profile-photo/profile-store; app/QA syntax and scoped diff whitespace pass"
+  },
+  "dialogInventory": {
+    "rulesDialog": "actual waiting/paused interaction reviewed",
+    "statsDialog": "actual Rank/history/self-detail and320 scroll interaction reviewed",
+    "joinDialog": "actualhost Invite402/320 reviewed",
+    "roomDialog": "actual Players2/16members402/320 andfault states reviewed",
+    "catalogDialog": "source-only: quick selector hidden in normal phone flow; not forced visible or interaction-qualified",
+    "confirmStop": "source-only: host stop confirmation; player branch sends exitvote; not interaction-qualified"
+  },
+  "independentReview": "Art director opened actual-upload/nonsquare details/Players and pausedRules; final fault error402/profilebottom320/pausedRules closure independently confirmed.",
+  "limits": [
+    "WebKit emulation, not physical iPhone camera/library or WKWebView.",
+    "Fixtures: uploaded square raster illustration and opaque nonsquareJPEG screenshot; no personal/humanphoto claim.",
+    "12prior history rows are persisted QA fixtures, separate from actual completed Push match.",
+    "TEST_FAST accelerates real engine results; wait/play/pause actual server/engine.",
+    "Catalog stability uses actual button handler programmatically to isolate popupopen from Playwright offscreen-target scrollIntoView; no physicaltouch assertion.",
+    "Rank portraits intentionally hidden by approved shared CSS; visible image proof preview/header/Players/details.",
+    "Unsettled entrance images show authored transition translucency; settledreading surface qualified separately.",
+    "Owned hashes only; outsideownership parallel changes not globallyqualified."
+  ],
+  "screens": [
+    {
+      "run": "final-current",
+      "id": "en-join-empty-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-join-empty-402.png",
+      "sha256": "a699ea1425dc37d5ed3feb21fee6df40775d8785fd3d2d3a80e1324007623604",
+      "openedIndividually": true,
+      "observation": "Initial setup: circular initial, title and profile controls whole."
+    },
+    {
+      "run": "final-current",
+      "id": "en-upload-processing-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-upload-processing-402.png",
+      "sha256": "e58f191d8c164224edb064bd98de8059242a724c32225f015560ddc9d6149ddb",
+      "openedIndividually": true,
+      "observation": "Actual square fixture decode delayed1800ms; Preparing photo and disabled photo/submit controls; initial remains."
+    },
+    {
+      "run": "final-current",
+      "id": "en-square-upload-decoded-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-square-upload-decoded-402.png",
+      "sha256": "7ffbcd993756b723f0bc64bcb39f435feef43db054a2dd6f29190de6a5497c21",
+      "openedIndividually": true,
+      "observation": "Actual square raster fixture decoded to192JPEG in circular preview with badge."
+    },
+    {
+      "run": "final-current",
+      "id": "en-profile-reopened-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-profile-reopened-402.png",
+      "sha256": "68bc549554fd005af93df127f5c795b0a5870d83c53dd8cc7d133ffc092e77c5",
+      "openedIndividually": true,
+      "observation": "Actual saved profile reopened with same circle upload; title and Save/Back whole, reading material opaque."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-photo-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-photo-402.png",
+      "sha256": "7b139db94267078a1e74f83f5d16254afbb6d3a1ef8113840e1c792e9e5731c6",
+      "openedIndividually": true,
+      "observation": "Two actual connected square/nonsquare uploads circular; long names readable, header/audio/dismissal whole."
+    },
+    {
+      "run": "final-current",
+      "id": "ru-players-photo-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/ru-players-photo-402.png",
+      "sha256": "075ad5d990906edd966e341ba261b9383ad4d7156d96c50f3b23917c459a1116",
+      "openedIndividually": true,
+      "observation": "Russian Players labels and nonsquare JPEG crop whole and circular."
+    },
+    {
+      "run": "final-current",
+      "id": "en-rank-photo-loading-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-rank-photo-loading-402.png",
+      "sha256": "52cd9f96dff913bad7914ad07b735a20802f8ae11ad1d79423ca2ad11a719253",
+      "openedIndividually": true,
+      "observation": "Unsettled entrance sample before Rank visible; NOT visible photo-loading evidence. Rank portraits intentionally hidden."
+    },
+    {
+      "run": "final-current",
+      "id": "en-rank-photo-decoded-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-rank-photo-decoded-402.png",
+      "sha256": "cfb38a1c9384e633297ed8e386cc8901599cad83f7cb350d8a78716891b97893",
+      "openedIndividually": true,
+      "observation": "Settled history ranks readable, continued lower fade; title/action unmasked; portraits intentionally hidden."
+    },
+    {
+      "run": "final-current",
+      "id": "en-rank-scroll-middle-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-rank-scroll-middle-402.png",
+      "sha256": "5554a66eb216ff8a5bc0523b51f440cdb2813be70e405d7ace7ebec700671f8f",
+      "openedIndividually": true,
+      "observation": "Rank middle: continued upper/lower fades; fixed title and Back whole."
+    },
+    {
+      "run": "final-current",
+      "id": "en-rank-scroll-end-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-rank-scroll-end-402.png",
+      "sha256": "5554a66eb216ff8a5bc0523b51f440cdb2813be70e405d7ace7ebec700671f8f",
+      "openedIndividually": true,
+      "observation": "Rank end: lower fade clears, upper fade remains; final rows readable."
+    },
+    {
+      "run": "final-current",
+      "id": "en-rank-photo-failed-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-rank-photo-failed-402.png",
+      "sha256": "cfb38a1c9384e633297ed8e386cc8901599cad83f7cb350d8a78716891b97893",
+      "openedIndividually": true,
+      "observation": "History HTTP fault only; hidden portraits mean this does NOT prove visible failure fallback."
+    },
+    {
+      "run": "final-current",
+      "id": "en-player-profile-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-player-profile-402.png",
+      "sha256": "44daddd6fb73432e8b4e12038db6a62824696248e95adfc72d798ba5937ce9e4",
+      "openedIndividually": true,
+      "observation": "Selected history mascot detail circle/badge; not actual uploaded-player identity proof."
+    },
+    {
+      "run": "final-current",
+      "id": "en-invite-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-invite-402.png",
+      "sha256": "4f2802b9790c30a81651ee0e278a61937da6103decc4511d4d3f9ad8ee716d48",
+      "openedIndividually": true,
+      "observation": "Actual host Invite: title/QR/instruction/address/Copy/Done whole, opaque reading material."
+    },
+    {
+      "run": "final-current",
+      "id": "en-upload-corrupt-error-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-upload-corrupt-error-402.png",
+      "sha256": "65dab6d5227b6070db787ebd92ccc6edef9c745e5de40350cdb34dc5b43ddc19",
+      "openedIndividually": true,
+      "observation": "Actual corrupt JPEG: normalized EN inline error and existing toast; retained prior photo, submit restored; toast below actions at402."
+    },
+    {
+      "run": "final-current",
+      "id": "en-upload-recovered-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-upload-recovered-402.png",
+      "sha256": "60f083369f1af88ffaf845b72a92acf965e5110b1e6c401d7bb0ebee1ecd9968",
+      "openedIndividually": true,
+      "observation": "Valid square upload clears error/toast; circle and whole Save/Back."
+    },
+    {
+      "run": "final-current",
+      "id": "en-profile-320",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-profile-320.png",
+      "sha256": "7aa4754423a1b8bc1023f85f9a8e3eed7252d8354da95ee47dbe583fa7347695",
+      "openedIndividually": true,
+      "observation": "Compact profile: fixed whole title/Save/Back; fields continue under lower inner fade."
+    },
+    {
+      "run": "final-current",
+      "id": "en-profile-bottom-320",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-profile-bottom-320.png",
+      "sha256": "43d0f7352e834b6675ee3f64a46639dfdc4895f2b5e4695e9bb5f03f7506b912",
+      "openedIndividually": true,
+      "observation": "Compact profile fields at end: hand/language reachable, bottom fade clears; title and Save/Back whole."
+    },
+    {
+      "run": "final-current",
+      "id": "en-rank-320",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-rank-320.png",
+      "sha256": "5e8fc06681412fa31069e39ec256cc7b403d6f042cc0ceb2355c80b151e9b24e",
+      "openedIndividually": true,
+      "observation": "Compact Rank: names wrap inside rows, scores whole; approved hidden portrait hierarchy retained."
+    },
+    {
+      "run": "final-current",
+      "id": "en-invite-320",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-invite-320.png",
+      "sha256": "fa31a9853673b4ba2902814e56e0be7992c8014c00df6f0b041cbf987f9746f4",
+      "openedIndividually": true,
+      "observation": "Compact host Invite: header/QR/actions whole; instruction/address inner scroll, no automatic heading crop."
+    },
+    {
+      "run": "final-current",
+      "id": "ru-profile-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/ru-profile-402.png",
+      "sha256": "a8d9a8e932e75b51cf65b500ab9a8f8c2cd6eb1a7defc66a7b6fc32bdd079d3c",
+      "openedIndividually": true,
+      "observation": "RU editor: actual nonsquare upload persists circular; long name and controls readable."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-16-top-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-16-top-402.png",
+      "sha256": "8bd53f2e0c850396c6274f445726dea15ab52b156318ac8a513eea190d535587",
+      "openedIndividually": true,
+      "observation": "16 actual connected peers: first rows, title/dismissal whole; continued lower inner fade."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-16-middle-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-16-middle-402.png",
+      "sha256": "7467e9aa2958deeb85086fb390f1d66d947a3e4ca197e8fa46cb44650c09142b",
+      "openedIndividually": true,
+      "observation": "Real roster middle: upper/lower continued fades, fixed title/dismissal."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-16-end-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-16-end-402.png",
+      "sha256": "d9b04ad2b9f77935b16e6dcdf96ef65f299fd8efe6505f74c9b36768cd26d297",
+      "openedIndividually": true,
+      "observation": "Real roster end: audio reachable; lower fade clears, dismissal whole."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-16-320",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-16-320.png",
+      "sha256": "19aae7bf01332962f2220db20fbac7b9d576a55941f357d4a150321ba9d96df8",
+      "openedIndividually": true,
+      "observation": "Compact real roster: EN/RU names wrap without collision; title/dismissal whole; existing scroll position retained."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-photo-delayed-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-photo-delayed-402.png",
+      "sha256": "d42774c747e949a12a6bd097fd1306918d3807321d42a7b164c97bbdebcee81d",
+      "openedIndividually": true,
+      "observation": "Superseded fault attempt: opening reused already decoded images. NOT exercised delay proof."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-photo-recovered-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-photo-recovered-402.png",
+      "sha256": "20e33848b19dc5239ac150d8fca08ee3322d7178786eae541e9154d745d88020",
+      "openedIndividually": true,
+      "observation": "Superseded fault attempt normal circles; accepted recovery in separate real-redraw follow-up."
+    },
+    {
+      "run": "final-current",
+      "id": "en-players-photo-error-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-players-photo-error-402.png",
+      "sha256": "7dd3a7ba242936ba97a3d31418eea27f215c134c669a076effddd80147297db7",
+      "openedIndividually": true,
+      "observation": "Superseded fault attempt armed after rendering: photos stayed decoded. Raw failed assertion preserved."
+    },
+    {
+      "run": "final-current",
+      "id": "en-waiting-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-waiting-402.png",
+      "sha256": "7e30a9cbd848b37010fd8f7a46fe5992ec13b7181d962c42c6fe923fd00af5e7",
+      "openedIndividually": true,
+      "observation": "Actual Push waiting: approved gradient/buttons unchanged, two identities, Ready0/2 and round0/7."
+    },
+    {
+      "run": "final-current",
+      "id": "en-waiting-players-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-waiting-players-402.png",
+      "sha256": "84fbdda21f1278902d35141f10a11abc767a9c21c15482ab71a731aab52e3527",
+      "openedIndividually": true,
+      "observation": "Actual waiting Players: circular uploads, readable names, Rules/Reconnect/Back whole."
+    },
+    {
+      "run": "final-current",
+      "id": "en-waiting-rules-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-waiting-rules-402.png",
+      "sha256": "46fa1859f4f6b34d5e922722b68f9c90417fd3a6202f307af7df72a5de0efafd",
+      "openedIndividually": true,
+      "observation": "Actual waiting Rules: authored instructions/header/action whole; no leaked underlying words."
+    },
+    {
+      "run": "final-current",
+      "id": "en-game-pause-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-game-pause-402.png",
+      "sha256": "9ee91d5cac37f8b2635098d4aaf6748f18e834a09ffc1f66ff8c53f20b64f4af",
+      "openedIndividually": true,
+      "observation": "Actual engine pause: original approved Resume/language hierarchy and gradient intact."
+    },
+    {
+      "run": "final-current",
+      "id": "en-paused-rules-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-paused-rules-402.png",
+      "sha256": "7366a43ffce07d6d5b6ce03df763cdeae01d193e93bce9f0c731c48562a425a3",
+      "openedIndividually": true,
+      "observation": "Actual pause\u2192Rules: reading surface excludes pause instruction/Resume ghosts; header/action whole."
+    },
+    {
+      "run": "final-current",
+      "id": "en-game-players-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-game-players-402.png",
+      "sha256": "0eb42cc345b8a581968eb3be674a377878a988f0bcee58b7823de6bf80920b38",
+      "openedIndividually": true,
+      "observation": "Actual paused game Players: circle uploads, readable names/supporting actions; engine pause preserved."
+    },
+    {
+      "run": "final-current",
+      "id": "en-real-results-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-real-results-402.png",
+      "sha256": "7055f2ef964081b07116c4b8c972a51ed7e9eeb7b1c605b2116851a112c7a5fc",
+      "openedIndividually": true,
+      "observation": "Actual accelerated Push results: original identities/ranks/scores and controls intact."
+    },
+    {
+      "run": "final-current",
+      "id": "en-results-rank-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-results-rank-402.png",
+      "sha256": "654d551784e5383c85f93e4533119cd88a0bcc5380e29c35e45371a4bea9b746",
+      "openedIndividually": true,
+      "observation": "Actual results incorporated with labelled history fixtures; ranks/numbers/action readable."
+    },
+    {
+      "run": "final-current",
+      "id": "en-actual-upload-profile-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-actual-upload-profile-402.png",
+      "sha256": "f46ef24dd17a3f3532e3e6747eb2f043fdfe2a7b43679e58d9018c25d5ecacec",
+      "openedIndividually": true,
+      "observation": "Actual self detail after match: original square raster upload circular, identity has no history suffix."
+    },
+    {
+      "run": "final-current",
+      "id": "ru-actual-nonsquare-profile-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/ru-actual-nonsquare-profile-402.png",
+      "sha256": "4283ca4db41fbcaa8dc9fcb0402ad3bca5b74c07242f204f37df1c315cf6546b",
+      "openedIndividually": true,
+      "observation": "Actual RU self detail after match: original opaque nonsquareJPEG centre crop circular."
+    },
+    {
+      "run": "final-current",
+      "id": "en-return-lobby-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/final-current/en-return-lobby-402.png",
+      "sha256": "09f7a6329e5085bbeb0e39cb0d8f31ba3dc7544a1b1a7e12fdbbb1c3ad11f08d",
+      "openedIndividually": true,
+      "observation": "Actual stop returns original lobby/catalog; uploaded masthead circle remains, no popup."
+    },
+    {
+      "run": "fault-confirmation",
+      "id": "en-players-photo-delayed-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-delayed-402.png",
+      "sha256": "2611b6eef544eaa16f5974a4a6cdcb0d80404301e9d700d477117809be043bbe",
+      "openedIndividually": true,
+      "observation": "Real third-peer join redraws detached avatar nodes with src held:3initials, no decodedphoto painted; delay assertion passes."
+    },
+    {
+      "run": "fault-confirmation",
+      "id": "en-players-photo-recovered-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-recovered-402.png",
+      "sha256": "bb0b6d14e87966a6da950cfea86a6e6c2a41b4ceb04df197e1cfffb347019c26",
+      "openedIndividually": true,
+      "observation": "Original uploaded src released: all3circles decoded, badges/names intact."
+    },
+    {
+      "run": "fault-confirmation",
+      "id": "en-players-photo-error-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-error-402.png",
+      "sha256": "f0682ea174ccd27fcbbc5de983bafe358d152bf94c455480bbf4fcdd430f0fc8",
+      "openedIndividually": true,
+      "observation": "Real third-peer join redraw receives corruptdataURL:3image nodes removed/photoStateerror; authored procedural initials and no brokenimageglyph."
+    },
+    {
+      "run": "fault-confirmation",
+      "id": "en-players-photo-restored-402",
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/screen-state-audit-2026-10-03/browser/fault-confirmation/en-players-photo-restored-402.png",
+      "sha256": "89af29791657cb337139d084808da33adadd34bce2ee6f1153d25512bf37cb32",
+      "openedIndividually": true,
+      "observation": "Fault cleared and QA peer disconnected: both actual original uploads restored circular."
+    }
+  ]
+}

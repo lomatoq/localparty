@@ -1,0 +1,38 @@
+{
+  "build": 117,
+  "version": "0.11.7",
+  "timestamp": "2026-10-03T21:51:31.790687+00:00",
+  "productProof": {
+    "passed": true,
+    "sourceCount": 1746,
+    "runtimeCount": 1717,
+    "sourceDrift": [],
+    "runtimeMismatch": [],
+    "versions": [
+      {
+        "bundleId": "com.localparty.launcher",
+        "build": "117",
+        "version": "0.11.7"
+      },
+      {
+        "bundleId": "com.localparty.launcher.Join",
+        "build": "117",
+        "version": "0.11.7"
+      }
+    ]
+  },
+  "installationOutcome": "success",
+  "installedBundles": [
+    "com.localparty.launcher"
+  ],
+  "launchOutcome": "failed",
+  "launchProcess": null,
+  "priorLaunchAttempts": [
+    "CoreDevice remote XPC unavailable",
+    "CoreDevice tunnel timed out"
+  ],
+  "installedAppsReadback": "failed: developer disk image metadata unavailable",
+  "physicalMotionValidation": "pending user trial",
+  "launchErrorLog": ".localparty-build/launch117-final.log",
+  "launchAttempts": 3
+}

@@ -20,22 +20,22 @@ class Hockey {
  static MALLET_RADIUS=40;
  static PUCK_RADIUS=22;
  constructor(players,random=Math.random){if(players.length<2||players.length%2)throw Error('Air hockey needs two equal teams: 2, 4, 6 or 8 players.');this.players=players;this.random=random;this.t=0;this.phase='playing';this.goals=[0,0];this.serveAt=1;players.forEach((p,i)=>{p.team=i%2;p.lane=Math.floor(i/2);p.x=p.team?820:180;p.y=(p.lane+.5)*600/(players.length/2);p.target={x:p.x,y:p.y};p.score=0;});this.resetPuck();}
- resetPuck(){this.puck={x:500,y:300,vx:(this.random()<.5?-1:1)*260,vy:(this.random()-.5)*200};this.serveAt=this.t+1;}
+ resetPuck(){this.lastHitters=[null,null];this.puck={x:500,y:300,vx:(this.random()<.5?-1:1)*260,vy:(this.random()-.5)*200};this.serveAt=this.t+1;}
  action(id,type,value){const p=this.players.find(p=>p.id===id);if(!p||!p.connected||!['move','steer'].includes(type)||!value||!Number.isFinite(value.x)||!Number.isFinite(value.y))return false;
   if(type==='steer'){const n=Math.max(1,Math.hypot(value.x,value.y));p.axis={x:value.x/n,y:value.y/n,until:this.t+.4};return true;}
-  const radius=Hockey.MALLET_RADIUS,h=600/(this.players.length/2);p.target={x:clamp(value.x,p.team?500+radius:radius,p.team?1000-radius:500-radius),y:clamp(value.y,p.lane*h+radius,(p.lane+1)*h-radius)};return true;}
+  const radius=Hockey.MALLET_RADIUS,h=600/(this.players.length/2);p.target={x:clamp(value.x,p.team?500+radius:radius,p.team?1000-radius:500-radius),y:clamp(value.y,radius,600-radius)};return true;}
  step(dt){if(this.phase!=='playing')return;dt=clamp(dt,0,.05);this.t+=dt;const steps=4,h=dt/steps;
   for(let n=0;n<steps;n++){
-   for(const p of this.players){if(p.axis){const radius=Hockey.MALLET_RADIUS,lane=600/(this.players.length/2),active=p.connected&&p.axis.until>=this.t;p.target={x:clamp(p.x+(active?p.axis.x:0)*480*h,p.team?500+radius:radius,p.team?1000-radius:500-radius),y:clamp(p.y+(active?p.axis.y:0)*480*h,p.lane*lane+radius,(p.lane+1)*lane-radius)};}const dx=p.target.x-p.x,dy=p.target.y-p.y,d=Math.hypot(dx,dy),f=d?Math.min(1,650*h/d):0;p.vx=h?dx*f/h:0;p.vy=h?dy*f/h:0;p.x+=dx*f;p.y+=dy*f;}
+   for(const p of this.players){if(p.axis){const radius=Hockey.MALLET_RADIUS,lane=600/(this.players.length/2),active=p.connected&&p.axis.until>=this.t;p.target={x:clamp(p.x+(active?p.axis.x:0)*480*h,p.team?500+radius:radius,p.team?1000-radius:500-radius),y:clamp(p.y+(active?p.axis.y:0)*480*h,radius,600-radius)};}const dx=p.target.x-p.x,dy=p.target.y-p.y,d=Math.hypot(dx,dy),f=d?Math.min(1,650*h/d):0;p.vx=h?dx*f/h:0;p.vy=h?dy*f/h:0;p.x+=dx*f;p.y+=dy*f;}
    if(this.t<this.serveAt)continue;const b=this.puck;b.x+=b.vx*h;b.y+=b.vy*h;
    const puckRadius=Hockey.PUCK_RADIUS,contactRadius=Hockey.MALLET_RADIUS+puckRadius;
    if(b.y<puckRadius||b.y>600-puckRadius){b.y=clamp(b.y,puckRadius,600-puckRadius);b.vy*=-1;}
    if((b.x<0||b.x>1000)&&b.y>205&&b.y<395){const team=b.x<0?1:0;this.goals[team]++;this.players.forEach(p=>p.score=this.goals[p.team]*100);this.resetPuck();if(this.goals[team]>=7)this.phase='results';continue;}
    if((b.x<puckRadius||b.x>1000-puckRadius)&&(b.y<=205||b.y>=395)){b.x=clamp(b.x,puckRadius,1000-puckRadius);b.vx*=-1;}
-   for(const p of this.players){const dx=b.x-p.x,dy=b.y-p.y,d=Math.hypot(dx,dy);if(d<contactRadius){const nx=d?dx/d:1,ny=d?dy/d:0;b.x=p.x+nx*contactRadius;b.y=p.y+ny*contactRadius;const impact=(b.vx-p.vx)*nx+(b.vy-p.vy)*ny;if(impact<0){b.vx-=2*impact*nx;b.vy-=2*impact*ny;const speed=Math.hypot(b.vx,b.vy),factor=clamp(speed,180,900)/(speed||1);b.vx*=factor;b.vy*=factor;}}}
+   for(const p of this.players){const dx=b.x-p.x,dy=b.y-p.y,d=Math.hypot(dx,dy);if(d<contactRadius){const nx=d?dx/d:1,ny=d?dy/d:0;b.x=p.x+nx*contactRadius;b.y=p.y+ny*contactRadius;const impact=(b.vx-p.vx)*nx+(b.vy-p.vy)*ny;if(impact<0){this.lastHitters[p.team]=p.id;b.vx-=2*impact*nx;b.vy-=2*impact*ny;const speed=Math.hypot(b.vx,b.vy),factor=clamp(speed,180,900)/(speed||1);b.vx*=factor;b.vy*=factor;}}}
   }
   if(this.t>=120)this.phase='results';
  }
- view(){return {puck:this.puck,goals:this.goals,remaining:Math.max(0,120-this.t),serve:Math.max(0,this.serveAt-this.t),players:this.players.map(p=>({id:p.id,name:p.name,color:p.color,connected:p.connected,score:p.score,team:p.team,lane:p.lane,x:p.x,y:p.y}))};}
+ view(){return {puck:this.puck,goals:this.goals,lastHitters:[...this.lastHitters],remaining:Math.max(0,120-this.t),serve:Math.max(0,this.serveAt-this.t),players:this.players.map(p=>({id:p.id,name:p.name,color:p.color,connected:p.connected,score:p.score,team:p.team,lane:p.lane,x:p.x,y:p.y}))};}
 }
 module.exports={Mines,Hockey};

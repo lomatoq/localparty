@@ -13,7 +13,18 @@
   }
   // Numeric layout evidence from the actual AirPlay WKWebView, never player text.
   function layoutStats(){
-    const stage=document.getElementById('tvStage');if(!stage)return{};
+    const stage=document.getElementById('tvStage');
+    if(!stage){
+      const projection=window.PartyRoundArenaProjection,canvas=document.getElementById('game');
+      if(!projection?.circleScreen||!canvas)return{};
+      const rect=canvas.getBoundingClientRect(),circle=projection.circleScreen;
+      const finite=value=>Number.isFinite(value)?Math.round(value*100)/100:0;
+      return{viewport:`${innerWidth}x${innerHeight},dpr:${devicePixelRatio},visual:${visualViewport?.scale||1}`,
+        arenaFrame:`${finite(rect.x)},${finite(rect.y)},${finite(rect.width)}x${finite(rect.height)}`,
+        arenaCircle:`${finite(circle.left)},${finite(circle.top)},${finite(circle.right-circle.left)}x${finite(circle.bottom-circle.top)}`,
+        arenaInset:getComputedStyle(document.documentElement).getPropertyValue('--party-field-inset-top').trim(),
+        arenaFill:finite((circle.bottom-circle.top)/Math.max(1,rect.height)*100)};
+    }
     const rect=stage.getBoundingClientRect(),scale=rect.width/Math.max(1,stage.offsetWidth);
     const measure=selector=>{const el=stage.querySelector(selector);if(!el?.firstChild||el.firstChild.nodeType!==3)return'none';const range=document.createRange();range.setStart(el.firstChild,0);range.setEnd(el.firstChild,Math.min(1,el.firstChild.length));return`css:${parseFloat(getComputedStyle(el).fontSize).toFixed(2)},glyph:${range.getBoundingClientRect().height.toFixed(2)}`;};
     return{viewport:`${innerWidth}x${innerHeight},dpr:${devicePixelRatio},visual:${visualViewport?.scale||1}`,screen:`${screen.width}x${screen.height}`,stage:`${stage.offsetWidth}x${stage.offsetHeight},scale:${scale.toFixed(3)},compact:${stage.classList.contains('tv-compact')}`,title:measure('.game:not(.featured) h3'),description:measure('.game:not(.featured) .game-info>p')};

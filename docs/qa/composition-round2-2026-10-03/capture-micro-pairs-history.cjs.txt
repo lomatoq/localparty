@@ -1,0 +1,143 @@
+'use strict';
+
+// This runs unchanged in either real document. It only reads the adapter and
+// existing painted canvas; no refresh(), fixture, state or image substitution.
+function captureMicroAttachment() {
+  const api=window.LocalPartyMicroAssets,game=document.body?.dataset.tvGame||document.documentElement.dataset.partyGame;
+  const phase=window.PARTY_UI?.phase||document.documentElement.dataset.partyPhase||null;
+  const measure=e=>{if(!e||!e.getClientRects().length)return null;const r=e.getBoundingClientRect(),s=getComputedStyle(e);if(s.display==='none'||s.visibility==='hidden')return null;return{x:r.x,y:r.y,left:r.left,top:r.top,width:r.width,height:r.height,right:r.right,bottom:r.bottom,opacity:Number(s.opacity),borderRadius:s.borderRadius,background:s.background,backgroundColor:s.backgroundColor,backgroundImage:s.backgroundImage,border:s.border,boxShadow:s.boxShadow,before:{content:getComputedStyle(e,'::before').content,background:getComputedStyle(e,'::before').background},after:{content:getComputedStyle(e,'::after').content,background:getComputedStyle(e,'::after').background}};};
+  let inspected=null,error=null;try{inspected=api?.inspect?.()||null;}catch(e){error=String(e);}
+  const canvases=[...document.querySelectorAll('body > canvas.hp-game-ui-micro-cuff')];
+  const profile=api?.profileFor?.(game)||null,diagnostics=api?.diagnostics?.()||null;
+  const anchor=document.querySelector(window.parent===window?'#play .tv-info-dock':game==='bow_club'?'.tv-heading':'.ss-host-top');
+  const cap=measure(anchor);
+  let capSurface=cap;
+  if(cap&&window.parent===window){
+    const s=getComputedStyle(anchor),before=getComputedStyle(anchor,'::before');
+    if(!['none','normal'].includes(before.content)){
+      const w=parseFloat(before.width),h=parseFloat(before.height),sx=cap.width/parseFloat(s.width),sy=cap.height/parseFloat(s.height);
+      if([w,h,sx,sy].every(Number.isFinite)){
+        const matrix=new DOMMatrix(before.transform==='none'?undefined:before.transform),origin=before.transformOrigin.split(' ').map(parseFloat),left=parseFloat(before.left)||0,top=parseFloat(before.top)||0;
+        const points=[[0,0],[w,0],[0,h],[w,h]].map(([x,y])=>({x:cap.x+(left+origin[0]+matrix.a*(x-origin[0])+matrix.c*(y-origin[1])+matrix.e)*sx,y:cap.y+(top+origin[1]+matrix.b*(x-origin[0])+matrix.d*(y-origin[1])+matrix.f)*sy}));
+        const x=Math.min(...points.map(p=>p.x)),y=Math.min(...points.map(p=>p.y)),right=Math.max(...points.map(p=>p.x)),bottom=Math.max(...points.map(p=>p.y));
+        capSurface={x,y,left:x,top:y,width:right-x,height:bottom-y,right,bottom,source:'Actual computed ::before box and transform',transform:before.transform,borderRadius:before.borderRadius};
+      }
+    }
+  }
+  const ink=[];
+  if(anchor){
+    const walker=document.createTreeWalker(anchor,NodeFilter.SHOW_TEXT);
+    for(let node=walker.nextNode();node;node=walker.nextNode()){
+      if(!node.textContent.trim()||!measure(node.parentElement))continue;
+      const range=document.createRange();range.selectNodeContents(node);
+      for(const r of range.getClientRects())if(r.width&&r.height)ink.push({kind:'text',text:node.textContent.trim().slice(0,120),owner:node.parentElement.id||node.parentElement.className,x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom});
+    }
+    for(const e of anchor.querySelectorAll('img,canvas')){const r=measure(e);if(r)ink.push({kind:e.tagName.toLowerCase(),owner:e.id||e.className,...r});}
+  }
+  const proof={at:Date.now(),game,phase,paused:!!window.PARTY_SESSION?.paused,adapterLoaded:!!api,profile,diagnostics,inspected,
+    compositionRole:window.parent===window?document.body?.dataset.tvHudMode:document.documentElement.dataset.partyHudMode,
+    viewport:{width:innerWidth,height:innerHeight},cap,capSurface,protectedInk:ink,pieces:[],error};
+  const readbacks=new Map();
+  for(const canvas of canvases){
+    const box=measure(canvas),geometry=inspected?.attachments?.find(g=>g.side===canvas.dataset.side)||null,scale=Number(geometry?.scale)||null;
+    const piece={geometry,canvas:{box,hidden:canvas.hidden,width:canvas.width,height:canvas.height,dataset:{...canvas.dataset},pointerEvents:getComputedStyle(canvas).pointerEvents,ariaHidden:canvas.getAttribute('aria-hidden')}};
+    proof.pieces.push(piece);
+    if(!box||canvas.hidden)continue;
+  try{
+    const data=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+    let nontransparent=0,opticalPixels=0,left=canvas.width,top=canvas.height,right=-1,bottom=-1,hash=2166136261,inside=0,outside=0,depth=0,seatDistance=Infinity;
+    readbacks.set(canvas.dataset.side,{data,width:canvas.width,height:canvas.height});
+    const collisions=new Map(),side=geometry?.side,edge=side==='left'?capSurface?.left:capSurface?.right;
+    for(let p=0;p<data.length;p+=4){
+      for(let channel=0;channel<4;channel++){hash^=data[p+channel];hash=Math.imul(hash,16777619)>>>0;}
+      if(data[p+3]>0)nontransparent++;
+      if(data[p+3]<=8)continue;
+      opticalPixels++;const n=p/4,x=n%canvas.width,y=Math.floor(n/canvas.width);
+      left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);
+      const px=box.x+(x+.5)*box.width/canvas.width,py=box.y+(y+.5)*box.height/canvas.height;
+      if(capSurface&&Number.isFinite(edge)&&py>=capSurface.y&&py<=capSurface.bottom){
+        seatDistance=Math.min(seatDistance,Math.abs(px-edge));const d=side==='left'?px-edge:edge-px;
+        if(d>=0){inside++;depth=Math.max(depth,d);}else outside++;
+      }
+      for(let i=0;i<ink.length;i++){const r=ink[i];if(px>=r.x&&px<=r.right&&py>=r.y&&py<=r.bottom)collisions.set(i,(collisions.get(i)||0)+1);}
+    }
+    const optical=opticalPixels?{x:box.x+left*box.width/canvas.width,y:box.y+top*box.height/canvas.height,width:(right-left+1)*box.width/canvas.width,height:(bottom-top+1)*box.height/canvas.height,right:box.x+(right+1)*box.width/canvas.width,bottom:box.y+(bottom+1)*box.height/canvas.height}:null;
+    piece.paint={readable:true,nontransparentPixels:nontransparent,opticalPixels,transparentPixels:canvas.width*canvas.height-nontransparent,alphaThreshold:8,rgbaFNV1a:hash.toString(16).padStart(8,'0'),bitmapOptical:opticalPixels?{left,top,right,bottom}:null,optical,
+      seatContact:{insidePixels:inside,outsidePixels:outside,nearestEdgeDistance:Number.isFinite(seatDistance)?seatDistance:null,maxInteriorDepth:depth,scale},
+      protectedInkCollisions:[...collisions].map(([i,pixels])=>({...ink[i],pixels}))};
+  }catch(e){piece.paint={readable:false,error:String(e)};}
+  }
+  proof.visiblePieces=proof.pieces.filter(p=>p.canvas.box&&!p.canvas.hidden).length;
+  const left=readbacks.get('left'),right=readbacks.get('right');
+  if(left&&right){
+    const match=left.width===right.width&&left.height===right.height;
+    proof.pairPixels={sameBitmapDimensions:match,left:[left.width,left.height],right:[right.width,right.height]};
+    if(match){let difference=0,alphaDifference=0,differentPixels=0;const pixels=left.width*left.height;
+      for(let y=0;y<left.height;y++)for(let x=0;x<left.width;x++){const l=(y*left.width+x)*4,r=(y*right.width+right.width-1-x)*4;let largest=0;for(let c=0;c<4;c++){const delta=Math.abs(left.data[l+c]-right.data[r+c]);difference+=delta;largest=Math.max(largest,delta);if(c===3)alphaDifference+=delta;}if(largest>16)differentPixels++;}
+      Object.assign(proof.pairPixels,{pixels,mirroredMeanChannelDifference:difference/(pixels*4),mirroredMeanAlphaDifference:alphaDifference/pixels,mirroredDifferentPixelFraction:differentPixels/pixels,comparison:'Actual left RGBA against horizontally reversed right RGBA; no rewritten canvas or assumed mirror metadata'});
+    }
+  }
+  return proof;
+}
+
+// Record the rendered composition beside each original screenshot. These are
+// guardrails and provenance, never a replacement for opening the actual image.
+module.exports = async function captureCompositionEvidence(page) {
+  const parent = await page.evaluate(() => {
+    const box = el => {
+      if (!el || !el.getClientRects().length) return null;
+      const r = el.getBoundingClientRect(), s = getComputedStyle(el);
+      if (s.display === 'none' || s.visibility === 'hidden') return null;
+      const before = getComputedStyle(el,'::before'), after = getComputedStyle(el,'::after');
+      return { x:r.x, y:r.y, width:r.width, height:r.height, right:r.right, bottom:r.bottom,
+        background:s.background, border:s.border, borderRadius:s.borderRadius,
+        color:s.color, opacity:s.opacity, text:el.textContent.trim().slice(0,220),
+        font:s.font,fontFamily:s.fontFamily,fontSize:s.fontSize,fontStyle:s.fontStyle,fontWeight:s.fontWeight,
+        lineHeight:s.lineHeight,padding:s.padding,overflowX:s.overflowX,overflowY:s.overflowY,
+        scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,
+        scrollHeight:el.scrollHeight,clientHeight:el.clientHeight,
+        decoration:{before:{content:before.content,background:before.background,mask:before.maskImage,borderRadius:before.borderRadius,boxShadow:before.boxShadow},
+          after:{content:after.content,background:after.background,opacity:after.opacity,borderRadius:after.borderRadius}} };
+    };
+    const bar = document.querySelector('#play .gamebar');
+    return { at:Date.now(), width:innerWidth, height:innerHeight,
+      bodyClasses:document.body.className, frame:box(document.getElementById('gameFrame')),
+      bar:box(bar), dock:box(document.querySelector('#play .tv-info-dock')),
+      actor:box(document.querySelector('#play .tv-info-actor')),
+      primaryReadout:box(document.querySelector('#play .tv-info-primary-readout')),
+      factGroups:[...document.querySelectorAll('#play .tv-info-dock #gamePlayers,#play .tv-info-dock .tv-stat')].map(box).filter(Boolean),
+      readouts:[...document.querySelectorAll('#play .tv-info-dock .tv-stat-value,#play .tv-info-dock .tv-progress-value,#play .tv-info-dock .tv-timer-value')].map(e=>({className:e.className,...box(e)})).filter(e=>e.width),
+      children:bar ? [...bar.children].map(e => ({className:e.className, ...box(e)})) : [],
+      title:box(document.getElementById('gameTitle')), context:box(document.getElementById('gameContext')),
+      attributes:bar ? Object.fromEntries([...bar.attributes].map(a => [a.name,a.value])) : {},
+      variables:bar ? bar.getAttribute('style') : null };
+  });
+  parent.microAttachment=await page.evaluate(captureMicroAttachment);
+  const element = await page.$('#gameFrame'), frame = element ? await element.contentFrame() : null;
+  if (!frame) return {parent, error:'No active game iframe'};
+  const content = await frame.evaluate(() => {
+    const rect = el => {
+      const r = el.getBoundingClientRect(), s = getComputedStyle(el);
+      return {x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom,
+        id:el.id,className:el.className,text:el.textContent.trim().slice(0,180),
+        background:s.background,backgroundColor:s.backgroundColor,backgroundImage:s.backgroundImage,boxShadow:s.boxShadow,border:s.border,borderRadius:s.borderRadius,
+        color:s.color,opacity:s.opacity,font:s.font,padding:s.padding};
+    };
+    const visible = el => el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden';
+    const select = selector => [...document.querySelectorAll(selector)].filter(visible).map(rect);
+    return {at:Date.now(), url:location.href, width:innerWidth,height:innerHeight,
+      phase:window.PARTY_UI?.phase,rootAttributes:Object.fromEntries([...document.documentElement.attributes].map(a=>[a.name,a.value])),
+      anchors:select('[data-tv-hud-anchor]'),rails:select('[data-tv-hud-rail]'),clusters:select('[data-tv-hud-cluster]'),
+      surfaces:select('[data-hp-theme-surface],.ss-host-top,.ss-host-stats,.party-roster-rail,.naval-console,.block-info,.arena-status,.playerRow,.party-standing,.quiz-card,.question,.score-strip').slice(0,60),
+      backgroundProof:window.CraneBackgroundProof || null,
+      scrollRegions:[...document.querySelectorAll('[data-scroll-above],[data-scroll-below]')].filter(visible).map(el=>({
+        ...rect(el),scrollTop:el.scrollTop,scrollHeight:el.scrollHeight,clientHeight:el.clientHeight,
+        above:el.dataset.scrollAbove,below:el.dataset.scrollBelow,mask:getComputedStyle(el).maskImage
+      })),
+      theme:window.HeyPalsGameThemes?.diagnostics?.(),
+      exclusions:window.PARTY_HUD_EXCLUSIONS || null,
+      variables:Object.fromEntries(['--party-hud-height','--party-hud-left','--party-hud-width','--party-hud-bottom','--party-rail-hud-bottom','--party-native-inset-top'].map(k=>[k,getComputedStyle(document.documentElement).getPropertyValue(k).trim()]))};
+  });
+  content.microAttachment=await frame.evaluate(captureMicroAttachment);
+  return {parent,content,method:'Rendered boxes and material styles sampled immediately after the adjacent original PNG; phase recorded again because the normal-clock engine continues running.'};
+};

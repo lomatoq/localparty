@@ -498,3 +498,10 @@ html body #qrDock.qr-dock--header img{
  padding:5px!important;border-radius:11px!important
 }
 @media(max-width:430px){html body #qrDock.qr-dock--header{border-radius:14px!important;padding:5px!important}html body #qrDock.qr-dock--header img{padding:4px!important;border-radius:9px!important}}
+
+/* Consistent icon/label pairs. Icon-only gameplay pads keep their own scale. */
+html.hp-ui { --hp-button-icon-size:20px; --hp-button-icon-gap:10px; }
+html.hp-ui button:has(>svg):has(>span),html.hp-ui button:has(>.hp-button-icon){display:inline-flex;align-items:center;justify-content:center;gap:var(--hp-button-icon-gap)}
+html.hp-ui button>svg:has(+span),html.hp-ui button>.hp-button-icon{width:var(--hp-button-icon-size)!important;height:var(--hp-button-icon-size)!important;min-width:var(--hp-button-icon-size);flex:0 0 var(--hp-button-icon-size);vertical-align:middle;margin:0;line-height:1}
+html.hp-ui body #sessionControls button{gap:var(--hp-button-icon-gap)!important}
+html.hp-ui body #sessionControls button>svg{width:20px!important;height:20px!important;flex:0 0 20px;margin:0}

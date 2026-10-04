@@ -1,0 +1,384 @@
+{
+  "scope": "Independent direct original-PNG visual review of B12 games at 1280x720 and 1920x1080. No contact-sheet-only approval, browser automation or production source edits.",
+  "captureDirectory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7",
+  "sourceQualification": {
+    "status": "pending_coordinator_completion_and_guards",
+    "observedReportFinishedAt": "2026-10-03T15:28:40.682Z",
+    "revisionStartEqualsEnd": true,
+    "changedFiles": [],
+    "observedTopLevelFailure": "The operation was aborted due to timeout",
+    "note": "Matching source snapshots alone do not qualify the full capture; coordinator must resolve timeout and complete guards."
+  },
+  "records": [
+    {
+      "game": "push",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/push-tv-live-1280.png",
+      "sha256": "8db20558689e58239c3f4d243200757582b46a1986fddbedd3b65928b60143e5",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The full warm courtyard and complete circular arena fit with clear margins.",
+        "Native sumo bodies, arms and belts remain rounded with no visible directional stretching.",
+        "Right HUD and roster fit; timer, round 1/7 and in-game 3 values are complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "push",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/push-tv-live-1920.png",
+      "sha256": "0680ea7f5dc8ed0dac60a48a725410ba3b8a4ce81daaa4c8c4df47ed9a988e3a",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The full courtyard and circular arena remain complete with balanced scene margins.",
+        "Native sumo bodies and arms retain their proportions without visible anisotropic squash.",
+        "Right HUD, contained logo, timer and roster score digits fit.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "shrink",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/shrink-tv-live-1280.png",
+      "sha256": "d5c5ce50bef0552b10b9e9c89a8192416c43fb4232fe596fe228646052f26c12",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The complete circular field fits inside the full blue cave scene with breathing room.",
+        "Three active bot mascots remain inside the field; the gray human roster state is not treated as geometric clipping.",
+        "Right HUD values and roster remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "shrink",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/shrink-tv-live-1920.png",
+      "sha256": "bbb0f48ad03ee0f45240b9372b289b02712bc51a33e3561dcfeb3c1567cea6e4",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The circular field and cave backdrop are complete and proportionate.",
+        "Right HUD, contained logo and roster fit with full timer, round 1/7 and in-game 3 values.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "knives",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/knives-tv-live-1280.png",
+      "sha256": "3d9f45c05c076ac7a95cda06f74f0928a43eccd4e22a19d22ca7a3ca2211ed44",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The complete dojo wheel and four surrounding mascots fit, including the bottom mascot and label.",
+        "Knife effects and WRONG COLOR penalty feedback remain visible; negative score digits are complete.",
+        "Warm HUD, round 1/7 and in-game 4 values remain readable.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "knives",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/knives-tv-live-1920.png",
+      "sha256": "e0563c49a2f4e585fc3a246a3907bd355fafee072b4b560ba2964b2c284479a7",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The complete wheel, all surrounding mascots and full human identity fit.",
+        "Knife effects and penalty feedback remain readable with complete negative score digits.",
+        "Warm HUD, contained logo and timer fit.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "bomb",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/bomb-tv-live-1280.png",
+      "sha256": "567fbba6fe199078bbc9668e25bcbf7e07d4ac4f21c44c98734cc7a17db6e749",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The entire pink/red circle fits within the warehouse scene with clear margins.",
+        "All three actual players and labels fit; the bomb holder ring and bomb remain readable.",
+        "Warm HUD timer, round 1/7 and in-game 3 values are complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "bomb",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/bomb-tv-live-1920.png",
+      "sha256": "402020fcf059994e3850035b8f168204cb11102820dadc19f0a67a2d557da39e",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The complete circular field and warehouse backdrop fit with breathing room.",
+        "All three players, labels, bomb holder ring and bomb are visible.",
+        "Timer, round, in-game count and roster digits remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "western",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/western-tv-live-1280.png",
+      "sha256": "985a830f590c63d1ac3d8e31f99f1e8a316d42caa78f0e952eaf46c5ccc074da",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "All four ready-state cowboy mascots fit against the full sunset scene.",
+        "Downward guns and hands connect to the bodies visibly; names and READY labels remain complete.",
+        "The full instruction, timer and round 1/7 values fit.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "western",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/western-tv-live-1920.png",
+      "sha256": "0b1b10e5c56f58fffc3099187101a4d5a9de8ce4d11297b8b473bcdf683a4fd1",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "All four ready-state cowboy mascots, names and READY labels fit.",
+        "Body/arm joints and downward guns remain coherent.",
+        "Full sunset scene, instruction and contained logo remain readable.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "western_duel",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/western_duel-tv-live-1280.png",
+      "sha256": "2962be79a9ebff586b0a97447027419a43a8f5b2db27c035bddd844a64336764",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The unrounded sunset stage fades softly into the right HUD rail.",
+        "Actual DRAW cue, two ready mascots and complete matchup identity fit.",
+        "Timer, round 1/4, order list and score cards remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "western_duel",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/western_duel-tv-live-1920.png",
+      "sha256": "a4dd3a8240083c9411429a27ff1c54047e5a4a856d56d4f4bcedc03f59a4ed12",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "Actual ROUND RESULT and centered winner notice remain complete.",
+        "The extended shooter arm and gun connect visibly to the mascot body; the 1455ms chip remains visible.",
+        "Scores and individual identity cards remain complete; the compact matchup heading truncates the opponent name while identity is available elsewhere.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "naval",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/naval-tv-live-1280.png",
+      "sha256": "f90213ce706ee9c68a1f36cbedbec14677fde4dc5516a01b53b505abd803352f",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "All four complete 6x6 grids fit, including the final rows and columns.",
+        "Fleet name/avatar and five-heart headers fit; shared cap and left console form a balanced group.",
+        "Timer, in-game count and score digits remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "naval",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/naval-tv-live-1920.png",
+      "sha256": "e983d88fa9a1b8ae71ad6b3793db413bea15e545d333af63d1da4f3a2987339d",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "All four complete fleet grids and their final rows/columns fit in the viewport.",
+        "Fleet headers and hearts remain readable; console and fleet bottom alignment is coherent.",
+        "Compact HUD identity can ellipsize while fleet headers retain corresponding identity; no clipped numeric values observed.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "taprace",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/taprace-tv-live-1280.png",
+      "sha256": "998a9d6b6b0e9f420239c278c5a268e4453f4c2fde4c08b63a3c4463ab29db54",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "All four robot lanes, label capsules, finish strip and bottom score cards fit.",
+        "Robot bodies and lane structure remain complete; no unrelated striped outer panel is visible.",
+        "Header timer, in-game count and score digits remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "taprace",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/taprace-tv-live-1920.png",
+      "sha256": "853d4c7d9cf63a8e456a23ce473c1017aabf8e7d91a2efc84cd20607455eee71",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "All four lanes, robots, labels, finish strip and bottom score cards fit.",
+        "Lane markings serve the actual race field without an unrelated striped outer panel.",
+        "Contained logo, timer and numeric HUD values remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "punchmeter",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/punchmeter-tv-live-1280.png",
+      "sha256": "1166714907827fcd016834d0bb281758354dac03c1f7274b559906234f0a4082",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The full gym backdrop, hanging chain and centered red punching bag fit.",
+        "Attempt 1/3, time, points and full actor identity remain readable.",
+        "The quiet rose/plum cap and contained logo fit without competing with the bag.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "punchmeter",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/punchmeter-tv-live-1920.png",
+      "sha256": "15bd41239f0111d1d2c7bf82b72a53d82900a491526d41fd9362220003e0e18d",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The complete gym scene, chain and red punching bag remain visible.",
+        "Attempt, time, points and actor identity remain complete.",
+        "Bag contrast, floor/ring structure and contained logo remain clear.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "flappy",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/flappy-tv-live-1280.png",
+      "sha256": "3c37b202aa48e33dc04d56cb3786d34c93a776df3259e94cfc5baa6a6a1f8560",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The full floating-island scene and clean pipe openings fit.",
+        "Visible birds and dark contrasting identity chips remain within the field.",
+        "Blue cap timer, points and in-game 5 values are complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "flappy",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/flappy-tv-live-1920.png",
+      "sha256": "8f0f526dbfa6160ef7b70b4de87120cf71b2c46738c04a447d7e9ee39a7f576f",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The sky-to-floor scene, pipes and visible bird identity chips remain readable.",
+        "No unrelated striped panel is visible.",
+        "Timer, points, in-game count and contained logo fit.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "hungry",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/hungry-tv-live-1280.png",
+      "sha256": "3d2b90f2c61bf62a722ad9a81eb2baf8f5b1b65ee150a9fa26b37fa685914b1b",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The complete purple tiled arena, four player heads and contrasting score chips fit.",
+        "Food remains visible throughout the actual arena.",
+        "Timer, points, in-game count and contained logo remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "hungry",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/hungry-tv-live-1920.png",
+      "sha256": "cf44baa888eb8dfb50141d71ba11a7efeebd944108a2c1c2ed7f70123371f08c",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The complete tiled arena, four player heads and score chips fit.",
+        "Actual CHOMP event feedback and particles remain visible without obscuring the composition.",
+        "Timer, points, in-game count and contained logo remain complete.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "snakelines",
+      "width": 1280,
+      "height": 720,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/snakelines-tv-live-1280.png",
+      "sha256": "bb7a17bad3bfc85ae04565a767d0a90fe9609e29a1396d86e0aa38d81474e744",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "The green human head and name are visibly below the cap; the previous opaque head-cut concern is not present in this original.",
+        "Other visible heads, trails and labels remain clear in the available field.",
+        "Full timer, round 1/5 and score digits fit.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    },
+    {
+      "game": "snakelines",
+      "width": 1920,
+      "height": 1080,
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/final-tv36-round7/snakelines-tv-live-1920.png",
+      "sha256": "505f9e8c98fbadc1f4da43bdfcbef9e2736b576dfd4ce4060986b84232383826",
+      "openedIndividually": true,
+      "status": "no_specific_visual_blocker_observed",
+      "findings": [
+        "Visible trails start well below the cap and remain clear of it.",
+        "The human green head/label are absent in this advanced state; this original does not establish engine elimination or all four heads simultaneously.",
+        "Timer, round 1/5, score digits and contained logo fit.",
+        "No decorative cuffs are visible; no specific mask, clipped-number or logo-aspect defect observed."
+      ]
+    }
+  ],
+  "blockers": [],
+  "reviewedOriginalCount": 24,
+  "reviewedGameCount": 12,
+  "completedAt": "2026-10-03T15:34:25.041543+00:00",
+  "limitations": [
+    "Actual clocks and gameplay advance between viewport captures; the two images are not the same instant.",
+    "Western Round 7 originals show ready poses; they do not establish between-round winner-notice acceptance.",
+    "Snake Lines wide original does not show all four heads simultaneously; no engine-state conclusion is inferred.",
+    "No physical TV or device acceptance claim.",
+    "Scope is these exact 24 PNG hashes; global capture qualification remains with the coordinator."
+  ]
+}

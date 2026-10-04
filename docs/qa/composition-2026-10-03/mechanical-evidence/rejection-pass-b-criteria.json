@@ -1,0 +1,744 @@
+{
+  "reviewer": "Assessment B independent mechanical/UX/evidence critic",
+  "createdAt": "2026-10-03T08:43:38.603469+00:00",
+  "scope": "read-only product; no browser; preparation only",
+  "priorVerdict": "superseded by explicit user rejection",
+  "commonCriteria": [
+    {
+      "id": "C1",
+      "name": "Whole composition",
+      "test": "Open full originals. Judge field plus entire roster/status region against full-frame center; compare top/bottom and left/right outer negative space. A boundedrect or a single centered child is insufficient."
+    },
+    {
+      "id": "C2",
+      "name": "Rail/card relationships",
+      "test": "Compare full sidebar envelope with field or prompt/answer card. Center contents as a group in its real available height. Inspect two/four/sixteen roster differences where owner evidence exists; never stretch rows purely to fillspace."
+    },
+    {
+      "id": "C3",
+      "name": "Shared header facts",
+      "test": "Title/timer/current actor/facts must sit optically centered in their available columns with comparable top/bottom breathing room. Check literalglyph ink, italic overshoot, longesttitle/longname and0/1/7, not only DOMboxes."
+    },
+    {
+      "id": "C4",
+      "name": "No unwanted ornaments",
+      "test": "Reject decorative dashes, stitches, isolated edgebars and corner brackets on TV/phone. Preserve meaningful progress, separators between actualcolumns, selectedoutline, aiming guides, track markings and realengine fieldlines; document distinction."
+    },
+    {
+      "id": "C5",
+      "name": "No extra hard layers",
+      "test": "Jenga/Crane retain authored environment/gradient while avoiding a new hard sharedheader card. Nested framing needs a distinct task; decorative regionboxing is not grouping."
+    },
+    {
+      "id": "C6",
+      "name": "Phone control usability",
+      "test": "Primarytask→relevantstats→hint→controls→feedback reads naturally. Active label and icon readable againsttargetfill; assess enabled/selected/disabled contrast separately. Target≥44CSSpx, pointer cancellation/drag model and footer reserves source-qualified when evidenceavailable."
+    },
+    {
+      "id": "C7",
+      "name": "Actual state & privacy",
+      "test": "Compare current rendered state/action availability, input feedback and public/private boundaries. Existing action proofs valid only if dependent source hashes match. Do not infer interaction success from static originals."
+    },
+    {
+      "id": "C8",
+      "name": "Freshness & renderer",
+      "test": "Every verdict names original+SHA, actual route/state/nativebridge, capture source start/end and relevantdependencies; failures kept in row matrix. Check settledcompositor at bothTVsizes; neither geometry nor zeroerrors prove composition."
+    }
+  ],
+  "historicalAntiReferences": [
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/taprace-phone-live-402.png",
+      "sha256": "928839d6c5ce5c103d29c3fdcd5a2800e6569dc3934914d9457f67570adc6bff",
+      "openedThisRejectionPass": true,
+      "historicalRejected": true,
+      "observation": "Decorative short horizontal top marks on passive stats distinguish nothing; user now rejects this ornament."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/pocket_siege-phone-live-402.png",
+      "sha256": "0fdcc073892c9eafb5a6380dc5e72bf223adf69d6b95f4c0d687dcba60e59a96",
+      "openedThisRejectionPass": true,
+      "historicalRejected": true,
+      "observation": "Dense useful controls; contrast and selected/active/disabled distinctions need actualmeasurements and actionfeedback, notmerefit."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/jenga-tv-live-1920.png",
+      "sha256": "d00d6fd55428618b10e01c4c8f3f20cd7bc7bcf6ec3b8d60d3dbb72aecf4c663",
+      "openedThisRejectionPass": true,
+      "historicalRejected": true,
+      "observation": "Transparentcap alone did not establish balanced whole rightinformationgroup; data is upper-weighted versus full towerstage."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/crane-tv-live-1920.png",
+      "sha256": "6a4d09a1098e1f0422a3c4c32baa8725f20806ee67b1bddd173493114951e8c8",
+      "openedThisRejectionPass": true,
+      "historicalRejected": true,
+      "observation": "Visible upper corner bracket ornament and separate hard header band; long name orphan me; no newapproval fromfit."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/naval-tv-live-1920.png",
+      "sha256": "1835cd9bea9739403ae73a6f57a0d45b2ebbbf499b488fdd0a535655215009ab",
+      "openedThisRejectionPass": true,
+      "historicalRejected": true,
+      "observation": "Captain card floats as shorter island beside nearfullheight boardstack; related grouping may be neat yet whole composition remainsunbalanced."
+    },
+    {
+      "file": "output/playwright/composition-2026-10-03/final-confirmation/crocodile-tv-live-1920.png",
+      "sha256": "4b91ae28a4dd6cf9b25f13938b87f50d731b3fbd136eb67253f28e3e78b09379",
+      "openedThisRejectionPass": true,
+      "historicalRejected": true,
+      "observation": "Actor+title/timer and troupecard occupy differently anchored boxes; full groupcenter must be assessedratherthanindividuallycenteredchildren."
+    }
+  ],
+  "games": [
+    {
+      "game": "push",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Visible arena and complete scoreboard form one centered full-frame group; rail height/distribution supports rather than crowds arena.",
+      "phoneSpecific": "Live movement/action target and genuine Out message both remain readable; no decorative dashes on stat card.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "shrink",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Shrinking playable circle retains actual engine size; circle+rail group centered in full frame after elimination.",
+      "phoneSpecific": "Live joystick versus Out state clearly distinct; important wins/status remain adjacent to task, no ornamental lines.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "knives",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Color wheel, external knives/labels and scoreboard fit as centered composition; detached scoreboard strip cannot drive visual center.",
+      "phoneSpecific": "Knives remaining, hit-color goal and Throw clearly grouped; selected color visible without relying only on hue.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "bomb",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Bomb arena and roster form one balanced group with consistent field/rail vertical envelope.",
+      "phoneSpecific": "Safe/armed/out states distinguish task; movement target and bomb status high contrast and immediately readable.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "western",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "DRAW timing/arena lead; field+roster centered vertically and name/score rows align to content-card axes.",
+      "phoneSpecific": "Waiting/DRAW/false-start feedback readable beside Fire; task prioritizes timing over decorative ornament.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "tanks",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "CTF field+team/score rail centered across whole frame; protected Flags/header facts evenly placed with optical vertical centering.",
+      "phoneSpecific": "Captured/health/kills/deaths together above Drive/Fire; labels high contrast on green/red targets; no false connected-player capture.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "tankarena",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Arena and complete arsenal scoreboard occupy a coherent centered envelope; status rail neither sits as detached strip nor floats against top.",
+      "phoneSpecific": "Stats→Move/Aim→joystick/Fire spacing must read as related task; lower thumb placement alone does not excuse enormous detached middle gap.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "chaos",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Current target/accuracy field+shared participants group centered; rail card boundaries align with actual field content.",
+      "phoneSpecific": "Calibration/active stages have explicit own task and controllable target; contrast supports precise cursor control.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "kart",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Track and racing order occupy one centered group; lap/place facts have equal cap breathing room.",
+      "phoneSpecific": "Steering/throttle, lap/speed and action hints ordered by driving use; both thumbs can act without footer collision.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "monster",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Current drawing stage+queue/art form one centered group; public TV never discloses private subject/part before legitimate reveal.",
+      "phoneSpecific": "Useful drawing canvas+palette/range/Undo/Clear/Done; visible control labels/contrast; confirm/back/submit feedback and bitmap retained through resize.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "spy",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Exchange pair+public state+roster centered as whole; literal names protected and tied score axes stable.",
+      "phoneSpecific": "Own location/role privacy, question action and vote are distinct; feedback explains current task without redundant large paragraphs.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "millionaire",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Question/answers lead and standings align to their outer content card; timer/turn cap optically centered with equal padding.",
+      "phoneSpecific": "Four answer targets readable in longest option state; selected/locked/correct feedback distinguishable, no decorative separators.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "sinyakquiz",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Question/answer content and team standings align as centered group; no extra full-height information card merely for decoration.",
+      "phoneSpecific": "Answer labels and own status legible; task/counters logically grouped; selection/feedback contrast unmistakable.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "warsaw",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Place/question/answer region dominates; surrounding standings aligned to content-card edges and full-frame center.",
+      "phoneSpecific": "Polish proper names preserved; four answers and current turn/points readable without decorative stitch or frame accents.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "crocodile",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Actor/title/timer and complete troupe leaderboard centered as one group; left card aligned to actor/content vertical region, no detached card acceptance.",
+      "phoneSpecific": "Private secret and Guessed/Skip readable with action space; off-turn hides secret/actions; turnover text and actual counters truthful.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "jenga",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Tower and right facts/force/crew balanced in full frame. No added hard panel behind shared cap or new card layer; entire facts group must not be top-heavy.",
+      "phoneSpecific": "Support choices/force task and action feedback remain readable; preview useful, enabled/disabled controls unmistakable.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "crane",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Crane/block/landing zone and complete right facts/crew group align vertically in full frame. No extra hard header layer, no decorative corner brackets.",
+      "phoneSpecific": "Steering/Drop group and attempts/current turn readable; long name wraps deliberately without splitting final syllable into stray visual fragment.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "naval",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "All four boards, their public owner labels, and captain card share centered complete composition; card vertical span/distribution comparable to board group, not a small detached island.",
+      "phoneSpecific": "Target select/cooldown/grid/private fleet ordered for firing; bot numbers preserved; firing coordinate labels high contrast.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "drawguess",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Large drawing canvas with roster/log aligns to content boundaries as one centered group; newest message stays readable, private word withheld from TV.",
+      "phoneSpecific": "Own canvas useful; palette/Brush thickness/Clear legible and related; guess input/send/incorrect acknowledgment explicit without secret echo.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "western_duel",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Current duel field and title/order/standings rail form full-frame centered group; full rail content distribution balanced against fieldheight.",
+      "phoneSpecific": "DRAW/Shoot and private turn guidance readable; actual unavailable/active controls distinct with timely response.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "taprace",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Track and complete racing standings centered; full card group distribution balanced rather than edge-stuck.",
+      "phoneSpecific": "Place/points/speed/progress/hint/Tap grouped; no decorative stat-card dashes; meaningful race track remains.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "punchmeter",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Punch arena/current actor and full score group centered; title/time/attempts balanced within cap.",
+      "phoneSpecific": "Motion permission separate from HoldRelease; power/peak feedback usable and contrasting; decorative stitches absent.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "flappy",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Pipes/players and standings grouped to full-frame center; title/facts do not sit detached from action field.",
+      "phoneSpecific": "Flying/out status, points and Flap hierarchy clear; no ornament bars; current feedback matches actual engine state.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "hungry",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Arena+complete standings centered with field-leading weight; roster/card axes aligned, no detached bottomstat strip.",
+      "phoneSpecific": "Steering task/place/points/joystick grouped; clear selected or own identity and readable high-contrast targets.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "snakelines",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Trail arena+complete standing rail centered after elimination; rails scale to actual field rather than legacy canvaswidth only.",
+      "phoneSpecific": "Out/next-round state and live movement task distinct; decorative bracket/dash motif removed while trails/progress retain meaning.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "carryball",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Field/teams/score centered as shared group with cap equally padded; team cards align with field boundaries.",
+      "phoneSpecific": "Possession/score guidance before joystick/Pass; available versus unavailable Pass contrasts clearly, last action independent of footer.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "marble_bloom",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Orbital playfield/shared status and participant rail centered with coherent card alignment; field title and countdown protected.",
+      "phoneSpecific": "Now/next projectiles, aim, Swap/Fire form one logical flow; high contrast but identity preserved, no decorative edge marks.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "pocket_siege",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Terrain/tanks and complete turn roster balanced in full frame; cap vertically centers title/turn/wind data with equal breathing room.",
+      "phoneSpecific": "Units/weapon/angle/power/fuel/move/Fire order supports shooting; active sliders and selected tab contrast clearly against inactive states.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "bow_club",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Target scene+score rail centered in full frame; main title/facts fit cap; meaningful targets/reticles unchanged.",
+      "phoneSpecific": "Useful rounded mini-field immediately precedes DrawRelease; quiver only once; back/swap actionable and contrast clear.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "poker",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Table and seats fit/center at1280/1920 with stable passive anchors; title/hand/pot/currentbet cap evenly padded, actual ink protected.",
+      "phoneSpecific": "Private cards/chips/turn precede Fold/Call/Raise; enabled targets high contrast, actual current-bet decision clear.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "airhockey",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Rink+complete scoreboard centered and passive anchors remain correct on resize; no detached statistics bottomstrip.",
+      "phoneSpecific": "Score/task above joystick; available control high contrast and understandable movement relation.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "mines",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Mineboard+player score card aligned vertically and centered together; currenttile/points cap equally padded.",
+      "phoneSpecific": "Dpad/current tile/action feedback clear; AlreadyOpen versus Ready distinct; dark disabled state still readable.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "curling",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Rink/current throw and complete standings share full-frame center; scoreboard card conforms to usable fieldheight.",
+      "phoneSpecific": "Position/Spin/swipe field/power task clear, touch targets visible and current throw/settled feedback meaningful.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "bowling",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Lane/current player and complete score group centered; frame/score/title facts optically centered without addedornament.",
+      "phoneSpecific": "Position/Spin/swipe/power group contrast readable; action area large enough, actual turn and outcome truthful.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "swarm_gate",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Gate/target field and full crew rail centered to frame, card borders align to field; heat/progress semantic bars remain.",
+      "phoneSpecific": "Gate/heat/targets before Fire/Pulse/Aim; active buttons readable atglance, disabled/pulse states differentiate without losing contrast.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    },
+    {
+      "game": "peek_shoot",
+      "status": "awaiting owner-freeze freshcaptures; prioracceptance superseded",
+      "criteria": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "tvSpecific": "Targetfield and full standings balanced with aligned card boundaries; all namedidentity/theme requirements checked on realroute.",
+      "phoneSpecific": "Whiteflag warning before Fire/streak unlock/Aim; disabled6Hits remains readable and clearlyinactive, no decorative bars.",
+      "freshOriginalsOpened": [],
+      "findings": []
+    }
+  ],
+  "freshCaptureGate": "pending; no currentacceptance",
+  "evidenceLimits": "Prepared criteria do not imply all36 newcapture review, physicaltouch, motion, or gameengine acceptance."
+}

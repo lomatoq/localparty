@@ -1,0 +1,289 @@
+{
+  "status": "root-native-view-approved-staged-art; actual-runtime-rig-verification-required",
+  "coordinateUnit": "cell pixels, not atlas pixels",
+  "atlasCellSize": 627,
+  "atlasGrid": [
+    2,
+    2
+  ],
+  "camera": "Authored forward UP; renderer rotates+pi/2 for angle0RIGHT",
+  "atlases": {
+    "hull": "hull-atlas-v1.png",
+    "turret": "turret-atlas-v2.png"
+  },
+  "alphaThreshold": 32,
+  "colors": {
+    "lime": {
+      "hull": {
+        "frame": {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 208,
+          "y": 97,
+          "w": 332,
+          "h": 479
+        },
+        "pivot": {
+          "x": 374.0,
+          "y": 336.5
+        },
+        "opticalAspect": 0.6931106471816284,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          208,
+          97,
+          87,
+          51
+        ]
+      },
+      "turret": {
+        "frame": {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 149,
+          "y": 105,
+          "w": 377,
+          "h": 460
+        },
+        "pivot": {
+          "x": 337.5,
+          "y": 394.0
+        },
+        "opticalAspect": 0.8195652173913044,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          149,
+          105,
+          101,
+          62
+        ],
+        "muzzle": {
+          "x": 337.5,
+          "y": 105
+        },
+        "pivotToMuzzle": 289.0
+      }
+    },
+    "plum": {
+      "hull": {
+        "frame": {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 86,
+          "y": 97,
+          "w": 333,
+          "h": 479
+        },
+        "pivot": {
+          "x": 252.5,
+          "y": 336.5
+        },
+        "opticalAspect": 0.6951983298538622,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          86,
+          97,
+          208,
+          51
+        ]
+      },
+      "turret": {
+        "frame": {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 101,
+          "y": 105,
+          "w": 378,
+          "h": 460
+        },
+        "pivot": {
+          "x": 290.0,
+          "y": 394.5
+        },
+        "opticalAspect": 0.8217391304347826,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          101,
+          105,
+          148,
+          62
+        ],
+        "muzzle": {
+          "x": 290.0,
+          "y": 105
+        },
+        "pivotToMuzzle": 289.5
+      }
+    },
+    "coral": {
+      "hull": {
+        "frame": {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 208,
+          "y": 53,
+          "w": 332,
+          "h": 480
+        },
+        "pivot": {
+          "x": 374.0,
+          "y": 293.0
+        },
+        "opticalAspect": 0.6916666666666667,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          208,
+          53,
+          87,
+          94
+        ]
+      },
+      "turret": {
+        "frame": {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 149,
+          "y": 57,
+          "w": 378,
+          "h": 464
+        },
+        "pivot": {
+          "x": 338.0,
+          "y": 347.5
+        },
+        "opticalAspect": 0.8146551724137931,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          149,
+          57,
+          100,
+          106
+        ],
+        "muzzle": {
+          "x": 338.0,
+          "y": 57
+        },
+        "pivotToMuzzle": 290.5
+      }
+    },
+    "cyan": {
+      "hull": {
+        "frame": {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 87,
+          "y": 53,
+          "w": 332,
+          "h": 480
+        },
+        "pivot": {
+          "x": 253.0,
+          "y": 293.0
+        },
+        "opticalAspect": 0.6916666666666667,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          87,
+          53,
+          208,
+          94
+        ]
+      },
+      "turret": {
+        "frame": {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627
+        },
+        "optical": {
+          "x": 101,
+          "y": 57,
+          "w": 378,
+          "h": 464
+        },
+        "pivot": {
+          "x": 290.0,
+          "y": 347.5
+        },
+        "opticalAspect": 0.8146551724137931,
+        "alphaRange": [
+          0,
+          255
+        ],
+        "clearPadding": [
+          101,
+          57,
+          148,
+          106
+        ],
+        "muzzle": {
+          "x": 290.0,
+          "y": 57
+        },
+        "pivotToMuzzle": 290.5
+      }
+    }
+  },
+  "constraints": {
+    "hullScale": "uniform: opticalheight to3.5r",
+    "turretScale": "uniform: actualpivot-to-muzzle to r+13",
+    "trackPlacement": "fixed nominal .8 hull reference width: centers \u00b1.46, width .18, length .88 hullheight; old footprint preserved without stretching narrow art",
+    "physics": "unchanged, owner integration only"
+  },
+  "qualifications": [
+    "Measured hull W/H~.693 rather than requested.8; turret~.82 rather than.70. No runtime stretching is authorized.",
+    "Cells have unequal transparent offsets; frame-relative pivots explicitly account for these offsets.",
+    "Turret pivot is a visual estimate reinforced by silhouette-width measurement; actual native rig must confirm it.",
+    "V1 turret rejected for elevated muzzle view; preserved without runtime reference."
+  ]
+}

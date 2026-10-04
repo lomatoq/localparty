@@ -1,6 +1,17 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const catalog=require('../lib/catalog'),{registry,normalize}=require('../public/tv-information');
+test('approved game logo resolver covers actual catalog assets and rejects unknown paths',()=>{
+ const {logoFor}=require('../public/tv-information');
+ for(const game of catalog){
+  const url=logoFor(game.id);assert.equal(url,'/assets/game-logos-v1/logos/'+game.id+'.png?v=1');
+  const png=fs.readFileSync('public'+url.split('?')[0]);assert.equal(png.subarray(1,4).toString(),'PNG');
+  assert(png.readUInt32BE(16)>0&&png.readUInt32BE(20)>0,game.id+' has original bitmap dimensions');
+ }
+ for(const id of ['missing','../naval','toString','__proto__','naval?other'])assert.equal(logoFor(id),null);
+ const context={};vm.runInNewContext(fs.readFileSync('public/tv-information.js','utf8'),context);
+ assert.equal(context.LocalPartyTVInformation.logoFor('naval'),logoFor('naval'));
+});
 test('all 36 released games have explicit family and safe runtime metadata adapter',()=>{
  assert.equal(catalog.length,36);assert.deepEqual(Object.keys(registry).sort(),catalog.map(g=>g.id).sort());
  for(const game of catalog){const input={game,ui:{phase:'playing',label:'На ход',currentPlayer:'A',progress:'2 / 3',endsAt:5000},now:2000};const before=JSON.stringify(input),out=normalize(input);assert.equal(out.title,game.title);assert(['live','turn','prompt','mission'].includes(out.family));assert.equal(out.timer.remainingSeconds,3);assert.equal(out.actor,'A');assert.equal(out.progress,'2 / 3');assert.equal(out.coverage,'runtime-ui');assert.equal(out.objective?.kind,'static');assert.deepEqual(out.metrics,[]);assert.equal(JSON.stringify(input),before);}
@@ -35,7 +46,7 @@ test('publisher is host-only, caps traffic at 4Hz and never forwards raw secret 
  now=1250;assert(send({...s,pot:1}),'unchanged live state has a1s heartbeat');assert.equal(packets.length,3);
 });
 test('zero-based questions/drawing turns and inactive sports clocks are not mislabeled',()=>{
- for(const id of ['warsaw','drawguess']){const r=normalize({game:{id},snapshot:{phase:'playing',round:0,turn:0,total:5}});assert.match(r.progress,/1 \/ 5/);}
+ for(const id of ['warsaw','drawguess','crocodile']){const r=normalize({game:{id},snapshot:{phase:'playing',round:0,turn:0,total:5,settings:{turns:5}}});assert.match(r.progress,/1 \/ 5/);}
  const r=normalize({game:{id:'swarm_gate'},snapshot:{phase:'playing',stage:'wave',t:10,deadline:0}});assert.equal(r.timer,null);
  const mines=normalize({game:{id:'mines'},snapshot:{phase:'playing',remaining:180}});assert.equal(mines.timer.remainingSeconds,180,'engine remaining is180-t seconds, not cells');
 });
@@ -44,4 +55,43 @@ test('hidden Western signal and ended matches never expose countdowns',()=>{
  for(const id of ['bow_club','poker','mines','airhockey','marble_bloom','swarm_gate'])for(const phase of ['waiting','results'])assert.equal(normalize({game:{id},snapshot:{phase,remaining:90,deadline:200,t:100,duration:500,arenaMode:'versus'}}).timer,null,id);
  assert.equal(normalize({game:{id:'western_duel'},snapshot:{phase:'countdown',endsAt:13000},now:10000}).timer.remainingSeconds,3);
  assert.equal(normalize({game:{id:'crane'},snapshot:{phase:'playing',turns:0,maxTurns:12}}).progress,'Ход 1 / 12');
+});
+test('team hockey HUD reports goals without inventing an individual leader',()=>{
+ const info=normalize({game:{id:'airhockey'},snapshot:{phase:'playing',remaining:48,goals:[2,3],players:[{id:'a',name:'A',score:99},{id:'b',name:'B',score:0}]}});
+ assert.deepEqual(info.metrics.map(m=>m.key),['goals']);assert.equal(info.metrics[0].value,'2 : 3');assert.equal(info.timer.remainingSeconds,48);
+});
+test('Local Tanks flag and coop modes discard stale round counters, survival preserves rounds',()=>{
+ const input={game:{id:'tanks'},ui:{progress:'Раунд 0 / 10'},snapshot:{game:{mode:'ctf',status:'playing',round:0,maxRounds:10,timer:75,redScore:2,blueScore:1},players:[]}};
+ const flags=normalize(input);assert.equal(flags.progress,null);assert.equal(flags.sources.progress,null);assert.equal(flags.metrics.find(m=>m.key==='teams').value,'2 : 1');assert.equal(flags.timer.remainingSeconds,75);
+ const coop=normalize({...input,snapshot:{game:{...input.snapshot.game,mode:'coop'}}});assert.equal(coop.progress,null);assert(!coop.metrics.some(m=>m.key==='teams'));
+ const survival=normalize({...input,snapshot:{game:{...input.snapshot.game,mode:'survival',round:3}}});assert.equal(survival.progress,'Раунд 3 / 10');
+});
+test('Spy public role assignment and play instructions override stale parent UI',()=>{
+ const game={id:'spy'},ui={phase:'playing',progress:'Посмотрите роль на телефоне',endsAt:13000};
+ const reveal=normalize({game,ui,snapshot:{phase:'reveal'},now:10000});
+ assert.equal(reveal.phaseLabel,'Раздача ролей');assert.equal(reveal.timer,null);
+ for(const duel of [false,true]){
+  const active=normalize({game,ui,snapshot:{phase:'playing',duel,timerEndsAt:15000},now:10000});
+  assert.equal(active.progress,duel?'Мини-режим: вопрос и догадка':'Найдите шпиона');
+  assert.equal(active.sources.progress,'public-snapshot');assert.equal(active.timer.remainingSeconds,5);
+ }
+ const vote=normalize({game,ui:{...ui,currentPlayer:'Stale actor'},snapshot:{phase:'voting',currentTurn:{asker:'a',answerer:'b'},voteCount:1,players:[{id:'a',name:'A'},{id:'b',name:'B'},{id:'s',name:'Spectator',spectator:true}]},now:10000});
+ assert.equal(vote.progress,'Голосование');assert.equal(vote.timer,null);
+ assert.equal(vote.actor,null);assert.equal(vote.metrics.find(m=>m.key==='votes').value,'1 / 2');
+ assert.equal(normalize({game,ui,snapshot:{phase:'reveal'},paused:true}).phaseLabel,'Пауза');
+});
+test('TV publisher retains the last quiet-game state inside its4Hz throttle',()=>{
+ const {createPublisher}=require('../public/tv-information');let at=0,callback=null,delay=null;const packets=[];
+ const publish=createPublisher({game:{id:'spy'},instance:'spy-1',now:()=>at,send:p=>packets.push(p),schedule:(fn,ms)=>{callback=fn;delay=ms;return 1;},cancel:()=>{callback=null;}});
+ assert(publish({phase:'reveal'}));at=60;assert.equal(publish({phase:'playing',duel:false,timerEndsAt:480000}),false);
+ at=180;assert.equal(publish({phase:'playing',duel:true,timerEndsAt:480000}),false);
+ assert.equal(packets.length,1);assert.equal(delay,190);at=250;callback();
+ assert.equal(packets.length,2);assert.equal(packets[1].info.phase,'playing');assert.equal(packets[1].info.progress,'Мини-режим: вопрос и догадка');
+ at=300;publish({phase:'voting'});assert(callback);at=550;publish({phase:'result'});assert.equal(callback,null);assert.equal(packets.at(-1).info.phase,'result');
+});
+
+test('Jenga stability reports real published safety instead of constant level',()=>{
+ const read=safety=>normalize({game:{id:'jenga'},snapshot:{phase:'playing',stability:{level:0,safety}}}).metrics.find(m=>m.key==='stability')?.value;
+ assert.equal(read(0.999),'100%');assert.equal(read(0.43),'43%');assert.equal(read(0),'0%');
+ assert.equal(read(1.2),'100%');assert.equal(read(-0.1),'0%');assert.equal(read(undefined),undefined);assert.equal(read(NaN),undefined);
 });

@@ -1,0 +1,718 @@
+@import url('/russian-fonts.css');
+@font-face{font-family:KardiaFitRunner;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:KardiaFitRunner;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:KardiaFit;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:KardiaFit;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:KardiaFatRunner;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:KardiaFatRunner;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+/* User-supplied Kardia. See assets/fonts/kardia/iFonts-License.txt. Static authored faces; no synthesized weight or slant. */
+@font-face{font-family:HeyPalsDisplay;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:HeyPalsDisplay;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:HeyPalsText;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:HeyPalsText;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:HeyPalsNumeric;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:HeyPalsNumeric;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:HeyPalsCelebration;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:HeyPalsCelebration;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:HeyPalsCopy;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:HeyPalsCopy;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Rubik;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Rubik;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Rubik;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Rubik;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:PartyRubik;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:PartyRubik;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:PartyRubik;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:PartyRubik;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Anybody;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Anybody;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Anybody;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Anybody;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Onest;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Onest;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Onest;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Onest;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Oxanium;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Oxanium;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Oxanium;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Oxanium;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Unbounded;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Unbounded;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Unbounded;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Unbounded;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Manrope;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Manrope;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Manrope;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Manrope;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Exo2;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Exo2;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Exo2;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Exo2;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+@font-face{font-family:Inter;src:url('/assets/fonts/kardia/kardia-fit.otf') format('opentype');font-weight:100 599;font-style:normal;font-display:swap;}
+@font-face{font-family:Inter;src:url('/assets/fonts/kardia/kardia-fat.otf') format('opentype');font-weight:600 900;font-style:normal;font-display:swap;}
+@font-face{font-family:Inter;src:url('/assets/fonts/kardia/kardia-fit-runner.otf') format('opentype');font-weight:100 599;font-style:italic;font-display:swap;}
+@font-face{font-family:Inter;src:url('/assets/fonts/kardia/kardia-fat-runner.otf') format('opentype');font-weight:600 900;font-style:italic;font-display:swap;}
+
+/* Role-based UI contract. Loaded after legacy styles in shell and game frames. */
+.hp-ui{--hp-font-body:KardiaFit,sans-serif;--hp-font-action:KardiaFatRunner,sans-serif;--hp-font-display:var(--hp-font-action);--hp-font-copy:KardiaFitRunner,sans-serif;--hp-font-numeric:KardiaFit,sans-serif;--hp-font-section:KardiaFit,sans-serif;--hp-font-celebration:var(--hp-font-action);--hp-text:#f6f1ff;--hp-muted:#b9b1c9;--hp-panel:#262035;--hp-line:#d6bdff2b;--hp-accent:#cfff85;--hp-pink:#f7a5db;--hp-radius:22px;--hp-gap:12px;--hp-duration:220ms;font-synthesis:none}
+.hp-ui body{font-family:var(--hp-font-body);font-style:normal;font-weight:500;text-transform:none;font-variant-numeric:tabular-nums}
+.hp-ui :is(button,input,textarea,select){font-family:var(--hp-font-body)}
+.hp-ui :is(h1,h2,h3,.hp-heading){font-family:var(--hp-font-display);font-style:italic;font-weight:750;letter-spacing:-.025em;line-height:1.15;text-wrap:balance}
+.hp-ui :is(button,.hp-action){font-weight:600;font-style:normal;line-height:1.25;letter-spacing:0}
+.hp-ui :is(button.primary,.hp-action-primary){font-family:var(--hp-font-display);font-weight:var(--hp-primary-weight,900);font-style:italic}
+.hp-ui .hp-copy{font-family:var(--hp-font-body);font-style:normal;text-transform:none;letter-spacing:0;line-height:1.5;color:var(--hp-muted)}
+.hp-ui :is(button,a,input,select,summary):focus-visible{outline:3px solid var(--hp-pink);outline-offset:4px}
+.hp-ui .hp-stat{min-width:0;border:0;border-radius:0;background:transparent;padding:12px}
+.hp-ui .hp-stat :is(small,label){font:500 12px/1.4 var(--hp-font-body);color:var(--hp-muted);text-transform:none;letter-spacing:0}
+.hp-ui .hp-stat :is(strong,b){font-family:var(--hp-font-numeric);font-weight:650;font-style:normal;line-height:1.15;font-variant-numeric:tabular-nums}
+/* Overlay colours belong to state, never to team or game accent. */
+.hp-ui body #pauseOverlay.hp-pause,.hp-ui body.tv-screen #paused.hp-pause{background:radial-gradient(ellipse at 50% 20%,#9638786b,transparent 70%),#21182ee8;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);color:var(--hp-text)}
+.hp-ui .hp-pause :is(h2,strong){color:var(--hp-text);font-family:var(--hp-font-display);text-shadow:0 4px 28px #e98bb72b}
+.hp-ui .hp-pause :is(p,span){color:#ded0eb}
+.hp-ui body #waitingTitle{background:none;color:var(--hp-text);-webkit-text-fill-color:var(--hp-text);font-family:var(--hp-font-display);text-shadow:none}
+.hp-ui .hp-waiting :is(.waiting-goal,#waitingHint){max-width:40ch;margin-inline:auto;line-height:1.5;text-transform:none}
+.hp-ui .hp-waiting .waiting-details{border-color:var(--hp-line);background:#282034b8}
+.hp-ui .hp-waiting .waiting-details summary{color:#ebd7ff;font-family:var(--hp-font-body);font-style:normal;text-transform:none}
+/* Existing podiums keep engine order, labels and scores; only layout changes. */
+.hp-ui .hp-results{min-width:0;gap:12px;align-items:stretch}
+.hp-ui .hp-results article{min-width:0;border-color:var(--hp-line);background:linear-gradient(145deg,#31263f,#211c2d);border-radius:var(--hp-radius);animation:hp-result-enter 440ms ease-out both}
+.hp-ui .hp-results article:nth-child(2){animation-delay:60ms}.hp-ui .hp-results article:nth-child(3){animation-delay:120ms}
+.hp-ui .hp-results article h3{font-family:var(--hp-font-body);font-style:normal;letter-spacing:0;text-transform:none;overflow-wrap:anywhere;line-height:1.4}
+.hp-ui .hp-results article small{font-family:var(--hp-font-display);font-style:normal;letter-spacing:.02em;white-space:nowrap;color:var(--hp-muted)}
+.hp-ui .hp-results article strong{font-family:var(--hp-font-numeric);font-style:normal;font-weight:650;font-variant-numeric:tabular-nums}
+.hp-ui .hp-result-list{list-style:none;padding:0;margin:0;display:grid;gap:8px;max-height:100%;overflow:auto;overscroll-behavior:contain}
+.hp-ui .hp-result-row{box-sizing:border-box;display:grid;grid-template-columns:34px minmax(0,1fr) max-content;gap:12px;align-items:center;min-height:84px;padding:16px 12px;border:1px solid #d6bdff38;border-radius:20px;background:linear-gradient(135deg,#393044,#292337);overflow:hidden;background-clip:padding-box;box-shadow:inset 0 1px 0 #ffffff0d,inset 0 -3px 0 #100d1b35,0 5px 12px #09061320}
+.hp-ui .hp-result-row:is([data-self=true],.is-self){border-color:#c3a4f299;background:linear-gradient(115deg,#514066,#342a48);box-shadow:inset 3px 0 0 #c9a5ff,inset 0 1px 0 #f0dfff18,inset 0 -3px 0 #150f2440,0 5px 14px #09061325}
+.hp-ui .hp-result-row.is-winner{border-color:#edc8748c;background:linear-gradient(115deg,#55452e,#3c3043 75%);box-shadow:inset 0 1px 0 #ffe8b42b,inset 0 -3px 0 #26190745,0 5px 14px #09061325}
+.hp-ui .hp-result-row.is-winner:is([data-self=true],.is-self){box-shadow:inset 3px 0 0 #c9a5ff,inset 0 1px 0 #ffe8b42b,inset 0 -3px 0 #26190745,0 5px 14px #09061325}
+.hp-ui .hp-result-rank{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:650 18px/1.1 var(--hp-font-numeric);color:#d9cee7}
+.hp-ui .hp-result-row.is-winner .hp-result-rank{color:#ffe3a1}
+.hp-ui .hp-result-crown{display:block;flex:none;width:24px;height:18px;object-fit:contain}
+.hp-ui .hp-result-name{font:550 16px/1.4 var(--hp-font-body);overflow-wrap:anywhere;text-transform:none}
+.hp-ui :is(.hp-result-value,.hp-result-score){font:650 27px/1.15 var(--hp-font-numeric);color:var(--hp-text)}
+.hp-ui .hp-match-results{position:absolute;inset:0 0 calc(72px + env(safe-area-inset-bottom));z-index:8;display:flex;flex-direction:column;gap:20px;padding:24px 16px;background:radial-gradient(ellipse at 50% 0%,#693c733d,transparent 50%),#151321;overflow:hidden;box-sizing:border-box}
+.hp-ui .hp-match-results[hidden]{display:none}
+.hp-ui .hp-match-results>*{width:100%;max-width:560px;margin-inline:auto;box-sizing:border-box}
+.hp-ui .hp-result-header{position:static;inset:auto;display:block;flex:none;height:auto;min-height:0;padding:0;border:0;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;z-index:auto;text-align:center}
+.hp-ui .hp-result-header h2{margin:0 0 8px;color:var(--hp-text);font:italic 750 clamp(26px,7vw,38px)/1.12 var(--hp-font-display)}
+.hp-ui .hp-result-header p{margin:0;color:var(--hp-muted);font:500 14px/1.5 var(--hp-font-body);text-transform:none}
+.hp-ui .hp-match-results .hp-result-list{flex:1;min-height:0;align-content:start;padding:2px 2px 12px}
+.hp-ui .hp-result-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.hp-ui .hp-result-scroll .hp-result-list{max-height:none;overflow:visible}
+.hp-ui .hp-result-columns{display:grid;grid-template-columns:38px minmax(0,1fr) max-content;gap:12px;padding:0 2px;font:500 11px/1.4 var(--hp-font-body);color:var(--hp-muted);flex:none}
+.hp-ui .hp-result-self{display:block;margin-top:3px;color:var(--hp-accent);font:500 11px/1.3 var(--hp-font-body)}
+html.hp-ui body.tv-screen .podium-name{flex:none;white-space:normal;overflow:visible;overflow-wrap:anywhere;text-overflow:clip;min-height:2.5em;max-height:none;line-height:1.25!important;font-family:var(--hp-font-body);font-style:normal;text-transform:none;letter-spacing:0}
+html.hp-ui body.tv-screen .podium-tail .podium-name{min-height:2.5em;max-height:none;white-space:normal}
+html.hp-ui body.tv-screen #tvPodiumMain .podium-name{max-height:none;min-height:2.5em}
+@media(max-height:760px){html.hp-ui body.tv-screen .tv-podium.has-tail .tv-board-heading{margin-bottom:10px}html.hp-ui body.tv-screen .tv-podium.has-tail .podium-tail{padding-top:10px}}
+.hp-ui body:not(.tv-screen).hp-has-match-result #gameFrame{opacity:0;pointer-events:none}
+/* Legacy polish pinned all clocks to the top. Centre the whole visible pair;
+   an empty progress label is removed, leaving the timer centred by itself. */
+html.hp-ui body.is-player.in-game #brandHeader #hudTimer{justify-content:center!important;align-items:center;gap:3px}
+html.hp-ui body.is-player.in-game #brandHeader #hudTimer #hudProgress:empty{display:none}
+/* Keep essential actions on their own stable compositor layer above WebGL
+   frames. A filled entrance animation can leave this layer unpainted in WebKit. */
+html.hp-ui body.is-player.in-game #sessionControls{animation:none!important;transform:translateZ(0);z-index:12}
+/* Wing readouts share the existing 64px rail. Stack instead of squeezing the
+   timer and a leader's name into competing ellipsized pills. */
+html.hp-ui body.tv-screen #play .tv-info-right{flex-direction:column;align-items:stretch;justify-content:center;gap:2px;overflow:visible}
+html.hp-ui body.tv-screen #play .tv-info-right :is(#gamePlayers,#gameMetric){width:100%;max-width:100%;padding:2px 8px;border-radius:8px;font:600 15px/1.2 var(--hp-font-body);white-space:normal;overflow-wrap:anywhere;text-overflow:clip;overflow:visible;min-height:0;box-sizing:border-box}
+html.hp-ui body.tv-screen #play .tv-info-right #gamePlayers{align-self:flex-end;width:fit-content;white-space:nowrap}
+/* One-action controller contract: counter, bounded square action, secondary stats. */
+html.hp-ui.party-managed.party-player[data-party-game=knives] #knifeControls{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:12px 16px!important;overflow:auto}
+html.hp-ui.party-player[data-party-game=knives] #knifeControls .feedback{flex:none;height:auto;min-height:22px;font-size:14px;text-align:center}
+html.hp-ui.party-player[data-party-game=knives] .knife-count{display:flex;align-items:baseline;justify-content:center;gap:8px;flex:none;margin:0;text-align:center}
+html.hp-ui.party-player[data-party-game=knives] .knife-count small{font:600 12px/1.4 var(--hp-font-body);color:var(--hp-muted)}
+html.hp-ui.party-player[data-party-game=knives] #throwBtn{--hp-action-size:min(58vw,43dvh,220px);flex:none;width:var(--hp-action-size);height:var(--hp-action-size);min-height:0;max-height:none;aspect-ratio:1;border-radius:30px;padding:14px}
+html.hp-ui.party-player[data-party-game=knives] #throwBtn span{font:italic 750 clamp(28px,8vw,36px)/1.1 var(--hp-font-display)}
+html.hp-ui.party-player[data-party-game=knives] .knife-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:440px;gap:10px;margin:0;flex:none}
+html.hp-ui.party-player[data-party-game=knives] .knife-stats>div{min-height:58px;min-width:0;padding:10px 6px;flex-wrap:wrap}
+@media(max-height:400px) and (orientation:landscape){html.hp-ui.party-managed.party-player[data-party-game=knives] #knifeControls{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto 1fr;gap:8px 16px}html.hp-ui.party-player[data-party-game=knives] #throwBtn{grid-column:2;grid-row:1/4;justify-self:center;--hp-action-size:min(38vw,75dvh,220px)}html.hp-ui.party-player[data-party-game=knives] .knife-stats{grid-column:1;grid-row:3}html.hp-ui.party-player[data-party-game=knives] .knife-count{grid-column:1;grid-row:2}}
+@media(max-height:570px){.hp-ui .hp-match-results{padding:12px;gap:12px}.hp-ui .hp-result-row{min-height:82px;padding:14px 12px}}
+@keyframes hp-result-enter{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+@media(max-width:600px){
+ .hp-ui.party-player .hp-results{grid-template-columns:minmax(0,1fr);margin-block:18px;max-height:66dvh;overflow:auto;overscroll-behavior:contain}
+ .hp-ui.party-player .hp-results article{display:grid;grid-template-columns:60px minmax(0,1fr) max-content;align-items:center;gap:10px;padding:14px 12px;text-align:left;transform:none}
+ .hp-ui.party-player .hp-results article h3{margin:0;font-size:16px}
+ .hp-ui.party-player .hp-results article small{font-size:10px}
+ .hp-ui.party-player .hp-results article strong{font-size:28px}
+ .hp-ui.party-player[data-party-game=flappy] .controller #action{width:min(58vw,220px);height:min(58vw,220px);min-height:0;aspect-ratio:1;align-self:center;border-radius:30px}
+}
+@media(prefers-reduced-motion:reduce){.hp-ui .hp-results article{animation:none}}
+/* Shared roles / Anybody + Oxanium + Unbounded, with Onest for copy. These role overrides win over older Rubik shorthands;
+   they do not change geometry, control ownership, hit targets or game state. */
+html.hp-ui body :is(.hp-heading,h1,h2,h3){font-family:var(--hp-font-display);font-weight:750;letter-spacing:-.025em}
+html.hp-ui.party-managed body :is(.hp-heading,h1,h2,h3):not(.hp-player-name){font-family:var(--hp-font-display)!important;font-weight:750!important;font-style:italic}
+html.hp-ui body :is(.hp-number,.hp-result-value,.hp-result-score){font-family:var(--hp-font-numeric);font-style:normal;font-weight:650;font-stretch:100%;font-variant-numeric:tabular-nums;letter-spacing:-.025em;text-transform:none}
+html.hp-ui body .hp-player-name{font-family:var(--hp-font-body);font-weight:550;font-style:normal;letter-spacing:0;text-transform:none}
+html.hp-ui body .hp-copy{font-family:var(--hp-font-body);font-style:normal;font-weight:400;text-transform:none;letter-spacing:0}
+html.hp-ui.party-managed.party-player body :is(#help,#motionFeedback,#throwBtn small,.hp-copy){font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;letter-spacing:0!important;text-transform:none!important}
+html.hp-ui.party-managed.party-player body :is(.hp-stat,#knifeControls,#punchResult) .hp-stat-label{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:500!important;letter-spacing:0!important;text-transform:none!important;color:var(--hp-muted)}
+html.hp-ui body .hp-action-primary{font-family:var(--hp-font-display);font-style:italic;font-weight:var(--hp-primary-weight,900);letter-spacing:-.025em}
+html.hp-ui body #pauseOverlay :is(h2,.hp-heading),html.hp-ui body #paused :is(h2,.hp-heading){font-family:var(--hp-font-display)!important;font-weight:750!important}
+html.hp-ui body #pauseOverlay p{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important}
+html.hp-ui body.in-game #hudTimer #hudValue{font-family:var(--hp-font-numeric);font-style:normal;font-weight:650;letter-spacing:-.035em}
+html.hp-ui body.in-game #hudTimer #hudProgress{font-family:var(--hp-font-body);font-style:normal;font-weight:500}
+html.hp-ui body #sessionControls :is(button,span){font-family:var(--hp-font-body);font-style:normal;font-weight:600;text-transform:none;letter-spacing:0}
+/* Game values are prominent; label and player-name roles retain their own faces. */
+html.hp-ui.party-player body :is(.hp-stat-value,.hp-stat-group strong.hp-number,.hp-stat-group b.hp-number){font:italic 900 clamp(24px,6.4vw,32px)/1.1 var(--hp-font-action)!important;letter-spacing:-.02em;white-space:nowrap}
+/* A common baseline makes the value hierarchy readable without card borders. */
+html.hp-ui.party-player .hp-stat-group{border:1px solid var(--hp-line);border-radius:18px;overflow:hidden;gap:0}
+html.hp-ui.party-player .hp-stat-group>.hp-stat{border:0;border-radius:0;background:transparent;box-shadow:none}
+html.hp-ui.party-player .hp-stat-group>.hp-stat+.hp-stat{border-left:1px solid var(--hp-line)}
+html.hp-ui.party-player[data-party-game=knives] .knife-stats{height:auto;gap:0}
+html.hp-ui.party-player[data-party-game=knives] .knife-stats>div{min-height:54px;padding:12px 10px;justify-content:space-between;flex-wrap:nowrap}
+html.hp-ui.party-player[data-party-game=knives] .knife-stats b{font-size:24px}
+html.hp-ui.party-player[data-party-game=knives] #knifeControls .feedback{font-family:var(--hp-font-body);font-style:normal;font-weight:550;letter-spacing:0;text-transform:none}
+html.hp-ui.party-player[data-party-game=knives] #throwBtn small{color:inherit!important;font-size:12px!important;line-height:1.4!important;max-width:100%;text-align:center}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body #status.hp-heading{font-family:var(--hp-font-display)!important;font-weight:750!important;font-style:italic!important;letter-spacing:-.025em;text-transform:uppercase!important}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] #punchResult{gap:0;padding-top:12px}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] #punchResult>div.hp-stat{background:transparent;border:0;border-radius:0;padding:8px 6px}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] #punchResult>div.hp-stat+.hp-stat{border-left:1px solid var(--hp-line)}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] #punchResult strong{font-family:var(--hp-font-numeric);font-weight:650;font-style:normal}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] #action{font-family:var(--hp-font-display);font-style:italic;font-weight:750;letter-spacing:-.025em}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] #motion{font-family:var(--hp-font-body);font-style:normal;font-weight:550;text-transform:none}
+.hp-ui .hp-result-row:is(.is-winner,[data-self=true]) :is(.hp-result-value,.hp-result-score){color:var(--hp-accent)}
+/* The existing TV notch/layout is retained. Only content roles change font. */
+html.hp-ui body.tv-screen #tvStage{font-family:var(--hp-font-body)}
+html.hp-ui body.tv-screen #play .tv-information :is(#gameContext,#gameObjective,#gamePlayers,#gameMetric){font-family:var(--hp-font-body);font-style:normal;font-weight:500;letter-spacing:0}
+html.hp-ui body.tv-screen #play .tv-information #phase{font-family:var(--hp-font-display);font-style:italic;font-weight:750}
+html.hp-ui body.tv-screen #play .tv-information #gameTitle{font-family:var(--hp-font-numeric);font-weight:650;font-style:normal;letter-spacing:-.035em}
+html.hp-ui body.tv-screen .podium-rank{font-family:var(--hp-font-numeric);font-style:normal;font-weight:650;letter-spacing:-.025em}
+html.hp-ui body.tv-screen :is(.podium-name,.tv-board-heading p,.tv-board-footer){font-family:var(--hp-font-body);font-style:normal;font-weight:500}
+
+/* Titles in game cards retain the approved layout and gain the action voice. */
+html.hp-ui body :is(.game h3,.lp-card h3,.lp-card-title,#choiceTitle){font-family:var(--hp-font-action);font-style:italic;font-weight:750;letter-spacing:-.025em}
+html.hp-ui body :is(.game p,.lp-card p,.game-info .eyebrow){font-family:var(--hp-font-body);font-style:normal;font-weight:400;letter-spacing:0;text-transform:none}
+html.hp-ui body :is(.intro h1,.tv-startup h1,.hp-result-header h2,.tv-board-heading h2){font-family:var(--hp-font-action);font-style:italic;font-weight:750;letter-spacing:-.025em}
+html.hp-ui body .hp-result-header h2{font-size:clamp(24px,6.6vw,32px);line-height:1.2}
+
+/* Unbounded is an intermediate label voice; large titles remain italic Anybody. */
+html.hp-ui body :is(.section-title h2,.tv-board-heading .eyebrow){font-family:var(--hp-font-section);font-style:normal;font-weight:500;letter-spacing:-.015em}
+html.hp-ui body.tv-screen #play .tv-information #gameContext:not([data-no-translate]){font-family:var(--hp-font-action);font-style:italic;font-weight:750;font-size:22px;letter-spacing:-.025em;text-transform:uppercase}
+
+/* Soft shared colour groups keep the information light without making every
+   readout a separate card. Safe areas and measured controller geometry stay put. */
+html.hp-ui.party-player .hp-stat-group{background:#211c2d;border-color:#cfb8fa33}
+.hp-ui .hp-match-results{background:radial-gradient(ellipse at 12% 5%,#c54b9b24,transparent 48%),radial-gradient(ellipse at 95% 45%,#9572ed16,transparent 52%),#151321}
+.hp-ui .hp-result-row{padding-inline:12px}
+.hp-ui .hp-result-columns{grid-template-columns:34px minmax(0,1fr) max-content;padding-inline:14px}
+.hp-ui .hp-result-self{width:fit-content;padding:3px 7px;border-radius:7px;background:#cfff8524;color:#dcffa9;font-weight:650}.hp-ui .hp-result-self::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:5px;vertical-align:2px}.hp-ui .hp-result-row.is-winner :is(.hp-result-value,.hp-result-score){color:#ffe3a1}
+.hp-ui .hp-result-game{color:#d5b9ff;margin-bottom:7px!important}
+html.hp-ui body .hp-result-header h2{color:#fff0fa;text-shadow:0 4px 28px #ff9bc61c}
+html.hp-ui body.native-shell :is(#choiceName,#activeTitle,.lp-direct-start,#choiceStart,#startBotsLaunch){font-family:var(--hp-font-action);font-style:italic;font-weight:750;letter-spacing:-.025em}
+html.hp-ui body.native-shell :is(#hostPanel,#gameDetail,#confirmDialog) :is(p,small,summary,.native-row>span,code){font-family:var(--hp-font-body);font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;line-height:1.45}
+html.hp-ui body.native-shell :is(#startBotsCount,#botsCount,.native-stepper strong){font-family:var(--hp-font-numeric);font-style:normal;font-weight:650}
+
+/* Older action-glass cards use !important; override only these stat roles. */
+html.hp-ui.party-player .hp-stat-group>.hp-stat{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+html.hp-ui.party-player .hp-stat-group>.hp-stat+.hp-stat{border-left:1px solid var(--hp-line)!important}
+html.hp-ui.party-player .hp-action-primary{font-weight:var(--hp-primary-weight,900)!important}
+
+/* Game, mode and state titles always use the same uppercase italic voice. */
+html.hp-ui body :is(.hp-game-title,.hp-heading,.hp-result-header h2,.tv-board-heading h2,.intro h1,.tv-startup h1,#phase){font-family:var(--hp-font-action);font-style:italic;font-weight:750;text-transform:uppercase;letter-spacing:-.025em}
+html.hp-ui body.in-game #hudTimer.word-time #hudValue{font-family:var(--hp-font-action);font-style:italic;font-weight:750;text-transform:uppercase}
+html.hp-ui body.tv-screen #play .tv-information #gameTitle[data-hp-value-role=state]{font-family:var(--hp-font-action);font-style:italic;font-weight:750;text-transform:uppercase}
+html.hp-ui body.tv-screen #play .tv-information :is(#gameTitle[data-hp-value-role=name],#gameContext[data-no-translate]){font-family:var(--hp-font-body);font-style:normal;font-weight:550;text-transform:none;letter-spacing:0}
+html.hp-ui body.tv-screen #play .tv-info-right :is(#gamePlayers,#gameMetric){background:none;border:0;box-shadow:none;border-radius:0}
+
+/* Measured 64px TV wing rhythm: 16px state, 16px objective, 5px gap;
+   the text group has about9px above/below, while the central notch stays104px. */
+html.hp-ui body.tv-screen #play .tv-info-wing{padding-block:8px;gap:5px;justify-content:center}
+html.hp-ui body.tv-screen #play .tv-information #phase{font-size:16px;line-height:1.2}
+html.hp-ui body.tv-screen #play .tv-information #gameObjective{font-size:16px;line-height:1.35}
+html.hp-ui body.tv-screen #play .tv-info-center{gap:6px;padding:10px 32px 14px;justify-content:center}
+html.hp-ui body.tv-screen #play .tv-information #gameTitle{line-height:1.1}
+html.hp-ui body.tv-screen #play .tv-info-right{gap:4px}
+html.hp-ui body.tv-screen #play .tv-info-right :is(#gamePlayers,#gameMetric){padding-block:0;line-height:1.2}
+/* The sports controller separates a player's identity from the current task.
+   Smaller identity text makes space for readable help without reducing controls. */
+html.hp-ui.party-managed.party-player body #ss-name.hp-player-name{font-family:var(--hp-font-body)!important;font-size:17px!important;font-style:normal!important;font-weight:550!important;line-height:1.3!important;letter-spacing:0!important;text-transform:none!important}
+html.hp-ui.party-managed.party-player body #ss-turn.hp-heading{font-family:var(--hp-font-action);font-size:20px!important;line-height:1.2!important;font-style:italic;font-weight:750;text-transform:uppercase}
+html.hp-ui.party-managed.party-player body :is(#ss-personal,#ss-help){font-size:13px!important;line-height:1.4!important;font-style:normal!important;font-weight:400!important}
+html.hp-ui.party-managed.party-player body .ss-throw-settings label{font-family:var(--hp-font-body);font-size:12px;line-height:1.3;font-style:normal;font-weight:500}
+html.hp-ui.party-managed.party-player body #ss-power{font-family:var(--hp-font-numeric);font-size:30px;font-weight:650;font-style:normal}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] #action{font-size:clamp(18px,5vw,20px)!important}
+html.hp-ui.party-managed.party-player[data-party-game=jenga] body #notice.hp-copy{font-size:14px!important;line-height:1.4!important;font-style:normal!important}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #status.hp-readout{font-family:var(--hp-font-numeric)!important;font-size:18px!important;line-height:1.3!important;font-style:normal!important;font-weight:650!important}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #status.hp-readout[data-hp-value-role=state]{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important}
+/* Time remaining is a primary readout even when the centre carries a score. */
+html.hp-ui body.tv-screen #play .tv-info-right:has(#gamePlayers[data-readout=timer]){gap:3px}
+html.hp-ui body.tv-screen #play #gamePlayers[data-readout=timer]{display:flex;align-items:baseline;justify-content:flex-end;gap:8px;line-height:1;padding:0}
+html.hp-ui body.tv-screen #play #gamePlayers[data-readout=timer] .tv-timer-label{font:500 12px/1.1 var(--hp-font-body);color:var(--hp-muted);text-transform:none;letter-spacing:0}
+html.hp-ui body.tv-screen #play #gamePlayers[data-readout=timer] .tv-timer-value{font:650 28px/1 var(--hp-font-numeric);color:var(--hp-text);font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+html.hp-ui body.tv-screen #play .tv-info-right:has(#gamePlayers[data-readout=timer]) #gameMetric{font-size:14px;line-height:1.2}
+/* This is an action heading with its own quiet supporting line. */
+html.hp-ui.party-managed.party-player body #ss-throw-hint{font-family:var(--hp-font-action);font-size:19px;font-style:italic;font-weight:750;text-transform:uppercase;line-height:1.3}
+html.hp-ui.party-managed.party-player body #ss-throw-hint small{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;text-transform:none!important;font-size:12px!important;line-height:1.4!important}
+/* Quiet gameplay stage: remove the generic shared lobby halos behind every
+   host frame. Canvas art, field textures, team colours and event FX stay local. */
+html.hp-ui.party-managed.party-host::before,html.hp-ui.party-managed.party-host::after{display:none!important;background:none!important}
+html.hp-ui body.tv-screen #tvStage:has(#play:not([hidden]))>.ambient{display:none}
+html.hp-ui.party-managed.party-host{background-color:#0c1016!important;background-image:none!important}
+html.hp-ui.party-managed.party-host:is([data-party-game=push],[data-party-game=shrink],[data-party-game=knives],[data-party-game=bomb],[data-party-game=airhockey]) body{background:#0c1016!important}
+
+/* Mobile action readability and state roles: preserve authored large CTAs.
+   The helper only applies the 14px floor to measured smaller text labels. */
+.hp-ui .hp-control-readable{font-size:14px!important}
+html.hp-ui.party-player .hp-stat{border-radius:18px;background:var(--hp-panel)}
+html.hp-ui.party-player .hp-stat-group>.hp-stat{border-radius:0;background:transparent}
+html.hp-ui.party-player body :is(.hp-readout[data-hp-value-role=state],.hp-state-title){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important;letter-spacing:-.025em}
+html.hp-ui.party-player body :is(#gasBtn.hp-action-primary,#fire.hp-action-primary,#ss-fire.hp-action-primary,.secret-cover>.hp-action-primary){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:var(--hp-primary-weight,900)!important;text-transform:uppercase!important}
+html.hp-ui.party-player body #gasBtn.hp-action-primary>span:not(.gas-arrow){font-family:inherit!important;font-style:inherit!important}
+html.hp-ui body.tv-screen #play .tv-information #gameTitle[data-hp-value-role=state]{font-size:22px;line-height:1.1;white-space:normal;overflow:visible;text-overflow:clip;max-width:100%;overflow-wrap:normal;text-wrap:balance}
+@media(max-width:850px){
+ html.hp-ui.party-player body select,html.hp-ui body.is-player select{appearance:none;-webkit-appearance:none;border-radius:18px!important;min-height:44px!important;padding-inline:14px 32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23ded0eb' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;box-sizing:border-box;max-width:100%;font-family:var(--hp-font-body);font-style:normal;font-size:14px;padding-block:8px}
+}
+/* Native touch scrolling remains enabled; only the gutter paint changes. */
+.hp-ui :is(dialog,.hp-result-list,.stage,.card,.phone-panel,.controls-panel){scrollbar-width:thin;scrollbar-color:#bfa9da66 transparent}
+.hp-ui *::-webkit-scrollbar{width:6px;height:6px}
+.hp-ui *::-webkit-scrollbar-track{background:transparent}
+.hp-ui *::-webkit-scrollbar-thumb{background:#bfa9da66;border-radius:999px}
+/* Result names keep Fit; rank and score are the values the player scans first. */
+html.hp-ui body :is(.hp-result-rank,.hp-result-value,.hp-result-score){font-family:var(--hp-font-action);font-style:italic;font-weight:900}
+/* Keep native result scrolling without a painted gutter beside rounded rows. */
+.hp-ui :is(.hp-result-scroll,.hp-result-list){scrollbar-width:none}
+.hp-ui :is(.hp-result-scroll,.hp-result-list)::-webkit-scrollbar{display:none}
+
+/* Group containers must retain the complete rounded contour despite older
+   per-game #punchResult declarations; only their inner cells are square. */
+html.hp-ui.party-managed.party-player body .hp-stat-group{border:1px solid var(--hp-line)!important;border-radius:18px!important;background:#211c2d!important;overflow:hidden;gap:0!important}
+
+/* User-approved copy voice: real Anybody italic, lighter than action headings.
+   Semantic groups gain rhythm; controls and player-name roles keep their own fonts. */
+html.hp-ui body .hp-copy,
+html.hp-ui.party-managed.party-player body :is(#help,#motionFeedback,#throwBtn small,.hp-copy),
+html.hp-ui body #pauseOverlay p,
+html.hp-ui body.tv-screen #play .tv-information #gameObjective,
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(p,small,label,summary,.muted,.sub,.subtitle,#status,#turnStats,#messages,.person small,.scoreFooter,.explanation).hp-copy,
+html.hp-ui.party-managed.party-player body #ss-throw-hint small,
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body .controller #help,
+html.hp-ui.party-managed.party-player[data-party-game=jenga] body #notice.hp-copy{font-family:var(--hp-font-copy)!important;font-style:italic!important;font-weight:400!important;font-stretch:100%;letter-spacing:0!important;text-transform:none!important}
+html.hp-ui body .hp-copy :is(b,strong){font-weight:600}
+html.hp-ui body :is(.rules,.host-rules,.waiting-details,.rule-row) .hp-copy{line-height:1.5}
+html.hp-ui body :is(.rules,.host-rules,.waiting-details) p+p{margin-top:12px}
+html.hp-ui body .rule-row>p{margin-top:8px}
+html.hp-ui body .waiting-details>div+div{margin-top:14px}
+html.hp-ui body .hp-copy .hp-player-name,html.hp-ui body .hp-player-name{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important}
+html.hp-ui body .hp-copy .hp-number{font-family:var(--hp-font-numeric)!important;font-style:normal!important;font-weight:650!important}
+
+/* Passive cards carry their own decorative layers. No positioned pseudo-elements
+   means the centered edge accents cannot escape into an ancestor's viewport. */
+html.hp-ui body .hp-info-card:not(.western-stats):not(.combat-stats),
+html.hp-ui:is(.party-host,.party-player,.party-managed) body .hp-info-card:not(.western-stats):not(.combat-stats),
+html.hp-ui.party-managed.party-player body :is(.western-stats,.combat-stats).hp-info-card>div,
+html.hp-ui.party-managed.party-player[data-party-game=western] body #westernControls .western-stats.hp-info-card>div{
+ outline:1px solid #d4c0ed24;outline-offset:-1px;
+ background-image:linear-gradient(90deg,transparent,#efd4eb85 48%,transparent),linear-gradient(90deg,transparent,#efd4eb85 48%,transparent),linear-gradient(135deg,#ceb4ff17,transparent 55%),linear-gradient(315deg,#ffc9e714,transparent 55%)!important;
+ background-size:38px 1.5px,38px 1.5px,100% 100%,100% 100%!important;
+ background-position:center top,center bottom,center,center!important;background-repeat:no-repeat!important;
+ box-shadow:inset 0 1px 0 #f5e5ff12,inset 0 -1px 0 #f4d1ed0d!important;
+}
+/* Semantic button icons use one optical size and a deliberate label gap. */
+.hp-ui{--hp-button-icon-size:20px;--hp-button-icon-gap:10px}
+html.hp-ui body button:has(>.hp-button-icon){display:inline-flex;align-items:center;justify-content:center;gap:var(--hp-button-icon-gap)!important}
+html.hp-ui body button.hp-button-stack{flex-direction:column}
+html.hp-ui body button>.hp-button-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 var(--hp-button-icon-size);width:var(--hp-button-icon-size)!important;height:var(--hp-button-icon-size)!important;min-width:var(--hp-button-icon-size);font-size:var(--hp-button-icon-size)!important;line-height:1!important;font-style:normal!important;letter-spacing:0!important;text-shadow:none!important;pointer-events:none}
+html.hp-ui body button>.hp-button-icon>svg{display:block;width:100%;height:100%}
+html.hp-ui body button>.hp-button-label{min-width:0;max-width:100%;font-size:inherit!important;line-height:1.2!important;letter-spacing:inherit;text-align:center;text-shadow:none!important}
+
+html.hp-ui.party-managed.party-player body button>.hp-button-label{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important}
+html.hp-ui.party-managed.party-player body button:has(>.hp-button-icon){gap:var(--hp-button-icon-gap)!important}
+
+/* Joined mobile lobby: title, navigation and helper copy have distinct roles. */
+@media(max-width:850px){
+ html.hp-ui body.is-player:not(.in-game) #catalogSection>.section-title{align-items:center;gap:16px;margin-bottom:14px}
+ html.hp-ui body.is-player:not(.in-game) #catalogSection>.section-title h2,
+ html.hp-ui body.is-player:not(.in-game) #catalogSection>.section-title h2 em{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;font-size:clamp(26px,7vw,28px)!important;line-height:1.12!important;text-transform:uppercase!important;letter-spacing:-.03em!important;min-width:0;margin:0}
+ html.hp-ui body.is-player:not(.in-game) #arcadeCount{flex:0 0 auto;white-space:nowrap;font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:500!important;font-size:13px!important;line-height:1.3!important;letter-spacing:0!important}
+ html.hp-ui body.is-player:not(.in-game) .guest-catalog-tools input{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;font-size:16px!important;line-height:1.4!important}
+ html.hp-ui body.is-player:not(.in-game) .guest-filters>button{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;font-size:14px!important;line-height:1.2!important;min-height:44px!important}
+ html.hp-ui body.is-player:not(.in-game) :is(.guest-ballot summary,.return-entry-help>summary){font-family:var(--hp-font-copy)!important;font-style:italic!important;font-weight:450!important;font-size:14px!important;line-height:1.4!important;letter-spacing:0!important;text-transform:none!important;min-height:44px}
+ html.hp-ui body.is-player:not(.in-game) .guest-ballot summary::before{flex:none;font-weight:500}
+ html.hp-ui body.is-player:not(.in-game) .guest-ballot-status{font-size:13px!important;line-height:1.4!important}
+ html.hp-ui body.is-player:not(.in-game) .guest-ballot p{font-size:14px!important;line-height:1.5!important}
+ html.hp-ui body.is-player:not(.in-game) .guest-copy strong{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;font-size:20px!important;line-height:1.12!important;text-transform:uppercase!important;letter-spacing:-.025em!important}
+ html.hp-ui body.is-player:not(.in-game) .guest-game.rank-big .guest-copy strong{font-size:22px!important}
+ html.hp-ui body.is-player:not(.in-game) .guest-game.rank-hero .guest-copy strong{font-size:26px!important}
+}
+
+/* Round progress is a real readout, not small metadata. */
+html.hp-ui body.tv-screen #play #gamePlayers[data-readout=progress]{display:flex;align-items:center;justify-content:flex-end;gap:10px;white-space:nowrap;overflow:visible}
+html.hp-ui body.tv-screen #play #gamePlayers .tv-progress-label{font:italic 550 13px/1.2 var(--hp-font-action);color:#d5c7e9;text-transform:uppercase}
+html.hp-ui body.tv-screen #play #gamePlayers .tv-progress-value{font:650 28px/1.1 var(--hp-font-numeric);color:#f2eaff;letter-spacing:0;text-shadow:0 2px 12px #b896ef20}
+
+/* Generous game controls need action-sized labels, not the small-label floor. */
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body #controls .control{font-size:clamp(20px,6vw,24px)!important;--hp-button-icon-size:30px;--hp-button-icon-gap:12px}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body #controls .control>.hp-button-label{font-size:inherit!important;letter-spacing:0!important;white-space:normal;max-width:100%;padding-inline:8px}
+html.hp-ui.party-managed.party-player[data-party-game=spy] body #readyBtn,
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #mineOpen,
+html.hp-ui.party-managed.party-player[data-party-game=curling] body #ss-sweep,
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body #start{font-size:clamp(20px,5.8vw,24px)!important}
+html.hp-ui.party-managed.party-player[data-party-game=crane] body #drop{font-size:22px!important;--hp-button-icon-size:24px}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body #swapHand{font-size:16px!important}
+
+/* Audit: primary actions and out-of-round controller feedback. */
+html.hp-ui.party-managed.party-player[data-party-game=tankarena] body #fire,
+html.hp-ui.party-managed.party-player[data-party-game=drawguess] body #guessForm button,
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body #action,
+html.hp-ui.party-managed.party-player[data-party-game=marble_bloom] body #fire,
+html.hp-ui.party-managed.party-player[data-party-game=pocket_siege] body #tankFire{font-size:22px!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body :is(#kills,#extraStat){font-size:14px!important;line-height:1.3;color:#d1c7df}
+html.hp-ui.party-managed.party-player body #joystickZone[aria-disabled=true] #joystickBase{opacity:.35;filter:saturate(.3)}
+html.hp-ui.party-managed.party-player body #joystickZone[aria-disabled=true] .joy-tip{color:#e2d6ef}
+
+/* Authored action/selector roles apply inside every managed controller as well as the shell. */
+html.hp-ui body button.hp-action-primary,
+html.hp-ui.party-managed.party-player body button.hp-action-primary,
+html.hp-ui body button.hp-action-primary>.hp-button-label,
+html.hp-ui body .hp-selector-label,
+html.hp-ui.party-managed.party-player body .pocket-deck .deck-tabs button,
+html.hp-ui.party-managed.party-player body .pocket-deck .deck-tabs button>span,
+html.hp-ui body #waitingRules #readyButton,
+html.hp-ui body.native-shell #activeController,
+html.hp-ui body.native-shell #choiceStart{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important}
+html.hp-ui body button.hp-action-primary>:is(span,b,strong):not(.hp-button-icon):not(.hp-copy):not(.hp-number):not(.hp-player-name),
+html.hp-ui.party-managed.party-player body button.hp-action-primary>:is(span,b,strong):not(.hp-button-icon):not(.hp-copy):not(.hp-number):not(.hp-player-name){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:var(--hp-primary-weight,900)!important}
+
+/* Catalogue votes and native host controls share the exact primary action face. */
+html.hp-ui body button.catalog-vote,
+html.hp-ui body.native-shell button:is(.primary,.lime),
+html.hp-ui body button.hp-action-primary,
+html.hp-ui body button.hp-action-primary>.hp-button-label,
+html.hp-ui body button.hp-action-primary>:is(span,b,strong):not(.hp-button-icon):not(.hp-copy):not(.hp-number):not(.hp-player-name){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important;font-stretch:100%!important;font-variation-settings:normal!important;font-synthesis:none!important}
+
+.hp-ui{--hp-primary-weight:900}
+html.hp-ui body #waitingRules #readyButton,html.hp-ui body.native-shell #activeController,html.hp-ui body.native-shell #choiceStart{font-weight:var(--hp-primary-weight)!important}
+
+/* Display-only game information shares the controller's passive-card finish.
+   Named outer cards only: no canvas arena, answer control, field or result card. */
+html.hp-ui.party-managed.party-host.party-display-only body:not([data-game-phase=finished]) :is(
+ .hp-info-card:not(.western-stats):not(.combat-stats),
+ .ss-heading,.ss-gate-health,.ss-player-card,
+ .scoreboard,.activeBanner,
+ .roster-card,
+ .panel:has(>#board),.panel:has(>#messages)
+):not([data-hp-theme-preserve]),
+html.hp-ui.party-managed.party-host.party-display-only:is([data-party-game=sinyakquiz],[data-party-game=warsaw],[data-party-game=crocodile]) body:not([data-game-phase=finished]) .stage.panel:not([data-hp-theme-preserve]){
+ border-radius:22px!important;
+ border-color:#d4c0ed24!important;
+ outline:1px solid #d4c0ed24;outline-offset:-1px;
+ background-color:#211c2ded!important;
+ background-image:linear-gradient(90deg,transparent,#efd4eb85 48%,transparent),linear-gradient(90deg,transparent,#efd4eb85 48%,transparent),linear-gradient(135deg,#ceb4ff17,transparent 55%),linear-gradient(315deg,#ffc9e714,transparent 55%)!important;
+ background-size:38px 1.5px,38px 1.5px,100% 100%,100% 100%!important;
+ background-position:center top,center bottom,center,center!important;background-repeat:no-repeat!important;
+ box-shadow:inset 0 1px 0 #f5e5ff12,inset 0 -1px 0 #f4d1ed0d,0 8px 24px #08061124!important;
+}
+/* An outer information surface owns the finish; nested stats keep their layout. */
+html.hp-ui.party-managed.party-host.party-display-only body .hp-info-card .hp-info-card{
+ outline:none!important;background-image:none!important;box-shadow:none!important;
+}
+
+/* Kardia family roles: Fat Runner for every heading/action, Fit for supporting copy. */
+html.hp-ui body :is(h1,h2,h3,h4,.hp-heading,button):not(.hp-player-name){font-family:var(--hp-font-action)!important;font-style:italic!important;font-synthesis:none!important}
+html.hp-ui body button>:is(span,b,strong):not(.hp-button-icon):not(.hp-copy):not(.hp-player-name):not(.hp-number){font-family:var(--hp-font-action)!important;font-style:italic!important;font-synthesis:none!important}
+
+/* Current/total rounds use the actual heavy Kardia face, not a synthetic
+   weight on Kardia Fit. Keep the existing sizes and readout geometry. */
+html.hp-ui body :is(#roundLabel,#roundBadge,#roundNum,#phoneRound,.round-label,.round-badge,.tv-progress-value,#hudProgress[data-round-count=true]),
+html.hp-ui.party-managed[data-party-game="quiz"] body #progress,
+html.hp-ui.party-managed:is([data-party-game="warsaw"],[data-party-game="sinyakquiz"],[data-party-game="crocodile"],[data-party-game="drawguess"]) body #progress{
+ font-family:KardiaFatRunner!important;font-style:italic!important;font-weight:900!important;font-synthesis:none!important;
+}
+html.hp-ui body{font-synthesis:none}
+
+html.hp-ui body .tv-invite>.eyebrow{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important}
+
+html.hp-ui body :is(h1,h2,h3,h4,.hp-heading,button,.tv-invite>.eyebrow):not(.hp-player-name){text-transform:uppercase!important}
+/* Identity stays literal even when the semantic element is a heading.
+   Podium place and points are metrics, and keep their measured sizes. */
+html.hp-ui body.tv-screen #tvPodium :is(.podium-rank,.podium-points){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important}
+html.hp-ui body.tv-screen #tvPodiumTail .podium-name{font-size:14px!important}
+/* Bounded vertical content fades only toward content beyond its viewport. */
+html.hp-ui .hp-soft-scroll{--hp-scroll-fade-top:0px;--hp-scroll-fade-bottom:0px;--hp-scroll-mask:linear-gradient(to bottom,transparent,#000 var(--hp-scroll-fade-top),#000 calc(100% - var(--hp-scroll-fade-bottom)),transparent);-webkit-mask-image:var(--hp-scroll-mask);mask-image:var(--hp-scroll-mask)}
+html.hp-ui .hp-soft-scroll[data-scroll-above="true"]{--hp-scroll-fade-top:16px}
+html.hp-ui .hp-soft-scroll[data-scroll-below="true"]{--hp-scroll-fade-bottom:24px}
+/* Horizontal genre/chip content keeps the first/last edge solid at its endpoint.
+   Explicit strip selectors outrank the old catalog masks without masking Fresh. */
+html.hp-ui body :is(#tvRemoteGenres,#catalogFilters,.catalog-filters,.native-genres).hp-soft-scroll-x{--hp-scroll-fade-left:0px;--hp-scroll-fade-right:0px;-webkit-mask-image:linear-gradient(to right,transparent,#000 var(--hp-scroll-fade-left),#000 calc(100% - var(--hp-scroll-fade-right)),transparent);mask-image:linear-gradient(to right,transparent,#000 var(--hp-scroll-fade-left),#000 calc(100% - var(--hp-scroll-fade-right)),transparent)}
+html.hp-ui body :is(#tvRemoteGenres,#catalogFilters,.catalog-filters,.native-genres).hp-soft-scroll-x[data-scroll-left="true"]{--hp-scroll-fade-left:12px}
+html.hp-ui body :is(#tvRemoteGenres,#catalogFilters,.catalog-filters,.native-genres).hp-soft-scroll-x[data-scroll-right="true"]{--hp-scroll-fade-right:20px}
+html.hp-ui body :is(#tvRemoteGenres,#catalogFilters,.catalog-filters,.native-genres)[data-scroll-left="false"][data-scroll-right="false"]:not(.hp-soft-scroll){-webkit-mask-image:none;mask-image:none}
+/* The weapon drawer formerly owned a permanent/local mask. Shared edge state wins. */
+html.hp-ui.party-managed.party-player[data-party-game=pocket_siege] body.pocket-modern #arsenalGrid[data-hp-scroll-region="content"][data-scroll-above]{-webkit-mask-image:var(--hp-scroll-mask,none)!important;mask-image:var(--hp-scroll-mask,none)!important}
+/* Dialog backings and pinned chrome stay unmasked; only edge content fades. */
+html.hp-ui .hp-soft-scroll-item{-webkit-mask-image:linear-gradient(to bottom,transparent var(--hp-scroll-item-top-edge),#000 var(--hp-scroll-item-top-solid),#000 var(--hp-scroll-item-bottom-solid),transparent var(--hp-scroll-item-bottom-edge));mask-image:linear-gradient(to bottom,transparent var(--hp-scroll-item-top-edge),#000 var(--hp-scroll-item-top-solid),#000 var(--hp-scroll-item-bottom-solid),transparent var(--hp-scroll-item-bottom-edge))}
+/* Rule labels use the heavier heading face in waiting, web and native sheets. */
+html.hp-ui body :is(#rulesBody,#gameDetail) .rule-row>:is(b,summary){display:block;font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important;font-weight:900!important;font-size:16px!important;line-height:1.3;letter-spacing:normal;text-transform:uppercase;text-align:center}
+html.hp-ui body #gameDetail .rule-row>summary{display:flex}
+/* Fresh keeps its artwork/glow unmasked inside the rail. */
+html.hp-ui .fresh-track{mask-image:none!important;-webkit-mask-image:none!important}
+html.hp-ui.party-player body .hp-safe-intro-flow{position:static!important;inset:auto!important;transform:none!important;margin:12px 0!important;max-width:100%;box-sizing:border-box}
+/* The pause card already owns its vertical rhythm. The language picker must
+   not add a second gap that forces a scrollbar on the320px controller. */
+html.hp-ui body #pauseOverlay{scrollbar-width:none}
+html.hp-ui body #pauseOverlay::-webkit-scrollbar{display:none}
+html.hp-ui body #pauseOverlay .party-language-setting{margin:0}
+@media(max-width:650px) and (max-height:650px){html.hp-ui body #pauseOverlay>div{gap:12px}}
+/* One place column for result lists and company tops. Its divider remains
+   inside the rounded row; awards never replace the actual place number. */
+html.hp-ui body .hp-place{position:relative;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;align-self:stretch;flex:none;width:40px!important;min-width:40px!important;height:auto!important;padding:0 8px 0 0!important;box-sizing:border-box;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;opacity:1}
+html.hp-ui body .hp-place::before{content:none!important}
+html.hp-ui body .hp-place::after{content:"";position:absolute;right:0;top:8%;bottom:8%;width:1px;background:linear-gradient(transparent,#efe0ff38 25%,#efe0ff38 75%,transparent);pointer-events:none}
+html.hp-ui body .hp-place .hp-place-award{display:block;width:32px!important;height:32px!important;max-width:none!important;max-height:none!important;object-fit:contain;margin:0!important;flex:none;opacity:1}
+html.hp-ui body .hp-place-digit{font:900 italic 20px/1.1 KardiaFatRunner,sans-serif!important;color:#eee4ff;opacity:1;text-transform:none}
+html.hp-ui body .hp-place[data-place="1"] .hp-place-digit{color:#ffe3a1}
+html.hp-ui body .hp-result-row{grid-template-columns:40px minmax(0,1fr) max-content;column-gap:12px}
+html.hp-ui body .hp-result-columns{grid-template-columns:40px minmax(0,1fr) max-content}
+html.hp-ui body :is(.hp-result-value,.hp-result-score,.podium-points,.rank-stats>strong,.stats-score>strong,.mini-score,.live-top-score,.last-result-score>strong){opacity:.84}
+html.hp-ui body .result-row{display:grid;grid-template-columns:40px minmax(0,1fr) max-content;gap:12px;align-items:center;min-height:82px;overflow:hidden}
+html.hp-ui body .last-result-name{min-width:0;white-space:normal;overflow-wrap:anywhere;font:500 16px/1.35 KardiaFit,sans-serif!important;text-transform:none!important}
+html.hp-ui body .last-result-score{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+html.hp-ui body .last-result-score>strong{font:900 italic 26px/1.1 KardiaFatRunner,sans-serif}
+html.hp-ui body .last-result-score>small{font:400 11px/1.2 KardiaFitRunner,sans-serif}
+html.hp-ui body .mini-rank .hp-place{width:40px}
+html.hp-ui body #liveTop>.live-top-row{display:flex;align-items:center;gap:12px}
+html.hp-ui body #liveTop .hp-place{height:54px!important}
+@media(max-width:850px){
+ html.hp-ui body #statsDialog .stats-rank{grid-template-columns:40px minmax(0,1fr) minmax(48px,max-content);gap:12px;padding:14px 12px;min-height:84px}
+ html.hp-ui body #statsDialog .stats-avatar{display:none}
+ html.hp-ui body #statsDialog .stats-identity>b{display:block;-webkit-line-clamp:unset;overflow:visible;text-overflow:clip;font:500 16px/1.35 KardiaFit,sans-serif!important;white-space:normal;overflow-wrap:anywhere;text-transform:none!important}
+ html.hp-ui body #statsDialog .stats-score>strong{font:900 italic 26px/1.1 KardiaFatRunner,sans-serif!important}
+ html.hp-ui body #leaderboard .rank-row{display:grid;grid-template-columns:40px minmax(0,1fr) max-content;gap:12px;min-height:84px}
+ html.hp-ui body #leaderboard .rank-avatar{display:none}
+ html.hp-ui body #leaderboard .rank-name{font:500 16px/1.35 KardiaFit,sans-serif!important;white-space:normal;overflow-wrap:anywhere;text-transform:none!important}
+ html.hp-ui body #leaderboard .rank-stats>strong{font:900 italic 26px/1.1 KardiaFatRunner,sans-serif!important}
+}
+/* Match results inherit the same subdued illustrated wall as the playing
+   surface. The panel owns only the contrast veil; its content stays unblurred. */
+html.hp-ui body .hp-match-results{isolation:isolate;background:linear-gradient(#151321d6,#151321e0)}
+html.hp-ui body .hp-match-results::before{content:"";position:absolute;inset:-12px;z-index:-1;pointer-events:none;background:var(--hp-wall-image,url('/assets/backgrounds/brick-wall-wide-v1.png')) center/cover no-repeat;filter:blur(7px)}
+/* Compact tops keep the approved faces and score size. Authored italic ink
+   extends beyond its advance box: reserve space inside the opacity layer,
+   rather than relying on the row's gutter to protect even a single zero. */
+html.hp-ui body :is(.hp-result-value,.hp-result-score,.rank-stats>strong,.stats-score>strong,.mini-score,.live-top-score,.last-result-score>strong){box-sizing:content-box;padding-inline:2px 8px;white-space:nowrap;overflow:visible;flex-shrink:0}
+html.hp-ui body .hp-place{gap:0}
+html.hp-ui body .hp-place .hp-place-award{width:28px!important;height:28px!important}
+html.hp-ui body .hp-place-digit{font-size:18px!important;line-height:1!important}
+html.hp-ui body .hp-result-row{min-height:56px;padding-block:4px}
+html.hp-ui body .hp-result-name{line-height:1.25}
+html.hp-ui body .hp-result-self{margin-top:2px;padding:2px 5px;line-height:1.1}
+html.hp-ui body .result-row{min-height:56px;padding-block:4px}
+html.hp-ui body .last-result-score{gap:2px}
+html.hp-ui body .mini-rank{padding-block:4px}
+html.hp-ui body #liveTop .hp-place{height:46px!important}
+html.hp-ui body #statsDialog .stats-rank{min-height:64px;padding-block:4px}
+html.hp-ui body #statsDialog .stats-identity{gap:2px}
+html.hp-ui body #statsDialog .stats-identity>small{margin-top:0}
+html.hp-ui body #statsDialog .stats-you{margin-top:0;padding-block:2px}
+html.hp-ui body #statsDialog .stats-score{gap:2px}
+@media(max-width:850px){
+ html.hp-ui body #statsDialog .stats-rank{min-height:56px;column-gap:8px}
+ html.hp-ui body #leaderboard .rank-row{min-height:56px;padding-block:4px}
+ html.hp-ui body #leaderboard .rank-stats{display:grid;gap:2px;justify-items:end;margin-left:0}
+ html.hp-ui body #leaderboard .rank-stats>strong{grid-row:1}
+ html.hp-ui body #leaderboard .rank-stats>span{grid-row:2;text-align:right}
+}
+
+/* Stick feel (game-ui-system.js): knobs follow the finger 1:1 while held,
+   then glide back to centre. Press acknowledgement uses the independent
+   `scale` property so each game's inline translate stays authoritative. */
+html.party-player :is(#joystickBase,#jengaJoystick,#joy,#hockeyJoy,#droneStick):not([data-hp-stick]) :is(#joystickKnob,#jengaKnob,#knob,#hockeyKnob,#droneStick>span){transition:transform 220ms cubic-bezier(.23,1,.32,1),scale 160ms cubic-bezier(.23,1,.32,1),filter 160ms ease}
+html.party-player :is(#joystickBase,#jengaJoystick,#joy,#hockeyJoy,#droneStick)[data-hp-stick] :is(#joystickKnob,#jengaKnob,#knob,#hockeyKnob,#droneStick>span){transition:scale 110ms cubic-bezier(.23,1,.32,1),filter 110ms ease;scale:1.08;filter:brightness(1.08) saturate(1.06)}
+html.party-player :is(#joystickBase,#jengaJoystick,#joy,#hockeyJoy,#droneStick){transition:border-color 160ms ease,outline-color 160ms ease;outline:2px solid transparent;outline-offset:-2px}
+html.party-player :is(#joystickBase,#jengaJoystick,#joy,#hockeyJoy,#droneStick)[data-hp-stick]{outline-color:#cfff8559;border-color:#cfff8566!important}
+@media(prefers-reduced-motion:reduce){html.party-player :is(#joystickBase,#jengaJoystick,#joy,#hockeyJoy,#droneStick) :is(#joystickKnob,#jengaKnob,#knob,#hockeyKnob,#droneStick>span){transition:none!important;scale:1!important}}
+
+/* Final standings arrive as a sequence: heading, then places from first to
+   last (capped so a 16-player table is complete in under a second). Rows are
+   rebuilt only when the authoritative result changes, so this never replays
+   on unrelated state updates. The winner's surface catches one warm glint. */
+.hp-ui .hp-match-results>.hp-result-header{animation:hp-result-heading-in 380ms cubic-bezier(.23,1,.32,1) both}
+.hp-ui .hp-match-results .hp-result-row{--hp-row-i:7;animation:hp-result-row-in 420ms cubic-bezier(.23,1,.32,1) both;animation-delay:calc(120ms + var(--hp-row-i) * 45ms)}
+.hp-ui .hp-match-results .hp-result-row:nth-child(1){--hp-row-i:0}.hp-ui .hp-match-results .hp-result-row:nth-child(2){--hp-row-i:1}.hp-ui .hp-match-results .hp-result-row:nth-child(3){--hp-row-i:2}.hp-ui .hp-match-results .hp-result-row:nth-child(4){--hp-row-i:3}.hp-ui .hp-match-results .hp-result-row:nth-child(5){--hp-row-i:4}.hp-ui .hp-match-results .hp-result-row:nth-child(6){--hp-row-i:5}.hp-ui .hp-match-results .hp-result-row:nth-child(7){--hp-row-i:6}
+.hp-ui .hp-match-results .hp-result-row.is-winner{position:relative;overflow:hidden;isolation:isolate}
+.hp-ui .hp-match-results .hp-result-row.is-winner::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:linear-gradient(105deg,transparent 30%,#ffe7b030 46%,#fff4d44d 50%,#ffe7b030 54%,transparent 70%) no-repeat;background-size:250% 100%;background-position:120% 0;animation:hp-result-glint 1100ms cubic-bezier(.45,0,.2,1) 620ms both}
+@keyframes hp-result-heading-in{from{opacity:0;translate:0 -8px}to{opacity:1;translate:0 0}}
+@keyframes hp-result-row-in{from{opacity:0;translate:0 14px;scale:.98}to{opacity:1;translate:0 0;scale:1}}
+@keyframes hp-result-glint{from{background-position:120% 0}to{background-position:-20% 0}}
+@media(prefers-reduced-motion:reduce){.hp-ui .hp-match-results>.hp-result-header,.hp-ui .hp-match-results .hp-result-row{animation:none}.hp-ui .hp-match-results .hp-result-row.is-winner::after{display:none}}
+
+/* Guest web controller: the page scrolls by touch/wheel without a visible root
+   gutter, matching the native shell (ui-regression-rules: no scrollbar gutters). */
+html:has(>body.is-player){scrollbar-width:none}
+html:has(>body.is-player)::-webkit-scrollbar{display:none;width:0;height:0}
+
+/* Stat glyphs (game-ui-system.js): one optical size, tinted by meaning. The
+   mask image per glyph is injected once; the label keeps its own text flow. */
+html.party-player [data-hp-glyph]::before{content:'';display:inline-block;flex:none;width:1.25em;height:1.25em;min-width:15px;min-height:15px;max-width:20px;max-height:20px;margin-inline-end:.4em;vertical-align:-.28em;background:var(--hp-glyph,#c6b1ff);-webkit-mask:center/contain no-repeat;mask:center/contain no-repeat;filter:drop-shadow(0 0 5px color-mix(in srgb,var(--hp-glyph,#c6b1ff) 40%,transparent))}
+html.party-player [data-hp-glyph-tint=gold]{--hp-glyph:#ffd36b}
+html.party-player [data-hp-glyph-tint=ember]{--hp-glyph:#ffa05a}
+html.party-player [data-hp-glyph-tint=rose]{--hp-glyph:#ff86a8}
+html.party-player [data-hp-glyph][data-hp-glyph-bump]::before{animation:hp-glyph-bump 420ms cubic-bezier(.34,1.56,.64,1) both}
+@keyframes hp-glyph-bump{0%{scale:1}35%{scale:1.4;rotate:-8deg}100%{scale:1;rotate:0deg}}
+@media(prefers-reduced-motion:reduce){html.party-player [data-hp-glyph][data-hp-glyph-bump]::before{animation:none}}
+
+/* Search clear (game-ui-system.js). */
+html body .hp-search-clear{position:absolute;right:6px;top:50%;translate:0 -50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;min-width:44px;min-height:44px;margin:0;padding:0;border:0;border-radius:50%;background:transparent;color:#cdbff0;box-shadow:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+html body .hp-search-clear[hidden]{display:none}
+html body .hp-search-clear>svg{width:18px;height:18px;padding:5px;box-sizing:content-box;border-radius:50%;background:#ffffff14;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+html body .hp-search-clear:active>svg{background:#ffffff26;scale:.92}
+html body input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+html body input[type=search].hp-has-clear{padding-right:48px!important}
+
+/* Places 4+ wear a procedural shield (gold/silver/bronze art stays exclusive
+   to the podium) so long standings never read as a bare list of numbers. */
+html.hp-ui body .hp-place:not([data-place="1"]):not([data-place="2"]):not([data-place="3"]):not([data-place=""]) .hp-place-digit{display:grid;place-items:center;width:30px;height:34px;padding-bottom:3px;box-sizing:border-box;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2030%2034%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22f%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%235a4890%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%232a2140%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.28%22/%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20d%3D%22M15%201.2%2027.6%205.6V16.4c0%208-5.6%2013.7-12.6%2016.4C8%2030.1%202.4%2024.4%202.4%2016.4V5.6Z%22%20fill%3D%22url%28%23f%29%22%20stroke%3D%22%23c9b3ff%22%20stroke-opacity%3D%22.55%22%20stroke-width%3D%221.4%22/%3E%3Cpath%20d%3D%22M15%203.6%2025.2%207.2V16c0%201.2-.1%202.3-.4%203.4H5.2C4.9%2018.3%204.8%2017.2%204.8%2016V7.2Z%22%20fill%3D%22url%28%23h%29%22/%3E%3C/svg%3E") center/contain no-repeat;font-size:15px!important;line-height:1!important;color:#efe6ff;text-shadow:0 1px 2px #120c22}
+
+/* Sprite layer (HeyPalsSprites.burst) and your-turn cue. */
+.hp-sprite-layer{position:fixed;inset:0;z-index:2147482000;pointer-events:none;overflow:hidden;contain:strict}
+.hp-sprite-layer>i{position:absolute;display:block;will-change:transform,opacity;filter:drop-shadow(0 0 4px #ffffff40)}
+html.party-player .hp-turn-cue.hp-turn-static{position:relative}
+html.party-player .hp-turn-cue{animation:hp-turn-spring 620ms cubic-bezier(.34,1.56,.64,1) both}
+html.party-player .hp-turn-cue::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,transparent 35%,#ffffff2e 50%,transparent 65%) no-repeat;background-size:260% 100%;animation:hp-turn-sheen 760ms cubic-bezier(.45,0,.2,1) 80ms both}
+@keyframes hp-turn-spring{0%{scale:1}30%{scale:1.035}100%{scale:1}}
+@keyframes hp-turn-sheen{from{background-position:130% 0}to{background-position:-30% 0}}
+@media(prefers-reduced-motion:reduce){html.party-player .hp-turn-cue,html.party-player .hp-turn-cue::after{animation:none}}
+
+/* Catalogue search/filter: a hidden card stays hidden even where a decorative
+   track rule forces display:grid!important (ui-regression-rules: [hidden] wins). */
+html body :is(.fresh-track,.games,#catalog,#tvCatalog) :is(.game,.lp-catalog-card)[hidden]{display:none!important}
+
+/* Shell-managed controllers: the iframe sits between the shell header and the
+   Pause/Lobby footer, which already own the device safe areas. WKWebView still
+   reports the screen insets inside the iframe, so env() padding was applied
+   twice (empty band on top, squeezed/overlapping controls at the bottom on
+   iPhone). Use the authored fallback spacing instead. Host/TV pages untouched. */
+html.party-managed.party-player .controller{padding-top:14px!important;padding-bottom:18px!important}
+html.party-managed.party-player body:has(>#setup) #setup,html.party-managed.party-player #setup{padding-top:32px!important;padding-bottom:24px!important}
+html.party-managed.party-player .phone-hud{padding-top:12px!important}
+html.party-managed.party-player .shoot-hud{padding-bottom:18px!important}
+html.party-managed.party-player .phone{padding-bottom:24px!important}
+html.party-managed.party-player[data-party-game=millionaire] .phone{padding-bottom:20px!important}
+html.party-managed.party-player[data-party-game=jenga] body,html.party-managed.party-player[data-party-game=tankarena] body{padding-bottom:0!important}
+html.party-managed.party-player .phone-shell{padding-bottom:12px!important}
+html.party-managed.party-player .hud{padding-top:12px!important}
+html.party-managed.party-player .move-stats{bottom:12px!important}
+html.party-managed.party-player :is(.knife-controls,.western-controls){padding-bottom:14px!important}
+html.party-managed.party-player[data-party-game=tanks] .logo{top:22px!important}
+
+/* ---- Flourishes · 2026-10-01 ------------------------------------------------ */
+/* Host's Pick: light now fills the full height of the capsule — the game's own
+   colour pools behind its art on the left, the lime action light rises toward
+   START on the right. One sheen crosses the card when the pick changes. */
+html body.native-shell main #choiceStrip#choiceStrip::after,
+html body.native-shell main #activeCard#activeCard::after{
+ background-image:
+  linear-gradient(105deg,transparent 32%,#ffffff1c 48%,transparent 64%),
+  linear-gradient(90deg,color-mix(in srgb,var(--pick-color,#9b7bff) 58%,transparent) 0%,color-mix(in srgb,var(--pick-color,#9b7bff) 22%,transparent) 30%,transparent 52%),
+  linear-gradient(270deg,#b6f35a5c 0%,#b6f35a2a 26%,transparent 56%),
+  linear-gradient(180deg,#ffffff0d,transparent 45%,#0000001f),
+  linear-gradient(100deg,#30263f,#222330 60%,#1b2028)!important;
+ background-size:300% 100%,100% 100%,100% 100%,100% 100%,100% 100%!important;
+ background-position:150% 0,0 0,0 0,0 0,0 0!important;background-repeat:no-repeat!important;
+}
+html body.native-shell main #choiceStrip#choiceStrip.is-new::after{animation:hp-pick-sheen 1100ms cubic-bezier(.45,0,.2,1) 120ms both!important}
+@keyframes hp-pick-sheen{from{background-position:150% 0,0 0,0 0,0 0,0 0}to{background-position:-50% 0,0 0,0 0,0 0,0 0}}
+html body.native-shell #choiceStrip .choice-art-shell{box-shadow:0 0 0 1.5px color-mix(in srgb,var(--pick-color,#9b7bff) 55%,transparent),0 6px 18px color-mix(in srgb,var(--pick-color,#9b7bff) 30%,transparent)}
+@media(prefers-reduced-motion:reduce){html body.native-shell main #choiceStrip#choiceStrip.is-new::after{animation:none!important}}
+
+/* Procedural avatars (HeyPalsAvatar.paint). Photos keep priority. */
+html body [data-av-seed]:not(.has-photo){background:radial-gradient(circle at 30% 24%,hsl(var(--av-h) 95% 82% / .55),transparent 42%),radial-gradient(circle at 78% 82%,hsl(calc(var(--av-h) + 48) 85% 48% / .85),transparent 58%),linear-gradient(145deg,hsl(var(--av-h) 62% 50%),hsl(calc(var(--av-h) + 36) 58% 26%))!important;color:#fff!important;text-shadow:0 2px 6px #0007}
+html body [data-av-seed]:not(.has-photo)>.podium-initial{color:#fff!important;text-shadow:0 2px 8px #0008}
+
+/* CTA wake ring (HeyPalsCtaWake). */
+html body .hp-cta-wake{animation:hp-cta-wake 700ms cubic-bezier(.23,1,.32,1) both!important}
+@keyframes hp-cta-wake{0%{box-shadow:0 0 0 0 #d6ff8a99,0 0 22px #c8ff7355}70%{box-shadow:0 0 0 14px #d6ff8a00,0 0 30px #c8ff7322}100%{box-shadow:0 0 0 18px #d6ff8a00}}
+
+/* A player who just turned ready: their chip springs with one lime flash. */
+html body #waitingRoster .waiting-player.just-ready{animation:hp-chip-ready 620ms cubic-bezier(.34,1.56,.64,1) both}
+@keyframes hp-chip-ready{0%{scale:.86;box-shadow:0 0 0 0 #cfff8599;background-color:#cfff8540}45%{scale:1.08}100%{scale:1;box-shadow:0 0 0 10px #cfff8500}}
+/* Live game dot breathes softly — it marks a running match, nothing else does. */
+html body.native-shell .native-run-dot{animation:hp-live-dot 2.4s ease-in-out infinite}
+@keyframes hp-live-dot{0%,100%{box-shadow:0 0 0 0 #9cff5a66}50%{box-shadow:0 0 0 6px #9cff5a00}}
+@media(prefers-reduced-motion:reduce){html body #waitingRoster .waiting-player.just-ready,html body.native-shell .native-run-dot{animation:none}}
+
+/* Lobby life: only the leading card's art floats a few pixels on a slow loop
+   (one element per screen; reduced motion keeps it still). */
+html body.guest-catalog .guest-game.rank-hero .guest-art,
+html body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .symbol{animation:hp-art-float 6.5s ease-in-out infinite}
+@keyframes hp-art-float{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@media(prefers-reduced-motion:reduce){html body.guest-catalog .guest-game.rank-hero .guest-art,html body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .symbol{animation:none}}
+/* Host's Pick: eyebrow and player meta take the pick's own colour (lifted
+   toward white so small caps stay readable); the title stays white. */
+html body.native-shell #choiceStrip .native-choice-copy>.eyebrow,
+html body.native-shell #choiceStrip #choiceMeta,
+html body.native-shell #choiceStrip #choiceMeta *{color:color-mix(in srgb,var(--pick-color,#c6b1ff) 62%,#fff)!important;transition:color 320ms ease}
+html body.native-shell #choiceStrip #choiceMeta svg{stroke:currentColor!important}
+
+/* User-authored place hierarchy: the numeral leads, with its real award
+   beside it. Scoped to shared tops/results; bottom standings own their rail. */
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place{
+ --hp-place-number-size:52px;--hp-place-number-gradient:linear-gradient(180deg,#eadcff 8%,#be9afd 52%,#8154cd 100%);
+ width:40px!important;min-width:40px!important;padding:0 8px 0 0!important;overflow:visible;
+}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place[data-place="1"]{--hp-place-number-gradient:linear-gradient(180deg,#fff6d4 8%,#ffe47d 52%,#b78e35 100%)}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place[data-place="2"]{--hp-place-number-gradient:linear-gradient(180deg,#f0fbff 8%,#bbddff 52%,#799bcc 100%)}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place[data-place="3"]{--hp-place-number-gradient:linear-gradient(180deg,#ffe9d5 8%,#ffbf83 52%,#a85d58 100%)}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place .hp-place-digit{
+ position:absolute;left:-7px;top:50%;translate:0 -50%;display:block;width:auto;height:auto;padding:0 6px 0 2px;box-sizing:content-box;
+ font:900 italic var(--hp-place-number-size)/1 KardiaFatRunner,sans-serif!important;letter-spacing:normal;white-space:nowrap;text-shadow:none;
+ background:var(--hp-place-number-gradient);background-clip:text;-webkit-background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;opacity:1;
+}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place[data-place-digits="2"]{--hp-place-number-size:40px}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place[data-place-digits="3"]{--hp-place-number-size:28px}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place:not([data-place-digits="0"]):not([data-place-digits="1"]):not([data-place-digits="2"]):not([data-place-digits="3"]){--hp-place-number-size:20px}
+html.hp-ui body :is(.hp-result-row,#statsDialog .stats-rank,.mini-rank,.live-top-row) .hp-place .hp-place-award{
+ position:absolute;left:30px;top:50%;translate:0 -50%;width:18px!important;height:22px!important;opacity:1;
+}
+
+/* Menu counts: one compact readout; catalogue captions share its authored face. */
+html.hp-ui body:not(.tv-screen) .hp-menu-counter{display:inline-flex!important;align-items:baseline!important;gap:6px!important;max-width:100%;min-width:0;vertical-align:baseline;white-space:normal;letter-spacing:0!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;text-transform:none!important}
+html.hp-ui body:not(.tv-screen) .hp-menu-counter-readout{display:inline-flex;align-items:baseline;gap:3px;flex:none;white-space:nowrap;background:none!important;padding:0!important;letter-spacing:0!important}
+html.hp-ui body:not(.tv-screen) .hp-menu-counter-value{font-family:var(--hp-font-action)!important;font-size:22px!important;font-style:italic!important;font-weight:900!important;line-height:1.1!important;letter-spacing:-.02em!important;font-variant-numeric:tabular-nums;color:#e9ddff!important;background:none!important;padding:1px 3px 1px 1px!important;overflow:visible!important}
+html.hp-ui body:not(.tv-screen) .hp-menu-counter-label{font-family:var(--hp-counter-label-font,var(--hp-font-body))!important;font-size:var(--hp-counter-label-size,13px)!important;font-weight:var(--hp-counter-label-weight,500)!important;font-style:var(--hp-counter-label-style,normal)!important;line-height:1.3!important;color:#d1c3e8!important;letter-spacing:0!important;text-transform:none!important;background:none!important;padding:0!important}
+html.hp-ui body:not(.tv-screen) .hp-catalog-counter{--hp-counter-label-font:var(--hp-font-action);--hp-counter-label-weight:900;--hp-counter-label-style:italic;--hp-counter-label-size:18px}
+html.hp-ui body:not(.tv-screen) .hp-catalog-counter .hp-menu-counter-value{text-shadow:0 2px 5px #b994ff35}
+html.hp-ui body:not(.tv-screen) .lp-fresh-section .hp-catalog-counter{--hp-counter-label-size:16px}
+html.hp-ui body:not(.tv-screen) .lp-fresh-section .hp-catalog-counter .hp-menu-counter-value{font-size:20px!important;color:#daefb8!important;text-shadow:none!important}
+html.hp-ui body:not(.tv-screen) .lp-fresh-section .hp-catalog-counter .hp-menu-counter-label{color:#cce1af!important}
+html.hp-ui body:not(.tv-screen) .hp-menu-counter-total,html.hp-ui body:not(.tv-screen) .hp-menu-counter-separator{font:500 14px/1.2 var(--hp-font-body)!important;color:#c6b8db!important;background:none!important;padding:0!important;letter-spacing:0!important}
+html.hp-ui body:not(.tv-screen) .hp-menu-counter-pending{font:italic 400 13px/1.4 var(--hp-font-copy);color:#d1c3e8;flex-basis:100%;min-width:0;overflow-wrap:anywhere}
+html.hp-ui body.is-player:not(.in-game) #arcadeCount.hp-menu-counter{white-space:nowrap!important;flex:none}
+html.hp-ui body.is-player:not(.in-game) .guest-ballot-status.hp-menu-counter{flex-wrap:wrap;column-gap:8px!important;row-gap:2px!important}
+html.hp-ui body.is-player:not(.in-game) .guest-ballot-status .hp-menu-counter-value{color:#c1d8ff!important}
+html.hp-ui body.is-player:not(.in-game) .guest-ballot-row:has(.hp-menu-counter){flex-wrap:wrap;column-gap:16px;row-gap:4px}
+html.hp-ui body:not(.tv-screen) :is(.guest-player-range,.lp-player-range) .hp-menu-counter-value{font-size:16px!important}
+html.hp-ui body:not(.tv-screen) :is(.guest-player-range,.lp-player-range) .hp-menu-counter-label{font-size:12px!important}
+html.hp-ui body:not(.tv-screen) .guest-lead .hp-menu-counter{gap:4px!important}
+html.hp-ui body:not(.tv-screen) .guest-lead .hp-menu-counter-value{font-size:16px!important}
+html.hp-ui body:not(.tv-screen) .guest-lead .hp-menu-counter-label{font-size:12px!important}
+html.hp-ui body:not(.tv-screen) button.catalog-vote{gap:4px;flex-wrap:wrap}
+html.hp-ui body:not(.tv-screen) button.catalog-vote .hp-vote-count{font:italic 900 18px/1.1 var(--hp-font-action)!important;padding-inline:1px 3px;color:inherit}
+html.hp-ui body.native-shell #gameCount.hp-menu-counter{padding:4px 12px!important;font-size:13px!important;letter-spacing:0!important}
+html.hp-ui body.native-shell #rosterTitle.hp-menu-counter{flex-wrap:wrap;column-gap:8px!important}
+html.hp-ui body.native-shell #rosterTitle .hp-menu-counter-label{font:italic 900 20px/1.2 var(--hp-font-action)!important;color:#f6f1ff!important}
+html.hp-ui body.native-shell #rosterTitle .hp-menu-counter-value{color:#cfff85!important;font-size:24px!important}
+html.hp-ui body.native-shell #activeStatus.hp-menu-counter{flex-wrap:wrap;gap:4px 6px!important}
+html.hp-ui body.native-shell #activeStatus .hp-menu-counter-value{font-size:20px!important;color:#cfff85!important}
+html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-value{font-size:17px!important}
+html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-label{font-size:12px!important}
+html.hp-ui body.native-shell .hp-menu-counter-group{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline}
+html.hp-ui body.native-shell .hp-menu-counter-group>.hp-menu-counter{flex-wrap:wrap;gap:4px 6px!important}
+html.hp-ui body.native-shell :is(#botCount,#startBotsCount,#tvGameNumber){font:italic 900 24px/1.1 var(--hp-font-action)!important;color:#e9ddff;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+html.hp-ui body.is-host:not(.in-game) :is(#botCount,#partyMatches){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important}
+html.hp-ui body:not(.tv-screen) .hp-menu-counter :is(.hp-menu-counter-readout,.hp-menu-counter-value,.hp-menu-counter-label,.hp-menu-counter-total,.hp-menu-counter-separator){border:0!important;border-radius:0!important;box-shadow:none!important}
+html.hp-ui body.native-shell .lp-group-count.hp-menu-counter{flex:0 0 auto}
+html.hp-ui body.native-shell #matches.hp-menu-counter{flex:0 0 auto}
+html.hp-ui body.is-player:not(.in-game) .guest-game.rank-row .guest-player-range{flex-wrap:wrap;row-gap:1px!important}
+html.hp-ui body.is-player:not(.in-game) .guest-game .catalog-vote{min-height:44px!important}
+html.hp-ui body.is-player:not(.in-game) .catalog-vote .hp-vote-count{white-space:nowrap}
+@media(max-width:360px){
+ html.hp-ui[lang=ru] body.is-player:not(.in-game) .guest-game.rank-row{grid-template-columns:52px minmax(0,1fr)}
+ html.hp-ui[lang=ru] body.is-player:not(.in-game) .guest-game.rank-row .guest-copy{grid-row:1;grid-column:2}
+ html.hp-ui[lang=ru] body.is-player:not(.in-game) .guest-game.rank-row .guest-actions{grid-row:2;grid-column:2;justify-content:flex-start}
+ html.hp-ui body.is-player:not(.in-game) .guest-game:is(.rank-hero,.rank-big) .catalog-vote:has(.hp-vote-count){max-width:150px!important;white-space:normal}
+}
+/* A voted-for readout keeps contrast when the illustrated artwork sits behind it. */
+html.hp-ui body.is-player:not(.in-game) button.catalog-vote[aria-pressed=false]:has(.hp-vote-count){background:#252637!important}

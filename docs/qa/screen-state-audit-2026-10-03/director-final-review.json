@@ -1,0 +1,17 @@
+{
+  "status": "scoped-independent-visual-confirmation-complete",
+  "confirmationOriginals": 152,
+  "waitingOriginals": 42,
+  "initialOriginals": 26,
+  "all36Waiting720": true,
+  "waiting1080Representative": 6,
+  "phaseMatrixEntries": 360,
+  "visualBlockers": [],
+  "physicalValidated": false,
+  "sourceQualification": "director-final-source-qualification.json",
+  "imageManifests": [
+    "director-confirmation-review.json",
+    "director-waiting-final-review.json",
+    "director-initial-review.json"
+  ]
+}

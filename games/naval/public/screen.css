@@ -38,3 +38,288 @@ html:has(.party-screen),body.party-screen{background:#0a0a0c!important;color:#ff
 .naval-shot-effect.sunk{border-color:#ff9376}
 body.party-screen,body.party-screen *{font-family:Rubik,PartyRubik,system-ui,sans-serif!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important}
 .party-screen label,.party-screen p,.party-screen button,.party-screen select,.party-screen .person{overflow-wrap:anywhere}.party-screen .person{min-width:0}.party-screen .person strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.party-screen .person small{line-height:1.3}.party-screen select{max-width:100%}
+
+/* Opponent selection contains player names, not action or instruction copy. */
+html.hp-ui.party-managed.party-player[data-party-game=naval] body #target,html.hp-ui.party-managed.party-player[data-party-game=naval] body #target option{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;letter-spacing:0!important}
+
+/* A useful full-height captain column gives each public ocean more room. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console{align-self:stretch!important;height:100%;margin-bottom:0;overflow:hidden}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console>details{flex:1;min-height:0;display:flex;flex-direction:column;overflow:auto;padding:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console .screen-standings{padding:8px 0 0!important;margin:0;border:0!important;background:transparent!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .broadcast-feed{margin-top:auto!important;max-height:174px;overflow:auto;flex:none}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast #broadcastEvents{grid-template-columns:1fr;gap:6px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast #broadcastEvents li{font-family:var(--hp-font-body)!important;font-size:13px;line-height:1.3;font-weight:400!important;font-style:normal!important;text-transform:none!important;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .oceanCard>b{font-family:var(--hp-font-body)!important;font-size:16px!important;font-weight:550!important;font-style:normal!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console .screen-standings{background-image:none!important;outline:0}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console .boardTitle{padding:4px 8px;gap:8px;align-items:center}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console .boardTitle h2{font-size:20px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console #board .person strong{font-family:var(--hp-font-body)!important;font-size:16px!important;font-weight:550!important;font-style:normal!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .oceanCard>b{display:flex;align-items:center;justify-content:center;gap:4px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .fleet-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .fleet-health{flex:none;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .oceanCard>b>span{font-family:var(--hp-font-body)!important;font-size:16px!important;line-height:1.2;font-weight:550!important;font-style:normal!important;text-transform:none!important;letter-spacing:0!important}
+/* At 9–16 fleets, reserve the space for cells; the shell already names the game. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .stage:has(#oceanOverview[data-dense=true]) #title{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast #oceanOverview[data-dense=true] .oceanCard{padding:4px;grid-template-rows:20px minmax(0,1fr);gap:4px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast #oceanOverview[data-dense=true] .miniOcean{width:min(100cqw,calc(100cqh - 24px));height:min(100cqw,calc(100cqh - 24px));padding:2px;gap:2px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast #oceanOverview[data-dense=true] .miniOcean span{font-size:10px;border-radius:3px}
+/* Compact existing scores in flow; four captains fit without a cropped row. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console .boardTitle{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console #board{height:auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console #board .row{position:relative;transform:none!important;height:54px;padding:6px;gap:8px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console #board .person small{font-family:var(--hp-font-body)!important;font-size:14px;line-height:1.2;font-weight:400!important;font-style:normal!important;text-transform:none!important;margin-top:3px;letter-spacing:0!important;white-space:nowrap}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .broadcast-feed{max-height:132px}
+
+/* Keep all four captain rows visible; larger crews scroll inside the drawer. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .naval-console{gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast .broadcast-feed{max-height:108px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast :is(.naval-console>details,.broadcast-feed){scrollbar-width:none}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast :is(.naval-console>details,.broadcast-feed)::-webkit-scrollbar{display:none}
+
+/* The sixth target row remains tappable above the shell footer on a short phone. */
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body #battle{gap:6px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body #ownGrid{width:48px!important;max-width:48px!important;gap:1px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body #battle>#own{padding:4px!important;gap:3px!important;margin:0!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body #target{min-height:44px!important;padding:8px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body #reload{padding:6px 8px!important;min-height:42px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body #battle #grid{width:236px!important;max-width:100%;gap:4px!important;margin:0 auto!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body #battle #grid button{min-height:36px!important;height:36px!important;padding:0!important;aspect-ratio:1;font-size:12px!important}
+}
+
+/* Physical-lane polish 2026-10-02: living water, shell tracer, sunk fleets. Render only. */
+.naval-broadcast .miniOcean{position:relative;isolation:isolate;overflow:hidden}
+.naval-broadcast .miniOcean::before{content:'';position:absolute;inset:-40%;z-index:-1;pointer-events:none;opacity:.55;background:repeating-radial-gradient(ellipse 60px 22px at 30% 40%,#7ee7ff12 0 2px,transparent 3px 18px),repeating-radial-gradient(ellipse 80px 30px at 70% 60%,#7ee7ff0d 0 2px,transparent 3px 24px)}
+.naval-shell{position:absolute;z-index:9;width:12px;height:12px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 35% 35%,#fffbe8,#ffd36b 45%,#ff8a3d);box-shadow:0 0 12px #ffb45acc,0 0 26px #ff8a3d66}
+.naval-shell.miss{background:radial-gradient(circle at 35% 35%,#ffffff,#c6f4ff 50%,#7ee7ff);box-shadow:0 0 12px #7ee7ffaa}
+.naval-broadcast .oceanCard{transition:filter .4s cubic-bezier(.2,.8,.2,1),opacity .4s cubic-bezier(.2,.8,.2,1)}
+.naval-broadcast .oceanCard[data-down=true]{filter:saturate(.35) brightness(.72);opacity:.82}
+.naval-broadcast .oceanCard[data-down=true] .fleet-health{color:#ff8d98}
+@media(prefers-reduced-motion:no-preference){.naval-broadcast .miniOcean::before{animation:naval-swell 14s linear infinite}}
+@keyframes naval-swell{from{transform:translate3d(0,0,0)}to{transform:translate3d(18%,9%,0)}}
+
+/* Codex UI: the bridge is a readable narrow wing; fleets own the broad screen. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace{width:100%!important;max-width:none!important;grid-template-columns:clamp(300px,25vw,410px) minmax(0,1fr)!important;gap:24px!important;padding-inline:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console{min-width:0;padding:20px!important;gap:16px!important;overflow:hidden!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2{font:italic 900 clamp(22px,2vw,30px)/1.15 KardiaFatRunner,sans-serif!important;max-width:100%;text-align:center;overflow-wrap:normal;margin:0 0 8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board{width:100%;min-width:0;max-width:100%}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{grid-template-columns:24px minmax(0,1fr) auto!important;min-width:0!important;width:100%!important;gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed{padding:12px!important;max-height:168px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #broadcastEvents li{font-size:16px!important;line-height:1.3!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main{padding:16px!important;width:100%;max-width:480px}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main .stage{padding:0!important;border:0!important;box-shadow:none!important;background:transparent!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle{width:100%;max-width:440px;margin:auto}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle :is(label,#target,#grid,#own){width:100%!important;max-width:none!important;margin-inline:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #target{min-height:52px!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #reload{font:italic 900 18px/1.25 KardiaFatRunner,sans-serif!important;margin:12px 0!important}
+
+/* Group09: open ocean stage plus a compact bridge, not an empty tall drawer. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main{width:100%!important;max-width:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace{grid-template-columns:340px minmax(0,1fr)!important;padding:12px 24px!important;gap:24px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console{align-self:center!important;height:auto!important;max-height:calc(100dvh - 180px);padding:20px!important;gap:16px!important;box-shadow:none!important;background:#211b30!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2{font-size:23px!important;line-height:1.25;margin:0!important;text-align:left}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>details{flex:0 1 auto!important;height:auto!important;min-height:0;max-height:calc(100dvh - 480px);background:transparent!important;border:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console summary{min-height:40px!important;padding:4px!important;font-size:14px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{height:68px!important;padding:8px!important;gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person strong{font-size:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed{margin:0!important;max-height:218px!important;padding:0!important;overflow:auto;overscroll-behavior:contain}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #broadcastEvents li{font-size:15px!important;line-height:1.35!important;min-height:44px;padding:8px 12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace>.stage{padding:148px 0 0!important;background:transparent!important;border:0!important;box-shadow:none!important;gap:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #title{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview{gap:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .oceanCard{background:transparent!important;border:0!important;padding:0!important;grid-template-rows:54px minmax(0,1fr)!important;gap:4px!important;overflow:visible!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .oceanCard>b{font-size:18px!important;display:flex;align-items:center;gap:8px!important;text-align:left;justify-content:center;height:54px}
+.fleet-avatar{width:40px;height:48px;object-fit:contain;flex:none;pointer-events:none}
+.fleet-avatar[data-photo=true]{object-fit:cover;border-radius:50%;height:auto!important;aspect-ratio:1}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .miniOcean{width:min(100cqw,calc(100cqh - 58px))!important;height:min(100cqw,calc(100cqh - 58px))!important;border-radius:16px;padding:6px!important;gap:4px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .miniOcean span{font-size:20px!important;border-radius:6px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .oceanCard{grid-template-rows:36px minmax(0,1fr)!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .oceanCard>b{height:36px;font-size:14px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .fleet-avatar{width:26px;height:32px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .miniOcean{width:min(100cqw,calc(100cqh - 40px))!important;height:min(100cqw,calc(100cqh - 40px))!important;padding:3px!important;gap:2px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .miniOcean span{font-size:12px!important}
+/* A useful targeting track and private fleet precede the full-width firing grid. */
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle{grid-template-columns:minmax(0,1fr) 88px!important;grid-template-areas:'target own' 'reload reload' 'grid grid'!important;gap:8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #grid{width:100%!important;max-width:none!important;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #grid button{min-height:44px!important;aspect-ratio:1!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle .legend{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #reload{font-size:16px!important;margin:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #shot{font-size:13px!important;line-height:1.35!important;max-height:36px;overflow:hidden;margin:0 0 8px!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #target{font-size:16px!important;min-height:48px!important}
+html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #own{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+@media(max-height:450px){html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #grid button{min-height:36px!important}html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle{gap:4px!important}}
+
+/* The four oceans read as one formation, with the bridge outside it. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace{grid-template-columns:380px minmax(0,1fr)!important;gap:32px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview:not([data-dense=true]){width:min(100%,calc((100dvh - 176px) + 40px));align-self:center;column-gap:24px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>details{max-height:calc(100dvh - 420px)!important}
+
+@media(max-height:450px){html.hp-ui.party-managed.party-player[data-party-game=naval] body main{padding:8px!important}html.hp-ui.party-managed.party-player[data-party-game=naval] body main #shot{white-space:nowrap;max-height:16px;line-height:1.2!important}html.hp-ui.party-managed.party-player[data-party-game=naval] body main #target{min-height:44px!important}html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #ownGrid{width:48px!important;min-width:48px!important;height:48px}}
+
+/* Short native iframe: keep the sixth targeting row above the shell controls. */
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body main{padding:6px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #grid{gap:2px!important}
+}
+
+/* Two captains keep their identity attached to the square public ocean. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-small=true] .oceanCard{display:flex!important;flex-direction:column;align-items:center;justify-content:center}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-small=true] .oceanCard>b,
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-small=true] .miniOcean{flex:none}
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body main #shot{margin-bottom:4px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #reload{padding:4px 10px!important}
+}
+@media(max-height:450px){
+ html.hp-ui.party-managed.party-player[data-party-game=naval] body main #battle #grid{gap:1px!important}
+}
+
+/* A captain's award and actual place own their track, before the identity. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{grid-template-columns:46px minmax(0,1fr) auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank{width:46px!important;min-width:46px!important;height:52px!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;padding:0 4px 0 0!important;gap:0!important;--hp-ranking-size:20px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank .hp-ranking-cup{width:24px!important;height:24px!important;order:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank .hp-ranking-digit{font-size:20px!important;padding:0!important;margin:0!important;order:1!important}
+
+/* The public formation and its bridge share one fitted stage. The cap occupies
+   the bridge's intrinsic top slot; no viewport-height ocean plus extra offset. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace{
+ --fleet-caption-space:48px;--bridge-width:clamp(300px,25vw,380px);
+ --fleet-square:calc((100dvh - 32px - (var(--fleet-rows,2) - 1)*16px - var(--fleet-rows,2)*var(--fleet-caption-space))/var(--fleet-rows,2));
+ height:100%;width:min(100%,calc(var(--bridge-width) + 72px + var(--fleet-square)*var(--fleet-columns,2) + (var(--fleet-columns,2) - 1)*24px))!important;max-width:1760px!important;margin:auto;box-sizing:border-box;
+ padding:16px 24px!important;grid-template-columns:clamp(300px,25vw,380px) minmax(0,1fr)!important;
+ grid-template-rows:minmax(0,1fr);gap:24px!important;align-items:center!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace:has(#oceanOverview[data-dense=true]){--fleet-caption-space:40px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace>.stage{
+ height:100%;min-height:0;padding:0!important;align-self:center;justify-content:center;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview{
+ width:100%!important;height:100%;flex:0 1 auto;gap:16px 24px!important;align-self:center;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .oceanCard{
+ --fleet-caption-height:44px;grid-template-rows:var(--fleet-caption-height) minmax(0,1fr)!important;
+ align-content:center;justify-items:center;gap:4px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .oceanCard>b{
+ width:min(100cqw,calc(100cqh - 48px));height:44px;font-size:16px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .miniOcean{
+ width:min(100cqw,calc(100cqh - 48px))!important;height:min(100cqw,calc(100cqh - 48px))!important;
+ align-self:start;background:radial-gradient(ellipse at 20% 12%,#29758f,#0c3049 70%)!important;
+ border:1px solid #6ca9b96b;box-shadow:inset 0 2px 8px #061e35a6!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .miniOcean span:not(.hit):not(.miss):not(.sunk){
+ background:linear-gradient(165deg,#417e934d,#082a3c24)!important;border-color:#8cc8d947;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .oceanCard{--fleet-caption-height:36px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .oceanCard>b{width:min(100cqw,calc(100cqh - 40px));height:36px;font-size:14px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console{
+ --game-panel-fill:#102c3c;--game-panel-rim:#79aaba;--game-panel-ink:#effbff;--game-panel-muted:#b8d6e2;
+ max-height:100%;height:auto!important;align-self:center!important;box-sizing:border-box;
+ padding:calc(var(--party-hud-height,104px) + 16px) 20px 16px!important;gap:12px!important;
+ background:linear-gradient(155deg,#1a394b,#102535 80%)!important;border-color:#6b99aa70!important;
+ box-shadow:inset 0 1px #d5f4ff38,inset 0 -1px #061a28!important;backdrop-filter:none;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2{font-size:21px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>details{
+ max-height:calc(100dvh - var(--party-hud-height,104px) - 212px)!important;margin:0!important;flex:0 0 auto!important;
+}
+/* A small crew is intrinsic content, not a scroll viewport. The drawer keeps
+   its bounded scrolling only when more than four captains need that space. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>details:not(:has(#board>.row:nth-child(5))){
+ max-height:none!important;overflow:visible!important;min-height:max-content;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>details .screen-standings{flex:0 0 auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{height:clamp(54px,6.3dvh,68px)!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed{min-height:64px;max-height:clamp(96px,15dvh,160px)!important;flex:0 1 auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #broadcastEvents li{background:#0a2136bd;color:#d8eff9}
+
+/* The bridge crew has one authored grid. Rank ink and its medal stay on one
+   line, with separate avatar, identity/status and score tracks. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console .screen-standings{padding:6px 0 0!important;border-radius:0!important;overflow:visible!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board{display:flex!important;flex-direction:column!important;gap:8px!important;padding:0!important;border:0!important;background:transparent!important;overflow:visible!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{
+ display:grid!important;grid-template-columns:52px 30px minmax(0,1fr) minmax(38px,max-content)!important;
+ grid-template-rows:1fr;column-gap:6px!important;height:clamp(64px,6.3dvh,76px)!important;min-height:64px!important;
+ margin:0!important;padding:6px!important;align-items:center!important;border-radius:12px!important;
+ border:1px solid #80b2c333!important;background:linear-gradient(120deg,#30506578,#152e40)!important;
+ overflow:visible!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank{
+ grid-column:1!important;grid-row:1!important;display:flex!important;flex-direction:row!important;
+ width:52px!important;min-width:52px!important;height:auto!important;min-height:34px!important;
+ justify-content:flex-start!important;gap:0!important;padding:0!important;overflow:visible!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank::after{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank .hp-ranking-digit{
+ order:0!important;font-size:24px!important;line-height:1.25!important;padding:2px 7px 2px 1px!important;margin:0!important;transform:none!important;translate:none!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank .hp-ranking-cup{order:1!important;width:19px!important;height:22px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar{grid-column:2;grid-row:1;width:30px;height:36px;object-fit:contain;pointer-events:none}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar[data-photo=true]{height:30px;border-radius:50%;object-fit:cover}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person{grid-column:3!important;grid-row:1!important;min-width:0;overflow:visible!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person strong{font-size:16px!important;line-height:1.25!important;color:#f0faff!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person small{font-size:13px!important;line-height:1.15!important;white-space:pre-line!important;margin-top:2px!important;color:#bad8e2!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .points{grid-column:4!important;grid-row:1!important;font-size:26px!important;line-height:1.35!important;padding:2px 6px 2px 1px!important;margin:0!important;width:auto!important;min-width:0;box-sizing:content-box;justify-self:end;overflow:visible!important;opacity:1;color:#f6e8b2!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console{padding:calc(var(--party-hud-height,120px) + 8px) 16px 12px!important;gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2{height:28px;min-height:28px;margin:0!important;font-size:18px!important;line-height:28px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console summary{min-height:28px!important;height:28px;padding:2px 0!important;font:600 18px/24px var(--hp-font-body)!important;text-transform:none!important;font-style:normal!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed{min-height:88px;max-height:none!important;flex:0 0 auto!important;overflow:visible!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed h3{margin:0 0 4px!important;font-size:12px!important;line-height:16px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #broadcastEvents{gap:4px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #broadcastEvents li{min-height:32px!important;padding:5px 8px!important;font-size:12px!important;line-height:16px!important}
+
+/* The bridge follows the complete fleet stack, with reading space inside it. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console{
+ height:100%!important;max-height:100%;align-self:stretch!important;
+ padding:calc(var(--party-hud-height,104px) + 12px) 16px 16px!important;gap:12px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>details{
+ flex:1 1 auto!important;max-height:none!important;min-height:0;overflow:auto!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>details:not(:has(#board>.row:nth-child(5))){min-height:0;overflow:visible!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board{gap:12px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{height:clamp(72px,7dvh,88px)!important;min-height:72px!important;padding-block:10px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed{margin-top:auto!important}
+
+/* Public fleet frames include their rim/padding in the fitted square, leaving
+   the stage's existing 16px bottom margin clear of the rounded board edge. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .miniOcean{
+ box-sizing:border-box;min-height:0;grid-template-rows:repeat(6,minmax(0,1fr));
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2.party-prop-heading{
+ height:36px;min-height:36px;line-height:36px!important;
+ position:relative;padding-inline-start:52px!important;background-image:none!important;
+}
+/* The tightly cropped overhead hull is naturally long. Its complete44px hull
+   fits a44px optical square diagonally, preserving its177:480 native aspect. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2.party-prop-heading::before{
+ content:'';position:absolute;left:22px;top:50%;width:calc(44px * 177 / 480);height:44px;
+ background:url('/assets/gameplay/sprites/ship.webp') center/contain no-repeat;
+ transform:translate(-50%,-50%) rotate(-45deg);pointer-events:none;
+}
+/* Name and facts share an identity block; facts use the avatar's width too.
+   Position and score each own a protected track across both lines. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{
+ grid-template-columns:40px 28px minmax(0,1fr) minmax(38px,max-content)!important;
+ grid-template-rows:24px 30px;column-gap:8px!important;row-gap:2px;
+ padding:6px 8px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank{
+ grid-row:1/3!important;width:40px!important;min-width:40px!important;gap:4px!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank .hp-ranking-digit{
+ font-size:22px!important;padding:2px 0!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank .hp-ranking-cup{width:15px!important;height:18px!important;object-fit:contain}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar{width:28px;height:28px;object-fit:contain}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .crew-avatar[data-photo=true]{height:28px}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person{display:contents!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person strong{grid-column:3;grid-row:1;min-width:0;align-self:center}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person small{
+ grid-column:2/4;grid-row:2;display:block;align-self:start;margin:0!important;line-height:15px!important;overflow-wrap:normal!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .points{grid-row:1/3!important;padding:2px 0!important}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+:is(.crew-avatar,.fleet-avatar)[data-photo=true]{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#88b6c5)}

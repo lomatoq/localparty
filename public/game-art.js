@@ -16,6 +16,22 @@
     const result={image:canvas,x:0,y:0,w:f.w,h:f.h};if(tinted.size>256)tinted.delete(tinted.keys().next().value);tinted.set(cacheKey,result);return result;
   }
   function draw(ctx,key,x,y,width,height=width,options={}){const item=sprite(key,options.color);if(!item)return false;ctx.save();ctx.translate(x,y);if(options.rotation)ctx.rotate(options.rotation);if(options.alpha!=null)ctx.globalAlpha*=options.alpha;ctx.scale(options.flipX?-1:1,1);const pivot=options.pivot||manifest?.frames?.[key]?.pivot||{x:.5,y:.5};ctx.drawImage(item.image,item.x,item.y,item.w,item.h,-width*pivot.x,-height*pivot.y,width,height);ctx.restore();return true;}
+  // Brand identities use the complete approved silhouettes; the gameplay blob
+  // remains available through draw('blob') for games that actually use it.
+  const mascotImages=new Map();
+  function mascotSource(options={}){
+    if(typeof options.avatar==='string'&&options.avatar)return options.avatar;
+    let seed=0;for(const c of String(options.seed??options.color??'HeyPals'))seed=(seed*31+c.charCodeAt(0))>>>0;
+    return '/assets/avatars/atlas-mascots/mascot-'+String(1+seed%16).padStart(2,'0')+'.webp';
+  }
+  function drawMascot(ctx,x,y,width,height=width,options={}){
+    const path=mascotSource(options);let source=mascotImages.get(path);
+    if(!source){source=new Image();source.decoding='async';source.src=path;mascotImages.set(path,source);}
+    if(!valid(source))return false;
+    const photo=typeof options.avatar==='string'&&!!options.avatar,size=Math.min(width,height);
+    const scale=photo?Math.max(size/source.naturalWidth,size/source.naturalHeight):Math.min(width/source.naturalWidth,height/source.naturalHeight),w=source.naturalWidth*scale,h=source.naturalHeight*scale;
+    ctx.save();ctx.translate(x,y);if(options.rotation)ctx.rotate(options.rotation);if(options.alpha!=null)ctx.globalAlpha*=options.alpha;ctx.scale(options.flipX?-1:1,1);if(photo){ctx.beginPath();ctx.arc(0,0,size/2,0,Math.PI*2);ctx.clip();}ctx.drawImage(source,-w/2,-h/2,w,h);if(photo){ctx.lineWidth=Math.max(1,Math.min(2,size*.035));ctx.strokeStyle=options.photoFrame||options.color||'#cfff85';ctx.beginPath();ctx.arc(0,0,size/2-ctx.lineWidth/2,0,Math.PI*2);ctx.stroke();}ctx.restore();return true;
+  }
   const surfaces=new WeakMap();
   function beginFrame(ctx,width,height){
     const canvas=ctx.canvas;let surface=surfaces.get(canvas);
@@ -31,8 +47,7 @@
     ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
     return canvas.width/width;
   }
-  window.PartyArt={ready,draw,sprite,beginFrame,preload(keys){for(const key of keys){const frame=manifest?.frames?.[key];if(frame){load(frame.atlas);if(frame.tintMask)load(frame.tintMask);}}},has:key=>!!manifest?.frames?.[key],get manifest(){return manifest;}};
+  window.PartyArt={ready,draw,drawMascot,mascotSource,sprite,beginFrame,preload(keys){for(const key of keys){const frame=manifest?.frames?.[key];if(frame){load(frame.atlas);if(frame.tintMask)load(frame.tintMask);}}},has:key=>!!manifest?.frames?.[key],get manifest(){return manifest;}};
 })();
-
 
 

@@ -1,0 +1,209 @@
+{
+  "size": {
+    "w": 1774,
+    "h": 887
+  },
+  "transparent": true,
+  "alphaThresholdForBounds": 8,
+  "nativePixelsUnchanged": true,
+  "variants": [
+    {
+      "id": 0,
+      "color": "#b9ff4d",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 444,
+        "h": 444
+      },
+      "bounds": {
+        "left": 84,
+        "top": 118,
+        "right": 414,
+        "bottom": 391
+      },
+      "frame": {
+        "x": 80,
+        "y": 114,
+        "w": 339,
+        "h": 282
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61203
+    },
+    {
+      "id": 1,
+      "color": "#58dafa",
+      "cell": {
+        "x": 444,
+        "y": 0,
+        "w": 443,
+        "h": 444
+      },
+      "bounds": {
+        "left": 501,
+        "top": 119,
+        "right": 833,
+        "bottom": 391
+      },
+      "frame": {
+        "x": 497,
+        "y": 115,
+        "w": 341,
+        "h": 281
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61256
+    },
+    {
+      "id": 2,
+      "color": "#ff6b96",
+      "cell": {
+        "x": 887,
+        "y": 0,
+        "w": 444,
+        "h": 444
+      },
+      "bounds": {
+        "left": 940,
+        "top": 119,
+        "right": 1272,
+        "bottom": 391
+      },
+      "frame": {
+        "x": 936,
+        "y": 115,
+        "w": 341,
+        "h": 281
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61745
+    },
+    {
+      "id": 3,
+      "color": "#c295ff",
+      "cell": {
+        "x": 1331,
+        "y": 0,
+        "w": 443,
+        "h": 444
+      },
+      "bounds": {
+        "left": 1360,
+        "top": 119,
+        "right": 1691,
+        "bottom": 391
+      },
+      "frame": {
+        "x": 1356,
+        "y": 115,
+        "w": 340,
+        "h": 281
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61517
+    },
+    {
+      "id": 4,
+      "color": "#ffc45c",
+      "cell": {
+        "x": 0,
+        "y": 444,
+        "w": 444,
+        "h": 443
+      },
+      "bounds": {
+        "left": 84,
+        "top": 497,
+        "right": 414,
+        "bottom": 769
+      },
+      "frame": {
+        "x": 80,
+        "y": 493,
+        "w": 339,
+        "h": 281
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61253
+    },
+    {
+      "id": 5,
+      "color": "#53ebac",
+      "cell": {
+        "x": 444,
+        "y": 444,
+        "w": 443,
+        "h": 443
+      },
+      "bounds": {
+        "left": 501,
+        "top": 497,
+        "right": 833,
+        "bottom": 768
+      },
+      "frame": {
+        "x": 497,
+        "y": 493,
+        "w": 341,
+        "h": 280
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61233
+    },
+    {
+      "id": 6,
+      "color": "#ff9060",
+      "cell": {
+        "x": 887,
+        "y": 444,
+        "w": 444,
+        "h": 443
+      },
+      "bounds": {
+        "left": 939,
+        "top": 497,
+        "right": 1271,
+        "bottom": 768
+      },
+      "frame": {
+        "x": 935,
+        "y": 493,
+        "w": 341,
+        "h": 280
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61468
+    },
+    {
+      "id": 7,
+      "color": "#a1bcff",
+      "cell": {
+        "x": 1331,
+        "y": 444,
+        "w": 443,
+        "h": 443
+      },
+      "bounds": {
+        "left": 1360,
+        "top": 497,
+        "right": 1691,
+        "bottom": 769
+      },
+      "frame": {
+        "x": 1356,
+        "y": 493,
+        "w": 340,
+        "h": 281
+      },
+      "alphaEdgePixels": 0,
+      "visiblePixels": 61568
+    }
+  ],
+  "provenance": {
+    "tool": "builtin image_gen",
+    "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-6485-73d2-b3bc-248fd473d3a8/exec-57c55dfa-7d39-430e-b39b-5a8f7113352b.png",
+    "prompt": "hungry-creatures-v2-prompt.txt",
+    "sha256": "06c30d7bab7b34d259c3c18864a7aa8061fc7db49525bcf18ee348f9ef83d5f3"
+  }
+}

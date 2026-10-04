@@ -1,0 +1,468 @@
+{
+  "scope": "Named Crane 16-player live end retention and manual middle scroll closure; short-TV 4p composition remains newly reported and not accepted",
+  "physicalDevice": false,
+  "browserSlot": "All browsers closed; slot3 released",
+  "runs": [
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final",
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/report.json",
+      "reportSha256": "a2783282901c7fbd80ee762c1dd266838dc6ba86c7517b617dcccf7579d95403",
+      "errors": [],
+      "changedFiles": [],
+      "sourceQualified": {
+        "games/crane/public/client.js": {
+          "start": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+          "end": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+          "current": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+          "matches": true
+        },
+        "games/crane/public/style.css": {
+          "start": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+          "end": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+          "current": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+          "matches": true
+        },
+        "games/jenga/public/style.css": {
+          "start": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+          "end": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+          "current": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+          "matches": true
+        },
+        "games/jenga/public/controller.css": {
+          "start": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+          "end": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+          "current": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+          "matches": true
+        },
+        "public/tv-information.css": {
+          "start": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+          "end": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+          "current": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+          "matches": true
+        },
+        "public/tv-information.js": {
+          "start": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+          "end": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+          "current": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+          "matches": true
+        },
+        "public/game-ui-themes.css": {
+          "start": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+          "end": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+          "current": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+          "matches": true
+        },
+        "public/game-ui-themes.js": {
+          "start": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+          "end": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+          "current": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+          "matches": true
+        },
+        "public/rankings-theme.css": {
+          "start": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+          "end": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+          "current": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+          "matches": true
+        },
+        "public/rankings-theme.js": {
+          "start": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+          "end": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+          "current": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+          "matches": true
+        },
+        "public/bridge.js": {
+          "start": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+          "end": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+          "current": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+          "matches": true
+        },
+        "public/native-shell/controller-bridge.js": {
+          "start": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+          "end": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+          "current": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+          "matches": true
+        }
+      },
+      "checks": {
+        "endBeforeLiveUpdate": {
+          "scrollTop": 817,
+          "max": 817,
+          "clientHeight": 490,
+          "scrollHeight": 1307,
+          "lastBottom": 967.5625,
+          "listBottom": 968,
+          "turn": "Бот 8",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 0 accurate · 0 miss9302Бот 21 Blocks · 0 accurate · 0 miss9203Бот 80 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 150 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 30 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "endAfterLiveUpdate45RAF": {
+          "scrollTop": 795,
+          "max": 795,
+          "clientHeight": 512,
+          "scrollHeight": 1307,
+          "lastBottom": 963.21875,
+          "listBottom": 963.5625,
+          "turn": "Бот 9",
+          "scoreText": "01Бот 81 Blocks · 1 accurate · 0 miss14502Alexandra LongSurname1 Blocks · 0 accurate · 0 miss9303Бот 21 Blocks · 0 accurate · 0 miss9204Бот 90 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 150 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 10 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 30 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "endAfterLiveUpdatePNG": {
+          "scrollTop": 795,
+          "max": 795,
+          "clientHeight": 512,
+          "scrollHeight": 1307,
+          "lastBottom": 963.21875,
+          "listBottom": 963.5625,
+          "turn": "Бот 9",
+          "scoreText": "01Бот 81 Blocks · 1 accurate · 0 miss14502Alexandra LongSurname1 Blocks · 0 accurate · 0 miss9303Бот 21 Blocks · 0 accurate · 0 miss9204Бот 90 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 150 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 10 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 30 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "manualMiddleBefore": {
+          "scrollTop": 799,
+          "max": 799,
+          "clientHeight": 508,
+          "scrollHeight": 1307,
+          "lastBottom": 963.5,
+          "listBottom": 963.5625,
+          "turn": "Бот 9",
+          "scoreText": "01Бот 81 Blocks · 1 accurate · 0 miss14502Alexandra LongSurname1 Blocks · 0 accurate · 0 miss9303Бот 21 Blocks · 0 accurate · 0 miss9204Бот 90 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 150 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 10 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 30 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "manualMiddleAfterLiveUpdate": {
+          "scrollTop": 795,
+          "max": 795,
+          "clientHeight": 512,
+          "scrollHeight": 1307,
+          "lastBottom": 963.21875,
+          "listBottom": 963.5625,
+          "turn": "Бот 14",
+          "scoreText": "01Бот 91 Blocks · 1 accurate · 0 miss14602Бот 81 Blocks · 1 accurate · 0 miss14503Alexandra LongSurname1 Blocks · 0 accurate · 0 miss9304Бот 21 Blocks · 0 accurate · 0 miss9205Бот 140 Blocks · 0 accurate · 0 miss005Бот 130 Blocks · 0 accurate · 0 miss005Бот 70 Blocks · 0 accurate · 0 miss005Бот 150 Blocks · 0 accurate · 0 miss005Бот 100 Blocks · 0 accurate · 0 miss005Бот 40 Blocks · 0 accurate · 0 miss005Бот 10 Blocks · 0 accurate · 0 miss005Бот 120 Blocks · 0 accurate · 0 miss005Бот 60 Blocks · 0 accurate · 0 miss005Бот 50 Blocks · 0 accurate · 0 miss005Бот 30 Blocks · 0 accurate · 0 miss005Бот 110 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        }
+      },
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-drop-feedback-320.png",
+          "sha256": "5364a09dc4fb59b44f573bbcc344eecf3bca87e422c40e1389b76937a513785d",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-drop-feedback-402.png",
+          "sha256": "f44b5825d6998dfb6e7a3bd0153754f0c44eeffb80bc8a4901b632832eff5641",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-gameplay.png",
+          "sha256": "94f48c608d8c06fcf020421724f965dd04489eea3fce3aa9d46bc4c0784905ce",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-live-320.png",
+          "sha256": "ea6b1250e9f02b81ba4e192eeafa6174de786f32777d5cd40ac897d62540aa03",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-live-402.png",
+          "sha256": "c2dcaa1fb2b595138e160d69c5db43957096b6823e56f0a6e6f5913eb806d659",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-matchmaking-rules.png",
+          "sha256": "2781439fb9d7cfb132b7153d664c2bd8692d9f6c4293d9060675d50559672c48",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-matchmaking.png",
+          "sha256": "3372e0ccad66a400d73844ae1e82212bb48d2bb34a004501f999d17afd43d513",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-phone-roster-end.png",
+          "sha256": "d6e0fdbfd0a48f2279a1906e27e64f97379d212a3976f51d770d80c4edc4bcda",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-drop-feedback-1280.png",
+          "sha256": "ad7fc6e73aae2f7b4c4603bd229cd2630feab2c0ad91cfe16e01ed8d1ca7637a",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-drop-feedback-1920.png",
+          "sha256": "ece107fe655e6a5c02cd38706ec101daabdd23e80026b19fe8874a0effbce224",
+          "individuallyOpened": true,
+          "qualified": false
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-end-after-live-update.png",
+          "sha256": "3a25bba6a899a4edcf2a7b6a92b5f5109c2a5706f2514d947d45cde7f866ba2e",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-gameplay.png",
+          "sha256": "a2baba76a392376f9ea6a813da4587e83f82fedb0004169f5ba5679ff64f1ac3",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-live-1280.png",
+          "sha256": "dfade93233e8d86399347e8fb9dce150d791d7d691d6f65d1f7a73c72a33324c",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-live-1920.png",
+          "sha256": "e6d596699d0c2e3205e5b5f09cb9f3bf5665a2fd0fe585e9c4e1b349b439e9dd",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-manual-middle-after-update.png",
+          "sha256": "6574a4f8be7153064bb14f31afde8e19754f8833e535ec65eb1c32f5be4f14ec",
+          "individuallyOpened": true,
+          "qualified": false
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-matchmaking.png",
+          "sha256": "e99253535de0a7ee5a3925754d9093dbb722246cc71cffa5a59324817fbdb374",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-roster-diagnostic-end.png",
+          "sha256": "d185567f0e705d9799b3f94e48c70cb779d89c647bcfe72c183f1fe42dfdd8f3",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/crane-tv-roster-end.png",
+          "sha256": "7fb32b382eb2f19b571c477826bc95c0f8ed2de2596ea7af0912509db9b32208",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/main-phone-lobby.png",
+          "sha256": "4b8076e737dd5b16a27a16ea8027da2ffeb5fc6e642f4d35e0c57f27d530cf50",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-end-final/main-tv-lobby.png",
+          "sha256": "1ceca28850d576f2c921d0e878c3a2ae14a2e1df5deff96689157ad93232a0b0",
+          "individuallyOpened": true,
+          "qualified": true
+        }
+      ]
+    },
+    {
+      "directory": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final",
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final/report.json",
+      "reportSha256": "c712e6c1f3d1f474bee4f534e3ec6dd5815935062d9e9b9015dbf3285da34888",
+      "errors": [],
+      "changedFiles": [],
+      "sourceQualified": {
+        "games/crane/public/client.js": {
+          "start": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+          "end": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+          "current": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+          "matches": true
+        },
+        "games/crane/public/style.css": {
+          "start": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+          "end": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+          "current": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+          "matches": true
+        },
+        "games/jenga/public/style.css": {
+          "start": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+          "end": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+          "current": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+          "matches": true
+        },
+        "games/jenga/public/controller.css": {
+          "start": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+          "end": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+          "current": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+          "matches": true
+        },
+        "public/tv-information.css": {
+          "start": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+          "end": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+          "current": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+          "matches": true
+        },
+        "public/tv-information.js": {
+          "start": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+          "end": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+          "current": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+          "matches": true
+        },
+        "public/game-ui-themes.css": {
+          "start": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+          "end": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+          "current": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+          "matches": true
+        },
+        "public/game-ui-themes.js": {
+          "start": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+          "end": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+          "current": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+          "matches": true
+        },
+        "public/rankings-theme.css": {
+          "start": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+          "end": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+          "current": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+          "matches": true
+        },
+        "public/rankings-theme.js": {
+          "start": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+          "end": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+          "current": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+          "matches": true
+        },
+        "public/bridge.js": {
+          "start": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+          "end": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+          "current": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+          "matches": true
+        },
+        "public/native-shell/controller-bridge.js": {
+          "start": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+          "end": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+          "current": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+          "matches": true
+        }
+      },
+      "checks": {
+        "endBeforeLiveUpdate": {
+          "scrollTop": 796,
+          "max": 796,
+          "clientHeight": 512,
+          "scrollHeight": 1308,
+          "lastBottom": 963.1343994140625,
+          "listBottom": 963.5625,
+          "turn": "Бот 11",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14402Бот 110 Blocks · 0 accurate · 0 miss002Бот 140 Blocks · 0 accurate · 0 miss002Бот 100 Blocks · 0 accurate · 0 miss002Бот 80 Blocks · 0 accurate · 0 miss002Бот 50 Blocks · 0 accurate · 0 miss002Бот 70 Blocks · 0 accurate · 0 miss002Бот 150 Blocks · 0 accurate · 0 miss002Бот 20 Blocks · 0 accurate · 0 miss002Бот 130 Blocks · 0 accurate · 0 miss002Бот 60 Blocks · 0 accurate · 0 miss002Бот 40 Blocks · 0 accurate · 0 miss002Бот 120 Blocks · 0 accurate · 0 miss002Бот 30 Blocks · 0 accurate · 0 miss002Бот 10 Blocks · 0 accurate · 0 miss002Бот 90 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "endAfterLiveUpdate45RAF": {
+          "scrollTop": 799,
+          "max": 799,
+          "clientHeight": 508,
+          "scrollHeight": 1307,
+          "lastBottom": 963.5,
+          "listBottom": 963.5625,
+          "turn": "Бот 14",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14402Бот 111 Blocks · 0 accurate · 0 miss8403Бот 140 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 150 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss003Бот 30 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "endAfterLiveUpdatePNG": {
+          "scrollTop": 799,
+          "max": 799,
+          "clientHeight": 508,
+          "scrollHeight": 1307,
+          "lastBottom": 963.5,
+          "listBottom": 963.5625,
+          "turn": "Бот 14",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14402Бот 111 Blocks · 0 accurate · 0 miss8403Бот 140 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 150 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss003Бот 30 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "manualMiddleBefore": {
+          "scrollTop": 408,
+          "max": 817,
+          "clientHeight": 490,
+          "scrollHeight": 1307,
+          "lastBottom": 1376.5625,
+          "listBottom": 968,
+          "turn": "Бот 14",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14402Бот 111 Blocks · 0 accurate · 0 miss8403Бот 140 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 150 Blocks · 0 accurate · 0 miss003Бот 20 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 40 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss003Бот 30 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "manualMiddleAfterLiveUpdate": {
+          "scrollTop": 408,
+          "max": 795,
+          "clientHeight": 512,
+          "scrollHeight": 1307,
+          "lastBottom": 1350.21875,
+          "listBottom": 963.5625,
+          "turn": "Бот 10",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14402Бот 141 Blocks · 0 accurate · 0 miss8803Бот 111 Blocks · 0 accurate · 0 miss8404Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 150 Blocks · 0 accurate · 0 miss004Бот 20 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 40 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss004Бот 30 Blocks · 0 accurate · 0 miss004Бот 10 Blocks · 0 accurate · 0 miss004Бот 90 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        }
+      },
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final/crane-phone-matchmaking-rules.png",
+          "sha256": "413a6784063bd827269e7cbf939dd695ee8fb10f47308061524313067a3dbc24",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final/crane-phone-roster-end.png",
+          "sha256": "a324f8ca4ebbba0c05ca724f4efbc1ab0ac0b764ba5b1a8fa7fd320f328bb899",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final/crane-tv-end-after-live-update.png",
+          "sha256": "1c5bd220371ce62b9aa67b14f18ea7d1ac695445b5bacd5ed2a549c256acff0f",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final/crane-tv-manual-middle-after-update.png",
+          "sha256": "d36d7711b49562d888e330d13749f18e078c0ab674b1a730192eda7c155d52f0",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final/crane-tv-roster-diagnostic-end.png",
+          "sha256": "8f1a1e7455fa20aeb0a6f242b4f8c370adbcea7f20f5c8532fa691bbf764c54e",
+          "individuallyOpened": true,
+          "qualified": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-manual-final/crane-tv-roster-end.png",
+          "sha256": "1990c50c1f8e0fc325211769e63d2344ad6dc125a994c4018bdc926beadf9c62",
+          "individuallyOpened": true,
+          "qualified": true
+        }
+      ]
+    }
+  ],
+  "sourceFingerprints": {
+    "games/crane/public/client.js": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+    "games/crane/public/style.css": "095c5e679f097791f91ea212c4d6392824669978e26d63eb4e77c77ce40142ad",
+    "games/jenga/public/style.css": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+    "games/jenga/public/controller.css": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+    "public/tv-information.css": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+    "public/tv-information.js": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+    "public/game-ui-themes.css": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+    "public/game-ui-themes.js": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+    "public/rankings-theme.css": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/native-shell/controller-bridge.js": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b"
+  },
+  "qualification": [
+    "construction-end-final/crane-tv-drop-feedback-1920.png preserves one blank crew PNG anomaly despite adjacent metrics retaining16rows and opacity~1. Excluded from crew visual acceptance; no product edit based solely on this transient PNG.",
+    "construction-end-final manual-middle wheel attempt did not change scroll; inconclusive and superseded by actual middle scroll in construction-manual-final.",
+    "final-catalog-093806/crane-tv-live-1280.png has new confirmed4p short-TV clipping and orphan name letter; not closed by16p scroll fix. No source edit during catalog."
+  ],
+  "namedClosure": {
+    "endStableAcrossRealTurnAnd45RAF": true,
+    "endRowContainedAfterPNG": true,
+    "manualMiddlePreservedAcrossAnotherRealTurn": true,
+    "exactQuietState": "BLOCK FALLING visually opened in construction-end-final/crane-tv-roster-diagnostic-end.png and construction-manual-final/crane-tv-end-after-live-update.png"
+  }
+}

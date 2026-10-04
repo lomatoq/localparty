@@ -1,0 +1,8 @@
+'use strict';
+module.exports=async function inspectResultTypography(page){
+ for(const f of page.frames())await f.evaluate(()=>document.fonts.ready).catch(()=>{});
+ const result=await page.evaluate(()=>{const sels=['#sharedResultTitle','.hp-result-game','.hp-result-name','.hp-result-value','.podium-name','.podium-rank','.podium-points','#gameContext','#gameTitle'];return{fonts:{action:document.fonts.check('italic 750 24px HeyPalsDisplay'),numeric:document.fonts.check('650 24px HeyPalsNumeric'),body:document.fonts.check('550 16px HeyPalsText')},roles:sels.flatMap(selector=>[...document.querySelectorAll(selector)].filter(e=>e.getClientRects().length).slice(0,3).map(e=>{const c=getComputedStyle(e),r=e.getBoundingClientRect();return{selector,text:e.textContent,family:c.fontFamily,style:c.fontStyle,weight:c.fontWeight,size:c.fontSize,transform:c.textTransform,left:r.left,right:r.right,top:r.top,bottom:r.bottom}}))}});
+ result.nativeFrames=[];
+ for(const f of page.frames().filter(f=>f.url().includes('/games/'))){result.nativeFrames.push(await f.evaluate(()=>({html:document.documentElement.className,body:document.body.className,phase:document.body.dataset.gamePhase,roles:[...document.querySelectorAll('.screen-podium h3,.screen-podium strong,#setup')].filter(e=>e.getClientRects().length).map(e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return{tag:e.tagName,class:e.className,id:e.id,text:e.textContent.slice(0,100),family:s.fontFamily,style:s.fontStyle,weight:s.fontWeight,transform:s.textTransform,size:s.fontSize,display:s.display,left:r.left,right:r.right}})})).catch(()=>({unavailable:true})))}
+ return result;
+};

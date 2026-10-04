@@ -1,0 +1,586 @@
+/* Quiet outer-surface paint only; authored controls, states, light surfaces and preserve markers win. */
+
+/* push: Arena rubber; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="push"] body :is(#joystickBase)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1c2b32!important;
+ background-image:linear-gradient(145deg,#30424a,#1c2b32)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* push: Arena rubber; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="push"] body :is(.party-live-standings .party-standing)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1c2b32!important;
+ background-image:linear-gradient(145deg,#30424a,#1c2b32)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* shrink: Tide-polished enamel; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="shrink"] body :is(#joystickBase)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#142f38!important;
+ background-image:linear-gradient(145deg,#23444c,#142f38)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* shrink: Tide-polished enamel; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="shrink"] body :is(.party-live-standings .party-standing)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#142f38!important;
+ background-image:linear-gradient(145deg,#23444c,#142f38)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* knives: Dojo timber; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="knives"] body :is(.knife-count,.knife-stats .hp-stat)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2f241d!important;
+ background-image:linear-gradient(145deg,#493329,#2f241d)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* knives: Dojo timber; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="knives"] body :is(.party-live-standings .party-standing)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2f241d!important;
+ background-image:linear-gradient(145deg,#493329,#2f241d)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* bomb: Hazard casing; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="bomb"] body :is(#joystickBase,.move-stats .hp-stat)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2d211e!important;
+ background-image:linear-gradient(145deg,#493127,#2d211e)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* bomb: Hazard casing; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="bomb"] body :is(.party-live-standings .party-standing)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2d211e!important;
+ background-image:linear-gradient(145deg,#493127,#2d211e)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* western: Sunset leather; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="western"] body :is(.western-stats .hp-stat)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2f221e!important;
+ background-image:linear-gradient(145deg,#4a322b,#2f221e)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* western: Sunset leather; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="western"] body :is(.result-card)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2f221e!important;
+ background-image:linear-gradient(145deg,#4a322b,#2f221e)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* tanks: Armour instrument; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="tanks"] body :is(#controllerScreen .status-card)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#202a25!important;
+ background-image:linear-gradient(145deg,#35403a,#202a25)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* tanks: Armour instrument; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="tanks"] body :is(#modeHud)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#202a25!important;
+ background-image:linear-gradient(145deg,#35403a,#202a25)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* tankarena: Blue gunmetal; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="tankarena"] body :is(#combatStats,#joy)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1d2c37!important;
+ background-image:linear-gradient(145deg,#31404b,#1d2c37)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* tankarena: Blue gunmetal; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="tankarena"] body :is(.host-rules,#board .person)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1d2c37!important;
+ background-image:linear-gradient(145deg,#31404b,#1d2c37)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* chaos: Lab instrument casing; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="chaos"] body :is(.roleBadge)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1b2c43!important;
+ background-image:linear-gradient(145deg,#2e425a,#1b2c43)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* chaos: Lab instrument casing; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="chaos"] body :is(.mission)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1b2c43!important;
+ background-image:linear-gradient(145deg,#2e425a,#1b2c43)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* kart: Asphalt pit board; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="kart"] body :is(#driveScreen .slider-card)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#252332!important;
+ background-image:linear-gradient(145deg,#3b3549,#252332)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* kart: Asphalt pit board; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="kart"] body :is(.side-panel .card,.leader-row)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#252332!important;
+ background-image:linear-gradient(145deg,#3b3549,#252332)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* monster: quiet teal textile; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="monster"] body :is(#toolDock,#confirmView)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#182d29!important;
+ background-image:linear-gradient(145deg,#243d39,#182d29)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* monster: quiet teal textile; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="monster"] body :is(.secret-box,.status-top)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#182d29!important;
+ background-image:linear-gradient(145deg,#243d39,#182d29)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* spy: Ink-indigo dossier; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="spy"] body :is(#mySecretMini,#turnBox,.sheet-card)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#182437!important;
+ background-image:linear-gradient(145deg,#26344a,#182437)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* spy: Ink-indigo dossier; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="spy"] body :is(.turn-card,.roster-card)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#182437!important;
+ background-image:linear-gradient(145deg,#26344a,#182437)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* millionaire: Brass quiz console; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="millionaire"] body :is(.questionMini,.centerCard)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#272130!important;
+ background-image:linear-gradient(145deg,#3e3445,#272130)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* millionaire: Brass quiz console; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="millionaire"] body :is(.questionWrap,.scoreboard)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#272130!important;
+ background-image:linear-gradient(145deg,#3e3445,#272130)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* sinyakquiz: Royal studio satin; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="sinyakquiz"] body :is(.stage.panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#281c39!important;
+ background-image:linear-gradient(145deg,#3e2d54,#281c39)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* sinyakquiz: Royal studio satin; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="sinyakquiz"] body :is(.screen-standings)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#281c39!important;
+ background-image:linear-gradient(145deg,#3e2d54,#281c39)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* warsaw: desaturated mineral workspace; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="warsaw"] body :is(.stage.panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#282333!important;
+ background-image:linear-gradient(145deg,#3d3549,#282333)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* warsaw: desaturated mineral workspace; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="warsaw"] body :is(.screen-standings)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#282333!important;
+ background-image:linear-gradient(145deg,#3d3549,#282333)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* crocodile: Theatre green lacquer; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="crocodile"] body :is(#secretPanel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#172d25!important;
+ background-image:linear-gradient(145deg,#263d36,#172d25)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* crocodile: Theatre green lacquer; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="crocodile"] body :is(.screen-standings)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#172d25!important;
+ background-image:linear-gradient(145deg,#263d36,#172d25)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* naval: Navy bridge enamel; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="naval"] body :is(#own,#target)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#153243!important;
+ background-image:linear-gradient(145deg,#24495a,#153243)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* naval: Navy bridge enamel; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="naval"] body :is(.naval-console .person,.naval-console details)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#153243!important;
+ background-image:linear-gradient(145deg,#24495a,#153243)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* drawguess: Paper-lavender artist desk; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="drawguess"] body :is(#drawingTools)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#292439!important;
+ background-image:linear-gradient(145deg,#3b354b,#292439)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* drawguess: Paper-lavender artist desk; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="drawguess"] body :is(.screen-standings,.screen-sidebar>.panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#292439!important;
+ background-image:linear-gradient(145deg,#3b354b,#292439)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* western_duel: Saloon ledger leather; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="western_duel"] body :is(.glass)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2f251f!important;
+ background-image:linear-gradient(145deg,#48342b,#2f251f)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* western_duel: Saloon ledger leather; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="western_duel"] body :is(.glass)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2f251f!important;
+ background-image:linear-gradient(145deg,#48342b,#2f251f)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* taprace: graphite timing console; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="taprace"] body :is(#arcadeStats,.punch-sense)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#252332!important;
+ background-image:linear-gradient(145deg,#3b3549,#252332)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* punchmeter: Smoked plum vinyl; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="punchmeter"] body :is(#punchResult,.punch-sense)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#30202c!important;
+ background-image:linear-gradient(145deg,#4a2d3c,#30202c)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* punchmeter: Smoked plum vinyl; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="punchmeter"] body :is(.score-panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#30202c!important;
+ background-image:linear-gradient(145deg,#4a2d3c,#30202c)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* flappy: Frosted flight desk; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="flappy"] body :is(#arcadeStats)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1d2f42!important;
+ background-image:linear-gradient(145deg,#2c4258,#1d2f42)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* flappy: Frosted flight desk; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="flappy"] body :is(.score-panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1d2f42!important;
+ background-image:linear-gradient(145deg,#2c4258,#1d2f42)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* hungry: Snack-bar docket; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="hungry"] body :is(#joy,#arcadeStats)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2c2230!important;
+ background-image:linear-gradient(145deg,#443442,#2c2230)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* hungry: Snack-bar docket; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="hungry"] body :is(.score-panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2c2230!important;
+ background-image:linear-gradient(145deg,#443442,#2c2230)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* snakelines: Circuit enamel; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="snakelines"] body :is(#joy,#arcadeStats)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#163731!important;
+ background-image:linear-gradient(145deg,#254b47,#163731)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* snakelines: Circuit enamel; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="snakelines"] body :is(.score-panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#163731!important;
+ background-image:linear-gradient(145deg,#254b47,#163731)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* carryball: Graphite stadium board; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="carryball"] body :is(#joy,.arcade-team,#arcadeStats)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#252a33!important;
+ background-image:linear-gradient(145deg,#3b3e48,#252a33)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* carryball: Graphite stadium board; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="carryball"] body :is(.score-panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#252a33!important;
+ background-image:linear-gradient(145deg,#3b3e48,#252a33)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* marble_bloom: Botanical glaze/ceramic; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="marble_bloom"] body :is(#aimpad,#marbleControls .marble-ammo)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1a3439!important;
+ background-image:linear-gradient(145deg,#2a4c4d,#1a3439)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* marble_bloom: Botanical glaze/ceramic; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="marble_bloom"] body :is(.score-chip)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#1a3439!important;
+ background-image:linear-gradient(145deg,#2a4c4d,#1a3439)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* pocket_siege: Charcoal field instrument; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="pocket_siege"] body :is(#tankModule .range-card,#arsenal .drawer-panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#252633!important;
+ background-image:linear-gradient(145deg,#383748,#252633)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* pocket_siege: Charcoal field instrument; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="pocket_siege"] body :is(.retro-bar)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#252633!important;
+ background-image:linear-gradient(145deg,#383748,#252633)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* bow_club: Archery timber/range enamel; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="bow_club"] body :is(.bow-readout)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2d2922!important;
+ background-image:linear-gradient(145deg,#47392d,#2d2922)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* bow_club: Archery timber/range enamel; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="bow_club"] body :is(.tv-score)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2d2922!important;
+ background-image:linear-gradient(145deg,#47392d,#2d2922)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* poker: Emerald velvet/felt; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="poker"] body :is(#tabletop #actions button[data-action=fold],#tabletop #call,#tabletop #raise)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#14382d!important;
+ background-image:linear-gradient(145deg,#235442,#14382d)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* poker: Emerald velvet/felt; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="poker"] body :is(.seat)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#14382d!important;
+ background-image:linear-gradient(145deg,#235442,#14382d)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* airhockey: Cool rink enamel; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="airhockey"] body :is(#tabletop #hockeyJoy)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#19323e!important;
+ background-image:linear-gradient(145deg,#294957,#19323e)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* airhockey: Cool rink enamel; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="airhockey"] body :is(.hockey-last-hitter)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#19323e!important;
+ background-image:linear-gradient(145deg,#294957,#19323e)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* mines: Graphite survey plates; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="mines"] body :is(#tabletop .dpad)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#253137!important;
+ background-image:linear-gradient(145deg,#39454a,#253137)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* mines: Graphite survey plates; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="mines"] body :is(#tabletop #players .player)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#253137!important;
+ background-image:linear-gradient(145deg,#39454a,#253137)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* curling: Frosted rink equipment; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="curling"] body :is(.ss-sheet)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#163642!important;
+ background-image:linear-gradient(145deg,#214957,#163642)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* bowling: Walnut lane equipment; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="bowling"] body :is(.ss-sheet)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#2f2a29!important;
+ background-image:linear-gradient(145deg,#483b33,#2f2a29)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* swarm_gate: Plum stone/guard equipment; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="swarm_gate"] body :is(.ss-controller-status,#ss-aim-pad)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#292736!important;
+ background-image:linear-gradient(145deg,#3e3b4b,#292736)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* swarm_gate: Plum stone/guard equipment; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="swarm_gate"] body :is(#ss-gate-health,.ss-sheet)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#292736!important;
+ background-image:linear-gradient(145deg,#3e3b4b,#292736)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* peek_shoot: Meadow gallery timber; existing phone outer surface. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="peek_shoot"] body :is(.ss-controller-status,#ss-aim-pad)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#302921!important;
+ background-image:linear-gradient(145deg,#4b3a30,#302921)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}
+
+/* peek_shoot: Meadow gallery timber; existing host outer surface. */
+html.hp-ui.party-managed.party-host[data-hp-ui-theme="peek_shoot"] body :is(.ss-sheet)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
+ background-color:#302921!important;
+ background-image:linear-gradient(145deg,#4b3a30,#302921)!important;
+ background-position:center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+}

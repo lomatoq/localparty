@@ -1,0 +1,390 @@
+{
+  "scope": "Read-only Snake Lines alive-head versus dead-trail diagnosis. Historical Round5 original player states were not captured and cannot be recovered from PNGs alone.",
+  "productEdits": false,
+  "method": "Read-only diagnosis of actual normal-clock Snake Lines world. One human controller joins with default untouched joystick; three ordinary built-in bots. Canonical snapshots, projected actor centers and actual measured cap. No injected state/scores; no phone PNGs; no product edits.",
+  "openedFreshOriginals": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/snakelines-hud-diagnosis/snakelines-tv-hud-diagnosis-1280.png",
+      "sha256": "59796c81ba6bb759e09682674e6c431b0999f1a1f31828e8809fd0b25515c212",
+      "viewport": [
+        1280,
+        720
+      ],
+      "humanBefore": {
+        "id": "9b9a4ffaaa1e4998",
+        "name": "Alexandra LongSurname",
+        "color": "#b9ff4d",
+        "alive": true,
+        "dead": 0,
+        "x": 372.16666666666634,
+        "y": 100,
+        "angle": 0,
+        "trailLength": 36,
+        "trailTail": [
+          {
+            "x": 341,
+            "y": 100
+          },
+          {
+            "x": 349,
+            "y": 100
+          },
+          {
+            "x": 357,
+            "y": 100
+          },
+          {
+            "x": 364,
+            "y": 100
+          },
+          {
+            "x": 372,
+            "y": 100
+          }
+        ],
+        "center": {
+          "x": 412.16666666666634,
+          "y": 100
+        },
+        "centerUnderCap": true
+      },
+      "humanAfter": {
+        "id": "9b9a4ffaaa1e4998",
+        "name": "Alexandra LongSurname",
+        "color": "#b9ff4d",
+        "alive": true,
+        "dead": 0,
+        "x": 387.4999999999996,
+        "y": 100,
+        "angle": 0,
+        "trailLength": 38,
+        "trailTail": [
+          {
+            "x": 357,
+            "y": 100
+          },
+          {
+            "x": 364,
+            "y": 100
+          },
+          {
+            "x": 372,
+            "y": 100
+          },
+          {
+            "x": 380,
+            "y": 100
+          },
+          {
+            "x": 387,
+            "y": 100
+          }
+        ],
+        "center": {
+          "x": 427.4999999999996,
+          "y": 100
+        },
+        "centerUnderCap": true
+      },
+      "camera": {
+        "world": {
+          "width": 1200,
+          "height": 720
+        },
+        "scale": 1,
+        "x": 40,
+        "y": 0,
+        "safeTop": 0,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "uniform": true,
+        "responsiveLanes": false
+      },
+      "actualCap": [
+        {
+          "left": 340,
+          "top": 0,
+          "right": 940,
+          "bottom": 113.59375,
+          "width": 600,
+          "height": 113.59375,
+          "kind": "match",
+          "mode": "centered-scoreboard"
+        }
+      ]
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/snakelines-hud-diagnosis/snakelines-tv-hud-diagnosis-1920.png",
+      "sha256": "4b835173b64b231e6309c99e84588753ea3634ddfc59fd099c3a901f005dfe5b",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "humanBefore": {
+        "id": "9b9a4ffaaa1e4998",
+        "name": "Alexandra LongSurname",
+        "color": "#b9ff4d",
+        "alive": false,
+        "dead": 0,
+        "x": 398.99999999999955,
+        "y": 100,
+        "angle": 0,
+        "trailLength": 39,
+        "trailTail": [
+          {
+            "x": 364,
+            "y": 100
+          },
+          {
+            "x": 372,
+            "y": 100
+          },
+          {
+            "x": 380,
+            "y": 100
+          },
+          {
+            "x": 387,
+            "y": 100
+          },
+          {
+            "x": 395,
+            "y": 100
+          }
+        ],
+        "center": {
+          "x": 658.4999999999993,
+          "y": 150
+        },
+        "centerUnderCap": true
+      },
+      "humanAfter": {
+        "id": "9b9a4ffaaa1e4998",
+        "name": "Alexandra LongSurname",
+        "color": "#b9ff4d",
+        "alive": false,
+        "dead": 0,
+        "x": 398.99999999999955,
+        "y": 100,
+        "angle": 0,
+        "trailLength": 39,
+        "trailTail": [
+          {
+            "x": 364,
+            "y": 100
+          },
+          {
+            "x": 372,
+            "y": 100
+          },
+          {
+            "x": 380,
+            "y": 100
+          },
+          {
+            "x": 387,
+            "y": 100
+          },
+          {
+            "x": 395,
+            "y": 100
+          }
+        ],
+        "center": {
+          "x": 658.4999999999993,
+          "y": 150
+        },
+        "centerUnderCap": true
+      },
+      "camera": {
+        "world": {
+          "width": 1200,
+          "height": 720
+        },
+        "scale": 1.5,
+        "x": 60,
+        "y": 0,
+        "safeTop": 0,
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "uniform": true,
+        "responsiveLanes": false
+      },
+      "actualCap": [
+        {
+          "left": 510,
+          "top": 0,
+          "right": 1410,
+          "bottom": 170.390625,
+          "width": 900,
+          "height": 170.390625,
+          "kind": "match",
+          "mode": "centered-scoreboard"
+        }
+      ]
+    }
+  ],
+  "canonicalTrajectory": {
+    "first": {
+      "time": 0,
+      "round": 0,
+      "id": "9b9a4ffaaa1e4998",
+      "name": "Alexandra LongSurname",
+      "color": "#b9ff4d",
+      "alive": true,
+      "dead": 0,
+      "x": 100,
+      "y": 100,
+      "angle": 0,
+      "trailLength": 0,
+      "trailTail": [],
+      "center": {
+        "x": 476.80555555555554,
+        "y": 202.63888888888889
+      },
+      "centerUnderCap": false
+    },
+    "firstObservedAliveCenterUnderCap": {
+      "time": 1.7666666666666688,
+      "round": 1,
+      "id": "9b9a4ffaaa1e4998",
+      "name": "Alexandra LongSurname",
+      "color": "#b9ff4d",
+      "alive": true,
+      "dead": 0,
+      "x": 303.1666666666667,
+      "y": 100,
+      "angle": 0,
+      "trailLength": 27,
+      "trailTail": [
+        {
+          "x": 273,
+          "y": 100
+        },
+        {
+          "x": 280,
+          "y": 100
+        },
+        {
+          "x": 288,
+          "y": 100
+        },
+        {
+          "x": 296,
+          "y": 100
+        },
+        {
+          "x": 303,
+          "y": 100
+        }
+      ],
+      "center": {
+        "x": 343.1666666666667,
+        "y": 100
+      },
+      "centerUnderCap": true
+    },
+    "lastObservedAliveCenterUnderCap": {
+      "time": 2.533333333333334,
+      "round": 1,
+      "id": "9b9a4ffaaa1e4998",
+      "name": "Alexandra LongSurname",
+      "color": "#b9ff4d",
+      "alive": true,
+      "dead": 0,
+      "x": 391.3333333333329,
+      "y": 100,
+      "angle": 0,
+      "trailLength": 38,
+      "trailTail": [
+        {
+          "x": 357,
+          "y": 100
+        },
+        {
+          "x": 364,
+          "y": 100
+        },
+        {
+          "x": 372,
+          "y": 100
+        },
+        {
+          "x": 380,
+          "y": 100
+        },
+        {
+          "x": 387,
+          "y": 100
+        }
+      ],
+      "center": {
+        "x": 646.9999999999993,
+        "y": 150
+      },
+      "centerUnderCap": true
+    },
+    "firstObservedDead": {
+      "time": 2.6000000000000005,
+      "round": 1,
+      "id": "9b9a4ffaaa1e4998",
+      "name": "Alexandra LongSurname",
+      "color": "#b9ff4d",
+      "alive": false,
+      "dead": 0,
+      "x": 398.99999999999955,
+      "y": 100,
+      "angle": 0,
+      "trailLength": 39,
+      "trailTail": [
+        {
+          "x": 364,
+          "y": 100
+        },
+        {
+          "x": 372,
+          "y": 100
+        },
+        {
+          "x": 380,
+          "y": 100
+        },
+        {
+          "x": 387,
+          "y": 100
+        },
+        {
+          "x": 395,
+          "y": 100
+        }
+      ],
+      "center": {
+        "x": 658.4999999999993,
+        "y": 150
+      },
+      "centerUnderCap": true
+    }
+  },
+  "findings": [
+    "720p fresh capture brackets the screenshot with alive=true/dead=0 and a head center fully inside the actual opaque cap. Real live-head occlusion is confirmed.",
+    "1080p later fresh capture brackets the screenshot with alive=false/dead=0; persistent trail and omitted head/name are the correct dead-player render.",
+    "Default untouched joystick leaves human heading 0 and y=100; canonical movement reaches the header footprint before the existing other-player trail at x400/y100 kills the player. No spawning/input/rules were changed."
+  ],
+  "sources": {
+    "games/arcade/public/app.js": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52",
+    "games/arcade/public/snake-polish.js": "c25ffd150e5ca2c4eb087a9b1c092174eecf1e394aa9e8f094d73475a197410a",
+    "games/arcade/server.js": "05d52dfcf1322d6f7b855ea80cd9cc29261570deb14a2cad74fa6c7ad9f1b779",
+    "games/arcade/simulation.js": "8a99d754d1147303ea6eb49230a0fa3660d703fc1728ddbd71d8afb6640779b0",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7"
+  },
+  "errors": [],
+  "changedFiles": [],
+  "browserAndServerClosed": true,
+  "phonePNGs": false,
+  "proposalPendingRootApproval": "Uniformly fit the unchanged 1200x720 Snake world below measured cap bottom+16 using the existing action-stage camera branch. Continue authored grid through fullviewport decorative backing. Keep canonical spawns, heading/turn rate, trails, collision thresholds, walls 10..1190/10..710 and input packets unchanged. No authoritative new cap wall, actor teleport/recovery, reset or global game change. Tradeoff: uniformly smaller Snake playable world below the fixed opaque cap, with continuous scenery around it; root must approve in context of latest full-field request."
+}

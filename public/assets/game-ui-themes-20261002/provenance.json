@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-02",
+  "purpose": "Six semantic UI decorations; no generated logos/fonts/actions; scoped pilot review required",
+  "assets": [
+    {
+      "id": "curling-stone",
+      "path": "public/assets/game-ui-themes-20261002/curling-stone.png",
+      "origin": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-335d-77b3-ba53-ae21ab960c58/exec-81a3798c-b8e2-4e76-9aa0-470efef71ba0.png",
+      "prompt": "Create a minimal flat 2D cartoon decoration for a casual game UI, isolated with TRUE TRANSPARENT BACKGROUND. Bold simple rounded vector shapes. Opaque matte fills, only2\u20133 flat colors, absolutely no light effects, NO glow, NO cast shadow, NO soft airbrush, NO gradients, NO reflections, no photorealism, no rendered3D. Small quiet decoration readable at36px, never a tile/badge or iconbutton, no text. Large centered subject with20% transparent margin. Use clean hard silhouette with antialiasing only along outline. One curling stone, rounded grey oval body with a chunky cyan handle and one palegrey horizontal band. Front view, simple flat silhouette.",
+      "mode": "builtin-imagegen",
+      "status": "generated inspected source; pilot small-size edge proof pending",
+      "directorSourceReview": "silhouette/material suitable; exact sampled stone/pin gap pixels alpha1, earlier opaque regional interpretation withdrawn; actual36\u201344px live placement acceptance pending; omit unused candidates"
+    },
+    {
+      "id": "bowling-pins",
+      "path": "public/assets/game-ui-themes-20261002/bowling-pins.png",
+      "origin": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-335d-77b3-ba53-ae21ab960c58/exec-17fa3076-8e90-4104-8a2e-418ee5c288db.png",
+      "prompt": "Create a minimal flat 2D cartoon decoration for a casual game UI, isolated with TRUE TRANSPARENT BACKGROUND. Bold simple rounded vector shapes. Opaque matte fills, only2\u20133 flat colors, absolutely no light effects, NO glow, NO cast shadow, NO soft airbrush, NO gradients, NO reflections, no photorealism, no rendered3D. Small quiet decoration readable at36px, never a tile/badge or iconbutton, no text. Large centered subject with20% transparent margin. Use clean hard silhouette with antialiasing only along outline. Two bowling pins standing beside each other, cream bodies and two muted coral neck stripes. Front view, compact asymmetrical silhouette.",
+      "mode": "builtin-imagegen",
+      "status": "generated inspected source; pilot small-size edge proof pending",
+      "directorSourceReview": "silhouette/material suitable; exact sampled stone/pin gap pixels alpha1, earlier opaque regional interpretation withdrawn; actual36\u201344px live placement acceptance pending; omit unused candidates"
+    },
+    {
+      "id": "poker-chips",
+      "path": "public/assets/game-ui-themes-20261002/poker-chips.png",
+      "origin": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-335d-77b3-ba53-ae21ab960c58/exec-07de0631-99e5-452f-9bf1-a891ec238529.png",
+      "prompt": "Use case: stylized-concept. An isolated small game UI decoration, very clean flat vector-style cartoon. Fully opaque object, flat solid matte color fills with crisp edges. Absolutely no glow, no shadow, no lighting, no gradient, no paper grain, no badge, no circle around it, no text. Background must be a perfectly uniform solid saturated MAGENTA #ff00ff chroma key, with no shadow or glow pixels; the opaque subject must not contain magenta. Subject must have a simple front-view silhouette, clear large shapes readable at36px. Center with generous margins. Three chunky poker chips stacked in a compact little pile. Dark teal sides, ivory rim ticks, muted coral top. Simple flat front view, no perspective drama.",
+      "mode": "builtin-imagegen",
+      "status": "generated inspected source; pilot small-size edge proof pending",
+      "directorSourceReview": "suitable pilot candidate"
+    },
+    {
+      "id": "wood-blocks",
+      "path": "public/assets/game-ui-themes-20261002/wood-blocks.png",
+      "origin": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-335d-77b3-ba53-ae21ab960c58/exec-e1112026-b740-4396-a916-96f9ec5623f0.png",
+      "prompt": "Use case: stylized-concept. An isolated small game UI decoration, very clean flat vector-style cartoon. Fully opaque object, flat solid matte color fills with crisp edges. Absolutely no glow, no shadow, no lighting, no gradient, no paper grain, no badge, no circle around it, no text. Background must be a perfectly uniform solid saturated MAGENTA #ff00ff chroma key, with no shadow or glow pixels; the opaque subject must not contain magenta. Subject must have a simple front-view silhouette, clear large shapes readable at36px. Center with generous margins. Three honey-brown wooden Jenga blocks in a small stable staggered stack. Rounded corners, minimal two-tone end faces, only two broad grain lines. No dimensional lighting.",
+      "mode": "builtin-imagegen",
+      "status": "generated inspected source; pilot small-size edge proof pending",
+      "directorSourceReview": "silhouette/material suitable; exact sampled stone/pin gap pixels alpha1, earlier opaque regional interpretation withdrawn; actual36\u201344px live placement acceptance pending; omit unused candidates"
+    },
+    {
+      "id": "drawing-pencils",
+      "path": "public/assets/game-ui-themes-20261002/drawing-pencils.png",
+      "origin": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-335d-77b3-ba53-ae21ab960c58/exec-be6be32f-df64-4f7f-aee5-375cc97ccfa2.png",
+      "prompt": "Use case: stylized-concept. An isolated small game UI decoration, very clean flat vector-style cartoon. Fully opaque object, flat solid matte color fills with crisp edges. Absolutely no glow, no shadow, no lighting, no gradient, no paper grain, no badge, no circle around it, no text. Background must be a perfectly uniform solid saturated MAGENTA #ff00ff chroma key, with no shadow or glow pixels; the opaque subject must not contain magenta. Subject must have a simple front-view silhouette, clear large shapes readable at36px. Center with generous margins. Two short chunky drawing pencils crossed gently, one muted turquoise and one honey yellow, beige sharpened tips and charcoal point. Flat front view, no erasers, no extra objects.",
+      "mode": "builtin-imagegen",
+      "status": "generated inspected source; pilot small-size edge proof pending",
+      "directorSourceReview": "suitable pilot candidate"
+    },
+    {
+      "id": "racing-flag",
+      "path": "public/assets/game-ui-themes-20261002/racing-flag.webp",
+      "origin": "games/kart/static/assets/atlas-kart/flag-checkered.webp",
+      "mode": "existing-authored-asset",
+      "status": "original alpha inspected; pair assembled only with CSS",
+      "directorSourceReview": "suitable pilot candidate"
+    }
+  ],
+  "rejected": [
+    "First racing flags and targeted revision: unwanted diffuse alpha halo; retained outside public assets in output/imagegen",
+    "Second independent racing flags: diffuse halo; not shipped"
+  ]
+}

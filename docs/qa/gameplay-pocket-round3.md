@@ -1,0 +1,33 @@
+# Pocket Siege — actual gameplay review, 30 September 2026
+
+Owner: `marble_ui`; changes are limited to the shared deluxe public renderer and Pocket controller/deck files. All existing weapons, loadouts, terrain, physics, game rules, menus, matchmaking and approved Pause/Lobby remain intact. Root owns common header, results and event effects.
+
+Player identities and metrics now have distinct roles: literal upright Fit names, FatRunner900 italic numeric Points, smaller explanatory labels. Native1080 TV scales the score chips and loadout cards with the field, instead of leaving them at 720 CSS size. Field names use measured ellipses and clamp inside the field. The turn label keeps its action and literal identity in separate spans; Pocket deck updates no longer destroy that markup on every state packet.
+
+Two real controller bugs were corrected. Single Shot appeared selectable in draft although the server rejects it because two are already supplied free. Only that free entry is excluded and the explanation states the rule. Detached drone controls were searched through `document.getElementById`; the null results were appended as visible `nullnullnull`, and Drop stayed in the wrong parent. Searching the detached subtree fixes mounting. Preview hides inactive flight controls, while actual flight retains joystick, battery and Drop. Short-phone layout compacts the radar/flight region so essential actions remain above the real footer.
+
+The weapon drawer exits with a bounded220ms scale/alpha transition. It survives rapid reopen, traps Tab, closes through Escape, returns focus when eligible, and immediately closes under reduced motion. Fixed Ready has its own row below the scrollable weapon list. The thick scrollbar is hidden while native scrolling remains. Each soft edge fade exists only when there are rows beyond that edge; at the reached last row, only the top fade remains.
+
+The main final source capture set is `.localparty-build/design-round3/pocket/final-scroll`: six actual browser humans, normal clock,23 screenshots. All23 were freshly manually opened and independently numbered with SHA256 and observations. TV720/1080, phone320/393, draft, reached last draft/inventory rows, tank, actual shot/next turn, drone preview, actual drone launch/movement/Drop, AA standby, Pause/resume and same-identity reload were covered. No engine source changed during capture and no browser errors occurred. The source hash scope includes the eight owned deluxe files, not every concurrent root file.
+
+Root personally accepted the three new scrollbar frames in that directory: `solo-6-loadout-phone-320.png`, `solo-6-loadout-bottom-phone-320.png`, `solo-6-phone-320-arsenal-bottom.png`. Their exact PNG hashes and current production hashes are recorded under `secondReview` in the ledger. Earlier accepted TV/AA/turn/drone compositions and the old rejected visible-scrollbar frame remain history; their acceptance is not silently transferred to new images.
+
+A separate real two-human normal-clock match completed all10 turns over five rounds using native range Home inputs and actual Fire, with authoritative results and no injected state, scores or accelerated clock. `final-finish-long/report.json` records phase=results, both legitimate tied zero scores and unchanged source. Its first TV720 result frame was captured during portrait entry and is timing evidence only. A settled-results run is recorded separately after the reveal delay; only manually inspected final images may be accepted from that run.
+
+Active AA interception and all321 weapon outcomes are not covered. Browser screenshots do not prove physical native haptics/device rendering. A shared flight masthead fallback/timing observation was sent to root and is outside this production ownership. Shared numeric score target is `#scores .score-readout strong`.
+
+## Current server metadata and settled results
+
+After the Marble versus deadline correction in the common deluxe server, `final-deadline-sibling/report.json` repeats all23six-human Pocket screenshots and actual tank/drone/drawer/Pause/reload interactions on that current server. All23 were freshly manually viewed and their current SHA/source scope is recorded separately. No browser errors or owner source changes occurred. Earlier root acceptance remains attached to the earlier three exact scroll hashes; it is not transferred to this new set.
+
+`final-results-settled-2/report.json` records another complete real normal-clock two-human ten-turn match, followed by2400ms reveal delay. Its four final TV720/1080 and phone320/393 images were manually inspected: full tied winner portraits/crowns/names, numeric rank/score, fireworks and intact phone/footer boundaries. Only those four images are accepted visual scope from that run. The earlier incomplete draft probe is retained with its failure and receives no acceptance.
+
+## Frozen TV chip review
+
+`final-tv-chips/report.json` completed at21:39:33UTC:9 fresh TV frames covering six-person draft, tank shot/next turn, drone and AA720/1080. All9 were manually opened and separately hashed in `visual-review.json`. Owner and shared TV source hashes stayed unchanged within capture. An actual Fire produced34 Points and the current Wind−11.7 value is visible in bounded chips; this is event evidence rather than an injected score fixture. Root's later Poker-only hand-chip exclusion does not alter these game branches, and does not transfer approval.
+
+Root personally accepted the exact settled `final-results-settled-2/solo-2-results-tv-720.png` layout: complete Alexandra/Nadia names, both portraits/crowns, fireworks and legitimate tied0 scores after2400ms. The old transient720 image remains rejected. The ledger records this exact SHA and captured source, with explicit exclusion of the later shared ranking revision from that approval.
+
+## Final outside-field background freeze
+
+The final authorised change exposes the root-owned common brick/glow backdrop outside the authored world: deluxe canvas now uses alpha and clears the frame before drawing its existing opaque world, and the outer arena/controller wrappers become transparent. Path, terrain, sky, controls and camera calculations are unchanged. `node --check games/arcade_deluxe/public/render.js` and the existing `tests/deluxe-render-regression.cjs` pass after this change, including aspect ratio/aim mapping, settled tank pose, map crossfade lifecycle and bounded snapshots. Production stopped for the local iPhone build immediately afterwards. Earlier screenshots remain evidence for their exact captured composition; no fresh manual final-background approval is inferred.

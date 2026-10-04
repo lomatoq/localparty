@@ -32,9 +32,9 @@ button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{transit
 .lp-motion-ready body.in-game #liveTop>*{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
 .lp-motion-ready body.in-game #liveTop>*:nth-child(2){animation-delay:var(--motion-stagger)}
 .lp-motion-ready body.in-game #liveTop>*:nth-child(3){animation-delay:calc(var(--motion-stagger) * 2)}
-/* Dynamic lobby rows use the same restrained reveal cadence. Existing hero/card
-   arrival animations remain authoritative and keep their tested endpoints. */
-.lp-motion-ready .player,.lp-motion-ready .room-player,.lp-motion-ready .stats-rank{animation:lp-stagger-item-in var(--motion-base) var(--motion-ease-out) both}
+/* Roster and ranking remounts remain readable on their very first frame. */
+.lp-motion-ready .player,.lp-motion-ready .room-player,.lp-motion-ready .stats-rank{animation:lp-list-settle-in 180ms var(--motion-ease-out) both}
+@keyframes lp-list-settle-in{from{translate:0 4px}to{translate:0 0}}
 /* Popups appear from their visual anchor and never move surrounding content. */
 .lp-motion-ready dialog[open]{animation:lp-dialog-in var(--motion-base) var(--motion-ease-pop) both}
 .lp-motion-ready dialog[open]::backdrop{animation:lp-backdrop-in var(--motion-base) ease-out both}
@@ -75,9 +75,10 @@ html.lp-motion-ready.party-managed body{animation:lp-backdrop-in var(--motion-sl
 @keyframes lp-hud-chip-in{from{opacity:0;filter:brightness(.7)}72%{opacity:1;filter:brightness(1.12)}to{opacity:1;filter:none}}
 @keyframes lp-hud-card-in{from{opacity:0;transform:translate3d(0,-12px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 @keyframes lp-hud-bottom-in{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
-.lp-reveal-pending{opacity:0!important}
-.lp-catalog-card img.symbol,.guest-game img.guest-art{transition:opacity 360ms ease}
-.lp-art-loading img.symbol,.lp-art-loading img.guest-art{opacity:0}
+/* Legacy reveal classes must never hide catalog content while scrolling. */
+.lp-reveal-pending{opacity:1!important}
+.lp-catalog-card img.symbol,.guest-game img.guest-art{transition:opacity 120ms ease}
+.lp-art-loading img.symbol,.lp-art-loading img.guest-art{opacity:1}
 @media(prefers-reduced-motion:reduce){.lp-reveal-pending{opacity:1!important}.lp-catalog-card img.symbol,.guest-game img.guest-art{transition:none}}
 @keyframes lp-card-in{from{opacity:0;transform:translate3d(0,16px,0) scale(.975)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 @keyframes lp-stagger-item-in{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
@@ -296,9 +297,19 @@ body.guest-catalog .guest-game.rank-row .guest-actions{grid-column:3}
 }
 @media(max-width:430px){body.guest-catalog #home>.intro{padding-bottom:6px!important;min-height:0!important;margin-bottom:0!important}body.guest-catalog #home .intro .headline-stage{margin-bottom:14px!important}body.guest-catalog #home .intro>div{min-height:0!important}}
 
-/* No visible scrollbars anywhere — scrolling stays, the bars go. */
-html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}
-html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;background:transparent!important}
 /* Top-company rows: room for the highlighted row's ring and crown. */
 #statsDialog #statsBody{padding:6px 6px 8px 8px!important;overflow:visible!important}
 #statsDialog{overflow-x:hidden}
+
+/* Dialogs inside proxied games use the same exit as the launcher. Keep the
+   stronger closing selector above later native/skin entrance overrides. */
+html body dialog[open].lp-dialog-closing.sheet-closing,
+html body.native-shell dialog[open].lp-dialog-closing.sheet-closing{
+ animation:lp-shared-dialog-out 180ms cubic-bezier(.23,1,.32,1) both!important;
+ transition:none!important;pointer-events:none;transform-origin:center center;
+}
+html body dialog[open].lp-dialog-closing.sheet-closing>*{animation:none!important;opacity:1;translate:none}
+html body dialog[open].lp-dialog-closing.sheet-closing::backdrop{animation:lp-shared-backdrop-out 180ms ease-out both!important}
+@keyframes lp-shared-dialog-out{from{opacity:var(--lp-close-opacity,1);translate:var(--lp-close-translate,0 0);scale:var(--lp-close-scale,1);transform:var(--lp-close-transform,none)}to{opacity:0;translate:0 8px;scale:.96;transform:none}}
+@keyframes lp-shared-backdrop-out{from{opacity:1}to{opacity:0}}
+@media(prefers-reduced-motion:reduce){html body dialog[open].lp-dialog-closing.sheet-closing,html body dialog[open].lp-dialog-closing.sheet-closing::backdrop{animation:none!important}}

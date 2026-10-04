@@ -42,9 +42,9 @@ socket.on('game:state',s=>{
     renderQueue();
     if(s.activePlayerId!==me.id && !$('#confirmView').classList.contains('hidden')) show('waitView');
     if(s.activePlayerId!==me.id && $('#drawView').classList.contains('hidden')===false) show('waitView');
-    if(s.activePlayerId!==me.id){$('#waitTitle').textContent=`Сейчас рисует ${s.activePlayerName}`;$('#waitText').textContent='Ты в очереди на следующую часть. Продолжай только узкую полоску предыдущего рисунка — всё остальное секрет.';show('waitView')}
+    if(s.activePlayerId!==me.id){const sent=s.players.findIndex(p=>p.id===me.id)<s.turnIndex;$('#waitTitle').textContent=`Сейчас рисует ${s.activePlayerName}`;$('#waitText').textContent=sent?'Готово! После отправки рисунок уже не вернуть. Следующий увидит только стык.':'Ты в очереди на следующую часть. Продолжай только узкую полоску предыдущего рисунка — всё остальное секрет.';show('waitView')}
   } else if(s.phase==='reveal'){
-    turn=null;$('#waitTitle').textContent='Готово!';$('#waitText').textContent='Смотри на большой экран 😈';show('waitView')
+    renderQueue();turn=null;$('#waitTitle').textContent='Готово!';$('#waitText').textContent='Смотри на большой экран 😈';show('waitView')
   }
 });
 
@@ -76,9 +76,10 @@ function point(e){const r=canvas.getBoundingClientRect();const touch=e.touches?.
 function saveHistory(){if(history.length>18)history.shift();history.push(canvas.toDataURL('image/png'))}
 function draftKey(){return 'mc_draft_'+me.id+'_'+(turn?.roundId||turn?.round)+'_'+turn?.turnIndex}
 function saveDraft(){if(!turn)return;try{localStorage.setItem(draftKey(),JSON.stringify({image:canvas.toDataURL('image/png'),strokes:strokeCount}));}catch{toast('Не удалось сохранить черновик на телефоне');}}
-function begin(e){e.preventDefault();if(activePointer!==null||loadingCanvas||!turn)return;activePointer=e.pointerId;canvas.setPointerCapture(activePointer);drawing=true;last=point(e);ctx.fillStyle=color;ctx.beginPath();ctx.arc(last.x,last.y,size/2,0,Math.PI*2);ctx.fill();strokeCount++;}
-function move(e){if(!drawing||e.pointerId!==activePointer)return;e.preventDefault();const p=point(e);ctx.strokeStyle=color;ctx.lineWidth=size;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;if(!draftTimer)draftTimer=setTimeout(()=>{draftTimer=null;saveDraft()},250);}
-function end(e){if(!drawing||(e&&e.pointerId!==undefined&&e.pointerId!==activePointer))return;e?.preventDefault?.();drawing=false;activePointer=null;saveHistory();saveDraft();}
+function begin(e){e.preventDefault();if(activePointer!==null||loadingCanvas||!turn)return;activePointer=e.pointerId;canvas.setPointerCapture(activePointer);drawing=true;last=point(e);lastMid=null;ctx.fillStyle=color;ctx.beginPath();ctx.arc(last.x,last.y,size/2,0,Math.PI*2);ctx.fill();strokeCount++;}
+// Smoothed brush: coalesced pointer samples joined by midpoint quadratics.
+let lastMid=null;function move(e){if(!drawing||e.pointerId!==activePointer)return;e.preventDefault();ctx.strokeStyle=color;ctx.lineWidth=size;ctx.lineCap='round';ctx.lineJoin='round';const samples=e.getCoalescedEvents?.().length?e.getCoalescedEvents():[e];for(const sample of samples){const p=point(sample),m={x:(last.x+p.x)/2,y:(last.y+p.y)/2};ctx.beginPath();ctx.moveTo((lastMid||last).x,(lastMid||last).y);ctx.quadraticCurveTo(last.x,last.y,m.x,m.y);ctx.stroke();lastMid=m;last=p;}if(!draftTimer)draftTimer=setTimeout(()=>{draftTimer=null;saveDraft()},250);}
+function end(e){if(!drawing||(e&&e.pointerId!==undefined&&e.pointerId!==activePointer))return;e?.preventDefault?.();if(lastMid&&last){ctx.strokeStyle=color;ctx.lineWidth=size;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(lastMid.x,lastMid.y);ctx.lineTo(last.x,last.y);ctx.stroke();}lastMid=null;drawing=false;activePointer=null;saveHistory();saveDraft();}
 canvas.addEventListener('pointerdown',begin);canvas.addEventListener('pointermove',move);for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,end);window.addEventListener('blur',()=>end());document.addEventListener('visibilitychange',()=>{if(document.hidden){end();saveDraft()}});
 
 $('#undoBtn').onclick=()=>{if(history.length<=1)return;history.pop();restore(history[history.length-1])};
@@ -110,4 +111,3 @@ function exportSegment(){
 setInterval(()=>{if(!turn)return;const left=Math.max(0,Math.ceil((turn.turnDeadline-Date.now())/1000));$('#turnTimer').textContent=left?left+' сек':'Можно заканчивать';},250);
 socket.on('player:replaced',()=>{end();saveDraft();toast('Игрок подключился в другой вкладке');});
 show(me.id?'waitView':'joinView');
-

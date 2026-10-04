@@ -11,6 +11,10 @@ const ExplosionTimeline=require('../public/explosion-timeline.js');
 const W=1280,H=720,DEPTH=1800,G=350,DX=2,MAX_PROJECTILES=1024;
 class Tanks extends BaseGame {
  constructor(seed=7){super(seed);this.mode='pocket_siege';this.terrain=[];this.projectiles=[];this.interceptors=[];this.pending=[];this.zones=[];this.turn=0;this.stage='waiting';this.activeId=null;this.wind=0;this.terrainRevision=0;this.makeTerrain();}
+ // Burst effects may evict a score before the next20Hz TV snapshot. Keep
+ // feedback separately, while preserving the existing65-event packet limit.
+ emit(kind,data={}){super.emit(kind,data);if(kind==='score'||kind==='hit'){this.feedbackEvents??=[];this.feedbackEvents.push(this.events[this.events.length-1]);if(this.feedbackEvents.length>128)this.feedbackEvents.splice(0,this.feedbackEvents.length-128);}}
+ snapshotEvents(){this.feedbackEvents=(this.feedbackEvents||[]).filter(e=>this.t-e.t<=2.6);const feedback=this.feedbackEvents.slice(-48),ids=new Set(feedback.map(e=>e.id)),ordinary=this.events.filter(e=>!ids.has(e.id)).slice(-(65-feedback.length));return [...feedback,...ordinary].sort((a,b)=>a.id-b.id);}
  add(profile){return super.add(profile,6);}
  ground(x){x=clamp(x,0,W)/DX;const i=Math.floor(x);return lerp(this.terrain[i],this.terrain[Math.min(i+1,this.terrain.length-1)],x-i);}
  groundAngle(x){return Geo.support(this.terrain,x).angle;}
@@ -31,7 +35,7 @@ class Tanks extends BaseGame {
   p.buried=p.underground&&[-12,0,12].some(dx=>[-12,-4,4].some(dy=>this.solid(p.x+dx,p.y+dy)));
  }
  seat(p){const q=this.support(p.x);p.y=q.y;p.surfaceAngle=q.angle;p.vy=0;p.vx=0;p.grounded=true;}
- reset(){super.reset();this.t=0;this.stage='waiting';this.projectiles=[];this.interceptors=[];this.pending=[];this.zones=[];this.coatings=[];this.events=[];this.activeId=null;this.currentWeapon=null;this.makeTerrain();}
+ reset(){super.reset();this.t=0;this.stage='waiting';this.projectiles=[];this.interceptors=[];this.pending=[];this.zones=[];this.coatings=[];this.events=[];this.feedbackEvents=[];this.activeId=null;this.currentWeapon=null;this.makeTerrain();}
 
  makeTerrain(){this.explosionWaves=[];const phase=this.rng.next()*9;for(let i=0;i<=W/DX;i++){const x=i*DX;this.terrain[i]=clamp(465+Math.sin(x*.006+phase)*75+Math.sin(x*.013+phase*2)*33+Math.cos(x*.025)*10,330,610);}this.soil=new ColumnTerrain(W,DEPTH,DX).fromHeights(this.terrain);this.terrainRevision++;}
  syncTerrain(){this.terrain=this.soil.heightmap();this.terrainRevision++;}
@@ -40,7 +44,7 @@ class Tanks extends BaseGame {
   if(this.phase!=='waiting')return false;
   this.interceptors=[];
   const players=this.players.filter(p=>p.connected);if(players.length<2)return false;
-  this.drone=null;this.roundSerial++;this.t=0;this.phase='playing';this.stage='aim';this.result=null;this.events=[];this.turn=0;this.rounds=clamp(Math.round(finite(settings.rounds,10)),2,15);this.sandbox=settings.sandbox===true||settings.sandbox==='true';this.draftMode=!this.sandbox&&(settings.draftMode===true||settings.draftMode==='true');this.draftSize=clamp(this.rounds-2,3,13);this.teams=settings.teams===true||settings.teams==='true';this.sky='classic';this.projectiles=[];this.pending=[];this.zones=[];this.coatings=[];this.makeTerrain();
+  this.drone=null;this.roundSerial++;this.t=0;this.phase='playing';this.stage='aim';this.result=null;this.events=[];this.feedbackEvents=[];this.turn=0;this.rounds=clamp(Math.round(finite(settings.rounds,10)),2,15);this.sandbox=settings.sandbox===true||settings.sandbox==='true';this.draftMode=!this.sandbox&&(settings.draftMode===true||settings.draftMode==='true');this.draftSize=clamp(this.rounds-2,3,13);this.teams=settings.teams===true||settings.teams==='true';this.sky='classic';this.projectiles=[];this.pending=[];this.zones=[];this.coatings=[];this.makeTerrain();
   for(const p of this.players)p.participant=false;
   for(const [i,p] of players.entries()){
    Object.assign(p,{buried:false,airDefenseCharges:10,droneUsed:false,team:this.teams?i%2:i,vy:0,vx:0,participant:true,x:110+i*(W-220)/(players.length-1),y:0,score:0,angle:i<players.length/2?45:135,power:65,fuel:100,shots:0,frozen:0,weapon:'pebble',driveInput:0,driveUntil:0,distanceDriven:0,loadout:[],loadoutReady:!this.draftMode});
@@ -68,8 +72,8 @@ class Tanks extends BaseGame {
  active(){return this.players.find(p=>p.id===this.activeId);}
  nextTurn(first=false){
   if(!first)this.turn++;
-  if(this.turn>=this.rounds*this.order.length){this.finish('complete');if(this.teams){const totals=[0,0];for(const p of this.players.filter(p=>p.participant))totals[p.team]+=p.score;for(const r of this.result.players)r.won=totals[this.players.find(p=>p.id===r.id).team]===Math.max(...totals);this.result.teamScores=totals;}this.stage='results';return;}
-  this.activeId=this.order[this.turn%this.order.length];this.stage='aim';this.deadline=this.t+28;this.aimStarted=this.t;this.wind=(this.rng.next()-.5)*40;this.shotAge=0;
+  if(this.turn>=this.rounds*this.order.length){this.finish('complete');if(this.teams){const totals=[0,0];for(const p of this.players.filter(p=>p.participant))totals[p.team]+=p.score;this.result.ranking={kind:'teams'};for(const r of this.result.players){r.team=this.players.find(p=>p.id===r.id).team;r.teamScore=totals[r.team];r.won=r.teamScore===Math.max(...totals);}this.result.teamScores=totals;}this.stage='results';return;}
+  this.feedbackEvents=[];this.activeId=this.order[this.turn%this.order.length];this.stage='aim';this.deadline=this.t+28;this.aimStarted=this.t;this.wind=(this.rng.next()-.5)*40;this.shotAge=0;
   const p=this.active();p.weapon=Object.keys(p.inventory).find(k=>p.inventory[k]>0)||'pebble';p.blockedThisTurn=p.frozen>0;if(p.frozen)p.frozen--;this.emit('turn',{player:p.id});
  }
  input(id,type,d={}){
@@ -411,6 +415,6 @@ class Tanks extends BaseGame {
   if(this.t-this.flightStarted>45&&(this.projectiles.length||this.pending.length||this.zones.length)){Pocket.trace(this,'limit',{limit:'shot-time',weapon:this.currentWeapon});this.projectiles=[];this.pending=[];this.zones=[];}
   if(!this.projectiles.length&&!this.interceptors.length&&!this.pending.length&&!this.zones.length&&!this.explosionWaves.length&&!this.soil.active.size&&this.players.every(p=>!p.participant||p.grounded&&Math.abs(p.vx||0)<4)&&this.t-this.flightStarted>.85)this.nextTurn();
  }
- snapshot(){return {explosionWaves:this.explosionWaves.map(w=>({...w})),interceptors:this.interceptors.map(b=>({...b})),drone:this.drone?{...this.drone}:null,mode:this.mode,phase:this.phase,stage:this.stage,t:this.t,roundSerial:this.roundSerial,players:this.players.map(p=>({...p,inventory:{...p.inventory},loadout:[...(p.loadout||[])]})),events:this.events.slice(-65),result:this.result,width:W,height:H,terrainBottom:DEPTH,sky:'classic',teams:!!this.teams,terrainColumns:this.soil.snapshot(),terrainStrata:this.soil.strataSnapshot(),terrainMaterials:this.soil.materialsSnapshot(),fallingColumns:this.soil.active.size,terrain:this.terrain.slice(),terrainRevision:this.terrainRevision,projectiles:this.projectiles.map(b=>({...b})),zones:this.zones.map(z=>({...z})),turn:this.turn,rounds:this.rounds||10,activeId:this.activeId,deadline:this.deadline||0,loadoutDeadline:this.loadoutDeadline||0,draftMode:!!this.draftMode,draftSize:this.draftSize||0,wind:this.wind,currentWeapon:this.currentWeapon,coatings:(this.coatings||[]).map(c=>({...c})),sandbox:this.sandbox||false};}
+ snapshot(){return {explosionWaves:this.explosionWaves.map(w=>({...w})),interceptors:this.interceptors.map(b=>({...b})),drone:this.drone?{...this.drone}:null,mode:this.mode,phase:this.phase,stage:this.stage,t:this.t,roundSerial:this.roundSerial,players:this.players.map(p=>({...p,inventory:{...p.inventory},loadout:[...(p.loadout||[])]})),events:this.snapshotEvents(),result:this.result,width:W,height:H,terrainBottom:DEPTH,sky:'classic',teams:!!this.teams,terrainColumns:this.soil.snapshot(),terrainStrata:this.soil.strataSnapshot(),terrainMaterials:this.soil.materialsSnapshot(),fallingColumns:this.soil.active.size,terrain:this.terrain.slice(),terrainRevision:this.terrainRevision,projectiles:this.projectiles.map(b=>({...b})),zones:this.zones.map(z=>({...z})),turn:this.turn,rounds:this.rounds||10,activeId:this.activeId,deadline:this.deadline||0,loadoutDeadline:this.loadoutDeadline||0,draftMode:!!this.draftMode,draftSize:this.draftSize||0,wind:this.wind,currentWeapon:this.currentWeapon,coatings:(this.coatings||[]).map(c=>({...c})),sandbox:this.sandbox||false};}
 }
 module.exports={Tanks,W,H,G};

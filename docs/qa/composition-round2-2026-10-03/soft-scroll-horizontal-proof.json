@@ -1,0 +1,226 @@
+{
+  "method": "One Chromium browser. Synthetic renderer edge fixtures plus actual native-shell DOM with simulated native snapshots. No engine/state/gameplay acceptance.",
+  "checks": [
+    "At first row: no top fade; only bottom fade.",
+    "At middle: both edges fade.",
+    "At last row: no bottom fade; only top fade.",
+    "Content shrinks to nonoverflow: mask class and stale edge datasets clear.",
+    "Newly inserted scroll body discovered.",
+    "Fresh track remains unmasked.",
+    "Popup start/middle/end: backing unmasked; sticky heading/actions unmasked; content child edge fades only.",
+    "Shared dynamic mask overrides weapon drawer legacy !important permanent/local mask; last edge clears.",
+    "Actual native horizontal genres402/320: start/middle/end12/20px dynamic fades, complete last Table chip, protected header and vertical body unaffected. Genre nonoverflow cleanup clears both datasets and computed mask."
+  ],
+  "screens": [
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/list-start-402.png",
+      "sha256": "2a9a7cf0f6d0504fb1bef0d1473cdbeb7d5c7acf69ea68084c9379bc14639d95",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/list-middle-402.png",
+      "sha256": "3dfc0b8aca412f104e7452e4406e7d2dae98643ecbdd331c9e903bb8929242f6",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/list-end-402.png",
+      "sha256": "e724dafd0fdb3b2d39ba352295e1ec11bfcd8d94b2924198ab88c5dc268551e3",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/popup-start-402.png",
+      "sha256": "5feb7293d61debae9beced008ce6a996a53688c6d33ea644bf311e217a0599a1",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/popup-middle-402.png",
+      "sha256": "82997ad98765607612ace95be22bef9cb842ae390d6fa5975369254793c470a1",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/popup-end-402.png",
+      "sha256": "b9cfe96bd1f665712ea6d80e536897e4bdd5bca6c28e378abd1bbfc0cb68c3dc",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/arsenal-start-402.png",
+      "sha256": "dbcd7c931747fa68b46f06ddbb669979d484494b21e8973b098cf52155388955",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-start-402.png",
+      "sha256": "dc492136db2c7ae7c4341c13bd4b9aca381a2874381ca40d37ef21d37112ac70",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-middle-402.png",
+      "sha256": "22c5bddc0c42d8aeb40aa639aa7f827923a6ee382ff16e77b3b9ca59ada6cc3d",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-end-402.png",
+      "sha256": "4634e4fe2a1cb782827524d29aaacdb68af7381f6179b9e3e3a059d63966efd3",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-start-320.png",
+      "sha256": "5f50bb70cd1f8b1f8ef58f66d5080bb6b421d66985ef7bb5f9499ef8b5a94296",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-middle-320.png",
+      "sha256": "58913b354d4f47328113246085eeabf5c4b0522ffda2a2164a21741bcd8b0500",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    },
+    {
+      "file": "output/playwright/composition-round2-2026-10-03/soft-scroll-horizontal-confirm/native-genres-end-320.png",
+      "sha256": "a3d8b80380552ee3e4702118706c29e872cf76f97b6d645a71c51318b6bbacdf",
+      "independentlyOpened": true,
+      "currentImageMatches": true
+    }
+  ],
+  "errors": [],
+  "sourceStart": {
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198"
+  },
+  "sourceEnd": {
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198"
+  },
+  "horizontal": [
+    {
+      "width": 402,
+      "position": "start",
+      "left": "false",
+      "right": "true",
+      "soft": true,
+      "scroll": 0,
+      "max": 112,
+      "mask": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 0px, rgb(0, 0, 0) calc(100% - 20px), rgba(0, 0, 0, 0))",
+      "fadeLeft": "0px",
+      "fadeRight": "20px",
+      "lastContained": false,
+      "headerMask": "none",
+      "bodyAbove": "false",
+      "bodyBelow": "true"
+    },
+    {
+      "width": 402,
+      "position": "middle",
+      "left": "true",
+      "right": "true",
+      "soft": true,
+      "scroll": 56,
+      "max": 112,
+      "mask": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 12px, rgb(0, 0, 0) calc(100% - 20px), rgba(0, 0, 0, 0))",
+      "fadeLeft": "12px",
+      "fadeRight": "20px",
+      "lastContained": false,
+      "headerMask": "none",
+      "bodyAbove": "false",
+      "bodyBelow": "true"
+    },
+    {
+      "width": 402,
+      "position": "end",
+      "left": "true",
+      "right": "false",
+      "soft": true,
+      "scroll": 112,
+      "max": 112,
+      "mask": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 12px, rgb(0, 0, 0) 100%, rgba(0, 0, 0, 0))",
+      "fadeLeft": "12px",
+      "fadeRight": "0px",
+      "lastContained": true,
+      "headerMask": "none",
+      "bodyAbove": "false",
+      "bodyBelow": "true"
+    },
+    {
+      "width": 320,
+      "position": "start",
+      "left": "false",
+      "right": "true",
+      "soft": true,
+      "scroll": 0,
+      "max": 194,
+      "mask": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 0px, rgb(0, 0, 0) calc(100% - 20px), rgba(0, 0, 0, 0))",
+      "fadeLeft": "0px",
+      "fadeRight": "20px",
+      "lastContained": false,
+      "headerMask": "none",
+      "bodyAbove": "false",
+      "bodyBelow": "true"
+    },
+    {
+      "width": 320,
+      "position": "middle",
+      "left": "true",
+      "right": "true",
+      "soft": true,
+      "scroll": 97,
+      "max": 194,
+      "mask": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 12px, rgb(0, 0, 0) calc(100% - 20px), rgba(0, 0, 0, 0))",
+      "fadeLeft": "12px",
+      "fadeRight": "20px",
+      "lastContained": false,
+      "headerMask": "none",
+      "bodyAbove": "false",
+      "bodyBelow": "true"
+    },
+    {
+      "width": 320,
+      "position": "end",
+      "left": "true",
+      "right": "false",
+      "soft": true,
+      "scroll": 194,
+      "max": 194,
+      "mask": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 12px, rgb(0, 0, 0) 100%, rgba(0, 0, 0, 0))",
+      "fadeLeft": "12px",
+      "fadeRight": "0px",
+      "lastContained": true,
+      "headerMask": "none",
+      "bodyAbove": "false",
+      "bodyBelow": "true"
+    }
+  ],
+  "status": "passed",
+  "currentSupportingSources": {
+    "public/native-shell/index.html": "feadabff590226ad430a50429816bd0f9de9f60a501e9284a6d38f7068a8a4b8",
+    "public/native-shell/host-ui.css": "0c499033e011fa67dcb17af6b040d2177f2994d539cbd859b94e3b74427ea500",
+    "public/native-shell/host.js": "eebbe2aebb414f5ab14ab0352f376dc2796f92a9d47c79cb198b5b064f420eec",
+    "public/native-shell/tabs.js": "dc472e4d8f21cf648c1dfb6deb219c78e1988afaa93a1a8530255b0ec574015b",
+    "public/background-scene.css": "b10f5c1389af61d51ea7e5162efd0f384f45442fb5cd7d2e8b18ae940c96d8cf",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d"
+  },
+  "scope": "Explicit horizontal genre/chip regions only; all normal36 game state and physical-device acceptance excluded.",
+  "selectors": [
+    "#tvRemoteGenres",
+    "#catalogFilters",
+    ".catalog-filters",
+    ".native-genres"
+  ],
+  "qualifiedSelectors": {
+    ".native-genres": "Defensive compatibility selector; no current markup found.",
+    ".catalog-filters": "Actual nativeCategories strips match this class; source-qualified registration, not separately rendered in this narrow proof.",
+    "#catalogFilters": "Actual web selector; source-qualified registration, not claimed native element.",
+    "#tvRemoteGenres": "Actual native host genre strip rendered at402/320 with native snapshots simulated."
+  },
+  "visuallyReviewedAt": "2026-10-03T10:43:04.276772+00:00",
+  "failuresRetained": "soft-scroll-horizontal-first-candidate contains failed test-only stale native #catalogFilters timeout, after all6 native horizontal states already passed. Sandbox listenEPERM was environment-only. Both attempts closed their browser/server."
+}

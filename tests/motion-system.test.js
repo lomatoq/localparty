@@ -27,7 +27,11 @@ test('motion runtime only changes presentation and scoped native feedback',()=>{
  assert(js.includes("prefers-reduced-motion: reduce"));
  // Pointer observers now implement user-requested visual pressure. They may not
  // capture, cancel or synthesize gameplay input. Native haptics are not game commands.
- for(const forbidden of ['WebSocket','fetch(','ws.send(','.preventDefault(','.stopPropagation(','.setPointerCapture(','.click(','touchstart'])assert(!js.includes(forbidden),forbidden);
+ // Modal scroll guards intentionally cancel scroll gestures. Presentation and
+ // gameplay observers must still never capture or cancel gameplay input.
+ const presentation=js.split('// A top-layer dialog must not leave')[0];
+ for(const forbidden of ['WebSocket','fetch(','ws.send(','.stopPropagation(','.setPointerCapture(','.click('])assert(!js.includes(forbidden),forbidden);
+ for(const forbidden of ['.preventDefault(','touchstart'])assert(!presentation.includes(forbidden),forbidden);
  const calls=[...js.matchAll(/([\w?.]+)postMessage\(([^\n;]+)\)/g)];
  assert.equal(calls.length,2,'only prepare and short UI impact may use WK messaging');
  for(const [,receiver,payload] of calls){

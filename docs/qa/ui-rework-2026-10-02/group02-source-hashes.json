@@ -1,0 +1,13 @@
+{
+  "status": "SOURCE FROZEN. Commander accepts only scored Tanks baseline/compact-stat/base-label fixes and Tankarena roster/phone fixes in captured default4 browser state. P1 parent notch moving-hull occlusion remains root-owned; no whole-game/device approval.",
+  "recordedAt": "2026-10-02T11:22:39.442569+00:00",
+  "files": {
+    "games/tanks/public/host.js": "3bf14a4a3e31ba051c2d6ff9f5d75c6cba05d126c5e4d52f15136cc9c00a3854",
+    "games/tanks/public/index.html": "773f075e34c818939a32e032e5f25d24223f799b3d1e421ca00b567b49c9bf72",
+    "games/tanks/public/controller.css": "c5fb4bf45c747d9b10d2f599059e99e0a70c7a615b9aea1b3eaf33bb2717b47f",
+    "games/tanks/public/controller.js": "e599b25373c8de89c0fa36e4e28cc704eec914d3753833ec903d97355b890e31",
+    "games/tankarena/public/app.js": "247a084e6f212ddf9730b36282cf45b81102d245983b5aa04cbbdf57668bf070",
+    "games/tankarena/public/style.css": "7219538c63adcc86fd09c980374ac91f6062dbb9825cb495d7a1102e37d27632",
+    "scripts/qa/group02-real-shots.cjs": "067669c111c58dedf15e0d5488c9b7d3b1638f03328e530a35b9bd2cae093b8a"
+  }
+}

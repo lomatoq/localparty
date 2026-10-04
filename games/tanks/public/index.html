@@ -27,11 +27,10 @@
   <main id="controllerScreen" class="screen controller-screen hidden">
     <header>
       <div class="identity"><span id="colorDot"></span><div><b id="playerName">PLAYER</b><small id="teamText">WAITING</small></div></div>
-      <div class="score"><b id="scoreMain">0</b><small id="scoreLabel">SCORE</small></div>
     </header>
 
     <section class="status-card">
-      <div id="modeText">Ждём старта</div>
+      <div class="status-summary"><div class="score"><b id="scoreMain">0</b><small id="scoreLabel" class="hp-stat-label">SCORE</small></div><div id="modeText">Ждём старта</div></div>
       <div id="statusText">Смотри на большой экран 👀</div>
       <div class="hp"><span id="hpFill"></span></div>
     </section>
@@ -41,12 +40,13 @@
       <div><button id="teamRed">RED</button><button id="teamBlue">BLUE</button></div>
     </section>
 
+    <footer><span id="kills" class="hp-stat-label"><b id="killsValue" class="hp-stat-value">0</b><small>kills</small></span><span id="extraStat" class="hp-stat-label"><b id="deathsValue" class="hp-stat-value">0</b><small>deaths</small></span><button id="swapHand">⇄ HAND</button></footer>
     <section id="controls" class="controls right-handed">
-      <button id="forwardBtn" class="control forward"><span>▲</span><small>ЗАЖАТЬ · ЕХАТЬ</small><em>отпусти — снова крутишься</em></button>
-      <button id="fireBtn" class="control fire"><span>●</span><small>ОГОНЬ</small><em>стреляй в текущий угол</em></button>
+      <button id="forwardBtn" class="control forward hp-button-stack"><span class="hp-button-icon" aria-hidden="true">▲</span><small class="hp-button-label">ЗАЖАТЬ · ЕХАТЬ</small><em>отпусти — снова крутишься</em></button>
+      <button id="fireBtn" class="control fire hp-button-stack"><span class="hp-button-icon" aria-hidden="true">●</span><small class="hp-button-label">ОГОНЬ</small><em>стреляй в текущий угол</em></button>
     </section>
 
-    <footer><span id="kills">0 kills</span><span id="extraStat">0 deaths</span><button id="swapHand">⇄ HAND</button></footer>
+
   </main>
 
   <script src="/net.js"></script>

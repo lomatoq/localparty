@@ -121,8 +121,19 @@ body.tv-screen [hidden],body.native-shell [hidden]{display:none!important;}
 @media(prefers-reduced-motion:reduce){.lp-catalog .fresh-track{scroll-behavior:auto!important;}.lp-catalog *{animation:none!important;transition:none!important;}}
 
 .lp-catalog .featured-label{top:44px!important;right:12px!important;font-size:10px!important;max-width:calc(100% - 24px);}
+/* Lobby quantities/statuses get the authored slant; names keep their own face. */
+html.hp-ui body.tv-screen #tvStage :is(.lp-group-count,.lp-player-range,.lp-card-votes,#count,#tvGameCount,#playersNeeded,#votes,#connection,#tvInviteCount,.tv-more,.hero-pills>span,#players .status,#players small){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;letter-spacing:0;font-variant-numeric:tabular-nums}
 /* Fit complete Fresh cards, not half a card, in the receiver's logical viewport. */
 body.tv-screen .intro h1 br{display:none;}
+/* Game identity leads the waiting composition; status and readiness stay live.
+   The shared HD painter uses this image's local box, including TV-stage zoom. */
+body.tv-screen #waitingGameTitle{display:block;position:relative;width:min(480px,100%);margin:0 0 16px;font:italic 900 36px/1.15 'KardiaFatRunner',sans-serif;text-transform:uppercase;color:#f4f0ff;overflow:visible}
+body.tv-screen #waitingGameTitle .waiting-game-logo{display:none;width:480px;height:200px;max-width:100%;object-fit:contain;margin:auto;filter:none;image-rendering:auto}
+body.tv-screen #waitingGameTitle.waiting-logo-loaded .waiting-game-logo{display:block}
+body.tv-screen #waitingGameTitle.waiting-logo-loaded .waiting-game-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+html body.tv-screen #waiting #waitingTitle{font-size:26px!important;line-height:1.2!important;margin:0!important}
+body.tv-screen #waiting #waitingHint{margin:12px 0 0}
+body.tv-screen #waiting.has-large-roster #waitingGameTitle .waiting-game-logo{width:380px;height:144px}
 body.tv-screen .intro h1 em:before{content:' ';white-space:pre;}
 body.tv-screen .intro h1{max-width:calc(100% - 170px);font-size:38px!important;}
 body.tv-screen .intro>.eyebrow{font-size:11px;letter-spacing:2px;}
@@ -143,3 +154,15 @@ body.tv-screen #tvStage.large-roster #tvSidebar .player{gap:5px;padding:6px;}
 body.tv-screen #tvStage.large-roster #tvSidebar .avatar{width:22px;height:22px;flex-basis:22px;}
 body.tv-screen #tvStage.large-roster #tvSidebar .player b{font-size:11px;}
 body.tv-screen #tvStage.large-roster #tvRanking{display:none;}
+
+/* The company masthead belongs to browsing. Readiness and live games own
+   the receiver without a second navigation/audio bar above their scene. */
+html body.tv-screen[data-tv-phase="waiting"] #tvStage>.tv-header,
+html body.tv-screen.tv-field-fullscreen #tvStage>.tv-header{display:none!important}
+html body.tv-screen.tv-field-fullscreen #tvStage>#play{position:absolute!important;inset:0!important;height:100%!important;background:transparent!important}
+html body.tv-screen.tv-field-fullscreen #play>.gamebar.tv-information{position:absolute!important;left:0;right:0;top:0}
+html body.tv-screen.tv-field-fullscreen #gameFrame{position:absolute;left:0;top:0;max-height:none}
+
+/* Readiness owns the whole receiver; gameplay stays mounted but unpainted. */
+body.tv-screen .gamebar.tv-information[hidden]{display:none!important}
+body.tv-screen #waiting{inset:0}

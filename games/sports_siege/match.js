@@ -1,6 +1,6 @@
 'use strict';
 const crypto=require('node:crypto');
-const {clamp,finite,COLORS,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,rayCircle}=require('./rules');
+const {clamp,finite,COLORS,SIEGE_TURRET_Z,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,rayCircle}=require('./rules');
 const {Ice}=require('./curling');
 const TITLES={curling:'Лёд и нервы',bowling:'Pocket Strike',swarm_gate:'Не грызи ворота!',peek_shoot:'Кто тут вылез?'};
 const MODES=Object.keys(TITLES);
@@ -60,7 +60,8 @@ class Match {
     this.phase='results';this.stage='results';this.release();this.deadline=0;
     const ps=this.playing();
     this.result={eventId:this.id,gameId:this.mode,reason,duration:this.t-this.started,
-      winners:winners||[],players:ps.map(p=>({id:p.id,name:p.name,score:p.score,won:!!winners?.includes(p.id),
+      ranking:{kind:this.mode==='curling'?'teams':'score'},
+      winners:winners||[],players:ps.map(p=>({id:p.id,name:p.name,score:p.score,...(this.mode==='curling'?{team:p.team,teamScore:this.teams[p.team]}:{}),won:!!winners?.includes(p.id),
         metrics:{hits:p.hits,shots:p.shots,accuracy:p.shots?Math.round(p.hits/p.shots*100):0,kills:p.kills,missedTurns:p.missed,
           ...(this.mode==='bowling'?{frames:p.frames.length}:{}),...(this.mode==='swarm_gate'?{waves:this.wave,gate:Math.round(this.gate)}:{})}}))};
     this.event('finish',reason);
@@ -116,9 +117,9 @@ class Match {
       p.charge=false;p.gunUntil=this.t+8;p.streak=0;this.event('machinegun',`${p.name} получает пулемёт на 8 секунд!`,{player:id,until:p.gunUntil});return true;
     }
     if(type==='ability'&&this.mode==='swarm_gate'&&this.t>=p.abilityAt){
-      p.abilityAt=this.t+12;const x=(p.aim.x-.5)*36,z=-27+p.aim.y*26;
-      for(const b of this.enemies)if(Math.hypot(b.x-x,b.z-z)<4.5){b.hp-=85;b.slowUntil=this.t+3;if(b.hp<=0){p.kills++;p.score+=10;}}
-      this.enemies=this.enemies.filter(b=>b.hp>0);this.event('pulse',`${p.name}: импульс!`,{player:id,x,z});return true;
+      p.abilityAt=this.t+12;const x=(p.aim.x-.5)*36,z=-27+p.aim.y*26,kills=[];
+      for(const b of this.enemies)if(b.hp>0&&Math.hypot(b.x-x,b.z-z)<4.5){b.hp-=85;b.hitAt=this.t;b.slowUntil=this.t+3;if(b.hp<=0){p.kills++;p.score+=10;const kill={targetKind:b.kind,targetId:b.id,awardedScore:10,deathPosition:{x:b.x,z:b.z}};kills.push(kill);this.event('shot','',{player:p.id,ox:b.x,oz:b.z,x:b.x,z:b.z,hit:true,dead:true,source:'pulse',...kill});}}
+      this.enemies=this.enemies.filter(b=>b.hp>0);this.event('pulse',`${p.name}: импульс!`,{player:id,x,z,kills,awardedScore:kills.reduce((sum,kill)=>sum+kill.awardedScore,0)});return true;
     }
     return false;
   }
@@ -176,7 +177,7 @@ class Match {
   }
   spawnBug(){
     const kind=this.wave%3===0&&this.waveLeft===1?'boss':this.random()<.18?'tank':this.random()<.32?'runner':'termite';
-    const hp={termite:55,runner:30,tank:160,boss:520}[kind],r={termite:.38,runner:.29,tank:.62,boss:1.1}[kind];
+    const hp={termite:40,runner:24,tank:112,boss:360}[kind],r={termite:.38,runner:.29,tank:.62,boss:1.1}[kind];
     this.enemies.push({id:++this.serial,kind,x:(this.random()-.5)*33,z:-26-this.random()*3,targetX:(this.random()-.5)*4,
       hp,maxHp:hp,r,speed:{termite:1.65,runner:3.1,tank:1.05,boss:.9}[kind]*(1+this.wave*.045),seed:this.random()*6.28,slowUntil:0});
     this.waveLeft--;
@@ -185,12 +186,12 @@ class Match {
   siegeFire(p){
     p.shots++;p.heat+=.085;p.nextShot=this.t+.125;
     if(p.heat>=1){p.lockedUntil=this.t+1.5;p.heat=1;}
-    const ox=this.turretX(p),oz=.5,x=(p.aim.x-.5)*36,z=-27+p.aim.y*26,dist=Math.hypot(x-ox,z-oz)||1;
+    const ox=this.turretX(p),oz=SIEGE_TURRET_Z,x=(p.aim.x-.5)*36,z=-27+p.aim.y*26,dist=Math.hypot(x-ox,z-oz)||1;
     const dx=(x-ox)/dist,dz=(z-oz)/dist;
     let target=null,nearest=80;
     for(const b of this.enemies){if(b.hp<=0)continue;const d=rayCircle(ox,oz,dx,dz,b.x,b.z,b.r+.12,60);if(d!==null&&d<nearest){nearest=d;target=b;}}
-    if(target){target.hp-=24;p.hits++;if(target.hp<=0){p.kills++;p.score+=target.kind==='boss'?100:target.kind==='tank'?25:10;}}
-    this.event('shot','',{player:p.id,ox,oz,x:target?ox+dx*nearest:x,z:target?oz+dz*nearest:z,hit:!!target,dead:!!target&&target.hp<=0,targetKind:target?.kind});
+    let awardedScore=0;if(target){target.hp-=24;target.hitAt=this.t;target.x+=dx*.14;target.z+=dz*.14;p.hits++;if(target.hp<=0){p.kills++;awardedScore=target.kind==='boss'?100:target.kind==='tank'?25:10;p.score+=awardedScore;}}
+    this.event('shot','',{player:p.id,ox,oz,x:target?ox+dx*nearest:x,z:target?oz+dz*nearest:z,hit:!!target,dead:!!target&&target.hp<=0,targetKind:target?.kind,targetId:target?.id,awardedScore,deathPosition:target&&target.hp<=0?{x:target.x,z:target.z}:null});
   }
   siegeStep(dt){
     if(this.stage==='break'&&this.t>=this.deadline){
@@ -227,7 +228,7 @@ class Match {
   galleryFire(p){
     const mg=p.gunUntil>this.t;p.nextShot=this.t+(mg?1/12:.28);p.shots++;
     const spread=mg?.008:0,x=clamp(p.aim.x+(this.random()-.5)*spread,0,1),y=clamp(p.aim.y+(this.random()-.5)*spread,0,1);
-    const t=hitTarget(this.targets,this.covers,x,y,this.t);
+    const t=hitTarget(this.targets,this.covers,x,y,this.t),scoreBefore=p.score;
     if(t){
       this.targets.find(x=>x.id===t.id).hp=0;
       if(t.kind==='friendly'){p.score=Math.max(0,p.score-15);p.streak=0;this.event('friendly',`${p.name}: это был мирный!`,{player:p.id});}
@@ -236,7 +237,7 @@ class Match {
         if(!mg&&!p.charge){p.streak++;if(p.streak>=6){p.charge=true;p.streak=0;this.event('charged',`${p.name}: пулемёт готов!`,{player:p.id});}}
       }
     }else p.streak=0;
-    this.event('shot','',{player:p.id,x,y,hit:!!t,dead:!!t,good:!!t&&t.kind!=='friendly',targetKind:t?.kind});
+    this.event('shot','',{player:p.id,x,y,hit:!!t,dead:!!t,good:!!t&&t.kind!=='friendly',targetKind:t?.kind,targetId:t?.id,targetStyle:t?.style,awardedScore:p.score-scoreBefore,deathPosition:t?{x:t.x,y:t.y}:null,targetSnapshot:t?{...t}:null});
   }
   galleryStep(){
     if(this.t>=this.deadline){const best=Math.max(...this.playing().map(p=>p.score));this.finish('Время! Считаем попадания',this.playing().filter(p=>p.score===best).map(p=>p.id));return;}
@@ -249,7 +250,7 @@ class Match {
     const ps=[...this.players.values()].map(({inputAt,nextShot,offlineAt,fire,sweep,...p})=>({...p,
       fire:fire&&this.t-inputAt<.45,sweeping:sweep&&p.energy>.03,
       ...(this.mode==='bowling'?{bowling:scoreBowling(p.frames,this.frameCount)}:{}),
-      ...(this.mode==='swarm_gate'?{turretX:this.turretX(p)}:{})}));
+      ...(this.mode==='swarm_gate'?{turretX:this.turretX(p),turretZ:SIEGE_TURRET_Z}:{})}));
     return {mode:this.mode,title:TITLES[this.mode],phase:this.phase,stage:this.stage,t:this.t,deadline:this.deadline,
       currentId:this.currentId,turnToken:this.turnToken,players:ps,events:this.events,result:this.result,
       frameCount:this.frameCount,endIndex:this.endIndex,endCount:this.endCount,throwIndex:this.throwIndex,throwCount:this.queue?.length,

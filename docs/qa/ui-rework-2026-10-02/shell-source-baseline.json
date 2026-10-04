@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-02T09:51:08.477272+00:00",
+  "branch": "heypals/ux-polish",
+  "note": "Dirty concurrent working sources; hashes taken before shell UI rework. Preserve Claude blocks.",
+  "files": {
+    "public/app.js": "a9d42e9a6cc0b682aa69e9b48c96e0df43e148ca3d3e12253a360ac89675c715",
+    "public/polish.css": "7a51b4df5c8a2fd8218b26fac2dbe88a7359d82ab1a266a132f8952c1d98d8b0",
+    "public/index.html": "35e769314a40dd3c679f638605c8f080ba796f5fcc782c042a48584503bf438d",
+    "public/native-shell/host.js": "53b248a276673c18c7794f02b9670685aaf4caa717d054c9d60c2fb2a30e42eb",
+    "public/native-shell/index.html": "43c12431174382030d176285dddb3f9abf1bafd70fc3107ab4e213312517533d",
+    "public/native-shell/host-ui.css": "139acb7d0cee78ac3647710a89cbf9edecf51c42f92cd6a588ee3dadaad7eb35",
+    "public/game-ui-system.css": "e2ddf05eedc7a123a8f168f9fc3e39c4ca67104d21fad0a381c808eb1a8c9598"
+  }
+}

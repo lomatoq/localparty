@@ -1,0 +1,358 @@
+{
+  "scope": "Hungry Arena only; normal real engine/browser inputs; TV originals, no phone PNGs/physical device claim",
+  "originals": [
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-live-1280.png",
+      "sha256": "5141dfe8bd9e482633f9b544fa44771b642b245ca99fdb8324f8f7dfa1d4e7f5",
+      "openedIndividually": true,
+      "observation": "Lime/cyan centers fully colored, mouths readable at small world scale; floor tile/grid reaches both viewport edges. Join toast still present (unrelated unchanged behavior).",
+      "bodyClipped": 0,
+      "variants": [
+        0,
+        1
+      ]
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-live-1920.png",
+      "sha256": "d2f59146dfea13faa826a2f98a9e712380c5d8cbc2fe634ca64576a0f004b5ae",
+      "openedIndividually": true,
+      "observation": "Uniform creature proportions and larger mouths/eyes; full floor backing, no center rectangle seam; cap and numeric roles unchanged.",
+      "bodyClipped": 0,
+      "variants": [
+        0,
+        1
+      ]
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-after-eat-1920.png",
+      "sha256": "ca0f980366cfac3192e2a19252a8f63df574bf4a998c2f57c87efda6ee1ad731",
+      "openedIndividually": true,
+      "observation": "Actual cyan actor grew20→23; eaten donut absent and new pizza exists; other69 identities/positions/kinds unchanged, low existing per-item bob remains continuous.",
+      "bodyClipped": 0,
+      "variants": [
+        0,
+        1
+      ]
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-left-edge-1920.png",
+      "sha256": "85f5f5b5f82c0c7a133ef6905e7bb4813ccafb6836bedd78d1bd552e7d2bbd12",
+      "openedIndividually": true,
+      "observation": "Actual cyan actor atx20,mass26 complete with shadow; no old world clip; name uses existing avoidance leader line, unchanged by this task.",
+      "bodyClipped": 0,
+      "variants": [
+        0,
+        1
+      ]
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-2-left-edge-1280.png",
+      "sha256": "4f462fbfad6fa5b2d809afeccc97848dbdc6d0b2fbbd336c6119ea3e50f98757",
+      "openedIndividually": true,
+      "observation": "Same released boundary actor complete after resize; food/floor remains full frame, existing labels can change avoidance side.",
+      "bodyClipped": 0,
+      "variants": [
+        0,
+        1
+      ]
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-16-live-1280.png",
+      "sha256": "116ff3d5cd2ef8e8588fe7f067c794ec12cfaec079e480d2213b91ba72a11b30",
+      "openedIndividually": true,
+      "observation": "All8 body colors visible among16 actors; mouths/body remain colored. Existing brief growth bubbles retained and can sit beside/over name regions.",
+      "bodyClipped": 0,
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round3-2026-10-03/hungry-round8-final/hungry-16-live-1920.png",
+      "sha256": "741af38244d36c662d9bb29a7f67fd20f833a07dac4d87c543faf0316212bbac",
+      "openedIndividually": true,
+      "observation": "All8 decoded native variants; complete round silhouettes in dense real scene. Bottom-right actor and score are inside actual viewport; existing event rings retained.",
+      "bodyClipped": 0,
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "capturedSource": {
+    "server.js": "3db5d420c1cd7d6b309f08220a5fb156b34e8775e96f08a736ede2092dbe2af3",
+    "games/arcade/simulation.js": "a0e111a837266e5bc34c63ada42251cdaf44d7016d0667979dbb70622346af13",
+    "games/arcade/public/app.js": "11b0c15abfd79fd9f926c755d02a33ca393a29d43c5ca3c2510168cb44180df2",
+    "games/arcade/public/host.html": "7e8e605e9103b8134fe2077c1f97b3872ef0e3bd40c364abf9e685d330902124",
+    "games/arcade/public/style.css": "48761c7dff95bc510f730edb820feab43e457fa28f93e03e04a6c73807ae762d",
+    "games/arcade/public/arcade-juice.js": "8851c052175965126b1c4f1eae902d51a7f230d7f30b7f1c3c9d3da8f610bc8b",
+    "public/bridge.js": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+    "public/tv.js": "64a2de98033a9faf99ee62841424e3c711d2a37cf59a25848f787df532800d77",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-art.js": "bb4287e0651d1828cd8eebc692a92c81a2a5dd53be7624fc183d3a171e9dbb16",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/i18n.js": "c2fa14cddfbd35225bf5fb0e50f240a0b05825355022a2f366d6514bd33bc5eb",
+    "public/assets/gameplay/generated/hungry-creatures-v2.js": "2e345232a2d193d6492c6cd3755092ee31f8c8e3e629dace2b8e010916bb561a",
+    "public/assets/gameplay/generated/hungry-creatures-v2.json": "46aa935e09b1d7a5460938fccc867086716e6fd4962809b3fbb9732d92f47482",
+    "public/assets/gameplay/generated/hungry-creatures-v2.png": "06c30d7bab7b34d259c3c18864a7aa8061fc7db49525bcf18ee348f9ef83d5f3"
+  },
+  "currentMatches": true,
+  "errors": [],
+  "changedFiles": [],
+  "actualFoodTransition": [
+    {
+      "removed": [
+        {
+          "id": 15,
+          "x": 417.42234511216003,
+          "y": 64.58009198144944,
+          "kind": 3
+        }
+      ],
+      "added": [
+        {
+          "id": 71,
+          "x": 318.77941787479597,
+          "y": 344.99588442811626,
+          "kind": 1
+        }
+      ],
+      "retained": 69,
+      "retainedUnchanged": true,
+      "massBefore": 20,
+      "massAfter": 23
+    }
+  ],
+  "asset": {
+    "size": {
+      "w": 1774,
+      "h": 887
+    },
+    "transparent": true,
+    "alphaThresholdForBounds": 8,
+    "nativePixelsUnchanged": true,
+    "variants": [
+      {
+        "id": 0,
+        "color": "#b9ff4d",
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 444
+        },
+        "bounds": {
+          "left": 84,
+          "top": 118,
+          "right": 414,
+          "bottom": 391
+        },
+        "frame": {
+          "x": 80,
+          "y": 114,
+          "w": 339,
+          "h": 282
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61203
+      },
+      {
+        "id": 1,
+        "color": "#58dafa",
+        "cell": {
+          "x": 444,
+          "y": 0,
+          "w": 443,
+          "h": 444
+        },
+        "bounds": {
+          "left": 501,
+          "top": 119,
+          "right": 833,
+          "bottom": 391
+        },
+        "frame": {
+          "x": 497,
+          "y": 115,
+          "w": 341,
+          "h": 281
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61256
+      },
+      {
+        "id": 2,
+        "color": "#ff6b96",
+        "cell": {
+          "x": 887,
+          "y": 0,
+          "w": 444,
+          "h": 444
+        },
+        "bounds": {
+          "left": 940,
+          "top": 119,
+          "right": 1272,
+          "bottom": 391
+        },
+        "frame": {
+          "x": 936,
+          "y": 115,
+          "w": 341,
+          "h": 281
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61745
+      },
+      {
+        "id": 3,
+        "color": "#c295ff",
+        "cell": {
+          "x": 1331,
+          "y": 0,
+          "w": 443,
+          "h": 444
+        },
+        "bounds": {
+          "left": 1360,
+          "top": 119,
+          "right": 1691,
+          "bottom": 391
+        },
+        "frame": {
+          "x": 1356,
+          "y": 115,
+          "w": 340,
+          "h": 281
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61517
+      },
+      {
+        "id": 4,
+        "color": "#ffc45c",
+        "cell": {
+          "x": 0,
+          "y": 444,
+          "w": 444,
+          "h": 443
+        },
+        "bounds": {
+          "left": 84,
+          "top": 497,
+          "right": 414,
+          "bottom": 769
+        },
+        "frame": {
+          "x": 80,
+          "y": 493,
+          "w": 339,
+          "h": 281
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61253
+      },
+      {
+        "id": 5,
+        "color": "#53ebac",
+        "cell": {
+          "x": 444,
+          "y": 444,
+          "w": 443,
+          "h": 443
+        },
+        "bounds": {
+          "left": 501,
+          "top": 497,
+          "right": 833,
+          "bottom": 768
+        },
+        "frame": {
+          "x": 497,
+          "y": 493,
+          "w": 341,
+          "h": 280
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61233
+      },
+      {
+        "id": 6,
+        "color": "#ff9060",
+        "cell": {
+          "x": 887,
+          "y": 444,
+          "w": 444,
+          "h": 443
+        },
+        "bounds": {
+          "left": 939,
+          "top": 497,
+          "right": 1271,
+          "bottom": 768
+        },
+        "frame": {
+          "x": 935,
+          "y": 493,
+          "w": 341,
+          "h": 280
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61468
+      },
+      {
+        "id": 7,
+        "color": "#a1bcff",
+        "cell": {
+          "x": 1331,
+          "y": 444,
+          "w": 443,
+          "h": 443
+        },
+        "bounds": {
+          "left": 1360,
+          "top": 497,
+          "right": 1691,
+          "bottom": 769
+        },
+        "frame": {
+          "x": 1356,
+          "y": 493,
+          "w": 340,
+          "h": 281
+        },
+        "alphaEdgePixels": 0,
+        "visiblePixels": 61568
+      }
+    ],
+    "provenance": {
+      "tool": "builtin image_gen",
+      "original": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5d-6485-73d2-b3bc-248fd473d3a8/exec-57c55dfa-7d39-430e-b39b-5a8f7113352b.png",
+      "prompt": "hungry-creatures-v2-prompt.txt",
+      "sha256": "06c30d7bab7b34d259c3c18864a7aa8061fc7db49525bcf18ee348f9ef83d5f3"
+    }
+  },
+  "tests": {
+    "foodAndCarry": "12/12 pass",
+    "syntax": "app/simulation/helper/Juice pass",
+    "legacyArcadeSmoke": "Existing Flappy fixture sends flap during3s countdown then expects negativevy; stops beforeHungry. Unmodified; not a Hungry source regression."
+  },
+  "qualification": "Only actual current2/16 captured states and left edge atmass26. Not all possible maximum-mass/rim positions or physical hardware. Canonical world bounds/movement unchanged."
+}

@@ -1,0 +1,320 @@
+{
+  "mode": "built-in image_gen",
+  "transparent_background": true,
+  "generatedAt": "2026-10-02T14:17:52.852Z",
+  "assets": [
+    {
+      "id": "01",
+      "filename": "spectator-01-coral.png",
+      "prompt": "Use case: stylized-concept\nAsset type: transparent spectator cutout for a friendly party sports game, one unique human seated billboard sprite.\nScene/backdrop: genuinely transparent background, no environment, no floor or shadow plane.\nSubject: a cheerful adult woman with warm medium tan skin, chunky dark brown curly bob, coral sweatshirt, simple deep violet trousers and light teal sneakers. She sits naturally with upright torso, thighs horizontal, knees bent90 degrees, both complete shoes below hips; one hand lifts slightly in a compact friendly cheer below shoulder level, the other rests on knee. Clearly human face, warm smile, simple readable eyes/nose, actual arms/hands/legs.\nStyle/medium: polished friendly minimal matte cartoon illustration with softly shaded chunky forms, clean dark violet outlines, restrained details, coherent violet/coral/lime/teal palette. Not a mascot blob, not capsule geometry, not photorealistic, not shiny plastic.\nComposition/framing: ONE complete seated person centered in a square1024x1024 image, entire hair, hands, hips, knees and shoes visible with generous transparent margin on all sides. Slightly elevated three-quarter FRONT view, torso/knees turned about20 degrees toward camera-right but face looks toward viewer. Orthographic-like stable asset perspective. Hips near horizontal center and62% imageheight, soles near88%. Seated thighs/knees define where a separate stadium chair goes; do not draw chair, furniture or cushion.\nLighting: broad soft neutral light, subtle matte form shading without cast backdrop shadow.\nConstraints: exactly one human, complete uncropped silhouette, both hands anatomically simple and complete, no extra limbs, no text, watermark, border, checkerboard baked in, scenery, props or seat. Preserve genuine alpha. Must read as a fun seated spectator at64\u201396px tall.",
+      "output_hint": "Generated images are saved to /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02 as /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-0f614319-b2f3-4670-b556-97b454eea4a7.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-0f614319-b2f3-4670-b556-97b454eea4a7.png",
+      "projectPath": "public/assets/spectators-20261002/spectator-01-coral.png",
+      "url": "/assets/spectators-20261002/spectator-01-coral.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentPixels": 1185150,
+      "partialAlphaPixels": 386561,
+      "occupiedBBox": [
+        89,
+        21,
+        1226,
+        1216
+      ],
+      "sha256": "d618937f956edd20ed690afc49d9b55d85ae0e4c499793cdca56b715d43d82fb",
+      "hipPivotPixels": [
+        570,
+        768
+      ],
+      "hipPivotUVTopLeft": [
+        0.45454545454545453,
+        0.6124401913875598
+      ],
+      "hipPivotNote": "Visually estimated underside of seated hips; verify seatplane match in actualscene. Do not use texturecenter as hip anchor.",
+      "footBottomPixels": 1208,
+      "orientation": "3/4 front, knees towardcamera-right, yaw-only verticalbillboard",
+      "measuredVisibleAspect": 0.4898132427843803,
+      "visibleBBoxAlpha32": [
+        364,
+        31,
+        941,
+        1209
+      ]
+    },
+    {
+      "id": "02",
+      "filename": "spectator-02-teal.png",
+      "prompt": "Use case: stylized-concept\nAsset type: transparent spectator cutout for a friendly party sports game, one unique human seated billboard sprite.\nScene/backdrop: genuinely transparent background, no environment, no floor or shadow plane.\nSubject: a cheerful adult man with dark brown skin, short rounded black curls, teal sweatshirt, simple deep violet trousers and coral sneakers. He sits naturally upright, thighs horizontal, knees bent90 degrees, both complete shoes below hips. Both hands rest comfortably on his knees; relaxed broad warm smile, simple clearly human eyes and nose.\nStyle/medium: polished friendly minimal matte cartoon illustration with softly shaded chunky forms, clean dark violet outlines, restrained details, coherent violet/coral/lime/teal palette. Not a mascot blob, not capsule geometry, not photorealistic, not shiny plastic.\nComposition/framing: ONE complete seated person centered in a square1024x1024 image, entire hair, hands, hips, knees and shoes visible with generous transparent margin on all sides. Slightly elevated three-quarter FRONT view, torso/knees turned about20 degrees toward camera-right but face looks toward viewer. Orthographic-like stable asset perspective. Hips near horizontal center and62% imageheight, soles near88%. Seated thighs/knees define where a separate stadium chair goes; do not draw chair, furniture or cushion.\nLighting: broad soft neutral light, subtle matte form shading without cast backdrop shadow.\nConstraints: exactly one human, complete uncropped silhouette, both hands anatomically simple and complete, no extra limbs, no text, watermark, border, checkerboard baked in, scenery, props or seat. Preserve genuine alpha. Must read as a fun seated spectator at64\u201396px tall.",
+      "output_hint": "Generated images are saved to /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02 as /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-e746fc69-af39-4fba-b9ee-ccc59c2bca45.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-e746fc69-af39-4fba-b9ee-ccc59c2bca45.png",
+      "projectPath": "public/assets/spectators-20261002/spectator-02-teal.png",
+      "url": "/assets/spectators-20261002/spectator-02-teal.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentPixels": 1226428,
+      "partialAlphaPixels": 344643,
+      "occupiedBBox": [
+        39,
+        39,
+        1200,
+        1230
+      ],
+      "sha256": "abf0ade349cd23377318f47c00e0b7d427818e384e01dd390eeb5162b0afa542",
+      "hipPivotPixels": [
+        537,
+        795
+      ],
+      "hipPivotUVTopLeft": [
+        0.42822966507177035,
+        0.6339712918660287
+      ],
+      "hipPivotNote": "Visually estimated underside of seated hips; verify seatplane match in actualscene. Do not use texturecenter as hip anchor.",
+      "footBottomPixels": 1175,
+      "orientation": "3/4 front, knees towardcamera-right, yaw-only verticalbillboard",
+      "measuredVisibleAspect": 0.5521023765996343,
+      "visibleBBoxAlpha32": [
+        346,
+        82,
+        950,
+        1176
+      ]
+    },
+    {
+      "id": "03",
+      "filename": "spectator-03-violet.png",
+      "prompt": "Use case: stylized-concept\nAsset type: transparent spectator cutout for a friendly party sports game, one unique human seated billboard sprite.\nScene/backdrop: genuinely transparent background, no environment, no floor or shadow plane.\nSubject: a cheerful older adult woman with light skin, a chunky short silver-gray bob and simple round violet glasses. She wears a violet sweatshirt, plain dark teal trousers and light coral sneakers. She sits naturally upright with horizontal thighs and knees bent90 degrees, both complete shoes below hips. Her two hands clap together compactly near her chest, with elbows close to body; warm human smile.\nStyle/medium: polished friendly minimal matte cartoon illustration with softly shaded chunky forms, clean dark violet outlines, restrained details, coherent violet/coral/lime/teal palette. Not a mascot blob, not capsule geometry, not photorealistic, not shiny plastic.\nComposition/framing: ONE complete seated person centered in a square1024x1024 image, entire hair, hands, hips, knees and shoes visible with generous transparent margin on all sides. Slightly elevated three-quarter FRONT view, torso/knees turned about20 degrees toward camera-right but face looks toward viewer. Orthographic-like stable asset perspective. Hips near horizontal center and62% imageheight, soles near88%. Seated thighs/knees define where a separate stadium chair goes; do not draw chair, furniture or cushion.\nLighting: broad soft neutral light, subtle matte form shading without cast backdrop shadow.\nConstraints: exactly one human, complete uncropped silhouette, both hands anatomically simple and complete, no extra limbs, no text, watermark, border, checkerboard baked in, scenery, props or seat. Preserve genuine alpha. Must read as a fun seated spectator at64\u201396px tall.",
+      "output_hint": "Generated images are saved to /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02 as /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-068da346-90d5-415b-a108-417c19dd75d0.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-068da346-90d5-415b-a108-417c19dd75d0.png",
+      "projectPath": "public/assets/spectators-20261002/spectator-03-violet.png",
+      "url": "/assets/spectators-20261002/spectator-03-violet.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentPixels": 1220498,
+      "partialAlphaPixels": 351089,
+      "occupiedBBox": [
+        65,
+        21,
+        1208,
+        1190
+      ],
+      "sha256": "479464d00494007ac1524739dfda12c7fa6c3e56bf11e843ebb30602cd415f87",
+      "hipPivotPixels": [
+        558,
+        807
+      ],
+      "hipPivotUVTopLeft": [
+        0.4449760765550239,
+        0.6435406698564593
+      ],
+      "hipPivotNote": "Visually estimated underside of seated hips; verify seatplane match in actualscene. Do not use texturecenter as hip anchor.",
+      "footBottomPixels": 1185,
+      "orientation": "3/4 front, knees towardcamera-right, yaw-only verticalbillboard",
+      "measuredVisibleAspect": 0.46099290780141844,
+      "visibleBBoxAlpha32": [
+        413,
+        58,
+        933,
+        1186
+      ]
+    },
+    {
+      "id": "04",
+      "filename": "spectator-04-lime.png",
+      "prompt": "Use case: stylized-concept\nAsset type: transparent spectator cutout for a friendly party sports game, one unique human seated billboard sprite.\nScene/backdrop: genuinely transparent background, no environment, no floor or shadow plane.\nSubject: a cheerful young adult man with light warm East Asian skin, short chunky black swept hair, lime sweatshirt, simple deep violet trousers and teal sneakers. He sits naturally upright with horizontal thighs and knees bent90 degrees, both complete shoes below hips. One hand rests on knee and the other gives a small thumbs up near chest; warm simple human face.\nStyle/medium: polished friendly minimal matte cartoon illustration with softly shaded chunky forms, clean dark violet outlines, restrained details, coherent violet/coral/lime/teal palette. Not a mascot blob, not capsule geometry, not photorealistic, not shiny plastic.\nComposition/framing: ONE complete seated person centered in a square1024x1024 image, entire hair, hands, hips, knees and shoes visible with generous transparent margin on all sides. Slightly elevated three-quarter FRONT view, torso/knees turned about20 degrees toward camera-right but face looks toward viewer. Orthographic-like stable asset perspective. Hips near horizontal center and62% imageheight, soles near88%. Seated thighs/knees define where a separate stadium chair goes; do not draw chair, furniture or cushion.\nLighting: broad soft neutral light, subtle matte form shading without cast backdrop shadow.\nConstraints: exactly one human, complete uncropped silhouette, both hands anatomically simple and complete, no extra limbs, no text, watermark, border, checkerboard baked in, scenery, props or seat. Preserve genuine alpha. Must read as a fun seated spectator at64\u201396px tall.",
+      "output_hint": "Generated images are saved to /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02 as /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-c62452fa-028c-4bb8-970b-ce576abab2e9.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-c62452fa-028c-4bb8-970b-ce576abab2e9.png",
+      "projectPath": "public/assets/spectators-20261002/spectator-04-lime.png",
+      "url": "/assets/spectators-20261002/spectator-04-lime.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentPixels": 1174521,
+      "partialAlphaPixels": 396441,
+      "occupiedBBox": [
+        105,
+        20,
+        1200,
+        1220
+      ],
+      "sha256": "f0245eaafe25e5970a04bba04505fe091e35c1847c6799498a8a2910cac3cf49",
+      "hipPivotPixels": [
+        526,
+        785
+      ],
+      "hipPivotUVTopLeft": [
+        0.4194577352472089,
+        0.6259968102073366
+      ],
+      "hipPivotNote": "Visually estimated underside of seated hips; verify seatplane match in actualscene. Do not use texturecenter as hip anchor.",
+      "footBottomPixels": 1214,
+      "orientation": "3/4 front, knees towardcamera-right, yaw-only verticalbillboard",
+      "measuredVisibleAspect": 0.5783738474434199,
+      "visibleBBoxAlpha32": [
+        285,
+        22,
+        975,
+        1215
+      ]
+    },
+    {
+      "id": "05",
+      "filename": "spectator-05-lavender.png",
+      "prompt": "Use case: stylized-concept\nAsset type: transparent spectator cutout for a friendly party sports game, one unique human seated billboard sprite.\nScene/backdrop: genuinely transparent background, no environment, no floor or shadow plane.\nSubject: a cheerful mature adult man with medium brown skin, short chunky dark curly hair and a simple rounded short beard. He wears a lavender cardigan over a coral shirt, plain dark teal trousers and lime sneakers. He sits naturally upright with horizontal thighs and knees bent90 degrees, both complete shoes below hips. One hand lifts in a compact friendly open-palm wave below shoulder level; the other rests on knee, warm clearly human smile.\nStyle/medium: polished friendly minimal matte cartoon illustration with softly shaded chunky forms, clean dark violet outlines, restrained details, coherent violet/coral/lime/teal palette. Not a mascot blob, not capsule geometry, not photorealistic, not shiny plastic.\nComposition/framing: ONE complete seated person centered in a square1024x1024 image, entire hair, hands, hips, knees and shoes visible with generous transparent margin on all sides. Slightly elevated three-quarter FRONT view, torso/knees turned about20 degrees toward camera-right but face looks toward viewer. Orthographic-like stable asset perspective. Hips near horizontal center and62% imageheight, soles near88%. Seated thighs/knees define where a separate stadium chair goes; do not draw chair, furniture or cushion.\nLighting: broad soft neutral light, subtle matte form shading without cast backdrop shadow.\nConstraints: exactly one human, complete uncropped silhouette, both hands anatomically simple and complete, no extra limbs, no text, watermark, border, checkerboard baked in, scenery, props or seat. Preserve genuine alpha. Must read as a fun seated spectator at64\u201396px tall.",
+      "output_hint": "Generated images are saved to /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02 as /Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-bf524333-583b-4de5-9a38-a3bbf51d2026.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5c-9932-7ad3-b1ae-a40d835e1e02/exec-bf524333-583b-4de5-9a38-a3bbf51d2026.png",
+      "projectPath": "public/assets/spectators-20261002/spectator-05-lavender.png",
+      "url": "/assets/spectators-20261002/spectator-05-lavender.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "transparentPixels": 1191934,
+      "partialAlphaPixels": 379091,
+      "occupiedBBox": [
+        105,
+        45,
+        1119,
+        1205
+      ],
+      "sha256": "539ad6d6e1b882f689c785d84a3166b42dc0cd5dda5959f07f207fde47cb9c21",
+      "hipPivotPixels": [
+        533,
+        780
+      ],
+      "hipPivotUVTopLeft": [
+        0.42503987240829344,
+        0.6220095693779905
+      ],
+      "hipPivotNote": "Visually estimated underside of seated hips; verify seatplane match in actualscene. Do not use texturecenter as hip anchor.",
+      "footBottomPixels": 1199,
+      "orientation": "3/4 front, knees towardcamera-right, yaw-only verticalbillboard",
+      "measuredVisibleAspect": 0.5582608695652174,
+      "visibleBBoxAlpha32": [
+        324,
+        50,
+        966,
+        1200
+      ]
+    }
+  ],
+  "integration": {
+    "billboard": "Yaw-only around hip anchor; native textureaspect1:1; planevertical. Each cutout hastransparent gutters. Set hipsnottexturecenter atseatSlot.",
+    "recommendedVisibleHeight": 1.0,
+    "recommendedVisibleWidthRange": [
+      0.55,
+      0.65
+    ],
+    "seat": "One repeatedcurvedvioletbucket back+seatcushion, thin darklegs, same dimensions/color; proceduralgeometry recommended. Keepknees/shoes clear ofseat-front edge.",
+    "limitation": "Art filegeneration/alpha inspection complete; crowdprojection, physicalseatfit and camera-track views requireowner10 sceneproof."
+  },
+  "seatAsset": {
+    "path": "games/sports_siege/public/spectator-seat.js",
+    "sha256": "0b2c6f03f37d69bd74f05f4147d3aebec5ad26fae8d870d6f392252db31624c6",
+    "kind": "authored procedural Three.jsgeometry, no bitmap placeholder",
+    "exports": [
+      "createSpectatorSeat(THREE, {resources}?)",
+      "createSpectatorSeatResources(THREE)"
+    ],
+    "front": [
+      0,
+      0,
+      1
+    ],
+    "floorY": 0,
+    "hipY": 0.32,
+    "actualCushionTop": 0.31999999812245367,
+    "overallBounds": {
+      "min": [
+        -0.25600001215934753,
+        -2.026557921475103e-09,
+        -0.2624274666387666
+      ],
+      "max": [
+        0.25600001215934753,
+        0.6968161470464962,
+        0.2460000067949295
+      ]
+    },
+    "meshCount": 10,
+    "geometryCount": 6,
+    "materialCount": 4,
+    "runtimeChecks": [
+      "floor grounding",
+      "cushion top .32",
+      "actual width .512 below rowpitch .61",
+      "prototypeclone",
+      "resource disposal idempotent"
+    ],
+    "sceneIntegration": "Group10 alone owns scene integration; no host/scene file edited bygroup02."
+  },
+  "assetLevelReview": {
+    "01": {
+      "completeSilhouette": true,
+      "humanAnatomy": true,
+      "view": "3/4front, kneesprojectcamera-right, facecameraward",
+      "pose": "compactfist cheer",
+      "scaleNote": "At64px sourceplane, head width isroughly10\u201315px; outfit/color/gesture massremain distinct.32px isnear/far crowdreference where facialdetailcannotbeclaimed. Realprojectedscale mustbeverified inscene."
+    },
+    "02": {
+      "completeSilhouette": true,
+      "humanAnatomy": true,
+      "view": "3/4front, kneesprojectcamera-right, facecameraward",
+      "pose": "bothhandsrestknees",
+      "scaleNote": "At64px sourceplane, head width isroughly10\u201315px; outfit/color/gesture massremain distinct.32px isnear/far crowdreference where facialdetailcannotbeclaimed. Realprojectedscale mustbeverified inscene."
+    },
+    "03": {
+      "completeSilhouette": true,
+      "humanAnatomy": true,
+      "view": "3/4front, kneesprojectcamera-right, facecameraward",
+      "pose": "compactclap",
+      "scaleNote": "At64px sourceplane, head width isroughly10\u201315px; outfit/color/gesture massremain distinct.32px isnear/far crowdreference where facialdetailcannotbeclaimed. Realprojectedscale mustbeverified inscene."
+    },
+    "04": {
+      "completeSilhouette": true,
+      "humanAnatomy": true,
+      "view": "3/4front, kneesprojectcamera-right, facecameraward",
+      "pose": "thumbsup",
+      "scaleNote": "At64px sourceplane, head width isroughly10\u201315px; outfit/color/gesture massremain distinct.32px isnear/far crowdreference where facialdetailcannotbeclaimed. Realprojectedscale mustbeverified inscene."
+    },
+    "05": {
+      "completeSilhouette": true,
+      "humanAnatomy": true,
+      "view": "3/4front, kneesprojectcamera-right, facecameraward",
+      "pose": "compactwave",
+      "scaleNote": "At64px sourceplane, head width isroughly10\u201315px; outfit/color/gesture massremain distinct.32px isnear/far crowdreference where facialdetailcannotbeclaimed. Realprojectedscale mustbeverified inscene."
+    }
+  },
+  "referencePath": "public/assets/spectators-20261002/reference.html"
+}

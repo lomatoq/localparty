@@ -1,0 +1,10 @@
+{
+  "sourceSHA256": "39744592a1284e695bcaca00cc210264327bbdbf7ce0fa98c4934e96165dee36",
+  "method": "Actual source function in isolated VM, stub canvas/asset; renderer call guard only, not real browser/gameplay.",
+  "checks": [
+    "Live Push bypasses anisotropic squash",
+    "Push ghost delegates existing uniform fall",
+    "Other disc modes retain existing squash"
+  ],
+  "passed": true
+}

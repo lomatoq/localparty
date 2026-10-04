@@ -38,7 +38,7 @@ function trigger(g,source,name,depth=0){
   for(const {key,value}of statements){const field={XOFFSET:'x',YOFFSET:'y',ANGLE:'angle',POWER:'power',AX:'ax',BX:'bx'}[key];if(field)state[field]=calculate(value,field);else if(key==='TIMEDELAY')delay+=Math.max(0,expression(value,0,0,vars,()=>g.rng.next()))/1000;}
   if(!row.COMMAND)continue;
   const type=String(row.resolvedType||row.TYPE||'').toUpperCase();
-  const data={weapon:source.weapon,owner:source.owner,name:row.COMMAND,type,trigger:name,x:state.x,y:state.y,angle:state.angle,power:state.power,ax:state.ax,bx:state.bx,depth,sourceBullet:source.sourceBullet,surfaceImpact:source.surfaceImpact};
+  const data={weapon:source.weapon,owner:source.owner,name:row.COMMAND,type,trigger:name,x:state.x,y:state.y,angle:state.angle,power:state.power,ax:state.ax,bx:state.bx,depth,sourceBullet:source.sourceBullet,surfaceImpact:source.surfaceImpact,directContact:source.directContact};
   // Commands at t=0 really run now (including root shot creation). Delayed
   // commands retain evaluated registers and the position of this trigger.
   if(delay<=0)command(g,data);else g.schedule(delay,'pocket-command',data);
@@ -50,7 +50,14 @@ function visual(g,e,n){const v=n.values,w=BY_ID[e.weapon],r=Number(v.RADIUS||v.D
  const material=terrainMaterial(v);
  g.emit('blast',{x:e.x,y:e.y,r,explosionWaveId:e.explosionWaveId,color:material?.[1]||w.color,terrainMaterial:material||undefined,family:w.family,weapon:e.weapon,effectType:n.type,effectName:n.name,materialName:['FIRE','FOG','SUPERBALL'].includes(n.type)?n.name:undefined,materialId:e.materialId,materialAngle:e.angle,materialPower:e.power,materialTriggers:[],fxStages:[[codes[n.type]||'S',0,0,0,0,0,r,duration,v.DRAW_DIRECTION==='EXPLOSION_IN']]});
 }
-function damage(g,e,r,amount,values={}){for(const p of g.players.filter(p=>p.participant)){const d=Math.hypot(p.x-e.x,p.y-8-e.y);if(d<r+17){const scale=clamp(1-d/(r+17),0,1);g.award(e.owner,p,amount*scale);
+function damage(g,e,r,amount,values={}){for(const p of g.players.filter(p=>p.participant)){const d=Math.hypot(p.x-e.x,p.y-8-e.y);if(d<r+17){
+  // A swept projectile hits the tank's surface, seventeen units from its
+  // center. That contact is not a near miss: tiny authored hits otherwise
+  // fall below score rounding and never count. Only damage at this impact's
+  // unchanged position uses full contact damage. Offset stages, other tanks
+  // and newly launched child projectiles retain their usual radial falloff.
+  const contact=e.directContact,contactHit=contact?.target===p.id&&Math.hypot(e.x-contact.x,e.y-contact.y)<1e-7;
+  const scale=clamp(1-d/(r+17),0,1);g.award(e.owner,p,amount*(contactHit?1:scale));
   if(values.THROW_TANK_FLAG===true){
    const magnitude=Number(values.THROW_TANK_MAGNITUDE??values.TANK_THROW_MAGNITUDE),fixed=/SET/.test(values.THROW_TANK_STYLE||''),strength=Number.isFinite(magnitude)?magnitude*35:Math.min(180,Math.abs(amount)*1.3);
    if(values.THROW_TANK_ANGLE_FLAG===true){const angle=(Number(values.THROW_TANK_ANGLE||0)+(g.rng.next()-.5)*Number(values.THROW_TANK_ANGLE_SPREAD||0))*Math.PI/180,factor=fixed?1:scale;
@@ -113,7 +120,7 @@ function impact(g,b){const v=node(b.weapon,b.sourceType||'BULLET',b.sourceBullet
  if(!b.hitTank&&b.bounces>0&&b.sourceType!=='CRUISER'){
   b.bounces--;trigger(g,b,v.BOUNCE_TRIGGER);g.reflect(b,clamp((Number(v.BOUNCE_IMPULSE)||2)*.22,.05,.95));return true;
  }
- trigger(g,b,v.EXPLOSION_TRIGGER);return false;
+ trigger(g,b.hitTank?{...b,directContact:{target:b.hitTank,x:b.x,y:b.y}}:b,v.EXPLOSION_TRIGGER);return false;
 }
 // Side-effect-free kinematics shared with the defensive swept-contact pass.
 function motion(g,b,dt){
@@ -185,6 +192,17 @@ function materialStep(g,z,dt){
   }
   if(z.bounce&&Math.abs(z.vy)>25){z.vy=-Math.abs(z.vy)*clamp(z.bounce*.18,.05,.5);z.vx*=.72;}else{z.vy=0;z.vx*=Math.exp(-dt*4);}
  }
- if(z.damagePerSecond){g.zoneRemainders??=new WeakMap();let fractions=g.zoneRemainders.get(z);if(!fractions){fractions=new Map();g.zoneRemainders.set(z,fractions);}for(const p of g.players.filter(p=>p.participant)){const d=Math.hypot(p.x-z.x,p.y-8-z.y);if(d<z.r+17){const amount=(fractions.get(p.id)||0)+z.damagePerSecond*dt*(1-d/(z.r+17)),whole=Math.floor(amount);fractions.set(p.id,amount-whole);if(whole)g.award(z.owner,p,whole);}}}
+ if(z.damagePerSecond){
+  // Short-lived material entities share a shot's fractional damage instead
+  // of discarding it when each individual particle expires. The bounded
+  // ledger is per attacker/target and cannot carry into another turn/round.
+  const scope=`${g.roundSerial}:${g.turn}`,participants=g.players.filter(p=>p.participant),ids=new Set(participants.map(p=>p.id));
+  if(g.authoredMaterialFractions?.scope!==scope)g.authoredMaterialFractions={scope,owners:new Map()};
+  const owners=g.authoredMaterialFractions.owners;
+  for(const [owner,targets]of owners){if(!ids.has(owner)){owners.delete(owner);continue;}for(const id of targets.keys())if(!ids.has(id))targets.delete(id);}
+  if(!ids.has(z.owner))return;
+  let fractions=owners.get(z.owner);if(!fractions)owners.set(z.owner,fractions=new Map());
+  for(const p of participants){const d=Math.hypot(p.x-z.x,p.y-8-z.y);if(d<z.r+17){const amount=(fractions.get(p.id)||0)+z.damagePerSecond*dt*(1-d/(z.r+17)),whole=Math.floor(amount+1e-9);fractions.set(p.id,Math.max(0,amount-whole));if(whole)g.award(z.owner,p,whole);}}
+ }
 }
 module.exports={launch,trigger,command,advance,impact,materialStep,node,trace,motion};

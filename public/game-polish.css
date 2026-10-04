@@ -1,7 +1,7 @@
 :root{font-variant-numeric:tabular-nums}.party-player,.party-player body,.party-player body *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent}button,[role=button],canvas{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}button,[role=button]{touch-action:manipulation;transition:transform .12s,filter .12s,box-shadow .12s}button.party-pressed,button:active{filter:brightness(1.14);transform:translateY(2px) scale(.98)}.party-player input,.party-player textarea,.party-player [contenteditable=true],input,textarea{user-select:text!important;-webkit-user-select:text!important;-webkit-touch-callout:default!important}button:focus-visible{outline:3px solid #cfff7b;outline-offset:3px}.party-player button{min-height:48px}.party-player input,.party-player select{font-size:16px!important}.party-player .fire-btn,.party-player .gas-btn,.party-player .ctrl,.party-player .answer{min-height:76px}.party-player #timerMini,.party-player #timeText,.party-player #statusStrip{font-size:clamp(24px,7vw,42px)!important;font-weight:900!important;font-variant-numeric:tabular-nums}.party-host #modeHud,.party-host #raceClock,.party-host #timer,.party-host #time,.party-host #roundBadge,.party-host #countState,.party-host #activePlayer{font-size:clamp(28px,3vw,50px)!important;line-height:1.1!important;font-weight:900!important;font-variant-numeric:tabular-nums}.party-host #progressText,.party-host #playerCounter,.party-host #qTimer,.party-host #timerText{font-size:clamp(30px,4vw,58px)!important;font-weight:900!important}.party-player #fireBtn,.party-player #throwBtn,.party-player #drawCanvas{touch-action:none}@media(max-width:600px){.party-player .phone-shell,.party-player .phone-screen{padding-left:12px!important;padding-right:12px!important}.party-player .tool-btn,.party-player .hand-btn{min-width:48px;min-height:48px}.party-player .answer-option,.party-player .vote-option{min-height:64px;font-size:18px!important}.party-player .phone-stat strong{font-size:25px!important}.party-player .phone-hud{gap:8px!important}}@media(prefers-reduced-motion:reduce){button,[role=button]{transition:none!important;transform:none!important}}
-@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik.ttf') format('truetype');font-weight:300 900;font-style:normal;font-display:swap}
-@font-face{font-family:PartyRubik;src:url('/assets/fonts/Rubik-Italic.ttf') format('truetype');font-weight:300 900;font-style:italic;font-display:swap}
-html{color-scheme:dark}body,input,button,select,textarea{font-family:PartyRubik,system-ui,sans-serif!important}body{background-color:#0b1016!important;color:#edf2ed}.party-player body{font-size:16px}button,[role=button]{transition:transform 180ms cubic-bezier(.2,.8,.2,1),filter 180ms,box-shadow 180ms}button.party-pressed,button:active,[role=button].party-pressed{transform:scale(.96);transition-duration:90ms;filter:brightness(1.08)}.party-managed [data-party-timer]{display:none!important}.party-player input[type=range]{user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important;touch-action:none}.party-player .panel,.party-player .card,.party-player .phone-panel{border-color:#ffffff20;background-color:#151d25;color:#edf2ed}button:disabled{cursor:default}button:disabled:active{transform:none}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+
+html{color-scheme:dark}html:not(.hp-ui) :is(body,input,button,select,textarea){font-family:PartyRubik,system-ui,sans-serif!important}body{background-color:#0b1016!important;color:#edf2ed}.party-player body{font-size:16px}button,[role=button]{transition:transform 180ms cubic-bezier(.2,.8,.2,1),filter 180ms,box-shadow 180ms}button.party-pressed,button:active,[role=button].party-pressed{transform:scale(.96);transition-duration:90ms;filter:brightness(1.08)}.party-managed [data-party-timer]{display:none!important}.party-player input[type=range]{user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important;touch-action:none}.party-player .panel,.party-player .card,.party-player .phone-panel{border-color:#ffffff20;background-color:#151d25;color:#edf2ed}button:disabled{cursor:default}button:disabled:active{transform:none}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 /* Shared type system from the Superdesign screens; retain colors meaningful to gameplay. */
 .party-managed body{font-weight:400!important}.party-managed h1,.party-managed h2,.party-managed h3,.party-managed .turn,.party-managed .stage-note>b{font-weight:800!important;font-style:italic;text-transform:uppercase;letter-spacing:-.035em}.party-managed p,.party-managed .hint,.party-managed .subtitle,.party-managed .muted{font-weight:400!important}.party-managed button{font-weight:700}.party-managed button.primary,.party-managed button.start{font-weight:800;text-transform:uppercase;font-style:italic}.party-managed input,.party-managed select,.party-managed textarea{font-weight:400!important}
 .party-phase-enter main{animation:party-scene-in 220ms ease-out}@keyframes party-scene-in{from{opacity:.65}to{opacity:1}}.party-managed button[aria-pressed=true],.party-managed button.selected{box-shadow:inset 0 0 0 1px #b4ff3940,0 0 22px #b4ff3914}.party-managed details{border-radius:18px;border:1px solid #ffffff12;background:#19191e8c}.party-managed summary{cursor:pointer;min-height:44px;padding:12px 16px;font-weight:700;list-style-position:inside}.party-managed details[open]>:not(summary){animation:party-scene-in 180ms ease-out}@media(prefers-reduced-motion:reduce){.party-phase-enter main,.party-managed details[open]>:not(summary){animation:none}}
@@ -10,7 +10,7 @@ html{color-scheme:dark}body,input,button,select,textarea{font-family:PartyRubik,
 html.party-managed body :is(.phone-panel,.phone-stat,.phone-hud,.screen-sidebar .panel,.left-panel,.join-panel){background:linear-gradient(135deg,#302540ed,#20233aed)!important;border-color:#b5a0ee48!important}
 html.party-managed body :is(.phone-stat strong,.phone-stat .value,.phone-hud .label){color:#c6b1ff!important}
 html.party-managed body :is(.hint,.subtitle,.muted,.phone-stat small,.phone-panel>p,.join-panel>p){color:#cbbbea!important}
-html.party-managed body,html.party-managed body :is(#localparty-type-system,*){font-family:PartyRubik,system-ui,sans-serif!important;font-style:italic!important;font-weight:800!important;text-transform:uppercase!important}
+html.party-managed:not(.hp-ui) body,html.party-managed:not(.hp-ui) body :is(#localparty-type-system,*){font-family:PartyRubik,system-ui,sans-serif!important;font-style:italic!important;font-weight:800!important;text-transform:uppercase!important}
 
 /* Same gentle glass hover and fade-out as the catalog. */
 html body button:not(:active):not(.party-pressed){transition:transform 220ms cubic-bezier(.2,.8,.2,1),filter 420ms ease,background-color 420ms ease,box-shadow 420ms ease,border-color 420ms ease!important}
@@ -655,8 +655,6 @@ html.party-player input,html.party-player textarea,html.party-player [contentedi
  html.party-managed.party-host[data-party-game=tankarena] .arena-host .stat small{font-size:12px;margin-top:5px}
 }
 
-html,body,*{scrollbar-width:none!important}
-*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
 
 /* Phone hierarchy: supporting copy is quiet; touch controls remain generous. */
 @media(max-width:850px){
@@ -901,3 +899,84 @@ html.party-managed.party-player[data-party-game=jenga] .phone label{min-width:0}
 /* TV waiting screen: the translucent overlay let the arena's top margin (kept clear
    for the shared HUD notch) show through as a dark stripe. Give it a solid base. */
 html.party-display-only.party-host #lobbyOverlay.overlay.lobby:not(.overlay-panel){background-color:#080c12}
+
+/* DrawGuess: names and final standings remain readable inside the phone frame. */
+html.party-managed[data-party-game=drawguess] #artist{height:auto!important;max-height:none!important;white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere;line-height:1.25!important;padding-block:3px}
+html.party-managed[data-party-game=drawguess] body[data-game-phase=finished] .stage{overflow:visible!important;max-height:none!important}
+html.party-managed[data-party-game=drawguess] body[data-game-phase=finished] .screen-podium{display:grid!important}
+html.party-managed[data-party-game=drawguess] body[data-game-phase=finished] #drawingTools{display:none!important}
+
+html.party-managed[data-party-game=drawguess] .screen-podium{grid-template-columns:repeat(var(--podium-count,3),minmax(0,1fr))!important}
+html.party-managed[data-party-game=drawguess] .screen-podium h3{text-transform:none;letter-spacing:0;font-size:clamp(15px,4vw,23px);line-height:1.3}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .screen-sidebar{display:block!important}
+html.party-managed[data-party-game=drawguess] body[data-game-phase=finished] .screen-sidebar>.panel:not(.screen-standings){display:none!important}
+/* Remaining throws are the primary Color Knives controller counter. */
+html.party-managed.party-player[data-party-game=knives] #knivesLeft{font-size:36px!important;line-height:1!important;color:#e0ffa5}
+
+/* Review fixes: consistent heading weight and a readable phone results list. */
+html.party-managed.party-player[data-party-game=punchmeter] body #status{font-family:PartyRubik,system-ui,sans-serif!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important;color:#f6f1ff!important}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .screen-workspace{display:block!important}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .stage{padding:20px 14px!important;min-height:0!important}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .screen-podium{grid-template-columns:1fr!important;gap:10px!important;margin:20px 0 0!important}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .screen-podium article{display:grid;grid-template-columns:54px minmax(0,1fr) auto;align-items:center;gap:10px;padding:16px 12px!important;transform:none!important;text-align:left;border-radius:18px}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .screen-podium h3{margin:0!important;font-size:16px!important;line-height:1.3!important}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .screen-podium strong{font-size:28px!important}
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] #canvas{display:none!important}
+
+html.party-managed.party-player[data-party-game=drawguess] body[data-game-phase=finished] .screen-sidebar{display:none!important}
+
+/* Soft contact shadows: no solid extruded black bands under gesture surfaces. */
+html.party-managed.party-player body :is(.joystick-base,#joy,#jengaJoystick,.joystick){box-shadow:inset 0 2px 20px #03061024,0 8px 26px -5px #03061032!important}
+/* The branded wall is the common backdrop, below authored fields and controls. */
+html.hp-ui.party-managed:is(.party-host,.party-player)[data-party-game] body:not(.hp-custom-backdrop){isolation:isolate!important;background:transparent!important}
+html.hp-ui.party-managed:is(.party-host,.party-player) body::before{content:''!important;display:block!important;position:fixed!important;inset:-12px!important;z-index:-1!important;pointer-events:none!important;background:linear-gradient(to top,rgba(var(--hp-game-glow,173,141,255),.17) 0%,rgba(var(--hp-game-glow,173,141,255),.07) 24%,transparent 50%),linear-gradient(#151321d6,#151321e0),url('/assets/backgrounds/brick-wall-wide-v1.png') center/cover no-repeat!important;filter:blur(7px)!important;opacity:1!important;transform:none!important;animation:none!important}
+/* The TV owns the coloured glow. Phone controls retain a darker wall only. */
+html.hp-ui.party-managed.party-player body::before{background:linear-gradient(#151321f0,#151321f4),url('/assets/backgrounds/brick-wall-mobile-v1.png') center/cover no-repeat!important;filter:blur(5px)!important}
+
+/* Glow hues sampled from each current illustrated wordmark; no runtime image reads. */
+html.party-managed[data-party-game=push]{--hp-game-glow:66,15,187}
+html.party-managed[data-party-game=shrink]{--hp-game-glow:55,15,199}
+html.party-managed[data-party-game=knives]{--hp-game-glow:15,188,239}
+html.party-managed[data-party-game=bomb]{--hp-game-glow:249,176,25}
+html.party-managed[data-party-game=western]{--hp-game-glow:248,189,44}
+html.party-managed[data-party-game=tanks]{--hp-game-glow:172,212,27}
+html.party-managed[data-party-game=tankarena]{--hp-game-glow:166,232,21}
+html.party-managed[data-party-game=chaos]{--hp-game-glow:18,213,250}
+html.party-managed[data-party-game=kart]{--hp-game-glow:251,89,66}
+html.party-managed[data-party-game=monster]{--hp-game-glow:181,63,240}
+html.party-managed[data-party-game=spy]{--hp-game-glow:232,180,77}
+html.party-managed[data-party-game=millionaire]{--hp-game-glow:238,190,61}
+html.party-managed[data-party-game=sinyakquiz]{--hp-game-glow:184,229,41}
+html.party-managed[data-party-game=warsaw]{--hp-game-glow:184,229,40}
+html.party-managed[data-party-game=crocodile]{--hp-game-glow:166,197,18}
+html.party-managed[data-party-game=jenga]{--hp-game-glow:250,192,88}
+html.party-managed[data-party-game=crane]{--hp-game-glow:246,183,17}
+html.party-managed[data-party-game=naval]{--hp-game-glow:40,187,240}
+html.party-managed[data-party-game=drawguess]{--hp-game-glow:186,244,13}
+html.party-managed[data-party-game=western_duel]{--hp-game-glow:249,195,54}
+html.party-managed[data-party-game=taprace]{--hp-game-glow:250,203,46}
+html.party-managed[data-party-game=punchmeter]{--hp-game-glow:233,48,105}
+html.party-managed[data-party-game=flappy]{--hp-game-glow:38,193,235}
+html.party-managed[data-party-game=hungry]{--hp-game-glow:246,196,36}
+html.party-managed[data-party-game=snakelines]{--hp-game-glow:185,243,30}
+html.party-managed[data-party-game=carryball]{--hp-game-glow:45,213,244}
+html.party-managed[data-party-game=marble_bloom]{--hp-game-glow:197,238,55}
+html.party-managed[data-party-game=pocket_siege]{--hp-game-glow:203,240,52}
+html.party-managed[data-party-game=bow_club]{--hp-game-glow:238,184,52}
+html.party-managed[data-party-game=poker]{--hp-game-glow:186,93,36}
+html.party-managed[data-party-game=airhockey]{--hp-game-glow:44,190,236}
+html.party-managed[data-party-game=mines]{--hp-game-glow:145,191,34}
+html.party-managed[data-party-game=curling]{--hp-game-glow:63,200,245}
+html.party-managed[data-party-game=bowling]{--hp-game-glow:251,203,57}
+html.party-managed[data-party-game=swarm_gate]{--hp-game-glow:243,159,49}
+html.party-managed[data-party-game=peek_shoot]{--hp-game-glow:19,202,227}
+
+/* Embedded phone controls share the launcher's wall. A second independently
+   cropped brick/body plane creates hard seams at the fading masthead/dock. */
+html.hp-ui.party-managed.party-player[data-party-game],
+html.hp-ui.party-managed.party-player[data-party-game] body{background:transparent!important}
+html.hp-ui.party-managed.party-player[data-party-game] body::before{display:none!important;background:none!important}
+/* Side information follows the measured wing, rather than the deeper centre
+   notch. The scene retains its full viewport and authoritative coordinates. */
+html.party-managed.party-host.party-display-only:is([data-party-game=jenga],[data-party-game=crane]) body main aside{top:calc(var(--party-wing-inset-top,64px) + 24px)!important;max-height:calc(100% - var(--party-wing-inset-top,64px) - 48px)!important;z-index:2}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=mines] body main #mineSide{align-self:stretch;padding-top:calc(var(--party-wing-inset-top,228px) + 24px)!important;box-sizing:border-box}

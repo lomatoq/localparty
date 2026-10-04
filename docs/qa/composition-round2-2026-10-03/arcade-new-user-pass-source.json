@@ -1,0 +1,51 @@
+{
+  "status": "owned source frozen; five-game local TV originals opened; final catalog source qualification belongs to root",
+  "scope": [
+    "taprace",
+    "punchmeter",
+    "flappy",
+    "hungry",
+    "snakelines",
+    "carryball",
+    "kart"
+  ],
+  "tests": [
+    "tests/carryball-visible-hud.test.js PASS 3",
+    "tests/arcade-controller-payload.test.js PASS 1"
+  ],
+  "changes": {
+    "carryball": "Actual centered cap projection accepted only from current authenticated host with increasing sequence. Full runner44-unit envelope recovered outside actual cap in canonical server actor state; loose-ball physics and full-frame camera unchanged. Outside cap original actor bound20 retained. First registration per authenticated socket cannot replay-reset sequence or reclaim ownership; paused geometry shared allowlist requested. Accepted layout changes reset visual interpolation to canonical recovered positions. Valid geometry immediately broadcasts canonical snapshot while paused.2CSSpx actual-cap clearance covers subpixel field effects without changing fullframe projection or globalstrip.",
+    "flappy": "Upper pipe paint reaches viewport top with gait/shake overscan; pipe gaps, birds and collision rules unchanged.",
+    "snakelines": "Full-frame uniform world fit; ornamental rectangular edge/crosses removed; floor grid continues full viewport; original lethal collision bounds/trails unchanged.",
+    "kart": "Authored individual rows preserve geometry and use forest/navy-teal gradient/rim; shared cap palette owned shared_hud.",
+    "punchmeter": "Inspected central1672\u00d7941opaque gym asset. Fullviewport cover replaces old wall/floor base, preserves existing bag, rope, ring posts/ropes/mount/shadow geometry. Old floor/horizon retained only loading fallback.",
+    "microassets": "Proposed semantic cap props centrally; no duplicate generation/local cap implementation."
+  },
+  "hashes": {
+    "games/arcade/public/app.js": "a21017ce45229ef615bcea28ae86773d84b6699e674c7c210357bd33de3fae52",
+    "games/arcade/public/snake-polish.js": "c25ffd150e5ca2c4eb087a9b1c092174eecf1e394aa9e8f094d73475a197410a",
+    "games/arcade/simulation.js": "8a99d754d1147303ea6eb49230a0fa3660d703fc1728ddbd71d8afb6640779b0",
+    "games/arcade/server.js": "05d52dfcf1322d6f7b855ea80cd9cc29261570deb14a2cad74fa6c7ad9f1b779",
+    "games/arcade/carryball-hud.js": "a7a6245e4375cf778cc74050fd6bc3902b92a9ede536c0a04e8d4f37e59a644c",
+    "games/kart/static/host.js": "f620a2e629679599d4a71af9f3e0dbd98baafea48b881f5fadd7beda67fc92c3",
+    "games/kart/static/styles.css": "cf891fb25e102ff294b65afae0315fc4729d75b29c059b75fcb178d226bdaad1",
+    "lib/tv-playfield-bounds.js": "0ed0acc5c9772e802924a759593f86da16cfec3dc5c4537568c1e8e47fb1c68b",
+    "tests/carryball-visible-hud.test.js": "b302ff92615ffcc53b732f0a8544163be1735f5f1633fe5ea5a81e3596921429",
+    "public/assets/gameplay/round3/2026-10-03/punch-gym-v1.png": "8512359b2e972a6f578c5dd899913a86ca3b420b05200e83c4002ed229ece6f6",
+    "lib/party-runtime.js": "f1379701a182bdb6076f3d4efa16a680776fb7a2903471399dba7468a9f79f91"
+  },
+  "browserStarted": true,
+  "visualApproval": {
+    "localTargetedFrames": true,
+    "finalCatalogCurrentSource": false
+  },
+  "mechanicalLayoutScan": {
+    "scope": [
+      "games/arcade/public/app.js",
+      "games/arcade/public/snake-polish.js",
+      "games/kart/static/styles.css"
+    ],
+    "findings": []
+  },
+  "browserClosed": true
+}

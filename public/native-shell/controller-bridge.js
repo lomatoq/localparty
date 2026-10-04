@@ -1,7 +1,9 @@
 /* WKUserScript only. The controller has no administrative TV commands. */
 (() => {
   'use strict';
-  if (location.protocol !== 'http:' || location.hostname !== '127.0.0.1' || !window.webkit?.messageHandlers?.partyShell) return;
+  const loopback=location.protocol==='http:' && location.hostname==='127.0.0.1';
+  const selected=typeof window.__partyControllerOrigin==='string' && window.__partyControllerOrigin===location.origin;
+  if ((!loopback && !selected) || !window.webkit?.messageHandlers?.partyShell) return;
   const send = data => window.webkit.messageHandlers.partyShell.postMessage(data);
   let lastPulse=-Infinity;
   function vibrate(value) {
@@ -20,6 +22,7 @@
     const style=document.createElement('style');style.textContent=`
       body.native-controller{padding-bottom:calc(56px + env(safe-area-inset-bottom))!important}
       body.native-controller.in-game #play{height:var(--native-play-height,calc(100svh - 128px - env(safe-area-inset-bottom)))!important;max-height:var(--native-play-height,calc(100svh - 128px - env(safe-area-inset-bottom)))!important;min-height:0!important}
+      html body.native-controller :is(#rulesDialog,#roomDialog,#joinDialog,#catalogDialog)[open]{inset:env(safe-area-inset-top) 0 var(--native-tab-reserve,calc(56px + env(safe-area-inset-bottom)))!important;height:fit-content!important;margin:auto!important;max-height:calc(100dvh - env(safe-area-inset-top) - var(--native-tab-reserve,calc(56px + env(safe-area-inset-bottom))) - 24px)!important}
       #partyNativeDock{position:fixed;inset:auto 0 0;z-index:65;height:calc(52px + env(safe-area-inset-bottom));padding:5px max(12px,env(safe-area-inset-right)) calc(5px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:12px;box-sizing:border-box;isolation:isolate;background:none}
       #partyNativeDock:before{content:'';position:absolute;inset:-40px 0 0;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,#0b101600 0%,#0b10168c 42%,#0b1016e6 72%,#0b1016 100%);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 55%);mask-image:linear-gradient(to bottom,transparent 0%,#000 55%)}
       body.native-controller.in-game #partyNativeDock:before{top:0}

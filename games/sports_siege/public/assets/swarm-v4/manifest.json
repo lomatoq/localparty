@@ -1,0 +1,114 @@
+{
+  "wall-long-v4.png": {
+    "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fca6-15e3-73f0-956d-a7a07d8f7e2a/exec-33f32f06-3d92-43ec-b4d3-a6c5deb348a8.png",
+    "sha256": "d787111d7fe245874856ec8e103e3f2b217dec643c482b7cf9622b00780dff89",
+    "size": [
+      1374,
+      1145
+    ],
+    "alphaBounds": [
+      17,
+      497,
+      1357,
+      661
+    ],
+    "center": [
+      0.5,
+      0.42270742358078606
+    ],
+    "visibleFraction": [
+      0.975254730713246,
+      0.14323144104803492
+    ],
+    "transparentPixels": 1352159,
+    "opaquePixels": 1426,
+    "mode": "built-in Imagegen true-alpha, untouched pixel copy",
+    "prompt": "Use case: stylized-concept. Asset type: production transparent 2D game sprite, replacement long castle wall section for HeyPals Swarm Gate. Image1 is the existing wall style reference and replacement target; Image2 is the neighboring gate style reference; Image3 is the established simple cartoon turret line/shading style. Generate ONE complete very long horizontal wall section, about 12:1 silhouette width to height, two masonry courses of large rounded lavender-plum stone blocks. Clean straight vertical joining ends at BOTH sides, no towers, caps, floating posts or isolated fragments, because this one continuous section will be used at left and right of a central gate. Strict straight front elevation, orthographic, NO perspective, NO vanishing points, NO isometric angle. Flat minimal playful cartoon illustration with confident dark plum outline, 2\u20133 quiet shades, very sparse simple joints, cream highlight, warm muted lavender stone. Match the references' clean simple game language, avoid photographic texture, glossy 3D, cracks everywhere or dramatic lighting. Entire long connected silhouette fully inside canvas with a little transparent safety margin; no cut-off sides. TRUE transparent alpha surrounding the wall and clean opaque stone interiors. Absolutely no white horizontal lines, cyan/red fringe, background fill, stray pixels, checkerboard baked into art, text, numbers, watermark, ground, shadow cloud or sky. This is only the long wall-body asset, not a scene and not a sprite sheet.",
+    "sourceSha256": "ea6a8be05a42e42091a4da22f61e214668ac74cd6c4c09ccb2e32217dc5a0a80",
+    "pixelsUnchangedAfterPromptMetadata": true
+  },
+  "gate-closed-v4.png": {
+    "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fca6-15e3-73f0-956d-a7a07d8f7e2a/exec-42ab424e-2ba1-48cf-867f-f21b84e44405.png",
+    "sha256": "ce4eaddc7e3f1a03c5578ce43892f306726cd5cc6c9d7cf0f1a0dac03a19205f",
+    "size": [
+      1456,
+      1080
+    ],
+    "alphaBounds": [
+      125,
+      215,
+      1332,
+      933
+    ],
+    "center": [
+      0.5003434065934066,
+      0.13611111111111107
+    ],
+    "visibleFraction": [
+      0.8289835164835165,
+      0.6648148148148149
+    ],
+    "transparentPixels": 787387,
+    "opaquePixels": 962,
+    "mode": "built-in Imagegen true-alpha, untouched pixel copy",
+    "prompt": "Edit target: this generated closed gate sprite. One precise correction only: REMOVE the low two-course WALL WINGS extending beyond both side pillars. Keep the complete central closed wooden gate, its two tall stone pillars and continuous stone lintel with shield exactly in the same clean cartoon style, same materials, palette, proportions, stroke widths and front orthographic view. Both outside edges end at the outer vertical edges of the tall pillars, so separately generated long wall-body sprites can join behind them in the game. No detached low masonry wings, no additional towers, no white/cyan lines, no background fragments. Door stays CLOSED with same latch. Entire resulting gate fits within canvas with transparent margin. TRUE transparent alpha outside silhouette, clean opaque interior; no baked checkerboard, sky, ground, floor, words or watermark.",
+    "sourceSha256": "9481d927515299646abaa0e29e8260feb7ac78b0e885ad7997f0f78ef75c06ac",
+    "pixelsUnchangedAfterPromptMetadata": true
+  },
+  "gate-damaged-v4.png": {
+    "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fca6-15e3-73f0-956d-a7a07d8f7e2a/exec-56a4636e-c8d6-4e7d-b83e-7b536833c422.png",
+    "sha256": "c51f636b856716f947abb571ceb9e723f0ff1f49adf8ce47cf2d88808a9c9e0c",
+    "size": [
+      1456,
+      1080
+    ],
+    "alphaBounds": [
+      124,
+      213,
+      1333,
+      935
+    ],
+    "center": [
+      0.5003434065934066,
+      0.1342592592592593
+    ],
+    "visibleFraction": [
+      0.8303571428571429,
+      0.6685185185185185
+    ],
+    "transparentPixels": 782699,
+    "opaquePixels": 1481,
+    "mode": "built-in Imagegen true-alpha, untouched pixel copy",
+    "prompt": "Edit target: generated CLOSED front gate sprite. Create its DAMAGED low-health state, keeping the exact same front orthographic composition, silhouette, two tall lavender stone pillars, stone lintel/shield, door leaf positions, palette, scale and clean minimal cartoon illustration. Change only the walnut wood doors: a few large readable plum cracks and bent brass latch indicate damage; doors remain completely closed and opaque, NO missing transparent holes inside wood. Keep stone pillars/lintel intact. NO added low wall wings beyond pillar edges, no perspective, no sky/floor, white horizontal strips, background fragments, baked checkerboard or text. True transparent alpha outside same silhouette, all normal interior stone/wood remains opaque. This is one reusable damaged-gate sprite.",
+    "sourceSha256": "2947094b337a887ffe8aeb437e09e966fe993f96b5d085d60ace752adaf24345",
+    "pixelsUnchangedAfterPromptMetadata": true
+  },
+  "gate-open-v4.png": {
+    "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fca6-15e3-73f0-956d-a7a07d8f7e2a/exec-2da0c7dc-286a-48e9-8ce7-21b524095ce5.png",
+    "sha256": "bb0d6dfe4b56c452ab5691ea990d307ec4654988d846016920db2c9841cac040",
+    "size": [
+      1456,
+      1080
+    ],
+    "alphaBounds": [
+      125,
+      214,
+      1331,
+      934
+    ],
+    "center": [
+      0.5,
+      0.13518518518518519
+    ],
+    "visibleFraction": [
+      0.8282967032967034,
+      0.6666666666666666
+    ],
+    "transparentPixels": 1051775,
+    "opaquePixels": 1091,
+    "mode": "built-in Imagegen true-alpha, untouched pixel copy",
+    "prompt": "Edit target: generated CLOSED front gate sprite. Create its OPEN repair-break state, keeping the exact same front orthographic outer silhouette, two tall lavender stone pillars, continuous stone lintel/shield, palette, dimensions and clean minimal cartoon illustration. Change only the two walnut door leaves: doors are open against the inner sides of the pillars, creating one clear deliberate large central passage. Keep pillar/lintel proportions exactly unchanged; the passage is genuinely transparent so the game's courtyard shows through, no black/white fill. No arbitrary holes elsewhere. NO low wall wings beyond pillar edges, added objects, perspective/isometric camera, sky/floor, white horizontal strips, background fragments, baked checkerboard, numbers or text. True alpha outside outer silhouette and inside the intentionally open doorway. This is one reusable open-gate sprite.",
+    "sourceSha256": "e0bf84efb07250da9b917053a16bc1189516c87955a67e3167305e8e3f1a587d",
+    "pixelsUnchangedAfterPromptMetadata": true
+  }
+}

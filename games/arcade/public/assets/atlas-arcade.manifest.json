@@ -1,0 +1,590 @@
+{
+  "version": 1,
+  "source": "atlas-arcade.png",
+  "styleProfile": "sprite",
+  "chromaKeyed": false,
+  "frames": {
+    "bird-a": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 49,
+        "y": 50,
+        "w": 159,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/bird-a.webp",
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "bird-b": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 303,
+        "y": 50,
+        "w": 162,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 162,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/bird-b.webp",
+      "cell": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bird-c": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 561,
+        "y": 50,
+        "w": 159,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/bird-c.webp",
+      "cell": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pipe-body": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 838,
+        "y": 40,
+        "w": 116,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 116,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/pipe-body.webp",
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pipe-cap": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1073,
+        "y": 66,
+        "w": 159,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/pipe-cap.webp",
+      "cell": {
+        "x": 1024,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "feather": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1339,
+        "y": 74,
+        "w": 138,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 138,
+        "h": 109
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/feather.webp",
+      "cell": {
+        "x": 1280,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "runner-a": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 49,
+        "y": 309,
+        "w": 159,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/runner-a.webp",
+      "cell": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "runner-b": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 306,
+        "y": 309,
+        "w": 157,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/runner-b.webp",
+      "cell": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "finish-arch": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 552,
+        "y": 321,
+        "w": 176,
+        "h": 127
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 127
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/finish-arch.webp",
+      "cell": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "track-tile": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 811,
+        "y": 303,
+        "w": 170,
+        "h": 162
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 162
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/track-tile.webp",
+      "cell": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "punch-bag": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1113,
+        "y": 296,
+        "w": 78,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 78,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/punch-bag.webp",
+      "cell": {
+        "x": 1024,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "glove": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1331,
+        "y": 329,
+        "w": 154,
+        "h": 110
+      },
+      "sourceSize": {
+        "w": 154,
+        "h": 110
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/glove.webp",
+      "cell": {
+        "x": 1280,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snake-head": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 68,
+        "y": 552,
+        "w": 120,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/snake-head.webp",
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "snake-body": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 324,
+        "y": 578,
+        "w": 121,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 121,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/snake-body.webp",
+      "cell": {
+        "x": 256,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "hungry-blob": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 568,
+        "y": 565,
+        "w": 144,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/hungry-blob.webp",
+      "cell": {
+        "x": 512,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "food-bundle": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 817,
+        "y": 563,
+        "w": 158,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 158,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/food-bundle.webp",
+      "cell": {
+        "x": 768,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "carry-ball": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1076,
+        "y": 566,
+        "w": 152,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 152,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/carry-ball.webp",
+      "cell": {
+        "x": 1024,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "goal-left": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1341,
+        "y": 559,
+        "w": 135,
+        "h": 162
+      },
+      "sourceSize": {
+        "w": 135,
+        "h": 162
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/goal-left.webp",
+      "cell": {
+        "x": 1280,
+        "y": 512,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "goal-right": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 62,
+        "y": 815,
+        "w": 133,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 133,
+        "h": 163
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/goal-right.webp",
+      "cell": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "player-ring": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 310,
+        "y": 822,
+        "w": 148,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 148,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/player-ring.webp",
+      "cell": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "tintable": true
+    },
+    "gym-bench": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 552,
+        "y": 839,
+        "w": 176,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 176,
+        "h": 115
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/gym-bench.webp",
+      "cell": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "stopwatch": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 824,
+        "y": 808,
+        "w": 144,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 176
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/stopwatch.webp",
+      "cell": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "cheer-foam-hand": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1092,
+        "y": 809,
+        "w": 120,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 175
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/cheer-foam-hand.webp",
+      "cell": {
+        "x": 1024,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    },
+    "speed-dust": {
+      "atlas": "atlas-arcade.webp",
+      "frame": {
+        "x": 1324,
+        "y": 852,
+        "w": 169,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 169,
+        "h": 88
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "sprite": "atlas-arcade/speed-dust.webp",
+      "cell": {
+        "x": 1280,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      }
+    }
+  }
+}

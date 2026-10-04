@@ -28,8 +28,14 @@
  const setPreference=()=>root.classList.toggle('lp-motion-reduced',media.matches);
  setPreference();media.addEventListener?.('change',setPreference);
  document.querySelectorAll(scoreSelector+','+statusSelector).forEach(el=>{el.dataset.lpMotionText=textOf(el);});
+ // A renderer can write source-language text every tick; i18n rewrites it in a
+ // following mutation microtask. Compare the settled visible value once before
+ // paint, not each intermediate source/translation pair. Input stays synchronous.
+ const pendingNodes=new Set();let pendingFrame=0;
+ const flushChanges=()=>{pendingFrame=0;const nodes=[...pendingNodes];pendingNodes.clear();nodes.forEach(scan);};
  const observer=new MutationObserver(records=>{
-  const nodes=new Set();for(const record of records){if(record.type==='characterData')nodes.add(record.target.parentElement);else if(record.type==='childList')nodes.add(record.target);else if(record.attributeName==='open'||record.attributeName==='hidden'||record.attributeName==='class')nodes.add(record.target);}nodes.forEach(scan);
+  for(const record of records){if(record.type==='characterData')pendingNodes.add(record.target.parentElement);else if(record.type==='childList')pendingNodes.add(record.target);else if(record.attributeName==='open'||record.attributeName==='hidden'||record.attributeName==='class')pendingNodes.add(record.target);}
+  if(pendingNodes.size&&!pendingFrame)pendingFrame=requestAnimationFrame(flushChanges);
  });
  observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['open','hidden','class']});
  requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('lp-motion-ready')));
@@ -112,68 +118,130 @@
  window.LocalPartyUIFeel=Object.freeze({cancel:all,release:releaseElement,revision:'tactile-20260920.1'});
 })();
 
-/* One paced reveal queue, shared by native-host and player catalogs. */
+/* Catalog content is ready to read and tap before optional first-entry motion. */
 (()=>{
  'use strict';
  if(document.body.classList.contains('tv-screen'))return;
- const reduced=matchMedia('(prefers-reduced-motion: reduce)'), seen=new WeakSet(), images=new WeakSet();
- const pending=new Set(),visible=new Set(),ready=new WeakSet(),running=new Set(),cardAnimations=new WeakMap();
- let timer=0,nextStart=0;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)'),scanned=new WeakSet(),entered=new Set(),running=new Set();
  const cards='.lp-catalog-card,.guest-game,.game[data-id]';
- function pump(){
-  clearTimeout(timer);timer=0;
-  for(const card of pending)if(!card.isConnected){pending.delete(card);visible.delete(card);}
-  if(document.hidden||running.size>=3)return;
-  const card=[...pending].find(c=>visible.has(c)&&ready.has(c)&&!c.hidden);
-  if(!card)return;
-  const wait=nextStart-performance.now();if(wait>0){timer=setTimeout(pump,wait);return;}
-  pending.delete(card);visible.delete(card);watcher.unobserve(card);
-  card.classList.remove('lp-reveal-pending');
-  if(reduced.matches){pump();return;}
-  nextStart=performance.now()+120;
-  const animation=card.animate([{opacity:0,translate:'0 14px'},{opacity:1,translate:'0 0'}],{duration:640,easing:'cubic-bezier(.2,.65,.3,1)',fill:'backwards'});
-  cardAnimations.set(card,animation);running.add(animation);animation.finished.catch(()=>{}).finally(()=>{running.delete(animation);if(cardAnimations.get(card)===animation)cardAnimations.delete(card);pump();});pump();
- }
- const watcher=new IntersectionObserver(entries=>{
-  for(const entry of entries){
-   const card=entry.target;
-   if(entry.isIntersecting)visible.add(card);else visible.delete(card);
-  }
-  pump();
- },{threshold:0,rootMargin:'120px 0px'});
  function scan(root){
   if(!(root instanceof Element))return;
   const list=[...(root.matches(cards)?[root]:[]),...root.querySelectorAll(cards)];
   for(const card of list){
-   if(seen.has(card))continue;seen.add(card);
-   if(reduced.matches){ready.add(card);continue;}
-   pending.add(card);card.classList.add('lp-reveal-pending');watcher.observe(card);
+   // Keep text, controls and available covers visible even on a long first jump.
+   card.classList.remove('lp-reveal-pending','lp-art-loading');
    const img=card.querySelector('img.symbol,img.guest-art');
-   if(!img||images.has(img)){ready.add(card);pump();continue;}images.add(img);
-   // Decode before revealing when possible; a broken/slow cover must never
-   // prevent a card's title and controls from appearing.
-   card.classList.add('lp-art-loading');let settled=false;
-   const finish=()=>{if(settled)return;settled=true;clearTimeout(deadline);card.classList.remove('lp-art-loading');ready.add(card);pump();};
-   const deadline=setTimeout(()=>{ready.add(card);pump();},1200);
-   const decoded=()=>Promise.resolve(img.decode?.()).catch(()=>{}).then(finish);
-   img.addEventListener('load',decoded,{once:true});img.addEventListener('error',finish,{once:true});
-   if(img.complete)decoded();
+   if(img)img.loading='eager';
+   if(scanned.has(card))continue;scanned.add(card);
+   const identity=card.dataset.id||card.dataset.game;
+   if(!identity||entered.has(identity))continue;entered.add(identity);
+   const r=card.getBoundingClientRect();
+   // Scroll, filtering and reconnects never queue or replay entrance effects.
+   // Only cards already on screen receive a small, immediately readable settle.
+   if(reduced.matches||document.hidden||card.hidden||r.width===0||r.height===0||r.bottom<=0||r.top>=innerHeight)continue;
+   const animation=card.animate([{translate:'0 4px'},{translate:'0 0'}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)'});
+   running.add(animation);animation.finished.catch(()=>{}).finally(()=>running.delete(animation));
   }
  }
  scan(document.body);
- // Replay only on a real game → lobby transition, never on room updates or
- // ordinary scrolling. Cached images stay decoded and card geometry is stable.
- window.addEventListener('party-lobby-enter',event=>{
-  const root=event.detail?.root||document.body;
-  clearTimeout(timer);nextStart=0;
-  for(const card of root.querySelectorAll(cards)){
-   cardAnimations.get(card)?.cancel();seen.delete(card);
-   pending.delete(card);visible.delete(card);watcher.unobserve(card);
-   card.classList.remove('lp-reveal-pending');
+ new MutationObserver(records=>{for(const r of records)for(const n of r.addedNodes)scan(n);}).observe(document.body,{childList:true,subtree:true});
+ reduced.addEventListener?.('change',()=>{if(reduced.matches)for(const animation of running)animation.cancel();});
+})();
+
+// A top-layer dialog must not leave the underlying document scrollable on iOS.
+(() => {
+ let saved=null,lastTouch=null;
+ const modal=()=>[...document.querySelectorAll('dialog[open]')].reverse().find(d=>d.matches(':modal'));
+ const sync=()=>{
+  if(modal()){
+   if(saved)return;
+   // Freeze the document scrollport, not the body. Making the body fixed resets
+   // WebKit's scrollY and moves sticky Host's Pick/catalogue rows behind a sheet.
+   // The touch/wheel guard below keeps iOS rubber-banding inside the top modal.
+   const html=document.documentElement;
+   saved={x:scrollX,y:scrollY,styles:['overflow','overscroll-behavior'].map(k=>[k,html.style.getPropertyValue(k),html.style.getPropertyPriority(k)])};
+   html.style.setProperty('overflow','hidden','important');html.style.setProperty('overscroll-behavior','none','important');
+  }else if(saved){
+   const previous=saved;saved=null;
+   for(const [k,v,p]of previous.styles)if(v)document.documentElement.style.setProperty(k,v,p);else document.documentElement.style.removeProperty(k);
+   const html=document.documentElement,behavior=html.style.scrollBehavior;html.style.scrollBehavior='auto';scrollTo(previous.x,previous.y);html.style.scrollBehavior=behavior;
   }
-  scan(root);
- });
- new MutationObserver(records=>{for(const r of records){for(const n of r.addedNodes)scan(n);if(r.target.id==='tvStartup'&&r.target.hidden)document.querySelectorAll(cards).forEach(card=>{watcher.unobserve(card);watcher.observe(card);});}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
- document.addEventListener('visibilitychange',pump);
- reduced.addEventListener?.('change',()=>{if(reduced.matches){for(const card of pending){card.classList.remove('lp-reveal-pending');watcher.unobserve(card);}pending.clear();visible.clear();for(const a of running)a.cancel();clearTimeout(timer);}else pump();});
+ };
+ const guard=(event,dx,dy)=>{
+  const dialog=modal();if(!dialog)return;
+  let node=event.target instanceof Element?event.target:null;
+  if(node&&dialog.contains(node))for(;node;node=node.parentElement){
+   const style=getComputedStyle(node),vertical=Math.abs(dy)>=Math.abs(dx),delta=vertical?dy:dx;
+   const overflow=vertical?style.overflowY:style.overflowX,position=vertical?node.scrollTop:node.scrollLeft,max=vertical?node.scrollHeight-node.clientHeight:node.scrollWidth-node.clientWidth;
+   if(/auto|scroll/.test(overflow)&&max>1&&((delta>0&&position<max-1)||(delta<0&&position>1)))return;
+   if(node===dialog)break;
+  }
+  if(event.cancelable)event.preventDefault();
+ };
+ document.addEventListener('wheel',e=>guard(e,e.deltaX,e.deltaY),{passive:false,capture:true});
+ document.addEventListener('touchstart',e=>{const t=e.touches[0];lastTouch=t?{x:t.clientX,y:t.clientY}:null;},{passive:true,capture:true});
+ document.addEventListener('touchmove',e=>{const t=e.touches[0];if(t&&lastTouch){guard(e,lastTouch.x-t.clientX,lastTouch.y-t.clientY);lastTouch={x:t.clientX,y:t.clientY};}},{passive:false,capture:true});
+ document.addEventListener('close',sync,true);document.addEventListener('cancel',()=>queueMicrotask(sync),true);
+ new MutationObserver(sync).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open'],childList:true});sync();
+})();
+
+/* Keep the real top-layer dialog alive for its exit. All existing callers,
+   method=dialog forms and Escape share the same cancellation-safe lifecycle. */
+(() => {
+ 'use strict';
+ if(window.LocalPartyDialogs||!window.HTMLDialogElement)return;
+ const quiet=()=>matchMedia('(prefers-reduced-motion: reduce)').matches,pending=new WeakMap(),panels=new WeakMap();
+ const prototype=HTMLDialogElement.prototype,nativeClose=prototype.close,nativeShow=prototype.show,nativeModal=prototype.showModal;
+ function cancel(dialog){
+  const record=pending.get(dialog);if(!record)return;
+  clearTimeout(record.timer);pending.delete(dialog);dialog.classList.remove('lp-dialog-closing','sheet-closing');clearStart(dialog);record.resolve(false);
+ }
+ function clearStart(dialog){for(const key of ['opacity','scale','translate','transform'])dialog.style.removeProperty('--lp-close-'+key);}
+ function close(dialog,value){
+  if(!dialog.open){cancel(dialog);return;}
+  // The nonmodal Host tab is a native navigation surface, not a popup. Its
+  // outgoing screen is animated by the native tab coordinator.
+  if(dialog.id==='hostPanel'&&!dialog.matches(':modal')){cancel(dialog);nativeClose.call(dialog,...(value===undefined?[]:[value]));return;}
+  const previous=pending.get(dialog);if(previous){if(value!==undefined)previous.value=value;return;}
+  if(quiet()||document.hidden){nativeClose.call(dialog,...(value===undefined?[]:[value]));return;}
+  let resolve;const promise=new Promise(r=>resolve=r),record={value,resolve,promise,timer:0};pending.set(dialog,record);
+  const start=getComputedStyle(dialog);for(const key of ['opacity','scale','translate','transform'])dialog.style.setProperty('--lp-close-'+key,start[key]==='none'?(key==='scale'?'1':key==='translate'?'0 0':'none'):start[key]);
+  dialog.classList.add('lp-dialog-closing','sheet-closing');
+  record.timer=setTimeout(()=>{
+   if(pending.get(dialog)!==record)return;
+   pending.delete(dialog);
+   // A nested popup can already own focus. Closing an outgoing sheet must not
+   // restore the old opener over that incoming sheet.
+   const focused=document.activeElement;
+   if(dialog.open)nativeClose.call(dialog,...(record.value===undefined?[]:[record.value]));
+   dialog.classList.remove('lp-dialog-closing','sheet-closing');
+   clearStart(dialog);
+   if(focused?.isConnected&&focused.closest?.('dialog[open]'))focused.focus({preventScroll:true});
+   resolve(true);
+  },190);
+ }
+ prototype.close=function(value){close(this,value);};
+ prototype.show=function(){const changeMode=pending.has(this)&&this.open&&this.matches(':modal');cancel(this);if(changeMode)nativeClose.call(this);return nativeShow.call(this);};
+ prototype.showModal=function(){const changeMode=pending.has(this)&&this.open&&!this.matches(':modal');cancel(this);if(changeMode)nativeClose.call(this);return nativeModal.call(this);};
+ document.addEventListener('cancel',event=>{if(event.target instanceof HTMLDialogElement){event.preventDefault();event.target.close();}},true);
+ document.addEventListener('submit',event=>{
+  const form=event.target;if(!(form instanceof HTMLFormElement))return;const method=event.submitter?.hasAttribute('formmethod')?event.submitter.formMethod:form.method;if(String(method).toLowerCase()!=='dialog')return;
+  const dialog=form.closest('dialog');if(!dialog)return;
+  event.preventDefault();dialog.close(event.submitter?.value||'');
+ },true);
+ function setVisible(panel,show){
+  const record=panels.get(panel);
+  if(show){record?.animation.cancel();panels.delete(panel);panel.hidden=false;panel.style.removeProperty('pointer-events');return;}
+  if(panel.hidden||record)return;
+  if(quiet()||document.hidden){panel.hidden=true;return;}
+  const card=panel.id==='pauseOverlay'?panel.firstElementChild:panel;
+  const animation=card.animate([{opacity:1,scale:'1',translate:'0 0'},{opacity:0,scale:'.96',translate:'0 8px'}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'});
+  const entry={animation};panels.set(panel,entry);panel.style.pointerEvents='none';
+  animation.finished.catch(()=>{}).then(()=>{
+   if(panels.get(panel)!==entry)return;
+   panel.hidden=true;panels.delete(panel);panel.style.removeProperty('pointer-events');animation.cancel();
+   if(panel.matches(':popover-open'))panel.hidePopover();
+  });
+ }
+ window.LocalPartyDialogs=Object.freeze({close:dialog=>dialog.close(),whenClosed:dialog=>pending.get(dialog)?.promise||Promise.resolve(true),setVisible,cancel});
 })();

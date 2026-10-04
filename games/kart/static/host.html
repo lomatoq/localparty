@@ -7,13 +7,14 @@
   <link rel="stylesheet" href="/static/styles.css" />
 </head>
 <body class="host-page">
+  <canvas id="kartScenery" aria-hidden="true"></canvas>
   <main class="host-shell">
-    <section class="game-stage">
+    <section class="game-stage" data-tv-hud-anchor>
       <canvas id="gameCanvas" width="1600" height="900"></canvas>
       <div class="top-hud glass">
         <div>
           <div class="eyebrow">WI‑FI KART PARTY</div>
-          <div id="raceStatus" class="race-status">LOBBY</div>
+          <div id="raceStatus" data-i18n-ui class="race-status">LOBBY</div>
         </div>
         <div class="race-clock" data-party-timer>
           <span class="muted">ВРЕМЯ</span>
@@ -29,7 +30,7 @@
       <div class="bottom-hint glass">📱 Scan QR → enter name → choose left/right hand → race.</div>
     </section>
 
-    <aside class="side-panel">
+    <aside class="side-panel" data-tv-hud-rail>
       <div class="brand-block">
         <div class="logo-mark">⚡</div>
         <div>

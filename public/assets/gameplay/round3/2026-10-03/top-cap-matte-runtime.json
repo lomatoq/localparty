@@ -1,0 +1,330 @@
+{
+  "version": 1,
+  "opticalThreshold": 32,
+  "items": {
+    "western": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        182,
+        52,
+        228,
+        378
+      ],
+      "optical": [
+        4,
+        4,
+        220,
+        370
+      ],
+      "pack": 4,
+      "cell": 0,
+      "seat": "left"
+    },
+    "tanks": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        515,
+        52,
+        216,
+        379
+      ],
+      "optical": [
+        4,
+        4,
+        208,
+        371
+      ],
+      "pack": 4,
+      "cell": 1,
+      "seat": "left"
+    },
+    "chaos": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        851,
+        53,
+        225,
+        378
+      ],
+      "optical": [
+        4,
+        4,
+        217,
+        370
+      ],
+      "pack": 4,
+      "cell": 2,
+      "seat": "left"
+    },
+    "taprace": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        170,
+        458,
+        246,
+        347
+      ],
+      "optical": [
+        4,
+        4,
+        238,
+        339
+      ],
+      "pack": 4,
+      "cell": 3,
+      "seat": "left"
+    },
+    "punchmeter": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        527,
+        460,
+        209,
+        346
+      ],
+      "optical": [
+        4,
+        4,
+        201,
+        338
+      ],
+      "pack": 4,
+      "cell": 4,
+      "seat": "left"
+    },
+    "flappy": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        856,
+        445,
+        230,
+        373
+      ],
+      "optical": [
+        4,
+        4,
+        222,
+        365
+      ],
+      "pack": 4,
+      "cell": 5,
+      "seat": "left"
+    },
+    "hungry": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        168,
+        830,
+        247,
+        366
+      ],
+      "optical": [
+        4,
+        4,
+        239,
+        358
+      ],
+      "pack": 4,
+      "cell": 6,
+      "seat": "left"
+    },
+    "snakelines": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        516,
+        833,
+        227,
+        364
+      ],
+      "optical": [
+        4,
+        4,
+        219,
+        356
+      ],
+      "pack": 4,
+      "cell": 7,
+      "seat": "left"
+    },
+    "carryball": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "source": [
+        860,
+        834,
+        214,
+        362
+      ],
+      "optical": [
+        4,
+        4,
+        206,
+        354
+      ],
+      "pack": 4,
+      "cell": 8,
+      "seat": "left"
+    },
+    "marble_bloom": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        117,
+        49,
+        224,
+        377
+      ],
+      "optical": [
+        4,
+        4,
+        216,
+        369
+      ],
+      "pack": 5,
+      "cell": 0,
+      "seat": "left"
+    },
+    "pocket_siege": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        499,
+        48,
+        225,
+        378
+      ],
+      "optical": [
+        4,
+        4,
+        217,
+        370
+      ],
+      "pack": 5,
+      "cell": 1,
+      "seat": "left"
+    },
+    "poker": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        882,
+        48,
+        227,
+        378
+      ],
+      "optical": [
+        4,
+        4,
+        219,
+        370
+      ],
+      "pack": 5,
+      "cell": 2,
+      "seat": "left"
+    },
+    "airhockey": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        116,
+        445,
+        227,
+        369
+      ],
+      "optical": [
+        4,
+        4,
+        219,
+        361
+      ],
+      "pack": 5,
+      "cell": 3,
+      "seat": "left"
+    },
+    "bow_club": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        499,
+        445,
+        225,
+        369
+      ],
+      "optical": [
+        4,
+        4,
+        217,
+        361
+      ],
+      "pack": 5,
+      "cell": 4,
+      "seat": "left"
+    },
+    "curling": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        881,
+        445,
+        229,
+        369
+      ],
+      "optical": [
+        4,
+        4,
+        221,
+        361
+      ],
+      "pack": 5,
+      "cell": 5,
+      "seat": "left"
+    },
+    "bowling": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        115,
+        832,
+        228,
+        370
+      ],
+      "optical": [
+        4,
+        4,
+        220,
+        362
+      ],
+      "pack": 5,
+      "cell": 6,
+      "seat": "left"
+    },
+    "swarm_gate": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        498,
+        830,
+        226,
+        372
+      ],
+      "optical": [
+        4,
+        4,
+        218,
+        364
+      ],
+      "pack": 5,
+      "cell": 7,
+      "seat": "left"
+    },
+    "peek_shoot": {
+      "atlas": "/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "source": [
+        881,
+        829,
+        230,
+        373
+      ],
+      "optical": [
+        4,
+        4,
+        222,
+        365
+      ],
+      "pack": 5,
+      "cell": 8,
+      "seat": "left"
+    }
+  }
+}

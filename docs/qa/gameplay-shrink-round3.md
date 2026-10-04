@@ -1,0 +1,11 @@
+# Shrink Arena / Last Circle — gameplay round3 closure
+
+Production scope: `games/party/public/host.js + controller.css`. Parent requested production stop for the local iPhone build; no further gameplay/UI changes or captures were started after that stop.
+
+The same local name/metric hierarchy now distinguishes upright player identities from bold Wins. Existing circle shrink timing, elimination presentation and label collision placement are preserved. Keeping names out of the emphatic score face makes the shrinking boundary easier to read without redesigning the board.
+
+Normal-clock real launcher evidence is in `.localparty-build/design-round3/party-family/final-polish-2` and `.../final-polish-16`. Two human browser controllers used a long Latin and a Cyrillic identity; the 16-player roster added 14 actual built-in bots. 22 current normal screenshots for this game were manually opened and individually recorded with SHA256 and screen-specific observations in `shrink-visual-review.json`. Every run includes actual playing, action, Pause/Resume and same-identity outer reload. Actual joystick input, active/eliminated controls and whole lit shrinking boundary were inspected. Centred explanations and320/393 joystick/status fit above the footer.
+
+Real two-human results were individually viewed at both TV/phone sizes. They use an explicitly labelled 12× QA clock: this validates authoritative outcome/rank and composition, not normal-time gameplay. New results-settled-16 has four freshly inspected settled frames for this game, including full16-person TV podium and truthful score ties.  Result ledgers name every manually viewed frame and explicitly reject transient/stale TV images. 16-player phone result inspection covers the visible top rows, not a reached last row. Very long TV Cyrillic result names can leave a one-letter line: bounded, but not claimed as ideal typography.
+
+Later root-owned common brick/glow/header revisions are excluded from this local captured-composition approval. Exact captured source/shared hashes and causal changes are in the ledgers. Root's second review is pending for these new hashes; earlier approvals are not transferred. Browser evidence does not prove physical iPhone vibration or TV viewing distance. Other game modes and unvisited outcomes are not claimed.

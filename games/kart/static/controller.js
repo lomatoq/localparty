@@ -18,11 +18,12 @@ const timeText=document.getElementById('timeText');
 const bestText=document.getElementById('bestText');
 const speedText=document.getElementById('speedText');
 const statusStrip=document.getElementById('statusStrip');
+const kartLabel=(en,ru)=>window.PartyI18n?.language==='ru'?ru:en;
 
 let ws=null, playerId=null, gameState=null;
 let steer=0, throttle=0;
 let selectedHand=window.PARTY_PROFILE?.hand||localStorage.getItem('kart_hand')||'right';
-let wheelPointer=null, gasPointer=null;
+let wheelPointer=null, gasPointer=null, gasKey=null;
 let lastCountdown=null, wasFinished=false;
 
 function applyHand(hand){
@@ -91,8 +92,12 @@ for(const [id,direction] of [['steerLeft',-1],['steerRight',1]]){
  b.addEventListener('blur',releaseWheel);
 }
 
-gasBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(gasPointer!==null||gasBtn.disabled)return;gasPointer=e.pointerId;gasBtn.setPointerCapture(e.pointerId);throttle=1;gasBtn.classList.add('active');transmitInput();try{navigator.vibrate?.(12)}catch(_){} });
-function releaseGas(e){if(gasPointer===null||!e||e.pointerId===gasPointer){gasPointer=null;throttle=0;gasBtn.classList.remove('active');transmitInput();}}
+function syncGas(){throttle=gasPointer!==null||gasKey!==null?1:0;gasBtn.classList.toggle('active',!!throttle);gasBtn.setAttribute('aria-pressed',String(!!throttle));transmitInput();}
+gasBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(gasPointer!==null||gasBtn.disabled)return;gasPointer=e.pointerId;gasBtn.setPointerCapture(e.pointerId);syncGas();try{navigator.vibrate?.(12)}catch(_){} });
+function releaseGas(e){if(!e){gasPointer=null;gasKey=null;syncGas();}else if(e.pointerId===gasPointer){gasPointer=null;syncGas();}}
+gasBtn.addEventListener('keydown',e=>{if(![' ','Enter'].includes(e.key))return;e.preventDefault();if(e.repeat||gasBtn.disabled||gasKey!==null)return;gasKey=e.key;syncGas();});
+gasBtn.addEventListener('keyup',e=>{if(e.key!==gasKey)return;e.preventDefault();gasKey=null;syncGas();});
+gasBtn.addEventListener('blur',()=>releaseGas());
 gasBtn.addEventListener('pointerup',releaseGas);gasBtn.addEventListener('pointercancel',releaseGas);gasBtn.addEventListener('lostpointercapture',releaseGas);window.addEventListener('blur',()=>{releaseGas();releaseWheel()});
 
 document.addEventListener('visibilitychange',()=>{if(document.hidden){throttle=0;steer=0;releaseGas();releaseWheel();}});
@@ -112,12 +117,12 @@ function updateStats(){
   lapText.textContent=`${Math.min(me.lap+1,gameState.laps)}/${gameState.laps}`;
   timeText.textContent=fmt(gameState.race_time).split('.')[0];
   bestText.textContent=me.best_lap==null?'—':fmt(me.best_lap);
-  speedText.textContent=`${Math.round(me.speed*.55)} km/h`;
+  speedText.textContent=`${Math.round(me.speed*.55)}${kartLabel(' km/h',' км/ч')}`;
   if(gameState.status==='lobby')statusStrip.textContent='ЖДЁМ СТАРТА';
   else if(!me.in_race && (gameState.status==='countdown'||gameState.status==='racing')) statusStrip.textContent='WAITING FOR NEXT RACE';
-  else if(gameState.status==='countdown')statusStrip.textContent=`GET READY · ${Math.max(1,Math.ceil(gameState.countdown))}`;
+  else if(gameState.status==='countdown')statusStrip.textContent=`${kartLabel('GET READY','ГОТОВИМСЯ')} · ${Math.max(1,Math.ceil(gameState.countdown))}`;
   else if(gameState.status==='racing')statusStrip.textContent=me.offroad?'OFF‑ROAD · SLOWDOWN':'RACE!';
-  else if(gameState.status==='results')statusStrip.textContent=me.finish_order?`FINISHED #${me.finish_order}`:'RACE OVER';
+  else if(gameState.status==='results')statusStrip.textContent=me.finish_order?`${kartLabel('FINISHED #','ФИНИШ №')}${me.finish_order}`:'RACE OVER';
 
   if(gameState.status==='countdown'){
     const c=Math.max(1,Math.ceil(gameState.countdown));

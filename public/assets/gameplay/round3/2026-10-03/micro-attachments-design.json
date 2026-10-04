@@ -1,0 +1,259 @@
+{
+  "direction": "Human latest:36 game-specific attachments, three12cell packs; strict overhead minimalist edge integration",
+  "columns": 4,
+  "rows": 3,
+  "items": [
+    {
+      "game": "push",
+      "pack": 1,
+      "cell": 0,
+      "design": "cream braided-rope hem represented by only three broad flat segments, folded around a cyan fastening tab",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "shrink",
+      "pack": 1,
+      "cell": 1,
+      "design": "teal shrinking-ring clamp: one arc and a short square edge cuff",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "knives",
+      "pack": 1,
+      "cell": 2,
+      "design": "two simple flat crossed knife blades joined to a plum/coral edge sleeve",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "bomb",
+      "pack": 1,
+      "cell": 3,
+      "design": "charcoal bomb-shaped fuse plug with one muted gold fuse and a flat fastening lip",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "western",
+      "pack": 1,
+      "cell": 4,
+      "design": "warm brass horseshoe clasp with a single flat coral bandana knot",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "tanks",
+      "pack": 1,
+      "cell": 5,
+      "design": "olive armored corner plate with two broad round bolts",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "tankarena",
+      "pack": 1,
+      "cell": 6,
+      "design": "gunmetal blue tank hatch edge clip with one muted violet slot and two broad bolts",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "chaos",
+      "pack": 1,
+      "cell": 7,
+      "design": "blue calibration cursor corner clamp with a clean white pointer silhouette",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "kart",
+      "pack": 1,
+      "cell": 8,
+      "design": "small black/cream2-by-2 checkered flag fold on a teal panel cuff",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "monster",
+      "pack": 1,
+      "cell": 9,
+      "design": "teal cartoon three-lobed paw grip curling flat over an edge tab",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "spy",
+      "pack": 1,
+      "cell": 10,
+      "design": "navy magnifying lens fitted to a compact edge clasp, small lime highlight",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "millionaire",
+      "pack": 1,
+      "cell": 11,
+      "design": "deep plum coin bezel with one muted brass rim and short panel grip",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "sinyakquiz",
+      "pack": 2,
+      "cell": 0,
+      "design": "rose studio buzzer face fixed into a flat plum edge clamp",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "warsaw",
+      "pack": 2,
+      "cell": 1,
+      "design": "slateblue compass/map corner fold with one simple cream directional arrow",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "crocodile",
+      "pack": 2,
+      "cell": 2,
+      "design": "forestgreen theatre-mask corner clasp with two plain eye holes",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "jenga",
+      "pack": 2,
+      "cell": 3,
+      "design": "warm honey wood joinery corner grip, only two broad block forms",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "crane",
+      "pack": 2,
+      "cell": 4,
+      "design": "navy-and-muted-yellow topdown crane pulley cuff, one wheel and short fastening tab",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "naval",
+      "pack": 2,
+      "cell": 5,
+      "design": "maritime blue porthole edge clasp, one cream ring and two broad bolts",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "drawguess",
+      "pack": 2,
+      "cell": 6,
+      "design": "coral pencil end on a teal folded paper edge tab",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "western_duel",
+      "pack": 2,
+      "cell": 7,
+      "design": "terracotta leather holster-like edge strap with one small cream star",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "taprace",
+      "pack": 2,
+      "cell": 8,
+      "design": "teal folded finish-line cuff with four broad cream/navy squares",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "punchmeter",
+      "pack": 2,
+      "cell": 9,
+      "design": "muted red flat boxing-glove cuff with only three knuckle lobes",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "flappy",
+      "pack": 2,
+      "cell": 10,
+      "design": "paleblue wing-shaped corner grip with three broad feather forms",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "hungry",
+      "pack": 2,
+      "cell": 11,
+      "design": "warmorange burger-wrapper corner clasp, four broad flat layers",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "snakelines",
+      "pack": 3,
+      "cell": 0,
+      "design": "bluegreen snake-track right-angle edge clip with one cream direction tip",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "carryball",
+      "pack": 3,
+      "cell": 1,
+      "design": "grassgreen football patch corner sleeve with three broad ivory/navy panels",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "marble_bloom",
+      "pack": 3,
+      "cell": 2,
+      "design": "teal edge holder holding two flat coral/lime marble discs",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "pocket_siege",
+      "pack": 3,
+      "cell": 3,
+      "design": "warm sand aiming-tape edge clasp with one navy notch and broad muted brass rivet",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "bow_club",
+      "pack": 3,
+      "cell": 4,
+      "design": "cream fletched arrow tail fastened by a coral/wood panel band",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "poker",
+      "pack": 3,
+      "cell": 5,
+      "design": "plum/cream poker-chip edge cuff with a muted coral disc, no numbers",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "airhockey",
+      "pack": 3,
+      "cell": 6,
+      "design": "paleice puck grip on an ivory flat mounting lip",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "mines",
+      "pack": 3,
+      "cell": 7,
+      "design": "sagegreen folded flag patch over a small warmyellow corner plate",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "curling",
+      "pack": 3,
+      "cell": 8,
+      "design": "iceblue topdown curling-stone cuff with a flat gray ring and simplehandle",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "bowling",
+      "pack": 3,
+      "cell": 9,
+      "design": "warmamber bowling-pin top silhouette corner sleeve, two cream broad bands",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "swarm_gate",
+      "pack": 3,
+      "cell": 10,
+      "design": "plum masonry gate hinge corner clip with two simple gunmetal pads",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    },
+    {
+      "game": "peek_shoot",
+      "pack": 3,
+      "cell": 11,
+      "design": "meadowgreen wooden edge grip with a simple coral sight-ring silhouette",
+      "placement": "side-edge cuff; no text overlap; 36\u201344px optical bounds"
+    }
+  ]
+}

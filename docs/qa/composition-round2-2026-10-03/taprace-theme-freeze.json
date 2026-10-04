@@ -1,0 +1,18 @@
+{
+  "frozenAt": "2026-10-03T10:08:17.367625+00:00",
+  "scope": "Only Tap Race outer host list backing exclusion; existing phone mapping and individual game-authored cards retained",
+  "hashes": {
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817"
+  },
+  "checks": [
+    "36 profiles retained",
+    "Tap Race host candidates empty",
+    "Tap Race host CSS rule absent",
+    "Tap Race phone selectors/rule retained",
+    "Next Punch Meter host rule retained",
+    "JS syntax passed"
+  ],
+  "browserStarted": false,
+  "visualGate": "Arcade owner/root current capture"
+}

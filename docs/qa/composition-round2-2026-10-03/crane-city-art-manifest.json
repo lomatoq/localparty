@@ -1,0 +1,15 @@
+{
+  "path": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/crane-city-minimal-20261003-v1.png",
+  "source": "/Users/hlebhlyaba/.codex/generated_images/01a0fc5e-56f7-7f60-9b2b-1e57bf6a60c3/exec-57b6354a-0dce-4b5a-9f36-b1b87b3df8df.png",
+  "width": 1672,
+  "height": 941,
+  "aspect": 1.7768331562167907,
+  "mode": "RGB",
+  "sha256": "9974e8226aa01f46008e4e5856360cc2ab1f8465196bf938f69d3307ebfe0465",
+  "tool": "built-in image_gen",
+  "inspection": "Selected original visually inspected: uninterrupted fullwidth lower-third city, quiet upper/right sky, no baked crane/blocks/UI; live fullwidth integration remains construction-owned.",
+  "prompt": "Use case: stylized-concept. Asset type: full-screen 16:9 landscape background for a friendly minimalist party game called Night Shift. Generate a brand-new complete bitmap backdrop, wide 16:9 landscape composition. A calm night city in flat clean 2D cartoon illustration with softly rounded building corners, straight modern roofs and simple rectangular forms. Continuous city silhouettes extend across the ENTIRE width, including far right, with a shared ground baseline. The city occupies ONLY the lower third, with low and medium buildings and two restrained layers for depth; never ornate towers or domes. Upper two thirds are spacious quiet deep navy sky, subtly transitioning to muted teal near horizon; especially quiet behind gameplay and upper/right scoreboard. Sparse tiny warm amber windows, a few very subtle small stars; no prominent moon. Palette deep midnight navy, desaturated teal, blue-gray, restrained amber, soft matte flat surfaces. Crisp broad shapes, very low detail, gently playful friendly proportions consistent with cartoon crane game art. Quiet sky and city suitable behind a bright yellow crane and separately rendered falling building blocks, which MUST NOT be in this image. No crane, no construction machinery, no floating blocks, no character, no people, no text, no logos, no interface, no panels, no frame, no sharp sidebar seam. No photographic texture, no 3D rendering, no haze beams, no detailed architecture, no excessive glow, no perspective street leading to a vanishing point. Opaque complete edge-to-edge artwork.",
+  "currentReference": "/Users/hlebhlyaba/HeyPals/localparty/public/assets/gameplay/crane-city.webp",
+  "userScreenshot": "/var/folders/7m/rhklsdyx1_b_jvry1f_krqpc0000gn/T/codex-clipboard-edda4671-18de-42ba-8b10-57061c795463.png",
+  "integrationDirection": "Use one full-TV viewport backing behind stage and sidebar; no independent stage-only crop. Leave crane, blocks, camera, collision and controls unchanged. Original raster near16:9; preserve aspect without distortion."
+}

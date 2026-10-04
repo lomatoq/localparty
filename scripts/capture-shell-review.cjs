@@ -1,0 +1,22 @@
+'use strict';
+const {spawn}=require('node:child_process'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {webkit}=require(process.env.PARTY_PLAYWRIGHT||'playwright');
+const root=path.resolve('.localparty-build/screen-review'),output=path.join(root,'captures');
+const child=spawn(process.execPath,['server.js'],{env:{...process.env,PARTY_EMBEDDED:'1',PARTY_INTERNAL_PORT:'0',PARTY_EPHEMERAL:'1',PARTY_PORT:'0',PARTY_NO_BROWSER:'1',PARTY_ADMIN_KEY:'shell-review',TEST_FAST:'1'}});
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));let log='',browser;child.stdout.on('data',d=>log+=d);child.stderr.on('data',d=>log+=d);
+const report={method:'Real shell interactions. TEST_FAST Flappy match only used to populate real statistics.',capturedAt:new Date().toISOString(),captures:[],errors:[]};
+const watchdog=setTimeout(()=>{child.kill();process.exit(2);},180000);watchdog.unref();
+(async()=>{try{
+ for(let i=0;i<300&&!/localhost:(\d+)/.test(log);i++)await sleep(50);assert.match(log,/localhost:(\d+)/);const origin='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];
+ const api=async body=>{const r=await fetch(origin+'/api/manage',{signal:AbortSignal.timeout(15000),method:body?'POST':'GET',headers:{Authorization:'Bearer shell-review','Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});const s=await r.json();if(!r.ok)throw Error(JSON.stringify(s));return s;};
+ browser=await webkit.launch({headless:true});const tv=await browser.newPage({viewport:{width:1280,height:720}}),phone=await browser.newPage({viewport:{width:393,height:852},isMobile:true,hasTouch:true});phone.setDefaultTimeout(10000);phone.on('pageerror',e=>report.errors.push(e.message));
+ const shot=async(id,title,name)=>{await sleep(300);const file='shell-'+name+'.png';await phone.screenshot({path:path.join(output,file)});const card={id,game:'shell',title,surface:'Телефон',state:'Общий интерфейс',file:'captures/'+file,method:report.method};report.captures.push(card);let extras=[];try{extras=JSON.parse(fs.readFileSync(path.join(root,'manifest-extra.json')))}catch{}fs.writeFileSync(path.join(root,'manifest-extra.json'),JSON.stringify([...extras.filter(x=>x.id!==id),card],null,2));};
+ await tv.goto(origin+'/tv');await phone.goto(origin+'/play');await phone.locator('#name').fill('Александра ДлинноеИмя');await phone.locator('#joinForm button[type=submit]').click();await phone.locator('#home').waitFor();const second=await browser.newPage({viewport:{width:393,height:852},isMobile:true,hasTouch:true});await second.goto(origin+'/play');await second.locator('#name').fill('Пётр');await second.locator('#joinForm button[type=submit]').click();await second.locator('#home').waitFor();await sleep(1200);
+ await phone.locator('#roomToggle').click();await shot('030','Игроки в комнате','room-roster');await phone.locator('#closeRoom').click();
+ await phone.locator('#showStats').click();await shot('031','Топ · до первой партии','top-empty');await phone.locator('#closeStats').click();
+ await phone.locator('#editFromCatalog').click();await shot('035','Редактирование профиля','profile');await phone.locator('#profileCancel').click();
+ await api({type:'launch',id:'flappy'});await phone.waitForFunction(()=>!document.getElementById('readyButton').disabled);await second.waitForFunction(()=>!document.getElementById('readyButton').disabled);await phone.locator('#readyButton').click();await second.locator('#readyButton').click();for(let i=0;i<150;i++){if((await api()).active?.ui?.phase==='results')break;await sleep(100);}assert.equal((await api()).active?.ui?.phase,'results');
+ await phone.locator('#showStats').click();await phone.locator('.stats-rank').first().waitFor();await shot('032','Топ · после партии','top-populated');await phone.locator('.stats-rank').first().click();await shot('033','Статистика игрока','player-statistics');await phone.locator('#closeStats').click();
+ await phone.locator('#pauseButton').click();await phone.locator('#sessionRules').click();await shot('034','Правила игры из паузы','game-rules');
+ console.log('CAPTURED',report.captures.map(x=>x.id).join(','));
+}finally{clearTimeout(watchdog);fs.writeFileSync(path.join(output,'shell-overlays-report.json'),JSON.stringify(report,null,2));await browser?.close();child.kill();}})().catch(error=>{report.failure=error.message;fs.writeFileSync(path.join(output,'shell-overlays-report.json'),JSON.stringify(report,null,2));console.error(error);process.exitCode=1});

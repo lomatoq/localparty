@@ -66,3 +66,169 @@ html.party-host #board:has(.runner-row:nth-child(9)) .runner-row b{font-size:10p
 @media(prefers-reduced-motion:reduce){.controller #punchReady.turn-cue{animation:none}}
 html,body,*{scrollbar-width:none!important}
 *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+
+/* Targeted console layouts: preserve real hit areas and sprite proportions. */
+html.party-host[data-party-game=taprace] .arcade-host #arena{object-fit:fill}
+html.party-managed.party-player[data-party-game=punchmeter] body .controller{justify-content:center;gap:12px;padding:16px!important;overflow-y:auto}
+html.party-managed.party-player[data-party-game=punchmeter] body .controller #status{font-size:clamp(20px,6vw,26px)!important;line-height:1.2!important;min-height:0;text-wrap:balance}
+html.party-managed.party-player[data-party-game=punchmeter] body .controller #punchResult>div{gap:5px;padding:12px 4px;border-radius:16px}
+html.party-managed.party-player[data-party-game=punchmeter] body .controller #punchResult small{font-style:normal!important;font-weight:500!important;font-size:12px!important}
+html.party-managed.party-player[data-party-game=punchmeter] body .controller #punchResult strong{font-size:clamp(24px,8vw,32px)!important;font-variant-numeric:tabular-nums}
+html.party-managed.party-player[data-party-game=punchmeter] body .controller #help{font-style:normal!important;font-weight:500!important;font-size:13px;line-height:1.45;max-width:32ch;align-self:center}
+html.party-managed.party-player[data-party-game=punchmeter] body .controller .punch-sense{width:100%;flex-wrap:wrap;border-radius:16px;gap:3px}
+@media(max-height:520px){html.party-managed.party-player[data-party-game=punchmeter] body .controller{justify-content:flex-start;gap:8px;padding:12px!important}html.party-managed.party-player[data-party-game=punchmeter] body .controller #punchResult>div{padding:8px 4px}html.party-managed.party-player[data-party-game=punchmeter] body .controller #action{min-height:62px!important}}
+
+/* The arcade player rail is readable at living-room distance; colors identify players, not surfaces. */
+html.party-managed.party-host .arcade-host .score-panel{width:min(100%,1120px);max-height:164px;background:linear-gradient(135deg,#302941,#221e32)!important;border:1px solid #c9b8f238;border-radius:20px;padding:12px 14px;box-shadow:0 6px 20px #08061324}
+html.party-managed.party-host .score-panel h2{font-size:16px!important;line-height:1.2;margin:0 0 10px;color:#f7f1ff}
+html.party-managed.party-host #board{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+html.party-managed.party-host #board .runner-row{grid-template-columns:28px minmax(0,1fr) auto;place-items:initial;align-items:center;min-height:44px;padding:7px 9px;gap:8px;background:#41384f;border:1px solid #cbbced26;border-radius:12px;color:#fffaff;font:500 14px/1.2 var(--hp-font-body,system-ui)}
+html.party-managed.party-host #board .runner-row>span:nth-child(2){display:block;min-width:0;max-width:100%;font-size:14px;color:#fffaff}
+html.party-managed.party-host #board .runner-row b{font-size:18px!important;color:#fffaff}
+html.party-managed.party-host #board .runner-row .avatar{width:28px;height:28px;font-size:16px;background:#211b31}
+html.party-managed.party-host #board:has(.runner-row:nth-child(9)){grid-template-columns:repeat(8,minmax(0,1fr))}
+html.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row{grid-template-columns:1fr auto;gap:4px;padding:5px 6px}
+html.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row .avatar{display:none}
+
+@media(min-width:1600px){
+ html.party-managed.party-host .arcade-host .score-panel:has(.runner-row){width:min(100%,1440px);padding:16px 20px;max-height:200px}
+ html.party-managed.party-host .score-panel h2{font-size:21px!important;margin-bottom:12px}
+ html.party-managed.party-host #board .runner-row{min-height:58px;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;padding:9px 12px}
+ html.party-managed.party-host #board .runner-row>span:nth-child(2){font-size:18px}
+ html.party-managed.party-host #board .runner-row b{font-size:24px!important}
+ html.party-managed.party-host #board .runner-row .avatar{width:34px;height:34px;font-size:20px}
+ html.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row{grid-template-columns:1fr auto}
+}
+html.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row>span:nth-child(2){display:block!important;min-width:0;max-width:100%;font-size:14px;line-height:1.2}
+@media(min-width:1600px){html.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row>span:nth-child(2){font-size:18px}}
+/* Live score reordering must never replay an entrance that hides player cards. */
+html.party-managed.party-host #board .runner-row{animation:none!important;opacity:1!important;transform:none!important;translate:none!important;scale:none!important}
+
+#joy[aria-disabled="true"]{opacity:.35!important;filter:grayscale(.8);pointer-events:none}
+
+/* Arcade juice (2026-10-02): tactile primary press, tap ripple, live stats. */
+html.party-managed.party-player body .controller #action{position:relative;overflow:hidden;isolation:isolate;transition:transform 240ms cubic-bezier(.23,1,.32,1),filter 160ms ease-out}
+html.party-managed.party-player body .controller #action.arc-pressed:not(:disabled){transform:translateY(5px) scale(.965);filter:brightness(1.07) saturate(1.08);transition-duration:70ms}
+.arc-ripple{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);border-radius:50%;background:radial-gradient(circle,#ffffffb0 0,#ffffff40 38%,#ffffff00 70%);opacity:.7;transform:scale(.18);animation:arcRipple 440ms cubic-bezier(.23,1,.32,1) forwards;pointer-events:none;z-index:-1}
+@keyframes arcRipple{to{transform:scale(1);opacity:0}}
+html.party-managed.party-player body .controller #arcadeStats{display:grid;grid-template-columns:repeat(var(--arc-cols,3),minmax(0,1fr));width:100%;max-width:440px;margin:0;padding:0;flex:none}
+html.party-managed.party-player body .controller #arcadeStats:has(>.hp-stat:nth-child(2):last-child){--arc-cols:2}
+html.party-managed.party-player body .controller #arcadeStats>.hp-stat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 4px;min-width:0;transition:background-color 200ms ease-out}
+html.party-managed.party-player body .controller #arcadeStats strong{font-size:clamp(20px,6.4vw,26px)!important;line-height:1.1;color:#f6f1ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+html.party-managed.party-player body .controller #arcadeStats small{font-size:12px!important;white-space:nowrap}
+html.party-managed.party-player body .controller #arcadeStats>.is-out strong{color:#ff8fa3}
+html.party-managed.party-player body .controller #arcadeStats.arc-win{animation:arcWin 640ms cubic-bezier(.23,1,.32,1)}
+@keyframes arcWin{0%{box-shadow:0 0 0 0 var(--arc-win,#c8ff73)}35%{box-shadow:0 0 0 4px var(--arc-win,#c8ff73),0 0 28px var(--arc-win,#c8ff73);transform:scale(1.03)}100%{box-shadow:0 0 0 0 #0000;transform:scale(1)}}
+.controller .arcade-team{margin:0;display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px;border-radius:99px;border:1px solid #ffffff1c;background:#211c2d;font:italic 750 14px/1.2 var(--hp-font-action,KardiaFatRunner,sans-serif);text-transform:uppercase;letter-spacing:-.01em;color:#f7f1ff;align-self:center}
+.controller .arcade-team::before{content:'';width:12px;height:12px;border-radius:50%;background:#c6ff79;box-shadow:0 0 10px #c6ff79aa}
+.controller .arcade-team[data-team="1"]::before{background:#b398ff;box-shadow:0 0 10px #b398ffaa}
+.controller .arcade-track{position:relative;flex:none;width:100%;max-width:440px;height:30px;border-radius:15px;background:linear-gradient(90deg,#211c2d,#2a2340);border:1px solid #cfb8fa2e;overflow:hidden}
+.controller .arcade-track::before{content:'';position:absolute;inset:14px 18px auto 18px;height:2px;background:repeating-linear-gradient(90deg,#ffffff26 0 10px,transparent 10px 18px)}
+.controller .arcade-track-flag{position:absolute;right:6px;top:4px;bottom:4px;width:8px;border-radius:2px;background:repeating-conic-gradient(#f7f1ff 0 25%,#2a2340 0 50%) 0 0/8px 8px}
+.controller .arcade-track>b{position:absolute;inset:0 38px 0 6px;pointer-events:none;transform:translateX(calc(var(--k) * 100%));transition:transform 140ms linear}
+.controller .arcade-track>b::after{content:'';position:absolute;left:0;top:8px;width:14px;height:14px;border-radius:50%;background:var(--c);opacity:.72}
+.controller .arcade-track>b.is-me{z-index:1}
+.controller .arcade-track>b.is-me::after{top:4px;left:-3px;width:20px;height:20px;opacity:1;box-shadow:0 0 0 2px #151321,0 0 12px var(--c)}
+@media(prefers-reduced-motion:reduce){.arc-ripple{display:none}html.party-managed.party-player body .controller #action.arc-pressed:not(:disabled){transform:none}html.party-managed.party-player body .controller #arcadeStats.arc-win{animation:none}.controller .arcade-track>b{transition:none}}
+@media(max-height:620px){html.party-managed.party-player body .controller #arcadeStats>.hp-stat{padding:6px 4px;gap:2px}html.party-managed.party-player body .controller #arcadeStats strong{font-size:20px!important}html.party-managed.party-player:is([data-party-game=hungry],[data-party-game=snakelines],[data-party-game=carryball]) body .controller #help{display:none}}
+html.party-managed.party-player[data-party-game=taprace] body .controller #action{min-height:clamp(120px,24dvh,200px)!important;font-size:clamp(34px,10vw,46px)!important;border-radius:36px!important}
+
+/* Codex UI: fields use the TV viewport; uniform canvas fitting keeps art proportions. */
+html.hp-ui.party-managed.party-host:not([data-party-game=taprace]) body main.arcade-host:has(#lobbyStage[hidden]){padding:0!important;gap:0;display:block;width:100vw;height:100dvh}
+html.hp-ui.party-managed.party-host:not([data-party-game=taprace]) body main.arcade-host:has(#lobbyStage[hidden]) #arena{position:absolute;inset:0;width:100%;height:100%;object-fit:contain!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host:not([data-party-game=taprace]) body main.arcade-host:has(#lobbyStage[hidden]) .score-panel{display:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host #arena{object-fit:contain!important;border-radius:0!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host .score-panel{width:100%!important;max-width:none!important}
+html.hp-ui.party-managed.party-player body main.controller{width:100%;max-width:480px;margin-inline:auto;gap:16px;padding:16px!important}
+html.hp-ui.party-managed.party-player body main.controller #action{width:100%!important;max-width:440px!important;border-radius:32px!important;font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important}
+html.hp-ui.party-managed.party-player[data-party-game=flappy] body main.controller #action{min-height:clamp(150px,36dvh,290px)!important}
+html.hp-ui.party-managed.party-player body main.controller #arcadeStats strong,html.hp-ui.party-managed.party-player body main.controller #punchResult strong{font:italic 900 clamp(24px,6.4vw,32px)/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player[data-party-game=taprace] body main.controller #status{font:italic 600 18px/1.35 KardiaFitRunner,sans-serif!important;min-height:0}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #punchResult{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;gap:16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #punchResult>div{padding:12px 6px!important}
+@media(max-height:520px){html.hp-ui.party-managed.party-player body main.controller{gap:10px!important}html.hp-ui.party-managed.party-player body main.controller #joy{width:min(58vw,35dvh,230px)!important;height:min(58vw,35dvh,230px)!important}}
+
+/* Group04: an open world and one state-to-action path. Shared Pause/Lobby chrome stays in the parent. */
+html{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+button:focus-visible,input:focus-visible{outline:3px solid #c8ff73;outline-offset:4px}
+input{font-size:16px;caret-color:#c8ff73}
+html.hp-ui.party-managed.party-host body main.arcade-host:has(#lobbyStage[hidden]) #arena{object-fit:fill!important;border-radius:0!important;box-shadow:none!important;border:0!important}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]){padding:0!important;gap:12px;grid-template-rows:minmax(0,1fr) auto}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]) .score-panel{padding:12px 16px!important;border-radius:18px!important;max-height:124px;box-shadow:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]) .score-panel h2{display:none}
+html.hp-ui.party-managed.party-host #board .runner-row{grid-template-columns:36px minmax(0,1fr) auto!important;min-height:56px;padding:8px 12px;gap:12px}
+html.hp-ui.party-managed.party-host #board .runner-row .avatar{display:grid!important;width:36px;height:36px;background:transparent;border:0;overflow:visible}
+html.hp-ui.party-managed.party-host #board .runner-row .avatar img{width:100%;height:100%;object-fit:contain}
+html.hp-ui.party-managed.party-host #board .runner-row .avatar .player-photo{border-radius:50%;object-fit:cover}
+html.hp-ui.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row{grid-template-columns:28px minmax(0,1fr) auto!important;padding:4px 8px;gap:6px;min-height:44px}
+html.hp-ui.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row .avatar{width:28px;height:28px}
+html.hp-ui.party-managed.party-host #board:has(.runner-row:nth-child(9)) .runner-row>span:nth-child(2){font-size:15px!important}
+html.hp-ui.party-managed.party-player body main.controller{--arcade-control-width:440px;gap:24px;justify-content:center;overflow-y:auto;overscroll-behavior:contain}
+html.hp-ui.party-managed.party-player .arcade-readout,html.hp-ui.party-managed.party-player .arcade-controls{display:flex;flex-direction:column;align-items:center;width:100%;max-width:var(--arcade-control-width);gap:12px;flex:none;min-width:0}
+html.hp-ui.party-managed.party-player .arcade-controls{gap:16px}
+html.hp-ui.party-managed.party-player .arcade-cue{width:72px;height:72px;object-fit:contain;flex:none}
+html.hp-ui.party-managed.party-player body main.controller #status{font:italic 900 22px/1.2 KardiaFatRunner,sans-serif!important;text-transform:uppercase;min-height:0!important;text-wrap:balance;max-width:100%}
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#help,#motionFeedback){font:normal 400 14px/1.4 var(--hp-font-body,KardiaFit,sans-serif)!important;color:#d3c9e3;max-width:34ch}
+html.hp-ui.party-managed.party-player body main.controller #arcadeStats{max-width:none;width:100%}
+html.hp-ui.party-managed.party-player body main.controller #arcadeStats strong{padding-inline:2px 8px;overflow:visible;text-overflow:clip}
+html.hp-ui.party-managed.party-player body main.controller #action{max-width:none!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;min-height:clamp(128px,25dvh,190px)!important;font-size:clamp(30px,9vw,42px)!important}
+html.hp-ui.party-managed.party-player[data-party-game=flappy] body main.controller #action{min-height:clamp(160px,30dvh,240px)!important}
+html.hp-ui.party-managed.party-player[data-party-game=carryball] body main.controller #action{min-height:72px!important;font-size:28px!important}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #action{min-height:76px!important;font-size:24px!important}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #motion{font-size:16px!important;min-height:48px!important;width:100%;padding:12px 16px!important}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #punchResult{width:100%;gap:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #punchResult strong{padding-inline:2px 8px}
+html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #punchResult>div{padding:12px 6px!important}
+@media(max-height:620px){
+ html.hp-ui.party-managed.party-player body main.controller{gap:16px!important;padding:12px 16px!important}
+ html.hp-ui.party-managed.party-player .arcade-readout,html.hp-ui.party-managed.party-player .arcade-controls{gap:8px}
+ html.hp-ui.party-managed.party-player .arcade-cue{width:48px;height:48px}
+ html.hp-ui.party-managed.party-player body main.controller #status{font-size:18px!important}
+ html.hp-ui.party-managed.party-player body main.controller #action{min-height:110px!important;font-size:30px!important}
+ html.hp-ui.party-managed.party-player[data-party-game=carryball] body main.controller #action,html.hp-ui.party-managed.party-player[data-party-game=punchmeter] body main.controller #action{min-height:60px!important;font-size:23px!important}
+ html.hp-ui.party-managed.party-player body main.controller #joy{width:min(56vw,35dvh,210px)!important;height:min(56vw,35dvh,210px)!important}
+}
+@media(max-height:440px){html.hp-ui.party-managed.party-player .arcade-cue{display:none}html.hp-ui.party-managed.party-player body main.controller{gap:12px!important}}
+
+/* Elimination keeps the next-round message prominent; disabled input is a quiet endpoint. */
+html.hp-ui.party-managed.party-player[data-party-game=flappy] body[data-arcade-state=out] main.controller #action{min-height:64px!important;font-size:24px!important;background:#30293f!important;color:#cbbfdf!important;filter:none!important;opacity:1!important;box-shadow:inset 0 0 0 1px #d9c7ff30!important}
+
+html.hp-ui.party-managed.party-player[data-party-game=snakelines] body[data-arcade-state=out] main.controller #joy{display:none!important}
+html.hp-ui.party-managed.party-player[data-party-game=snakelines] body[data-arcade-state=out] main.controller .arcade-controls{display:none}
+
+/* Waiting states communicate their next step without impersonating usable controls. */
+html.hp-ui.party-managed.party-player body[data-arcade-state=countdown] main.controller .arcade-controls,
+html.hp-ui.party-managed.party-player[data-party-game=hungry] body[data-arcade-state=returning] main.controller .arcade-controls,
+html.hp-ui.party-managed.party-player[data-party-game=flappy] body[data-arcade-state=out] main.controller .arcade-controls{display:none}
+html.hp-ui.party-managed.party-player body[data-arcade-connection=offline] main.controller .arcade-controls{pointer-events:none;opacity:.4}
+html.hp-ui.party-managed.party-player[data-party-game=carryball] body:not([data-arcade-possession=self]) main.controller #action:disabled{background:#30293f!important;color:#cbbfdf!important;opacity:1!important;filter:none!important;box-shadow:inset 0 0 0 1px #d9c7ff30!important}
+
+/* Composition: the timing fascia belongs to the running deck, with its own real row. */
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]){padding:calc(var(--party-hud-bottom,0px) + 16px) 24px 24px!important;gap:12px!important;grid-template-rows:minmax(0,1fr) auto!important}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]) .score-panel{justify-self:center;width:100%!important;max-height:164px;padding:10px 16px 12px!important;border-radius:14px!important;margin-bottom:0;background:transparent!important;border:1px solid transparent!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important;position:relative}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]) .score-panel::before,
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]) .score-panel::after{content:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]) .score-panel h2{display:none}
+html.hp-ui.party-managed.party-host[data-party-game=taprace] body main.arcade-host:has(#lobbyStage[hidden]) #board .runner-row{background:#27283c;border:0;border-radius:10px}
+
+/* Existing readouts become the game's instrument surface; controls retain held-state ink. */
+html.hp-ui[data-party-game=taprace]{--arc-panel-top:#3e3d59;--arc-panel-base:#252b3e;--arc-panel-rim:#99d6d6;--arc-panel-mark:linear-gradient(90deg,#9cdfcd 0 32%,transparent 32% 36%,#9cdfcd 36% 68%,transparent 68% 72%,#9cdfcd 72%)}
+html.hp-ui[data-party-game=punchmeter]{--arc-panel-top:#463340;--arc-panel-base:#2c2334;--arc-panel-rim:#d2a3b7;--arc-panel-mark:repeating-linear-gradient(90deg,#d0a7b8 0 6px,transparent 6px 12px)}
+html.hp-ui[data-party-game=flappy]{--arc-panel-top:#514473;--arc-panel-base:#302d4e;--arc-panel-rim:#ccb9ee;--arc-panel-mark:linear-gradient(90deg,transparent 0 12%,#d7c6f2 12% 20%,transparent 20% 36%,#d7c6f2 36% 64%,transparent 64% 80%,#d7c6f2 80% 88%,transparent 88%)}
+html.hp-ui[data-party-game=hungry]{--arc-panel-top:#514052;--arc-panel-base:#302738;--arc-panel-rim:#e0b6c6;--arc-panel-mark:repeating-linear-gradient(90deg,#e0b6c6 0 2px,transparent 2px 6px,#e0b6c6 6px 8px,transparent 8px 22px)}
+html.hp-ui[data-party-game=snakelines]{--arc-panel-top:#293d50;--arc-panel-base:#20273e;--arc-panel-rim:#8fd9df;--arc-panel-mark:linear-gradient(90deg,#8fd9df 0 2%,transparent 2% 24%,#8fd9df 24% 26%,transparent 26% 74%,#b9a3e7 74% 76%,transparent 76% 98%,#b9a3e7 98%)}
+html.hp-ui[data-party-game=carryball]{--arc-panel-top:#364442;--arc-panel-base:#232f35;--arc-panel-rim:#b0d4ba;--arc-panel-mark:linear-gradient(90deg,#c9ebc0 0 18%,transparent 18% 48%,#c9ebc0 48% 52%,transparent 52% 82%,#baa2ec 82%)}
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult){position:relative;padding:14px 10px 10px!important;border-radius:16px!important;background:linear-gradient(150deg,var(--arc-panel-top),var(--arc-panel-base))!important;border:1px solid color-mix(in srgb,var(--arc-panel-rim) 48%,transparent)!important;box-shadow:0 8px 24px #100a2030!important;color:#fff7ff}
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult)::before{content:none}
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult) small{color:#e1d7ec!important}
+@media(max-height:620px){html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult){padding:10px 6px 6px!important}}
+
+/* The turn cue belongs to the instrument card, not the open readout wrapper. */
+html.party-player .arcade-readout.hp-turn-cue{animation:none!important}
+html.party-player .arcade-readout.hp-turn-cue::after{content:none!important}
+html.party-player .arcade-readout.hp-turn-cue #punchResult{overflow:hidden;animation:hp-turn-spring 620ms cubic-bezier(.22,1,.36,1)}
+html.party-player .arcade-readout.hp-turn-cue #punchResult::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,transparent 35%,#ffffff2e 50%,transparent 65%);background-size:260% 100%;animation:hp-turn-sheen 760ms 80ms ease both}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+html.hp-ui.party-host #board .runner-row .avatar .player-photo{height:auto!important;aspect-ratio:1;border-radius:50%;object-fit:cover;box-sizing:border-box;border:1.5px solid var(--color,#b5bed2)}

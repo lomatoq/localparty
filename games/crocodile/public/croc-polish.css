@@ -1,0 +1,9 @@
+/* Crocodile polish (social lane, 2026-10-02) */
+html.hp-ui body.party-screen #word{font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important;font-weight:900!important;letter-spacing:-.01em}
+html.hp-ui body.party-screen #secretPanel small{font-family:KardiaFit,sans-serif!important;font-weight:550!important}
+body.party-screen .stage:has(#timer.urgent) .timebar i{background:linear-gradient(90deg,#ff8fd0,#ff596f)!important;transition:background .3s}
+@media (prefers-reduced-motion:no-preference){
+ body.party-screen #secretPanel.cp-hit{animation:cp-hit .6s cubic-bezier(.23,1,.32,1)}
+}
+@keyframes cp-hit{0%{box-shadow:0 0 0 0 #b4ff3980}35%{box-shadow:0 0 0 4px #b4ff394d,0 0 40px #b4ff3933}100%{box-shadow:0 0 0 0 #b4ff3900}}
+.cp-gain{position:fixed;z-index:31;pointer-events:none;font-family:KardiaFatRunner,sans-serif;font-style:italic;font-weight:900;font-size:24px;line-height:1;color:#cfff85;text-shadow:0 2px 14px #b4ff3966,0 1px 0 #0008;white-space:nowrap}

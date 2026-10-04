@@ -1,0 +1,873 @@
+{
+  "scope": "Authorized Crane <=4p identity fit at bothTV and <=800height compact spacing;16p unchanged but immediate postPNG end-position race remains qualified",
+  "runs": [
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/report.json",
+      "reportSha256": "eab22a5233d16429ea217eb5222087c6133150e534c65a0b0bde4617450da5fa",
+      "errors": [],
+      "changedFiles": [],
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-phone-drop-feedback-320.png",
+          "sha256": "827f60fed40cbec2416fd110426c7a2fbe13858ad8225af69410bc19cfc2f779",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-phone-drop-feedback-402.png",
+          "sha256": "91266436bb5208c2249a8e543428e3308429c8502a930258bb0cf9ff7e83e190",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-phone-gameplay.png",
+          "sha256": "a89c82c248d86a4e0d1a677dbc3c5615065a07a33e2a62e085e7b4c3b232f86e",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-phone-live-320.png",
+          "sha256": "3084963af791a0cf9670e39b912cb42dfa11f5490fead27679e4df779b4d3971",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-phone-live-402.png",
+          "sha256": "5fd7df3aa78a7ea84e5767842f2be75773591791127b1cde6261240cce272087",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-phone-matchmaking-rules.png",
+          "sha256": "1a9830616dfce08963888140303aaa78f9ff0bedf20336f6b6deedb69e3ed7c4",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-phone-matchmaking.png",
+          "sha256": "2784c30468b19299a4ba04a504d9c75a5328d1f9030be42ee85ac338ba4025f6",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-tv-drop-feedback-1280.png",
+          "sha256": "fc8a760232c5e52aad96123b36bddbf5831db291a98bbfa7a2f360965ce92c73",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-tv-drop-feedback-1920.png",
+          "sha256": "fef4170ffb83f6683d9397a010ad7ffa5808e7fa77fdabb77f5aa580fcf2603d",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-tv-gameplay.png",
+          "sha256": "c6775fc05743bb5358a32c310d70259287c4fa0ccb1bf3508e9f28d0653a317d",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-tv-live-1280.png",
+          "sha256": "e50e7ceb63d5fc0c7782d40a1a4c0a3393268b6a77ce5a93141ffc93cbfba0f3",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-tv-live-1920.png",
+          "sha256": "c8880b8355189a74162e65ec2e9b2f6d0bca034290dc5342dc138e52cebe93f6",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/crane-tv-matchmaking.png",
+          "sha256": "bf7168e780e432f9011d0f723ea61fbf51fe008cca91fc4504ccbd20a656364a",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/main-phone-lobby.png",
+          "sha256": "048d069c7a9f39a760642c6339468af4b8c27f2c61b5d9b2a0113dc02dc6eaf6",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-four-final/main-tv-lobby.png",
+          "sha256": "36f390590d0e69f9f093003ec5c9a028ff0ae7d7c1d96dd63be3c26dfd087e3e",
+          "individuallyOpened": true
+        }
+      ],
+      "checks": {},
+      "fourRowChecks": [
+        {
+          "original": "crane-tv-live-1280.png",
+          "size": [
+            1280,
+            720
+          ],
+          "list": {
+            "x": 936,
+            "y": 294.40625,
+            "w": 304,
+            "h": 295.34375,
+            "right": 1240,
+            "bottom": 589.75,
+            "text": "01Alexandra LongSurname0 Blocks · 0 accurate · 0 miss001Бот 20 Blocks · 0 accurate · 0 miss001Бот 10",
+            "font": "16px",
+            "fontFamily": "KardiaFit, sans-serif",
+            "gridColumns": "none",
+            "scrollWidth": 304,
+            "clientWidth": 304
+          },
+          "rows": [
+            {
+              "card": {
+                "x": 936,
+                "y": 294.40625,
+                "w": 304,
+                "h": 81.78125,
+                "right": 1240,
+                "bottom": 376.1875,
+                "text": "01Alexandra LongSurname0 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 936,
+                "y": 314.296875,
+                "w": 64,
+                "h": 42,
+                "right": 1000,
+                "bottom": 356.296875,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1048,
+                "y": 300.40625,
+                "w": 122,
+                "h": 37.1875,
+                "right": 1170,
+                "bottom": 337.59375,
+                "text": "Alexandra LongSurname",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1176,
+                "y": 319.203125,
+                "w": 64,
+                "h": 32.1875,
+                "right": 1240,
+                "bottom": 351.390625,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            },
+            {
+              "card": {
+                "x": 936,
+                "y": 384.1875,
+                "w": 304,
+                "h": 63.1875,
+                "right": 1240,
+                "bottom": 447.375,
+                "text": "01Бот 20 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 936,
+                "y": 394.78125,
+                "w": 64,
+                "h": 42,
+                "right": 1000,
+                "bottom": 436.78125,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1048,
+                "y": 390.1875,
+                "w": 122,
+                "h": 18.59375,
+                "right": 1170,
+                "bottom": 408.78125,
+                "text": "Бот 2",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1176,
+                "y": 398.78125,
+                "w": 64,
+                "h": 34,
+                "right": 1240,
+                "bottom": 432.78125,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            },
+            {
+              "card": {
+                "x": 936,
+                "y": 455.375,
+                "w": 304,
+                "h": 63.1875,
+                "right": 1240,
+                "bottom": 518.5625,
+                "text": "01Бот 10 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 936,
+                "y": 465.96875,
+                "w": 64,
+                "h": 42,
+                "right": 1000,
+                "bottom": 507.96875,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1048,
+                "y": 461.375,
+                "w": 122,
+                "h": 18.59375,
+                "right": 1170,
+                "bottom": 479.96875,
+                "text": "Бот 1",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1176,
+                "y": 469.96875,
+                "w": 64,
+                "h": 34,
+                "right": 1240,
+                "bottom": 503.96875,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            },
+            {
+              "card": {
+                "x": 936,
+                "y": 526.5625,
+                "w": 304,
+                "h": 63.1875,
+                "right": 1240,
+                "bottom": 589.75,
+                "text": "01Бот 30 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 936,
+                "y": 537.15625,
+                "w": 64,
+                "h": 42,
+                "right": 1000,
+                "bottom": 579.15625,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1048,
+                "y": 532.5625,
+                "w": 122,
+                "h": 18.59375,
+                "right": 1170,
+                "bottom": 551.15625,
+                "text": "Бот 3",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1176,
+                "y": 541.15625,
+                "w": 64,
+                "h": 34,
+                "right": 1240,
+                "bottom": 575.15625,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            }
+          ],
+          "allFourWhole": true
+        },
+        {
+          "original": "crane-tv-live-1920.png",
+          "size": [
+            1920,
+            1080
+          ],
+          "list": {
+            "x": 1576,
+            "y": 551.4375,
+            "w": 304,
+            "h": 327.34375,
+            "right": 1880,
+            "bottom": 878.78125,
+            "text": "01Alexandra LongSurname0 Blocks · 0 accurate · 0 miss001Бот 20 Blocks · 0 accurate · 0 miss001Бот 10",
+            "font": "16px",
+            "fontFamily": "KardiaFit, sans-serif",
+            "gridColumns": "none",
+            "scrollWidth": 304,
+            "clientWidth": 304
+          },
+          "rows": [
+            {
+              "card": {
+                "x": 1576,
+                "y": 551.4375,
+                "w": 304,
+                "h": 89.78125,
+                "right": 1880,
+                "bottom": 641.21875,
+                "text": "01Alexandra LongSurname0 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 1576,
+                "y": 575.328125,
+                "w": 64,
+                "h": 42,
+                "right": 1640,
+                "bottom": 617.328125,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1688,
+                "y": 561.4375,
+                "w": 122,
+                "h": 37.1875,
+                "right": 1810,
+                "bottom": 598.625,
+                "text": "Alexandra LongSurname",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1816,
+                "y": 580.234375,
+                "w": 64,
+                "h": 32.1875,
+                "right": 1880,
+                "bottom": 612.421875,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            },
+            {
+              "card": {
+                "x": 1576,
+                "y": 649.21875,
+                "w": 304,
+                "h": 71.1875,
+                "right": 1880,
+                "bottom": 720.40625,
+                "text": "01Бот 20 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 1576,
+                "y": 663.8125,
+                "w": 64,
+                "h": 42,
+                "right": 1640,
+                "bottom": 705.8125,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1688,
+                "y": 659.21875,
+                "w": 122,
+                "h": 18.59375,
+                "right": 1810,
+                "bottom": 677.8125,
+                "text": "Бот 2",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1816,
+                "y": 667.8125,
+                "w": 64,
+                "h": 34,
+                "right": 1880,
+                "bottom": 701.8125,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            },
+            {
+              "card": {
+                "x": 1576,
+                "y": 728.40625,
+                "w": 304,
+                "h": 71.1875,
+                "right": 1880,
+                "bottom": 799.59375,
+                "text": "01Бот 10 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 1576,
+                "y": 743,
+                "w": 64,
+                "h": 42,
+                "right": 1640,
+                "bottom": 785,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1688,
+                "y": 738.40625,
+                "w": 122,
+                "h": 18.59375,
+                "right": 1810,
+                "bottom": 757,
+                "text": "Бот 1",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1816,
+                "y": 747,
+                "w": 64,
+                "h": 34,
+                "right": 1880,
+                "bottom": 781,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            },
+            {
+              "card": {
+                "x": 1576,
+                "y": 807.59375,
+                "w": 304,
+                "h": 71.1875,
+                "right": 1880,
+                "bottom": 878.78125,
+                "text": "01Бот 30 Blocks · 0 accurate · 0 miss0",
+                "font": "16px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "64px 36px 122px 64px",
+                "scrollWidth": 304,
+                "clientWidth": 304
+              },
+              "rank": {
+                "x": 1576,
+                "y": 822.1875,
+                "w": 64,
+                "h": 42,
+                "right": 1640,
+                "bottom": 864.1875,
+                "text": "01",
+                "font": "14px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              },
+              "name": {
+                "x": 1688,
+                "y": 817.59375,
+                "w": 122,
+                "h": 18.59375,
+                "right": 1810,
+                "bottom": 836.1875,
+                "text": "Бот 3",
+                "font": "15.5px",
+                "fontFamily": "KardiaFit, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 122,
+                "clientWidth": 122
+              },
+              "points": {
+                "x": 1816,
+                "y": 826.1875,
+                "w": 64,
+                "h": 34,
+                "right": 1880,
+                "bottom": 860.1875,
+                "text": "0",
+                "font": "28px",
+                "fontFamily": "KardiaFatRunner, sans-serif",
+                "gridColumns": "none",
+                "scrollWidth": 64,
+                "clientWidth": 64
+              }
+            }
+          ],
+          "allFourWhole": true
+        }
+      ]
+    },
+    {
+      "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-sixteen-compact-confirm/report.json",
+      "reportSha256": "16a78b948dbc0ba496c32137144bf5cdfd78da55916da55f34d79978248d0b03",
+      "errors": [],
+      "changedFiles": [],
+      "originals": [
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-sixteen-compact-confirm/crane-phone-matchmaking-rules.png",
+          "sha256": "2781439fb9d7cfb132b7153d664c2bd8692d9f6c4293d9060675d50559672c48",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-sixteen-compact-confirm/crane-phone-roster-end.png",
+          "sha256": "bb188648465de638783abe6eabc1460abeea7ceeb683b3e7bfa0535f00e1974f",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-sixteen-compact-confirm/crane-tv-end-after-live-update.png",
+          "sha256": "5a678503d0840e139cf689e061b351079ac6d361eb366820a29fe6fa4b65853e",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-sixteen-compact-confirm/crane-tv-manual-middle-after-update.png",
+          "sha256": "d4de19c97978b9782fff8b36656456968bbfe9f67328b337ba5cb47e34627adc",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-sixteen-compact-confirm/crane-tv-roster-diagnostic-end.png",
+          "sha256": "af98e01fd7a3186d178a4e5aa3051e8645f694a66aedff006f611a3f8f9a39d6",
+          "individuallyOpened": true
+        },
+        {
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/construction-sixteen-compact-confirm/crane-tv-roster-end.png",
+          "sha256": "8f78dc2d8035d6a1631157c345f90a0724691a18bdd6df3f446435cb30a73417",
+          "individuallyOpened": true
+        }
+      ],
+      "checks": {
+        "endBeforeLiveUpdate": {
+          "scrollTop": 795,
+          "max": 795,
+          "clientHeight": 512,
+          "scrollHeight": 1307,
+          "lastBottom": 963.21875,
+          "listBottom": 963.5625,
+          "turn": "Бот 2",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 20 Blocks · 0 accurate · 0 miss002Бот 40 Blocks · 0 accurate · 0 miss002Бот 90 Blocks · 0 accurate · 0 miss002Бот 60 Blocks · 0 accurate · 0 miss002Бот 100 Blocks · 0 accurate · 0 miss002Бот 80 Blocks · 0 accurate · 0 miss002Бот 70 Blocks · 0 accurate · 0 miss002Бот 50 Blocks · 0 accurate · 0 miss002Бот 10 Blocks · 0 accurate · 0 miss002Бот 30 Blocks · 0 accurate · 0 miss002Бот 110 Blocks · 0 accurate · 0 miss002Бот 130 Blocks · 0 accurate · 0 miss002Бот 120 Blocks · 0 accurate · 0 miss002Бот 150 Blocks · 0 accurate · 0 miss002Бот 140 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "endAfterLiveUpdate45RAF": {
+          "scrollTop": 799,
+          "max": 799,
+          "clientHeight": 508,
+          "scrollHeight": 1307,
+          "lastBottom": 963.5,
+          "listBottom": 963.5625,
+          "turn": "Бот 4",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14701Бот 21 Blocks · 1 accurate · 0 miss14703Бот 40 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 30 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss003Бот 150 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "endAfterLiveUpdatePNG": {
+          "scrollTop": 799,
+          "max": 817,
+          "clientHeight": 490,
+          "scrollHeight": 1307,
+          "lastBottom": 985.5625,
+          "listBottom": 968,
+          "turn": "Бот 4",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14701Бот 21 Blocks · 1 accurate · 0 miss14703Бот 40 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 30 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss003Бот 150 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "manualMiddleBefore": {
+          "scrollTop": 408,
+          "max": 817,
+          "clientHeight": 490,
+          "scrollHeight": 1307,
+          "lastBottom": 1376.5625,
+          "listBottom": 968,
+          "turn": "Бот 4",
+          "scoreText": "01Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14701Бот 21 Blocks · 1 accurate · 0 miss14703Бот 40 Blocks · 0 accurate · 0 miss003Бот 90 Blocks · 0 accurate · 0 miss003Бот 60 Blocks · 0 accurate · 0 miss003Бот 100 Blocks · 0 accurate · 0 miss003Бот 80 Blocks · 0 accurate · 0 miss003Бот 70 Blocks · 0 accurate · 0 miss003Бот 50 Blocks · 0 accurate · 0 miss003Бот 10 Blocks · 0 accurate · 0 miss003Бот 30 Blocks · 0 accurate · 0 miss003Бот 110 Blocks · 0 accurate · 0 miss003Бот 130 Blocks · 0 accurate · 0 miss003Бот 120 Blocks · 0 accurate · 0 miss003Бот 150 Blocks · 0 accurate · 0 miss003Бот 140 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        },
+        "manualMiddleAfterLiveUpdate": {
+          "scrollTop": 408,
+          "max": 795,
+          "clientHeight": 512,
+          "scrollHeight": 1307,
+          "lastBottom": 1350.21875,
+          "listBottom": 963.5625,
+          "turn": "Бот 9",
+          "scoreText": "01Бот 41 Blocks · 1 accurate · 0 miss14802Alexandra LongSurname1 Blocks · 1 accurate · 0 miss14702Бот 21 Blocks · 1 accurate · 0 miss14704Бот 90 Blocks · 0 accurate · 0 miss004Бот 60 Blocks · 0 accurate · 0 miss004Бот 100 Blocks · 0 accurate · 0 miss004Бот 80 Blocks · 0 accurate · 0 miss004Бот 70 Blocks · 0 accurate · 0 miss004Бот 50 Blocks · 0 accurate · 0 miss004Бот 10 Blocks · 0 accurate · 0 miss004Бот 30 Blocks · 0 accurate · 0 miss004Бот 110 Blocks · 0 accurate · 0 miss004Бот 130 Blocks · 0 accurate · 0 miss004Бот 120 Blocks · 0 accurate · 0 miss004Бот 150 Blocks · 0 accurate · 0 miss004Бот 140 Blocks · 0 accurate · 0 miss0",
+          "markedRows": 16
+        }
+      }
+    }
+  ],
+  "sources": {
+    "games/crane/public/client.js": {
+      "construction-four-final": {
+        "start": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+        "end": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+        "current": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+        "end": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+        "current": "5ec7e5e202066115d8c1e3fa4141746ab82a04bf40908de21bdf9c50c099e4ab",
+        "matches": true
+      }
+    },
+    "games/crane/public/style.css": {
+      "construction-four-final": {
+        "start": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+        "end": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+        "current": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+        "end": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+        "current": "87bcbebbce8ae8c5ef2a705f9f6fd77d1a8f7f904b6d7d7dcd48cd48fbb97c9e",
+        "matches": true
+      }
+    },
+    "games/jenga/public/style.css": {
+      "construction-four-final": {
+        "start": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+        "end": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+        "current": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+        "end": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+        "current": "f5da0488d385c257d53923420a5f967225c3c7d6f7fcd88e3a2ddab3ca56a7a3",
+        "matches": true
+      }
+    },
+    "games/jenga/public/controller.css": {
+      "construction-four-final": {
+        "start": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+        "end": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+        "current": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+        "end": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+        "current": "8095e83c318dd11d532c43784c58dbf47127533c6536f348f303ecf6bb488e74",
+        "matches": true
+      }
+    },
+    "public/tv-information.css": {
+      "construction-four-final": {
+        "start": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+        "end": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+        "current": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+        "end": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+        "current": "3906bf55b5b3f8142dcd4185129458cb14963d2133ba7a56076746389a9d12cc",
+        "matches": true
+      }
+    },
+    "public/tv-information.js": {
+      "construction-four-final": {
+        "start": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+        "end": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+        "current": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+        "end": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+        "current": "e95f4b4a6bb508fd91d46f8b941aa616a517ce6181c221620fb44748f5a712ae",
+        "matches": true
+      }
+    },
+    "public/game-ui-themes.css": {
+      "construction-four-final": {
+        "start": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+        "end": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+        "current": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+        "end": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+        "current": "d718b2ffb76c27db9a987a8436741938617af9c8499b6034f23edf1d83dabe6a",
+        "matches": true
+      }
+    },
+    "public/game-ui-themes.js": {
+      "construction-four-final": {
+        "start": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+        "end": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+        "current": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+        "end": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+        "current": "1fa4cdd24f6b7225abb8984e6116d6ffaf390ac84da63f942ba772db52894f75",
+        "matches": true
+      }
+    },
+    "public/rankings-theme.css": {
+      "construction-four-final": {
+        "start": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+        "end": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+        "current": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+        "end": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+        "current": "fcd3f70b3fae5de53d1c69793a4b3a9b046d9a711dcbcab808087845a6c5013b",
+        "matches": true
+      }
+    },
+    "public/rankings-theme.js": {
+      "construction-four-final": {
+        "start": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+        "end": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+        "current": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+        "end": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+        "current": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+        "matches": true
+      }
+    },
+    "public/bridge.js": {
+      "construction-four-final": {
+        "start": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+        "end": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+        "current": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+        "end": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+        "current": "ddce9b2272d02c917a870989bc8a6ca61b99caac1f8ce57877ef22f3b36cffeb",
+        "matches": true
+      }
+    },
+    "public/native-shell/controller-bridge.js": {
+      "construction-four-final": {
+        "start": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+        "end": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+        "current": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+        "matches": true
+      },
+      "construction-sixteen-compact-confirm": {
+        "start": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+        "end": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+        "current": "6c4b21ed1f8ba8ee456fe98f0e4659ca1a76b3ece82ac9ad74dffb5ce19e672b",
+        "matches": true
+      }
+    }
+  },
+  "limitations": [
+    "No physical device claim",
+    "Historical blank1920feedback raw PNG preserved in construction-final-proof.json; not used as currentcrew acceptance",
+    "16p 45RAF end snapshot passes; postPNG next cap state17.56px end loss needs named narrow observer correction; browserclosed pendingroot authorization"
+  ]
+}

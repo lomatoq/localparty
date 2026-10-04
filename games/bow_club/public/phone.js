@@ -5,11 +5,18 @@ import {BowConnection} from './net.js';
 import {configureLocalVideo,createCameraPreview} from './src/camera-preview.mjs';
 const $=id=>document.getElementById(id),config=window.BOW_CONFIG||{},video=$('video'),overlay=$('overlay2D'),ctx=overlay.getContext('2d');
 configureLocalVideo(video);
+const meadow=new Image();meadow.src='/assets/gameplay/sports-siege/gallery-meadow-flat-v2.webp';
+// Personal values are distinct readouts above the aim plane; the authored bow stays the action cue.
+const bowPoints=document.createElement('strong'),bowArrows=document.createElement('strong');
+for(const [value,label,art] of [[bowPoints,'очков','/assets/icons/atlas-stat-glyphs/target.webp'],[bowArrows,'стрел','assets/atlas-misc/quiver.webp']]){const group=document.createElement('span'),icon=document.createElement('img'),caption=document.createElement('small');icon.src=art;icon.alt='';value.dataset.noTranslate='';caption.textContent=label;group.append(icon,value,caption);$('score').append(group);}
+$('score').firstChild?.nodeType===3&&$('score').firstChild.remove();
 const cameraPreview=createCameraPreview(video);cameraPreview.reset();
 const profile=window.PARTY_PROFILE||{},read=(k)=>{try{return localStorage.getItem('bow:'+k);}catch{return null;}},write=(k,v)=>{try{localStorage.setItem('bow:'+k,v);}catch{}};
 let id=null,token=read('token'),sequence=1,state=null,connection,mode=null,stream=null,worker=null,workerReady=false,workerBusy=false,workerTimer=null,tracking=null,stable=0,lastCapture=-Infinity,lastVideoTime=-1,lastFrame=performance.now(),generation=0,holding=false,drawAt=0,joined=false,hand=profile.hand||read('hand')||'right',offset={u:0,v:0},touchUV={u:.5,v:.5},lastStatus='',cameraRequested=false,workerRestarts=0,workerFrames=0;
 const sample=document.createElement('canvas'),sampleCtx=sample.getContext('2d',{willReadFrequently:true}),filter=new PredictiveAim(),fallbackTracker=new MarkerTracker();let bow=null;
 try{bow=new Bow3D($('bow'));}catch(e){$('error').textContent='3D-лук недоступен: '+e.message+'. Прицел и стрельба останутся рабочими.';}
+$('back').querySelector('img').src='/assets/icons/game-pack/arrow-left.svg';
+$('hand').querySelector('img').src='/assets/icons/game-pack/switch.svg';
 $('name').value=profile.name||read('name')||'';if(profile.id)$('nameField').hidden=true;
 const tell=text=>{$('feedback').textContent=text;clearTimeout(tell.timer);tell.timer=setTimeout(()=>{$('feedback').textContent='';},1800);};
 function join(){if(!connection)return;const name=$('name').value.trim()||'Лучник';write('name',name);connection.send('join',profile.id?{partyId:profile.id,partyToken:profile.token,name:profile.name}:{token,name});}
@@ -86,9 +93,9 @@ function updateHUD(now=performance.now()){
  $('draw').disabled=!holding&&!canShoot(now);
  $('tracking').textContent=!joined?'Нет соединения':mode==='touch'?'Прицел пальцем':lock?'Экран найден':tracking?'Держи TV в кадре':'Наведи камеру на экран';
  $('metrics').textContent=mode==='camera'&&worker&&!workerReady?'Загружаем трекинг…':state?.paused?'Пауза':state?.phase==='results'?'Матч завершён':state?.phase!=='playing'?'Ведущий запускает матч':mode==='camera'&&tracking?'Держи экран в кадре':'Натяните и отпустите';
- $('score').textContent=p?`${p.score} очков · ${Math.max(0,(state?.arrows||10)-p.shots)} стрел`:'Подключение…';
- const drawLabel=holding?`<span>ОТПУСТИ</span><small>${lock?Math.round(Math.min(1,(now-drawAt)/800)*100)+'%':'найди экран'}</small>`:'<span>НАТЯНИ</span><small>и отпусти</small>';if($('draw').innerHTML!==drawLabel)$('draw').innerHTML=drawLabel; 
- document.body.classList.toggle('left-hand',hand==='left');$('hand').textContent=hand==='left'?'Левая рука':'Правая рука';
+ bowPoints.textContent=p?String(p.score):'—';bowArrows.textContent=p?String(Math.max(0,(state?.arrows||10)-p.shots)):'—';
+ const ru=window.PartyI18n?.language==='ru',drawIcon='<img src="assets/atlas-misc/bow-prop.webp" alt="">',drawLabel=drawIcon+(holding?`<span class="bow-action-copy"><b>${ru?'ОТПУСТИ':'RELEASE'}</b><small>${lock?Math.round(Math.min(1,(now-drawAt)/800)*100)+'%':ru?'найди экран':'find the screen'}</small></span>`:`<span class="bow-action-copy"><b>${ru?'НАТЯНИ':'DRAW'}</b><small>${ru?'и отпусти':'and release'}</small></span>`);if($('draw').innerHTML!==drawLabel)$('draw').innerHTML=drawLabel;
+ document.body.classList.toggle('left-hand',hand==='left');$('hand').setAttribute('aria-label',hand==='left'?'Левая рука':'Правая рука');$('hand').setAttribute('aria-pressed',String(hand==='left'));
 }
 $('draw').addEventListener('pointerdown',e=>{if(!canShoot(performance.now()))return;e.preventDefault();$('draw').setPointerCapture(e.pointerId);holding=true;drawAt=performance.now();$('draw').classList.add('held');connection.send('draw',currentAim());});
 $('draw').addEventListener('pointerup',e=>{if(!holding)return;e.preventDefault();const now=performance.now(),aim=currentAim(now),duration=now-drawAt;holding=false;$('draw').classList.remove('held');if(!aim||duration<180||duration>4500){connection.send('cancel');tell(duration<180?'Подержите натяжение чуть дольше':'Прицел потерян — стрела сохранена');return;}connection.send('shot',{...aim,seq:sequence++});});
@@ -96,11 +103,14 @@ for(const event of ['pointercancel','lostpointercapture'])$('draw').addEventList
 $('calibrate').onclick=()=>{if(!tracking||performance.now()-tracking.at>200){tell('Сначала найдите экран');return;}const uv=filter.value||tracking.uv;offset={u:.5-uv.u,v:.5-uv.v};tell('Центр установлен');};
 $('calibrationHint').textContent='Поправка прицела — кнопка «Центр»';
 $('start').onclick=startCamera;$('touch').onclick=startTouch;$('back').onclick=()=>stopCamera();$('hand').onclick=()=>{hand=hand==='left'?'right':'left';write('hand',hand);};
+// Anchor the release action to the actual aiming surface, including narrow-screen height caps.
+function placeTouchAction(){if(!document.body.classList.contains('touch-mode'))return;const pad=$('touchPad').getBoundingClientRect(),view=$('view').getBoundingClientRect();if(pad.height)$('view').style.setProperty('--bow-touch-bottom',(pad.bottom-view.top)+'px');}
+const touchLayout=new ResizeObserver(placeTouchAction);touchLayout.observe($('touchPad'));window.addEventListener('resize',placeTouchAction);
 function touch(e){const r=$('touchPad').getBoundingClientRect();touchUV={u:Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),v:Math.max(0,Math.min(1,(e.clientY-r.top)/r.height))};}
 $('touchPad').onpointerdown=e=>{e.preventDefault();$('touchPad').setPointerCapture(e.pointerId);touch(e);};$('touchPad').onpointermove=e=>{if(e.buttons)touch(e);};
 function drawOverlay(now,w,h){const dpr=Math.min(2,devicePixelRatio||1);if(overlay.width!==Math.round(w*dpr)||overlay.height!==Math.round(h*dpr)){overlay.width=Math.round(w*dpr);overlay.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);const aim=currentAim(now);
  // No screen outline: fiducials stay on TV; the phone only shows the aiming reticle.
- let x=w/2,y=h/2;if(mode==='touch'){const r=$('touchPad').getBoundingClientRect();ctx.fillStyle='#cee8ed';ctx.fillRect(r.left,r.top,r.width,r.height);for(const t of state?.targets||[]){for(const [k,c]of [[1,'#fff7df'],[.78,'#347587'],[.54,'#fff7df'],[.32,'#e78154'],[.18,'#fcd967']]){ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(r.left+t.u*r.width,r.top+t.v*r.height,t.r/720/(state.aspect||16/9)*r.width*k,t.r/720*r.height*k,0,0,Math.PI*2);ctx.fill();}}x=r.left+touchUV.u*r.width;y=r.top+touchUV.v*r.height;}
+ let x=w/2,y=h/2;if(mode==='touch'){const r=$('touchPad').getBoundingClientRect();ctx.save();ctx.beginPath();ctx.roundRect(r.left,r.top,r.width,r.height,Math.min(parseFloat(getComputedStyle($('touchPad')).borderRadius)||0,r.width/2,r.height/2));ctx.clip();ctx.fillStyle='#9edb78';ctx.fillRect(r.left,r.top,r.width,r.height);if(meadow.complete&&meadow.naturalWidth)ctx.drawImage(meadow,r.left,r.top,r.width,r.height);for(const t of state?.targets||[]){for(const [k,c]of [[1,'#f5eede'],[.78,'#7583b6'],[.54,'#f5eede'],[.32,'#cd7252'],[.18,'#efbe4f']]){ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(r.left+t.u*r.width,r.top+t.v*r.height,t.r/720/(state.aspect||16/9)*r.width*k,t.r/720*r.height*k,0,0,Math.PI*2);ctx.fill();}}ctx.restore();x=r.left+touchUV.u*r.width;y=r.top+touchUV.v*r.height;}
  ctx.strokeStyle=aim?'#d7ff8e':'#ffffffaa';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.moveTo(x-20,y);ctx.lineTo(x-6,y);ctx.moveTo(x+6,y);ctx.lineTo(x+20,y);ctx.moveTo(x,y-20);ctx.lineTo(x,y-6);ctx.moveTo(x,y+6);ctx.lineTo(x,y+20);ctx.stroke();
  if(holding){ctx.strokeStyle='#f7cd62';ctx.lineWidth=5;ctx.beginPath();ctx.arc(x,y,29,-Math.PI/2,-Math.PI/2+Math.PI*2*Math.min(1,(now-drawAt)/800));ctx.stroke();}
 }

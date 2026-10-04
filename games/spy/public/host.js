@@ -15,16 +15,25 @@ function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'
 function show(phase){ Object.values(views).forEach(v=>v.classList.add('hidden')); (views[phase]||views.lobby).classList.remove('hidden'); $('#roundBadge').textContent = ({lobby:'лобби',reveal:'смотрим роли',playing:'идёт раунд',voting:'голосование',result:'результат'})[phase]||phase; }
 function renderLobby(){
   const ps=state.players||[]; $('#playerCount').textContent=ps.length; $('#startBtn').disabled=ps.filter(p=>p.connected).length<2;
-  $('#playersList').innerHTML = ps.length ? ps.map(p=>`<div class="player-row"><div class="avatar">${esc(p.emoji)}</div><b>${esc(p.name)}</b><span class="status">${p.connected?'online':'offline'}</span><button class="kick" data-kick="${p.id}">×</button></div>`).join('') : '<div class="empty">Пока никого. Пусть первый игрок сканирует QR 👆</div>';
+  $('#playersList').innerHTML = ps.length ? ps.map(p=>`<div class="player-row"><div class="avatar">${esc(p.emoji)}</div><b class="player-name" data-no-translate>${esc(p.name)}</b><span class="status">${p.connected?'online':'offline'}</span><button class="kick" data-kick="${p.id}">×</button></div>`).join('') : '<div class="empty">Пока никого. Пусть первый игрок сканирует QR 👆</div>';
   $('#spiesVal').textContent=state.settings.spies; $('#minutes').value=state.settings.minutes; $('#hintToggle').classList.toggle('on',state.settings.categoryHint);
   document.querySelectorAll('[data-kick]').forEach(b=>b.onclick=()=>socket.emit('host:kick',{playerId:b.dataset.kick}));
 }
-function renderReveal(){ const ps=(state.players||[]).filter(p=>!p.spectator); const ready=ps.filter(p=>p.ready).length; $('#readyCount').textContent=`${ready} / ${ps.length}`; $('#readyGrid').innerHTML=ps.map(p=>`<div class="ready-item ${p.ready?'ready':''}"><span>${esc(p.emoji)}</span><b>${esc(p.name)}</b><small>${p.ready?'готов':'смотрит роль…'}</small></div>`).join(''); }
+function renderReveal(){ const ps=(state.players||[]).filter(p=>!p.spectator); $('#readyGrid').style.setProperty('--spy-ready-count',Math.min(4,Math.max(1,ps.length))); const ready=ps.filter(p=>p.ready).length; $('#readyCount').textContent=`${ready} / ${ps.length}`; $('#readyGrid').innerHTML=ps.map(p=>`<div class="ready-item ${p.ready?'ready':''}"><span class="spy-identity-avatar" aria-hidden="true"></span><b class="player-name" data-no-translate>${esc(p.name)}</b><small>${p.ready?'готов':'смотрит роль…'}</small></div>`).join(''); [...$('#readyGrid').children].forEach((row,i)=>identityAvatar(row.querySelector('.spy-identity-avatar'),ps[i])); }
+function identityAvatar(node,p){
+ const profile=(window.PARTY_ROSTER||[]).find(x=>x.id===p?.id)||p||{},key=JSON.stringify([profile.id,profile.name,profile.avatar]);if(node.dataset.identity===key)return;node.dataset.identity=key;
+ if(profile.avatar){const image=new Image();image.src=profile.avatar;image.alt='';image.className='spy-photo';node.replaceChildren(image);return;}
+ const image=new Image();let seed=0;for(const ch of String(profile.id||profile.name||'?'))seed=(seed*31+ch.codePointAt(0))>>>0;image.src='/assets/avatars/atlas-mascots/mascot-'+String(seed%16+1).padStart(2,'0')+'.webp';image.alt='';image.className='spy-mascot';node.textContent=Array.from(profile.name||'?')[0];image.onload=()=>{if(node.dataset.identity===key)node.replaceChildren(image);};
+}
+let rosterIdentity='';
 function renderPlaying(){$('#voteBtn').disabled=!!state.duel;$('#voteBtn').textContent=state.duel?'ДУЭЛЬ: УГАДАЙ ЛОКАЦИЮ ДО КОНЦА ТАЙМЕРА':'ПЕРЕЙТИ К ГОЛОСОВАНИЮ';
   $('#playCount').textContent=`${state.players.length} игроков`; $('#roundNum').textContent=state.round;
-  const t=state.currentTurn; if(t?.asker&&t?.target){$('#askEmoji').textContent=t.asker.emoji;$('#askName').textContent=t.asker.name;$('#targetEmoji').textContent=t.target.emoji;$('#targetName').textContent=t.target.name}
+  const t=state.currentTurn; if(t?.asker&&t?.target){identityAvatar($('#askEmoji'),t.asker);$('#askName').textContent=t.asker.name;identityAvatar($('#targetEmoji'),t.target);$('#targetName').textContent=t.target.name}
   $('#questionTip').textContent=tips[(t?.index||0)%tips.length];
-  $('#playRoster').innerHTML=state.players.map(p=>`<div class="roster-item ${t?.asker?.id===p.id?'asker':''}"><span class="emoji">${esc(p.emoji)}</span><b>${esc(p.name)}</b><span class="muted">${p.connected?'●':'○'}</span></div>`).join('');
+  const key=JSON.stringify([state.players.map(p=>[p.id,p.name,p.connected]),t?.asker?.id,t?.target?.id]);if(key===rosterIdentity)return;rosterIdentity=key;
+  const rosterScroll=$('#playRoster').scrollTop;
+  $('#playRoster').replaceChildren(...state.players.map(p=>{const row=document.createElement('div'),avatar=document.createElement('span'),copy=document.createElement('div'),name=document.createElement('b'),status=document.createElement('small');const asking=t?.asker?.id===p.id,answering=t?.target?.id===p.id;row.className='roster-item'+(asking?' asker':answering?' target':'');avatar.className='spy-roster-avatar';identityAvatar(avatar,p);name.className='player-name';name.dataset.noTranslate='';name.textContent=p.name;status.textContent=asking?'Asking':answering?'Answering':p.connected?'Listening':'Offline';copy.className='spy-roster-copy';copy.append(name,status);row.append(avatar,copy);return row;}));
+  $('#playRoster').scrollTop=rosterScroll;$('#playRoster').dataset.density=state.players.length>8?'dense':'normal';
 }
 function renderVote(){ $('#voteCount').textContent=state.voteCount; $('#voteProgress').innerHTML=(state.players||[]).map((_,i)=>`<i class="vote-dot ${i<state.voteCount?'done':''}"></i>`).join(''); }
 function renderResult(){

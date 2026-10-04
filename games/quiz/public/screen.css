@@ -30,5 +30,254 @@ html:has(.party-screen),body.party-screen{background:#0a0a0c!important;color:#ff
 @media(max-width:360px){.party-screen .screen-podium strong{font-size:22px!important;letter-spacing:-.04em}.party-screen .screen-podium h3{font-size:14px!important}.party-screen .screen-podium article{padding:20px 5px}}
 
 /* The final approved type treatment applies to every interface label and control. */
-body.party-screen,body.party-screen *{font-family:Rubik,PartyRubik,system-ui,sans-serif!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important}
+
 .party-screen label,.party-screen p,.party-screen button,.party-screen select,.party-screen .person{overflow-wrap:anywhere}.party-screen .person{min-width:0}.party-screen .person strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.party-screen .person small{line-height:1.3}.party-screen select{max-width:100%}
+
+/* TV content roles: readable identities and copy beside expressive headings. */
+html.hp-ui:is(.party-host,.party-player) body.party-screen{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;text-transform:none!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(p,small,label,summary,input,select,.muted,.sub,.subtitle,#status,#turnStats,#messages,.person small,.scoreFooter,.explanation){font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(h1,h2,h3,.boardTitle,.answer,.answer .text,.answer .letter,.eyebrow){font-family:var(--hp-font-display)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(.person strong,.scoreTop b,.activeBanner b,.finalItem>b,.screen-podium h3){font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen :is(.rank,.points,.money,#timer,.screen-podium strong,.finalItem>span){font-family:var(--hp-font-numeric)!important;font-style:normal!important;font-weight:650!important;text-transform:none!important;letter-spacing:-.025em!important}
+html.hp-ui:is(.party-host,.party-player) body.party-screen .person small{font-size:13px!important;line-height:1.4!important}
+html.hp-ui.party-host body.party-screen :is(.panel,.stage,.questionWrap,.screen-standings){border-radius:24px}
+html.hp-ui.party-host body.screen-managed main>details{display:none!important}
+
+html.hp-ui.party-player body.party-screen :is(button,.phoneAnswer,.answer){font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important;text-transform:uppercase!important}
+html.hp-ui.party-player body.party-screen :is(#guess,#name,textarea){font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:400!important;text-transform:none!important}
+
+/* Finished quiz names are identities, not action headings. Keep case and weight
+   even when the managed shell supplies a stronger generic h3 role. */
+html.hp-ui.party-managed:is(.party-host,.party-player) body.party-screen[data-game-phase=finished] .screen-podium h3{font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;letter-spacing:0!important}
+/* The TV display has no interactive setup controls; hide their empty container
+   once the quiz is over, while standalone host controls remain available. */
+html.hp-ui.party-managed.party-host.party-display-only body.party-screen[data-game-phase=finished] #setup{display:none!important}
+/* A translated rank is a caption, not a fixed-width column beside the name. */
+html.hp-ui.party-managed.party-player body.party-screen[data-game-phase=finished] .screen-podium article{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;column-gap:14px!important;row-gap:6px!important;padding:14px!important;align-items:center!important;text-align:left!important}
+html.hp-ui.party-managed.party-player body.party-screen[data-game-phase=finished] .screen-podium article>small{grid-column:1;grid-row:1;font-size:12px!important;line-height:1.25!important;white-space:normal!important}
+html.hp-ui.party-managed.party-player body.party-screen[data-game-phase=finished] .screen-podium article>h3{grid-column:1;grid-row:2;margin:0!important;font-size:16px!important;line-height:1.3!important;min-width:0;overflow-wrap:anywhere}
+html.hp-ui.party-managed.party-player body.party-screen[data-game-phase=finished] .screen-podium article>strong{grid-column:2;grid-row:1 / span 2;font-size:28px!important;line-height:1.1!important}
+
+/* Native TV cards reserve the actual notch, independently of game-field centering. */
+@media(min-width:1101px){
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main:has(>.screen-workspace){height:100dvh!important;min-height:0!important;box-sizing:border-box!important;padding:0 24px 16px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main>.screen-workspace{height:100%!important;min-height:0!important;box-sizing:border-box!important;padding-top:calc(var(--party-native-inset-top,var(--party-stage-inset-top,64px)) + 16px)!important;grid-template-rows:minmax(0,1fr)!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-sidebar{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-sidebar>.screen-standings{min-height:0!important;flex:1 1 0!important;overflow:auto!important;margin:0!important}
+}
+/* Finished podium cards share one baseline; rank is conveyed by text, not a shifted card. */
+html.hp-ui.party-managed.party-host body.party-screen[data-game-phase=finished] .screen-podium{align-items:stretch!important}
+html.hp-ui.party-managed.party-host body.party-screen[data-game-phase=finished] .screen-podium article{transform:none!important;align-self:stretch!important}
+
+/* Quiz round3: one question task, actual personal score and a bounded roster.
+   Both banks use this same gameplay layout; the shell owns timer and round. */
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen :is(#question,#progress,#boardTitle){font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase!important}
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button>span{font-family:KardiaFitRunner,sans-serif!important;font-style:italic!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important;line-height:1.25!important;min-width:0}
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button>b{font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase!important}
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen :is(.points,.rank,#quizScore,.teamScore>strong){font-family:KardiaFatRunner,sans-serif!important;font-style:italic!important;font-weight:900!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen :is(#status,#explanation){font-family:KardiaFitRunner,sans-serif!important;font-style:italic!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .person strong{font-family:KardiaFit,sans-serif!important;font-style:normal!important;font-weight:550!important;text-transform:none!important;letter-spacing:0!important}
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .stage>.eyebrow,
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .stage>.timebar{display:none!important}
+
+/* A phone reserves the real iframe, rather than the outer browser viewport. */
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main{height:100dvh!important;min-height:0!important;box-sizing:border-box!important;padding:12px 16px!important;max-width:520px!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-workspace{height:100%!important;min-height:0!important;gap:0!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-workspace>.stage{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:10px!important;padding:0!important;margin:0!important;background:none!important;border:0!important;outline:0!important;box-shadow:none!important;backdrop-filter:none!important;overflow:visible!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #quizPersonalHud:not([hidden]){display:flex!important;align-items:center;justify-content:center;gap:8px;flex:0 0 30px;min-height:30px}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .quiz-score-label{font-family:KardiaFit,sans-serif!important;font-style:normal!important;font-weight:500!important;text-transform:none!important;font-size:13px;line-height:1.2;color:#b9b1c9}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #quizScore{font-size:22px!important;line-height:1.1;color:#cfff85!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #question{flex:0 0 auto!important;width:100%;font-size:20px!important;line-height:1.15!important;text-align:center!important;margin:0!important;padding:0!important;background:none!important;min-height:0!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #status{display:block!important;flex:0 0 auto!important;min-height:0!important;margin:0!important;text-align:center!important;font-size:15px!important;line-height:1.25!important;color:#c5b7dd!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers{display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(4,minmax(44px,1fr))!important;flex:0 1 376px!important;min-height:200px!important;gap:8px!important;margin:0!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button{min-height:44px!important;min-width:0!important;padding:8px 12px!important;gap:12px!important;font-size:16px!important;line-height:1.25!important;border-radius:22px!important;align-items:center!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button>b{width:30px!important;min-width:30px!important;height:30px!important;flex:0 0 30px;font-size:18px!important;border-radius:12px!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button>span{font-size:17px!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button.picked{outline:2px solid #d9c0ff!important;outline-offset:-2px;background:#cbb5ff17!important;opacity:1!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #explanation{flex:0 0 auto!important;min-height:0!important;max-height:96px!important;padding:10px 12px!important;margin:0!important;font-size:14px!important;line-height:1.35!important;text-align:center!important;overflow:auto!important;scrollbar-width:none}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #explanation>a{display:block;font-size:12px;margin-top:4px}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #explanation::-webkit-scrollbar{display:none}
+@media(max-height:480px){
+
+ /* Captain guidance occupies real space on the shortest phones; reduce gaps, not copy. */
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-quiz-mode=teams] .screen-workspace>.stage{gap:6px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-quiz-mode=teams] #quizPersonalHud{flex-basis:24px!important;min-height:24px!important}
+ /* A three-line option must reserve its own height even after accepted-status appears. */
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers{grid-template-rows:repeat(4,minmax(min-content,1fr))!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-answer-state=accepted] #question{font-size:18px!important}
+
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main{padding-top:8px!important;padding-bottom:8px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-workspace>.stage{gap:8px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers{min-height:200px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button>span{font-size:16px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-quiz-mode=solo][data-answer-state=open]:not([data-game-phase=reveal]):has(#answers>button:not(:disabled)) #status{display:none!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-game-phase=reveal] #status{display:none!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-game-phase=reveal] .screen-workspace>.stage{gap:6px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-game-phase=reveal] #quizPersonalHud{flex-basis:24px!important;min-height:24px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-game-phase=reveal] #question{font-size:16px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-game-phase=reveal] #answers{flex:0 0 auto!important;min-height:0!important;grid-template-rows:repeat(4,auto)!important;gap:6px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-game-phase=reveal] #answers>button{padding-top:5px!important;padding-bottom:5px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-game-phase=reveal] #explanation{flex:0 1 auto!important;min-height:40px!important;padding-top:8px!important;padding-bottom:8px!important}
+}
+
+/* Spectators and team members still read and discuss the available choices. */
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-answer-state=open] #answers>button:disabled{opacity:.82!important}
+@media(max-height:480px){html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen[data-answer-state=open]:is([data-quiz-mode=teams],:has(#answers>button:disabled)) #question{font-size:18px!important}}
+
+/* Both TV panels share one rectangle below the actual masthead notch. */
+@media(min-width:1101px){
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main{height:100dvh!important;min-height:0!important;box-sizing:border-box!important;padding:0 24px 16px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace{height:100%!important;min-height:0!important;box-sizing:border-box!important;padding-top:calc(var(--party-native-inset-top,var(--party-stage-inset-top,64px)) + 16px)!important;grid-template-columns:minmax(0,1fr) minmax(300px,30%)!important;grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;gap:24px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-workspace>.stage{height:100%!important;max-height:100%!important;min-height:0!important;box-sizing:border-box!important;align-self:stretch!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:16px!important;overflow:hidden!important;padding:22px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #question{font-size:clamp(26px,2.25vw,40px)!important;line-height:1.15!important;text-align:center!important;max-width:100%;margin:0!important;padding:0!important;background:none!important;min-height:0!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #status{min-height:0!important;text-align:center!important;margin:0!important;font-size:clamp(16px,1.3vw,20px)!important;line-height:1.3!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers{width:100%;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0!important;flex:0 0 auto!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button{min-width:0!important;min-height:76px!important;padding:12px 16px!important;gap:14px!important;opacity:1!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button>span{font-size:clamp(20px,1.6vw,26px)!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #answers>button>b{width:34px;min-width:34px;height:34px;font-size:20px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #explanation{flex:0 1 auto!important;min-height:0!important;max-height:120px!important;padding:12px 16px!important;font-size:16px!important;line-height:1.4!important;margin:0!important;text-align:center!important;overflow:auto!important;scrollbar-width:none}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #explanation>a{display:block;font-size:14px;line-height:1.3;margin-top:4px}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-sidebar{height:100%!important;min-height:0!important;overflow:hidden!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings{height:100%!important;min-height:0!important;box-sizing:border-box!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;gap:12px!important;padding:20px!important;margin:0!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .boardTitle{flex:0 0 auto;display:flex!important;flex-direction:column!important;align-items:center!important;gap:8px!important;text-align:center!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #boardTitle{margin:0!important;font-size:18px!important;line-height:1.2!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #playerCount{font-family:KardiaFit,sans-serif!important;font-size:13px!important;font-style:normal!important;font-weight:500!important;text-transform:none!important;color:#baafd0}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #quizRosterScroll{flex:1 1 0!important;min-height:0!important;overflow:auto!important;scrollbar-width:none}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #quizRosterScroll::-webkit-scrollbar{display:none}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #board .row{height:68px!important;display:grid!important;grid-template-columns:26px minmax(0,1fr) auto!important;gap:10px!important;padding:10px!important;border:1px solid #d4c0ed12!important;border-radius:18px!important;background:#ffffff04!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #board .rank{min-width:0!important;font-size:18px!important;background:none!important;text-align:center}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #board .person strong{font-size:17px!important;line-height:1.2!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #board .person small{font-family:KardiaFitRunner,sans-serif!important;font-size:12px!important;font-style:italic!important;font-weight:400!important;line-height:1.3!important;white-space:normal!important;margin-top:4px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #board .points{font-size:24px!important;line-height:1.1!important;min-width:0!important;text-align:right}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #teams{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+/* Final user request: answers keep their own surfaces; the outer question field
+   stays open to the shared branded background. Transparent stroke preserves geometry. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-workspace>.stage{
+ background:transparent!important;border-color:transparent!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+
+/* Codex UI: rankings to the left, task to the right, with a shared top baseline. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main>.screen-workspace{grid-template-columns:clamp(300px,28vw,460px) minmax(0,1fr)!important;gap:24px!important;align-items:stretch!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main>.screen-workspace>.screen-sidebar{grid-column:1!important;grid-row:1!important;min-width:0!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen main>.screen-workspace>.stage{grid-column:2!important;grid-row:1!important;justify-content:flex-start!important;padding:24px!important;gap:16px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings{padding:20px!important;width:100%!important;min-width:0;overflow:hidden}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .row{grid-template-columns:32px minmax(0,1fr) auto!important;gap:12px!important;padding:12px!important;min-width:0}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .person{min-width:0!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .person strong{font:500 clamp(16px,1.2vw,22px)/1.2 KardiaFit,sans-serif!important;text-transform:none!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active body.party-screen .screen-standings #board .points{font:italic 900 clamp(24px,2vw,32px)/1.1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player body.party-screen main .stage{gap:12px!important}
+
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizPersonalHud{min-height:42px!important;flex-basis:42px!important;gap:12px!important;margin-bottom:4px}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizScore{font-size:32px!important;line-height:1.1!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage .quiz-score-label{font:italic 600 14px/1.2 KardiaFitRunner,sans-serif!important}
+@media(max-height:460px){html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizPersonalHud{min-height:32px!important;flex-basis:32px!important}html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizScore{font-size:28px!important}}
+
+/* Group07: question-first TV stage and a content-sized identity rail. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main{max-width:none!important;padding:0 32px 12px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace{grid-template-columns:440px minmax(0,1fr)!important;padding-top:168px!important;gap:48px!important;align-items:start!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.screen-sidebar{height:auto!important;max-height:100%!important;align-self:start!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage{height:auto!important;align-self:start!important;padding:24px 32px!important;gap:24px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings{height:auto!important;padding:16px!important;gap:16px!important;background:transparent!important;border:0!important;backdrop-filter:none!important;box-shadow:none!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen #quizRosterScroll{flex:0 1 auto!important;max-height:calc(100dvh - 264px)!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .row{height:80px!important;grid-template-columns:28px 52px minmax(0,1fr) auto!important;gap:12px!important;padding:8px 12px!important;background:#c6abf810!important;border:0!important;border-radius:18px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .person strong{white-space:normal!important;overflow-wrap:anywhere!important;font:500 18px/1.12 KardiaFit,sans-serif!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .person small{font-size:12px!important;line-height:1.2!important;margin-top:6px!important;color:#cfbce8!important}
+.quiz-identity{display:grid;place-items:center;width:52px;height:64px}.quiz-identity img{width:100%;height:100%;object-fit:contain}.quiz-identity .quiz-photo{height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #question{font:italic 900 clamp(32px,2.85vw,54px)/1.13 KardiaFatRunner,sans-serif!important;max-width:1080px!important;text-wrap:balance!important;margin:0 auto!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #answers{max-width:1180px!important;margin:0 auto!important;gap:16px!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #answers>button{min-height:104px!important;padding:20px 24px!important;border-left-width:1px!important;gap:20px!important;align-items:center!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #answers>button>span{font:italic 400 28px/1.2 KardiaFitRunner,sans-serif!important;overflow-wrap:normal!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizPersonalHud{justify-content:center!important;gap:12px!important;min-height:52px!important;flex-basis:52px!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizScore{font:italic 900 42px/1 KardiaFatRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #answers>button{border-left-width:1px!important;gap:16px!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #answers>button>span{font:italic 400 18px/1.25 KardiaFitRunner,sans-serif!important}
+html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #answers>button>b{background:var(--answer-accent)!important;color:#191226!important}
+@media(max-height:700px) and (min-width:1101px){html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace{padding-top:148px!important;grid-template-columns:340px minmax(0,1fr)!important;gap:24px!important}html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #question{font-size:34px!important}}
+
+/* Absolute FLIP rows need an explicit content extent inside the compact rail. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #quizRosterScroll{flex:none!important;height:min(var(--quiz-roster-height,368px),calc(100dvh - 280px))!important;min-height:92px!important;max-height:none!important;overflow:auto!important}
+/* Diagnostic correction: the inherited flex:1 1 0 collapses an auto-sized rail. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-sidebar>.screen-standings{flex:0 0 auto!important}
+/* Named original-image correction: reserve a full rank plus trophy axis. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .row{grid-template-columns:40px 52px minmax(0,1fr) auto!important}
+
+/* 2026-10-03: the shared cap, standings and active task occupy one centered group.
+   The intrinsic cap slot is independent of its measured bottom, avoiding feedback. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main:has(>[data-tv-hud-cluster]){
+ display:flex!important;align-items:center!important;justify-content:center!important;padding:24px!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster]{
+ width:100%;height:auto!important;max-height:calc(100dvh - 48px);padding:0!important;
+ grid-template-columns:clamp(280px,24vw,424px) minmax(0,1fr)!important;grid-template-rows:minmax(0,auto)!important;gap:24px!important;align-items:stretch!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster]>.stage{
+ height:auto!important;align-self:stretch!important;justify-content:flex-start!important;padding:calc(var(--party-hud-height,64px) + 16px) 16px 8px!important;gap:20px!important;overflow:visible!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster]>.screen-sidebar{height:auto!important;align-self:stretch!important;display:flex!important;flex-direction:column!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster]>.screen-sidebar>.screen-standings{height:auto!important;flex:1 1 auto!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster] #quizRosterScroll{flex:1 1 auto!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #question{font-size:clamp(28px,2.5vw,48px)!important;line-height:1.12!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #answers>button{
+ min-height:clamp(72px,8.4vh,96px)!important;padding:16px 20px!important;gap:16px!important;
+}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #answers>button>span{font-size:clamp(20px,1.5vw,28px)!important;overflow-wrap:anywhere!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #quizRosterScroll{height:min(var(--quiz-roster-height,368px),calc(100dvh - var(--party-hud-height,104px) - 160px))!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .row{grid-template-columns:32px 44px minmax(0,1fr) auto!important;gap:8px!important}
+
+/* Existing answer surfaces carry the material; the question remains on the wall. */
+html.hp-ui.party-managed[data-party-game=sinyakquiz] body.party-screen main #answers>button:not(.picked):not(.correct):not(.wrong){
+ background:linear-gradient(135deg,#eee4ff0d,transparent 45%),linear-gradient(180deg,#2b253a,#1b1925)!important;
+ box-shadow:inset 0 1px 0 #e8d8ff35,inset 0 -1px 0 #100e1a80!important;border-color:#a98cc633!important;
+}
+html.hp-ui.party-managed:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .screen-workspace>.stage{
+ background:transparent!important;background-image:none!important;border:0!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+html.hp-ui.party-managed[data-party-game=warsaw] body.party-screen main #answers>button:not(.picked):not(.correct):not(.wrong){
+ background:linear-gradient(145deg,#39323f,#24212c)!important;
+ box-shadow:inset 0 1px 0 #e1d7cb28,inset 0 -1px 0 #15111b90!important;border-color:#c4b3a033!important;
+}
+@media(max-height:740px) and (min-width:1101px){
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster]{grid-template-columns:320px minmax(0,1fr)!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .person strong{font-size:16px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .person small{font-size:11px!important}
+ /* Name gets the complete right-hand width before earned points occupy row two. */
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .row{grid-template-rows:auto auto!important;row-gap:4px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .person{display:contents!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .person strong{grid-column:3 / 5;grid-row:1;align-self:end}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .person small{grid-column:3;grid-row:2;margin-top:0!important;align-self:start}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board .points{grid-column:4;grid-row:2;align-self:start}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen .screen-standings #board :is(.rank,.quiz-identity){grid-row:1 / 3;align-self:center}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster]>.stage{gap:12px!important;padding-bottom:0!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #answers{gap:12px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #answers>button{min-height:64px!important;padding:12px 16px!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace>.stage #question{font-size:30px!important}
+}
+@media(max-height:480px){
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizPersonalHud{min-height:30px!important;flex-basis:30px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #quizScore{font-size:28px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #answers>button{gap:12px!important}
+ html.hp-ui.party-managed.party-player:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main .stage #answers>button>span{font-size:16px!important}
+}
+
+/* The leaderboard layout owns no outer surface; participant rows keep their paint.
+   The real list ID outranks the shared theme's passive-surface selector. */
+html.hp-ui.party-managed.party-host:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen:not([data-game-phase=finished]) .screen-standings:has(#quizRosterScroll){
+ background:none!important;border-color:transparent!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+
+/* Task and its header set the height; the existing roster scrolls within that row. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster]>.screen-sidebar{contain:size!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen main>.screen-workspace[data-tv-hud-cluster] #quizRosterScroll{height:auto!important;min-height:0!important;flex:1 1 0!important}
+
+/* Existing studio surfaces: rose/plum satin and cool Warsaw slate. */
+html.hp-ui.party-managed.party-host[data-party-game=sinyakquiz] body.party-screen .screen-workspace>.stage:has(#question){background:linear-gradient(145deg,#352534ed,#231d29eb)!important}
+html.hp-ui.party-managed.party-host[data-party-game=warsaw] body.party-screen .screen-workspace>.stage:has(#question){background:linear-gradient(145deg,#283747ed,#1d2735eb)!important}
+html.hp-ui.party-managed[data-party-game=sinyakquiz] body.party-screen main #answers>button:not(.picked):not(.correct):not(.wrong){background:linear-gradient(180deg,#40303e,#29222e)!important;border-color:#c298b43b!important}
+html.hp-ui.party-managed[data-party-game=warsaw] body.party-screen main #answers>button:not(.picked):not(.correct):not(.wrong){background:linear-gradient(145deg,#354458,#263140)!important;border-color:#a4c3d03b!important}
+html.hp-ui.party-managed.party-host[data-party-game=sinyakquiz] body.party-screen #board>.row{background:linear-gradient(145deg,#392b38,#29232e)!important}
+html.hp-ui.party-managed.party-host[data-party-game=warsaw] body.party-screen #board>.row{background:linear-gradient(145deg,#334254,#252f3d)!important}
+
+/* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
+.quiz-identity .quiz-photo{box-sizing:border-box;border:1.5px solid var(--player,#cbb5dd)}

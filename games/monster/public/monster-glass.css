@@ -3,3 +3,9 @@ body{font-weight:400;background:radial-gradient(ellipse at 20% 0%,#b4ff390a,tran
 @media(max-width:800px){.party-managed .lobby-grid{grid-template-columns:1fr}.party-managed .host-shell{width:calc(100% - 24px);padding:12px 0}.game-panel{padding:22px;min-height:70dvh}.game-panel:before{background-size:75vw;background-position:130% 0}.active-player{max-width:100%;font-size:38px!important}.queue{max-width:100%}.secret-box{margin-top:20px}.reveal-actions{width:100%}.reveal-actions .btn{flex:1;font-size:13px}.reveal-head h2{font-size:28px}}
 @media(max-width:380px){.phone-shell{padding:8px}.phone-card{padding:18px}.phone-card h1{font-size:27px}.prompt{font-size:22px}.tool-dock{padding:8px;gap:6px}.done-btn{font-size:13px;padding:12px}.instruction{font-size:14px}.colors{gap:8px}.seam-help{display:none}}
 @media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important}}
+
+/* The current artist's column must grow before the name can wrap. A percentage
+   max-width inside a shrink-to-content flex child split even four-letter names. */
+body.host-page .status-top>div:first-child{flex:1;min-width:0;padding-right:24px}
+body.host-page #activePlayer{width:100%;max-width:100%;overflow-wrap:anywhere}
+body.host-page .status-top>.progress-text{flex:none}

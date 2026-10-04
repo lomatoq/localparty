@@ -1,0 +1,98 @@
+{
+  "scope": "Push TV-only normal-clock alignment/quiet-floor proof. No phone PNGs or physical-device claim. No final exact-centering acceptance at1080.",
+  "rawReport": "output/playwright/composition-round3-2026-10-03/push-v2-alignment-settled/report.json",
+  "rawReportSHA256": "db3d95424dae0c901d665e9bff7693cb49756ac7445c8ab1cee3e0ed251671e4",
+  "startedAt": "2026-10-03T14:25:43.254Z",
+  "finishedAt": "2026-10-03T14:25:53.903Z",
+  "method": "Normal-clock actual launcher, two real browser humans + two built-in bots; ready controls only. TV-only PNGs. No injected state/physics/clock, no phone PNGs, no physical device claim.",
+  "images": [
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/push-v2-alignment-settled/push-tv-live-1280.png",
+      "sha256": "a1881a1c7b91d305a9eee97ad327dadacd940cc996634cde3fcec76b711cfd62",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "entrySourceCenter": 637,
+      "entrySourceWidth": 1672,
+      "entryProjectedX": 487.6555023923445,
+      "actualArenaCenterX": 492,
+      "offsetPx": -4.344497607655512,
+      "personallyOpenedOriginal": true,
+      "observations": "Entrance visibly aligned; quiet teal ring, readable actors and rail."
+    },
+    {
+      "file": "output/playwright/composition-round3-2026-10-03/push-v2-alignment-settled/push-tv-live-1920.png",
+      "sha256": "38edd77baa0292c3e39f2a61bd6e4e007b9cf9caccfcf47c7365e894d1656450",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "entrySourceCenter": 637,
+      "entrySourceWidth": 1672,
+      "entryProjectedX": 731.4832535885167,
+      "actualArenaCenterX": 772,
+      "offsetPx": -40.51674641148327,
+      "personallyOpenedOriginal": true,
+      "observations": "Symmetric stair entrance has a small noticeable left bias; quiet teal ring, actors and rail remain readable. Both browser humans naturally eliminated before this sequential capture; authoritative playing state has two bots alive."
+    }
+  ],
+  "errors": [],
+  "changedFiles": [],
+  "sourceStart": {
+    "games/party/public/host.js": "19a48daa4c7e1aaf060c3190c20aae6d7fd72b66942a9d63a780a820553c4bf8",
+    "games/party/public/host.html": "31894a48b9663a9fceb8cc346a8ceaebf3d3c067753ee2e9a870d448757f7c57",
+    "games/party/public/host.css": "83dde569fe670a5109b9ce0000f0e6f719f738e112ca90a50edadb73db90c227",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "server.js": "e85fb1fb5d4681c15e318e093e1eab09f6796bcc92d9bcb855287f3579b35ef6",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png": "42c8dcfa042d273917938500a8afca38e23e84e787bf9f4afd4afb3ab11464f7",
+    "public/bridge.js": "641a02fbab6813ba7f0add29e645cf8b9faa0de143be20bd18d8901a790a1356",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-micro-assets.js": "216dfb7b5a658b960dead6089e6d192851e24cb9c250a37ada578d5988c2ca37",
+    "public/game-ui-micro-assets.css": "d6054e1bde40468ee74560301a5668eb72969c80cb75076bd06cccdd6ab070a3",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548"
+  },
+  "sourceEnd": {
+    "games/party/public/host.js": "19a48daa4c7e1aaf060c3190c20aae6d7fd72b66942a9d63a780a820553c4bf8",
+    "games/party/public/host.html": "31894a48b9663a9fceb8cc346a8ceaebf3d3c067753ee2e9a870d448757f7c57",
+    "games/party/public/host.css": "83dde569fe670a5109b9ce0000f0e6f719f738e112ca90a50edadb73db90c227",
+    "games/party/public/visual-clock.js": "ebe30278f96270b61ea652f63b23076d529cc2414107b3e71bebbe8e05143903",
+    "games/party/server.js": "3d644b4a0de06b0bbe266d34e65bfa6bd52234bebc56b6f016289f17162c563f",
+    "server.js": "e85fb1fb5d4681c15e318e093e1eab09f6796bcc92d9bcb855287f3579b35ef6",
+    "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png": "42c8dcfa042d273917938500a8afca38e23e84e787bf9f4afd4afb3ab11464f7",
+    "public/bridge.js": "641a02fbab6813ba7f0add29e645cf8b9faa0de143be20bd18d8901a790a1356",
+    "public/game-art.js": "335f1e62293097f0def8f054180dfaba3908880935d123348496753b6938380d",
+    "public/game-ui-system.js": "921e3e386390ee57d33cc1687b7f8de03b098f64f56d16e323b223154976c89d",
+    "public/game-ui-system.css": "09910de871402455e217bcf8066c03d5f4a2690ba38fdb3ab3276f2f4a9e7198",
+    "public/game-ui-themes.js": "4c32060e8b7853ca87fec2bdeff0b8446d24670546f6b6258ec73e3d39afca7c",
+    "public/game-ui-themes.css": "5c1181113f7380de7ebbcb8bbea8228c3fc2c5f568605c07c413835c15cce817",
+    "public/game-ui-micro-assets.js": "216dfb7b5a658b960dead6089e6d192851e24cb9c250a37ada578d5988c2ca37",
+    "public/game-ui-micro-assets.css": "d6054e1bde40468ee74560301a5668eb72969c80cb75076bd06cccdd6ab070a3",
+    "public/tv-information.js": "9791a4bc3d45b24fc361df48d0b086222adf7e4c2f237d0f5070c31dd3b35de7",
+    "public/tv-information.css": "1fd1e0b9165506e5abd60dfde6db4cfa3a7439d7f76fc2402d29a6aadad45ca6",
+    "public/rankings-theme.js": "a356e88242d0400ef86747b429df687651df4cb03e6bb1736b2960db6b07dc7d",
+    "public/rankings-theme.css": "131bab9caaa86eec4f6017a27a37a303e302682bf9e308c68a6b905636a297af",
+    "public/game-polish.css": "1faa6333d6a97f71bc9f646ca2b63331411bb82d8d4af2d760754acd507797ca",
+    "public/game-message.js": "3ae63c7d67b1b01c0adcfda402dc5201519485c17f7d3fd5665d7121c8b73be3",
+    "public/game-message.css": "d563537cfb14ddf5de473103465f66c0dcc3bd9cfc335c970408d9746a0a6548"
+  },
+  "browserAndServerClosed": true,
+  "productEditsAfterCapture": false,
+  "rootDecision": "Pending;1080 remaining \u221240.52px offset flagged before any further edit.",
+  "preservedRawFailures": [
+    "output/playwright/composition-round3-2026-10-03/push-v2-alignment-current/report.json",
+    "output/playwright/composition-round3-2026-10-03/push-v2-alignment-live/report.json"
+  ],
+  "qualification": "First raw failed sandbox listen; second raw failed insufficient initial geometry stability. Both preserved; neither was accepted as visual evidence. Successful final capture uses three equal actual geometry samples after fonts/image decode and two main/frame RAF."
+}

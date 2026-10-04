@@ -1,0 +1,135 @@
+{
+  "reviewedAt": "2026-10-03T10:37:16.362011+00:00",
+  "reviewer": "group06 independent mechanics",
+  "report": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/report.json",
+  "method": "Actual bundled native-shell HTML in WebKit with simulated native snapshots and command bridge. No physical iPhone or managed game-engine acceptance.",
+  "verdict": "Named vertical body/header backing correction confirmed; horizontal genre-strip edge masking remains a named gap. No blanket popup/physical-device acceptance.",
+  "screens": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-top-402.png",
+      "sha256": "68f6499ae8296651332ae9441cdd2c657e4a6d79b843bf7c01bd289fa421601d",
+      "packetHashMatches": true,
+      "independentlyOpened": true,
+      "observation": "Coherent rounded sheet and stable opaque Host Panel header/Close. Transparent body shows TV controls, readable instructions, and navigation. Bottom continuation fades. Partial rightmost genre chip cuts at a hard horizontal edge.",
+      "scrollAbove": "false",
+      "scrollBelow": "true"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-middle-402.png",
+      "sha256": "c352da492a8c1c254d70cdbeb4f696448424c47037ebe22298c2c5d73449e565",
+      "packetHashMatches": true,
+      "independentlyOpened": true,
+      "observation": "Header and Close remain fixed. Room16 and player1-10 Remove rows remain readable; player11 continuation fades at body bottom. No inner rectangular section backing.",
+      "scrollAbove": "true",
+      "scrollBelow": "true"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-end-402.png",
+      "sha256": "6a7029cec668718d8f20c29f9b9cf780ff9aaefbe1569e7391eacf8ce9ceebee",
+      "packetHashMatches": true,
+      "independentlyOpened": true,
+      "observation": "Header fixed; Language, Statistics and diagnostics groups readable. Final revision text fully visible with no bottom fade at end. Reset Statistics retains an existing dashed outline; no claim every decorative dashed style is removed.",
+      "scrollAbove": "true",
+      "scrollBelow": "false"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-top-320.png",
+      "sha256": "b79c328ee339c79575bad114ad59bc453b83583fb2eaca666c7454d32cb112e4",
+      "packetHashMatches": true,
+      "independentlyOpened": true,
+      "observation": "Header/Close fit narrow sheet. TV controls wrap labels intentionally. Bottom Down control fades as continuing body content; horizontal STRATEG\u2026 chip has a sharp right cutoff.",
+      "scrollAbove": "false",
+      "scrollBelow": "true"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-middle-320.png",
+      "sha256": "d222c1a7d98dd170211dbe55b15d8c4f956558e5208ac3af5ad9e0e9af98d03f",
+      "packetHashMatches": true,
+      "independentlyOpened": true,
+      "observation": "Header fixed and first partly scrolled row transitions softly below it. Player1-7/Remove rows readable, next row fades below. No section backing.",
+      "scrollAbove": "true",
+      "scrollBelow": "true"
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/composition-round2-2026-10-03/native-host-panel-fix/native-host-end-320.png",
+      "sha256": "df47cb50c6e415872aa98e1e8f371cbbc318517172b7134e401529a409e8e692",
+      "packetHashMatches": true,
+      "independentlyOpened": true,
+      "observation": "Header fixed; diagnostics actions and complete multiline revision text fit. Body ends without bottom fade; top statistics continuation fades.",
+      "scrollAbove": "true",
+      "scrollBelow": "false"
+    }
+  ],
+  "sources": [
+    {
+      "path": "public/native-shell/index.html",
+      "capturedSha256": "feadabff590226ad430a50429816bd0f9de9f60a501e9284a6d38f7068a8a4b8",
+      "currentSha256": "feadabff590226ad430a50429816bd0f9de9f60a501e9284a6d38f7068a8a4b8",
+      "matches": true
+    },
+    {
+      "path": "public/native-shell/host-ui.css",
+      "capturedSha256": "0c499033e011fa67dcb17af6b040d2177f2994d539cbd859b94e3b74427ea500",
+      "currentSha256": "0c499033e011fa67dcb17af6b040d2177f2994d539cbd859b94e3b74427ea500",
+      "matches": true
+    },
+    {
+      "path": "public/native-shell/host.js",
+      "capturedSha256": "eebbe2aebb414f5ab14ab0352f376dc2796f92a9d47c79cb198b5b064f420eec",
+      "currentSha256": "eebbe2aebb414f5ab14ab0352f376dc2796f92a9d47c79cb198b5b064f420eec",
+      "matches": true
+    },
+    {
+      "path": "public/native-shell/tabs.js",
+      "capturedSha256": "dc472e4d8f21cf648c1dfb6deb219c78e1988afaa93a1a8530255b0ec574015b",
+      "currentSha256": "dc472e4d8f21cf648c1dfb6deb219c78e1988afaa93a1a8530255b0ec574015b",
+      "matches": true
+    },
+    {
+      "path": "public/background-scene.css",
+      "capturedSha256": "b10f5c1389af61d51ea7e5162efd0f384f45442fb5cd7d2e8b18ae940c96d8cf",
+      "currentSha256": "b10f5c1389af61d51ea7e5162efd0f384f45442fb5cd7d2e8b18ae940c96d8cf",
+      "matches": true
+    },
+    {
+      "path": "public/game-ui-system.css",
+      "capturedSha256": "0267b72a28c42aa3d9a948741ffd0f028cbdb12957dd8e15f1f7a5e6632f951a",
+      "currentSha256": "0267b72a28c42aa3d9a948741ffd0f028cbdb12957dd8e15f1f7a5e6632f951a",
+      "matches": true
+    },
+    {
+      "path": "public/game-ui-system.js",
+      "capturedSha256": "41a19f3e4bfaf13d35cd67f6ecbfaa43f43a0496835d796029656d800c7d9eba",
+      "currentSha256": "41a19f3e4bfaf13d35cd67f6ecbfaa43f43a0496835d796029656d800c7d9eba",
+      "matches": true
+    }
+  ],
+  "captureSourceDrift": [],
+  "captureErrors": [],
+  "reportedFunctionalChecks": [
+    "402\u00d7874 and320\u00d7568: header/44px close geometry identical at top/middle/end; outer sheet never scrolls or masks. Only transparent body owns dynamic edge fades; every section backing/pseudo is cleared.",
+    "Actual existing close/reopen, native TV-options command bridge, readiness disable/restore preserved; inner wrapper pseudo-elements stay absent after native rerender.",
+    "Persistent native Host tab also uses fixed header and inner body within its reserved frame."
+  ],
+  "contractTest": {
+    "path": "output/playwright/composition-round2-2026-10-03/native-host-panel-fix/host-contract/report.json",
+    "exitCode": 0,
+    "method": "Existing host-panel-browser.cjs static-server native snapshot regression"
+  },
+  "limits": [
+    "Functional bridge/snapshot checks are owner-reported simulation; reviewer inspected pixels and hashes without starting another browser.",
+    "All-game catalog city-host-100823 was interrupted and superseded;24 phones opened before steering are historical, not final36 acceptance.",
+    "Crane31 proof remains a source-qualified historical packet pending newer title/gradient/copy evidence."
+  ],
+  "findings": [
+    {
+      "priority": "P2",
+      "name": "Horizontal scroll edge lacks soft fade",
+      "evidence": [
+        "native-host-top-320.png",
+        "native-host-top-402.png"
+      ],
+      "detail": "Partial genre chip has a sharp right cutoff while additional chips exist. Shared fade is currently vertical; requires narrowly coordinated horizontal registration rather than whole-panel masking."
+    }
+  ]
+}

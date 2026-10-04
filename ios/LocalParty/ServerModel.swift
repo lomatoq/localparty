@@ -36,6 +36,8 @@ struct ServerState: Equatable, Codable {
     @Published private(set) var externalDisplayCount = 0
     @Published var externalDisplayReload = 0
     private var externalDisplaySessions = Set<String>()
+    @Published private(set) var nearbyRooms: [NearbyRoom] = []
+    private let nearby = NearbyRooms()
     @Published var state: ServerState?
     @Published var catalog: [PartyGame] = []
     @Published var message: String?
@@ -108,6 +110,9 @@ struct ServerState: Equatable, Codable {
         try? FileManager.default.setAttributes([.protectionKey:FileProtectionType.completeUntilFirstUserAuthentication],ofItemAtPath:directory.path)
         diagnosticsFile=directory.appendingPathComponent("lifecycle.log")
         portFile=directory.appendingPathComponent("runtime-port")
+        nearby.onChange = { [weak self] rooms in
+            if self?.nearbyRooms != rooms { self?.nearbyRooms = rooms }
+        }
         record("launch " + buildLabel)
         memoryObserver=NotificationCenter.default.addObserver(forName:UIApplication.didReceiveMemoryWarningNotification,object:nil,queue:.main) { [weak self] _ in Task { @MainActor in self?.artworkCache.removeAllObjects();self?.record("memory-warning: artwork cache cleared") } }
         try? FileManager.default.removeItem(at:portFile)
@@ -147,6 +152,7 @@ struct ServerState: Equatable, Codable {
             guard !working, commandRevision == expectedCommand, policyRevision == expectedPolicy else {return}
             // Polling is a health check, not a reason to redraw both SwiftUI scenes.
             if state != next { state=next }
+            nearby.update(state: next, foreground: phase == .active)
             if !ready { ready=true }
             connectionFailures=0
             if connectionStatus != nil { connectionStatus=nil }
@@ -206,13 +212,16 @@ struct ServerState: Equatable, Codable {
     }
     func requestBackground() { guard enabled, phase == .active else {return};background.start(source:"manual-retry") }
     func sceneChanged(_ value:ScenePhase) {
-        phase=value;record("scene=\(value) grant=\(background.isRunning) enabled=\(enabled)")
+        phase=value
+        nearby.update(state: state, foreground: value == .active)
+        record("scene=\(value) grant=\(background.isRunning) enabled=\(enabled)")
         applyExecutionPolicy()
     }
     func recordDisplayPerformance(_ stats: [String: Any]) {
         let fields = ["surface", "path", "fps", "p95", "max", "over50", "over100", "frames",
                       "viewport", "screen", "stage", "title", "description",
-                      "snapshots", "snapshotAge", "snapshotGap", "simulationGap", "simulationUnchanged"]
+                      "snapshots", "snapshotAge", "snapshotGap", "simulationGap", "simulationUnchanged",
+                      "arenaFrame", "arenaCircle", "arenaInset", "arenaFill"]
         let summary = fields.compactMap { key -> String? in
             guard let value = stats[key] else { return nil }
             return "\(key)=\(String(describing: value).prefix(100))"
@@ -228,6 +237,11 @@ struct ServerState: Equatable, Codable {
         record("tv-frames " + summary + " thermal=\(thermal) lowPower=\(ProcessInfo.processInfo.isLowPowerModeEnabled)")
     }
 
+    func recordUIAssets(_ stats: [String: Any]) {
+        let fields = ["revision", "fonts", "heading", "icons", "glyphs", "error"]
+        record("ui-assets " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(300))" } }.joined(separator: " "))
+    }
+
     func recordLaunchAttempt(_ stats: [String: Any]) {
         let fields = ["id", "players", "screens", "externalDisplays", "busy", "pending"]
         record("launch-tap " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(80))" } }.joined(separator: " "))
@@ -235,6 +249,11 @@ struct ServerState: Equatable, Codable {
     func recordBowDiagnostic(_ stats: [String: Any]) {
         let fields = ["event", "engine", "sent", "received", "detected", "accepted", "ms", "age", "tags", "decoded", "points", "video", "resolution", "frame", "mode", "stable", "joined", "phase", "error", "muted", "track", "videoTime", "hidden"]
         record("bow-tracking " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(200))" } }.joined(separator: " "))
+    }
+    // Lifecycle counters only: never record sensor vectors, players or controller URLs.
+    func recordSportsMotionDiagnostic(_ stats: [String: Any]) {
+        let fields = ["event", "reason", "transport", "session", "available", "received", "delivered", "stale", "invalid", "ready", "fresh", "holding", "valid", "code"]
+        record("sports-motion " + fields.compactMap { key in stats[key].map { "\(key)=\(String(describing: $0).prefix(64))" } }.joined(separator: " "))
     }
     private func record(_ event:String) {
         let line="\(ISO8601DateFormatter().string(from:Date())) \(event)\n"

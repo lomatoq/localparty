@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "gainReduction": 5,
+  "trace": [
+    {
+      "peak": 17,
+      "sense": "soft",
+      "power": 0.04090909090909091,
+      "score": 137
+    },
+    {
+      "peak": 30,
+      "sense": "soft",
+      "power": 0.1,
+      "score": 190
+    },
+    {
+      "peak": 52,
+      "sense": "soft",
+      "power": 0.2,
+      "score": 280
+    },
+    {
+      "peak": 80,
+      "sense": "soft",
+      "power": 0.32727272727272727,
+      "score": 395
+    },
+    {
+      "peak": 118,
+      "sense": "soft",
+      "power": 0.5,
+      "score": 550
+    },
+    {
+      "peak": 228,
+      "sense": "soft",
+      "power": 1,
+      "score": 1000
+    },
+    {
+      "peak": 400,
+      "sense": "soft",
+      "power": 1,
+      "score": 1000
+    }
+  ],
+  "touchAndBotTotals": [
+    3000,
+    1650
+  ],
+  "scope": "Actual production motion listener with deterministic platform events and authoritative Arcade input; physical-device feel not verified."
+}

@@ -6,14 +6,222 @@
   ],
   "note": "Deterministic generated index. Regenerate after adding or removing project assets or game files.",
   "totals": {
-    "publicAssetFiles": 373,
+    "publicAssetFiles": 779,
     "games": 20,
-    "gameFiles": 452
+    "gameFiles": 829
   },
   "publicAssets": [
     {
+      "file": "public/assets/avatars/atlas-mascots/mascot-01.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-02.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-03.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-04.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-05.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-06.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-07.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-08.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-09.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-10.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-11.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-12.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-13.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-14.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-15.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots/mascot-16.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots.manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/avatars/atlas-mascots.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/awards/accuracy.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/all-rounder.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/awards-atlas.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/awards/awards-original.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/clutch.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/comeback.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/crown.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/cup-bronze.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/cup-gold.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/cup-silver.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/cup-star.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/defender.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/fair-play.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/first-win.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/generation-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/awards/manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/awards/medal-bronze.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/medal-gold.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/medal-silver.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/mvp.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/new-record.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/party-veteran.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/personal-best.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/power.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/speed.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/survivor.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/teamwork.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/awards/win-streak.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/backgrounds/brick-wall-mobile-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/backgrounds/brick-wall-wide-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
       "file": "public/assets/branding/heypals-hero.png",
       "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/heypals-logo-original.png",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/heypals-logo-rectangular-v2.md",
+      "category": "brand-or-icon"
+    },
+    {
+      "file": "public/assets/branding/heypals-logo-rectangular-v2.png",
+      "category": "brand-or-icon"
     },
     {
       "file": "public/assets/branding/heypals-logo.png",
@@ -168,8 +376,92 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/fonts/Anybody-Italic.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/fonts/Anybody-OFL.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Anybody.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/fonts/Exo2-Italic.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/fonts/Exo2-OFL.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Exo2.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/fonts/kardia/iFonts-License.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-fat-runner.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-fat.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-fit-runner.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-fit.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-slim-runner.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-slim.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-thick-runner.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/kardia/kardia-thick.otf",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Manrope-OFL.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Manrope.ttf",
+      "category": "font"
+    },
+    {
       "file": "public/assets/fonts/OFL.txt",
       "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Onest-OFL.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Onest.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/fonts/Oxanium-OFL.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Oxanium.ttf",
+      "category": "font"
     },
     {
       "file": "public/assets/fonts/Rubik-Italic.ttf",
@@ -178,6 +470,582 @@
     {
       "file": "public/assets/fonts/Rubik.ttf",
       "category": "font"
+    },
+    {
+      "file": "public/assets/fonts/Unbounded-OFL.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/fonts/Unbounded.ttf",
+      "category": "font"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/balloon-lime.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/balloon-pink.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/balloon-violet.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/confetti-circle.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/confetti-diamond.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/confetti-heart.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/confetti-rect.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/confetti-star.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/confetti-swirl.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/crown-pop.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/firework-burst-gold.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/firework-burst-lime.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/firework-burst-violet.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/glow-orb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/laurel.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/medal-ribbon.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/party-popper.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/ribbon-banner.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/sparkle-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/sparkle-cluster.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/spotlight-cone.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/star-pop.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/thumbs-up.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration/trophy-pop.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration.manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-celebration.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/debris-chunks.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/dust-puff.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/ember-dots.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/explosion-1.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/explosion-2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/explosion-3.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/explosion-4.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/feather-burst.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/heal-plus.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/hit-flash.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/ice-dust.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/muzzle-flash-front.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/muzzle-flash-side.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/scorch-decal.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/shell-casing.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/shield-bubble.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/shockwave-ring.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/skull-poof.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/smoke-puff-a.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/smoke-puff-b.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/spark-burst.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/speed-lines.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/tracer.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat/water-splash.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat-raw-v1.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat.manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/fx/atlas-fx-combat.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-balloon-a.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-balloon-b.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-confetti-cluster.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-controller.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-crown.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-cupcake.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-dice.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-heart.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-music-note.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-sparkle.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-star.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props/float-ticket.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props.manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/fx/atlas-lobby-props.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/game-logos-v1/atlases/games-01.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/atlases/games-02.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/atlases/games-03.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/atlases/master-atlas36.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/game-logos-v1/build-atlases.cjs",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/game-logos-v1/index.html",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/airhockey.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/bomb.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/bow_club.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/bowling.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/carryball.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/chaos.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/crane.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/crocodile.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/curling.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/drawguess.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/flappy.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/hungry.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/jenga.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/kart.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/knives.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/marble_bloom.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/millionaire.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/mines.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/monster.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/naval.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/peek_shoot.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/pocket_siege.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/poker.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/punchmeter.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/push.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/shrink.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/sinyakquiz.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/snakelines.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/spy.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/swarm_gate.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/tankarena.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/tanks.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/taprace.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/warsaw.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/western_duel.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/logos/western.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/01-push-shrink.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/02-knives-bomb.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/03-western-tanks.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/04-tankarena-chaos.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/05-kart-monster.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/06-spy-millionaire.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/07-sinyakquiz-warsaw.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/08-crocodile-jenga.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/09-crane-naval.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/10-drawguess-western_duel.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/11-taprace-punchmeter.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/12-flappy-hungry.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/13-snakelines-carryball.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/14-marble_bloom-pocket_siege-v2-safe.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/14-marble_bloom-pocket_siege.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/15-bow_club-poker.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/16-airhockey-mines.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/17-curling-bowling.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/originals/18-swarm_gate-peek_shoot.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-logos-v1/prompts.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/bowling-pins.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/curling-stone.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/drawing-pencils.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/poker-chips.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/racing-flag.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/racing-flag.webp.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/source-hashes.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/game-ui-themes-20261002/wood-blocks.png",
+      "category": "raster-or-vector-art"
     },
     {
       "file": "public/assets/gameplay/atlas-actors.webp",
@@ -216,6 +1084,10 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/gameplay/crane-city-minimal-20261003-v1.png",
+      "category": "background-or-tile"
+    },
+    {
       "file": "public/assets/gameplay/crane-city.webp",
       "category": "background-or-tile"
     },
@@ -250,6 +1122,74 @@
     {
       "file": "public/assets/gameplay/flappy.webp",
       "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/generated/hungry-creatures-v2-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/generated/hungry-creatures-v2.js",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/hungry-creatures-v2.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/hungry-creatures-v2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/generated/push-sumo-art-v1.js",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/push-sumo-v1-prompts.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/push-sumo-v1.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/push-sumo-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascot-arms-v4.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascot-bodies-v4.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascot-rig-v3.js",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascot-rig-v4.js",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascots-v3-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascots-v3.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascots-v3.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascots-v4-prompts.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/generated/western-mascots-v4.json",
+      "category": "support-file"
     },
     {
       "file": "public/assets/gameplay/hungry.webp",
@@ -412,6 +1352,218 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/gameplay/round3/2026-10-03/backgrounds-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/bomb-storage-yard-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/knives-training-floor-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/last-circle-chamber-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-design.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-1-v2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-2-v2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-pack-3-v2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/micro-attachments-runtime.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/poker-lounge-v1-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/poker-lounge-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/punch-gym-v1-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/punch-gym-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2-prompts.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2-unselected-2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2-unselected-3.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/push-courtyard-v2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/push-shrink-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/root-generated-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v1-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v1-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-correction-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-punch-final-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-punch-too-wide-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-punch-too-wide.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-rejected-initial.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-too-narrow-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2-too-narrow.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-1-v2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v1-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v1-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2-correction-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2-generation-final-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2-prompt.txt",
+      "category": "other"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2-rejected-initial.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2-too-narrow-provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2-too-narrow.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-pack-2-v2.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-runtime.json",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/gameplay/round3/2026-10-03/top-cap-matte-v2-proportion-prompt.txt",
+      "category": "other"
+    },
+    {
       "file": "public/assets/gameplay/shrink.webp",
       "category": "raster-or-vector-art"
     },
@@ -517,6 +1669,22 @@
     },
     {
       "file": "public/assets/gameplay/sports-siege/atlases/swarm-wall.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/gallery-meadow-flat-v2.provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/gallery-meadow-flat-v2.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/gallery-meadow-flat-v3.provenance.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/gallery-meadow-flat-v3.webp",
       "category": "raster-or-vector-art"
     },
     {
@@ -1496,12 +2664,468 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/icons/atlas-stat-glyphs/bomb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/bow.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/brush.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/chip.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/clock.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/coin.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/cross.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/crown.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/dagger.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/flag-lap.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/flame.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/gate.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/ghost.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/grid.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/heart.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/hit.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/lightning.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/pin.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/ranking.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/rocket.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/shield.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/stone.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/target.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs/trophy.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs.manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/icons/atlas-stat-glyphs.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/icons/game-pack/adjustment.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/anchor.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/arrow-down.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/arrow-left.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/arrow-right.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/arrow-up-right.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/arrow-up.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/basketball.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/boat.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/bomb.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/boss.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/bow.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/bullet.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/camera.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/cards.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/character.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/clock.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/cloud.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/controller.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/copy.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/cross.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/crown.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/cursor-default.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/dagger.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/dice.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/display.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/expand.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/fish.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/flower.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/formula-racing.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/friends.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/ghost.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/grid.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/health.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/hit-effect.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/image.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/info.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/lightning.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/icons/game-pack/menu-03.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/music.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/mute.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/paintbrush.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/pause.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/pen.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/phone.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/pistol.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/play.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/puzzle-01.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/qr-code.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/question-mark.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/ranking.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/refresh.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/rocket.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/search.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/settings.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/share.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/shield.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/soccer.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/sprite.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/stamina.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/switch.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/target.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/tick.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/trophy.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/user-add.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/user-avatar.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/visible.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/volume.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/icons/game-pack/wand.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
       "file": "public/assets/lobby-controls.js",
       "category": "support-file"
     },
     {
       "file": "public/assets/party-panorama.webp",
       "category": "background-or-tile"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/closest-centre.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/draw-tie.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/eliminated.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/fastest-draw.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/knocked-out.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/next-round.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/survived-bomb.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes/winner-crown.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes.manifest.json",
+      "category": "metadata"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes.png",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/rounds/atlas-round-outcomes.webp",
+      "category": "atlas"
+    },
+    {
+      "file": "public/assets/spectators-20261002/reference.html",
+      "category": "support-file"
+    },
+    {
+      "file": "public/assets/spectators-20261002/spectator-01-coral.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/spectators-20261002/spectator-02-teal.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/spectators-20261002/spectator-03-violet.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/spectators-20261002/spectator-04-lime.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/spectators-20261002/spectator-05-lavender.png",
+      "category": "raster-or-vector-art"
     }
   ],
   "games": [
@@ -1513,7 +3137,9 @@
         "2d-top-down"
       ],
       "reusableRoles": [
+        "asset",
         "controller-system",
+        "data-or-manifest",
         "entry-or-template",
         "game-system",
         "host-renderer-or-client",
@@ -1523,12 +3149,156 @@
       ],
       "files": [
         {
+          "file": "games/arcade/carryball-hud.js",
+          "role": "module"
+        },
+        {
           "file": "games/arcade/controller-view.js",
           "role": "controller-system"
         },
         {
           "file": "games/arcade/public/app.js",
           "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/arcade/public/arcade-juice.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/bird-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/bird-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/bird-c.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/carry-ball.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/cheer-foam-hand.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/feather.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/finish-arch.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/food-bundle.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/glove.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/goal-left.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/goal-right.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/gym-bench.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/hungry-blob.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/pipe-body.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/pipe-cap.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/player-ring.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/punch-bag.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/runner-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/runner-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/snake-body.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/snake-head.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/speed-dust.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/stopwatch.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade/track-tile.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/atlas-arcade.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/carryball-pitch.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/flappy-hills-far.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/flappy-hills-far.seamless.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/flappy-hills-near.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/flappy-sky.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/hungry-floor.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade/public/assets/taprace-track.png",
+          "role": "asset"
         },
         {
           "file": "games/arcade/public/host.html",
@@ -1648,11 +3418,123 @@
           "role": "module"
         },
         {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/bloom-flower.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/combo-star.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/hole.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-bomb.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-cyan.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-gold.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-lime.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-orange.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-pink.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-rainbow.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/marble-violet.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/petal-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/petal-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/pop-ring.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/shooter.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles/track-curve.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/atlas-marbles.webp",
+          "role": "asset"
+        },
+        {
           "file": "games/arcade_deluxe/public/assets/covers/marble_bloom.webp",
           "role": "asset"
         },
         {
           "file": "games/arcade_deluxe/public/assets/covers/pocket_siege.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/dust-puff.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/explosion-1.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/explosion-2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/explosion-3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/muzzle-flash-side.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/scorch-decal.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/shockwave-ring.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/smoke-puff-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/arcade_deluxe/public/assets/fx/smoke-puff-b.webp",
           "role": "asset"
         },
         {
@@ -2352,6 +4234,10 @@
           "role": "entry-or-template"
         },
         {
+          "file": "games/arcade_deluxe/public/marble-layout.js",
+          "role": "module"
+        },
+        {
           "file": "games/arcade_deluxe/public/net.js",
           "role": "module"
         },
@@ -2368,11 +4254,23 @@
           "role": "module"
         },
         {
+          "file": "games/arcade_deluxe/public/pocket-juice.js",
+          "role": "module"
+        },
+        {
           "file": "games/arcade_deluxe/public/pocket-plasma.js",
           "role": "module"
         },
         {
           "file": "games/arcade_deluxe/public/pocket-projectiles.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/pocket-tank.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/pocket-world.js",
           "role": "module"
         },
         {
@@ -2438,6 +4336,114 @@
         {
           "file": "games/bow_club/LICENSE",
           "role": "support-file"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/arrow-stuck.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/arrow.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/bird-silhouette.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/bow-prop.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/chaos-button.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/chaos-coin.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/chaos-door.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/chaos-key.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/chaos-portal.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/chaos-spike.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/cloud-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/crane-beacon.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/crane-worklight.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/cursor-arrow.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/cursor-hand.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/dust-cloud.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/floor-block-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/floor-block-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/hay-bale.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/moon.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/perfect-badge.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/quiver.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/sun.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc/target-face.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/bow_club/public/assets/atlas-misc.webp",
+          "role": "asset"
         },
         {
           "file": "games/bow_club/public/assets/covers/bow_club.webp",
@@ -2647,6 +4653,7 @@
         "entry-or-template",
         "game-system",
         "host-renderer-or-client",
+        "module",
         "server",
         "ui-style"
       ],
@@ -2662,6 +4669,18 @@
         {
           "file": "games/crocodile/public/app.js",
           "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/crocodile/public/controller-layout.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/crocodile/public/croc-polish.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/crocodile/public/croc-polish.js",
+          "role": "module"
         },
         {
           "file": "games/crocodile/public/index.html",
@@ -2700,10 +4719,12 @@
         "ui"
       ],
       "reusableRoles": [
+        "asset",
         "documentation",
         "entry-or-template",
         "game-system",
         "host-renderer-or-client",
+        "module",
         "server",
         "ui-style"
       ],
@@ -2715,6 +4736,18 @@
         {
           "file": "games/drawguess/public/app.js",
           "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/drawguess/public/assets/paper.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/drawguess/public/draw-polish.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/drawguess/public/draw-polish.js",
+          "role": "module"
         },
         {
           "file": "games/drawguess/public/index.html",
@@ -2749,6 +4782,7 @@
         "3d"
       ],
       "reusableRoles": [
+        "asset",
         "controller-system",
         "entry-or-template",
         "game-system",
@@ -2768,6 +4802,26 @@
         {
           "file": "games/jenga/public/app.js",
           "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/jenga/public/assets/table-top.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/jenga/public/assets/wood-block-raw-v1.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/jenga/public/assets/wood-block.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/jenga/public/controller.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/jenga/public/controller.js",
+          "role": "controller-system"
         },
         {
           "file": "games/jenga/public/host.html",
@@ -2806,7 +4860,9 @@
         "pseudo-3d"
       ],
       "reusableRoles": [
+        "asset",
         "controller-system",
+        "data-or-manifest",
         "documentation",
         "entry-or-template",
         "host-renderer-or-client",
@@ -2837,12 +4893,124 @@
           "role": "support-file"
         },
         {
+          "file": "games/kart/static/assets/atlas-kart/arrow-sign.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/banana.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/barrier-candy.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/boost-pad.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/bridge.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/cone.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/crowd-blob.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/finish-line.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/flag-checkered.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/grandstand.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/item-box.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/kart-body.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/kart-driver.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/light-pole.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/oil.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/pit-garage.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/skid-mark.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/spark-trail.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/speed-ring.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/start-grid.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/tire-wall.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/tree.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/trophy-podium.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart/water-puddle.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/kart/static/assets/atlas-kart.webp",
+          "role": "asset"
+        },
+        {
           "file": "games/kart/static/controller.html",
           "role": "entry-or-template"
         },
         {
           "file": "games/kart/static/controller.js",
           "role": "controller-system"
+        },
+        {
+          "file": "games/kart/static/handling.js",
+          "role": "module"
         },
         {
           "file": "games/kart/static/host.html",
@@ -2869,6 +5037,7 @@
         "ui"
       ],
       "reusableRoles": [
+        "asset",
         "controller-system",
         "data-or-manifest",
         "documentation",
@@ -2892,6 +5061,10 @@
           "role": "data-or-manifest"
         },
         {
+          "file": "games/millionaire/public/assets/stage-backdrop.png",
+          "role": "asset"
+        },
+        {
           "file": "games/millionaire/public/host.css",
           "role": "ui-style"
         },
@@ -2906,6 +5079,10 @@
         {
           "file": "games/millionaire/public/index.html",
           "role": "entry-or-template"
+        },
+        {
+          "file": "games/millionaire/public/mq-polish.css",
+          "role": "ui-style"
         },
         {
           "file": "games/millionaire/public/player.css",
@@ -2925,6 +5102,10 @@
         },
         {
           "file": "games/millionaire/public/shared.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/millionaire/public/tv-layout.css",
           "role": "ui-style"
         },
         {
@@ -2991,6 +5172,10 @@
           "role": "ui-style"
         },
         {
+          "file": "games/monster/public/monster-polish.css",
+          "role": "ui-style"
+        },
+        {
           "file": "games/monster/public/play.html",
           "role": "entry-or-template"
         },
@@ -3028,6 +5213,7 @@
       ],
       "reusableRoles": [
         "asset",
+        "data-or-manifest",
         "documentation",
         "entry-or-template",
         "game-system",
@@ -3047,6 +5233,114 @@
         {
           "file": "games/naval/public/app.js",
           "role": "host-renderer-or-client"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/anchor.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/bubble-cluster.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/buoy.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/debris-wood.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/flag-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/flag-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/hit-fire.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/life-ring.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/ocean-tile.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/periscope.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/radar.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/rock-island.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/seagull.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/shell.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/ship-1.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/ship-2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/ship-3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/ship-4.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/ship-5.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/ship-sunk.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/smoke-column.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/splash-miss.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/target-crosshair.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval/wake.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/naval/public/assets/atlas-naval.webp",
+          "role": "asset"
         },
         {
           "file": "games/naval/public/broadcast.js",
@@ -3087,6 +5381,7 @@
         "pseudo-3d"
       ],
       "reusableRoles": [
+        "asset",
         "controller-system",
         "data-or-manifest",
         "documentation",
@@ -3108,12 +5403,128 @@
           "role": "documentation"
         },
         {
+          "file": "games/party/knives-sectors.js",
+          "role": "module"
+        },
+        {
           "file": "games/party/package.json",
           "role": "data-or-manifest"
         },
         {
           "file": "games/party/public/action-glass.css",
           "role": "ui-style"
+        },
+        {
+          "file": "games/party/public/assets/arena-floor.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/bomb-holder-halo.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/bomb-top.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/bumper-ring.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/cactus.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/clang-spark.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/disc-crown.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/disc-eyes-dizzy.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/disc-eyes-happy.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/disc-eyes-scared.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/disc-skin-base.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/draw-sign.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/fuse-spark.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/knife-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/knife-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/knife-board-face.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/knife-c.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/knife-d.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/knife-stuck.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/pit-edge.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/push-impact.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/safe-zone-marker.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/scorch.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/shrink-chevron.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena/tumbleweed.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/party/public/assets/atlas-arena.webp",
+          "role": "asset"
         },
         {
           "file": "games/party/public/controller.css",
@@ -3184,11 +5595,13 @@
         "ui"
       ],
       "reusableRoles": [
+        "asset",
         "data-or-manifest",
         "documentation",
         "entry-or-template",
         "game-system",
         "host-renderer-or-client",
+        "module",
         "server",
         "ui-style"
       ],
@@ -3206,8 +5619,128 @@
           "role": "host-renderer-or-client"
         },
         {
+          "file": "games/quiz/public/assets/atlas-social/answer-badge-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/answer-badge-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/answer-badge-c.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/answer-badge-d.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/correct-check.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/crocodile-card-back.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/crocodile-mascot.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/draw-brush.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/draw-crayon.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/draw-eraser.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/draw-paper.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/lifeline-5050.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/lifeline-audience.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/lifeline-phone.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/money-bag.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/monster-paper.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/monster-pencil.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/speech-bubble.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/spy-dossier.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/spy-hat.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/spy-magnifier.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/spy-stamp.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/timer-hourglass.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social/wrong-cross.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/atlas-social.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/quiz/public/assets/studio-backdrop.png",
+          "role": "asset"
+        },
+        {
           "file": "games/quiz/public/index.html",
           "role": "entry-or-template"
+        },
+        {
+          "file": "games/quiz/public/quiz-polish.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/quiz/public/quiz-polish.js",
+          "role": "module"
         },
         {
           "file": "games/quiz/public/screen.css",
@@ -3267,6 +5800,130 @@
         {
           "file": "games/sports_siege/match.js",
           "role": "game-system"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/banner-blank.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/bowling-ball-galaxy.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/bowling-ball-lime.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/bowling-ball-marble.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/bowling-pin.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/broom.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/curling-stone-coral.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/curling-stone-teal.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/fan-blob-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/fan-blob-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/fan-blob-c.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/gallery-friendly.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/gallery-target-duck.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/gallery-target-star.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/gate.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/gold-target.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/house-target.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/lane-arrow.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/pin-fallen.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/spare-badge.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/strike-badge.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/swarm-boss.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/swarm-bug-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports/swarm-bug-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/atlas-sports.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/covers-flat-v3/cover-hazard-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/covers-flat-v3/cover-metal-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/covers-flat-v3/cover-stone-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/covers-flat-v3/cover-wood-v3.webp",
+          "role": "asset"
         },
         {
           "file": "games/sports_siege/public/assets/environment/bowling/ceiling-light.glb",
@@ -3349,8 +6006,184 @@
           "role": "documentation"
         },
         {
+          "file": "games/sports_siege/public/assets/ice-pebble.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/ice-pebble.seamless.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/lane-wood.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/gate-closed-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/gate-damaged-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/gate-open-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-coral-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-cream-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-cyan-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-gold-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-leaf-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-lime-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-manifest-v3.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-mint-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-orange-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-orchid-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-pink-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-raspberry-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-royal-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-sky-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-steel-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-teal-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/turret-violet-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/wall-left-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v3/wall-right-v3.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v4/gate-closed-v4.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v4/gate-damaged-v4.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v4/gate-open-v4.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v4/manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/sports_siege/public/assets/swarm-v4/wall-long-v4.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/targets-flat-v2/manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/sports_siege/public/assets/targets-flat-v2/target-beetle-v2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/targets-flat-v2/target-bonus-v2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/targets-flat-v2/target-boss-v2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/targets-flat-v2/target-bug-v2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/targets-flat-v2/target-chicken-v2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/assets/targets-flat-v2/target-friendly-v2.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/sports_siege/public/bowling-alley.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/bowling-extras.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/bowling-feel.js",
+          "role": "module"
+        },
+        {
           "file": "games/sports_siege/public/controls.js",
           "role": "controller-system"
+        },
+        {
+          "file": "games/sports_siege/public/curling-arena.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/curling-extras.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/curling-feel.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/curling-ice.js",
+          "role": "module"
         },
         {
           "file": "games/sports_siege/public/host.html",
@@ -3367,6 +6200,30 @@
         {
           "file": "games/sports_siege/public/net.js",
           "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/notice-copy.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/scene-bowling.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/scene-curling.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/spectator-crowd.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/spectator-seat.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/sports-controls.css",
+          "role": "ui-style"
         },
         {
           "file": "games/sports_siege/public/style.css",
@@ -3394,6 +6251,7 @@
         "documentation",
         "entry-or-template",
         "host-renderer-or-client",
+        "module",
         "server",
         "support-file",
         "test",
@@ -3441,6 +6299,18 @@
           "role": "ui-style"
         },
         {
+          "file": "games/spy/public/spy-layout.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/spy/public/spy-polish.css",
+          "role": "ui-style"
+        },
+        {
+          "file": "games/spy/public/spy-polish.js",
+          "role": "module"
+        },
+        {
           "file": "games/spy/public/touch-feedback.js",
           "role": "controller-system"
         },
@@ -3469,6 +6339,8 @@
         "unknown"
       ],
       "reusableRoles": [
+        "asset",
+        "data-or-manifest",
         "entry-or-template",
         "host-renderer-or-client",
         "module",
@@ -3491,6 +6363,118 @@
         {
           "file": "games/tabletop/public/arena.css",
           "role": "ui-style"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/card-back.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/card-blank-front.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/chip-black.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/chip-green.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/chip-red.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/chip-stack.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/chip-white.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/coin-gold.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/cup-holder.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/dealer-button.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/explosion-mini.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/felt-corner.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/flag-marker.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/gem.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/goal-glow.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/mallet-a.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/mallet-b.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/mine.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/number-plate.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/pot-pile.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/puck.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/tile-covered.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/tile-open.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table/timer-chip.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/atlas-table.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tabletop/public/assets/hockey-rink.png",
+          "role": "asset"
         },
         {
           "file": "games/tabletop/public/fx.js",
@@ -3517,6 +6501,7 @@
         "2d-top-down"
       ],
       "reusableRoles": [
+        "asset",
         "controller-system",
         "entry-or-template",
         "host-renderer-or-client",
@@ -3538,6 +6523,30 @@
           "role": "host-renderer-or-client"
         },
         {
+          "file": "games/tankarena/public/assets/arena-ground.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/tankarena/public/assets/tokens/pickup-boost.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tankarena/public/assets/tokens/pickup-flame.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tankarena/public/assets/tokens/pickup-heal.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tankarena/public/assets/tokens/pickup-machinegun.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tankarena/public/assets/tokens/pickup-shield.webp",
+          "role": "asset"
+        },
+        {
           "file": "games/tankarena/public/host.html",
           "role": "entry-or-template"
         },
@@ -3548,6 +6557,10 @@
         {
           "file": "games/tankarena/public/style.css",
           "role": "ui-style"
+        },
+        {
+          "file": "games/tankarena/public/tank-fx.js",
+          "role": "module"
         },
         {
           "file": "games/tankarena/public/touch-feedback.js",
@@ -3570,6 +6583,7 @@
         "2d-top-down"
       ],
       "reusableRoles": [
+        "asset",
         "controller-system",
         "data-or-manifest",
         "documentation",
@@ -3588,6 +6602,134 @@
         {
           "file": "games/tanks/public/action-glass.css",
           "role": "ui-style"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/barrel.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/base-pad.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/crate.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/crater.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/fence.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/flag-blue.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/flag-red.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/oil-puddle.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/pickup-boost.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/pickup-flame.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/pickup-heal.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/pickup-machinegun.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/pickup-mine.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/pickup-shield.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/rock.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/rubble.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/sandbags.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/spawn-ring.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/tank-body-top.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/tank-tracks.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/tank-turret-top.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/tank-wreck.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/tire-stack.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield/tree-bush.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield-raw-v1.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield-raw-v2.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield.manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/atlas-battlefield.webp",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/tank-rig-v1/hull-atlas-v1.png",
+          "role": "asset"
+        },
+        {
+          "file": "games/tanks/public/assets/tank-rig-v1/manifest.json",
+          "role": "data-or-manifest"
+        },
+        {
+          "file": "games/tanks/public/assets/tank-rig-v1/turret-atlas-v2.png",
+          "role": "asset"
         },
         {
           "file": "games/tanks/public/controller.css",
@@ -3619,6 +6761,14 @@
         },
         {
           "file": "games/tanks/public/qr-lite.js",
+          "role": "module"
+        },
+        {
+          "file": "games/tanks/public/tank-fx.js",
+          "role": "module"
+        },
+        {
+          "file": "games/tanks/public/tank-rig.js",
           "role": "module"
         },
         {

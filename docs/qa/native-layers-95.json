@@ -1,0 +1,18 @@
+{
+  "build": 95,
+  "method": "Local WebKit, native tabs/bridge fixture, simulated safe area59px",
+  "checks": [
+    "Notice title paints above extended hero, readable opaque backing at320/393",
+    "Native Host Panel header joins global header at131px across scroll0/650/1300",
+    "CSS scrollbars hidden, viewport minimum/maximum-scale1",
+    "Native UIScrollView indicators/pinch disabled in source; physical pinch verification pending"
+  ],
+  "viewed": [
+    "notice-before.png",
+    "notice-393-0.png",
+    "notice-320-50.png",
+    "host-panel-safe-0.png",
+    "host-panel-safe-650.png",
+    "host-panel-qr-scroll.png"
+  ]
+}
