@@ -1,0 +1,19 @@
+{
+  "build": 119,
+  "bundleId": "com.localparty.launcher",
+  "recordedAt": "2026-10-04T11:29:11.892116+00:00",
+  "initialCandidateInstall": "success",
+  "finalCandidateIncludes": "Local Tanks corrected field contour",
+  "finalInstall": "failed_connection",
+  "attempts": [
+    {
+      "error": "CoreDeviceError -1 / failed to allocate RSD device"
+    },
+    {
+      "error": "CoreDeviceError 3002 / remote device connection failed"
+    }
+  ],
+  "launch": "not_verified",
+  "physicalMotionValidation": "not_performed",
+  "userAction": "Unlock iPhone and reconnect cable; async request sent"
+}

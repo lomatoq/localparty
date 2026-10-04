@@ -1,0 +1,870 @@
+{
+  "scope": "Independent visual review only: 36 waiting pairs, TV 1280×720 and browser phone 393×852. No physical iPhone/AirPlay or all-phase acceptance.",
+  "method": "All 72 full PNG originals individually opened with view_image, not contact-sheet-only. Source read-only; no browser launched.",
+  "reviewedAt": "2026-10-04T10:56:16.340184+00:00",
+  "manifestPath": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/manifest.json",
+  "manifestSha256": "48842db446a32d4745a2403b37daf5ba1a90c0497c88e18b6023db00db7df522",
+  "captureStartedAt": "2026-10-04T10:41:12.229Z",
+  "captureFinishedAt": "2026-10-04T10:52:42.759Z",
+  "captureErrors": [],
+  "responseErrors": [],
+  "consoleErrorCount": 153,
+  "sourceChangedDuringCapture": [
+    "games/bow_club/public/style.css"
+  ],
+  "currentVsRevisionEndMismatches": [],
+  "sourceQualification": "Captured-pixel approval. Capture is not globally source-stable: Bow local style changed during run; timing/version loaded by waiting images not independently established. Shared waiting-source hashes unchanged start/end/current. Console/WebSocket diagnostics retained; no runtime-clean claim.",
+  "blockers": [],
+  "minorFindings": [
+    {
+      "priority": "P3",
+      "files": [
+        "drawguess-phone-waiting.png",
+        "western_duel-phone-waiting.png"
+      ],
+      "observation": "Uninitialized totals 0/0 and Duel 0/0 at top-right waiting metadata. No control or TV HUD leak.",
+      "recommendation": "Optional: suppress unavailable totals until the game establishes a positive total."
+    }
+  ],
+  "rows": [
+    {
+      "id": "push",
+      "finding": "Whole logo and two-line helper; natural TV join toast clear of ready group.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/push-tv-waiting.png",
+          "sha256": "3890d92f7d94adbacc541379aa53d1e9726dda461f04ba298f2a91dde0d798fd",
+          "capturedAt": "2026-10-04T10:41:29.192Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/push-phone-waiting.png",
+          "sha256": "7d8ca4197f1b7a13d3ac26205c1e4cba680a1d57cd59cf66aed071fd2dc67550",
+          "capturedAt": "2026-10-04T10:41:29.749Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "shrink",
+      "finding": "Whole Last Circle logo; natural TV join toast clear of ready group.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/shrink-tv-waiting.png",
+          "sha256": "1ceeb458a1b100c16ea74851cbef457b93efa3df81f07d3cb133271e0e297692",
+          "capturedAt": "2026-10-04T10:41:40.130Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/shrink-phone-waiting.png",
+          "sha256": "2a6e5065de3ccfa8ed892dc7d3c415f4bd59e9349d86419ba54e877618811144",
+          "capturedAt": "2026-10-04T10:41:40.671Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "knives",
+      "finding": "Whole Color Knives logo and one-line phone helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/knives-tv-waiting.png",
+          "sha256": "78fea9917005711b9fbe6335e619e7d6e31d5cd7fe759c75c80f64d621b33038",
+          "capturedAt": "2026-10-04T10:44:32.797Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/knives-phone-waiting.png",
+          "sha256": "da7bf6f4269f94b3aaebcaf737843929434ec12e79262f206bf09c912feadf28",
+          "capturedAt": "2026-10-04T10:44:36.039Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "bomb",
+      "finding": "Whole logo and four roster pills; TV all-player readiness and phone human readiness are different intended counts.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/bomb-tv-waiting.png",
+          "sha256": "245dd398db8aca7aae76a6ed4f76e83f8bd44e59872b0df4090879e6c5e7c6b3",
+          "capturedAt": "2026-10-04T10:45:01.902Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/bomb-phone-waiting.png",
+          "sha256": "74f3d35faa78475929ddf9e1664b25c849980a800339448d3908984e872daa50",
+          "capturedAt": "2026-10-04T10:45:03.366Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "western",
+      "finding": "Whole One Shot Western logo; DRAW/fake-signal helper readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/western-tv-waiting.png",
+          "sha256": "567859f7e5d7e4003de6548283c3fe2c64dc533e041ee7b08b49200e5886f80b",
+          "capturedAt": "2026-10-04T10:45:17.191Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/western-phone-waiting.png",
+          "sha256": "32469c0b2821bc786163c93e5884e3394e224f8a7b34e428a229b8a0a10e3760",
+          "capturedAt": "2026-10-04T10:45:18.277Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "tanks",
+      "finding": "Refreshed Local Tanks waiting pair: full wordmark/preparing/roster on TV, no platform header/gameplay field. Phone WAITING Round 0/10, helper, Ready and footer whole. Natural bottom-right join toast does not touch readiness.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/tanks-tv-waiting.png",
+          "sha256": "98d724f14fc0daf51693060442d00464aea24b6e6b37824b81655808558b4146",
+          "capturedAt": "2026-10-04T11:25:34.262Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/tanks-phone-waiting.png",
+          "sha256": "d3e6d3726733f3b2783c6642651283dc84bd511a9e8587739c0af1900ee6b31e",
+          "capturedAt": "2026-10-04T11:25:34.858Z",
+          "individuallyOpened": true
+        }
+      ],
+      "initialHistory": [
+        {
+          "images": [
+            {
+              "surface": "tv",
+              "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/tanks-tv-waiting.png",
+              "sha256": "ba8c83aa35f2b3f738d5bafa8553afc408c165c6e67cf36e3bc0a4adb45d16e1",
+              "capturedAt": "2026-10-04T10:45:32.520Z",
+              "individuallyOpened": true
+            },
+            {
+              "surface": "phone",
+              "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/tanks-phone-waiting.png",
+              "sha256": "3adca3d5b24b2e71a0ac29c0adc3fc749f7e40ad9bac190ed83fd7690c099384",
+              "capturedAt": "2026-10-04T10:45:33.741Z",
+              "individuallyOpened": true
+            }
+          ],
+          "manifestPath": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/manifest.json",
+          "manifestSha256": "48842db446a32d4745a2403b37daf5ba1a90c0497c88e18b6023db00db7df522",
+          "note": "Same filenames replaced after field-contour refresh; initial hashes retained, original pixels archived by capture owner if available."
+        }
+      ],
+      "refreshQualification": {
+        "manifestPath": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/tanks-field-contour-refresh-manifest.json",
+        "manifestSha256": "040839fc0cc7c815c8f6bc16ea6f211af9acbb0d0be0150639fc80769ee84463",
+        "startedAt": "2026-10-04T11:25:24.890Z",
+        "finishedAt": "2026-10-04T11:25:37.235Z",
+        "errors": [],
+        "changedFiles": [],
+        "consoleErrors": [],
+        "responseErrors": [],
+        "source": {
+          "games/tanks/public/host.js": {
+            "start": "9dc7b51a03280c180887599c60a586b61b4cd9e6e20b50665d32af0fb18384e6",
+            "end": "9dc7b51a03280c180887599c60a586b61b4cd9e6e20b50665d32af0fb18384e6",
+            "current": "9dc7b51a03280c180887599c60a586b61b4cd9e6e20b50665d32af0fb18384e6"
+          }
+        },
+        "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+        "scope": "Two refreshed waiting originals only; new gameplay field contour not reviewed by this waiting check. Browser screenshots not physical iPhone/AirPlay."
+      }
+    },
+    {
+      "id": "tankarena",
+      "finding": "Whole Tank Arsenal logo; longer three-line weapon/boost helper fits.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/tankarena-tv-waiting.png",
+          "sha256": "92cb2a56efcee0b15ad8f0d0df23eb9ed506ab93e9eb5cb53dcc8bf10129f8e7",
+          "capturedAt": "2026-10-04T10:45:43.285Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/tankarena-phone-waiting.png",
+          "sha256": "7f1dafc128450aaa009194929be3d4c83bc648618a611bc5ac952b1c3d173b6e",
+          "capturedAt": "2026-10-04T10:45:44.752Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "chaos",
+      "finding": "Whole logo; two-line helper and initial player-count metadata readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/chaos-tv-waiting.png",
+          "sha256": "271765c7b78cfddbc31f35858a80e1a8144e072f122e320284765896066bffc0",
+          "capturedAt": "2026-10-04T10:45:54.457Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/chaos-phone-waiting.png",
+          "sha256": "55991b5d81b4a50f98b73a63d0fe3df2e31df248728933af8eae19c9dee8204a",
+          "capturedAt": "2026-10-04T10:45:55.780Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "kart",
+      "finding": "Whole logo; checkpoints/laps helper and initial five-lap metadata readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/kart-tv-waiting.png",
+          "sha256": "50ea6d2745a736cbec1d72a9e669efe5d17568388c2a513029f1a541c494b791",
+          "capturedAt": "2026-10-04T10:46:06.757Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/kart-phone-waiting.png",
+          "sha256": "c54464b3e0472f6f874f1826ca69108071349e272b69a4467495baf52ec68cdf",
+          "capturedAt": "2026-10-04T10:46:07.889Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "monster",
+      "finding": "Whole Pass the Monster logo; three-line seam/private-part helper fits without exposing secrets.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/monster-tv-waiting.png",
+          "sha256": "619cd40c770339589cfaaccc4df81f9b78c468a4bda629d802552ac04db38a44",
+          "capturedAt": "2026-10-04T10:46:20.034Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/monster-phone-waiting.png",
+          "sha256": "6f41a40ad33c28a5eeafe917838b8fc7d35f9ccbc03d5187223b23873bc2ec06",
+          "capturedAt": "2026-10-04T10:46:21.246Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "spy",
+      "finding": "Whole Spy logo; introduction preserves role secrecy.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/spy-tv-waiting.png",
+          "sha256": "5d6aa01aebde46cebf29a6bac09a6021fde5a3030ca26ff6a8950815143efd06",
+          "capturedAt": "2026-10-04T10:46:31.608Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/spy-phone-waiting.png",
+          "sha256": "e122603f4a7a685e96bb528130c9b04a7a6229e9b8f29a123d91065ddd145a8a",
+          "capturedAt": "2026-10-04T10:46:32.827Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "millionaire",
+      "finding": "Refreshed after Millionaire P2 gameplay fix: full logo, preparing text and ready roster on TV, no platform/gameplay header; phone WAITING 0/5, helper, Ready and footer whole. Natural fading TV join toast is outside ready group.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-millionaire-final/millionaire-tv-waiting.png",
+          "sha256": "14d945aef8ffdf00ff0b19134cd3d47278dfc439916eb787c527c14625fd9649",
+          "capturedAt": "2026-10-04T11:10:12.518Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-millionaire-final/millionaire-phone-waiting.png",
+          "sha256": "1f383b35a7619242905fc604a588e49917a6fd85b6ccf7c5b1094aa1d363c8e2",
+          "capturedAt": "2026-10-04T11:10:13.102Z",
+          "individuallyOpened": true
+        }
+      ],
+      "initialHistory": [
+        {
+          "images": [
+            {
+              "surface": "tv",
+              "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/millionaire-tv-waiting.png",
+              "sha256": "19ec753200e5d6fbe89e04ae796401a87202296cb0b53f41ee40fc971916a5f8",
+              "capturedAt": "2026-10-04T10:46:45.178Z",
+              "individuallyOpened": true
+            },
+            {
+              "surface": "phone",
+              "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/millionaire-phone-waiting.png",
+              "sha256": "9ef5fcce23e279319cd10ce3677cb857ceb571f2906440c1e6305339e8da455d",
+              "capturedAt": "2026-10-04T10:46:46.392Z",
+              "individuallyOpened": true
+            }
+          ],
+          "manifestPath": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/manifest.json",
+          "manifestSha256": "48842db446a32d4745a2403b37daf5ba1a90c0497c88e18b6023db00db7df522"
+        }
+      ],
+      "refreshQualification": {
+        "manifestPath": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-millionaire-final/manifest.json",
+        "manifestSha256": "85e853ed5e70bd28b0d470c43bcd1bb38ba213b77d83f81506868851d024c106",
+        "startedAt": "2026-10-04T11:10:02.191Z",
+        "finishedAt": "2026-10-04T11:10:15.333Z",
+        "errors": [],
+        "changedFiles": [],
+        "consoleErrorCount": 0,
+        "source": {
+          "games/millionaire/public/tv-layout.css": {
+            "start": "7a185b0f27e86ddf42de3071f995f07a49d057f1ad2822fa2e47be9172f900c3",
+            "end": "7a185b0f27e86ddf42de3071f995f07a49d057f1ad2822fa2e47be9172f900c3",
+            "current": "7a185b0f27e86ddf42de3071f995f07a49d057f1ad2822fa2e47be9172f900c3"
+          }
+        },
+        "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+        "scope": "Only two refreshed waiting originals; gameplay P2 correctness not reviewed here; browser screenshots not physical iPhone/AirPlay."
+      }
+    },
+    {
+      "id": "sinyakquiz",
+      "finding": "Whole logo/question helper; initial 0/10 metadata readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/sinyakquiz-tv-waiting.png",
+          "sha256": "95cdabf7bbf9a73ce78b0ede0c61fd5b41ad9194735aa171b24f61dcc04a24c3",
+          "capturedAt": "2026-10-04T10:46:55.963Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/sinyakquiz-phone-waiting.png",
+          "sha256": "0cd0c2890088cc94350ff9f5edfaa9c1e2c7f3514415dcfde290b542b7228fe1",
+          "capturedAt": "2026-10-04T10:46:57.440Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "warsaw",
+      "finding": "Whole Warsaw logo/local-place helper; initial 0/10 metadata readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/warsaw-tv-waiting.png",
+          "sha256": "a771fb2093bec9a4d14e6e46cd31725d046a1867c22ad08e33206061b5513ca9",
+          "capturedAt": "2026-10-04T10:47:06.641Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/warsaw-phone-waiting.png",
+          "sha256": "ec219b32544f0988575128a026bc3c1b64babfa5de854ed70ba371308a28e7e8",
+          "capturedAt": "2026-10-04T10:47:07.836Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "crocodile",
+      "finding": "Whole Charades logo and gestures/team helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/crocodile-tv-waiting.png",
+          "sha256": "921fb1dd508db90f3c83f6f0378fa45e728e1337826c10cfd1e1a9435de8315d",
+          "capturedAt": "2026-10-04T10:47:18.463Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/crocodile-phone-waiting.png",
+          "sha256": "a5bf3a71fcd52246f1afcd810b0f85000af8228f68fc6576a23ce4a50bbb7dfc",
+          "capturedAt": "2026-10-04T10:47:19.614Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "jenga",
+      "finding": "Whole Careful Jenga logo/support helper; initial Blocks metadata readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/jenga-tv-waiting.png",
+          "sha256": "2c468fd473c98b5152f5cc2ed385e9d0a231b68dcab8b9352a6d949c474c7c00",
+          "capturedAt": "2026-10-04T10:47:30.649Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/jenga-phone-waiting.png",
+          "sha256": "afd6279de89357b7c0031b32f5f89d6811ad4bf96a06ef4e525db452ff767b6c",
+          "capturedAt": "2026-10-04T10:47:31.636Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "crane",
+      "finding": "Whole Night Shift logo/tower helper and Floors metadata.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/crane-tv-waiting.png",
+          "sha256": "4b31981d2255ba6a73f0c7ef876b6d0576f887f9a1a82b3367c290cd5c87bcbe",
+          "capturedAt": "2026-10-04T10:47:41.851Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/crane-phone-waiting.png",
+          "sha256": "aa3dd240ead985e9e9a2a197578631ede3d7270ba7f63e79759ad17b781c542a",
+          "capturedAt": "2026-10-04T10:47:43.018Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "naval",
+      "finding": "Whole Quick Battleships logo and 6×6 fleet helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/naval-tv-waiting.png",
+          "sha256": "2c810e17f463a6005b136952545bbbf746c916652f3c84867606154ba7702036",
+          "capturedAt": "2026-10-04T10:47:54.507Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/naval-phone-waiting.png",
+          "sha256": "4a40bebfac0473be48c65311d9200ebe3e6b26f4ad485cbd521c3f5787d6f20b",
+          "capturedAt": "2026-10-04T10:47:55.659Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "drawguess",
+      "finding": "Whole logo/artist helper; nonblocking initial 0/0 phone metadata.",
+      "verdict": "PASS_WITH_P3_METADATA",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/drawguess-tv-waiting.png",
+          "sha256": "e69cd888e5fe827d226d131b395ff26cd00e57e58c3e53439e27e03922b4c866",
+          "capturedAt": "2026-10-04T10:48:08.951Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/drawguess-phone-waiting.png",
+          "sha256": "4f37a407430a4e902fe1482fc5487f73cd452bcdd6dba868eeb5d78db934ce15",
+          "capturedAt": "2026-10-04T10:48:10.351Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "western_duel",
+      "finding": "Whole logo/reaction helper; nonblocking initial Duel 0/0 phone metadata.",
+      "verdict": "PASS_WITH_P3_METADATA",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/western_duel-tv-waiting.png",
+          "sha256": "ce66f791cfa2a804b0ecf455c211eacda70fb35a5ffcdacc16a31952852b2331",
+          "capturedAt": "2026-10-04T10:48:20.251Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/western_duel-phone-waiting.png",
+          "sha256": "89255bf26fd117507f26c6b7d374422eaf94c9d3a13d5179490c1183014a4053",
+          "capturedAt": "2026-10-04T10:48:21.622Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "taprace",
+      "finding": "Whole Tap Race logo and tap helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/taprace-tv-waiting.png",
+          "sha256": "480e5afa35122f848b7eccba8dd8022a49d924615faa09d60763f9b9baae4beb",
+          "capturedAt": "2026-10-04T10:48:34.916Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/taprace-phone-waiting.png",
+          "sha256": "71c01dc09a23d1e6e7df96593dc1b1496a02ef3df9c4148aaf43692150aab262",
+          "capturedAt": "2026-10-04T10:48:36.120Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "punchmeter",
+      "finding": "Whole Punch Meter logo and one-line helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/punchmeter-tv-waiting.png",
+          "sha256": "a4262102aa4ab83179c5b6a8932b84622ba58abaf171d47aa0421e9a50c17f48",
+          "capturedAt": "2026-10-04T10:48:45.451Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/punchmeter-phone-waiting.png",
+          "sha256": "a7ea3439f41401a8d8406900268be4a69c632869fedf39c37d17059968519e4a",
+          "capturedAt": "2026-10-04T10:48:46.809Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "flappy",
+      "finding": "Whole Multiplayer Flappy logo and two-line birds helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/flappy-tv-waiting.png",
+          "sha256": "146198773fdca45fc075933a058cef388feeaaea15f0116e7996f30f0ac94127",
+          "capturedAt": "2026-10-04T10:48:59.025Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/flappy-phone-waiting.png",
+          "sha256": "f38d55de69d44b6e2e718280b032dd16ef0cc44241af27f8ba67dc659961e199",
+          "capturedAt": "2026-10-04T10:49:00.824Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "hungry",
+      "finding": "Whole Hungry Circle logo and food/respawn helper; copy semantics outside this layout review.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/hungry-tv-waiting.png",
+          "sha256": "9a23067f61994378d64483f11ef3d546489bdc22cb00bf7abf8c894767a6e1f0",
+          "capturedAt": "2026-10-04T10:49:16.062Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/hungry-phone-waiting.png",
+          "sha256": "cdb72f23c8139fbe9e9e3676b5275b31cae0397b3ba61f656df0ead6dcea0599",
+          "capturedAt": "2026-10-04T10:49:18.147Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "snakelines",
+      "finding": "Whole Snake Lines logo and one-line trail helper; Round 0/5 metadata fits.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/snakelines-tv-waiting.png",
+          "sha256": "bd34aa36a5db1007cfd5873d58d0ccf12f833bcfa0563049e4dbe55dcb120d22",
+          "capturedAt": "2026-10-04T10:49:30.644Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/snakelines-phone-waiting.png",
+          "sha256": "035ad8ed423857005bb920b5d4660f3f4c8fe996646f4860745097fdf32bcc6a",
+          "capturedAt": "2026-10-04T10:49:32.576Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "carryball",
+      "finding": "Whole Carry Ball logo and one-line pass helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/carryball-tv-waiting.png",
+          "sha256": "11913d02757b369868efd2e868f3bc7fbc1c3b650351abb5944a420c3f63cf54",
+          "capturedAt": "2026-10-04T10:49:46.317Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/carryball-phone-waiting.png",
+          "sha256": "e64cea678815c38574fbf9b13dc8fe3a40641effd123c7ed6746a33f895d571f",
+          "capturedAt": "2026-10-04T10:49:48.135Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "marble_bloom",
+      "finding": "Whole logo/mode helper; TV three-player and phone two-human readiness intentionally differ.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/marble_bloom-tv-waiting.png",
+          "sha256": "9763e685c9070649edc40c111437d3fef91c36d5cb11d2c444c20d12834e41fa",
+          "capturedAt": "2026-10-04T10:50:01.487Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/marble_bloom-phone-waiting.png",
+          "sha256": "d64edaa0722ebe197d202c030baf0f4d91937d371221728eb0474f2e56950419",
+          "capturedAt": "2026-10-04T10:50:03.580Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "pocket_siege",
+      "finding": "Whole Pocket Tanks logo/hits-terrain helper and Turn 1/10 metadata.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/pocket_siege-tv-waiting.png",
+          "sha256": "ba04b687ff0e90c9909db491d23c95fc6a534b880da6ce1c4aee162e2f3bfb77",
+          "capturedAt": "2026-10-04T10:50:17.505Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/pocket_siege-phone-waiting.png",
+          "sha256": "c9b47c087a0b85993fc1ea4993fbb2ee0a868facd45875f44e383a3888bd7fab",
+          "capturedAt": "2026-10-04T10:50:19.463Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "poker",
+      "finding": "Whole Poker Night logo and two-line hand/fold helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/poker-tv-waiting.png",
+          "sha256": "036ab90b3ecff686ff959a1f4a1e7e54eef5073a135adf9d64bc1fbf3038ccc2",
+          "capturedAt": "2026-10-04T10:50:47.748Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/poker-phone-waiting.png",
+          "sha256": "8a12b33e37b934771823f4dfc2b46ed2a35a06901d81670e08c8ff6c068e1f07",
+          "capturedAt": "2026-10-04T10:50:49.680Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "airhockey",
+      "finding": "Whole Air Hockey logo and two-line goal/movement helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/airhockey-tv-waiting.png",
+          "sha256": "b4c7cea552a426ee7146e41755c2b26e3499ab15d43327d1fb781b5a1925285a",
+          "capturedAt": "2026-10-04T10:51:01.373Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/airhockey-phone-waiting.png",
+          "sha256": "c0d22fc94b81816a0a9a2b75cbde366fbfd93e6781130a633cd86a6dc7318ecc",
+          "capturedAt": "2026-10-04T10:51:03.447Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "mines",
+      "finding": "Whole Mine Together logo and two-line mine/cooldown helper.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/mines-tv-waiting.png",
+          "sha256": "c0816a4604aeffe587f9af8254896a174b00bcd415f9bef0c5a97fe231ddfecb",
+          "capturedAt": "2026-10-04T10:51:15.886Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/mines-phone-waiting.png",
+          "sha256": "4009fb2b83c5e03f2ab160511a369e61c197c21d5e43e18486f853b4a4db7771",
+          "capturedAt": "2026-10-04T10:51:17.895Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "bow_club",
+      "finding": "Whole Bow Club logo, scoring helper and 10 Arrows metadata; Bow local stylesheet drift qualified separately.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/bow_club-tv-waiting.png",
+          "sha256": "deef928fef615937f6167e13216278057e21f8a22789eaaff10590485cbc64f8",
+          "capturedAt": "2026-10-04T10:50:33.039Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/bow_club-phone-waiting.png",
+          "sha256": "b2fe4d3fb1255ed20e70bfda56ba59d74dce3297fec72eaeaf53ad788987b482",
+          "capturedAt": "2026-10-04T10:50:35.043Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "curling",
+      "finding": "Whole Ice & Nerves logo; three-line stone/house helper fits; End 0/3 metadata readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/curling-tv-waiting.png",
+          "sha256": "3d2c56312f7298bbb72afc3e6362ecd73a3a638cf19c5f89ebbcd2df90840930",
+          "capturedAt": "2026-10-04T10:51:31.430Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/curling-phone-waiting.png",
+          "sha256": "a8b95014fd245a248bec6b45fe0d9f27bfeb10194abdf27c0ee132921ac088e8",
+          "capturedAt": "2026-10-04T10:51:33.516Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "bowling",
+      "finding": "Whole Pocket Strike logo; two-line pins/gutter helper readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/bowling-tv-waiting.png",
+          "sha256": "ce0dba94d27d35436648ce858020d112f5c5d460f87399be4b6b2f2deec0df78",
+          "capturedAt": "2026-10-04T10:51:46.815Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/bowling-phone-waiting.png",
+          "sha256": "898e29c716bf4fd58e01eaedce3ec4a7e0adc0f7ba99199b87fc84515ddd9c8d",
+          "capturedAt": "2026-10-04T10:51:48.734Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "swarm_gate",
+      "finding": "Whole Don’t Bite the Gate logo; three-line enemy/boss helper fits; Wave 0/6 metadata readable.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/swarm_gate-tv-waiting.png",
+          "sha256": "24c7d1ff0e1fc829ee7dcd4e9d76ccfffff2b8f4ad2bee53461d9d5e8e77b8f0",
+          "capturedAt": "2026-10-04T10:52:01.213Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/swarm_gate-phone-waiting.png",
+          "sha256": "ab7344722e9c144da59a8b830564df77369af1bdbfa0d3bb3cfc0db42d213d45",
+          "capturedAt": "2026-10-04T10:52:02.988Z",
+          "individuallyOpened": true
+        }
+      ]
+    },
+    {
+      "id": "peek_shoot",
+      "finding": "Whole Who’s Popping Up logo; three-line target/friendly/combo helper fits.",
+      "verdict": "PASS_CAPTURED_WAITING_PIXELS",
+      "images": [
+        {
+          "surface": "tv",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/peek_shoot-tv-waiting.png",
+          "sha256": "9d3c6dee1082c8522b7480521a8cb932b9778e3e90fd2eccaa22ab961d9c717d",
+          "capturedAt": "2026-10-04T10:52:19.977Z",
+          "individuallyOpened": true
+        },
+        {
+          "surface": "phone",
+          "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/integration119-review/peek_shoot-phone-waiting.png",
+          "sha256": "f4282dcaca6c83c11b69134cc05d3ed176cae3dc3cc90133497e45cb23868fee",
+          "capturedAt": "2026-10-04T10:52:21.995Z",
+          "individuallyOpened": true
+        }
+      ]
+    }
+  ],
+  "latestRefreshAt": "2026-10-04T11:26:58.820250+00:00"
+}

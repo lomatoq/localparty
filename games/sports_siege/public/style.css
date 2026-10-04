@@ -463,3 +463,27 @@ html.hp-ui.party-managed.party-host.party-display-only body[data-ss-role=host] .
  html.hp-ui.party-host body[data-ss-role=host][data-ss-mode=bowling][data-ss-dense=true] #ss-scoreboard .ss-player-score{font-size:calc(36px * var(--ss-tv-scale))!important}
  html.hp-ui.party-host body[data-ss-role=host][data-ss-mode=bowling][data-ss-dense=true] #ss-scoreboard .ss-player-copy b{font-size:calc(14px * var(--ss-tv-scale))!important;line-height:1.2!important}
 }
+
+/* Integration119: same screen-attached silhouette as Pocket Siege; one material,
+   one primary identity track and one vertically centred facts track. */
+@media(min-width:701px){
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top{isolation:isolate;overflow:visible;border:0!important;border-radius:0;background:none!important;box-shadow:none!important;filter:drop-shadow(0 6px 10px #08061055)}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top::before{content:'';position:absolute;inset:0 -28px;z-index:-1;pointer-events:none;border:0;border-radius:0;background:
+ radial-gradient(40% 26% at 50% 100%,color-mix(in srgb,var(--notch-rim) 42%,transparent),transparent),
+ linear-gradient(112deg,transparent 30%,rgb(255 255 255/.075) 41%,rgb(255 255 255/.02) 47%,transparent 49%),
+ linear-gradient(104deg,transparent 14%,color-mix(in srgb,var(--notch-rim) 14%,transparent) 38%,transparent 76%),
+ linear-gradient(180deg,rgb(4 2 10/.22),transparent 22%,rgb(255 255 255/.09) 56%,transparent 74%,rgb(4 2 10/.26)),var(--notch-fill);
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0H656C640 0 628 9 628 28V74C628 94 617 102 596 104Q328 124 60 104C39 102 28 94 28 74V28C28 9 16 0 0 0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0H656C640 0 628 9 628 28V74C628 94 617 102 596 104Q328 124 60 104C39 102 28 94 28 74V28C28 9 16 0 0 0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top::after{content:'';position:absolute;inset:0 -28px;z-index:-1;pointer-events:none;border:0;border-radius:0;background:radial-gradient(46% 70% at 50% 100%,color-mix(in srgb,var(--notch-rim) 100%,white 30%),transparent),linear-gradient(180deg,color-mix(in srgb,var(--notch-rim) 30%,transparent),color-mix(in srgb,var(--notch-rim) 70%,transparent));
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0C16 0 28 9 28 28V74C28 94 39 102 60 104Q328 124 596 104C617 102 628 94 628 74V28C628 9 640 0 656 0' fill='none' stroke='%23000' stroke-width='3.2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0C16 0 28 9 28 28V74C28 94 39 102 60 104Q328 124 596 104C617 102 628 94 628 74V28C628 9 640 0 656 0' fill='none' stroke='%23000' stroke-width='3.2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top{--notch-fill:var(--sports-panel);--notch-rim:var(--sports-rim);display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:calc(20px * var(--ss-tv-scale));min-height:calc(104px * var(--ss-tv-scale));padding:calc(8px * var(--ss-tv-scale)) calc(24px * var(--ss-tv-scale));align-items:center}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-heading{width:100%;max-width:none;min-width:0;align-self:center}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-heading-copy{grid-template-columns:calc(108px * var(--ss-tv-scale)) minmax(0,1fr);align-items:center}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-game-wordmark{height:calc(44px * var(--ss-tv-scale))}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-phase-pill{align-self:center}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-match-metrics{width:100%;min-width:0;justify-content:space-evenly;align-items:center;align-self:stretch;border:0;border-left:1px solid color-mix(in srgb,var(--sports-rim) 28%,transparent);overflow:visible}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-match-metrics>span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(4px * var(--ss-tv-scale));min-width:0;min-height:calc(48px * var(--ss-tv-scale));padding:calc(10px * var(--ss-tv-scale)) calc(14px * var(--ss-tv-scale))!important;text-align:center;border:0;border-radius:calc(14px * var(--ss-tv-scale));background:linear-gradient(180deg,color-mix(in srgb,var(--sports-rim) 9%,transparent),rgb(4 2 10/.16))}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-match-metrics strong{line-height:1.25!important;font-variant-numeric:tabular-nums;white-space:nowrap}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-match-metrics small{line-height:1.2!important;color:color-mix(in srgb,var(--sports-rim) 35%,#fff)!important}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-gate-health{align-self:center;min-width:0!important;text-align:center}
+}

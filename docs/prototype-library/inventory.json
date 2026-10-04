@@ -8,7 +8,7 @@
   "totals": {
     "publicAssetFiles": 779,
     "games": 20,
-    "gameFiles": 829
+    "gameFiles": 830
   },
   "publicAssets": [
     {
@@ -4243,6 +4243,10 @@
         },
         {
           "file": "games/arcade_deluxe/public/palette.js",
+          "role": "module"
+        },
+        {
+          "file": "games/arcade_deluxe/public/pocket-camera.js",
           "role": "module"
         },
         {

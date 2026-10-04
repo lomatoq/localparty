@@ -1,0 +1,13 @@
+# Integration119 · native sports/Bow notch correction
+
+Scope: `games/sports_siege/public/style.css` and `games/bow_club/public/style.css`. No JavaScript, scene, physics, controller, roster or AR-marker source edits.
+
+The five native headers now use the exact shared Pocket Siege656×114 concave-shoulder/shallow curved lower-lip silhouette. The old outer rectangle fill is removed, with one game-tinted material and one contour-following fine rim. Identity/phase occupies the primary track; centered facts occupy the other track with an internal separator. Native sports fact cells have generous padding and a48px scaled minimum; actual height69.69px at720p and104.53px at1080p. Bow Club retains logo + live timer and arrows/mode/guidance hierarchy; logo and timer base scale with TV viewport.
+
+Fresh managed launcher captures with WebKit at1280×720 and1920×1080: Bow Club, Pocket Strike(bowling), Ice & Nerves(curling), Don't Bite the Gate(swarm_gate), Who's Popping Up(peek_shoot). All ten original TV gameplay screenshots opened and visually inspected. All five720p matchmaking originals opened: clean splash, no game header. Matchmaking1080p originals also captured. Batched inspection showed Bow Club's fixed-height logo too small at1080p; proportional logo/readout adjustment made, then both final Bow originals opened once. No further polish cycle.
+
+Evidence: `output/playwright/integration119-notches/index.html`. Final Bow screenshots in`bow-timer720/` and`bow-timer1080/`; other final originals in`720/` and`1080/`. `bounds-final.json` records actual owner/pill bounds; `source-final.json` identifies final CSS hashes. All five launch flows succeeded at both sizes; pageerror arrays empty. Harness0 A/B deltas only refer to toggling previous paint-only polish stylesheet, not this intentional header recomposition. Outer sports owner800×104 at720p and1200×156 at1080p. Canvas/AR markers and bottom roster keep incumbent ownership.
+
+Impeccable context/layout/craft-floor applied. Mechanical scan: five existing declarations outside edited blocks (legacy roster top borders/stripe, phone draw inset stripe, bar width transition). New header findings0. Scoped `git diff --check` passes. Browser evidence does not substitute for physical TV/AirPlay validation.
+
+Latest explicit user correction: Bow Club timer base was too tall/light. Only its native timer capsule changed to a dark42–50% brown gradient,4px scaled vertical padding and44px scaled minimum. Final actual capsule44.80px/67.19px at720p/1080p; header122.80px/182.19px, lower inner clearance12px/18px. Both final originals opened once, complete capsule stays within contour and timer is centered. All other native headers unchanged.

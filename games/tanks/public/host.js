@@ -155,19 +155,36 @@ function drawGrid(){
 }
 function drawCombatEffects(effects){for(const e of effects||[]){const t=1-e.t/e.max;ctx.save();ctx.translate(e.x,e.y);ctx.globalAlpha=(1-t)*(1-t);ctx.strokeStyle=e.color;ctx.lineWidth=3*(1-t)+1;ctx.beginPath();ctx.arc(0,0,4+36*(1-(1-t)**3),0,Math.PI*2);ctx.stroke();for(let i=0;i<9;i++){const a=i*2.399,r=8+55*t;ctx.strokeStyle=i%2?'#fff3c7':e.color;ctx.beginPath();ctx.moveTo(Math.cos(a)*r,Math.sin(a)*r);ctx.lineTo(Math.cos(a)*(r+12*(1-t)),Math.sin(a)*(r+12*(1-t)));ctx.stroke();}ctx.restore();}}
 let wallCache, wallCacheKey='';
+// Material geometry is separate from the protected collision rectangle. The
+// shared glass overscans its dock for the shoulders; measure that painted box.
+function tankHeaderGlass(cap){
+ try{
+  const frame=window.frameElement,glass=parent.document.querySelector('#play .gamebar:not([hidden]) .tv-info-glass'),fr=frame?.getBoundingClientRect(),gr=glass?.getBoundingClientRect();
+  if(!fr?.width||!gr?.width||!gr.height)return cap;
+  const iframeScale=fr.width/innerWidth,box=canvas.getBoundingClientRect(),worldScale=tankCamera.scale;
+  return {x:tankCamera.x+((gr.left-fr.left)/iframeScale-box.left)/worldScale,y:tankCamera.y+((gr.top-fr.top)/iframeScale-box.top)/worldScale,w:gr.width/iframeScale/worldScale,h:gr.height/iframeScale/worldScale};
+ }catch{return cap;}
+}
 function tankBoundaryRecess(rect,clearance=8){
   if(!rect||![rect.x,rect.y,rect.w,rect.h].every(Number.isFinite)||rect.w<=0||rect.h<=0||rect.y>24)return null;
-  return {left:rect.x-clearance,right:rect.x+rect.w+clearance,bottom:rect.y+rect.h+clearance,radius:22+clearance,clearance};
+  return {left:rect.x-clearance,right:rect.x+rect.w+clearance,top:rect.y,bottom:rect.y+rect.h+clearance,clearance,shape:'shared-glass-656x114'};
 }
 function traceTankBoundary(c,box,recess){
   const {x,y,w,h,r}=box,right=x+w,bottom=y+h;
   c.moveTo(x+r,y);
   if(recess&&recess.left>x+r+12&&recess.right<right-r-12&&recess.bottom>y+24){
-    const mouth=12,curve=Math.min(recess.radius,(recess.right-recess.left)/2,recess.bottom-y-mouth);
-    c.lineTo(recess.left-mouth,y);c.quadraticCurveTo(recess.left,y,recess.left,y+mouth);
-    c.lineTo(recess.left,recess.bottom-curve);c.quadraticCurveTo(recess.left,recess.bottom,recess.left+curve,recess.bottom);
-    c.lineTo(recess.right-curve,recess.bottom);c.quadraticCurveTo(recess.right,recess.bottom,recess.right,recess.bottom-curve);
-    c.lineTo(recess.right,y+mouth);c.quadraticCurveTo(recess.right,y,recess.right+mouth,y);
+    // Exact shared SVG contour: concave shoulders, round corners and bowed
+    // lower lip. Crop its entry to the field's top, rather than adding a U.
+    const sx=(recess.right-recess.left)/656,sy=(recess.bottom-recess.top)/114,point=(x,y)=>[recess.left+x*sx,recess.top+y*sy],mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+    const shoulder=[[0,0],[16,0],[28,9],[28,28]].map(p=>point(...p));
+    const split=t=>{const [p0,p1,p2,p3]=shoulder,a=mix(p0,p1,t),b=mix(p1,p2,t),d=mix(p2,p3,t),e=mix(a,b,t),f=mix(b,d,t),g=mix(e,f,t);return [g,f,d,p3];};
+    let lo=0,hi=1;for(let i=0;i<24;i++){const t=(lo+hi)/2;if(split(t)[0][1]<y)lo=t;else hi=t;}
+    const [entry,control1,control2,end]=split((lo+hi)/2),mirror=p=>[recess.left+recess.right-p[0],p[1]];
+    c.lineTo(entry[0],y);c.bezierCurveTo(...control1,...control2,...end);
+    c.lineTo(...point(28,74));c.bezierCurveTo(...point(28,94),...point(39,102),...point(60,104));
+    c.quadraticCurveTo(...point(328,124),...point(596,104));
+    c.bezierCurveTo(...point(617,102),...point(628,94),...point(628,74));c.lineTo(...point(628,28));
+    c.bezierCurveTo(...mirror(control2),...mirror(control1),mirror(entry)[0],y);
   }
   c.lineTo(right-r,y);c.quadraticCurveTo(right,y,right,y+r);
   c.lineTo(right,bottom-r);c.quadraticCurveTo(right,bottom,right-r,bottom);
@@ -175,8 +192,8 @@ function traceTankBoundary(c,box,recess){
   c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();
 }
 function drawWalls(walls){
-  const cap=(window.LocalTankHUDRects||[]).find(r=>r.y<=24&&r.w>0&&r.h>0),recess=tankBoundaryRecess(cap);
-  window.LocalTankBoundaryProof={cap:cap||null,recess,clearance:8,actorArtwork:'tank-body + tank-turret; no mascot overlay'};
+  const protectedCap=(window.LocalTankHUDRects||[]).find(r=>r.y<=24&&r.w>0&&r.h>0),cap=tankHeaderGlass(protectedCap),recess=tankBoundaryRecess(cap);
+  window.LocalTankBoundaryProof={cap:cap||null,protectedCap:protectedCap||null,recess,clearance:8,actorArtwork:'tank-body + tank-turret; no mascot overlay'};
   const key=JSON.stringify([walls,recess]);
   if(!wallCache||key!==wallCacheKey){
     wallCacheKey=key;wallCache=document.createElement('canvas');wallCache.width=2560;wallCache.height=1440;

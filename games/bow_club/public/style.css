@@ -121,3 +121,25 @@ html.hp-ui.party-host[data-party-game=bow_club] body.tv .bow-match-fact strong{p
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 html.hp-ui .bow-score-avatar.is-photo{height:auto!important;aspect-ratio:1;border-radius:50%!important;object-fit:cover!important;box-sizing:border-box;border:1.5px solid var(--player,#b1d391)}
+
+/* Integration119: adopt the exact shared Pocket Siege concave shoulders and
+   rounded lower lip, preserving the AR marker/canvas rectangle and score rail. */
+@media(min-width:701px){
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading{isolation:isolate;overflow:visible;border:0!important;border-radius:0;background:none!important;box-shadow:none!important;filter:drop-shadow(0 6px 10px #08061055)}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading::before{content:'';position:absolute;inset:0 -28px;z-index:-1;pointer-events:none;border:0;border-radius:0;background:
+ radial-gradient(40% 26% at 50% 100%,color-mix(in srgb,var(--notch-rim) 42%,transparent),transparent),
+ linear-gradient(112deg,transparent 30%,rgb(255 255 255/.075) 41%,rgb(255 255 255/.02) 47%,transparent 49%),
+ linear-gradient(104deg,transparent 14%,color-mix(in srgb,var(--notch-rim) 14%,transparent) 38%,transparent 76%),
+ linear-gradient(180deg,rgb(4 2 10/.22),transparent 22%,rgb(255 255 255/.09) 56%,transparent 74%,rgb(4 2 10/.26)),var(--notch-fill);
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0H656C640 0 628 9 628 28V74C628 94 617 102 596 104Q328 124 60 104C39 102 28 94 28 74V28C28 9 16 0 0 0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0H656C640 0 628 9 628 28V74C628 94 617 102 596 104Q328 124 60 104C39 102 28 94 28 74V28C28 9 16 0 0 0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading::after{content:'';position:absolute;inset:0 -28px;z-index:-1;pointer-events:none;border:0;border-radius:0;background:radial-gradient(46% 70% at 50% 100%,color-mix(in srgb,var(--notch-rim) 100%,white 30%),transparent),linear-gradient(180deg,color-mix(in srgb,var(--notch-rim) 30%,transparent),color-mix(in srgb,var(--notch-rim) 70%,transparent));
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0C16 0 28 9 28 28V74C28 94 39 102 60 104Q328 124 596 104C617 102 628 94 628 74V28C628 9 640 0 656 0' fill='none' stroke='%23000' stroke-width='3.2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656 114' preserveAspectRatio='none'%3E%3Cpath d='M0 0C16 0 28 9 28 28V74C28 94 39 102 60 104Q328 124 596 104C617 102 628 94 628 74V28C628 9 640 0 656 0' fill='none' stroke='%23000' stroke-width='3.2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading{--notch-fill:linear-gradient(145deg,#47392df5,#2d2922f5);--notch-rim:#dfc79a;grid-template-columns:minmax(0,42fr) minmax(0,58fr);align-items:center;gap:clamp(20px,1.5625vw,30px);min-height:112px;padding:clamp(8px,.625vw,12px) clamp(24px,1.875vw,36px) clamp(12px,.9375vw,18px)}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-match-identity{justify-content:center;gap:4px}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-tv-wordmark{width:clamp(180px,14.0625vw,270px);height:clamp(54px,4.21875vw,81px);max-width:100%}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-match-identity .bow-match-fact{box-sizing:border-box;min-height:clamp(44px,3.4375vw,66px);padding:clamp(4px,.3125vw,6px) clamp(14px,1.09375vw,21px);gap:12px;border-radius:14px;background:linear-gradient(180deg,#100c0980,#100c096b)}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-match-identity .bow-match-fact strong{line-height:1.15!important;padding:0}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-match-copy{align-self:stretch;justify-content:center;gap:12px;padding-left:20px}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-match-facts{align-items:center;gap:16px}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-match-fact{justify-content:center}
+}

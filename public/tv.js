@@ -201,7 +201,10 @@ function information(){
  const formatted=Number.isFinite(seconds)?Math.floor(Math.ceil(seconds)/60)+':'+String(Math.ceil(seconds)%60).padStart(2,'0'):'';
  const scoreMetric=(info.metrics||[]).find(m=>['goals','teams'].includes(m.key));
  const untimedCrane=info.id==='crane'&&!formatted&&!info.paused;
- const primary=untimedCrane?(ui?.label||info.statusLabel||info.phaseLabel):info.family==='live'&&scoreMetric?String(scoreMetric.value):info.family==='mission'&&info.progress?info.progress:info.id==='punchmeter'?info.progress||formatted||'':formatted||info.actor||info.phaseLabel||info.title||'';
+ // Pocket's renderer owns the brief turn announcement in the playfield.
+ // Keep the shared strip for the clock and match facts, including flight.
+ const headerActor=info.id==='pocket_siege'?null:info.actor;
+ const primary=untimedCrane?(ui?.label||info.statusLabel||info.phaseLabel):info.family==='live'&&scoreMetric?String(scoreMetric.value):info.family==='mission'&&info.progress?info.progress:info.id==='punchmeter'?info.progress||formatted||'':formatted||headerActor||info.phaseLabel||info.title||'';
  const rawPhase=info.phaseLabel||info.statusLabel||'',phase=info.id==='chaos'&&ui?.label&&!/^(?:Игра|Game)$/i.test(ui.label)?ui.label:/^(?:Игра|Game)$/i.test(rawPhase)?'':rawPhase;
  const translate=value=>window.PartyI18n?.t?.(value)||value;
  const clockCaption=formatted?translate(info.timer?.label||'Осталось'):'';
@@ -215,7 +218,7 @@ function information(){
  if(informationActor.textContent!==(info.actor||''))informationActor.textContent=info.actor||'';
  let actorOwnedLocally=false;
  if(informationBar.dataset.layout==='content-cap')try{actorOwnedLocally=!!$('gameFrame').contentDocument?.querySelector('[data-tv-hud-owns-actor]');}catch{}
- informationActor.hidden=!info.actor||primary===info.actor||actorOwnedLocally;
+ informationActor.hidden=!headerActor||primary===info.actor||actorOwnedLocally;
  $('gameObjective').setAttribute('data-no-translate','');text('gameObjective',(window.PartyI18n?.language==='en'?info.objective?.english:info.objective?.text)||info.objective?.text||info.statusLabel||'');$('gameObjective').dataset.source=info.objective?.kind||'runtime';
  $('gameObjective').hidden=document.body.classList.contains('tv-field-fullscreen')&&info.objective?.kind==='static';
  const priorities={wind:0,gate:0,goals:0,pot:0,teams:0,submitted:0,lives:0,alive:0,score:1,arrows:1,queue:1};

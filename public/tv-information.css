@@ -344,19 +344,21 @@ html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .tv-info-g
 /* Authored exceptions keep no surface; Naval's painted surface stays enlarged. */
 html.hp-ui body.tv-screen:is([data-tv-game=jenga],[data-tv-game=crane]) #play .tv-info-glass {display:none}
 html.hp-ui body.tv-screen[data-tv-game=naval] #play .tv-info-glass {scale:1.05}
-/* Title lockup (centre notch): wordmark 15% larger, clock a hero capsule.
-   Logo +6.6px equals the clock's line-height saving (39.6 -> 33px), so the
-   column height is the same 89.6px as before. */
+/* Title lockup: keep the large wordmark, and give the clock a real surface.
+   Kardia's numeric ink sits slightly above its line box; the asymmetric
+   vertical inset centres that ink rather than shrinking the backing to it. */
 html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameContext .tv-info-game-logo {height:50.6px}
 html.hp-ui body.tv-screen #play .gamebar.tv-information #gameContext .tv-info-game-logo {filter:drop-shadow(0 3px 6px rgb(4 2 10/.5))}
 html.hp-ui body.tv-screen[data-tv-hud-mode=centered-scoreboard] #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameTitle {
- width:auto;line-height:33px;padding:2px 18px;
+ width:auto;line-height:1.2;padding:8px 18px 4px;
 }
 /* Numeric heroes only: a text state (Spy's ASSIGNING ROLES) keeps its plain glow. */
 html.hp-ui body.tv-screen #play .gamebar.tv-information[data-primary-kind=value] #gameTitle {
  text-shadow:0 2px 0 rgb(4 2 10/.4),0 0 14px color-mix(in srgb,var(--game-number-ink,#c8ff73) 46%,transparent);
 }
 html.hp-ui body.tv-screen #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameTitle {
+ display:flex;align-items:center;justify-content:center;flex:none;
+ min-width:96px;min-height:48px;width:fit-content;line-height:1.2;padding:8px 16px 4px;
  border-radius:999px;
  background:radial-gradient(80% 120% at 50% 0%,color-mix(in srgb,var(--game-number-ink,#c8ff73) 12%,transparent),transparent 70%),rgb(4 2 10/.32);
  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--game-number-ink,#c8ff73) 26%,transparent),inset 0 -1px 0 rgb(255 255 255/.06),0 1px 0 rgb(255 255 255/.05);
@@ -364,6 +366,10 @@ html.hp-ui body.tv-screen #play .gamebar.tv-information:is([data-primary-kind=ti
  transition:color 260ms cubic-bezier(.23,1,.32,1),text-shadow 260ms cubic-bezier(.23,1,.32,1),box-shadow 260ms cubic-bezier(.23,1,.32,1);
 }
 html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameTitle {padding-inline:14px}
+html.hp-ui body.tv-screen[data-tv-hud-mode=content-cap] #play .gamebar.tv-information:is([data-primary-kind=timer],[data-family=live][data-primary-kind=value]) #gameTitle {
+ min-width:88px;min-height:48px;padding:8px 14px 4px;line-height:1.2;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information[data-primary-kind=timer] .tv-info-primary-readout {gap:4px}
 html.hp-ui body.tv-screen:is([data-tv-game=jenga],[data-tv-game=crane]) #play .gamebar.tv-information #gameTitle {background:none;box-shadow:none}
 /* Airhockey's light rink material takes a light capsule, not a dark well. */
 html.hp-ui body.tv-screen[data-tv-game=airhockey] #play .gamebar.tv-information[data-family][data-primary-kind] #gameTitle {background:radial-gradient(80% 120% at 50% 0%,rgb(255 255 255/.7),rgb(255 255 255/.32) 70%);box-shadow:inset 0 0 0 1px rgb(22 50 58/.18),0 2px 6px -2px rgb(22 50 58/.25);text-shadow:0 1px 0 rgb(255 255 255/.6)}

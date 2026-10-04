@@ -122,7 +122,10 @@ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data
 html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #answers .text{font:italic 400 28px/1.2 KardiaFitRunner,sans-serif!important;overflow-wrap:normal!important}
 @media(max-height:700px) and (min-width:1101px){html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell{padding-top:148px!important}html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game.gameGrid{grid-template-columns:380px minmax(0,1fr)!important;gap:24px!important}html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #questionText{font-size:34px!important}}
 
-/* Shared show cap + current task + money ladder form one centered composition. */
+/* Shared show cap + current task + money ladder form one centered composition.
+   Reserve the measured cap plus clear task spacing. The authored 88px cap
+   floor also protects the first frame while bridge geometry catches up to a
+   question/reveal transition; short question text must not collapse this gap. */
 html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell{
  height:100dvh!important;box-sizing:border-box;justify-content:center!important;padding:24px!important;
 }
@@ -131,7 +134,7 @@ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data
  padding:0!important;
  grid-template-columns:clamp(280px,24vw,424px) minmax(0,1fr)!important;grid-template-rows:minmax(0,auto)!important;gap:24px!important;align-items:stretch!important;
 }
-html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>[data-tv-hud-anchor]{height:auto!important;align-self:stretch!important;justify-content:flex-start!important;padding-top:calc(var(--party-hud-height,64px) + 16px)!important;box-sizing:border-box}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>[data-tv-hud-anchor]{height:auto!important;align-self:stretch!important;justify-content:flex-start!important;padding-top:calc(max(88px,var(--party-hud-height,88px)) + 24px)!important;box-sizing:border-box}
 html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>.scoreboard{height:auto!important;align-self:stretch!important}
 html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList{flex:1 1 auto!important}
 html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game .questionWrap{

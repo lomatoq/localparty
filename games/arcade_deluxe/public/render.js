@@ -8,6 +8,7 @@ import {AirDefenseRenderer} from './air-defense-render.js';
 import {PocketJuice} from './pocket-juice.js';
 import {drawToyTank} from './pocket-tank.js';
 import {DEEP_SOIL} from './pocket-world.js';
+import {pocketFrame,offscreenShots} from './pocket-camera.js';
 const Geo=globalThis.ArcadeGeometry;
 // fx.et (emitter trails) is {colour:'NodeA NodeB'}; cache a per-weapon name->colour lookup.
 const trailMaps=new WeakMap();
@@ -39,6 +40,7 @@ export class Renderer {
    const snapshot=canvas(this.el.width,this.el.height);snapshot.getContext('2d').drawImage(this.el,0,0);
    this.mapTransition={snapshot,at:performance.now()};
   }
+  if(s.mode==='pocket_siege'&&s.phase==='playing'&&s.stage==='aim'&&(this.s?.roundSerial!==s.roundSerial||this.s?.activeId!==s.activeId||this.s?.turn!==s.turn))this.shooterNotice={player:s.activeId,at:s.t};
   this.previous=this.s;this.s=s;this.arrived=performance.now();if(this.roundSerial!==s.roundSerial){this.roundSerial=s.roundSerial;this.siegeFX.clear();this.airDefense.clear();this.juice.clear();this.lastEvent=0;this.particles=[];this.texts=[];this.rings=[];this.beams=[];this.bursts=[];this.vfx=[];this.cam={x:640,y:360,z:1};this.pathKey=null;this.terrainCanvas=null;this.terrainTransition=null;}for(const e of s.events||[]){if(e.id<=this.lastEvent)continue;this.lastEvent=e.id;this.effect(e);}if(this.previous?.terrainRevision!==s.terrainRevision){this.terrainTransition=null;this.terrainCanvas=null;if(s.mode==='pocket_siege'&&this.previous?.roundSerial===s.roundSerial)this.juice.terrainDelta(this.previous.terrain,s.terrain);}
  }
  transitionFrame(now){
@@ -160,14 +162,12 @@ export class Renderer {
   circle(c,0,2,3.1,`rgba(255,58,58,${.12*pulse})`);circle(c,0,2,1.2,low&&pulse<.5?'#8f2424':'#ff5d50');
   circle(c,-.3,1.6,.4,'#fff2cc');c.restore();
  }
- drawTanks(c,s,dt){const bullets=s.projectiles||[],target=bullets.length?bullets[0]:null;
+ drawTanks(c,s,dt){const bullets=s.projectiles||[];
  // Pocket Siege fills the width, so a host wider than 16:9 (the TV game frame
  // is 1920x888) crops the world top and bottom. Frame the shell and tanks in
  // the band that is actually on screen; at 16:9 this is exactly 0..720.
- const half=this.viewHalf||360,top=360-half,bottom=360+half;
- const minY=target?Math.min(top,target.y-50):top;const maxY=Math.max(bottom,...s.players.filter(p=>p.participant).map(p=>p.y+90),target?target.y+80:bottom),z=clamp((half*2-20)/(maxY-20-minY),.3,1),y=(minY+maxY)/2;const ease=1-Math.exp(-dt*5);this.cam.z=lerp(this.cam.z,z,this.reduced?1:ease);this.cam.y=lerp(this.cam.y,y,this.reduced?1:ease);
- // The eased camera lags a fast climb; never let it drop the shell off the top.
- if(target&&Number.isFinite(target.y)){const limit=top+50;if(360+this.cam.z*(target.y-this.cam.y)<limit)this.cam.y=target.y-(limit-360)/this.cam.z;}
+ const half=this.viewHalf||360;
+ const framing=pocketFrame(s,half),ease=s.paused?0:this.reduced?1:1-Math.exp(-dt*5);this.cam.z=lerp(this.cam.z,framing.z,ease);this.cam.y=lerp(this.cam.y,framing.y,ease);
  this.cam.x=640;c.translate(640,360);c.scale(this.cam.z,this.cam.z);c.translate(-this.cam.x,-this.cam.y);
  if(s.fallingColumns||this.previous?.fallingColumns||(this.bakedScorch!==this.juice.scorchRevision&&!s.paused))this.terrainCanvas=null;const jdt=s.paused?0:dt;
  const terrainTexture=this.terrain(s),drawTerrain=(texture,alpha=1)=>{const terrainHeight=texture.height;c.save();c.globalAlpha=alpha;c.fillStyle=DEEP_SOIL;c.fillRect(-2400,terrainHeight-1,6080,1600);c.drawImage(texture,0,0,1,terrainHeight,-2400,0,2400,terrainHeight);c.drawImage(texture,1279,0,1,terrainHeight,1280,0,2400,terrainHeight);c.drawImage(texture,0,0);c.restore();};
@@ -206,6 +206,31 @@ export class Renderer {
  drawEffects(c,dt){if(this.s?.mode==='pocket_siege'){const s=this.s;this.juice.drawParts(c,dt);this.siegeFX.draw(c,dt,s.t);drawExplosionWaves(c,s,this.weapons);this.juice.drawDebris(c,dt,x=>sampleTerrain(s,x));this.juice.drawCallouts(c,dt);}this.bursts=this.bursts.filter(b=>b.life>0);for(const b of this.bursts){b.life-=dt;const t=1-b.life/b.total,r=b.r*Math.sin(Math.min(1,t)*Math.PI);circle(c,b.x,b.y,Math.max(0,r),'#ff6317');circle(c,b.x,b.y,Math.max(0,r*.82),'#ffbe16');circle(c,b.x,b.y,Math.max(0,r*.55),'#fff7a3');}this.particles=this.particles.filter(p=>p.life>0);for(const p of this.particles){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=100*dt;c.globalAlpha=clamp(p.life/.6,0,1);if(this.s?.mode==='pocket_siege'){c.fillStyle=p.color;c.fillRect(Math.round(p.x),Math.round(p.y),p.size,p.size);}else if(p.petal){p.vy-=88*dt;p.vx*=Math.exp(-3.4*dt);p.vy*=Math.exp(-3.4*dt);p.a+=p.spinRate*dt;const k=1-p.life/p.total,grow=k<.25?.55+k/.25*.55:1.1-(k-.25)*.4;c.save();c.translate(p.x,p.y);c.rotate(p.a);c.scale(grow,grow);c.globalAlpha=clamp(p.life/.35,0,1)*.95;c.fillStyle=p.color;c.beginPath();c.ellipse(p.size*.55,0,p.size*.62,p.size*.3,0,0,TAU);c.fill();c.fillStyle='#ffffff66';c.beginPath();c.ellipse(p.size*.45,-p.size*.08,p.size*.32,p.size*.1,0,0,TAU);c.fill();c.restore();}else circle(c,p.x,p.y,p.size*clamp(p.life/.5,.25,1),p.color);}c.globalAlpha=1;this.rings=this.rings.filter(p=>p.life>0);for(const p of this.rings){p.life-=dt;const t=1-p.life/p.total;c.globalAlpha=(1-t)*.7;c.lineWidth=2+(1-t)*5;circle(c,p.x,p.y,p.r*(.2+t));c.strokeStyle=p.color;c.stroke();}c.globalAlpha=1;this.beams=this.beams.filter(b=>b.life>0);for(const b of this.beams){b.life-=dt;c.globalAlpha=Math.min(1,b.life*4);line(c,[[b.x,b.y],[b.x2,b.y2]],b.color,12);line(c,[[b.x,b.y],[b.x2,b.y2]],'#fff9df',3);}c.globalAlpha=1;
   this.texts=this.texts.filter(p=>p.life>0);for(const p of this.texts){p.life-=dt;if(p.pop){p.x+=(p.vx||0)*dt;p.y+=(p.vy||-70)*dt;p.vy=(p.vy||-70)+(p.gravity||90)*dt;}else p.y-=dt*22;const age=1-p.life/(p.total||1.2),scale=p.pop?clamp(.55+Math.sin(Math.min(1,age)*Math.PI)*.62,.55,1.12):1;c.globalAlpha=clamp(Math.min(age*8,p.life*2.8),0,1);c.font=`900 ${Math.round((p.combo>1?26:21)*scale)}px HeyPalsText,sans-serif`;c.textAlign='center';c.shadowColor=p.pop?p.color+'88':'#0008';c.shadowBlur=p.pop?10:5;c.lineWidth=4;c.strokeStyle='#08050bd0';c.strokeText(p.value,p.x,p.y);c.fillStyle=p.color;c.fillText(p.value,p.x,p.y);if(p.combo>1){c.font='800 10px HeyPalsText,sans-serif';c.fillText('COMBO ×'+p.combo,p.x,p.y+16);}}c.globalAlpha=1;c.shadowBlur=0;
  }
+ // Screen-space feedback stays independent of projectile zoom. Use the actual
+ // TV notch and lower crew dock as safe edges, including a scaled game iframe.
+ pocketNoticeBounds(){
+  const now=performance.now();if(this.noticeBounds&&now-this.noticeBoundsAt<250)return this.noticeBounds;
+  const rect=this.el.getBoundingClientRect(),unit=1280/Math.max(1,rect.width),half=this.viewHalf||360;
+  const bounds={left:68,right:1212,top:360-half+32,bottom:360+half-40};
+  const dock=document.querySelector('.pocket-tv-dock:not(.hidden)');if(dock)bounds.bottom=Math.min(bounds.bottom,360-half+(dock.getBoundingClientRect().top-rect.top)*unit-30);
+  try{if(window.parent!==window){const frame=window.frameElement,bar=window.parent.document.querySelector('.gamebar:not([hidden]) .tv-info-dock'),fr=frame?.getBoundingClientRect();if(bar&&fr&&fr.width){const scale=fr.width/window.innerWidth,physicalTop=fr.top+rect.top*scale;bounds.top=Math.max(bounds.top,360-half+(bar.getBoundingClientRect().bottom-physicalTop)/(rect.width*scale)*1280+30);}}}catch{}
+  this.noticeBounds=bounds;this.noticeBoundsAt=now;return bounds;
+ }
+ drawPocketNotices(c,s){
+  if(s.phase!=='playing'||s.stage==='loadout')return;
+  const bounds=this.pocketNoticeBounds();this.flightCues=offscreenShots(s,this.cam,bounds);
+  for(const q of this.flightCues){
+   c.save();c.translate(q.x,q.y);c.fillStyle='#16243cef';c.strokeStyle=q.color;c.lineWidth=1;c.beginPath();c.roundRect(-56,-21,112,42,16);c.fill();c.globalAlpha=.65;c.stroke();c.globalAlpha=1;
+   c.save();c.translate(-34,0);c.rotate(q.angle);line(c,[[-9,0],[6,0]],q.color,2);poly(c,[[10,0],[3,-5],[3,5]],q.color);c.restore();
+   c.font='600 12px KardiaFit,sans-serif';c.fillStyle='#f4f3ff';c.textAlign='left';c.textBaseline='middle';c.fillText('IN FLIGHT',-15,1);c.restore();
+  }
+  const notice=this.shooterNotice,age=notice?s.t-notice.at:Infinity;
+  if(s.stage!=='aim'||age<0||age>=1.8)return;
+  const p=s.players.find(p=>p.id===notice.player);if(!p)return;
+  c.save();c.globalAlpha=Math.min(1,age/.12,(1.8-age)/.25);c.textAlign='center';c.textBaseline='middle';c.font='700 26px KardiaFit,sans-serif';let name=p.name||'Player';while(name.length>1&&c.measureText(name).width>470)name=name.slice(0,-2)+'…';
+  const width=Math.max(216,c.measureText(name).width+64),y=clamp(360,bounds.top+54,bounds.bottom-54),g=c.createLinearGradient(0,y-44,0,y+44);g.addColorStop(0,'#33405afa');g.addColorStop(1,'#141b30ed');c.shadowColor='#070c20aa';c.shadowBlur=20;c.shadowOffsetY=5;rounded(c,640-width/2,y-44,width,88,24,g);c.shadowBlur=0;c.shadowOffsetY=0;c.strokeStyle=p.color+'99';c.lineWidth=1;c.stroke();
+  c.font='italic 900 14px KardiaFatRunner,sans-serif';c.fillStyle=p.color;c.fillText('TURN',640,y-18);c.font='700 26px KardiaFit,sans-serif';c.fillStyle='#fff';c.fillText(name,640,y+12);c.restore();
+ }
  drawMarbleScene(c,s,dt,view,backdrop=true){c.save();c.translate(view.x,view.y);c.scale(view.scale,view.scale);if(backdrop)c.drawImage(this.bg,-80,-80);this.drawMarbles(c,s,dt);this.drawEffects(c,s.paused?0:dt);c.restore();}
  drawVersus(c,s,dt,width,height,uiScale=1){
   const views=MarbleLayout.boards(s.boards.length,width,height);this.vfx??=[];this.marbleBoards=[];
@@ -233,7 +258,7 @@ export class Renderer {
      const cover=Math.max(w/this.bg.width,h/this.bg.height);c.drawImage(this.bg,(w-this.bg.width*cover)/2,(h-this.bg.height*cover)/2,this.bg.width*cover,this.bg.height*cover);
      const area={x:12,y:12,w:w-24,h:h-24},view=MarbleLayout.fit(s,area);this.marbleViewport={...view,scale:view.scale*uiScale,x:view.x*uiScale,y:view.y*uiScale};this.drawMarbleScene(c,s,dt,view,false);
     }
-   }else {const scale=width/1280;this.viewHalf=Math.min(360,height/scale/2);c.translate((width-1280*scale)/2,(height-720*scale)/2);c.scale(scale,scale);c.save();c.beginPath();c.rect(0,0,1280,720);c.clip();c.drawImage(this.bg,0,0);const jdt=s.paused?0:dt;this.juice.step(jdt);this.starClock=(this.starClock||0)+(s.paused?0:dt*1000);if((s.sky||'classic')==='classic')this.juice.drawSky(c,this.cam,s.wind);const shake=this.siegeShake(jdt),kick=this.juice.camera(jdt);c.translate(shake.x+kick.x,shake.y+kick.y);if(kick.zoom!==1){c.translate(640,360);c.scale(kick.zoom,kick.zoom);c.translate(-640,-360);}if(kick.focus){c.translate(kick.focus.x,kick.focus.y);c.scale(kick.focus.z,kick.focus.z);c.translate(-kick.focus.x,-kick.focus.y);}this.drawTanks(c,s,dt);this.drawEffects(c,s.paused?0:dt);c.restore();}
+   }else {const scale=width/1280;this.viewHalf=Math.min(360,height/scale/2);c.translate((width-1280*scale)/2,(height-720*scale)/2);c.scale(scale,scale);c.save();c.beginPath();c.rect(0,0,1280,720);c.clip();c.drawImage(this.bg,0,0);const jdt=s.paused?0:dt;this.juice.step(jdt);this.starClock=(this.starClock||0)+(s.paused?0:dt*1000);if((s.sky||'classic')==='classic')this.juice.drawSky(c,this.cam,s.wind);const shake=this.siegeShake(jdt),kick=this.juice.camera(jdt);c.translate(shake.x+kick.x,shake.y+kick.y);if(kick.zoom!==1){c.translate(640,360);c.scale(kick.zoom,kick.zoom);c.translate(-640,-360);}if(kick.focus){c.translate(kick.focus.x,kick.focus.y);c.scale(kick.focus.z,kick.focus.z);c.translate(-kick.focus.x,-kick.focus.y);}c.save();this.drawTanks(c,s,dt);this.drawEffects(c,s.paused?0:dt);c.restore();this.drawPocketNotices(c,s);c.restore();}
   }this.transitionFrame(now);this.raf=requestAnimationFrame(this.frame);}
  destroy(){cancelAnimationFrame(this.raf);this.mapTransition=null;this.siegeFX.clear();this.airDefense.clear();this.audio.ctx?.close();}
 }

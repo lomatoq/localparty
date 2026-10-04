@@ -22,16 +22,16 @@ const {BY_ID}=require('../games/arcade_deluxe/core/weapons.cjs');
      r.cam={x:640,y:360,z:1};
      for(const y of [200,-100,-500,-900]){
       const shot={id:100,x:640,y,vx:60,vy:-500,weapon,sourceBullet,sourceType:'BULLET',draw:{method}};
-      r.s.projectiles=[shot];r.previous=null;r.frame(r.last+1000/60);cancelAnimationFrame(r.raf);
+      r.s.projectiles=[shot];r.previous=null;for(let i=0;i<90;i++){r.frame(r.last+1000/60);cancelAnimationFrame(r.raf);}
       const scale=r.el.width/1280,px=r.el.width/2,py=r.el.height/2+r.cam.z*(y-r.cam.y)*scale;
       let lit=0;if(py>=12&&py<r.el.height-12){const pixels=r.c.getImageData(px-10,py-10,20,20).data;for(let i=0;i<pixels.length;i+=4)if(Math.max(pixels[i],pixels[i+1],pixels[i+2])>90)lit++;}
-      results.push({weapon,y,py,lit});
+      results.push({weapon,y,py,lit,edge:r.flightCues.some(q=>q.id===shot.id),zoom:r.cam.z});
      }
     }return results;
    });
-   for(const result of results){assert(result.py>=12&&result.py<viewport.height-12,JSON.stringify(result));assert(result.lit>2,'visible projectile pixels: '+JSON.stringify(result));}
+   for(const result of results){assert(result.zoom>=.76,'bounded field scale: '+JSON.stringify(result));if(result.edge)continue;assert(result.py>=12&&result.py<viewport.height-12,JSON.stringify(result));assert(result.lit>2,'visible projectile pixels: '+JSON.stringify(result));}
    await page.screenshot({path:`/private/tmp/pocket-projectile-visible-${viewport.width}.png`});
   }
-  assert.deepEqual(errors,[]);console.log('PASS visible Single Shot and emitter-only carriers through fast climbs at 16:9 and cropped TV size');
+  assert.deepEqual(errors,[]);console.log('PASS visible near shots and bounded offscreen cues for Single Shot and emitter-only carriers at 16:9 and cropped TV size');
  }finally{await browser?.close();server.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
