@@ -1,0 +1,18 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{pathToFileURL}=require('node:url');
+const load=async()=>{const THREE=await import('three'),{createRangeArrow}=await import('../games/bow_club/public/src/range-arrow.mjs');const source=fs.readFileSync('games/bow_club/public/src/range-scene.mjs','utf8').replace("'../vendor/three.module.js'",JSON.stringify(pathToFileURL(require('node:path').join(require('node:path').dirname(require.resolve('three')),'three.module.js')).href)).replace("'./range-arrow.mjs'",JSON.stringify(pathToFileURL(require('node:path').resolve('games/bow_club/public/src/range-arrow.mjs')).href));const {RangeScene}=await import('data:text/javascript,'+encodeURIComponent(source));return {THREE,createRangeArrow,RangeScene};};
+test('range arrow has three solid swept rear vanes, a distinct point and closed shaft with valid finite normals',async()=>{
+ const {THREE,createRangeArrow}=await load(),arrow=createRangeArrow(THREE,color=>new THREE.MeshStandardMaterial({color}));arrow.updateMatrixWorld(true);
+ assert.equal(arrow.children.filter(part=>part.name.startsWith('fletching-')).length,3);assert(arrow.getObjectByName('embedded-point'));assert(arrow.getObjectByName('rear-nock'));
+ const bounds=new THREE.Box3().setFromObject(arrow);assert(bounds.min.z<=-11.9);assert(bounds.max.z>=98);assert(bounds.max.z<101);
+ const shaftBounds=new THREE.Box3().setFromObject(arrow.getObjectByName('shaft'));for(const name of ['rear-binding','rear-nock'])assert(shaftBounds.max.z>=new THREE.Box3().setFromObject(arrow.getObjectByName(name)).min.z,'shaft reaches '+name);
+ for(const fin of arrow.children.filter(part=>part.name.startsWith('fletching-'))){const vane=fin.children[0],geometry=vane.geometry;geometry.computeBoundingBox();const size=geometry.boundingBox.getSize(new THREE.Vector3());assert(size.z>1,'feather is genuinely volumetric');assert(size.y>30);assert(size.x>10);assert(geometry.boundingBox.min.x<1.9,'feather root intersects shaft');for(const attribute of ['position','normal'])assert([...geometry.attributes[attribute].array].every(Number.isFinite));}
+});
+test('stuck arrow tip embeds into the target, rear feathers face the viewer and attached target motion carries the complete arrow',async()=>{
+ const {THREE,RangeScene}=await load(),scene=Object.create(RangeScene.prototype),target=new THREE.Group();scene.materials=new Map();scene.arrows=new THREE.Group();scene.targetGroups=new Map([[1,target]]);scene.reduced=true;
+ const hit={id:'arrow',points:100,target:1,targetOffset:{u:.01,v:-.02},u:.51,v:.4,visualAt:-10000};scene.addArrow(hit,16/9);const group=target.children[0],arrow=group.getObjectByName('range-arrow');assert(group.userData.hit===hit);target.updateMatrixWorld(true);
+ const axis=new THREE.Vector3(0,0,1).applyQuaternion(arrow.quaternion);assert(axis.z>0.85);assert(Math.hypot(axis.x,axis.y)>.4,'oblique shaft reads as an arrow, not an end-on pole');
+ const point=new THREE.Vector3(0,6.5,0);arrow.getObjectByName('embedded-point').localToWorld(point);assert(point.z<0,'tip points into target behind scoring discs');const rear=arrow.getObjectByName('rear-nock').getWorldPosition(new THREE.Vector3());assert(rear.z>70,'rear nock faces camera');
+ const original=rear.clone();target.position.set(25,-16,0);target.updateMatrixWorld(true);const moved=arrow.getObjectByName('rear-nock').getWorldPosition(new THREE.Vector3());assert(moved.sub(original).distanceTo(new THREE.Vector3(25,-16,0))<1e-8,'all vanes stay attached to a moving target');
+ assert.equal(group.userData.fly,1,'reduced motion starts embedded without flight');
+});

@@ -150,18 +150,20 @@ html.hp-ui body.tv-screen #tvStage.tv-has-choice #preview.tv-choice::after{
 }
 html.hp-ui body.tv-screen #preview.tv-choice>:is(img,div){position:relative;z-index:1}
 html.hp-ui body.tv-screen #preview.tv-choice #playersNeeded{
- display:flex;align-items:center;padding:8px 12px!important;background:none!important;border:0!important;
- color:#e9ddff!important;box-shadow:none!important;
+ display:flex;align-items:center;padding:8px 12px!important;
+ background:linear-gradient(155deg,#e2ffa8 0%,#c8ff73 42%,#a9ec4c 100%)!important;
+ border:1px solid #e9ffc08c!important;color:#1b2b12!important;
+ box-shadow:inset 0 2px 0 #ffffff65,inset 0 -3px 0 #6598273b,0 3px 0 #47651f,0 0 24px #b6f35a3b!important;
 }
 html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap}
 html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter-readout{display:inline-flex;align-items:baseline;gap:3px}
 html.hp-ui body.tv-screen #playersNeeded :is(.hp-menu-counter-value,.hp-menu-counter-total){
- font:italic 900 17px/1.1 var(--hp-font-action)!important;color:#e9ddff!important;
+ font:italic 900 17px/1.1 var(--hp-font-action)!important;color:inherit!important;
  font-variant-numeric:tabular-nums;padding:1px 3px 1px 1px;opacity:1;
 }
 html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter-total{opacity:.75}
-html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter-separator{font:500 14px/1.2 var(--hp-font-body)!important;color:#c6b8db}
-html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter-label{font:500 12px/1.3 var(--hp-font-body)!important;color:#d1c3e8}
+html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter-separator{font:500 14px/1.2 var(--hp-font-body)!important;color:inherit}
+html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter-label{font:500 12px/1.3 var(--hp-font-body)!important;color:inherit}
 /* Clip the photograph itself, so its initial badge can sit above the frame. */
 html.hp-ui body.tv-screen #players .avatar.has-photo{overflow:visible!important;clip-path:none;isolation:isolate}
 html.hp-ui body.tv-screen #players .avatar.has-photo>img{position:relative;z-index:1}

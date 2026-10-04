@@ -644,7 +644,8 @@ html body.tv-screen #tvStage .lp-catalog .games>.game.featured>.art .symbol{anim
    toward white so small caps stay readable); the title stays white. */
 html body.native-shell #choiceStrip .native-choice-copy>.eyebrow,
 html body.native-shell #choiceStrip #choiceMeta,
-html body.native-shell #choiceStrip #choiceMeta *{color:color-mix(in srgb,var(--pick-color,#c6b1ff) 62%,#fff)!important;transition:color 320ms ease}
+html body.native-shell #choiceStrip #choiceMeta *,
+html.hp-ui body.tv-screen #preview.tv-choice :is(.eyebrow,#description){color:color-mix(in srgb,var(--pick-color,#c6b1ff) 62%,#fff)!important;transition:color 320ms ease}
 html body.native-shell #choiceStrip #choiceMeta svg{stroke:currentColor!important}
 
 /* User-authored place hierarchy: the numeral leads, with its real award

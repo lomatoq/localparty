@@ -16,7 +16,7 @@ test('target motion grows gradually and scoring uses the displayed position',()=
  const g=new BowMatch();g.add({id:'a',name:'Alex'});g.start({},0);
  assert.deepEqual(g.targetsAt(0),TARGETS,'starts from authored centres');
  for(let t=16;t<=1000;t+=16)g.targetsAt(t);
- const first=g.targetsAt(1000);assert(first.some((t,i)=>Math.hypot(t.u-TARGETS[i].u,t.v-TARGETS[i].v)>.004),'targets move visibly during first second without any arrows');
+ const first=g.targetsAt(1000);assert(first.some((t,i)=>Math.hypot(t.u-TARGETS[i].u,t.v-TARGETS[i].v)>.004),'targets move visibly during first second without any arrows');assert(first[0].u-TARGETS[0].u>.008,'initial sweep reaches visible speed before the first arrow');
  g.players[0].shots=4;
  const before=g.targetsAt(1000),after=g.targetsAt(1016);
  assert(Math.hypot(after[1].u-before[1].u,after[1].v-before[1].v)<.001,'no position snap at difficulty changes');

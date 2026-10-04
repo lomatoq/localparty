@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-10-04T13:46:41.209233+00:00",
+  "bundleId": "com.localparty.launcher",
+  "version": "0.11.7",
+  "build": "121",
+  "installOutcome": "success",
+  "launchOutcome": "failed_locked",
+  "installedOverExisting": true,
+  "physicalCameraFramingValidation": "pending_user_check",
+  "priorPhysicalCameraDiagnostics": "build120 Back Camera 1x 1280x720 with tracking acquired; does not validate121 framing"
+}

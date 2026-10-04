@@ -8,7 +8,7 @@
   "totals": {
     "publicAssetFiles": 779,
     "games": 20,
-    "gameFiles": 830
+    "gameFiles": 831
   },
   "publicAssets": [
     {
@@ -4495,6 +4495,10 @@
         },
         {
           "file": "games/bow_club/public/src/mini3d.mjs",
+          "role": "module"
+        },
+        {
+          "file": "games/bow_club/public/src/range-arrow.mjs",
           "role": "module"
         },
         {

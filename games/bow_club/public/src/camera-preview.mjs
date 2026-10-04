@@ -1,13 +1,13 @@
 // Keep camera preview local even while the game's TV uses an external display.
 export function configureLocalVideo(video){
- video.muted=true;video.autoplay=true;video.playsInline=true;
+ video.style&&(video.style.objectFit='contain');video.muted=true;video.autoplay=true;video.playsInline=true;
  video.disableRemotePlayback=true;
  video.setAttribute('webkit-playsinline','');
  video.setAttribute('x-webkit-airplay','deny');
 }
 export function createCameraPreview(video){
  const canvas=document.createElement('canvas');canvas.id='cameraPreview';
- canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:1';
+ canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:1';
  video.after(canvas);
  const ctx=canvas.getContext('2d',{alpha:false});let lastTime=-1,lastAt=-Infinity;
  return {

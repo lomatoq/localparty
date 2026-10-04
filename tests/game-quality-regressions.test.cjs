@@ -28,12 +28,12 @@ test('Swarm damage produces a hit cue and lower HP; pulse kills report a death o
  p.abilityAt=0;g.input('a','ability');assert.equal(p.kills,1);assert.equal(g.enemies.length,0);assert.equal(g.events.filter(e=>e.kind==='shot'&&e.dead).length,1);g.input('a','ability');assert.equal(p.kills,1);
 });
 test('Bow renderer interpolates target motion and keeps the arrow in target coordinates',async()=>{
- const THREE=await import('three'),fs=require('node:fs'),vm=require('node:vm');
+ const THREE=await import('three'),{createRangeArrow}=await import('../games/bow_club/public/src/range-arrow.mjs'),fs=require('node:fs'),vm=require('node:vm');
  const source=fs.readFileSync(require.resolve('../games/bow_club/public/src/range-scene.mjs'),'utf8');
- const RangeScene=vm.runInNewContext(source.replace(/^import[^\n]+\n/,'').replace('export class','class')+'\nRangeScene',{THREE,performance});
+ const RangeScene=vm.runInNewContext(source.replace(/^import[^\n]+\n/gm,'').replace('export class','class')+'\nRangeScene',{THREE,createRangeArrow,performance});
  const r=Object.create(RangeScene.prototype);Object.assign(r,{targets:new THREE.Group(),arrows:new THREE.Group(),arrowIds:new Set(),materials:new Map(),camera:{updateProjectionMatrix(){}},renderer:{setSize(){},render(){}}});
  const target={id:'t',u:.5,v:.5,r:50},hit={id:'h',target:'t',points:100,u:.51,v:.5,targetOffset:{u:.01,v:0}};
- r.frame([target],[hit],1,1280,720);const group=r.targetGroups.get('t'),arrow=group.children.find(c=>c.userData.hit);assert(arrow,'embedded arrow belongs to target');assert.equal(r.arrows.children.length,0);
+ r.frame([target],[hit],1,1280,720);const group=r.targetGroups.get('t'),arrow=group.children.find(c=>c.userData.hit);assert(arrow,'embedded arrow belongs to target');assert.equal(arrow.children[0].children.filter(part=>part.name.startsWith('fletching-')).length,3,'real arrow builder supplies all three vanes');assert.equal(r.arrows.children.length,0);
  const before=arrow.children[0].position.clone();r.lastFrame=performance.now()-16;r.frame([{...target,u:.6}],[hit],1,1280,720);
  assert(group.position.x>0&&group.position.x<128,'movement blends rather than snapping');assert.deepEqual(arrow.children[0].position,before,'local geometry stays fixed while target moves');
  r.frame([{...target,u:.6}],[],2,1280,720);assert.equal(r.arrowIds.size,0,'new match clears old arrows');

@@ -1,4 +1,5 @@
 import * as THREE from '../vendor/three.module.js';
+import {createRangeArrow} from './range-arrow.mjs';
 // Shared Three.js library; the phone continues using its small local bow renderer.
 export class RangeScene {
  constructor(canvas){
@@ -20,7 +21,7 @@ export class RangeScene {
    // Scoring radii exactly match BowMatch: .18 bullseye, .54 middle, 1 outer.
    for(const [scale,color,z]of [[1,'#f5eede',1],[.78,'#7583b6',1.4],[.54,'#f5eede',1.8],[.32,'#cd7252',2.2],[.18,'#efbe4f',2.6]]){const disc=this.mesh(new THREE.CircleGeometry(r*scale,96),color,group);disc.position.set(x,y,z);}
   }}
- addArrow(hit,aspect){const group=new THREE.Group(),target=hit.points&&this.targetGroups?.get(hit.target),offset=hit.targetOffset;if(target&&offset)target.add(group);else this.arrows.add(group);const x=target&&offset?offset.u*720*aspect:(hit.u-.5)*720*aspect,y=target&&offset?-offset.v*720:(.5-hit.v)*720,tip=[x,y,hit.points?4:-30],tail=[x+18,y+24,tip[2]+85];this.rod(tip,tail,1.7,'#caa36a',group);const feather=this.mesh(new THREE.ConeGeometry(5,18,4),'#b79ae8',group);feather.position.set(...tail);feather.rotation.z=-.6;feather.rotation.x=1.05;group.userData.hit=hit;
+ addArrow(hit,aspect){const group=new THREE.Group(),target=hit.points&&this.targetGroups?.get(hit.target),offset=hit.targetOffset;if(target&&offset)target.add(group);else this.arrows.add(group);const x=target&&offset?offset.u*720*aspect:(hit.u-.5)*720*aspect,y=target&&offset?-offset.v*720:(.5-hit.v)*720,tip=[x,y,hit.points?4:-30];const arrow=createRangeArrow(THREE,(color,metal)=>this.material(color,metal));arrow.position.set(...tip);arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),new THREE.Vector3(30,36,88).normalize());group.add(arrow);group.userData.hit=hit;
   // Flight: under the orthographic camera the arrow reads as arriving by shrinking onto its spot (~170 ms), then the target rocks.
   const fresh=performance.now()-(hit.visualAt||0)<400&&!this.reduced;group.userData.fly=fresh?0:1;group.userData.tip={x,y};if(fresh){group.scale.setScalar(2.4);group.position.set(-1.4*x,-1.4*y-180,120);}
   if(target&&fresh)target.userData.wobble={t:0,amp:hit.points>=100?.16:hit.points>=60?.11:.07,dir:Math.sign(offset?.u||.3)||1,delay:.17};}

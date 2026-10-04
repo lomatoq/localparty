@@ -7,13 +7,24 @@ export function resizeCapture(canvas,width,height){
  if(canvas.width!==width)canvas.width=width;
  if(canvas.height!==height)canvas.height=height;
 }
-export async function acquireRearCamera(media,{isCurrent=()=>true}={}){
+// Use the controller orientation, not the physical device's potentially stale
+// orientation angle (the native Bow controller can already be landscape).
+export function cameraFrameConstraints(width,height){
+ const landscape=width>height;return {width:{ideal:landscape?1280:720},height:{ideal:landscape?720:1280},aspectRatio:{ideal:landscape?16/9:9/16}};
+}
+export async function fitCameraOrientation(track,width,height){
+ if(!track?.applyConstraints||track.readyState==='ended')return false;
+ const settings=track.getSettings?.()||{},wantLandscape=width>height;
+ if(settings.width&&settings.height&&(settings.width>settings.height)===wantLandscape)return true;
+ try{await track.applyConstraints(cameraFrameConstraints(width,height));return true;}catch{return false;}
+}
+export async function acquireRearCamera(media,{isCurrent=()=>true,width=720,height=1280}={}){
  const devices=async()=>{try{return await media.enumerateDevices();}catch{return [];}};
  const stop=stream=>stream?.getTracks?.().forEach(track=>track.stop());
  const live=stream=>{if(isCurrent())return stream;stop(stream);throw new DOMException('Camera request cancelled','AbortError');};
  const primary=primaryRearCamera(await devices());let unavailable=null;
  if(!isCurrent())throw new DOMException('Camera request cancelled','AbortError');
- const video={facingMode:{exact:'environment'},width:{ideal:720},height:{ideal:1280},aspectRatio:{ideal:9/16},frameRate:{ideal:30,max:30}};
+ const video={facingMode:{exact:'environment'},...cameraFrameConstraints(width,height),frameRate:{ideal:30,max:30}};
  if(primary?.deviceId)video.deviceId={exact:primary.deviceId};
  let stream;
  try{stream=await media.getUserMedia({audio:false,video});}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "sourceCount": 2236,
+  "sourceDrift": [],
+  "runtimeCount": 5459,
+  "runtimeMismatch": [],
+  "rootRuntimeMismatch": [],
+  "versions": [
+    {
+      "CFBundleIdentifier": "com.localparty.launcher",
+      "CFBundleVersion": "121",
+      "CFBundleShortVersionString": "0.11.7"
+    },
+    {
+      "CFBundleIdentifier": "com.localparty.launcher.Join",
+      "CFBundleVersion": "121",
+      "CFBundleShortVersionString": "0.11.7"
+    }
+  ],
+  "checkedAt": "2026-10-04T13:44:32.248248+00:00"
+}
