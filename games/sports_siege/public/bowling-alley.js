@@ -68,6 +68,12 @@ export class BowlingAlley{
     const mat=o=>this.track(new THREE.MeshBasicMaterial({transparent:false,blending:THREE.AdditiveBlending,depthTest:false,depthWrite:false,toneMapped:false,fog:false,side:THREE.DoubleSide,
       stencilWrite:true,stencilRef:1,stencilFunc:THREE.EqualStencilFunc,stencilZPass:THREE.KeepStencilOp,stencilFail:THREE.KeepStencilOp,stencilZFail:THREE.KeepStencilOp,...o}));
     this.reflMat=mat({map:this.reflTex,color:new THREE.Color(.34,.31,.36)});
+    // Shown only near the pin end: each fragment finds where its view ray meets the lane (y=0)
+    // and fades out unless that point is past z -1 (full by z -5). From the aim camera the
+    // reflection would land on the arrows mid-lane, so there it stays invisible.
+    this.reflMat.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vReflW;').replace('#include <project_vertex>','#include <project_vertex>\nvReflW=(modelMatrix*vec4(transformed,1.)).xyz;');
+      sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vReflW;').replace('#include <opaque_fragment>','{float k=cameraPosition.y/max(1e-3,cameraPosition.y-vReflW.y);float lz=cameraPosition.z+(vReflW.z-cameraPosition.z)*k;diffuseColor.a*=smoothstep(-1.,-5.,lz);}\n#include <opaque_fragment>');};
+    this.reflMat.customProgramCacheKey=()=>'lane-sign-reflection';
     // Smeared along the lane (glossy, not a mirror): the image is stretched 1.8x downward from
     // the mask's lower edge, which lands it closer to the viewer on the lane.
     const SMEAR=1.8,geo=this.track(new THREE.PlaneGeometry(MASK.w,MASK.h*SMEAR));this.smear=SMEAR;
@@ -78,8 +84,8 @@ export class BowlingAlley{
   // reliable on WebKit), a warm bulb row at the lower edge, faded away from the lane edge and
   // at both sides so it reads as sheen in the lacquer, never as a decal.
   blurInto(src,g,W,H,bulbs){
-    const [sc,sg]=this.small||=canvas(40,10),[mc,mg]=this.mid||=canvas(120,30);
-    sg.clearRect(0,0,40,10);sg.drawImage(src,0,0,40,10);mg.clearRect(0,0,120,30);mg.imageSmoothingEnabled=true;mg.drawImage(sc,0,0,120,30);
+    const [sc,sg]=this.small||=canvas(96,24),[mc,mg]=this.mid||=canvas(192,48); // lighter blur: a crisper sheen
+    sg.clearRect(0,0,96,24);sg.drawImage(src,0,0,96,24);mg.clearRect(0,0,192,48);mg.imageSmoothingEnabled=true;mg.drawImage(sc,0,0,192,48);
     g.clearRect(0,0,W,H);g.globalCompositeOperation='source-over';g.imageSmoothingEnabled=true;g.imageSmoothingQuality='high';g.drawImage(mc,0,0,W,H);
     if(bulbs)for(let x=8;x<W;x+=W/24){const r=g.createRadialGradient(x,H-5,0,x,H-5,H*.16);r.addColorStop(0,'rgba(255,226,180,.55)');r.addColorStop(1,'rgba(255,200,140,0)');g.fillStyle=r;g.fillRect(x-H*.16,H-H*.2,H*.32,H*.2);}
     g.globalCompositeOperation='destination-in';const fade=g.createLinearGradient(0,0,0,H);fade.addColorStop(0,'rgba(0,0,0,0)');fade.addColorStop(.5,'rgba(0,0,0,.35)');fade.addColorStop(.9,'rgba(0,0,0,1)');fade.addColorStop(1,'rgba(0,0,0,.55)');g.fillStyle=fade;g.fillRect(0,0,W,H);
@@ -219,7 +225,7 @@ export class BowlingAlley{
     this.updateAmbient(t);this.updateMotes(t);
     const x=this.host.extras,dOp=x?.display?.visible?x.displayMat.opacity:0;
     // While the score screen covers the sign, its sheen dims (the screen is darker than the art).
-    this.reflMat.color.setRGB(.3,.26,.32).multiplyScalar(1-.6*dOp);
+    this.reflMat.color.setRGB(.17,.15,.18).multiplyScalar(1-.6*dOp);
   }
   dispose(){
     this.restorePaint?.();const H=this.host;for(const m of H.staticMeshes||[])m.visible=true;

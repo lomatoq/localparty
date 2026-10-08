@@ -19,6 +19,9 @@ const bestText=document.getElementById('bestText');
 const speedText=document.getElementById('speedText');
 const statusStrip=document.getElementById('statusStrip');
 const kartLabel=(en,ru)=>window.PartyI18n?.language==='ru'?ru:en;
+const kartStatText=(node,value)=>{value=String(value);if(node.textContent!==value)node.textContent=value;};
+const kartStatValue=(node,key,value)=>{if(node[key]!==value)node[key]=value;};
+const steeringButtons=['steerLeft','steerRight'].map(id=>document.getElementById(id));
 
 let ws=null, playerId=null, gameState=null;
 let steer=0, throttle=0;
@@ -109,20 +112,20 @@ function updateStats(){
   const me=gameState.players.find(p=>p.id===playerId);
   if(!me)return;
   const ended=gameState.status==='results'||!!me.finish_order;
-  gasBtn.disabled=ended;wheelPad.disabled=ended;for(const id of ['steerLeft','steerRight'])document.getElementById(id).disabled=ended;
-  wheelPad.setAttribute('aria-disabled',String(ended));
+  kartStatValue(gasBtn,'disabled',ended);kartStatValue(wheelPad,'disabled',ended);for(const b of steeringButtons)kartStatValue(b,'disabled',ended);
+  if(wheelPad.getAttribute('aria-disabled')!==String(ended))wheelPad.setAttribute('aria-disabled',String(ended));
   controlsArea.classList.toggle('race-ended',ended);
-  if(ended){releaseGas();releaseWheel();}
-  posText.textContent=me.finish_order?`#${me.finish_order}`:`${me.position||'—'}/${gameState.players.length}`;
-  lapText.textContent=`${Math.min(me.lap+1,gameState.laps)}/${gameState.laps}`;
-  timeText.textContent=fmt(gameState.race_time).split('.')[0];
-  bestText.textContent=me.best_lap==null?'—':fmt(me.best_lap);
-  speedText.textContent=`${Math.round(me.speed*.55)}${kartLabel(' km/h',' км/ч')}`;
-  if(gameState.status==='lobby')statusStrip.textContent='ЖДЁМ СТАРТА';
-  else if(!me.in_race && (gameState.status==='countdown'||gameState.status==='racing')) statusStrip.textContent='WAITING FOR NEXT RACE';
-  else if(gameState.status==='countdown')statusStrip.textContent=`${kartLabel('GET READY','ГОТОВИМСЯ')} · ${Math.max(1,Math.ceil(gameState.countdown))}`;
-  else if(gameState.status==='racing')statusStrip.textContent=me.offroad?'OFF‑ROAD · SLOWDOWN':'RACE!';
-  else if(gameState.status==='results')statusStrip.textContent=me.finish_order?`${kartLabel('FINISHED #','ФИНИШ №')}${me.finish_order}`:'RACE OVER';
+  if(ended){if(throttle||gasPointer!==null||gasKey!==null)releaseGas();if(steer||wheelPointer!==null||steeringHolds.size)releaseWheel();}
+  kartStatText(posText,me.finish_order?`#${me.finish_order}`:`${me.position||'—'}/${gameState.players.length}`);
+  kartStatText(lapText,`${Math.min(me.lap+1,gameState.laps)}/${gameState.laps}`);
+  kartStatText(timeText,fmt(gameState.race_time).split('.')[0]);
+  kartStatText(bestText,me.best_lap==null?'—':fmt(me.best_lap));
+  kartStatText(speedText,`${Math.round(me.speed*.55)}${kartLabel(' km/h',' км/ч')}`);
+  if(gameState.status==='lobby')kartStatText(statusStrip,'ЖДЁМ СТАРТА');
+  else if(!me.in_race && (gameState.status==='countdown'||gameState.status==='racing'))kartStatText(statusStrip,'WAITING FOR NEXT RACE');
+  else if(gameState.status==='countdown')kartStatText(statusStrip,`${kartLabel('GET READY','ГОТОВИМСЯ')} · ${Math.max(1,Math.ceil(gameState.countdown))}`);
+  else if(gameState.status==='racing')kartStatText(statusStrip,me.offroad?'OFF‑ROAD · SLOWDOWN':'RACE!');
+  else if(gameState.status==='results')kartStatText(statusStrip,me.finish_order?`${kartLabel('FINISHED #','ФИНИШ №')}${me.finish_order}`:'RACE OVER');
 
   if(gameState.status==='countdown'){
     const c=Math.max(1,Math.ceil(gameState.countdown));

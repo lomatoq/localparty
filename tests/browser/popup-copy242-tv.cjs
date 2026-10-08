@@ -1,0 +1,12 @@
+'use strict';
+const {webkit,chromium}=require('playwright'),{spawn}=require('node:child_process'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const out=path.resolve('output/playwright/popups242/tv');fs.mkdirSync(out,{recursive:true});const child=spawn(process.execPath,['server.js'],{env:{...process.env,PARTY_EMBEDDED:'1',PARTY_EPHEMERAL:'1',PARTY_PORT:'0',PARTY_INTERNAL_PORT:'0',PARTY_NO_BROWSER:'1',PARTY_ADMIN_KEY:'tv219'}});let log='';child.stdout.on('data',d=>log+=d);child.stderr.on('data',d=>log+=d);const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{try{for(let i=0;i<300&&!/localhost:(\d+)/.test(log);i++)await sleep(50);const origin='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];const api=async b=>{const r=await fetch(origin+'/api/manage',{method:'POST',headers:{Authorization:'Bearer tv219','Content-Type':'application/json'},body:JSON.stringify(b)});assert(r.ok,await r.text());};
+const pages=[],browsers=[];for(const [name,engine] of Object.entries({chromium,webkit})){const browser=await engine.launch(name==='chromium'?{executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}:{});browsers.push(browser);for(const size of [[1280,720],[1920,1080]]){const p=await browser.newPage({viewport:{width:size[0],height:size[1]}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(origin+'/tv');await p.waitForTimeout(5000);
+await p.screenshot({path:path.join(out,`${name}-${size[0]}-initial.png`)});
+assert.equal(await p.locator('.game-spotlight').isVisible(),true);assert.equal(await p.locator('.spotlight-fixture-right').isVisible(),false);
+await p.evaluate(()=>document.fonts.ready);assert.equal(await p.locator('.spotlight-play').isVisible(),true,'Play remains visible');
+console.log(name,size,await p.locator('.game-spotlight').count(),errors);
+pages.push({p,name,size,errors});}}
+await api({type:'select',id:'bowling'});for(const {p,name,size,errors} of pages){await p.waitForTimeout(1200);await p.screenshot({path:path.join(out,`${name}-${size[0]}-pick.png`)});assert.equal(await p.locator('#tvBrowse>.intro').isVisible(),false);assert.equal(await p.locator('#preview').isVisible(),true);assert.deepEqual(errors,[]);await p.close();}for(const browser of browsers)await browser.close();
+}finally{child.kill();}})().catch(e=>{console.error(e);process.exitCode=1});

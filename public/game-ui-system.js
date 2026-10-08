@@ -42,6 +42,7 @@
   function applyControlReadability() {
     readabilityFrame = 0;
     const mobile = innerWidth <= 850 && !root.classList.contains('party-host') && !document.body.classList.contains('tv-screen');
+    const paints=[];
     for (const control of pendingControls) {
       if (!control.isConnected) continue;
       const labels = new Set([control]);
@@ -50,21 +51,20 @@
       while ((text = walker.nextNode())) if (/[\p{L}\p{N}]/u.test(text.nodeValue) && !text.parentElement.closest('svg,script,style,option')) labels.add(text.parentElement);
       for (const label of labels) {
         // Editorial eyebrow is metadata inside a large button, not its action label.
-        if (label.matches('#choiceStrip .native-choice-copy > .eyebrow, #choiceMeta, #choiceMeta > span, .stats-identity > small, .stats-score > small, .stats-you, .rank-stats > span, .rank-stats > small')) continue;
-        const previous = labelOriginalStyles.get(label);
-        if (previous && mobile && parseFloat(getComputedStyle(label).fontSize) >= 14) continue;
-        if (previous) {
-          if (previous.value) label.style.setProperty('font-size', previous.value, previous.priority);
-          else label.style.removeProperty('font-size');
-          label.classList.remove('hp-control-readable');
-        }
-        if (!mobile || !label.getClientRects().length || getComputedStyle(label).visibility === 'hidden' || !/[\p{L}\p{N}]/u.test(label.textContent || label.value || '')) continue;
-        if (parseFloat(getComputedStyle(label).fontSize) >= 14) continue;
-        if (!previous) labelOriginalStyles.set(label, {value:label.style.getPropertyValue('font-size'), priority:label.style.getPropertyPriority('font-size')});
-        label.classList.add('hp-control-readable');
-        label.style.setProperty('font-size', '14px', 'important');
+        if (label.closest('.hp-popup-back,[data-action-fit]')) continue;
+        if (label.matches('#choiceStrip .native-choice-copy > .eyebrow, #choiceMeta, #choiceMeta *, .stats-identity > small, .stats-score > small, .stats-you, .rank-stats > span, .rank-stats > small')) continue;
+        const previous = labelOriginalStyles.get(label),css=mobile?getComputedStyle(label):null;
+        if (previous && mobile && parseFloat(css.fontSize) >= 14) continue;
+        const needsSize=mobile&&label.getClientRects().length&&css.visibility!=='hidden'&&/[\p{L}\p{N}]/u.test(label.textContent||label.value||'')&&parseFloat(css.fontSize)<14;
+        if(previous||needsSize)paints.push(()=>{
+          if(previous){if(previous.value)label.style.setProperty('font-size',previous.value,previous.priority);else label.style.removeProperty('font-size');label.classList.remove('hp-control-readable');}
+          if(!needsSize)return;
+          if(!previous)labelOriginalStyles.set(label,{value:label.style.getPropertyValue('font-size'),priority:label.style.getPropertyPriority('font-size')});
+          label.classList.add('hp-control-readable');label.style.setProperty('font-size','14px','important');
+        });
       }
     }
+    for(const paint of paints)paint();
     pendingControls.clear();
   }
   // Passive information gets a different surface from controls. Never decorate
@@ -102,7 +102,7 @@
     // Child insertion only: avoid a full-document scan on each game snapshot.
     const observer = new MutationObserver(records => {
       for (const record of records) {
-        if (record.type === 'attributes' && record.attributeName === 'class' && record.oldValue === record.target.getAttribute('class')) continue;
+        if (record.type === 'attributes' && record.oldValue === record.target.getAttribute(record.attributeName)) continue;
         if (record.target.id === 'gameTitle' || record.target.classList?.contains('hp-readout')) classifyTVValue(record.target);
         if (record.type === 'attributes') queueControlReadability(record.target);
         if (record.target.nodeType === 1 && record.target.closest?.(controlSelector)) queueControlReadability(record.target);
@@ -111,7 +111,7 @@
     });
     addEventListener('resize', () => queueControlReadability());
     document.fonts?.ready.then(() => queueControlReadability());
-    document.addEventListener('click', event => queueControlReadability(event.target.closest('dialog') || document), {capture:true});
+    document.addEventListener('click', event => queueControlReadability(event.target.closest('dialog') || event.target.closest(controlSelector) || event.target), {capture:true});
     observer.observe(document.body, {childList: true, subtree: true, attributes: true, attributeOldValue: true, attributeFilter: ['data-no-translate', 'hidden', 'open', 'class']});
   }
   /** A place owns its award and number; identity is always a separate column. */
@@ -166,7 +166,7 @@
  const panels = 'dialog,[role="dialog"],.native-sheet,.sheet-card,.drawer-panel,#pauseOverlay,.overlay-panel,#lobbyOverlay,#tvSidebar,.company,.evening-console,.screen-standings,.screen-sidebar,.roster-card,.side-panel,.lp-duel-sidebar,.naval-console>details';
  const horizontal = '#tvRemoteGenres,#catalogFilters,.catalog-filters,.native-genres';
  const protectedContent = 'header,.native-sheet-head,.drawer-head,.drawer-close,.native-actions,.room-actions,.reveal-actions,.ready-actions,.loadout-dock,.lp-update-actions,.native-start-bots-head,[data-close],form[method="dialog"]';
- const regions = new Map(); let frame = 0, discoveryPending = false;
+ const regions = new Map(), dirtyRegions = new Set(); let frame = 0, discoveryPending = false;
  const setData = (node, key, value) => { value = String(value); if (node.dataset[key] !== value) node.dataset[key] = value; };
  const toggle = (node, name, enabled) => { if (node.classList.contains(name) !== enabled) node.classList.toggle(name, enabled); };
  const setStyle = (node, key, value) => { if (node.style.getPropertyValue(key) !== value) node.style.setProperty(key, value); };
@@ -189,7 +189,9 @@
  function update() {
   frame = 0;
   if (discoveryPending) { discoveryPending = false; discover(); }
-  for (const [node, record] of regions) {
+  const work = [...dirtyRegions], paints = []; dirtyRegions.clear();
+  for (const node of work) {
+   const record = regions.get(node); if (!record) continue;
    if (!node.isConnected) { resize.unobserve(node); node.removeEventListener('scroll', schedule); for (const item of record.items) clearItem(item); regions.delete(node); continue; }
    const css = getComputedStyle(node);
    const bounded = node.clientHeight > 0 && /^(auto|scroll)$/.test(css.overflowY) && node.scrollHeight > node.clientHeight + 2;
@@ -197,47 +199,73 @@
    // Genre/chip strips own a horizontal mask only when they do not also scroll vertically.
    const boundedX = record.horizontal && !bounded && node.clientWidth > 0 && /^(auto|scroll)$/.test(css.overflowX) && node.scrollWidth > node.clientWidth + 2;
    const left = boundedX && node.scrollLeft > 1, right = boundedX && node.scrollLeft + node.clientWidth < node.scrollWidth - 1;
+   const nextItems = new Set(record.panel && bounded ? contentChildren(node) : []);
+   paints.push(() => {
    setData(node, 'scrollLeft', left); setData(node, 'scrollRight', right);
    toggle(node, 'hp-soft-scroll-x', boundedX);
    setData(node, 'scrollAbove', above); setData(node, 'scrollBelow', below);
    toggle(node, 'hp-soft-scroll', bounded && !record.panel);
    toggle(node, 'hp-soft-scroll-panel', bounded && record.panel);
-   const nextItems = new Set(record.panel && bounded ? contentChildren(node) : []);
    for (const item of record.items) if (!nextItems.has(item)) clearItem(item);
    record.items = nextItems;
+   });
    if (!record.panel || !bounded) continue;
    const viewport = node.getBoundingClientRect(), top = viewport.top + node.clientTop, bottom = top + node.clientHeight;
    for (const item of nextItems) {
     const rect = item.getBoundingClientRect();
     const fadeTop = above && rect.top < top + 16 && rect.bottom > top;
     const fadeBottom = below && rect.bottom > bottom - 24 && rect.top < bottom;
-    toggle(item, 'hp-soft-scroll-item', fadeTop || fadeBottom);
-    if (!fadeTop && !fadeBottom) { clearItem(item); continue; }
+    if (!fadeTop && !fadeBottom) { paints.push(() => clearItem(item)); continue; }
     const topEdge = fadeTop ? top - rect.top : 0;
     const bottomEdge = fadeBottom ? bottom - rect.top : rect.height;
+    paints.push(() => {
+    toggle(item, 'hp-soft-scroll-item', true);
     setStyle(item, '--hp-scroll-item-top-edge', `${topEdge}px`);
     setStyle(item, '--hp-scroll-item-top-solid', `${fadeTop ? topEdge + 16 : 0}px`);
     setStyle(item, '--hp-scroll-item-bottom-solid', `${fadeBottom ? bottomEdge - 24 : rect.height}px`);
     setStyle(item, '--hp-scroll-item-bottom-edge', `${bottomEdge}px`);
+    });
    }
   }
+  // Measure every region before painting masks: no read/write layout thrashing.
+  for (const paint of paints) paint();
  }
- function schedule() { if (!frame) frame = requestAnimationFrame(update); }
- const resize = new ResizeObserver(schedule);
+ function queueUpdate() { if (!frame) frame = requestAnimationFrame(update); }
+ function schedule(event) {
+  if (event?.type === 'scroll' && regions.has(event.currentTarget)) dirtyRegions.add(event.currentTarget);
+  else for (const node of regions.keys()) dirtyRegions.add(node);
+  queueUpdate();
+ }
+ const resize = new ResizeObserver(entries => { for (const {target} of entries) dirtyRegions.add(target); queueUpdate(); });
  function discover() {
   for (const node of document.querySelectorAll(`${lists},${panels},${horizontal}`)) {
    if (regions.has(node) || node.closest('.fresh-track,.fresh-viewport,[data-hp-no-scroll-fade]')) continue;
    const panel = node.matches(panels) && !node.matches(lists) || !!node.querySelector(':scope > h1,:scope > h2,:scope > h3,:scope > header,:scope > .native-sheet-head');
    setData(node, 'hpScrollRegion', panel ? 'panel' : 'content');
-   regions.set(node, {panel, horizontal:node.matches(horizontal), items:new Set()}); node.addEventListener('scroll', schedule, {passive:true}); resize.observe(node);
+   regions.set(node, {panel, horizontal:node.matches(horizontal), items:new Set()}); dirtyRegions.add(node); node.addEventListener('scroll', schedule, {passive:true}); resize.observe(node);
   }
  }
  function start() {
   discover(); schedule();
+  const candidates = `${lists},${panels},${horizontal}`;
   new MutationObserver(records => {
-   // Ignore the helper's own paint classes/properties to avoid a perpetual RAF.
-   if (!records.some(record => record.type !== 'attributes' || !['class','style'].includes(record.attributeName) || record.oldValue !== record.target.getAttribute(record.attributeName) && !record.target.classList.contains('hp-soft-scroll-item'))) return;
-   discoveryPending = true; schedule();
+   for (const record of records) {
+    const target = record.target.nodeType === 1 ? record.target : record.target.parentElement;
+    if (!target) continue;
+    if (record.type === 'attributes') {
+     if (record.oldValue === target.getAttribute(record.attributeName)) continue;
+     if (target.classList.contains('hp-soft-scroll-item') && ['style','class'].includes(record.attributeName)) continue;
+     // Knob transforms, particles and counter effects cannot change a sibling list.
+     for (const node of regions.keys()) if (target === node || target.contains(node) || node.contains(target)) dirtyRegions.add(node);
+    } else {
+     for (const node of regions.keys()) if (!node.isConnected || node.contains(target)) dirtyRegions.add(node);
+    }
+    if (record.type === 'childList') for (const node of record.addedNodes) {
+     if (node.nodeType === 1 && (node.matches(candidates) || node.querySelector(candidates))) discoveryPending = true;
+    }
+    if (record.type === 'attributes' && record.attributeName === 'class' && target.matches(candidates) && !regions.has(target)) discoveryPending = true;
+   }
+   if (dirtyRegions.size || discoveryPending) queueUpdate();
   }).observe(document.body, {childList:true,subtree:true,characterData:true,attributes:true,attributeOldValue:true,attributeFilter:['open','hidden','class','style']});
   document.addEventListener('load', schedule, {capture:true});
   document.addEventListener('toggle', schedule, {capture:true});
@@ -435,6 +463,9 @@
  const primary='.hp-action-primary,#readyButton,#choiceStart,.lp-direct-start,.start-game,#fire,#fireBtn,#throwBtn,#ss-fire';
  const last=new WeakMap();
  function wake(button){
+  // Host Pick retains its own symmetric availability transition. A second
+  // wake ring would restart on re-enabling and force an unnecessary layout.
+  if(button.id==='choiceStart'&&document.body.classList.contains('native-shell'))return;
   const now=performance.now();if(now-(last.get(button)||-1e9)<1500)return;last.set(button,now);
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!button.getClientRects().length)return;
   button.classList.remove('hp-cta-wake');void button.offsetWidth;button.classList.add('hp-cta-wake');
@@ -443,4 +474,62 @@
  const start=()=>new MutationObserver(records=>{for(const r of records){const b=r.target;if(r.oldValue!==null&&!b.disabled&&b.matches?.(primary))wake(b);}}).observe(document.body,{subtree:true,attributes:true,attributeFilter:['disabled'],attributeOldValue:true});
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
  window.HeyPalsCtaWake=Object.freeze({revision:'cta-wake-20261001.1'});
+})();
+
+/* Value tick: when a controller readout value really changes (score, place,
+   status), it gives one small spring so the eye catches it. Baseline is taken
+   silently on first sight; values that change continuously (speed, timers)
+   are recognised by their rate and left still, so nothing flickers. Uses the
+   independent `scale` property, never the element's own transform. */
+(() => {
+ if(window.HeyPalsValueTick)return;
+ const root=document.documentElement;
+ const values='.hp-stat-value,.hp-stat>strong,.hp-stat>b,.hp-stat-group strong,.western-stats strong,.combat-stats strong,.combat-stats b,.phone-meters strong,.phone-meters b,.mine-score-readout strong,#knivesLeft,#arcadeStats strong,#punchResult strong';
+ const seen=new WeakMap();let pending=new Set(),frame=0;
+ const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function flush(){frame=0;const now=performance.now();if(!root.classList.contains('party-player')){pending.clear();return;}
+  for(const el of pending){if(!el.isConnected)continue;const text=(el.textContent||'').trim(),rec=seen.get(el);
+   if(!rec){seen.set(el,{text,hits:[]});continue;}
+   if(rec.text===text)continue;rec.text=text;rec.hits=rec.hits.filter(t=>now-t<2000);rec.hits.push(now);
+   if(rec.hits.length>3||reduced()||document.hidden||!el.getClientRects().length||getComputedStyle(el).display==='inline'||el.getBoundingClientRect().width>160)continue;
+   el.classList.remove('hp-value-tick');void el.offsetWidth;el.classList.add('hp-value-tick');
+   clearTimeout(el.__hpTick);el.__hpTick=setTimeout(()=>el.classList.remove('hp-value-tick'),420);
+  }
+  pending.clear();}
+ function queue(node){const el=(node.nodeType===1?node:node.parentElement)?.closest?.(values);if(!el)return;pending.add(el);if(!frame)frame=requestAnimationFrame(flush);}
+ function start(){
+  document.querySelectorAll(values).forEach(el=>seen.set(el,{text:(el.textContent||'').trim(),hits:[]}));
+  new MutationObserver(records=>{for(const r of records){queue(r.target);for(const n of r.addedNodes)if(n.nodeType===1&&n.matches?.(values))seen.has(n)||seen.set(n,{text:(n.textContent||'').trim(),hits:[]});}}).observe(document.body,{subtree:true,childList:true,characterData:true});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+ window.HeyPalsValueTick=Object.freeze({revision:'value-tick-20261005.1'});
+})();
+
+/* Panel entrance: when a controller goes live (waiting → countdown/playing,
+   or a fresh match after results) its blocks rise in with a short stagger so
+   the screen assembles instead of hard-swapping. One shot per entrance; input
+   is never blocked (opacity/translate only, pointer events untouched). Pause →
+   resume and in-round re-renders do not replay it. */
+(() => {
+ if(window.HeyPalsPanelEntrance)return;
+ const root=document.documentElement;
+ const live=new Set(['countdown','playing']);let last=root.dataset.partyPhase||'';
+ const visible=e=>{if(!e.getClientRects().length)return false;const s=getComputedStyle(e);return s.visibility!=='hidden'&&s.display!=='none'&&+s.opacity>0.05;};
+ // Descend through full-screen wrappers (screens, mains) to the element whose
+ // children are the actual panels: stat cards, pads, primary actions.
+ function blocks(){
+  let box=document.body;
+  for(let i=0;i<6;i++){const big=[...box.children].filter(e=>visible(e)&&!e.matches('script,style,canvas,dialog')&&e.getBoundingClientRect().height>=innerHeight*.4);const kids=[...box.children].filter(e=>visible(e)&&!e.matches('script,style'));if(big.length!==1||kids.length>2)break;box=big[0];}
+  if(box===document.body)return [];
+  return [...box.children].filter(e=>visible(e)&&e.getBoundingClientRect().height>=16&&!e.matches('script,style,canvas,dialog')&&getComputedStyle(e).position!=='fixed').slice(0,8);
+ }
+ function enter(){
+  if(document.hidden||!root.classList.contains('party-player'))return;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  blocks().forEach((el,i)=>{try{el.animate(reduced?{opacity:[.4,1]}:{opacity:[0,1],translate:['0 10px','0 0']},{duration:reduced?160:340,delay:reduced?0:Math.min(i,7)*45,easing:'cubic-bezier(.23,1,.32,1)',fill:'backwards'});}catch{}});
+ }
+ function onPhase(){const phase=root.dataset.partyPhase||'';if(phase===last)return;const from=last;last=phase;
+  if(live.has(phase)&&!live.has(from)&&from!=='paused'&&from!=='reveal')requestAnimationFrame(()=>requestAnimationFrame(enter));}
+ new MutationObserver(onPhase).observe(root,{attributes:true,attributeFilter:['data-party-phase']});
+ window.HeyPalsPanelEntrance=Object.freeze({revision:'panel-entrance-20261005.1',enter});
 })();

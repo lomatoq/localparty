@@ -2,6 +2,31 @@
  'use strict';
  const dictionary=root.PARTY_TRANSLATIONS||(root.PARTY_TRANSLATIONS=Object.create(null));
 const pairs=`
+Обновления|Updates
+Проверить|Check
+Выберите канал и проверьте обновления.|Choose a channel and check for updates.
+НОВОЕ ДЛЯ ВАШЕЙ КОМПАНИИ|NEW FOR YOUR PARTY
+Ещё один|Another
+апдейт.|update.
+Откуда обновляться|Update channel
+Релиз|Stable
+Последняя стабильная версия GitHub|Latest stable GitHub release
+Экспериментальная|Experimental
+Новые игры из alpha/sports-siege-swipe|New games from alpha/sports-siege-swipe
+Alpha может содержать ошибки. Перед заменой создаётся резервная копия; профили остаются на компьютере.|Alpha may contain bugs. Your current version is backed up and profiles stay on this computer.
+Проверка запускается только по кнопке. Для игры интернет не нужен.|Check for updates when you choose. Playing does not require internet.
+Разрешаю перезапуск сервера после установки|Allow the server to restart after installation
+Скачать и обновить ↓|Download and update ↓
+↶ Вернуть предыдущую установку|↶ Restore previous version
+GitHub и резервные копии|GitHub and backups
+Публичный репозиторий lomatoq/localparty обновляется без входа и токена. Авторизация через|The public lomatoq/localparty repository updates without signing in. Authentication through
+или|or
+используется только как запасной вариант для приватного форка или при ограничении анонимных запросов.|is only needed for private forks or anonymous request limits.
+Резервные копии и журнал находятся в|Backups and logs are saved in
+. Неотслеживаемые личные файлы сохраняются; изменения файлов проекта по-прежнему нужно сохранить перед обновлением.|. Personal untracked files are preserved; save your project changes before updating.
+Сыграть ещё раз|Play again
+Нет соединения. Попробуй ещё раз.|No connection. Try again.
+Не удалось начать. Попробуй ещё раз.|Could not start. Try again.
 Последняя партия|Last match
 Счёт команды|Team score
 командных очков|team points
@@ -555,6 +580,7 @@ QR ведёт на этот компьютер по Wi‑Fi:|QR links to this co
 Все готовы к запуску. Боты играют без записи очков.|Ready to start. Scores are not saved when playing with bots.
 Изменение не подтвердилось. Проверь экран и попробуй ещё раз.|The change was not confirmed. Check your screen and try again.
 Джойстик · 7 оружий|Joystick · 7 weapons
+Джойстик|Joystick
 Сражайся на арене: пушка, дробовик, пулемёт, ракета, спаренная пушка, снайперская пушка и огнемёт. Подбирай лечение, щит и ускорение.|Fight with a cannon, shotgun, machine gun, rocket, twin cannon, sniper cannon and flamethrower. Collect healing, shields and speed boosts.
 Недостаточно игроков. Подключи игроков или добавь бота в панели ведущего.|Not enough players. Connect players or add a bot in the Host panel.
 СПАРЕННАЯ ПУШКА|TWIN CANNON
@@ -668,6 +694,7 @@ localparty — вечер начинается|HeyPals — your night starts her
 игроков|players
 Без установок на телефон|No app downloads needed
 В следующий раз — без QR ↗|Next time, skip the QR ↗
+В следующий раз — без QR|Next time, skip the QR
 Оставь эту вкладку или добавь её в закладки браузера. Откроешь снова — пульт попробует восстановить твой профиль без камеры.|Keep this tab or bookmark it. Open it again and your controller will try to restore your profile without scanning a code.
 Нужны тот же браузер, включённый хост и та же сеть. Если адрес ведущего изменился, открой новый QR. После очистки данных браузера имя и фото может понадобиться указать заново.|Use the same browser and Wi-Fi with the host running. If the host address changes, scan the new QR. Clearing browser data may require setting up your name and photo again.
 СОБИРАЕМ КОМПАНИЮ|GET EVERYONE TOGETHER

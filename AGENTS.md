@@ -1,6 +1,6 @@
 # HeyPals: обязательные правила изменений
 
-> **2026-10-04: Claude Code снова работает (4 агента):** Bowling, Curling (`games/sports_siege/public/scene-*.js`, `*-extras.js`), Pocket Siege (`games/arcade_deluxe/public/`), и визуальный полиш игровых UI-панелей (только оформление, без изменения раскладки). Перед правкой этих мест читать конец `docs/agents/game-polish-lanes.md`.
+> **2026-10-06: Claude Code закончил раунд UI/UX** (приложение, игровые панели, переходы ТВ). Агенты не работают, Codex может проводить проверки. Детали и открытые пункты: конец `docs/agents/game-polish-lanes.md`.
 
 Перед изменением интерфейса прочитать:
 - `docs/qa/ui-regression-rules.md` — требования пользователя и проверки против повторных дефектов.

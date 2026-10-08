@@ -1,0 +1,29 @@
+// Real TV/worker lifecycle; renderer result phase is injected explicitly below.
+const {chromium,webkit}=require('playwright'),{spawn}=require('node:child_process'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const out=path.resolve(process.env.QA_OUTPUT||'output/playwright/return131/tv');fs.mkdirSync(out,{recursive:true});
+const child=spawn(process.execPath,['server.js'],{env:{...process.env,PARTY_EMBEDDED:'1',PARTY_EPHEMERAL:'1',PARTY_PORT:'0',PARTY_NO_BROWSER:'1',PARTY_ADMIN_KEY:'return131'}});let log='',browser;
+child.stdout.on('data',d=>log+=d);child.stderr.on('data',d=>log+=d);const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const report={errors:[],cycles:[],physicalAirPlay:false,engine:process.env.QA_ENGINE||'chromium'};
+(async()=>{try{
+ for(let i=0;i<300&&!/localhost:(\d+)/.test(log);i++)await wait(50);assert(/localhost:(\d+)/.test(log),log);
+ const base='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];
+ const manage=async m=>{const r=await fetch(base+'/api/manage',{method:m?'POST':'GET',headers:{Authorization:'Bearer return131','Content-Type':'application/json'},body:m?JSON.stringify(m):undefined});const s=await r.json();assert(r.ok,JSON.stringify(s));return s;};
+ browser=await (report.engine==='webkit'?webkit:chromium).launch({headless:true,...(report.engine==='chromium'?{executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}:{})});
+ const tv=await browser.newPage({viewport:{width:1920,height:1080}});tv.on('pageerror',e=>report.errors.push(e.message));await tv.goto(base+'/tv');await wait(2000);
+ await manage({type:'bots-set',count:2});await wait(1500);
+ for(let cycle=0;cycle<2;cycle++){
+  const s=await manage({type:'launch',id:'pocket_siege'});await tv.waitForFunction(()=>document.querySelector('#gameFrame').contentWindow.__arcadeRenderer?.s?.players?.length>=2);if((await manage()).active.ui.phase==='waiting')await manage({type:'force-start',instance:s.active.instance});await tv.waitForFunction(()=>document.querySelector('#gameFrame').contentWindow.__arcadeRenderer?.s?.phase==='playing');await wait(1500);const frame=tv.frames().find(f=>f.url().includes('/games/pocket_siege/'));
+  // Check the actual game's renderer stops behind results and wakes for gameplay.
+  const renderer=await frame.evaluate(async()=>{const r=window.__arcadeRenderer,net=window.__arcadeConnection;if(net.ws)net.ws.onmessage=null;net.stop();const saved=structuredClone(r.s);r.setState({...saved,phase:'results'});await new Promise(x=>setTimeout(x,300));const stopped=r.raf===0;r.setState(saved);await new Promise(x=>setTimeout(x,100));return{stopped,resumed:r.raf!==0};});
+  assert(renderer.stopped&&renderer.resumed,JSON.stringify(renderer));await manage({type:'stop'});await tv.waitForFunction(()=>document.querySelector('#gameFrame').getAttribute('src')==='about:blank');const exitAt=Date.now();
+  await tv.waitForFunction(()=>[...document.querySelectorAll('iframe')].every(f=>!f.contentDocument?.querySelector('iframe[src*="/games/pocket_siege/"]')));
+  for(let i=0;i<100&&tv.frames().some(f=>f.url().includes('/games/pocket_siege/'));i++)await wait(50);
+  report.cycles.push({cycle,renderer,exitMs:Date.now()-exitAt,frames:tv.frames().filter(f=>f.url().includes('/games/pocket_siege/')).length});assert.equal(report.cycles.at(-1).frames,0);
+ }
+ await manage({type:'select',id:'pocket_siege'});await manage({type:'tv-focus',id:'tankarena'});await wait(300);assert(await tv.locator('#preview').isHidden());
+ await manage({type:'tv-focus',target:'pick'});await tv.locator('#preview').waitFor({state:'visible'});await tv.waitForFunction(()=>document.querySelector('#tvBrowse').scrollTop<2,{},{timeout:5000});await tv.screenshot({path:path.join(out,'host-pick-return-1080.png')});
+ // The same authoritative snapshot must not rebuild cards or wake UI observers.
+ const state=await manage();report.catalog=await tv.evaluate(async state=>{const root=document.createElement('div');root.hidden=true;document.body.append(root);const c=LocalPartyCatalog.create(root,{displayOnly:true});c.update(state);await new Promise(r=>setTimeout(r,50));let mutations=0;const observer=new MutationObserver(r=>mutations+=r.length);observer.observe(root,{attributes:true,subtree:true,childList:true});for(let i=0;i<20;i++)c.update(state);await Promise.resolve();const repeated=mutations;mutations=0;c.update({...state,tv:{...state.tv,browse:true,focusId:'tankarena'}});await Promise.resolve();const focusMutations=mutations;observer.disconnect();root.remove();return{identicalSnapshots:20,mutations:repeated,focusMutations};},state);assert.equal(report.catalog.mutations,0);assert(report.catalog.focusMutations<12,JSON.stringify(report.catalog));
+ await tv.setViewportSize({width:3840,height:2160});await manage({type:'tv-focus',id:'bow_club'});await tv.locator('#tvCatalog .game[data-id=bow_club].selected').waitFor({state:'attached'});await wait(1200);report.focus=await tv.evaluate(()=>{const e=document.querySelector('#tvCatalog .game[data-id=bow_club]'),v=document.querySelector('#tvBrowse');return{selected:e.classList.contains('selected'),card:e.getBoundingClientRect().toJSON(),view:v.getBoundingClientRect().toJSON(),scroll:v.scrollTop,max:v.scrollHeight-v.clientHeight}});assert(report.focus.scroll>0&&report.focus.card.top<report.focus.view.bottom&&report.focus.card.bottom>report.focus.view.top,JSON.stringify(report.focus));await tv.screenshot({path:path.join(out,'catalog-after-return-4k.png'),animations:'disabled'});
+ report.navigation={hostPickReached:true,selected:(await manage()).selected};assert.equal(report.navigation.selected,'pocket_siege');assert.deepEqual(report.errors,[]);report.ok=true;
+ }catch(e){report.failure=e.stack;process.exitCode=1;}finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await browser?.close();child.kill();console.log(JSON.stringify(report));}})();

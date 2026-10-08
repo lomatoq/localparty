@@ -115,6 +115,7 @@
 Отмена|Cancel
 Отменить|Cancel
 Подтвердить|Confirm
+Сбросить|Reset
 Да, отправить|Yes, send
 Удалить|Remove
 Убрать|Remove

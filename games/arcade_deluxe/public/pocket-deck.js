@@ -1,6 +1,9 @@
 // Presentation only. Server snapshots remain authoritative for every action.
 export function mountPocketDeck({onModeChange,onDefense}){
- const $=id=>document.getElementById(id),root=$('tankControls');let mode='tank';
+ const $=id=>document.getElementById(id),root=$('tankControls');let mode='tank',radarKey='';
+ const text=(el,value)=>{value=value==null?'':String(value);if(el.textContent!==value)el.textContent=value;};
+ const attribute=(el,key,value)=>{value=String(value);if(el.getAttribute(key)!==value)el.setAttribute(key,value);};
+ const property=(el,key,value)=>{if(el[key]!==value)el[key]=value;};
  const label=(en,ru)=>window.PartyI18n?.language==='ru'?ru:en;
  const css=document.createElement('link');css.rel='stylesheet';css.href='pocket-deck.css';document.head.append(css);root.classList.add('pocket-deck');
  const tank=document.createElement('section');tank.id='tankModule';tank.className='deck-module';tank.setAttribute('role','tabpanel');tank.setAttribute('aria-labelledby','tankTab');
@@ -17,33 +20,32 @@ export function mountPocketDeck({onModeChange,onDefense}){
  const ticks=Array.from({length:19},(_,i)=>{const a=i*10*Math.PI/180,r=i%3?77:72;return`<line x1="${100+Math.cos(a)*r}" y1="${86-Math.sin(a)*r}" x2="${100+Math.cos(a)*83}" y2="${86-Math.sin(a)*83}"/>`;}).join('');
  instrument.innerHTML=`<svg class="deck-angle-ticks" viewBox="0 0 200 92"><path d="M17 86A83 83 0 0 1 183 86"/><g>${ticks}</g></svg><div id="deckNeedle" class="deck-needle"></div><div class="deck-tank-body"></div>`;angleCard.insertBefore(instrument,$('angle'));
  const power=$('power'),powerCard=power.closest('.range-card');powerCard.classList.add('power-well');const gauge=document.createElement('div');gauge.className='deck-power';gauge.setAttribute('aria-hidden','true');for(let i=0;i<20;i++){const segment=document.createElement('i');gauge.append(segment);}powerCard.append(gauge);powerCard.append(power);
- function gauges(){const angle=Number($('angle').value),power=Number($('power').value);$('deckNeedle').style.transform=`rotate(${90-angle}deg)`;[...gauge.children].forEach((el,i)=>{el.className=i<Math.round(power/5)?i>=18?'lit maximum':i>=15?'lit high':'lit':'';});}
+ function gauges(){const angle=Number($('angle').value),power=Number($('power').value);const rotation=`rotate(${90-angle}deg)`;if($('deckNeedle').style.transform!==rotation)$('deckNeedle').style.transform=rotation;[...gauge.children].forEach((el,i)=>{const classes=i<Math.round(power/5)?i>=18?'lit maximum':i>=15?'lit high':'lit':'';if(el.className!==classes)el.className=classes;});}
  const reasons={ready:'ВРАЖЕСКИЙ СНАРЯД В ЗОНЕ', 'own-turn':'ПВО ДОСТУПНО НА ХОДУ ПРОТИВНИКА','not-flight':'ОЖИДАЕМ ВРАЖЕСКИЙ ВЫСТРЕЛ',paused:'МАТЧ НА ПАУЗЕ',offline:'НЕТ СОЕДИНЕНИЯ','no-charges':'ВСЕ ПЕРЕХВАТЧИКИ ИСПОЛЬЗОВАНЫ','no-threat':'В ЗОНЕ НЕТ ВРАЖЕСКИХ СНАРЯДОВ','not-playing':'ОЖИДАЕМ НАЧАЛО МАТЧА','not-participant':'РЕЖИМ НАБЛЮДАТЕЛЯ'};
  function update(state,me,{online,allowed,piloting}){
-  for(const[id,en,ru]of [['tankTab','◎ TANK','◎ ТАНК'],['droneTab','✣ DRONE ','✣ ДРОН '],['defenseTab','◉ AA ','◉ ПВО ']])$(id).firstChild.textContent=label(en,ru);
-  angleCard.querySelector('.range-head span').textContent=label('DIRECTION','НАПРАВЛЕНИЕ');powerCard.querySelector('.range-head span').textContent=label('POWER','МОЩНОСТЬ');
-  tabs.setAttribute('aria-label',label('Control module','Модуль управления'));$('angle').setAttribute('aria-label',label('Barrel angle','Угол ствола'));$('power').setAttribute('aria-label',label('Shot power','Мощность выстрела'));$('droneBattery').setAttribute('aria-label',label('Drone battery','Заряд дрона'));$('droneStick').setAttribute('aria-label',label('Drone joystick — drag or use arrow keys','Джойстик дрона — перетаскивай или используй стрелки'));$('defenseCharges').setAttribute('aria-label',label('Air defense charges','Заряды ПВО'));
-  $('tankFire').textContent=label('FIRE','ОГОНЬ');$('droneLaunch').textContent=me.droneUsed?label('DRONE USED','ДРОН ИСПОЛЬЗОВАН'):label('DEPLOY DRONE','ЗАПУСТИТЬ ДРОН');$('droneDrop').textContent=label('DROP LOAD ↓','СБРОСИТЬ ↓');
-  $('dronePanel').querySelector('.drone-heading strong').textContent=piloting?label('DRONE','ДРОН'):label('FLIGHT TIME','ВРЕМЯ ПОЛЁТА');$('dronePanel').querySelector('.drone-actions small').textContent=label('ON BOARD','НА БОРТУ');$('dronePanel').querySelector('.drone-hint').textContent=label('Counter inertia and wind. Battery empty — load drops automatically.','Учитывай инерцию и ветер. Заряд закончится — оружие сбросится само.');
-  if(!piloting)$('dronePanel').querySelector('.drone-hint').textContent=label('One deployment per match. Fly above your target, then drop the selected load.','Один запуск за матч. Подлети к цели и сбрось выбранный груз.');
-  defense.querySelector('.defense-status strong').textContent=label('AIR DEFENSE','ПВО');$('defenseLaunch').lastChild.textContent=label('LAUNCH','ПУСК ПВО');defense.querySelector('.deck-caption').textContent=label('10 INTERCEPTORS PER MATCH · AUTO TARGET','10 ПЕРЕХВАТЧИКОВ ЗА МАТЧ · АВТОВЫБОР ЦЕЛИ');
+  for(const[id,en,ru]of [['tankTab','◎ TANK','◎ ТАНК'],['droneTab','✣ DRONE ','✣ ДРОН '],['defenseTab','◉ AA ','◉ ПВО ']])text($(id).firstChild,label(en,ru));
+  text(angleCard.querySelector('.range-head span'),label('DIRECTION','НАПРАВЛЕНИЕ'));text(powerCard.querySelector('.range-head span'),label('POWER','МОЩНОСТЬ'));
+  attribute(tabs,'aria-label',label('Control module','Модуль управления'));attribute($('angle'),'aria-label',label('Barrel angle','Угол ствола'));attribute($('power'),'aria-label',label('Shot power','Мощность выстрела'));attribute($('droneBattery'),'aria-label',label('Drone battery','Заряд дрона'));attribute($('droneStick'),'aria-label',label('Drone joystick — drag or use arrow keys','Джойстик дрона — перетаскивай или используй стрелки'));attribute($('defenseCharges'),'aria-label',label('Air defense charges','Заряды ПВО'));
+  text($('tankFire'),label('FIRE','ОГОНЬ'));text($('droneLaunch'),me.droneUsed?label('DRONE USED','ДРОН ИСПОЛЬЗОВАН'):label('DEPLOY DRONE','ЗАПУСТИТЬ ДРОН'));text($('droneDrop'),label('DROP LOAD ↓','СБРОСИТЬ ↓'));
+  text($('dronePanel').querySelector('.drone-heading strong'),piloting?label('DRONE','ДРОН'):label('FLIGHT TIME','ВРЕМЯ ПОЛЁТА'));text($('dronePanel').querySelector('.drone-actions small'),label('ON BOARD','НА БОРТУ'));text($('dronePanel').querySelector('.drone-hint'),piloting?label('Counter inertia and wind. Battery empty — load drops automatically.','Учитывай инерцию и ветер. Заряд закончится — оружие сбросится само.'):label('One deployment per match. Fly above your target, then drop the selected load.','Один запуск за матч. Подлети к цели и сбрось выбранный груз.'));
+  text(defense.querySelector('.defense-status strong'),label('AIR DEFENSE','ПВО'));text($('defenseLaunch').lastChild,label('LAUNCH','ПУСК ПВО'));text(defense.querySelector('.deck-caption'),label('10 INTERCEPTORS PER MATCH · AUTO TARGET','10 ПЕРЕХВАТЧИКОВ ЗА МАТЧ · АВТОВЫБОР ЦЕЛИ'));
   if(window.PartyI18n?.language!=='ru'){
-   $('fuel').textContent=me.blockedThisTurn?'MOVEMENT BLOCKED':'FUEL '+Math.round(me.fuel||0);
-   $('turnHint').textContent=state.stage==='loadout'?`${me.loadout?.length||0} / ${state.draftSize} selected`:`WIND ${state.wind>=0?'→':'←'} ${Math.abs(state.wind||0).toFixed(0)} · ROUND ${Math.floor((state.turn||0)/Math.max(1,state.players.filter(p=>p.participant).length))+1}/${state.rounds||1}`;
-   $('hand').textContent=$('controller').classList.contains('left-hand')?'Left-handed layout ⇄':'Right-handed layout ⇄';$('tankHint').textContent='Wind changes each turn. Hits score points; self-damage loses points.';
-   if($('weaponName').textContent==='Оружие')$('weaponName').textContent='Weapon';
+   text($('fuel'),me.blockedThisTurn?'MOVEMENT BLOCKED':'FUEL '+Math.round(me.fuel||0));
+   text($('turnHint'),state.stage==='loadout'?`${me.loadout?.length||0} / ${state.draftSize} selected`:`WIND ${state.wind>=0?'→':'←'} ${Math.abs(state.wind||0).toFixed(0)} · ROUND ${Math.floor((state.turn||0)/Math.max(1,state.players.filter(p=>p.participant).length))+1}/${state.rounds||1}`);
+   text($('hand'),$('controller').classList.contains('left-hand')?'Left-handed layout ⇄':'Right-handed layout ⇄');text($('tankHint'),'Wind changes each turn. Hits score points; self-damage loses points.');
+   if($('weaponName').textContent==='Оружие')text($('weaponName'),'Weapon');
   }
-  $('dronePanel').classList.remove('hidden');$('dronePanel').classList.toggle('drone-preview',!piloting);$('droneDrop').classList.toggle('hidden',!piloting);$('droneLaunch').classList.toggle('hidden',piloting);$('droneLaunch').disabled=!allowed||me.droneUsed;
-  $('droneTabCount').textContent=me.droneUsed?'0':'1';$('droneInfo').textContent=state.drone?.weaponName||$('weaponName').textContent;
-  if(!piloting){$('droneCountdown').textContent=(me.droneUsed?'0':'15')+label(' s',' с');$('droneBattery').value=me.droneUsed?0:1;}else $('droneCountdown').textContent=Math.ceil(Math.max(0,state.drone.deadline-state.t))+label(' s',' с');
+  $('dronePanel').classList.remove('hidden');$('dronePanel').classList.toggle('drone-preview',!piloting);$('droneDrop').classList.toggle('hidden',!piloting);$('droneLaunch').classList.toggle('hidden',piloting);property($('droneLaunch'),'disabled',!allowed||me.droneUsed);
+  text($('droneTabCount'),me.droneUsed?'0':'1');text($('droneInfo'),state.drone?.weaponName||$('weaponName').textContent);
+  if(!piloting){text($('droneCountdown'),(me.droneUsed?'0':'15')+label(' s',' с'));property($('droneBattery'),'value',me.droneUsed?0:1);}else text($('droneCountdown'),Math.ceil(Math.max(0,state.drone.deadline-state.t))+label(' s',' с'));
   const air=state.airDefense||{},charges=air.charges??me.airDefenseCharges??10;
-  $('defenseTabCount').textContent=charges;$('defenseCharges').textContent=`${charges} / 10`;
-  const ready=online&&!state.paused&&air.canLaunch===true;$('defenseLaunch').disabled=!ready;defense.classList.toggle('defense-ready',ready);
+  text($('defenseTabCount'),charges);text($('defenseCharges'),`${charges} / 10`);
+  const ready=online&&!state.paused&&air.canLaunch===true;property($('defenseLaunch'),'disabled',!ready);defense.classList.toggle('defense-ready',ready);
   const english={ready:'HOSTILE PROJECTILE IN RANGE','own-turn':'AVAILABLE DURING THE ENEMY TURN','not-flight':'WAITING FOR AN ENEMY SHOT',paused:'MATCH PAUSED',offline:'CONNECTION LOST','no-charges':'ALL INTERCEPTORS USED','no-threat':'NO HOSTILE PROJECTILE IN RANGE','not-playing':'WAITING FOR THE MATCH','not-participant':'SPECTATOR MODE'},reason=!online?'offline':state.paused?'paused':air.reason;
-  $('defenseReason').textContent=label(english[reason]||english['not-flight'],reasons[reason]||reasons['not-flight']);
-  const nodes=[];for(const t of air.threats||[]){const dot=document.createElement('i');dot.className='radar-contact';dot.dataset.id=t.id;dot.style.left=(50+(Number(t.dx)||0)*44)+'%';dot.style.top=(50+(Number(t.dy)||0)*44)+'%';nodes.push(dot);}
+  text($('defenseReason'),label(english[reason]||english['not-flight'],reasons[reason]||reasons['not-flight']));
+  const nextRadarKey=JSON.stringify([(air.threats||[]).map(t=>[t.id,t.dx,t.dy]),(air.interceptors||[]).map(t=>[t.id,t.x,t.y]),air.origin,air.range]);if(nextRadarKey!==radarKey){radarKey=nextRadarKey;const nodes=[];for(const t of air.threats||[]){const dot=document.createElement('i');dot.className='radar-contact';dot.dataset.id=t.id;dot.style.left=(50+(Number(t.dx)||0)*44)+'%';dot.style.top=(50+(Number(t.dy)||0)*44)+'%';nodes.push(dot);}
   for(const t of air.interceptors||[]){const dot=document.createElement('i');dot.className='radar-interceptor';dot.dataset.id=t.id;dot.style.left=(50+Math.max(-1,Math.min(1,(t.x-air.origin.x)/(air.range||600)))*44)+'%';dot.style.top=(50+Math.max(-1,Math.min(1,(t.y-air.origin.y)/(air.range||600)))*44)+'%';nodes.push(dot);}
-  $('radarContacts').replaceChildren(...nodes);$('defenseRadar').setAttribute('aria-label',label(`Radar: ${air.threats?.length||0} hostile projectiles, ${air.interceptors?.length||0} interceptors`,`Радар: вражеских снарядов ${air.threats?.length||0}, перехватчиков ${air.interceptors?.length||0}`));gauges();
+  $('radarContacts').replaceChildren(...nodes);}attribute($('defenseRadar'),'aria-label',label(`Radar: ${air.threats?.length||0} hostile projectiles, ${air.interceptors?.length||0} interceptors`,`Радар: вражеских снарядов ${air.threats?.length||0}, перехватчиков ${air.interceptors?.length||0}`));gauges();
  }
  select('tank');gauges();return{select,update,gauges,get mode(){return mode;}};
 }

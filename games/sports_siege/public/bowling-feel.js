@@ -127,9 +127,9 @@ export class BowlingFeel{
       // Impact punch-in: a quick narrowing of the lens that springs back.
       const im=host.impact,iw=im?(now-im.wall)/1000:9;if(iw>=0&&iw<.6){const u=iw<.06?iw/.06:1-smooth((iw-.06)/.54);fov-=.075*(im.power||.6)*u;}
       // Gutter "aww": the lens pulls back a touch and the camera sags and tilts.
-      const gw=(now-st.gutterWall)/1000;if(gw>=0&&gw<2.2&&(stage==='rolling'||stage==='reveal')){const u=Math.sin(Math.PI*clamp(gw/2.2,0,1));fov+=.035*u;cam.position.y-=.16*u;cam.rotateZ(.014*u);}
+      const gw=(now-st.gutterWall)/1000;if(gw>=0&&gw<2.2){const u=Math.sin(Math.PI*clamp(gw/2.2,0,1));fov+=.035*u;cam.position.y-=.16*u;cam.rotateZ(.014*u);}
       // ...and the house lights sigh: the deck and approach dim, the rims drop for a beat.
-      const L=host.lights;if(L){const gu=gw>=0&&gw<3&&stage!=='aim'?Math.sin(Math.PI*clamp(gw/3,0,1)):0;L.deck.intensity=L.base.deck*(1-.45*gu);L.approach.intensity=L.base.approach*(1-.35*gu);L.rimL.intensity=L.base.rimL*(1-.5*gu);L.rimR.intensity=L.base.rimR*(1-.5*gu);}
+      const L=host.lights;if(L){const gu=gw>=0&&gw<3?Math.sin(Math.PI*clamp(gw/3,0,1)):0; /* time-only: never snaps back on a stage change */L.deck.intensity=L.base.deck*(1-.45*gu);L.approach.intensity=L.base.approach*(1-.35*gu);L.rimL.intensity=L.base.rimL*(1-.5*gu);L.rimR.intensity=L.base.rimR*(1-.5*gu);}
       // Idle micro-motion: a slow handheld drift while the bowler lines up the shot.
       const resetCam=host.extras?.camW||0;if(stage==='aim'&&resetCam<.01){const w=smooth((age-2.6)/1.4);if(w>0){cam.position.x+=Math.sin(t*.41)*.05*w;cam.position.y+=Math.sin(t*.29+1.3)*.03*w;cam.rotateZ(Math.sin(t*.23)*.0025*w);}}
       host.launchRing.scale.setScalar(1+.06*Math.sin(t*3.2));

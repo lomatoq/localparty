@@ -24,3 +24,23 @@ html.party-player .lp-feel-layer{-webkit-mask-image:linear-gradient(to bottom,tr
 @keyframes lp-feel-impact{0%{transform:scale(1)}38%{transform:scale(.94,1.05)}72%{transform:scale(1.025,.985)}100%{transform:scale(1)}}
 @media(max-width:700px){.lp-feel-burst>i{box-shadow:none}.lp-feel-shake{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.lp-feel-layer{display:none!important}.lp-feel-shake,.lp-feel-impact,.lp-feel-counter{animation:none!important}.lp-feel-layer::before{transition:none}}
+
+/* Semantic accents: short local beats, never a panel over the playfield. */
+.lp-feel-mark{width:44px;height:36px;margin:-30px 0 0 -22px;display:grid;place-items:center;isolation:isolate;animation:lp-feel-mark 400ms cubic-bezier(.23,1,.32,1) both}
+.lp-feel-mark:before{content:'';position:absolute;inset:2px;border-radius:12px;background:#4c227d;box-shadow:0 2px 0 #21112f;transform:rotate(-8deg);z-index:-1}
+.lp-feel-mark b{font:900 24px/1 var(--hp-font-action,HeyPalsDisplay),sans-serif;color:#e0ff9c;letter-spacing:-1px}
+.lp-feel-mark-ko{width:54px;height:38px;margin:-54px 0 0 24px;animation:lp-feel-ko 500ms cubic-bezier(.23,1,.32,1) both}
+.lp-feel-mark-ko:before{background:#ffcf74;transform:rotate(-8deg);border-radius:10px 16px 10px 14px}
+.lp-feel-mark-ko b{color:#442366;font-size:25px;font-style:italic}
+.lp-feel-mark-score{width:23px;height:23px;margin:-27px 0 0 9px;animation:lp-feel-score 400ms cubic-bezier(.23,1,.32,1) both}
+.lp-feel-mark-score:before{border-radius:50%;background:#c8ff73;transform:none;box-shadow:none}
+.lp-feel-mark-score b{color:#35204b;font-size:20px}
+.lp-feel-mark-round:before{background:#c8ff73;transform:rotate(-12deg)}
+.lp-feel-mark-round b{color:#59328e;font-size:30px}
+.lp-feel-hit{width:28px;height:28px;margin:-14px 0 0 -14px;border:4px solid currentColor;border-left-color:transparent;border-bottom-color:transparent;border-radius:3px;animation:lp-feel-hit 210ms cubic-bezier(.23,1,.32,1) both}
+.lp-feel-burst-elimination>i{border-radius:2px;width:5px;height:9px;aspect-ratio:auto;box-shadow:none;background:#ffcf74}
+.lp-feel-calm{outline:2px solid #c8ff73;outline-offset:3px}
+@keyframes lp-feel-mark{0%{opacity:0;transform:translateY(4px) scale(.94) rotate(-5deg)}20%,65%{opacity:1;transform:translateY(0) scale(1) rotate(0)}100%{opacity:0;transform:translateY(-5px) scale(.97)}}
+@keyframes lp-feel-ko{0%{opacity:0;transform:scale(.94) rotate(8deg)}22%{opacity:1;transform:scale(1.08) rotate(-4deg)}40%,75%{opacity:1;transform:scale(1) rotate(0)}100%{opacity:0;transform:translateY(5px) scale(.97)}}
+@keyframes lp-feel-score{0%{opacity:0;transform:translate(0,5px) scale(.94)}20%,65%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(-6px,-9px) scale(.97)}}
+@keyframes lp-feel-hit{0%{opacity:.9;transform:rotate(-20deg) scale(.95)}100%{opacity:0;transform:rotate(8deg) scale(1.35)}}

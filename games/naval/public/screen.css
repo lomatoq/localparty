@@ -323,3 +323,44 @@ html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast 
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 :is(.crew-avatar,.fleet-avatar)[data-photo=true]{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#88b6c5)}
+
+/* The formation is not a single rounded card: only each ocean clips water. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .screen-workspace>.stage{
+ border-radius:0!important;overflow:visible!important;clip-path:none!important;mask-image:none!important;-webkit-mask-image:none!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview{overflow:visible!important}
+/* Compact two-line identities leave a dedicated, separate live-feed area. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board{gap:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .row{
+ height:64px!important;min-height:64px!important;flex-shrink:0;
+ grid-template-columns:34px 28px minmax(0,1fr) minmax(28px,max-content)!important;
+ grid-template-rows:24px 20px;column-gap:6px!important;row-gap:2px;padding:8px 14px 8px 8px!important;
+ background:linear-gradient(130deg,#31546780,#16334499)!important;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .rank{width:34px!important;min-width:34px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console #board .person small.crew-facts{
+ display:flex!important;align-items:center;gap:10px;height:20px;white-space:nowrap!important;line-height:20px!important;color:#c2e3ed!important;
+}
+html.hp-ui.party-host[data-party-game=naval] body.naval-broadcast .crew-fact{display:inline-flex;align-items:center;gap:3px;font:550 13px/20px var(--hp-font-body)!important;font-variant-numeric:tabular-nums;text-transform:none!important}
+.crew-fact-icon{display:block;width:14px;height:14px;flex:none;background:currentColor;mask:var(--crew-icon) center/contain no-repeat;-webkit-mask:var(--crew-icon) center/contain no-repeat}
+.crew-fact-icon[data-icon=health]{--crew-icon:url('/assets/icons/game-pack/health.svg')}
+.crew-fact-icon[data-icon=target]{--crew-icon:url('/assets/icons/game-pack/target.svg')}
+.crew-fact-icon[data-icon=anchor]{--crew-icon:url('/assets/icons/game-pack/anchor.svg')}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed{flex:0 0 auto!important;min-height:88px!important;max-height:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .broadcast-feed h3{text-align:center;margin-bottom:8px!important}
+
+/* Soft individual boards and cells; no shared rounded formation mask. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .miniOcean{border-radius:24px!important;padding:8px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .miniOcean span{border-radius:10px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .miniOcean{border-radius:14px!important;padding:4px!important}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main #oceanOverview[data-dense=true] .miniOcean span{border-radius:5px!important}
+/* Center the complete bridge emblem/title, not only the title text. */
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2.party-prop-heading{
+ display:flex;align-items:center;justify-content:center;gap:10px;padding-inline:0!important;margin-top:6px!important;text-align:center;
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console>h2.party-prop-heading::before{
+ position:relative;left:auto;top:auto;flex:none;margin-inline:10px;transform:rotate(-45deg);
+}
+html.hp-ui.party-managed.party-host[data-party-game=naval] body.naval-broadcast main .naval-console summary{
+ font:550 18px/24px KardiaFitRunner,var(--hp-font-body),sans-serif!important;font-style:italic!important;
+}

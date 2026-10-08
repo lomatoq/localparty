@@ -30,26 +30,26 @@
   sheet.style.setProperty('animation','none','important');profileBackdrop.style.setProperty('animation','none','important');
   const quiet=matchMedia('(prefers-reduced-motion: reduce)').matches||document.hidden;
   if(show){
-   document.body.classList.add('profile-editing');sheet.hidden=false;profileBackdrop.hidden=false;$('profileCancel').hidden=false;
+   document.body.removeAttribute('data-profile-closing');document.body.classList.add('profile-editing');sheet.hidden=false;profileBackdrop.hidden=false;$('profileCancel').hidden=false;
    sheet.setAttribute('role','dialog');sheet.setAttribute('aria-modal','true');sheet.style.removeProperty('pointer-events');profileBackdrop.style.removeProperty('pointer-events');
    if(!quiet){const animations=[sheet.animate([from||{opacity:0,scale:'.965',transform:'translate(-50%,14px)'},{opacity:1,scale:'1',transform:'translate(-50%,0)'}],{duration:240,easing:'cubic-bezier(.2,.78,.2,1)'}),profileBackdrop.animate([{opacity:wasOpen?shadeOpacity:0},{opacity:1}],{duration:240})];const record={animations,exiting:false,timer:0};profileMotion=record;record.timer=setTimeout(()=>{if(profileMotion===record)profileMotion=null;},240);}
    return;
   }
   const finish=record=>{
    if(record&&profileMotion!==record)return;
-   profileMotion=null;document.body.classList.remove('profile-editing');sheet.hidden=record?record.hide:hideOnboarding;profileBackdrop.hidden=true;$('profileCancel').hidden=true;
+   profileMotion=null;document.body.removeAttribute('data-profile-closing');document.body.classList.remove('profile-editing');sheet.hidden=record?record.hide:hideOnboarding;profileBackdrop.hidden=true;$('profileCancel').hidden=true;
    sheet.removeAttribute('role');sheet.removeAttribute('aria-modal');sheet.style.removeProperty('animation');sheet.style.removeProperty('pointer-events');profileBackdrop.style.removeProperty('animation');profileBackdrop.style.removeProperty('pointer-events');record?.animations.forEach(a=>a.cancel());
    const opener=profileOpener;profileOpener=null;if(opener?.isConnected&&!opener.closest('[hidden]'))opener.focus({preventScroll:true});
   };
   if(quiet){finish();return;}
-  sheet.style.pointerEvents='none';profileBackdrop.style.pointerEvents='none';
+  document.body.setAttribute('data-profile-closing','');sheet.style.pointerEvents='none';profileBackdrop.style.pointerEvents='none';
   const animations=[sheet.animate([from,{opacity:0,scale:'.96',transform:'translate(-50%,8px)'}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'}),profileBackdrop.animate([{opacity:shadeOpacity},{opacity:0}],{duration:180,easing:'ease-out',fill:'forwards'})];
   const record={animations,exiting:true,hide:hideOnboarding,timer:0};profileMotion=record;record.timer=setTimeout(()=>finish(record),190);
  }
  function updateTestCompanion(){if(host)window.PartyBots?.update(state,testProfiles);}
  window.PARTY_PROFILE={};
- const tell=text=>{delete $('notice').dataset.avatarError;$('notice').textContent=text;$('notice').hidden=false;clearTimeout(tell.timer);tell.timer=setTimeout(()=>$('notice').hidden=true,6000);};
- const send=data=>{if(ws?.readyState===WebSocket.OPEN)ws.send(JSON.stringify(data));else $('connection').textContent=accessClosed?'Ждём приглашения ведущего':'Подключаемся…';};
+ const tell=text=>{delete $('notice').dataset.avatarError;$('notice').textContent=text;window.LocalPartyDialogs?.setVisible($('notice'),true);clearTimeout(tell.timer);tell.timer=setTimeout(()=>window.LocalPartyDialogs?.setVisible($('notice'),false),6000);};
+ const send=data=>{if(ws?.readyState===WebSocket.OPEN){ws.send(JSON.stringify(data));return true;}$('connection').textContent=accessClosed?'Ждём приглашения ведущего':'Подключаемся…';return false;};
  async function persist(){localStorage.setItem('local-party-profile',JSON.stringify(profile));try{await fetch('/api/profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:profile.token})});}catch{}}
  function connect(){
   clearTimeout(reconnectTimer);
@@ -67,8 +67,8 @@
    if(m.type==='profile-required'){recoveryId=profile?.id||recoveryId;profile=null;window.PARTY_PROFILE={};localStorage.removeItem('local-party-profile');accepted=everAccepted=false;editing=true;render();}
    if(m.type==='state'){accessClosed=false;for(const g of m.catalog){const p=menuPalette[g.id];if(p){g.color=p[0];g.secondaryColor=p[1];}}state=m;if(!host&&editing&&profile&&m.active)saveProfileEdits();if(m.active?.ui?.serverNow)clockOffset=Date.now()-m.active.ui.serverNow;render();}
    if(m.type==='host-ok'){accepted=everAccepted=true;render();}
-   if(m.type==='joined'){freshIdentityPending=false;recoveryId='';accepted=everAccepted=true;profile={id:m.id,token:m.token,name:m.name,hand:m.hand,avatar:m.avatar||null};pendingAvatar=profile.avatar;window.PARTY_PROFILE=profile;persist();editing=false;render();}
-   if(m.type==='error'){tell(m.message);if(!host&&!everAccepted){editing=true;render();}}
+   if(m.type==='joined'){const firstJoin=!everAccepted;freshIdentityPending=false;recoveryId='';accepted=everAccepted=true;profile={id:m.id,token:m.token,name:m.name,hand:m.hand,avatar:m.avatar||null};pendingAvatar=profile.avatar;window.PARTY_PROFILE=profile;persist();editing=false;render();if(firstJoin&&!state?.active)requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));}
+   if(m.type==='error'){window.HeyPalsMatchResults?.rejectRematch?.(m.message);tell(m.message);if(!host&&!everAccepted){editing=true;render();}}
    if(m.type==='kicked'){removed=true;freshIdentityPending=true;accepted=everAccepted=false;replaced=true;profile=null;pendingAvatar=null;window.PARTY_PROFILE={};localStorage.removeItem('local-party-profile');frameKey=null;$('gameFrame').src='about:blank';editing=true;render();incidentBanner.textContent=m.message+' Для повторного входа укажите имя и нажмите «Я в игре».';incidentBanner.hidden=false;return;}
    if(m.type==='replaced'){freshIdentityPending=false;accepted=everAccepted=false;replaced=true;recoveryId=profile?.id||recoveryId;frameKey=null;$('gameFrame').src='about:blank';editing=true;render();tell('Связь перешла в другую вкладку. Нажми «Я в игре», чтобы вернуться здесь.');}
   };
@@ -126,6 +126,7 @@
   const profileSheet=!host&&editing&&!!profile&&ready;
   syncProfileSheet(profileSheet,host||ready&&!editing);$('home').hidden=!ready;
   if(!state)return;
+  window.PartySpotlight?.update(state,{launch:id=>send({type:'spotlight-launch',id}),host,ready:ready&&!editing});
   incidentBanner.hidden=!state.incident;incidentBanner.textContent=state.incident?.message||'';
   const game=state.catalog.find(g=>g.id===state.active?.id),inGame=ready&&!!game;
   const returningToLobby=!inGame&&!!frameKey;
@@ -149,7 +150,7 @@
    $('gameConnection').classList.toggle('ready',host?count===state.players.length:gameStatus==='ready');
   }else if(frameKey){$('gameFrame').src='about:blank';frameKey=null;}
   $('invite').hidden=!host;$('me').hidden=host||!profile;
-  if(!host){const headline=window.PartyI18n?.t('Компания в сборе.')||'The party is here.';$('headline').replaceChildren(...headline.split(/(party)/i).map(part=>/^party$/i.test(part)?el('em','',part):document.createTextNode(part)));$('subtitle').textContent='Голосуйте за игру. Когда выберут все, запустится лидер голосования.';$('myName').textContent=profile?`Ты — ${profile.name}`:'';}
+  if(!host){const headline=window.PartyI18n?.t('Компания в сборе.')||'The party is here.';if($('headline').dataset.copy!==headline){$('headline').dataset.copy=headline;$('headline').replaceChildren(...headline.split(/(party)/i).map(part=>/^party$/i.test(part)?el('em','',part):document.createTextNode(part)));}$('subtitle').textContent='Голосуйте за игру. Когда выберут все, запустится лидер голосования.';$('myName').textContent=profile?`Ты — ${profile.name}`:'';}
   const urls=state.urls.length?state.urls:[location.origin+'/'];
   if(host&&JSON.stringify(urls)!==$('address').dataset.urls){$('address').dataset.urls=JSON.stringify(urls);$('address').replaceChildren(...urls.map(url=>{const o=el('option','',url);o.value=url;return o;}));updateQR();}
   menuCounter($('count'),state.players.length,'',16);$('empty').hidden=!!state.players.length;
@@ -185,21 +186,22 @@
   const arrows=el('div','fresh-arrows'),previous=el('button','fresh-arrow'),next=el('button','fresh-arrow');previous.type=next.type='button';previous.setAttribute('aria-label','Предыдущие новинки');next.setAttribute('aria-label','Следующие новинки');previous.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>';next.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>';arrows.append(previous,next);heading.append(copy,arrows);
   const track=el('div','fresh-track');track.id='freshTrack';track.setAttribute('aria-label','Свежие игры');track.tabIndex=0;for(const id of freshIds){const card=document.querySelector('.game[data-id="'+id+'"]');if(card){card.classList.remove('featured');card.querySelector('.featured-label')?.remove();track.append(card);}}
   section.append(heading,track);const ordinary=[...$('games').children];if(ordinary.length>6){const rest=el('div','games catalog-continuation');rest.id='moreGames';ordinary.slice(6).forEach(card=>rest.append(card));$('games').after(section,rest);}else $('games').after(section);
-  const updateArrows=()=>{previous.disabled=track.scrollLeft<=2;next.disabled=track.scrollLeft>=track.scrollWidth-track.clientWidth-2;track.style.setProperty("--fresh-fade-left",previous.disabled?"0px":"28px");track.style.setProperty("--fresh-fade-right",next.disabled?"0px":"28px");};const advance=direction=>track.scrollBy({left:direction*(track.clientWidth*.85),behavior:reduced?'auto':'smooth'});previous.onclick=()=>advance(-1);next.onclick=()=>advance(1);track.addEventListener('scroll',updateArrows,{passive:true});new ResizeObserver(updateArrows).observe(track);requestAnimationFrame(updateArrows);
+  const updateArrows=()=>{previous.disabled=track.scrollLeft<=2;next.disabled=track.scrollLeft>=track.scrollWidth-track.clientWidth-2;track.style.setProperty("--fresh-fade-left",previous.disabled?"0px":"28px");track.style.setProperty("--fresh-fade-right",next.disabled?"0px":"28px");};const advance=direction=>window.HeyPalsScroll?.by(track,direction*(track.clientWidth*.95)) || track.scrollBy({left:direction*(track.clientWidth*.95),behavior:'auto'});previous.onclick=()=>advance(-1);next.onclick=()=>advance(1);track.addEventListener('scroll',updateArrows,{passive:true});new ResizeObserver(updateArrows).observe(track);requestAnimationFrame(updateArrows);
  }
  function voteButton(game){
   const b=el('button','catalog-vote');b.type='button';b.dataset.vote=game.id;
   b.onclick=()=>send({type:'vote-game',id:(state.votes||[]).some(v=>v.playerId===profile?.id&&v.gameId===game.id)?null:game.id});return b;
  }
- function updateVotes(){rankGuests();for(const b of document.querySelectorAll('[data-vote]')){const votes=(state.votes||[]).filter(v=>v.gameId===b.dataset.vote),mine=votes.some(v=>v.playerId===profile?.id);const key=mine+':'+votes.length;if(b.dataset.counterVote!==key){b.dataset.counterVote=key;b.replaceChildren(el('span','hp-button-label',mine?'✓ Ваш голос':'Голосовать'));if(votes.length){const number=el('span','hp-vote-count',String(votes.length));number.dataset.noTranslate='';b.append(document.createTextNode(' · '),number);}}b.setAttribute('aria-pressed',String(mine));b.disabled=!accepted;window.PartyButtonProgress?.set(b,votes.length,(state.players||[]).filter(p=>!p.testBot).length);}}
+ function updateVotes(){rankGuests();for(const b of document.querySelectorAll('[data-vote]')){const votes=(state.votes||[]).filter(v=>v.gameId===b.dataset.vote),mine=votes.some(v=>v.playerId===profile?.id);const key=mine+':'+votes.length;if(b.dataset.counterVote!==key){b.dataset.counterVote=key;b.replaceChildren(el('span','hp-button-label',mine?'✓ Ваш голос':'Голосовать'));if(votes.length){const number=el('span','hp-vote-count',String(votes.length));number.dataset.noTranslate='';b.append(document.createTextNode(' · '),number);}}if(b.getAttribute('aria-pressed')!==String(mine))b.setAttribute('aria-pressed',String(mine));if(b.disabled!==!accepted)b.disabled=!accepted;window.PartyButtonProgress?.set(b,votes.length,(state.players||[]).filter(p=>!p.testBot).length);}}
  // Guest catalog = a ranked list: the most-voted game on top (tall card with the vote
  // count), the next two medium, the rest compact rows (art, title, rules "?", vote).
  function guestCard(game){
   const card=el('article','guest-game rank-row');card.dataset.id=game.id;card.dataset.section=game.section;
   if(/^#[a-f\d]{6}$/i.test(game.color||''))card.style.setProperty('--card',game.color);
   if(/^#[a-f\d]{6}$/i.test(game.secondaryColor||''))card.style.setProperty('--card-secondary',game.secondaryColor);
-  const img=el('img','guest-art');img.src='/assets/games/'+(game.id==='tankarena'?'tankarena-hd':game.id)+'.webp';img.alt='';img.loading='lazy';img.decoding='async';img.onerror=()=>{img.hidden=true;};
+  const img=el('img','guest-art');img.sizes='64px';img.srcset='/assets/games/controller/'+game.id+'-192.webp 192w, /assets/games/controller/'+game.id+'-640.webp 640w';img.src='/assets/games/controller/'+game.id+'-640.webp';img.alt='';img.loading='eager';img.decoding='async';img.fetchPriority='low';img.onerror=()=>{img.hidden=true;};
   const copy=el('div','guest-copy'),lead=el('span','guest-lead');lead.hidden=true;copy.append(lead,el('strong','',game.title),menuCounter(el('small','guest-player-range'),game.min+'–'+game.max,'игроков'));
+  const title=copy.querySelector('strong'),logo=el('img','guest-title-logo');title.classList.add('guest-title-text');logo.alt=game.title;logo.decoding='async';logo.src='/assets/game-logos-v1/logos/'+encodeURIComponent(game.id)+'.png?v=1';logo.onload=()=>card.classList.add('has-title-logo');logo.onerror=()=>logo.remove();copy.insertBefore(logo,title);
   const info=el('button','guest-info','?');info.type='button';info.setAttribute('aria-label','Правила: '+game.title);info.onclick=()=>showRules(game);
   const actions=el('div','guest-actions');actions.append(info,voteButton(game));
   card.append(img,copy,actions);return card;
@@ -214,8 +216,9 @@
   if(moved)list.append(...sorted);
   let place=0;for(const card of sorted){const rank=card.hidden?'row':place===0?'hero':place<3?'big':'row';if(!card.hidden)place++;
    for(const r of ['hero','big','row'])card.classList.toggle('rank-'+r,r===rank);
-   const n=tally.get(card.dataset.id)||0,lead=card.querySelector('.guest-lead');lead.hidden=rank!=='hero';
-   if(n){const readout=menuCounter(el('span',''),n,plural(n,'голос','голоса','голосов'));lead.replaceChildren(document.createTextNode('Лидер · '),readout);}else lead.textContent='Голосуй первым';}
+   const art=card.querySelector('.guest-art'),size=rank==='row'?'64px':'200px';if(art&&art.sizes!==size){art.sizes=size;art.fetchPriority=rank==='row'?'low':'high';}
+   const n=tally.get(card.dataset.id)||0,lead=card.querySelector('.guest-lead');if(lead.hidden!==(rank!=='hero'))lead.hidden=rank!=='hero';
+   if(lead.dataset.votes!==String(n)){lead.dataset.votes=String(n);if(n){const readout=menuCounter(el('span',''),n,plural(n,'голос','голоса','голосов'));lead.replaceChildren(document.createTextNode('Лидер · '),readout);}else lead.textContent='Голосуй первым';}}
   // FLIP: cards glide to their new places instead of jumping.
   if(before)for(const card of sorted){const was=before.get(card),now=card.getBoundingClientRect();if(!was||card.hidden)continue;const dy=was.top-now.top;if(Math.abs(dy)<1)continue;
    card.animate([{transform:`translateY(${dy}px)`},{transform:'none'}],{duration:520,easing:'cubic-bezier(.32,.72,0,1)'});}
@@ -250,7 +253,7 @@
  function awardIcon(key,cls='hp-award'){const img=el('img',cls);img.src='/assets/awards/'+key+'.png';img.alt='';img.setAttribute('aria-hidden','true');img.decoding='async';return img;}
  const awardMedals=['medal-gold','medal-silver','medal-bronze'];
  function placeNode(rank,cls,award='medal'){return window.HeyPalsUI?.createPlace(rank,{className:cls,award})||el('span',cls,String(rank));}
- function companyPlaces(rows){let rank=0,last='';return rows.map((p,i)=>{const key=`${Number(p.points)||0}:${Number(p.wins)||0}`;if(key!==last){rank=i+1;last=key;}return rank;});}
+ function companyPlaces(rows){let rank=0,last='';return rows.map((p,i)=>{const key=`${Number(p.coins??p.points)||0}:${Number(p.wins)||0}`;if(key!==last){rank=i+1;last=key;}return rank;});}
  function literalName(name,cls=''){const n=el('b',cls+' hp-player-name',name);n.dataset.noTranslate='';return n;}
  const metricAwards={kills:'power',deaths:'survivor',shots:'accuracy',hits:'accuracy',correct:'accuracy',answers:'fair-play',streak:'win-streak',bestStreak:'win-streak',drawings:'party-veteran',strokes:'party-veteran',laps:'speed',captures:'defender',levels:'all-rounder',actions:'all-rounder',wins:'cup-star',votesCorrect:'fair-play',questions:'fair-play',bestLap:'personal-best',reactionMs:'speed',bestReactionMs:'personal-best',roundWins:'cup-gold',level:'all-rounder',spyRounds:'clutch',votes:'fair-play',finishTime:'speed',distance:'speed',boosts:'speed',damage:'power',guessed:'accuracy',performed:'party-veteran',placed:'defender',perfects:'accuracy',towerHeight:'new-record',sunk:'power',survived:'survivor',extracted:'clutch',blocks:'defender',bestPunch:'personal-best',punches:'power',flightSeconds:'clutch',finalMass:'survivor',teamGoals:'teamwork',rounds:'all-rounder'};
  const metricLabels={kills:'Уничтожений',deaths:'Возрождений',shots:'Выстрелов',hits:'Попаданий',correct:'Верных ответов',answers:'Ответов',streak:'Серия',drawings:'Рисунков',strokes:'Штрихов',laps:'Кругов',falseStarts:'Фальстартов',captures:'Флагов',levels:'Уровней',actions:'Действий',wins:'Побед',votesCorrect:'Верных голосов',questions:'Вопросов',bestLap:'Лучший круг',reactionMs:'Реакция, мс',bestReactionMs:'Лучшая реакция, мс',bestStreak:'Лучшая серия',roundWins:'Побед в раундах',wrong:'Ошибок',level:'Уровень',spyRounds:'Раундов шпионом',votes:'Голосований',finishTime:'Лучший финиш, с',distance:'Дистанция',boosts:'Ускорений',collisions:'Столкновений',damage:'Урона',guessed:'Угадано',skips:'Пропусков',performed:'Выходов на сцену',placed:'Блоков установлено',perfects:'Точных установок',misses:'Промахов',towerHeight:'Рекорд высоты',sunk:'Потоплено',survived:'Сохранено палуб',extracted:'Блоков вытянуто',blocks:'Блоков',skipped:'Пропущено ходов',collapsed:'Обрушений',timeouts:'Пропусков по времени'};
@@ -261,14 +264,14 @@
   const existing=new Map([...$('leaderboard').children].map(n=>[n.dataset.id,n]));
   ranking.forEach((p,i)=>{
    const row=existing.get(p.id)||el('button','rank-row');row.type='button';row.dataset.id=p.id;row.dataset.place=places[i];row.classList.toggle('champion',places[i]===1);const rank=placeNode(places[i],'rank-number','cup');const identity=el('span','rank-identity');identity.append(avatarNode(p,'rank-avatar'),literalName(p.name,'rank-name'),el('small','rank-history',`${p.wins||0} побед · ${p.played||0} партий`));row.replaceChildren(rank,identity);
-   const stats=el('span','rank-stats');stats.append(el('strong','',Number(p.points||0).toLocaleString('en-US')),el('small','','очков'));row.classList.toggle('wide-score',String(Math.abs(Number(p.points||0))).length>6);row.append(stats);row.onclick=()=>showPlayerStats(p);$('leaderboard').append(row);existing.delete(p.id);
+   const stats=el('span','rank-stats');window.HeyPalsCoins?.amount(stats,p.coins??p.points??0);row.classList.toggle('wide-score',String(Math.abs(Number(p.coins??p.points??0))).length>6);row.append(stats);row.onclick=()=>showPlayerStats(p);$('leaderboard').append(row);existing.delete(p.id);
   });for(const row of existing.values())row.remove();
   if(!reduced)for(const row of $('leaderboard').children){const prev=before.get(row.dataset.id),delta=prev===undefined?15:prev-row.getBoundingClientRect().top;row.animate([{transform:`translateY(${delta}px)`,opacity:prev===undefined?0:1},{transform:'translateY(0)',opacity:1}],{duration:650,easing:'cubic-bezier(.2,.8,.2,1)'});}
   const result=state.lastResult;$('lastResult').hidden=!result;if(result){const game=state.catalog.find(g=>g.id===result.game),gameIdentity=el('span','last-result-game');if(game){const logo=el('img','last-match-logo');logo.src='/assets/game-logos-v1/logos/'+encodeURIComponent(game.id)+'.png?v=1';logo.alt='';logo.decoding='async';logo.setAttribute('data-hp-game-logo','');logo.onerror=()=>logo.remove();gameIdentity.append(logo);}gameIdentity.append(el('span','',game?.title||result.game));$('resultTitle').replaceChildren(el('span','last-result-label','Последняя партия'),gameIdentity);$('resultRows').replaceChildren(...[...result.players].sort((a,b)=>(a.rank||99)-(b.rank||99)).map((p,i)=>{const r=el('div','result-row');const team=result.ranking?.kind==='teams',score=el('span','last-result-score');score.append(el('strong','',Number(team?p.teamScore:p.score).toLocaleString('ru-RU')),el('small','',team?'Счёт команды':'очков'));const identity=el('span','last-result-identity');identity.append(avatarNode(ranking.find(player=>player.id===p.id)||p,'rank-avatar'),literalName(p.name,'last-result-name'));r.dataset.place=p.rank||i+1;r.classList.toggle('champion',(p.rank||i+1)===1);r.classList.toggle('wide-score',String(Math.abs(Number(team?p.teamScore:p.score))).length>6);r.append(placeNode(p.rank||i+1,'last-result-place','cup'),identity,score);return r;}));}
  }
  function showPlayerStats(p){
   $('statsName').setAttribute('data-no-translate','');
-  $('statsName').replaceChildren(avatarNode(p,'profile-avatar'),literalName(p.name,'profile-name'));$('statsBody').className='profile-content';const back=el('button','stats-back','← Топ компании');back.onclick=showTop;const summary=el('div','profile-summary');for(const [value,label] of [[p.played||0,'Партий'],[p.wins||0,'Побед'],[(p.played?Math.round(p.wins/p.played*100):0)+'%','Доля побед']]){const tile=el('div','');tile.append(el('strong','',String(value)),el('small','',label));tile.prepend(awardIcon(['party-veteran','cup-gold','accuracy'][summary.children.length]));summary.append(tile);}$('statsBody').replaceChildren(back,summary);if(p.wins>0){const awards=el('div','profile-earned');const first=awardIcon('first-win');first.title='First victory';awards.append(first);if(state.leaderboard?.[0]?.id===p.id){const mvp=awardIcon('mvp');mvp.title='Party leader';awards.append(mvp);}$('statsBody').append(awards);}
+  $('statsName').replaceChildren(avatarNode(p,'profile-avatar'),literalName(p.name,'profile-name'));$('statsBody').className='profile-content';const back=el('button','quiet stats-back hp-popup-back');back.setAttribute('aria-label','Топ компании');back.onclick=showTop;$('statsDialog').querySelector('.hp-popup-actions .stats-back')?.remove();$('closeStats').hidden=true;$('statsDialog').querySelector('.hp-popup-actions').append(back);const summary=el('div','profile-summary');for(const [value,label] of [[p.played||0,'Партий'],[p.wins||0,'Побед'],[(p.played?Math.round(p.wins/p.played*100):0)+'%','Доля побед']]){const tile=el('div','');tile.append(el('strong','',String(value)),el('small','',label));tile.prepend(awardIcon(['party-veteran','cup-gold','accuracy'][summary.children.length]));summary.append(tile);}$('statsBody').replaceChildren(summary);if(p.wins>0){const awards=el('div','profile-earned');const first=awardIcon('first-win');first.title='First victory';awards.append(first);if(state.leaderboard?.[0]?.id===p.id){const mvp=awardIcon('mvp');mvp.title='Party leader';awards.append(mvp);}$('statsBody').append(awards);}
   for(const [id,s] of Object.entries(p.games||{})){const game=state.catalog.find(g=>g.id===id);if(!game)continue;const box=el('section','stat-game');const gameSummary=el('p','stat-game-summary',`${s.played||0} партий · ${s.wins||0} побед · `);gameSummary.prepend(awardIcon('personal-best'));gameSummary.append(el('span','','Лучший'),document.createTextNode(' '+Number(s.bestScore||0).toLocaleString('ru-RU')));box.append(el('h3','',game.title),gameSummary);
    const metrics=el('dl','stat-metrics');for(const [k,v] of Object.entries(s.metrics||{})){const label=metricLabels[k]||({bestPunch:'Лучший удар',punches:'Ударов',flightSeconds:'Полёт, с',finalMass:'Вес в финале',teamGoals:'Голов команды',rounds:'Раундов'}[k]);if(!label||!Number.isFinite(v)||(k==='bestPunch'&&id!=='punchmeter')||(k==='rounds'&&id!=='snakelines'))continue;const item=el('div','');item.classList.add('has-award');item.append(awardIcon(metricAwards[k]||'all-rounder'));item.append(el('dt','',label),el('dd','',Number((Math.round(v*100)/100)).toLocaleString('ru-RU')));metrics.append(item);}if(metrics.children.length)box.append(metrics);$('statsBody').append(box);}
   if(!Object.keys(p.games||{}).length)$('statsBody').append(el('p','stats-empty','После первой партии здесь появятся результаты по играм.'));
@@ -305,7 +308,7 @@
    if(force===true||key!==lastUIMessage||rosterPostedSource!==rosterSource){lastUIMessage=key;if(force===true||rosterPostedSource!==rosterSource){message.roster=rosterForGames;rosterPostedSource=rosterSource;}$('gameFrame').contentWindow?.postMessage(message,location.origin);}
    if(host&&state.active.session?.startRequested&&ui.phase==='waiting')$('gameFrame').contentWindow?.postMessage({type:'party-start',instance:state.active.instance},location.origin);
   }else lastUIMessage='';
-  window.HeyPalsMatchResults?.update({active:active?state.active:null,selfId:profile?.id,host});
+  window.HeyPalsMatchResults?.update({active:active?state.active:null,selfId:profile?.id,host,busy:!!state?.busy,onReplay:instance=>{if(state?.active?.instance!==instance||state.active.ui?.phase!=='results'||state.busy)return false;return send({type:'rematch',instance});}});
   window.HeyPalsAudio?.scene(!active?'lobby':state.active.session?.paused?'pause':ui.phase==='waiting'?'matchmaking':ui.phase==='results'?'results':'game');
   renderHUDClock(ui,active);
   // The 200 ms clock tick must not rebuild avatars, SVG buttons, or measure
@@ -323,7 +326,7 @@
   document.body.classList.toggle('in-game',active);document.body.classList.toggle('is-host',host);document.body.classList.toggle('is-player',!host);document.body.dataset.phase=ui.phase;if(ui.phase!=='paused')document.body.classList.toggle('session-active',active&&['countdown','playing','reveal','results'].includes(ui.phase));
   $('hudTimer').hidden=!active;$('sessionIdentity').hidden=!active;$('gameRules').hidden=!active;$('joinOpen').hidden=!host;$('qrDock').hidden=!host||active;$('catalogFilters').hidden=active||!everAccepted;queueQrDockLayout();
   $('testModeBox').hidden=!host||active;$('testMode').checked=!!state?.testMode;$('botCount').textContent=state?.botCount||0;$('botMinus').disabled=active||!(state?.botCount);$('botPlus').disabled=active||(state?.botCount||0)>=15||(state?.players.length||0)>=16;
-  $('back').hidden=!active||!host;$('roomRules').hidden=!active;$('retryGame').hidden=!active;$('closeRoom').textContent=active?'Вернуться в игру':'Вернуться';$('companyRoomOpen').hidden=!(state?.players?.length);
+  $('back').hidden=!active||!host;$('roomRules').hidden=!active;$('retryGame').hidden=!active;$('closeRoom').setAttribute('aria-label',active?'Вернуться в игру':'Вернуться');$('companyRoomOpen').hidden=!(state?.players?.length);
   $('lobbyExit').hidden=!active;$('sessionControls').hidden=!active;$('gameObjective').hidden=!active||host;const pauseVisible=active&&!!state?.active?.session?.paused;if(window.LocalPartyDialogs)LocalPartyDialogs.setVisible($('pauseOverlay'),pauseVisible);else $('pauseOverlay').hidden=!pauseVisible;
   $('liveTop').hidden=true;
   if(!active){$('waitingRules').hidden=true;document.body.classList.remove('game-waiting','session-active');return;}
@@ -373,11 +376,25 @@
   const all=state?.leaderboard||[],matches=state?.totalMatches||0,leader=all[0],last=state?.lastResult;
   $('eveningStats').replaceChildren(...[[String(matches),'Партий вместе'],[String(new Set(all.flatMap(p=>Object.keys(p.games||{}))).size),'Игр попробовали'],[leader?`${Math.round(leader.wins/Math.max(1,leader.played)*100)}%`:'—','Победы лидера'],[last?state.catalog.find(g=>g.id===last.game)?.title||'—':'—','Последняя игра']].map(([value,label])=>{const d=el('div','');d.append(el('b','',value),el('small','',label));return d;}));
   const ranks=state?.leaderboard||[],places=companyPlaces(ranks),mine=ranks.findIndex(p=>p.id===profile?.id);$('myRank').textContent=host?'':mine<0?'':`#${places[mine]}`;
-  $('miniLeaderboard').replaceChildren(...(ranks.length?ranks.slice(0,3).map((p,i)=>{const r=el('div','mini-rank');r.append(placeNode(places[i],'mini-place','cup'),avatarNode(p,'mini-avatar'),literalName(p.name),el('strong','mini-score',p.points));return r;}):[el('p','mini-empty','Первый раунд решит, кто окажется наверху.')]));
-  $('liveTop').replaceChildren(...(ranks.length?ranks.slice(0,3).map((p,i)=>{const d=el('span','');d.className='live-top-row';d.append(placeNode(places[i],'live-top-place','cup'),literalName(p.name),el('strong','live-top-score',p.points));return d;}):[el('span','','↗ Топ компании · первая партия впереди')]));
+  $('miniLeaderboard').replaceChildren(...(ranks.length?ranks.slice(0,3).map((p,i)=>{const r=el('div','mini-rank');r.append(placeNode(places[i],'mini-place','cup'),avatarNode(p,'mini-avatar'),literalName(p.name),window.HeyPalsCoins?.amount(el('strong','mini-score'),p.coins??p.points??0));return r;}):[el('p','mini-empty','Первый раунд решит, кто окажется наверху.')]));
+  $('liveTop').replaceChildren(...(ranks.length?ranks.slice(0,3).map((p,i)=>{const d=el('span','');d.className='live-top-row';d.append(placeNode(places[i],'live-top-place','cup'),literalName(p.name),window.HeyPalsCoins?.amount(el('strong','live-top-score'),p.coins??p.points??0));return d;}):[el('span','','↗ Топ компании · первая партия впереди')]));
  }
  function renderRoom(){const players=state?.players||[]; $('roomToggle').setAttribute('aria-label',`В комнате ${players.length}. Показать всех игроков`);$('roomToggle').hidden=!state;$('roomCount').textContent=players.length;$('roomAvatars').replaceChildren(...players.slice(0,3).map((p,i)=>{const n=avatarNode(p,'room-avatar-chip');n.style.setProperty('--avatar-color',['#b4ff39','#8a86ff','#62ded5'][i]);return n;}));$('roomPlayers').replaceChildren(...(players.length?players.map(p=>{const n=el('div','room-player');n.append(avatarNode(p),el('b','',p.name),el('small','',p.gameReady?'В игре':'Подключён'));return n;}):[el('p','','Компания ещё собирается.')]));}
- function showTop(){$('statsName').removeAttribute('data-no-translate');const ranks=state?.leaderboard||[],places=companyPlaces(ranks);$('statsName').textContent='Топ компании';$('statsBody').className='ranking-content';$('statsBody').replaceChildren(el('p','stats-intro','Каждая партия меняет расстановку. Нажми на игрока, чтобы увидеть его результаты.'),...(ranks.length?ranks.map((p,i)=>{const b=el('button','stats-rank');b.type='button';b.dataset.place=places[i];b.classList.toggle('is-self',p.id===profile?.id);const avatar=avatarNode(p,'stats-avatar'),identity=el('span','stats-identity'),score=el('span','stats-score'),place=placeNode(places[i],'stats-place','cup');identity.append(literalName(p.name),el('small','',`${p.wins||0} побед · ${p.played||0} партий`));if(p.id===profile?.id)identity.append(el('span','stats-you','You'));score.append(el('strong','',Number(p.points||0).toLocaleString('ru-RU')),el('small','','очков'));b.append(place,avatar,identity,score);b.onclick=()=>showPlayerStats(p);return b;}):[el('p','stats-empty','Сыграйте первую партию — здесь появятся победы и рекорды.')]));$('statsName').tabIndex=-1;$('statsDialog').showModal();$('statsName').focus({preventScroll:true});$('statsDialog').scrollTop=0;$('statsBody').scrollTop=0;}
+ let lastViewedTop=[];
+ function animateViewedTop(){
+  const rows=[...$('statsBody').querySelectorAll('.stats-rank')],previous=lastViewedTop;
+  lastViewedTop=rows.map(row=>row.dataset.id);
+  if(reduced||!previous.length||!rows.length)return;
+  const positions=rows.map(row=>row.offsetTop);
+  rows.forEach((row,index)=>{
+   const old=previous.indexOf(row.dataset.id);
+   if(old<0||old===index)return;
+   const delta=(positions[Math.min(old,positions.length-1)]||0)-positions[index];
+   row.animate([{transform:`translateY(${delta}px)`},{transform:'translateY(0)'}],{duration:650,delay:220,easing:'cubic-bezier(.22,1,.36,1)',fill:'backwards'}).id='hp-rank-shift';
+   if(index===0)row.animate([{filter:'brightness(1)'},{filter:'brightness(1.22)',offset:.6},{filter:'brightness(1)'}],{duration:900,delay:500});
+  });
+ }
+ function showTop(){$('statsDialog').querySelector('.hp-popup-actions .stats-back')?.remove();$('closeStats').hidden=false;$('statsName').removeAttribute('data-no-translate');const ranks=state?.leaderboard||[],places=companyPlaces(ranks);$('statsName').textContent='Топ компании';$('statsBody').className='ranking-content';$('statsBody').replaceChildren(el('p','stats-intro','Каждая партия меняет расстановку. Нажми на игрока, чтобы увидеть его результаты.'),...(ranks.length?ranks.map((p,i)=>{const b=el('button','stats-rank');b.type='button';b.dataset.id=p.id;b.dataset.place=places[i];b.classList.toggle('is-self',p.id===profile?.id);const avatar=avatarNode(p,'stats-avatar'),identity=el('span','stats-identity'),score=el('span','stats-score'),place=placeNode(places[i],'stats-place','cup');identity.append(literalName(p.name),el('small','',`${p.wins||0} побед · ${p.played||0} партий`));if(p.id===profile?.id)identity.append(el('span','stats-you','You'));window.HeyPalsCoins?.amount(score,p.coins??p.points??0);b.append(place,avatar,identity,score);b.onclick=()=>showPlayerStats(p);return b;}):[el('p','stats-empty','Сыграйте первую партию — здесь появятся победы и рекорды.')]));$('statsName').tabIndex=-1;$('statsDialog').showModal();$('statsName').focus({preventScroll:true});$('statsDialog').scrollTop=0;$('statsBody').scrollTop=0;animateViewedTop();}
  function showCatalog(){if(!state)return;if(!state.active){$('catalogSection').scrollIntoView({behavior:reduced?'auto':'smooth'});return;}if(!host){$('catalogQuick').className='guest-games';$('catalogQuick').replaceChildren(...state.catalog.map(guestCard));updateVotes();$('catalogDialog').showModal();return;}$('catalogQuick').replaceChildren(...state.catalog.map(g=>{const b=el('button',''),img=el('img','');img.src=g.artwork?'/assets/games/'+g.artwork:'/assets/games/'+(g.id==='tankarena'?'tankarena-hd':g.id)+'.webp?v=0.6-premium';img.alt='';b.append(img,el('span','',g.title));b.onclick=()=>{$('catalogDialog').close();host?send({type:'launch',id:g.id}):showRules(g);};return b;}));$('catalogDialog').showModal();}
  function updateQR(){$('qr').src='/api/qr?url='+encodeURIComponent($('address').value);$('dockQr').src=$('qr').src;}
  const qrDock=$('qrDock'),joinOpen=$('joinOpen'),appHeader=document.querySelector('.app-header');
@@ -417,7 +434,8 @@
  function queueHeroBackground(){if(heroLayoutFrame)return;heroLayoutFrame=requestAnimationFrame(()=>{
   heroLayoutFrame=0;if(!heroStage||!document.body.classList.contains('is-player')||document.body.classList.contains('in-game'))return;
   const heading=$('catalogSection')?.querySelector(':scope>.section-title');if(!heading)return;
-  const height=Math.max(240,heading.getBoundingClientRect().top-heroStage.getBoundingClientRect().top+45);
+  const help=document.querySelector('.return-entry-help'),helpHeight=help?.open?help.querySelector('.return-entry-body')?.getBoundingClientRect().height||0:0;
+  const height=Math.max(240,heading.getBoundingClientRect().top-heroStage.getBoundingClientRect().top-helpHeight+45);
   const value=Math.round(height)+'px';if(heroStage.style.getPropertyValue('--hero-art-height')!==value)heroStage.style.setProperty('--hero-art-height',value);
  });}
  const heroBackgroundObserver=new ResizeObserver(queueHeroBackground);
@@ -427,13 +445,34 @@
  if(heroStage&&!reduced){heroStage.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=heroStage.getBoundingClientRect(),x=Math.max(-1,Math.min(1,(e.clientX-r.left)/r.width*2-1)),y=Math.max(-1,Math.min(1,(e.clientY-r.top)/r.height*2-1));heroStage.style.setProperty('--art-x',(x*4).toFixed(2)+'px');heroStage.style.setProperty('--art-y',(y*3).toFixed(2)+'px');},{passive:true});heroStage.addEventListener('pointerleave',()=>{heroStage.style.setProperty('--art-x','0px');heroStage.style.setProperty('--art-y','0px');});}
  $('railTop').onclick=()=>window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
  $('goTable').onclick=()=>{filterCatalog('all');$('tableSection').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});};
- let scrollFrame=0,landscapeY=0,lastLandscapeTime=0;const updateLandscape=time=>{const target=Math.min(64,scrollY*.025),dt=Math.min(40,time-(lastLandscapeTime||time-16));lastLandscapeTime=time;landscapeY+=(target-landscapeY)*(1-Math.exp(-dt/180));document.documentElement.style.setProperty('--landscape-shift',landscapeY.toFixed(2)+'px');if(Math.abs(target-landscapeY)>.08&&!document.hidden)scrollFrame=requestAnimationFrame(updateLandscape);else{scrollFrame=0;lastLandscapeTime=0;}};window.addEventListener('scroll',()=>{if(!reduced&&!scrollFrame)scrollFrame=requestAnimationFrame(updateLandscape);},{passive:true});
+ // Parallax belongs only to the decorative landscape. Writing its variable on
+ // <html> invalidated every descendant on each eased scroll frame, including
+ // the entire catalogue behind an open profile sheet.
+ const landscapeNodes=[...document.querySelectorAll('.party-landscape')];
+ let scrollFrame=0,landscapeY=0,lastLandscapeTime=0,landscapeTargets=[];
+ const landscapeBlocked=()=>document.hidden||document.body.classList.contains('profile-editing')||!!document.querySelector('dialog[open]:modal');
+ const stopLandscape=()=>{if(scrollFrame)cancelAnimationFrame(scrollFrame);scrollFrame=0;lastLandscapeTime=0;};
+ const updateLandscape=time=>{
+  if(landscapeBlocked()||!landscapeTargets.length){stopLandscape();return;}
+  const target=Math.max(0,Math.min(64,scrollY*.025)),dt=Math.min(40,time-(lastLandscapeTime||time-16));lastLandscapeTime=time;
+  landscapeY+=(target-landscapeY)*(1-Math.exp(-dt/180));
+  const value=landscapeY.toFixed(2)+'px';
+  for(const node of landscapeTargets)if(node.isConnected&&node.style.getPropertyValue('--landscape-shift')!==value)node.style.setProperty('--landscape-shift',value);
+  if(Math.abs(target-landscapeY)>.08)scrollFrame=requestAnimationFrame(updateLandscape);else{scrollFrame=0;lastLandscapeTime=0;}
+ };
+ window.addEventListener('scroll',()=>{
+  if(reduced||scrollFrame||landscapeBlocked()||!landscapeNodes.length)return;
+  landscapeTargets=landscapeNodes.filter(node=>node.isConnected&&node.getClientRects().length);
+  if(landscapeTargets.length)scrollFrame=requestAnimationFrame(updateLandscape);
+ },{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stopLandscape();});
  $('address').onchange=updateQR;$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('address').value);tell('Адрес скопирован');}catch{tell('Адрес для друзей: '+$('address').value);}};
  function saveProfileEdits(){if(!profile||avatarBusy)return false;const name=$('name').value.trim()||profile.name;const hand=document.querySelector('[name=hand]:checked').value;const avatar=pendingAvatar||null;if(name!==profile.name||hand!==profile.hand||avatar!==profile.avatar){profile={...profile,name,hand,avatar};window.PARTY_PROFILE=profile;void persist();send({type:'join',token:profile.token,name,hand,avatar});}editing=false;render();return true;}
  $('joinForm').onsubmit=e=>{e.preventDefault();if(profile&&!replaced){saveProfileEdits();return;}const data={type:'join',id:profile?.id,recoverId:recoveryId||undefined,clientId,token:profile?.token,freshIdentity:freshIdentityPending,name:$('name').value,hand:document.querySelector('[name=hand]:checked').value,avatar:pendingAvatar||null};if(replaced){removed=false;replaced=false;connect();ws.addEventListener('open',()=>send(data),{once:true});}else send(data);};
  function openProfile(){if(!document.body.classList.contains('profile-editing'))profileOpener=document.activeElement;editing=true;pendingAvatar=profile?.avatar||null;$('name').value=profile?.name||'';updateAvatarPreview();$('avatarStatus').textContent='';render();const sheet=$('onboarding');sheet.tabIndex=-1;sheet.querySelector('.profile-fields').scrollTop=0;sheet.focus({preventScroll:true});}
  $('profileCancel').onclick=()=>{if(!profile)return;editing=false;pendingAvatar=profile.avatar||null;$('name').value=profile.name||'';document.querySelector(`[name=hand][value="${profile.hand==='left'?'left':'right'}"]`).checked=true;updateAvatarPreview();render();};
- profileBackdrop.onclick=()=>saveProfileEdits();
+ const bindProfileBackdrop=()=>window.LocalPartyDialogs?.bindBackdrop(profileBackdrop,$('onboarding'),saveProfileEdits);
+ if(window.LocalPartyDialogs)bindProfileBackdrop();else document.addEventListener('DOMContentLoaded',bindProfileBackdrop,{once:true});
  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&editing&&document.body.classList.contains('profile-editing')&&!avatarBusy){event.preventDefault();$('profileCancel').click();}});
  $('edit').onclick=openProfile;
  let avatarBusy=false;
@@ -469,14 +508,6 @@
  $('resumeButton').prepend(awardIcon('comeback'));$('showStats').onclick=showTop;$('showGames').onclick=showCatalog;
  $('allRanks').onclick=showTop;$('qrDock').onclick=()=>$('joinOpen').click();for(const b of document.querySelectorAll('[data-filter]'))b.onclick=()=>{filterCatalog(b.dataset.filter);if(b.dataset.filter==='all'){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:reduced?'auto':'smooth'}));}else if(window.innerWidth<900&&b.dataset.filter!=='fresh')$('catalogSection').scrollIntoView({behavior:reduced?'auto':'smooth'});};
  $('roomToggle').onclick=()=>{$('roomDialog').showModal();$('roomTitle').focus({preventScroll:true});$('roomDialog').scrollTop=0;};$('closeRoom').onclick=()=>$('roomDialog').close();$('roomRules').onclick=()=>{$('roomDialog').close();$('gameRules').click();};
- // Modal backdrops target the dialog itself; only dismiss a tap wholly outside it.
- const roomDialog=$('roomDialog');
- const outsideRoom=e=>{const r=roomDialog.getBoundingClientRect();return e.target===roomDialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom);};
- let roomBackdropPress=false;
- roomDialog.addEventListener('pointerdown',e=>{roomBackdropPress=outsideRoom(e);});
- roomDialog.addEventListener('pointercancel',()=>{roomBackdropPress=false;});
- roomDialog.addEventListener('click',e=>{const dismiss=roomBackdropPress&&outsideRoom(e);roomBackdropPress=false;if(dismiss)roomDialog.close();});
- roomDialog.addEventListener('close',()=>{roomBackdropPress=false;});
  $('companyRoomOpen').onclick=()=>{$('roomDialog').showModal();$('roomTitle').focus({preventScroll:true});$('roomDialog').scrollTop=0;};
  $('joinOpen').onclick=()=>{$('dialogQr').src=$('qr').src;$('dialogAddress').textContent=$('address').value||location.origin;$('joinDialog').showModal();const title=$('joinDialog').querySelector('h2');title.tabIndex=-1;title.focus({preventScroll:true});$('joinDialog').querySelector('.dialog-body').scrollTop=0;};$('closeJoin').onclick=()=>$('joinDialog').close();$('copyDialogAddress').onclick=()=>$('copy').click();$('closeCatalog').onclick=()=>$('catalogDialog').close();
  // Give every embedded controller the space actually left between the header

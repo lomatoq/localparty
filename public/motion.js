@@ -20,24 +20,42 @@
   if(previous===undefined||previous===text)return;
   if(el.matches(scoreSelector))pulse(el,'lp-motion-pulse');else if(el.matches(statusSelector))pulse(el,'lp-motion-status');
  };
- const scan=node=>{
-  const element=node instanceof Element?node:node?.parentElement;if(!element||!element.isConnected)return;
-  if(element.matches(scoreSelector+','+statusSelector))changed(element);
-  element.querySelectorAll?.(scoreSelector+','+statusSelector).forEach(changed);
- };
+ const valueSelector=scoreSelector+','+statusSelector;
  const setPreference=()=>root.classList.toggle('lp-motion-reduced',media.matches);
  setPreference();media.addEventListener?.('change',setPreference);
  document.querySelectorAll(scoreSelector+','+statusSelector).forEach(el=>{el.dataset.lpMotionText=textOf(el);});
  // A renderer can write source-language text every tick; i18n rewrites it in a
  // following mutation microtask. Compare the settled visible value once before
  // paint, not each intermediate source/translation pair. Input stays synchronous.
- const pendingNodes=new Set();let pendingFrame=0;
- const flushChanges=()=>{pendingFrame=0;const nodes=[...pendingNodes];pendingNodes.clear();nodes.forEach(scan);};
+ const pendingNodes=new Set(),addedRoots=new Set();let pendingFrame=0;
+ const queueValue=node=>{
+  // Text is often nested inside an icon/label wrapper. Only its matching
+  // ancestors can have changed; sibling scores need no read or subtree scan.
+  for(let el=node instanceof Element?node:node?.parentElement;el;el=el.parentElement)
+   if(el.matches(valueSelector))pendingNodes.add(el);
+ };
+ const flushChanges=()=>{
+  pendingFrame=0;
+  for(const node of addedRoots){
+   if(!node.isConnected)continue;
+   if(node.matches(valueSelector))pendingNodes.add(node);
+   node.querySelectorAll(valueSelector).forEach(el=>pendingNodes.add(el));
+  }
+  addedRoots.clear();const nodes=[...pendingNodes];pendingNodes.clear();
+  nodes.forEach(el=>{if(el.isConnected)changed(el);});
+ };
  const observer=new MutationObserver(records=>{
-  for(const record of records){if(record.type==='characterData')pendingNodes.add(record.target.parentElement);else if(record.type==='childList')pendingNodes.add(record.target);else if(record.attributeName==='open'||record.attributeName==='hidden'||record.attributeName==='class')pendingNodes.add(record.target);}
-  if(pendingNodes.size&&!pendingFrame)pendingFrame=requestAnimationFrame(flushChanges);
+  for(const record of records){
+   if(record.type==='attributes'){
+    if(record.target.matches(valueSelector))pendingNodes.add(record.target);
+   }else{
+    queueValue(record.target);
+    if(record.type==='childList')for(const node of record.addedNodes)if(node instanceof Element)addedRoots.add(node);
+   }
+  }
+  if((pendingNodes.size||addedRoots.size)&&!pendingFrame)pendingFrame=requestAnimationFrame(flushChanges);
  });
- observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['open','hidden','class']});
+ observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class']});
  requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('lp-motion-ready')));
 })();
 
@@ -92,7 +110,7 @@
   else if(el.closest('.app-header,dialog,.session-controls,#partyNativeDock'))window.LocalPartyNative?.prepare?.();
   if(touch)p.timer=setTimeout(()=>{if(pointers.get(id)===p&&el.isConnected)down(el);},35);else down(el);
  }
- document.addEventListener('pointerdown',e=>{if(e.button!==0)return;const el=target(e.target);if(el){begin(e.pointerId,el,e.clientX,e.clientY,e.pointerType==='touch');if(e.isTrusted&&document.documentElement.classList.contains('party-player')){const shot=/fire|shoot|throw|drop|draw|action/i.test(el.id);setTimeout(()=>{if(!el.isConnected||el.disabled)return;const pattern=shot?[14]:[6];if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);},0);}}},{capture:true,passive:true});
+ document.addEventListener('pointerdown',e=>{if(e.button!==0)return;const el=target(e.target);if(el){begin(e.pointerId,el,e.clientX,e.clientY,e.pointerType==='touch');if(e.isTrusted&&document.documentElement.classList.contains('party-player')&&el.closest('#controls,.game-controls')){const shot=/fire|shoot|throw|drop|draw|action/i.test(el.id);setTimeout(()=>{if(!el.isConnected||el.disabled)return;const pattern=shot?[14]:[6];if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);},0);}}},{capture:true,passive:true});
  document.addEventListener('pointermove',e=>{
   const p=pointers.get(e.pointerId);if(!p)return;
   if(Math.hypot(e.clientX-p.x,e.clientY-p.y)>12){release(e.pointerId,false);return;}
@@ -110,7 +128,7 @@
   // remain owned by the game, avoiding a second vibration on every fire button.
   const selection=el.matches('[aria-pressed],[role=tab],.filter-tab,[data-section]'),confirmation=el.matches('[type=submit],#confirmYes,#readyButton,#resumeButton,#startBotsLaunch'),pattern=confirmation?[14,35,9]:selection?[5]:[9];
   if(document.body.classList.contains('native-shell'))window.webkit?.messageHandlers?.partyShell?.postMessage({type:'haptic',pattern});
-  else if(el.closest('.app-header,dialog,.session-controls,#partyNativeDock,.profile-photo-field,.guest-catalog-tools,.catalog-filters')||confirmation){if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);}
+  else if(!el.closest('#controls,.game-controls')){if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);}
  },{capture:true,passive:true});
  window.addEventListener('blur',all);window.addEventListener('pagehide',all);window.addEventListener('party-native-hide',all);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)all();});
@@ -191,6 +209,15 @@
  'use strict';
  if(window.LocalPartyDialogs||!window.HTMLDialogElement)return;
  const quiet=()=>matchMedia('(prefers-reduced-motion: reduce)').matches,pending=new WeakMap(),panels=new WeakMap();
+ const reopening=new WeakMap();
+ const backdropRules=new WeakMap();let backdropId=0;
+ // ::backdrop does not inherit the dialog's custom properties. Give its own
+ // rule the sampled opacity so interrupted transitions never restart at 0/1.
+ function backdropStart(dialog,opacity){
+  let rule=backdropRules.get(dialog);if(!rule){const key=String(++backdropId),style=document.createElement('style');dialog.dataset.lpBackdrop=key;document.head.append(style);rule={key,style};backdropRules.set(dialog,rule);}
+  rule.style.textContent=`dialog[data-lp-backdrop="${rule.key}"]::backdrop{--lp-backdrop-start:${Math.max(0,Math.min(1,Number(opacity)||0))}}`;
+ }
+
  const prototype=HTMLDialogElement.prototype,nativeClose=prototype.close,nativeShow=prototype.show,nativeModal=prototype.showModal;
  function cancel(dialog){
   const record=pending.get(dialog);if(!record)return;
@@ -202,10 +229,13 @@
   // The nonmodal Host tab is a native navigation surface, not a popup. Its
   // outgoing screen is animated by the native tab coordinator.
   if(dialog.id==='hostPanel'&&!dialog.matches(':modal')){cancel(dialog);nativeClose.call(dialog,...(value===undefined?[]:[value]));return;}
+  const resuming=reopening.get(dialog),live=resuming?getComputedStyle(dialog):null,resumePose=live?Object.fromEntries(['opacity','scale','translate','transform'].map(key=>[key,live[key]])):null;
+  resuming?.cancel();reopening.delete(dialog);
   const previous=pending.get(dialog);if(previous){if(value!==undefined)previous.value=value;return;}
   if(quiet()||document.hidden){nativeClose.call(dialog,...(value===undefined?[]:[value]));return;}
   let resolve;const promise=new Promise(r=>resolve=r),record={value,resolve,promise,timer:0};pending.set(dialog,record);
-  const start=getComputedStyle(dialog);for(const key of ['opacity','scale','translate','transform'])dialog.style.setProperty('--lp-close-'+key,start[key]==='none'?(key==='scale'?'1':key==='translate'?'0 0':'none'):start[key]);
+  const start=resumePose||getComputedStyle(dialog);for(const key of ['opacity','scale','translate','transform'])dialog.style.setProperty('--lp-close-'+key,start[key]==='none'?(key==='scale'?'1':key==='translate'?'0 0':'none'):start[key]);
+  backdropStart(dialog,getComputedStyle(dialog,'::backdrop').opacity);
   dialog.classList.add('lp-dialog-closing','sheet-closing');
   record.timer=setTimeout(()=>{
    if(pending.get(dialog)!==record)return;
@@ -221,27 +251,174 @@
   },190);
  }
  prototype.close=function(value){close(this,value);};
- prototype.show=function(){const changeMode=pending.has(this)&&this.open&&this.matches(':modal');cancel(this);if(changeMode)nativeClose.call(this);return nativeShow.call(this);};
- prototype.showModal=function(){const changeMode=pending.has(this)&&this.open&&!this.matches(':modal');cancel(this);if(changeMode)nativeClose.call(this);return nativeModal.call(this);};
+ function show(dialog,modal){
+  if(modal)dialog.classList.add('lp-dialog-managed');
+  const reversing=pending.has(dialog),s=reversing?getComputedStyle(dialog):null,pose=s?{opacity:s.opacity,transform:s.transform,scale:s.scale,translate:s.translate}:null;
+  if(reversing)backdropStart(dialog,getComputedStyle(dialog,'::backdrop').opacity);
+  const changeMode=reversing&&dialog.open&&dialog.matches(':modal')!==modal;
+  if(reversing)dialog.classList.add('lp-dialog-resumed');else if(!dialog.open)dialog.classList.remove('lp-dialog-resumed');
+  cancel(dialog);if(changeMode)nativeClose.call(dialog);
+  const result=(modal?nativeModal:nativeShow).call(dialog);
+  if(pose&&!quiet()){
+   const a=dialog.animate([pose,{opacity:1,transform:'none',scale:'1',translate:'0 0'}],{duration:180,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+   reopening.set(dialog,a);a.finished.catch(()=>{}).then(()=>{if(reopening.get(dialog)===a){reopening.delete(dialog);a.cancel();}});
+  }
+  return result;
+ }
+ prototype.show=function(){return show(this,false);};
+ prototype.showModal=function(){return show(this,true);};
  document.addEventListener('cancel',event=>{if(event.target instanceof HTMLDialogElement){event.preventDefault();event.target.close();}},true);
+ // Dismiss modal sheets through the same animated close path as Back. Only a
+ // complete stationary backdrop tap counts; scrolling or dragging out of the
+ // panel must never dismiss it. The modal hit target is the top-layer dialog,
+ // so a nested dialog cannot accidentally close the sheet underneath it.
+ let backdropPress=null;
+ const outside=(event,dialog)=>{
+  if(event.target!==dialog)return false;
+  const r=dialog.getBoundingClientRect();
+  return event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom;
+ };
+ document.addEventListener('pointerdown',event=>{
+  backdropPress=null;
+  const dialog=event.target;
+  if(event.button!==0||!event.isPrimary||!(dialog instanceof HTMLDialogElement)||!dialog.matches(':modal')||dialog.dataset.backdropDismiss==='false'||dialog.classList.contains('lp-dialog-closing')||!outside(event,dialog))return;
+  backdropPress={dialog,id:event.pointerId,x:event.clientX,y:event.clientY};
+ },true);
+ document.addEventListener('pointermove',event=>{
+  if(backdropPress&&(event.pointerId!==backdropPress.id||Math.hypot(event.clientX-backdropPress.x,event.clientY-backdropPress.y)>10))backdropPress=null;
+ },{capture:true,passive:true});
+ const cancelBackdrop=()=>{backdropPress=null;};
+ document.addEventListener('pointercancel',cancelBackdrop,true);
+ document.addEventListener('scroll',cancelBackdrop,{capture:true,passive:true});
+ document.addEventListener('click',event=>{
+  const press=backdropPress;backdropPress=null;
+  if(!press||event.defaultPrevented||!press.dialog.matches(':modal')||press.dialog.dataset.backdropDismiss==='false'||!outside(event,press.dialog)||Math.hypot(event.clientX-press.x,event.clientY-press.y)>10)return;
+  event.preventDefault();
+  // Empty returnValue is cancellation, even if this confirmation was accepted
+  // during a previous opening. Never synthesize a submit/primary-action click.
+  press.dialog.close('');
+ },true);
  document.addEventListener('submit',event=>{
   const form=event.target;if(!(form instanceof HTMLFormElement))return;const method=event.submitter?.hasAttribute('formmethod')?event.submitter.formMethod:form.method;if(String(method).toLowerCase()!=='dialog')return;
   const dialog=form.closest('dialog');if(!dialog)return;
   event.preventDefault();dialog.close(event.submitter?.value||'');
  },true);
- function setVisible(panel,show){
-  const record=panels.get(panel);
-  if(show){record?.animation.cancel();panels.delete(panel);panel.hidden=false;panel.style.removeProperty('pointer-events');return;}
-  if(panel.hidden||record)return;
-  if(quiet()||document.hidden){panel.hidden=true;return;}
-  const card=panel.id==='pauseOverlay'?panel.firstElementChild:panel;
-  const animation=card.animate([{opacity:1,scale:'1',translate:'0 0'},{opacity:0,scale:'.96',translate:'0 8px'}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'});
-  const entry={animation};panels.set(panel,entry);panel.style.pointerEvents='none';
-  animation.finished.catch(()=>{}).then(()=>{
+ function setVisible(panel,show,prepare){
+  const record=panels.get(panel),card=panel.id==='pauseOverlay'?panel.firstElementChild:panel;
+  if(record?.show===show||!record&&panel.hidden===!show)return;
+  // Retarget from the rendered pose, including a close reversed by a new update.
+  const style=getComputedStyle(card),pose={opacity:style.opacity,scale:style.scale==='none'?'1':style.scale,translate:style.translate==='none'?'0 0':style.translate};
+  clearTimeout(record?.timer);record?.animation.cancel();panels.delete(panel);
+  const wasHidden=panel.hidden;panel.hidden=false;
+  // Reparent/populate/promote popovers before starting their animation clock.
+  // Preserve wasHidden so the first visible frame still starts transparent.
+  if(show&&typeof prepare==='function')prepare();
+  panel.toggleAttribute('data-lp-panel-closing',!show);
+  panel.style.pointerEvents=show?'':'none';
+  if(quiet()||document.hidden){panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panel.style.removeProperty('pointer-events');if(!show&&panel.matches(':popover-open'))panel.hidePopover();return;}
+  const animation=card.animate([wasHidden?{opacity:0,scale:'.98',translate:'0 8px'}:pose,show?{opacity:1,scale:'1',translate:'0 0'}:{opacity:0,scale:'.98',translate:'0 8px'}],{duration:180,easing:getComputedStyle(rootElement()).getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)',fill:'both'});
+  const entry={animation,show,timer:0};panels.set(panel,entry);
+  const finish=()=>{
    if(panels.get(panel)!==entry)return;
-   panel.hidden=true;panels.delete(panel);panel.style.removeProperty('pointer-events');animation.cancel();
-   if(panel.matches(':popover-open'))panel.hidePopover();
+   clearTimeout(entry.timer);panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panels.delete(panel);panel.style.removeProperty('pointer-events');animation.cancel();
+   if(!show&&panel.matches(':popover-open'))panel.hidePopover();
+  };
+  animation.finished.catch(()=>{}).then(finish);
+  // WebKit can defer the finish event when a popover or tab changes paint roots.
+  entry.timer=setTimeout(finish,260);
+ }
+ // Non-dialog profile sheets retain their existing Save/Back semantics while
+ // sharing the same accidental-drag protection as native modal backdrops.
+ function bindBackdrop(backdrop,panel,dismiss){
+  let press=null;
+  const clear=()=>{press=null;};
+  backdrop.addEventListener('pointerdown',event=>{
+   press=event.target===backdrop&&event.button===0&&event.isPrimary&&!backdrop.hidden&&!panel.hidden?{id:event.pointerId,x:event.clientX,y:event.clientY}:null;
+  });
+  backdrop.addEventListener('pointermove',event=>{
+   if(press&&(press.id!==event.pointerId||Math.hypot(event.clientX-press.x,event.clientY-press.y)>10))clear();
+  },{passive:true});
+  backdrop.addEventListener('pointercancel',clear);
+  document.addEventListener('scroll',clear,{capture:true,passive:true});
+  backdrop.addEventListener('click',event=>{
+   const start=press;clear();
+   if(!start||event.defaultPrevented||event.target!==backdrop||backdrop.hidden||panel.hidden||Math.hypot(event.clientX-start.x,event.clientY-start.y)>10)return;
+   event.preventDefault();dismiss();
   });
  }
- window.LocalPartyDialogs=Object.freeze({close:dialog=>dialog.close(),whenClosed:dialog=>pending.get(dialog)?.promise||Promise.resolve(true),setVisible,cancel});
+ function rootElement(){return document.documentElement;}
+ window.LocalPartyDialogs=Object.freeze({close:dialog=>dialog.close(),whenClosed:dialog=>pending.get(dialog)?.promise||Promise.resolve(true),setVisible,cancel,bindBackdrop});
+})();
+
+/* Native details retain their semantics and focus. Delay the closing `open`
+   mutation until the body has folded; a second click reverses from its live height. */
+(()=>{
+ const running=new WeakMap(),reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ document.addEventListener('click',event=>{
+  const summary=event.target instanceof Element?event.target.closest('summary'):null,details=summary?.parentElement;
+  if(!details?.matches('details')||details.hasAttribute('name')||event.defaultPrevented||reduced.matches||!details.closest('dialog,.native-shell,#waitingRules,#rulesBody,.return-entry-help'))return;
+  event.preventDefault();
+  const previous=running.get(details),opening=previous?!previous.opening:!details.open;
+  if(details.matches('.return-entry-help')){
+   const body=details.querySelector('.return-entry-body');if(!body)return;
+   const before=details.open?body.getBoundingClientRect().height:0,opacity=details.open?getComputedStyle(body).opacity:'0';
+   previous?.animation.cancel();details.open=true;
+   const after=opening?body.scrollHeight:0;
+   const animation=body.animate([{height:before+'px',opacity},{height:after+'px',opacity:opening?1:0}],{duration:opening?340:260,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+   const record={animation,opening};running.set(details,record);
+   animation.finished.catch(()=>{}).then(()=>{if(running.get(details)!==record)return;details.open=opening;animation.cancel();running.delete(details);});
+   return;
+  }
+  const before=details.getBoundingClientRect().height;
+  previous?.animation.cancel();
+  const original=previous?.original??{height:details.style.height,overflow:details.style.overflow,boxSizing:details.style.boxSizing};
+  details.style.height=original.height;details.style.overflow=original.overflow;details.style.boxSizing=original.boxSizing;
+  details.open=opening;const after=details.getBoundingClientRect().height;details.open=true;
+  details.style.boxSizing='border-box';details.style.overflow='hidden';
+  const animation=details.animate([{height:before+'px'},{height:after+'px'}],{duration:220,easing:getComputedStyle(document.documentElement).getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)',fill:'both'});
+  const record={animation,opening,original};running.set(details,record);
+  animation.finished.catch(()=>{}).then(()=>{
+   if(running.get(details)!==record)return;
+   details.open=opening;animation.cancel();Object.assign(details.style,original);running.delete(details);
+  });
+ });
+})();
+
+/* Confirmed Host Pick: a brief inner rim settles after the server accepts a
+   choice. Browsing, initial hydration and repeated snapshots never trigger it. */
+(()=>{
+ 'use strict';
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');let frame=0,ring=null,animation=null,confirms=0;
+ function clear(){cancelAnimationFrame(frame);frame=0;animation?.cancel();animation=null;ring?.remove();ring=null;}
+ addEventListener('localparty:selection-confirmed',event=>{
+  clear();const card=event.detail?.card;if(!(card instanceof Element))return;
+  frame=requestAnimationFrame(()=>{
+   frame=0;if(document.hidden||!card.isConnected||card.closest('[hidden],[inert]')||!card.getClientRects().length)return;
+   ring=document.createElement('span');ring.className='lp-choice-confirm';ring.setAttribute('aria-hidden','true');card.append(ring);confirms++;
+   const node=ring,style=getComputedStyle(document.documentElement),ease=style.getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)';
+   animation=node.animate(reduced.matches?[{opacity:.7},{opacity:0}]:[{opacity:0,transform:'scale(.975)',offset:0},{opacity:.8,transform:'scale(1)',offset:.3},{opacity:0,transform:'scale(1)',offset:1}],{duration:reduced.matches?150:240,easing:ease});
+   animation.finished.catch(()=>{}).then(()=>{node.remove();if(ring===node){ring=null;animation=null;}});
+  });
+ });
+ addEventListener('pagehide',clear);addEventListener('party-native-hide',clear);reduced.addEventListener?.('change',clear);document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();});
+ window.HeyPalsChoiceMotion=Object.freeze({clear,diagnostics:()=>({confirms,active:!!ring,pending:!!frame})});
+})();
+
+/* Short, interruptible rail paging. Touch scrolling remains browser-native. */
+(()=>{
+ const active=new Map(),reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const cancel=node=>{const a=active.get(node);if(a)cancelAnimationFrame(a.frame);active.delete(node);};
+ function by(node,delta){
+  const previous=active.get(node),from=node.scrollLeft;
+  const target=Math.max(0,Math.min(node.scrollWidth-node.clientWidth,(previous?.target??from)+delta));
+  cancel(node);if(reduced.matches){node.scrollLeft=target;return true;}
+  const start=performance.now(),record={target,frame:0};active.set(node,record);
+  const tick=now=>{if(!node.isConnected){cancel(node);return;}const t=Math.min(1,(now-start)/180);node.scrollLeft=from+(target-from)*(1-Math.pow(1-t,3));if(t<1)record.frame=requestAnimationFrame(tick);else active.delete(node);};
+  record.frame=requestAnimationFrame(tick);return true;
+ }
+ const stop=()=>{for(const node of active.keys())cancel(node);};
+ document.addEventListener('touchstart',stop,{passive:true,capture:true});
+ document.addEventListener('wheel',stop,{passive:true,capture:true});
+ addEventListener('pagehide',stop);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+ window.HeyPalsScroll=Object.freeze({by});
 })();

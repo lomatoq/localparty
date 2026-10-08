@@ -52,6 +52,8 @@ export function drawToyTank(c,o){
  c.restore();
  // Battered tanks wear soot.
  if(o.battered){c.save();c.translate(x,y);c.rotate(tilt);c.globalAlpha=Math.min(.5,o.battered*.5);c.fillStyle='#1a1018';c.beginPath();c.ellipse(-8,-8,6,3,.3,0,TAU);c.ellipse(9,-6,4,2.2,-.2,0,TAU);c.fill();c.restore();}
+ // Dizzy stars orbiting the turret after a heavy hit.
+ if(fx.dizzy){const fade=Math.min(1,(1.6-fx.dizzy)/.3);c.save();c.translate(x,y-29);c.globalAlpha=Math.max(0,fade);for(let i=0;i<3;i++){const a=(fx.spin||0)+i*TAU/3,sx=Math.cos(a)*13,sy=Math.sin(a)*4,s=Math.sin(a)>0?1.15:.8;c.save();c.translate(sx,sy);c.scale(s,s);c.beginPath();for(let k=0;k<10;k++){const r=k%2?1.6:4,b=k*Math.PI/5-Math.PI/2;c[k?'lineTo':'moveTo'](Math.cos(b)*r,Math.sin(b)*r);}c.closePath();c.lineWidth=1.6;c.strokeStyle=ink;c.stroke();c.fillStyle='#ffe36b';c.fill();c.restore();}c.restore();}
  // Leader crown.
  if(o.crown){const cy=y-34+(o.crownBob||0);c.save();c.translate(x,cy);c.fillStyle=ink;c.beginPath();c.moveTo(-8.5,4.5);c.lineTo(-9.5,-5);c.lineTo(-4.5,-.5);c.lineTo(0,-7.5);c.lineTo(4.5,-.5);c.lineTo(9.5,-5);c.lineTo(8.5,4.5);c.closePath();c.fill();
   const cg=c.createLinearGradient(0,-6,0,4);cg.addColorStop(0,'#fff1a8');cg.addColorStop(1,'#f0a92c');c.fillStyle=cg;c.beginPath();c.moveTo(-7,3.2);c.lineTo(-7.8,-2.8);c.lineTo(-4,.8);c.lineTo(0,-5.4);c.lineTo(4,.8);c.lineTo(7.8,-2.8);c.lineTo(7,3.2);c.closePath();c.fill();c.fillStyle='#ff5f8f';c.beginPath();c.arc(0,1,1.3,0,TAU);c.fill();c.restore();}

@@ -120,3 +120,16 @@ test('native delivery acknowledgement and lifecycle diagnostics contain no senso
  for(const event of events){assert(!('acceleration'in event));assert(!('rotation'in event));assert(!('quaternion'in event));}
  assert.equal(events.at(-1).received,1);
 });
+
+test('continuous reversing shakes sweep without gaps; stopping and disallowed turns stop sweeping',async()=>{
+ const {ShakeSweep}=await moduleReady;
+ for(const hz of [2,4,6]){
+  const shake=new ShakeSweep();let active=0;
+  for(let at=1000;at<2500;at+=16){const x=8*Math.sin((at-1000)/1000*2*Math.PI*hz);if(shake.add({at,acceleration:{x,y:0,z:0}},true))active++;}
+  assert(active>40,`continuous ${hz} Hz should sweep`);
+  assert.equal(shake.active(3000),false);
+  assert.equal(shake.add({at:3016,acceleration:{x:10,y:0,z:0}},false),false);
+ }
+ const still=new ShakeSweep();
+ for(let at=1000;at<2200;at+=16)assert.equal(still.add({at,acceleration:{x:1,y:.3,z:.2}},true),false);
+});

@@ -109,7 +109,9 @@ export class BowlingExtras{
   paintDisplay(d,shown=d.total){
     const g=this.displayCtx,W=1024,H=240,ru=window.PartyI18n?.language==='ru';d.painted=shown;
     g.clearRect(0,0,W,H);
-    const bg=g.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#1b0e33');bg.addColorStop(1,'#0d0720');g.fillStyle=bg;g.fillRect(0,0,W,H);
+    const bg=g.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#3a1866');bg.addColorStop(.55,'#4a1a6e');bg.addColorStop(1,'#5a1a5c');g.fillStyle=bg;g.fillRect(0,0,W,H);
+    // Same diagonal light bands as the sign art, so swapping sign <-> screen keeps the panel's energy.
+    g.globalAlpha=.28;for(let i=-3;i<9;i++){const x=i*150;g.fillStyle=i%2?'#ff4fa8':'#8c5cff';g.beginPath();g.moveTo(x,H);g.lineTo(x+70,H);g.lineTo(x+200,0);g.lineTo(x+130,0);g.closePath();g.fill();}g.globalAlpha=1;
     // Dot-matrix screen texture.
     g.fillStyle='rgba(255,255,255,.035)';for(let y=10;y<H;y+=8)for(let x=10;x<W;x+=8)g.fillRect(x,y,3,3);
     const palette={strike:['#fff6b8','#ffd04a','#ff7a3d','rgba(255,79,168,.9)'],spare:['#f2ffd6','#c8ff73','#5fe3c8','rgba(140,92,255,.9)'],gutter:['#e3ecff','#9fb6ff','#5f78ff','rgba(80,120,255,.8)'],pins:['#ffffff','#f1e6ff','#c9a8ff','rgba(140,92,255,.8)']}[d.kind];
@@ -168,7 +170,16 @@ export class BowlingExtras{
   }
   // ---- per frame ---------------------------------------------------------------------
   update(A,stage,age,t,dt){
-    const st=this.state,host=this.host,camQ=this.camera.quaternion;this.lastA=A;
+    const st=this.state,host=this.host,camQ=this.camera.quaternion;this.lastA=A;this.dt=Math.min(.1,Math.max(0,dt||0));
+    // Light director: every light/glow that depends on the stage eases toward its target, so
+    // nothing pops on a stage change (reveal start, slow-motion angle, new turn).
+    const ease=(cur,target,up,down)=>cur+(target-cur)*Math.min(1,this.dt*(target>cur?up:down));
+    const cel=st.celebrate,ca=cel?t-cel.born:9,slow=host.slowCam&&performance.now()<host.slowCam.until+300;
+    this.lw||={cone:1,comet:0,party:0,rate:4,phase:0,cometZ:12.8};const lw=this.lw;
+    lw.cone=ease(lw.cone,stage==='reveal'||slow?0:1,2.5,4);
+    lw.comet=ease(lw.comet,stage==='rolling'&&host.ball.visible&&!A.gutter?1:0,8,2.2);if(stage==='rolling'&&host.ball.visible)lw.cometZ=host.ball.position.z;
+    lw.party=ease(lw.party,ca>=0&&ca<1.9?1:0,6,1.4);
+    lw.rate=ease(lw.rate,stage==='rolling'?14:4,3,1.5);lw.phase+=this.dt*lw.rate;
     if(A.token!==st.token){st.token=A.token;st.trail.length=0;}
     if(stage==='rolling'&&A.gutter&&st.gutterToken!==A.token){st.gutterToken=A.token;st.gutterAt=t;}
     // Impact and celebration beats come from the scene's own detection (same clock).
@@ -182,16 +193,19 @@ export class BowlingExtras{
   }
   // While the pin-deck camera shows the machine, the ball return waits: the ball comes out
   // of the hood once the aim view is back, so it is never moving off-screen.
-  returnDelay(A){return !this.reduced&&A&&!A.first&&!this.state.noResetCam?1.7:0;}
+  returnDelay(A){return !this.reduced&&A&&!A.first&&!this.state.noResetCam?3.3:0;}
   onImpact(im){
     const t=im.born,power=im.power||.6,rand=seeded((t*1311)|0);this.state.flare=t;
     // Billboards are sized for the long aim view; the close slow-motion and follow cameras
     // shrink and dim them so the hit never turns into a white blow-out over the pins.
-    const d=this.camera.position.distanceTo(this.v.set(im.x,.6,im.z)),k=clamp((d-3)/16,.3,1),dim=.45+.55*k;
+    const d=this.camera.position.distanceTo(this.v.set(im.x,.6,im.z)),k=clamp((d-3)/16,.3,1),dim=.2+.8*k*k; // close-up: much dimmer, never a white-out
     this.glow.spawn({born:t,life:.45,x:im.x,y:.6,z:im.z-.35,s0:.8*k,s1:(1.8*power+.5)*k,r:.26*dim,gg:.2*dim,b:.14*dim,peak:.08});
-    if(this.reduced)return;
+    // The slow-motion close-up carries the hit with streak sparks and pin motion only: no
+    // burst/glow billboards there (they washed the contact out at that range).
+    const close=this.host.slowCam&&performance.now()<this.host.slowCam.until;if(close)this.glow.items.forEach(p=>{if(p.born===t)p.born=-1;});
+    if(this.reduced||close)return;
     this.burst.spawn({born:t,life:.28,x:im.x,y:.6,z:im.z+.35,s0:.5*k,s1:(1.5*power+.35)*k,rot:rand()*6,r:.62*dim,gg:.56*dim,b:.42*dim,peak:.1});
-    this.shock.spawn({born:t+.02,life:.45,x:im.x,y:.55,z:im.z+.3,s0:.5*k,s1:(2.8*power+.6)*k,r:.7*dim,gg:.5*dim,b:.68*dim,peak:.15});
+    this.shock.spawn({born:t+.02,life:.45,x:im.x,y:.55,z:im.z+.3,s0:.5*k*k,s1:(2.8*power+.6)*k*k,r:.7*dim,gg:.5*dim,b:.68*dim,peak:.15});
     for(let i=0;i<Math.round(6+power*6);i++){const a=rand()*Math.PI*2,sp=1.2+rand()*2.4;this.c.setHSL(.08+rand()*.9,.9,.75);
       this.sparkle.spawn({born:t+rand()*.06,life:.5+rand()*.35,x:im.x,y:.45+rand()*.5,z:im.z,vx:Math.cos(a)*sp,vy:1.4+rand()*2.2,vz:Math.sin(a)*sp*.5,g:5.5,drag:1.2,s0:.32*k,s1:.12*k,rot:rand()*6,spin:(rand()-.5)*8,r:this.c.r,gg:this.c.g,b:this.c.b,peak:.1});}
   }
@@ -212,17 +226,19 @@ export class BowlingExtras{
     for(let i=0;i<6;i++){const a=rand()*Math.PI*2;this.sparkle.spawn({born:t+rand()*.08,life:.55,x:HOOD.x,y:HOOD.y,z:HOOD.z+.1,vx:Math.cos(a)*.9,vy:Math.sin(a)*.9+.4,vz:.6,g:1.5,drag:1.5,s0:.2,s1:.06,r:.9,gg:.8,b:1,peak:.1});}
   }
   updateNeon(A,stage,t){
-    const st=this.state,cel=st.celebrate,ca=cel?t-cel.born:9,ball=this.host.ball,rolling=stage==='rolling'&&ball.visible,bz=ball.position.z;
+    const st=this.state,cel=st.celebrate,ca=cel?t-cel.born:9,lw=this.lw,cw=lw.comet,bz=lw.cometZ;
     const gutter=st.gutterToken===A.token&&(stage==='rolling'||stage==='reveal'),ga=gutter?t-st.gutterAt:9,ballColor=this.c2.set(A.color||'#b493ff');
+    // Gutter drain eases in over 1.1 s and recovers over ~1 s on the next turn (no snap back).
+    lw.drain=gutter?smooth(ga/1.1):Math.max(0,(lw.drain||0)-this.dt*1.1);
     const motion=this.reduced?0:1,c=this.c;
     for(let side=0;side<2;side++)for(let i=0;i<SEGMENTS;i++){
       const z=STRIP_FROM-(i+.5)*this.segLen,base=this.neonBase[side];
       let k=.34+(motion?.26*Math.pow(Math.max(0,Math.sin(z*.55+t*2.2+side)),6):0);c.copy(base).multiplyScalar(k);
-      if(rolling&&!gutter){const d=z-bz;
-        if(d>=-.4&&d<7){const w=Math.exp(-Math.max(0,d)*.55)*(d<0?1+d*2.5:1);c.lerp(ballColor,.6);c.r+=ballColor.r*1.6*w;c.g+=ballColor.g*1.6*w;c.b+=ballColor.b*1.6*w;c.addScalar(.35*w);}
-        else if(d<0&&motion){const p=Math.pow(Math.max(0,Math.sin((z+t*16)*.7)),10)*.9;c.r+=p*.9;c.g+=p*.75;c.b+=p;}}
-      if(gutter){const u=smooth(ga/1.1);c.lerp(this.gutterBlue,u).multiplyScalar(1-.55*u);}
-      if(ca>=0&&ca<2.6){const fade=1-smooth((ca-1.8)/.8);
+      if(cw>.003){const d=z-bz;
+        if(d>=-.4&&d<7){const w=cw*Math.exp(-Math.max(0,d)*.55)*(d<0?1+d*2.5:1);c.lerp(ballColor,.6);c.r+=ballColor.r*1.6*w;c.g+=ballColor.g*1.6*w;c.b+=ballColor.b*1.6*w;c.addScalar(.35*w);}
+        else if(d<0&&motion){const p=cw*Math.pow(Math.max(0,Math.sin((z+t*16)*.7)),10)*.9;c.r+=p*.9;c.g+=p*.75;c.b+=p;}}
+      if(lw.drain>0){const u=lw.drain;c.lerp(this.gutterBlue,u).multiplyScalar(1-.55*u);}
+      if(ca>=0&&ca<2.6){const fade=Math.min(smooth(ca/.3),1-smooth((ca-1.8)/.8));
         if(cel.kind==='strike'){const hue=motion?((z*.045+t*1.4+side*.5)%1+1)%1:.12,flash=motion?.7+.5*Math.pow(Math.max(0,Math.sin(t*14-z*.9)),3):1;c.lerp(this.c2.setHSL(hue,.95,.6).multiplyScalar(flash*1.6),fade);}
         else{const flash=motion?.7+.6*Math.pow(Math.max(0,Math.sin(t*10-z*.8)),4):1;c.lerp(this.c2.set(side?'#5fe3c8':'#c8ff73').multiplyScalar(flash*1.3),fade);}
         this.c2.set(A.color||'#b493ff');}
@@ -249,16 +265,16 @@ export class BowlingExtras{
       if(party>0){const hue=this.reduced?.9:((t*.9+i*.33)%1);c.lerp(this.c2.setHSL(hue,.9,.6).multiplyScalar(.32),party);}
       // Billboard cones read only from the long aim/roll view; the close reveal and
       // reset cameras would turn their floor ellipses into blotches.
-      c.multiplyScalar((1-this.camW)*(this.lastStage==='reveal'||this.host.slowCam&&performance.now()<this.host.slowCam.until+400?0:1));
+      c.multiplyScalar((1-this.camW)*this.lw.cone);
       this.cones.setColorAt(i,c);}
     this.cones.instanceMatrix.needsUpdate=true;this.cones.instanceColor.needsUpdate=true;
     this.deckGlow.material.opacity=(.03+.07*flare+.08*party)*(1-.7*this.camW);this.deckGlow.material.color.setRGB(1,.85-.2*party,.7+.2*party);
   }
   updateMarquee(stage,t){
-    const n=this.bulbCount,cel=this.state.celebrate,ca=cel?t-cel.born:9,party=ca>=0&&ca<2.6,c=this.c,rate=stage==='rolling'?14:4;
+    const n=this.bulbCount,c=this.c,party=this.reduced?0:this.lw.party;
     for(let i=0;i<n;i++){
-      let k;if(this.reduced)k=.55;else k=.25+.75*Math.pow(Math.max(0,Math.sin(i*.9-t*rate)),4);
-      if(party&&!this.reduced)c.setHSL(((i/n+t*.8)%1),.9,.62).multiplyScalar(.6+.8*k);else c.setRGB(1,.82,.55).multiplyScalar(k*.9);
+      let k;if(this.reduced)k=.55;else k=.25+.75*Math.pow(Math.max(0,Math.sin(i*.9-this.lw.phase)),4);
+      c.setRGB(1,.82,.55).multiplyScalar(k*.9);if(party>0)c.lerp(this.c2.setHSL(((i/n+t*.8)%1),.9,.62).multiplyScalar(.6+.8*k),party);
       this.bulbs.setColorAt(i,c);}
     this.bulbs.instanceColor.needsUpdate=true;
   }
@@ -268,8 +284,8 @@ export class BowlingExtras{
     const age=d&&d.shownAt!==undefined?t-d.shownAt:d?-1:99,LIFE=4.2;
     if(!d||age<0||age>LIFE||t-d.born>14){this.display.visible=false;if(age>LIFE||d&&t-d.born>14)this.state.display=null;return;}
     // The next throw takes the screen back at once (fast fade when the ball is released).
-    if(stage!=='aim'&&d.hideAt===undefined)d.hideAt=t;const gone=d.hideAt!==undefined?smooth((t-d.hideAt)/.25):0;
-    const fade=Math.min(smooth(age/.25),1-smooth((age-(LIFE-.6))/.6),1-gone);this.display.visible=fade>.01;this.displayMat.opacity=fade;
+    if(stage!=='aim'&&d.hideAt===undefined)d.hideAt=t;const gone=d.hideAt!==undefined?smooth((t-d.hideAt)/.45):0;
+    const fade=Math.min(smooth(age/.45),1-smooth((age-(LIFE-.8))/.8),1-gone);this.display.visible=fade>.01;this.displayMat.opacity=fade;
     // Score pop: the total counts up from the previous score, then the panel kicks once.
     const COUNT=.85;if(d.from!==undefined&&d.from!==d.total){const shown=age>=COUNT||this.reduced?d.total:Math.round(d.from+(d.total-d.from)*(1-Math.pow(1-clamp(age/COUNT,0,1),3)));if(shown!==d.painted)try{this.paintDisplay(d,shown);}catch{}}
     const kick=age>COUNT&&age<COUNT+.3?Math.sin(Math.PI*(age-COUNT)/.3)*.05:0;
@@ -310,10 +326,13 @@ export class BowlingExtras{
     // two lift rods and an accent edge; parked inside the housing when idle.
     const g=this.table=new THREE.Group(),M=k=>this.track(new THREE.MeshStandardMaterial(k));
     const body=M({color:'#2a2240',roughness:.38,metalness:.55}),edge=M({color:'#000000',emissive:'#ff4fa8',emissiveIntensity:1.4}),rod=M({color:'#d6d3e6',roughness:.22,metalness:1});
-    const plate=new THREE.Mesh(this.track(new THREE.BoxGeometry(4.5,.12,2.55)),body);plate.position.y=.06;plate.castShadow=true;g.add(plate);
-    const front=new THREE.Mesh(this.track(new THREE.BoxGeometry(4.52,.035,.04)),edge);front.position.set(0,.02,1.28);g.add(front);
-    const back=front.clone();back.position.z=-1.28;g.add(back);
-    for(const x of [-1.9,1.9]){const r=new THREE.Mesh(this.track(new THREE.CylinderGeometry(.045,.045,.7,10)),rod);r.position.set(x,.4,0);g.add(r);}
+    // Rounded, bevelled deck plate with a neon underglow ring and four hydraulic lift rods.
+    const rr=(w,h,r,p=new THREE.Shape())=>{const x=-w/2,y=-h/2;p.moveTo(x+r,y);p.lineTo(x+w-r,y);p.quadraticCurveTo(x+w,y,x+w,y+r);p.lineTo(x+w,y+h-r);p.quadraticCurveTo(x+w,y+h,x+w-r,y+h);p.lineTo(x+r,y+h);p.quadraticCurveTo(x,y+h,x,y+h-r);p.lineTo(x,y+r);p.quadraticCurveTo(x,y,x+r,y);return p;};
+    const plate=new THREE.Mesh(this.track(new THREE.ExtrudeGeometry(rr(4.5,2.55,.3),{depth:.1,bevelEnabled:true,bevelThickness:.025,bevelSize:.025,bevelSegments:2,curveSegments:6}).rotateX(Math.PI/2).translate(0,.125,0)),body);plate.castShadow=true;g.add(plate);
+    const ringShape=rr(4.58,2.63,.33);ringShape.holes.push(rr(4.38,2.43,.26,new THREE.Path()));
+    const glowRing=new THREE.Mesh(this.track(new THREE.ShapeGeometry(ringShape,6).rotateX(Math.PI/2)),edge);glowRing.position.y=-.004;g.add(glowRing);
+    const sleeve=M({color:'#3a3450',roughness:.3,metalness:.85});
+    for(const x of [-1.95,1.95])for(const z of [-.95,.95]){const r=new THREE.Mesh(this.track(new THREE.CylinderGeometry(.032,.032,.7,10)),rod);r.position.set(x,.48,z);g.add(r);const sl=new THREE.Mesh(this.track(new THREE.CylinderGeometry(.06,.06,.28,14)),sleeve);sl.position.set(x,.26,z);g.add(sl);}
     this.cupMat=this.additive(this.glowTex,{depthTest:true,color:'#ffd9a8',opacity:.0});
     const cupGeo=this.track(new THREE.PlaneGeometry(.42,.42).rotateX(Math.PI/2));
     for(const p of RACK){const cup=new THREE.Mesh(cupGeo,this.cupMat);cup.position.set(p.x,-.005,p.z-TABLE_Z);g.add(cup);}
@@ -361,41 +380,38 @@ export class BowlingExtras{
       st.aimFresh=st.revealFresh;
     }
     if(stage==='aim'&&!A.first){
-      // Table carries the pins: held up during the sweep, set down with the scene's own
-      // lowering curve, then rises back into the housing.
-      // A slower, readable set-down than the scene's own (.42-1.02 s): the visible pins
-      // are re-heighted from the scene's offset to ours, so they ride with the table.
-      const sceneLower=age<1.05?LIFT*(1-easeOut((age-.42)/.6)):0,lower=age<.5?LIFT:LIFT*(1-smooth((age-.5)/.8));
-      if(age<1.3)tableY=PIN_TOP+lower;else tableY=PIN_TOP+(TABLE_REST-PIN_TOP)*smooth((age-1.35)/.5);
-      cups=age<1.3?1:1-smooth((age-1.3)/.3);
-      if(age<1.35){host.pins.forEach(m=>{if(m.visible)m.position.y+=lower-sceneLower;});this.liftedMirrors=true;}
+      // The scene and table share one lift curve. Fresh pins stay inside the
+      // housing during the sweep; survivors keep their lifted pose across the token.
+      const lower=this.rackLift(A,stage,age);
+      if(age<1.65)tableY=PIN_TOP+lower;else tableY=PIN_TOP+(TABLE_REST-PIN_TOP)*smooth((age-1.7)/.5);
+      cups=age<1.65?1:1-smooth((age-1.65)/.3);
+      this.liftedMirrors=true;
     }
     if(this.liftedMirrors||stage==='reveal'){host.updateBlobs();host.updateMirrors();host.pins.forEach((m,i)=>{if(m.position.y>.08)host.mirrorPins[i].visible=false;});this.liftedMirrors=false;}
     this.table.position.y=tableY;this.table.visible=tableY<TABLE_REST-.02;this.cupMat.opacity=.85*cups;
     // Deadwood ghosts follow the real sweep bar into the pit and drop out of sight.
     let n=0;
-    if(stage==='aim'&&this.dead.length&&age<1.0){
-      const barZ=host.sweep.visible?host.sweep.position.z-.3:-99;
+    if(stage==='aim'&&this.dead.length&&age<1.3){
+      const barZ=host.sweep.visible?host.sweep.position.z-.3:-15.15;
       // At the end of its stroke the bar rakes everything over the deck edge.
-      const rake=smooth((age-.3)/.3)*1.6;
-      for(const d of this.dead){d.z=Math.min(d.z??d.p.z,barZ,age>.3?LANE_END+.25-rake:99);const z=d.z,push=d.p.z-z,over=LANE_END-z,y=over>0?Math.max(-.62,d.p.y-over*2.2-over*over*3):d.p.y;/* lands on the pit mat */
+      const rake=smooth((age-.65)/.4)*1.6;
+      for(const d of this.dead){d.z=Math.min(d.z??d.p.z,barZ,age>.65?LANE_END+.25-rake:99);const z=d.z,push=d.p.z-z,over=LANE_END-z,y=over>0?Math.max(-1.6,d.p.y-over*2.2-over*over*3):d.p.y;/* lands on the pit mat */
         this.qz.setFromAxisAngle(this.zAxis,d.spin*push*.35);this.q.copy(this.qz).multiply(d.q);
         this.m.compose(this.v.set(clamp(d.p.x,-2.6,2.6),y,z),this.q,this.s.set(1,1,1));this.ghosts.setMatrixAt(n++,this.m);}
     }
     this.ghosts.count=n;if(n)this.ghosts.instanceMatrix.needsUpdate=true;
   }
+  rackLift(A,stage,age){
+    if(stage!=='aim')return 0;
+    if(A.first)return age<1.05?LIFT*(1-easeOut((age-.42)/.6)):0;
+    const fresh=this.state.revealFresh,height=fresh?2.35:LIFT;
+    return height*(1-smooth((age-.82)/.83));
+  }
   updateResetCamera(A,stage,age,dt){
-    // Pin-deck camera for the machine beat (reveal end -> sweep -> set): low, under the
-    // masking unit, so bar, table, pit and the new rack all read. Blended in and out.
-    let target=0;
-    if(!this.reduced&&!A.first&&!this.state.noResetCam){
-      if(stage==='reveal')target=smooth((age-1.12)/.4);
-      else if(stage==='aim')target=1-smooth((age-1.75)/.6);
-    }
-    this.camW+= (target-this.camW)*Math.min(1,dt*(target>this.camW?7:5));if(this.camW<.002){this.camW=0;return;}
-    const cam=this.camera,w=smooth(this.camW);
-    this.camP.set(0,1.62,-.6);this.camL.set(0,.72,-12.5);
-    cam.position.lerp(this.camP,w);this.v.copy(this.host.camLook).lerp(this.camL,w);cam.lookAt(this.v);
+    // Read-only progress for the display/idle effects. Camera transforms belong
+    // solely to BowlingScene's interruptible spring.
+    this.camW=!this.reduced&&!A.first&&!this.state.noResetCam?
+      stage==='reveal'?1:stage==='aim'?1-smooth((age-1.65)/2.25):0:0;
   }
   dispose(){
     if(this.sweepRail)this.host.sweep?.remove(this.sweepRail);

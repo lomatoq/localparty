@@ -63,6 +63,9 @@ class ProductValidationTests(unittest.TestCase):
     def test_missing_air_defense(self):
         (self.server/'games/arcade_deluxe/core/air-defense.cjs').unlink()
         with self.assertRaisesRegex(ValueError,'Missing'):verify_ios.verify(self.root)
+    def test_stale_app_ux(self):
+        (self.server/'public/app-ux-20261005.js').write_text('old sheets')
+        with self.assertRaisesRegex(ValueError,'Stale'):verify_ios.verify(self.root)
     def test_stale_camera(self):
         (self.server/'games/bow_club/public/phone.js').write_text('old camera')
         with self.assertRaisesRegex(ValueError,'Stale'):verify_ios.verify(self.root)

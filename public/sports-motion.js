@@ -154,7 +154,7 @@ export class FreeMotionThrow {
 }
 
 export class ShakeSweep {
-  reset() { this.level = 0; this.until = 0; this.last = 0; this.peaks = []; this.high = false; }
+  reset() { this.level = 0; this.until = 0; this.last = 0; this.peaks = []; this.high = false; this.direction = null; this.directionAt = 0; }
   constructor() { this.reset(); }
   add(sample, allowed) {
     if (!allowed) { this.reset(); return false; }
@@ -163,6 +163,17 @@ export class ShakeSweep {
     if (dt * 1000 > FRESH_MS) this.reset();
     this.last = sample.at;
     this.level += (1 - Math.exp(-Math.min(.08, dt) / .04)) * (magnitude(sample.acceleration) - this.level);
+    // Continuous back-and-forth shaking need not pause between strokes. The
+    // rectified/smoothed magnitude stays high, so recognise vector reversals too.
+    const a = sample.acceleration, strength = magnitude(a);
+    if (strength > 3.2) {
+      const direction = {x:a.x / strength,y:a.y / strength,z:a.z / strength};
+      if (!this.direction) { this.direction = direction; this.directionAt = sample.at; }
+      else if (direction.x*this.direction.x + direction.y*this.direction.y + direction.z*this.direction.z < -.35 && sample.at-this.directionAt >= 65) {
+        if (sample.at-this.directionAt < 650) this.until = sample.at + 320;
+        this.direction = direction; this.directionAt = sample.at;
+      }
+    }
     // Two distinct pulses; a stationary tilt or one bump does not sweep.
     if (!this.high && this.level > 3.2) {
       this.high = true; this.peaks = this.peaks.filter(t => sample.at - t < 650);

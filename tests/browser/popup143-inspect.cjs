@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('fs'),path=require('path'),assert=require('assert/strict'),{spawn}=require('child_process'),pw=require('playwright');
+const out=path.resolve(process.env.QA_OUTPUT||'output/playwright/popup143/player-popups');fs.mkdirSync(out,{recursive:true});
+const child=spawn(process.execPath,['server.js'],{env:{...process.env,PARTY_EMBEDDED:'1',PARTY_EPHEMERAL:'1',PARTY_INTERNAL_PORT:'0',PARTY_PORT:'0',PARTY_NO_BROWSER:'1',PARTY_ADMIN_KEY:'popup137'}});let log='';child.stdout.on('data',d=>log+=d);child.stderr.on('data',d=>log+=d);const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const report={method:'Real-time video and requestAnimationFrame samples; no animation seeking. Native bridge fixture, not physical iPhone.',rows:[],errors:[]};
+(async()=>{try{for(let i=0;i<300&&!/localhost:(\d+)/.test(log);i++)await wait(50);assert(/localhost:(\d+)/.test(log),log);const origin='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];
+for(const engine of ['webkit','chromium']){const browser=await pw[engine].launch(engine==='chromium'?{executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}:{});try{for(const width of (engine==='webkit'?[393,320]:[393])){
+ const context=await browser.newContext({viewport:{width,height:width===320?568:852},isMobile:true,hasTouch:true,recordVideo:{dir:path.join(out,'video'),size:{width,height:width===320?568:852}}});
+ await context.addInitScript({content:'window.webkit={messageHandlers:{partyShell:{postMessage(){}}}};'+fs.readFileSync('public/native-shell/controller-bridge.js','utf8')+'\nwindow.__partyPersistentTabs=true;'+fs.readFileSync('public/native-shell/tabs.js','utf8')});
+ const p=await context.newPage();p.on('pageerror',e=>report.errors.push(e.message));await p.goto(origin+'/play');await p.locator('#name').fill('Motion Review');await p.locator('#joinForm button[type=submit]').click();await p.locator('#home').waitFor();await p.evaluate(()=>document.fonts.ready);await wait(600);
+ // Populate standings and roster through their real application actions.
+ await p.evaluate(()=>document.querySelector('#allRanks').click());await wait(500);await p.evaluate(()=>statsDialog.close());await wait(250);
+ await p.evaluate(()=>document.querySelector('#allRanks').click());await wait(800);console.log(await p.evaluate(()=>{const d=document.querySelector('#statsDialog');return {html:d.outerHTML,styles:[d,...d.children].map(n=>({id:n.id,cl:n.className,h:getComputedStyle(n).height,min:getComputedStyle(n).minHeight,flex:getComputedStyle(n).flex,inline:n.getAttribute('style')}))}}));await p.screenshot({path:path.join(out,engine+'-'+width+'-stats-final.png')});await context.close();
+}}finally{await browser.close();}}}finally{child.kill();}})();

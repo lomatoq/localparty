@@ -97,7 +97,8 @@
 ## Swarm Gate и Take a Breather: обратная связь выстрела
 
 - Начало серверного луча соответствует мировому центру турели. Угол дула и снаряда вычисляется с учётом размеров экранного прямоугольника, в том числе на диагоналях.
-- Платформа турели видна целиком перед стеной: пол не обрезает нижнюю часть спрайта.
+- ~~Платформа турели видна целиком перед стеной: пол не обрезает нижнюю часть спрайта.~~ Заменено решением пользователя 2026-10-05:
+- **Последнее решение пользователя (2026-10-05):** важен порядок отрисовки. Стена, парапет и ворота рисуются ПОВЕРХ турелей по глубине: части турели, перекрывающие стену, закрыты ею, турели выглядывают из-за парапета. Ряды турелей тоже сортируются по реальной глубине: ряд ближе к стене рисуется поверх дальнего, никогда наоборот. Подписи дальнего ряда не накрывают ближний ряд. Проверять 4 и 16 игроков на 1080 (и 720); muzzleRayError 0 px.
 - Скрытые стеной/воротами букашки видны спокойным полупрозрачным силуэтом только в области окклюзии; видимые враги сохраняют обычную картинку.
 - Уничтоженная цель остаётся видимой до фактического прилёта снаряда. В момент попадания начинается увеличение/покраснение персонажа (утверждено пользователем), взрыв и вращающиеся облачка.
 - Очки над погибшей целью совпадают с реально начисленной наградой; не угадывать значение по внешнему виду. Эффекты ограничены по времени и количеству.
@@ -278,3 +279,43 @@
 - Result rows retain one consistent place / identity / right-aligned score layout at every supported phone width. Long numeric values adapt their font size and reserved width; do not move only some scores below the name. Keep complete identity in accessible text when visible names must be bounded.
 - Catalogue category tabs belong to the lobby only. Hide them explicitly during gameplay, pause and results, regardless of catalogue display rules or the HTML hidden attribute. Validate through the real state route and native controller bridge plus persistent tabs; a fixture that bypasses app state is insufficient.
 - Test result-list scroll limits and header clearance on the actual controller route. Deliberately scrolled partial rows must not be presented as an overlap-free initial screen.
+
+## Profile, results and returning-player help — 2026-10-06
+
+- Player result screens retain one continuous viewport background, including safe areas. Never accept black rectangular header/footer bands; inspect entrance frames as well as settled screenshots through the native controller bridge.
+- Place numbers remain upright and vertically centred throughout the reveal. Animate the award, not the number separately from its row.
+- Profile editor must clear the top safe area. Its lower background extends behind native bottom tabs; keep Save Profile above the tabs using inner padding, with a 14px lift requested after physical iPhone review so the dock shadow clears Save Profile and Back. Prefer content height over a tall empty card. Only form fields scroll; dismissal must fade the blur and shade together with the sheet. Never add a second blur to the underlying page that disappears only after dismissal.
+- Returning-player QR help keeps its soft dark backing during opening, closing and rapid reversal; test intermediate frames in WebKit, not just computed gradient strings.
+
+### Popup motion acceptance — 2026-10-06
+
+- Static settled captures do not approve transitions. Record real-time opening, dismissal at 65ms, reopen during dismissal, and final cleanup in Chrome and WebKit, including the native controller scripts.
+- Sample panel and backdrop every animation frame. Neither may restart from opacity zero/one when reversing. Inspect the video as well as numerical samples; do not infer physical iPhone or AirPlay performance from desktop WebKit.
+- Keep the before/after video and the list of tested popup IDs. Native host windows must also be opened through their real buttons, including the first-paint preparation path.
+
+### Short-label casing (2026-10-06)
+Prefer uppercase for short UI captions, including PLAYERS in Host Pick and counter labels. Preserve player names and descriptive prose/card descriptions in their authored casing. Browser-controller game count is plain text; native mobile menus retain the subtle violet capsule.
+
+### Popup controls and sheets — 2026-10-06 follow-up
+- Navigation popups use a circular 48px back action in the bottom action row, with the existing filled arrow. Retain accessible names; do not collapse destructive confirmation labels into ambiguous icons.
+- Buttons sharing a row have equal 48px height and the same action font. Two-line labels use compact line-height and balanced padding, not a taller button. Center text and icon together.
+- Mobile navigation sheets, including empty Party Rankings, continue below the viewport/under native tabs. Keep the action row above the dock via inner padding; small confirmation alerts stay centred.
+- Empty Rankings uses intrinsic content height; never stretch its empty body to the viewport. Center headings and use a subtle fading header shade.
+- Profile name input is capsule-shaped; selected language text is centred. Preserve Save Profile/Back clearance.
+- Audit English/Russian, 320/393px, populated/empty, open/close/reversal, and actual native dock layering separately from browser fixtures.
+
+### 2026-10-06 — Header lockups and material light
+- Popup titles must be optically centered as one group with their illustration. Do not left-align Ready to Play or center the text while leaving the illustration outside its group.
+- Short entered names use a brighter lavender left edge and a darker violet right edge. Native focused input text stays readable.
+- CTA edge energy and its halo must not be cut off by form containers. Keep scroll clipping on the scrollable body, not the fixed action row.
+- Grouped popup tasks share a soft nonlinear violet reflection. Do not put a nested surface around every individual label.
+
+### 2026-10-06 — Section surfaces and fieldset regressions
+- Section colour belongs in small diagonal corner reflections (top-left / bottom-right), with a transparent centre; do not place the lower reflection at mid-height. Keep the hue pink-violet, not grey.
+- Do not paint a shared gradient directly on fieldset: legend can cut the surface into a hard horizontal edge. Use a separate rounded surface wrapper and leave fieldset transparent.
+- When using transparent text fill, ensure the text-clipped background wins the cascade; verify actual rendered titles, not just their DOM existence.
+
+### CTA hierarchy refinement
+- Moving edge + bloom is reserved for priority actions (save/start/play and selected controller/photo actions). Do not animate genre filters, directional pads, mute/settings toggles or every quiet button.
+- Ordinary controls use a subtle static violet surface/outline. Selected TV genre is lime, not pink/violet.
+- Leave vertical paint room around horizontally scrolling genre controls so their soft edge is not sliced off.

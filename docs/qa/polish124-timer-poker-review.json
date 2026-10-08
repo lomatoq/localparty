@@ -1,0 +1,686 @@
+{
+  "sourceFrozen": true,
+  "hashes": {
+    "public/tv-information.css": "3dbdca5ee3d84774c2639d9cc29a0c7207b7baa532c24693ce105599609e1bf8",
+    "public/tv.js": "83b18451148d6c1889f0ff818d6fe019b99397b48bb39daca40eac9539450072",
+    "games/bow_club/public/style.css": "c0c92381e63b5a90dc08b26a8ed09f7048c483546962de042a38cf4567d048d1",
+    "games/tabletop/public/arena.css": "fe1ee706089b389b40dadf588279b0b8630a08270fbd8c6a064f1192a3ec460f"
+  },
+  "reviewed": [
+    {
+      "game": "marble_bloom",
+      "viewport": "confirm720",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm720/marble_bloom-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "LEVEL 1",
+          "box": [
+            417.6875,
+            54,
+            110.0625,
+            48
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.078902 0.150118 0.17302 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 16px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Marble Bloom\nLEVEL 1\nPoints\n0\nQueued\n47",
+          "box": [
+            337,
+            0,
+            600,
+            118
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": null,
+        "bowLabel": null,
+        "bowHeading": null,
+        "pokerTurn": null,
+        "pokerFelt": null
+      }
+    },
+    {
+      "game": "pocket_siege",
+      "viewport": "confirm720",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm720/pocket_siege-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "0:26",
+          "box": [
+            421.890625,
+            60.59375,
+            101.65625,
+            48
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.109961 0.110588 0.156078 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 18px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "Alexandra LongSurname",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Pocket Siege\n0:26\nAIM AND FIRE\nTURN\n1 / 40\nWind\n8.9\nPoints\n0",
+          "box": [
+            337,
+            0,
+            600,
+            141.484375
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": null,
+        "bowLabel": null,
+        "bowHeading": null,
+        "pokerTurn": null,
+        "pokerFelt": null
+      }
+    },
+    {
+      "game": "bow_club",
+      "viewport": "confirm720",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm720/bow_club-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "2:58",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.132549 0.119059 0.108078 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 16px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Bow Club2:58Time left2:58Hit targets. Score points.Arrows10Points100Arrows per player10",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": {
+          "text": "2:58",
+          "box": [
+            416.046875,
+            66,
+            96.125,
+            50.390625
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.132549 0.119059 0.108078 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 16px 4px",
+          "shadow": "rgba(209, 255, 139, 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bowLabel": {
+          "text": "Time",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bowHeading": {
+          "text": "2:58\nArrows\n10\nMode\nFree for all\n\nAim. Draw. Release.",
+          "box": [
+            320,
+            0,
+            640,
+            128.390625
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "8px 24px 12px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "pokerTurn": null,
+        "pokerFelt": null
+      }
+    },
+    {
+      "game": "poker",
+      "viewport": "confirm720",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm720/poker-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "0:24",
+          "box": [
+            424.875,
+            60.59375,
+            101.65625,
+            48
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.107137 0.082353 0.141961 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 18px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "Alexandra LongSurname",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Poker Night\n0:24\nHand\n1 / 5\nPot\n50\nCurrent bet\n20",
+          "box": [
+            339.984375,
+            0,
+            600,
+            120.59375
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": null,
+        "bowLabel": null,
+        "bowHeading": null,
+        "pokerTurn": {
+          "text": "TURN\n\u00b7\nAlexandra LongSurname",
+          "box": [
+            457.984375,
+            503.96875,
+            363.546875,
+            48
+          ],
+          "display": "flex",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "999px",
+          "padding": "10px 20px",
+          "shadow": "rgba(185, 161, 191, 0.333) 0px 0px 0px 1px inset, rgba(247, 237, 220, 0.14) 0px 1px 0px 0px inset, rgba(8, 4, 16, 0.4) 0px 8px 18px 0px",
+          "textShadow": "rgba(8, 4, 16, 0.333) 0px 2px 4px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "pokerFelt": {
+          "text": "POT \u00b7 50\n\nTURN\n\u00b7\nAlexandra LongSurname\n\nAlexandra LongSurname\n1000\n\u25c6\n\u25c6\nMorgan SecondPlayer\n990\n\u25c6\n\u25c6\n\u0411\u043e\u0442 1\n980\n\u25c6\n\u25c6\n\u0411\u043e\u0442 2\n980\n\u25c6\n\u25c6",
+          "box": [
+            132.078125,
+            132.578125,
+            1015.828125,
+            571.390625
+          ],
+          "display": "flex",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        }
+      }
+    },
+    {
+      "game": "marble_bloom",
+      "viewport": "confirm1080",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm1080/marble_bloom-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "LEVEL 1",
+          "box": [
+            628.03125,
+            81,
+            165.09375,
+            72
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.078902 0.150118 0.17302 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 16px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Marble Bloom\nLEVEL 1\nPoints\n0\nQueued\n47",
+          "box": [
+            507,
+            0,
+            900,
+            177
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": null,
+        "bowLabel": null,
+        "bowHeading": null,
+        "pokerTurn": null,
+        "pokerFelt": null
+      }
+    },
+    {
+      "game": "pocket_siege",
+      "viewport": "confirm1080",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm1080/pocket_siege-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "0:26",
+          "box": [
+            634.328125,
+            90.890625,
+            152.484375,
+            72
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.109961 0.110588 0.156078 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 18px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "Alexandra LongSurname",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Pocket Siege\n0:26\nAIM AND FIRE\nTURN\n1 / 40\nWind\n19.9\nPoints\n0",
+          "box": [
+            507,
+            0,
+            900,
+            212.234375
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": null,
+        "bowLabel": null,
+        "bowHeading": null,
+        "pokerTurn": null,
+        "pokerFelt": null
+      }
+    },
+    {
+      "game": "bow_club",
+      "viewport": "confirm1080",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm1080/bow_club-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "2:58",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.132549 0.119059 0.108078 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 16px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Bow Club2:58Time left2:58Hit targets. Score points.Arrows10Points100Arrows per player10",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": {
+          "text": "2:58",
+          "box": [
+            632.078125,
+            97,
+            128.1875,
+            69.59375
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.132549 0.119059 0.108078 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 16px 4px",
+          "shadow": "rgba(209, 255, 139, 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bowLabel": {
+          "text": "Time",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bowHeading": {
+          "text": "2:58\nArrows\n10\nMode\nFree for all\n\nAim. Draw. Release.",
+          "box": [
+            480,
+            0,
+            960,
+            184.59375
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "12px 36px 18px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "pokerTurn": null,
+        "pokerFelt": null
+      }
+    },
+    {
+      "game": "poker",
+      "viewport": "confirm1080",
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/timer-poker124/confirm1080/poker-tv-playing.png",
+      "opened": true,
+      "details": {
+        "primary": {
+          "text": "0:25",
+          "box": [
+            637.328125,
+            90.890625,
+            152.484375,
+            72
+          ],
+          "display": "flex",
+          "background": "color(srgb 0.107137 0.082353 0.141961 / 0.5)",
+          "radius": "999px",
+          "padding": "8px 18px 4px",
+          "shadow": "color(srgb 0.784314 1 0.45098 / 0.26) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.06) 0px -1px 0px 0px inset, rgba(255, 255, 255, 0.05) 0px 1px 0px 0px",
+          "textShadow": "rgba(4, 2, 10, 0.4) 0px 2px 0px, color(srgb 0.784314 1 0.45098 / 0.46) 0px 0px 14px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "actor": {
+          "text": "Morgan SecondPlayer",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "display": "none",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "hidden",
+          "opacity": "1"
+        },
+        "dock": {
+          "text": "Poker Night\n0:25\nHand\n1 / 5\nPot\n50\nCurrent bet\n20",
+          "box": [
+            510,
+            0,
+            900,
+            180.890625
+          ],
+          "display": "grid",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px 0px 22px 22px",
+          "padding": "8px 24px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "bow": null,
+        "bowLabel": null,
+        "bowHeading": null,
+        "pokerTurn": {
+          "text": "TURN\n\u00b7\nMorgan SecondPlayer",
+          "box": [
+            791.5,
+            759.078125,
+            337.140625,
+            48
+          ],
+          "display": "flex",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "999px",
+          "padding": "10px 20px",
+          "shadow": "rgba(185, 161, 191, 0.333) 0px 0px 0px 1px inset, rgba(247, 237, 220, 0.14) 0px 1px 0px 0px inset, rgba(8, 4, 16, 0.4) 0px 8px 18px 0px",
+          "textShadow": "rgba(8, 4, 16, 0.333) 0px 2px 4px",
+          "overflow": "visible",
+          "opacity": "1"
+        },
+        "pokerFelt": {
+          "text": "POT \u00b7 50\n\nTURN\n\u00b7\nMorgan SecondPlayer\n\nMorgan SecondPlayer\n1000\n\u25c6\n\u25c6\nAlexandra LongSurname\n990\n\u25c6\n\u25c6\n\u0411\u043e\u0442 1\n980\n\u25c6\n\u25c6\n\u0411\u043e\u0442 2\n980\n\u25c6\n\u25c6",
+          "box": [
+            185.6875,
+            192.875,
+            1548.625,
+            871.09375
+          ],
+          "display": "flex",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "textShadow": "none",
+          "overflow": "visible",
+          "opacity": "1"
+        }
+      }
+    }
+  ],
+  "tests": "16/16 tv-information metadata tests; node --check public/tv.js passed",
+  "runtimeCaveat": "One transient ResizeObserver delivery warning on Poker1080 entry. Read-only pre-followup Poker actor/grid/plain TURN baseline reproduces same warning at720; not an endless resizing loop. No speculative observer patch retained. Both galleries have0 HTTP400+ errors. Console WebSocket shutdown messages recorded rather than hidden.",
+  "baselineComparison": "output/playwright/timer-poker124/observer-baseline/manifest.json"
+}

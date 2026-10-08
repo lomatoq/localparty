@@ -36,6 +36,19 @@
   const scope=()=>root.dataset.partyGame||'';
   let pending=0,observer;const inkOffsets=new Map();
   const assign=(node,key,value)=>{if(node.dataset[key]!==value)node.dataset[key]=value;};
+  const addClass=(node,value)=>{if(node&&!node.classList.contains(value))node.classList.add(value);};
+  const sharedRows='#sharedMatchResults .hp-result-row,#liveTop>.live-top-row,#tvLeaders>.mini-rank,.screen-podium>article,#tvPodium .podium-seat';
+  const rowSelector=()=>[sharedRows,...(descriptors[scope()]||[]).map(d=>d.rows)].join(',');
+  function rankingChanged(records){
+    const selector=rowSelector();
+    // Timers and world text are not ranking updates. Text inside a row still
+    // adapts normally, and newly inserted/replaced boards are discovered.
+    return records.some(record=>{
+      const target=record.target.nodeType===1?record.target:record.target.parentElement;
+      if(target?.closest(selector))return true;
+      return [...record.addedNodes,...record.removedNodes].some(node=>node.nodeType===1&&(node.matches(selector)||node.querySelector(selector)));
+    });
+  }
   function alignInk(number){
     const s=getComputedStyle(number),font=s.fontStyle+' '+s.fontWeight+' '+s.fontSize+' '+s.fontFamily;
     const key=[font,s.lineHeight,s.paddingTop,s.paddingBottom,number.textContent].join('|');
@@ -66,13 +79,13 @@
     const existing=place.querySelector(':scope>.hp-ranking-digit,:scope>.hp-place-digit');
     const info=explicit||(place.hasAttribute('data-place')?placeOf(place.dataset.place):placeOf(existing?existing.textContent:place.textContent));
     if(!info)return null;
-    place.classList.add('hp-ranking-place');
+    addClass(place,'hp-ranking-place');
     assign(place,'hpRank',String(info.rank));assign(place,'hpDigits',String(info.digit.length));
     const number=digit(place,info.digit);alignInk(number);
     let cup=place.querySelector(':scope>.hp-ranking-cup,:scope>.hp-place-award,:scope>.podium-award');
     if(info.rank<=3){
       if(!cup){cup=doc.createElement('img');cup.alt='';cup.setAttribute('aria-hidden','true');cup.decoding='async';place.prepend(cup);}
-      cup.classList.add('hp-ranking-cup');const src='/assets/awards/cup-'+['gold','silver','bronze'][info.rank-1]+'.png';
+      addClass(cup,'hp-ranking-cup');const src='/assets/awards/cup-'+['gold','silver','bronze'][info.rank-1]+'.png';
       if(cup.getAttribute('src')!==src)cup.src=src;
     }else if(cup&&cup.classList.contains('hp-ranking-cup'))cup.remove();
     return info;
@@ -83,21 +96,21 @@
       // Kart keeps references to these authored nodes. Move the existing lap
       // label beside its existing speed/best nodes; never clone their values.
       const lap=row.querySelector('.leader-name>span'),meta=row.querySelector('.leader-meta');
-      if(lap&&meta){lap.classList.add('hp-ranking-lap');meta.prepend(lap);}
+      if(lap&&meta){addClass(lap,'hp-ranking-lap');meta.prepend(lap);}
     }
     const place=d.place?row.querySelector(d.place):null;
     const info=place?paintPlace(place):null;
-    if(d.grid!=='shared'&&d.grid!=='author'&&place)row.parentElement?.classList.add('hp-ranking-native-list');
-    row.classList.add('hp-ranking-row');assign(row,'hpRank',info?String(info.rank):'');
+    if(d.grid!=='shared'&&d.grid!=='author'&&place)addClass(row.parentElement,'hp-ranking-native-list');
+    addClass(row,'hp-ranking-row');assign(row,'hpRank',info?String(info.rank):'');
     assign(row,'hpRankingLayout',d.grid||'shared');
-    if(d.identity){const name=row.querySelector(d.identity);name?.classList.add('hp-ranking-identity');if(name&&d.grid!=='kart'){const full=(name.querySelector('.hp-result-self')?name.firstElementChild?.textContent:name.textContent)||'';if(name.title!==full)name.title=full;}}
+    if(d.identity){const name=row.querySelector(d.identity);addClass(name,'hp-ranking-identity');if(name&&d.grid!=='kart'){const full=(name.querySelector('.hp-result-self')?name.firstElementChild?.textContent:name.textContent)||'';if(name.title!==full)name.title=full;}}
     const score=d.score?row.querySelector(d.score):null;
-    if(score){score.classList.add('hp-ranking-score');const length=score.textContent.trim().length;assign(score,'hpValueSize',length>10?'long':length>6?'medium':'short');assign(row,'hpWideScore',length>6?'true':'false');
+    if(score){addClass(score,'hp-ranking-score');const length=score.textContent.trim().length;assign(score,'hpValueSize',length>10?'long':length>6?'medium':'short');assign(row,'hpWideScore',length>6?'true':'false');
       if(row.closest('#sharedMatchResults')&&innerWidth<=420){
         const ctx=doc.createElement('canvas').getContext('2d');ctx.font='900 italic 27px KardiaFatRunner';
         const m=ctx.measureText(score.textContent.trim()),width=m.actualBoundingBoxLeft+m.actualBoundingBoxRight;
         const size=Math.min(27,Math.floor(70/Math.max(1,width)*27*10)/10);
-        score.style.setProperty('--hp-ranking-score-size',size+'px');
+        const value=size+'px';if(score.style.getPropertyValue('--hp-ranking-score-size')!==value)score.style.setProperty('--hp-ranking-score-size',value);
       }else score.style.removeProperty('--hp-ranking-score-size');
     }
   }
@@ -115,14 +128,14 @@
     // Native local podiums have their own scene geometry; preserve it.
     if(scope())doc.querySelectorAll('.screen-podium>article').forEach(row=>{
       const place=row.querySelector(':scope>small');const info=place?paintPlace(place):null;
-      row.classList.add('hp-ranking-local-podium');assign(row,'hpRank',info?String(info.rank):'');
-      row.querySelector('strong')?.classList.add('hp-ranking-score');
+      addClass(row,'hp-ranking-local-podium');assign(row,'hpRank',info?String(info.rank):'');
+      addClass(row.querySelector('strong'),'hp-ranking-score');
     });
     doc.querySelectorAll('#tvPodium .podium-seat').forEach(row=>{
       const rank=Number(row.dataset.rank),place=row.querySelector('.podium-rank');
       if(place&&rank>0)paintPlace(place,{rank,digit:String(rank)});
-      row.classList.add('hp-ranking-podium');assign(row,'hpRank',String(rank));
-      row.querySelector('.podium-points')?.classList.add('hp-ranking-score');
+      addClass(row,'hp-ranking-podium');assign(row,'hpRank',String(rank));
+      addClass(row.querySelector('.podium-points'),'hp-ranking-score');
       const portrait=row.querySelector('.podium-portrait');
       if(portrait){
         portrait.classList.toggle('hp-ranking-photo',!!portrait.querySelector(':scope>img'));
@@ -132,7 +145,7 @@
     observer?.observe(doc.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['data-place','data-rank']});
   }
   function schedule(){if(!pending)pending=requestAnimationFrame(refresh);}
-  function start(){observer=new MutationObserver(schedule);refresh();doc.fonts?.ready.then(()=>{inkOffsets.clear();schedule();});global.addEventListener('resize',schedule,{passive:true});}
+  function start(){observer=new MutationObserver(records=>{if(rankingChanged(records))schedule();});refresh();doc.fonts?.ready.then(()=>{inkOffsets.clear();schedule();});global.addEventListener('resize',schedule,{passive:true});}
   global.HeyPalsRankingsTheme=Object.freeze({refresh,placeOf,descriptors});
   if(doc.readyState==='loading')doc.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })(typeof window==='object'?window:globalThis);

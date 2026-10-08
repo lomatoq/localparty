@@ -1,0 +1,49 @@
+/* One shared audio panel on the controller and TV. Native range semantics stay intact. */
+html body fieldset.hp-audio-settings {
+  display:grid;gap:12px;padding:14px 16px 12px;margin-inline:auto;
+  min-width:0;max-width:420px;box-sizing:border-box;
+  border:1px solid #b6a0db30;border-radius:22px;
+  background:linear-gradient(135deg,#bd9ce512,#392f4910);
+  color:#eee5ff;text-align:center;
+}
+html body fieldset.hp-audio-settings>legend {
+  width:auto;margin:0 auto;padding:0 12px;
+  font:900 italic 20px/1.2 var(--hp-font-action,KardiaFatRunner,sans-serif)!important;
+  text-transform:uppercase;color:#eadcff;text-align:center;
+}
+html body fieldset.hp-audio-settings label.hp-audio-channel {
+  display:grid;grid-template-columns:1fr;gap:0;min-height:0;
+}
+html body fieldset.hp-audio-settings .hp-audio-caption {
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  font:900 italic 16px/1.3 var(--hp-font-action,KardiaFatRunner,sans-serif);
+  text-transform:uppercase;
+}
+html body fieldset.hp-audio-settings output {
+  min-width:35px;color:#d5baff99;font:400 13px/1.3 KardiaFit,sans-serif;
+}
+html body fieldset.hp-audio-settings input[type=range] {width:100%;min-width:0;cursor:pointer}
+html body fieldset.hp-audio-settings input[type=range]::-webkit-slider-runnable-track {
+  height:6px;background:linear-gradient(to right,#bd9aff 0 var(--audio-level,50%),#c0a7e329 var(--audio-level,50%) 100%);
+}
+html body fieldset.hp-audio-settings input[type=range]::-moz-range-track {
+  height:6px;background:linear-gradient(to right,#bd9aff 0 var(--audio-level,50%),#c0a7e329 var(--audio-level,50%) 100%);
+}
+html body fieldset.hp-audio-settings .hp-audio-mute {
+  justify-content:center;gap:10px;min-height:44px;
+  font:900 italic 16px/1.3 var(--hp-font-action,KardiaFatRunner,sans-serif);text-transform:uppercase;
+}
+html body fieldset.hp-audio-settings>a {
+  justify-self:center;color:#cbb8e5b3;
+  font:400 12px/1.4 KardiaFitRunner,sans-serif;
+}
+@media(max-height:620px){html body fieldset.hp-audio-settings{gap:6px;padding:10px 12px}}
+
+html body #tvAudioClose.hp-popup-back{display:flex;align-items:center;justify-content:center;width:48px;min-width:48px;height:48px;min-height:48px;margin:20px 0 0 auto;padding:0;border-radius:50%;background:#b5a3df12;border:1px solid #dac6ff30;color:#f6efff}
+html body #tvAudioClose.hp-popup-back::before{content:'';width:22px;height:22px;background:currentColor;mask:url(/assets/icons/game-pack/arrow-left.svg) center/contain no-repeat;-webkit-mask:url(/assets/icons/game-pack/arrow-left.svg) center/contain no-repeat}
+/* Same custom mute control on browser, native controller and TV. */
+html body fieldset.hp-audio-settings .hp-audio-mute input[type=checkbox]{appearance:none;-webkit-appearance:none;display:grid;place-content:center;flex:0 0 26px;width:26px;height:24px;min-height:24px;margin:0;border:1.5px solid #b797e980;border-radius:8px;background:#141020;box-shadow:none;cursor:pointer}
+html body fieldset.hp-audio-settings .hp-audio-mute input[type=checkbox]::before{content:'';width:10px;height:5px;border-left:2.5px solid #e8d8ff;border-bottom:2.5px solid #e8d8ff;transform:rotate(-45deg) translateY(-1px);opacity:0}
+html body fieldset.hp-audio-settings .hp-audio-mute input[type=checkbox]:checked{background:#483062;border-color:#d0abff}
+html body fieldset.hp-audio-settings .hp-audio-mute input[type=checkbox]:checked::before{opacity:1}
+html body fieldset.hp-audio-settings .hp-audio-mute input[type=checkbox]:focus-visible{outline:2px solid #d8c2fb;outline-offset:3px}

@@ -24,9 +24,9 @@
   const scoreKey=scoreKeys[game],score=self&&scoreKey?self[scoreKey]:null;
   const allScores=scoreKey?Object.fromEntries(players.filter(p=>finite(p[scoreKey])).map(p=>[p.id,p[scoreKey]])):{};
   const turnOwner={jenga:s.currentId,crane:s.activeId,monster:s.activePlayerId,millionaire:s.activePlayerId,pocket_siege:s.activeId,poker:s.turn,punchmeter:s.punchTurn,curling:s.currentId,bowling:s.currentId}[game];
-  return {phase,scope,active,remaining,selfId:self?.id||selfId,score,allScores,
+  return {phase,scope,active,remaining,turnOwner,turnIdentity:s.turnId??s.turnToken??null,selfId:self?.id||selfId,score,allScores,
    health:finite(health)?health:null,maxHealth,alive,
-   ownAlive:self?['tankarena','hungry'].includes(game)?self.dead<=0:typeof self.alive==='boolean'?self.alive:null:null,
+   ownAlive:self?['tankarena','hungry'].includes(game)?finite(self.dead)?self.dead<=0:null:typeof self.alive==='boolean'?self.alive:null:null,
    critical:active&&finite(health)&&health>0&&(game==='crane'?health===1:health/Math.max(1,maxHealth)<=.25),
    goals:Array.isArray(teamGoals)&&teamGoals.every(finite)?teamGoals.slice(0,2):null,
    team:game==='tanks'?self?.team==='red'?0:self?.team==='blue'?1:null:self?.team,
@@ -46,7 +46,11 @@
    else {if(next.health!==null)critical=next.critical;if(next.remaining!==null)urgent=next.remaining>0&&next.remaining<=5;}
    const events=[],add=(type,semantic,extra={})=>events.push({type,id:`${game}:${channel}:${next.scope}:${++serial}:${semantic}`,semantic,intensity:.45,shake:false,haptic:!!selfId,...extra});
    // Joining/reconnecting midway must not replay old goals, hits or danger.
-   if(!old||old.scope!==next.scope)return {events,critical,urgent};
+   if(!old)return {events,critical,urgent};
+   // Public turn ownership, never private answers/input. A handoff may change
+   // turn scope; compare only consecutive live snapshots with a known owner.
+   if(old.active&&next.active&&old.turnIdentity!=null&&next.turnIdentity!=null&&old.turnIdentity!==next.turnIdentity&&next.turnOwner===next.selfId&&next.canAct)add('turn-ready','turn-ready',{id:`${game}:turn:${next.turnIdentity}:${next.turnOwner}`,hudOnly:true,impactSelector:{jenga:'#turn',curling:'#ss-turn',bowling:'#ss-turn'}[game]||selectors[game],impactPlayer:next.selfId,particles:true});
+   if(old.scope!==next.scope)return {events,critical,urgent};
    const currentRound=old.active&&next.active;
    if(old.active&&next.goals&&old.goals){
     const team=next.goals.findIndex((n,i)=>n>old.goals[i]);
@@ -58,9 +62,10 @@
    if(old.active&&['reveal','between','finished','results'].includes(next.phase)&&finite(old.score)&&finite(next.score)&&next.score>old.score)add('score','score',{id:`${game}:score:${next.scope}:${next.selfId}:${next.score}`,visual:false,impactSelector:selectors[game],impactPlayer:next.selfId});
    if(currentRound){
     if(finite(old.health)&&finite(next.health)&&next.health<old.health&&['tanks','tankarena','naval'].includes(game))add('hit','damage',{intensity:Math.min(1,.35+(old.health-next.health)/Math.max(1,next.maxHealth)),haptic:!!selfId,color:'#ff667c'});
+    if(old.ownAlive===false&&next.ownAlive===true&&['tanks','tankarena','hungry'].includes(game))add('recovery','respawn',{hudOnly:true,impactSelector:selectors[game],impactPlayer:next.selfId,color:'#c8ff73'});
     if(old.ownAlive===true&&next.ownAlive===false&&['push','shrink','snakelines','flappy','hungry'].includes(game))add('elimination','elimination',{color:'#ff667c',intensity:.7,haptic:!!selfId});
     // Scores that represent food/taps/frame ticks intentionally do not burst.
-    if(finite(old.score)&&finite(next.score)&&next.score>old.score)add('score','score',{id:`${game}:score:${next.scope}:${next.selfId}:${next.score}`,visual:!['curling','bowling','marble_bloom','mines'].includes(game),impactSelector:selectors[game],impactPlayer:next.selfId});
+    if(finite(old.score)&&finite(next.score)&&next.score>old.score)add('score','score',{id:`${game}:score:${next.scope}:${next.selfId}:${next.score}`,visual:!['curling','bowling','marble_bloom','mines'].includes(game),hudOnly:true,impactSelector:selectors[game],impactPlayer:next.selfId});
     else if(!selfId){const award=Object.entries(next.allScores).find(([id,n])=>finite(old.allScores[id])&&n>old.allScores[id]);if(award)add('score','score',{haptic:false,visual:false,impactSelector:selectors[game],impactPlayer:award[0]});}
     if(finite(old.lap)&&finite(next.lap)&&next.lap>old.lap)add('score','lap',{intensity:.65,visual:false,impactSelector:selectors.kart});
     if(next.impact&&next.impact.seq!==old.impact?.seq&&next.impact.strength>=70)add('collision','wall-hit',{intensity:Math.min(1,next.impact.strength/180),haptic:!!selfId,visual:false});

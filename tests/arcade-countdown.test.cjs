@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const app=fs.readFileSync('games/arcade/public/app.js','utf8');
-const helper=app.slice(app.indexOf('function drawArcadeCountdown('),app.indexOf('function draw(){beginArcadeFrame();'));
+const helper=app.slice(app.indexOf('function drawArcadeCountdown('),app.indexOf('function drawPunchRope('));
 function context(){const camera=[.82,0,0,.82,148,130],stack=[],fills=[],texts=[];return {camera,stack,fills,texts,save(){stack.push([...this.camera]);},restore(){this.camera=stack.pop();},setTransform(...t){this.camera=t;},fillRect(...rect){fills.push({rect,transform:[...this.camera]});},fillText(...text){texts.push({text,transform:[...this.camera]});}};}
 for(const [width,height] of [[1280,720],[3840,2160]])test(`Countdown dims full ${width}×${height} backing without moving its readout`,()=>{
  const g=context(),camera=[...g.camera];let timer;

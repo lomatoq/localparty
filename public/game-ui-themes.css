@@ -234,13 +234,12 @@ html.hp-ui.party-managed.party-host[data-hp-ui-theme="sinyakquiz"] body :is(.scr
  background-repeat:no-repeat!important;
 }
 
-/* warsaw: desaturated mineral workspace; existing phone outer surface. */
-html.hp-ui.party-managed.party-player[data-hp-ui-theme="warsaw"] body :is(.stage.panel)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
- background-color:#282333!important;
- background-image:linear-gradient(145deg,#3d3549,#282333)!important;
- background-position:center!important;
- background-size:100% 100%!important;
- background-repeat:no-repeat!important;
+/* Warsaw controller: answer buttons stand directly on the shared background. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="warsaw"] body .stage.panel[data-hp-theme-surface]{
+ background:transparent!important;
+ border-color:transparent!important;
+ box-shadow:none!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
 }
 
 /* warsaw: desaturated mineral workspace; existing host outer surface. */
@@ -513,14 +512,16 @@ html.hp-ui.party-managed.party-host[data-hp-ui-theme="airhockey"] body :is(.hock
  background-repeat:no-repeat!important;
 }
 
-/* mines: Graphite survey plates; existing phone outer surface. */
-html.hp-ui.party-managed.party-player[data-hp-ui-theme="mines"] body :is(#tabletop .dpad)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){
- background-color:#253137!important;
- background-image:linear-gradient(145deg,#39454a,#253137)!important;
- background-position:center!important;
- background-size:100% 100%!important;
- background-repeat:no-repeat!important;
+/* Mine Together: green directional keys, no shared backing plate. */
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="mines"] body #tabletop .dpad[data-hp-theme-surface]{
+ background:transparent!important;box-shadow:none!important;border-color:transparent!important;
 }
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="mines"] body main#tabletop .dpad button{
+ background:linear-gradient(155deg,#a6d982,#73a858)!important;
+ box-shadow:inset 0 1px 0 #eaffcf66,0 3px 8px #080d0a40!important;
+}
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="mines"] body main#tabletop .dpad button .mine-direction-icon{fill:#182b19}
+html.hp-ui.party-managed.party-player[data-hp-ui-theme="mines"] body main#tabletop .dpad button:active{background:#bbe99a!important}
 
 /* mines: Graphite survey plates; existing host outer surface. */
 html.hp-ui.party-managed.party-host[data-hp-ui-theme="mines"] body :is(#tabletop #players .player)[data-hp-theme-surface]:not([data-hp-theme-preserve]):not([data-hp-theme-preserve] *):not(:disabled):not([aria-disabled=true]):not([aria-pressed=true]):not(.pressed):not(.down):not(.active):not(.selected):not(.turn):not(.current):not(.folded):not(.out):not(.correct):not(.wrong):not(:active):not(:focus){

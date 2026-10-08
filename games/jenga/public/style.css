@@ -113,3 +113,8 @@ html.hp-ui.party-managed.party-host[data-party-game=jenga] body.host main.jenga-
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 .crew-avatar.has-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#c8b493)}
+
+/* Keep the shared backdrop, without the amber wash behind the tower/crew. */
+html.hp-ui.party-managed.party-host[data-party-game=jenga] body.host::before{
+ background:linear-gradient(#151321d6,#151321e0),url('/assets/backgrounds/brick-wall-wide-v1.png') center/cover no-repeat!important;
+}

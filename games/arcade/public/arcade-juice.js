@@ -78,7 +78,8 @@ function environment(q,s){
   const v=q.createRadialGradient(600,360,300,600,360,760);v.addColorStop(0,'#00000000');v.addColorStop(1,'#020c0870');q.fillStyle=v;q.fillRect(-extraX,-extraY,1200+extraX*2,720+extraY*2);
  }
  if(s.mode==='punchmeter'){
-  const cone=q.createLinearGradient(0,40,0,620);cone.addColorStop(0,'#fff3d022');cone.addColorStop(1,'#fff3d006');q.fillStyle=cone;q.beginPath();q.moveTo(560,40);q.lineTo(640,40);q.lineTo(860,610);q.lineTo(340,610);q.closePath();q.fill();
+  // A diffuse warm light belongs to the authored gym; no second hard-edged spotlight geometry.
+  q.save();q.translate(600,330);q.scale(.68,1);const light=q.createRadialGradient(0,0,25,0,0,320);light.addColorStop(0,'#fff0d010');light.addColorStop(.45,'#fff0d008');light.addColorStop(1,'#fff0d000');q.fillStyle=light;q.fillRect(-320,-320,640,640);q.restore();
   const pool=q.createRadialGradient(600,596,10,600,596,300);pool.addColorStop(0,'#fff0c62a');pool.addColorStop(1,'#fff0c600');q.fillStyle=pool;q.save();q.translate(600,596);q.scale(1,.18);q.translate(-600,-596);q.fillRect(300,300,600,600);q.restore();
  }
 }

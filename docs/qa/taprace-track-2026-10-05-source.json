@@ -1,0 +1,115 @@
+{
+  "source": "games/arcade/public/app.js",
+  "beforeSha256": "da8b1a72baf1f1f9d8c4f094c6fcb765ffa573d737d35a96d7d2b3fe4131576f",
+  "afterSha256": "4f1f8a0fa237152f1c3749ce7e298867d297de41c7ff9ef45fc84ddbb7cae743",
+  "ownedFunction": "paintTapArena",
+  "ownedFunctionSha256": "865d0bffecfd18058e21d9ae6fd120cf6a068c075adc26eef502f7b34a2e4210",
+  "outsideOwnedFunctionUnchanged": true,
+  "captures": [
+    {
+      "state": "before",
+      "height": 720,
+      "original": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/before-720/taprace-tv-playing.png",
+      "sha256": "ed67e5fed578fead5587910578d44adf8f6be3fc9c9a41549a2853b8823c9869",
+      "manifest": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/before-720/manifest.json",
+      "captureAt": "2026-10-04T22:04:40.017Z",
+      "errors": [],
+      "responseErrors": [],
+      "consoleErrors": [
+        {
+          "game": "taprace",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:60974/games/taprace/ws' failed: The operation couldn’t be completed. Socket is not connected",
+          "at": "2026-10-04T22:04:40.291Z"
+        }
+      ],
+      "changedFiles": [],
+      "ownedSourceStable": true
+    },
+    {
+      "state": "before",
+      "height": 1080,
+      "original": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/before-1080/taprace-tv-playing.png",
+      "sha256": "97604a6980104d09c304bbfe68e6ae3b81d28356dd150803de33f99ecd54fae5",
+      "manifest": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/before-1080/manifest.json",
+      "captureAt": "2026-10-04T22:04:54.845Z",
+      "errors": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "changedFiles": [],
+      "ownedSourceStable": true
+    },
+    {
+      "state": "after",
+      "height": 720,
+      "original": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/after-720/taprace-tv-playing.png",
+      "sha256": "50247d0bac9dc247a80ea1d21eb96dd75e6e91534e7aeed9427c57ac8be16131",
+      "manifest": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/after-720/manifest.json",
+      "captureAt": "2026-10-04T22:10:24.932Z",
+      "errors": [],
+      "responseErrors": [],
+      "consoleErrors": [
+        {
+          "game": "taprace",
+          "surface": "phone",
+          "text": "WebSocket connection to 'ws://127.0.0.1:62994/games/taprace/ws' failed: The operation couldn’t be completed. Socket is not connected",
+          "at": "2026-10-04T22:10:27.872Z"
+        },
+        {
+          "game": "taprace",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:62994/games/taprace/ws' failed: The operation couldn’t be completed. Connection reset by peer",
+          "at": "2026-10-04T22:10:27.891Z"
+        },
+        {
+          "game": "taprace",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:62994/games/taprace/ws' failed: The operation couldn’t be completed. Socket is not connected",
+          "at": "2026-10-04T22:10:27.891Z"
+        },
+        {
+          "game": "taprace",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:62994/games/taprace/ws' failed: The operation couldn’t be completed. Connection reset by peer",
+          "at": "2026-10-04T22:10:27.980Z"
+        }
+      ],
+      "changedFiles": [
+        "games/drawguess/public/screen.css"
+      ],
+      "ownedSourceStable": true
+    },
+    {
+      "state": "after",
+      "height": 1080,
+      "original": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/after-1080/taprace-tv-playing.png",
+      "sha256": "ca9dd7fdc1c974d1a0d309919c55336e2d11f2c1dbb4058b8d6534718572e709",
+      "manifest": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/taprace-field-2026-10-05/after-1080/manifest.json",
+      "captureAt": "2026-10-04T22:11:12.871Z",
+      "errors": [],
+      "responseErrors": [],
+      "consoleErrors": [
+        {
+          "game": "taprace",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:63688/games/taprace/ws' failed: The operation couldn’t be completed. Socket is not connected",
+          "at": "2026-10-04T22:11:14.451Z"
+        },
+        {
+          "game": "taprace",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:63688/games/taprace/ws' failed: The operation couldn’t be completed. Socket is not connected",
+          "at": "2026-10-04T22:11:14.451Z"
+        },
+        {
+          "game": "taprace",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:63688/games/taprace/ws' failed: The operation couldn’t be completed. Socket is not connected",
+          "at": "2026-10-04T22:11:14.516Z"
+        }
+      ],
+      "changedFiles": [],
+      "ownedSourceStable": true
+    }
+  ]
+}

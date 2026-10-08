@@ -24,6 +24,11 @@ const server=http.createServer((req,res)=>{
     '/spectator-seat.js':'spectator-seat.js','/spectator-crowd.js':'spectator-crowd.js','/notice-copy.js':'notice-copy.js','/scene-bowling.js':'scene-bowling.js','/bowling-extras.js':'bowling-extras.js','/controls.js':'controls.js','/host.js':'host.js','/scene-curling.js':'scene-curling.js','/curling-extras.js':'curling-extras.js','/net.js':'net.js','/style.css':'style.css','/sports-controls.css':'sports-controls.css'};
   allowed['/bowling-alley.js']='bowling-alley.js';
   allowed['/bowling-feel.js']='bowling-feel.js';
+  allowed['/bowling-deck.js']='bowling-deck.js';
+  allowed['/swarm-fx.js']='swarm-fx.js';
+  allowed['/swarm-turrets.js']='swarm-turrets.js';
+  allowed['/swarm-impacts.js']='swarm-impacts.js';
+  allowed['/swarm-ambience.js']='swarm-ambience.js';
   let file=allowed[url.pathname]&&path.join(__dirname,'public',allowed[url.pathname]);
   if(['/vendor/three.module.js','/vendor/three.core.js'].includes(url.pathname))file=path.join(__dirname,'../../node_modules/three/build',path.basename(url.pathname));
   if(url.pathname==='/vendor/loaders/GLTFLoader.js')file=path.join(__dirname,'../../node_modules/three/examples/jsm/loaders/GLTFLoader.js');

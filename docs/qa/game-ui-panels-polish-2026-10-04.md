@@ -1,13 +1,14 @@
 # In-game UI panels: visual polish (2026-10-04)
 
-Owner: Claude game-UI-panels agent. Scope: visual finish of in-game panels on phone controllers and TV game frames. The layout does not change. Pause/Lobby, the TV header notch (owned by the header pass), per-game theme fills and authored pressed or selected states are left as they were.
+Owner: Claude game-UI-panels agent. Scope: visual finish of the repeated, shared in-game elements on phone controllers and TV game frames (stat cards, readouts, buttons, player and ranking rows, info cards, TV side panels and scoreboards, and the arrangement of content inside the TV header). The layout does not change. Pause/Lobby, the TV header's outer notch, wing and rail geometry, per-game theme fills, and authored pressed or selected states are left as they were.
 
 ## Files
 
 - NEW `public/game-ui-polish-20261004.css` (the only stylesheet this pass adds or changes)
 - `server.js`: one `<link>` appended to the game-frame injection after `game-ui-themes.css` (it loads last), plus one entry in the static whitelist so `/game-ui-polish-20261004.css` is served
 - `public/index.html`, `public/tv.html`, `public/native-shell/index.html`: one `<link>` each, last in `<head>`
-- No per-game CSS or JS files were edited. Rules that target one game live in the shared file and are scoped by `[data-party-game=…]`.
+- No per-game CSS or JS files were edited. Rules that target one game live in the shared file and are scoped by `[data-party-game=…]`. `public/tv-information.css` is also untouched, because Codex is active there; the TV-header content rule lives in the shared file instead.
+- NEW `scripts/qa-panel-polish-ab.cjs`: the A/B geometry and capture sweep used below.
 
 ## Critique of the state before this pass
 
@@ -33,13 +34,13 @@ Tokens on `.hp-ui`:
 - `--hpp-floor`: a quiet inset lower lip.
 - `--hpp-volume`: an inset soft falloff toward the bottom, `0 -16px 24px -16px`.
 - `--hpp-lift`: a tight contact shadow `0 1px 2px` plus `0 10px 20px -11px`. The negative spread keeps it inside 6px on each side, so it is never cut by a scrolling rail's clip.
-- `--hpp-pearl`: the approved pearlescent layers, unchanged (two centred 38×1.5px lines and two diagonal tints), plus one vertical top-lit falloff layer underneath.
+- `--hpp-toplight`: an inset top glow, `0 20px 24px -22px`. It lights the card from above inside `box-shadow`. The approved background layers (the pearlescent tint and the centred 38×1.5px lines) are never restated: restating them was the pass-1 regression.
 - `--hpp-label` `#cdc3de`: label ink.
 - `--hpp-ink-shadow`: crisp value depth `0 1px 0` plus a soft 9px shade.
 
 Applied to:
 
-- Phone passive cards (`.hp-info-card`, western/combat child cards): rim, top-lit pearl, sheen, volume and lift. The approved centred top and bottom lines keep their exact size and colour.
+- Phone passive cards (`.hp-info-card` and the western/combat child cards): rim, sheen, top light, volume and lift, all through `box-shadow` and `outline-color`. The approved centred top and bottom lines and the pearlescent tint are not touched.
 - Stat-group dividers (`.hp-stat-group`, arcade `#arcadeStats`, `#punchResult`): they fade out 16% from each end, which removes the T-joints and the crossing with the centred accents.
 - Stat labels: brighter label ink. Values: ink shadow only, with no colour change, so semantic colours such as SAFE, Out and lime stay as they were.
 - Arcade instrument cards: they keep their authored game tint and rim, and take the shared sheen, volume and lift instead of the broad haze.
@@ -47,13 +48,14 @@ Applied to:
 - TV live standings: a brighter top edge, a tight contact shadow inside the 8px gap, and ink shadow on the score and rank.
 - TV ranking rows: an inset top sheen and an inner falloff. Fills stay authored. Gradient place digits are untouched, because a shadow would bleed through the clipped text. The score gets ink shadow. Active and turn rows keep their authored glow.
 - Flat lime primaries (Crane DROP, Charades GUESSED, Mines OPEN TILE, Siege ability): an inner top sheen and an inner lower lip, painted inside the box so the visual bounds do not grow, plus a soft lime contact shade. This applies only in the idle state; pressed and disabled states are authored.
-- Flat secondary keys (list in critique item 7): one “key” finish with a lit top edge, an inner lower lip and an inner falloff. Pressed, active, selected and disabled states are excluded.
+- Flat secondary keys (the list in critique item 7, plus Draw & Guess Clear and the idle Kart throttle): one “key” finish with a lit top edge, an inner lower lip and an inner falloff. Pressed, active, selected and disabled states are excluded.
+- **TV header text readouts.** This rearranges content and is the one intentional geometry change. Ten headers show a name or text metric: “Leader” in Punch Meter, Snake Lines, Hungry, Tap Race, Flappy, Carry Ball, Two at Sunset, Tank Arsenal, Mines and Naval. In all of them the label sat 8px lower than the labels beside it, and long names were cut to “Alexandri…”. Now the label shares the top line with “Points” and “Time left”. The value fills the same 38px well as the numerals: centred, 14px (was 13px), and up to two balanced lines, so it reads “Alexandria / Longname”. At 1600px wide and above, in rail-card mode, the columns are only about 54–61 CSS px wide, so there the value stays on one centred line with an ellipsis. The outer notch, wings, rail card and dock boxes are unchanged (measured).
 
-Nothing changes `width`, `height`, `padding`, `margin`, `gap`, `display`, `position`, `font-size`, `letter-spacing` or `border-width`. Radii stay inside the existing family; this pass sets no radius at all.
+Outside the TV-header readout rule, nothing changes `width`, `height`, `padding`, `margin`, `gap`, `display`, `position`, `font-size`, `letter-spacing` or `border-width`. Radii stay inside the existing family, and this pass sets no radius at all.
 
 ## Regression proof (geometry)
 
-Method (`scratchpad/polish-toggle-sweep.cjs`, copied to `scripts/` is not needed): the real launch path is used. A phone joins with the long name “Alexandria Longname”, 3 bots, force-start, and the capture runs about 4.5s into play. In every frame of the phone page and the TV page (shell plus all game iframes), one synchronous `evaluate` does the following:
+Method (`scripts/qa-panel-polish-ab.cjs`): the real launch path is used. A phone joins with the long name “Alexandria Longname”, 3 bots, force-start, and the capture runs about 4.5s into play. In every frame of the phone page and the TV page (shell plus all game iframes), one synchronous `evaluate` does the following:
 
 1. disables the polish sheet,
 2. records the `getBoundingClientRect` of every element in `body`,

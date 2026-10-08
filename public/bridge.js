@@ -38,8 +38,17 @@
   const stageObserver=new ResizeObserver(scheduleStage);if(frame)stageObserver.observe(frame);if(hud)stageObserver.observe(hud);
   const dock=parent.document.querySelector('#play .tv-info-dock');if(dock)stageObserver.observe(dock);
   const watchComposition=()=>{
-   const observer=new ResizeObserver(scheduleComposition);document.querySelectorAll('[data-tv-hud-anchor],[data-tv-hud-cluster],[data-tv-hud-rail]').forEach(node=>observer.observe(node));
-   new MutationObserver(records=>{if(records.some(record=>record.type==='childList'||record.attributeName==='data-tv-hud-rail'||record.attributeName==='data-tv-hud-anchor'||record.attributeName==='data-tv-hud-cluster')){document.querySelectorAll('[data-tv-hud-anchor],[data-tv-hud-cluster],[data-tv-hud-rail]').forEach(node=>observer.observe(node));scheduleComposition();}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-tv-hud-anchor','data-tv-hud-cluster','data-tv-hud-rail']});
+   const observer=new ResizeObserver(scheduleComposition),observed=new Set();
+   const observeComposition=()=>{
+    const next=new Set();
+    // Text can move a centered cap when a sibling/container changes size.
+    // Observe that layout chain instead of remeasuring on every clock tick.
+    document.querySelectorAll('[data-tv-hud-anchor],[data-tv-hud-cluster],[data-tv-hud-rail]').forEach(node=>{for(let current=node;current&&current!==document.documentElement;current=current.parentElement){next.add(current);for(const sibling of current.parentElement?.children||[])if(!sibling.matches('script,style,link'))next.add(sibling);}});
+    for(const node of observed)if(!next.has(node)){observer.unobserve(node);observed.delete(node);}
+    for(const node of next)if(!observed.has(node)){observer.observe(node);observed.add(node);}
+   };
+   observeComposition();
+   new MutationObserver(records=>{if(records.some(record=>record.type==='attributes'||[...record.addedNodes,...record.removedNodes].some(node=>node.nodeType===1))){observeComposition();scheduleComposition();}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-tv-hud-anchor','data-tv-hud-cluster','data-tv-hud-rail']});
    scheduleComposition();
   };
   window.addEventListener('resize',scheduleComposition);document.addEventListener('DOMContentLoaded',watchComposition,{once:true});syncStage();

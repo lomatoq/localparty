@@ -67,7 +67,7 @@ html body .game[data-id]>.game-info,html body .lp-catalog .game.lp-catalog-card>
 html body .game[data-id] .game-info>p,html body .lp-catalog .game.lp-catalog-card p{font-size:12px!important;line-height:1.4!important}
 /* Caption contrast must not bleed into the dark lettering on lime actions. */
 html body .game[data-id] :is(button,.start-game,.lp-direct-start,.rules-link),html body .game[data-id] :is(button,.start-game,.lp-direct-start,.rules-link) *{text-shadow:none!important}
-html body .native-sheet button[role=switch][aria-checked=true]{background:#c6b1ff;color:#221a33}
+html body .native-sheet button[role=switch][aria-checked=true]{background:var(--lime);color:#202d14}
 html body.native-shell #tvDirectorControls button[aria-pressed=true]{border-color:#c6b1ff;box-shadow:inset 0 0 0 1px #c6b1ff}
 html body.tv-screen :is(.tv-startup,.tv-scene-transition){background:radial-gradient(ellipse at 25% 0,#76589950,transparent 70%),#141423f5}
 html body.tv-screen .tv-progress i{background:linear-gradient(90deg,#a88bdd,#a5baff);box-shadow:0 0 20px #ac92e166}
@@ -78,7 +78,8 @@ html body.tv-screen .menu-labels .is-fresh{color:var(--party-lilac)!important;te
 .profile-sheet-backdrop{position:fixed;inset:0;z-index:90;background:#080b14a6;-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);animation:profileShadeIn 280ms ease both}
 .profile-sheet-backdrop[hidden]{display:none!important}
 body.profile-editing{overflow:hidden!important}
-body.profile-editing #home,body.profile-editing>.app-header,body.profile-editing>.ambient{filter:blur(8px);pointer-events:none}
+/* The animated backdrop owns blur; filtering the page too leaves a frozen blur until close. */
+body.profile-editing #home,body.profile-editing>.app-header,body.profile-editing>.ambient{pointer-events:none}
 body.profile-editing #lobby{z-index:auto!important}
 body.profile-editing #onboarding{position:fixed!important;z-index:91;left:50%;right:auto;bottom:0;top:auto;transform:translateX(-50%);box-sizing:border-box;width:min(620px,100vw)!important;max-width:100vw;max-height:min(92dvh,860px);overflow-y:auto;overscroll-behavior:contain;margin:0!important;padding:22px 22px calc(22px + env(safe-area-inset-bottom))!important;border:1px solid #bca3ff55;border-bottom:0;border-radius:28px 28px 0 0;background:linear-gradient(145deg,#211d32f7,#141923fa 62%,#171c29fa);box-shadow:0 -20px 70px #0009,0 0 42px #ab8af71c;animation:profileSheetIn 440ms cubic-bezier(.2,.8,.2,1) both}
 body.profile-editing #onboarding .profile-photo-field{background:linear-gradient(130deg,#bca3ff14,#87aaff0a)}
@@ -443,7 +444,7 @@ html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card p{margin:6px 0 10px!
 html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card h3{font-size:19px!important;line-height:1.15!important}
 html body:not(.tv-screen) .lp-catalog .games{gap:12px!important}
 html body:not(.tv-screen) .lp-catalog .lp-fresh-section{padding:14px!important;margin-bottom:18px!important;border-radius:24px}
-html body:not(.tv-screen) .lp-catalog .fresh-track{grid-auto-columns:74%!important;gap:12px!important;padding-block:8px 18px!important}
+html body:not(.tv-screen) .lp-catalog .fresh-track{grid-auto-columns:74%!important;gap:12px!important;padding-block:44px 48px!important;margin-block:-54px -48px!important}
 html body:not(.tv-screen) .lp-catalog .fresh-track>.game.lp-catalog-card>.art{aspect-ratio:1.85!important}
 html body:not(.tv-screen) .lp-catalog .fresh-heading h2{font-size:25px!important;margin-block:0!important}
 html body:not(.tv-screen) .lp-catalog .game.lp-catalog-card .start-game{min-height:44px!important}
@@ -806,7 +807,7 @@ html body:not(.tv-screen) .has-photo::after{z-index:2}
 
 /* Preserve the approved violet material while keeping underlying words out
    of reading dialogs. Only the body scrolls; heading and actions stay whole. */
-html body:not(.tv-screen):not(.native-shell) :is(#rulesDialog,#statsDialog,#roomDialog,#joinDialog,#catalogDialog){background:linear-gradient(135deg,#302540,#20233a)!important}
+html body:not(.tv-screen):not(.native-shell) :is(#rulesDialog,#statsDialog,#roomDialog,#joinDialog,#catalogDialog){background:var(--hp-matte-panel)!important}
 .profile-fields{display:contents}
 html body.profile-editing #onboarding{display:grid!important;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:start!important;overflow:hidden!important;height:min(94dvh,860px);background:linear-gradient(145deg,#211d32,#141923 62%,#171c29)!important}
 html body.native-controller.profile-editing #onboarding{height:min(860px,calc(100dvh - var(--native-tab-reserve) - 16px))}
@@ -836,3 +837,6 @@ html body #roomDialog .room-content::-webkit-scrollbar{display:none;width:0;heig
 /* The run card shares the selected-game ring, rather than a second flat line. */
 html body.native-shell main #activeCard#activeCard{border-color:transparent!important}
 html body.native-shell main #activeCard#activeCard::after{box-shadow:none!important}
+
+/* Profile editor always clears the physical notch; only its fields scroll. */
+html body.profile-editing #onboarding{max-height:calc(100dvh - env(safe-area-inset-top,0px) - 16px)!important;height:min(860px,calc(100dvh - env(safe-area-inset-top,0px) - 16px))!important}

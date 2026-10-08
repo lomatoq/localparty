@@ -209,3 +209,6 @@ html.hp-ui.party-managed.party-player[data-party-game=kart] body.controller-page
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 .leader-dot img.kart-photo{box-sizing:border-box;border:1.5px solid var(--player,#8ebba6)}
+/* Authored forest is one full-screen layer; the race canvas carries only track and cars. */
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page main.host-shell>.game-stage,
+html.hp-ui.party-managed.party-host[data-party-game=kart] body.host-page canvas#gameCanvas{background:transparent!important}

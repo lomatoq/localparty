@@ -111,3 +111,9 @@ html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main>.sta
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 .duel-portrait img.duel-photo{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#d0af86)}
+
+/* Duel Order belongs to the full-height sunset fade, not a second opaque card.
+   The queue ID scopes this above the generic material paint to this TV rail only. */
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main [data-tv-hud-rail]>.glass:has(>#queue){background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important;backdrop-filter:none!important}
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main [data-tv-hud-rail]>.glass:has(>#queue)::before,
+html.hp-ui.party-managed.party-host[data-party-game=western_duel] body main [data-tv-hud-rail]>.glass:has(>#queue)::after{content:none!important}

@@ -1,0 +1,127 @@
+/* HeyPals TV motion, 2026-10-05 (Claude "tv" lane).
+   Scene curtain and entrance choreography for the shared TV only.
+   Everything is scoped to html.tvm-on, which tv-motion-20261005.js sets
+   (absent with /tv?motion=legacy). It changes no box geometry: transforms
+   and opacity only, no animated filters, no new backdrop blur.
+   The tokens extend motion.css (--motion-*); the JS reads these same values. */
+html.tvm-on body.tv-screen{
+ --tv-scene-close:380ms;   /* doors travel in, covering the outgoing scene */
+ --tv-scene-hold:340ms;    /* after the doors meet, before they part (wordmark lands meanwhile) */
+ --tv-scene-open:460ms;    /* doors travel out, revealing the incoming scene */
+ --tv-enter:420ms;         /* 10-foot UI entrance (header, cards, rows, chips) */
+ --tv-exit:220ms;          /* UI leaving: faster than it came */
+ --tv-stagger:45ms;        /* between items; capped at 10 items in JS */
+ --motion-ease-travel:cubic-bezier(.77,0,.175,1); /* on-screen movement (doors) */
+}
+
+/* ---------- Scene curtain: two wall doors with an italic seam ---------- */
+html.tvm-on body.tv-screen #tvSceneTransition.tv-scene-transition.tvm-curtain{
+ background:none!important;isolation:isolate;overflow:hidden;
+}
+html.tvm-on body.tv-screen #tvSceneTransition .tvm-doors{position:absolute;inset:0;z-index:0;pointer-events:none}
+html.tvm-on body.tv-screen #tvSceneTransition:not(.tvm-curtain) .tvm-doors{display:none}
+/* Each door is a translated wrapper (the only moving layer) holding a skewed
+   panel; the wall inside is counter-skewed so the bricks stay level. */
+html.tvm-on body.tv-screen .tvm-door{position:absolute;top:-2%;bottom:-2%;width:59%;will-change:transform}
+html.tvm-on body.tv-screen .tvm-door-l{left:-8%}
+html.tvm-on body.tv-screen .tvm-door-r{right:-8%}
+html.tvm-on body.tv-screen .tvm-panel{position:absolute;inset:0;overflow:hidden;transform:skewX(-8deg);box-shadow:0 0 46px #05030bcc}
+html.tvm-on body.tv-screen .tvm-door-l .tvm-panel{transform-origin:100% 50%}
+html.tvm-on body.tv-screen .tvm-door-r .tvm-panel{transform-origin:0 50%}
+html.tvm-on body.tv-screen .tvm-wall{
+ position:absolute;top:0;bottom:0;width:120%;transform:skewX(8deg);
+ background:
+  radial-gradient(ellipse 70% 60% at var(--tvm-glow-x,100%) 52%,#7b5bd04a,transparent 70%),
+  linear-gradient(180deg,#1b1629ec,#120f1cf6),
+  var(--hp-wall-image,none) var(--tvm-wall-x,0) 50%/auto 100% no-repeat,
+  #151321;
+}
+html.tvm-on body.tv-screen .tvm-door-l .tvm-wall{left:-10%;--tvm-wall-x:0;--tvm-glow-x:96%}
+html.tvm-on body.tv-screen .tvm-door-r .tvm-wall{right:-10%;--tvm-wall-x:100%;--tvm-glow-x:4%}
+/* Lit leading edge: lime into lilac, the brand's two accent lights. */
+html.tvm-on body.tv-screen .tvm-panel::after{
+ content:'';position:absolute;top:0;bottom:0;width:4px;
+ background:linear-gradient(180deg,#e9ffb8,#c8f58b 38%,#b79bff 78%,#8f6cff);
+ box-shadow:0 0 18px #c8f58b66,0 0 2px #fff8;
+}
+html.tvm-on body.tv-screen .tvm-door-l .tvm-panel::after{right:0}
+html.tvm-on body.tv-screen .tvm-door-r .tvm-panel::after{left:0}
+/* Seam flash where the doors meet; opacity/scale only. */
+html.tvm-on body.tv-screen .tvm-seam{
+ position:absolute;left:50%;top:-4%;bottom:-4%;width:90px;margin-left:-45px;z-index:1;opacity:0;
+ transform:skewX(-8deg);pointer-events:none;
+ background:radial-gradient(ellipse 50% 50% at 50% 50%,#e4ffb0aa,#c8f58b33 45%,transparent 72%);
+}
+/* Wordmark plate glow sits behind the logo, above the doors. */
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-curtain>.tvm-halo{
+ position:absolute;left:50%;top:50%;width:760px;height:420px;margin:-210px 0 0 -380px;z-index:1;opacity:0;pointer-events:none;
+ background:radial-gradient(ellipse 50% 50% at 50% 50%,#8c6cf04d,#8c6cf014 52%,transparent 72%);
+}
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-curtain>:is(span,img,strong){position:relative;z-index:2}
+html.tvm-on body.tv-screen #tvSceneTransition:not(.tvm-curtain)>.tvm-halo{display:none}
+/* Return-to-lobby mark: the approved HeyPals logo, never redrawn. */
+html.tvm-on body.tv-screen #tvSceneTransition .tvm-brand{display:none;width:min(30vw,360px);height:auto;position:relative;z-index:2}
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-curtain.tvm-to-lobby .tvm-brand{display:block}
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-curtain.tvm-to-lobby>:is(strong,span,#tvTransitionLogo){display:none!important}
+
+/* ---------- Resume stinger: a pill over the live field, no cover ---------- */
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-resume{background:none!important;align-content:center}
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-resume>:is(span,img,.tvm-halo,.tvm-brand){display:none!important}
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-resume>strong{
+ display:inline-flex!important;align-items:center;gap:14px;padding:14px 30px 14px 20px;border-radius:999px;
+ font-size:30px!important;line-height:1!important;letter-spacing:.01em!important;
+ background:linear-gradient(180deg,#2b2340f2,#1c1729f2);box-shadow:inset 0 1px 0 #ffffff1f,inset 0 0 0 1.5px #c8f58b59,0 14px 40px #0009;
+ text-shadow:none!important;
+}
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-resume>strong::before{
+ content:'';width:0;height:0;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #c8f58b;
+ filter:drop-shadow(0 0 8px #c8f58b88);
+}
+
+/* ---------- Ghosts: a just-hidden overlay stays painted while it leaves ---------- */
+html.tvm-on body.tv-screen #tvStage #play>:is(#waiting,#paused).tvm-ghost[hidden]{display:grid!important;pointer-events:none}
+html.tvm-on body.tv-screen #tvStage>#tvStartup.tvm-ghost[hidden]{display:grid!important;pointer-events:none}
+html.tvm-on body.tv-screen #tvStage>#notice.tvm-ghost[hidden]{display:block!important;pointer-events:none;animation:none!important}
+/* Exit copy of the match header: out of flow, never measured by tv.js. */
+html.tvm-on body.tv-screen #tvStage #play>.gamebar.tvm-bar-ghost{position:absolute!important;left:0!important;right:0!important;top:0!important;margin:0!important;height:104px;pointer-events:none;z-index:11!important}
+
+@media(prefers-reduced-motion:reduce){
+ html.tvm-on body.tv-screen .tvm-door{will-change:auto}
+}
+
+/* 132: bake the diagonal into each moving layer. Nested skew/counter-skew
+   surfaces can be clipped to rectangular compositor tiles in WebKit. */
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-curtain{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html.tvm-on body.tv-screen .tvm-door{width:64.5%;top:0;bottom:0;overflow:visible;contain:layout style}
+html.tvm-on body.tv-screen .tvm-door-l{left:-10%}
+html.tvm-on body.tv-screen .tvm-door-r{right:-10%}
+html.tvm-on body.tv-screen .tvm-panel{transform:none;box-shadow:none}
+html.tvm-on body.tv-screen .tvm-door-l .tvm-panel{clip-path:polygon(0 0,100% 0,87.6% 100%,0 100%)}
+html.tvm-on body.tv-screen .tvm-door-r .tvm-panel{clip-path:polygon(12.4% 0,100% 0,100% 100%,0 100%)}
+html.tvm-on body.tv-screen .tvm-wall{transform:none;width:100%}
+html.tvm-on body.tv-screen .tvm-door-l .tvm-wall{left:0}
+html.tvm-on body.tv-screen .tvm-door-r .tvm-wall{right:0}
+html.tvm-on body.tv-screen .tvm-panel::after{transform:skewX(-8deg);transform-origin:50% 0}
+html.tvm-on body.tv-screen .tvm-door-l .tvm-panel::after{right:0}
+html.tvm-on body.tv-screen .tvm-door-r .tvm-panel::after{left:12.4%}
+
+/* The first game can launch before the startup layer has left. */
+html.tvm-on body.tv-screen #tvSceneTransition.tvm-curtain{z-index:260}
+
+/* Retain the one existing menu layout while a game owns the screen. Rebuilding
+   its masked/blurred surfaces from display:none stalls WebKit on return. Park
+   it out of flow so relative game layouts keep their original viewport. The
+   logical hidden flag remains authoritative; tv.js also makes it inert. */
+html.tvm-on body.tv-screen #tvStage>#lobby[hidden]{
+ display:grid!important;position:absolute!important;top:64px;left:0;right:0;
+ width:100%;height:calc(100% - 64px);opacity:0!important;pointer-events:none!important;
+}
+/* Cached no-pick and selected menus have different grid rows. Resolve that
+   invisible reflow behind the closed curtain instead of animating layout while
+   the doors open. Normal visible menu browsing retains its existing transition. */
+html.tvm-on body.tv-screen #tvStage.tvm-menu-preparing>#lobby{transition:none!important}
+/* Static grain breaks up gradient banding, without an animated filter pass. */
+html.tvm-on body.tv-screen #tvStartup>.tvm-startup-grain{position:absolute;inset:0;z-index:1;pointer-events:none;background:url('/assets/grain.png') repeat;opacity:.025}
+
+/* Native AirPlay uses a Core Animation shutter above the web scene. */
+html.tvm-native-curtain #tvSceneTransition.tvm-curtain{visibility:hidden!important}

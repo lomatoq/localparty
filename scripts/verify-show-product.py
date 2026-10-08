@@ -9,6 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 FILES=(
  'server.js','lib/tv-director.js','public/tv-show.js','public/tv-show.css',
  'public/tv.html','public/tv.js','public/tv.css','public/tv-layout.js',
+ 'public/tv-motion-20261005.js','public/tv-motion-20261005.css',
+ 'public/game-ui-system.js','public/game-ui-system.css','public/game-ui-polish-20261004.css',
  'public/index.html','public/app.js','public/motion.js','public/motion.css',
  'public/native-shell/index.html','public/native-shell/host.js',
  'public/native-shell/host.css','public/native-shell/controller-bridge.js',

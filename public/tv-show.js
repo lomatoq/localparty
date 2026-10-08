@@ -14,6 +14,12 @@
     const loader=document.getElementById('tvStartup'),presentation=document.getElementById('tvPresentation'),qrCard=document.getElementById('tvLargeInvite'),podium=document.getElementById('tvPodium'),transition=document.getElementById('tvSceneTransition');
     let state=null,connected=false,done=false,started=performance.now(),boot=null,lastInstance=null,lastPaused=null;
     let startupTimer=0,startupFinish=0,overlayMode='none',overlayGeneration=0,overlayAnimation=null,boardKey='',effects=null;
+    let resultIdentity=null,resultHeading='';const resultAnimations=new Set();
+    const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+    const settleResults=()=>{for(const a of resultAnimations)a.cancel();resultAnimations.clear();};
+    motionPreference.addEventListener?.('change',()=>{if(motionPreference.matches){settleResults();overlayAnimation?.cancel();}});
+    addEventListener('pagehide',settleResults);
+    function resultAnimate(el,frames,options){const a=animate(el,frames,options);if(a){resultAnimations.add(a);a.finished.then(()=>resultAnimations.delete(a),()=>resultAnimations.delete(a));}return a;}
     let focusRevision=-1,transitionGeneration=0,transitionTimer=0,transitionAnimation=null;
     const text=(id,value)=>{const n=document.getElementById(id);if(n&&n.textContent!==String(value))n.textContent=value;};
     function animate(el,frames,options={}) {
@@ -21,6 +27,7 @@
       return el.animate(frames,{duration:420,easing:'cubic-bezier(.16,1,.3,1)',...options});
     }
     function revealLobby() {
+      if(window.HeyPalsTVMotion?.enterLobby?.('startup'))return;
       const candidates=[stage.querySelector('.tv-header'),...stage.querySelectorAll('#lobby>.intro,#tvBrowse>.tv-choice,#tvCatalog .section-title,#tvCatalog .fresh-heading,#tvCatalog .game,#tvSidebar>section')].filter(el=>el&&!el.hidden&&el.getClientRects().length&&el.getBoundingClientRect().top<innerHeight&&el.getBoundingClientRect().bottom>0);
       candidates.sort((a,b)=>a.getBoundingClientRect().top-b.getBoundingClientRect().top);
       candidates.forEach((el,i)=>animate(el,[{opacity:0,scale:.965,translate:'0 18px'},{opacity:1,scale:1,translate:'0 0'}],{duration:780,delay:Math.min(i,8)*65,fill:'backwards'}));
@@ -30,7 +37,7 @@
       text('tvLoadProgress','100');document.getElementById('tvLoadBar').style.setProperty('--progress','1');
       loader.querySelector('[role=progressbar]').setAttribute('aria-valuenow','100');
       const end=()=>{loader.hidden=true;stage.classList.add('tv-show-ready');if(!state?.active)revealLobby();};
-      if(immediate||reduced())end();else{animate(loader,[{opacity:1},{opacity:0}],{duration:300});startupFinish=setTimeout(end,300);}
+      if(window.webkit?.messageHandlers?.partyTVCurtain){if(!window.HeyPalsTVMotion?.leaveStartup?.(loader,end)){end();window.webkit.messageHandlers.partyTVCurtain.postMessage('open');}}else if(immediate||reduced())end();else if(!window.HeyPalsTVMotion?.leaveStartup?.(loader,end)){animate(loader,[{opacity:1},{opacity:0}],{duration:300});startupFinish=setTimeout(end,300);}
       try{sessionStorage.setItem('lp-tv-intro:'+boot,'1');}catch{ /* private storage may be denied */ }
     }
     function tickStartup() {
@@ -54,7 +61,12 @@
       if(logo.getAttribute('src')!==src)logo.src=src;else if(logo.complete)reveal();
       return logo;
     }
-    function showTransition(title,{wait=false,gameId=null}={}) {
+    function showTransition(title,{wait=false,gameId=null,kind=''}={}) {
+      if(window.HeyPalsTVMotion?.scene){
+        // One owner for this overlay: a previous legacy timer must not hide doors.
+        ++transitionGeneration;clearTimeout(transitionTimer);transitionAnimation?.cancel();transitionAnimation=null;
+        if(window.HeyPalsTVMotion.scene(title,{wait,gameId,kind}))return;
+      }
       const generation=++transitionGeneration;clearTimeout(transitionTimer);transitionAnimation?.cancel();transition.hidden=false;text('tvTransitionTitle',title);
       const logo=transitionLogo(gameId),hero=logo&&!logo.hidden?logo:document.getElementById('tvTransitionTitle');
       transitionAnimation=animate(transition,[{opacity:0},{opacity:1}],{duration:120});
@@ -66,7 +78,7 @@
       const paused=!!state?.active?.session?.paused,layer=document.getElementById('paused');
       if(lastPaused!==null&&lastPaused!==paused&&state?.active) {
         if(paused){layer.hidden=false;animate(layer,[{opacity:0,scale:.985},{opacity:1,scale:1}],{duration:320});}
-        else showTransition('Продолжаем');
+        else showTransition('Продолжаем',{kind:'resume'});
       }
       lastPaused=state?.active?paused:null;
     }
@@ -74,8 +86,12 @@
     const funColors=['#a98bff','#4fe0c8','#ff7ac3','#6fb8ff','#ffa24d','#b8f35a','#ff6f7d','#7ee7ff'];
     function buildPodium(board) {
       const photos=new Map([...(state?.leaderboard||[]),...(state?.players||[])].map(p=>[p.id,p.avatar]));
-      const key=board.key+JSON.stringify(board.rows.map(r=>[r.id,r.name,photos.get(r.id)]));
+      const key=JSON.stringify([board.key,board.title,board.subtitle,board.rows.map(r=>[r.id,r.name,r.rank,r.points,r.score,r.teamScore,photos.get(r.id)])]);
+      const fresh=board.key!==resultIdentity;
+      if(fresh){settleResults();resultIdentity=board.key;}
       if(key===boardKey)return;boardKey=key;
+      const headingKey=JSON.stringify([board.key,board.title,board.game]);
+      if(resultHeading!==headingKey){resultHeading=headingKey;
       const heading=document.getElementById('tvBoardTitle');
       heading.classList.remove('has-game-logo');heading.removeAttribute('aria-label');
       text('tvBoardTitle',board.title);text('tvBoardSubtitle',board.subtitle);
@@ -83,12 +99,14 @@
         const logo=make('img','tv-board-game-logo');logo.alt=board.title;logo.dataset.hpGameLogo='';
         logo.src='/assets/game-logos-v1/logos/'+encodeURIComponent(board.game)+'.png?v=1';
         // Keep the readable title until the original wordmark actually loads.
-        logo.onload=()=>{if(boardKey!==key)return;heading.replaceChildren(logo);heading.classList.add('has-game-logo');heading.setAttribute('aria-label',board.title);};
+        logo.onload=()=>{if(resultHeading!==headingKey)return;heading.replaceChildren(logo);heading.classList.add('has-game-logo');heading.setAttribute('aria-label',board.title);};
       }
+      }
+      text('tvBoardSubtitle',board.subtitle);
       const rows=board.rows.slice(0,16).map((row,index)=>({...row,rank:row.rank||index+1})),mainRows=rows.slice(0,7),tailRows=rows.slice(7);
       const build=(list,tail=false)=>podiumOrder(list).map(row=>{
         const card=make('article','podium-seat'+(row.rank===1?' is-winner':''));
-        card.dataset.rank=String(row.rank||0);card.setAttribute('aria-label',`${row.rank?row.rank+' место':'Участник'}: ${row.name}`);
+        card.dataset.playerId=String(row.id);card.dataset.portraitKey=JSON.stringify([row.name,photos.get(row.id)]);card.dataset.rank=String(row.rank||0);card.setAttribute('aria-label',`${row.rank?row.rank+' место':'Участник'}: ${row.name}`);
         const hue=row.rank===1?'#ffd45c':row.rank===2?'#dfe6f5':row.rank===3?'#e89a62':funColors[((row.rank||4)-4)%funColors.length];card.style.setProperty('--medal',hue);if(row.rank>=1&&row.rank<=3)card.classList.add('is-medal');
         const h=tail?52:row.rank===1?194:row.rank===2?148:row.rank===3?119:Math.max(58,100-(row.rank||9)*6);card.style.setProperty('--plinth-height',h+'px');
         const portrait=make('div','podium-portrait');portrait.append(make('span','podium-initial',Array.from(row.name||'?')[0].toUpperCase()));window.HeyPalsAvatar?.paint(portrait,row.name);
@@ -101,25 +119,36 @@
         }
         if(row.rank===1){const decoration=make('div','podium-crown');const image=make('img','');image.src=crown;image.alt='';decoration.append(image);portrait.append(decoration);}
         const name=make('h3','podium-name hp-player-name',row.name);name.title=row.name;name.dataset.noTranslate='';
-        const base=make('div','podium-plinth'),points=make('span','podium-points',number(board.ranking?.kind==='teams'?row.teamScore:row.points??row.score));points.style.setProperty('--score-size',Math.max(16,Math.min(tail?16:mainRows.length>4?26:34,(tail?16:mainRows.length>4?26:34)*6/Math.max(6,points.textContent.length)))+'px');const rank=make('strong','podium-rank',row.rank?String(row.rank):'—');if(row.rank>=1&&row.rank<=3){const cup=make('img','hp-award podium-award');cup.src='/assets/awards/'+['cup-gold','cup-silver','cup-bronze'][row.rank-1]+'.png';cup.alt='';rank.prepend(cup);}base.append(rank,points,make('small','', board.ranking?.kind==='teams'?'командных очков':'очков'));
+        const base=make('div','podium-plinth'),points=make('span','podium-points',number(board.ranking?.kind==='teams'?row.teamScore:row.points??row.score));points.style.setProperty('--score-size',Math.max(16,Math.min(tail?16:mainRows.length>4?26:34,(tail?16:mainRows.length>4?26:34)*6/Math.max(6,points.textContent.length)))+'px');const rank=make('strong','podium-rank',row.rank?String(row.rank):'—');if(row.rank>=1&&row.rank<=3){const cup=make('img','hp-award podium-award');cup.src='/assets/awards/'+['cup-gold','cup-silver','cup-bronze'][row.rank-1]+'.png';cup.alt='';rank.prepend(cup);}if(board.kind==='company')window.HeyPalsCoins?.amount(points,row.coins??row.points??0);base.append(rank,points,make('small','',board.kind==='company'?'COINS':board.ranking?.kind==='teams'?'командных очков':'очков'));if(board.kind==='match'&&row.coinsEarned>0){const reward=window.HeyPalsCoins?.badge(row.coinsEarned);if(reward)name.append(reward);}
         card.append(portrait,name,base);return card;
       });
       const main=document.getElementById('tvPodiumMain'),tail=document.getElementById('tvPodiumTail');
       main.style.setProperty('--seats',String(mainRows.length));tail.style.setProperty('--seats',String(tailRows.length||1));
-      main.replaceChildren(...build(mainRows));tail.replaceChildren(...build(tailRows,true));tail.hidden=!tailRows.length;podium.classList.toggle('has-tail',!!tailRows.length);
-      // Classic podium reveal: lowest places first, each plinth rises from the floor with
-      // stretch → overshoot → squash → settle, then its player pops on top; 3rd, 2nd and
-      // finally the winner get their own beats and the crown drops in last.
-      const seats=[...podium.querySelectorAll('.podium-seat')].sort((a,b)=>(Number(b.dataset.rank)||16)-(Number(a.dataset.rank)||16));
-      let at=120;
+      const previous=new Map([...podium.querySelectorAll('.podium-seat')].map(el=>[el.dataset.playerId,el]));
+      const reconcile=(parent,nodes)=>{let cursor=parent.firstElementChild;for(const node of nodes){const old=previous.get(node.dataset.playerId);if(!fresh&&old&&old.dataset.rank===node.dataset.rank){
+        old.setAttribute('aria-label',node.getAttribute('aria-label'));
+        const name=old.querySelector('.podium-name'),nextName=node.querySelector('.podium-name');if(name.textContent!==nextName.textContent){name.replaceChildren(...nextName.childNodes);name.title=nextName.title;}
+        const points=old.querySelector('.podium-points'),nextPoints=node.querySelector('.podium-points');if(nextPoints.dataset.coinAmount)window.HeyPalsCoins?.amount(points,Number(nextPoints.dataset.coinAmount.split(':')[1]));else if(points.textContent!==nextPoints.textContent)points.textContent=nextPoints.textContent;points.style.cssText=nextPoints.style.cssText;
+        if(old.dataset.portraitKey!==node.dataset.portraitKey){const portrait=old.querySelector('.podium-portrait'),nextPortrait=node.querySelector('.podium-portrait');portrait.className=nextPortrait.className;portrait.style.cssText=nextPortrait.style.cssText;const crown=portrait.querySelector('.podium-crown');nextPortrait.querySelector('.podium-crown')?.remove();portrait.replaceChildren(...nextPortrait.childNodes,...(crown?[crown]:[]));const mascot=portrait.querySelector('.podium-mascot');if(mascot){mascot.onload=()=>portrait.classList.add('has-mascot');if(mascot.complete&&mascot.naturalWidth)portrait.classList.add('has-mascot');}old.dataset.portraitKey=node.dataset.portraitKey;}
+        if(old!==cursor)parent.insertBefore(old,cursor);cursor=old.nextElementSibling;previous.delete(node.dataset.playerId);
+      }else{if(old===cursor)cursor=old.nextElementSibling;old?.remove();parent.insertBefore(node,cursor);previous.delete(node.dataset.playerId);}}};
+      reconcile(main,build(mainRows));reconcile(tail,build(tailRows,true));for(const old of previous.values())old.remove();tail.hidden=!tailRows.length;podium.classList.toggle('has-tail',!!tailRows.length);
+      if(!fresh)return;
+      for(const seat of podium.querySelectorAll('.podium-seat')){const reward=seat.querySelector('.hp-coin-reward');if(reward)window.HeyPalsCoins?.award(reward,Number(reward.dataset.coinAmount.split(':')[1]),`${board.key}:${seat.dataset.playerId}`);}
+      // One result owns one reveal. Equal ranks share the same beat, including ties.
+      const style=getComputedStyle(document.documentElement),out=style.getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)',pop=style.getPropertyValue('--motion-ease-pop').trim()||'cubic-bezier(.18,1.28,.35,1)';
+      const seats=[...podium.querySelectorAll('.podium-seat')];
       for(const el of seats){
-        const rank=Number(el.dataset.rank)||16,plinth=el.querySelector('.podium-plinth'),portrait=el.querySelector('.podium-portrait'),name=el.querySelector('.podium-name'),crownEl=el.querySelector('.podium-crown');
-        if(plinth){plinth.style.transformOrigin='50% 100%';animate(plinth,[{transform:'scaleY(0) scaleX(.9)',opacity:0},{transform:'scaleY(1.14) scaleX(.95)',opacity:1,offset:.5},{transform:'scaleY(.92) scaleX(1.04)',offset:.72},{transform:'scaleY(1.03) scaleX(.99)',offset:.88},{transform:'none',opacity:1}],{duration:rank===1?900:720,delay:at,easing:'cubic-bezier(.22,.8,.3,1)',fill:'backwards'});}
-        if(portrait)animate(portrait,[{transform:'translateY(-46px) scale(.55)',opacity:0},{transform:'translateY(8px) scale(1.1,0.92)',opacity:1,offset:.55},{transform:'translateY(-4px) scale(.97,1.03)',offset:.78},{transform:'none',opacity:1}],{duration:640,delay:at+(rank===1?520:380),easing:'cubic-bezier(.3,.7,.3,1)',fill:'backwards'});
-        if(name)animate(name,[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:420,delay:at+(rank===1?700:540),easing:'ease-out',fill:'backwards'});
-        if(crownEl)animate(crownEl,[{transform:'translateX(-50%) translateY(-70px) rotate(-38deg) scale(.6)',opacity:0},{transform:'translateX(-50%) translateY(6px) rotate(4deg) scale(1.12)',opacity:1,offset:.62},{transform:'translateX(-50%) translateY(-2px) rotate(-10deg) scale(.97)',offset:.82},{transform:'translateX(-50%) rotate(-7deg)',opacity:1}],{duration:760,delay:at+1150,easing:'cubic-bezier(.3,.7,.3,1)',fill:'backwards'});
-        at+=rank>7?45:rank>3?90:rank===3?260:rank===2?300:0;
+        const rank=Number(el.dataset.rank)||16,at=rank>3?0:rank===3?80:rank===2?160:240;
+        const plinth=el.querySelector('.podium-plinth'),portrait=el.querySelector('.podium-portrait'),name=el.querySelector('.podium-name'),crownEl=el.querySelector('.podium-crown');
+        plinth.style.transformOrigin='50% 100%';
+        resultAnimate(plinth,[{transform:'translateY(18px) scaleY(.94)',opacity:1},{transform:'translateY(0) scaleY(1.025)',opacity:1,offset:.7},{transform:'none',opacity:1}],{duration:420,delay:at,easing:out,fill:'backwards'});
+        resultAnimate(portrait,[{transform:'translateY(-14px) scale(.94)',opacity:0},{transform:'none',opacity:1}],{duration:300,delay:at+120,easing:pop,fill:'backwards'});
+        resultAnimate(name,[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:240,delay:at+180,easing:out,fill:'backwards'});
+        resultAnimate(crownEl,[{transform:'translateX(-50%) translateY(-24px) rotate(-18deg) scale(.94)',opacity:0},{transform:'translateX(-50%) translateY(2px) rotate(-5deg)',opacity:1,offset:.72},{transform:'translateX(-50%) rotate(-7deg)',opacity:1}],{duration:420,delay:at+360,easing:out,fill:'backwards'});
       }
+      resultAnimate(podium.querySelector('.tv-board-heading'),[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:240,easing:out,fill:'backwards'});
+      resultAnimate(podium.querySelector('.tv-board-footer'),[{opacity:0},{opacity:1}],{duration:240,delay:420,easing:out,fill:'backwards'});
     }
     function updateOverlay() {
       const mode=state?.tv?.mode||'none',board=state?.tv?.board,validMode=mode==='podium'&&!board?'none':mode;
@@ -131,27 +160,48 @@
       text('tvLargeAddress',invitation.room);const ru=(window.PartyI18n?.language||document.documentElement.lang||'ru').startsWith('ru');text('tvInviteCount',`${state?.players?.length||0} / 16 ${ru?'уже в компании':'already here'}`);
       if(validMode==='podium')buildPodium(board);
       if(validMode!==overlayMode){
+        const pose=presentation.hidden?{opacity:0,scale:.975}:{opacity:getComputedStyle(presentation).opacity,scale:getComputedStyle(presentation).scale};
         overlayMode=validMode;const generation=++overlayGeneration;overlayAnimation?.cancel();
         if(validMode==='none'){
           effects?.stop();
-          if(!presentation.hidden){overlayAnimation=animate(presentation,[{opacity:1,scale:1},{opacity:0,scale:.975}],{duration:240});setTimeout(()=>{if(overlayGeneration===generation){presentation.hidden=true;qrCard.hidden=true;podium.hidden=true;}},reduced()?0:250);}
+          if(!presentation.hidden){overlayAnimation=animate(presentation,[pose,{opacity:0,scale:.975}],{duration:240});setTimeout(()=>{if(overlayGeneration===generation){presentation.hidden=true;qrCard.hidden=true;podium.hidden=true;settleResults();}},reduced()?0:250);}
         }else{
           presentation.hidden=false;qrCard.hidden=validMode!=='qr';podium.hidden=validMode!=='podium';
-          overlayAnimation=animate(presentation,[{opacity:0,scale:.975},{opacity:1,scale:1}],{duration:420});
+          overlayAnimation=animate(presentation,[pose,{opacity:1,scale:1}],{duration:240});
         }
       }
       if(validMode==='podium'&&state.tv.effects&&!reduced()&&!document.hidden){try{effects ||= new CelebrationFX(document.getElementById('tvShader'),document.getElementById('tvFireworks'));effects.start(board?.key||'podium');}catch{effects?.stop(); /* Static shaded stage remains available. */ }}
       else effects?.stop();
     }
+    // Native smooth scroll can be ignored by WebKit inside the zoomed TV stage.
+    // Drive the actual scroll offset; a new D-pad step starts from the current pose.
+    const focusScrolls=new Map();
+    function cancelFocusScrolls(){for(const frame of focusScrolls.values())cancelAnimationFrame(frame);focusScrolls.clear();}
+    stage.addEventListener('wheel',cancelFocusScrolls,{passive:true});
+    stage.addEventListener('touchstart',cancelFocusScrolls,{passive:true});
+    addEventListener('pagehide',cancelFocusScrolls);
+    function scrollFocus(node,axis,target){
+      if(node.id==='tvBrowse')stage.classList.toggle('tv-browsing',target>24);
+      cancelAnimationFrame(focusScrolls.get(node));focusScrolls.delete(node);
+      const max=axis==='scrollTop'?node.scrollHeight-node.clientHeight:node.scrollWidth-node.clientWidth;
+      target=Math.max(0,Math.min(max,target));const from=node[axis],start=performance.now();
+      if(reduced()||Math.abs(target-from)<1){node[axis]=target;return;}
+      // Solve the shared ease-out cubic-bezier(.23,1,.32,1), rather than rely on
+      // CSS smooth scrolling on an element whose ancestor uses CSS zoom.
+      const ease=t=>{let lo=0,hi=1,u=t;for(let i=0;i<10;i++){u=(lo+hi)/2;const x=3*(1-u)*(1-u)*u*.23+3*(1-u)*u*u*.32+u*u*u;if(x<t)lo=u;else hi=u;}return 1-Math.pow(1-u,3);};
+      const step=now=>{if(state?.active||!node.isConnected){focusScrolls.delete(node);return;}const t=Math.min(1,(now-start)/150);node[axis]=t===1?target:from+(target-from)*ease(t);if(t<1)focusScrolls.set(node,requestAnimationFrame(step));else focusScrolls.delete(node);};
+      focusScrolls.set(node,requestAnimationFrame(step));
+    }
     function followFocus() {
       const tv=state?.tv;if(!tv||focusRevision===tv.focusRevision||state.active)return;
-      focusRevision=tv.focusRevision;if(!tv.browse||!tv.focusId)return;
+      focusRevision=tv.focusRevision;if(!tv.browse){scrollFocus(document.getElementById('tvBrowse'),'scrollTop',0);return;}if(!tv.focusId)return;
       const card=[...stage.querySelectorAll('#tvCatalog .game')].find(n=>n.dataset.id===tv.focusId);if(!card)return;
       const view=document.getElementById('tvBrowse');const scale=stage.getBoundingClientRect().height/stage.offsetHeight||1;
       const rail=card.parentElement;
-      if(rail.classList.contains('fresh-track'))rail.scrollTo({left:rail.scrollLeft+(card.getBoundingClientRect().left-rail.getBoundingClientRect().left)/scale-20,behavior:reduced()?'auto':'smooth'});
-      view.scrollTo({top:Math.max(0,view.scrollTop+(card.getBoundingClientRect().top-view.getBoundingClientRect().top)/scale-36),behavior:reduced()?'auto':'smooth'});
-      animate(card,[{filter:'brightness(1.3)'},{filter:'brightness(1)'}],{duration:540});
+      if(rail.classList.contains('fresh-track'))scrollFocus(rail,'scrollLeft',rail.scrollLeft+(card.getBoundingClientRect().left-rail.getBoundingClientRect().left)/scale-20);
+      scrollFocus(view,'scrollTop',view.scrollTop+(card.getBoundingClientRect().top-view.getBoundingClientRect().top)/scale-36);
+      // The selected border is immediate feedback; stacking filter animations
+      // during joystick repeats repaints the entire illustrated card.
     }
     // Arrivals: a newcomer gets a short welcome card with their avatar, bottom
     // left, away from the catalogue focus. Not on first load or on reconnects
@@ -171,25 +221,29 @@
         setTimeout(()=>{card.classList.add('is-leaving');setTimeout(()=>card.remove(),400);},2600);
       }
     }
+    let layoutFrame=0;
+    function scheduleLayout(){
+      if(layoutFrame||document.hidden)return;
+      layoutFrame=requestAnimationFrame(()=>{layoutFrame=0;followFocus();alignRoster();});
+    }
     function update(next) {
       state=next;welcome(state?.players);
       if(!boot&&state?.bootId){boot=state.bootId;try{if(sessionStorage.getItem('lp-tv-intro:'+boot))finishStartup(true);}catch{}}
       const instance=state?.active?.instance||null;
       if(lastInstance!==instance){if(done)showTransition(instance?(state.catalog.find(g=>g.id===state.active.id)?.title||'Готовим игру'):'В компанию',{wait:!!instance,gameId:instance?state.active.id:null});lastInstance=instance;}
-      updatePause();updateOverlay();requestAnimationFrame(followFocus);
-      requestAnimationFrame(alignRoster);
+      updatePause();updateOverlay();scheduleLayout();
       if(!done&&state?.active)finishStartup(true);
     }
     function alignRoster(){
       const roster=document.querySelector('#tvSidebar>.company-people:not(.tv-invite)');
-      if(roster)roster.style.marginTop='0px';
+      if(roster&&roster.style.marginTop!=='0px')roster.style.marginTop='0px';
     }
-    window.addEventListener('resize',alignRoster);
-    const onVisibility=()=>{if(document.hidden)effects?.stop();else updateOverlay();};
+    window.addEventListener('resize',scheduleLayout);
+    const onVisibility=()=>{if(document.hidden){effects?.stop();cancelAnimationFrame(layoutFrame);layoutFrame=0;}else{updateOverlay();scheduleLayout();}};
     document.addEventListener('visibilitychange',onVisibility);
     const onPreference=()=>{if(reduced()&&!done&&connected&&state?.catalog?.length)finishStartup(true);updateOverlay();};
     const media=matchMedia('(prefers-reduced-motion: reduce)');media.addEventListener?.('change',onPreference);
-    window.addEventListener('pagehide',()=>{effects?.destroy();clearTimeout(startupTimer);clearTimeout(startupFinish);clearTimeout(transitionTimer);overlayAnimation?.cancel();transitionAnimation?.cancel();});
+    window.addEventListener('pagehide',()=>{cancelAnimationFrame(layoutFrame);layoutFrame=0;effects?.destroy();clearTimeout(startupTimer);clearTimeout(startupFinish);clearTimeout(transitionTimer);overlayAnimation?.cancel();transitionAnimation?.cancel();});
     tickStartup();
     return Object.freeze({update,setConnected(value){connected=value;},canIdle:()=>done&&overlayMode==='none'&&!state?.tv?.browse&&state?.tv?.idleBrowse!==false,
       gameLoaded(){/* Transitions are short visual covers, never a gate on readiness. */},diagnostics:()=>({revision,ready:done,overlay:overlayMode,effectsRunning:!!effects?.running,particles:effects?.particles?.length||0,renderer:effects?.gl?'webgl2':'css-canvas'}),revision});

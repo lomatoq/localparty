@@ -109,7 +109,7 @@ test('turrets spread consistently; no NaN in lobby or solo mode',()=>{
  for(const n of [1,2,16]){const m=new Match('swarm_gate');for(let i=0;i<n;i++)m.add({id:'p'+i});assert.ok(m.snapshot().players.every(p=>Number.isFinite(p.turretX)));m.start();assert.ok(m.snapshot().players.every(p=>Number.isFinite(p.turretX)));}
 });
 test('turret ray hits nearest target, not an enemy behind it',()=>{
- const m=game('swarm_gate',1),p=m.players.get('p0');p.aim={x:.5,y:0};m.enemies=[{id:1,x:0,z:-4,r:.4,hp:55,kind:'termite'},{id:2,x:0,z:-8,r:.4,hp:55,kind:'termite'}];m.siegeFire(p);assert.equal(m.enemies[0].hp,31);assert.equal(m.enemies[1].hp,55);
+ const m=game('swarm_gate',1),p=m.players.get('p0');p.aim={x:.5,y:0};const origin=m.turretZ(p);m.enemies=[{id:1,x:0,z:origin-4,r:.4,hp:55,kind:'termite'},{id:2,x:0,z:origin-8,r:.4,hp:55,kind:'termite'}];m.siegeFire(p);assert.equal(m.enemies[0].hp,31);assert.equal(m.enemies[1].hp,55);
 });
 test('gate chewing causes loss, last empty wave causes team victory',()=>{
  const m=game('swarm_gate');m.stage='wave';m.waveLeft=0;m.gate=.01;m.enemies=[{id:1,x:0,z:-.8,targetX:0,hp:99,r:.4,speed:1,kind:'termite'}];m.step(.05);assert.equal(m.gate,0);assert.equal(m.phase,'results');assert.deepEqual(m.result.winners,[]);

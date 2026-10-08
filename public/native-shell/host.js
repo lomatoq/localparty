@@ -5,9 +5,27 @@
   let tvRemoteGenre = 'all';
   let selectedDetail = null, catalogSignature = '', rosterSignature = '', actionsSignature = '', standingsSignature = '';
   let confirmAction = null, launchPending = false, toastTimer, pendingLaunchId = null, launchTimer, launchAwaitingScreen = false;
+  let rematchPending=null,rematchTimer=0,rematchMessage='';
+  function clearRematch(){clearTimeout(rematchTimer);rematchPending=null;}
+  function requestRematch(){const run=state.active;if(rematchPending||busy()||run?.ui?.phase!=='results')return;rematchPending=run.instance;rematchMessage=state.native?.message||'';renderActive();if(!manage({type:'rematch',instance:run.instance})){clearRematch();renderActive();return;}rematchTimer=setTimeout(()=>{clearRematch();renderActive();toast('Запуск не подтвердился. Нажми ещё раз.');},8000);}
   let receivedSnapshot = false, readyTimer = null, handshakeAttempts = 0;
   const shellRevision = 'ios-recovery-20260918.1';
   const dialogs = ['hostPanel', 'gameDetail', 'confirmDialog'];
+  const renderedLabels = new WeakMap();
+  // Cache authored labels, not translated DOM text: localization and icon
+  // replacement may change the visible children without changing the state.
+  function setLabel(node, value) {
+    const text = String(value ?? '');
+    if (renderedLabels.get(node) === text) return;
+    renderedLabels.set(node, text);
+    if(node.id==='choiceStart'){
+      let label=node.querySelector('.hp-pick-action-label');
+      if(!label){const face=document.createElement('span');face.className='hp-pick-idle-face';face.setAttribute('aria-hidden','true');label=document.createElement('span');label.className='hp-pick-action-label';node.replaceChildren(face,label);}
+      label.textContent=text;
+    }else node.textContent=text;
+  }
+  function setFlag(node, property, value) { const next=Boolean(value); if(node[property]!==next)node[property]=next; }
+  function setAttribute(node, name, value) { const next=String(value); if(node.getAttribute(name)!==next)node.setAttribute(name,next); }
   const element = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
   function menuCounter(node,value,label='',total=null,labelFirst=false){
     const key=JSON.stringify([value,label,total,labelFirst]);
@@ -19,7 +37,7 @@
     if(total!==null){const denominator=element('span','hp-menu-counter-total',String(total));denominator.dataset.noTranslate='';readout.append(element('span','hp-menu-counter-separator',' / '),denominator);}
     node.replaceChildren(...(labelFirst?[caption,document.createTextNode(' '),readout]:[readout,...(label?[document.createTextNode(' '),caption]:[])]));return node;
   }
-  const companyPlaces = rows => {let place=0,last='';return rows.map((p,i)=>{const key=`${Number(p.points)||0}:${Number(p.wins)||0}`;if(key!==last){place=i+1;last=key;}return place;});};
+  const companyPlaces = rows => {let place=0,last='';return rows.map((p,i)=>{const key=`${Number(p.coins??p.points)||0}:${Number(p.wins)||0}`;if(key!==last){place=i+1;last=key;}return place;});};
   const button = (text, cls, action) => { const b = element('button', cls, text); b.type = 'button'; b.addEventListener('click', action); return b; };
   // Russian numeric agreement: 1 игрок / 2 игрока / 5 игроков.
   const plural = (n, one, few, many) => {
@@ -35,28 +53,45 @@
   const busy = () => !state.native?.ready || state.native?.catalogReady === false || state.native?.working || state.busy;
   const hasSharedScreen = () => Number(state.screens) > 0 || Number(state.native?.externalDisplays) > 0;
   const gameById = id => (state.catalog || []).find(g => g.id === id);
-  let botPromptGame=null,botPromptAnchor=null,botRequest=null,botRequestTimer;
-  function closeBotPrompt(){const box=$('startBots');if(window.LocalPartyDialogs)LocalPartyDialogs.setVisible(box,false);else{if(box.matches(':popover-open'))box.hidePopover();box.hidden=true;}botPromptGame=null;botPromptAnchor?.setAttribute('aria-expanded','false');botPromptAnchor=null;}
-  function positionBotPrompt(){if(!botPromptGame)return;const box=$('startBots'),anchor=botPromptAnchor?.isConnected?botPromptAnchor:$('choiceStart'),r=anchor.getBoundingClientRect(),v=window.visualViewport,left=v?.offsetLeft||0,top=v?.offsetTop||0,width=v?.width||innerWidth,height=v?.height||innerHeight;box.style.left=Math.max(left+10,Math.min(r.right-box.offsetWidth,left+width-box.offsetWidth-10))+'px';box.style.top=Math.max(top+10,Math.min(r.bottom+8+box.offsetHeight<=top+height-12?r.bottom+8:r.top-box.offsetHeight-8,top+height-box.offsetHeight-12))+'px';}
+  let botPromptGame=null,botPromptAnchor=null,botRequest=null,botRequestTimer,botPositionFrame=0;
+  function closeBotPrompt(){cancelAnimationFrame(botPositionFrame);botPositionFrame=0;if(botPromptAnchor)botPositionObserver.unobserve(botPromptAnchor);const box=$('startBots');if(window.LocalPartyDialogs)LocalPartyDialogs.setVisible(box,false);else{if(box.matches(':popover-open'))box.hidePopover();box.hidden=true;}botPromptGame=null;botPromptAnchor?.setAttribute('aria-expanded','false');botPromptAnchor=null;}
+  function positionBotPrompt(){cancelAnimationFrame(botPositionFrame);botPositionFrame=0;if(!botPromptGame)return;const box=$('startBots'),anchor=botPromptAnchor?.isConnected?botPromptAnchor:$('choiceStart'),r=anchor.getBoundingClientRect(),v=window.visualViewport,left=v?.offsetLeft||0,top=v?.offsetTop||0,width=v?.width||innerWidth,height=v?.height||innerHeight,w=box.offsetWidth,h=box.offsetHeight;
+    const x=Math.max(left+10,Math.min(r.right-w,left+width-w-10))+'px',y=Math.max(top+10,Math.min(r.bottom+8+h<=top+height-12?r.bottom+8:r.top-h-8,top+height-h-12))+'px';if(box.style.left!==x)box.style.left=x;if(box.style.top!==y)box.style.top=y;
+  }
+  function queueBotPromptPosition(){if(botPromptGame&&!botPositionFrame)botPositionFrame=requestAnimationFrame(positionBotPrompt);}
+  const botPositionObserver=new ResizeObserver(queueBotPromptPosition);botPositionObserver.observe($('startBots'));
   function renderBotPrompt(){
     if(!botPromptGame)return;const game=gameById(botPromptGame);if(!game||state.active){closeBotPrompt();return;}
     const bots=Number(state.botCount)||0,humans=state.players.filter(p=>!p.testBot).length,connectedBots=state.players.filter(p=>p.testBot).length,count=state.players.length,max=Math.max(0,Math.min(15,16-humans,game.max-humans));
     if(botRequest&&bots===botRequest.target&&connectedBots===bots){clearTimeout(botRequestTimer);botRequest=null;}
     const locked=busy()||!!botRequest||!!pendingLaunchId,min=bots>0?1:game.min;
-    $('startBotsTitle').textContent=game.title;$('startBotsCount').textContent=String(bots);
-    $('startBotsHint').textContent=botRequest?'Подключаем ботов…':!state.screens?'Для ботов нужен общий экран. Подключи телевизор.':count>game.max?'Слишком много игроков для этой игры. Убери лишних ботов.':count<min?'Не хватает игроков. Добавь бота или пригласи друзей.':connectedBots<bots?'Ждём подключения ботов…':'Все готовы к запуску. Боты играют без записи очков.';
-    $('startBotsMinus').disabled=locked||bots===0;$('startBotsPlus').disabled=locked||!state.screens||bots>=max;
-    $('startBotsLaunch').disabled=locked||connectedBots!==bots||count<min||count>game.max;
-    $('startBots').setAttribute('aria-busy',String(!!botRequest));positionBotPrompt();
+    setLabel($('startBotsTitle'), game.title);setLabel($('startBotsCount'), String(bots));
+    setLabel($('startBotsHint'), botRequest?'Подключаем ботов…':!state.screens?'Для ботов нужен общий экран. Подключи телевизор.':count>game.max?'Слишком много игроков для этой игры. Убери лишних ботов.':count<min?'Не хватает игроков. Добавь бота или пригласи друзей.':connectedBots<bots?'Ждём подключения ботов…':'Все готовы к запуску. Боты играют без записи очков.');
+    setFlag($('startBotsMinus'), 'disabled', locked||bots===0);setFlag($('startBotsPlus'), 'disabled', locked||!state.screens||bots>=max);
+    setFlag($('startBotsLaunch'), 'disabled', locked||connectedBots!==bots||count<min||count>game.max);
+    setAttribute($('startBots'), 'aria-busy', String(!!botRequest));queueBotPromptPosition();
   }
-  function showBotPrompt(id,anchor){closeBotPrompt();botPromptGame=id;botPromptAnchor=anchor||document.activeElement||$('choiceStart');botPromptAnchor.setAttribute('aria-expanded','true');const box=$('startBots');if(window.LocalPartyDialogs)LocalPartyDialogs.setVisible(box,true);else box.hidden=false;if(box.matches(':popover-open'))box.hidePopover();(botPromptAnchor.closest('dialog')||document.body).append(box);box.showPopover?.();renderBotPrompt();$('startBotsPlus').focus({preventScroll:true});}
+  function showBotPrompt(id,anchor){
+    closeBotPrompt();botPromptGame=id;botPromptAnchor=anchor||document.activeElement||$('choiceStart');botPromptAnchor.setAttribute('aria-expanded','true');botPositionObserver.observe(botPromptAnchor);
+    const box=$('startBots');
+    // Establish the final paint root and geometry before the entrance clock starts.
+    // Moving an already-animating popover consumed its first frames in WebKit.
+    const prepare=()=>{
+      const parent=botPromptAnchor.closest('dialog')||document.body;
+      if(box.parentElement!==parent){if(box.matches(':popover-open'))box.hidePopover();parent.append(box);}
+      if(!box.matches(':popover-open'))box.showPopover?.();
+      renderBotPrompt();positionBotPrompt();
+    };
+    if(window.LocalPartyDialogs)LocalPartyDialogs.setVisible(box,true,prepare);else{box.hidden=false;prepare();}
+    $('startBotsPlus').focus({preventScroll:true});
+  }
   function changePromptBots(delta){
     if(!botPromptGame||botRequest||pendingLaunchId||busy())return;const button=$(delta>0?'startBotsPlus':'startBotsMinus');if(button.disabled)return;
     const target=Math.max(0,(Number(state.botCount)||0)+delta);botRequest={target};
     if(!manage({type:'bots-set',count:target})){botRequest=null;renderBotPrompt();return;}
-    clearTimeout(botRequestTimer);botRequestTimer=setTimeout(()=>{botRequest=null;renderBotPrompt();if(botPromptGame)$('startBotsHint').textContent='Изменение не подтвердилось. Проверь экран и попробуй ещё раз.';},6000);renderBotPrompt();
+    clearTimeout(botRequestTimer);botRequestTimer=setTimeout(()=>{botRequest=null;renderBotPrompt();if(botPromptGame)setLabel($('startBotsHint'), 'Изменение не подтвердилось. Проверь экран и попробуй ещё раз.');},6000);renderBotPrompt();
   }
-  function toast(text) { $('nativeToast').textContent = text; $('nativeToast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('nativeToast').hidden = true; }, 3500); }
+  function toast(text) { $('nativeToast').textContent = text; window.LocalPartyDialogs?.setVisible($('nativeToast'),true); clearTimeout(toastTimer); toastTimer = setTimeout(() => { window.LocalPartyDialogs?.setVisible($('nativeToast'),false); }, 3500); }
   // WebKit does not reliably restore focus when a dialog closes, so the opener is
   // remembered explicitly and refocused. Keeps VoiceOver and keyboard users in place.
   const openers = {};
@@ -79,7 +114,7 @@
     const d = $(id); if (!d.open) return;d.close();
   }
   dialogs.forEach(id=>$(id).addEventListener('close',()=>{const opener=openers[id];delete openers[id];if(dialogs.some(other=>$(other).open))return;if(opener?.isConnected&&typeof opener.focus==='function')opener.focus({preventScroll:true});}));
-  function confirm(title, text, action) { $('confirmTitle').textContent = title; $('confirmText').textContent = text; confirmAction = action; show('confirmDialog'); }
+  function confirm(title, text, action, label = 'Подтвердить') { $('confirmTitle').textContent = title; $('confirmText').textContent = text; $('confirmYes').textContent = window.PartyI18n?.t?.(label) || label; confirmAction = action; show('confirmDialog'); }
   function controller() { if (!state.native?.ready) return; closeBotPrompt(); dialogs.forEach(close); if(window.LocalPartyTabs)window.LocalPartyTabs.select('controller');else send('controller'); }
   function artPath(game) {
     return window.LocalPartyCatalog?.artPath(game) || '';
@@ -87,7 +122,7 @@
   let catalogView = null;
   function renderCatalog() {
     if (!window.LocalPartyCatalog) {
-      $('catalogState').hidden = false;
+      setFlag($('catalogState'), 'hidden', false);
       $('catalogStateText').textContent = 'Не загрузился общий каталог интерфейса. Проверь ресурсы сборки.';
       return;
     }
@@ -95,14 +130,14 @@
     const games = catalogView.update(state, {query: $('search').value, filter: section, disabled: busy() || Boolean(pendingLaunchId), pendingId: pendingLaunchId});
     // This is only the native catalogue: the shared TV renderer keeps its own roles.
     for(const counter of $('catalog').querySelectorAll('.lp-group-count')){const number=counter.textContent.match(/^\d+/)?.[0];if(number)menuCounter(counter,number,'игр');}
-    for(const card of $('catalog').querySelectorAll('[data-game]')){const g=gameById(card.dataset.game),range=card.querySelector('.lp-player-range'),votes=card.querySelector('.lp-card-votes');if(g&&range)menuCounter(range,g.min+'–'+g.max,'игроков');const count=(state.votes||[]).filter(v=>v.gameId===card.dataset.game).length;if(votes&&count)menuCounter(votes,count,plural(count,'голос','голоса','голосов').replace(/^\d+\s/,''));}
+    for(const card of $('catalog').querySelectorAll('[data-game]')){const g=gameById(card.dataset.game),range=card.querySelector('.lp-player-range'),votes=card.querySelector('.lp-card-votes');if(g&&range)menuCounter(range,g.min+'–'+g.max);const count=(state.votes||[]).filter(v=>v.gameId===card.dataset.game).length;if(votes&&count)menuCounter(votes,count,plural(count,'голос','голоса','голосов').replace(/^\d+\s/,''));}
     // A confirmed running game's action is navigation, never a second launch.
     if(state.active){const action=$('catalog').querySelector(`[data-game="${CSS.escape(state.active.id)}"] .lp-direct-start`);if(action){action.textContent='Играть';action.disabled=busy()||Boolean(pendingLaunchId);}}
     const hasCatalog = state.catalog.length > 0;
-    $('noGames').hidden = !hasCatalog || games.length > 0;
-    $('catalogState').hidden = hasCatalog;
-    $('catalogStateText').textContent = state.native?.catalogError || (receivedSnapshot ? 'Подготавливаем игры на этом iPhone…' : 'Соединяем меню с приложением…');
-    $('catalog').setAttribute('aria-busy', String(!hasCatalog));
+    setFlag($('noGames'), 'hidden', !hasCatalog || games.length > 0);
+    setFlag($('catalogState'), 'hidden', hasCatalog);
+    setLabel($('catalogStateText'), state.native?.catalogError || (receivedSnapshot ? 'Подготавливаем игры на этом iPhone…' : 'Соединяем меню с приложением…'));
+    setAttribute($('catalog'), 'aria-busy',  String(!hasCatalog));
   }
   function clearPressedUI() {
     window.LocalPartyUIFeel?.cancel?.();
@@ -150,8 +185,8 @@
     if (!busy()) manage({type: 'select', id});
     $('detailTitle').textContent = game.title; $('detailGoal').textContent = game.goal || game.description;
     $('detailControls').textContent = game.controls || ''; $('detailWin').textContent = game.win || 'Правила указаны на общем экране.';
-    $('detailArt').src = artPath(game); $('detailArt').hidden = !artPath(game);
-    $('detailArt').onerror = () => { $('detailArt').hidden = true; };
+    $('detailArt').src = artPath(game); setFlag($('detailArt'), 'hidden', !artPath(game));
+    $('detailArt').onerror = () => { setFlag($('detailArt'), 'hidden', true); };
     $('gameSettings').replaceChildren();
     (game.hostControls?.settings || []).forEach(field => {
       const row = element('label', 'native-row'), select = element('select'); select.dataset.setting = field.id; select.setAttribute('aria-label', field.label);
@@ -160,9 +195,10 @@
         const settings = {...(state.gameSettings?.[id] || {}), [field.id]: select.value};
         manage({type: 'settings', id, settings});
       });
+      row.classList.toggle('native-setting-wide', field.options.some(option => (window.PartyI18n?.t?.(option.label) || option.label).length > 24));
       row.append(element('span', '', field.label), select); $('gameSettings').append(row);
     });
-    updateDetail(); show('gameDetail');
+    updateDetail(); show('gameDetail'); $('detailTitle').tabIndex=-1; $('detailTitle').focus({preventScroll:true});
   }
   function updateDetail() {
     const g = gameById(selectedDetail); if (!g) return;
@@ -173,15 +209,18 @@
     });
     const count = state.players.length;
     let hint = !state.native?.ready ? 'Подготавливаем комнату…' : !hasSharedScreen() ? 'Подключи общий экран в панели ведущего.' : count < g.min ? 'Нужно ещё ' + plural(g.min - count, 'игрока', 'игроков', 'игроков') + '. Открой свой пульт или пригласи друзей.' : count > g.max ? `В этой игре максимум ${g.max} игроков.` : state.selected !== g.id ? 'Подтверждаем выбор игры…' : 'После запуска каждый нажимает «Я готов» на своём пульте.';
-    $('launchHint').textContent = hint;
-    $('launchGame').disabled = busy() || Boolean(pendingLaunchId) || count > g.max || state.selected !== g.id;
-    $('launchGame').textContent = pendingLaunchId ? 'Запускаем…' : state.busy ? 'Подготавливаем…' : state.active?.id===g.id ? 'Открыть пульт' : 'Играть вместе';
+    setLabel($('launchHint'), hint);
+    setFlag($('launchGame'), 'disabled', busy() || Boolean(pendingLaunchId) || count > g.max || state.selected !== g.id);
+    setLabel($('launchGame'), pendingLaunchId ? 'Запускаем…' : state.busy ? 'Подготавливаем…' : state.active?.id===g.id ? 'Пульт' : 'Играть');
     if (launchPending && state.active?.id === g.id && !state.busy) { close('gameDetail'); launchPending = false; }
     if (state.native?.message && !state.native?.working && !state.busy) launchPending = false;
   }
   function renderActive() {
     const run = state.active, game = gameById(run?.id);
-    document.body.classList.toggle('has-active-game',Boolean(game));$('activeCard').hidden = !game; if (!game) { actionsSignature = ''; deckAnimation?.cancel(); deckSlot = 0; $('activeCard').style.marginBottom = ''; return; }
+    if(rematchPending&&(run?.instance!==rematchPending||run?.ui?.phase!=='results'))clearRematch();
+    if(rematchPending&&state.native?.message&&state.native.message!==rematchMessage&&!state.native.working){clearRematch();toast(state.native.message);}
+    $('activeCard').classList.toggle('is-results',run?.ui?.phase==='results');
+    document.body.classList.toggle('has-active-game',Boolean(game));setFlag($('activeCard'), 'hidden', !game); if (!game) { actionsSignature = ''; deckAnimation?.cancel(); deckSlot = 0; $('activeCard').style.marginBottom = ''; return; }
     $('activeCard').classList.toggle('is-paused',Boolean(run.session?.paused));
     $('activeCard').style.setProperty('--pick-color',/^#[0-9a-f]{3,8}$/i.test(game.color||'')?game.color:'#9b7bff');
     if(!$('activeCard').querySelector('.native-run-outline')){const ring=element('span','native-run-outline');ring.setAttribute('aria-hidden','true');$('activeCard').append(ring);}
@@ -209,7 +248,7 @@
     const signature = JSON.stringify([run.instance, run.ui?.phase, run.session?.paused, run.startError, actions]);
     if (signature !== actionsSignature) {
       actionsSignature = signature; const box = $('activeActions'); box.replaceChildren();
-      const remote = button('Пульт', 'quiet native-controller-shortcut', controller);
+      const remote = button('Пульт', 'lime native-controller-shortcut', controller);
       remote.id = 'activeController';
       box.append(remote);
       const bots=button('Боты','quiet native-bot-shortcut',()=>{show('hostPanel');requestAnimationFrame(()=>$('hostRosterSection').scrollIntoView({block:'start'}));});bots.id='activeBots';const botLabel=element('span','native-action-label','Боты');bots.replaceChildren(botLabel);const botIcon=window.PartyIcons?.create('friends');if(botIcon)bots.prepend(botIcon);box.append(bots);
@@ -217,41 +256,49 @@
       if(run.ui?.phase==='waiting'){const force=button('Начать сейчас ▶','lime small',()=>manage({type:'force-start',instance:run.instance}));force.dataset.forceStart='true';box.append(force);}
       actions.forEach(a => {const b = button(a.label, 'quiet', () => manage({type: 'game-action', instance: run.instance, action: a.id})); b.dataset.phaseAction = 'true'; box.append(b);});
       if (run.startError) box.append(button('Повторить запуск', 'lime small', () => manage({type: 'retry-start', instance: run.instance})));
-      if (run.ui?.phase === 'results') box.append(button('Сыграть ещё раз', 'lime small', () => manage({type: 'launch', id: game.id})));
+      if (run.ui?.phase === 'results'){const replay=button('','quiet hp-rematch-button',requestRematch);replay.id='activeRematch';replay.append(element('span','','Сыграть ещё раз'));box.append(replay);}
       if(run.ui?.phase!=='waiting'&&run.ui?.phase!=='results')box.append(button(run.session?.paused ? 'Продолжить' : 'Пауза', 'quiet', () => manage({type: 'pause', paused: !state.active?.session?.paused})));
       box.append(button('В лобби', 'quiet native-danger', () => confirm('Закончить игру?', 'Текущий матч завершится для всей компании.', () => manage({type: 'stop'}))));
     }
     $('activeActions').querySelectorAll('button').forEach(b => b.disabled = ['activeController','activeBots'].includes(b.id) ? !state.native?.ready : busy() || (b.dataset.phaseAction === 'true' && Boolean(run.session?.paused)) || (b.dataset.forceStart==='true'&&Number(run.ready?.length||0)<((state.botCount||0)>0?1:game.min)));
+    const replay=$('activeRematch');if(replay){replay.disabled=busy()||!!rematchPending;replay.setAttribute('aria-busy',String(!!rematchPending));replay.querySelector('span').textContent=window.PartyI18n?.t?.(rematchPending?'Запускаем…':'Сыграть ещё раз')||(rematchPending?'Запускаем…':'Сыграть ещё раз');}
     window.PartyButtonProgress?.set(document.querySelector('#activeActions [data-force-start]'),roster.filter(p=>p.testBot||ready.has(p.id)).length,run.ui?.phase==='waiting'?roster.length:0);
   }
+  let displayStatusKey = null;
   function renderRoom() {
     const n = state.native || {}, address = n.address || '', hasAddress = Boolean(state.networkEnabled && address);
     const external = Number(n.externalDisplays) || 0;
-    if(external>0){const externalCount=menuCounter(element('span',''),external,'Отдельная сцена ТВ:',null,true),connections=menuCounter(element('span',''),state.screens||0,'Игровых подключений экрана:',null,true);$('displayStatus').classList.add('hp-menu-counter-group');$('displayStatus').replaceChildren(externalCount,connections);}
-    else{$('displayStatus').classList.remove('hp-menu-counter-group');$('displayStatus').textContent=n.displayMode === 'requires-ios27-sdk'
+    if(external>0){
+      const key=`${external}:${state.screens||0}`;
+      if(displayStatusKey!==key){
+        displayStatusKey=key;renderedLabels.delete($('displayStatus'));
+        const externalCount=menuCounter(element('span',''),external,'Отдельная сцена ТВ:',null,true),connections=menuCounter(element('span',''),state.screens||0,'Игровых подключений экрана:',null,true);$('displayStatus').classList.add('hp-menu-counter-group');$('displayStatus').replaceChildren(externalCount,connections);
+      }
+    }
+    else{displayStatusKey=null;$('displayStatus').classList.remove('hp-menu-counter-group');setLabel($('displayStatus'), n.displayMode === 'requires-ios27-sdk'
         ? 'Для отдельного экрана на iOS 27 пересобери приложение с iOS 27 SDK.'
         : n.displayAvailable
           ? 'Дисплей доступен. Ожидаем отдельную сцену LocalParty…'
-          : 'Отдельная сцена ТВ пока не подключена. Повтор экрана сам по себе не подтверждает её запуск.';}
-    $('refreshDisplay').disabled = !receivedSnapshot;
-    $('tvAddress').textContent = address ? address + 'tv' : 'Сначала включи доступ по Wi-Fi.';
-    setSwitch('networkToggle', state.networkEnabled, 'Включён', 'Выключен'); $('networkToggle').disabled = busy();
-    $('inviteBox').hidden = !hasAddress; $('inviteAddress').textContent = address;
+          : 'Отдельная сцена ТВ пока не подключена. Повтор экрана сам по себе не подтверждает её запуск.');}
+    setFlag($('refreshDisplay'), 'disabled', !receivedSnapshot);
+    setLabel($('tvAddress'), address ? address + 'tv' : 'Сначала включи доступ по Wi-Fi.');
+    setSwitch('networkToggle', state.networkEnabled, 'Включён', 'Выключен'); setFlag($('networkToggle'), 'disabled', busy());
+    setFlag($('inviteBox'), 'hidden', !hasAddress); setLabel($('inviteAddress'), address);
     if (n.qr && $('inviteQR').getAttribute('src') !== n.qr) $('inviteQR').src = n.qr;
-    $('inviteQR').hidden = !n.qr;
-    $('wifiInviteSettings').hidden=!hasAddress; $('wifiInviteResult').hidden=!n.wifiQR;
-    $('clipTestInvite').hidden=!n.clipTestQR;
-    $('showClipTestTV').hidden=!n.clipTestQR||(!!n.clipTestTVActive&&!n.clipTestTVPublic);
-    $('showClipPublicTV').hidden=!n.clipTestQR||(!!n.clipTestTVActive&&!!n.clipTestTVPublic);
-    $('clearClipTestTV').hidden=!n.clipTestTVActive;
+    setFlag($('inviteQR'), 'hidden', !n.qr);
+    setFlag($('wifiInviteSettings'), 'hidden', !hasAddress); setFlag($('wifiInviteResult'), 'hidden', !n.wifiQR);
+    setFlag($('clipTestInvite'), 'hidden', !n.clipTestQR);
+    setFlag($('showClipTestTV'), 'hidden', !n.clipTestQR||(!!n.clipTestTVActive&&!n.clipTestTVPublic));
+    setFlag($('showClipPublicTV'), 'hidden', !n.clipTestQR||(!!n.clipTestTVActive&&!!n.clipTestTVPublic));
+    setFlag($('clearClipTestTV'), 'hidden', !n.clipTestTVActive);
     if(n.clipTestQR && $('clipTestQR').getAttribute('src')!==n.clipTestQR)$('clipTestQR').src=n.clipTestQR;
     if(!n.clipTestQR){$('clipTestQR').removeAttribute('src');$('clipTestInvite').open=false;}
-    $('wifiInviteSubmit').textContent=n.singleScanAvailable?'Create one-scan invitation':'Show network QR';
-    $('wifiInvitePrivacy').textContent=n.singleScanAvailable?'The invitation shares your Wi-Fi access and opens the controller through an App Clip. Credentials stay only in this session.':'This QR shares access to your Wi-Fi. The password is kept only in this app session.';
+    setLabel($('wifiInviteSubmit'), n.singleScanAvailable?'Create one-scan invitation':'Show network QR');
+    setLabel($('wifiInvitePrivacy'), n.singleScanAvailable?'The invitation shares your Wi-Fi access and opens the controller through an App Clip. Credentials stay only in this session.':'This QR shares access to your Wi-Fi. The password is kept only in this app session.');
     if(n.wifiQR&&$('wifiInviteQR').getAttribute('src')!==n.wifiQR)$('wifiInviteQR').src=n.wifiQR;
-    if(!n.wifiQR)$('wifiInviteQR').removeAttribute('src'); $('wifiInviteName').textContent=n.wifiSSID||'';
-    $('networkHint').textContent = n.working && !state.networkEnabled ? 'Настраиваем локальный HTTPS и получаем сертификат…' : state.networkEnabled && !address ? 'Адрес Wi-Fi изменился. Нажми переключатель, чтобы обновить HTTPS.' : 'Устройства должны быть в одной сети без изоляции клиентов.';
-    $('transportHint').textContent = hasAddress ? 'Гости открывают игру по HTTPS без установки сертификата. Игровое соединение остаётся в вашей сети Wi-Fi.' : '';
+    if(!n.wifiQR)$('wifiInviteQR').removeAttribute('src'); setLabel($('wifiInviteName'), n.wifiSSID||'');
+    setLabel($('networkHint'), n.working && !state.networkEnabled ? 'Настраиваем локальный HTTPS и получаем сертификат…' : state.networkEnabled && !address ? 'Адрес Wi-Fi изменился. Нажми переключатель, чтобы обновить HTTPS.' : 'Устройства должны быть в одной сети без изоляции клиентов.');
+    setLabel($('transportHint'), hasAddress ? 'Гости открывают игру по HTTPS без установки сертификата. Игровое соединение остаётся в вашей сети Wi-Fi.' : '');
     menuCounter($('rosterTitle'),state.players.length,'В комнате',null,true);
     const rosterKey = JSON.stringify(state.players);
     if (rosterKey !== rosterSignature) {
@@ -259,72 +306,87 @@
       if (!state.players.length) $('roster').append(element('p', '', 'Пока никого. Открой свой пульт или пригласи друзей.'));
       state.players.forEach(p => {const row = element('div', 'player'); row.append(element('b', '', p.name), element('small', '', p.gameReady ? 'В игре' : 'Подключён'), button('Убрать', 'quiet', () => confirm(`Удалить ${p.name}?`, 'Контроллер отключится. Остальные игроки продолжат.', () => manage({type: 'kick', id: p.id})))); $('roster').append(row);});
     }
-    $('roster').querySelectorAll('button').forEach(b => b.disabled = busy());
+    $('roster').querySelectorAll('button').forEach(b => setFlag(b,'disabled',busy()));
     setSwitch('hapticsToggle', n.haptics !== false, 'Включена', 'Выключена');
     setSwitch('awakeToggle', n.keepAwake !== false, 'Включено', 'Выключено');
-    $('testHaptics').disabled = n.haptics === false;
+    setFlag($('testHaptics'), 'disabled', n.haptics === false);
     const matches=state.totalMatches||0;menuCounter($('matches'),matches,plural(matches,'матч','матча','матчей').replace(/^\d+\s/,''));
     const leadersKey = JSON.stringify(state.leaderboard || []);
     if (leadersKey !== standingsSignature) {
       standingsSignature = leadersKey; $('standings').replaceChildren();
       const places=companyPlaces(state.leaderboard||[]);
-      (state.leaderboard || []).slice(0, 5).forEach((p,i) => {const row = element('div', 'rank-row'); const place=places[i];row.dataset.rank=String(place);row.dataset.place=String(place);row.dataset.hpRank=String(place);if(place<=3){const medal=element('img','hp-award');medal.dataset.hpRank=String(place);medal.src='/assets/awards/'+['medal-gold','medal-silver','medal-bronze'][place-1]+'.png';medal.alt=String(place)+' place';row.append(medal);}row.append(element('b', 'rank-name', p.name), element('span', 'rank-stats', plural(p.wins, 'победа', 'победы', 'побед') + ' · ' + plural(p.points, 'очко', 'очка', 'очков'))); $('standings').append(row);});
+      (state.leaderboard || []).slice(0, 5).forEach((p,i) => {const row = element('div', 'rank-row'); const place=places[i];row.dataset.rank=String(place);row.dataset.place=String(place);row.dataset.hpRank=String(place);if(place<=3){const medal=element('img','hp-award');medal.dataset.hpRank=String(place);medal.src='/assets/awards/'+['medal-gold','medal-silver','medal-bronze'][place-1]+'.png';medal.alt=String(place)+' place';row.append(medal);}row.append(element('b', 'rank-name', p.name), window.HeyPalsCoins.amount(element('span', 'rank-stats'),p.coins??p.points??0)); $('standings').append(row);});
     }
-    $('resetStats').disabled = busy() || Boolean(state.active);
-    $('backgroundStatus').textContent = n.backgroundStatus || 'Во время игры держи приложение открытым.';
-    $('backgroundRequest').disabled = !state.networkEnabled || busy();
-    $('buildLabel').textContent = [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), 'Show: tv-show-20260918.1', n.displayMode].filter(Boolean).join(' · ');
+    setFlag($('resetStats'), 'disabled', busy() || Boolean(state.active));
+    setLabel($('backgroundStatus'), n.backgroundStatus || 'Во время игры держи приложение открытым.');
+    setFlag($('backgroundRequest'), 'disabled', !state.networkEnabled || busy());
+    setLabel($('buildLabel'), [n.buildLabel, 'UI: ' + shellRevision, 'Menu: ' + (window.LocalPartyCatalog?.revision || 'не загружено'), 'Native: ' + (n.bridgeRevision || 'ожидание'), 'Show: tv-show-20260918.1', n.displayMode].filter(Boolean).join(' · '));
   }
+  let choiceEntrance=null,choiceKey='';
+  function enterChoice(){
+    const strip=$('choiceStrip');choiceEntrance?.cancel();strip.style.removeProperty('opacity');
+    if(strip.hidden||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    choiceEntrance=strip.animate([{translate:'calc(-100% - 24px) 0',opacity:0},{translate:'0 0',opacity:1}],{duration:480,easing:'cubic-bezier(.22,1,.36,1)'});
+  }
+  window.addEventListener('party-startup-reveal',()=>{window.__partyStartupCovered=false;enterChoice();},{once:true});
   // Thin "host choice" card at the top of the lobby: start the selected game without the panel.
   function renderChoice() {
     const g = gameById(state.selected), strip = $('choiceStrip'), wasHidden = strip.hidden;
-    strip.hidden = !g || state.active?.id===g.id; if (!g) { choiceStarting = false; return; }
-    // The first room snapshot arrives after the catalog is already on screen: open the
-    // strip's height instead of shoving the whole page down in one frame.
-    if (wasHidden && !strip.hidden && receivedSnapshot && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const cs = getComputedStyle(strip), h = strip.offsetHeight;
-      strip.animate([{height:'0px',marginTop:'0px',marginBottom:'0px',opacity:0,overflow:'clip'},{height:h+'px',marginTop:cs.marginTop,marginBottom:cs.marginBottom,opacity:1,overflow:'clip'}],{duration:380,easing:'cubic-bezier(.22,1,.36,1)'});
+    setFlag(strip, 'hidden', !g || state.active?.id===g.id); if (!g) { choiceStarting = false; return; }
+    if(wasHidden&&!strip.hidden){
+      if(window.__partyStartupCovered)strip.style.setProperty('opacity','0','important');
+      else enterChoice();
     }
-    if ($('choiceName').textContent !== g.title) { $('choiceName').textContent = g.title; $('choiceArt').src = artPath(g); $('choiceArt').hidden = !artPath(g); strip.style.setProperty('--pick-color', /^#[0-9a-f]{3,8}$/i.test(g.color||'') ? g.color : '#9b7bff'); strip.classList.remove('is-new'); void strip.offsetWidth; strip.classList.add('is-new'); }
+    // Localization owns the rendered title. Comparing it with the authored label
+    // treated every English snapshot as a new selection and forced a full reflow.
+    const image=artPath(g),nextChoiceKey=JSON.stringify([g.id,g.title,image,g.color]);
+    if(choiceKey!==nextChoiceKey){choiceKey=nextChoiceKey;setLabel($('choiceName'),g.title);$('choiceArt').src=image;setFlag($('choiceArt'),'hidden',!image);strip.style.setProperty('--pick-color',/^#[0-9a-f]{3,8}$/i.test(g.color||'')?g.color:'#9b7bff');strip.classList.remove('is-new');void strip.offsetWidth;strip.classList.add('is-new');}
     const count = (state.players || []).length, min = (state.botCount || 0) > 0 ? 1 : g.min;
-    const choiceMeta=$('choiceMeta'), needsClock=!hasSharedScreen()||count<min;
-    choiceMeta.replaceChildren();
-    if(needsClock){const clock=document.createElement('span');clock.className='choice-clock';clock.setAttribute('aria-hidden','true');choiceMeta.append(clock);}
-    const metaLabel=document.createElement('span');if(!hasSharedScreen())metaLabel.textContent='Ждём экран';else menuCounter(metaLabel,count>g.max?g.max:count,count>g.max?'До': 'игроков',count<min?min:null,count>g.max);if(count>g.max)metaLabel.append(document.createTextNode(' игроков'));choiceMeta.append(metaLabel);
-    $('choiceStart').disabled = Boolean(pendingLaunchId) || choiceStarting || busy();
-    $('choiceStart').setAttribute('aria-busy',String(Boolean(pendingLaunchId)||choiceStarting||state.busy));
-    $('choiceStart').textContent = pendingLaunchId || choiceStarting || state.busy ? 'Запускаем…' : state.active?.id===g.id ? 'Открыть пульт' : 'Старт ▶';
-    $('choiceStart').dataset.action=state.active?.id===g.id?'controller':'launch';
+    const choiceMeta=$('choiceMeta');
+    const metaKey=`${Math.min(count,g.max)}:${count<min?min:g.max}:${count<min}`;
+    if(choiceMeta.dataset.countKey!==metaKey){
+      const peopleIcon=element('span','choice-players-icon');peopleIcon.setAttribute('aria-hidden','true');
+      const metaLabel=element('span');menuCounter(metaLabel,Math.min(count,g.max),'',count<min?min:null);
+      choiceMeta.replaceChildren(peopleIcon,metaLabel);choiceMeta.dataset.countKey=metaKey;
+      choiceMeta.setAttribute('aria-label',`${Math.min(count,g.max)} / ${count<min?min:g.max} players`);
+    }
+    setFlag($('choiceStart'), 'disabled', Boolean(pendingLaunchId) || choiceStarting || busy());
+    setAttribute($('choiceStart'), 'aria-busy', String(Boolean(pendingLaunchId)||choiceStarting||state.busy));
+    setLabel($('choiceStart'), pendingLaunchId || choiceStarting || state.busy ? 'Запускаем…' : state.active?.id===g.id ? 'Открыть пульт' : '▶');
+    setAttribute($('choiceStart'), 'aria-label', state.active?.id===g.id ? 'Открыть пульт' : 'Play '+g.title);
+    setAttribute($('choiceStart'),'data-action',state.active?.id===g.id?'controller':'launch');
+    const unavailable=$('choiceStart').disabled;
+    if(strip.classList.contains('hp-pick-unavailable')!==unavailable)strip.classList.toggle('hp-pick-unavailable',unavailable);
   }
   function renderTVControls() {
     renderChoice();
     const tv=state.tv, unavailable=!tv||busy(), active=!!state.active;
     const canCover=tv?.canCover===true;
-    $('tvShowQR').disabled=unavailable||!canCover||pendingQR;
+    setFlag($('tvShowQR'), 'disabled', unavailable||!canCover||pendingQR);
     if(pendingQR&&state.networkEnabled&&state.native?.address){pendingQR=false;manage({type:'tv-overlay',mode:'qr'});}
-    const bots=state.botCount||0,humans=(state.players||[]).filter(p=>!p.testBot).length;$('botCount').textContent=String(bots);
+    const bots=state.botCount||0,humans=(state.players||[]).filter(p=>!p.testBot).length;setLabel($('botCount'), String(bots));
     const botLocked=!!state.active&&state.active.ui?.phase!=='waiting',botLimit=Math.min(16,gameById(state.active?.id)?.max||16);
-    $('botMinus').disabled=busy()||botLocked||bots<1;$('botPlus').disabled=busy()||botLocked||!state.screens||bots>=15||bots+humans>=botLimit;
-    $('botHint').textContent=botLocked?'Боты доступны до старта матча.':!state.screens?'Боты играют через общий экран — подключи телевизор.':'Тестовые игроки, очки не записываются.';
-    $('tvShowCompany').disabled=unavailable||!canCover||!tv?.hasCompany;
-    $('tvShowMatch').disabled=unavailable||!canCover||!tv?.hasMatch;
-    $('tvCloseOverlay').disabled=unavailable||tv.mode==='none';
-    $('tvShowQR').setAttribute('aria-pressed',String(tv?.mode==='qr'));
-    $('tvShowCompany').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='company'));
-    $('tvShowMatch').setAttribute('aria-pressed',String(tv?.mode==='podium'&&tv.board?.kind==='match'));
-    for(const id of ['tvPrev','tvNext','tvUp','tvDown','tvGameNumber','tvSelectGame'])$(id).disabled=unavailable||active||!state.catalog.length;
-    document.querySelectorAll('[data-tv-genre]').forEach(b=>b.disabled=unavailable||active);
+    setFlag($('botMinus'), 'disabled', busy()||botLocked||bots<1);setFlag($('botPlus'), 'disabled', busy()||botLocked||!state.screens||bots>=15||bots+humans>=botLimit);
+    setLabel($('botHint'), botLocked?'Боты доступны до старта матча.':!state.screens?'Боты играют через общий экран — подключи телевизор.':'Тестовые игроки, очки не записываются.');
+    setFlag($('tvShowCompany'), 'disabled', unavailable||!canCover||!tv?.hasCompany);
+    setFlag($('tvShowMatch'), 'disabled', unavailable||!canCover||!tv?.hasMatch);
+    setFlag($('tvCloseOverlay'), 'disabled', unavailable||tv.mode==='none');
+    setAttribute($('tvShowQR'), 'aria-pressed', String(tv?.mode==='qr'));
+    setAttribute($('tvShowCompany'), 'aria-pressed', String(tv?.mode==='podium'&&tv.board?.kind==='company'));
+    setAttribute($('tvShowMatch'), 'aria-pressed', String(tv?.mode==='podium'&&tv.board?.kind==='match'));
+    for(const id of ['tvPrev','tvNext','tvUp','tvDown','tvGameNumber'])setFlag($(id),'disabled',unavailable||active||!state.catalog.length);
+    document.querySelectorAll('[data-tv-genre]').forEach(b=>setFlag(b,'disabled',unavailable||active));
     const focus=gameById(tv?.focusId);
-    $('tvSelectGame').disabled ||= !focus;
-    $('tvGameNumber').max=String(state.catalog.length);
-    if(document.activeElement!==$('tvGameNumber'))$('tvGameNumber').value=tv?.focusNumber||'';
-    $('tvFocusName').textContent=focus?`№ ${tv.focusNumber} / ${tv.total} · ${focus.title}`:'Стрелки листают игры на ТВ. Матч сам не запустится.';
-    $('tvControlHint').textContent=!tv?'Обнови сборку: сервер ещё не передал управление показом.':!canCover?'Чтобы показать QR или пьедестал, сначала нажми «Пауза».':tv.mode==='qr'?'На ТВ — большая карточка приглашения.':tv.mode==='podium'?`На ТВ — ${tv.board?.subtitle||'пьедестал'}.`:'Выбирай, что показать компании. На ТВ нет кнопок администратора.';
-    $('tvPause').disabled=unavailable||!active;
-    $('tvPause').textContent=state.active?.session?.paused?'Продолжить матч':'Пауза';
-    for(const [id,key,on,off] of [['tvAutoPodium','autoPodium','Включён','Выключен'],['tvEffects','effects','Включены','Выключены'],['tvIdleBrowse','idleBrowse','Включено','Выключено']]){setSwitch(id,tv?.[key],on,off);$(id).disabled=unavailable;}
+    setFlag($('tvSelectGame'),'disabled',unavailable||active||!state.catalog.length||!focus);
+    setAttribute($('tvGameNumber'),'max',state.catalog.length);
+    if(document.activeElement!==$('tvGameNumber')&&$('tvGameNumber').value!==String(tv?.focusNumber||''))$('tvGameNumber').value=tv?.focusNumber||'';
+    setLabel($('tvFocusName'), focus?`№ ${tv.focusNumber} / ${tv.total} · ${focus.title}`:'Стрелки листают игры на ТВ. Матч сам не запустится.');
+    setLabel($('tvControlHint'), !tv?'Обнови сборку: сервер ещё не передал управление показом.':!canCover?'Чтобы показать QR или пьедестал, сначала нажми «Пауза».':tv.mode==='qr'?'На ТВ — большая карточка приглашения.':tv.mode==='podium'?`На ТВ — ${tv.board?.subtitle||'пьедестал'}.`:'Выбирай, что показать компании. На ТВ нет кнопок администратора.');
+    setFlag($('tvPause'), 'disabled', unavailable||!active);
+    setLabel($('tvPause'), state.active?.session?.paused?'Продолжить матч':'Пауза');
+    for(const [id,key,on,off] of [['tvAutoPodium','autoPodium','Включён','Выключен'],['tvEffects','effects','Включены','Выключены'],['tvIdleBrowse','idleBrowse','Включено','Выключено']]){setSwitch(id,tv?.[key],on,off);setFlag($(id),'disabled',unavailable);}
   }
-  function setSwitch(id, enabled, on, off) { const b = $(id); b.setAttribute('aria-checked', String(Boolean(enabled))); b.textContent = enabled ? on : off; }
+  function setSwitch(id, enabled, on, off) { const b = $(id),checked=String(Boolean(enabled));if(b.getAttribute('aria-checked')!==checked){b.setAttribute('aria-checked',checked);b.textContent=enabled?on:off;} }
   function update(value) {
     if (!value || !Array.isArray(value.catalog) || !Array.isArray(value.players)) return false;
     // Retain the last real catalog across transient empty snapshots. Do not invent
@@ -338,6 +400,7 @@
     const launchError=pendingLaunchId&&value.native?.message&&value.native.message!==state.native?.message&&!value.native?.working&&!value.busy;
     if(botError){clearTimeout(botRequestTimer);botRequest=null;}
     state = value;
+    window.PartySpotlight?.update(state,{host:true,ready:true,launch:(id,button)=>{launchFromCard(id,button);return Boolean(pendingLaunchId);}});
     if(botRequest&&(Number(state.botCount)||0)===botRequest.target&&state.players.filter(p=>p.testBot).length===botRequest.target){clearTimeout(botRequestTimer);botRequest=null;}
     window.PartyI18n?.protectPlayers([...(state.players||[]),...(state.leaderboard||[]),...(state.active?.roster||[])]);
     window.PartyI18n?.acceptRoomLanguage(state.languageOverride);
@@ -346,18 +409,18 @@
     else if(pendingLaunchId&&launchAwaitingScreen&&hasSharedScreen()) dispatchPendingLaunch();
     receivedSnapshot = true; clearTimeout(readyTimer); readyTimer = null;
     const connectionIssue=state.native?.connectionStatus||'';
-    $('connection').textContent = connectionIssue ? (connectionIssue.includes('недоступен')?'Сервер недоступен':'Восстанавливаем комнату…') : (state.native?.ready ? 'Комната готова' : 'Подготавливаем комнату…');
-    $('connection').title=connectionIssue;
+    setLabel($('connection'), connectionIssue ? (connectionIssue.includes('недоступен')?'Сервер недоступен':'Восстанавливаем комнату…') : (state.native?.ready ? 'Комната готова' : 'Подготавливаем комнату…'));
+    setAttribute($('connection'),'title',connectionIssue);
     $('connection').classList.toggle('online', Boolean(state.native?.ready && !state.native?.connectionStatus));
     if(state.catalog.length)menuCounter($('gameCount'),state.catalog.length,plural(state.catalog.length,'игра','игры','игр').replace(/^\d+\s/,''));else{$('gameCount').classList.remove('hp-menu-counter');$('gameCount').textContent='Каталог загружается';}
     menuCounter($('playerCount'),state.players.length,plural(state.players.length,'игрок','игрока','игроков').replace(/^\d+\s/,''));if(state.screens)menuCounter($('screenCount'),state.screens,plural(state.screens,'общий экран','общих экрана','общих экранов').replace(/^\d+\s/,''));else{$('screenCount').classList.remove('hp-menu-counter');$('screenCount').textContent='Экран не подключён';}
     const message = state.native?.message || state.native?.catalogError || state.native?.connectionStatus || state.incident?.message;
-    $('message').hidden = !message; $('messageText').textContent = message || '';
-    $('messageTitle').textContent=connectionIssue?'Нет связи с локальным сервером':'Сообщение комнаты';
-    ['openController', 'playHere', 'detailController'].forEach(id => $(id).disabled = !state.native?.ready);
-    $('forceRoomLanguage').disabled=busy();
+    setFlag($('message'), 'hidden', !message); setLabel($('messageText'), message || '');
+    setLabel($('messageTitle'), connectionIssue?'Нет связи с локальным сервером':'Сообщение комнаты');
+    ['openController', 'playHere', 'detailController'].forEach(id => setFlag($(id),'disabled',!state.native?.ready));
+    setFlag($('forceRoomLanguage'), 'disabled', busy());
     renderCatalog();
-    renderActive(); renderRoom(); renderTVControls(); updateDetail();renderBotPrompt();if(botError&&botPromptGame)$('startBotsHint').textContent=value.native.message;
+    renderActive(); renderRoom(); renderTVControls(); updateDetail();renderBotPrompt();if(botError&&botPromptGame)setLabel($('startBotsHint'), value.native.message);
     if(returnedToLobby)window.dispatchEvent(new CustomEvent('party-lobby-enter'));
     return true; // acknowledgement used by the native delivery state machine
   }
@@ -374,10 +437,10 @@
     const after=card.getBoundingClientRect().height, mbAfter=compact?Math.max(0,deckSlot-after):0;
     if (mbAfter) card.style.marginBottom=mbAfter+'px';
     if (!card.hidden && before && after && before!==after && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      deckAnimation=card.animate([{height:before+'px',marginBottom:mbBefore+'px',overflow:'clip'},{height:after+'px',marginBottom:mbAfter+'px',overflow:'clip'}],{duration:150,easing:'cubic-bezier(.22,1,.36,1)'});
+      deckAnimation=card.animate([{height:before+'px',marginBottom:mbBefore+'px',overflow:'clip'},{height:after+'px',marginBottom:mbAfter+'px',overflow:'clip'}],{duration:240,easing:'cubic-bezier(.16,1,.3,1)'});
     }
   }
-  function setDeckExpanded(expanded) { animateDeck(()=>{ $('activeMore').setAttribute('aria-expanded',String(expanded)); $('activeCard').classList.toggle('is-expanded',expanded); }); syncDeckStack(); }
+  function setDeckExpanded(expanded) { animateDeck(()=>{ setAttribute($('activeMore'), 'aria-expanded', String(expanded)); $('activeCard').classList.toggle('is-expanded',expanded); }); syncDeckStack(); }
   $('activeMore').onclick=()=>{closeBotPrompt(); if(dialogs.some(id=>$(id).open))return; setDeckExpanded($('activeMore').getAttribute('aria-expanded')!=='true');};
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialogs.some(id=>$(id).open))setDeckExpanded(false);});
   document.addEventListener('pointerdown',e=>{if(!dialogs.some(id=>$(id).open)&&!$('activeCard').contains(e.target)&&$('activeCard').classList.contains('is-expanded'))setDeckExpanded(false);});
@@ -386,9 +449,9 @@
   $('forceRoomLanguage').onclick=()=>confirm('Изменить язык всей комнаты?', 'Язык изменится у всех игроков. После этого каждый сможет снова выбрать свой.',()=>manage({type:'force-language',language:window.PartyI18n?.language||'en'}));
   ['openController', 'playHere', 'detailController'].forEach(id => $(id).onclick = controller);
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => close(b.dataset.close));
-  $('airplayHelp').onclick = () => { $('airplayInstructions').hidden = !$('airplayInstructions').hidden; };
+  $('airplayHelp').onclick = () => { setFlag($('airplayInstructions'), 'hidden', !$('airplayInstructions').hidden); };
   $('refreshDisplay').onclick = () => send('screen-refresh');
-  $('wifiInviteSecurity').onchange=()=>{const open=$('wifiInviteSecurity').value==='nopass';$('wifiInvitePasswordLabel').hidden=open;$('wifiInvitePassword').required=!open;};
+  $('wifiInviteSecurity').onchange=()=>{const open=$('wifiInviteSecurity').value==='nopass';setFlag($('wifiInvitePasswordLabel'), 'hidden', open);$('wifiInvitePassword').required=!open;};
   $('wifiInviteForm').onsubmit=e=>{e.preventDefault();const ssid=$('wifiInviteSSID').value,password=$('wifiInvitePassword').value,security=$('wifiInviteSecurity').value;if(!ssid||new TextEncoder().encode(ssid).length>32){toast('Network name must be 1–32 bytes.');return;}if(security==='WPA'&&!((new TextEncoder().encode(password).length>=8&&new TextEncoder().encode(password).length<=63)||/^[0-9a-f]{64}$/i.test(password))){toast('Enter the Wi-Fi password (8–63 characters or 64 hex digits).');return;}send('wifi-invite',{ssid,password:security==='nopass'?'':password,security});$('wifiInvitePassword').value='';};
   $('copyClipTest').onclick=()=>send('copy-clip-test');
   $('showClipTestTV').onclick=()=>send('clip-test-tv-show');
@@ -401,7 +464,7 @@
   $('testHaptics').onclick = () => send('haptic', {pattern: [18, 65, 30]});
   $('shareInvite').onclick = () => send('share-invite'); $('copyInvite').onclick = () => { send('copy-invite'); };
   $('backgroundRequest').onclick = () => send('background-request'); $('shareDiagnostics').onclick = () => send('share-diagnostics');
-  $('resetStats').onclick = () => confirm('Сбросить статистику?', 'Очки и история матчей будут очищены. Профили игроков сохранятся.', () => manage({type: 'statistics-reset'}));
+  $('resetStats').onclick = () => confirm('Сбросить статистику?', 'Очки и история матчей будут очищены. Профили игроков сохранятся.', () => manage({type: 'statistics-reset'}), 'Сбросить');
   $('launchGame').onclick = () => {if ($('launchGame').disabled) return;launchPending=true;launchFromCard(selectedDetail,$('launchGame'));};
   $('confirmCancel').onclick = () => close('confirmDialog');
   $('confirmYes').onclick = () => { const action = confirmAction; confirmAction = null; close('confirmDialog'); action?.(); };
@@ -424,13 +487,49 @@
   const masthead = document.querySelector('.app-header'), tools = document.querySelector('.native-catalog-tools');
   if (masthead && tools) {
     let frame = 0;
-    const stackBacking=document.createElement('div');stackBacking.className='native-stack-backing';stackBacking.setAttribute('aria-hidden','true');document.querySelector('main').append(stackBacking);
-    const syncStick = () => {frame = 0; const card=$('activeCard');const wasCompact=card.classList.contains('is-compact'),compact=wasCompact?scrollY>8:scrollY>24;if(compact!==wasCompact)animateDeck(()=>{card.classList.toggle('is-compact',compact);card.classList.remove('is-expanded');$('activeMore').setAttribute('aria-expanded','false');});const head = masthead.offsetHeight,run=$('activeCard').hidden?0:$('activeCard').getBoundingClientRect().height,choice=$('choiceStrip').hidden?0:$('choiceStrip').getBoundingClientRect().height; document.documentElement.style.setProperty('--host-head', head + 'px');document.documentElement.style.setProperty('--host-run',run+'px');document.documentElement.style.setProperty('--host-choice',choice+'px'); document.body.classList.toggle('tools-stuck', tools.getBoundingClientRect().top <= head + run + choice + 13);const backed=Boolean(run||choice||document.body.classList.contains('tools-stuck')); document.body.classList.toggle('stack-backed',backed); stackBacking.hidden=!backed; const stackBottom=document.body.classList.contains('tools-stuck')?tools.getBoundingClientRect().bottom:Math.max(masthead.getBoundingClientRect().bottom,...[$('activeCard'),$('choiceStrip')].filter(e=>!e.hidden).map(e=>e.getBoundingClientRect().bottom)); stackBacking.style.height=(stackBottom+48)+'px';if(deckAnimation?.playState==='running'&&!frame)frame=requestAnimationFrame(syncStick);};
+    const stackBacking=document.createElement('div');stackBacking.className='native-stack-backing';stackBacking.setAttribute('aria-hidden','true');const stackBlur=document.createElement('div');stackBlur.className='native-stack-blur';stackBlur.setAttribute('aria-hidden','true');document.body.append(stackBlur,stackBacking);
+    const stackValues=new WeakMap(),choiceTargets=[$('choiceStrip')],toolTargets=[tools],runTargets=[choiceTargets[0],tools],backingTargets=[stackBacking,stackBlur],rootTargets=[document.documentElement];
+    // Animated offsets only affect the sticky stack. Inheriting --host-run
+    // through the entire catalogue re-styled every game card during the morph.
+    // Keep the rarely changing header inset global for dialogs/toasts; scope
+    // the per-frame values to their actual CSS consumers.
+    const writeStack=(name,value,targets=rootTargets)=>{let changed=false;for(const node of targets){let values=stackValues.get(node);if(!values){values=new Map();stackValues.set(node,values);}if(values.get(name)===value)continue;values.set(name,value);node.style.setProperty(name,value);changed=true;}return changed;};
+    let backingHeight='';
+    const syncCompaction=()=>{
+      const card=$('activeCard'),wasCompact=card.classList.contains('is-compact'),compact=wasCompact?scrollY>8:scrollY>24;
+      if(!card.hidden&&compact!==wasCompact)animateDeck(()=>{card.classList.toggle('is-compact',compact);card.classList.remove('is-expanded');setAttribute($('activeMore'),'aria-expanded','false');});
+    };
+    const syncStick = () => {
+      frame=0;syncCompaction();const card=$('activeCard'),choiceCard=$('choiceStrip');
+      // Complete geometry reads before any inherited CSS variable writes.
+      const headRect=masthead.getBoundingClientRect(),head=masthead.offsetHeight;
+      const runRect=card.hidden?null:card.getBoundingClientRect(),choiceRect=choiceCard.hidden?null:choiceCard.getBoundingClientRect();
+      const run=runRect?.height||0,choice=choiceRect?.height||0,toolsRect=tools.getBoundingClientRect();
+      const choiceActionRect=choiceRect?$('choiceStart').getBoundingClientRect():null;
+      const baseBottom=Math.max(headRect.bottom,runRect?.bottom||0,choiceRect?.bottom||0);
+      const approach=Math.max(0,Math.min(1,1-(toolsRect.top-head-run-choice-13)/64)),blend=approach*approach*(3-2*approach);
+      const tail=Math.round(24+88*blend);
+      const nextHeight=Math.round(baseBottom+Math.max(0,toolsRect.bottom-baseBottom)*blend+tail)+'px';
+      writeStack('--stack-feather',tail+'px',backingTargets);
+      if(choiceRect&&choiceActionRect)writeStack('--pick-action-clearance',Math.ceil(choiceRect.right-choiceActionRect.left+8)+'px',choiceTargets);
+      // Sticky tools still used the previous inherited offsets during these reads.
+      // Re-sample once after offset changes; position changes alone do not notify
+      // ResizeObserver, leaving the old active-match veil over the lobby logo.
+      const headChanged=writeStack('--host-head',head+'px'),runChanged=writeStack('--host-run',run+'px',runTargets),choiceChanged=writeStack('--host-choice',choice+'px',toolTargets);
+      document.body.classList.toggle('tools-stuck',toolsRect.top<=head+run+choice+13);if(!document.body.classList.contains('stack-backed'))document.body.classList.add('stack-backed');
+      if(nextHeight!==backingHeight){backingHeight=nextHeight;stackBacking.style.height=stackBlur.style.height=nextHeight;}
+      if((headChanged||runChanged||choiceChanged||deckAnimation?.playState==='running')&&!frame)frame=requestAnimationFrame(syncStick);
+    };
     syncDeckStack=syncStick;
     const queueStick = () => {if (!frame) frame = requestAnimationFrame(syncStick);};
-    addEventListener('scroll', queueStick, {passive: true}); new ResizeObserver(queueStick).observe(masthead); syncStick();
+    // Commit a threshold crossing with its existing read/change/read FLIP now;
+    // queuing the logical mode behind rAF added a full frame to the response.
+    // Continuous scrolling still coalesces the stack geometry into one frame.
+    addEventListener('scroll',()=>{syncCompaction();queueStick();},{passive:true});new ResizeObserver(queueStick).observe(masthead);syncStick();
     new ResizeObserver(queueStick).observe($('activeCard'));
     new ResizeObserver(queueStick).observe($('choiceStrip'));
+    new ResizeObserver(queueStick).observe($('choiceStart'));
+    new ResizeObserver(queueStick).observe(tools);
   }
   if (filters) {
     const syncFilterEdges = () => {
@@ -446,14 +545,14 @@
   $('tvShowQR').onclick=()=>{
     if(state.tv?.mode==='qr'){showTV('none');return;}
     // The QR needs a guest address: switch Wi-Fi sharing on, then show the card once it exists.
-    if(!state.networkEnabled||!state.native?.address){pendingQR=true;$('tvShowQR').disabled=true;$('tvControlHint').textContent='Включаем доступ по Wi-Fi для гостей…';if(!state.networkEnabled)send('network-set',{enabled:true});setTimeout(()=>{if(pendingQR){pendingQR=false;renderTVControls();}},8000);return;}
+    if(!state.networkEnabled||!state.native?.address){pendingQR=true;setFlag($('tvShowQR'), 'disabled', true);setLabel($('tvControlHint'), 'Включаем доступ по Wi-Fi для гостей…');if(!state.networkEnabled)send('network-set',{enabled:true});setTimeout(()=>{if(pendingQR){pendingQR=false;renderTVControls();}},8000);return;}
     showTV('qr');
   };
   $('startBotsPlus').onclick=()=>changePromptBots(1);$('startBotsMinus').onclick=()=>changePromptBots(-1);
   $('startBotsClose').onclick=closeBotPrompt;$('startBotsLaunch').onclick=()=>{if(!$('startBotsLaunch').disabled)launchFromCard(botPromptGame,botPromptAnchor);};
   document.addEventListener('pointerdown',e=>{if(botPromptGame&&!$('startBots').contains(e.target)&&!botPromptAnchor?.contains(e.target))closeBotPrompt();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&botPromptGame){e.preventDefault();closeBotPrompt();}});
-  window.addEventListener('resize',positionBotPrompt);window.addEventListener('scroll',positionBotPrompt,true);window.visualViewport?.addEventListener('resize',positionBotPrompt);
+  window.addEventListener('resize',queueBotPromptPosition);window.addEventListener('scroll',queueBotPromptPosition,true);window.visualViewport?.addEventListener('resize',queueBotPromptPosition);
   $('botPlus').onclick=()=>manage({type:'bots-set',count:(state.botCount||0)+1});
   $('botMinus').onclick=()=>manage({type:'bots-set',count:Math.max(0,(state.botCount||0)-1)});
   $('tvShowCompany').onclick=()=>showTV('podium','company');
@@ -478,12 +577,14 @@
     focusTV(order[current<0?(direction>0?0:order.length-1):(current+direction+order.length)%order.length]);
   }
   function moveTV(direction){
-    const {order,rows}=tvLayout();if(!rows.length)return;const current=state.tv?.focusId||state.selected;
+    const {order,rows}=tvLayout();if(!rows.length)return;
+    if(!state.tv?.browse&&state.selected){if(direction>0)focusTV(order[0]);return;}
+    const current=state.tv?.focusId||state.selected;
     const at=rows.map((row,i)=>row.some(c=>c.id===current)?i:-1).filter(i=>i>=0);
     if(!at.length){focusTV(order[0]);return;}
     const from=direction>0?at[at.length-1]:at[0],cell=rows[from].find(c=>c.id===current);
     if(cell.fresh)lastFreshId=cell.id;else lastTVColumn=(cell.c0+cell.c1)/2;
-    const target=rows[from+direction];if(!target)return;
+    const target=rows[from+direction];if(!target){if(direction<0&&state.selected)manage({type:'tv-focus',target:'pick'});return;}
     if(target[0].fresh){focusTV(target.some(c=>c.id===lastFreshId)?lastFreshId:target[0].id);return;}
     const col=Math.min(3,lastTVColumn),hit=target.find(c=>c.c0<=col&&col<=c.c1)||target.reduce((a,b)=>Math.abs((a.c0+a.c1)/2-col)<=Math.abs((b.c0+b.c1)/2-col)?a:b);
     focusTV(hit.id);
@@ -509,7 +610,7 @@
     send('ready');
     if (!receivedSnapshot) {
       handshakeAttempts += 1;
-      if (handshakeAttempts >= 8) $('connection').textContent = 'Восстанавливаем связь с приложением…';
+      if (handshakeAttempts >= 8) setLabel($('connection'), 'Восстанавливаем связь с приложением…');
       readyTimer = setTimeout(requestSnapshot, handshakeAttempts < 8 ? 500 : 2000);
     }
   }
@@ -521,8 +622,11 @@
   });
   window.addEventListener('pagehide', () => { clearTimeout(readyTimer); readyTimer = null; });
   // Only Swift sends snapshots. No admin token is exposed to this document or the LAN.
-  window.LocalPartyHost = Object.freeze({update, toast});
+  window.LocalPartyHost = Object.freeze({update, toast, startupReady:()=>receivedSnapshot&&state.native?.ready===true&&state.native?.catalogReady!==false&&state.catalog.length>0});
   renderCatalog(); renderRoom(); renderTVControls();
   ['openController', 'playHere', 'detailController'].forEach(id => $(id).disabled = true);
+  let pickVisible=false;const pickStrip=$('choiceStrip');const syncPickGlare=()=>pickStrip.classList.toggle('hp-pick-awake',pickVisible&&!document.hidden);
+  new IntersectionObserver(entries=>{pickVisible=entries[0].isIntersecting;syncPickGlare();}).observe(pickStrip);
+  document.addEventListener('visibilitychange',syncPickGlare);
   requestSnapshot();
 })();

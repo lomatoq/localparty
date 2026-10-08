@@ -1,0 +1,49 @@
+{
+  "sources": {
+    "games/jenga/public/style.css": "522d95c79c4fcccfae51096078e776ef6a791542e3402bd8044d5bc64f755597",
+    "games/naval/public/screen.css": "57e4ff4ce6ac6373b74d5732f36f818d46995cca8e7e60f38a009a36ff117d2f",
+    "games/naval/public/broadcast.js": "b521dd258904e9d47ce7589483f441044f01e475b7d93ee6ab39a97330bbdfd4"
+  },
+  "captures": [
+    {
+      "file": "output/playwright/polish124-naval-final/720/naval-tv-playing.png",
+      "sha256": "58af234bd5d10bbf4d4ae693558634d4e62e5be3e0be6e3cf445078e06111874",
+      "capturedAt": "2026-10-04T22:13:50.346Z",
+      "errors": [],
+      "httpErrors": [],
+      "qualification": "Final source"
+    },
+    {
+      "file": "output/playwright/polish124-naval-final/1080/naval-tv-playing.png",
+      "sha256": "5d9682089e65007920858ca43be84678e5c503ec29dc540f7feca6812156750d",
+      "capturedAt": "2026-10-04T22:13:54.946Z",
+      "errors": [],
+      "httpErrors": [],
+      "qualification": "Final source"
+    },
+    {
+      "file": "output/playwright/polish124-naval-rounded/naval16/naval-tv-playing.png",
+      "sha256": "d9822ad0037568c4fa9569cf7625a9cc2e66e53d342dd516521e763046999689",
+      "capturedAt": "2026-10-04T22:13:04.797Z",
+      "errors": [],
+      "httpErrors": [],
+      "qualification": "Dense16 validates final board/cell geometry; Bridge heading predates centering change"
+    },
+    {
+      "file": "output/playwright/polish124-jenga-final/720/jenga-tv-playing.png",
+      "sha256": "7d5c3650a6c310694b67d98131fd0ce531a121df29e616e9646243a33b0c1f83",
+      "capturedAt": "2026-10-04T22:08:38.336Z",
+      "errors": [],
+      "httpErrors": [],
+      "qualification": "Final source"
+    },
+    {
+      "file": "output/playwright/polish124-jenga-final/1080/jenga-tv-playing.png",
+      "sha256": "7470c47a910318f0d0b6a23f9b05b8b8ddd22fc1a82cb3ccee692f29e351c99b",
+      "capturedAt": "2026-10-04T22:08:44.763Z",
+      "errors": [],
+      "httpErrors": [],
+      "qualification": "Final source"
+    }
+  ]
+}

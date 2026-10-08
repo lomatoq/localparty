@@ -61,7 +61,8 @@
 .hp-ui :is(button,.hp-action){font-weight:600;font-style:normal;line-height:1.25;letter-spacing:0}
 .hp-ui :is(button.primary,.hp-action-primary){font-family:var(--hp-font-display);font-weight:var(--hp-primary-weight,900);font-style:italic}
 .hp-ui .hp-copy{font-family:var(--hp-font-body);font-style:normal;text-transform:none;letter-spacing:0;line-height:1.5;color:var(--hp-muted)}
-.hp-ui :is(button,a,input,select,summary):focus-visible{outline:3px solid var(--hp-pink);outline-offset:4px}
+.hp-ui :is(button,a,input,select,summary):focus-visible{outline:2px solid #e4ffba;outline-offset:-3px}
+.hp-ui :is(button,summary):focus-visible{outline:none!important;box-shadow:inset 0 0 0 2px #edffd49c,inset 0 0 18px #d7ff8b35!important}
 .hp-ui .hp-stat{min-width:0;border:0;border-radius:0;background:transparent;padding:12px}
 .hp-ui .hp-stat :is(small,label){font:500 12px/1.4 var(--hp-font-body);color:var(--hp-muted);text-transform:none;letter-spacing:0}
 .hp-ui .hp-stat :is(strong,b){font-family:var(--hp-font-numeric);font-weight:650;font-style:normal;line-height:1.15;font-variant-numeric:tabular-nums}
@@ -731,3 +732,16 @@ html.hp-ui body.is-player:not(.in-game) button.catalog-vote[aria-pressed=false]:
  html.hp-ui body.native-shell #choiceMeta .hp-menu-counter{gap:3px!important}
  html.hp-ui body.native-shell #choiceMeta .hp-menu-counter-readout{gap:2px}
 }
+
+/* Result beats are keyed to rank in match-results.js; scores stay readable. */
+.hp-ui #sharedMatchResults>.hp-result-header,
+.hp-ui #sharedMatchResults .hp-result-row{animation:none}
+.hp-ui #sharedMatchResults .hp-result-row.is-winner::after{animation:none}
+
+/* Rematch belongs to results; a flat white replay mark keeps the action legible. */
+html.hp-ui body .hp-rematch-button{display:inline-flex!important;align-items:center;justify-content:center;gap:10px!important;min-height:46px;padding:12px 18px!important;border-radius:999px!important;background:#3d3454!important;color:#fff!important;border:1px solid #ffffff40!important;box-shadow:inset 0 1px #ffffff12!important;font-size:15px!important;font-weight:800}
+html.hp-ui body .hp-rematch-button::before{content:'';display:block;flex:0 0 22px;width:22px;height:22px;background:#fff;-webkit-mask:url('/assets/icons/game-pack/refresh.svg') center/contain no-repeat;mask:url('/assets/icons/game-pack/refresh.svg') center/contain no-repeat}
+html.hp-ui body .hp-rematch-button:disabled{opacity:.65!important}
+html.hp-ui body .hp-result-actions{flex:none;display:flex;flex-direction:column;align-items:stretch;gap:5px;margin-top:auto}
+html.hp-ui body .hp-rematch-status{font-size:12px;line-height:1.2;text-align:center;color:#eee8ff}
+html.hp-ui body .hp-rematch-status:empty{display:none}

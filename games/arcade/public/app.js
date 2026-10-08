@@ -1,8 +1,10 @@
 'use strict';
+let arcadeActive=true,reconnectTimer=0,arcadeRaf=0,arcadeResumeFrame=null,lifecycleEpoch=0;
+const arcadeSuspend=[],arcadeResume=[];
 const $=id=>document.getElementById(id),host=!!window.IS_HOST;let ws,state,id,joinRetry=0,axis={x:0,y:0},motionEnabled=false,motionPeak=0,lastMotion=0,punchReady=false,punchArmed=false,punchTurnSince=0,punchStillSince=0,punchCue='',carryHudSequence=0,carryHudSignature='',carryHudSentAt=0;
 const send=(type,data={})=>{if(ws?.readyState===1)ws.send(JSON.stringify({type,data}));},esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function join(){const profile=window.PARTY_PROFILE||{};send('join',{partyId:profile.id,partyToken:profile.token,name:profile.name||$('nickname')?.value||'Игрок',token:localStorage.getItem('arcade-id')});}
-function connect(){ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/ws');ws.onopen=()=>{clearInterval(joinRetry);if(host){carryHudSequence=0;carryHudSignature='';carryHudSentAt=0;return send('host');}const attempt=()=>{if(window.PARTY_PROFILE?.id||localStorage.getItem('arcade-id'))join();};attempt();joinRetry=setInterval(attempt,900);};ws.onclose=()=>{clearInterval(joinRetry);if(!host){document.body.dataset.arcadeConnection='offline';$('status').textContent=arcadeCopy('Восстанавливаем связь…','Reconnecting…');$('action').disabled=true;$('action').dispatchEvent(new Event('pointercancel'));$('joy').setAttribute('aria-disabled','true');$('joy').dispatchEvent(new Event('pointercancel'));}setTimeout(connect,700);};ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.type==='joined'){clearInterval(joinRetry);id=m.data.id;localStorage.setItem('arcade-id',id);$('join').hidden=true;$('name').textContent=m.data.name;}if(m.type==='state'){if(host&&m.data.mode==='snakelines')for(const p of m.data.players){const previous=state?.players.find(q=>q.id===p.id)?.trail||[];p.trail=previous.slice(0,p.trailFrom||0).concat(p.trail);}state=m.data;if(!host)document.body.dataset.arcadeConnection='online';if(host)window.PARTY_BOT_VIEW=state;if(!host&&state.selfId)id=state.selfId;update();}if(m.type==='error'&&!host)$('status').textContent=m.data;};}connect();
+function connect(){if(!arcadeActive)return;const socket=ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/ws');ws.onopen=()=>{if(!arcadeActive||socket!==ws)return;clearInterval(joinRetry);if(host){carryHudSequence=0;carryHudSignature='';carryHudSentAt=0;return send('host');}const attempt=()=>{if(window.PARTY_PROFILE?.id||localStorage.getItem('arcade-id'))join();};attempt();joinRetry=setInterval(attempt,900);};ws.onclose=()=>{if(!arcadeActive||socket!==ws)return;clearInterval(joinRetry);if(!host){document.body.dataset.arcadeConnection='offline';$('status').textContent=arcadeCopy('Восстанавливаем связь…','Reconnecting…');$('action').disabled=true;$('action').dispatchEvent(new Event('pointercancel'));$('joy').setAttribute('aria-disabled','true');$('joy').dispatchEvent(new Event('pointercancel'));}clearTimeout(reconnectTimer);reconnectTimer=setTimeout(connect,700);};ws.onmessage=e=>{if(!arcadeActive||socket!==ws)return;const m=JSON.parse(e.data);if(m.type==='joined'){clearInterval(joinRetry);id=m.data.id;localStorage.setItem('arcade-id',id);$('join').hidden=true;$('name').textContent=m.data.name;}if(m.type==='state'){if(host&&m.data.mode==='snakelines')for(const p of m.data.players){const previous=state?.players.find(q=>q.id===p.id)?.trail||[];p.trail=previous.slice(0,p.trailFrom||0).concat(p.trail);}state=m.data;if(!host)document.body.dataset.arcadeConnection='online';if(host)window.PARTY_BOT_VIEW=state;if(!host&&state.selfId)id=state.selfId;update();}if(m.type==='error'&&!host)$('status').textContent=m.data;};}connect();
 const instructions={taprace:'Тапай как можно быстрее! Каждый тап разгоняет бегуна.',punchmeter:'Три попытки. Когда придёт твоя очередь, нажми «Готов бить», затем сделай короткий удар. Без датчика: зажми кнопку и отпусти на пике шкалы.',flappy:'Тап — взмах вверх. Пролетай между трубами.',hungry:'Веди джойстик к еде. Расти и обходи крупных игроков.',snakelines:'Обходи стены и следы. Джойстик — поворот.',carryball:'Подбери мяч. Джойстик — бег, кнопка — пас.'};
 let boardKey='';
 const arcadeRows=new Map();
@@ -75,10 +77,11 @@ function renderPunchPhone(s,p){
 }
 
 if(host)$('start').onclick=()=>send('start');else{$('join').onsubmit=e=>{e.preventDefault();join();};let held=0,pointer=null;const action=$('action');action.onpointerdown=e=>{if(action.disabled||!state)return;e.preventDefault();action.setPointerCapture(e.pointerId);held=performance.now();if(state.mode!=='punchmeter')send('input',{...axis,action:state.mode==='carryball'?'pass':'tap'});window.ArcadeJuice?window.ArcadeJuice.press(e,action,state.mode):navigator.vibrate?.(10);};action.onpointerup=e=>{window.ArcadeJuice?.release(action);if(state?.mode==='punchmeter'&&held){const duration=(performance.now()-held)/1000,power=(Math.sin(duration*4-Math.PI/2)+1)/2;held=0;if(duration<.15)return;const r=action.getBoundingClientRect(),side=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/(r.width/2||1)));send('input',{action:'punch',power,side});window.ArcadeJuice?.release(action,power);}};action.onpointercancel=action.onlostpointercapture=()=>{held=0;window.ArcadeJuice?.release(action);};
- const zone=$('joy');function move(e){const r=zone.getBoundingClientRect(),radius=r.width*.32;let x=(e.clientX-r.left-r.width/2)/radius,y=(e.clientY-r.top-r.height/2)/radius,n=Math.max(1,Math.hypot(x,y));axis={x:x/n,y:y/n};$('knob').style.transform=`translate(calc(-50% + ${axis.x*radius}px),calc(-50% + ${axis.y*radius}px))`;send('input',axis);}function reset(){axis={x:0,y:0};pointer=null;held=0;window.ArcadeJuice?.release(action);$('knob').style.transform='translate(-50%,-50%)';send('input',axis);}zone.onpointerdown=e=>{if(pointer!==null||zone.getAttribute('aria-disabled')==='true')return;pointer=e.pointerId;zone.setPointerCapture(pointer);move(e);};zone.onpointermove=e=>{if(pointer===e.pointerId)move(e);};zone.onpointerup=zone.onpointercancel=zone.onlostpointercapture=reset;window.addEventListener('blur',reset);window.addEventListener('pagehide',reset);window.addEventListener('offline',reset);document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});setInterval(()=>{if(pointer!==null)send('input',axis);},120);
+ const zone=$('joy');function move(e){const r=zone.getBoundingClientRect(),radius=r.width*.32;let x=(e.clientX-r.left-r.width/2)/radius,y=(e.clientY-r.top-r.height/2)/radius,n=Math.max(1,Math.hypot(x,y));axis={x:x/n,y:y/n};$('knob').style.transform=`translate(calc(-50% + ${axis.x*radius}px),calc(-50% + ${axis.y*radius}px))`;send('input',axis);}function reset(){axis={x:0,y:0};pointer=null;held=0;window.ArcadeJuice?.release(action);$('knob').style.transform='translate(-50%,-50%)';send('input',axis);}zone.onpointerdown=e=>{if(pointer!==null||zone.getAttribute('aria-disabled')==='true')return;pointer=e.pointerId;zone.setPointerCapture(pointer);move(e);};zone.onpointermove=e=>{if(pointer===e.pointerId)move(e);};zone.onpointerup=zone.onpointercancel=zone.onlostpointercapture=reset;window.addEventListener('blur',reset);window.addEventListener('pagehide',reset);window.addEventListener('offline',reset);document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});let inputRepeat=0;const startRepeat=()=>{clearInterval(inputRepeat);inputRepeat=setInterval(()=>{if(pointer!==null)send('input',axis);},120);};startRepeat();arcadeSuspend.push(()=>clearInterval(inputRepeat));arcadeResume.push(startRepeat);
  // Motion permission alone is not proof that the phone is sending measurements.
  let motionPending=false,motionListener=null,motionWatchdog=null,motionGravity=null;
  let motionSide=0;
+ arcadeSuspend.push(()=>{clearTimeout(motionWatchdog);if(motionListener)window.removeEventListener('devicemotion',motionListener);motionListener=null;motionPending=false;motionEnabled=false;motionPeak=0;punchReady=false;punchArmed=false;motionGravity=null;$('motion').disabled=false;if(state)update();});
  // Sensitivity chosen on the controller (web or app); default is the calm "soft" profile.
  function punchSense(){let level='soft';try{level=window.localStorage?.getItem('lp.punchSense')||'soft';}catch{}return {soft:{trigger:16,full:52},normal:{trigger:12,full:40},sharp:{trigger:9,full:32}}[level]||{trigger:16,full:52};}
  $('motion').onclick=async()=>{
@@ -87,9 +90,9 @@ if(host)$('start').onclick=()=>send('start');else{$('join').onsubmit=e=>{e.preve
   const stopMotion=message=>{clearTimeout(motionWatchdog);if(motionListener)window.removeEventListener('devicemotion',motionListener);motionListener=null;motionPending=false;motionEnabled=false;motionPeak=0;punchReady=false;punchArmed=false;motionGravity=null;button.disabled=false;button.hidden=false;button.textContent='Повторить подключение датчика';feedback.textContent=message;if(state)update();};
   if(!window.isSecureContext){button.disabled=true;button.textContent=arcadeCopy('Датчик недоступен','Sensor unavailable');feedback.textContent='Датчик требует HTTPS. По этому HTTP-адресу используй кнопку «Зажми → отпусти».';return;}
   if(!window.DeviceMotionEvent){button.disabled=true;button.textContent=arcadeCopy('Датчик недоступен','Sensor unavailable');feedback.textContent='Этот браузер не поддерживает датчик движения. Используй кнопку «Зажми → отпусти».';return;}
-  motionPending=true;button.disabled=true;button.textContent=arcadeCopy('Запрашиваем доступ…','Requesting access…');feedback.textContent='Запрашиваем доступ к движению…';
+  const permissionEpoch=lifecycleEpoch;motionPending=true;button.disabled=true;button.textContent=arcadeCopy('Запрашиваем доступ…','Requesting access…');feedback.textContent='Запрашиваем доступ к движению…';
   try{
-   if(typeof DeviceMotionEvent.requestPermission==='function'&&await DeviceMotionEvent.requestPermission()!=='granted'){stopMotion('Доступ к движению не разрешён. Можно повторить запрос или играть кнопкой.');return;}
+   const permission=typeof DeviceMotionEvent.requestPermission==='function'?await DeviceMotionEvent.requestPermission():'granted';if(!arcadeActive||permissionEpoch!==lifecycleEpoch)return;if(permission!=='granted'){stopMotion('Доступ к движению не разрешён. Можно повторить запрос или играть кнопкой.');return;}
    button.textContent=arcadeCopy('Ждём датчик…','Waiting for sensor…');feedback.textContent='Доступ получен. Ждём данные датчика…';motionGravity=null;motionPeak=0;
    const armWatchdog=()=>{clearTimeout(motionWatchdog);motionWatchdog=setTimeout(()=>stopMotion('Данные движения не поступают. Проверь доступ в браузере или используй кнопку.'),4000);};
    motionListener=e=>{
@@ -107,13 +110,15 @@ if(host)$('start').onclick=()=>send('start');else{$('join').onsubmit=e=>{e.preve
     // Five times less motion gain BEFORE saturation; preserve arming/noise gates and the1000-point cap.
     if(magnitude<3&&motionPeak>sense.trigger&&now-lastMotion>1800){send('input',{action:'punch',side:Math.max(-1,Math.min(1,motionSide)),power:Math.max(0,Math.min(1,(motionPeak-sense.trigger*.5)/(5*(sense.full-sense.trigger*.5))))});motionPeak=0;lastMotion=now;punchReady=false;punchArmed=false;punchStillSince=0;}
    };window.addEventListener('devicemotion',motionListener);armWatchdog();
-  }catch{stopMotion('Браузер не дал доступ к движению. Используй кнопку или повтори запрос.');}
+  }catch{if(!arcadeActive||permissionEpoch!==lifecycleEpoch)return;stopMotion('Браузер не дал доступ к движению. Используй кнопку или повтори запрос.');}
  };
- function charge(){if(held&&state?.mode==='punchmeter'){const power=(Math.sin((performance.now()-held)/1000*4-Math.PI/2)+1)/2;action.style.background=`linear-gradient(90deg,#baff46 ${power*100}%,#506d35 ${power*100}%)`;}else action.style.background='';requestAnimationFrame(charge);}charge();}
+ function charge(){if(!arcadeActive)return;if(held&&state?.mode==='punchmeter'){const power=(Math.sin((performance.now()-held)/1000*4-Math.PI/2)+1)/2;action.style.background=`linear-gradient(90deg,#baff46 ${power*100}%,#506d35 ${power*100}%)`;}else action.style.background='';arcadeRaf=requestAnimationFrame(charge);}arcadeResumeFrame=charge;charge();}
 if(host){const c=$('arena'),g=c.getContext('2d'),circle=(x,y,r,color)=>{g.fillStyle=color;g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fill();},text=(s,x,y,size=18,color='#f3f8ee')=>{g.fillStyle=color;g.font=`800 ${size}px HeyPalsText,system-ui`;g.textAlign='center';g.fillText(s,x,y);};
+// One geometry snapshot per frame; player labels and body diagnostics share it.
+let arcadeFrameRect;
 // Only text avoids the measured HUD; authoritative objects keep their world positions.
 function hudWorldRects(){
- const r=c.getBoundingClientRect(),m=g.getTransform(),sx=r.width/c.width,sy=r.height/c.height;
+ const r=arcadeFrameRect,m=g.getTransform(),sx=r.width/c.width,sy=r.height/c.height;
  return (window.PARTY_HUD_EXCLUSIONS||[]).map(box=>({x:(box.left-r.left-m.e*sx)/(m.a*sx),y:(box.top-r.top-m.f*sy)/(m.d*sy),w:box.width/(m.a*sx),h:box.height/(m.d*sy)})).filter(box=>Number.isFinite(box.x)&&box.w>0&&box.h>0);
 }
 function fieldLabel(value,x,y,color='#faf7ff'){
@@ -135,7 +140,7 @@ const reducedArtMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;le
 // Moving clusters keep stable, readable name cards after all character art.
 const clusterLabelSlots=new Map();let clusterLabelScene='';
 function drawClusterLabels(s){
- const rect=c.getBoundingClientRect(),m=g.getTransform(),scale=Math.max(.25,Math.min(rect.width/c.width,rect.height/c.height)*Math.hypot(m.a,m.b)),font=14/scale,gap=5/scale;
+ const rect=arcadeFrameRect,m=g.getTransform(),scale=Math.max(.25,Math.min(rect.width/c.width,rect.height/c.height)*Math.hypot(m.a,m.b)),font=14/scale,gap=5/scale;
  const fit=Math.min(rect.width/c.width,rect.height/c.height),originY=rect.top+(rect.height-c.height*fit)/2+m.f*fit,rootStyle=getComputedStyle(document.documentElement);
  const hud=s.mode==='hungry'?Math.max(0,...['--party-stage-inset-top','--party-native-inset-top'].map(key=>parseFloat(rootStyle.getPropertyValue(key))||0)):0;
  const safeTop=hud?Math.max(10/scale,(hud+12-originY)/scale):10/scale;
@@ -218,7 +223,7 @@ function drawFeedback(s){
 // TV camera fits the entire authoritative world uniformly; only scenery fills unused edges.
 let arcadeCamera={scale:1,x:0,y:0};
 function beginArcadeFrame(){
- const r=c.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1),limit=Math.min(dpr,Math.sqrt(5000000/Math.max(1,r.width*r.height))),w=Math.max(1,Math.round(r.width*limit)),h=Math.max(1,Math.round(r.height*limit));
+ const r=arcadeFrameRect=c.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1),limit=Math.min(dpr,Math.sqrt(5000000/Math.max(1,r.width*r.height))),w=Math.max(1,Math.round(r.width*limit)),h=Math.max(1,Math.round(r.height*limit));
  if(c.width!==w||c.height!==h){c.width=w;c.height=h;}
  g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,w,h);
  // Action stages fit uniformly below the cap; full-field scenes continue underneath it.
@@ -321,19 +326,36 @@ function drawCarryScene(s){
  drawClusterLabels(s);
 }
 function paintTapArena(q,s){
- const {lanes,h,top,height}=tapTrackGeometry(s.players.length);
- // Raised running deck and its continuous illuminated safety edges.
- q.save();q.fillStyle='#1e2438';q.fillRect(145,top-8,1005,height+16);q.restore();
- croppedMaterial(q,arcadeScenery.taprace,300,265,950,55,145,top,1005,height);q.fillStyle='#08121e75';q.fillRect(145,top,1005,height);
+ const {lanes,h,top,height}=tapTrackGeometry(s.players.length),left=145,width=1005,finish=1085;
+ // A single rubber running deck: rounded safety rim, start bays and a finish
+ // centred on the same world coordinate as progress=2000. Runner geometry stays intact.
+ const deck=q.createLinearGradient(0,top-8,0,top+height+8);deck.addColorStop(0,'#557b79');deck.addColorStop(1,'#243f46');
+ q.save();q.fillStyle=deck;q.shadowColor='#060b1866';q.shadowBlur=20;q.shadowOffsetY=8;
+ q.beginPath();q.roundRect(left,top-8,width,height+16,22);q.fill();q.restore();
+ q.save();q.beginPath();q.roundRect(left+3,top-5,width-6,height+10,19);q.clip();
  for(let i=0;i<lanes;i++){
-  const y=top+i*h,material=q.createLinearGradient(0,y,0,y+h);material.addColorStop(0,i%2?'#20374a':'#263e50');material.addColorStop(.46,'#152b3b');material.addColorStop(1,'#1d3046');q.fillStyle=i%2?'#090e2638':'#5d4d8826';q.fillRect(160,y,965,h);
-  q.strokeStyle='#bdedff13';q.lineWidth=1;for(let x=176;x<1120;x+=64){q.beginPath();q.moveTo(x,y+3);q.lineTo(x,y+h-3);q.stroke();}
-  q.fillStyle='#9fd6ec1b';for(let x=220;x<1080;x+=135){q.beginPath();q.moveTo(x,y+h/2-5);q.lineTo(x+8,y+h/2);q.lineTo(x,y+h/2+5);q.lineTo(x+3,y+h/2);q.closePath();q.fill();}
-  if(i){q.strokeStyle='#9edbf23a';q.beginPath();q.moveTo(160,y);q.lineTo(1125,y);q.stroke();}
+  const y=top+i*h,material=q.createLinearGradient(0,y,0,y+h);
+  material.addColorStop(0,i%2?'#294b53':'#315861');material.addColorStop(.5,i%2?'#29474e':'#30515a');material.addColorStop(1,i%2?'#223e46':'#294851');
+  q.fillStyle=material;q.fillRect(left+3,y,width-6,h);
+  // Recessed starting platforms identify each lane without tinting the course.
+  const color=s.players[i]?.color||'#b7e5c7',bay=q.createLinearGradient(160,y,244,y+h);
+  bay.addColorStop(0,'#102e38');bay.addColorStop(1,'#294b54');q.fillStyle=bay;
+  q.beginPath();q.roundRect(158,y+8,87,Math.max(8,h-16),Math.min(14,h*.18));q.fill();
+  q.strokeStyle=color;q.globalAlpha=.65;q.lineWidth=2;q.stroke();q.globalAlpha=1;
+  q.fillStyle=color;q.globalAlpha=.6;q.beginPath();q.roundRect(163,y+h*.34,4,h*.32,2);q.fill();q.globalAlpha=1;
+  // Finish apron has a short run-off beyond the line, instead of a cut-off edge.
+  const apron=q.createLinearGradient(1057,0,1147,0);apron.addColorStop(0,'#8cb7a510');apron.addColorStop(1,'#8cb7a544');
+  q.fillStyle=apron;q.fillRect(1057,y,90,h);
+  if(i){q.strokeStyle='#c3e3da55';q.lineWidth=2;q.beginPath();q.moveTo(148,y);q.lineTo(1147,y);q.stroke();}
  }
- for(const y of [top-8,top+height+8]){q.save();q.strokeStyle=y<360?'#8cf5e4':'#ad95ff';q.lineWidth=3;q.shadowBlur=14;q.shadowColor=q.strokeStyle;q.beginPath();q.moveTo(163,y);q.lineTo(1130,y);q.stroke();q.restore();}
- q.fillStyle='#b5fff139';q.fillRect(165,top,3,height);q.fillStyle='#071521';q.fillRect(1110,top,30,height);
- for(let row=0;row<Math.ceil(height/12);row++)for(let col=0;col<2;col++){q.fillStyle=(row+col)%2?'#203d48':'#d9fff2';q.fillRect(1110+col*15,top+row*12,15,Math.min(12,height-row*12));}
+ // The checker is a functional finish marking, bounded by the deck's contour.
+ const tile=12;q.fillStyle='#14323e';q.fillRect(finish-tile,top,tile*2,height);
+ for(let row=0;row<Math.ceil(height/tile);row++)for(let col=0;col<2;col++){
+  q.fillStyle=(row+col)%2?'#234751':'#d4ebd7';q.fillRect(finish-tile+col*tile,top+row*tile,tile,Math.min(tile,height-row*tile));
+ }
+ q.restore();
+ const rim=q.createLinearGradient(0,top-8,0,top+height+8);rim.addColorStop(0,'#b2d7c7');rim.addColorStop(.15,'#638e87');rim.addColorStop(1,'#476971');
+ q.strokeStyle=rim;q.lineWidth=2;q.beginPath();q.roundRect(left+1,top-7,width-2,height+14,21);q.stroke();
 }
 function paintEnvironment(s){
  const key=s.mode+':'+s.players.length+':'+c.width+':'+c.height+':'+arcadeCamera.scale+':'+arcadeCamera.x+':'+arcadeCamera.y;
@@ -356,10 +378,12 @@ function paintEnvironment(s){
   q.fillStyle='#0a142294';q.fillRect(-extraX,480,1200+extraX*2,240+extraY);
   q.strokeStyle='#7897ae24';q.lineWidth=2;for(let x=-400;x<1600;x+=160){const startX=600+(x-600)*.45;q.beginPath();q.moveTo(startX,480);q.lineTo(x+(x-startX)*extraY/240,720+extraY);q.stroke();}for(const y of [500,540,600,690]){q.beginPath();q.moveTo(-extraX,y);q.lineTo(1200+extraX,y);q.stroke();}
   }
+  // The loaded gym already carries the ring and its floor: retain procedural furniture only as a fallback.
+  if(!gymReady){
   for(const x of [70,1110]){q.fillStyle='#566e8030';q.fillRect(x,110,20,375);q.fillStyle='#b9e2e942';q.beginPath();q.roundRect(x-14,95,48,15,6);q.fill();}
   q.strokeStyle='#899cab26';q.lineWidth=5;for(const y of [335,395,455]){q.beginPath();q.moveTo(80,y);q.lineTo(1120,y);q.stroke();}
   q.save();q.translate(600,594);q.scale(150,24);const shadow=q.createRadialGradient(0,0,.15,0,0,1);shadow.addColorStop(0,'#020916a0');shadow.addColorStop(1,'#02091600');q.fillStyle=shadow;q.fillRect(-1,-1,2,2);q.restore();
-  q.fillStyle='#bac4ce';q.beginPath();q.roundRect(565,57,70,15,6);q.fill();
+  }
  }
  if(s.mode==='flappy'){
   for(let i=0;i<12;i++){const x=i*115;q.fillStyle=i%2?'#244753':'#254c59';q.beginPath();q.moveTo(x-100,690);q.quadraticCurveTo(x+40,500+(i%3)*40,x+170,690);q.fill();}
@@ -403,17 +427,21 @@ function drawArcadeCountdown(context,s,canvas){
  else{context.textAlign='center';context.fillStyle='#fff';context.font='900 116px Rubik,system-ui';context.fillText(String(Math.ceil(s.countdown)),600,380);context.font='700 28px Rubik,system-ui';context.fillText('Get ready to flap',600,440);}
  context.restore();
 }
-function draw(){beginArcadeFrame();if(state){window.ArcadeJuice?.observe(state);const sh=window.ArcadeJuice?.shake()||{x:0,y:0};g.save();g.translate(sh.x,sh.y);const s=visualState(state),ps=s.players;paintEnvironment(s);if(s.mode==='flappy')extendFlappyPipes(s);g.save();g.beginPath();if(s.mode==='flappy'){const extra=arcadeCamera.x/arcadeCamera.scale;g.rect(-extra,0,1200+extra*2,720);}else if(s.mode==='hungry'){const t=g.getTransform();g.rect(-t.e/t.a,-t.f/t.d,c.width/t.a,c.height/t.d);}else g.rect(0,0,1200,720);g.clip();window.ArcadeJuice?.ambient(g,s);if(s.mode==='taprace')drawTapRace(s);
-if(s.mode==='punchmeter'){const turn=s.players.find(p=>p.id===s.punchTurn);const pose=punchBagPose(s.bag),x=pose.x,y=pose.y;g.strokeStyle='#d7e9e9';g.lineWidth=5*pose.scale;g.beginPath();g.moveTo(600,70);g.lineTo(x,y);g.stroke();g.save();g.translate(x,y);g.rotate(pose.rotate);g.scale(pose.scale,pose.scale);g.filter=`brightness(${pose.light})`;const bagArt=window.PartyArt?.draw(g,'punchbag',0,0,150,150*480/173,{pivot:{x:.5,y:.035}});g.filter='none';g.globalAlpha=bagArt?0:1;g.fillStyle='#ff5788';g.shadowColor='#ff5788';g.shadowBlur=32;g.beginPath();g.roundRect(-70,10,140,390,60);g.fill();g.shadowBlur=0;g.fillStyle='#17222c';g.fillRect(-70,30,140,28);text('BOOM',0,230,24);g.restore();const hit=s.bag.last;if(hit&&s.time-hit.time<3.8)punchScoreboard(hit,s.time-hit.time);}
+// The hanging rope crosses the display's safe-top apron behind the parent notch.
+// Draw it before the gameplay clip, while keeping the bag and world camera unchanged.
+function drawPunchRope(s){const pose=punchBagPose(s.bag),top=-arcadeCamera.y/arcadeCamera.scale-8;
+ g.strokeStyle='#d7e9e9';g.lineWidth=5*pose.scale;g.beginPath();g.moveTo(600,top);g.quadraticCurveTo(600,(top+pose.y)*.5,pose.x,pose.y);g.stroke();}
+function draw(){if(!arcadeActive)return;beginArcadeFrame();if(state){window.ArcadeJuice?.observe(state);const sh=window.ArcadeJuice?.shake()||{x:0,y:0};g.save();g.translate(sh.x,sh.y);const s=visualState(state),ps=s.players;paintEnvironment(s);if(s.mode==='flappy')extendFlappyPipes(s);if(s.mode==='punchmeter')drawPunchRope(s);g.save();g.beginPath();if(s.mode==='flappy'){const extra=arcadeCamera.x/arcadeCamera.scale;g.rect(-extra,0,1200+extra*2,720);}else if(s.mode==='hungry'){const t=g.getTransform();g.rect(-t.e/t.a,-t.f/t.d,c.width/t.a,c.height/t.d);}else g.rect(0,0,1200,720);g.clip();window.ArcadeJuice?.ambient(g,s);if(s.mode==='taprace')drawTapRace(s);
+if(s.mode==='punchmeter'){const turn=s.players.find(p=>p.id===s.punchTurn);const pose=punchBagPose(s.bag),x=pose.x,y=pose.y;g.save();g.translate(x,y);g.rotate(pose.rotate);g.scale(pose.scale,pose.scale);g.filter=`brightness(${pose.light})`;const bagArt=window.PartyArt?.draw(g,'punchbag',0,0,150,150*480/173,{pivot:{x:.5,y:.035}});g.filter='none';g.globalAlpha=bagArt?0:1;g.fillStyle='#ff5788';g.shadowColor='#ff5788';g.shadowBlur=32;g.beginPath();g.roundRect(-70,10,140,390,60);g.fill();g.shadowBlur=0;g.fillStyle='#17222c';g.fillRect(-70,30,140,28);text('BOOM',0,230,24);g.restore();const hit=s.bag.last;if(hit&&s.time-hit.time<3.8)punchScoreboard(hit,s.time-hit.time);}
 if(s.mode==='flappy'){g.fillStyle='#00000000';g.beginPath();g.roundRect(0,0,1200,720,28);g.fill();for(let ci=0;ci<4;ci++)window.PartyArt?.draw(g,'cloud',((ci*340-(reducedArtMotion?0:s.time*12))%1400+1400)%1400-100,100+ci%2*140,145,75,{alpha:.14});for(const p of s.pipes||[]){g.fillStyle=flappyPipeMaterial(p.x);g.fillRect(p.x-32,0,64,p.gap-105);g.fillRect(p.x-32,p.gap+105,64,720-p.gap-105);window.PartyArt?.draw(g,'pipe-cap',p.x,p.gap-115,76,26);window.PartyArt?.draw(g,'pipe-cap',p.x,p.gap+115,76,26,{rotation:Math.PI});}for(const p of ps){if(!p.alive)continue;const birdArt=window.PartyArt?.draw(g,'bird',p.x,p.y,40,35,{color:p.color,rotation:Math.max(-.45,Math.min(.9,(p.vy||0)/650))});if(!birdArt){circle(p.x,p.y,16,p.color);circle(p.x+7,p.y-5,5,'#fff');circle(p.x+9,p.y-5,2,'#17222c');g.fillStyle=p.color;g.fillRect(p.x-25,p.y+Math.sin(s.time*20)*8,16,6);}else {g.save();g.translate(p.x,p.y);g.rotate(Math.max(-.45,Math.min(.9,(p.vy||0)/650)));window.PartyArt?.draw(g,'bird-wing',-2,3,20,18,{color:p.color,flipX:true,pivot:{x:.2,y:.65},rotation:reducedArtMotion?0:Math.sin(s.time*19)*.6});g.restore();}}drawClusterLabels(s);}
-if(s.mode==='hungry'){window.ArcadeHungryBounds=[];window.ArcadeHungryFood=[];g.fillStyle='#00000000';g.beginPath();g.roundRect(0,0,1200,720,36);g.fill();(s.food||[]).forEach(f=>{const fy=hungryFoodY(f,window.PARTY_GAME_CLOCK?.now?.()??performance.now(),reducedArtMotion);window.ArcadeHungryFood.push({id:f.id,x:f.x,y:fy,kind:f.kind});if(!window.PartyArt?.draw(g,['food-chicken','food-pizza','food-burger','food-donut'][f.kind],f.x,fy,25,25))text(['🍗','🍕','🍔','🍩'][f.kind],f.x,fy,24);});for(const p of ps){if(p.dead>0)continue;const sq=window.ArcadeJuice?.squash(p.id)||{x:1,y:1},clipT=g.getTransform();g.save();g.translate(p.x,p.y);g.scale(sq.x,sq.y);g.translate(-p.x,-p.y);const t=g.getTransform(),r=c.getBoundingClientRect(),sx=r.width/c.width,sy=r.height/c.height,radius=Math.sqrt(p.mass)*3.6+2;
+if(s.mode==='hungry'){window.ArcadeHungryBounds=[];window.ArcadeHungryFood=[];g.fillStyle='#00000000';g.beginPath();g.roundRect(0,0,1200,720,36);g.fill();(s.food||[]).forEach(f=>{const fy=hungryFoodY(f,window.PARTY_GAME_CLOCK?.now?.()??performance.now(),reducedArtMotion);window.ArcadeHungryFood.push({id:f.id,x:f.x,y:fy,kind:f.kind});if(!window.PartyArt?.draw(g,['food-chicken','food-pizza','food-burger','food-donut'][f.kind],f.x,fy,25,25))text(['🍗','🍕','🍔','🍩'][f.kind],f.x,fy,24);});for(const p of ps){if(p.dead>0)continue;const sq=window.ArcadeJuice?.squash(p.id)||{x:1,y:1},clipT=g.getTransform();g.save();g.translate(p.x,p.y);g.scale(sq.x,sq.y);g.translate(-p.x,-p.y);const t=g.getTransform(),r=arcadeFrameRect,sx=r.width/c.width,sy=r.height/c.height,radius=Math.sqrt(p.mass)*3.6+2;
  const projected=(x,y)=>({x:(t.a*x+t.c*y+t.e)*sx+r.x,y:(t.b*x+t.d*y+t.f)*sy+r.y});
  const topLeft=projected(p.x-radius,p.y-radius),bottomRight=projected(p.x+radius,p.y+radius),worldTop={x:r.x,y:r.y},worldBottom={x:r.right,y:r.bottom};
  window.ArcadeHungryBounds.push({id:p.id,name:p.name,at:performance.now(),world:{x:p.x,y:p.y,mass:p.mass},squash:sq,body:{left:topLeft.x,top:topLeft.y,right:bottomRight.x,bottom:bottomRight.y},visible:{left:Math.max(topLeft.x,worldTop.x),top:Math.max(topLeft.y,worldTop.y),right:Math.min(bottomRight.x,worldBottom.x),bottom:Math.min(bottomRight.y,worldBottom.y)}});
  const art=window.HungryCreatureArt?.draw(g,{x:p.x,y:p.y,radius:Math.sqrt(p.mass)*3.6,color:p.color});window.ArcadeHungryBounds.at(-1).art=art;if(!art)circle(p.x,p.y,Math.sqrt(p.mass)*3.6,p.color);g.restore();}drawClusterLabels(s);}
 if(s.mode==='snakelines'){paintTrails(s);for(const p of ps){if(p.alive){if(!window.PartyArt?.draw(g,'puck',p.x,p.y,20,20,{color:p.color,rotation:p.angle}))circle(p.x,p.y,9,p.color);fieldLabel(p.name,p.x,p.y-30);}}window.drawSnakeAmbient?.(g,s);if(s.roundWait>0&&!window.ArcadeJuice)text('Раунд '+s.round+' завершён',600,360,40);}
 if(s.mode==='carryball')drawCarryScene(s);window.ArcadeJuice?.front(g,s);}
-if(state){drawFeedback(state);g.restore();g.restore();if(state.countdown>0)drawArcadeCountdown(g,state,c);}requestAnimationFrame(draw);}window.ArcadeJuice?.init({canvas:c,tapLayout:tapRaceRunnerLayout});draw();}
+if(state){drawFeedback(state);g.restore();g.restore();if(state.countdown>0)drawArcadeCountdown(g,state,c);}arcadeRaf=requestAnimationFrame(draw);}arcadeResumeFrame=draw;window.ArcadeJuice?.init({canvas:c,tapLayout:tapRaceRunnerLayout});draw();}
 
 
 
@@ -439,3 +467,8 @@ function punchScoreboard(hit,since){const c=document.getElementById('arena')?.ge
  c.textAlign='center';c.font='900 96px HeyPalsText,system-ui';c.fillStyle=color;c.shadowColor=color;c.shadowBlur=30;c.fillText(String(shown),600,588);c.shadowBlur=0;
  if(k>=1){const pop=Math.min(1,(since-1.25)/.35),s=pop<1?.6+.55*Math.sin(pop*Math.PI*.75):1;c.translate(600,640);c.scale(s,s);c.font='900 34px HeyPalsText,system-ui';c.fillStyle='#f3f8ee';c.fillText(punchTitle(hit.score).toUpperCase(),0,0);}
  c.restore();}
+
+// Retired frames must not reconnect or keep animation/input timers alive.
+// A persisted page resumes once with a fresh connection and reset controls.
+window.addEventListener('pagehide',()=>{if(!arcadeActive)return;arcadeActive=false;lifecycleEpoch++;clearTimeout(reconnectTimer);clearInterval(joinRetry);cancelAnimationFrame(arcadeRaf);arcadeRaf=0;for(const stop of arcadeSuspend)stop();ws?.close();});
+window.addEventListener('pageshow',event=>{if(!event.persisted||arcadeActive)return;arcadeActive=true;for(const resume of arcadeResume)resume();arcadeResumeFrame?.();connect();});

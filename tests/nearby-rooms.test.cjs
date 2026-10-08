@@ -12,6 +12,13 @@ struct Active { var id: String; var ui: UI }
 struct ServerState { var networkEnabled=false; var urls:[String]=[]; var catalog:[Game]=[]; var active:Active?; var players:[String]=[] }
 `+source+String.raw`
 @MainActor func testRooms() {
+ let savedName=UserDefaults.standard.object(forKey:"HeyPals.roomDisplayName")
+ defer { if let savedName { UserDefaults.standard.set(savedName,forKey:"HeyPals.roomDisplayName") } else { UserDefaults.standard.removeObject(forKey:"HeyPals.roomDisplayName") } }
+ assert(NearbyRooms.saveOwnName("  Moonlight   crew  ")=="Moonlight crew")
+ assert(NearbyRooms.ownName=="Moonlight crew")
+ assert(NearbyRooms.saveOwnName("")==nil)
+ assert(NearbyRooms.saveOwnName(String(repeating:"x",count:49))==nil)
+ assert(NearbyRooms.ownName=="Moonlight crew")
  let client=NearbyRooms(); var found:[NearbyRoom]=[]
  client.onChange={found=$0}; client.update(state:ServerState(),foreground:true)
  let id=UUID().uuidString

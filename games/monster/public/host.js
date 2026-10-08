@@ -4,6 +4,7 @@ let state = null;
 let latestReveal = null;
 let lastCompleted = null;
 let currentIp = null;
+let rosterView244='',queueView244='';
 
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add('hidden'),2400)}
 
@@ -62,8 +63,18 @@ $('#downloadArt').addEventListener('click',()=>{
   const c=$('#revealCanvas'); const a=document.createElement('a'); a.href=c.toDataURL('image/png'); a.download=`monster-circle-round-${state?.round||1}.png`; a.click();
 });
 
+// Retain the presented snapshot, not network/game state. The clock still ticks
+// from the newest state; locale/profile/input changes invalidate presentation.
+let profileFields244=[],profileRevision244=0;
+function profileView244(){const rows=window.PARTY_ROSTER||[],next=rows.map(p=>[p.id,p.name,p.avatar,!!p.testBot]);if(next.length!==profileFields244.length||next.some((row,i)=>row.some((value,j)=>value!==profileFields244[i]?.[j]))){profileFields244=next;profileRevision244++;}return profileRevision244;}
+let presentedView244='';
+function viewChanged244(snapshot,local=[]){const {serverTime,...view}=snapshot;const key=JSON.stringify([view,local,window.PartyI18n?.language,profileView244()]);if(key===presentedView244)return false;presentedView244=key;return true;}
+const timerText244=new WeakMap();
+function writeTimerText244(node,value){const text=String(value);if(timerText244.get(node)===text)return;timerText244.set(node,text);node.textContent=text;}
+
 function render(s){
   state=s;
+  if(!viewChanged244(s)&&$('#maxPlayers').value===String(s.maxPlayers))return;
   $('#roundBadge').textContent=s.phase==='lobby'?'ЛОББИ':`РАУНД ${s.round}`;
   $('#lobbyPanel').classList.toggle('hidden',s.phase!=='lobby');
   $('#gamePanel').classList.toggle('hidden',s.phase!=='playing');
@@ -72,20 +83,20 @@ function render(s){
   $('#maxPlayers').value=s.maxPlayers;
   $('#startGame').disabled=s.players.filter(p=>p.connected).length<2;
 
-  const list=$('#players'); list.innerHTML='';
+  const list=$('#players'),rosterKey=JSON.stringify([s.players,window.PartyI18n?.language]);if(rosterKey!==rosterView244){rosterView244=rosterKey;list.innerHTML='';
   s.players.forEach((p,i)=>{
     const row=document.createElement('div');row.className='player-row';
     row.innerHTML=`<div class="avatar">${i+1}</div><div class="name"></div><div class="dot ${p.connected?'online':''}"></div><button class="kick" title="Удалить">×</button>`;
     row.querySelector('.name').textContent=p.name;
     row.querySelector('.kick').onclick=()=>socket.emit('host:kick',{playerId:p.id},r=>{if(!r.ok)toast(r.error)});
     list.appendChild(row);
-  });
+  });}
 
   if(s.phase==='playing'){
     $('#activePlayer').textContent=s.activePlayerName||'—';
     $('#progressText').textContent=`${s.completed} / ${s.total}`;
-    const q=$('#queue');q.innerHTML='';
-    s.players.forEach((p,i)=>{const e=document.createElement('div'),icon=document.createElement('img'),name=document.createElement('span');e.className='queue-chip '+(i<s.turnIndex?'done':i===s.turnIndex?'active':'');icon.src='/assets/icons/game-pack/'+(i<s.turnIndex?'tick':i===s.turnIndex?'paintbrush':'clock')+'.svg';icon.alt='';name.className='player-name';name.dataset.noTranslate='';name.textContent=p.name;e.append(icon,name);q.appendChild(e)});
+    const q=$('#queue'),queueKey=JSON.stringify([s.players.map(p=>[p.id,p.name]),s.turnIndex,window.PartyI18n?.language]);if(queueKey!==queueView244){queueView244=queueKey;q.innerHTML='';
+    s.players.forEach((p,i)=>{const e=document.createElement('div'),icon=document.createElement('img'),name=document.createElement('span');e.className='queue-chip '+(i<s.turnIndex?'done':i===s.turnIndex?'active':'');icon.src='/assets/icons/game-pack/'+(i<s.turnIndex?'tick':i===s.turnIndex?'paintbrush':'clock')+'.svg';icon.alt='';name.className='player-name';name.dataset.noTranslate='';name.textContent=p.name;e.append(icon,name);q.appendChild(e)});}
     if(lastCompleted!=null&&s.completed>lastCompleted&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const done=q.children[s.turnIndex-1],next=q.children[s.turnIndex],e='cubic-bezier(.23,1,.32,1)';done?.animate([{transform:'scale(1.12)'},{transform:'none'}],{duration:420,easing:e});next?.animate([{opacity:.4,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:360,delay:120,easing:e,fill:'backwards'});$('#progressText').animate([{transform:'scale(1.15)'},{transform:'none'}],{duration:420,easing:e});const r=done?.getBoundingClientRect();if(r?.width)window.HeyPalsSprites?.burst(r.left+r.width/2,r.top+r.height/2,{count:10,spread:90});}
     lastCompleted=s.completed;
   }
@@ -118,6 +129,6 @@ function unveil(c,layout,segments){const key=(state?.round||0)+':'+segments.leng
  [...$('#credits').children].forEach((d,i)=>{d.animate([{opacity:.25,transform:'translateY(6px)'},{opacity:1,transform:'scale(1.06)',offset:.5},{opacity:1,transform:'none'}],{duration:520,delay:i*step+260,easing:'cubic-bezier(.23,1,.32,1)',fill:'backwards'});});
  setTimeout(()=>{const r=c.getBoundingClientRect();if(r.width)window.HeyPalsSprites?.burst(r.left+r.width/2,r.top+Math.min(r.height,innerHeight-r.top)*.45,{count:26,spread:200});$('#revealTitle')?.animate([{transform:'scale(1)'},{transform:'scale(1.08)',offset:.4},{transform:'none'}],{duration:420,easing:'cubic-bezier(.23,1,.32,1)'});},n*step+220);}
 $('#skipTurn').onclick=()=>{if(confirm('Пропустить эту часть? Несохранённый рисунок останется в черновике игрока.'))socket.emit('host:skip',{},r=>{if(!r.ok)toast(r.error)})};
-setInterval(()=>{if(state?.phase!=='playing')return;const left=Math.max(0,Math.ceil((state.turnDeadline-Date.now())/1000));$('#hostTurnTimer').textContent=left?left+' сек':'Время вышло · можно закончить';const active=state.players.find(p=>p.id===state.activePlayerId);$('#skipTurn').disabled=!!active?.connected&&left>0;},250);
+setInterval(()=>{if(state?.phase!=='playing')return;const left=Math.max(0,Math.ceil((state.turnDeadline-Date.now())/1000));writeTimerText244($('#hostTurnTimer'),left?left+' сек':'Время вышло · можно закончить');const active=state.players.find(p=>p.id===state.activePlayerId);$('#skipTurn').disabled=!!active?.connected&&left>0;},250);
 
 loadInfo();

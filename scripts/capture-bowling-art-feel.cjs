@@ -35,6 +35,9 @@ async function throwOne(plan){
   await until(()=>tvState()?.stage==='aim'&&currentPhone(),'aim stage',40000);const p=currentPhone(),token=tvState().turnToken,n=idx++;
   await setSliders(p,plan.position??0,plan.spin??0);
   if(plan.detail){await sleep(3600);await shot('01-aim-idle');}else await sleep(plan.aimWait??1500);
+  // Camera trace over the whole throw cycle (aim -> roll -> slow-motion -> reveal -> pinsetter -> aim):
+  // per-frame camera position and view direction, to prove there are no jump cuts.
+  if(plan.detail)await frame(tv).evaluate(()=>{const b=window.__bowlingScene,tr=window.__camTrace=[],v=new b.camera.position.constructor();const loop=()=>{if(tr.length>2400)return;b.camera.getWorldDirection(v);tr.push([performance.now(),b.camera.position.x,b.camera.position.y,b.camera.position.z,v.x,v.y,v.z,b.camera.fov]);requestAnimationFrame(loop);};requestAnimationFrame(loop);});
   const before=tvState().events.at(-1)?.id||0;await swipe(p,plan);
   await until(()=>tvState()?.stage==='rolling'&&tvState().turnToken===token,'rolling',5000);
   if(plan.detail){await sleep(120);await shot('02-release');await sleep(420);await shot('03-roll');
@@ -48,7 +51,13 @@ async function throwOne(plan){
   const roll=tvState().events.filter(e=>e.id>before&&e.kind==='roll').at(-1);
   const d=await waitShot(`r${String(n).padStart(2,'0')}-reveal-${roll?.pins}`,d=>d.stage==='reveal'&&d.age>.5,4000);
   report.throws.push({index:n,plan,pins:roll?.pins,text:roll?.text,banner:d?{kind:d.kind,tier:d.tier,visible:d.banner}:null});save();console.log('throw',n,roll?.pins,d?.kind,d?.tier);
-  if(plan.detail){await waitShot('06-reset-machine',d=>d.stage==='aim'&&d.age>.6&&d.age<1.3,6000);await waitShot('07-return-count',d=>d.stage==='aim'&&d.age>2.3&&d.age<3.4,6000);await waitShot('08-display-final',d=>d.stage==='aim'&&d.age>3.7&&d.age<5.5,6000);await waitShot('09-idle-breathing',d=>d.stage==='aim'&&d.age>6&&d.age<9,8000);}
+  if(plan.detail){await waitShot('06-reset-machine',d=>d.stage==='aim'&&d.age>.6&&d.age<1.3,6000);await waitShot('07-return-count',d=>d.stage==='aim'&&d.age>2.3&&d.age<3.4,6000);await waitShot('08-display-final',d=>d.stage==='aim'&&d.age>3.7&&d.age<5.5,6000);await waitShot('09-idle-breathing',d=>d.stage==='aim'&&d.age>6&&d.age<9,8000);
+    report.cameraTrace=await frame(tv).evaluate(()=>{const tr=window.__camTrace;window.__camTrace=null;let maxStep=0,maxTurn=0,maxAccel=0,at=null,prevV=null;
+      for(let i=1;i<tr.length;i++){const [t0,x0,y0,z0,a0,b0,c0]=tr[i-1],[t1,x1,y1,z1,a1,b1,c1]=tr[i],dt=Math.max(1,t1-t0)/1000,step=Math.hypot(x1-x0,y1-y0,z1-z0),turn=Math.acos(Math.min(1,a0*a1+b0*b1+c0*c1))*180/Math.PI,v=step/dt;
+        if(step>maxStep){maxStep=step;at=i;}maxTurn=Math.max(maxTurn,turn);if(prevV!==null)maxAccel=Math.max(maxAccel,Math.abs(v-prevV)/dt);prevV=v;}
+      // Frames longer than 50 ms are capture stalls (a screenshot blocks the page); judge snaps on normal frames only.
+      let stalls=0,nStep=0,nTurn=0,worst=null;for(let i=1;i<tr.length;i++){const dt=tr[i][0]-tr[i-1][0];if(dt>50){stalls++;continue;}const st=Math.hypot(tr[i][1]-tr[i-1][1],tr[i][2]-tr[i-1][2],tr[i][3]-tr[i-1][3]),tu=Math.acos(Math.min(1,tr[i][4]*tr[i-1][4]+tr[i][5]*tr[i-1][5]+tr[i][6]*tr[i-1][6]))*180/Math.PI;if(st>nStep){nStep=st;worst={i,dt:+dt.toFixed(1),from:tr[i-1].slice(1,4).map(n=>+n.toFixed(2)),to:tr[i].slice(1,4).map(n=>+n.toFixed(2))};}nTurn=Math.max(nTurn,tu);}
+      return {raw:tr.map(r=>r.slice(0,4).map(n=>+n.toFixed(3))),frames:tr.length,stalls,maxStepMetres:+maxStep.toFixed(3),maxTurnDegPerFrame:+maxTurn.toFixed(2),worstFrame:at,worstDt:at?+(tr[at][0]-tr[at-1][0]).toFixed(1):null,normal:{maxStepMetres:+nStep.toFixed(3),maxTurnDegPerFrame:+nTurn.toFixed(2),worst}};});save();console.log('camera trace',JSON.stringify({...report.cameraTrace,raw:undefined}));}
 }
 (async()=>{try{
   await until(()=>/localhost:(\d+)/.test(log),'launcher listening');origin='http://127.0.0.1:'+log.match(/localhost:(\d+)/)[1];

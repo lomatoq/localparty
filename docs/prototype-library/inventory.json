@@ -6,9 +6,9 @@
   ],
   "note": "Deterministic generated index. Regenerate after adding or removing project assets or game files.",
   "totals": {
-    "publicAssetFiles": 779,
+    "publicAssetFiles": 885,
     "games": 20,
-    "gameFiles": 831
+    "gameFiles": 836
   },
   "publicAssets": [
     {
@@ -205,6 +205,10 @@
     },
     {
       "file": "public/assets/backgrounds/brick-wall-wide-v1.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/branding/heypals-hero-cutout-v2.png",
       "category": "raster-or-vector-art"
     },
     {
@@ -1352,6 +1356,22 @@
       "category": "raster-or-vector-art"
     },
     {
+      "file": "public/assets/gameplay/refresh129/arsenal-tank.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/refresh129/kart-forest.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/refresh129/marble-garden.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/refresh129/marble-machinery.png",
+      "category": "raster-or-vector-art"
+    },
+    {
       "file": "public/assets/gameplay/round3/2026-10-03/backgrounds-provenance.json",
       "category": "metadata"
     },
@@ -2068,6 +2088,38 @@
       "category": "background-or-tile"
     },
     {
+      "file": "public/assets/gameplay/sports-siege/turrets-v5/cannon-raw-v5.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/turrets-v5/pedestal-raw-v5.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/turrets-v5/stone-floor-raw-v5.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/turrets-v6/cannon.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/turrets-v6/courtyard.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/turrets-v6/gates.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/turrets-v6/pedestal.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/gameplay/sports-siege/turrets-v6/wall.png",
+      "category": "raster-or-vector-art"
+    },
+    {
       "file": "public/assets/gameplay/sprites/badge.webp",
       "category": "raster-or-vector-art"
     },
@@ -2385,6 +2437,294 @@
     },
     {
       "file": "public/assets/games/chaos.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/airhockey-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/airhockey-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/bomb-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/bomb-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/bow_club-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/bow_club-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/bowling-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/bowling-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/carryball-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/carryball-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/chaos-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/chaos-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/crane-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/crane-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/crocodile-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/crocodile-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/curling-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/curling-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/drawguess-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/drawguess-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/flappy-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/flappy-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/hungry-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/hungry-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/jenga-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/jenga-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/kart-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/kart-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/knives-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/knives-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/marble_bloom-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/marble_bloom-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/millionaire-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/millionaire-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/mines-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/mines-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/monster-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/monster-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/naval-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/naval-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/peek_shoot-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/peek_shoot-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/pocket_siege-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/pocket_siege-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/poker-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/poker-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/punchmeter-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/punchmeter-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/push-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/push-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/shrink-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/shrink-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/sinyakquiz-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/sinyakquiz-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/snakelines-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/snakelines-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/spy-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/spy-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/swarm_gate-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/swarm_gate-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/tankarena-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/tankarena-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/tanks-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/tanks-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/taprace-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/taprace-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/warsaw-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/warsaw-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/western_duel-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/western_duel-640.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/western-192.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/games/controller/western-640.webp",
       "category": "raster-or-vector-art"
     },
     {
@@ -3125,6 +3465,90 @@
     },
     {
       "file": "public/assets/spectators-20261002/spectator-05-lavender.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/first-play-tail176.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/first-play-tip176.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/first-play184.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/first-play187.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/party-coin.svg",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/profile-ready-badge.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/profile-ready-controller.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-beam179.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-lamp179.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-lamp181.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-play172.png",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-play172.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-play173.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-play174.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-play175.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-play179.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-word180.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-word182.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-word183.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-word185.webp",
+      "category": "raster-or-vector-art"
+    },
+    {
+      "file": "public/assets/ui/spotlight-word187.webp",
       "category": "raster-or-vector-art"
     }
   ],
@@ -6166,6 +6590,10 @@
           "role": "module"
         },
         {
+          "file": "games/sports_siege/public/bowling-deck.js",
+          "role": "module"
+        },
+        {
           "file": "games/sports_siege/public/bowling-extras.js",
           "role": "module"
         },
@@ -6236,6 +6664,22 @@
         {
           "file": "games/sports_siege/public/style.css",
           "role": "ui-style"
+        },
+        {
+          "file": "games/sports_siege/public/swarm-ambience.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/swarm-fx.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/swarm-impacts.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/swarm-turrets.js",
+          "role": "module"
         },
         {
           "file": "games/sports_siege/rules.js",

@@ -127,7 +127,7 @@ class Stage {
     document.body.dataset.renderQuality=this.software?'software-compatible':'full';
     this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=mode==='bowling'?1.34:mode==='curling'?1.28:1.18;
     $('ss-scene').append(this.renderer.domElement);
-    this.renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();$('ss-error').hidden=false;$('ss-error').textContent='Графический контекст потерян. Перезагрузи экран ведущего — матч на сервере сохранится.';});
+    this.renderer.domElement.addEventListener('webglcontextlost',e=>{if(this.disposed)return;e.preventDefault();$('ss-error').hidden=false;$('ss-error').textContent='Графический контекст потерян. Перезагрузи экран ведущего — матч на сервере сохранится.';});
     this.camera=['bowling','curling'].includes(mode)?new THREE.PerspectiveCamera(mode==='bowling'?46:42,1,.1,180):new THREE.OrthographicCamera(-20,20,15,-15,.1,180);
     this.camera.position.set(...(mode==='bowling'?[0,5.3,17.5]:mode==='curling'?[0,3.6,22]:mode==='swarm_gate'?[0,30,22]:[0,0,35]));
     this.look=new THREE.Vector3(...(mode==='swarm_gate'?[0,0,-8]:mode==='peek_shoot'?[0,0,0]:[0,0,-2]));this.camera.lookAt(this.look);this.cameraBase=this.camera.position.clone();this.shakes=[];this.hitStop=null;
@@ -138,8 +138,15 @@ class Stage {
     if(['bowling','curling'].includes(mode)){const rim=new THREE.PointLight(mode==='bowling'?'#c878ff':'#67f2ff',22,34,1.7);rim.position.set(0,7,-12);this.scene.add(rim);}
     this.materials=new Map();this.assetTextures=new Map();this.environmentModels=new Map();this.gltfLoader=new GLTFLoader();this.dynamic=new Map();this.crosshairs=new Map();this.turrets=new Map();this.popups=[];this.smoothBots=new Map();this.identityBubbles=[];
     this.unit=new THREE.Object3D();this.v=new THREE.Vector3();this.yAxis=new THREE.Vector3(0,1,0);this.clock=0;this.last=performance.now();this.cameraMode='wide';
-    this.staticScene();this.makePools();this.resize();window.addEventListener('resize',()=>this.resize());
-    this.loop=this.loop.bind(this);requestAnimationFrame(this.loop);
+    this.staticScene();this.makePools();this.resize();window.addEventListener('resize',()=>this.resize(true));document.fonts?.ready.then(()=>this.resize(true));
+    this.loop=this.loop.bind(this);window.addEventListener('pagehide',e=>{if(!e.persisted)this.dispose();});
+    // Compile in parallel before the first drawn frame. Synchronous first-use
+    // shader linking otherwise freezes the TV shell while its doors are moving.
+    document.body.dataset.shaderWarmup='pending';
+    const warmup=this.renderer.compileAsync?.(this.scene,this.camera)||Promise.resolve();
+    Promise.resolve(warmup).catch(error=>console.warn('Scene shader warmup:',error)).finally(()=>{
+      if(this.disposed)return;document.body.dataset.shaderWarmup='ready';this.last=performance.now();this.raf=requestAnimationFrame(this.loop);
+    });
   }
   mat(color,rough=.5,metal=.05,emission=0){const key=`${color}:${rough}:${metal}:${emission}`;if(!this.materials.has(key))this.materials.set(key,new THREE.MeshStandardMaterial({color,roughness:rough,metalness:metal,emissive:color,emissiveIntensity:emission}));return this.materials.get(key);}
   assetTexture(name,options={}){
@@ -173,7 +180,7 @@ class Stage {
     for(let i=0;i<5;i++){const material=new THREE.SpriteMaterial({map:this.cloudTexture,color:i%2?'#be9291':'#ddb9a0',transparent:true,opacity:0,depthTest:false,depthWrite:false,toneMapped:false});const sprite=new THREE.Sprite(material);sprite.renderOrder=17;sprite.visible=false;this.scene.add(sprite);this.effects.push({kind:'kill-cloud',pulseSprite:sprite,color:'#ddb9a0',origin:origin.clone(),up,right,angle:i*Math.PI*.4+seededUnit(seed)*2,radius:.3,size:1.2+seededUnit(seed+i)*.6,born:this.clock+delay,life:.72});}
   }
   scorePopup(origin,points,color,delay){
-    const el=document.createElement('span');el.setAttribute('aria-hidden','true');el.dataset.ssScorePopup='';el.textContent='+'+points;const tier=points>=3?1.35:points>=2?1.15:1;el.style.cssText=`position:absolute;z-index:2;pointer-events:none;transform:translate(-50%,-50%);font-family:var(--hp-font-action,HeyPalsDisplay),sans-serif;font-style:italic;font-weight:900;font-size:${Math.round(24*tier*clamp(innerWidth/1280,.8,1.5))}px;line-height:1;color:#ffe789;text-shadow:0 2px 3px #171223,0 0 5px #171223,0 0 14px ${color};-webkit-text-stroke:.5px #302335;will-change:transform,opacity;`;el.hidden=true;$('ss-scene').append(el);this.popups.push({el,origin:origin.clone(),born:this.clock+delay,life:.88});if(this.popups.length>32)this.popups.shift().el.remove();
+    const el=document.createElement('span');el.setAttribute('aria-hidden','true');el.dataset.ssScorePopup='';el.textContent='+'+points;const tier=mode==='swarm_gate'?(points>=100?1.35:points>=25?1.15:1):(points>=3?1.35:points>=2?1.15:1);el.style.cssText=`position:absolute;z-index:2;pointer-events:none;transform:translate(-50%,-50%);font-family:var(--hp-font-action,HeyPalsDisplay),sans-serif;font-style:italic;font-weight:900;font-size:${Math.round((mode==='swarm_gate'?22:24)*tier*clamp(innerWidth/1280,.8,1.5))}px;line-height:1;color:#ffe789;text-shadow:0 2px 3px #171223,0 0 5px #171223,0 0 14px ${color};-webkit-text-stroke:.5px #302335;will-change:transform,opacity;`;el.hidden=true;$('ss-scene').append(el);this.popups.push({el,origin:origin.clone(),born:this.clock+delay,life:.88});if(this.popups.length>32)this.popups.shift().el.remove();
   }
   mesh(geo,mat,x=0,y=0,z=0,parent=this.scene){const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
   box(w,h,d,color,x=0,y=0,z=0,parent=this.scene){return this.mesh(new THREE.BoxGeometry(w,h,d),this.mat(color),x,y,z,parent);}
@@ -210,19 +217,24 @@ class Stage {
       // Club, sheet, stones, cameras and feedback live in scene-curling.js.
       this.curling=new CurlingScene(this,THREE,{reduced});
     }else if(mode==='swarm_gate'){
-      const floor=document.createElement('canvas');floor.width=floor.height=512;const ink=floor.getContext('2d');ink.fillStyle='#b9b0bc';ink.fillRect(0,0,512,512);
-      // Quiet flat masonry belongs to the world, with no photographic shading.
-      for(let row=0;row<4;row++)for(let col=-1;col<3;col++){const x=col*256+(row%2)*128;ink.strokeStyle='#aaa2af';ink.lineWidth=2;ink.beginPath();ink.roundRect(x+1,row*128+1,254,126,12);ink.stroke();}
-      const ground=new THREE.CanvasTexture(floor);ground.colorSpace=THREE.SRGBColorSpace;ground.wrapS=ground.wrapT=THREE.RepeatWrapping;ground.repeat.set(160/62*2,120/72*2);
-      const field=this.mesh(new THREE.PlaneGeometry(160,120),new THREE.MeshBasicMaterial({map:ground,toneMapped:false,fog:false}),0,-.30,-12);field.rotation.x=-Math.PI/2;field.receiveShadow=true;
+      // One authored courtyard fills the viewport; no repeated/mirrored tile grid.
+      this.courtyard=this.turretPartTexture('courtyard.png');
+      this.scene.background=this.courtyard;
       this.wallGroup=new THREE.Group();this.scene.add(this.wallGroup);
-      for(const x of [-26.7375,26.7375]){const wall=this.flatAsset('wall-long-v4.png',44.475/.975254730713246,44.475/.975254730713246*1145/1374,{depthWrite:true,root:'swarm-v4'});wall.center.set(.5,.42270742358078606);wall.position.set(x,-.30,0);this.wallGroup.add(wall);}
+      for(const x of [-26.7375,26.7375]){
+        const wall=new THREE.Sprite(new THREE.SpriteMaterial({map:this.turretPartTexture('wall.png'),transparent:true,alphaTest:.035,depthWrite:true,toneMapped:false}));
+        const width=44.475*1374/1340;wall.scale.set(width,width*1145/1374,1);
+        wall.center.set(.5,1-679/1145);wall.position.set(x,-.30,0);this.wallGroup.add(wall);
+      }
       this.gateGroup=new THREE.Group();this.scene.add(this.gateGroup);
-      this.gateSprite=this.flatAsset('gate-closed-v4.png',10.5/.8289835164835165,10.5/.8289835164835165*1080/1456,{depthWrite:true,root:'swarm-v4'});this.gateSprite.center.set(.5003434065934066,.13611111111111107);this.gateSprite.position.set(0,-.30,.12);this.gateGroup.add(this.gateSprite);
-      this.repairSprite=this.assetSprite('wall-repair',3.2,4.0,{depthTest:false,renderOrder:8});this.repairSprite.position.set(0,2.7,.35);this.repairSprite.visible=false;this.scene.add(this.repairSprite);
+      this.gateSprite=new THREE.Sprite(new THREE.SpriteMaterial({map:this.gateStateTexture('gate-closed'),transparent:true,alphaTest:.035,depthWrite:true,toneMapped:false}));this.gateSprite.scale.set(10.5/.92,10.5/.92,1);this.gateSprite.center.set(.5,.14);this.gateSprite.position.set(0,-.30,.12);this.gateGroup.add(this.gateSprite);
+      for(const [x,width] of [[-26.7375,46],[26.7375,46],[0,12]]){const shadow=this.turretContactShadow();shadow.scale.set(width,2.8,1);shadow.position.set(x,-.48,.2);shadow.renderOrder=-1;this.scene.add(shadow);}
+      this.repairSprite=this.assetSprite('wall-repair',3.8,3.8*327/316,{depthTest:false,renderOrder:8});this.repairSprite.position.set(0,2.7,.35);this.repairSprite.visible=false;this.scene.add(this.repairSprite);
       for(const part of [...this.wallGroup.children,this.gateSprite])Object.assign(part.material,{stencilWrite:true,stencilRef:1,stencilFunc:THREE.AlwaysStencilFunc,stencilZPass:THREE.ReplaceStencilOp});
       for(const kind of ['termite','runner','tank','boss'])for(let frame=0;frame<8;frame++)this.assetTexture(`swarm-death-${kind}-${frame}`);
       this.makeBots();
+      // Claude swarm agent: 3D turrets, framing, shot/kill/gate juice and ambience live in swarm-*.js (render-only).
+      import('./swarm-fx.js').then(m=>{this.swarmFX=new m.SwarmFX(this,THREE,{reduced});}).catch(error=>console.warn('Swarm FX unavailable',error));
     }else{
       this.scene.fog=null;for(let frame=0;frame<8;frame++)this.assetTexture(`gallery-death-${frame}`);
       // Flat orthographic meadow: decoration fills the viewport while cover/target coordinates remain exact.
@@ -265,15 +277,35 @@ class Stage {
   flatAsset(file,width,height,{depthTest=true,depthWrite=false,renderOrder=0,root='swarm-v3'}={}){
     const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:this.localTexture(file,{root}),transparent:true,alphaTest:.035,depthTest,depthWrite,toneMapped:false}));sprite.scale.set(width,height,1);sprite.renderOrder=renderOrder;sprite.userData.assetSprite=true;return sprite;
   }
-  turret(p){const g=new THREE.Group(),pivot=new THREE.Vector3(0,.68,1.12);
-    // Each full authored base/barrel silhouette has its own measured circle pivot.
-    // Only concentric base detail rotates, and projectile reach remains authoritative.
-    const [variant,art]=turretArt[(p.number-1)%turretArt.length];
-    const ring=this.assetSprite('turret-selection',2.1,2.1,{depthTest:false,depthWrite:false,renderOrder:20});ring.position.copy(pivot);ring.material.color.set(p.color);ring.material.opacity=.28;g.add(ring);
-    const head=this.flatAsset(art.file,...art.worldSize,{depthTest:false,renderOrder:22});head.center.set(...art.center);head.position.copy(pivot);head.userData.muzzleReach=2.19;head.userData.variant=variant;g.add(head);
-    const number=this.playerBubble(p,.48),up=new THREE.Vector3(0,1,0).applyQuaternion(this.camera.quaternion);number.position.copy(pivot).addScaledVector(up,-1.05);number.renderOrder=23;g.add(number);
-    g.userData.head=head;g.userData.base=head;g.userData.ring=ring;g.userData.bubble=number;g.userData.pivot=pivot.clone();this.scene.add(g);return g;}
+  turretContactShadow(){
+    if(!this.turretShadowTexture){const canvas=document.createElement('canvas');canvas.width=128;canvas.height=48;const c=canvas.getContext('2d');c.translate(64,24);c.scale(64,24);const shade=c.createRadialGradient(0,0,.08,0,0,1);shade.addColorStop(0,'#15132664');shade.addColorStop(.45,'#1513263a');shade.addColorStop(1,'#15132600');c.fillStyle=shade;c.fillRect(-1,-1,2,2);this.turretShadowTexture=new THREE.CanvasTexture(canvas);}
+    const shadow=new THREE.Sprite(new THREE.SpriteMaterial({map:this.turretShadowTexture,transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));shadow.scale.set(2.3,.62,1);shadow.renderOrder=19;return shadow;
+  }
+  gateStateTexture(name){
+    this.gateTextures||={};if(this.gateTextures[name])return this.gateTextures[name];
+    const texture=this.turretPartTexture('gates.png').clone();texture.needsUpdate=true;texture.repeat.set(1/3,1);texture.offset.set(['gate-closed','gate-damaged','gate-open'].indexOf(name)/3,0);this.gateTextures[name]=texture;return texture;
+  }
+  turretPartTexture(file){
+    const key='turret-v6:'+file;if(this.assetTextures.has(key))return this.assetTextures.get(key);
+    const texture=new THREE.TextureLoader().load('/assets/gameplay/sports-siege/turrets-v6/'+file);
+    texture.colorSpace=THREE.SRGBColorSpace;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;this.assetTextures.set(key,texture);return texture;
+  }
+  turret(p){const g=new THREE.Group(),pivot=new THREE.Vector3(0,.68,0);
+    const [variant,art]=turretArt[(p.number-1)%turretArt.length],color=p.color||art.color;
+    const up=new THREE.Vector3(0,1,0).applyQuaternion(this.camera.quaternion);
+    const floorShadow=this.turretContactShadow();floorShadow.scale.set(3.7,.86,1);floorShadow.position.copy(pivot).addScaledVector(up,-.22);g.add(floorShadow);
+    // Native generated alpha is retained. The circular plate stays stationary;
+    // only the connected housing/barrel rotates, using the same real muzzle ray.
+    const plate=new THREE.Sprite(new THREE.SpriteMaterial({map:this.turretPartTexture('pedestal.png'),color:new THREE.Color(color).multiplyScalar(.8),transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));
+    const plateScale=3.472*1254/1126;plate.scale.set(plateScale,plateScale,1);plate.center.set(.5,.5);plate.position.copy(pivot);plate.renderOrder=21;g.add(plate);
+    const head=new THREE.Sprite(new THREE.SpriteMaterial({map:this.turretPartTexture('cannon.png'),color,transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));
+    const muzzleReach=5.88*(285-37)/420,headScale=muzzleReach*1254/(882-137);head.scale.set(headScale,headScale,1);head.center.set(627/1254,1-882/1254);head.position.copy(pivot);head.renderOrder=22;head.userData.muzzleReach=muzzleReach;head.userData.variant=variant;g.add(head);
+    const number=this.playerBubble(p,.62);number.position.copy(pivot).addScaledVector(up,-2.02);number.renderOrder=23;g.add(number);
+    // Keep turret pixels behind opaque wall/gate silhouettes already in the stencil.
+    for(const part of [floorShadow,plate,head])Object.assign(part.material,{stencilWrite:true,stencilRef:1,stencilFunc:THREE.NotEqualStencilFunc});
+    g.userData.head=head;g.userData.base=plate;g.userData.bubble=number;g.userData.pivot=pivot.clone();this.scene.add(g);return g;}
   turretMuzzle(turret){
+    const fxMuzzle=this.swarmFX?.muzzle(turret);if(fxMuzzle)return fxMuzzle;
     const head=turret?.userData.head;if(!head)return null;
     const origin=new THREE.Vector3();head.getWorldPosition(origin);
     const angle=head.material.rotation||0,up=new THREE.Vector3(0,1,0).applyQuaternion(this.camera.quaternion),right=new THREE.Vector3(1,0,0).applyQuaternion(this.camera.quaternion);
@@ -312,12 +344,13 @@ class Stage {
     }else if(mode==='curling'){
       this.curling.update(s,dt);
     }else if(mode==='swarm_gate'){
-      for(const p of s.players.filter(p=>p.participant||s.phase==='waiting')){let turret=this.turrets.get(p.id);if(!turret){turret=this.turret(p);this.turrets.set(p.id,turret);}turret.position.x=p.turretX||0;turret.position.z=(p.turretZ??4.22)-turret.userData.pivot.z;turret.updateMatrixWorld(true);const target=new THREE.Vector3((p.aim.x-.5)*36,.68,-27+p.aim.y*26),pivot=new THREE.Vector3();turret.userData.head.getWorldPosition(pivot);const pivotScreen=pivot.clone().project(this.camera),targetScreen=target.clone().project(this.camera);turret.userData.head.material.rotation=-Math.atan2((targetScreen.x-pivotScreen.x)*this.renderer.domElement.clientWidth,(targetScreen.y-pivotScreen.y)*this.renderer.domElement.clientHeight);}
+      for(const p of s.players.filter(p=>p.participant||s.phase==='waiting')){let turret=this.turrets.get(p.id);if(!turret){turret=this.turret(p);this.turrets.set(p.id,turret);}turret.position.x=p.turretX||0;turret.position.z=(p.turretZ??-9.5)-turret.userData.pivot.z;turret.updateMatrixWorld(true);const target=new THREE.Vector3((p.aim.x-.5)*36,.68,-27+p.aim.y*26),pivot=new THREE.Vector3();turret.userData.head.getWorldPosition(pivot);const pivotScreen=pivot.clone().project(this.camera),targetScreen=target.clone().project(this.camera);turret.userData.head.material.rotation=-Math.atan2((targetScreen.x-pivotScreen.x)*this.renderer.domElement.clientWidth,(targetScreen.y-pivotScreen.y)*this.renderer.domElement.clientHeight);}
       this.updateBots(s.enemies,dt,s.t);
       const chewing=s.enemies.some(b=>b.z>=-1);this.gateGroup.position.x=chewing&&!reduced?Math.sin(this.clock*43)*.018:0;
       this.gateGroup.rotation.z=s.gate<=0?-.18:0;
-      const gateName=s.gate<=0?'gate-open':s.gate<(s.maxGate||1000)*.55?'gate-damaged':'gate-closed';if(this.gateSprite.userData.assetName!==gateName){this.gateSprite.userData.assetName=gateName;const bounds={ 'gate-closed':[.8289835164835165,.5003434065934066,.13611111111111107], 'gate-damaged':[.8303571428571429,.5003434065934066,.1342592592592593], 'gate-open':[.8282967032967034,.5,.13518518518518519]}[gateName];const width=10.5/bounds[0];this.gateSprite.scale.set(width,width*1080/1456,1);this.gateSprite.center.set(bounds[1],bounds[2]);this.gateSprite.material.map=this.localTexture(gateName+'-v4.png',{root:'swarm-v4'});this.gateSprite.material.needsUpdate=true;}
+      const gateName=s.gate<=0?'gate-open':s.gate<(s.maxGate||1000)*.55?'gate-damaged':'gate-closed';if(this.gateSprite.userData.assetName!==gateName){this.gateSprite.userData.assetName=gateName;this.gateSprite.material.map=this.gateStateTexture(gateName);this.gateSprite.material.needsUpdate=true;}
       this.repairSprite.visible=s.stage==='break';if(this.repairSprite.visible)this.repairSprite.material.opacity=.72+Math.sin(this.clock*7)*.20;
+      this.swarmFX?.update(s,dt);
     }else{
       for(const [index,layer] of (this.galleryLayers||[]).entries()){const orbit=reduced?0:this.clock*.18+index;layer.position.x=layer.userData.baseX+Math.sin(orbit)*.65;layer.position.y=layer.userData.baseY+Math.cos(orbit)*.22;layer.material.rotation=reduced?0:Math.sin(orbit)*.025;}
       for(const t of s.targets||[]){if(t.rise<.02)continue;const obj=this.getObject('target'+t.id,()=>this.goof(t));
@@ -345,10 +378,11 @@ class Stage {
   }
   effect(e,s){
     if(mode==='curling'){this.curling?.effect(e,s);return;}
+    this.swarmFX?.effect(e,s);
     if(e.kind==='shot'){
       const p=s.players.find(p=>p.id===e.player);if(!p)return;
       const to=mode==='peek_shoot'?new THREE.Vector3((e.x-.5)*32,(.5-e.y)*20,10):new THREE.Vector3(e.x,.68,e.z);
-      const from=mode==='peek_shoot'?new THREE.Vector3((p.number/(s.players.length+1)-.5)*25,-11,10):(this.turretMuzzle(this.turrets.get(p.id))||new THREE.Vector3(e.ox,3.0,e.oz+2.6));
+      const from=mode==='peek_shoot'?new THREE.Vector3((p.number/(s.players.length+1)-.5)*25,-11,10):(this.turretMuzzle(this.turrets.get(p.id))||new THREE.Vector3(e.ox,.68,e.oz));
       const projectileName=mode==='peek_shoot'?(p.number%2?'shot-gold':'shot-violet'):(p.number%2?'turret-shell':'turret-bolt');
       const projectile=this.assetSprite(projectileName,mode==='peek_shoot'?1.65:.42,mode==='peek_shoot'?2.3:.70,{depthTest:false,renderOrder:25});projectile.position.copy(from);
       const fromScreen=from.clone().project(this.camera),toScreen=to.clone().project(this.camera),screenAngle=-Math.atan2((toScreen.x-fromScreen.x)*this.renderer.domElement.clientWidth,(toScreen.y-fromScreen.y)*this.renderer.domElement.clientHeight);projectile.material.rotation=screenAngle;this.scene.add(projectile);
@@ -412,49 +446,85 @@ class Stage {
         const diameter=1.5+age*12.5;e.pulseSprite.visible=true;e.pulseSprite.scale.set(diameter,diameter,1);e.pulseSprite.material.opacity=Math.pow(1-age,1.35);e.pulseSprite.material.rotation=age*.32;
       }
     }
-    const popAlive=[],sceneBox=$('ss-scene').getBoundingClientRect(),gap=8*clamp(innerWidth/1280,.8,1.5);
-    const wings=this.popups.length?[heading,matchMetrics].map(el=>el.getBoundingClientRect()):[];
+    const popAlive=[],visiblePopups=[];
     for(const popup of this.popups){
-      const age=(this.clock-popup.born)/popup.life;if(age>=1){popup.el.remove();continue;}popAlive.push(popup);popup.el.hidden=age<0;if(age<0)continue;
-      const v=popup.origin.clone().project(this.camera),u=Math.max(0,age),pop=reduced?1:u<.14?.55+.65*(1-Math.pow(1-u/.14,3)):u<.26?1.2-.2*((u-.14)/.12):1;
-      popup.el.style.transform=`translate(-50%,-50%) scale(${pop.toFixed(3)})`;
+      const age=(this.clock-popup.born)/popup.life;if(age>=1){popup.el.remove();continue;}popAlive.push(popup);popup.el.hidden=age<0;if(age>=0)visiblePopups.push(popup);
+    }
+    this.popups=popAlive;
+    if(visiblePopups.length){
+    const sceneBox=$('ss-scene').getBoundingClientRect(),gap=8*clamp(innerWidth/1280,.8,1.5),wings=(mode==='swarm_gate'?[topHUD]:[heading,matchMetrics]).map(el=>el.getBoundingClientRect()),placed=[];
+    // Read newly visible/font-resized labels together, before any placement writes.
+    // Recover their unscaled layout box from the previous authored scale; the
+    // current rounded scale below reproduces getBoundingClientRect's bounds.
+    for(const popup of visiblePopups)if(popup.metrics?.version!==this.popupMetricsVersion){
+      const box=popup.el.getBoundingClientRect(),scale=popup.drawScale||1;
+      popup.metrics={width:box.width/scale,height:box.height/scale,version:this.popupMetricsVersion};
+    }
+    for(const popup of visiblePopups){
+      const v=popup.origin.clone().project(this.camera),u=Math.max(0,(this.clock-popup.born)/popup.life),pop=reduced?1:mode==='swarm_gate'?(u<.16?.94+.10*(1-Math.pow(1-u/.16,3)):u<.3?1.04-.04*((u-.16)/.14):1):u<.14?.55+.65*(1-Math.pow(1-u/.14,3)):u<.26?1.2-.2*((u-.14)/.12):1;
+      popup.drawScale=Number(pop.toFixed(3));popup.el.style.transform=`translate(-50%,-50%) scale(${popup.drawScale})`;
       // Only the label moves: the effect origin and the authoritative hit remain on the field.
-      const box=popup.el.getBoundingClientRect(),halfW=box.width/2+gap/2,halfH=box.height/2+gap/2;
+      const halfW=popup.metrics.width*popup.drawScale/2+gap/2,halfH=popup.metrics.height*popup.drawScale/2+gap/2;
       let x=clamp((v.x*.5+.5)*sceneBox.width+Math.sin(u*Math.PI)*12,gap+halfW,sceneBox.width-gap-halfW);
       let y=clamp((-v.y*.5+.5)*sceneBox.height-22-u*64,gap+halfH,sceneBox.height-gap-halfH);
       for(const wing of wings){const left=wing.left-sceneBox.left-gap,right=wing.right-sceneBox.left+gap,top=wing.top-sceneBox.top-gap,bottom=wing.bottom-sceneBox.top+gap;
         if(x+halfW>left&&x-halfW<right&&y+halfH>top&&y-halfH<bottom)y=bottom+halfH;
       }
+      if(mode==='swarm_gate'){const position=swarmPopupPosition({x,y,halfW,halfH,width:sceneBox.width,height:sceneBox.height,gap},placed);x=position.x;y=position.y;placed.push({left:x-halfW,right:x+halfW,top:y-halfH,bottom:y+halfH});}
       popup.el.style.left=x+'px';popup.el.style.top=y+'px';popup.el.style.opacity=String(Math.min(1,(1-u)/.25));
     }
-    this.popups=popAlive;
+    }
     this.particles.count=particles;this.particles.instanceMatrix.needsUpdate=true;if(particles)this.particles.instanceColor.needsUpdate=true;
   }
-  resize(){
+  resize(force=false){
+    const layoutKey=[innerWidth,innerHeight,(state?.players.length||0)>8,document.documentElement.dataset.partyPhase].join(':');
+    if(!force&&layoutKey===this.layoutKey)return;this.layoutKey=layoutKey;
+    this.popupMetricsVersion=(this.popupMetricsVersion||0)+1;
     const scale=clamp(innerWidth/1280,.55,1.5),dense=(this.state?.players.length||state?.players.length||0)>8,root=document.documentElement;root.style.setProperty('--ss-tv-scale',scale);document.body.dataset.ssDense=String(dense);
     const scene=$('ss-scene');
     if(innerWidth>700){
       const margin=16*scale,top=0,height=innerHeight,width=innerWidth;
       scene.style.inset='0';scene.style.left='0';scene.style.top='0';scene.style.width=width+'px';scene.style.height=height+'px';
       topHUD.style.width='';topHUD.style.left='';
-      root.style.setProperty('--ss-field-top',top+'px');root.style.setProperty('--ss-field-height',height+'px');root.style.setProperty('--ss-field-width',width+'px');root.style.setProperty('--ss-notice-top',(110*scale)+'px');root.style.setProperty('--ss-field-center',(width/2)+'px');
+      root.style.setProperty('--ss-field-top',top+'px');root.style.setProperty('--ss-field-height',height+'px');root.style.setProperty('--ss-field-width',width+'px');const cap=topHUD.getBoundingClientRect(),after=getComputedStyle(topHUD,'::after'),lower=parseFloat(after.bottom)||0,capBottom=cap.bottom+Math.max(0,-lower);root.style.setProperty('--ss-notice-top',(capBottom+12*scale)+'px');root.style.setProperty('--ss-field-center',(width/2)+'px');
     }else{scene.style.inset='0';scene.style.width='';scene.style.height='';}
     const r=scene.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height),key=[w,h,dense,scale].join(':');if(this.curling){const rail=$('ss-scoreboard').getBoundingClientRect(),hud=topHUD.getBoundingClientRect();const sideRail=dense&&rail.left>w*.5;this.curling.presentationBounds={width:w,height:h,left:18,right:sideRail?Math.min(w-18,rail.left-18):w-18,top:Math.max(18,hud.bottom+12),bottom:sideRail?h-18:Math.min(h-18,rail.top-18)};}if(this.viewportKey===key)return;this.viewportKey=key;
     if(this.software)this.renderer.setPixelRatio(Math.min(1,640/w));this.renderer.setSize(w,h,false);
     if(this.camera.isPerspectiveCamera)this.camera.aspect=w/h;
     else{let height=mode==='peek_shoot'?(dense?26:23):mode==='curling'?32:mode==='swarm_gate'?(dense?36:30):32;height=Math.max(height,(mode==='peek_shoot'?39:mode==='curling'?17:42)/(w/h));const span=height+(mode==='swarm_gate'?6:0),center=mode==='swarm_gate'?3:0;this.camera.left=-span*w/h/2;this.camera.right=span*w/h/2;this.camera.top=center+span/2;this.camera.bottom=center-span/2;}
+    if(this.courtyard){
+      const aspect=w/h,imageAspect=1.5;
+      this.courtyard.repeat.set(Math.min(1,aspect/imageAspect),Math.min(1,imageAspect/aspect));
+      this.courtyard.offset.set((1-this.courtyard.repeat.x)/2,(1-this.courtyard.repeat.y)/2);
+    }
+    this.swarmFX?.frame(w,h);
     this.bowling?.resize(w,h);
     this.camera.updateProjectionMatrix();
     if(this.camera.isOrthographicCamera)for(const bubble of this.identityBubbles){const height=24*scale*(this.camera.top-this.camera.bottom)/h;bubble.scale.set(height*1.5,height,1);}
   }
-  loop(now){if(now-this.last<(this.software?1000/15:1000/60)-1){requestAnimationFrame(this.loop);return;}let dt=Math.min(.1,(now-this.last)/1000);this.last=now;if(this.hitStop&&now>=this.hitStop.at&&now<this.hitStop.until)dt=0;this.clock+=dt;
+  dispose(){if(this.disposed)return;this.disposed=true;cancelAnimationFrame(this.raf);this.renderer.dispose();this.renderer.forceContextLoss();}
+  loop(now){if(this.disposed)return;if(document.hidden||this.state?.phase==='waiting'){this.last=now;this.raf=requestAnimationFrame(this.loop);return;}if(now-this.last<(this.software?1000/15:1000/60)-1){this.raf=requestAnimationFrame(this.loop);return;}let dt=Math.min(.1,(now-this.last)/1000);this.last=now;if(this.hitStop&&now>=this.hitStop.at&&now<this.hitStop.until)dt=0;this.clock+=dt;
     if(this.state)this.updateObjects(this.state,dt);this.updateEffects();this.applyShake(now);this.renderer.render(this.scene,this.camera);
-    if(now>noticeUntil)$('ss-notice').classList.remove('show');requestAnimationFrame(this.loop);
+    if(mode==='swarm_gate'&&$('ss-notice').classList.contains('show')){const cap=topHUD.getBoundingClientRect(),after=getComputedStyle(topHUD,'::after'),lower=parseFloat(after.bottom)||0;$('ss-notice').style.top=(cap.bottom+Math.max(0,-lower)+12*clamp(innerWidth/1280,.55,1.5))+'px';}
+    if(now>noticeUntil)$('ss-notice').classList.remove('show');this.raf=requestAnimationFrame(this.loop);
   }
+}
+
+// Score labels retain every authoritative reward; only their screen-space placement separates nearby hits.
+function swarmPopupPosition(box,placed){
+  const {halfW,halfH,width,height,gap}=box,minY=box.y;let best={x:box.x,y:box.y},cost=Infinity;
+  for(let row=0;row<8;row++)for(let col=0;col<9;col++){
+    const direction=col%2?1:-1,distance=Math.ceil(col/2),x=clamp(box.x+direction*distance*(halfW*2+gap),halfW+gap,width-halfW-gap),y=clamp(minY+row*(halfH*2+gap),halfH+gap,height-halfH-gap);
+    const overlap=placed.some(r=>x+halfW>r.left&&x-halfW<r.right&&y+halfH>r.top&&y-halfH<r.bottom),travel=Math.hypot(x-box.x,y-box.y);
+    const value=(overlap?1e6:0)+travel;if(value<cost){cost=value;best={x,y};}if(!overlap&&row===0&&col===0)return best;
+  }
+  return best;
 }
 try{view=new Stage();if(state)view.setState(state);if(mode==='swarm_gate')window.__ssSwarmDiag=()=>{
  const size=view.renderer.getSize(new THREE.Vector2()),project=v=>{const q=v.clone().project(view.camera);return{x:(q.x*.5+.5)*size.x,y:(.5-q.y*.5)*size.y};},bounds=points=>({left:Math.min(...points.map(p=>p.x)),right:Math.max(...points.map(p=>p.x)),top:Math.min(...points.map(p=>p.y)),bottom:Math.max(...points.map(p=>p.y))});
  const enemies=[];for(const [kind,mesh] of Object.entries(view.botSprites))for(let i=0;i<mesh.count;i++){const matrix=new THREE.Matrix4();mesh.getMatrixAt(i,matrix);enemies.push({kind,...bounds([[-.5,-.5],[.5,-.5],[-.5,.5],[.5,.5]].map(([x,y])=>project(new THREE.Vector3(x,y,0).applyMatrix4(matrix))))});}
- const turrets=[...view.turrets.values()].map(g=>{const head=g.userData.head,number=g.userData.bubble;return{variant:head.userData.variant,loaded:!!head.material.map.image?.width,muzzleReach:head.userData.muzzleReach,pivot:project(head.getWorldPosition(new THREE.Vector3())),number:project(number.getWorldPosition(new THREE.Vector3())),muzzle:project(view.turretMuzzle(g))};});
- return{camera:{left:view.camera.left,right:view.camera.right,top:view.camera.top,bottom:view.camera.bottom,position:view.camera.position.toArray(),look:view.look.toArray()},viewport:{width:size.x,height:size.y},enemies,turrets,gate:state?.gate,stage:state?.stage};
+ const turrets=[...view.turrets.entries()].map(([id,g])=>{const head=g.userData.head,number=g.userData.bubble,origin=head.getWorldPosition(new THREE.Vector3()),player=state?.players.find(p=>p.id===id),target=new THREE.Vector3((player?.aim.x-.5)*36,.68,-27+(player?.aim.y||0)*26),pivot=project(origin),muzzle=project(view.turretMuzzle(g)),aim=project(target),up=new THREE.Vector3(0,1,0).applyQuaternion(view.camera.quaternion),right=new THREE.Vector3(1,0,0).applyQuaternion(view.camera.quaternion),r=g.userData.base.scale.x*1126/1254/2;
+ return{id,variant:head.userData.variant,loaded:!!head.material.map.image?.width&&!!g.userData.base.material.map.image?.width,muzzleReach:head.userData.muzzleReach,pivot,number:project(number.getWorldPosition(new THREE.Vector3())),muzzle,anchor:{x:origin.x,z:origin.z},base:bounds([-1,1].flatMap(x=>[-1,1].map(y=>project(origin.clone().addScaledVector(right,x*r).addScaledVector(up,y*r))))),muzzleRayError:Math.abs((muzzle.x-pivot.x)*(aim.y-pivot.y)-(muzzle.y-pivot.y)*(aim.x-pivot.x))/(Math.hypot(aim.x-pivot.x,aim.y-pivot.y)||1)};});
+ const repair={ratio:view.repairSprite.scale.x/view.repairSprite.scale.y,native:view.repairSprite.material.map.image?{width:view.repairSprite.material.map.image.width,height:view.repairSprite.material.map.image.height}:null},cap=topHUD.getBoundingClientRect(),notice=$('ss-notice').getBoundingClientRect();
+ return{camera:{left:view.camera.left,right:view.camera.right,top:view.camera.top,bottom:view.camera.bottom,position:view.camera.position.toArray(),look:view.look.toArray()},viewport:{width:size.x,height:size.y},enemies,turrets,repair,notice:{capBottom:cap.bottom,top:notice.top,gap:notice.top-cap.bottom,shown:$('ss-notice').classList.contains('show')},gate:state?.gate,stage:state?.stage};
 };}catch(e){console.error(e);$('ss-error').hidden=false;$('ss-error').textContent='Не удалось включить 3D. Нужен браузер с WebGL 2 и аппаратным ускорением. '+e.message;}

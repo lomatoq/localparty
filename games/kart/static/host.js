@@ -1,3 +1,4 @@
+const forestArt=new Image();forestArt.src='/assets/gameplay/refresh129/kart-forest.png';forestArt.onload=()=>{trackArtwork=null;sceneryBackdropKey='';groundBackdropKey='';};
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const sceneryCanvas = document.getElementById('kartScenery');
@@ -90,7 +91,7 @@ function updateHud(){
   if(reorder&&animateRanks)for(const [id,row] of leaderRows)previous.set(id,row.element.offsetTop);
   const ids=new Set(ordered.map(p=>p.id));
   for(const [id,row] of leaderRows)if(!ids.has(id)){row.element.remove();leaderRows.delete(id);}
-  leaderboard.classList.add('scroll-area');leaderboard.classList.toggle('empty-state',!ordered.length);
+  if(!leaderboard.classList.contains('scroll-area'))leaderboard.classList.add('scroll-area');leaderboard.classList.toggle('empty-state',!ordered.length);
   if(!ordered.length)setText(leaderboard,'Waiting for drivers…');
   else {
     if(!leaderRows.size)leaderboard.textContent='';
@@ -102,7 +103,10 @@ function updateHud(){
         row={element,position:element.children[0],dot:element.children[1],name:element.children[2].children[0],lap:element.children[2].children[1],speed:element.children[3].children[0],best:element.children[3].children[1]};
         leaderRows.set(p.id,row);
       }
-      setText(row.position,p.finish_order?'#'+p.finish_order:p.position);
+      const position=String(p.finish_order?'#'+p.finish_order:p.position);
+      // The ranking adapter owns the decorated digit/cup after this authored
+      // value is set. Do not recreate that decoration on every results tick.
+      if(row.rank!==position){row.rank=position;setText(row.position,position);}
       if(row.color!==p.color){row.color=p.color;row.element.style.setProperty('--racer-color',p.color);}kartPortrait(row.dot,p);
       setText(row.name,p.name+(p.connected?'':' · offline'));
       setText(row.lap,p.finish_order?kartLabel('FINISH #','ФИНИШ №')+p.finish_order:`${kartLabel('Lap','Круг')} ${Math.min(p.lap+1,state.laps)}/${state.laps}`);
@@ -120,8 +124,8 @@ function updateHud(){
     const winner=ordered.find(p=>p.finish_order===1)||ordered[0];
     const key=JSON.stringify([winner.id,winner.name,winner.color,winner.finish_time]);
     if(key!==winnerKey){winnerKey=key;winnerBanner.innerHTML=`<div style="font-size:12px;color:#8D96A8;letter-spacing:.14em">WINNER</div><div style="color:${winner.color}">🏁 ${escapeHtml(winner.name)}</div><div style="font-size:14px;margin-top:4px">${winner.finish_time?fmtTime(winner.finish_time):''}</div>`;}
-    winnerBanner.classList.remove('hidden');
-  }else winnerBanner.classList.add('hidden');
+    winnerBanner.classList.toggle('hidden',false);
+  }else winnerBanner.classList.toggle('hidden',true);
 }
 function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 
@@ -132,11 +136,8 @@ function ellipsePoint(angle, rx, ry){
 function roundedRect(x,y,w,h,r){
   r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
 }
-function drawTrack(ctx){ctx.clearRect(0,0,1600,900);const field=ctx.createLinearGradient(0,0,1600,900);field.addColorStop(0,'#153f3b');field.addColorStop(.5,'#16362d');field.addColorStop(1,'#14213b');ctx.fillStyle=field;ctx.fillRect(0,0,1600,900);const t=KartTrack;function path(){ctx.beginPath();t.points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();}ctx.lineJoin='round';ctx.lineCap='round';
- // Landscape is cached; seeded positions keep it stable between frames/resizes.
- for(let y=12;y<900;y+=22)for(let x=12;x<1600;x+=22){ctx.fillStyle=((x*17+y*31)%7)<3?'#a9dda508':'#00000009';ctx.fillRect(x,y,9,2);}
- paintTrees(ctx,0,0,1600,900);
- path();ctx.strokeStyle='#51e9df';ctx.lineWidth=t.width+22;ctx.shadowColor='#30dbd4';ctx.shadowBlur=22;ctx.stroke();ctx.shadowBlur=0;path();ctx.strokeStyle='#081923';ctx.lineWidth=t.width+34;ctx.stroke();path();ctx.strokeStyle='#afc2c044';ctx.lineWidth=t.width+28;ctx.stroke();path();ctx.strokeStyle='#7cf8e8';ctx.lineWidth=t.width+17;ctx.stroke();ctx.setLineDash([20,20]);path();ctx.strokeStyle='#9b79e8';ctx.stroke();ctx.setLineDash([]);path();const asphalt=ctx.createLinearGradient(0,0,0,900);asphalt.addColorStop(0,'#334657');asphalt.addColorStop(.5,'#1f3043');asphalt.addColorStop(1,'#283b52');ctx.strokeStyle=asphalt;ctx.lineWidth=t.width;ctx.stroke();path();ctx.strokeStyle='#e2eadd50';ctx.lineWidth=2;ctx.setLineDash([18,25]);ctx.stroke();ctx.setLineDash([]);
+function drawTrack(ctx){ctx.clearRect(0,0,1600,900);const t=KartTrack;function path(){ctx.beginPath();t.points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();}ctx.lineJoin='round';ctx.lineCap='round';
+path();ctx.strokeStyle='#51e9df';ctx.lineWidth=t.width+22;ctx.shadowColor='#30dbd4';ctx.shadowBlur=22;ctx.stroke();ctx.shadowBlur=0;path();ctx.strokeStyle='#081923';ctx.lineWidth=t.width+34;ctx.stroke();path();ctx.strokeStyle='#afc2c044';ctx.lineWidth=t.width+28;ctx.stroke();path();ctx.strokeStyle='#7cf8e8';ctx.lineWidth=t.width+17;ctx.stroke();ctx.setLineDash([20,20]);path();ctx.strokeStyle='#9b79e8';ctx.stroke();ctx.setLineDash([]);path();const asphalt=ctx.createLinearGradient(0,0,0,900);asphalt.addColorStop(0,'#334657');asphalt.addColorStop(.5,'#1f3043');asphalt.addColorStop(1,'#283b52');ctx.strokeStyle=asphalt;ctx.lineWidth=t.width;ctx.stroke();path();ctx.strokeStyle='#e2eadd50';ctx.lineWidth=2;ctx.setLineDash([18,25]);ctx.stroke();ctx.setLineDash([]);
  for(let n=0;n<t.length;n+=115){const p=t.at(n);for(const side of [-1,1]){const x=p.x-Math.sin(p.angle)*(t.width/2+26)*side,y=p.y+Math.cos(p.angle)*(t.width/2+26)*side;ctx.fillStyle='#162536';ctx.beginPath();ctx.arc(x,y,5,0,7);ctx.fill();ctx.fillStyle=side>0?'#75e8c8':'#bea2ff';ctx.beginPath();ctx.arc(x-1,y-1,2.5,0,7);ctx.fill();}}
  for(const f of [.07,.40,.68]){const p=t.at(f*t.length);ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.fillStyle='#c8ff73';for(let i=-1;i<=1;i++)ctx.fillRect(i*18-5,-28,10,56);ctx.restore();}
  const start=t.at(0);ctx.save();ctx.translate(start.x,start.y);ctx.rotate(start.angle);for(let y=-t.width/2;y<t.width/2;y+=14)for(let x=-14;x<14;x+=14){ctx.fillStyle=(Math.round((y+t.width/2)/14)+x/14)%2?'#e7eadd':'#151719';ctx.fillRect(x,y,14,14);}ctx.restore();
@@ -163,7 +164,15 @@ function paintTrees(g,left,top,right,bottom){
 }
 function drawSceneryBackdrop(dpr,fit,ox,oy){
  if(!sceneryCanvas?.clientWidth||fit<=0)return;
- const rect=canvas.getBoundingClientRect(),w=sceneryCanvas.clientWidth,h=sceneryCanvas.clientHeight,originX=rect.left+ox,originY=rect.top+oy,key=[w,h,dpr,fit,originX,originY].join(':');
+ const w=sceneryCanvas.clientWidth,h=sceneryCanvas.clientHeight;
+ // The loaded forest covers the full backing independently of the race canvas
+ // position. Its cache does not need a geometry read on every rendered frame.
+ if(forestArt.complete&&forestArt.naturalWidth){
+  const key=[w,h,dpr,'forest'].join(':');if(key===sceneryBackdropKey)return;sceneryBackdropKey=key;
+  sceneryCanvas.width=Math.round(w*dpr);sceneryCanvas.height=Math.round(h*dpr);
+  const g=sceneryCanvas.getContext('2d'),scale=Math.max(w/forestArt.width,h/forestArt.height);g.setTransform(dpr,0,0,dpr,0,0);g.drawImage(forestArt,(w-forestArt.width*scale)/2,(h-forestArt.height*scale)/2,forestArt.width*scale,forestArt.height*scale);return;
+ }
+ const rect=canvas.getBoundingClientRect(),originX=rect.left+ox,originY=rect.top+oy,key=[w,h,dpr,fit,originX,originY].join(':');
  if(key===sceneryBackdropKey)return;sceneryBackdropKey=key;
  sceneryCanvas.width=Math.round(w*dpr);sceneryCanvas.height=Math.round(h*dpr);
  const g=sceneryCanvas.getContext('2d');g.setTransform(dpr*fit,0,0,dpr*fit,dpr*originX,dpr*originY);
@@ -172,6 +181,7 @@ function drawSceneryBackdrop(dpr,fit,ox,oy){
  paintTrees(g,left,top,right,bottom);
 }
 function drawGroundBackdrop(w,h,dpr,fit,ox,oy){
+ if(forestArt.complete&&forestArt.naturalWidth&&sceneryCanvas?.clientWidth){ctx.clearRect(0,0,w,h);return;}
  const key=[w,h,dpr,fit,ox,oy].join(':');
  if(key!==groundBackdropKey){
   groundBackdropKey=key;groundBackdrop=document.createElement('canvas');groundBackdrop.width=Math.round(w*dpr);groundBackdrop.height=Math.round(h*dpr);
@@ -248,6 +258,9 @@ function drawCars(dt=1/60){
   drawDriverNames();
 }
 let driverLabelFit=1,driverViewport={left:0,right:1600,top:0,bottom:900};
+const driverNameMetrics=new Map();
+document.fonts?.ready.then(()=>driverNameMetrics.clear());
+document.fonts?.addEventListener('loadingdone',()=>driverNameMetrics.clear());
 new ResizeObserver(()=>{const r=canvas.getBoundingClientRect();driverLabelFit=Math.max(.1,Math.min(r.width/1600,r.height/900));driverViewport={left:0,right:1600,top:0,bottom:900};}).observe(canvas);
 function drawDriverNames(){
   const fit=driverLabelFit,pad=6/fit,font=14/fit,line=22/fit,gutter=5/fit,used=[],labels=[];
@@ -255,9 +268,13 @@ function drawDriverNames(){
   for(const p of state.players){
     if(state.status!=='lobby'&&!p.in_race)continue;
     const d=displayPositions.get(p.id);if(!d)continue;
-    let text=p.name;const limit=112/fit;
-    if(ctx.measureText(text).width>limit){while(text.length&&ctx.measureText(text+'…').width>limit)text=text.slice(0,-1);text+='…';}
-    const w=ctx.measureText(text).width+pad*3+6/fit,h=line;
+    let metrics=driverNameMetrics.get(p.id);
+    if(!metrics||metrics.name!==p.name||metrics.font!==ctx.font){
+      let text=p.name;const limit=112/fit;
+      if(ctx.measureText(text).width>limit){while(text.length&&ctx.measureText(text+'…').width>limit)text=text.slice(0,-1);text+='…';}
+      metrics={name:p.name,font:ctx.font,text,width:ctx.measureText(text).width};driverNameMetrics.set(p.id,metrics);
+    }
+    const text=metrics.text,w=metrics.width+pad*3+6/fit,h=line;
     let box=null;
     for(let row=0;row<18&&!box;row++)for(const col of [0,-1,1,-2,2]){
       const x=Math.max(driverViewport.left+gutter,Math.min(driverViewport.right-w-gutter,d.x-w/2+col*(w+gutter)));
@@ -270,6 +287,7 @@ function drawDriverNames(){
     ctx.fillStyle='#f8f8fc';ctx.fillText(text,box.x+pad*2+6/fit,box.y+box.h/2);
     labels.push({id:p.id,name:p.name,text,fontPx:font*fit,x:box.x,y:box.y,w:box.w,h:box.h});
   }
+  for(const id of driverNameMetrics.keys())if(!state.players.some(p=>p.id===id))driverNameMetrics.delete(id);
   ctx.restore();window.KartNameLabels=labels;
 }
 let lastFrameTime=performance.now();

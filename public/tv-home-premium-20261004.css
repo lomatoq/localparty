@@ -1,0 +1,432 @@
+/* HeyPals TV home material pass, 2026-10-04.
+   Refines the established catalogue and sidebar geometry. Game-colour light and
+   softly shaded outer cards retain the party material; inner rows stay calm.
+   Fresh reserves and avatar/photo masks remain owned by their existing components. */
+
+html.hp-ui body.tv-screen{
+ --hpx-lime:#c8ff73;--hpx-violet:#a47bff;--hpx-pink:#ff6fb8;--hpx-gold:#ffd27a;--hpx-cyan:#5fd6ff;
+ --hpx-ink:#0d0a19;--hpx-rim:#ffffff2b;--hpx-rim-soft:#ffffff14;
+ --hpx-ease-out:cubic-bezier(.23,1,.32,1);--hpx-ease-io:cubic-bezier(.77,0,.175,1);
+}
+
+/* ───────────── Atmosphere: coloured light pools over the brick wall ───────────── */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage>.ambient{overflow:hidden;pointer-events:none}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage>.ambient::before{
+ content:"";position:absolute;inset:-6%;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(ellipse 34% 40% at 64% 30%,#7d4dff4a 0%,#7d4dff1a 45%,#7d4dff00 72%),
+  radial-gradient(ellipse 30% 30% at 50% 22%,#ff5fb11c 0%,#ff5fb100 70%),
+  radial-gradient(ellipse 36% 34% at 6% 96%,#ff5fae2b 0%,#ff5fae00 70%),
+  radial-gradient(ellipse 30% 40% at 98% 78%,#3fc8ff17 0%,#3fc8ff00 70%),
+  radial-gradient(ellipse 46% 22% at 24% 22%,#ffc56b12 0%,#ffc56b00 70%),
+  radial-gradient(ellipse 80% 70% at 50% 50%,#00000000 55%,#05030c8c 100%);
+
+}
+/* Drifting lobby props (generated art): behind every card, low opacity, slow. */
+html.hp-ui body.tv-screen #tvStage>.ambient>.hpx-props{position:absolute;inset:0;z-index:2;pointer-events:none;transition:opacity 600ms var(--hpx-ease-out)}
+html.hp-ui body.tv-screen #tvStage>.ambient>.hpx-props>img{
+ position:absolute;display:block;height:auto;user-select:none;
+ left:var(--x);top:var(--y);width:var(--w);opacity:var(--o,.5);
+ filter:var(--f,none) drop-shadow(0 10px 14px #0006);
+ rotate:var(--r,0deg);
+ animation:hpxDrift var(--d,14s) ease-in-out infinite alternate;animation-delay:var(--dl,0s);
+ will-change:transform;
+}
+@keyframes hpxDrift{
+ 0%{transform:translate3d(0,0,0) rotate(-3deg)}
+ 100%{transform:translate3d(var(--dx,6px),var(--dy,-12px),0) rotate(4deg)}
+}
+/* Browsing/Host's Pick move the catalogue under the hero zone: props recede. */
+html.hp-ui body.tv-screen #tvStage:is(.tv-browsing,.tv-has-choice)>.ambient>.hpx-props{opacity:0}
+html.hp-ui body.tv-screen #tvStage:has(#lobby[hidden])>.ambient>.hpx-props{display:none}
+
+/* The fixed header samples the wall beneath it. Both tint and blur disappear
+   before the first foreground card; labels and controls remain outside the masks. */
+html.hp-ui body.tv-screen #tvStage#tvStage>header.tv-header{
+ background:transparent!important;isolation:isolate;overflow:visible!important;
+ border:0!important;box-shadow:none!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage>header.tv-header::before,
+html.hp-ui body.tv-screen #tvStage#tvStage>header.tv-header::after{
+ content:"";display:block!important;position:absolute!important;
+ width:auto!important;height:auto!important;pointer-events:none;
+ opacity:1!important;transform:none!important;border:0!important;box-shadow:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage>header.tv-header::before{
+ inset:0 0 -16px!important;z-index:-1!important;
+ background:linear-gradient(180deg,#100d1c94 0%,#100d1c5e 46%,#100d1c14 78%,transparent 100%)!important;
+ -webkit-backdrop-filter:blur(12px) saturate(110%)!important;backdrop-filter:blur(12px) saturate(110%)!important;
+ -webkit-mask-image:linear-gradient(#000 0%,#000e 30%,#0006 66%,transparent 100%)!important;
+ mask-image:linear-gradient(#000 0%,#000e 30%,#0006 66%,transparent 100%)!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage>header.tv-header::after{
+ inset:0 0 -24px!important;z-index:-2!important;
+ background:linear-gradient(180deg,#15132126,transparent)!important;
+ -webkit-backdrop-filter:blur(4px)!important;backdrop-filter:blur(4px)!important;
+ -webkit-mask-image:linear-gradient(#000 0%,#000b 48%,transparent 100%)!important;
+ mask-image:linear-gradient(#000 0%,#000b 48%,transparent 100%)!important;
+}
+html.hp-ui body.tv-screen.tv-in-game #tvStage#tvStage>header.tv-header::before,
+html.hp-ui body.tv-screen.tv-in-game #tvStage#tvStage>header.tv-header::after{inset:0!important}
+
+/* ───────────── Header: crisp glass controls on the existing fade ───────────── */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage .tv-header .heypals-tv-logo{
+ filter:drop-shadow(0 3px 0 #2a124a) drop-shadow(0 8px 18px #9d63ff4d);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage .tv-header .tv-menu-labels{
+ background:linear-gradient(180deg,#2c2546e6,#1a1730e6)!important;
+ border-color:#ffffff1f!important;
+ box-shadow:inset 0 1px 0 #ffffff12,0 6px 16px -8px #07041180!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage .tv-header .tv-menu-labels>span{color:#cfc2ee}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage .tv-header .tv-menu-labels>span.is-fresh{color:var(--hpx-lime)}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage .tv-header .tv-menu-labels>span.is-active{
+ color:#fff!important;
+ background:linear-gradient(180deg,#554675,#41355c)!important;
+ box-shadow:inset 0 1px 0 #d7c3ff36,0 2px 5px #100b2540!important;
+ text-shadow:0 1px 0 #1b0f3a;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage .tv-header #tvAudioToggle{
+ background:linear-gradient(180deg,#2c2546e6,#1a1730e6)!important;
+ border-color:#ffffff24!important;
+ box-shadow:inset 0 1px 0 #ffffff21,0 10px 24px -12px #000000cc!important;
+}
+
+/* ───────────── Hero: depth and a breathing mascot stage ───────────── */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby>.intro .headline-stage h1{
+ filter:drop-shadow(0 3px 0 #120c26) drop-shadow(0 14px 22px #05030cb3);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby>.intro .headline-stage>.heypals-hero{
+ animation:hpxHeroFloat 7.5s ease-in-out infinite alternate;
+}
+@keyframes hpxHeroFloat{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(0,-7px,0)}}
+
+/* ───────────── Catalogue headings ───────────── */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .section-title h2{
+ text-shadow:0 2px 0 #120c26,0 10px 22px #05030ca6;
+}
+/* Catalogue counts are quiet text, with real space inside the heading. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-group-count{
+ position:relative;color:#cfc4df!important;text-shadow:0 1px 4px #100c2280;
+ padding:0 4px;align-self:center;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-group-count::before{content:none}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-fresh-section .lp-group-count{color:#d4e8c1!important}
+
+/* Card art provides the colour. Keep one rim and a close, directional shadow. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card{
+ border-color:color-mix(in srgb,var(--card,#9b7bff) 34%,#ffffff2e)!important;
+ box-shadow:
+  inset 0 1px 0 #ffffff33,
+  inset 0 -1px 0 #00000066,
+  0 1px 0 #ffffff0a,
+  0 20px 34px -18px #000000e6,
+  0 0 34px -14px color-mix(in srgb,var(--card,#9b7bff) 70%,transparent)!important;
+ transition:transform 220ms var(--hpx-ease-out),box-shadow 220ms var(--hpx-ease-out),border-color 220ms var(--hpx-ease-out);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .number{
+ background:#ffffff1c!important;
+ -webkit-background-clip:text!important;background-clip:text!important;
+ -webkit-text-fill-color:transparent;
+ -webkit-text-stroke:1.25px color-mix(in srgb,var(--card,#9b7bff) 30%,#ffffff2e);
+ opacity:.62!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .tag{
+ background:#211b2eee!important;border-color:#e2d4fb1f!important;
+ box-shadow:inset 0 1px 0 #ffffff10!important;
+}
+/* Supporting copy follows each card's light, in the authored italic body face. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card:not(.featured) .game-info p{
+ font-family:KardiaFitRunner,var(--hp-font-body),sans-serif!important;font-style:italic!important;font-weight:400!important;
+ color:color-mix(in srgb,var(--card,#b596ff) 38%,#eee8ff)!important;
+ font-size:12px!important;line-height:16px!important;opacity:.66!important;text-shadow:none!important;
+}
+/* The old reflection stopped at the art window. Authored art stays unobscured. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card.featured .game-info p{
+ color:color-mix(in srgb,var(--card,#b596ff) 38%,#eee8ff)!important;
+ opacity:.66!important;text-shadow:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .art::before{content:none}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card.featured{
+ border-color:color-mix(in srgb,var(--card,#9b7bff) 60%,#ffffff40)!important;
+ box-shadow:
+  inset 0 1px 0 #ffffff47,
+  inset 0 -1px 0 #00000066,
+  0 24px 44px -20px #000000f2,
+  0 0 0 1px color-mix(in srgb,var(--card,#9b7bff) 28%,transparent),
+  0 0 46px -12px color-mix(in srgb,var(--card,#9b7bff) 85%,transparent)!important;
+}
+@media(hover:hover) and (pointer:fine){
+ html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--card,#9b7bff) 55%,#ffffff80)!important}
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card:focus-visible{outline:3px solid var(--hpx-lime);outline-offset:3px}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .start-game{
+ box-shadow:inset 0 2px 0 #ffffff7a,inset 0 -3px 0 #5f932a47,0 4px 0 #3f5c1a,0 10px 22px -6px #a9ed4760!important;
+}
+
+/* ───────────── Fresh: lit glass shelf (glow reserve and geometry untouched) ───────────── */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-fresh-section{
+ background:
+  radial-gradient(ellipse 60% 70% at 50% 0%,#b4ff5a33,#b4ff5a00 72%),
+  radial-gradient(ellipse 40% 60% at 100% 100%,#7d4dff26,#7d4dff00 70%),
+  linear-gradient(125deg,#1d3a2ce6,#13221fe6 55%,#171a2be6)!important;
+ border-color:#c8ff7359!important;
+ box-shadow:inset 0 1px 0 #e4ffb88c,inset 0 -1px 0 #0000004d,0 0 60px #9fff3926,0 24px 40px -24px #000000e6!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-fresh-section .fresh-badge{
+ background:linear-gradient(180deg,#e6ffb3,#b4ff39 60%,#9be82a)!important;
+ box-shadow:inset 0 1px 0 #ffffffa6,inset 0 -2px 0 #4f7a1a59,0 0 22px #b4ff3966!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-fresh-section .fresh-heading h2{
+ text-shadow:0 2px 0 #0d1a10,0 10px 22px #050c08a6;
+}
+
+/* ───────────── Sidebar: one pearl-glass family, three accent tints ───────────── */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>section{
+ --hpx-tint:var(--hpx-violet);isolation:isolate;
+ background:
+  radial-gradient(ellipse 120% 90% at 8% 0%,color-mix(in srgb,var(--hpx-tint) 27%,transparent),transparent 68%),
+  radial-gradient(ellipse 90% 70% at 100% 100%,color-mix(in srgb,var(--hpx-tint2,#ff8fd0) 13%,transparent),transparent 72%),
+  linear-gradient(155deg,#342e48f7,#252336fa 56%,#202231fa)!important;
+ border-color:color-mix(in srgb,var(--hpx-tint) 32%,#ffffff2b)!important;
+ box-shadow:inset 0 1px 0 #ffffff38,inset 0 -1px 0 #07041166,
+  0 14px 28px -18px #080513e6,
+  0 0 26px -10px color-mix(in srgb,var(--hpx-tint) 30%,transparent)!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>section.tv-invite{--hpx-tint:var(--hpx-lime);--hpx-tint2:var(--hpx-cyan)}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>section.mini-ranking{--hpx-tint:var(--hpx-gold);--hpx-tint2:var(--hpx-pink)}
+/* Contract: passive information cards carry short soft lines centred on top and bottom edges. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>section::before{
+ content:""!important;display:block!important;position:absolute;inset:0!important;z-index:-1!important;pointer-events:none;
+ animation:none!important;border-radius:inherit;
+ -webkit-mask:none!important;mask:none!important;
+ background:
+  linear-gradient(90deg,transparent,color-mix(in srgb,var(--hpx-tint) 70%,#fff) 50%,transparent) 50% 0/72px 1.5px no-repeat,
+  linear-gradient(90deg,transparent,color-mix(in srgb,var(--hpx-tint) 45%,#fff0) 50%,transparent) 50% 100%/56px 1.5px no-repeat!important;
+ opacity:.74;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar :is(.tv-invite>.eyebrow,.section-title>h2,#tvRanking>h3){
+ text-shadow:0 1px 2px #120c264d!important;
+}
+/* Invite: the QR is the hero — lime-lit frame, never animated over the code itself. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #qr{
+ box-shadow:0 0 0 3px #c8ff7370,0 0 24px 2px #c8ff732e,0 8px 18px -8px #0009!important;
+}
+/* People: a quiet edge light fades into the translucent row. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player{
+ background:
+  linear-gradient(100deg,#f6a5d059 0%,#f6a5d026 52%,#f6a5d000 100%)!important;
+ border-color:#ffffff0d!important;
+ box-shadow:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player:not(.tv-more) .avatar{
+ box-shadow:0 0 0 2px #ffffff2e,0 4px 10px -2px #000000b3!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player b{text-shadow:0 1px 2px #0d0a19}
+/* One name role, shared with the standings; row and card dimensions stay intact. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player:not(.tv-more) b,
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank>b{
+ font-family:var(--hp-font-body,KardiaFit,sans-serif)!important;font-size:13px!important;
+ font-weight:700!important;font-style:normal!important;line-height:20px!important;letter-spacing:normal!important;
+}
+/* The live count rises behind the title; only the numerals fade, never the heading or roster. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>.company-people:not(.tv-invite)>.section-title{
+ display:flex!important;flex-direction:column;justify-content:center!important;
+ position:relative;isolation:isolate;height:50px;gap:0!important;margin:0 0 10px!important;text-align:center;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>.company-people:not(.tv-invite)>.section-title h2{
+ position:relative;z-index:1;width:100%;margin:0!important;line-height:22px!important;text-align:center;
+ transform:translateY(10px);text-shadow:0 2px 3px #272135cc!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #count{
+ position:absolute;z-index:0;top:-2px;left:0;width:100%;
+ font-size:31px!important;line-height:38px!important;color:#c8ff73!important;
+ background:linear-gradient(180deg,#c8ff7380 14%,#c8ff734d 44%,#c8ff7314 68%,#c8ff7300 90%)!important;
+ -webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent;
+ opacity:1;text-shadow:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar{gap:8px!important}
+/* One illustrated award belongs to the ranking header, with space kept clear below. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvRanking>h3{
+ display:flex;align-items:center;justify-content:center;gap:8px;min-height:26px;padding-inline:28px;margin:0 0 10px!important;text-align:center;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvRanking>h3>span{color:inherit!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvRanking>h3 .hpx-ranking-arrow{
+ display:block;flex:0 0 17px;width:17px;height:17px;background:currentColor;
+ -webkit-mask:url('/assets/icons/game-pack/arrow-up-right.svg') center/contain no-repeat;
+ mask:url('/assets/icons/game-pack/arrow-up-right.svg') center/contain no-repeat;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvRanking::after{
+ content:"";display:block!important;position:absolute;inset:auto!important;right:14px!important;top:-10px!important;
+ width:52px;height:52px;z-index:2;pointer-events:none;border:0!important;border-radius:0!important;
+ background:url('/assets/icons/atlas-stat-glyphs/trophy.webp') center/contain no-repeat!important;
+ box-shadow:none!important;transform:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank{
+ min-height:42px!important;height:42px!important;padding:5px 9px!important;margin:0!important;box-sizing:border-box;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders{display:grid;gap:6px}
+
+/* Mascot avatars for players without a photo (tv-home-premium.js sets --hpx-mascot). */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .avatar.hpx-mascot:not(.has-photo){
+ overflow:visible!important;color:transparent!important;isolation:isolate;
+ background:
+  var(--hpx-mascot) 46% 62%/128% auto no-repeat,
+  radial-gradient(circle at 50% 30%,hsl(var(--av-h,260) 85% 72%),hsl(var(--av-h,260) 55% 34%))!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .avatar.hpx-mascot:not(.has-photo)::after{
+ content:attr(data-initial);position:absolute;right:14.645%;bottom:14.645%;translate:50% 50%;z-index:2;
+ display:grid;place-items:center;width:16px;height:16px;border-radius:50%;
+ background:var(--hpx-lime);color:#121714;border:2px solid #11171b;
+ font-size:8px;line-height:1;box-shadow:0 2px 8px #0007;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player.tv-more{
+ color:#efe6ff;
+}
+/* Ranking: soft edge light; the champion's whole row has a restrained gold sheen. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank{
+ box-shadow:none!important;
+ background:
+  radial-gradient(ellipse 85% 180% at 0% 50%,#dec4ff12,transparent 72%),
+  linear-gradient(100deg,#15121e66,#15121e40 70%,#15121e26)!important;
+ border-color:#cfc1e81f!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank:first-child{
+ background:
+  radial-gradient(ellipse 95% 180% at 12% 0%,#ffe3a530,transparent 70%),
+  linear-gradient(112deg,#ffd27a0d 14%,#fff0c41c 36%,#ffd27a05 62%,transparent 82%),
+  linear-gradient(100deg,#3a2d1f70,#211b1e50 70%,#211b1e33)!important;
+ border:2px solid #ffd27a8c!important;
+ box-shadow:0 0 12px -6px #ffd27a59!important;
+ transform:scale(1.015);transform-origin:center;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank .hp-award{
+ filter:drop-shadow(0 2px 3px #0009);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank:first-child .hp-award{
+ filter:drop-shadow(0 2px 3px #0006);
+}
+
+@media (prefers-reduced-motion:reduce){
+ html.hp-ui body.tv-screen #tvStage>.ambient::before,
+ html.hp-ui body.tv-screen #tvStage>.ambient>.hpx-props>img,
+ html.hp-ui body.tv-screen #lobby .heypals-hero,
+ html.hp-ui body.tv-screen #tvCatalog .lp-catalog-card .art::before{animation:none!important}
+ html.hp-ui body.tv-screen #tvCatalog .lp-catalog-card{transition:none!important}
+}
+
+/* Sidebar accents: shared arrow silhouette, rose roster and warm winner. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar{overflow:visible!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>.company-people:not(.tv-invite){--hpx-tint:#efa1ce;--hpx-tint2:#c29aff}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>.company-people:not(.tv-invite) .section-title :is(h2,.spark){color:#ffc2e4!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #count{
+ background:linear-gradient(180deg,#f6a5d080 14%,#f6a5d04d 44%,#f6a5d014 68%,#f6a5d000 90%)!important;
+ -webkit-background-clip:text!important;background-clip:text!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar .tv-invite>.eyebrow{
+ display:flex;align-items:center;justify-content:center;gap:8px;color:#dcffb0!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar .tv-invite>.eyebrow::after{
+ content:"";display:block;flex:0 0 17px;width:17px;height:17px;background:currentColor;
+ -webkit-mask:url('/assets/icons/game-pack/arrow-up-right.svg') center/contain no-repeat;
+ mask:url('/assets/icons/game-pack/arrow-up-right.svg') center/contain no-repeat;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvRanking>h3{color:#fff4af!important;transform:translateY(3px)}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank:first-child>strong{
+ color:#ffdc87!important;font-size:17px!important;line-height:22px!important;padding-right:3px;text-shadow:0 1px 3px #38200a80;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player.tv-more{
+ display:flex;align-items:center;justify-content:center;gap:6px;color:#ffc2e4!important;font-size:15px!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player.tv-more::before{
+ content:"";display:block;width:17px;height:17px;background:currentColor;
+ -webkit-mask:url('/assets/icons/game-pack/user-avatar.svg') center/contain no-repeat;
+ mask:url('/assets/icons/game-pack/user-avatar.svg') center/contain no-repeat;
+}
+
+/* Sidebar wash belongs to the full stage: its old lobby-sized image started
+   abruptly at y=64 underneath the sound control. Preserve light without a seam. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby{background-image:none!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage>.ambient::after{
+ content:"";display:block!important;opacity:1;position:absolute;inset:0;pointer-events:none;z-index:0;
+ background:radial-gradient(ellipse 290px 360px at calc(100% - 153px) 52%,#9275cd20 0%,#8262b713 38%,#73549500 78%),radial-gradient(ellipse 230px 220px at calc(100% - 153px) 20%,#8cbfa817 0%,#8cbfa800 76%);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage:has(#lobby[hidden])>.ambient::after{display:none!important}
+
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #tvLeaders>.mini-rank:first-child .hp-award{
+ width:30px!important;height:34px!important;max-width:none;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .lp-player-range{
+ color:color-mix(in srgb,var(--card,#b596ff) 16%,#fff)!important;opacity:1!important;
+}
+/* Featured recommendation remains legible against bright game art. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .featured-label.hp-featured-icon{
+ width:42px!important;height:42px!important;min-height:42px!important;
+ color:#ddff9b!important;background:radial-gradient(circle at 35% 20%,#405637,#202c24 72%)!important;
+ border:1px solid #d4ff8c99!important;
+ box-shadow:inset 0 1px 0 #f0ffd847,0 3px 9px #10150dc0,0 0 17px #c8ff7359!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .featured-label.hp-featured-icon>svg{
+ width:22px!important;height:22px!important;min-width:22px!important;
+ stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;
+ filter:drop-shadow(0 0 4px #ceff91a6);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .game.featured .art>.tag{max-width:calc(100% - 82px)!important}
+
+/* Inset the paint to the avatar, without moving the roster content. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player:not(.tv-more){
+ background:none!important;border-color:transparent!important;position:relative;isolation:isolate;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar #players .player:not(.tv-more)::before{
+ content:"";position:absolute;inset:16.667% 0 16.667% 10px;z-index:-1;border-radius:inherit;pointer-events:none;
+ background:linear-gradient(100deg,#f6a5d059 0%,#f6a5d026 52%,#f6a5d000 100%);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>section{
+ border-width:1.5px!important;
+}
+
+/* Transparent authored hero: retain the diagonal wall, expose the real lobby. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby>.intro>.headline-stage>.heypals-hero{
+ height:400px!important;width:auto!important;right:228px!important;top:-20px!important;clip-path:none!important;
+ -webkit-mask-image:linear-gradient(#000 0%,#000 82%,transparent 100%)!important;
+ mask-image:linear-gradient(#000 0%,#000 82%,transparent 100%)!important;
+ filter:drop-shadow(0 10px 16px #30204066);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby>.intro>.headline-stage::before,
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby>.intro>.headline-stage::after{content:none!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby>.intro .headline-stage h1{
+ filter:drop-shadow(0 3px 0 #291a3b) drop-shadow(0 12px 22px #35224780);
+ text-shadow:0 3px 18px #38245280!important;
+}
+/* Reserve italic ink at each wrapped gold fragment, not only the whole heading. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby .headline-stage h1 em{
+ padding-inline:0 .13em;margin-right:-.13em;
+ -webkit-box-decoration-break:clone;box-decoration-break:clone;overflow:visible;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .number{
+ -webkit-mask-image:none;
+ mask-image:none;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .tag{
+ background:#211b2ea6!important;
+ -webkit-backdrop-filter:blur(10px) saturate(110%)!important;backdrop-filter:blur(10px) saturate(110%)!important;
+}
+/* Separators are siblings, outside every card's clipping/scroll surface. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar{gap:6px!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>.hpx-sidebar-divider{
+ display:block;flex:0 0 2px;width:33.333%;height:2px;min-height:2px;margin:0 auto;
+ border-radius:999px;pointer-events:none;opacity:.75;
+ background:linear-gradient(90deg,#c5a3ff00 0%,#c5a3ff 50%,#c5a3ff00 100%);
+ box-shadow:none;filter:drop-shadow(0 0 4px #b58aff80);
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>.hpx-sidebar-divider:has(+[hidden]){display:none}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-group-count{font-size:14.4px!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvCatalog .lp-catalog-card .number{
+ width:max-content!important;right:auto!important;
+ -webkit-mask-image:none!important;
+ mask-image:none!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby .headline-stage h1{
+ width:550px!important;max-width:550px!important;box-sizing:border-box;padding-right:10px!important;
+}

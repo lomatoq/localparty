@@ -66,6 +66,16 @@ test('Local Tanks flag and coop modes discard stale round counters, survival pre
  const coop=normalize({...input,snapshot:{game:{...input.snapshot.game,mode:'coop'}}});assert.equal(coop.progress,null);assert(!coop.metrics.some(m=>m.key==='teams'));
  const survival=normalize({...input,snapshot:{game:{...input.snapshot.game,mode:'survival',round:3}}});assert.equal(survival.progress,'Раунд 3 / 10');
 });
+test('Local Tanks hides an explicitly untimed active survival clock but keeps timed modes',()=>{
+ const input={game:{id:'tanks'},ui:{phase:'playing',endsAt:50000},now:10000,snapshot:{game:{mode:'survival',status:'playing',round:1,maxRounds:10,timer:0},players:[]}};
+ const untimed=normalize(input);assert.equal(untimed.timer,null);assert.equal(untimed.progress,'Раунд 1 / 10');
+ for(const mode of ['ctf','coop']){
+  const timed=normalize({...input,snapshot:{game:{...input.snapshot.game,mode,timer:75}}});assert.equal(timed.timer.remainingSeconds,75);assert.equal(timed.timer.clock,'remaining-seconds');
+  const expired=normalize({...input,snapshot:{game:{...input.snapshot.game,mode,timer:0}}});assert.equal(expired.timer.remainingSeconds,0);
+ }
+ const timedSurvival=normalize({...input,snapshot:{game:{...input.snapshot.game,timer:30}}});assert.equal(timedSurvival.timer.remainingSeconds,30);
+ const other=normalize({...input,game:{id:'push'},snapshot:{game:{status:'playing',timer:0}}});assert.equal(other.timer.remainingSeconds,0);
+});
 test('Spy public role assignment and play instructions override stale parent UI',()=>{
  const game={id:'spy'},ui={phase:'playing',progress:'Посмотрите роль на телефоне',endsAt:13000};
  const reveal=normalize({game,ui,snapshot:{phase:'reveal'},now:10000});

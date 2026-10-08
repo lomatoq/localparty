@@ -281,3 +281,8 @@ html.hp-ui.party-managed.party-host[data-party-game=warsaw] body.party-screen #b
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 .quiz-identity .quiz-photo{box-sizing:border-box;border:1.5px solid var(--player,#cbb5dd)}
+
+/* The task keeps its centered frame; standings can use the space below that
+   shared top without feeding their intrinsic height back into the question. */
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen:not([data-game-phase=finished]) main>.screen-workspace[data-tv-hud-cluster]>.screen-sidebar{position:relative;overflow:visible!important}
+html.hp-ui.party-managed.party-host.party-display-only.party-session-active:is([data-party-game=sinyakquiz],[data-party-game=warsaw]) body.party-screen:not([data-game-phase=finished]) main>.screen-workspace[data-tv-hud-cluster]>.screen-sidebar>.screen-standings{position:absolute;inset:0 0 auto;height:max(100%,min(calc(var(--quiz-roster-height,368px) + 120px),calc(50dvh + 50% - 24px)))!important;max-height:calc(50dvh + 50% - 24px)!important;box-sizing:border-box}

@@ -28,13 +28,11 @@ html body.is-player.in-game.game-waiting #waitingRules::before,
 html body.is-player.in-game.game-waiting #play::after{background:none!important}
 
 /* One gradient layer begins behind masthead contents, never at top:100%. */
-html body:is(.native-shell,.is-player) header#brandHeader#brandHeader.app-header,
 html body.tv-screen #tvStage>header.tv-header{
  background:transparent!important;isolation:isolate;overflow:visible!important;
  box-shadow:none!important;border-bottom:0!important;
  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
 }
-html body:is(.native-shell,.is-player) header#brandHeader#brandHeader.app-header::before,
 html body.tv-screen #tvStage>header.tv-header::before{
  content:'';display:block!important;position:absolute!important;inset:0 0 -88px!important;
  z-index:-1!important;width:auto!important;height:auto!important;opacity:1!important;
@@ -45,7 +43,6 @@ html body.tv-screen #tvStage>header.tv-header::before{
 html body:is(.native-shell,.is-player) header#brandHeader#brandHeader.app-header::after{display:none!important}
 /* Gameplay starts directly below the measured masthead. Its fading backing
    must never reach the first turn, money, role, or drawing readout. */
-html body.is-player.in-game header#brandHeader#brandHeader.app-header::before,
 html body.tv-screen.tv-in-game #tvStage>header.tv-header::before{
  inset:0!important;
  background:linear-gradient(180deg,#151321 0%,#151321eb 32%,#15132180 72%,transparent 100%)!important;
@@ -75,12 +72,6 @@ html body.tv-screen.tv-in-game #tvStage>header.tv-header::before{
 }
 
 /* Host sticky rows share one measured backing beneath every foreground row. */
-html body.native-shell main>.native-stack-backing{
- background:linear-gradient(#151321f1,#151321f1),var(--hp-wall-image) center top/cover,#151321!important;
- -webkit-mask-image:linear-gradient(#000 calc(100% - 48px),transparent)!important;
- mask-image:linear-gradient(#000 calc(100% - 48px),transparent)!important;
-}
-html body.native-shell main>.native-stack-backing::after{display:none!important}
 html body.native-shell.stack-backed:not(.native-host-tab) header#brandHeader#brandHeader.app-header::before{display:none!important}
 html body.native-shell #choiceStrip::before,
 html body.native-shell #activeCard::before,
@@ -371,7 +362,7 @@ html body dialog[open].lp-dialog-closing::backdrop,html body.native-shell dialog
  animation:lp-shared-backdrop-out 180ms ease-out both!important;
 }
 @keyframes lp-shared-dialog-out{from{opacity:var(--lp-close-opacity,1);translate:var(--lp-close-translate,0 0);scale:var(--lp-close-scale,1);transform:var(--lp-close-transform,none)}to{opacity:0;translate:0 8px;scale:.96;transform:none}}
-@keyframes lp-shared-backdrop-out{from{opacity:1}to{opacity:0}}
+@keyframes lp-shared-backdrop-out{from{opacity:var(--lp-backdrop-start,1)}to{opacity:0}}
 @media(prefers-reduced-motion:reduce){
  html body dialog[open]:not(.lp-dialog-closing),html body.native-shell dialog[open]:not(.lp-dialog-closing),
  html body dialog[open].lp-dialog-closing.sheet-closing,html body.native-shell dialog[open].lp-dialog-closing.sheet-closing,
@@ -435,3 +426,126 @@ html.hp-ui body.is-player .hp-match-results::before{display:none}
  html.hp-ui body.is-player.in-game #pauseOverlay :is(#sessionRules,#resumeButton){height:48px!important;min-height:48px!important;padding:6px 12px!important;margin:0!important}
  html.hp-ui body.is-player.in-game #resumeButton>.hp-button-icon{width:32px!important;height:32px!important;min-width:32px!important;flex:0 0 32px!important}
 }
+
+/* Shell chrome samples the live content once, before its independent dark tint.
+   Keep the sampling layer fully present behind the controls: multiplying a
+   fading tint by a second fading mask let sharp art bleed back into the header.
+   Only the tail blends back to the unchanged page. No duplicated artwork. */
+html body:is(.native-shell,.is-player){--shell-head-tail:88px;--shell-head-rgb:21 19 33}
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header{
+ background:transparent!important;isolation:isolate;overflow:visible!important;
+ border-bottom:0!important;box-shadow:none!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+html body.is-player:not(.in-game) header#brandHeader{--shell-head-tail:48px}
+html body.is-player:is(.in-game,.hp-has-match-result) header#brandHeader{--shell-head-tail:0px}
+html body.native-shell.native-host-tab header#brandHeader{--shell-head-tail:12px;--shell-head-rgb:33 28 45}
+/* The host panel and the exposed area behind its fading masthead share a base. */
+html:root body.native-shell.native-host-tab{background-color:#211c2d!important}
+/* The catalog stays mounted behind Host; its sticky backing must not double-tint this masthead. */
+html body.native-shell.native-host-tab>:is(.native-stack-backing,.native-stack-blur){display:none!important}
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header::before,
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header::after{
+ content:'';display:block!important;position:absolute!important;inset:0!important;
+ z-index:-1!important;pointer-events:none;width:auto!important;height:auto!important;
+ opacity:1!important;transform:none!important;transition:none!important;
+ border:0!important;box-shadow:none!important;
+}
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header::before,
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header::after{
+ inset:0 0 calc(-1 * var(--shell-head-tail))!important;
+}
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header::before{
+ background:transparent!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ -webkit-mask-image:linear-gradient(#000 0%,#000 calc(100% - max(14px,var(--shell-head-tail,48px))),transparent 100%)!important;
+ mask-image:linear-gradient(#000 0%,#000 calc(100% - max(14px,var(--shell-head-tail,48px))),transparent 100%)!important;
+}
+html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header::after{
+ background:linear-gradient(180deg,rgb(var(--shell-head-rgb,21 19 33) / .94) 0%,rgb(var(--shell-head-rgb,21 19 33) / .88) calc(100% - max(18px,var(--shell-head-tail,48px))),rgb(var(--shell-head-rgb,21 19 33) / .48) 84%,transparent 100%)!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ -webkit-mask-image:none!important;mask-image:none!important;
+}
+html body.native-shell.stack-backed:not(.native-host-tab) header#brandHeader#brandHeader#brandHeader.app-header::before,
+html body.native-shell.stack-backed:not(.native-host-tab) header#brandHeader#brandHeader#brandHeader.app-header::after{display:none!important}
+/* A pinned Host title is another reading header. Its contents remain unfiltered. */
+html body.native-shell.native-host-tab #hostPanel .native-sheet-head::before{
+ background:transparent!important;
+ -webkit-mask-image:linear-gradient(#000 calc(100% - 14px),transparent)!important;
+ mask-image:linear-gradient(#000 calc(100% - 14px),transparent)!important;
+}
+html body.native-shell.native-host-tab #hostPanel .native-sheet-head::after{
+ content:'';position:absolute;inset:0 -16px -12px;z-index:-1;pointer-events:none;
+ background:linear-gradient(180deg,#211c2df0 0%,#211c2de0 calc(100% - 16px),transparent 100%);
+}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ html body:is(.native-shell,.is-player) header#brandHeader#brandHeader#brandHeader.app-header::before,
+ html body.native-shell>.native-stack-blur,
+ html body.native-shell.native-host-tab #hostPanel .native-sheet-head::before{
+  -webkit-backdrop-filter:blur(20px)!important;backdrop-filter:blur(20px)!important;
+ }
+}
+
+/* Search is a hint, not a player name: keep the approved true italic copy face. */
+html body :is(.native-search input,.guest-catalog-tools input[type="search"]),
+html body :is(.native-search input,.guest-catalog-tools input[type="search"])::placeholder{
+ font-family:var(--hp-font-copy,"Anybody",sans-serif)!important;font-style:italic!important;font-weight:400!important;
+}
+
+/* Keep the catalogue mounted for scroll restoration, but don't expose its cards
+   through the Host tab's translucent header and footer. Native navigation owns motion. */
+html body.native-shell.native-host-tab>main{opacity:0;pointer-events:none}
+
+/* Two measured viewport layers: blur is masked, tint fades directly. Neither is
+   clipped by a scrolling/animated catalogue ancestor; foreground controls stay sharp. */
+html body.native-shell>main{z-index:auto;isolation:auto}
+html body.native-shell>:is(.native-stack-backing,.native-stack-blur){position:fixed;inset:0 0 auto;pointer-events:none}
+html body.native-shell>.native-stack-blur{
+ z-index:28;
+ -webkit-mask-image:linear-gradient(#000 calc(100% - 64px),#000b calc(100% - 40px),#0003 calc(100% - 16px),transparent);
+ mask-image:linear-gradient(#000 calc(100% - 64px),#000b calc(100% - 40px),#0003 calc(100% - 16px),transparent);
+}
+html body.native-shell>.native-stack-backing{
+ z-index:29;
+ background:linear-gradient(to bottom,#151321f7 calc(100% - 64px),#151321b0 calc(100% - 40px),#15132130 calc(100% - 16px),#15132100);
+}
+
+/* Host settings is a full-screen opaque surface, including the safe-area/dock.
+   Fade its scroll content only, never the background plane. */
+html body.native-shell.native-host-tab #hostPanel.native-sheet[open]{
+ padding:var(--host-head,76px) 0 var(--native-tab-reserve,0px)!important;
+ inset:0!important;height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;
+ box-sizing:border-box!important;border-radius:0!important;
+ background:#211c2d!important;-webkit-mask-image:none!important;mask-image:none!important;
+}
+
+/* The summary glow is outside the details box: its 220ms height clip must
+   never clip or retire the soft backdrop while the help body unfolds. */
+html body.is-player:not(.in-game) .return-entry-shell{position:relative;display:flow-root;isolation:isolate;width:100%;max-width:520px;margin:36px auto 4px;transform:translateY(24px)}
+html body.is-player:not(.in-game) .return-entry-shell::before{content:'';position:absolute;inset:-24px -16px;z-index:0;pointer-events:none;background:radial-gradient(ellipse closest-side at center,#151321eb 0%,#151321c4 48%,#15132160 68%,transparent 100%)}
+html body.is-player:not(.in-game) .return-entry-shell>.return-entry-help{position:relative;z-index:1;margin:0!important;transform:none}
+html body.is-player:not(.in-game) .return-entry-shell>.return-entry-help>summary::before{display:none}
+html body.is-player:not(.in-game) .return-entry-help>summary .return-entry-arrow{display:inline-block;width:16px;height:16px;margin-left:5px;vertical-align:-3px;color:#fff;fill:currentColor}
+
+/* Results own the full viewport, including shell chrome and safe areas. This
+   applies to guest and host controllers, without depending on role hydration. */
+html body:not(.tv-screen).hp-has-match-result{isolation:isolate;background:#151321!important}
+html body:not(.tv-screen).hp-has-match-result::before{
+ content:'';display:block!important;position:fixed;inset:-12px;z-index:-1;pointer-events:none;
+ background:linear-gradient(#151321d9,#151321e8),var(--hp-wall-image) center/cover no-repeat!important;
+ opacity:1!important;filter:blur(5px)!important;animation:none!important;transform:none!important;
+}
+html body:not(.tv-screen).hp-has-match-result :is(#play#play,#brandHeader#brandHeader,#sessionControls){background:transparent!important;box-shadow:none!important;border-color:transparent!important}
+html body:not(.tv-screen).hp-has-match-result #brandHeader#brandHeader::before{display:block!important;inset:0 0 -24px!important;background:linear-gradient(#15132199,transparent)!important}
+html body:not(.tv-screen).hp-has-match-result #sessionControls::before{content:'';position:absolute;inset:-28px 0 0;pointer-events:none;background:linear-gradient(transparent,#15132199)!important}
+html.hp-ui body:not(.tv-screen).hp-has-match-result .hp-match-results{background:transparent!important}
+html.hp-ui body:not(.tv-screen).hp-has-match-result .hp-match-results::before{display:none!important}
+/* 176: a static 10% wall texture over the existing feathered header material. */
+html body :is(header#brandHeader.app-header)>.shell-header-bricks{display:block!important;position:absolute!important;inset:0 0 calc(-1 * var(--shell-head-tail,48px));z-index:0;pointer-events:none;background:var(--hp-wall-image) center top/100vw auto no-repeat;opacity:.1;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#0003 24%,#000 67%,#0009 83%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#0003 24%,#000 67%,#0009 83%,transparent 100%)}
+
+/* Shared stack feather: a long eased tail avoids a visible line across search. */
+html body.native-shell>.native-stack-blur{
+ -webkit-mask-image:linear-gradient(#000 calc(100% - var(--stack-feather,24px) * 1),#000e calc(100% - var(--stack-feather,24px) * 0.786),#0009 calc(100% - var(--stack-feather,24px) * 0.536),#0004 calc(100% - var(--stack-feather,24px) * 0.286),#0001 calc(100% - var(--stack-feather,24px) * 0.107),transparent 100%);
+ mask-image:linear-gradient(#000 calc(100% - var(--stack-feather,24px) * 1),#000e calc(100% - var(--stack-feather,24px) * 0.786),#0009 calc(100% - var(--stack-feather,24px) * 0.536),#0004 calc(100% - var(--stack-feather,24px) * 0.286),#0001 calc(100% - var(--stack-feather,24px) * 0.107),transparent 100%);
+}
+html body.native-shell>.native-stack-backing{background:linear-gradient(#151321f7 calc(100% - var(--stack-feather,24px) * 1),#151321dc calc(100% - var(--stack-feather,24px) * 0.786),#1513218c calc(100% - var(--stack-feather,24px) * 0.536),#15132138 calc(100% - var(--stack-feather,24px) * 0.286),#1513210c calc(100% - var(--stack-feather,24px) * 0.107),#15132100 100%)}

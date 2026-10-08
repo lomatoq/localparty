@@ -11,3 +11,16 @@ test('ray event is collinear with authoritative turret and aim; nearest enemy ta
 
 test('peek shot retains actual moving target identity, style and death center after removal',()=>{const m=new Match('peek_shoot');const p=m.add({id:'a',name:'A'});m.start();m.t=1;const target={id:17,kind:'gold',style:3,baseX:.5,coverY:.6,r:.041,born:0,life:3,speed:2,seed:.8,depth:1,hp:1};m.targets=[target];m.covers=[];const at=targetAt(target,m.t);p.aim={x:at.x,y:at.y};m.galleryFire(p);const e=m.events.findLast(e=>e.kind==='shot');assert.equal(e.targetId,17);assert.equal(e.targetStyle,3);assert.equal(e.awardedScore,30);assert.deepEqual(e.deathPosition,{x:at.x,y:at.y});assert.equal(e.targetSnapshot.rise,at.rise);m.spawnAt=100;m.galleryStep();assert.equal(m.targets.length,0);assert.equal(e.targetSnapshot.id,17);assert.equal(e.targetSnapshot.hp,1);});
 test('swarm snapshot advertises the same depth used by authoritative rays',()=>{const m=game();assert.equal(m.snapshot().players[0].turretZ,SIEGE_TURRET_Z);});
+
+for(const count of [1,2,4,8,9,16])test(`enemy-side cannon anchors ${count}: snapshot, rays and clear base spacing agree`,()=>{
+ const m=new Match('swarm_gate');for(let i=0;i<count;i++)m.add({id:'p'+i});m.start();
+ const players=m.snapshot().players;assert.equal(players.length,count);
+ for(let i=0;i<count;i++){
+  const p=m.players.get(players[i].id),origin=m.turretAnchor(p);assert.deepEqual(origin,{x:players[i].turretX,z:players[i].turretZ});assert(origin.z<=-9.5);
+  for(let j=0;j<i;j++){const other=players[j];assert(Math.hypot(origin.x-other.turretX,(origin.z-other.turretZ)*Math.SQRT1_2)>3.5,'visible native circular bases stay apart');}
+  p.aim={x:.5,y:0};m.enemies=[];m.siegeFire(p);const e=m.events.findLast(e=>e.kind==='shot');assert.equal(e.ox,origin.x);assert.equal(e.oz,origin.z);assert.equal(e.awardedScore,0);
+ }
+});
+test('enemy passing the front cannon is still shootable with a backward aim and earns unchanged reward',()=>{
+ const m=game(),p=m.players.get('a');m.enemies=[bug(1,'termite',24,0,-2)];p.aim={x:.5,y:1};m.siegeFire(p);assert.equal(p.score,10);assert.equal(m.events.findLast(e=>e.kind==='shot').awardedScore,10);
+});

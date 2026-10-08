@@ -55,7 +55,9 @@ function assertDeckCompaction(run){
  await page.goto(`http://127.0.0.1:${server.address().port}/native-shell/index.html`);
  const state={catalog:require('../lib/catalog'),players:[{id:'one',name:'Александра',gameReady:true,connected:true}],leaderboard:[],votes:[],screens:1,native:{ready:true,catalogReady:true},selected:'push',tv:{canCover:true,mode:'none',focusNumber:1,total:33}};
  await page.evaluate(s=>{window.__snapshot=s;LocalPartyHost.update(s);},state);
- await page.locator('#openHost').click();
+ // The technical shortcut is intentionally hidden in the installed app.
+ // Exercise the underlying modal contract via its retained entry hook.
+ await page.evaluate(()=>document.getElementById('openHost').click());
  report.untranslated=await page.locator('#hostPanel').evaluate(root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),out=[];while(walker.nextNode()){const n=walker.currentNode;if(/[А-Яа-яЁё]/.test(n.nodeValue)&&!n.nodeValue.includes('Александра'))out.push(n.nodeValue.trim());}return out;});
  report.type=await page.locator('#botHint').evaluate(el=>({family:getComputedStyle(el).fontFamily,style:getComputedStyle(el).fontStyle,weight:getComputedStyle(el).fontWeight}));
  assert.equal(report.type.style,'italic','Supporting copy uses the approved real italic role');assert.equal(report.type.weight,'400');assert.match(report.type.family,/KardiaFitRunner/);
@@ -68,7 +70,7 @@ function assertDeckCompaction(run){
  report.closeSamples=await page.evaluate(()=>__closeSamples);
  let faded=false;for(const s of report.closeSamples){if(!s.visible||s.opacity<.03)faded=true;else if(faded&&s.opacity>.12)throw Error('Host sheet reappears during closing');}
  report.closed=await page.locator('#hostPanel').isVisible();
- for(let i=0;i<3;i++){await page.locator('#openHost').click();await page.waitForTimeout(850);assert(await page.locator('#hostPanel').isVisible());await page.locator('[data-close=hostPanel]').click();await page.waitForTimeout(600);assert(!await page.locator('#hostPanel').isVisible());}
+ for(let i=0;i<3;i++){await page.evaluate(()=>document.getElementById('openHost').click());await page.waitForTimeout(850);assert(await page.locator('#hostPanel').isVisible());await page.locator('[data-close=hostPanel]').click();await page.waitForTimeout(600);assert(!await page.locator('#hostPanel').isVisible());}
  await page.evaluate(()=>{__snapshot.native.working=false;__snapshot.active={id:'push',instance:'audit',ui:{phase:'waiting'},session:{paused:false,readyIds:[]},roster:__snapshot.players,ready:['one']};LocalPartyHost.update(__snapshot);});
  assert.equal(await page.evaluate(()=>__commands.filter(c=>c.type==='controller').length),0,'Starting a game must not automatically switch tabs');
  await page.locator('#activeController').click();
@@ -100,7 +102,7 @@ function assertDeckCompaction(run){
  assert.deepEqual(report.activeLaunchCommands,['controller'],'Active game card opens the controller without restarting');
  await page.evaluate(()=>{window.__actionNode=document.querySelector('#activeActions button');__snapshot.active.roster=__snapshot.players.map(p=>({...p,connected:false}));LocalPartyHost.update(__snapshot);});
  assert(await page.evaluate(()=>__actionNode===document.querySelector('#activeActions button')),'Presence updates retain action DOM/focus');
- await page.locator('#openHost').click();await page.waitForTimeout(300);
+ await page.evaluate(()=>document.getElementById('openHost').click());await page.waitForTimeout(300);
  await page.evaluate(()=>{document.querySelector('[data-close=hostPanel]').click();document.querySelector('#openHost').click();});await page.waitForTimeout(600);
  assert(await page.locator('#hostPanel').isVisible(),'Reopening cancels pending close');
  await page.locator('[data-close=hostPanel]').click();await page.waitForTimeout(400);

@@ -1,0 +1,179 @@
+{
+  "status": "bounded-visual-confirmed-parent-approved",
+  "finishedAt": "2026-10-04T21:38:01.911719+00:00",
+  "method": "Real managed WebKit games at normal clock; two actual browser humans. Dense16 adds14 built-in test bots. No fabricated scores, phases, enemy contacts or state injection. Browser evidence is not physical device/AirPlay acceptance.",
+  "ownedSourceCurrent": {
+    "games/sports_siege/public/host.js": "7098dcdee0b2e4d76f05ef766e8390b294cc62f97b50b1d20cd84efac4ee2265",
+    "games/sports_siege/rules.js": "fe330c7ed2c9afe2fd2bb9663a0504031839320ceae93efef9c6d956cf896620",
+    "games/sports_siege/match.js": "04134902fa25fc4b6d9e6cb6198572f30340699af06910ca5ef88da594410c06",
+    "games/arcade/public/app.js": "da8b1a72baf1f1f9d8c4f094c6fcb765ffa573d737d35a96d7d2b3fe4131576f",
+    "games/arcade/public/arcade-juice.js": "7946016e91e7299b616cb52dfb276d8cb87b06a36bd45632426b3bdd05e8eb86"
+  },
+  "tests": {
+    "focused": 47,
+    "failed": 0,
+    "log": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/focused-tests-final.log",
+    "logSha256": "9343e555e3fb0965922284432c01aaa871d33c7558eba88861efb4ab5c6b8fec",
+    "testSources": {
+      "tests/swarm-score-events.test.cjs": "c5668e133c58444ff28c9ebb20b5b898128b6107b3f3cd02669b64c05c228db6",
+      "tests/sports-siege.test.js": "7262ab215cf050f192e3690d2fb281e48a5ed1e148b176c399e5313f89da36f2"
+    },
+    "coverage": "Nearest-contact ray, actual muzzle origin,1/2/4/8/9/16 published anchor/ray equality, dense projected spacing, enemy passed cannon still shootable, original score/damage/wave regressions."
+  },
+  "reviewedOriginals": [
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-two/2p-playing-tv-720.png",
+      "sha256": "0e5882278bc49f4ad1d99285ab499eeb58f7e1c022e2345c4a76cd6280519f09",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Round shaded plinth carries raised dome and deep barrel collar. Actual player palette, all cannon bases distinct; visible number chips above wall. Notice gap positive below notch."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-two/2p-playing-tv-1080.png",
+      "sha256": "45063688c6f1747a12f4924f1bb7a6b5bba8c74869ebf63fdb5147b89519e7b1",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Round shaded plinth carries raised dome and deep barrel collar. Actual player palette, all cannon bases distinct; visible number chips above wall. Notice gap positive below notch."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-two/2p-hit-score-tv-720.png",
+      "sha256": "c00f11707eeacc4d525ca518a42ef6cad7f9ba3a9151563939792884a3a97f05",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Real human pointer kill changes own score to10; barrel follows aim, existing enemies/gate intact. Screenshot may capture fading/absent label, so separate readable-reward original is label evidence."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-two/2p-hit-score-tv-1080.png",
+      "sha256": "f807a539ee40e0ccb2623e54287cb2dbf4a582f4d61a6bd4324dc192a0c43298",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Real human pointer kill changes own score to10; barrel follows aim, existing enemies/gate intact. Screenshot may capture fading/absent label, so separate readable-reward original is label evidence."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-two/2p-readable-rewards-tv-720.png",
+      "sha256": "d85b0cb5e38043314ada32cb6460cb4de96178690456801b9940cc235913752c",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Actual +10 above confirmed hits is readable; same human score20/30 in roster. No fabricated reward."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-two/2p-readable-rewards-tv-1080.png",
+      "sha256": "09db404f52856399e618f13ad093b99cfed1ca076383f385a2e4b6f125b1dc93",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Actual +10 above confirmed hits is readable; same human score20/30 in roster. No fabricated reward."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-sixteen/16p-playing-tv-720.png",
+      "sha256": "01911af421896b0b1b62174e5506ca46274357b008fa6e7b68e7f36295387f90",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Round shaded plinth carries raised dome and deep barrel collar. Actual player palette, all cannon bases distinct; visible number chips above wall. Notice gap positive below notch."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-sixteen/16p-playing-tv-1080.png",
+      "sha256": "28d731a2969f7396f2c7788cf3aa1f29516ddb133c5c0291e294ee69c266dad1",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Round shaded plinth carries raised dome and deep barrel collar. Actual player palette, all cannon bases distinct; visible number chips above wall. Notice gap positive below notch."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-sixteen/16p-wave-tv-720.png",
+      "sha256": "0ac9d603c570cc44f98969f99c677e87e52791ef444afce2d9e561743a0e8c32",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Actual16 normal-clock wave1/4; colored circular mounts distinct and whole, +10/+25 below actual notch after avoidance correction."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-sixteen/16p-wave-tv-1080.png",
+      "sha256": "888b8471fdfd54ef8caaf457a7044ffc5ebb1e147bb134d202c4d032c1cf3150",
+      "openedIndividually": true,
+      "scope": "Swarm final circular cannon/body, same player color, whole wall/gate, native repair aspect and HUD separation",
+      "observation": "Actual16 normal-clock wave1/4; colored circular mounts distinct and whole, +10/+25 below actual notch after avoidance correction."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/punch-rope-final/punchmeter-tv-idle-1280.png",
+      "sha256": "b0ff7c9c0d78a482b9d17e29a0e163387dec85ac62d8069b5f985aa5474b107c",
+      "openedIndividually": true,
+      "scope": "Punch rope, authored gym/bag, actor bubble",
+      "observation": "Cord continues from actual notch edge to bag ring without rod or16px blank. Actor bubble separate/right aligned12/18px below notch, full name. Whole approved gym and tall native-aspect bag retained."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/punch-rope-final/punchmeter-tv-idle-1920.png",
+      "sha256": "82ecdb385131f6b2b50f3210a196e841b670e72af03a4ed7162f9e4c7237ffc8",
+      "openedIndividually": true,
+      "scope": "Punch rope, authored gym/bag, actor bubble",
+      "observation": "Cord continues from actual notch edge to bag ring without rod or16px blank. Actor bubble separate/right aligned12/18px below notch, full name. Whole approved gym and tall native-aspect bag retained."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/punch-rope-final/punchmeter-tv-impact-1280.png",
+      "sha256": "8d1b3d995a073e9b53e5a996b365c10d41ad265ce92a61d771e1ff3ed11c30b4",
+      "openedIndividually": true,
+      "scope": "Punch rope, authored gym/bag, actor bubble",
+      "observation": "Cord continues from actual notch edge to bag ring without rod or16px blank. Actor bubble separate/right aligned12/18px below notch, full name. Actual842 pointer strike; readout828 at720 is intermediate count animation,842/CHAMPION settled at1080."
+    },
+    {
+      "file": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/punch-rope-final/punchmeter-tv-impact-1920.png",
+      "sha256": "fdc4dede0fce95974dbdeea391e7c730cd83f6580ccc1b3f156e79a5766e2b25",
+      "openedIndividually": true,
+      "scope": "Punch rope, authored gym/bag, actor bubble",
+      "observation": "Cord continues from actual notch edge to bag ring without rod or16px blank. Actor bubble separate/right aligned12/18px below notch, full name. Actual842 pointer strike; readout828 at720 is intermediate count animation,842/CHAMPION settled at1080."
+    }
+  ],
+  "captureSegments": [
+    {
+      "folder": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-two",
+      "status": "passed",
+      "errors": [],
+      "ownerChanged": [],
+      "sharedChanged": [],
+      "sourceQualification": "Final circular art captured. Subsequent host-only change is EXACT popup avoidance rectangle array, reconstruction matches captured hash. Idle appearance unaffected; label closure uses current dense16."
+    },
+    {
+      "folder": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/swarm-round-final-sixteen",
+      "status": "passed",
+      "errors": [],
+      "ownerChanged": [],
+      "sharedChanged": [],
+      "sourceQualification": "Exact final current host/anchors captured8screens4guards."
+    },
+    {
+      "folder": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/user-correction/punch-rope-final",
+      "errors": [],
+      "responseErrors": [],
+      "consoleErrors": [
+        {
+          "game": "punchmeter",
+          "surface": "tv",
+          "text": "WebSocket connection to 'ws://127.0.0.1:56098/games/punchmeter/ws' failed: The operation couldn’t be completed. Socket is not connected",
+          "at": "2026-10-04T21:31:20.595Z"
+        }
+      ],
+      "changedFiles": [],
+      "sourceQualification": "Both arcade files captured/current exact. Subsequent Swarm-only texture/popup changes are outside Punch rendering dependencies."
+    }
+  ],
+  "changes": [
+    "Front-of-wall actual cannon anchor shared by snapshot and firing rays; ≤8 one row,9–16 two rows. Score/damage/spawn logic retained.",
+    "Large cached Canvas cannon: darker round bevelled plinth, raised dome, shaded collar/barrel, recessed muzzle; actual p.color palette. Existing anchor/size/pivot/muzzle unchanged after art iterations.",
+    "Repair icon preserves316:327 native aspect. Notice measured below actual topHUD at12/18px.",
+    "Actual score labels avoid current topHUD; value/event/lifetime/limit unchanged.",
+    "Punch authored gym remains fullviewport. Loaded-art branch drops duplicate procedural room geometry; diffuse existing warm light. Ceiling rod removed, continuous rope draws before world clip behind notch. Bag camera/physics/scoring untouched."
+  ],
+  "preservedHistory": [
+    "swarm-first: hidden pause notice assertion was too broad; raw retained.",
+    "swarm-final and swarm-material-four:4-player launch failed. Actual readyIds lacked first human though gameReady rostertrue. Output-only QA now waits actual child WebSocket joined before normal Ready click, never forces phase.",
+    "swarm-material-four-retry:18screens8guards passed, but rectangular artwork explicitly superseded by latest user; does not approve current round4 screenshot.",
+    "swarm-round-plinth-preview: lighter circular material superseded by darker base.",
+    "Older ring/rectangular16wave720 partly hid reward under notch; raw preserved and current avoidance verified.",
+    "Punch startup WebSocket console warning retained exactly; no page/HTTP errors. Earlier agent message incorrectly said console[] and was corrected before final report."
+  ],
+  "limits": [
+    "Final round art screenshots cover2/16, not a new final circular4-person capture.4 anchors tested and prior4 placement proof qualified only geometry.",
+    "Dense bases are separately projected; barrels can cross another cannon when aiming sideways. No promise of allaim-angle barrel non-overlap.",
+    "No claim of gate0 open-raster capture, all36 new gameplay review, physical phone/sensor or release build.",
+    "Punch screenshot readout is actual count animation; no pixel-perfect score equality assertion during interpolation."
+  ],
+  "browsersClosed": true,
+  "blockers": []
+}

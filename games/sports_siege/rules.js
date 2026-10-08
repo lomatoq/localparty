@@ -67,5 +67,11 @@ function rayCircle(ox,oz,dx,dz,cx,cz,r,max=80) {
   const near=t-Math.sqrt(Math.max(0,r*r-d2));
   return near<=max ? Math.max(0,near) : null;
 }
-const SIEGE_TURRET_Z=4.22;
-module.exports={SIEGE_TURRET_Z,clamp,finite,COLORS,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,insideRect,rayCircle};
+// Cannons guard the enemy side of the wall. Dense crews keep two clear rows;
+// snapshots and authoritative rays use this same placement.
+const SIEGE_TURRET_Z=-9.5;
+function siegeTurretAnchor(index,count){
+  const columns=count>8?Math.ceil(count/2):Math.max(1,count),row=Math.floor(index/columns),rowCount=Math.min(columns,count-row*columns),slot=index%columns;
+  return{x:rowCount<=1?0:-16+32*slot/(rowCount-1),z:count>8?(row===0?-15:-9.5):SIEGE_TURRET_Z};
+}
+module.exports={SIEGE_TURRET_Z,siegeTurretAnchor,clamp,finite,COLORS,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,insideRect,rayCircle};

@@ -1,0 +1,115 @@
+/* Host Pick: a coloured medallion behind the complete illustration.
+   Keep the existing footprint; the art may break the circle, never its own mask. */
+html body.native-shell #choiceStrip .choice-art-shell{
+  position:relative;
+  overflow:visible;
+  isolation:isolate;
+  background:radial-gradient(circle at 28% 23%,
+    color-mix(in srgb,var(--pick-color,#9b7bff) 60%,#f0caff) 0%,
+    color-mix(in srgb,var(--pick-color,#9b7bff) 78%,#5044a3) 46%,
+    color-mix(in srgb,var(--pick-color,#9b7bff) 38%,#211839) 100%);
+  box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--pick-color,#9b7bff) 24%,#fff8ff),
+    0 3px 9px color-mix(in srgb,var(--pick-color,#9b7bff) 22%,transparent);
+}
+html body.native-shell #choiceStrip #choiceArt{
+  position:relative;
+  z-index:1;
+  transform:scale(1.2);
+  clip-path:none;
+  -webkit-mask:none;
+  mask:none;
+  overflow:visible;
+  filter:drop-shadow(0 2px 2px #15102655);
+}
+/* The running-game strip keeps the same medallion in both scroll poses. */
+html body.native-shell #activeCard .native-run-art{
+ border-radius:50%;overflow:visible;isolation:isolate;
+ background:radial-gradient(circle at 28% 23%,color-mix(in srgb,var(--pick-color,#9b7bff) 60%,#f0caff),color-mix(in srgb,var(--pick-color,#9b7bff) 78%,#5044a3) 46%,color-mix(in srgb,var(--pick-color,#9b7bff) 38%,#211839));
+ box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--pick-color,#9b7bff) 24%,#fff8ff);
+}
+html body.native-shell #activeCard .native-run-art img{position:relative;z-index:1;transform:scale(1.16);border-radius:0;clip-path:none;mask:none}
+html body.native-shell #activeCard .native-run-art .native-run-dot{z-index:2}
+/* Player availability has one stable lime accent across every game palette. */
+html body.native-shell #choiceStrip #choiceMeta,
+html body.native-shell #choiceStrip #choiceMeta *{
+  color:#d5ff9d!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+html body.native-shell #choiceStrip #choiceMeta{
+  text-shadow:0 0 7px #bdff5e38;
+}
+html body.native-shell #choiceStrip #choiceMeta .choice-players-icon{
+  filter:drop-shadow(0 0 3px #bdff5e38);
+}
+/* The authored arrow and label stay a single centred, close-knit group. */
+html.hp-ui body.native-shell #choiceStrip #choiceStart{
+  justify-content:center!important;
+  align-items:center!important;
+  gap:4px!important;
+}
+html.hp-ui body.native-shell #choiceStrip #choiceStart svg.hp-inline-icon{
+  margin-inline:0!important;
+  position:static!important;
+  flex:0 0 auto!important;
+}
+/* Keep the player count mint, with more white for readability. */
+html body.native-shell #choiceStrip #choiceMeta :is(.hp-menu-counter-value,.hp-menu-counter-total){color:#e8ffc9!important}
+
+/* The compact Host Pick exposes a single icon action; detail actions remain full size. */
+html.hp-ui body.native-shell #choiceStrip #choiceStart[data-action=launch]:not([aria-busy=true]){width:48px!important;min-width:48px!important;height:48px!important;min-height:48px!important;padding:0!important;border-radius:50%!important;flex:0 0 48px!important}
+html.hp-ui body.native-shell #choiceStrip #choiceStart[data-action=launch] svg{width:18px!important;height:18px!important;display:block!important;margin:0!important;transform:translateX(1px)!important}
+/* A short additive-looking sheen, composited only while the card is visible. */
+html body.native-shell #choiceStrip .hp-pick-glare{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:4}
+html body.native-shell #choiceStrip .hp-pick-glare>i{display:block;position:absolute;inset:0 auto 0 0;width:38%;background:linear-gradient(110deg,transparent,#f3ffd64d 45%,#ffffff80 52%,transparent 70%);mix-blend-mode:screen;animation:hp-pick-glare-sweep 2500ms ease-in-out infinite;animation-play-state:paused;opacity:0}
+html body.native-shell #choiceStrip.hp-pick-awake .hp-pick-glare>i{animation-play-state:running}
+@keyframes hp-pick-glare-sweep{0%,68%{transform:translateX(-150%);opacity:0}73%{opacity:.85}94%{transform:translateX(370%);opacity:.85}100%{transform:translateX(370%);opacity:0}}
+@media(prefers-reduced-motion:reduce){html body.native-shell #choiceStrip .hp-pick-glare>i{animation:none}}
+/* Soft directional chevrons on the pick surface, underneath its controls. */
+html body.native-shell #choiceStrip .hp-pick-flow{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none;z-index:1}
+html body.native-shell #choiceStrip :is(#choiceOpen,#choiceStart){position:relative;z-index:2}
+html body.native-shell #choiceStrip .hp-pick-flow>i{position:absolute;left:38%;top:10%;height:80%;width:32px;clip-path:polygon(0 0,48% 0,100% 50%,48% 100%,0 100%,52% 50%);background:linear-gradient(100deg,color-mix(in srgb,var(--pick-color,#bfa4ff) 45%,#fff),#deffa9);opacity:0;animation:hp-pick-flow 4800ms cubic-bezier(.23,1,.32,1) infinite;animation-play-state:paused}
+html body.native-shell #choiceStrip .hp-pick-flow>i:nth-child(2){animation-delay:850ms}
+html body.native-shell #choiceStrip .hp-pick-flow>i:nth-child(3){animation-delay:1700ms}
+html body.native-shell #choiceStrip.hp-pick-awake .hp-pick-flow>i{animation-play-state:running}
+@keyframes hp-pick-flow{0%{opacity:0;transform:translateX(-20px)}18%{opacity:.16}65%{opacity:.1}88%,100%{opacity:0;transform:translateX(clamp(90px,30vw,160px))}}
+@media(prefers-reduced-motion:reduce){html body.native-shell #choiceStrip .hp-pick-flow>i{animation:none}}
+/* Explicit capsule clipping survives inherited overflow rules and WebKit compositing. */
+html body.native-shell #choiceStrip :is(.hp-pick-glare,.hp-pick-flow){border-radius:999px!important;clip-path:inset(0 round 999px);overflow:hidden!important}
+html body.native-shell #choiceStrip .hp-pick-glare>i{animation-duration:3400ms}
+@keyframes hp-pick-glare-sweep{0%,50%{transform:translateX(-150%);opacity:0}57%{opacity:.7}89%{transform:translateX(370%);opacity:.7}100%{transform:translateX(370%);opacity:0}}
+/* A continuous full-height ribbon; three neighbouring strengths repeat quietly. */
+html body.native-shell #choiceStrip .hp-pick-flow{mask-image:linear-gradient(90deg,transparent 26%,#000 44%,#0008 calc(100% - var(--pick-action-clearance,72px) - 36px),transparent calc(100% - var(--pick-action-clearance,72px)));-webkit-mask-image:linear-gradient(90deg,transparent 26%,#000 44%,#0008 calc(100% - var(--pick-action-clearance,72px) - 36px),transparent calc(100% - var(--pick-action-clearance,72px)))}
+html body.native-shell #choiceStrip .hp-pick-flow>i{display:none;animation:none}
+html body.native-shell #choiceStrip .hp-pick-flow::before{content:'';position:absolute;inset:0 auto 0 -162px;width:calc(100% + 162px);background:linear-gradient(90deg,color-mix(in srgb,var(--pick-color,#bfa4ff) 40%,#fff),#deffa9);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='162' height='72' viewBox='0 0 162 72' preserveAspectRatio='none'%3E%3Cpath d='M-54 0H-22L14 36L-22 72H-54L-18 36Z' fill='white' opacity='.05'/%3E%3Cpath d='M0 0H32L68 36L32 72H0L36 36Z' fill='white' opacity='.035'/%3E%3Cpath d='M54 0H86L122 36L86 72H54L90 36Z' fill='white' opacity='.08'/%3E%3Cpath d='M108 0H140L176 36L140 72H108L144 36Z' fill='white' opacity='.05'/%3E%3C/svg%3E") 0 0/162px 100% repeat-x;filter:blur(1.1px);animation:hp-pick-ribbon 10.5s linear infinite;animation-play-state:paused}
+html body.native-shell #choiceStrip.hp-pick-awake .hp-pick-flow::before{animation-play-state:running}
+@keyframes hp-pick-ribbon{from{transform:translateX(0)}to{transform:translateX(162px)}}
+@media(prefers-reduced-motion:reduce){html body.native-shell #choiceStrip .hp-pick-flow::before{animation:none}}
+/* The complete rim keeps its game-to-lime colour even between sheen passes. */
+html body.native-shell main #choiceStrip{border-color:transparent!important;box-shadow:none!important}
+html body.native-shell main #choiceStrip::after{box-shadow:none!important}
+html body.native-shell #choiceStrip>.lp-cta-stroke{padding:1.5px;background:linear-gradient(90deg,color-mix(in srgb,var(--pick-color,#bca3ff) 28%,#fff) 0%,#f7fff0 55%,#e4ffb9 100%)}
+html body.native-shell #choiceStrip>.lp-cta-stroke::before{display:none;animation:none;will-change:auto}
+/* Crossfade existing painted faces: availability never animates a gradient or
+   reflows the strip. Both directions retarget from the currently painted alpha. */
+html.hp-ui body.native-shell main #choiceStrip#choiceStrip{background:linear-gradient(100deg,color-mix(in srgb,var(--pick-color,#9b7bff) 22%,#272234),#2b253b 60%,#302741)!important}
+html.hp-ui body.native-shell main #choiceStrip#choiceStrip::after{opacity:1;transition:opacity 270ms var(--ux-ease-out);background-image:linear-gradient(105deg,transparent 32%,#ffffff10 48%,transparent 64%),radial-gradient(ellipse at 100% 50%,#b6f35a30,transparent 55%),linear-gradient(100deg,#30263f,#222330 60%,#1b2028)}
+html.hp-ui body.native-shell main #choiceStrip#choiceStrip.hp-pick-unavailable::after{opacity:0}
+html.hp-ui body.native-shell main #choiceStrip#choiceStrip::before,
+html.hp-ui body.native-shell #choiceStrip>.lp-cta-stroke{background:linear-gradient(90deg,color-mix(in srgb,var(--pick-color,#bca3ff) 18%,#d9d1e9),#a596c0 65%,#9789ae)!important}
+html.hp-ui body.native-shell #choiceStrip>.lp-cta-stroke::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--pick-color,#bca3ff) 28%,#fff),#f7fff0 55%,#e4ffb9);opacity:1;transition:opacity 270ms var(--ux-ease-out)}
+html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable>.lp-cta-stroke::after{opacity:0}
+html.hp-ui body.native-shell #choiceStrip :is(.hp-pick-flow,.hp-pick-glare){transition:opacity 270ms var(--ux-ease-out)}
+html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable :is(.hp-pick-flow,.hp-pick-glare){opacity:.2}
+html.hp-ui body.native-shell #choiceStrip #choiceStart{isolation:isolate;overflow:visible!important;background:linear-gradient(155deg,#e2ffa8,#c8ff73 42%,#a9ec4c)!important;box-shadow:none!important;animation:none!important;transform:scale(1);transition:transform 270ms var(--ux-spring-pop),color 270ms var(--ux-ease-out)!important}
+html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable #choiceStart{transform:scale(.92)}
+html.hp-ui body.native-shell #choiceStrip #choiceStart:not(:disabled):is(:active,[data-lp-press-state=down],.party-pressed){transform:scale(.97);transition-duration:120ms!important}
+html.hp-ui body.native-shell #choiceStrip .hp-pick-action-label{display:inline-flex;align-items:center;justify-content:center;gap:4px;position:relative;z-index:1;min-width:0}
+html.hp-ui body.native-shell #choiceStrip .hp-pick-idle-face{position:absolute;inset:0;border-radius:inherit;background:linear-gradient(140deg,#49405e,#352d49);opacity:0;pointer-events:none;transition:opacity 270ms var(--ux-ease-out)}
+html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable .hp-pick-idle-face{opacity:1}
+/* The static halo and orbiting rim keep their layers through both states. */
+html.hp-ui body.native-shell #choiceStrip #choiceStart::before{content:''!important;display:block!important;position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:0 0 14px #b6f35a40;opacity:1;transition:opacity 270ms var(--ux-ease-out)!important}
+html.hp-ui body.native-shell #choiceStrip #choiceStart::after{content:''!important;position:absolute;inset:0;pointer-events:none;border-radius:inherit;padding:3px!important;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;display:block!important;opacity:1!important;transition:opacity 270ms var(--ux-ease-out)!important;background:conic-gradient(from var(--hp-edge-angle),#75c93340 0deg,#75c93340 175deg,#8cf33b 230deg,#dfffaa 264deg,#ffffff 288deg,#f2ffdb 312deg,#a2ff4c 340deg,#75c93340 360deg)!important;animation:hp-edge-orbit 12s linear infinite!important}
+html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable #choiceStart::before,
+html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable #choiceStart::after{opacity:0!important}
+@media(prefers-reduced-motion:reduce){html.hp-ui body.native-shell #choiceStrip #choiceStart{transform:none!important;transition:color 160ms var(--ux-ease-out)!important}html.hp-ui body.native-shell #choiceStrip #choiceStart::after{animation:none!important}}
+html[data-party-native-hidden] body.native-shell #choiceStrip :is(#choiceStart,.hp-pick-idle-face,.hp-pick-flow,.hp-pick-glare),html[data-party-native-hidden] body.native-shell #choiceStrip::after,html[data-party-native-hidden] body.native-shell #choiceStrip #choiceStart::before,html[data-party-native-hidden] body.native-shell #choiceStrip #choiceStart::after,html[data-party-native-hidden] body.native-shell #choiceStrip>.lp-cta-stroke::after{transition:none!important}

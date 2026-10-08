@@ -13,8 +13,12 @@ $('score').firstChild?.nodeType===3&&$('score').firstChild.remove();
 const cameraPreview=createCameraPreview(video);cameraPreview.reset();
 const profile=window.PARTY_PROFILE||{},read=(k)=>{try{return localStorage.getItem('bow:'+k);}catch{return null;}},write=(k,v)=>{try{localStorage.setItem('bow:'+k,v);}catch{}};
 let id=null,token=read('token'),sequence=1,state=null,connection,mode=null,stream=null,worker=null,workerReady=false,workerBusy=false,workerTimer=null,tracking=null,stable=0,lastCapture=-Infinity,lastVideoTime=-1,lastFrame=performance.now(),generation=0,holding=false,drawAt=0,joined=false,hand=profile.hand||read('hand')||'right',offset={u:0,v:0},touchUV={u:.5,v:.5},lastStatus='',cameraRequested=false,workerRestarts=0,workerFrames=0;
-const sample=document.createElement('canvas'),sampleCtx=sample.getContext('2d',{willReadFrequently:true}),filter=new PredictiveAim(),fallbackTracker=new MarkerTracker();let bow=null;
+const sample=document.createElement('canvas'),sampleCtx=sample.getContext('2d',{willReadFrequently:true}),filter=new PredictiveAim(),fallbackTracker=new MarkerTracker();let bow=null,bowVisible=true;
 try{bow=new Bow3D($('bow'));}catch(e){$('error').textContent='3D-лук недоступен: '+e.message+'. Прицел и стрельба останутся рабочими.';}
+// The shared managed touch layout hides this canvas. Standalone layouts can
+// retain it; sample the declared display at mode/geometry changes, never per frame.
+function syncBowVisibility(){bowVisible=getComputedStyle($('bow')).display!=='none';}
+window.addEventListener('resize',syncBowVisibility);window.addEventListener('party-stage-resize',syncBowVisibility);
 $('back').querySelector('img').src='/assets/icons/game-pack/arrow-left.svg';
 $('hand').querySelector('img').src='/assets/icons/game-pack/switch.svg';
 $('name').value=profile.name||read('name')||'';if(profile.id)$('nameField').hidden=true;
@@ -76,27 +80,29 @@ function startVisionWorker(request){
   workerTimer=setTimeout(()=>fail('Worker initialization timeout'),VISION_TIMEOUT.loading);
  }catch(error){worker=null;workerReady=false;visionDebug.engine='fallback';visionDebug.error=String(error);}
 }
-async function startCamera(){document.body.classList.remove('touch-mode');if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia){$('error').textContent='Камера требует HTTPS с доверенным сертификатом. HTTP по Wi-Fi не подходит. Пока можно открыть обычный сенсорный пульт.';return;}
+async function startCamera(){document.body.classList.remove('touch-mode');syncBowVisibility();if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia){$('error').textContent='Камера требует HTTPS с доверенным сертификатом. HTTP по Wi-Fi не подходит. Пока можно открыть обычный сенсорный пульт.';return;}
  stopCamera(false);const request=++generation;cameraStartup=request;$('start').disabled=true;$('error').textContent='';join();
  try{const acquired=await acquireRearCamera(navigator.mediaDevices,{isCurrent:()=>request===generation,width:innerWidth,height:innerHeight});if(request!==generation){acquired.getTracks().forEach(t=>t.stop());return;}stream=acquired;video.srcObject=stream;$('view').hidden=false;$('setup').hidden=true;video.hidden=false;$('touchPad').hidden=true;if(!await playLiveVideo(video,()=>request===generation))return;mode='camera';startGyro();tracking=null;stable=0;lastVideoTime=-1;lastCapture=-Infinity;offset={u:0,v:0};$('view').hidden=false;$('setup').hidden=true;$('video').hidden=false;$('touchPad').hidden=true;$('calibrate').hidden=false;
   workerRestarts=0;visionDebug.error='';visionLog('camera-start');startVisionWorker(request);
  }catch(e){if(request!==generation)return;visionDebug.error=String(e);visionLog('camera-error');$('error').textContent=e.name==='NotAllowedError'?'Доступ к камере не разрешён. Разрешите его в настройках или используйте сенсорный пульт.':('Камера: '+e.message);stopCamera();}finally{if(cameraStartup===request){cameraStartup=null;$('start').disabled=false;}}
 }
-function startTouch(){stopCamera(false);mode='touch';document.body.classList.add('touch-mode');join();$('setup').hidden=true;$('view').hidden=false;$('video').hidden=true;$('touchPad').hidden=false;$('calibrate').hidden=true;$('calibrationHint').textContent='Веди прицел по мини-полю';}
+function startTouch(){stopCamera(false);mode='touch';document.body.classList.add('touch-mode');syncBowVisibility();join();$('setup').hidden=true;$('view').hidden=false;$('video').hidden=true;$('touchPad').hidden=false;$('calibrate').hidden=true;$('calibrationHint').textContent='Веди прицел по мини-полю';}
 let cameraResize=null;window.addEventListener('resize',()=>{clearTimeout(cameraResize);cameraResize=setTimeout(async()=>{const current=stream?.getVideoTracks()[0];if(mode==='camera'&&current){await fitCameraOrientation(current,innerWidth,innerHeight);if(current===stream?.getVideoTracks()[0])visionLog('camera-orientation');}},120);});
 function capture(now){if(mode!=='camera'||worker&&!workerReady||workerBusy||video.readyState<2||video.currentTime===lastVideoTime||now-lastCapture<(worker?45:160))return;lastVideoTime=video.currentTime;lastCapture=now;const scale=Math.min(1,1280/Math.max(video.videoWidth,video.videoHeight)),w=Math.round(video.videoWidth*scale),h=Math.round(video.videoHeight*scale);if(!h)return;resizeCapture(sample,w,h);sampleCtx.drawImage(video,0,0,w,h);const pixels=sampleCtx.getImageData(0,0,w,h).data;
  if(worker){visionDebug.sent++;visionDebug.frame=w+'x'+h;workerBusy=true;workerTimer=setTimeout(()=>worker?.recover('Processing timeout'),workerFrames?VISION_TIMEOUT.frame:VISION_TIMEOUT.firstFrame);worker.postMessage({pixels:pixels.buffer,width:w,height:h,at:now,gyro:now-gyroAt<120?{...gyro,focal:/ultra|сверх/i.test(stream?.getVideoTracks()[0]?.label||'')?.48:.85}:null},[pixels.buffer]);}
  else{const started=performance.now();result(fallbackTracker.detect(pixels,w,h),now,performance.now()-started);}
 }
+function bowHudText(element,text){const next=window.PartyI18n?.t(text)??text;if(element.textContent!==next)element.textContent=next;}
+function bowHudAttribute(element,name,value){const next=window.PartyI18n?.t(value,{ui:true})??value;if(element.getAttribute(name)!==next)element.setAttribute(name,next);}
 function updateHUD(now=performance.now()){
  const p=state?.players.find(p=>p.id===id),aim=currentAim(now),lock=!!aim;
  // Keep the captured gesture alive across a brief visual dropout; release still requires a fresh aim.
- $('draw').disabled=!holding&&!canShoot(now);
- $('tracking').textContent=!joined?'Нет соединения':mode==='touch'?'Прицел пальцем':lock?'Экран найден':tracking?'Держи TV в кадре':'Наведи камеру на экран';
- $('metrics').textContent=mode==='camera'&&worker&&!workerReady?'Загружаем трекинг…':state?.paused?'Пауза':state?.phase==='results'?'Матч завершён':state?.phase!=='playing'?'Ведущий запускает матч':mode==='camera'&&tracking?'Держи экран в кадре':'Натяните и отпустите';
- bowPoints.textContent=p?String(p.score):'—';bowArrows.textContent=p?String(Math.max(0,(state?.arrows||10)-p.shots)):'—';
+ const disabled=!holding&&!canShoot(now);if($('draw').disabled!==disabled)$('draw').disabled=disabled;
+ bowHudText($('tracking'),!joined?'Нет соединения':mode==='touch'?'Прицел пальцем':lock?'Экран найден':tracking?'Держи TV в кадре':'Наведи камеру на экран');
+ bowHudText($('metrics'),mode==='camera'&&worker&&!workerReady?'Загружаем трекинг…':state?.paused?'Пауза':state?.phase==='results'?'Матч завершён':state?.phase!=='playing'?'Ведущий запускает матч':mode==='camera'&&tracking?'Держи экран в кадре':'Натяните и отпустите');
+ bowHudText(bowPoints,p?String(p.score):'—');bowHudText(bowArrows,p?String(Math.max(0,(state?.arrows||10)-p.shots)):'—');
  const ru=window.PartyI18n?.language==='ru',drawIcon='<img src="assets/atlas-misc/bow-prop.webp" alt="">',drawLabel=drawIcon+(holding?`<span class="bow-action-copy"><b>${ru?'ОТПУСТИ':'RELEASE'}</b><small>${lock?Math.round(Math.min(1,(now-drawAt)/800)*100)+'%':ru?'найди экран':'find the screen'}</small></span>`:`<span class="bow-action-copy"><b>${ru?'НАТЯНИ':'DRAW'}</b><small>${ru?'и отпусти':'and release'}</small></span>`);if($('draw').innerHTML!==drawLabel)$('draw').innerHTML=drawLabel;
- document.body.classList.toggle('left-hand',hand==='left');$('hand').setAttribute('aria-label',hand==='left'?'Левая рука':'Правая рука');$('hand').setAttribute('aria-pressed',String(hand==='left'));
+ const left=hand==='left';if(document.body.classList.contains('left-hand')!==left)document.body.classList.toggle('left-hand',left);bowHudAttribute($('hand'),'aria-label',left?'Левая рука':'Правая рука');bowHudAttribute($('hand'),'aria-pressed',String(left));
 }
 $('draw').addEventListener('pointerdown',e=>{if(!canShoot(performance.now()))return;e.preventDefault();$('draw').setPointerCapture(e.pointerId);holding=true;drawAt=performance.now();$('draw').classList.add('held');connection.send('draw',currentAim());});
 $('draw').addEventListener('pointerup',e=>{if(!holding)return;e.preventDefault();const now=performance.now(),aim=currentAim(now),duration=now-drawAt;holding=false;$('draw').classList.remove('held');if(!aim||duration<180||duration>4500){connection.send('cancel');tell(duration<180?'Подержите натяжение чуть дольше':'Прицел потерян — стрела сохранена');return;}connection.send('shot',{...aim,seq:sequence++});});
@@ -115,5 +121,5 @@ function drawOverlay(now,w,h){const dpr=Math.min(2,devicePixelRatio||1);if(overl
  ctx.strokeStyle=aim?'#d7ff8e':'#ffffffaa';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.moveTo(x-20,y);ctx.lineTo(x-6,y);ctx.moveTo(x+6,y);ctx.lineTo(x+20,y);ctx.moveTo(x,y-20);ctx.lineTo(x,y-6);ctx.moveTo(x,y+6);ctx.lineTo(x,y+20);ctx.stroke();
  if(holding){ctx.strokeStyle='#f7cd62';ctx.lineWidth=5;ctx.beginPath();ctx.arc(x,y,29,-Math.PI/2,-Math.PI/2+Math.PI*2*Math.min(1,(now-drawAt)/800));ctx.stroke();}
 }
-function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-lastFrame)/1000);lastFrame=now;if(mode){if(mode==='camera')cameraPreview.draw(now);else cameraPreview.reset();capture(now);updateHUD(now);if(mode==='camera'&&tracking&&now-tracking.at>320)stable=0;const w=innerWidth,h=innerHeight;bow?.frame(w,h,holding?Math.min(1,(now-drawAt)/800):0,now,dt,hand);drawOverlay(now,w,h);}}
+function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-lastFrame)/1000);lastFrame=now;if(mode){if(mode==='camera')cameraPreview.draw(now);else cameraPreview.reset();capture(now);updateHUD(now);if(mode==='camera'&&tracking&&now-tracking.at>320)stable=0;const w=innerWidth,h=innerHeight;bow?.frame(w,h,holding?Math.min(1,(now-drawAt)/800):0,now,dt,hand,bowVisible);drawOverlay(now,w,h);}}
 requestAnimationFrame(frame);window.addEventListener('blur',cancel);document.addEventListener('visibilitychange',()=>{if(document.hidden)stopCamera();});window.addEventListener('pagehide',()=>{stopCamera();connection.close();});

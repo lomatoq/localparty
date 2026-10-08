@@ -7,7 +7,7 @@ class Product(unittest.TestCase):
   for name in module.FILES:
    p=self.root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('tv-show-20260918.1\nfixture '+name)
    d=self.server/name;d.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,d)
- def test_exact_product(self):self.assertEqual(module.verify(self.root,self.app)['resourceCount'],16)
+ def test_exact_product(self):self.assertEqual(module.verify(self.root,self.app)['resourceCount'],21)
  def test_missing_asset(self):
   (self.server/'public/tv-show.js').unlink()
   with self.assertRaisesRegex(ValueError,'Missing'):module.verify(self.root,self.app)
@@ -16,6 +16,9 @@ class Product(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'Stale'):module.verify(self.root,self.app)
  def test_stale_style(self):
   (self.server/'public/motion.css').write_text('old')
+  with self.assertRaisesRegex(ValueError,'Stale'):module.verify(self.root,self.app)
+ def test_stale_tv_motion(self):
+  (self.server/'public/tv-motion-20261005.js').write_text('old transitions')
   with self.assertRaisesRegex(ValueError,'Stale'):module.verify(self.root,self.app)
  def test_staging(self):
   p=self.root/'ios/LocalParty/Server';p.parent.mkdir(parents=True);shutil.copytree(self.server,p)

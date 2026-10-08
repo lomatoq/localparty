@@ -71,7 +71,7 @@
    body.native-host-tab>.native-run{display:none!important}
    html body.native-host-tab #hostPanel[open]{overscroll-behavior:contain}
    html body.native-host-tab #hostPanel[open]{position:fixed;inset:0;width:100%;max-width:none;height:auto;max-height:none;margin:0;padding:calc(var(--host-head,76px) + 20px) 16px calc(var(--native-tab-reserve) + 36px);border:0;border-radius:0;background:#0d1017;box-shadow:none;overflow:auto;animation:none!important}
-   html body.native-controller.profile-editing #onboarding{bottom:calc(var(--native-tab-reserve) + 8px)!important;max-height:calc(100dvh - var(--native-tab-reserve) - 16px)!important;border-bottom:1px solid #bca3ff55!important;border-radius:28px!important;padding-bottom:20px!important}
+   html body.native-controller.profile-editing #onboarding{bottom:14px!important;height:auto!important;max-height:calc(100dvh - env(safe-area-inset-top,0px) - 30px)!important;border-bottom:0!important;border-radius:28px 28px 0 0!important;padding-bottom:calc(var(--native-tab-reserve) + 16px)!important}
    @keyframes nativeProfileEnter{from{opacity:0;translate:0 56px}to{opacity:1;translate:0 0}}
    @media(prefers-reduced-motion:no-preference){body.native-controller #onboarding:not([hidden]){animation:nativeProfileEnter 680ms cubic-bezier(.22,1,.36,1)!important}}
    body.native-host-tab #hostPanel [data-close=hostPanel]{display:none!important}

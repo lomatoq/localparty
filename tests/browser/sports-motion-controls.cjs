@@ -81,10 +81,10 @@ function fixture(native){
   if(mode==='curling'){
    await game.waitForFunction(()=>document.body.dataset.ssControlState==='sweep');
    assert(await game.locator('#ss-sweep').isHidden());
-   for(const a of [0,12,0,12]){await game.evaluate(a=>window.__motionFixture.a=a,a);await sleep(a?130:200);}
+   for(const a of [12,-12,12,-12,12,-12]){await game.evaluate(a=>window.__motionFixture.a=a,a);await sleep(110);}
    assert(row.wire.some(m=>m.type==='input'&&m.data.sweep));await shot('hands-free-sweep');
    await game.evaluate(()=>Object.assign(window.__motionFixture,{a:0,auto:false}));await sleep(400);assert.equal(row.wire.at(-1).data.sweep,false);
-   row.actions.push('Motion shows a readout rather than Hold: two shake pulses sweep, stale samples release sweep');
+   row.actions.push('Motion shows a readout rather than Hold: continuous reversing shakes sweep, stale samples release sweep');
   }
   if(!native){await game.evaluate(()=>window.__motionFixture.auto=false);await sleep(1250);assert.equal(await game.evaluate(()=>document.body.dataset.ssInputMode),'swipe');await shot('stale-fallback');row.permissionCalls=await game.evaluate(()=>window.__motionFixture.calls);}
   row.motionCalls=await game.evaluate(()=>window.__motionFixture.calls);row.motionEvents=await game.evaluate(()=>window.__motionFixture.events);await api({type:'stop'});await context.close();save();

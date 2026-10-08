@@ -7,6 +7,7 @@ import * as THREE from './vendor/three.module.js';
 import {mergeGeometries} from './vendor/utils/BufferGeometryUtils.js';
 import {createBowlingExtras} from './bowling-extras.js'; // alley life, pinsetter/sweep beat, effects
 import {createBowlingAlley} from './bowling-alley.js'; // environment art: fascia, lane reflection, return, rack, neighbour life
+import {createBowlingDeck} from './bowling-deck.js'; // pin-deck architecture: mask frames, soffit, kickbacks, curtain, pit, sweep arms, back wall
 import {createBowlingFeel} from './bowling-feel.js'; // game feel: release charge, clatter sparks, pin blur, camera beats, tiers
 
 // Shared with games/sports_siege/bowling.js (regression test compares the two lines).
@@ -26,6 +27,11 @@ function seeded(seed){let s=seed>>>0;return ()=>{s=(1664525*s+1013904223)>>>0;re
 // Shared HeyPals sound effects live on the TV shell page; they respect its mute/volume.
 function sound(name){try{(window.parent!==window?window.parent:window).HeyPalsAudio?.play(name);}catch{}}
 // Consecutive strikes ending at the latest roll (tenth-frame bonus strikes included): 2 = double, 3 = turkey.
+// Critically damped spring (SmoothDamp): position AND velocity stay continuous when the goal
+// switches (aim -> roll -> slow-motion angle -> reveal -> aim), so camera moves never snap.
+function damp(cur,target,vel,time,dt,maxSpeed=Infinity){const ox=cur.x,oy=cur.y,oz=cur.z;const w=2/Math.max(1e-3,time),x=w*dt,e=1/(1+x+.48*x*x+.235*x*x*x);
+  for(const k of ['x','y','z']){const ch=cur[k]-target[k],tmp=(vel[k]+w*ch)*dt;vel[k]=(vel[k]-w*tmp)*e;cur[k]=target[k]+(ch+tmp)*e;}
+  const dx=cur.x-ox,dy=cur.y-oy,dz=cur.z-oz,len=Math.hypot(dx,dy,dz),limit=maxSpeed*dt;if(len>limit){const k=limit/len;cur.set(ox+dx*k,oy+dy*k,oz+dz*k);vel.multiplyScalar(k);}}
 function strikeRun(frames,frameCount){const flags=[];(frames||[]).forEach((f,i)=>{const r=f.rolls||[];if(i!==frameCount-1){if(r[0]===10)flags.push(true);else r.forEach(()=>flags.push(false));}else r.forEach((v,j)=>flags.push(v===10&&freshBefore(r.slice(0,j),true)));});let n=0;for(let i=flags.length-1;i>=0&&flags[i];i--)n++;return n;}
 function freshBefore(prev,last){if(!prev.length)return true;if(!last)return false;return prev.length===1?prev[0]===10:prev.length===2&&(prev[1]===10||(prev[0]!==10&&prev[0]+prev[1]===10));}
 
@@ -35,7 +41,8 @@ export class BowlingScene{
     this.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.disposables=new Set();this.buffer=[];this.renderT=null;this.lastState=null;this.seenEvents=new Set();
     this.tmp={v:new THREE.Vector3(),v2:new THREE.Vector3(),q:new THREE.Quaternion(),q2:new THREE.Quaternion(),m:new THREE.Matrix4(),e:new THREE.Euler(),c:new THREE.Color(),s:new THREE.Vector3(1,1,1)};
-    this.camPos=new THREE.Vector3();this.camLook=new THREE.Vector3();this.camGoalPos=new THREE.Vector3();this.camGoalLook=new THREE.Vector3();
+    this.camPos=new THREE.Vector3();this.camLook=new THREE.Vector3();this.camVel=new THREE.Vector3();this.lookVel=new THREE.Vector3();this.camGoalPos=new THREE.Vector3();this.camGoalLook=new THREE.Vector3();
+    this.closeLaunchPose={pos:new THREE.Vector3(),look:new THREE.Vector3()};
     this.aimPose={pos:new THREE.Vector3(0,3.6,26),look:new THREE.Vector3(0,.6,-4),fov:18};
     this.anisotropy=Math.min(8,this.renderer.capabilities.getMaxAnisotropy?.()||1);
     window.__bowlingScene=this; // read-only QA handle (frame timing, camera checks)
@@ -44,6 +51,7 @@ export class BowlingScene{
     document.fonts?.ready.then(()=>{this.paintMasks();for(const t of this.bannerTextures.values())t.dispose();this.bannerTextures.clear();}).catch(()=>{});
     try{this.extras=createBowlingExtras(this);}catch(error){console.warn('bowling extras',error);}
     try{this.alley=createBowlingAlley(this);}catch(error){console.warn('bowling alley',error);}
+    try{this.deck=createBowlingDeck(this);}catch(error){console.warn('bowling deck',error);}
     try{this.feel=createBowlingFeel(this);}catch(error){console.warn('bowling feel',error);}
     addEventListener('pagehide',()=>this.dispose(),{once:true});
   }
@@ -102,10 +110,12 @@ export class BowlingScene{
     const oil=g.createLinearGradient(0,zToY(12),0,zToY(-6));oil.addColorStop(0,'rgba(255,240,220,.10)');oil.addColorStop(1,'rgba(255,240,220,0)');g.fillStyle=oil;g.fillRect(0,zToY(12),W,zToY(-6)-zToY(12));
     g.fillStyle='#3a2216';g.fillRect(0,zToY(FOUL_Z)-3,W,6);
     const dot=(x,z,r=4)=>{g.fillStyle='#4a2a1a';g.beginPath();g.ellipse(xToX(x),zToY(z),r,r*.9,0,0,Math.PI*2);g.fill();};
-    for(const z of [11.6,13.6])for(const b of [3,5,8,11,14])for(const s of [-1,1])dot(s*(2.2-b*bw/W*4.4),z,3);
-    for(const b of [3,5,8,11,14])for(const s of [-1,1])dot(s*(2.2-b*bw/W*4.4),6.7,3.5);
+    for(const z of [11.6,13.6])for(const b of [3,5,8,11,14])for(const s of [-1,1])dot(s*(2.2-(b-.5)*bw/W*4.4),z,3); // board centres, mirrored about x=0
+    for(const b of [3,5,8,11,14])for(const s of [-1,1])dot(s*(2.2-(b-.5)*bw/W*4.4),6.7,3.5);
     // Seven target arrows in a shallow V, dark inlay (no glow on the playing surface).
-    for(let i=0;i<7;i++){const b=5+i*5,x=-2.2+(b+.5)*bw/W*4.4,z=1.35-Math.abs(i-3)*.42,X=xToX(x),Y=zToY(z);g.fillStyle='#4d2c1c';g.beginPath();g.moveTo(X,Y-26);g.lineTo(X+bw*.62,Y+18);g.lineTo(X,Y+8);g.lineTo(X-bw*.62,Y+18);g.closePath();g.fill();}
+    // Boards 4,9,...,34 (0-based) so the centre arrow sits on board 19, the middle of 39, at x=0
+    // (it was one board right of centre, and the set was lopsided: -1.58 vs +1.81 m).
+    for(let i=0;i<7;i++){const b=4+i*5,x=-2.2+(b+.5)*bw/W*4.4,z=1.35-Math.abs(i-3)*.42,X=xToX(x),Y=zToY(z);g.fillStyle='#4d2c1c';g.beginPath();g.moveTo(X,Y-26);g.lineTo(X+bw*.62,Y+18);g.lineTo(X,Y+8);g.lineTo(X-bw*.62,Y+18);g.closePath();g.fill();}
     // Deck end lip: a pale edge so the pit reads as a drop, not a void.
     g.fillStyle='#f2d2a4';g.fillRect(0,0,W,5);
     for(const p of RACK){g.fillStyle='rgba(60,32,18,.55)';g.beginPath();g.arc(xToX(p.x),zToY(p.z),5,0,Math.PI*2);g.fill();}
@@ -346,10 +356,10 @@ export class BowlingScene{
   }
   updatePins(A,B,alpha,stage,age,t){
     // Fresh rack or respotted survivors are lowered by the pinsetter after the sweep.
-    const lower=stage==='aim'&&age<1.05?1.35*(1-easeOut((age-.42)/.6)):0,v=this.tmp.v,q=this.tmp.q,q2=this.tmp.q2;
+    const lower=this.extras?.rackLift(A,stage,age)??(stage==='aim'&&age<1.05?1.35*(1-easeOut((age-.42)/.6)):0),v=this.tmp.v,q=this.tmp.q,q2=this.tmp.q2;
     for(let id=0;id<10;id++){
       const mesh=this.pins[id],a=A.pins.get(id);if(!a){mesh.visible=false;continue;}
-      const b=B?.pins.get(id);mesh.visible=true;
+      const b=B?.pins.get(id);mesh.visible=!(stage==='aim'&&!A.first&&this.extras?.state.revealFresh&&age<.72);
       v.set(a.x,a.y,a.z);q.set(a.q[0],a.q[1],a.q[2],a.q[3]);
       if(b){v.lerp(this.tmp.v2.set(b.x,b.y,b.z),alpha);q.slerp(q2.set(b.q[0],b.q[1],b.q[2],b.q[3]),alpha);}
       mesh.position.copy(v);mesh.position.y+=lower;mesh.quaternion.copy(q);
@@ -384,7 +394,7 @@ export class BowlingScene{
     // reveal end: bar drops in front of the deck; aim start: it sweeps to the pit and lifts.
     let y=2.6,z=-9.65;
     if(stage==='reveal'&&age>REVEAL_WINDOW-.5){y=2.6-(2.6-.42)*smooth((age-(REVEAL_WINDOW-.5))/.3);z=-9.45;}
-    else if(stage==='aim'&&age<1.05&&!first){if(age<.42){y=.42;z=-9.45-5.4*smooth(age/.42);}else{const u=smooth((age-.42)/.4);y=.42+(2.6-.42)*u;z=-14.85+5.4*smooth((age-.62)/.4);}}
+    else if(stage==='aim'&&age<1.55&&!first){if(age<.82){y=.42;z=-9.45-5.4*smooth(age/.82);}else{y=.42+(2.6-.42)*smooth((age-.82)/.4);z=-14.85+5.4*smooth((age-1.15)/.4);}}
     this.sweep.position.set(0,y,z);this.sweep.visible=y<2.55;
   }
   updateGuide(A,stage,age){
@@ -400,8 +410,8 @@ export class BowlingScene{
     for(const [id,p] of A.pins){const r=RACK[id];if(Math.hypot(p.x-r.x,p.z-r.z)>.03&&Math.abs(A.ball.z-r.z)<2.2){this.impactToken=A.token;
       // A full rack hit in the pocket (head pin area) earns the slow-motion beat.
       const pocket=A.pins.size===10&&Math.abs(A.ball.x)<.55;this.burst(p.x,.55,p.z,t,pocket?1:.6);
-      // Pocket hit: slow motion plus a cut to a low three-quarter angle on the deck (TV only).
-      if(pocket&&!this.reduced){const now=performance.now();this.slowRate=.34;this.slowUntil=now+880;this.slowCam={until:now+1050,side:A.ball.x>0?-1:1,cut:false};}return;}}
+      // Hold a readable scatter beat; the camera stays on the lane axis (TV only).
+      if(!this.reduced){const now=performance.now();this.slowRate=pocket?.34:.55;this.slowUntil=now+(pocket?880:550);this.slowCam={until:now+(pocket?1050:650),side:A.ball.x>0?-1:1,cut:false};}return;}}
   }
   burst(x,y,z,t,power=.6){
     this.impact={x,z,born:t,power,wall:performance.now()};this.flash.position.set(x,1.1,z+.6);sound('hit');
@@ -428,25 +438,27 @@ export class BowlingScene{
     for(const [mesh,n] of [[this.sparks,sparks],[this.confetti,confetti]]){mesh.count=n;if(n){mesh.instanceMatrix.needsUpdate=true;mesh.instanceColor.needsUpdate=true;}}
     const im=this.impact,ia=im?t-im.born:9;
     // A short warm kick on the rack, not a wash: the pins keep their shading through the hit.
-    this.flash.intensity=im&&ia>=0&&ia<.35&&!this.reduced?(4+6*(im.power||.6))*Math.pow(1-ia/.35,2):0;
-    this.ring.visible=!!im&&ia>=0&&ia<.5&&!this.reduced;if(this.ring.visible){const s=1+ia*7;this.ring.position.set(im.x,.025,im.z);this.ring.scale.set(s,1,s);this.mat.ring.opacity=.75*(1-ia/.5);}
+    // 40 ms attack, then a squared decay: a kick on the rack, never a one-frame pop.
+    const near=im?clamp((this.camera.position.distanceTo(this.flash.position)-2)/12,.1,1)**1.5:1; // close cameras get a gentler kick
+    this.flash.intensity=im&&ia>=0&&ia<.4&&!this.reduced?(4+6*(im.power||.6))*near*Math.min(1,ia/.04)*Math.pow(1-ia/.4,2):0;
+    this.ring.visible=!!im&&ia>=0&&ia<.5&&!this.reduced&&!(this.slowCam&&performance.now()<this.slowCam.until);if(this.ring.visible){const s=1+ia*7;this.ring.position.set(im.x,.025,im.z);this.ring.scale.set(s,1,s);this.mat.ring.opacity=.75*(1-ia/.5);}
   }
   updateBanner(t){
     const b=this.bannerState,sprite=this.banner;if(!b){sprite.visible=false;return;}
     const age=t-b.born;if(age<0||age>1.5){sprite.visible=false;if(age>1.5)this.bannerState=null;return;}
     if(sprite.material.map!==b.texture){sprite.material.map=b.texture;sprite.material.needsUpdate=true;}
     // Pop with overshoot, scaled by importance; a gutter word lands small and droops.
-    const gutter=b.kind==='gutter',big=b.kind==='strike'?1+.07*Math.min(3,b.tier-1):gutter?.72:.92,over=b.kind==='strike'&&b.tier>=3?.24:.15;
+    const gutter=b.kind==='gutter',big=b.kind==='strike'?1+.07*Math.min(3,b.tier-1):gutter?.5:.92,over=b.kind==='strike'&&b.tier>=3?.24:.15;
     const pop=this.reduced?1:gutter?.9+.1*easeOut(age/.25):age<.18?.6+(.4+over)*easeOut(age/.18):age<.32?1+over-over*smooth((age-.18)/.14):1,fade=age>1.15?1-(age-1.15)/.35:1;
     const half=this.bannerAnchor(sprite.position),h=half*.5*pop*big;sprite.visible=true;sprite.material.opacity=clamp(fade,0,1);sprite.scale.set(h/.281,h,1);
     sprite.material.rotation=this.reduced?0:gutter?-.07*smooth(age/.7):b.kind==='strike'&&b.tier>=2?.035*Math.sin(age*9)*Math.max(0,1-age/.8):0;
-    if(gutter&&!this.reduced)sprite.position.addScaledVector(this.camera.up,-half*.06*smooth(age/.9));
+    if(gutter&&!this.reduced)sprite.position.addScaledVector(this.camera.up,-half*.025*smooth(age/.9));
   }
   bannerAnchor(out){
     // Screen-anchored in the upper middle of the measured field (camera space): below the TV
     // shell's event toast (top ~20%), above the rack, never under the HUD. A gutter word sits low
-    // over the empty lane, under the untouched rack.
-    const D=6,half=D*Math.tan(this.camera.fov*Math.PI/360);out.set(0,half*(this.bannerState?.kind==='gutter'?-.5:.36),-D).applyMatrix4(this.camera.matrixWorld);return half;
+    // small, in the strip between the toast and the pin heads, never over the rack.
+    const D=6,half=D*Math.tan(this.camera.fov*Math.PI/360);out.set(0,half*(this.bannerState?.kind==='gutter'?.53:.36),-D).applyMatrix4(this.camera.matrixWorld);return half;
   }
   updateMirrors(){
     // Mirror = reflect(y) * world pose. Pins in the pit or a ball in the gutter have no reflection.
@@ -464,23 +476,34 @@ export class BowlingScene{
   updateCamera(A,stage,age,dt){
     const P=this.camGoalPos,L=this.camGoalLook,aim=this.aimPose;
     P.copy(aim.pos);L.copy(aim.look);
+    if(stage==='rolling'&&(this.cameraStage!==stage||this.cameraToken!==A.token)){
+      // A bowler can release before fly-back finishes. Watch that roll from the
+      // current view rather than retreating to the approach and immediately chasing it.
+      this.closeLaunchToken=!this.reduced&&this.camPos.z<18?A.token:null;
+      if(this.closeLaunchToken){this.closeLaunchPose.pos.copy(this.camPos);this.closeLaunchPose.look.copy(this.camLook);}
+    }
+    this.cameraStage=stage;this.cameraToken=A.token;
     if(!this.reduced){
       // Follow: behind the ball with a little lag, dropping from 2.5 m to a low deck-level
       // pose as it nears the pins, so the rack fills the frame under the masking unit (the
       // sign's lower lip stays at the top edge instead of a cropped giant lane number).
       if(stage==='rolling'&&this.ball.visible){const b=this.ball.position,near=smooth((8-b.z)/16),z=Math.max(b.z+8.6,-1.6);P.set(b.x*.25,2.5-1.2*near,z);L.set(b.x*.35,.5-.08*near,Math.max(b.z-9,-10.7));
         // Blend in over the first half second so the release itself is seen from the aim view.
-        const u=smooth((age-.15)/.6);P.lerpVectors(aim.pos,P,u);L.lerpVectors(aim.look,L,u);}
-      else if(stage==='reveal'&&age<1.2){P.set(.8,2.75,-.4);L.set(0,.36,-12.2);} // low enough to see under the masking unit into the pit
-      const sc=this.slowCam;if(sc&&performance.now()<sc.until&&(stage==='rolling'||stage==='reveal')){P.set(sc.side*3.3,1.05,-4.6);L.set(-sc.side*.15,.5,-10.6);if(!sc.cut){sc.cut=true;this.camPos.copy(P);this.camLook.copy(L);}}
+        const u=smooth((age-.15)/.6);P.lerpVectors(aim.pos,P,u);L.lerpVectors(aim.look,L,u);
+        if(this.closeLaunchToken===A.token){const arrive=smooth((5-b.z)/13);P.lerpVectors(this.closeLaunchPose.pos,this.tmp.v.set(0,1.62,-.6),arrive);L.lerpVectors(this.closeLaunchPose.look,this.tmp.v2.set(0,.5,-11.5),arrive);}}
+      // Held for the whole reveal: the pin-deck camera blends in from here, and the aim view is
+      // only re-targeted once the next turn starts (no fast move leaking through a partial blend).
+      else if(stage==='reveal'){P.set(0,1.62,-.6);L.set(0,.72,-12.5);} // low enough to see under the masking unit into the pit
+      const sc=this.slowCam;if(sc&&performance.now()<sc.until&&(stage==='rolling'||stage==='reveal')){P.set(sc.side*.7,1.45,-.7);L.set(0,.48,-11.2);} // small deck move through the same spring
     }
+    // One camera director: the machine view is a goal of the same spring, never a
+    // second blend applied after it. Hold the deck until the rack is set, then return
+    // over one continuous path; an early throw retargets from the current pose/velocity.
+    if(!this.reduced&&stage==='aim'&&!A.first&&!this.extras?.state.noResetCam){const u=smooth((age-1.65)/2.25);P.lerpVectors(this.tmp.v.set(0,1.62,-.6),aim.pos,u);L.lerpVectors(this.tmp.v2.set(0,.72,-12.5),aim.look,u);}
     if(this.reduced){this.camPos.copy(P);this.camLook.copy(L);}
-    else{const k=1-Math.exp(-dt*(stage==='rolling'?3.4:2.6));this.camPos.lerp(P,k);this.camLook.lerp(L,k);}
+    else{const now=performance.now(),whip=this.slowCam&&now<this.slowCam.until,time=whip?.32:stage==='rolling'?.4:stage==='reveal'?.5:.5,d=Math.min(dt,.05);
+      damp(this.camPos,P,this.camVel,time,d,14);damp(this.camLook,L,this.lookVel,time*.85,d);}
     this.camera.position.copy(this.camPos);
-    if(!this.reduced){
-      // Strike/spare beat: a short push toward the deck while the banner lands.
-      const b=this.bannerState,ba=b?this.renderT-b.born:9;if(ba>=0&&ba<.9&&b.kind!=='gutter'){const k=Math.sin(Math.PI*clamp(ba/.9,0,1))*(b.kind==='strike'?Math.min(.26,.13+.045*b.tier):.09);this.camera.position.lerp(this.camLook,k);}
-    }
     this.camera.lookAt(this.camLook);
     // Pin crash micro-shake (TV camera only, wall-clock timed so slow motion keeps it short).
     const im=this.impact,wall=im?(performance.now()-im.wall)/1000:9;
@@ -512,7 +535,7 @@ export class BowlingScene{
     this.camera.fov=this.aimPose.fov;
   }
   dispose(){
-    this.feel?.dispose();this.feel=null;this.alley?.dispose();this.alley=null;this.extras?.dispose();this.extras=null;
+    this.feel?.dispose();this.feel=null;this.deck?.dispose();this.deck=null;this.alley?.dispose();this.alley=null;this.extras?.dispose();this.extras=null;
     for(const o of [...(this.staticMeshes||[]),this.neighbourPins,...this.pins,...(this.mirrorPins||[]),this.mirrorBall,this.ball,this.blobs,this.sweep,this.guide,this.launchRing,this.sparks,this.confetti,this.ring,this.banner])if(o)this.scene.remove(o);
     for(const t of this.ballTextures?.values()||[])t.dispose();for(const t of this.bannerTextures.values())t.dispose();
     for(const x of this.disposables)x.dispose?.();this.disposables.clear();this.envTarget?.dispose();this.scene.environment=null;

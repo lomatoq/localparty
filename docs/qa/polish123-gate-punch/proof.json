@@ -1,0 +1,162 @@
+{
+  "status": "owner-verified-await-independent-parent-review",
+  "scope": "Bounded Swarm/Punch renderer polish only. No physics, damage, awards, camera, world coordinates, HUD, controls or existing artwork replacement.",
+  "sources": {
+    "games/sports_siege/public/host.js": "69528f8ea177b3b246ce6d8ab1ce49a7902bceb10581db7227b97c122b399f97",
+    "games/arcade/public/app.js": "adac66eab9d5115b2af80b79f945c0e127b76b8a12345f922a837e10b5cd5a4c",
+    "games/arcade/public/arcade-juice.js": "7946016e91e7299b616cb52dfb276d8cb87b06a36bd45632426b3bdd05e8eb86"
+  },
+  "observedImages": [
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/punch-confirm/punchmeter-tv-idle-1280.png",
+      "sha256": "83ab2203f9205ffaf9a77b40303748a7d571e95a285a6f8f2bc671bc3d497090",
+      "game": "punchmeter",
+      "state": "idle",
+      "width": 1280,
+      "personallyOpened": true,
+      "observation": "Authored full gym remains; duplicate procedural ropes/posts and hard cone absent. Hanging bag and warm floor light remain whole."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/punch-confirm/punchmeter-tv-idle-1920.png",
+      "sha256": "c0842c8e954dc54192fc81717606f19563da81d8c2198e796364c85db17ff3af",
+      "game": "punchmeter",
+      "state": "idle",
+      "width": 1920,
+      "personallyOpened": true,
+      "observation": "Authored full gym remains; duplicate procedural ropes/posts and hard cone absent. Hanging bag and warm floor light remain whole."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/punch-confirm/punchmeter-tv-impact-1280.png",
+      "sha256": "451aa2b90b1a48296b162b3c1bb87b993894f459f9d0383ee784d0af7a6d58c4",
+      "game": "punchmeter",
+      "state": "impact",
+      "width": 1280,
+      "personallyOpened": true,
+      "observation": "Real human840-point punch; actual bag response and count-up meter remain. 720 image is during count-up739,1080 settled840; neither is a fabricated reward."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/punch-confirm/punchmeter-tv-impact-1920.png",
+      "sha256": "965c759301a15ceacba5937ccc1089336a4ec7e67ded718df865a83cf83b9867",
+      "game": "punchmeter",
+      "state": "impact",
+      "width": 1920,
+      "personallyOpened": true,
+      "observation": "Real human840-point punch; actual bag response and count-up meter remain. 720 image is during count-up739,1080 settled840; neither is a fabricated reward."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/2p-playing-tv-720.png",
+      "sha256": "7246ba1df767dcef16fd03229e52af4f6bebdbc6410ca82c3645323edcf4192a",
+      "game": "swarm_gate",
+      "state": "playing",
+      "width": 1280,
+      "personallyOpened": true,
+      "observation": "Repair phase idle: quieter smaller floor masonry, continuous authored wall/gate, native turret silhouette with understated contact shadow and intact player chips."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/2p-playing-tv-1080.png",
+      "sha256": "8c27d17d152b7265fc4edcf539fadf3f27e23cebd0a5c04eba239391ed6fc898",
+      "game": "swarm_gate",
+      "state": "playing",
+      "width": 1920,
+      "personallyOpened": true,
+      "observation": "Repair phase idle: quieter smaller floor masonry, continuous authored wall/gate, native turret silhouette with understated contact shadow and intact player chips."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/2p-readable-rewards-tv-720.png",
+      "sha256": "8f4320dab9e8438474a60885bc4a9b1f7c01c56e03060698ecbc47ffa43d7f76",
+      "game": "swarm_gate",
+      "state": "readable-rewards",
+      "width": 1280,
+      "personallyOpened": true,
+      "observation": "Real wave/hits: authoritative+10 labels whole and separated; four concurrent rewards in4p1080. Actual enemy population and effects remain visible."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/2p-readable-rewards-tv-1080.png",
+      "sha256": "ec97794db6177f66e49c937efa7c921ff1a0679373f4c0400f68477ec354f2cc",
+      "game": "swarm_gate",
+      "state": "readable-rewards",
+      "width": 1920,
+      "personallyOpened": true,
+      "observation": "Real wave/hits: authoritative+10 labels whole and separated; four concurrent rewards in4p1080. Actual enemy population and effects remain visible."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/4p-playing-tv-720.png",
+      "sha256": "ecd4bfb6a3a902fbf5c66240f8a2f660481a327b5a6fc7cfbb61f00f0fac4cde",
+      "game": "swarm_gate",
+      "state": "playing",
+      "width": 1280,
+      "personallyOpened": true,
+      "observation": "Repair phase idle: quieter smaller floor masonry, continuous authored wall/gate, native turret silhouette with understated contact shadow and intact player chips."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/4p-playing-tv-1080.png",
+      "sha256": "e9e3b0eb9404527e953cb0658ffe52f759b5e778c774a5ffdd8f83013a04f3d8",
+      "game": "swarm_gate",
+      "state": "playing",
+      "width": 1920,
+      "personallyOpened": true,
+      "observation": "Repair phase idle: quieter smaller floor masonry, continuous authored wall/gate, native turret silhouette with understated contact shadow and intact player chips."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/4p-readable-rewards-tv-720.png",
+      "sha256": "99b8026f1f7a5edcb6a8e5c8774746cbb2b47a04fbff5bae646d9f03b380589d",
+      "game": "swarm_gate",
+      "state": "readable-rewards",
+      "width": 1280,
+      "personallyOpened": true,
+      "observation": "Real wave/hits: authoritative+10 labels whole and separated; four concurrent rewards in4p1080. Actual enemy population and effects remain visible."
+    },
+    {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/4p-readable-rewards-tv-1080.png",
+      "sha256": "7d48fb8ed20a2e2741170627a1f668f1f68da9be1ed55b836f81bfff952744e3",
+      "game": "swarm_gate",
+      "state": "readable-rewards",
+      "width": 1920,
+      "personallyOpened": true,
+      "observation": "Real wave/hits: authoritative+10 labels whole and separated; four concurrent rewards in4p1080. Actual enemy population and effects remain visible."
+    }
+  ],
+  "captures": {
+    "punch": {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/punch-confirm/manifest.json",
+      "sha256": "32356b8a6508665c1a05ae5318d360c1321d46a0e2415f8218b0d26514f8cb9b",
+      "errors": [],
+      "changedFiles": [],
+      "finishedAt": "2026-10-04T20:53:56.559Z",
+      "method": "Normal-clock actual launcher, two browser humans/two bots; whichever real human owns current turn performs genuine pointer hold560ms/release. Morgan accepted840 points."
+    },
+    "swarm": {
+      "path": "/Users/hlebhlyaba/HeyPals/localparty/output/playwright/polish123-gate-punch/after/swarm/report.json",
+      "sha256": "b2956c022be596699c881f7f4a412b7cef960fe0303f05f6e29e8a049813ef9f",
+      "errors": [],
+      "ownerChanged": [],
+      "sharedChanged": [],
+      "finishedAt": "2026-10-04T20:55:05.862Z",
+      "screens": 36,
+      "guards": 16,
+      "method": "Normal-clock managed launcher, real pointer aiming/fire, actual2/4-player rooms. Built-in bots in4-player room. Real10-point kills, actual pause/resume/reload."
+    }
+  },
+  "checks": {
+    "syntax": "all3changedfiles PASS",
+    "sports-score-tests": "40pass0fail",
+    "arcade-feel": "PASS",
+    "score-placement": "32colocatedscreen-space rewards at720/1080, allretained/nonoverlapping/inbounds/outsideHUD PASS; synthetic layout fixture, not32actualsimultaneous kills",
+    "impeccable-detect": []
+  },
+  "preservedHistory": [
+    "baseline/punch sandbox EPERM is environment failure",
+    "after/punch missed current human turn is QA selection error, unchanged product source; actual replacement selects either human",
+    "baseline Punch scopedsource stable, two unrelated Deluxe/Bowling files changed during baseline",
+    "first2p-hit-score1080 can expire beforecapture; readable-rewards actualfreshkills supersede rewardvisibility"
+  ],
+  "limits": [
+    "Owner visual review is not independent approval; parent has exact12 originals.",
+    "No physical phone, AirPlay or TV hardware validation.",
+    "No all16-playerlivecomposition or boss25/100liveawardcapture inthisboundedpass; existing engine scoretests verify values.",
+    "HUD/cards remain current parent-owned composition; no claim tofixunrelated hierarchy.",
+    "Transient mixed rewardfontsize afterviewportresize lasts existing popup lifetime; born-before-resize label22 and born-after33 visible, original liveeachsize newlabels proper."
+  ],
+  "browserClosed": true,
+  "buildInstallCommit": "none"
+}

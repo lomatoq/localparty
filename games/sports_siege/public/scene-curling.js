@@ -761,31 +761,54 @@ export class CurlingScene {
     }
     // Keep inside the room.
     shot.pos.y = Math.min(8.8, Math.max(1.2, shot.pos.y)); shot.pos.z = Math.min(35, shot.pos.z); shot.pos.x = Math.max(-11, Math.min(11, shot.pos.x));
+    const measuring = s.phase === 'results' || s.stage === 'end' || (s.stage === 'reveal' && lastStone);
+    // Measure: pre-correct the destination with the HUD-safe guard so the spring glides to a safe framing
+    // (the guard below then only nudges in transit instead of snapping every frame).
+    if (measuring && this.presentationBounds) {cam.position.copy(shot.pos); cam.lookAt(shot.look); const keep = this.camLook.clone(); this.camLook.copy(shot.look); const p = this.keepMeasureVisible(live, {dry: true}); this.camLook.copy(keep); if (p) shot.pos.copy(p);}
     if (!this.cameraReady) {this.camPos.copy(shot.pos); this.camLook.copy(shot.look); this.cameraReady = true;}
-    const k = 1 - Math.exp(-dt * (this.reduced ? Math.max(5, speed * 2.5) : speed));
-    this.camPos.lerp(shot.pos, k); this.camLook.lerp(shot.look, k);
+    // Ease the follow rate itself so cuts between chase, crane and measure never whip.
+    this.camRate = this.camRate === undefined ? speed : this.camRate + (speed - this.camRate) * Math.min(1, dt * 1.8);
+    if (this.reduced) {const k = 1 - Math.exp(-dt * Math.max(5, speed * 2.5)); this.camPos.lerp(shot.pos, k); this.camLook.lerp(shot.look, k);}
+    else {
+      // Critically damped spring (ease-in-out, no overshoot): shot changes blend, never cut or whip.
+      // Long relocations (house -> next delivery) glide slower so the fly-back reads as a move, not a whip.
+      const far = this.camPos.distanceTo(shot.pos), w = this.camRate * 1.4 * Math.max(.5, Math.min(1, 9 / Math.max(1, far))), e = Math.exp(-w * dt);
+      this.camVel ||= new T.Vector3(); this.lookVel ||= new T.Vector3();
+      for (const [p, v, t, vmax] of [[this.camPos, this.camVel, shot.pos, 11], [this.camLook, this.lookVel, shot.look, 16]]) {
+        const before = this.v2.copy(p);
+        for (const a of ['x', 'y', 'z']) {const d = p[a] - t[a], tmp = (v[a] + w * d) * dt; p[a] = t[a] + (d + tmp) * e; v[a] = (v[a] - w * tmp) * e;}
+        // Speed cap: a framing target that jumps far (fit edge cases, long relocations) still reads as a glide.
+        const step = p.distanceTo(before), cap = vmax * Math.max(dt, 1e-3);
+        if (step > cap) {p.lerpVectors(before, p, cap / step); v.multiplyScalar(cap / step);}
+      }
+    }
     cam.position.copy(this.camPos); cam.lookAt(this.camLook);
     cam.updateMatrixWorld(); this.feel?.postCamera(s, cam, this.camLook, dt);
     // Measure only: the ceiling clamp and camera interpolation can invalidate the
     // destination fit. Keep the whole house and stone bodies clear of the actual HUD.
-    if (s.phase === 'results' || s.stage === 'end' || (s.stage === 'reveal' && lastStone)) {
-      this.keepMeasureVisible(live);
+    if (measuring) {
+      this.keepMeasureVisible(live, {dt});
     }
   }
 
-  keepMeasureVisible(live) {
+  keepMeasureVisible(live, {dry = false, dt = 0} = {}) {
     const bounds = this.presentationBounds; if (!bounds) return;
     const cam = this.camera, T = this.T, h = this.house, margin = 10;
     const box = {left: 2 * (bounds.left + margin) / bounds.width - 1, right: 2 * (bounds.right - margin) / bounds.width - 1,
       top: 1 - 2 * (bounds.top + margin) / bounds.height, bottom: 1 - 2 * (bounds.bottom - margin) / bounds.height};
     const points = this.housePoints(live.filter(p => Math.hypot(p.x - h.x, p.z - h.z) <= 6.5));
     const v = this.v1, fits = () => points.every(p => {v.copy(p).project(cam); return v.z <= 1 && v.x >= box.left && v.x <= box.right && v.y >= box.bottom && v.y <= box.top;});
-    cam.updateMatrixWorld(); if (fits()) return;
+    cam.updateMatrixWorld(); if (fits()) return dry ? cam.position.clone() : undefined;
     const origin = cam.position.clone(), away = origin.clone().sub(this.camLook).normalize();
     const place = d => {cam.position.copy(origin).addScaledVector(away, d); cam.position.y = Math.min(8.8, cam.position.y); cam.position.z = Math.min(35, cam.position.z); cam.position.x = Math.max(-11, Math.min(11, cam.position.x)); cam.lookAt(this.camLook); cam.updateMatrixWorld();};
     let lo = 0, hi = 24; place(hi);
     if (fits()) for (let i = 0; i < 12; i++) {const mid = (lo + hi) / 2; place(mid); if (fits()) hi = mid; else lo = mid;}
-    place(hi); this.camPos.copy(cam.position);
+    place(hi);
+    if (dry) return cam.position.clone();
+    // Glide out instead of snapping (max 7 m/s); the pre-corrected spring target settles inside the guard.
+    const cap = 7 * Math.max(dt, 1 / 60), moved = cam.position.distanceTo(origin);
+    if (!this.reduced && moved > cap) {cam.position.lerpVectors(origin, cam.position, cap / moved); cam.lookAt(this.camLook); cam.updateMatrixWorld();}
+    this.camPos.copy(cam.position);
   }
 
   dispose() {

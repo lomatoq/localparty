@@ -13,15 +13,18 @@ struct PartyGame: Codable, Identifiable, Hashable {
     var hostControls: HostControls?
     var min: Int; var max: Int; var color: String; var section: String; var goal: String?; var win: String?
 }
-struct PartyPlayer: Equatable, Codable, Identifiable { var id: String; var name: String; var gameReady: Bool; var connected: Bool?; var testBot: Bool? }
+struct PartyPlayer: Equatable, Codable, Identifiable { var id: String; var name: String; var gameReady: Bool; var connected: Bool?; var testBot: Bool?; var coins: Int? }
 struct GameUI: Equatable, Codable { var phase: String; var label: String?; var progress: String?; var hostActions: [String]? }
 struct GameSession: Equatable, Codable { var paused: Bool; var readyIds: [String]; var pauseReason: String? }
 struct ActiveGame: Equatable, Codable { var id: String; var instance: String; var ui: GameUI; var session: GameSession?; var startError: String?; var roster: [PartyPlayer]?; var ready: [String]? }
 struct RoomIncident: Equatable, Codable {var id:String;var at:Double;var message:String}
 struct GameVote: Equatable, Codable {var playerId:String;var gameId:String}
-struct PartyStanding: Equatable, Codable, Identifiable {var id:String;var name:String;var played:Int;var wins:Int;var points:Int}
+struct PartyStanding: Equatable, Codable, Identifiable {var id:String;var name:String;var played:Int;var wins:Int;var points:Int;var coins:Int?}
 struct PartyLanguageOverride: Equatable, Codable { var language: String; var revision: String }
+struct PartyGameActivity: Equatable, Codable { var matches: Int; var seconds: Double }
 struct ServerState: Equatable, Codable {
+    var gameActivity: [String: PartyGameActivity]?
+    var gamePopularity: [String: Int]?
     var languageOverride: PartyLanguageOverride?
     var tv: PartyTVPresentation?
     var botCount: Int?
@@ -221,7 +224,8 @@ struct ServerState: Equatable, Codable {
         let fields = ["surface", "path", "fps", "p95", "max", "over50", "over100", "frames",
                       "viewport", "screen", "stage", "title", "description",
                       "snapshots", "snapshotAge", "snapshotGap", "simulationGap", "simulationUnchanged",
-                      "arenaFrame", "arenaCircle", "arenaInset", "arenaFill"]
+                      "arenaFrame", "arenaCircle", "arenaInset", "arenaFill",
+                      "visibility", "nativeSurface", "nativeVisible", "runningAnimations", "runningCSS"]
         let summary = fields.compactMap { key -> String? in
             guard let value = stats[key] else { return nil }
             return "\(key)=\(String(describing: value).prefix(100))"
@@ -235,6 +239,9 @@ struct ServerState: Equatable, Codable {
         @unknown default: thermal = "unknown"
         }
         record("tv-frames " + summary + " thermal=\(thermal) lowPower=\(ProcessInfo.processInfo.isLowPowerModeEnabled)")
+    }
+    func recordDisplayLifecycle(_ event: String) {
+        record("external-display event=" + event + " scenes=\(externalDisplayCount)")
     }
 
     func recordUIAssets(_ stats: [String: Any]) {

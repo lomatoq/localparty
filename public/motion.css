@@ -311,5 +311,27 @@ html body.native-shell dialog[open].lp-dialog-closing.sheet-closing{
 html body dialog[open].lp-dialog-closing.sheet-closing>*{animation:none!important;opacity:1;translate:none}
 html body dialog[open].lp-dialog-closing.sheet-closing::backdrop{animation:lp-shared-backdrop-out 180ms ease-out both!important}
 @keyframes lp-shared-dialog-out{from{opacity:var(--lp-close-opacity,1);translate:var(--lp-close-translate,0 0);scale:var(--lp-close-scale,1);transform:var(--lp-close-transform,none)}to{opacity:0;translate:0 8px;scale:.96;transform:none}}
-@keyframes lp-shared-backdrop-out{from{opacity:1}to{opacity:0}}
+@keyframes lp-shared-backdrop-out{from{opacity:var(--lp-backdrop-start,1)}to{opacity:0}}
 @media(prefers-reduced-motion:reduce){html body dialog[open].lp-dialog-closing.sheet-closing,html body dialog[open].lp-dialog-closing.sheet-closing::backdrop{animation:none!important}}
+
+/* Legacy game overlays toggle hidden/display rather than calling the dialog API.
+   Keep their paint alive during exit; hidden surfaces stop receiving input at once.
+   Gameplay canvases, hit targets and the native tab coordinator are excluded. */
+@supports (transition-behavior:allow-discrete){
+ html.lp-motion-ready body :is(.ss-overlay,.overlay,[role="dialog"]):not(dialog):not(#hostPanel){
+  animation:none!important;
+  transition:opacity var(--motion-fast) var(--motion-ease-out),display var(--motion-fast) allow-discrete,overlay var(--motion-fast) allow-discrete;
+  opacity:1;
+ }
+ html.lp-motion-ready body :is(.ss-overlay,.overlay,[role="dialog"]):not(dialog):not(#hostPanel):is([hidden],.hidden){opacity:0;pointer-events:none;animation:none!important}
+ @starting-style{
+  html.lp-motion-ready body :is(.ss-overlay,.overlay,[role="dialog"]):not(dialog):not(#hostPanel){opacity:0}
+ }
+}
+
+/* A reversed exit is driven from its live pose; do not restart the CSS entrance. */
+html body dialog[open].lp-dialog-resumed:not(.lp-dialog-closing),
+html body.native-shell dialog[open].lp-dialog-resumed:not(.lp-dialog-closing){animation:none!important}
+
+/* Inset confirmation never changes card size or competes with its favourite badge. */
+.lp-catalog-card>.lp-choice-confirm{position:absolute;inset:3px;z-index:8;pointer-events:none;border:2px solid color-mix(in srgb,var(--card,#c8ff73) 45%,white);border-radius:inherit;box-shadow:inset 0 0 16px color-mix(in srgb,var(--card,#c8ff73) 25%,transparent);opacity:0}

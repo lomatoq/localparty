@@ -6,10 +6,10 @@
  function surface(width,height){const c=document.createElement('canvas');c.width=width;c.height=height;const ctx=c.getContext('2d',{alpha:true});if(ctx){ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';}return{canvas:c,ctx};}
  function release(img){const record=records.get(img);record?.observer.disconnect();record?.canvas.remove();records.delete(img);pending.delete(img);img.style.removeProperty('opacity');delete img.dataset.hpLogoSmooth;}
  function draw(img){
-  // Keep the real wordmark in the TV's masked, responsive catalogue. Replacing
+  // Keep the real wordmark in every masked, responsive catalogue. Replacing
   // it with a separately painted canvas can leave a blank card after a resize.
   // The original image shares the card's layout and clipping directly.
-  if(document.body.classList.contains('tv-screen')&&img.matches('.lp-card-game-logo')){release(img);return;}
+  if(img.matches('.lp-card-game-logo')){release(img);return;}
   if(!img.isConnected||!img.complete||!img.naturalWidth)return;
   const style=getComputedStyle(img),width=parseFloat(style.width)||img.clientWidth,height=parseFloat(style.height)||img.clientHeight;let record=records.get(img);
   if(record&&record.canvas.parentElement!==img.parentElement){release(img);record=undefined;}
@@ -41,7 +41,7 @@
   img.style.opacity='0';img.dataset.hpLogoSmooth='ready';
  }
  function flush(){frame=0;for(const img of pending)draw(img);pending.clear();}
- function queue(img){pending.add(img);if(!frame)frame=requestAnimationFrame(flush);}
+ function queue(img){if(img.matches('.lp-card-game-logo')){if(records.has(img))release(img);return;}pending.add(img);if(!frame)frame=requestAnimationFrame(flush);}
  function images(node){return node instanceof Element?[...(node.matches(selector)?[node]:[]),...node.querySelectorAll(selector)]:[];}
  function scan(node){for(const img of images(node)){if(!img.dataset.hpLogoWatched){img.dataset.hpLogoWatched='true';img.addEventListener('load',()=>{release(img);queue(img);});img.addEventListener('error',()=>release(img));}queue(img);}}
  scan(document.body);new MutationObserver(events=>{for(const e of events){if(e.type==='attributes'){e.target.querySelectorAll?.(selector).forEach(queue);}else{e.removedNodes.forEach(node=>images(node).filter(img=>!img.isConnected).forEach(release));e.addedNodes.forEach(scan);}}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class','open']});

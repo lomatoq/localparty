@@ -7,7 +7,7 @@ assert.deepEqual(placeOf('01'),{rank:1,digit:'01'});assert.deepEqual(placeOf('#1
 for(const value of ['0','—','★','♥','Queue','12/16'])assert.equal(placeOf(value),null);
 assert.equal(descriptors.jenga,undefined);
 for(const list of Object.values(descriptors))for(const d of list){assert(!d.ordinal);assert(!/score-chip|ss-player-card|playerList|seats|readGrid/.test(d.rows));}
-const out=path.resolve('.localparty-build/rankings111/stress-fixtures');fs.mkdirSync(out,{recursive:true});
+const out=path.resolve(process.env.AUDIT_OUTPUT||'.localparty-build/rankings111/stress-fixtures');fs.mkdirSync(out,{recursive:true});
 const files=['public/rankings-theme.css','public/rankings-theme.js','public/background-scene.css','public/game-polish.css','public/game-ui-system.css','public/branding.css','public/native-shell/controller-bridge.js','public/native-shell/tabs.js'];
 const report={method:'Explicit renderer fixtures only: author-supplied places including ties,16 rows, Cyrillic long names, zeros and large/formatted scores. No engine state or game result injected.',source:Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex')])),runs:[],errors:[]};
 const child=spawn(process.execPath,['server.js'],{env:{...process.env,PARTY_EMBEDDED:'1',PARTY_INTERNAL_PORT:'0',PARTY_EPHEMERAL:'1',PARTY_PORT:'0',PARTY_NO_BROWSER:'1',PARTY_ADMIN_KEY:'rank-fixture'}});

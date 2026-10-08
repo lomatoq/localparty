@@ -1,0 +1,15 @@
+/* Compact shared currency: bright gold ink, no perpetual animation or filters. */
+html body .hp-coin{width:22px!important;height:22px!important;object-fit:contain;flex:0 0 22px;vertical-align:middle;max-width:none!important}
+html body .hp-coin-amount{display:inline-flex;align-items:center;justify-content:center;gap:5px;color:#ffe7a0!important;-webkit-text-fill-color:currentColor!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+html body .hp-coin-reward{font:700 italic 12px/1.3 KardiaFitRunner,sans-serif;color:#ffe7a0;margin-top:3px}
+html body .hp-coin-reward .hp-coin{width:17px!important;height:17px!important;flex-basis:17px}
+html body .hp-result-name>.hp-coin-reward{display:flex;width:max-content}
+html body .hp-coin-flight{position:fixed;z-index:10000;pointer-events:none;width:20px!important;height:20px!important;contain:layout style}
+html body .podium-plinth .hp-coin-reward{font-size:12px;margin:0}
+html body .rank-stats.hp-coin-amount{font-size:16px}
+html.hp-ui body .hp-coin-amount>span{font:inherit!important;color:inherit!important;-webkit-text-fill-color:currentColor!important;opacity:1!important;max-width:none!important}
+html.hp-ui body #standings .rank-stats.hp-coin-amount{font:700 italic 18px/1.2 KardiaFitRunner,sans-serif!important}
+html.hp-ui body #leaderboard .rank-stats.hp-coin-amount{display:flex!important;gap:5px;align-items:center;font:700 italic 24px/1.2 KardiaFitRunner,sans-serif!important}
+html.hp-ui body .hp-result-name:has(>.hp-coin-reward){display:flex!important;flex-direction:column;-webkit-line-clamp:unset;overflow:visible;min-width:0}
+html.hp-ui body .hp-result-name:has(>.hp-coin-reward)>span:first-child{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;line-height:1.2}
+html.hp-ui body #tvPodium .podium-name>.hp-coin-reward{display:flex!important;margin:3px auto 0;width:max-content;font-size:13px!important;line-height:1.2}

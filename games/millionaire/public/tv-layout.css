@@ -169,3 +169,13 @@ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 .mq-identity .mq-photo{box-sizing:border-box;border:1.5px solid var(--player,#ceb894)}
+
+/* On short TVs the ladder has its own envelope below the shared task top.
+   Its absolute grid area leaves the cap, category and answer coordinates intact. */
+@media(max-height:740px) and (min-width:1101px){
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game.gameGrid[data-tv-hud-cluster]{position:relative}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>.stage{grid-column:2;grid-row:1}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game>.scoreboard{position:absolute;grid-column:1 / 2;grid-row:1 / 2;inset:0 0 auto;height:calc(50dvh + 50% - 24px)!important;max-height:none!important;padding-bottom:8px!important;box-sizing:border-box}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList>.scoreItem:first-child{margin-top:0!important}
+ html.hp-ui.party-managed.party-host.party-display-only.party-session-active[data-party-game=millionaire] body.party-screen main.hostShell #game #scoreList>.scoreItem+.scoreItem{margin-top:8px!important}
+}

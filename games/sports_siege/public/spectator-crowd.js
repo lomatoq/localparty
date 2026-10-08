@@ -1,6 +1,6 @@
 import {createSpectatorSeat, createSpectatorSeatResources} from './spectator-seat.js';
 
-// Decorative only: fixed floor/hip anchors, upright camera-facing human cutouts.
+// Decorative only: inward-facing chairs with grounded, camera-facing seated cutouts.
 const PEOPLE = [
   ['01-coral', .4545454545, .6124401914, 1208 / 1254],
   ['02-teal', .4282296651, .6339712919, 1175 / 1254],
@@ -24,7 +24,7 @@ export class SpectatorCrowd {
     });
     const m = new T.Matrix4();
     slots.forEach((slot, i) => {
-      const yaw = Math.atan2(-slot.x, 30 - slot.z);
+      const yaw = -slot.side * Math.PI / 2;
       this.u.position.set(slot.x, slot.floor, slot.z); this.u.rotation.set(0, yaw, 0); this.u.scale.setScalar(1); this.u.updateMatrix();
       for(const chair of this.chairs) chair.mesh.setMatrixAt(i, m.multiplyMatrices(this.u.matrix, chair.local));
     });
@@ -45,8 +45,14 @@ export class SpectatorCrowd {
       person.slots.forEach((slot,i) => {
         // A seated shoulder lean preserves the score cheer without lifting feet off the tier.
         const lean = !this.reduced && clock < this.cheerUntil ? Math.sin(clock*8+i)*.012 : 0;
-        this.u.position.set(slot.x, slot.floor+.32, slot.z);
-        this.u.rotation.set(0, Math.atan2(this.camera.position.x-slot.x, this.camera.position.z-slot.z), lean);
+        const yaw = Math.atan2(this.camera.position.x-slot.x, this.camera.position.z-slot.z);
+        // Keep the illustrated pose readable from the live camera, but put its
+        // plane ahead of its own chair's .26 m horizontal half-extents. Depth
+        // testing still lets nearer rows and the rink barrier occlude it naturally.
+        const relative = yaw + slot.side*Math.PI/2;
+        const clearance = .26*(Math.abs(Math.sin(relative))+Math.abs(Math.cos(relative)))+.018;
+        this.u.position.set(slot.x+Math.sin(yaw)*clearance, slot.floor+.32, slot.z+Math.cos(yaw)*clearance);
+        this.u.rotation.set(0, yaw, lean);
         this.u.scale.setScalar(person.scale); this.u.updateMatrix(); person.mesh.setMatrixAt(i,this.u.matrix);
       });
       person.mesh.instanceMatrix.needsUpdate = true;

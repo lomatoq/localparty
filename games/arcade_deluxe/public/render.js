@@ -1,12 +1,14 @@
 import {drawExplosionWaves} from './explosion-waves.js';
 import './geometry.js';
 import './marble-layout.js';
+const marbleGarden=new Image(),marbleMachines=new Image();marbleGarden.src='/assets/gameplay/refresh129/marble-garden.png';marbleMachines.src='/assets/gameplay/refresh129/marble-machinery.png';
+function marblePart(c,index,x,y,size,angle=0){if(!marbleMachines.complete||!marbleMachines.naturalWidth)return false;const cell=marbleMachines.width/3;c.save();c.translate(x,y);c.rotate(angle);c.drawImage(marbleMachines,index*cell,0,cell,marbleMachines.height,-size/2,-size/2,size,size);c.restore();return true;}
 const MarbleLayout=globalThis.MarbleLayout;
 import {SiegeFX} from './siege-fx.js';
 import {PocketProjectileArt} from './pocket-projectiles.js';
 import {AirDefenseRenderer} from './air-defense-render.js';
 import {PocketJuice} from './pocket-juice.js';
-import {drawToyTank} from './pocket-tank.js';
+import {drawToyTank,shade} from './pocket-tank.js';
 import {DEEP_SOIL} from './pocket-world.js';
 import {pocketFrame,offscreenShots} from './pocket-camera.js';
 const Geo=globalThis.ArcadeGeometry;
@@ -31,8 +33,9 @@ class AudioFX {
  play(kind){if(!this.enabled||!this.ctx||this.ctx.state!=='running')return;const c=this.ctx,t=c.currentTime,g=c.createGain();g.connect(c.destination);const o=c.createOscillator();o.connect(g);const pop=kind==='pop',blast=kind==='blast';o.type=blast?'triangle':pop?'sine':'triangle';o.frequency.setValueAtTime(blast?85:pop?650+Math.random()*200:280,t);o.frequency.exponentialRampToValueAtTime(blast?28:pop?1100:120,t+.13);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(blast?.12:.035,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+(blast?.36:.14));o.start(t);o.stop(t+.4);}
 }
 export class Renderer {
- constructor(el){this.el=el;this.c=el.getContext('2d');this.s=null;this.previous=null;this.arrived=0;this.lastEvent=0;this.particles=[];this.texts=[];this.rings=[];this.beams=[];this.bursts=[];this.sprites=MARBLE_COLORS.map(sphere);this.audio=new AudioFX();this.cam={x:640,y:360,z:1};this.last=performance.now();this.reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;this.siegeFX=new SiegeFX(this.reduced);this.projectileArt=new PocketProjectileArt();this.airDefense=new AirDefenseRenderer(this.projectileArt,this.reduced);this.juice=new PocketJuice(this.reduced);this.frame=this.frame.bind(this);this.raf=requestAnimationFrame(this.frame);this.backgroundKey='';}
+ constructor(el){this.el=el;this.c=el.getContext('2d');this.s=null;this.previous=null;this.arrived=0;this.lastEvent=0;this.particles=[];this.texts=[];this.rings=[];this.beams=[];this.bursts=[];this.sprites=MARBLE_COLORS.map(sphere);this.audio=new AudioFX();this.cam={x:640,y:360,z:1};this.last=performance.now();this.reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;this.siegeFX=new SiegeFX(this.reduced);this.projectileArt=new PocketProjectileArt();this.airDefense=new AirDefenseRenderer(this.projectileArt,this.reduced);this.juice=new PocketJuice(this.reduced);this.frame=this.frame.bind(this);this.raf=requestAnimationFrame(this.frame);this.backgroundKey='';this.sizeDirty=true;this.resizeFrame=()=>{if(this.destroyed)return;this.sizeDirty=true;this.pausePaintFrames=0;if(!this.raf){if(this.s?.paused)this.last=performance.now();this.raf=requestAnimationFrame(this.frame);}};this.sizeObserver=new ResizeObserver(this.resizeFrame);this.sizeObserver.observe(el);addEventListener('resize',this.resizeFrame);this.pausePaintFrames=0;this.assetChanged=()=>{if(!this.destroyed)this.resizeFrame();};for(const image of [marbleGarden,marbleMachines])image.addEventListener('load',this.assetChanged);this.projectileArt.ready.then(()=>{this.projectileReady=true;this.assetChanged();});this.siegeFX.plasma.ready.then(this.assetChanged);this.fontsChanged=()=>this.resizeFrame();document.fonts?.addEventListener('loadingdone',this.fontsChanged);document.fonts?.ready.then(()=>{if(!this.destroyed)this.fontsChanged();});}
  setState(s){
+  if(this.destroyed)return;
   const mapKey=v=>JSON.stringify([v.roundSerial,v.level,v.boards?.map(b=>b.level)]);
   if(!this.reduced&&s.mode==='marble_bloom'&&this.s&&mapKey(s)!==mapKey(this.s)&&this.el.width&&this.el.height){
    // Freeze only the outgoing rendered frame; never run two simulations or
@@ -41,6 +44,7 @@ export class Renderer {
    this.mapTransition={snapshot,at:performance.now()};
   }
   if(s.mode==='pocket_siege'&&s.phase==='playing'&&s.stage==='aim'&&(this.s?.roundSerial!==s.roundSerial||this.s?.activeId!==s.activeId||this.s?.turn!==s.turn))this.shooterNotice={player:s.activeId,at:s.t};
+  if(!this.raf){if(this.s?.paused)this.last=performance.now();this.raf=requestAnimationFrame(this.frame);}this.pausePaintFrames=0;
   this.previous=this.s;this.s=s;this.arrived=performance.now();if(this.roundSerial!==s.roundSerial){this.roundSerial=s.roundSerial;this.siegeFX.clear();this.airDefense.clear();this.juice.clear();this.lastEvent=0;this.particles=[];this.texts=[];this.rings=[];this.beams=[];this.bursts=[];this.vfx=[];this.cam={x:640,y:360,z:1};this.pathKey=null;this.terrainCanvas=null;this.terrainTransition=null;}for(const e of s.events||[]){if(e.id<=this.lastEvent)continue;this.lastEvent=e.id;this.effect(e);}if(this.previous?.terrainRevision!==s.terrainRevision){this.terrainTransition=null;this.terrainCanvas=null;if(s.mode==='pocket_siege'&&this.previous?.roundSerial===s.roundSerial)this.juice.terrainDelta(this.previous.terrain,s.terrain);}
  }
  transitionFrame(now){
@@ -53,7 +57,7 @@ export class Renderer {
  // decaying shake and, for heavy damage, a ~60 ms hit-stop; a new turn lights a
  // one-shot ring on the active tank. Never on reduced motion.
  siegeBeat(e){if(this.s?.mode!=='pocket_siege'||!this.previous)return;const now=performance.now();if(e.kind==='turn'){this.turnCue={player:e.player,at:now};return;}
-  if(e.kind!=='hit'||this.reduced)return;const d=clamp((Number(e.damage)||10)/60,.1,1);this.trauma=Math.min(1,(this.trauma||0)+.2+.45*d);if(d>=.5)this.holdUntil=now+60;}
+  if(e.kind!=='hit'||this.reduced)return;const d=clamp((Number(e.damage)||10)/60,.1,1);this.trauma=Math.min(1,(this.trauma||0)+.2+.45*d);if(d>=.5)this.holdUntil=(this.last||now)+60;}
  siegeShake(dt){this.trauma=Math.max(0,(this.trauma||0)-dt*1.6);this.shakeClock=(this.shakeClock||0)+dt;const k=this.trauma*this.trauma,t=this.shakeClock;return k?{x:7*k*Math.sin(t*49),y:5*k*Math.sin(t*63+1.1)}:{x:0,y:0};}
  // Retro night sky: sparse, dim pixel stars above the hills. Their clock stops
  // while paused so a frozen frame stays pixel-identical. Dimmer than any
@@ -69,18 +73,16 @@ export class Renderer {
    if(this.marbleViewport)return MarbleLayout.inverse(this.marbleViewport,x,y);
   }
   const scale=this.s?.mode==='pocket_siege'?r.width/1280:Math.min(r.width/1280,r.height/720);let x=(clientX-r.left-(r.width-1280*scale)/2)/scale,y=(clientY-r.top-(r.height-720*scale)/2)/scale;if(this.s?.mode==='pocket_siege'){x=(x-640)/this.cam.z+this.cam.x;y=(y-360)/this.cam.z+this.cam.y;}return {x,y};}
- background(s){const key=s.mode+'-'+(s.level||0)+'-'+(s.sky||'day');if(key===this.backgroundKey&&this.bg)return;this.backgroundKey=key;this.bg=s.mode==='marble_bloom'?canvas(1440,880):canvas();const c=this.bg.getContext('2d');
+ background(s){const key=s.mode+'-'+(s.level||0)+'-'+(s.sky||'day')+'-'+(marbleGarden.complete&&marbleGarden.naturalWidth?'art':'loading');if(key===this.backgroundKey&&this.bg)return;this.backgroundKey=key;this.bg=s.mode==='marble_bloom'?canvas(1440,880):canvas();const c=this.bg.getContext('2d');
  if(s.mode==='marble_bloom'){
-  c.translate(80,80);
-  const g=c.createLinearGradient(0,0,0,720);g.addColorStop(0,'#efd9a4');g.addColorStop(1,'#bccd96');c.fillStyle=g;c.fillRect(-80,-80,1440,880);
-  c.strokeStyle='#9aa86e22';c.lineWidth=1;for(let y=-128;y<848;y+=64)for(let x=-128;x<1408;x+=64)c.strokeRect(x+(y%128?32:0),y,64,64);
-  for(let i=0;i<45;i++){const x=(i*167)%1340-30,y=(i*271)%820-50;if(x>70&&x<1200&&y>100&&y<630)continue;c.save();c.translate(x,y);c.rotate(i*1.2);for(let k=0;k<6;k++){c.rotate(1);c.beginPath();c.ellipse(29,0,40,11,0,0,TAU);c.fillStyle=k%2?'#50873d':'#80a44c';c.fill();}c.restore();}
-  c.strokeStyle='#aeb77760';for(let r=80;r<210;r+=25){circle(c,652,396,r);c.stroke();}
+  c.fillStyle='#e7ddbd';c.fillRect(0,0,1440,880);
+  if(marbleGarden.complete&&marbleGarden.naturalWidth){const k=Math.max(1440/marbleGarden.width,880/marbleGarden.height);c.drawImage(marbleGarden,(1440-marbleGarden.width*k)/2,(880-marbleGarden.height*k)/2,marbleGarden.width*k,marbleGarden.height*k);}
  }else{
   const g=c.createLinearGradient(0,0,0,720);g.addColorStop(0,'#000000');g.addColorStop(.40,'#000000');g.addColorStop(.45,'#030005');g.addColorStop(.60,'#210030');g.addColorStop(.80,'#4b006f');g.addColorStop(1,'#7900a8');c.fillStyle=g;c.fillRect(0,0,1280,720);
  }
  }
- drawPath(c,s){if(!this.pathCanvas||this.pathKey!==s.level){this.pathKey=s.level;const e=this.pathCanvas=canvas(1440,880),p=e.getContext('2d');p.translate(80,80);p.lineJoin=p.lineCap='round';const pts=s.path.map(p=>[p.x,p.y]);p.save();p.translate(0,6);line(p,pts,'#75603844',67);p.restore();line(p,pts,'#dbc896',64);line(p,pts,'#b89760',56);line(p,pts,'#8d743d',47);line(p,pts,'#927a4c',42);p.setLineDash([2,17]);line(p,pts,'#ead49a90',53);p.setLineDash([]);line(p,pts,'#6f593238',36);}c.drawImage(this.pathCanvas,-80,-80);const end=s.path.at(-1);c.save();c.translate(end.x,end.y);c.rotate(s.t*.17);for(let i=0;i<8;i++){c.rotate(TAU/8);poly(c,[[22,-8],[38,-7],[32,11],[21,8]],'#819475');}c.restore();circle(c,end.x,end.y,24,'#071f19');const g=c.createRadialGradient(end.x,end.y,0,end.x,end.y,25);g.addColorStop(0,s.progress>.8?'#ff795e':'#b4d298');g.addColorStop(.25,'#203c2b');g.addColorStop(1,'#071b17');circle(c,end.x,end.y,22,g);c.strokeStyle='#b9c79b66';c.lineWidth=2;circle(c,end.x,end.y,24);c.stroke();}
+ drawPath(c,s){if(!this.pathCanvas||this.pathKey!==s.level){this.pathKey=s.level;const e=this.pathCanvas=canvas(1440,880),p=e.getContext('2d');p.translate(80,80);p.lineJoin=p.lineCap='round';const pts=s.path.map(p=>[p.x,p.y]);p.save();p.translate(0,6);line(p,pts,'#75603844',67);p.restore();line(p,pts,'#dbc896',64);line(p,pts,'#b89760',56);line(p,pts,'#8d743d',47);line(p,pts,'#927a4c',42);p.setLineDash([2,17]);line(p,pts,'#ead49a90',53);p.setLineDash([]);line(p,pts,'#6f593238',36);}c.drawImage(this.pathCanvas,-80,-80);const end=s.path.at(-1);c.save();c.shadowColor='#343b3066';c.shadowBlur=12;c.shadowOffsetY=4;if(!marblePart(c,2,end.x,end.y,90)){circle(c,end.x,end.y,24,'#183329');}c.restore();}
+
  drawMarbles(c,s,dt){this.drawPath(c,s);const alpha=clamp((performance.now()-this.arrived)/50,0,1),old=new Map((this.previous?.chain||[]).map(b=>[b.id,b]));
  let chain=s.chain;
  if(s.phase==='waiting'){chain=s.path.filter((_,i)=>i%6===0).slice(0,30).map((p,i)=>({...p,id:-i,color:Math.floor(i/2)%5}));}
@@ -97,7 +99,9 @@ export class Renderer {
    for(const [x,y] of [[1,0],[-1,0],[0,1],[0,-1]])line(c,[[tx+x*17,ty+y*17],[tx+x*23,ty+y*23]],p.color,2.5);
    c.restore();
   }
-  c.save();c.translate(o.x,o.y);circle(c,0,5,r+12,'#0a171b90');c.rotate(a);for(let i=0;i<6;i++){c.save();c.rotate(i*TAU/6);c.beginPath();c.ellipse(-r*.52,0,r*.57,r*.23,0,0,TAU);c.fillStyle=i%2?'#89a77e':'#678b76';c.fill();c.restore();}circle(c,0,0,r*.76,'#b9b487');circle(c,0,0,r*.59,'#203d34');rounded(c,5,-10,r+4,20,7,'#647e63');rounded(c,8,-8,r+1,6,3,'#b4c192');c.drawImage(this.sprites[p.ball??1],-20,-20,40,40);circle(c,-r*.65,0,6,MARBLE_COLORS[p.nextBall??4]);c.restore();
+  c.save();c.shadowColor='#343b304d';c.shadowBlur=10;c.shadowOffsetY=4;marblePart(c,0,o.x,o.y,r*3.2);c.restore();
+  marblePart(c,1,o.x,o.y,r*2.9,a+Math.PI/2);
+  c.save();c.translate(o.x,o.y);c.rotate(a);c.drawImage(this.sprites[p.ball??1],-13,-13,26,26);circle(c,-r*.95,r*.55,7,MARBLE_COLORS[p.nextBall??4]);c.strokeStyle=p.color;c.lineWidth=3;circle(c,0,0,r*1.4);c.stroke();c.restore();
  }
  for(const b of s.shots){line(c,[[b.x-b.vx*.033,b.y-b.vy*.033],[b.x,b.y]],MARBLE_COLORS[b.color]+'80',9);c.drawImage(this.sprites[b.color],b.x-18,b.y-18,36,36);}
  if(s.slowUntil>s.t||s.reverseUntil>s.t){c.fillStyle='#d4edab';c.font='600 13px HeyPalsText,sans-serif';c.textAlign='center';c.fillText(s.reverseUntil>s.t?'↶  ЗВАРОТНЫ РУХ':'Ⅱ  ЗАПАВОЛЕННЕ',640,650);}
@@ -107,17 +111,22 @@ export class Renderer {
   let cols=s.terrainColumns||s.terrain.slice(0,640).map(y=>[y,depth]);
   const alpha=s.paused?1:clamp((performance.now()-this.arrived)/50,0,1),old=this.previous?.terrainColumns;
   if(old&&alpha<1)cols=cols.map((col,i)=>col.map((v,j)=>{const prev=old[i];if(prev?.length!==col.length)return v;const start=j-j%2,a=col[start]-prev[start],b=col[start+1]-prev[start+1];return a>=0&&Math.abs(a-b)<.25?lerp(prev[j],v,alpha):v;}));
-  const palette=['#049c05','#018701','#017501','#026902','#015b01','#014f00','#004400'],soil=s.mode==='pocket_siege'?this.juice.world.soilFill(c,s,cols,depth):null;
+  const palette=['#049c05','#018701','#017501','#026902','#015b01','#014f00','#004400'],soil=s.mode==='pocket_siege'?this.juice.world.soilFill(c,s,cols,depth):null,deferred=[];
+  // Painted soil: plain column mask, then the round's art composited once (a
+  // per-column pattern fill re-rasterised the art and cost ~1 s in WebKit).
+  if(soil)c.fillStyle='#000';
   const widths=[4,20,24,28,35,42,9999];
   for(let i=0;i<cols.length;i++){
    const surface=cols[i][0]??depth;let threshold=0,bands=[];for(let k=0;k<palette.length;k++){threshold+=widths[k];bands.push(threshold);}
    for(let j=0;j<cols[i].length;j+=2){const top=cols[i][j],bottom=cols[i][j+1],origin=s.terrainStrata?.[i]?.[j/2]??surface;let y=top;
     const material=s.terrainMaterials?.[i]?.[j/2];
+    if(material&&soil){deferred.push([i,top,bottom,origin,material]);continue;}
     if(material){const gradient=c.createLinearGradient(0,origin,0,Math.max(origin+24,bottom));gradient.addColorStop(0,material[1]);gradient.addColorStop(1,material[0]);c.fillStyle=gradient;c.fillRect(i*2,Math.floor(top),2,Math.ceil(bottom)-Math.floor(top));continue;}
-    if(soil){c.fillStyle=soil;c.fillRect(i*2,Math.floor(top),2,Math.ceil(bottom)-Math.floor(top));continue;}
+    if(soil){c.fillRect(i*2,Math.floor(top),2,Math.ceil(bottom)-Math.floor(top));continue;}
     while(y<bottom){const d=Math.max(0,y-origin),k=Math.min(palette.length-1,bands.findIndex(v=>d<v)===-1?palette.length-1:bands.findIndex(v=>d<v)),edge=k===palette.length-1?bottom:Math.min(bottom,origin+bands[k]),b=Math.max(y+.1,edge);c.fillStyle=palette[k];c.fillRect(i*2,Math.floor(y),2,Math.ceil(b)-Math.floor(y));y=b;}
    }
   }
+  if(soil){c.globalCompositeOperation='source-in';c.drawImage(soil,0,0);c.globalCompositeOperation='source-over';for(const [i,top,bottom,origin,material] of deferred){const gradient=c.createLinearGradient(0,origin,0,Math.max(origin+24,bottom));gradient.addColorStop(0,material[1]);gradient.addColorStop(1,material[0]);c.fillStyle=gradient;c.fillRect(i*2,Math.floor(top),2,Math.ceil(bottom)-Math.floor(top));}}
   c.fillStyle=soil?DEEP_SOIL:'#004400';c.fillRect(0,depth,1280,170);
   // Faint fixed diagonal grain confined to existing ground; never screen noise.
   if(!this.soilPattern){const p=canvas(96,96),q=p.getContext('2d');let seed=12345;for(let y=0;y<96;y++)for(let x=0;x<96;x++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const n=(seed>>>28)-8;q.fillStyle=n>0?'rgba(255,255,255,.026)':'rgba(0,0,0,.04)';q.fillRect(x,y,1,1);}q.strokeStyle='rgba(0,0,0,.06)';q.lineWidth=1;for(let i=-96;i<192;i+=7){q.beginPath();q.moveTo(i,0);q.lineTo(i-96,96);q.stroke();}this.soilPattern=c.createPattern(p,'repeat');}
@@ -141,27 +150,37 @@ export class Renderer {
   c.textAlign='center';c.font='500 14px KardiaFit,sans-serif';let label=p.name;const maxWidth=Math.min(200,1280/Math.max(2,this.s.players.filter(p=>p.participant).length)-24);while(label.length>1&&c.measureText(label).width>maxWidth)label=label.slice(0,-2)+'…';const half=c.measureText(label).width/2,labelX=clamp(p.x,half+8,1272-half);c.lineWidth=3;c.strokeStyle='#061106';c.strokeText(label,labelX,p.y+27);c.fillStyle=p.color;c.fillText(label,labelX,p.y+27);
  }
  drone(c,d,s,color){
-  c.save();c.translate(d.x,d.y);
-  // A short diffuse lamp, not a trajectory or a ground-target marker.
-  const glow=c.createLinearGradient(0,5,0,28);glow.addColorStop(0,'#ff55551c');glow.addColorStop(1,'#ff555500');
-  poly(c,[[-2,5],[2,5],[7,28],[-7,28]],glow);
-  c.rotate(d.bank||0);c.lineCap='round';c.lineJoin='round';
+  // Same rounded toy material and dark plum ink as the tanks. The solid craft
+  // stays inside the existing compact collision silhouette (±17, -13..7).
+  const ink='#150c22',clock=this.juice.clock,low=d.charge<.25;
+  c.save();c.translate(d.x,d.y);c.rotate(d.bank||0);c.lineCap=c.lineJoin='round';
+  // Joined outriggers and two clearly separated lifting rotors.
   for(const sign of [-1,1]){
-   line(c,[[sign*4,-2],[sign*11,-9]],'#353535',3);
-   line(c,[[sign*4,-3],[sign*11,-10]],'#b6b6b6',1);
-   rounded(c,sign*11-2,-12,4,4,1,'#747474');
-   c.save();c.translate(sign*11,-12);c.scale(1,.24);c.rotate(s.t*75*sign);
-   rounded(c,-6,-1,12,2,1,'#d9d9d9');rounded(c,-1,-4,2,8,1,'#aaa');c.restore();
-   circle(c,sign*11,-12,1.2,'#101010');
+   line(c,[[sign*4,-1],[sign*10,-6],[sign*10,-9]],ink,4.5);
+   line(c,[[sign*4,-2],[sign*10,-7]],shade(color,-.25),2.3);
+   rounded(c,sign*10-2.5,-11,5,4,1.8,ink);
+   rounded(c,sign*10-1.5,-10.6,3,2.4,1,shade(color,.25));
+   c.save();c.translate(sign*10,-11.2);
+   c.fillStyle='#c8bbed35';c.beginPath();c.ellipse(0,0,6.1,1.5,0,0,TAU);c.fill();
+   c.scale(1,.23);c.rotate(this.reduced?.35:clock*43*sign);
+   rounded(c,-6,-1,12,2,1,'#e9e0ff');rounded(c,-1,-5,2,10,1,'#b5a7d7');c.restore();
+   circle(c,sign*10,-11.2,1.1,ink);
   }
-  const metal=c.createLinearGradient(0,-7,0,6);metal.addColorStop(0,'#eee');metal.addColorStop(.27,color);metal.addColorStop(1,'#151515');
-  poly(c,[[-6,-4],[-4,-7],[4,-7],[6,-4],[6,3],[3,5],[-3,5],[-6,3]],metal);
-  line(c,[[-4,-5],[4,-5]],'#ffffff90',.7);
-  rounded(c,-3,1,6,3,1,'#353535');
-  const low=d.charge<.25,pulse=low?.55+Math.sin(s.t*14)*.4:1;
-  circle(c,0,2,3.1,`rgba(255,58,58,${.12*pulse})`);circle(c,0,2,1.2,low&&pulse<.5?'#8f2424':'#ff5d50');
-  circle(c,-.3,1.6,.4,'#fff2cc');c.restore();
+  // Landing skids sit behind the body, not detached below it.
+  for(const sign of [-1,1]){line(c,[[sign*5,1],[sign*6,5],[sign*9,5]],ink,2.4);}
+  const body=c.createLinearGradient(0,-7,0,4);body.addColorStop(0,shade(color,.55));body.addColorStop(.42,color);body.addColorStop(1,shade(color,-.48));
+  c.beginPath();c.roundRect(-8,-7,16,11,5);c.fillStyle=body;c.fill();c.strokeStyle=ink;c.lineWidth=1.5;c.stroke();
+  line(c,[[-4.5,-5.4],[3.5,-5.4]],'#ffffffa8',1.1);
+  // Dark glass lens and a single team rim read at the live 30–50px size.
+  rounded(c,-4,-2.5,8,4.5,2,ink);rounded(c,-2.8,-1.7,5.6,2.4,1.1,'#575070');
+  circle(c,-.5,-.5,1.5,'#b9f4ed');circle(c,-1,-1,.55,'#fffaf1');
+  // Payload latch joins the body; the low-charge lamp
+  // is steady under reduced motion and freezes with the renderer while paused.
+  rounded(c,-2,3,4,3,1.2,ink);
+  const pulse=this.reduced?1:low?.65+.35*Math.sin(clock*8):1;
+  c.globalAlpha=pulse;circle(c,5.5,-1,1,low?'#ff796b':'#ecffb3');c.restore();
  }
+
  drawTanks(c,s,dt){const bullets=s.projectiles||[];
  // Pocket Siege fills the width, so a host wider than 16:9 (the TV game frame
  // is 1920x888) crops the world top and bottom. Frame the shell and tanks in
@@ -171,7 +190,7 @@ export class Renderer {
  this.cam.x=640;c.translate(640,360);c.scale(this.cam.z,this.cam.z);c.translate(-this.cam.x,-this.cam.y);
  if(s.fallingColumns||this.previous?.fallingColumns||(this.bakedScorch!==this.juice.scorchRevision&&!s.paused))this.terrainCanvas=null;const jdt=s.paused?0:dt;
  const terrainTexture=this.terrain(s),drawTerrain=(texture,alpha=1)=>{const terrainHeight=texture.height;c.save();c.globalAlpha=alpha;c.fillStyle=DEEP_SOIL;c.fillRect(-2400,terrainHeight-1,6080,1600);c.drawImage(texture,0,0,1,terrainHeight,-2400,0,2400,terrainHeight);c.drawImage(texture,1279,0,1,terrainHeight,1280,0,2400,terrainHeight);c.drawImage(texture,0,0);c.restore();};
- drawTerrain(terrainTexture);this.juice.world.drawEmbers(c,terrainTexture);
+ drawTerrain(terrainTexture);this.juice.world.drawEmbers(c,terrainTexture);this.juice.world.drawLife(c,x=>sampleTerrain(s,x),s.stage);
  let ps=s.players.filter(p=>p.participant&&Number.isFinite(p.x)&&Number.isFinite(p.y));if(!ps.length)ps=[{x:200,y:s.terrain[100]-9,color:'#c4ff38',name:'LIME',angle:42,surfaceAngle:surfaceAngle(s,200)},{x:1090,y:s.terrain[545]-9,color:'#ad8dff',name:'VIOLET',angle:137,surfaceAngle:surfaceAngle(s,1090)}];
  {let top=null,tie=false;for(const p of ps){if(!(p.score>0))continue;if(!top||p.score>top.score){top=p;tie=false;}else if(p.score===top.score)tie=true;}this.leaderId=top&&!tie&&ps.length>1?top.id:null;}
  this.tankPoses??=new Map();if(this.poseRound!==s.roundSerial){this.tankPoses.clear();this.poseRound=s.roundSerial;}
@@ -195,7 +214,7 @@ export class Renderer {
  this.siegeFX.plasma.draw(c,s.paused?0:dt,x=>sampleTerrain(s,x),s.zones);
  for(const z of (s.zones||[]).filter(z=>z.kind==='vortex')){c.save();c.strokeStyle='#bf9aff';for(let i=0;i<3;i++){c.globalAlpha=.3;c.lineWidth=2;c.beginPath();c.ellipse(z.x,z.y-8-i*6,z.r*(.4+i*.2),8+i*3,s.t*2+i,0,TAU);c.stroke();}c.restore();}
  const oldShots=new Map((this.previous?.projectiles||[]).map(b=>[b.id,b])),shotBlend=s.paused?1:clamp((performance.now()-this.arrived)/50,0,1);
- this.airDefense.draw(c,s.interceptors,this.previous?.interceptors,shotBlend,s.paused?0:dt,!!s.paused);
+ this.airDefense.draw(c,s.interceptors,this.previous?.interceptors,shotBlend,s.paused?0:dt,!!s.paused);for(const b of s.interceptors||[])this.juice.trail({...b,id:'ad'+b.id},jdt,s.wind,{family:'seeker',color:'#b5e8ff'});
  if(s.drone){const previous=this.previous?.drone,d=s.drone,blend=s.paused?1:shotBlend,pose=previous?.owner===d.owner?{...d,x:lerp(previous.x,d.x,blend),y:lerp(previous.y,d.y,blend),bank:lerp(previous.bank||0,d.bank||0,blend)}:d;this.drone(c,pose,s,ps.find(p=>p.id===d.owner)?.color||'#c4ff38');}
  this.juice.drawPuffs(c,jdt);
  for(const shot of bullets){const prev=oldShots.get(shot.id),b=prev?{...shot,x:lerp(prev.x,shot.x,shotBlend),y:lerp(prev.y,shot.y,shotBlend)}:shot;const w=this.weapons?.[b.weapon],style=b.draw||w?.fx?.bullet||{},method=style.method||'BULLET_TRAIL',barrel=/barrel/i.test(b.sourceBullet||'')&&(b.sourceType==='CRUISER'||style.animated),bodiless=method==='BULLET_NONE'&&!barrel&&!style.animated,
@@ -248,7 +267,27 @@ export class Renderer {
    const incoming=s.attacks?.filter(a=>a.to===p.id).reduce((sum,a)=>sum+a.count,0)||0;if(incoming){c.fillStyle='#ffad9b';c.font='italic 900 16px KardiaFatRunner,sans-serif';c.textAlign='center';c.fillText('+'+incoming+' INCOMING',rect.x+rect.w/2,rect.y+rect.h-8);}
   });
  }
- frame(now){if(this.holdUntil>now&&this.s?.mode==='pocket_siege'){this.raf=requestAnimationFrame(this.frame);return;}const dt=Math.min(.05,(now-this.last)/1000);this.last=now;const s=this.s;if(s){const rect=this.el.getBoundingClientRect(),dpr=Math.min(1.5,window.devicePixelRatio||1),width=Math.round(rect.width*dpr),height=Math.round(rect.height*dpr);if(this.el.width!==width||this.el.height!==height){this.el.width=width;this.el.height=height;}const c=this.c;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,width,height);this.background(s);
+ // A paused snapshot is server-frozen. Finish interpolation, warm sprites and
+ // outgoing/cue fades before parking only this presentation loop. Asset/font
+ // completion, new snapshots and resize invalidate it; simulation/network and
+ // controller input remain untouched. Authored waiting motion keeps running.
+ pausedPresentationSettled(now){
+  if(!this.s?.paused||this.pausePaintFrames<2||now-this.arrived<50||this.mapTransition)return false;
+  if(!this.reduced&&this.turnCue&&now-this.turnCue.at<650)return false;
+  // Versus snapshots pause the outer game, while legacy board-local effects
+  // finish their authored fades. Keep that output live until it is stable.
+  if(this.s.arenaMode==='versus'&&this.s.boards?.some((board,i)=>!board.paused&&['particles','texts','rings','beams','bursts'].some(key=>this.vfx?.[i]?.[key]?.length)))return false;
+  if(this.s.mode==='pocket_siege'){
+   if(!this.projectileReady||[...this.projectileArt.frames.values()].some(frame=>frame===null))return false;
+   // These initial art decodes are privately owned by PocketJuice; keep their
+   // fallback-to-art update live rather than freezing a loading placeholder.
+   if(this.juice.parts.some(part=>part.img))return false;
+  }
+  return true;
+ }
+ // Cache the layout size, not the temporary transformed arrival/shake bounds.
+ // Pointer mapping still reads the current visual rectangle in toWorld().
+ frame(now){if(this.destroyed)return;if(this.holdUntil>now&&this.s?.mode==='pocket_siege'){this.raf=requestAnimationFrame(this.frame);return;}const dt=Math.min(.05,(now-this.last)/1000);this.last=now;const s=this.s;if(s){const dpr=Math.min(1.5,window.devicePixelRatio||1);if(this.sizeDirty||this.surfaceDpr!==dpr||!this.surfaceRect){this.surfaceRect={width:this.el.clientWidth,height:this.el.clientHeight};this.surfaceDpr=dpr;this.sizeDirty=false;}const rect=this.surfaceRect,width=Math.round(rect.width*dpr),height=Math.round(rect.height*dpr);if(this.el.width!==width||this.el.height!==height){this.el.width=width;this.el.height=height;}const c=this.c;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,width,height);this.background(s);
    if(s.mode==='marble_bloom'){
     const uiScale=document.documentElement.classList.contains('party-host')?Math.max(1,rect.width/1280):1,w=rect.width/uiScale,h=rect.height/uiScale;c.scale(dpr*uiScale,dpr*uiScale);
     if(s.arenaMode==='versus')this.drawVersus(c,s,dt,w,h,uiScale);
@@ -259,6 +298,6 @@ export class Renderer {
      const area={x:12,y:12,w:w-24,h:h-24},view=MarbleLayout.fit(s,area);this.marbleViewport={...view,scale:view.scale*uiScale,x:view.x*uiScale,y:view.y*uiScale};this.drawMarbleScene(c,s,dt,view,false);
     }
    }else {const scale=width/1280;this.viewHalf=Math.min(360,height/scale/2);c.translate((width-1280*scale)/2,(height-720*scale)/2);c.scale(scale,scale);c.save();c.beginPath();c.rect(0,0,1280,720);c.clip();c.drawImage(this.bg,0,0);const jdt=s.paused?0:dt;this.juice.step(jdt);this.starClock=(this.starClock||0)+(s.paused?0:dt*1000);if((s.sky||'classic')==='classic')this.juice.drawSky(c,this.cam,s.wind);const shake=this.siegeShake(jdt),kick=this.juice.camera(jdt);c.translate(shake.x+kick.x,shake.y+kick.y);if(kick.zoom!==1){c.translate(640,360);c.scale(kick.zoom,kick.zoom);c.translate(-640,-360);}if(kick.focus){c.translate(kick.focus.x,kick.focus.y);c.scale(kick.focus.z,kick.focus.z);c.translate(-kick.focus.x,-kick.focus.y);}c.save();this.drawTanks(c,s,dt);this.drawEffects(c,s.paused?0:dt);c.restore();this.drawPocketNotices(c,s);c.restore();}
-  }this.transitionFrame(now);this.raf=requestAnimationFrame(this.frame);}
- destroy(){cancelAnimationFrame(this.raf);this.mapTransition=null;this.siegeFX.clear();this.airDefense.clear();this.audio.ctx?.close();}
+  }this.transitionFrame(now);this.pausePaintFrames=s?.paused?this.pausePaintFrames+1:0;this.raf=s?.phase==='results'||this.pausedPresentationSettled(now)?0:requestAnimationFrame(this.frame);}
+ destroy(){if(this.destroyed)return;this.destroyed=true;this.sizeObserver.disconnect();removeEventListener('resize',this.resizeFrame);document.fonts?.removeEventListener('loadingdone',this.fontsChanged);for(const image of [marbleGarden,marbleMachines])image.removeEventListener('load',this.assetChanged);cancelAnimationFrame(this.raf);this.raf=0;this.mapTransition=null;this.siegeFX.clear();this.airDefense.clear();this.juice.clear();this.s=this.previous=null;this.bg=this.pathCanvas=this.terrainCanvas=this.terrainTransition=null;this.sprites=[];this.particles=[];this.texts=[];this.rings=[];this.beams=[];this.bursts=[];this.vfx=[];this.audio.ctx?.close();}
 }

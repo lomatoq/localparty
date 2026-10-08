@@ -1,0 +1,39 @@
+/* Room identity belongs to its card; the editor is a reversible disclosure. */
+html.hp-ui body #nearbyDialog .nearby-room{
+ background:radial-gradient(ellipse at 0 0,hsl(var(--room-hue,280) 74% 69%/.14),transparent 68%),linear-gradient(135deg,#32283b66,#21192e44)!important;
+ border-color:hsl(var(--room-hue,280) 65% 80%/.2)!important;
+}
+html.hp-ui body #nearbyDialog .nearby-room b{
+ font-family:var(--hp-font-action,KardiaFatRunner),sans-serif!important;font-style:italic!important;font-size:18px!important;line-height:1.3;padding-right:3px;
+ background:linear-gradient(100deg,#fff4ff,hsl(var(--room-hue,280) 92% 85%));background-clip:text;-webkit-background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;
+ text-shadow:0 2px 12px hsl(var(--room-hue,280) 80% 68%/.12);
+}
+html.hp-ui body #nearbyDialog .nearby-room[data-room=own]{border:1.5px solid #cafa9285!important;box-shadow:inset 0 0 20px #b9f47708,0 0 12px #b9f4770c;background:radial-gradient(ellipse at 0 0,#baf77913,transparent 70%),linear-gradient(135deg,#32283b66,#21192e44)!important}
+html.hp-ui body #nearbyDialog .nearby-count{color:#d4ffa6!important;text-shadow:0 0 9px #b6f5703d!important}
+html.hp-ui body #nearbyDialog .nearby-own-label{display:block;font:italic 600 11px/1.3 var(--hp-font-copy);color:#dbf8ba;letter-spacing:.035em;text-transform:uppercase;margin-bottom:7px}
+html.hp-ui body #nearbyDialog .nearby-own-actions{display:flex;flex-direction:column;align-items:center;gap:2px;align-self:center}
+html.hp-ui body #nearbyDialog .nearby-room .nearby-rename-toggle{
+ display:grid!important;place-items:center!important;min-width:44px!important;min-height:44px!important;height:44px!important;max-width:44px!important;width:44px!important;padding:0!important;margin:0!important;
+ background:transparent!important;border:0!important;box-shadow:none!important;color:#243719!important;
+}
+html.hp-ui body #nearbyDialog .nearby-rename-toggle::before,html.hp-ui body #nearbyDialog .nearby-rename-toggle::after{display:none!important}
+html.hp-ui body #nearbyDialog .nearby-rename-disc{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#e4ffc1,#b6ec78);box-shadow:0 0 9px #b6f57033;border:1px solid #e8ffcd8c}
+html.hp-ui body #nearbyDialog .nearby-rename-icon{width:15px;height:15px;background:currentColor;mask:url(/assets/icons/game-pack/arrow-down.svg) center/contain no-repeat;-webkit-mask:url(/assets/icons/game-pack/arrow-down.svg) center/contain no-repeat;transition:transform 200ms var(--ux-ease,cubic-bezier(.23,1,.32,1))}
+html.hp-ui body #nearbyDialog .renaming .nearby-rename-icon{transform:rotate(180deg)}
+html.hp-ui body #nearbyDialog .nearby-rename{grid-column:1/-1;display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 240ms var(--ux-ease,cubic-bezier(.23,1,.32,1)),opacity 180ms ease;min-width:0;margin-top:-12px}
+html.hp-ui body #nearbyDialog .renaming .nearby-rename{grid-template-rows:1fr;opacity:1}
+html.hp-ui body #nearbyDialog .nearby-rename-inner{overflow:hidden;min-height:0;mask-image:linear-gradient(#000 0,#000 max(0px,calc(100% - 20px)),transparent 100%);-webkit-mask-image:linear-gradient(#000 0,#000 max(0px,calc(100% - 20px)),transparent 100%)}
+html.hp-ui body #nearbyDialog .nearby-rename-form{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:8px;padding:20px 16px 24px;margin:0;align-items:center}
+/* Same material/type as the shared profile capsule, not a new field family. */
+html.hp-ui body #nearbyDialog .nearby-name-input{box-sizing:border-box;min-width:0;width:100%;height:48px;min-height:48px;border-radius:999px!important;padding:0 16px!important;background:#171222!important;border:1px solid #c5ace52e!important;color:#f0e9fa!important;font:italic 400 16px/1.3 var(--hp-font-copy,KardiaFitRunner),sans-serif!important}
+html.hp-ui body #nearbyDialog .nearby-room .nearby-rename-save{width:48px!important;min-width:48px!important;max-width:48px!important;height:48px!important;padding:13px!important;border-radius:50%!important;box-sizing:border-box;background:#c8f783!important;color:#202319!important;margin:0!important}
+html.hp-ui body #nearbyDialog .nearby-rename-save svg{width:22px;height:22px;flex:none}
+html.hp-ui body #nearbyDialog .nearby-rename-status{font:italic 400 12px/1.3 var(--hp-font-copy);color:#d6bfeb;text-align:center;margin:5px 0 0}
+html.hp-ui body #nearbyDialog .nearby-rename-status:empty{display:none}
+@media(prefers-reduced-motion:reduce){html.hp-ui body #nearbyDialog .nearby-rename{transition:opacity 120ms ease}html.hp-ui body #nearbyDialog .nearby-rename-icon{transition:none}}
+
+/* Own-room disclosure shares the player-count baseline and right inset. */
+html.hp-ui body #nearbyDialog .nearby-room[data-room=own]{align-items:stretch!important}
+html.hp-ui body #nearbyDialog .nearby-own-actions{align-self:stretch;justify-content:space-between;align-items:flex-end}
+html.hp-ui body #nearbyDialog .nearby-own-actions .nearby-rename-toggle{align-self:flex-end!important;margin-bottom:-12px!important;margin-right:-8px!important}
+html.hp-ui body #nearbyDialog .nearby-room:not(.renaming) .nearby-rename{height:0;overflow:hidden}

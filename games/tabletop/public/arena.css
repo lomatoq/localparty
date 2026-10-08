@@ -445,3 +445,15 @@ html.hp-ui.party-managed.party-player[data-party-game=mines] body #tabletop #min
 
 /* Uploaded images stay circular; authored mascot silhouettes retain their own geometry. */
 :is(.seat-avatar,.tabletop-avatar,.hockey-pilot)[data-photo=true]{height:auto!important;aspect-ratio:1;box-sizing:border-box;border:1.5px solid var(--player,#b4cfa2)}
+
+/* Poker's current turn has one central table bubble, clear of the TV clock.
+   Host-only: controller status and actions keep their existing composition. */
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #handStatus {
+ left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:56%;
+ box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:6px;
+ min-height:48px;padding:10px 20px;border-radius:999px;
+ background:linear-gradient(160deg,#45364bf5,#241b30f5);
+ box-shadow:inset 0 0 0 1px #b9a1bf55,inset 0 1px 0 #f7eddc24,0 8px 18px #08041066;
+ color:#f7eddc;text-shadow:0 2px 4px #08041055;
+}
+html.hp-ui.party-managed.party-host[data-party-game=poker] body.host #handStatus .hp-player-name {min-width:0}

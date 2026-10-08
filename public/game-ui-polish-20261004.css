@@ -2,7 +2,9 @@
    Loaded LAST in game frames (server.js injection), /play, /tv and the native shell.
    Visual properties only: colour, gradients, shadows, rims, text-shadow.
    No box geometry (no width/height/padding/margin/position/display/gap/font-size/
-   letter-spacing changes), so every panel keeps its measured place.
+   letter-spacing changes), so every panel keeps its measured place. One listed,
+   measured exception: the inner arrangement of TV header text readouts (end
+   of file); outer notch/wing/rail boxes are unchanged.
    Pause/Lobby, the TV header notch and authored per-game theme fills are untouched.
    Shadows are deliberately tight (negative spread) so they never reach the
    clipping edge of a scrolling rail or a rounded group. */
@@ -130,4 +132,151 @@ html.hp-ui.party-managed.party-player body :is(
    the key finish (keeping its authored drop shadow) until it lights up. */
 html.hp-ui.party-managed.party-player[data-party-game=kart] body #gasBtn.hp-action-primary:not(.active):not(:active):not(:disabled){
  box-shadow:inset 0 1px 0 #ffffff1f,inset 0 -3px 0 #05030c38,inset 0 -12px 18px -14px #05030c66,0 16px 40px #00000033!important;
+}
+
+/* TV-owned sports/archery numeric tiles use the same flat half-transparent well role
+   as the shared launcher capsule. Existing box geometry and ink are retained.
+   Explicit host scope leaves phone surfaces and Pause/Lobby fades untouched. */
+html.hp-ui.party-host body[data-ss-role=host]{--hpp-tv-number-base:#292736}
+html.hp-ui.party-host body[data-ss-role=host][data-ss-mode=curling]{--hpp-tv-number-base:#163642}
+html.hp-ui.party-host body[data-ss-role=host][data-ss-mode=bowling]{--hpp-tv-number-base:#2f2a29}
+html.hp-ui.party-host body[data-ss-role=host][data-ss-mode=peek_shoot]{--hpp-tv-number-base:#302921}
+html.hp-ui.party-host body[data-ss-role=host] .ss-host-top .ss-match-metrics>span{
+ background:color-mix(in srgb,color-mix(in srgb,var(--hpp-tv-number-base) 72%,#05030b) 50%,transparent)!important;
+}
+html.hp-ui.party-host[data-party-game=bow_club] body.tv .tv-heading .bow-match-identity .bow-match-fact{
+ background:color-mix(in srgb,color-mix(in srgb,#2d2922 72%,#05030b) 50%,transparent)!important;
+}
+
+/* ------------------------------------------------ TV header: text readouts
+   Content arrangement only; the notch, wings, rail card and every outer box
+   keep their measured geometry. A name/text readout (e.g. "Leader") used to
+   be a 22px single line centred in a 54px column, so its label sat 8px lower
+   than the "Points"/"Time left" labels beside it and long names were cut to
+   "Alexandri…". Now the label shares the top line with its neighbours, and
+   the value occupies the same 38px well as the numerals: centred, 14px,
+   wrapping to at most two lines (two lines of 14/1.3 = 36.4px fit inside). */
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-stat:has(>.tv-stat-value:is(.hp-player-name,.tv-text-value)):not(#hpp){
+ justify-content:flex-start!important;
+}
+html.hp-ui body.tv-screen #play .gamebar.tv-information .tv-stat>.tv-stat-value:is(.hp-player-name,.tv-text-value):not(#hpp){
+ display:flex!important;align-items:center;justify-content:center;
+ min-height:38px;max-height:38px;padding:0 4px!important;box-sizing:border-box;
+ font:550 14px/1.3 var(--hp-font-body)!important;
+ white-space:normal!important;overflow:hidden!important;text-overflow:clip!important;
+ overflow-wrap:break-word;text-wrap:balance;text-align:center;
+}
+/* At 1920×1080 the rail card's metric columns are only ~54–61 CSS px wide, so
+   a first name alone ("Alexandria") does not fit; there the value stays one
+   centred line with an ellipsis (the label alignment above still applies). */
+@media (min-width:1600px){
+ html.hp-ui body.tv-screen[data-tv-hud-mode=rail-cap] #play .gamebar.tv-information .tv-stat>.tv-stat-value:is(.hp-player-name,.tv-text-value):not(#hpp){
+  display:block!important;line-height:38px!important;white-space:nowrap!important;text-overflow:ellipsis!important;text-wrap:nowrap;
+ }
+}
+
+/* =====================================================================
+   2026-10-05 · Panels unify (Claude panels lane)
+   One rhythm for every phone controller. Inventory and evidence:
+   docs/qa/game-panels-unify-2026-10-05.md. Shared roles first; the per-game
+   lines below only bring outliers onto the shared 16px content gutter.
+   ===================================================================== */
+.hp-ui{
+ --hpp-gutter:16px;                            /* phone content gutter */
+ --hpp-r-stat:18px;                            /* compact grouped stats */
+ --hpp-r-card:22px;                            /* content cards */
+ --hpp-ease-out:cubic-bezier(.23,1,.32,1);
+}
+
+/* ------------------------------------------------ stat label role
+   Before: five different label styles for the same job (WINS caps 13px,
+   "Health" sentence-case italic, "Place" 12px, PLACE 16.5px, BLOCKS tracked
+   italic). Now: one small upright caps label with even tracking, the same
+   ink everywhere. Values keep their own semantic colours. */
+html.hp-ui.party-managed.party-player body :is(
+ .hp-stat-label:not(#kills):not(#extraStat),
+ #kills>small,#extraStat>small,
+ .western-stats small,.combat-stats small,
+ .phone-meters small,.mine-score-readout small,.tank-health-readout>small
+):not(button *){
+ font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:600!important;
+ font-size:12px!important;line-height:1.25!important;
+ text-transform:uppercase!important;letter-spacing:.04em!important;
+ color:var(--hpp-label)!important;
+}
+/* Inline glyph + label rows stay on one line (a wrapped ATTEMPTS pushed its
+   glyph above the word and broke the row's baseline at 320px). Stacked card
+   labels (Western, Tank Arena) keep their authored wrapping. */
+html.hp-ui.party-managed.party-player body .hp-stat-label:not(#kills):not(#extraStat){white-space:nowrap!important}
+
+/* ------------------------------------------------ eyebrow role
+   Small overline above a state title (TURN 1/10, DRAWING 1/4, HEAD, YOUR
+   SECRET ROLE) was 10–12px in three faces with 1.3–1.7px tracking. One role:
+   upright caps, 12px, even .1em tracking. Authored colours stay. */
+html.hp-ui.party-managed.party-player body :is(.eyebrow,#partLabel):not(button *){
+ font-family:var(--hp-font-body)!important;font-style:normal!important;font-weight:700!important;
+ font-size:12px!important;line-height:1.25!important;text-transform:uppercase!important;letter-spacing:.1em!important;
+}
+
+/* ------------------------------------------------ radius family
+   Compact grouped stats 18px, content cards 22px (design contract). */
+html.hp-ui.party-managed.party-player[data-party-game] body main.controller :is(#arcadeStats,#punchResult){border-radius:var(--hpp-r-stat)!important}
+html.hp-ui.party-managed.party-player[data-party-game=tanks] body main#controllerScreen .status-card{border-radius:var(--hpp-r-card)!important}
+html.hp-ui.party-managed.party-player[data-party-game=pocket_siege] body .range-card{border-radius:var(--hpp-r-stat)!important}
+/* The "swap hand" utility is a capsule in Swarm Gate / Peek & Shoot; Kart and
+   Tanks used 8–11px corners for the same control. */
+html.hp-ui.party-managed.party-player body :is([data-party-game=kart] #swapHandBtn,[data-party-game=tanks] #swapHand){border-radius:999px!important}
+
+/* ------------------------------------------------ content gutter
+   26 of 36 controllers keep content 16px from the phone edge. These were
+   10px (Chaos, Crane, Pocket Siege), 20px (Bow Club, Marble Bloom), 22–24px
+   (Draw & Guess tools, Mines action, Charades) or mixed inside one screen. */
+html.hp-ui.party-managed.party-player[data-party-game=chaos] body>main,
+html.hp-ui.party-managed.party-player[data-party-game=crane] body>main.phone,
+html.hp-ui.party-managed.party-player[data-party-game=pocket_siege] body>main#controller,
+html.hp-ui.party-managed.party-player[data-party-game=marble_bloom] body>main#controller,
+html.hp-ui.party-managed.party-player[data-party-game=bow_club] body>main#setup,
+html.hp-ui.party-managed.party-player[data-party-game=drawguess] body.screen-phone>main{padding-left:var(--hpp-gutter)!important;padding-right:var(--hpp-gutter)!important}
+html.hp-ui.party-managed.party-player[data-party-game=drawguess] body.screen-phone #secret{margin-left:0!important;margin-right:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=drawguess] body.screen-phone #drawingTools{padding-left:0!important;padding-right:0!important}
+html.hp-ui.party-managed.party-player[data-party-game=crocodile] body.screen-phone>main{padding-left:12px!important;padding-right:12px!important}
+html.hp-ui.party-managed.party-player[data-party-game=crocodile] body.screen-phone main section.stage.panel:not(#hpp){padding-left:4px!important;padding-right:4px!important}
+html.hp-ui.party-managed.party-player[data-party-game=mines] body #mineOpen{max-width:none!important}
+
+/* ------------------------------------------------ header HUD readout
+   The timer's 20px lilac glow was clipped by the value's overflow box into a
+   visible square tile behind the digits; a tight ink shadow keeps the depth
+   without an edge. The secondary line (ROUND 1/7, 5 Laps, 0 Floors, Turn,
+   10 Arrows) used three faces; it now has one face and weight (case comes
+   from the game text, so "10 Arrows" never ellipsizes in the narrow notch). */
+html.hp-ui body.is-player.in-game #brandHeader #hudTimer strong{text-shadow:0 1px 0 #0a061299,0 2px 6px #0a061266!important}
+html.hp-ui body.is-player.in-game #brandHeader #hudTimer #hudProgress{
+ font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:900!important;color:#d4dfca!important;
+}
+
+/* ------------------------------------------------ micro-interactions
+   Value tick (game-ui-system.js HeyPalsValueTick): one small spring on a real
+   value change; independent `scale`, so authored transforms are untouched. */
+html.hp-ui.party-player .hp-value-tick{animation:hpp-value-tick 380ms var(--hpp-ease-out) both}
+@keyframes hpp-value-tick{0%{scale:1}28%{scale:1.16}62%{scale:.97}100%{scale:1}}
+
+/* Short native Bow iframe: its existing 28px footer fade overlaps the content
+   edge. Compact the two touch-control gaps, preserving the authored aim-plane
+   size and leaving Draw 36px above that edge. Camera, normal-height phone and
+   landscape compositions remain authored. */
+@media(max-width:360px) and (max-height:400px) and (orientation:portrait){
+ html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone.touch-mode #view #touchPad{
+  top:116px!important;
+ }
+ html.hp-ui.party-managed.party-player[data-party-game=bow_club] body.phone.touch-mode #view .shoot-hud{
+  top:calc(var(--bow-touch-bottom,242px) + 8px)!important;
+ }
+}
+/* Selection inside segmented controls (Swipe/Motion, Tank/Drone/AA, hands,
+   Left/Middle/Right) eases its fill instead of snapping. */
+html.hp-ui.party-managed.party-player body :is([role=tab],.segmented button,.ss-input-modes button,.deck-tabs button,.hand-picker button,.jenga-selection button):not(:active):not(.party-pressed){
+ transition:transform 150ms var(--hpp-ease-out),background-color 180ms ease,color 180ms ease,box-shadow 220ms ease,border-color 180ms ease!important;
+}
+@media (prefers-reduced-motion:reduce){
+ html.hp-ui.party-player .hp-value-tick{animation:none}
 }

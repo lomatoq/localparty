@@ -1,0 +1,152 @@
+[
+  {
+    "src": "curling.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 35,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.40625,
+      "bottom": 851.84375,
+      "left": 35
+    }
+  },
+  {
+    "src": "bowling.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 35.40625,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.8125,
+      "bottom": 851.84375,
+      "left": 35.40625
+    }
+  },
+  {
+    "src": "swarm_gate.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 34.8125,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.21875,
+      "bottom": 851.84375,
+      "left": 34.8125
+    }
+  },
+  {
+    "src": "peek_shoot.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 35.21875,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.625,
+      "bottom": 851.84375,
+      "left": 35.21875
+    }
+  },
+  {
+    "src": "taprace.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 34.625,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.03125,
+      "bottom": 851.84375,
+      "left": 34.625
+    }
+  },
+  {
+    "src": "punchmeter.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 35.03125,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.4375,
+      "bottom": 851.84375,
+      "left": 35.03125
+    }
+  },
+  {
+    "src": "flappy.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 35.4375,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.84375,
+      "bottom": 851.84375,
+      "left": 35.4375
+    }
+  },
+  {
+    "src": "hungry.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 34.84375,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.25,
+      "bottom": 851.84375,
+      "left": 34.84375
+    }
+  },
+  {
+    "src": "snakelines.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 35.25,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 271.65625,
+      "bottom": 851.84375,
+      "left": 35.25
+    }
+  },
+  {
+    "src": "carryball.png?v=1",
+    "opacity": "1",
+    "loaded": true,
+    "rect": {
+      "x": 121.65625,
+      "y": 756.65625,
+      "width": 236.40625,
+      "height": 95.1875,
+      "top": 756.65625,
+      "right": 358.0625,
+      "bottom": 851.84375,
+      "left": 121.65625
+    }
+  }
+]

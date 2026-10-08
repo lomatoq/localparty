@@ -1,7 +1,25 @@
 /* One shell result view for every engine. Only the active match's server result is shown. */
 (() => {
   'use strict';
-  let panel=null,lastKey='';
+  let panel=null,lastKey='',layoutKey='',replayInstance=null,replayTimer=0,replayContext=null;
+  const replayText=text=>window.PartyI18n?.t?.(text)||text;
+  function resetReplay(message=''){clearTimeout(replayTimer);replayInstance=null;syncReplay();const status=panel?.querySelector('.hp-rematch-status');if(status)status.textContent=message;}
+  function syncReplay(){const b=panel?.querySelector('.hp-rematch-button');if(!b)return;const pending=!!replayInstance;b.dataset.instance=replayContext?.active?.instance||'';b.disabled=pending||!!replayContext?.busy||!replayContext?.onReplay;b.setAttribute('aria-busy',String(pending));b.querySelector('span').textContent=replayText(pending?'Запускаем…':'Сыграть ещё раз');}
+  function replayFooter(){const footer=make('footer','hp-result-actions'),b=make('button','hp-rematch-button quiet'),status=make('small','hp-rematch-status');b.id='resultRematch';b.type='button';b.append(make('span','','Сыграть ещё раз'));status.setAttribute('role','status');b.onclick=()=>{const c=replayContext;if(b.disabled||!c?.active?.instance||c.active.ui?.phase!=='results')return;replayInstance=c.active.instance;syncReplay();status.textContent='';try{if(c.onReplay?.(replayInstance)===false){resetReplay(replayText('Нет соединения. Попробуй ещё раз.'));return;}}catch{resetReplay(replayText('Не удалось начать. Попробуй ещё раз.'));return;}replayTimer=setTimeout(()=>resetReplay(replayText('Запуск не подтвердился. Нажми ещё раз.')),8000);};footer.append(b,status);return footer;}
+  const seenReveals=new Set(),revealAnimations=new Set(),motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+  const settleReveal=()=>{for(const a of revealAnimations)a.cancel();revealAnimations.clear();};
+  motionPreference.addEventListener?.('change',()=>{if(motionPreference.matches)settleReveal();});
+  addEventListener('pagehide',settleReveal);addEventListener('party-native-hide',settleReveal);
+  function revealRows(rows,resultKey){
+    if(seenReveals.has(resultKey))return;seenReveals.add(resultKey);if(seenReveals.size>32)seenReveals.delete(seenReveals.values().next().value);
+    if(motionPreference.matches||document.hidden)return;
+    const style=getComputedStyle(document.documentElement),out=style.getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)',pop=style.getPropertyValue('--motion-ease-pop').trim()||'cubic-bezier(.18,1.28,.35,1)';
+    const play=(el,frames,options)=>{if(!el)return;const a=el.animate(frames,options);revealAnimations.add(a);a.finished.then(()=>revealAnimations.delete(a),()=>revealAnimations.delete(a));};
+    for(const row of rows){const rank=Number(row.dataset.resultRank),delay=rank>3?0:rank===3?80:rank===2?160:240;
+      play(row,[{transform:'translateY(8px) scale(.99)'},{transform:'none'}],{duration:300,delay,easing:out,fill:'backwards'});
+      if(rank===1)play(row.querySelector('.hp-result-crown'),[{transform:'scale(.94)'},{transform:'none'}],{duration:420,delay:delay+240,easing:pop,fill:'backwards'});
+    }
+  }
   const make=(tag,cls,text)=>{const n=document.createElement(tag);n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   // The shell owns the finish effect, so every engine gets the same celebration.
   // Remember result keys across reconnects; ordinary roster updates never replay it.
@@ -40,15 +58,22 @@
     document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});reduced.addEventListener?.('change',()=>{if(reduced.matches)stop();});
     return {show,stop,diagnostics:()=>({running:!!frame,particles:particles.length,key,starts})};
   })();
-  function update({active,selfId,host=false}={}){
+  function update({active,selfId,host=false,busy=false,onReplay}={}){
+    replayContext={active,busy,onReplay};if(replayInstance&&(active?.instance!==replayInstance||active?.ui?.phase!=='results'))resetReplay();
     const result=active?.ui?.phase==='results'?active.result:null;
-    const visible=!host&&!!result?.rows?.length;
+    const visible=!!result?.rows?.length;
     document.body.classList.toggle('hp-has-match-result',visible);
-    if(!visible){if(panel)panel.hidden=true;lastKey='';celebration.stop();return;}
+    if(!visible){if(panel)panel.hidden=true;lastKey='';settleReveal();celebration.stop();window.HeyPalsCoins?.stop();return;}
     if(!window.HeyPalsUI)return;
     if(!panel){panel=make('section','hp-match-results');panel.id='sharedMatchResults';panel.setAttribute('aria-labelledby','sharedResultTitle');panel.setAttribute('aria-live','polite');document.getElementById('play').append(panel);}
-    panel.hidden=false;
+    panel.hidden=false;syncReplay();
     const key=JSON.stringify([result,selfId]);if(key===lastKey)return;lastKey=key;
+    const resultKey=result.key||`${active.instance}:${active.id}`,nextLayout=JSON.stringify([resultKey,selfId,result.ranking?.kind,result.rows.map(r=>[r.id,r.rank])]);
+    if(nextLayout===layoutKey&&panel.querySelector('.hp-result-list')){
+      const rows=[...panel.querySelectorAll('.hp-result-row')];result.rows.forEach((entry,i)=>{const row=rows[i],name=row.querySelector('.hp-result-name'),value=row.querySelector('.hp-result-value');const target=name.querySelector('span')||name;if(target.textContent!==String(entry.name))target.textContent=entry.name;if(value)value.textContent=String(result.ranking?.kind==='teams'?entry.teamScore:entry.value??entry.score??'—');});
+      panel.querySelector('.hp-result-game').textContent=result.title;panel.querySelector('.hp-result-subtitle').textContent=result.rows.find(p=>p.id===selfId)?.won?'Отличная игра!':'Результаты всей компании';window.PartyI18n?.apply?.(panel);celebration.show(panel,resultKey);return;
+    }
+    layoutKey=nextLayout;settleReveal();
     const heading=make('header','hp-result-header');
     const game=make('p','hp-result-game hp-heading',result.title);
     const title=make('h2','','Матч окончен');title.id='sharedResultTitle';
@@ -62,24 +87,18 @@
     const displayRows=teams?result.rows.map(row=>({...row,value:row.teamScore})):result.rows;
     const list=window.HeyPalsUI.renderResults(content,displayRows,{selfId,label:'Результаты матча'});
     for(const [i,row] of [...list.children].entries()){
-      row.classList.toggle('is-self',result.rows[i].id===selfId);
+      row.dataset.resultRank=String(result.rows[i].rank);row.classList.toggle('is-self',result.rows[i].id===selfId);
       const firstPlace=result.rows[i].rank===1;
       row.classList.toggle('is-winner',firstPlace);
       if(result.rows[i].id===selfId){const name=row.querySelector('.hp-result-name');const wrapper=make('span','hp-result-name');name.className='';name.replaceWith(wrapper);const marker=make('small','hp-result-self','Это ты');wrapper.append(name,marker);}
     }
-    panel.replaceChildren(heading,labels,content);
-    // Scores count up as their rows land (plain integers only; text such as
-    // "—" or formatted money is left as the engine wrote it).
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches)[...content.querySelectorAll('.hp-result-value')].forEach((node,i)=>{
-      const final=node.textContent.trim();if(!/^[-−]?\d{1,6}$/.test(final)||Number(final.replace('−','-'))===0)return;
-      const target=Number(final.replace('−','-')),start=performance.now()+120+Math.min(i,7)*45,duration=650;node.textContent='0';
-      const tick=now=>{if(!node.isConnected)return;const t=Math.min(1,Math.max(0,(now-start)/duration)),e=1-Math.pow(1-t,3);node.textContent=t>=1?final:String(Math.round(target*e)).replace('-','−');if(t<1)requestAnimationFrame(tick);};
-      requestAnimationFrame(tick);
-    });
+    panel.replaceChildren(heading,labels,content,replayFooter());syncReplay();
+    for(const [i,row] of [...list.children].entries()){const earned=result.rows[i].coinsEarned;if(earned>0){const badge=window.HeyPalsCoins?.badge(earned);if(badge){const name=row.querySelector('.hp-result-name');if(!name.querySelector(':scope>span')){const label=make('span','',name.textContent);name.replaceChildren(label);}name.append(badge);window.HeyPalsCoins.award(badge,earned,`${resultKey}:${result.rows[i].id}`);}}}
+    revealRows([...list.children],resultKey);
     for(const el of [heading,labels,content]){el.style.position='relative';el.style.zIndex='1';}
     celebration.show(panel,result.key||`${active.instance}:${active.id}`);
     // Hide obsolete controls visually without unloading their engine/socket.
     window.PartyI18n?.apply?.(panel);
   }
-  window.HeyPalsMatchResults=Object.freeze({update,diagnostics:celebration.diagnostics});
+  window.HeyPalsMatchResults=Object.freeze({update,rejectRematch(message){if(replayInstance)resetReplay(message||replayText('Не удалось начать. Попробуй ещё раз.'));},diagnostics:celebration.diagnostics});
 })();

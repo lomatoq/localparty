@@ -32,6 +32,15 @@ struct NearbyRoom: Codable, Equatable, Identifiable {
     }()
     override init() { super.init(); browser.delegate = self }
 
+    static var ownName: String {
+        UserDefaults.standard.string(forKey: "HeyPals.roomDisplayName") ?? String(UIDevice.current.name.prefix(48))
+    }
+    static func saveOwnName(_ value: String) -> String? {
+        let name = value.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }.joined(separator: " ")
+        guard !name.isEmpty, name.count <= 48, !name.unicodeScalars.contains(where: { CharacterSet.controlCharacters.contains($0) }) else { return nil }
+        UserDefaults.standard.set(name, forKey: "HeyPals.roomDisplayName")
+        return name
+    }
     func update(state: ServerState?, foreground: Bool) {
         guard foreground else { stop(); return }
         if !browsing {
@@ -60,7 +69,7 @@ struct NearbyRoom: Codable, Equatable, Identifiable {
         }
         let game = state.catalog.first { $0.id == state.active?.id }?.title ?? ""
         let values = ["v": "1", "id": identifier, "url": address,
-                      "name": String(UIDevice.current.name.prefix(48)), "game": String(game.prefix(60)),
+                      "name": Self.ownName, "game": String(game.prefix(60)),
                       "phase": state.active?.ui.phase ?? "lobby", "players": String(state.players.count)]
         let record = NetService.data(fromTXTRecord: values.mapValues { Data($0.utf8) })
         // Periodic renewal lets clients discard crashed/disconnected hosts even

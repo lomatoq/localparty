@@ -1,0 +1,144 @@
+/* The right TV sidebar remains outside the discovery stage and its light. */
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro{display:block!important;position:relative!important;width:100%!important;height:auto!important;margin:0!important;padding:0 0 16px!important;grid-area:auto!important;transform:none!important;translate:none!important;opacity:1!important}
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro[hidden]{display:none!important}
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro>.eyebrow{display:none!important}
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro>.headline-stage{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;min-height:0!important;height:410px!important;overflow:hidden!important;background:transparent!important;justify-content:center!important}
+html.hp-ui body.tv-screen #tvStage #lobby .headline-stage:has(.game-spotlight)::before,html.hp-ui body.tv-screen #tvStage #lobby .headline-stage:has(.game-spotlight)::after{display:none!important}
+html.hp-ui body.tv-screen .game-spotlight{width:100%;max-width:650px;padding:0 48px}
+html.hp-ui body.tv-screen .spotlight-top{height:40px}
+html.hp-ui body.tv-screen .spotlight-slide{height:248px}
+html.hp-ui body.tv-screen img.spotlight-logo{height:194px!important;max-width:490px!important}
+html.hp-ui body.tv-screen .spotlight-first-play{width:170px;height:30px}
+html.hp-ui body.tv-screen .spotlight-players{font-size:20px}
+html.hp-ui body.tv-screen .spotlight-actions{margin-top:8px}
+html.hp-ui body.tv-screen .spotlight-fixtures{left:0;width:100%;top:330px}
+html.hp-ui body.tv-screen .spotlight-fixture-left{left:-26px}
+html.hp-ui body.tv-screen :is(.spotlight-fixture-right,.spotlight-edge-right){display:none!important}
+html.hp-ui body.tv-screen .spotlight-edge-light{left:0;width:100%}
+html.hp-ui body.tv-screen .game-spotlight::before{left:0;width:100%;background:radial-gradient(ellipse at 0 50%,color-mix(in srgb,var(--spotlight-color) 36%,transparent),transparent 65%)}
+html.hp-ui body.tv-screen #tvStage #preview.tv-choice{display:flex!important;align-items:center!important;gap:14px!important;padding:8px 10px!important;border-radius:999px!important;min-height:80px!important;max-width:640px;margin:12px auto 18px!important;isolation:isolate;overflow:visible!important;border:0!important;background:linear-gradient(100deg,color-mix(in srgb,var(--pick-color) 38%,#21192d),#252331 58%,#56732e)!important;box-shadow:none!important}
+html.hp-ui body.tv-screen #tvStage #preview[hidden]{display:none!important}
+html.hp-ui body.tv-screen #tvStage #preview::after{display:none!important}
+html.hp-ui body.tv-screen #tvStage #preview>div{display:flex!important;flex-direction:column;align-items:flex-start;gap:3px;flex:1;min-width:0;z-index:2}
+html.hp-ui body.tv-screen #preview :is(#description,#controls,#settings,#votes){display:none!important}
+html.hp-ui body.tv-screen #preview .eyebrow{color:#dcc4ff!important;font-size:11px!important}
+html.hp-ui body.tv-screen #preview #choiceTitle{font:24px/1.1 'Kardia Fat Runner',sans-serif!important;white-space:normal!important}
+html.hp-ui body.tv-screen #preview #playersNeeded{display:flex;align-items:center;gap:6px;padding:0!important;margin:0!important;background:none!important;color:#e8ffc9!important;font-size:17px!important}
+html.hp-ui body.tv-screen #playersNeeded .hp-menu-counter-label{display:none!important}
+html.hp-ui body.tv-screen .tv-pick-person{width:18px;height:18px;fill:currentColor}
+html.hp-ui body.tv-screen .tv-pick-medallion{position:relative;width:64px;height:64px;flex:none;border-radius:50%;background:radial-gradient(circle at 28% 23%,color-mix(in srgb,var(--pick-color) 60%,#f0caff),var(--pick-color),#51416e);box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--pick-color) 24%,#fff8ff);z-index:2}
+html.hp-ui body.tv-screen #preview #cover{width:100%!important;height:100%!important;object-fit:contain!important;transform:scale(1.2)!important;border-radius:0!important;clip-path:none!important}
+html.hp-ui body.tv-screen button.tv-pick-play{width:52px;height:52px;min-height:52px;padding:15px;border-radius:50%;border:1px solid #e4ffb9;background:linear-gradient(155deg,#e2ffa8,#c8ff73 42%,#a9ec4c);box-shadow:0 0 18px #b6f35a66;z-index:2;flex:none}
+html.hp-ui body.tv-screen .tv-pick-play svg{width:22px;height:22px;fill:#1b2b12}
+html.hp-ui body.tv-screen #preview>:is(.tv-pick-rim,.tv-pick-flow,.tv-pick-glare){position:absolute;inset:0;border-radius:999px;overflow:hidden;pointer-events:none}
+html.hp-ui body.tv-screen .tv-pick-rim{z-index:3;padding:1.5px;background:linear-gradient(90deg,color-mix(in srgb,var(--pick-color) 28%,#fff),#f7fff0 55%,#e4ffb9);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude}
+
+/* Same contour flow and sheen as mobile Host Pick. */
+html.hp-ui body.tv-screen #preview .tv-pick-glare{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:4}
+html.hp-ui body.tv-screen #preview .tv-pick-glare>i{display:block;position:absolute;inset:0 auto 0 0;width:38%;background:linear-gradient(110deg,transparent,#f3ffd64d 45%,#ffffff80 52%,transparent 70%);mix-blend-mode:screen;animation:hp-pick-glare-sweep 2500ms ease-in-out infinite;animation-play-state:paused;opacity:0}
+html.hp-ui body.tv-screen #preview.tv-pick-awake .tv-pick-glare>i{animation-play-state:running}
+@keyframes hp-pick-glare-sweep{0%,68%{transform:translateX(-150%);opacity:0}73%{opacity:.85}94%{transform:translateX(370%);opacity:.85}100%{transform:translateX(370%);opacity:0}}
+@media(prefers-reduced-motion:reduce){html.hp-ui body.tv-screen #preview .tv-pick-glare>i{animation:none}}
+html.hp-ui body.tv-screen #preview .tv-pick-flow{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none;z-index:1}
+html.hp-ui body.tv-screen #preview .tv-pick-flow>i{position:absolute;left:38%;top:10%;height:80%;width:32px;clip-path:polygon(0 0,48% 0,100% 50%,48% 100%,0 100%,52% 50%);background:linear-gradient(100deg,color-mix(in srgb,var(--pick-color,#bfa4ff) 45%,#fff),#deffa9);opacity:0;animation:hp-pick-flow 4800ms cubic-bezier(.23,1,.32,1) infinite;animation-play-state:paused}
+html.hp-ui body.tv-screen #preview .tv-pick-flow>i:nth-child(2){animation-delay:850ms}
+html.hp-ui body.tv-screen #preview .tv-pick-flow>i:nth-child(3){animation-delay:1700ms}
+html.hp-ui body.tv-screen #preview.tv-pick-awake .tv-pick-flow>i{animation-play-state:running}
+@keyframes hp-pick-flow{0%{opacity:0;transform:translateX(-20px)}18%{opacity:.16}65%{opacity:.1}88%,100%{opacity:0;transform:translateX(clamp(90px,30vw,160px))}}
+@media(prefers-reduced-motion:reduce){html.hp-ui body.tv-screen #preview .tv-pick-flow>i{animation:none}}
+html.hp-ui body.tv-screen #preview :is(.tv-pick-glare,.tv-pick-flow){border-radius:999px!important;clip-path:inset(0 round 999px);overflow:hidden!important}
+html.hp-ui body.tv-screen #preview .tv-pick-glare>i{animation-duration:3400ms}
+@keyframes hp-pick-glare-sweep{0%,50%{transform:translateX(-150%);opacity:0}57%{opacity:.7}89%{transform:translateX(370%);opacity:.7}100%{transform:translateX(370%);opacity:0}}
+html.hp-ui body.tv-screen #preview .tv-pick-flow{mask-image:linear-gradient(90deg,transparent 26%,#000 44%,#0008 calc(100% - var(--pick-action-clearance,72px) - 36px),transparent calc(100% - var(--pick-action-clearance,72px)));-webkit-mask-image:linear-gradient(90deg,transparent 26%,#000 44%,#0008 calc(100% - var(--pick-action-clearance,72px) - 36px),transparent calc(100% - var(--pick-action-clearance,72px)))}
+html.hp-ui body.tv-screen #preview .tv-pick-flow>i{display:none;animation:none}
+html.hp-ui body.tv-screen #preview .tv-pick-flow::before{content:'';position:absolute;inset:0 auto 0 -162px;width:calc(100% + 162px);background:linear-gradient(90deg,color-mix(in srgb,var(--pick-color,#bfa4ff) 40%,#fff),#deffa9);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='162' height='72' viewBox='0 0 162 72' preserveAspectRatio='none'%3E%3Cpath d='M-54 0H-22L14 36L-22 72H-54L-18 36Z' fill='white' opacity='.05'/%3E%3Cpath d='M0 0H32L68 36L32 72H0L36 36Z' fill='white' opacity='.035'/%3E%3Cpath d='M54 0H86L122 36L86 72H54L90 36Z' fill='white' opacity='.08'/%3E%3Cpath d='M108 0H140L176 36L140 72H108L144 36Z' fill='white' opacity='.05'/%3E%3C/svg%3E") 0 0/162px 100% repeat-x;filter:blur(1.1px);animation:hp-pick-ribbon 10.5s linear infinite;animation-play-state:paused}
+html.hp-ui body.tv-screen #preview.tv-pick-awake .tv-pick-flow::before{animation-play-state:running}
+@keyframes hp-pick-ribbon{from{transform:translateX(0)}to{transform:translateX(162px)}}
+@media(prefers-reduced-motion:reduce){html.hp-ui body.tv-screen #preview .tv-pick-flow::before{animation:none}}
+/* Remove the old separate hero grid row now that discovery lives inside the browse column. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby{grid-template-rows:minmax(0,1fr)!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvBrowse{grid-area:1/1!important;padding-top:12px!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvSidebar{grid-area:1/2!important}
+html.hp-ui body.tv-screen .game-spotlight{max-width:none;padding:0 64px}
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro>.headline-stage{height:390px!important}
+html.hp-ui body.tv-screen .spotlight-edge-light{mask-image:radial-gradient(ellipse at 18% 55%,#000 12%,#000a 45%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 18% 55%,#000 12%,#000a 45%,transparent 75%)}
+/* Wide-screen composition: art left, metadata and fixed action right. */
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro>.headline-stage{height:310px!important}
+html.hp-ui body.tv-screen .game-spotlight{padding:0 32px}
+html.hp-ui body.tv-screen .spotlight-slide{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(210px,1fr);align-items:center;gap:24px;height:220px;padding:0 16px}
+html.hp-ui body.tv-screen img.spotlight-logo{width:100%!important;max-width:510px!important;height:220px!important;justify-self:center}
+html.hp-ui body.tv-screen .spotlight-meta{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;align-self:start;gap:14px;padding-top:34px}
+html.hp-ui body.tv-screen .spotlight-actions{position:absolute;top:168px;left:60%;right:32px;margin:0;display:flex;justify-content:center}
+html.hp-ui body.tv-screen .spotlight-indicators{margin:12px auto 0}
+html.hp-ui body.tv-screen .spotlight-fixtures{top:232px}
+html.hp-ui body.tv-screen .spotlight-beam{top:290px;transform:translate(-50%,-100%) rotate(26deg)}
+html.hp-ui body.tv-screen .spotlight-top{padding-left:0}
+html.hp-ui body.tv-screen #tvStage #preview.tv-choice #choiceTitle{font-family:var(--hp-font-action)!important;font-style:italic!important;font-weight:750!important}
+html.hp-ui body.tv-screen #tvStage #preview.tv-choice #playersNeeded{background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important;align-self:flex-start!important;color:#e8ffc9!important}
+html.hp-ui body.tv-screen #tvStage #preview.tv-choice #playersNeeded *{color:inherit!important}
+html.hp-ui body.tv-screen #tvStage #preview.tv-choice #cover{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;width:100%!important;height:100%!important;border-radius:0!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #tvBrowse{mask-image:linear-gradient(transparent 0,#000 20px,#000 calc(100% - 42px),transparent 100%)!important;-webkit-mask-image:linear-gradient(transparent 0,#000 20px,#000 calc(100% - 42px),transparent 100%)!important}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby::before{height:20px!important}
+html.hp-ui body.tv-screen #tvStage #lobby .headline-stage>.heypals-hero{mask-image:radial-gradient(ellipse,#0008 10%,transparent 70%)!important;-webkit-mask-image:radial-gradient(ellipse,#0008 10%,transparent 70%)!important}
+html.hp-ui body.tv-screen #tvStage #lobby .spotlight-top{opacity:1!important}
+html.hp-ui body.tv-screen .game-spotlight::before{mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+html.hp-ui body.tv-screen .spotlight-edge-light{mask-image:linear-gradient(90deg,transparent,#000 32px,#000),radial-gradient(ellipse at 18% 55%,#000 12%,#000a 45%,transparent 75%);mask-composite:intersect}
+@property --tv-cta-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
+html.hp-ui body.tv-screen :is(.spotlight-play,.tv-pick-play){position:relative;isolation:isolate}
+html.hp-ui body.tv-screen :is(.spotlight-play,.tv-pick-play)::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;background:conic-gradient(from var(--tv-cta-angle),#75c93330 0deg,#75c93330 175deg,#8cf33b 230deg,#dfffaa 264deg,#fff 288deg,#f2ffdb 312deg,#a2ff4c 340deg,#75c93330);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:tv-cta-orbit 12s linear infinite;animation-play-state:paused}
+html.hp-ui body.tv-screen :is(.spotlight-awake .spotlight-play,.tv-pick-awake .tv-pick-play)::after{animation-play-state:running}
+@keyframes tv-cta-orbit{to{--tv-cta-angle:360deg}}
+@media(prefers-reduced-motion:reduce){html.hp-ui body.tv-screen :is(.spotlight-play,.tv-pick-play)::after{animation:none}}
+
+/* TV220: one screen-edge lamp and a shared left edge for the action stack. */
+html.hp-ui body.tv-screen .spotlight-fixtures{visibility:hidden}
+html.hp-ui body.tv-screen #tvStage>.tv-screen-lamp{position:absolute;left:-26px;width:100px;height:100px;object-fit:contain;transform:rotate(-12deg);z-index:4;pointer-events:none}
+html.hp-ui body.tv-screen #tvStage>.tv-screen-lamp[hidden]{display:none}
+html.hp-ui body.tv-screen .spotlight-slide{padding:0;grid-template-columns:60% 40%;gap:0}
+html.hp-ui body.tv-screen .spotlight-meta{position:absolute;left:60%;top:34px;padding:0;align-items:flex-start}
+html.hp-ui body.tv-screen .spotlight-actions{left:calc(32px + (100% - 64px)*.6);right:auto;justify-content:flex-start}
+html.hp-ui body.tv-screen button.primary.spotlight-play{width:282px!important;height:66px!important;min-height:66px!important;max-height:66px!important}
+html.hp-ui body.tv-screen .spotlight-play-label{font-size:27px}
+/* Keep the catalog close to the discovery indicators (about 50px at 1080p). */
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro{padding-bottom:0!important;margin-bottom:-18px!important}
+/* The transformed TV stage is the containing block: light starts at the screen edge. */
+html.hp-ui body.tv-screen #tvStage>.tv-screen-lamp{left:-50px}
+html.hp-ui body.tv-screen .game-spotlight::before{position:fixed;left:-100px;top:100px;width:600px;height:300px;mask-image:radial-gradient(ellipse,#000 10%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse,#000 10%,transparent 72%)}
+html.hp-ui body.tv-screen .spotlight-edge-left{position:fixed;left:-50px;top:70px;width:500px;height:340px;pointer-events:none}
+
+/* Keep the animated light layers outside the browse mask, alongside the lamp. */
+html.hp-ui body.tv-screen #tvStage>.tv-screen-light{position:absolute;left:0;width:650px;height:330px;bottom:auto;padding:0;z-index:3;filter:saturate(1.65);mask:none;-webkit-mask:none;pointer-events:none}
+html.hp-ui body.tv-screen #tvStage>.tv-screen-light[hidden]{display:none}
+html.hp-ui body.tv-screen .tv-screen-light>.spotlight-edge-left{position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(ellipse 70% 70% at 0 65%,color-mix(in srgb,var(--edge-color) 66%,transparent),color-mix(in srgb,var(--edge-color) 32%,transparent) 35%,transparent 100%)}
+html.hp-ui body.tv-screen .tv-screen-light .spotlight-beam{left:20px;top:265px;width:180px;height:350px;opacity:.3;transform:translate(-50%,-100%) rotate(56deg)}
+/* Indicator selection changes size, never its baseline. */
+html.hp-ui body.tv-screen .spotlight-indicators{align-items:center}
+html.hp-ui body.tv-screen button.spotlight-step{position:relative;display:grid!important;place-items:center!important;align-self:center;margin:0!important;padding:0!important;border:0!important;height:32px!important;min-height:32px!important;transform:none!important;translate:none!important;box-shadow:none!important;background:transparent!important}
+html.hp-ui body.tv-screen .spotlight-step-track{position:absolute;left:50%;top:50%;margin:0!important;transform-origin:center;transform:translate(-50%,-50%) scale(.72)!important}
+html.hp-ui body.tv-screen .spotlight-step[aria-current=true] .spotlight-step-track{transform:translate(-50%,-50%) scale(1.18)!important}
+html.hp-ui body.tv-screen #tvStage>.tv-screen-light{mask-image:linear-gradient(transparent,#000 16%,#000 65%,transparent 100%);-webkit-mask-image:linear-gradient(transparent,#000 16%,#000 65%,transparent 100%)}
+/* Light stays behind the entire lobby, including logo and right-hand cards. */
+html.hp-ui body.tv-screen #tvStage>.tv-screen-light{z-index:0;width:100%}
+html.hp-ui body.tv-screen .tv-screen-light>.spotlight-edge-left{width:650px}
+html.hp-ui body.tv-screen .tv-screen-light>.spotlight-edge-right{display:block!important;position:absolute;inset:0;background:radial-gradient(ellipse 26% 72% at 84% 54%,color-mix(in srgb,var(--edge-color) 55%,transparent),color-mix(in srgb,var(--edge-color) 22%,transparent) 45%,transparent 100%)}
+html.hp-ui body.tv-screen .tv-screen-light>.spotlight-edge-right .spotlight-beam{display:none}
+html.hp-ui body.tv-screen #tvStage #lobby .headline-stage>.heypals-hero{inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;transform:none!important;mask-image:radial-gradient(ellipse at 50% 48%,#0008 0%,#0005 30%,transparent 68%)!important;-webkit-mask-image:radial-gradient(ellipse at 50% 48%,#0008 0%,#0005 30%,transparent 68%)!important}
+/* Fade within the visible hero window without resizing or moving the artwork. */
+html.hp-ui body.tv-screen #tvStage #lobby .headline-stage>.heypals-hero{mask-size:100% 310px!important;-webkit-mask-size:100% 310px!important;mask-repeat:no-repeat!important;-webkit-mask-repeat:no-repeat!important}
+
+/* Full-size background art, with fading limited to the visible window. */
+html.hp-ui body.tv-screen #tvStage #lobby .headline-stage>.heypals-hero{inset:0!important;width:100%!important;height:480px!important;object-fit:cover!important;object-position:center 48%!important;transform:none!important;mask-image:linear-gradient(transparent,#000 18%,#000 55%,transparent 95%)!important;-webkit-mask-image:linear-gradient(transparent,#000 18%,#000 55%,transparent 95%)!important;mask-size:100% 310px!important;-webkit-mask-size:100% 310px!important}
+html.hp-ui body.tv-screen .hpx-props img[src*="float-balloon-a"]{--x:820px!important;--y:110px!important;scale:-1 1}
+html.hp-ui body.tv-screen .game>.lp-running-rim{position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;padding:2px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;overflow:hidden;display:none}
+html.hp-ui body.tv-screen .game:is(.selected,.is-host-pick)>.lp-running-rim{display:block;background:#b685ff28}
+html.hp-ui body.tv-screen .game:is(.selected,.is-host-pick)>.lp-running-rim::before{content:'';position:absolute;inset:0;background:conic-gradient(from var(--tv-cta-angle),#9660d72b 0deg,#9660d72b 170deg,#9b67e2 235deg,#dec0ff 280deg,#f2e6ff 310deg,#a870f1 337deg,#9660d72b 360deg);animation:tv-cta-orbit 12s linear infinite;animation-play-state:paused}
+html.hp-ui:not(.hp-catalog-suspended) body.tv-screen .game.hp-rim-visible:is(.selected,.is-host-pick)>.lp-running-rim::before{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){html.hp-ui body.tv-screen .game>.lp-running-rim::before{animation:none!important}}
+/* Extend only the background artwork toward the cards; keep foreground geometry fixed. */
+html.hp-ui body.tv-screen #tvStage #lobby #tvBrowse>.intro>.headline-stage{overflow:visible!important}
+html.hp-ui body.tv-screen #tvStage #lobby .headline-stage>.heypals-hero{top:30px!important;mask-image:linear-gradient(transparent,#000 14%,#000 72%,#0008 87%,transparent 100%)!important;-webkit-mask-image:linear-gradient(transparent,#000 14%,#000 72%,#0008 87%,transparent 100%)!important;mask-size:100% 355px!important;-webkit-mask-size:100% 355px!important}
+/* Keep the ambient star above the logo, clear of the First Play artwork. */
+html.hp-ui body.tv-screen .hpx-props img[src*="float-sparkle"]{--x:72px!important;--y:102px!important}
+/* Opposing tilts keep the ambient props opening away from the composition. */
+html.hp-ui body.tv-screen .hpx-props img[src*="float-sparkle"]{--w:33px!important;--r:-30deg!important;rotate:-30deg!important}
+html.hp-ui body.tv-screen .hpx-props img[src*="float-balloon-a"]{--r:30deg!important;rotate:30deg!important}

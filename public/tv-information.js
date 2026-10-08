@@ -91,7 +91,9 @@
     out.progress=null;out.sources.progress=null;
     if(status.mode==='ctf'&&finite(status.redScore)&&finite(status.blueScore))metric('teams','Флаги',`${status.redScore} : ${status.blueScore}`);
    }else progress(status.round,status.maxRounds,'Раунд');
-   if(rawPhase==='playing')remaining(status.timer);if(rawPhase==='countdown')remaining(status.countdown,'Старт');
+   // Survival ends by elimination; its explicit zero is not a running clock.
+   if(rawPhase==='playing'){if(id==='tanks'&&status.mode==='survival'&&status.timer===0)out.timer=null;else remaining(status.timer);}
+   if(rawPhase==='countdown')remaining(status.countdown,'Старт');
    if(players.some(p=>typeof p.alive==='boolean'))metric('alive','В игре',players.filter(p=>p.alive&&p.connected!==false).length);
   }
   if(config.engine==='arcade'||id==='tankarena'){

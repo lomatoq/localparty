@@ -1,0 +1,782 @@
+/* HeyPals phone app UX · 2026-10-05 (Claude "app" lane).
+   Loaded LAST on the guest controller (/play, index.html) and the native host hub
+   (native-shell). Visual/motion layer only: no game rules, no header geometry, no
+   Pause/Lobby changes (#sessionControls / #pauseOverlay are not touched here).
+   Every motion has a reduced-motion path; every modern feature is feature-detected.
+   Craft over glow: no new glows are introduced in this file. */
+
+:root{
+ /* Motion tokens. Springs are pre-sampled (damping ratio / response) into linear(). */
+ --ux-ease-out:cubic-bezier(.23,1,.32,1);
+ --ux-ease-drawer:cubic-bezier(.32,.72,0,1);
+ --ux-exit:cubic-bezier(.2,.7,.3,1);
+ /* critically-near spring: zeta .86, response .42s, 560ms */
+ --ux-spring-sheet:cubic-bezier(.22,1,.36,1);
+ --ux-spring-pop:cubic-bezier(.34,1.56,.64,1);
+ --ux-sheet-in-ms:560ms;
+ /* shape + rhythm tokens (design contract: 28 major / 22 cards / 18 compact) */
+ --ux-r-major:28px;--ux-r-card:22px;--ux-r-compact:18px;
+ --ux-s1:4px;--ux-s2:8px;--ux-s3:12px;--ux-s4:16px;--ux-s5:24px;--ux-s6:32px;
+ --ux-sheet-gap:10px;
+ --ux-sheet-bottom:max(var(--ux-sheet-gap),calc(env(safe-area-inset-bottom,0px) - 10px));
+}
+/* In the iOS app the floating tab bar is native chrome over the web view's
+   bottom edge; a top-layer sheet cannot cover it, so it floats just above. */
+/* (no :has() here: a root-level :has re-checks styles on every catalogue mutation) */
+html body.native-shell,html body.native-controller{--ux-sheet-bottom:calc(var(--native-tab-reserve,0px) + 8px)}
+@supports (transition-timing-function:linear(0,1)){
+ :root{--ux-spring-pop:linear(0,.0773,.2486,.447,.6322,.7844,.8972,.9729,1.0178,1.0396,1.046,1.0429,1.0353,1.0262,1.0176,1.0104,1.0051,1.0015,.9993,.9982,1)}
+ :root{--ux-spring-sheet:linear(0,.0377,.1271,.2411,.362,.4786,.5845,.6766,.7542,.8176,.8682,.9076,.9375,.9598,.9759,.9872,.9948,.9997,1.0027,1.0043,1.0049,1.005,1.0047,1.0041,1.0036,1.0029,1.0024,1.0019,1)}
+}
+
+/* ───────────── 1 · Sheets: anchored, floating, draggable ─────────────
+   Phone-width only. The game detail (native hub) and the guest Rules / Top / Room
+   sheets rise from the bottom edge, float inside the screen corners and leave the
+   way they came. Centered alerts (#confirmDialog, #confirmStop) stay centered. */
+@media (max-width:640px){
+ html body dialog:is(#gameDetail,#rulesDialog,#statsDialog,#roomDialog).ux-sheet[open]{
+  position:fixed!important;inset:0!important;
+  margin:auto var(--ux-sheet-gap) var(--ux-sheet-bottom)!important;
+  width:auto!important;max-width:none!important;
+  max-height:calc(100dvh - env(safe-area-inset-top,0px) - 28px - var(--ux-sheet-bottom))!important;
+  border-radius:var(--ux-r-major)!important;
+  transform-origin:50% 100%!important;
+  overscroll-behavior:contain;
+ }
+ /* Entrance: one spring from below the screen edge. backwards-fill only, so an
+    inline drag offset (set by app-ux JS) is never masked by a held keyframe. */
+ html body dialog:is(#gameDetail,#rulesDialog,#statsDialog,#roomDialog).ux-sheet[open]:not(.lp-dialog-closing){
+  animation:ux-sheet-in var(--ux-sheet-in-ms) var(--ux-spring-sheet) backwards!important;
+ }
+ /* Re-opened mid-exit: motion.js resumes from the live pose; no second slide. */
+ html body dialog:is(#gameDetail,#rulesDialog,#statsDialog,#roomDialog).ux-sheet[open].lp-dialog-resumed:not(.lp-dialog-closing){animation:none!important}
+ /* Exit continues downward from wherever the sheet is (including a drag offset).
+    Finishes inside motion.js's 190 ms close window. */
+ html body dialog:is(#gameDetail,#rulesDialog,#statsDialog,#roomDialog).ux-sheet[open].lp-dialog-closing{
+  animation:ux-sheet-out 180ms var(--ux-exit) both!important;
+  transform-origin:50% 100%!important;
+ }
+ html body dialog.ux-sheet[open]::backdrop{animation:ux-backdrop-in 320ms var(--ux-ease-out) both}
+ html body dialog.ux-sheet[open].lp-dialog-closing::backdrop{animation:lp-shared-backdrop-out 180ms ease-out both!important}
+ html body dialog.ux-sheet.ux-dragging::backdrop{opacity:var(--ux-drag-fade,1);animation:none!important}
+ /* Grabber: tells the hand this surface can be pulled down. */
+ html body dialog.ux-sheet>.ux-grabber{
+  display:block;position:absolute;z-index:5;top:7px;left:50%;width:38px;height:5px;margin-left:-19px;
+  border-radius:3px;background:#efe8ff52;pointer-events:none;opacity:1!important;
+  transition:background-color 120ms ease,scale 160ms var(--ux-ease-out);
+ }
+ html body dialog.ux-sheet.ux-dragging>.ux-grabber{background:#efe8ffa0;scale:1.12 1}
+ html body dialog.ux-sheet.ux-dragging{user-select:none;-webkit-user-select:none}
+}
+html body dialog.ux-sheet>.ux-grabber{display:none}
+@media (max-width:640px){html body dialog.ux-sheet>.ux-grabber{display:block}}
+@keyframes ux-sheet-in{from{translate:0 calc(100% + 40px)}to{translate:0 0}}
+@keyframes ux-sheet-out{from{translate:var(--lp-close-translate,0 0);opacity:1;scale:1}to{translate:0 calc(100% + 40px);opacity:1;scale:1}}
+@keyframes ux-backdrop-in{from{opacity:0}to{opacity:1}}
+@keyframes ux-fade-in{from{opacity:0}to{opacity:1}}
+@media (max-width:640px) and (prefers-reduced-motion:reduce){
+ html body dialog:is(#gameDetail,#rulesDialog,#statsDialog,#roomDialog).ux-sheet[open]:not(.lp-dialog-closing){animation:ux-fade-in 160ms ease-out backwards!important}
+ html body dialog.ux-sheet[open]::backdrop{animation:none}
+}
+
+/* Shared-element flight (card art → detail art). A top-layer popover clone so the
+   image can travel above the modal sheet without being clipped by it. */
+.ux-flight[popover]{
+ position:fixed;inset:auto;margin:0;padding:0;border:0;background:none;overflow:visible;
+ pointer-events:none;contain:layout style;
+}
+.ux-flight[popover] img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 14px 18px #08051466)}
+html body.native-shell #gameDetail.ux-art-flying #detailArt{opacity:0!important}
+
+/* Game detail interior: grouped rule rows get one full rounded contour each
+   (they rendered as square strips with text glued to the edge). */
+html body.native-shell #gameDetail .rule-row{
+ margin:0 0 var(--ux-s2)!important;padding:0 14px!important;border-radius:var(--ux-r-compact)!important;
+ border:1px solid #ffffff12!important;background:#a489e514!important;
+}
+html body.native-shell #gameDetail .rule-row summary{min-height:48px;align-items:center;display:flex;gap:var(--ux-s3)}
+html body.native-shell #gameDetail .rule-row p{margin:0 0 14px!important}
+html body.native-shell #gameDetail #detailGoal{margin-bottom:var(--ux-s4)}
+html body.native-shell #gameDetail>.native-actions{padding-top:var(--ux-s3)!important}
+
+/* Hero entrance is one-shot JS motion, never a reversible scroll timeline. */
+html body.native-shell main>.intro .heypals-hero,
+html body #home>.intro .heypals-hero{animation:none!important;animation-timeline:auto!important}
+
+/* ───────────── 3 · Loading, empty and recovery states ───────────── */
+/* Native hub "connecting" state: centered status, a real skeleton of the
+   catalogue below it, the retry action on its own line. */
+html body.native-shell #catalogState:not([hidden]){
+ display:grid!important;justify-items:center;align-content:start;gap:var(--ux-s3);
+ min-height:0!important;padding:var(--ux-s5) 0 var(--ux-s4)!important;background:none!important;border-radius:0!important;text-align:center;
+}
+html body.native-shell #catalogState:not([hidden])::after{content:none!important;display:none!important}
+html body.native-shell #catalogStateText{margin:0;max-width:30ch;font:italic 400 15px/1.4 var(--hp-font-copy,KardiaFitRunner),sans-serif;color:#d9ccf6;order:1}
+html body.native-shell #retryCatalog{order:2;min-height:44px}
+html body.native-shell #catalogState .ux-skeleton{order:3;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:var(--ux-s3);margin-top:var(--ux-s3)}
+.ux-skeleton>i{position:relative;display:block;height:208px;border-radius:var(--ux-r-card);overflow:hidden;
+ background:linear-gradient(180deg,#b499e714,#b499e70a 60%,#b499e712);border:1px solid #d0baff1c}
+.ux-skeleton>i:first-child{grid-column:1/-1;height:132px}
+.ux-skeleton>i::before{content:'';position:absolute;left:14px;right:38%;bottom:46px;height:14px;border-radius:7px;background:#e6dcff14}
+.ux-skeleton>i::after{content:'';position:absolute;inset:0;translate:-100% 0;
+ background:linear-gradient(100deg,transparent 30%,#efe6ff1a 50%,transparent 70%);animation:ux-sheen 1.6s var(--ux-ease-drawer) infinite}
+.ux-skeleton>i:nth-child(2)::after{animation-delay:.12s}.ux-skeleton>i:nth-child(3)::after{animation-delay:.24s}
+@keyframes ux-sheen{to{translate:100% 0}}
+@media (prefers-reduced-motion:reduce){.ux-skeleton>i::after{animation:none;opacity:0}}
+
+/* Empty search result: a centered, friendly state with a one-tap way out. */
+.ux-empty{display:grid;justify-items:center;gap:var(--ux-s2);padding:var(--ux-s4) var(--ux-s4) var(--ux-s5);text-align:center}
+.ux-empty[hidden]{display:none!important}
+.ux-empty-mark{display:block;width:48px;height:48px;border-radius:50%;background:#b499e71f;position:relative}
+.ux-empty-mark::after{content:'';position:absolute;inset:12px;background:#d8c8ff;
+ -webkit-mask:url(/assets/icons/game-pack/search.svg) center/contain no-repeat;mask:url(/assets/icons/game-pack/search.svg) center/contain no-repeat}
+.ux-empty p{margin:0;max-width:28ch;font:italic 400 16px/1.4 var(--hp-font-copy,KardiaFitRunner),sans-serif;color:#d9ccf6}
+html body .ux-empty .ux-empty-clear{min-height:44px;padding:0 22px;border-radius:999px}
+html body.native-shell #noGames.ux-has-empty{display:none!important}
+
+/* Guest search: the clear (×) control belongs inside the field. The shared
+   control centered on the whole tools block (field + vote row), so it floated
+   under the field. Center it on the field itself. */
+html body .guest-catalog-tools>.hp-search-clear{top:var(--ux-search-mid,22px)!important}
+
+/* ───────────── 4 · Host tab: hint role + calm focus ───────────── */
+html body.native-shell #hostPanel .tv-focus-copy #tvFocusName{
+ font:italic 400 15px/1.4 var(--hp-font-copy,KardiaFitRunner),sans-serif!important;color:#d9ccf6!important;letter-spacing:0!important;text-transform:none!important;
+}
+html body.native-shell #hostTitle:focus{outline:none}
+
+/* ───────────── 5 · Delight: join confetti, counter pop ───────────── */
+.ux-confetti{position:fixed;inset:0;z-index:2147483000;pointer-events:none;overflow:hidden;contain:strict}
+.ux-confetti>i{position:absolute;left:0;top:0;width:8px;height:12px;border-radius:2px;will-change:transform,opacity}
+.ux-confetti>i.ux-dot{width:9px;height:9px;border-radius:50%}
+
+/* Reverse the backdrop from its visible state together with the sheet. */
+html body dialog[open].lp-dialog-resumed:not(.lp-dialog-closing)::backdrop{animation:lp-backdrop-resume 180ms var(--ux-ease-out) both!important}
+@keyframes lp-backdrop-resume{from{opacity:var(--lp-backdrop-start,0)}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){html body dialog[open].lp-dialog-resumed:not(.lp-dialog-closing)::backdrop{animation:none!important}}
+/* A native sheet uses the same fading backdrop as browser dialogs. Explicit
+   endpoints avoid a fully opaque first paint in the native style cascade. */
+html body dialog[open]:not(.lp-dialog-closing):not(.lp-dialog-resumed)::backdrop{animation:lp-backdrop-arrive 240ms var(--ux-ease-out) both!important}
+@keyframes lp-backdrop-arrive{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){html body dialog[open]:not(.lp-dialog-closing):not(.lp-dialog-resumed)::backdrop{animation:none!important}}
+
+/* Short section labels describe their whole group, rather than the first row. */
+html body.native-shell #hostPanel .native-card>h3,
+html body.native-shell #hostPanel .native-card>summary{
+ text-align:center;justify-content:center;
+}
+html body.native-shell #gameDetail .rule-row>summary{justify-content:center;text-align:center}
+html body.native-shell :is(#launchHint,#tvControlHint,#networkHint){text-align:center;text-wrap:balance}
+html body.is-player:not(.in-game) .return-entry-help>summary{margin-inline:auto;text-align:center}
+
+/* Quiet copy, with input text retaining its original contrast. */
+html body :is(.native-search input,.guest-catalog-tools input)::placeholder{opacity:.65!important;font-style:italic}
+/* Fade the folding content itself; the summary and its soft backing never clip. */
+html body .return-entry-help{overflow:visible!important}
+html body .return-entry-body{overflow:hidden;display:flow-root;mask-image:linear-gradient(transparent 0,#000 min(14px,20%),#000 max(calc(100% - 22px),80%),transparent 100%);-webkit-mask-image:linear-gradient(transparent 0,#000 min(14px,20%),#000 max(calc(100% - 22px),80%),transparent 100%);padding-bottom:0}
+html body .return-entry-body>p{font-size:14px!important;line-height:1.5!important;margin:14px 0 10px!important}
+html body .return-entry-body>small{display:block;font-size:12px;line-height:1.5;color:var(--party-secondary);padding-bottom:22px}
+html body .return-entry-help>summary{list-style:none}
+html body .return-entry-help>summary::-webkit-details-marker{display:none}
+html body.is-player:not(.in-game) .return-entry-help>summary .return-entry-arrow{color:#bca3ff;opacity:.55;margin-left:10px;mask-image:linear-gradient(90deg,#000,#0008);-webkit-mask-image:linear-gradient(90deg,#000,#0008)}
+/* Equal inset around START; only the thin rim carries the recurring CTA light. */
+html body.native-shell main #choiceStrip{padding:8px!important}
+html body.native-shell #choiceStrip #choiceStart{min-height:48px}
+html body.native-shell #choiceStrip>.lp-cta-stroke{position:absolute!important;inset:0;z-index:3;pointer-events:none;border-radius:inherit;padding:2px;overflow:hidden;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor}
+.lp-cta-stroke::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--pick-color,#bca3ff) 90%,white) 35%,#d3ff9e 70%,transparent);animation:lp-cta-rim 4800ms var(--ux-ease-out) infinite;will-change:transform,opacity}
+@keyframes lp-cta-rim{0%,15%{transform:translateX(-100%);opacity:0}25%{opacity:.7}60%{transform:translateX(100%);opacity:.65}75%,100%{transform:translateX(100%);opacity:0}}
+@media(prefers-reduced-motion:reduce){.lp-cta-stroke::before{animation:none;opacity:.3;will-change:auto}}
+
+/* Let a flick travel freely instead of returning to a large card's snap point.
+   Keep browser momentum and diagonal/vertical gesture arbitration intact. */
+html body .fresh-track{scroll-snap-type:none!important;scroll-behavior:auto!important;touch-action:pan-x pan-y pinch-zoom;}
+html body .fresh-track>.game{scroll-snap-stop:normal!important}
+/* A halo needs paint room above AND below the rail. */
+html body .fresh-track{padding-top:44px!important;padding-bottom:48px!important;margin-top:-36px!important;margin-bottom:-36px!important}
+html body .game.is-running{outline:none!important;border-color:#cbb5ff!important;box-shadow:0 0 0 1px #d7c2ff66,0 0 18px #aa70ff40!important}
+html body .game>.lp-running-rim{position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;padding:2px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;overflow:hidden;display:none}
+html body .game.is-running>.lp-running-rim{display:block}
+.lp-running-rim::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,#bba1ff99 40%,#f1e8ff 50%,#bba1ff99 60%,transparent 80%);animation:lp-running-light 4200ms ease-in-out infinite}
+@keyframes lp-running-light{0%,10%{transform:translateX(-100%);opacity:0}25%,75%{opacity:.9}90%,100%{transform:translateX(100%);opacity:0}}
+@media(prefers-reduced-motion:reduce){.lp-running-rim::before{animation:none;opacity:.5}}
+/* Host Pick: leave breathing room to the right; metadata stays secondary. */
+html body.native-shell main #choiceStrip{padding-right:11px!important}
+html.hp-ui body.native-shell main #choiceMeta .hp-menu-counter-value,
+html.hp-ui body.native-shell main #choiceMeta .hp-menu-counter-total{font-size:14px!important}
+html.hp-ui body.native-shell main #choiceMeta .hp-menu-counter-label{font-size:11.5px!important;font-family:var(--hp-font-copy,KardiaFitRunner)!important;font-style:italic!important}
+html.hp-ui body.native-shell main #choiceMeta .hp-menu-counter-separator{font-size:10px!important}
+
+/* Keep the backing's top and bottom feathered throughout the fold. The
+   backing sits outside the animated text viewport, never inside a hard clip. */
+html body.is-player:not(.in-game) .return-entry-shell::before{
+ mask-image:linear-gradient(transparent,#000 32px,#000 calc(100% - 40px),transparent);
+ -webkit-mask-image:linear-gradient(transparent,#000 32px,#000 calc(100% - 40px),transparent);
+}
+/* Votes uses a single numeric role; only opacity distinguishes the total. */
+html.hp-ui body.is-player:not(.in-game) .guest-ballot-status :is(.hp-menu-counter-value,.hp-menu-counter-total){font:italic 900 18px/1.1 var(--hp-font-action)!important;color:#d4c6ff!important;font-variant-numeric:tabular-nums;opacity:1}
+html.hp-ui body.is-player:not(.in-game) .guest-ballot-status .hp-menu-counter-total{opacity:.65}
+html.hp-ui body.is-player:not(.in-game) .guest-ballot-status .hp-menu-counter-label{font:italic 500 12px/1.2 var(--hp-font-copy,KardiaFitRunner)!important;text-transform:uppercase!important;letter-spacing:.055em!important;color:#d4c6ff!important;opacity:.65}
+html.hp-ui body.is-player:not(.in-game) .guest-ballot-status .hp-menu-counter-readout{align-items:center!important}
+@media(max-width:850px){
+ html.hp-ui body:not(.tv-screen) :is(#arcadeCount,#gameCount).hp-catalog-counter{background:rgb(166 120 245 / 15%)!important;border:1px solid #c7acff1f!important;border-radius:999px!important;padding:5px 11px!important;box-shadow:none!important;}
+}
+
+/* Compact count badge in both mobile entry points. */
+@media(max-width:850px){
+ html.hp-ui body:not(.tv-screen) :is(#arcadeCount,#gameCount).hp-catalog-counter{padding:4px 9px!important}
+ html.hp-ui body:not(.tv-screen) :is(#arcadeCount,#gameCount).hp-catalog-counter .hp-menu-counter-value{font-size:19px!important}
+ html.hp-ui body:not(.tv-screen) :is(#arcadeCount,#gameCount).hp-catalog-counter .hp-menu-counter-label{font-size:11px!important}
+}
+
+/* The host's compact rail used to override halo space with 8px padding.
+   Feather only the surplus paint gutter, keeping the cards themselves opaque. */
+html body.native-shell .lp-catalog .fresh-track{
+ -webkit-mask-image:linear-gradient(to right,transparent,#000 16px,#000 calc(100% - 16px),transparent),linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 18px),transparent)!important;
+ mask-image:linear-gradient(to right,transparent,#000 16px,#000 calc(100% - 16px),transparent),linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 18px),transparent)!important;
+ -webkit-mask-composite:source-in;mask-composite:intersect;
+}
+/* Browser controller: count remains plain text; native menus keep the capsule. */
+html.hp-ui body.is-player:not(.native-controller):not(.native-shell) #arcadeCount.hp-catalog-counter{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;box-shadow:none!important}
+/* Short counter captions share the uppercase UI-label role. Names and prose
+   retain their authored casing. */
+html.hp-ui body .hp-menu-counter-label,
+html.hp-ui body.native-shell main #choiceMeta .hp-menu-counter-label{text-transform:uppercase!important}
+/* Native menu count: compact number with a quieter, vertically centered label. */
+@media(max-width:850px){
+ html.hp-ui body.native-shell .intro #gameCount.hp-menu-counter{align-items:center!important}
+ html.hp-ui body.native-shell .intro #gameCount .hp-menu-counter-readout{align-items:center!important}
+ html.hp-ui body.native-shell .intro #gameCount .hp-menu-counter-value{font-size:17px!important;line-height:1.1!important}
+ html.hp-ui body.native-shell .intro #gameCount .hp-menu-counter-label{font-size:11px!important;line-height:1.1!important;opacity:.65;align-self:center;transform:none!important}
+}
+/* Fresh section count shares the compact, vertically centered counter role. */
+html.hp-ui body:not(.tv-screen) .lp-fresh-section .hp-catalog-counter{align-items:center!important}
+html.hp-ui body:not(.tv-screen) .lp-fresh-section .hp-catalog-counter .hp-menu-counter-readout{align-items:center!important}
+html.hp-ui body:not(.tv-screen) .lp-fresh-section .hp-catalog-counter .hp-menu-counter-value{font-size:17px!important;line-height:1.1!important}
+html.hp-ui body:not(.tv-screen) .lp-fresh-section .hp-catalog-counter .hp-menu-counter-label{font-size:13.6px!important;line-height:1.1!important;align-self:center;transform:none!important}
+/* Compact Host Pick fraction and icons from the same filled game pack. */
+html.hp-ui body.native-shell main #choiceMeta .hp-menu-counter-readout{gap:1px!important}
+html.hp-ui body.native-shell main #choiceMeta :is(.hp-menu-counter-value,.hp-menu-counter-total){padding-inline:0!important}
+html body.native-shell main #choiceMeta .choice-clock{width:14px;height:14px;border:0;border-radius:0;background:currentColor;mask:url(/assets/icons/game-pack/clock.svg) center/contain no-repeat;-webkit-mask:url(/assets/icons/game-pack/clock.svg) center/contain no-repeat}
+html body.native-shell main #choiceMeta .choice-clock::after{display:none}
+html.hp-ui body.guest-catalog .guest-ballot summary::before{content:'';border:0;border-radius:0;width:20px;height:20px;background:currentColor;color:#c9b6ec;mask:url(/assets/icons/game-pack/info.svg) center/contain no-repeat;-webkit-mask:url(/assets/icons/game-pack/info.svg) center/contain no-repeat}
+/* Wide feathering without a bounded, visibly oval patch or costly live blur. */
+html body.is-player:not(.in-game) .return-entry-shell::before{inset:-70px -40px;background:radial-gradient(ellipse farthest-side at center,#151321a8 0%,#15132170 32%,#15132130 64%,transparent 100%);mask-image:linear-gradient(transparent,#000 70px,#000 calc(100% - 70px),transparent);-webkit-mask-image:linear-gradient(transparent,#000 70px,#000 calc(100% - 70px),transparent)}
+
+/* Rooms: one readable list, a clear current state, and persistent utilities. */
+html body.native-controller #nearbyDialog{border:1px solid #bfa2f56b!important;border-radius:28px!important;background:linear-gradient(155deg,#342a49,#211c30 60%,#191723)!important;box-shadow:0 20px 60px #08051080!important;padding:22px 18px 18px!important}
+html body #nearbyDialog h2{font:italic 900 25px/1.1 var(--hp-font-action);color:#f2eaff;margin:2px 0 12px}
+html body #nearbyDialog>p{font:italic 400 14px/1.45 var(--hp-font-copy);color:#cfc0e6;margin:0 8px 20px;text-wrap:balance}
+html body #nearbyDialog #nearbyList{gap:10px;padding:2px 1px;--room-top:0px;--room-bottom:0px;mask-image:linear-gradient(transparent,#000 var(--room-top),#000 calc(100% - var(--room-bottom)),transparent);-webkit-mask-image:linear-gradient(transparent,#000 var(--room-top),#000 calc(100% - var(--room-bottom)),transparent)}
+html body #nearbyList[data-before=true]{--room-top:16px!important}
+html body #nearbyList[data-after=true]{--room-bottom:16px!important}
+html body #nearbyDialog .nearby-room{padding:14px 12px;border-radius:20px;border:1px solid #c5a8ef28;background:linear-gradient(110deg,#b99aea14,#b99aea04);gap:10px}
+html body #nearbyDialog .nearby-room[data-current=true]{background:linear-gradient(110deg,#b99aea30,#b99aea0a);border-color:#bfa1f57a}
+html body #nearbyDialog .nearby-room b{font:600 16px/1.25 var(--hp-font-body);color:#f3edff}
+html body #nearbyDialog .nearby-room small{opacity:1;margin-top:7px;font:italic 400 13px/1.35 var(--hp-font-copy);color:#c9b8df}
+html body #nearbyDialog .nearby-game{display:block}
+html body #nearbyDialog .nearby-count{display:flex;align-items:center;gap:5px;margin-top:7px;font:italic 700 11px/1.2 var(--hp-font-copy);text-transform:uppercase;color:#d8c8f0}
+html body #nearbyDialog .nearby-count::before{content:'';width:13px;height:13px;background:currentColor;mask:url(/assets/icons/game-pack/user-avatar.svg) center/contain no-repeat;-webkit-mask:url(/assets/icons/game-pack/user-avatar.svg) center/contain no-repeat}
+html body #nearbyDialog .nearby-room button:disabled{opacity:1;color:#dbcef3!important;border-color:#bfa1f547!important;background:#b99aea17!important;font-size:11px!important;min-width:76px;padding-inline:8px!important}
+html body #nearbyDialog .nearby-footer{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px;flex-shrink:0}
+html body #nearbyDialog .nearby-footer .ready-actions{display:contents}
+html body #nearbyDialog .nearby-footer button{width:100%;min-height:46px;margin:0!important;font-size:14px!important}
+html body #nearbyDialog #nearbyClose{grid-column:1/-1;color:#cfc0e6;background:transparent!important;border-color:transparent!important}
+html body #nearbyDialog .nearby-notice{margin:0;padding:20px 14px;font:italic 400 14px/1.5 var(--hp-font-copy);text-align:center;color:#e0d1f4}
+@media(max-height:500px){html body.native-controller #nearbyDialog{padding:14px!important}html body #nearbyDialog h2{font-size:22px;margin:0 0 6px}html body #nearbyDialog>p{margin-bottom:10px;font-size:12px}html body #nearbyDialog .nearby-footer{grid-template-columns:1fr 1fr 1fr;margin-top:10px}html body #nearbyDialog #nearbyClose{grid-column:auto}html body #nearbyDialog #nearbyList{min-height:55px}}
+/* The QR hint has one soft full-width backing in browser and native controller. */
+html body.is-player:not(.in-game) .return-entry-shell::before{inset:-64px calc((100% - 100vw)/2);background:linear-gradient(180deg,transparent 0%,#15132120 18%,#15132180 40%,#15132180 60%,#15132120 82%,transparent 100%);mask-image:none;-webkit-mask-image:none}
+html body .return-entry-body>small{font-size:11px!important;opacity:.65;line-height:1.5}
+/* Shared glass material: one background blur, translucent tinted surfaces.
+   Animate opacity/position only; never animate the blur radius. */
+html body dialog[open],html body.native-controller #nearbyDialog[open],html body.profile-editing #onboarding{
+ background:linear-gradient(145deg,rgba(49,40,66,.97),rgba(25,23,36,.97) 70%,rgba(30,25,43,.97))!important;
+}
+html body dialog[open]::backdrop{background:linear-gradient(180deg,#0c081a75,#0c081a50 55%,#0c081a80)!important;-webkit-backdrop-filter:blur(8px)!important;backdrop-filter:blur(8px)!important}
+html body dialog[open]:modal{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body dialog[open]:not(:modal){-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html body .profile-sheet-backdrop{background:linear-gradient(180deg,#0c081a75,#0c081a50 55%,#0c081a80);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@media(prefers-reduced-transparency:reduce){html body dialog[open],html body.native-controller #nearbyDialog[open],html body.profile-editing #onboarding{background:#241f32!important}html body dialog[open]::backdrop,html body .profile-sheet-backdrop{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+@media(max-width:850px){
+ html.hp-ui body.native-controller #arcadeCount.hp-catalog-counter{align-items:center!important}
+ html.hp-ui body.native-controller #arcadeCount .hp-menu-counter-readout{align-items:center!important}
+ html.hp-ui body.native-controller #arcadeCount .hp-menu-counter-value{font-size:17px!important;line-height:1.1!important}
+ html.hp-ui body.native-controller #arcadeCount .hp-menu-counter-label{font-size:11px!important;line-height:1.1!important;opacity:.65;align-self:center;transform:none!important}
+}
+/* WebKit does not consistently filter the top-layer backdrop. Blur the actual
+   translucent sheet so background lettering cannot show through sharply. */
+html body dialog[open]:modal{-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important}
+html body dialog[open]::backdrop{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+@media(prefers-reduced-transparency:reduce){html body dialog[open]:modal{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+html body #nearbyDialog .nearby-count{font:italic 900 17px/1.15 var(--hp-font-action);color:#dcc5ff;gap:7px;text-shadow:0 2px 8px #ae7df52b}
+html body #nearbyDialog .nearby-count::before{width:16px;height:16px}
+/* Blur the full underlying view in the native dialog backdrop too. */
+html body dialog[open]::backdrop{-webkit-backdrop-filter:blur(14px)!important;backdrop-filter:blur(14px)!important}
+@media(prefers-reduced-transparency:reduce){html body dialog[open]::backdrop{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* Host Pick: icon + compact player count. Leave room for italic numeral overhang. */
+html body.native-shell main #choiceMeta{overflow:visible!important;mask:none!important;-webkit-mask:none!important}
+html body.native-shell main #choiceMeta .choice-players-icon{display:inline-block;flex:0 0 14px;width:14px;height:14px;background:currentColor;mask:url(/assets/icons/game-pack/user-avatar.svg) center/contain no-repeat;-webkit-mask:url(/assets/icons/game-pack/user-avatar.svg) center/contain no-repeat}
+html.hp-ui body.native-shell main #choiceMeta .hp-menu-counter-readout{align-items:center!important;overflow:visible!important;padding-inline-end:4px!important;line-height:1.3!important}
+html.hp-ui body.native-shell main #choiceMeta :is(.hp-menu-counter-value,.hp-menu-counter-total){overflow:visible!important;padding-inline:1px 3px!important;line-height:1.3!important}
+
+/* Shared popup actions: primary action + circular, reachable back. */
+html body .hp-popup-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex:none;width:100%;margin-top:16px}
+html body .hp-popup-actions>.primary{flex:1;min-width:0}
+html body .hp-popup-actions-end{justify-content:flex-end}
+html.hp-ui body :is(dialog,#onboarding) button:is(.primary,.quiet){font-family:var(--hp-font-action,KardiaFatRunner)!important;font-size:15px!important;font-weight:900!important;font-style:italic!important;line-height:1.2!important;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center}
+html.hp-ui body :is(dialog,#onboarding) button:is(.primary,.quiet)>:is(span,svg,img){flex-shrink:0}
+html.hp-ui body :is(dialog,#onboarding) button:is(.primary,.quiet)>span:not([aria-hidden]){flex-shrink:1}
+html.hp-ui body dialog button.hp-popup-back{width:48px!important;min-width:48px!important;max-width:48px!important;height:48px!important;min-height:48px!important;flex:0 0 48px!important;align-self:center!important;border-radius:50%!important;padding:0!important;margin:0!important;font-size:0!important;background:#b5a3df12!important;border:1px solid #dac6ff30!important;color:#f6efff!important;box-shadow:inset 0 1px #ffffff0a!important;overflow:hidden}
+html.hp-ui body dialog button.hp-popup-back>*{display:none!important}
+html.hp-ui body dialog button.hp-popup-back::before{content:'';width:22px;height:22px;display:block;background:currentColor;mask:url(/assets/icons/game-pack/arrow-left.svg) center/contain no-repeat;-webkit-mask:url(/assets/icons/game-pack/arrow-left.svg) center/contain no-repeat}
+html body #roomDialog .room-actions{grid-template-columns:repeat(2,minmax(0,1fr));align-items:center}
+html body #roomDialog #closeRoom{justify-self:end;grid-column:2}
+html body #gameDetail .native-actions{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:10px 12px;align-items:center}
+html body #gameDetail #launchGame{grid-column:1;grid-row:1}
+html body #gameDetail #detailController{grid-column:1;grid-row:2}
+html body #gameDetail .hp-popup-back{grid-column:2;grid-row:1/3}
+html body #nearbyDialog .nearby-footer{grid-template-columns:repeat(2,minmax(0,1fr)) 48px}
+html body #nearbyDialog #nearbyClose{grid-column:3!important;grid-row:1!important;justify-self:end}
+/* Empty standings are a compact sheet, not a full-height empty scroll area. */
+html body #statsDialog:has(#statsBody.ranking-content>.stats-empty){height:auto!important;min-height:0!important;padding-top:32px!important}
+html body #statsDialog:has(#statsBody.ranking-content>.stats-empty) #statsBody{flex:0 1 auto!important;min-height:0!important;height:auto!important;padding:4px 8px!important;text-align:center;gap:16px}
+html body #statsDialog:has(#statsBody.ranking-content>.stats-empty) #statsName{text-align:center;padding:0!important}
+html body #onboarding #name{border-radius:999px!important;min-height:52px;padding-inline:22px!important}
+html body #onboarding select{border-radius:999px!important;text-align:center!important;text-align-last:center!important;padding-inline:20px!important;min-height:44px}
+/* Two-line action labels share the same 48px control, not different row heights. */
+html.hp-ui body :is(.hp-popup-actions,.native-actions,.room-actions,.nearby-footer,.profile-photo-actions,.profile-submit-row,dialog form[method=dialog])>button:not(.hp-popup-back){height:48px!important;min-height:48px!important;max-height:48px!important;box-sizing:border-box;padding-block:6px!important;line-height:1.1!important;white-space:normal!important;overflow-wrap:normal}
+html.hp-ui body :is(.hp-popup-actions,.native-actions,.room-actions,.nearby-footer,.profile-photo-actions,.profile-submit-row,dialog form[method=dialog])>button>span:not([aria-hidden]){line-height:1.1!important;min-width:0}
+html.hp-ui body dialog button.hp-popup-back[hidden]{display:none!important}
+html.hp-ui body.native-host-tab #hostPanel>.hp-popup-actions{display:none!important}
+html.hp-ui body :is(.hp-popup-actions,.native-actions,.room-actions,.profile-submit-row) button :is(svg.hp-pack-icon,.hp-inline-icon){position:static!important;inset:auto!important;transform:none!important;margin:0!important;align-self:center!important;width:20px;height:20px;flex:0 0 20px}
+/* Popup rhythm: 24px frame, 16px content rhythm, 24px before the action row. */
+html body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#joinDialog,#catalogDialog,#confirmDialog,#confirmStop){padding:24px!important;box-sizing:border-box;gap:16px}
+html body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#joinDialog,#catalogDialog,#confirmDialog,#confirmStop)>h2{margin:0!important;line-height:1.15}
+html body dialog:is(#confirmDialog,#confirmStop)>p{margin:12px 0 24px!important;line-height:1.5}
+html body :is(#confirmDialog .native-actions,#confirmStop form){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0!important}
+html body .hp-popup-actions{margin-top:8px!important}
+html body .hp-popup-actions>button:not(.hp-popup-back){width:auto!important;max-width:none!important;flex:1 1 0!important;margin:0!important}
+html body #statsDialog:has(#statsBody.ranking-content>.stats-empty){height:fit-content!important;top:auto!important}
+html body #statsDialog:has(#statsBody.ranking-content>.stats-empty) #statsName{margin-top:8px!important}
+html body #rulesDialog .hp-popup-actions{padding:0!important;background:none!important}
+@media(max-width:350px){html body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#joinDialog,#catalogDialog,#confirmDialog,#confirmStop){padding-inline:20px!important}}
+/* All navigation sheets continue behind the native dock; alerts stay centred. */
+@media(max-width:640px){
+ html body{--popup-footer-clearance:calc(env(safe-area-inset-bottom,0px) + 48px)}
+ html body:is(.native-shell,.native-controller){--popup-footer-clearance:calc(var(--native-tab-reserve,56px) + 48px)}
+ html body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open]{
+  inset:auto 0 -28px!important;margin:0!important;width:100%!important;max-width:none!important;
+  height:auto!important;max-height:calc(100dvh - env(safe-area-inset-top,0px) + 12px)!important;
+  border-radius:28px 28px 0 0!important;border-bottom:0!important;
+  padding-bottom:var(--popup-footer-clearance)!important;transform-origin:50% 100%!important;
+ }
+ html body dialog:is(#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open]:not(.lp-dialog-closing){animation:ux-sheet-in var(--ux-sheet-in-ms) var(--ux-spring-sheet) backwards!important}
+ html body dialog:is(#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open].lp-dialog-closing{animation:ux-sheet-out 180ms var(--ux-exit) both!important}
+ html body dialog:is(#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open].lp-dialog-resumed:not(.lp-dialog-closing){animation:none!important}
+ html body.native-host-tab #hostPanel.ux-sheet[open]{inset:0!important;border-radius:0!important;padding-bottom:calc(var(--native-tab-reserve) + 36px)!important;animation:none!important}
+}
+html body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel,#confirmDialog,#confirmStop)>:is(h2,.native-sheet-head){text-align:center;justify-content:center;position:relative;isolation:isolate;background:transparent!important;align-items:center}
+html body dialog .native-sheet-head h2{width:100%;text-align:center!important;margin:0!important}
+html body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel,#confirmDialog,#confirmStop)>:is(h2,.native-sheet-head)::before{content:'';position:absolute;inset:-24px -24px -18px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#110d2426,transparent);border-radius:24px 24px 0 0}
+html body dialog>.eyebrow{text-align:center}
+
+/* Proportional compact-phone type, without reducing touch targets. */
+@media(max-width:640px){
+ html.hp-ui body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#hostPanel,#confirmDialog,#confirmStop) :is(h2,.native-sheet-head h2){font-size:clamp(22px,6.65vw,28px)!important;line-height:1.15!important}
+ html.hp-ui body :is(dialog,#onboarding) :is(p,.stats-intro,.stats-empty){font-size:clamp(12px,3.56vw,14px)!important;line-height:1.45!important}
+ html.hp-ui body #onboarding h1{font-size:clamp(24px,7.1vw,28px)!important}
+ html.hp-ui body #onboarding #name{font-size:clamp(16px,4.6vw,18px)!important}
+ html.hp-ui body fieldset.hp-audio-settings .hp-audio-caption{font-size:clamp(14px,4.07vw,16px)!important}
+ html.hp-ui body :is(dialog,#onboarding) button:is(.primary,.quiet):not(.hp-popup-back){font-size:clamp(14px,3.82vw,15px)!important}
+}
+/* Quiet CTA motion inside the capsule, never an external pink frame. */
+html body dialog[open] button.primary:not(:disabled),html body #onboarding:not([hidden]) .profile-submit-row>.primary:not(:disabled){position:relative;isolation:isolate;overflow:hidden}
+html body dialog[open] button.primary:not(:disabled)::after,html body #onboarding:not([hidden]) .profile-submit-row>.primary:not(:disabled)::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(105deg,transparent 25%,#ffffff40 49%,transparent 72%);transform:translateX(-130%);opacity:0;animation:hp-popup-cta-glide 5200ms var(--ux-ease-out) infinite}
+@keyframes hp-popup-cta-glide{0%,14%{transform:translateX(-130%);opacity:0}22%{opacity:.65}45%{transform:translateX(130%);opacity:0}100%{transform:translateX(130%);opacity:0}}
+@media(prefers-reduced-motion:reduce){html body dialog[open] button.primary::after,html body #onboarding .profile-submit-row>.primary::after{animation:none!important;display:none}}
+
+/* Dynamically mounted footers use the same geometry as static dialogs. */
+html.hp-ui body :is(.nearby-footer,.lp-update-actions) button:not(.hp-popup-back){height:48px!important;min-height:48px!important;max-height:48px!important;line-height:1.1!important;padding:6px 12px!important;white-space:normal!important;min-width:0}
+html body .lp-update-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html body .lp-updates-dialog h2{text-align:center;font-size:clamp(22px,6.65vw,28px)}
+@media(max-width:640px){
+ html body dialog.lp-updates-dialog[open]{inset:auto 0 -28px!important;margin:0!important;width:100%!important;max-width:none;max-height:calc(100dvh - env(safe-area-inset-top,0px) + 12px);border-radius:28px 28px 0 0;padding:24px 20px var(--popup-footer-clearance)!important}
+ html body dialog.lp-updates-dialog[open]:not(.lp-dialog-closing){animation:ux-sheet-in var(--ux-sheet-in-ms) var(--ux-spring-sheet) backwards!important}
+ html body dialog.lp-updates-dialog.lp-dialog-closing{animation:ux-sheet-out 180ms var(--ux-exit) both!important}
+}
+/* Focus follows the rounded control, never the rectangular text line or sheet. */
+html.hp-ui body .rule-row>summary{border-radius:999px!important}
+html.hp-ui body #onboarding:focus{outline:none!important}
+/* Popup 144: a single owner for each vertical gap; no stacked legacy padding. */
+html body #rulesDialog #rulesBody{display:flex;flex-direction:column;gap:20px;padding:0 4px 0 0!important}
+html body #rulesDialog #rulesBody>.rule-row{padding:0!important;margin:0!important;flex:none}
+html body #rulesDialog #rulesBody>.rule-row p{margin:8px 0 0!important}
+html body #rulesDialog>.hp-popup-actions{margin-top:8px!important}
+html body #statsDialog #statsBody>.stats-intro,html body #statsDialog #statsBody>.stats-empty{margin:0!important}
+html body #statsDialog #statsBody>.stats-empty{padding-block:0!important}
+html body.native-shell #gameDetail>.native-sheet-head{padding:16px 16px 0!important}
+html body.native-shell #gameDetail>#gameDetailBody{padding:0 16px!important}
+html body.native-shell #gameDetail #launchHint{margin:12px 0 0!important}
+html body.native-shell #gameDetail>.native-actions{padding:0 16px 16px!important;margin-top:8px!important}
+html body.native-shell #gameDetail .rule-row:last-of-type{margin-bottom:0!important}
+html body #roomDialog .room-actions{margin-top:8px!important;padding-top:0!important}
+
+/* Game detail is one inset column with a single reachable action row. */
+html.hp-ui body.native-shell #gameDetail.native-sheet[open]{padding:28px 20px var(--popup-footer-clearance,24px)!important;gap:20px!important;box-sizing:border-box}
+html.hp-ui body.native-shell #gameDetail.native-sheet>.native-sheet-head{padding:0!important;margin:0!important;min-height:32px;flex:none}
+html.hp-ui body.native-shell #gameDetail #detailTitle:focus{outline:none!important}
+html.hp-ui body.native-shell #gameDetail.native-sheet>#gameDetailBody{padding:0!important;margin:0!important;min-width:0}
+html.hp-ui body.native-shell #gameDetail.native-sheet>.native-actions{padding:0!important;margin:4px 0 0!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) 48px!important;gap:8px!important;align-items:center}
+html.hp-ui body.native-shell #gameDetail.native-sheet>.native-actions>button{grid-row:1!important;grid-column:auto!important;min-width:0!important}
+html.hp-ui body.native-shell #gameDetail .rule-row{padding:0!important;margin:0 0 10px!important;overflow:hidden;border-radius:20px!important}
+html.hp-ui body.native-shell #gameDetail .rule-row>summary{width:100%;box-sizing:border-box;padding:0 12px!important;justify-content:center;border-radius:19px!important;margin:0!important}
+html.hp-ui body.native-shell #gameDetail .rule-row>summary:focus-visible{outline:none!important;box-shadow:inset 0 0 16px #d7ff8b25!important;background:#d7ff8b15!important}
+html.hp-ui body.native-shell #gameDetail .rule-row>p{padding:0 14px!important;margin:0 0 14px!important}
+html.hp-ui body.native-shell #gameDetail .rule-row[open]>summary{margin-bottom:10px!important}
+/* Popup 145: frosted violet surfaces, without the old inset highlight. */
+html.hp-ui body dialog[open],html.hp-ui body.native-controller #nearbyDialog[open],html.hp-ui body.profile-editing #onboarding{
+ background:linear-gradient(155deg,rgba(43,34,60,.80),rgba(23,20,35,.86))!important;
+ -webkit-backdrop-filter:blur(22px) saturate(115%)!important;backdrop-filter:blur(22px) saturate(115%)!important;
+ box-shadow:0 18px 48px #08051155!important;border-color:#c7afe52e!important;
+}
+html.hp-ui body dialog[open]::before,html.hp-ui body.profile-editing #onboarding::before{box-shadow:none!important;background:none!important}
+html.hp-ui body dialog>:is(h2,.native-sheet-head)::before{display:none!important}
+html.hp-ui body :is(#rulesBody,.waiting-rules,#gameDetailBody) :is(p,b,h3),html.hp-ui body dialog>:is(p,.eyebrow){text-align:center!important}
+html.hp-ui body #gameDetail #detailGoal,html.hp-ui body #gameDetail .rule-row p{text-align:center!important}
+html.hp-ui body.native-shell #gameDetail .native-detail-art{height:140px!important;width:100%;object-fit:contain;margin:8px auto 16px!important}
+@media(max-height:650px){html.hp-ui body.native-shell #gameDetail .native-detail-art{height:108px!important;margin:4px auto 12px!important}}
+@media(prefers-reduced-transparency:reduce){html.hp-ui body dialog[open],html.hp-ui body.native-controller #nearbyDialog[open],html.hp-ui body.profile-editing #onboarding{background:#241f32!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* Equal visual silhouettes, not only equal CSS heights. */
+html.hp-ui body :is(.native-actions,.hp-popup-actions,.room-actions,dialog form[method=dialog])>button:not(.hp-popup-back){box-shadow:none!important;border-width:1px!important;border-style:solid!important;box-sizing:border-box!important;border-radius:999px!important}
+html.hp-ui body :is(.native-actions,.hp-popup-actions,.room-actions,dialog form[method=dialog])>button.primary{border-color:transparent!important}
+html.hp-ui body :is(.native-actions,.hp-popup-actions,.room-actions,dialog form[method=dialog])>button:focus-visible{outline:2px solid #e4ffba!important;outline-offset:-5px!important}
+html.hp-ui body.native-shell .intro #gameCount{background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html.hp-ui body.native-shell .intro #gameCount::before,html.hp-ui body.native-shell .intro #gameCount::after{display:none!important}
+@supports(animation-timeline:view()){
+ @media(prefers-reduced-motion:no-preference){
+  html body.native-shell :is(.hero-pills,.fresh-section){animation:hp-scroll-retreat linear both;animation-timeline:view(block);animation-range:exit 0% exit 100%;transform-origin:50% 0}
+ }
+}
+@keyframes hp-scroll-retreat{from{scale:1;opacity:1}to{scale:.94;opacity:.45}}
+/* A local frosted navigation surface; no opaque layer hiding its backdrop. */
+html.hp-ui body.native-shell .native-catalog-tools{background:transparent!important}
+html.hp-ui body.native-shell .native-catalog-tools::before{background:linear-gradient(180deg,#171223a8 0%,#17122380 65%,#17122300 100%)!important;-webkit-backdrop-filter:blur(20px) saturate(115%)!important;backdrop-filter:blur(20px) saturate(115%)!important;box-shadow:none!important}
+html.hp-ui body.native-shell .catalog-filters{background:#20192e85!important;-webkit-backdrop-filter:blur(18px) saturate(115%)!important;backdrop-filter:blur(18px) saturate(115%)!important;border:1px solid #cfb4f025!important;border-radius:999px;box-shadow:none!important}
+html.hp-ui body.native-shell #catalog .game-info{background:linear-gradient(180deg,transparent 0%,#21152d0a 22%,#21152d29 48%,#21152d57 76%,#21152d8c 100%)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+@media(prefers-reduced-transparency:reduce){html.hp-ui body.native-shell :is(.catalog-filters,#catalog .game-info){background:#241f32!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}html.hp-ui body.native-shell .native-catalog-tools::before{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* One matte surface family: tint + actual backdrop blur, no bevel shading. */
+:root{--hp-matte-panel:rgba(43,35,58,.88);--hp-matte-card:rgba(43,35,58,.84);--hp-matte-line:rgba(203,180,236,.18)}
+html.hp-ui body dialog[open],html.hp-ui body.native-controller #nearbyDialog[open],html.hp-ui body.profile-editing #onboarding{
+ background:var(--hp-matte-panel)!important;border-color:var(--hp-matte-line)!important;
+ box-shadow:0 16px 40px #08051140!important;
+}
+html.hp-ui body dialog[open]::before,html.hp-ui body dialog[open]::after,html.hp-ui body.profile-editing #onboarding::before,html.hp-ui body.profile-editing #onboarding::after{content:none!important}
+html.hp-ui body dialog :is(.native-sheet-head,.native-card,.dialog-body){box-shadow:none!important}
+html.hp-ui body dialog .native-sheet-head{background:transparent!important}
+html.hp-ui body #hostPanelBody>.native-card{
+ background:var(--hp-matte-card)!important;box-shadow:none!important;border-color:var(--hp-matte-line)!important;
+ -webkit-backdrop-filter:blur(18px) saturate(110%)!important;backdrop-filter:blur(18px) saturate(110%)!important;
+}
+/* Centre the text itself, including expanded and dynamically populated copy. */
+html.hp-ui body dialog :is(p,h2,h3,legend,.eyebrow,.stats-intro,.stats-empty,.rule-row>b,.native-row>span),
+html.hp-ui body #onboarding :is(h1,p,legend),html.hp-ui body #rulesBody :is(p,b),html.hp-ui body .waiting-rules :is(p,b){text-align:center!important;text-wrap:pretty}
+html.hp-ui body #hostPanel :is(.native-card>h3,.native-card>p){width:100%;text-align:center!important}
+@media(prefers-reduced-transparency:reduce){html.hp-ui body dialog[open],html.hp-ui body.native-controller #nearbyDialog[open],html.hp-ui body.profile-editing #onboarding,html.hp-ui body #hostPanelBody>.native-card{background:#241f32!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* Equal background softness for native dialogs and the full-screen profile. */
+/* Blur a viewport, never the full scroll-height catalogue or nested sheets. */
+html.hp-ui body dialog[open]::backdrop,html body .profile-sheet-backdrop{-webkit-backdrop-filter:blur(16px)!important;backdrop-filter:blur(16px)!important}
+html.hp-ui body dialog[open]:modal,html.hp-ui body.profile-editing #onboarding,html.hp-ui body #hostPanelBody>.native-card{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.hp-ui body #onboarding #photoTitle{font-size:clamp(17px,4.8vw,19px)!important;line-height:1.25!important}
+@media(prefers-reduced-transparency:reduce){html.hp-ui body dialog[open]::backdrop,html body .profile-sheet-backdrop{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* Slowly orbiting edge light, independently authored from the Uiverse reference.
+   Restricted to the current primary actions, not every catalogue card. */
+@property --hp-edge-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action){position:relative;isolation:isolate;overflow:hidden}
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):not(:disabled)::after{
+ content:''!important;display:block;position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;
+ background:conic-gradient(from var(--hp-edge-angle),#ffffff00 0deg,#ffffff00 190deg,#a48be580 245deg,#f3edff 285deg,#efffc7 310deg,#ffffff00 350deg)!important;
+ -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;
+ transform:none!important;opacity:1!important;animation:hp-edge-orbit 12s linear infinite!important;box-shadow:none!important;
+}
+@keyframes hp-edge-orbit{to{--hp-edge-angle:360deg}}
+@media(prefers-reduced-motion:reduce){html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action)::after{animation:none!important;--hp-edge-angle:285deg}}
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):disabled::after{display:none!important}
+/* Violet family: quieter edges, brighter centre, no bevel or grey controls. */
+:root{--hp-matte-panel:linear-gradient(180deg,rgba(28,22,41,.91),rgba(40,32,55,.88) 42%,rgba(28,22,41,.92));--hp-matte-card:linear-gradient(180deg,rgba(29,23,42,.88),rgba(40,32,55,.84) 45%,rgba(28,22,41,.90))}
+html.hp-ui body #onboarding #name{background:#171222!important;border:1px solid #c5ace52e!important;color:#f0e9fa!important}
+html.hp-ui body .party-language-setting>span{font-size:17px!important;color:#e9def7;font-weight:700;line-height:1.3}
+html.hp-ui body .party-language-setting select,html.hp-ui body #onboarding .party-language-setting select{background:#292235!important;color:#d7c9e8!important;border:1px solid #bba1db38!important;border-radius:999px!important;font-size:14px!important;min-width:112px!important;min-height:40px!important;height:40px;padding:6px 16px!important;text-align:center;text-align-last:center}
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):not(:disabled)::after{padding:3px;background:conic-gradient(from var(--hp-edge-angle),#ffffff00 0deg,#ffffff00 160deg,#9560f1 225deg,#d1a9ff 268deg,#faffc9 300deg,#b8ff63 325deg,#ffffff00 354deg)!important}
+/* Edge energy follows the action's own colour family. */
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):not(:disabled){box-shadow:0 0 9px #a5f74645,inset 0 0 10px #efffc62e!important}
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):not(:disabled)::after{background:conic-gradient(from var(--hp-edge-angle),transparent 0deg,transparent 155deg,#68c935 225deg,#bbff74 275deg,#f0ffd0 300deg,#94ef3e 330deg,transparent 354deg)!important}
+html.hp-ui body #detailController:not(:disabled){position:relative;overflow:hidden;isolation:isolate;box-shadow:0 0 10px #a171ed42,inset 0 0 12px #bd94ef18!important}
+html.hp-ui body #detailController:not(:disabled)::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:3px;pointer-events:none;background:conic-gradient(from var(--hp-edge-angle),transparent 0deg,transparent 155deg,#8650d8 225deg,#d1a8ff 280deg,#eee0ff 307deg,#a568ef 333deg,transparent 354deg);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:hp-edge-orbit 12s linear infinite}
+@media(prefers-reduced-motion:reduce){html.hp-ui body #detailController::after{animation:none!important}}
+html.hp-ui body #onboarding #name,html.hp-ui body .party-language-setting>span,html.hp-ui body .party-language-setting select{font-family:var(--hp-font-copy,KardiaFitRunner),sans-serif!important;font-style:italic!important}
+/* Header lockup: emblem and title share an optical baseline and a small gap. */
+html.hp-ui body.profile-editing #onboarding{column-gap:10px!important;grid-template-columns:minmax(0,1fr) 42px max-content minmax(0,1fr)!important}
+html.hp-ui body #onboarding>.join-mark{grid-column:2!important;grid-row:1!important;width:42px!important;height:42px!important;min-width:42px!important;margin:0!important;align-self:center!important}
+html.hp-ui body #onboarding>h1{grid-column:3!important;grid-row:1!important;text-align:center!important;align-self:center!important;margin:0!important;line-height:1.15!important}
+/* Native editable glyphs keep their caret/selection; a separate background layer
+   colours text while the second layer retains the dark violet input surface. */
+/* Native input editing remains native; idle labels use a separate glyph layer. */
+.hp-input-tint{display:grid;grid-template-columns:minmax(0,1fr);width:100%;min-width:0;position:relative}
+.hp-input-tint>input,.hp-input-tint>.hp-input-ink{grid-area:1/1;min-width:0;width:100%;box-sizing:border-box}
+.hp-input-tint>.hp-input-ink{width:max-content;max-width:100%;justify-self:start;align-self:center;pointer-events:none;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:linear-gradient(90deg,#f0e4ff 0%,#d2b9ec 35%,#a68abf 78%,#987caf 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+html.hp-ui body .hp-input-tint>input:not(:focus){color:transparent!important;-webkit-text-fill-color:transparent!important}
+html.hp-ui body .hp-input-tint>input:focus{color:#eee0ff!important;-webkit-text-fill-color:#eee0ff!important;caret-color:#eee0ff!important}
+.hp-input-tint:focus-within>.hp-input-ink{visibility:hidden}
+html.hp-ui body #onboarding>.join-mark{font-size:0!important;background:transparent url(/assets/ui/profile-ready-controller.png) center/contain no-repeat!important;border:0!important;box-shadow:none!important;transform:none!important}
+html.hp-ui body #onboarding .profile-name-group>label{display:block;width:100%;text-align:center!important;font-size:15px!important;line-height:1.3!important;margin-bottom:10px!important}
+/* High-contrast white/lime edge and a soft halo, visible on the lime fill. */
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):not(:disabled){overflow:visible!important;box-shadow:0 0 12px #9cff5060,0 0 24px #82e93828!important}
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):not(:disabled)::after{padding:3px!important;background:conic-gradient(from var(--hp-edge-angle),#75c93340 0deg,#75c93340 175deg,#8cf33b 230deg,#dfffaa 264deg,#ffffff 288deg,#f2ffdb 312deg,#a2ff4c 340deg,#75c93340 360deg)!important;filter:none}
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action):not(:disabled)::before{content:'';position:absolute;inset:0;border-radius:inherit;border:1px solid #caff9b85;pointer-events:none;box-shadow:0 0 8px #b0ff6880;opacity:.7;background:none}
+html.hp-ui body .hp-input-ink{font-family:KardiaFitRunner,sans-serif!important;font-style:italic!important}
+/* Violet actions use their own soft bloom; back icons remain quiet. */
+html.hp-ui body button.quiet.hp-energy-action:not(.hp-popup-back):not(.profile-cancel):not(:disabled){position:relative;isolation:isolate;overflow:visible!important;box-shadow:0 0 8px #ab73f34a,0 0 18px #9353e51c!important}
+html.hp-ui body button.quiet.hp-energy-action:not(.hp-popup-back):not(.profile-cancel):not(:disabled)::after{content:''!important;display:block;position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;background:conic-gradient(from var(--hp-edge-angle),#9660d72b 0deg,#9660d72b 170deg,#9b67e2 235deg,#dec0ff 280deg,#f2e6ff 310deg,#a870f1 337deg,#9660d72b 360deg)!important;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:hp-edge-orbit 12s linear infinite!important;transform:none!important;opacity:1!important}
+@media(prefers-reduced-motion:reduce){html.hp-ui body button.quiet::after{animation:none!important}}
+html.hp-ui body #onboarding .profile-submit-row{overflow:visible!important}
+/* Group a composed photo task; single-field groups need no extra nested card. */
+html.hp-ui body #onboarding .profile-photo-field{background:var(--hp-section-reflection)!important;border:0!important;border-radius:24px!important;box-shadow:none!important;padding:14px 12px!important;margin:0!important}
+
+/* Soft nonlinear light falloff, shared by composed tasks across popup routes. */
+:root{--hp-section-reflection:radial-gradient(ellipse 72% 85% at 0% 0%,#ed4cbb27 0%,#de3cb51a 12%,#c93aaf0c 30%,#bd34a903 46%,#bd34a900 62%),radial-gradient(ellipse 65% 75% at 100% 100%,#ce4feb24 0%,#c23bdd18 10%,#b532d20a 28%,#b532d202 43%,#b532d200 60%)}
+html.hp-ui body.profile-editing #onboarding{column-gap:5px!important}
+html.hp-ui body.profile-editing #onboarding #joinForm{overflow:visible!important}
+html.hp-ui body :is(dialog,.nearby-panel) :is(.hp-audio-settings,.rule-row){background:var(--hp-section-reflection)!important;box-shadow:none!important}
+
+/* Shared compound sections: host settings and room roster use the same material. */
+html.hp-ui body #hostPanelBody>.native-card,
+html.hp-ui body #roomDialog #roomPlayers{
+ background:var(--hp-section-reflection)!important;border:0!important;
+ border-radius:24px!important;box-shadow:none!important;padding:16px!important;
+}
+html.hp-ui body #hostPanelBody>.native-card{margin-block:0 16px!important}
+html.hp-ui body #roomDialog .room-player{background:transparent!important}
+html.hp-ui body :is(button.primary,button.lime,button.quiet,button.start-game,button.lp-direct-start)::after{animation-play-state:var(--hp-cta-play,paused)!important}
+/* Same physical capsule for paired actions; bloom never contributes to sizing. */
+html.hp-ui body :is(.profile-photo-actions,.native-actions,.hp-popup-actions,.room-actions)>button:not(.hp-popup-back){box-sizing:border-box!important;height:48px!important;min-height:48px!important;max-height:48px!important;border-radius:999px!important}
+/* Pale violet ink for popup headings; deliberate gold/lime emphasis stays coloured. */
+html.hp-ui body :is(dialog,#onboarding) :is(h1,h2,h3,#photoTitle){color:#f3eafa}
+@supports (-webkit-background-clip:text){
+ html.hp-ui body :is(dialog,#onboarding) :is(h1,h2,h3,#photoTitle){background:linear-gradient(105deg,#fffaff 10%,#f6ebfb 48%,#d7c0ee 100%)!important;background-clip:text!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent}
+ html.hp-ui body :is(dialog,#onboarding) :is(h1,h2,h3) em{-webkit-text-fill-color:currentColor}
+}
+/* Shared section corners: 1.5x softer, without changing action capsules. */
+html.hp-ui body #onboarding .profile-photo-field,
+html.hp-ui body #hostPanelBody>.native-card,
+html.hp-ui body #roomDialog #roomPlayers{border-radius:36px!important}
+html.hp-ui body :is(dialog,.nearby-panel) .hp-audio-settings{border-radius:33px!important}
+html.hp-ui body :is(dialog,.nearby-panel) .rule-row{border-radius:30px!important}
+
+/* A real surface around fieldset avoids the browser's legend background cutout. */
+html.hp-ui body .hp-audio-surface{background:var(--hp-section-reflection);border-radius:33px;padding:12px 0 4px;isolation:isolate}
+html.hp-ui body .hp-audio-surface fieldset.hp-audio-settings{background:none!important;border:0!important;box-shadow:none!important;margin:0 auto!important;width:100%}
+html.hp-ui body #roomDialog .room-player{border:0!important;box-shadow:none!important;border-radius:0!important}
+html.hp-ui body #roomDialog .room-player .avatar{border-radius:50%!important;overflow:hidden!important}
+
+html.hp-ui body #roomDialog #roomTitle{margin-bottom:10px!important}
+html.hp-ui body #roomDialog .room-content{padding-top:0!important}
+html.hp-ui body #roomDialog #roomPlayers{padding:12px 16px!important}
+
+html.hp-ui body.native-shell #tvRemoteGenres button[aria-pressed=true]{color:#d0ff92!important;border-color:#b9f56c99!important;background:#b9f56c14!important;box-shadow:none!important}
+/* Quiet controls: static material, not animated energy. */
+html.hp-ui body button.quiet:not(.primary):not(.lime):not(.hp-energy-action):not(.hp-popup-back):not(.profile-cancel):not([aria-pressed=true]):not([aria-checked=true]){background:linear-gradient(135deg,#a783d415,#7455a309)!important;border:1px solid #bb9ddd35!important;box-shadow:0 2px 8px #a673dd12!important}
+html.hp-ui body button.quiet:not(.hp-energy-action)::after{animation:none!important;display:none!important}
+html.hp-ui body #tvRemoteGenres{padding-block:8px!important;margin-block:-4px!important}
+html.hp-ui body .hp-input-tint>input::placeholder{color:#cdb5e4!important;-webkit-text-fill-color:#cdb5e4!important;opacity:.5!important}
+/* Legacy start-button glider transforms must not move the static halo. */
+html.hp-ui body :is(button.start-game,button.lp-direct-start).hp-energy-action::before{inset:0!important;transform:none!important;translate:none!important;animation:none!important;width:auto!important;height:auto!important}
+/* Bloom is the button's own shadow; never a translated legacy pseudo-element. */
+html.hp-ui body button.hp-energy-action::before{content:none!important;display:none!important;animation:none!important;transition:none!important;transform:none!important;translate:none!important}
+html.hp-ui body button.hp-energy-action::after{transition:none!important;transform:none!important;translate:none!important;left:0!important;right:0!important;top:0!important;bottom:0!important;box-sizing:border-box!important}
+/* Corner light belongs to the whole Fresh card, outside the shorter art mask. */
+html.hp-ui body .fresh-track>.game::before{content:''!important;display:block!important;position:absolute;inset:0!important;z-index:0;pointer-events:none;border-radius:inherit;background:radial-gradient(ellipse at 100% 0%,color-mix(in srgb,var(--card,#b18cff) 48%,transparent) 0%,color-mix(in srgb,var(--card,#b18cff) 18%,transparent) 30%,transparent 68%)!important;filter:none!important;transform:none!important;opacity:1!important;animation:none!important}
+html.hp-ui body .lp-catalog .fresh-track{padding-top:44px!important;padding-bottom:48px!important;margin-top:-36px!important;margin-bottom:-36px!important}
+/* Search placeholder is painted on the same gradient glyph layer as typed text. */
+html.hp-ui body .hp-input-tint>input:not(:focus)::placeholder{color:transparent!important;-webkit-text-fill-color:transparent!important;opacity:0!important}
+html.hp-ui body .hp-input-ink.is-placeholder{opacity:.72;background-image:linear-gradient(90deg,#eee0ff,#b89ace)!important}
+html.hp-ui body.native-shell .native-search svg{z-index:2!important;opacity:1!important;stroke:#d1b9f1!important;stroke-width:2!important}
+html.hp-ui body.is-player:not(.in-game) header#brandHeader#brandHeader#brandHeader.app-header::before{display:block!important;-webkit-backdrop-filter:blur(20px)!important;backdrop-filter:blur(20px)!important}
+html.hp-ui body.is-player:not(.in-game) header#brandHeader#brandHeader#brandHeader.app-header::after{display:block!important;background:linear-gradient(180deg,#171122f5 0%,#171122e6 55%,#17112280 80%,#17112200 100%)!important}
+html.hp-ui body .guest-title-logo{display:none!important}
+html.hp-ui body .guest-game.has-title-logo:is(.rank-hero,.rank-big) .guest-title-logo{display:block!important;width:100%;max-width:178px;height:66px;object-fit:contain;object-position:left center;margin:2px 0 4px}
+html.hp-ui body .guest-game.has-title-logo:is(.rank-hero,.rank-big) .guest-title-text{display:none!important}
+/* Keep the reading material above page artwork, below header controls. */
+html.hp-ui body.is-player:not(.in-game) header#brandHeader#brandHeader#brandHeader.app-header{isolation:isolate!important}
+html.hp-ui body.is-player:not(.in-game) header#brandHeader#brandHeader#brandHeader.app-header::before,
+html.hp-ui body.is-player:not(.in-game) header#brandHeader#brandHeader#brandHeader.app-header::after{z-index:-1!important}
+
+
+html.hp-ui body .hp-input-tint:has(input[type=search])>.hp-input-ink{font:italic 16px/1.4 KardiaFitRunner,sans-serif!important}
+/* Fresh cards keep their coloured outer glow at rest, not just on hover. */
+html.hp-ui body .fresh-track>.game,
+html.hp-ui body .fresh-track>.game:is(:hover,:focus-within){box-shadow:0 10px 22px #0005,0 0 28px color-mix(in srgb,var(--card,#b18cff) 45%,transparent)!important}
+
+/* 169: semantic colour survives removal of decorative motion. */
+html.hp-ui body.native-shell button[role=switch][aria-checked=true]{background:linear-gradient(145deg,#dbffa1,#bdf36b)!important;color:#202d14!important;border:1px solid #d9ff9c!important;box-shadow:none!important}
+/* Legacy matchmaking gliders specify width/height independently of inset. */
+html.hp-ui body button.hp-energy-action::after{width:auto!important;height:auto!important;min-width:0!important;max-width:none!important;margin:0!important;offset-path:none!important;rotate:none!important;scale:none!important}
+/* Action rows stay inside their sheet, independently of legacy header-close positioning. */
+html.hp-ui body dialog :is(.hp-popup-actions,.native-actions,.nearby-footer,.room-actions){box-sizing:border-box;max-width:100%;flex-shrink:0}
+html.hp-ui body dialog button.hp-popup-back{position:relative!important;inset:auto!important;translate:none!important;transform:none!important;justify-self:end}
+html.hp-ui body.native-shell #hostPanel>.hp-popup-actions{padding:12px 24px 0!important;margin:0!important;width:100%!important}
+/* Scrolled controller header: opaque enough beneath labels, soft only below them. */
+html.hp-ui body.is-player:not(.in-game) header#brandHeader#brandHeader#brandHeader.app-header::after{background:linear-gradient(180deg,#130d20fa 0%,#130d20f2 62%,#130d20bf 78%,#130d2050 91%,#130d2000 100%)!important}
+
+/* Native catalogue copy follows the existing card palette, not global lilac. */
+html.hp-ui body.native-shell #catalog .game.lp-catalog-card .game-info>p{
+ color:color-mix(in srgb,var(--card,#bc94f5) 58%,#fff 42%)!important;
+ -webkit-text-fill-color:currentColor!important;font-style:italic!important;opacity:.82!important;
+}
+/* Continue the hero material across the viewport behind Host Pick. */
+html.hp-ui body.native-shell #choiceStrip{margin-bottom:4px!important}
+html.hp-ui body.native-shell main>.intro{padding-top:10px!important;background:#151321!important}
+/* A solitary bottom Back is a central action; paired actions retain their row. */
+html.hp-ui body dialog .hp-single-back{display:flex!important;justify-content:center!important;grid-template-columns:1fr!important}
+html.hp-ui body dialog .hp-single-back>button.hp-popup-back{margin-inline:auto!important;justify-self:center!important;grid-column:1!important}
+
+html.hp-ui body.native-shell main>.intro::before{content:"";position:absolute;inset:0 calc(50% - 50vw);z-index:-1;pointer-events:none;background:#151321}
+html.hp-ui body.native-shell main>.intro>div>.eyebrow{top:0!important}
+html.hp-ui body.native-shell main>.intro .headline-stage{padding-top:12px!important}
+/* Match the energy shorthand's specificity: invisible buttons must stay paused. */
+html.hp-ui body :is(button.primary.hp-energy-action,button.lime.hp-energy-action,button.start-game.hp-energy-action,button.lp-direct-start.hp-energy-action,button.quiet.hp-energy-action:not(.hp-popup-back):not(.profile-cancel)):not(:disabled)::after{animation-play-state:var(--hp-cta-play,paused)!important}
+html.hp-ui body dialog>button.hp-popup-back.hp-single-back-action{margin-inline:auto!important;align-self:center!important;justify-self:center!important}
+/* JS owns open AND closed transitions; legacy discrete overlay must not restart. */
+html body dialog.lp-dialog-managed{transition:none!important}
+/* Shared text-entry material: subtly darker toward the right, including the rim. */
+html.hp-ui body input:is(:not([type]),[type=text],[type=search],[type=email],[type=password],[type=url],[type=tel]),
+html.hp-ui body textarea,
+html.hp-ui body #onboarding #name,
+html.hp-ui body #nearbyDialog .nearby-name-input{
+ border:1px solid transparent!important;
+ background:linear-gradient(100deg,#272033 0%,#20192d 48%,#171221 100%) padding-box,linear-gradient(100deg,#806694 0%,#554064 52%,#33273e 100%) border-box!important;
+}
+/* Touch disclosure stays transparent even while held; shading belongs to its fading shell. */
+html.hp-ui body.is-player:not(.in-game) .return-entry-help{padding:0 12px!important;background:none!important;transform:none!important}
+html.hp-ui body.is-player:not(.in-game) .return-entry-help>summary{background:transparent!important;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;border-radius:999px;box-shadow:none!important}
+html.hp-ui body.is-player:not(.in-game) .return-entry-help>summary:active{background:transparent!important;box-shadow:none!important}
+html.hp-ui body.is-player:not(.in-game) .spotlight-intro{padding-bottom:0!important;margin-bottom:8px!important;min-height:0!important}
+html.hp-ui body.is-player:not(.in-game) .spotlight-intro .return-entry-shell{margin:0 auto!important;transform:none!important}
+html.hp-ui body .guest-catalog-tools input[type=search]{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c6b1ff' stroke-width='1.8'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E") 16px center/20px 20px no-repeat,linear-gradient(100deg,#272033,#20192d 48%,#171221) padding-box,linear-gradient(100deg,#806694,#554064 52%,#33273e) border-box!important}
+
+/* Keep room for the existing halo, while closing the actual heading-to-card gap. */
+html.hp-ui body:not(.tv-screen) .lp-catalog .fresh-heading{margin-bottom:10px!important}
+html.hp-ui body .game.is-host-pick>.lp-running-rim{display:block;background:#b685ff28}
+html.hp-ui body .game.is-host-pick>.lp-running-rim::before{inset:0;background:conic-gradient(from var(--hp-edge-angle),#9660d72b 0deg,#9660d72b 170deg,#9b67e2 235deg,#dec0ff 280deg,#f2e6ff 310deg,#a870f1 337deg,#9660d72b 360deg);animation:hp-edge-orbit 12s linear infinite;animation-play-state:paused;transform:none;opacity:1}
+html.hp-ui:not(.hp-catalog-suspended) body .game.is-host-pick.hp-rim-visible>.lp-running-rim::before{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){html.hp-ui body .game.is-host-pick>.lp-running-rim::before{animation:none}}
+
+/* Flat Host Pick controls in compact and expanded states only. */
+html.hp-ui body.native-shell :is(#choiceStrip,#activeCard) button{box-shadow:none!important}
+html.hp-ui body.native-shell :is(#choiceStrip,#activeCard) :is(button.primary,button.lime,button.start-game,button#choiceStart):not(:disabled){box-shadow:0 0 14px #b6f35a40!important}
+html.hp-ui body.native-shell :is(#choiceStrip,#activeCard) button.quiet.hp-energy-action:not(:disabled){box-shadow:0 0 12px #ab73f340!important}
+html.hp-ui body.native-shell #choiceStart:is(:active,[data-lp-press-state=down],.party-pressed){translate:none!important}
+/* One feathered hero backing spans the search handoff; no adjacent solid planes. */
+html.hp-ui body.native-shell main>.intro.spotlight-intro,
+html.hp-ui body.native-shell main>.intro.spotlight-intro .headline-stage{background:transparent!important}
+html.hp-ui body.native-shell main>.intro.spotlight-intro::before{inset:0 calc(50% - 50vw) -110px;background:linear-gradient(#151321 0%,#151321 calc(100% - 200px),#151321eb calc(100% - 160px),#151321a6 calc(100% - 110px),#15132147 calc(100% - 60px),#1513210d calc(100% - 22px),transparent 100%)!important}
+html.hp-ui body.native-shell main>.intro.spotlight-intro::after{display:none!important}
+/* Back remains legible against the darker bottom of every sheet. */
+html.hp-ui body #nearbyDialog #nearbyClose,
+html.hp-ui body dialog button.hp-popup-back,
+html.hp-ui body dialog button.profile-cancel,
+html.hp-ui body #onboarding button.profile-cancel{border:1px solid #e5ccffb3!important;box-shadow:0 0 8px #b894e526!important}
+
+/* Shared actual-page blur for modal dialogs and the profile sheet. The branch
+   markers exclude foreground ancestors, including onboarding inside main. */
+html body [data-hp-modal-background]{transition:filter 180ms ease-out}
+html body[data-hp-modal-active] [data-hp-modal-background]{filter:blur(8px)!important}
+html.hp-ui body dialog[open]::backdrop,html body .profile-sheet-backdrop{
+ background:linear-gradient(180deg,#0c081a75,#0c081a50 55%,#0c081a80)!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+@media(prefers-reduced-motion:reduce){html body [data-hp-modal-background]{transition:none}}
+@media(prefers-reduced-transparency:reduce){html body[data-hp-modal-active] [data-hp-modal-background]{filter:none!important}}
+
+/* Dialog popovers (the bot prompt) have a top-layer shade of their own. Keep
+   pointer events transparent so the existing anchor/outside-tap logic works. */
+html body [popover][role=dialog]:popover-open::backdrop{
+ position:fixed;inset:0;pointer-events:none;
+ background:linear-gradient(180deg,#0c081a75,#0c081a50 55%,#0c081a80)!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ animation:lp-backdrop-arrive 180ms ease-out both;
+}
+html body [popover][role=dialog][data-lp-panel-closing]::backdrop{animation:lp-shared-backdrop-out 180ms ease-out both!important}
+html.hp-ui body.is-player.in-game #pauseOverlay,html body #pauseOverlay{
+ background:linear-gradient(180deg,#0c081a75,#0c081a50 55%,#0c081a80)!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+@media(prefers-reduced-motion:reduce){html body [popover][role=dialog]:popover-open::backdrop{animation:none!important}}
+/* Keep the pause shade on its own layer so it follows the card's close clock. */
+html.hp-ui body.is-player.in-game #pauseOverlay,html body #pauseOverlay{background:transparent!important;isolation:isolate}
+html body #pauseOverlay::before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:linear-gradient(180deg,#0c081a75,#0c081a50 55%,#0c081a80);
+ animation:lp-backdrop-arrive 180ms ease-out both;
+}
+html body #pauseOverlay[data-lp-panel-closing]::before{animation:lp-shared-backdrop-out 180ms ease-out both!important}
+@media(prefers-reduced-motion:reduce){html body #pauseOverlay::before{animation:none!important}}
+/* First-time profile uses the same full-width form as profile editing. */
+html.hp-ui body #onboarding>#joinForm{grid-column:1/-1!important;min-width:0;width:100%;box-sizing:border-box}
+html.hp-ui body #onboarding:not([role=dialog]):not([hidden]){display:grid!important;grid-template-columns:minmax(0,1fr) 42px max-content minmax(0,1fr)!important;column-gap:5px!important}
+/* Compact in-game catalogue keeps full-width rows and text titles. */
+html.hp-ui body #catalogQuick.guest-games{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px}
+html.hp-ui body .guest-game.rank-row .guest-title-logo{display:none!important}
+html.hp-ui body #catalogQuick .guest-game.rank-row{grid-template-columns:52px minmax(0,1fr) auto!important;min-width:0;width:100%;box-sizing:border-box}
+html.hp-ui body #catalogQuick .guest-game .guest-copy{min-width:0;max-width:100%}
+html.hp-ui body #catalogQuick .guest-game .guest-copy strong{display:block;overflow-wrap:anywhere;font-size:16px!important}
+html.hp-ui body #catalogQuick .guest-game .guest-art{position:static!important;width:48px!important;height:58px!important;object-fit:contain;transform:none!important;grid-column:1;grid-row:1;align-self:center}
+html.hp-ui body #catalogQuick .guest-game .guest-info{display:grid!important;place-items:center!important;padding:0!important;width:40px;min-width:40px;height:44px;min-height:44px;line-height:1!important}
+
+html.hp-ui body .lp-update-actions>button{margin:0!important;align-self:stretch!important}
+/* Every popup uses the user-selected 93% opacity (7% transparency). */
+:root{--hp-matte-panel:linear-gradient(180deg,rgba(28,22,41,.93),rgba(40,32,55,.93) 42%,rgba(28,22,41,.93));--hp-matte-card:linear-gradient(180deg,rgba(29,23,42,.82),rgba(40,32,55,.78) 45%,rgba(28,22,41,.84))}
+html.hp-ui body #startBots[role=dialog]{background:var(--hp-matte-panel)!important}
+/* Game rules and configuration share the profile capsule material and italic type. */
+html.hp-ui body #gameDetail .rule-row{border:0!important;background:transparent!important;border-radius:24px!important}
+html.hp-ui body.native-shell #gameDetail #gameDetailBody .rule-row summary{font:italic 900 16px/1.3 var(--hp-font-action,KardiaFatRunner)!important;border:1px solid #bba1db38!important;border-radius:999px!important;background:linear-gradient(100deg,#30243f,#21182f 55%,#191223)!important;padding:10px 14px!important;color:#d9ff9a!important}
+html.hp-ui body #gameDetail .rule-row p,
+html.hp-ui body #rulesBody p,
+html.hp-ui body #gameSettings .native-row>span{font-family:var(--hp-font-copy,KardiaFitRunner),sans-serif!important;font-style:italic!important;color:#e5d7f2!important}
+html.hp-ui body #gameSettings .native-row{background:transparent!important;border:0!important;border-radius:24px!important;gap:12px!important;align-items:center!important}
+html.hp-ui body #gameSettings select{box-sizing:border-box;border-radius:999px!important;min-height:44px!important;padding:8px 16px!important;background:linear-gradient(100deg,#30243f,#21182f 55%,#191223)!important;color:#e8dcf7!important;border:1px solid #bba1db38!important;font:italic 900 16px/1.25 var(--hp-font-action,KardiaFatRunner),sans-serif!important;text-align:center;text-align-last:center}
+html.hp-ui body #gameSettings option{font-family:var(--hp-font-action,KardiaFatRunner),sans-serif!important;font-style:italic!important}
+
+html.hp-ui body.native-shell dialog#hostPanel#hostPanel[open]:modal{background:var(--hp-matte-panel)!important}
+html.hp-ui body #gameSettings .native-row.native-setting-wide{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;padding-block:4px!important}
+html.hp-ui body #gameSettings .native-setting-wide select{width:100%!important;max-width:100%!important;min-width:0!important}
+/* Legacy generic panel selectors must also resolve to the same popup material. */
+html.hp-ui body :is(dialog[open],#onboarding[role=dialog],#pauseOverlay>div){background:var(--hp-matte-panel)!important}
+/* Popup copy 242: one lavender tone for explanatory text across dialogs,
+   profile sheets and bot popovers. Form labels, roster data and address links
+   retain their semantic colours and alignment. */
+:root{--hp-popup-copy:#ceafff}
+html.hp-ui body :is(dialog[open],[popover][role=dialog],#onboarding[role=dialog],#pauseOverlay:not([hidden])) :where(p:not([data-no-translate]):not(.lp-join-address),.profile-photo-copy small,#avatarStatus,.lp-update-status,.lp-update-channels small){color:var(--hp-popup-copy)!important;opacity:1}
+/* Rooms inject their field styles later; the shared description token still
+   owns helper/status copy in both tabs. */
+html.hp-ui body #nearbyDialog #roomsCodePanel p,
+html.hp-ui body #gameDetail #gameDetailBody p{color:var(--hp-popup-copy)!important;opacity:1}
+html.hp-ui body [popover][role=dialog]>p,
+html.hp-ui body dialog>:where(p:not([data-no-translate]):not(.lp-join-address)),
+html.hp-ui body #pauseOverlay>div>p,
+html.hp-ui body dialog :is(.stats-intro,.stats-empty,.lp-update-status){text-align:center!important;text-wrap:pretty}
+html.hp-ui body #startBots #startBotsHint{font-size:14px!important;line-height:1.45!important;text-align:center!important}
+/* On compact catalogue rows, metadata wraps within the copy column instead
+   of painting into the neighbouring Rules action at 320px. */
+html.hp-ui body #catalogQuick .guest-player-range{flex-wrap:wrap;row-gap:1px!important}
+/* Keep the frosted background still while a dialog owns focus. Pausing the
+   existing animation preserves its phase when the panel closes. The modal
+   coordinator marks background branches only, leaving foreground motion live.
+   Attribute specificity also overrides the existing important CTA play states. */
+html.hp-ui body[data-hp-modal-present] [data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background],
+html.hp-ui body[data-hp-modal-present] [data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background]::before,
+html.hp-ui body[data-hp-modal-present] [data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background]::after,
+html.hp-ui body[data-hp-modal-present] [data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background] *,
+html.hp-ui body[data-hp-modal-present] [data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background] *::before,
+html.hp-ui body[data-hp-modal-present] [data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background][data-hp-modal-background] *::after{animation-play-state:paused!important}
+/* The native two-ID animation shorthand otherwise overrides the shared pause. */
+html.hp-ui body[data-hp-modal-present] #choiceStrip[data-hp-modal-background] #choiceStart::after{animation-play-state:paused!important}

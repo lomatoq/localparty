@@ -1,0 +1,5 @@
+# Discovery 174 visual pass
+
+Shared native/web spotlight: compact legacy count/search margins (native search raised46px); QR shell no longer adds36px margin plus24px translation. Existing QR backdrop unchanged. Bold KardiaFatRunner history/player range. Dot slots32px with44px height, selected violet light. Energy ring uniform scale1.18 instead of nonuniform1.26/1.75. New transparent generated Play asset174 (160px,3.8KB), rendered40px. Motion remains transform/opacity, paused offscreen/covered and reduced-motion compatible.
+
+Evidence: output/playwright/discover174/index.html; final screenshot matrix Chromium/WebKit320/393 plus393web. Full discovery173 lifecycle run passed automatic switching during state updates, swipe, modal pause, active-match hide; final174 visual pass reruns swipe, modal, reduced-motion checks. Backend profile/launch6tests pass. Idle check: unchanged host updates0DOM mutations,2visible CTA effects, paused under modal in both engines. Coins and rooms evidence linked separately. No physical iPhone/AirPlay acceptance or new installed build implied.

@@ -7,7 +7,7 @@ const sub=(a,b)=>a.map((v,i)=>v-b[i]);
 export function color(hex){const n=parseInt(hex.replace('#',''),16);return [(n>>16&255)/255,(n>>8&255)/255,(n&255)/255];}
 export class Mini3D {
  constructor(canvas,{alpha=false,cameraZ=12,fov=48}={}){
-  this.canvas=canvas;this.cameraZ=cameraZ;this.fov=fov;this.vertices=[];this.alpha=alpha;
+  this.canvas=canvas;this.cameraZ=cameraZ;this.fov=fov;this.vertices=[];this.alpha=alpha;this.meshDirty=true;
   this.gl=canvas.getContext('webgl',{alpha,antialias:true,premultipliedAlpha:false,powerPreference:'low-power'});
   if(!this.gl){this.ctx=canvas.getContext('2d');if(!this.ctx)throw Error('Нет графического контекста');this.software=true;canvas.dataset.renderer='software-3d';return;}canvas.dataset.renderer='webgl';this.init();
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();this.lost=true;});canvas.addEventListener('webglcontextrestored',()=>{this.lost=false;this.init();});
@@ -16,9 +16,9 @@ export class Mini3D {
   const vs=shader(g.VERTEX_SHADER,`attribute vec3 position;attribute vec3 normal;attribute vec3 colour;uniform mat4 projection;uniform float cameraZ;varying vec3 vColour;varying vec3 vNormal;varying vec3 vPosition;void main(){vColour=colour;vNormal=normal;vPosition=position;gl_Position=projection*vec4(position-vec3(0.,0.,cameraZ),1.);}`);
   const fs=shader(g.FRAGMENT_SHADER,`precision mediump float;varying vec3 vColour;varying vec3 vNormal;varying vec3 vPosition;void main(){vec3 n=normalize(vNormal);vec3 l=normalize(vec3(-.45,1.1,1.45));vec3 v=normalize(vec3(0.,0.,1.));vec3 h=normalize(l+v);float diffuse=max(0.,dot(n,l));float spec=pow(max(0.,dot(n,h)),24.)*.28;float rim=pow(1.-max(0.,n.z),3.)*.10;vec3 rgb=vColour*(.38+.62*diffuse)+vec3(spec)+rim;gl_FragColor=vec4(rgb,1.);}`);
   this.program=g.createProgram();g.attachShader(this.program,vs);g.attachShader(this.program,fs);g.linkProgram(this.program);if(!g.getProgramParameter(this.program,g.LINK_STATUS))throw Error(g.getProgramInfoLog(this.program));g.deleteShader(vs);g.deleteShader(fs);
-  this.buffer=g.createBuffer();this.locations=['position','normal','colour'].map(x=>g.getAttribLocation(this.program,x));this.projection=g.getUniformLocation(this.program,'projection');this.cameraLocation=g.getUniformLocation(this.program,'cameraZ');g.enable(g.DEPTH_TEST);g.disable(g.CULL_FACE);
+  this.buffer=g.createBuffer();this.bufferBytes=-1;this.meshDirty=true;this.locations=['position','normal','colour'].map(x=>g.getAttribLocation(this.program,x));this.projection=g.getUniformLocation(this.program,'projection');this.cameraLocation=g.getUniformLocation(this.program,'cameraZ');g.enable(g.DEPTH_TEST);g.disable(g.CULL_FACE);
  }
- vertex(p,n,c){this.vertices.push(...p,...n,...c);}
+ vertex(p,n,c){this.vertices.push(...p,...n,...c);this.meshDirty=true;}
  tri(a,b,c,col,normal){const n=normal||normalize(cross(sub(b,a),sub(c,a)));this.vertex(a,n,col);this.vertex(b,n,col);this.vertex(c,n,col);}
  tube(a,b,r1,r2,col,sides=10){const axis=normalize(sub(b,a)),u=normalize(cross(axis,Math.abs(axis[1])<.9?[0,1,0]:[1,0,0])),v=cross(axis,u);for(let i=0;i<sides;i++){
   const t=i*Math.PI*2/sides,t2=(i+1)*Math.PI*2/sides,n=u.map((x,k)=>x*Math.cos(t)+v[k]*Math.sin(t)),n2=u.map((x,k)=>x*Math.cos(t2)+v[k]*Math.sin(t2));
@@ -27,10 +27,17 @@ export class Mini3D {
  }}
  disk(x,y,z,r,col,sides=48){for(let i=0;i<sides;i++){const a=i*Math.PI*2/sides,b=(i+1)*Math.PI*2/sides;this.tri([x,y,z],[x+Math.cos(a)*r,y+Math.sin(a)*r,z],[x+Math.cos(b)*r,y+Math.sin(b)*r,z],col,[0,0,1]);}}
  sphere(x,y,z,r,col,segments=12){for(let j=0;j<6;j++)for(let i=0;i<segments;i++){const point=(i,j)=>{const a=i*Math.PI*2/segments,b=j*Math.PI/6,n=[Math.cos(a)*Math.sin(b),Math.cos(b),Math.sin(a)*Math.sin(b)];return {p:[x+n[0]*r,y+n[1]*r,z+n[2]*r],n};};const a=point(i,j),b=point(i+1,j),c=point(i+1,j+1),d=point(i,j+1);for(const q of [a,b,c,a,c,d])this.vertex(q.p,q.n,col);}}
- clear(){this.vertices.length=0;}
+ clear(){this.vertices.length=0;this.meshDirty=true;}
  render(width,height,background=[.72,.9,.95,1]){
-  if(this.lost)return;if(this.software){this.renderSoftware(width,height,background);return;}const g=this.gl,dpr=Math.min(devicePixelRatio||1,1.5),w=Math.round(width*dpr),h=Math.round(height*dpr);if(this.canvas.width!==w||this.canvas.height!==h){this.canvas.width=w;this.canvas.height=h;}g.viewport(0,0,w,h);g.clearColor(...background);g.clear(g.COLOR_BUFFER_BIT|g.DEPTH_BUFFER_BIT);g.useProgram(this.program);g.bindBuffer(g.ARRAY_BUFFER,this.buffer);g.bufferData(g.ARRAY_BUFFER,new Float32Array(this.vertices),g.DYNAMIC_DRAW);
-  for(let i=0;i<3;i++){g.enableVertexAttribArray(this.locations[i]);g.vertexAttribPointer(this.locations[i],3,g.FLOAT,false,36,i*12);}const f=1/Math.tan(this.fov*Math.PI/360),near=.05,far=100;g.uniformMatrix4fv(this.projection,false,new Float32Array([f/(w/h),0,0,0,0,f,0,0,0,0,(far+near)/(near-far),-1,0,0,2*far*near/(near-far),0]));g.uniform1f(this.cameraLocation,this.cameraZ);g.drawArrays(g.TRIANGLES,0,this.vertices.length/9);
+  if(this.lost)return;if(this.software){this.renderSoftware(width,height,background);return;}const g=this.gl,dpr=Math.min(devicePixelRatio||1,1.5),w=Math.round(width*dpr),h=Math.round(height*dpr);if(this.canvas.width!==w||this.canvas.height!==h){this.canvas.width=w;this.canvas.height=h;}g.viewport(0,0,w,h);g.clearColor(...background);g.clear(g.COLOR_BUFFER_BIT|g.DEPTH_BUFFER_BIT);g.useProgram(this.program);g.bindBuffer(g.ARRAY_BUFFER,this.buffer);
+  if(this.meshDirty){
+   // Retain one exact-size upload view; a changed mesh still uploads every vertex.
+   if(this.uploadData?.length!==this.vertices.length)this.uploadData=new Float32Array(this.vertices.length);
+   this.uploadData.set(this.vertices);
+   if(this.bufferBytes!==this.uploadData.byteLength){g.bufferData(g.ARRAY_BUFFER,this.uploadData,g.DYNAMIC_DRAW);this.bufferBytes=this.uploadData.byteLength;}else g.bufferSubData(g.ARRAY_BUFFER,0,this.uploadData);
+   this.meshDirty=false;
+  }
+  for(let i=0;i<3;i++){g.enableVertexAttribArray(this.locations[i]);g.vertexAttribPointer(this.locations[i],3,g.FLOAT,false,36,i*12);}const f=1/Math.tan(this.fov*Math.PI/360),near=.05,far=100,p=this.projectionData||(this.projectionData=new Float32Array(16));p[0]=f/(w/h);p[5]=f;p[10]=(far+near)/(near-far);p[11]=-1;p[14]=2*far*near/(near-far);g.uniformMatrix4fv(this.projection,false,p);g.uniform1f(this.cameraLocation,this.cameraZ);g.drawArrays(g.TRIANGLES,0,this.vertices.length/9);
  }
  renderSoftware(width,height,background){
   // Perspective + face lighting on the same triangles; slower fallback, not a flat bow sprite.
@@ -46,8 +53,14 @@ const wood=color('#8e5a31'),edge=color('#c6d2db'),grip=color('#25333a'),gold=col
 export class Bow3D extends Mini3D {
  constructor(canvas){super(canvas,{alpha:true,cameraZ:5,fov:48});this.kick=0;}
  shoot(){this.kick=1;}
- frame(width,height,pull,now,dt,hand='right'){
-  this.clear();this.kick=Math.max(0,this.kick-dt*4);const angle=-.25,mirror=hand==='left'?-1:1;
+ frame(width,height,pull,now,dt,hand='right',present=true){
+  this.kick=Math.max(0,this.kick-dt*4);const angle=-.25,mirror=hand==='left'?-1:1;
+  // Hidden touch layouts still advance recoil, but do not build or draw a mesh.
+  if(!present)return;
+  // A settled bow has no time-dependent geometry. Reuse its mesh while keeping
+  // the usual viewport, draw and context-restoration path active.
+  if(this.geometryPull===pull&&this.geometryKick===this.kick&&this.geometryMirror===mirror){this.render(width,height,[0,0,0,0]);return;}
+  this.clear();
   const tr=p=>{const x=p[0],y=p[1];return [(x*Math.cos(angle)-y*Math.sin(angle)+.72)*mirror*.88,(y*Math.cos(angle)+x*Math.sin(angle)-.12)*.88, (p[2]-this.kick*.2)*.88];};
   // The string and limb mesh share the exact same attachment points.
   const limbPoint=(sign,t)=>[.1+Math.sin(t*Math.PI)*(.27+pull*.13)-Math.sin(t*Math.PI*1.3)*.17,sign*(.25+t*1.65),-.2-t*.15+pull*t*.20];
@@ -61,7 +74,7 @@ export class Bow3D extends Mini3D {
   const nock=[.22,-.22,1.0+pull*.8],tip=[.08,.06,-2.1];for(const sign of [-1,1]){const end=limbPoint(sign,1);this.tube(tr(end),tr(nock),.007,.007,string,5);}
   this.tube(tr(nock),tr(tip),.017,.017,gold,8);const a=tr(tip),b=tr([tip[0],tip[1],tip[2]-.24]);this.tube(a,b,.070,0,color('#a7dbe0'),8);
   for(let i=0;i<3;i++){const a=i*Math.PI*2/3,base=tr([nock[0],nock[1],nock[2]-.30]),outer=tr([nock[0]+Math.cos(a)*.14,nock[1]+Math.sin(a)*.14,nock[2]-.10]);this.tri(tr(nock),base,outer,i%2?gold:edge);}
-  this.render(width,height,[0,0,0,0]);
+  this.geometryPull=pull;this.geometryKick=this.kick;this.geometryMirror=mirror;this.render(width,height,[0,0,0,0]);
  }
 }
 export function rangeGeometry(g,targets,hit=null,now=0){

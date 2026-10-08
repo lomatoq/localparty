@@ -1,6 +1,6 @@
 'use strict';
 const crypto=require('node:crypto');
-const {clamp,finite,COLORS,SIEGE_TURRET_Z,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,rayCircle}=require('./rules');
+const {clamp,finite,COLORS,SIEGE_TURRET_Z,siegeTurretAnchor,shotInput,scoreBowling,frameComplete,freshRack,curlingScore,targetAt,hitTarget,rayCircle}=require('./rules');
 const {Ice}=require('./curling');
 const TITLES={curling:'Лёд и нервы',bowling:'Pocket Strike',swarm_gate:'Не грызи ворота!',peek_shoot:'Кто тут вылез?'};
 const MODES=Object.keys(TITLES);
@@ -182,11 +182,13 @@ class Match {
       hp,maxHp:hp,r,speed:{termite:1.65,runner:3.1,tank:1.05,boss:.9}[kind]*(1+this.wave*.045),seed:this.random()*6.28,slowUntil:0});
     this.waveLeft--;
   }
-  turretX(p){const participants=this.playing(),ids=(participants.length?participants:[...this.players.values()]).map(p=>p.id),i=Math.max(0,ids.indexOf(p.id));return ids.length<=1?0:-16+32*i/(ids.length-1);}
+  turretAnchor(p){const participants=this.playing(),ids=(participants.length?participants:[...this.players.values()]).map(p=>p.id),i=Math.max(0,ids.indexOf(p.id));return siegeTurretAnchor(i,ids.length);}
+  turretX(p){return this.turretAnchor(p).x;}
+  turretZ(p){return this.turretAnchor(p).z;}
   siegeFire(p){
     p.shots++;p.heat+=.085;p.nextShot=this.t+.125;
     if(p.heat>=1){p.lockedUntil=this.t+1.5;p.heat=1;}
-    const ox=this.turretX(p),oz=SIEGE_TURRET_Z,x=(p.aim.x-.5)*36,z=-27+p.aim.y*26,dist=Math.hypot(x-ox,z-oz)||1;
+    const ox=this.turretX(p),oz=this.turretZ(p),x=(p.aim.x-.5)*36,z=-27+p.aim.y*26,dist=Math.hypot(x-ox,z-oz)||1;
     const dx=(x-ox)/dist,dz=(z-oz)/dist;
     let target=null,nearest=80;
     for(const b of this.enemies){if(b.hp<=0)continue;const d=rayCircle(ox,oz,dx,dz,b.x,b.z,b.r+.12,60);if(d!==null&&d<nearest){nearest=d;target=b;}}
@@ -250,7 +252,7 @@ class Match {
     const ps=[...this.players.values()].map(({inputAt,nextShot,offlineAt,fire,sweep,...p})=>({...p,
       fire:fire&&this.t-inputAt<.45,sweeping:sweep&&p.energy>.03,
       ...(this.mode==='bowling'?{bowling:scoreBowling(p.frames,this.frameCount)}:{}),
-      ...(this.mode==='swarm_gate'?{turretX:this.turretX(p),turretZ:SIEGE_TURRET_Z}:{})}));
+      ...(this.mode==='swarm_gate'?{turretX:this.turretX(p),turretZ:this.turretZ(p)}:{})}));
     return {mode:this.mode,title:TITLES[this.mode],phase:this.phase,stage:this.stage,t:this.t,deadline:this.deadline,
       currentId:this.currentId,turnToken:this.turnToken,players:ps,events:this.events,result:this.result,
       frameCount:this.frameCount,endIndex:this.endIndex,endCount:this.endCount,throwIndex:this.throwIndex,throwCount:this.queue?.length,

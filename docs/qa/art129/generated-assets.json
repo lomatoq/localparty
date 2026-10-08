@@ -1,0 +1,27 @@
+{
+  "tool": "built-in image_gen",
+  "assetRoot": "public/assets/gameplay/refresh129",
+  "nativeAlphaPreserved": true,
+  "prompts": [
+    {
+      "file": "kart-forest.png",
+      "source": "exec-5e86bc22-3fb5-4fcf-9396-375ec6199171.png",
+      "prompt": "Premium playful top-down racing game environment, wide landscape 16:9. Strict orthographic overhead forest clearing at dusk, painted 3D toy art with clean broad shapes and soft shading. Forest around extreme outer 8% perimeter. Entire central 85% quiet dark teal mossy clearing for track added in code. No road, track, cars, lettering, buildings or horizon. Emerald teal trees, blue violet shadows, mint lighting. No tiled pattern."
+    },
+    {
+      "file": "arsenal-tank.png",
+      "source": "exec-7be9c1b2-b292-4679-9443-009707c89a3a.png",
+      "prompt": "Single top-down cartoon tank sprite, exact overhead, barrel UP. Minimalist toy sci-fi, rounded body, graphite rubber tracks, pale silver circular turret and short connected cannon. Pale gray for runtime tinting, soft shading, broad bevels, few track ribs, no tiny details. Square transparent canvas, 85% height, 70% width; no ground, shadow or lettering."
+    },
+    {
+      "file": "marble-garden.png",
+      "source": "exec-4092562c-ec77-4d70-ad41-54bf829ce876.png",
+      "prompt": "Wide 16:9 premium marble puzzle environment, orthographic overhead. Ivory sandstone and sage garden workshop courtyard, soft 3D painted art. Central 88% quiet cream stone reserved for tracks, edge foliage/coral flowers/stone edging/brass details. No tracks, balls, launchers, text, horizon or busy tiles."
+    },
+    {
+      "file": "marble-machinery.png",
+      "source": "exec-ad096a37-1d38-4db8-8783-ef3dbc6a0305.png",
+      "prompt": "Three equal square atlas cells on transparent background, overhead garden engineering in ivory ceramic, sage enamel, champagne brass. Left circular stationary launcher pedestal with three mounting feet; middle rotating circular housing and short barrel pointing up; right dark circular receiving tunnel with ivory/brass ring and sage mechanical petals. Centered, 80% cell, matching light, broad bevel shading, no text/ground/perspective."
+    }
+  ]
+}

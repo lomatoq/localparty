@@ -9,8 +9,9 @@
  const games={push:'hit-effect',shrink:'target',knives:'dagger',bomb:'bomb',western:'pistol',western_duel:'pistol',tanks:'shield',tankarena:'shield',chaos:'cursor-default',kart:'formula-racing',monster:'boss',spy:'visible',millionaire:'crown',sinyakquiz:'question-mark',warsaw:'question-mark',crocodile:'character',jenga:'puzzle-01',crane:'rocket',naval:'boat',drawguess:'paintbrush',taprace:'lightning',punchmeter:'hit-effect',flappy:'cloud',hungry:'fish',snakelines:'stamina',carryball:'soccer',marble_bloom:'flower',pocket_siege:'bomb',swarm_gate:'shield',peek_shoot:'target',bow_club:'bow',poker:'cards',airhockey:'target',mines:'bomb',curling:'target',bowling:'basketball'};
  function icon(name){const shape=shapes[name]||shapes.info,svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',shape.box);svg.setAttribute('aria-hidden','true');svg.classList.add('hp-pack-icon');svg.dataset.packIcon=name;svg.innerHTML=shape.body;return svg;}
  const glyphs={'▶':'play','►':'play','↗':'arrow-up-right','←':'arrow-left','→':'arrow-right','↑':'arrow-up','↓':'arrow-down','↻':'refresh','↺':'refresh','⛶':'expand','♛':'trophy','🏆':'trophy'};
- function replaceGlyphs(){
-  for(const control of document.querySelectorAll('button,.start-game')){
+ const within=(scope,selector)=>[...(scope.matches?.(selector)?[scope]:[]),...(scope.querySelectorAll?.(selector)||[])];
+ function replaceGlyphs(scope){
+  for(const control of within(scope,'button,.start-game')){
    const walker=document.createTreeWalker(control,NodeFilter.SHOW_TEXT),nodes=[];let node;
    while((node=walker.nextNode()))if(!node.parentElement.closest('svg,[data-no-translate],.player-name')&&/[▶►↗←→↑↓↻↺⛶♛🏆]/u.test(node.nodeValue))nodes.push(node);
    for(const text of nodes){const value=window.PartyI18n?.t?.(text.nodeValue)||text.nodeValue,fragment=document.createDocumentFragment();let label='';
@@ -22,20 +23,20 @@
 
  function replace(node,name){if(!node||node.dataset.packIcon===name)return;const next=icon(name);for(const c of node.classList)next.classList.add(c);node.replaceWith(next);}
  function scan(root=document){
-  replaceGlyphs();
+  replaceGlyphs(root);
   for(const tab of document.querySelectorAll('#partyNativeDock button[data-tab]'))replace(tab.querySelector('svg'),{games:'grid',controller:'controller',host:'settings'}[tab.dataset.tab]);
   const more=document.getElementById('activeMore');if(more&&!more.querySelector('svg'))more.replaceChildren(icon('menu-03'));
   for(const [id,normal] of Object.entries(ids)){const button=document.getElementById(id);if(!button)continue;let name=normal;if(id==='pauseButton'&&/resume|продолж/i.test(button.textContent))name='play';if(id==='exitVoteButton'&&button.querySelector('.hp-button-label')?.textContent.match(/exit|выход/i))name='tick';const old=button.querySelector('svg');if(old)replace(old,name);}
-  for(const button of root.querySelectorAll?.('button:has(svg.hp-button-icon),button:has(.hp-button-icon > svg)')||[]){const old=button.querySelector('svg');if(old?.classList.contains('hp-pack-icon'))continue;const text=button.textContent.trim();const name=/lobby|лобби|назад/i.test(text)?'arrow-left':/pause|пауза/i.test(text)?'pause':/fire|shoot|огонь|выстрел/i.test(text)?'hit-effect':/throw|брос/i.test(text)?'dagger':/switch|hand|рук/i.test(text)?'switch':null;if(name)replace(old,name);}
-  for(const node of root.querySelectorAll?.('[data-game-icon]')||[]){const name=games[node.dataset.gameIcon];if(name&&!node.querySelector('.hp-pack-icon'))node.replaceChildren(icon(name));}
-  for(const mark of root.querySelectorAll?.('button > span.hp-button-icon')||[]){
+  for(const button of within(root,'button:has(svg.hp-button-icon),button:has(.hp-button-icon > svg)')){const old=button.querySelector('svg');if(old?.classList.contains('hp-pack-icon'))continue;const text=button.textContent.trim();const name=/lobby|лобби|назад/i.test(text)?'arrow-left':/pause|пауза/i.test(text)?'pause':/fire|shoot|огонь|выстрел/i.test(text)?'hit-effect':/throw|брос/i.test(text)?'dagger':/switch|hand|рук/i.test(text)?'switch':null;if(name)replace(old,name);}
+  for(const node of within(root,'[data-game-icon]')){const name=games[node.dataset.gameIcon];if(name&&!node.querySelector('.hp-pack-icon'))node.replaceChildren(icon(name));}
+  for(const mark of within(root,'button > span.hp-button-icon')){
    if(mark.querySelector('svg.hp-pack-icon'))continue;
    const button=mark.parentElement,text=button.textContent;
    const name=/fire|shoot|огонь|выстрел/i.test(text)||/fire/i.test(button.id)?'hit-effect':/throw|брос/i.test(text)||/throw/i.test(button.id)?'dagger':/drive|hold|движ/i.test(text)?'arrow-up':/hand|рук/i.test(text)?'switch':null;
    if(name)mark.replaceChildren(icon(name));
   }
-  for(const tag of root.querySelectorAll?.('.game[data-id] > .art > .tag')||[]){const name=games[tag.closest('.game').dataset.id];if(name&&!tag.querySelector('.hp-pack-icon')){tag.prepend(icon(name));tag.classList.add('hp-game-tag');}}
-  for(const button of root.querySelectorAll?.('.fresh-arrow')||[]){const label=button.getAttribute('aria-label')||'';replace(button.querySelector('svg'),/previous|предыдущ/i.test(label)?'arrow-left':'arrow-right');}
+  for(const tag of within(root,'.game[data-id] > .art > .tag')){const name=games[tag.closest('.game').dataset.id];if(name&&!tag.querySelector('.hp-pack-icon')){tag.prepend(icon(name));tag.classList.add('hp-game-tag');}}
+  for(const button of within(root,'.fresh-arrow')){const label=button.getAttribute('aria-label')||'';replace(button.querySelector('svg'),/previous|предыдущ/i.test(label)?'arrow-left':'arrow-right');}
   for(const badge of document.querySelectorAll('.game .featured-label')){
    if(!badge.classList.contains('hp-featured-icon')){
     badge.classList.add('hp-featured-icon');badge.dataset.noTranslate='';
@@ -47,13 +48,22 @@
   const audio=document.getElementById('tvAudioToggle');if(audio)replace(audio.querySelector('svg'),audio.getAttribute('aria-pressed')==='true'?'volume':'mute');
   // Give tinted button symbols a little more optical weight, keeping their
   // original layout box so the centred icon/label group does not move.
-  for(const mark of document.querySelectorAll('button svg.hp-pack-icon')){
+  const colours=[];
+  for(const mark of within(root,'button svg.hp-pack-icon')){
    const rgb=getComputedStyle(mark).color.match(/[\d.]+/g)?.slice(0,3).map(Number)||[];
-   mark.classList.toggle('hp-colored-button-icon',rgb.length===3&&Math.max(...rgb)-Math.min(...rgb)>25);
+   colours.push([mark,rgb.length===3&&Math.max(...rgb)-Math.min(...rgb)>25]);
   }
+  for(const [mark,coloured] of colours)mark.classList.toggle('hp-colored-button-icon',coloured);
  }
  window.PartyIcons={create:icon,games};
- let frame=0;const schedule=()=>{if(!frame)frame=requestAnimationFrame(()=>{frame=0;scan();});};
+ const dirty=new Set();let frame=0;
+ const schedule=(scope=document)=>{
+  if(!scope?.querySelectorAll)scope=document;
+  const owner=scope.closest?.('button,.start-game');if(owner)scope=owner;
+  // One subtree per mutation batch, never re-scan 36 unaffected game cards.
+  for(const queued of dirty){if(queued===scope||queued.contains(scope))return;if(scope.contains(queued))dirty.delete(queued);}
+  dirty.add(scope);if(!frame)frame=requestAnimationFrame(()=>{frame=0;const scopes=[...dirty];dirty.clear();for(const node of scopes)if(node===document||node.isConnected)scan(node);});
+ };
  async function auditNativeFonts(){
   if(location.protocol!=='partyapp:'||!window.webkit?.messageHandlers?.partyShell)return;
   const stats={revision:'kardia-native-90'};
@@ -65,6 +75,13 @@
   }catch(e){stats.error=String(e);}
   window.webkit.messageHandlers.partyShell.postMessage({type:'ui-assets',stats});
  }
- const start=()=>{scan();auditNativeFonts();document.fonts?.ready.then(schedule);addEventListener('resize',schedule);new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['aria-pressed']});};
+ const start=()=>{scan();auditNativeFonts();document.fonts?.ready.then(schedule);addEventListener('resize',schedule);new MutationObserver(records=>{
+  // Scores/timers replace text on every snapshot. They cannot add an icon;
+  // don't rescan the full catalog and recompute every button's colour for them.
+  for(const r of records){
+   if(r.type==='attributes'||r.target.closest?.('button'))schedule(r.target);
+   else for(const node of r.addedNodes){if(node.nodeType===1)schedule(node);else if(/[▶►↗←→↑↓↻↺⛶♛🏆]/u.test(node.textContent||''))schedule(r.target);}
+  }
+ }).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['aria-pressed']});};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();

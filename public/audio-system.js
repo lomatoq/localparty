@@ -35,7 +35,7 @@
     }
     function unlock() {
       if (unlocked && context?.state === 'running') return Promise.resolve(true);
-      if (unlocking) return unlocking;
+      if (unlocking) { if(context?.state!=='running')Promise.resolve(context.resume()).catch(()=>{}); return unlocking; }
       try {
         const AudioContext = env.AudioContext || env.webkitAudioContext;
         if (!AudioContext) return Promise.resolve(false);
@@ -61,15 +61,15 @@
       try { env.localStorage.setItem(KEY, JSON.stringify(settings)); } catch (_) {}
       applyVolumes(); syncMusic(); panels.forEach(refresh => refresh()); return { ...settings };
     }
-    function configure(options = {}) { surface = options.surface || surface; musicOwner = typeof options.musicOwner === 'boolean' ? options.musicOwner : surface === 'tv'; syncMusic(); }
+    function configure(options = {}) { surface = options.surface || surface; musicOwner = typeof options.musicOwner === 'boolean' ? options.musicOwner : surface === 'tv'; if(options.autoStart===true&&surface==='tv')unlock();else syncMusic(); }
     function scene(value) { if (!['lobby','matchmaking','game','pause','results'].includes(value) || value === currentScene) return; currentScene = value; syncMusic(); if (value === 'results' && musicOwner) play('win'); }
     function mountSettings(container) {
       if (!container || container.querySelector('.hp-audio-settings')) return;
       const lang = (doc?.documentElement.lang || 'en').startsWith('ru');
       const t = lang ? ['Звук','Без звука','Музыка','Эффекты','Авторы музыки и звуков'] : ['Audio','Mute','Music','Effects','Music and sound credits'];
       const panel = doc.createElement('fieldset'); panel.className = 'hp-audio-settings';
-      panel.innerHTML = `<legend>${t[0]}</legend><label>${t[2]}<input type="range" min="0" max="1" step=".05" data-audio-setting="musicVolume"></label><label>${t[3]}<input type="range" min="0" max="1" step=".05" data-audio-setting="sfxVolume"></label><label class="hp-audio-mute"><span>${t[1]}</span><input type="checkbox" data-audio-setting="muted"></label><a href="/audio/credits.html" target="_blank" rel="noopener">${t[4]}</a>`;
-      const refresh = () => { for (const input of panel.querySelectorAll('input')) { const key = input.dataset.audioSetting; if (key === 'muted') input.checked = settings.muted; else input.value = settings[key]; } };
+      panel.innerHTML = `<legend>${t[0]}</legend><label class="hp-audio-channel"><span class="hp-audio-caption">${t[2]}<output data-audio-value="musicVolume" aria-hidden="true"></output></span><input type="range" min="0" max="1" step=".05" data-audio-setting="musicVolume"></label><label class="hp-audio-channel"><span class="hp-audio-caption">${t[3]}<output data-audio-value="sfxVolume" aria-hidden="true"></output></span><input type="range" min="0" max="1" step=".05" data-audio-setting="sfxVolume"></label><label class="hp-audio-mute"><span>${t[1]}</span><input type="checkbox" data-audio-setting="muted"></label><a href="/audio/credits.html" target="_blank" rel="noopener">${t[4]}</a>`;
+      const refresh = () => { for (const input of panel.querySelectorAll('input')) { const key = input.dataset.audioSetting; if (key === 'muted') input.checked = settings.muted; else { input.value = settings[key]; input.style.setProperty('--audio-level', `${Math.round(settings[key] * 100)}%`); } } for (const output of panel.querySelectorAll('[data-audio-value]')) output.textContent = `${Math.round(settings[output.dataset.audioValue] * 100)}%`; };
       panel.addEventListener('input', event => { const key = event.target.dataset.audioSetting; if (key) { unlock(); preferences({ [key]: key === 'muted' ? event.target.checked : Number(event.target.value) }); } });
       panels.add(refresh); refresh(); container.appendChild(panel);
       return () => { panels.delete(refresh); panel.remove(); };
@@ -84,7 +84,7 @@
     });
     doc?.addEventListener('visibilitychange', () => { applyVolumes(); syncMusic(); });
     env.addEventListener?.('pagehide', () => { stopMusic(); for (const source of active) { try { source.stop(); } catch (_) {} } });
-    return { unlock, configure, scene, play, preferences, mountSettings, status: () => ({ unlocked, surface, musicOwner, scene: currentScene, activeEffects: active.size, music: musicName }) };
+    return { unlock, configure, scene, play, preferences, mountSettings, status: () => ({ unlocked, surface, musicOwner, scene: currentScene, activeEffects: active.size, contextState: context?.state||'not-created', music: musicName }) };
   }
   if (typeof module === 'object' && module.exports) module.exports = { createAudioManager };
   else global.HeyPalsAudio = createAudioManager(global);

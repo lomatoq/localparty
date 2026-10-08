@@ -15,13 +15,25 @@ const hash=i=>{let h=Math.imul(i^0x9e3779b9,0x85ebca6b)>>>0;h^=h>>>13;h=Math.imu
 function cv(w,h){const e=document.createElement('canvas');e.width=w;e.height=h;return e;}
 
 export class PocketWorld {
- constructor(reduced=false){this.reduced=reduced;this.clock=0;this.embers=[];this.wind=0;this.windShown=0;}
+ constructor(reduced=false){this.reduced=reduced;this.clock=0;this.embers=[];this.wind=0;this.windShown=0;this.weatherWind=0;this.cloudDrift=0;this.streakDrift=0;}
  clear(){this.embers=[];}
- step(dt,wind){this.clock+=dt;
-  // The shown wind eases toward the authoritative value so clouds and streaks
-  // never jump on a turn change.
-  if(Number.isFinite(wind))this.wind=wind;this.windShown+=(this.wind-this.windShown)*(1-Math.exp(-dt*1.5));
-  if(dt)this.embers=this.embers.filter(q=>this.clock-q.at<q.life);}
+ step(dt,wind){
+  dt=Math.max(0,Number(dt)||0);this.clock+=dt;
+  if(Number.isFinite(wind)){
+   this.wind=wind;
+   // Ballistic turn wind is not a new weather system. Ignore weak gusts and
+   // small changes; a sustained substantial wind can steer the cloud decks.
+   const target=clamp(wind,-20,20);
+   if(Math.abs(target)>=6&&Math.abs(target-this.weatherWind)>=3)this.weatherWind=target;
+  }
+  // Integrate velocity, never elapsed time × the latest wind. Retargeting
+  // preserves displacement and momentum, including across turn/round changes.
+  const tau=18,k=1-Math.exp(-dt/tau),before=this.windShown;
+  const windTravel=this.weatherWind*dt+(before-this.weatherWind)*tau*k;
+  this.windShown=before+(this.weatherWind-before)*k;
+  if(!this.reduced){this.cloudDrift+=4*dt+1.3*windTravel;this.streakDrift+=14*windTravel;}
+  if(dt)this.embers=this.embers.filter(q=>this.clock-q.at<q.life);
+ }
 
  // ---------- sky ----------
  buildSky(){
@@ -76,18 +88,20 @@ export class PocketWorld {
   // Twinkling stars with tiny cross flares (static under reduced motion).
   if(!this.twinkles){const r=seeded(777);this.twinkles=Array.from({length:26},()=>({x:r()*1280,y:20+r()*r()*360,p:r()*TAU,v:.5+r()*1.4,s:.8+r()*1.3,warm:r()<.3}));}
   c.save();for(const q of this.twinkles){const k=this.reduced?.7:.45+.55*Math.max(0,Math.sin(this.clock*q.v+q.p));c.globalAlpha=.55*k;c.fillStyle=q.warm?'#ffe7c2':'#dcd6ff';c.fillRect(q.x-q.s*2.2,q.y-.35,q.s*4.4,.7);c.fillRect(q.x-.35,q.y-q.s*2.2,.7,q.s*4.4);c.globalAlpha=.9*k;c.beginPath();c.arc(q.x,q.y,q.s*.7,0,TAU);c.fill();}c.restore();
+  // A rare shooting star, only while someone is aiming, so it is never read as a shell.
+  if(!this.reduced&&this.stage==='aim'){const P=13,n=Math.floor(this.clock/P),ph=this.clock-n*P;if(ph<.75&&n>0){const k=ph/.75,x0=180+hash(n*3+1)*760,y0=50+hash(n*5+2)*110,len=150,x=x0+k*260,y=y0+k*90,g=c.createLinearGradient(x-len,y-len*.35,x,y);g.addColorStop(0,'#ffffff00');g.addColorStop(1,'#fff6e0');c.save();c.globalAlpha=Math.sin(Math.PI*k)*.75;c.strokeStyle=g;c.lineWidth=1.6;c.lineCap='round';c.beginPath();c.moveTo(x-len,y-len*.35);c.lineTo(x,y);c.stroke();c.restore();}}
   const z=cam?.z||1,y=cam?.y||360,wind=this.windShown;
   // Two cloud decks drift with the wind: an in-world wind cue.
-  const deck=(list,yBase,par,alpha,speed)=>{for(const [i,id] of list.entries()){const el=this.clouds[id],span=1280+el.width+160,x0=hash(id*31+i)*span,drift=this.reduced?0:this.clock*(4+Math.abs(wind)*1.3)*speed*Math.sign(wind||1),x=((x0+drift)%span+span)%span-el.width-80,yy=yBase+hash(id*7+i)*60-(y-360)*par*z;c.globalAlpha=alpha;c.drawImage(el,x,yy);}};
+  const deck=(list,yBase,par,alpha,speed)=>{for(const [i,id] of list.entries()){const el=this.clouds[id],span=1280+el.width+160,x0=hash(id*31+i)*span,drift=this.cloudDrift*speed,x=((x0+drift)%span+span)%span-el.width-80,yy=yBase+hash(id*7+i)*60-(y-360)*par*z;c.globalAlpha=alpha;c.drawImage(el,x,yy);}};
   c.save();deck([0,2,4],190,.06,.42,.55);c.restore();
   for(const [i,el] of this.ridges.entries()){const depth=[.12,.2,.3][i],k=1+(z-1)*depth,dy=-(y-360)*depth*z;c.save();c.translate(640,360+dy);c.scale(k,k);c.drawImage(el,-1100,-360);c.restore();}
   // Horizon haze over the ridges.
   if(!this.haze){this.haze=cv(4,240);const q=this.haze.getContext('2d'),g=q.createLinearGradient(0,0,0,240);g.addColorStop(0,'#9a4a8000');g.addColorStop(.55,'#9a4a8030');g.addColorStop(1,'#9a4a8000');q.fillStyle=g;q.fillRect(0,0,4,240);}
   c.drawImage(this.haze,0,380-(y-360)*.25*z,1280,240);
   c.save();deck([1,3,5],110,.1,.62,1);c.restore();
-  // Wind streaks: count and speed follow the authoritative wind.
-  const n=this.reduced?0:Math.min(18,Math.round(Math.abs(wind)*.9));
-  if(n){c.save();c.lineCap='round';const dir=Math.sign(wind),v=90+Math.abs(wind)*14;for(let i=0;i<n;i++){const h=hash(i*13+5),len=26+h*44,span=1280+len*2,x=((hash(i*3+1)*span+this.clock*v*dir*(.7+h*.6))%span+span)%span-len,yy=70+hash(i*11+2)*330,wob=Math.sin(this.clock*2+i)*3;const g=c.createLinearGradient(x,0,x+len*dir,0);g.addColorStop(0,'#dcd2ff00');g.addColorStop(.7,'#dcd2ff33');g.addColorStop(1,'#dcd2ff00');c.strokeStyle=g;c.lineWidth=1.3;c.beginPath();c.moveTo(x,yy+wob);c.quadraticCurveTo(x+len*dir*.5,yy+wob-2,x+len*dir,yy+wob);c.stroke();}c.restore();}
+  // Wind streaks share the integrated weather flow; new streaks fade in.
+  const strength=this.reduced?0:Math.min(18,Math.abs(wind)*.9),n=Math.ceil(strength);
+  if(n){c.save();c.lineCap='round';const dir=1;for(let i=0;i<n;i++){const h=hash(i*13+5),len=26+h*44,span=1280+len*2,x=((hash(i*3+1)*span+this.streakDrift*(.7+h*.6))%span+span)%span-len,yy=70+hash(i*11+2)*330,wob=Math.sin(this.clock*2+i)*3;const g=c.createLinearGradient(x,0,x+len*dir,0);g.addColorStop(0,'#dcd2ff00');g.addColorStop(.7,'#dcd2ff33');g.addColorStop(1,'#dcd2ff00');c.globalAlpha=clamp(strength-i,0,1);c.strokeStyle=g;c.lineWidth=1.3;c.beginPath();c.moveTo(x,yy+wob);c.quadraticCurveTo(x+len*dir*.5,yy+wob-2,x+len*dir,yy+wob);c.stroke();}c.restore();}
   c.globalAlpha=1;
  }
 
@@ -129,7 +143,7 @@ export class PocketWorld {
   c.globalAlpha=1;
   return el;
  }
- soilFill(c,s,cols,depth){const art=this.art(s,cols,depth);if(this.patternFor!==c){this.patternFor=c;this.pattern=c.createPattern(art,'no-repeat');}return this.pattern;}
+ soilFill(c,s,cols,depth){return this.art(s,cols,depth);}
  // Surface dressing baked into the terrain texture after the fill: a smooth
  // anti-aliased turf lip (hides the 2 px column steps), tufts, flowers and
  // pebbles on ground that has never been cut.
@@ -151,6 +165,14 @@ export class PocketWorld {
  }
 
  // ---------- crater embers ----------
+ // Fireflies drifting just above intact grass: night ambience, dimmer than any shell.
+ drawLife(c,ground,stage){
+  this.stage=stage;if(!this.fly){this.fly=cv(16,16);const q=this.fly.getContext('2d'),g=q.createRadialGradient(8,8,0,8,8,8);g.addColorStop(0,'#f2ffb0');g.addColorStop(.35,'#c8ff6a99');g.addColorStop(1,'#c8ff6a00');q.fillStyle=g;q.fillRect(0,0,16,16);}
+  c.save();c.globalCompositeOperation='lighter';
+  for(let i=0;i<16;i++){const bx=40+hash(i*17+3)*1200,t=this.clock,x=bx+(this.reduced?0:Math.sin(t*.31+i)*26+Math.sin(t*.9+i*2.3)*6),floor=ground(x),y=floor-10-(this.reduced?8:14*(.5+.5*Math.sin(t*.47+i*1.7))),a=this.reduced?.25:.08+.42*Math.pow(Math.max(0,Math.sin(t*1.1+i*2.1)),2);
+   if(!Number.isFinite(y)||a<.02)continue;c.globalAlpha=a;c.drawImage(this.fly,x-7,y-7,14,14);}
+  c.restore();
+ }
  addEmber(x,y,r){if(this.reduced&&this.embers.length>=4)return;this.embers.push({x,y,r:clamp(r,8,150),at:this.clock,life:2.6+Math.min(1.6,r/90)});if(this.embers.length>10)this.embers.shift();}
  drawEmbers(c,texture){
   if(!this.embers.length)return;this.emberCanvas??=cv(64,64);const e=this.emberCanvas,q=e.getContext('2d');

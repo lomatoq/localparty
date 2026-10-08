@@ -7,7 +7,7 @@ import CoreImage.CIFilterBuiltins
 
 // Optional display metadata. Old servers still decode; no player credentials here.
 struct PartyTVBoardRow: Codable, Equatable {
-    var id: String; var name: String; var rank: Int?; var score: Double; var points: Double?; var won: Bool
+    var id: String; var name: String; var rank: Int?; var score: Double; var points: Double?; var won: Bool; var coins: Double?; var coinsEarned: Double?
 }
 struct PartyTVBoard: Codable, Equatable {
     var key: String; var kind: String; var title: String; var subtitle: String; var rows: [PartyTVBoardRow]
@@ -98,6 +98,58 @@ private struct PartySurfaces: UIViewControllerRepresentable {
     }
 }
 
+// Native startup cover: transforms run on Core Animation, independently of WebKit work.
+@MainActor private final class PartyStartupCurtain: UIView {
+    private let left = UIView(), right = UIView(), logo = UIImageView()
+    private var opening = false
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        accessibilityIdentifier = "party-startup-curtain"
+        accessibilityLabel = "Loading HeyPals"
+        accessibilityViewIsModal = true
+        for panel in [left, right] {
+            panel.backgroundColor = UIColor(red: 0.025, green: 0.02, blue: 0.04, alpha: 1)
+            addSubview(panel)
+        }
+        if let url = Bundle.main.url(forResource: "heypals-logo", withExtension: "png", subdirectory: "Server/public/assets/branding") {
+            logo.image = UIImage(contentsOfFile: url.path)
+        }
+        logo.contentMode = .scaleAspectFit; addSubview(logo)
+    }
+    required init?(coder: NSCoder) { fatalError("Use init(frame:)") }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard !opening else { return }
+        let w = bounds.width, h = bounds.height
+        for panel in [left, right] { panel.frame = bounds }
+        // Overlap the diagonal by two points: no bright seam on Retina screens.
+        let a = UIBezierPath(); a.move(to: .zero)
+        a.addLine(to: CGPoint(x: w * 0.68 + 1, y: 0))
+        a.addLine(to: CGPoint(x: w * 0.32 + 1, y: h)); a.addLine(to: CGPoint(x: 0, y: h)); a.close()
+        let b = UIBezierPath(); b.move(to: CGPoint(x: w * 0.68 - 1, y: 0))
+        b.addLine(to: CGPoint(x: w, y: 0)); b.addLine(to: CGPoint(x: w, y: h))
+        b.addLine(to: CGPoint(x: w * 0.32 - 1, y: h)); b.close()
+        for (panel, path) in [(left, a), (right, b)] {
+            let mask = CAShapeLayer(); mask.path = path.cgPath; panel.layer.mask = mask
+        }
+        logo.frame = CGRect(x: w * 0.18, y: h * 0.43, width: w * 0.64, height: h * 0.14)
+    }
+    func reveal(completion: @escaping () -> Void) {
+        guard !opening else { return }; layoutIfNeeded(); opening = true
+        let reduced = UIAccessibility.isReduceMotionEnabled
+        let animator = UIViewPropertyAnimator(duration: reduced ? 0.18 : 0.7,
+            controlPoint1: CGPoint(x: 0.22, y: 1), controlPoint2: CGPoint(x: 0.36, y: 1))
+        animator.addAnimations {
+            if reduced { self.alpha = 0 } else {
+                self.left.transform = CGAffineTransform(translationX: -self.bounds.width * 0.74, y: 0)
+                self.right.transform = CGAffineTransform(translationX: self.bounds.width * 0.74, y: 0)
+                self.logo.alpha = 0; self.logo.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
+            }
+        }
+        animator.addCompletion { _ in self.removeFromSuperview(); completion() }; animator.startAnimation()
+    }
+}
+
 @MainActor private final class PartySurfaceController: UIViewController {
     private let store: PartyWebStore
     // Erase the type so an iOS 26 SDK can still compile the legacy path.
@@ -124,6 +176,69 @@ private struct PartySurfaces: UIViewControllerRepresentable {
     private var glowAnimator: UIViewPropertyAnimator?
     private var screenAnimator: UIViewPropertyAnimator?
     private let tabHaptic = UISelectionFeedbackGenerator()
+    private var startupCurtain: PartyStartupCurtain?
+    private var startupStarted = false
+    private var startupRevealed = false
+    private var startupDeadline: TimeInterval = 0
+    private func beginStartup() {
+        guard !startupStarted else { return }
+        startupStarted = true; startupDeadline = CACurrentMediaTime() + 12
+        DispatchQueue.main.asyncAfter(deadline: .now() + 12) { [weak self] in self?.revealStartup() }
+        prepareStartupReveal()
+    }
+    private func prepareStartupReveal() {
+        guard !startupRevealed else { return }
+        store.menu.callAsyncJavaScript("""
+            if (!window.LocalPartyHost?.startupReady?.()) return false;
+            const catalog = document.getElementById('catalog');
+            if (!catalog || catalog.getAttribute('aria-busy') === 'true' || !catalog.children.length) return false;
+            const bounded = (promise, ms) => Promise.race([promise, new Promise(resolve => setTimeout(resolve, ms))]);
+            await bounded(document.fonts.ready, 1000);
+            const images = [...document.images].filter(i => { const r=i.getBoundingClientRect(); return r.bottom>0 && r.top<innerHeight; });
+            await bounded(Promise.all(images.map(i => i.decode().catch(() => {}))), 1000);
+            // Settle finite entrances only; long decorative timelines never gate launch.
+            for (const a of document.getAnimations()) {
+                const t = a.effect?.getComputedTiming();
+                if (t && Number.isFinite(t.endTime) && t.endTime <= 2000) { try { a.finish(); } catch (_) {} }
+            }
+            // Native safe-area publication and catalog entrance observers can reflow after decode.
+            // Require a quiet geometry window before exposing the page, not just DOM readiness.
+            await bounded(new Promise(resolve => {
+                let previous = '', stable = 0, last = performance.now();
+                const sample = now => {
+                    const signature = ['.app-header','#choiceStrip','#catalog','#gameCount'].map(selector => {
+                        const r = document.querySelector(selector)?.getBoundingClientRect();
+                        return r ? [r.x,r.y,r.width,r.height].map(Math.round).join(',') : '';
+                    }).join('|');
+                    stable = signature === previous && now-last < 60 ? stable+1 : 0;
+                    previous = signature; last = now;
+                    if (stable >= 24) resolve(); else requestAnimationFrame(sample);
+                }; requestAnimationFrame(sample);
+            }), 2000);
+            return true;
+            """, arguments: [:], in: nil, in: .page) { [weak self] result in
+                guard let self, !self.startupRevealed else { return }
+                #if DEBUG
+                if case .failure(let error) = result { NSLog("Startup readiness: %@", String(describing: error)) }
+                #endif
+                if case .success(let value) = result, value as? Bool == true { self.revealStartup() }
+                else if CACurrentMediaTime() >= self.startupDeadline { self.revealStartup() }
+                else { DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in self?.prepareStartupReveal() } }
+            }
+    }
+    private func revealStartup() {
+        guard !startupRevealed else { return }; startupRevealed = true
+        store.menu.evaluateJavaScript("window.dispatchEvent(new Event('party-startup-reveal'))") { [weak self] _, _ in
+            self?.startupCurtain?.reveal { [weak self] in self?.startupCurtain = nil }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + (UIAccessibility.isReduceMotionEnabled ? 0 : 0.333)) { [weak self] in
+            guard let self else { return }
+            let animator = UIViewPropertyAnimator(duration: UIAccessibility.isReduceMotionEnabled ? 0.18 : 0.65,
+                controlPoint1: CGPoint(x: 0.22, y: 1), controlPoint2: CGPoint(x: 0.36, y: 1))
+            animator.addAnimations { self.tabBar.alpha = 1; self.tabBar.transform = .identity }
+            animator.startAnimation()
+        }
+    }
     init(store: PartyWebStore) { self.store = store; super.init(nibName: nil, bundle: nil) }
     required init?(coder: NSCoder) { fatalError("Use init(store:)") }
     override func loadView() {
@@ -182,6 +297,10 @@ private struct PartySurfaces: UIViewControllerRepresentable {
             tabs.append(button); tabStack.addArrangedSubview(button)
         }
         updateNavigation()
+        tabBar.alpha = 0; tabBar.transform = CGAffineTransform(translationX: 0, y: 130)
+        let cover = PartyStartupCurtain(frame: root.bounds)
+        cover.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        root.addSubview(cover); startupCurtain = cover
     }
     private let tabOrder = ["games", "controller", "host"]
     // What the tab bar shows. It follows the tap immediately, while WebKit is
@@ -391,6 +510,7 @@ private struct PartySurfaces: UIViewControllerRepresentable {
         updateGlowBreathing()
         ensureDisplayRegistration()
         store.refreshSnapshot()
+        beginStartup()
     }
     func ensureDisplayRegistration() {
         #if compiler(>=6.4)
@@ -512,15 +632,23 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     override init() {
         let menuConfig = WKWebViewConfiguration()
         menuConfig.setURLSchemeHandler(PartyBundleScheme(), forURLScheme: "partyapp")
-        menu = WKWebView(frame: .zero, configuration: menuConfig)
         let controllerConfig = WKWebViewConfiguration()
         controllerConfig.allowsInlineMediaPlayback = true
         controllerConfig.mediaTypesRequiringUserActionForPlayback = []
+        // Install the visual scheduler before other document-start scripts can
+        // retain requestAnimationFrame or start an offscreen render loop.
+        if let file = Bundle.main.url(forResource: "visibility", withExtension: "js", subdirectory: "Server/public/native-shell"), let source = try? String(contentsOf: file, encoding: .utf8) {
+            for (config, initiallyHidden) in [(menuConfig, false), (controllerConfig, true)] {
+                config.userContentController.addUserScript(WKUserScript(source: "window.__partyNativeInitialHidden=\(initiallyHidden);\n" + source, injectionTime: .atDocumentStart, forMainFrameOnly: false))
+            }
+        }
+        menu = WKWebView(frame: .zero, configuration: menuConfig)
         if let file = Bundle.main.url(forResource: "controller-bridge", withExtension: "js", subdirectory: "Server/public/native-shell"), let source = try? String(contentsOf: file, encoding: .utf8) {
             controllerConfig.userContentController.addUserScript(WKUserScript(source: source, injectionTime: .atDocumentStart, forMainFrameOnly: false))
         }
         if let file = Bundle.main.url(forResource: "nearby-rooms", withExtension: "js", subdirectory: "Server/public/native-shell"), let source = try? String(contentsOf: file, encoding: .utf8) {
             controllerConfig.userContentController.addUserScript(WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
+            menuConfig.userContentController.addUserScript(WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
         }
         controller = WKWebView(frame: .zero, configuration: controllerConfig)
         super.init()
@@ -529,6 +657,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             if let file = Bundle.main.url(forResource: "tabs", withExtension: "js", subdirectory: "Server/public/native-shell"), let source = try? String(contentsOf: file, encoding: .utf8) {
                 view.configuration.userContentController.addUserScript(WKUserScript(source: "window.__partyPersistentTabs=true;\n" + source, injectionTime: .atDocumentStart, forMainFrameOnly: true))
             }
+            view.configuration.userContentController.addUserScript(WKUserScript(source: "window.__partyStartupCovered=true;", injectionTime: .atDocumentStart, forMainFrameOnly: true))
             view.configuration.userContentController.add(handler, name: "partyShell")
             view.configuration.userContentController.addUserScript(WKUserScript(source: "window.addEventListener('party-language-change', e => window.webkit.messageHandlers.partyShell.postMessage({type:'personal-language',language:e.detail.language}));", injectionTime: .atDocumentStart, forMainFrameOnly: true))
             view.navigationDelegate = self; view.uiDelegate = self
@@ -600,6 +729,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     func setPhase(_ value: ScenePhase) {
         phase = value
         signalController(showingController && value == .active)
+        signalSurface(menu, visible: !showingController && value == .active)
         if value != .active { cancelHaptics(); bowMotion.stopGyroUpdates(); stopSportsMotion(reason: "background") }
         if value == .active {
             surfaceController?.ensureDisplayRegistration()
@@ -615,6 +745,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             controllerURL = joinedRoomURL ?? model.controllerURL; configureControllerBridge(); controller.load(URLRequest(url: controllerURL!))
         }
         signalController(value && phase == .active)
+        signalSurface(menu, visible: !value && phase == .active)
         cancelHaptics()
     }
     private(set) var tabTransitionPending = false
@@ -646,6 +777,9 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         let prepared = CACurrentMediaTime()
         #endif
         let destination = tab == "controller" ? controller : menu
+        // Wake the destination before its font/rAF readiness handshake. The
+        // outgoing surface stays alive until the native slide commits.
+        signalSurface(destination, visible: phase == .active)
         tabPreparationID += 1
         let preparationID = tabPreparationID
         // Hidden/off-screen WebKit can suspend rAF or font readiness. Native navigation
@@ -675,9 +809,12 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             """, arguments: ["tab": tab], in: nil, in: .page) { _ in commit() }
     }
     private func signalController(_ visible: Bool) {
+        signalSurface(controller, visible: visible)
+    }
+    private func signalSurface(_ surface: WKWebView, visible: Bool) {
         let name = visible ? "party-native-resume" : "party-native-hide"
         // Release held input in the launcher AND every same-origin game frame.
-        controller.evaluateJavaScript("(function visit(w){try{w.dispatchEvent(new w.Event('\(name)'));for(let i=0;i<w.frames.length;i++)visit(w.frames[i]);}catch(e){}})(window)", completionHandler: nil)
+        surface.evaluateJavaScript("(function visit(w){try{w.dispatchEvent(new w.Event('\(name)'));for(let i=0;i<w.frames.length;i++)visit(w.frames[i]);}catch(e){}})(window)", completionHandler: nil)
     }
     func retry() {
         loadError = nil
@@ -787,11 +924,13 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         var rooms = model.nearbyRooms.map { room -> [String: Any] in
             ["id": room.id, "name": room.name, "game": room.game, "phase": room.phase, "players": room.players]
         }
-        rooms.insert(["id": "own", "name": "Your room", "game": model.active?.title ?? "",
+        rooms.insert(["id": "own", "name": NearbyRooms.ownName, "game": model.active?.title ?? "",
                       "phase": model.state?.active?.ui.phase ?? "lobby", "players": model.state?.players.count ?? 0], at: 0)
         // Selected remote room remains explicitly returnable if its host disappears.
-        controller.callAsyncJavaScript("window.LocalPartyRooms?.update(rooms, selected)",
-            arguments: ["rooms": rooms, "selected": joinedRoomID ?? "own"], in: nil, in: .page, completionHandler: nil)
+        for view in [menu, controller] {
+            view.callAsyncJavaScript("window.LocalPartyRooms?.update(rooms, selected)",
+                arguments: ["rooms": rooms, "selected": joinedRoomID ?? "own"], in: nil, in: .page, completionHandler: nil)
+        }
     }
     private func joinRoom(_ id: String) {
         guard let model else { return }
@@ -962,8 +1101,16 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         }
         if type == "haptic-prepare", phase == .active, hapticsEnabled { uiImpact.prepare(); return }
         if type == "haptic" { playHaptics(body["pattern"]); return }
-        if type == "rooms-ready", message.webView === controller, message.frameInfo.isMainFrame, trustedController(message.frameInfo.securityOrigin) { publishRooms(); return }
-        if type == "join-room", player, message.frameInfo.isMainFrame, let id = body["id"] as? String { joinRoom(id); return }
+        if type == "rooms-ready", shell || (message.webView === controller && message.frameInfo.isMainFrame && trustedController(message.frameInfo.securityOrigin)) { publishRooms(); return }
+        if type == "rename-room", shell || player, message.frameInfo.isMainFrame,
+           let requested = body["name"] as? String {
+            let saved = NearbyRooms.saveOwnName(requested)
+            message.webView?.callAsyncJavaScript("window.LocalPartyRooms?.renamed(name)",
+                arguments: ["name": saved as Any? ?? NSNull()], in: nil, in: .page, completionHandler: nil)
+            if saved != nil { publishRooms() }
+            return
+        }
+        if type == "join-room", shell || player, message.frameInfo.isMainFrame, let id = body["id"] as? String { joinRoom(id); if shell { selectTab("controller") }; return }
         if type == "menu", player, message.frameInfo.isMainFrame { selectTab("games"); return }
         if type == "native-tab", message.frameInfo.isMainFrame, let tab = body["tab"] as? String { selectTab(tab); return }
         if type == "personal-language", message.frameInfo.isMainFrame,
@@ -972,13 +1119,18 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
             for view in [menu, controller] { syncPersonalLanguage(view) }
             return
         }
+        if type == "ui-performance", message.frameInfo.isMainFrame, var stats = body["stats"] as? [String: Any] {
+            stats["nativeSurface"] = message.webView === menu ? "menu" : "controller"
+            stats["nativeVisible"] = message.webView?.isHidden == false
+            model?.recordDisplayPerformance(stats); return
+        }
         guard shell else { return } // game JavaScript can NEVER issue admin commands
         guard let model else { return }
         switch type {
         case "launch-diagnostic": if let stats = body["stats"] as? [String: Any] { model.recordLaunchAttempt(stats) }
         case "controller": selectTab("controller")
         case "manage":
-            let allowed: Set<String> = ["select", "settings", "launch", "force-start", "force-language", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options", "bots-set"]
+            let allowed: Set<String> = ["select", "settings", "launch", "rematch", "force-start", "force-language", "stop", "pause", "game-action", "retry-start", "kick", "statistics-reset", "dismiss-incident", "tv-overlay", "tv-focus", "tv-options", "bots-set"]
             // ServerModel already serializes commands through commandTail. Rejecting a
             // tap here while a snapshot still reported `working` caused a silent lost
             // Start: WebKit showed its pending state, but no launch ever reached Node.
@@ -1106,6 +1258,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         webView.scrollView.maximumZoomScale = 1
         syncPersonalLanguage(webView)
         if webView === menu {
+            signalSurface(menu, visible: !showingController && phase == .active)
             // Fallback when the first ready message was lost during app startup.
             menuReady = true; deliveryFailures = 0; refreshSnapshot()
         }

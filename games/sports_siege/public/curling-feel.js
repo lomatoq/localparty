@@ -159,7 +159,7 @@ export class CurlingFeel {
     const ex = this.sc.extras; if (!ex || p < 2) return;
     const h = this.sc.house;
     for (let b = 0; b < p; b++) {
-      const bx = h.x + (rnd(b * 3.1 + this.clock) - .5) * 4, bz = h.z + (rnd(b * 5.3) - .5) * 3, by = 3.2 + rnd(b * 7.7) * 1.4, delay = .25 + b * .32;
+      const bx = h.x + (rnd(b * 3.1 + this.clock) - .5) * 4, bz = h.z + (rnd(b * 5.3) - .5) * 3, by = 1.5 + rnd(b * 7.7) * .9, delay = .25 + b * .32; // low bursts: inside the house shot
       for (let i = 0; i < 26; i++) {
         const a = rnd(i * 1.3 + b) * Math.PI * 2, e = (rnd(i * 2.7 + b) - .3) * 1.4, sp = 2.2 + rnd(i * 4.1 + b) * 1.4;
         ex.spark({x: bx, y: by, z: bz, vx: Math.cos(a) * Math.cos(e) * sp, vy: Math.sin(e) * sp, vz: Math.sin(a) * Math.cos(e) * sp, grav: 2.2, drag: 1.4, life: 1 + rnd(i) * .5, size: .12, color: i % 3 ? TEAM[team].main : '#ffd84a', twinkle: true, gain: 1.5, delay});

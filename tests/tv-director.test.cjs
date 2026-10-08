@@ -28,3 +28,18 @@ test('saved last match can be shown after cold restart without auto-showing it',
 test('new run resets overlay but keeps preferences',()=>{const {d}=setup();d.command({type:'tv-options',options:{autoPodium:true}});d.command({type:'tv-overlay',mode:'qr'},{sharing:true});d.resetRun();assert.equal(d.view({sharing:true}).mode,'none');assert.equal(d.view().autoPodium,true);});
 test('podium ordering grows alternately around the winner',()=>{const e={window:{}};vm.runInNewContext(fs.readFileSync(require.resolve('../public/tv-show.js'),'utf8'),e);assert.deepEqual(Array.from(e.window.LocalPartyShow.podiumOrder([1,2,3,4,5,6,7])),[6,4,2,1,3,5,7]);});
 test('new controls remain behind existing bearer auth and native frame guard',()=>{const server=fs.readFileSync(require.resolve('../server.js'),'utf8'),swift=fs.readFileSync(require.resolve('../ios/LocalParty/LocalPartyApp.swift'),'utf8');assert.match(server,/!local\(req\)\|\|req.headers.authorization!=='Bearer '\+hostKey/);assert.ok(swift.indexOf('guard shell else')<swift.indexOf('"tv-overlay"'));});
+test('remote can return to Host Pick without changing selection or starting a game',()=>{
+ const {d}=setup();d.follow('g2');d.command({type:'tv-focus',id:'g0'});
+ const before=d.focusRevision;d.command({type:'tv-focus',target:'pick'},{selected:'g2'});
+ assert.equal(d.browse,false);assert.equal(d.focusId,'g2');assert(d.focusRevision>before);
+ assert.throws(()=>d.command({type:'tv-focus',target:'pick'},{selected:null}));
+ assert.throws(()=>d.command({type:'tv-focus',target:'pick'},{selected:'g2',active:run()}));
+ assert.throws(()=>d.command({type:'tv-focus',target:'pick'},{selected:'g2',busy:true}));
+});
+
+test('TV carries authoritative awarded coins without changing game scores',()=>{
+ const {store,d}=setup();store.data.events.push({key:'i1:round-1',players:[{id:'a',coinsEarned:10,coins:50},{id:'b',coinsEarned:40,coins:140}]});
+ d.capture(result,'i1',games[0]);const rows=d.resultFor(run('results')).rows;
+ assert.equal(rows.find(r=>r.id==='b').score,12);assert.equal(rows.find(r=>r.id==='b').coinsEarned,40);assert.equal(rows.find(r=>r.id==='b').coins,140);assert.equal(rows.find(r=>r.id==='c').coinsEarned,undefined);
+ assert.equal(companyRows([{id:'a',name:'A',coins:50,points:1,wins:1}])[0].score,50);
+});

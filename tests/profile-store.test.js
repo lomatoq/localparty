@@ -20,3 +20,23 @@ test('stored match rows receive stable places when a game only reports scores',(
  store.record({eventId:'mixed',players:[{id:a.id,score:1000,won:true},{id:b.id,score:600},{id:c.id,score:800}]},'session','push');
  assert.deepEqual(store.data.events[0].players.map(p=>[p.name,p.score,p.rank]),[['А',1000,1],['В',800,2],['Б',600,3]]);
 });
+
+test('game activity totals survive event retention and reset with statistics',()=>{
+ const {ProfileStore}=require('../lib/profile-store');const store=new ProfileStore();
+ store.data.events=[{game:'push',duration:120},{game:'push',duration:60}];
+ assert.deepEqual(store.gameActivity().push,{matches:2,seconds:180});
+ const player=store.register(null,'A','right');const result={eventId:'one',duration:90,players:[{id:player.id,score:1}]};
+ assert.equal(store.record(result,'s','push'),true);assert.equal(store.record(result,'s','push'),false);
+ assert.deepEqual(store.gameActivity().push,{matches:3,seconds:270});store.data.events=[];
+ assert.deepEqual(store.gameActivity().push,{matches:3,seconds:270});store.resetStatistics();assert.deepEqual(store.gameActivity(),{});
+});
+
+test('coin migration preserves historical points and persistent rewards deduplicate',t=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'party-coins-'));t.after(()=>fs.rmSync(dir,{recursive:true,force:true}));const file=path.join(dir,'profiles.json');
+ fs.writeFileSync(file,JSON.stringify({version:1,players:[{id:'legacy',token:'token',name:'Legacy',stats:{played:3,wins:1,points:60,games:{}}}],events:[]}));
+ const store=new ProfileStore(file);assert.equal(store.leaderboard()[0].coins,60);
+ const result={eventId:'one',players:[{id:'legacy',score:9000000,won:true}]};assert(store.record(result,'session','push'));assert(!store.record(result,'session','push'));
+ const row=store.leaderboard()[0];assert.equal(row.coins,100);assert.equal(row.points,100);assert.equal(store.data.events[0].players[0].coinsEarned,40);
+ assert.equal(new ProfileStore(file).leaderboard()[0].coins,100);store.resetStatistics();assert.equal(store.get('token').stats.coins,0);assert.equal(store.get('token').stats.points,0);
+ assert(!store.record(result,'late','push',0));assert.equal(store.get('token').stats.coins,0);
+});

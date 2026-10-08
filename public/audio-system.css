@@ -1,3 +1,4 @@
+@import url("/audio-settings142.css");
 .hp-audio-settings{display:grid;gap:12px;min-width:0;padding:16px;border:1px solid #75618d;border-radius:18px;background:#251d35;color:#f7f1ff;font:500 14px/1.4 var(--font-ui,system-ui,sans-serif)}
 .hp-audio-settings legend{padding:0 6px;font-weight:750;font-size:16px}.hp-audio-settings label{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px}.hp-audio-settings input[type=range]{width:55%;min-width:90px;accent-color:#f478da}.hp-audio-settings input[type=checkbox]{width:22px;height:22px;accent-color:#f478da}.hp-audio-settings a{color:#dbbaff;text-underline-offset:3px}.hp-audio-settings :focus-visible{outline:3px solid #edacff;outline-offset:4px}
 

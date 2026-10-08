@@ -17,7 +17,7 @@ body.native-shell .app-header{background:#0d1017!important}
 html body.native-shell #choiceStrip{opacity:1!important;background:linear-gradient(100deg,#30263f,#222330 60%,#1b2028)!important}
 html body.native-shell #choiceStrip.is-new{animation:lp-choice-settle 180ms ease-out both!important}
 html body.native-shell #choiceOpen{opacity:1!important;color:#f5f1ff!important}
-html body.native-shell #choiceStart:disabled{opacity:1!important;background:#343541!important;color:#bdb9cc!important;border:1px solid #777084!important;box-shadow:none!important;filter:none!important;cursor:not-allowed}
+html body.native-shell #choiceStart:disabled{opacity:1!important;background:linear-gradient(140deg,#49405e,#352d49)!important;color:#d9cee9!important;border:1px solid #978aa970!important;box-shadow:none!important;filter:none!important;cursor:not-allowed}
 html body.native-shell #choiceStart[data-action=controller]{white-space:normal;line-height:1.12;text-wrap:balance}
 @keyframes lp-choice-settle{from{transform:translateY(-3px)}to{transform:none}}
 @media(prefers-reduced-motion:reduce){html body.native-shell #choiceStrip.is-new{animation:none!important}}
@@ -257,7 +257,7 @@ html body.native-shell #activeActions>.native-danger:active:not(:disabled){
 html body.native-shell #gameDetail.native-sheet{
  padding:0!important;overflow:hidden!important;box-sizing:border-box;
  max-height:calc(100dvh - env(safe-area-inset-top) - var(--native-tab-reserve,0px) - 24px);
- background:linear-gradient(135deg,#302540,#20233a)!important;
+ background:var(--hp-matte-panel)!important;
 }
 html body.native-shell #gameDetail.native-sheet[open]{display:flex;flex-direction:column}
 html body.native-shell #gameDetail>.native-sheet-head{
@@ -277,4 +277,30 @@ html body.native-shell #gameDetail>.native-actions{
 }
 
 /* Keep the confirmation readable over the catalog, including its action row. */
-html body.native-shell #confirmDialog{background:linear-gradient(135deg,#302540,#20233a)!important}
+html body.native-shell #confirmDialog{background:var(--hp-matte-panel)!important}
+
+/* Keep the complete weapon count inside the genre rail beside the star. */
+@media (min-width:381px) and (max-width:700px){
+ html body.native-shell #catalog .game[data-game="tankarena"] .art>.tag{padding-inline:6px!important;gap:3px!important}
+ html body.native-shell #catalog .game[data-game="tankarena"] .lp-weapon-count{gap:3px}
+}
+
+html body.native-shell #activeCard.is-results.is-compact:not(.is-expanded) #activeActions #activeRematch{display:flex!important;grid-column:1/-1;grid-row:2;margin-top:8px;width:100%}
+
+/* Phone masthead copy sits clear of the Host Pick trailing fade. */
+html body.native-shell .intro{padding-top:30px!important}
+html body.native-shell .intro>div>.eyebrow{position:relative;top:24px;z-index:2}
+html body.native-shell .intro .hero-pills{position:relative;top:8px}
+html.hp-ui body.native-shell .intro #gameCount.hp-menu-counter .hp-menu-counter-value{font-size:21px!important}
+html.hp-ui body.native-shell .intro #gameCount.hp-menu-counter .hp-menu-counter-label{font-size:12px!important}
+html body.native-shell .intro .headline-stage h1{filter:drop-shadow(0 3px 7px #09051080)}
+
+/* Replay is a secondary action in the host deck, with a clean mint material. */
+html.hp-ui body.native-shell #activeCard #activeActions #activeRematch{
+ min-height:44px;padding:9px 14px!important;gap:8px!important;font-size:14px!important;
+ color:#edffdc!important;background:linear-gradient(160deg,#557245 0%,#39583e 48%,#304b42 100%)!important;
+ border-color:#d6ffbd70!important;box-shadow:inset 0 1px 0 #f1ffe636,0 3px 8px #111b1824!important;
+}
+html.hp-ui body.native-shell #activeCard #activeRematch::before{width:18px;height:18px;flex-basis:18px;background:currentColor}
+html.hp-ui body.native-shell #activeCard #activeStatus:not(.native-waiting-status){color:color-mix(in srgb,var(--pick-color,#bda2ff) 28%,#fff)!important;opacity:1}
+html.hp-ui body.native-shell #activeCard .native-run-settings{color:color-mix(in srgb,var(--pick-color,#bda2ff) 30%,#fff)!important;opacity:1}
