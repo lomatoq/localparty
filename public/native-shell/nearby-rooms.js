@@ -60,7 +60,7 @@
  }
  codePanel.append(ownOnline,codeLabel,cells,submit,codeStatus);
  codePanel.onsubmit=async e=>{e.preventDefault();if(onlineBusy)return;if(!onlineService){codeStatus.textContent='Online rooms will be available when the internet service is connected.';return;}const code=inputs.map(n=>n.value).join('');if(!/^\d{6}$/.test(code))return;onlineBusy=true;submit.disabled=true;createOnline.disabled=true;const epoch=++onlineEpoch;codeStatus.textContent='Connecting…';try{await onlineService.join(code);if(epoch!==onlineEpoch)return;codeStatus.textContent='Connected';dialog.close();}catch(error){if(epoch===onlineEpoch)codeStatus.textContent=error?.code==='ROOM_NOT_FOUND'?'Room not found or code expired.':error?.code==='ROOM_FULL'?'This room is full.':'Could not connect. Try again.';}finally{if(epoch===onlineEpoch){onlineBusy=false;createOnline.disabled=!onlineService;validate();}}};
- const choose=online=>{const focused=document.activeElement;if((online?list:codePanel).contains(focused))focused.blur();wifiTab.setAttribute('aria-selected',String(!online));codeTab.setAttribute('aria-selected',String(online));list.hidden=online;hint.hidden=online;utilities.hidden=online;codePanel.hidden=!online;};
+ const choose=online=>{const focused=document.activeElement;if((online?list:codePanel).contains(focused))focused.blur();wifiTab.setAttribute('aria-selected',String(!online));codeTab.setAttribute('aria-selected',String(online));list.hidden=online;hint.hidden=online;utilities.hidden=online;codePanel.hidden=!online;queueFade();};
  for(const [button,label,online] of [[wifiTab,'Nearby',false],[codeTab,'By code',true]]){button.type='button';button.className='quiet';button.textContent=label;button.setAttribute('role','tab');button.setAttribute('aria-selected',String(!online));button.onclick=()=>choose(online);tabs.append(button);}
  title.textContent='ROOMS';title.after(tabs);list.after(codePanel);
  // Room controls share the existing sheet and type system, with one compact
@@ -91,8 +91,13 @@
  @media(max-width:350px){html.hp-ui body #nearbyDialog form.rooms-code-panel{padding-inline:8px!important}html.hp-ui body #nearbyDialog .rooms-code-cells{gap:6px}html.hp-ui body #nearbyDialog .rooms-code-cells input{height:48px;min-height:48px;font-size:22px!important}}
  `;document.head.append(codeStyle);
 
- const updateFade=()=>{list.dataset.before=String(list.scrollTop>1);list.dataset.after=String(list.scrollHeight-list.clientHeight-list.scrollTop>1);};
- list.addEventListener('scroll',updateFade,{passive:true});new ResizeObserver(updateFade).observe(list);dialog.addEventListener('toggle',updateFade);
+ // Discovery may arrive repeatedly while this persistent sheet is closed.
+ // Its painted scroll bounds matter only while visible; batch live updates once
+ // per frame so a count patch cannot force a new layout in the native callback.
+ let fadeFrame=0;
+ const updateFade=()=>{fadeFrame=0;if(!dialog.open||list.hidden)return;const before=String(list.scrollTop>1),after=String(list.scrollHeight-list.clientHeight-list.scrollTop>1);if(list.dataset.before!==before)list.dataset.before=before;if(list.dataset.after!==after)list.dataset.after=after;};
+ const queueFade=()=>{if(!fadeFrame&&dialog.open&&!list.hidden)fadeFrame=requestAnimationFrame(updateFade);};
+ list.addEventListener('scroll',queueFade,{passive:true});new ResizeObserver(queueFade).observe(list);dialog.addEventListener('toggle',queueFade);
  let last='',pending=null,saveTimer=null;
  const roomLabels=new WeakMap();
  const roomText=(node,value)=>{const text=String(value??'');if(roomLabels.get(node)===text)return;roomLabels.set(node,text);node.textContent=text;};
@@ -151,7 +156,7 @@
    const button=row.querySelector('.nearby-join'),disabled=room.id===selected,buttonClass='nearby-join '+(disabled?'quiet':'primary');if(button.disabled!==disabled)button.disabled=disabled;if(button.className!==buttonClass)button.className=buttonClass;roomText(button,disabled?'Connected':room.id==='own'?'Return':'Join');
   }
   const own=list.querySelector('[data-room=own]');if(own&&list.firstElementChild!==own)list.prepend(own);
-  updateFade();
+  queueFade();
  }});
  // Tell Swift to deliver again if the asynchronous script arrived after didFinish.
  window.webkit.messageHandlers.partyShell.postMessage({type:'rooms-ready'});

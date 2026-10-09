@@ -179,7 +179,16 @@
   if(input.closest('.hp-input-tint')||input.hasAttribute('data-room-digit'))return;
   const wrap=document.createElement('div'),ink=document.createElement('span');wrap.className='hp-input-tint';ink.className='hp-input-ink';ink.setAttribute('aria-hidden','true');
   input.before(wrap);wrap.append(input,ink);
-  const sync=()=>{const cs=getComputedStyle(input);ink.textContent=input.value||input.placeholder||(input.type==='search'?'Game title':'');ink.classList.toggle('is-placeholder',!input.value);ink.style.font=cs.font;ink.style.letterSpacing=cs.letterSpacing;ink.style.paddingInline=cs.paddingLeft+' '+cs.paddingRight;};
+  const sync=()=>{
+   const text=input.value||input.placeholder||(input.type==='search'?'Game title':'');
+   if(ink.textContent!==text)ink.textContent=text;
+   if(ink.classList.contains('is-placeholder')!==!input.value)ink.classList.toggle('is-placeholder',!input.value);
+   // A closed sheet has no glyph geometry to synchronize. Its ResizeObserver
+   // runs when it opens; avoid forcing hidden-field styles on every body class.
+   if(!input.isConnected||!input.getClientRects().length)return;
+   const cs=getComputedStyle(input);
+   for(const [key,value]of [['font',cs.font],['letter-spacing',cs.letterSpacing],['padding-inline',cs.paddingLeft+' '+cs.paddingRight]])if(ink.style.getPropertyValue(key)!==value)ink.style.setProperty(key,value);
+  };
   ['input','change','blur','focus'].forEach(event=>input.addEventListener(event,sync));new ResizeObserver(sync).observe(input);tintedInputs.push(sync);new MutationObserver(sync).observe(input,{attributes:true,attributeFilter:['placeholder']});sync();
  });}
  tintFields(body);

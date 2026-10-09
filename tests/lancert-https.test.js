@@ -27,3 +27,30 @@ test('one Wi-Fi tap registers an IP, publishes DNS-01, and reuses its private ce
   assert.equal((await restored.forAddress('192.168.1.23')).hostname,first.hostname);
  }finally{fs.rmSync(directory,{recursive:true,force:true});}
 });
+
+test('LAN IP changes rotate the hostname, while restart and certificate renewal keep the same origin',{skip:spawnSync('openssl',['version']).status!==0},async()=>{
+ const directory=fs.mkdtempSync(path.join(os.tmpdir(),'party-lan-origin-')),calls=[],certificates=new Map();
+ try{
+  for(const [name,days] of [['first',60],['first-short',1],['second',60]]){
+   const hostname=(name==='first-short'?'first':name)+'.lancert.dev',keyFile=path.join(directory,name+'.key'),certFile=path.join(directory,name+'.crt');
+   execFileSync('openssl',['req','-x509','-newkey','ec','-pkeyopt','ec_paramgen_curve:prime256v1','-nodes','-keyout',keyFile,'-out',certFile,'-days',String(days),'-subj','/CN='+hostname,'-addext','subjectAltName=DNS:'+hostname],{stdio:'ignore'});
+   certificates.set(name,{key:fs.readFileSync(keyFile),cert:fs.readFileSync(certFile)});
+  }
+  let address='192.168.1.23',issued='';
+  const serviceRequest=async(route,options)=>{calls.push({route,body:options.body});if(route.startsWith('/register/')){issued=address==='192.168.1.23'?'first':'second';return {hostname:issued+'.lancert.dev',username:'qa-user',password:'qa-secret',subdomain:issued};}return {};};
+  const acmeModule={crypto:{createPrivateEcdsaKey:async()=>Buffer.from('qa-account'),createCsr:async({commonName})=>{issued=commonName.split('.')[0];return [certificates.get(issued).key,Buffer.from('qa-csr')];}},Client:class{async auto(options){await options.challengeCreateFn({}, {type:'dns-01'},'q'.repeat(43));return certificates.get(issued).cert;}}};
+  const options={serviceRequest,acmeModule,lookup:async()=>({address}),wait:async()=>{}};
+  assert.equal((await createLANHTTPS(directory,options).forAddress(address)).hostname,'first.lancert.dev');
+  const requestCount=calls.length;
+  assert.equal((await createLANHTTPS(directory,options).forAddress(address)).hostname,'first.lancert.dev');assert.equal(calls.length,requestCount,'same-IP startup reuses its stored certificate');
+  // Renewal is allowed with the saved credentials, without an origin change.
+  const stateFile=path.join(directory,'https/lancert.json'),record=JSON.parse(fs.readFileSync(stateFile));
+  const nearExpiry=certificates.get('first-short');fs.writeFileSync(stateFile,JSON.stringify({...record,key:nearExpiry.key.toString(),cert:nearExpiry.cert.toString()}));
+  assert.equal((await createLANHTTPS(directory,options).forAddress(address)).hostname,'first.lancert.dev');
+  assert.deepEqual(calls.map(call=>call.route),['/register/192.168.1.23','/update','/update']);
+  address='192.168.1.44';assert.equal((await createLANHTTPS(directory,options).forAddress(address)).hostname,'second.lancert.dev');
+  assert.deepEqual(calls.map(call=>call.route),['/register/192.168.1.23','/update','/update','/register/192.168.1.44','/update']);
+  assert.ok(calls.filter(call=>call.route==='/update').every(call=>Object.keys(call.body).sort().join(',')==='subdomain,txt'),'challenge API is not treated as an A-record update endpoint');
+  assert.equal(JSON.parse(fs.readFileSync(stateFile)).ip,address);
+ }finally{fs.rmSync(directory,{recursive:true,force:true});}
+});

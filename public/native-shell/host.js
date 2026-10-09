@@ -9,6 +9,11 @@
   function clearRematch(){clearTimeout(rematchTimer);rematchPending=null;}
   function requestRematch(){const run=state.active;if(rematchPending||busy()||run?.ui?.phase!=='results')return;rematchPending=run.instance;rematchMessage=state.native?.message||'';renderActive();if(!manage({type:'rematch',instance:run.instance})){clearRematch();renderActive();return;}rematchTimer=setTimeout(()=>{clearRematch();renderActive();toast('Запуск не подтвердился. Нажми ещё раз.');},8000);}
   let receivedSnapshot = false, readyTimer = null, handshakeAttempts = 0;
+  let visualDirty=false, renderingInitial=false;
+  // UIKit can hide this persistent WKWebView without changing document.hidden.
+  // Keep acknowledging and processing authoritative state; reconcile its DOM once
+  // before returning, rather than doing hidden layout work beside the TV renderer.
+  function parkVisual(){if(receivedSnapshot&&!renderingInitial&&window.__partyNativeHidden){visualDirty=true;return true;}return false;}
   const shellRevision = 'ios-recovery-20260918.1';
   const dialogs = ['hostPanel', 'gameDetail', 'confirmDialog'];
   const renderedLabels = new WeakMap();
@@ -24,13 +29,17 @@
       label.textContent=text;
     }else node.textContent=text;
   }
+  function setClass(node, name, value) { const next=Boolean(value);if(node.classList.contains(name)!==next)node.classList.toggle(name,next); }
+  function setStyle(node, name, value) { if(node.style.getPropertyValue(name)!==value)node.style.setProperty(name,value); }
+  function setImage(node, path) { if(node.getAttribute('src')!==path)node.src=path; }
   function setFlag(node, property, value) { const next=Boolean(value); if(node[property]!==next)node[property]=next; }
-  function setAttribute(node, name, value) { const next=String(value); if(node.getAttribute(name)!==next)node.setAttribute(name,next); }
+  const authoredAttributes=new WeakMap();
+  function setAttribute(node, name, value) { const next=String(value);if(name==='title'||name==='aria-label'){let labels=authoredAttributes.get(node);if(!labels){labels=new Map();authoredAttributes.set(node,labels);}if(labels.get(name)===next&&node.hasAttribute(name))return;labels.set(name,next);}if(node.getAttribute(name)!==next)node.setAttribute(name,next); }
   const element = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
   function menuCounter(node,value,label='',total=null,labelFirst=false){
     const key=JSON.stringify([value,label,total,labelFirst]);
     if(node.dataset.counterKey===key&&node.querySelector('.hp-menu-counter-value'))return node;
-    node.dataset.counterKey=key;node.classList.add('hp-menu-counter');node.classList.toggle('hp-catalog-counter',/^(?:игр(?:а|ы)?|games?)$/i.test(label));
+    renderedLabels.delete(node);node.dataset.counterKey=key;setClass(node,'hp-menu-counter',true);setClass(node,'hp-catalog-counter',/^(?:игр(?:а|ы)?|games?)$/i.test(label));
     const number=element('span','hp-menu-counter-value',String(value));number.dataset.noTranslate='';
     const caption=element('span','hp-menu-counter-label',label);caption.dataset.i18nUi='';
     const readout=element('span','hp-menu-counter-readout');readout.append(number);
@@ -61,7 +70,7 @@
   function queueBotPromptPosition(){if(botPromptGame&&!botPositionFrame)botPositionFrame=requestAnimationFrame(positionBotPrompt);}
   const botPositionObserver=new ResizeObserver(queueBotPromptPosition);botPositionObserver.observe($('startBots'));
   function renderBotPrompt(){
-    if(!botPromptGame)return;const game=gameById(botPromptGame);if(!game||state.active){closeBotPrompt();return;}
+    if(parkVisual()||!botPromptGame)return;const game=gameById(botPromptGame);if(!game||state.active){closeBotPrompt();return;}
     const bots=Number(state.botCount)||0,humans=state.players.filter(p=>!p.testBot).length,connectedBots=state.players.filter(p=>p.testBot).length,count=state.players.length,max=Math.max(0,Math.min(15,16-humans,game.max-humans));
     if(botRequest&&bots===botRequest.target&&connectedBots===bots){clearTimeout(botRequestTimer);botRequest=null;}
     const locked=busy()||!!botRequest||!!pendingLaunchId,min=bots>0?1:game.min;
@@ -119,8 +128,9 @@
   function artPath(game) {
     return window.LocalPartyCatalog?.artPath(game) || '';
   }
-  let catalogView = null;
+  let catalogView = null, renderedCatalogGames=null;
   function renderCatalog() {
+    if(parkVisual())return;
     if (!window.LocalPartyCatalog) {
       setFlag($('catalogState'), 'hidden', false);
       $('catalogStateText').textContent = 'Не загрузился общий каталог интерфейса. Проверь ресурсы сборки.';
@@ -128,11 +138,12 @@
     }
     catalogView ||= window.LocalPartyCatalog.create($('catalog'), {onSelect: openGame, onLaunch:id=>launchFromCard(id,$('catalog').querySelector(`[data-game="${CSS.escape(id)}"] .lp-direct-start`))});
     const games = catalogView.update(state, {query: $('search').value, filter: section, disabled: busy() || Boolean(pendingLaunchId), pendingId: pendingLaunchId});
+    const changedCatalog=games!==renderedCatalogGames;renderedCatalogGames=games;
     // This is only the native catalogue: the shared TV renderer keeps its own roles.
     for(const counter of $('catalog').querySelectorAll('.lp-group-count')){const number=counter.textContent.match(/^\d+/)?.[0];if(number)menuCounter(counter,number,'игр');}
     for(const card of $('catalog').querySelectorAll('[data-game]')){const g=gameById(card.dataset.game),range=card.querySelector('.lp-player-range'),votes=card.querySelector('.lp-card-votes');if(g&&range)menuCounter(range,g.min+'–'+g.max);const count=(state.votes||[]).filter(v=>v.gameId===card.dataset.game).length;if(votes&&count)menuCounter(votes,count,plural(count,'голос','голоса','голосов').replace(/^\d+\s/,''));}
     // A confirmed running game's action is navigation, never a second launch.
-    if(state.active){const action=$('catalog').querySelector(`[data-game="${CSS.escape(state.active.id)}"] .lp-direct-start`);if(action){action.textContent='Играть';action.disabled=busy()||Boolean(pendingLaunchId);}}
+    if(state.active){const action=$('catalog').querySelector(`[data-game="${CSS.escape(state.active.id)}"] .lp-direct-start`);if(action){if(changedCatalog)renderedLabels.delete(action);setLabel(action,'Играть');setFlag(action,'disabled',busy()||Boolean(pendingLaunchId));}}
     const hasCatalog = state.catalog.length > 0;
     setFlag($('noGames'), 'hidden', !hasCatalog || games.length > 0);
     setFlag($('catalogState'), 'hidden', hasCatalog);
@@ -201,35 +212,36 @@
     updateDetail(); show('gameDetail'); $('detailTitle').tabIndex=-1; $('detailTitle').focus({preventScroll:true});
   }
   function updateDetail() {
+    if(parkVisual())return;
     const g = gameById(selectedDetail); if (!g) return;
     $('gameSettings').querySelectorAll('select').forEach(select => {
       const field = g.hostControls.settings.find(f => f.id === select.dataset.setting);
-      if (document.activeElement !== select) select.value = state.gameSettings?.[g.id]?.[field.id] ?? field.initial;
-      select.disabled = busy() || state.active?.id === g.id;
+      const value=String(state.gameSettings?.[g.id]?.[field.id]??field.initial);if(document.activeElement!==select&&select.value!==value)select.value=value;
+      setFlag(select,'disabled',busy() || state.active?.id === g.id);
     });
     const count = state.players.length;
     let hint = !state.native?.ready ? 'Подготавливаем комнату…' : !hasSharedScreen() ? 'Подключи общий экран в панели ведущего.' : count < g.min ? 'Нужно ещё ' + plural(g.min - count, 'игрока', 'игроков', 'игроков') + '. Открой свой пульт или пригласи друзей.' : count > g.max ? `В этой игре максимум ${g.max} игроков.` : state.selected !== g.id ? 'Подтверждаем выбор игры…' : 'После запуска каждый нажимает «Я готов» на своём пульте.';
     setLabel($('launchHint'), hint);
     setFlag($('launchGame'), 'disabled', busy() || Boolean(pendingLaunchId) || count > g.max || state.selected !== g.id);
     setLabel($('launchGame'), pendingLaunchId ? 'Запускаем…' : state.busy ? 'Подготавливаем…' : state.active?.id===g.id ? 'Пульт' : 'Играть');
-    if (launchPending && state.active?.id === g.id && !state.busy) { close('gameDetail'); launchPending = false; }
-    if (state.native?.message && !state.native?.working && !state.busy) launchPending = false;
   }
+  function syncDetail(){if(launchPending&&state.active?.id===selectedDetail&&!state.busy){close('gameDetail');launchPending=false;}if(state.native?.message&&!state.native?.working&&!state.busy)launchPending=false;}
+  function syncRematch(){const run=state.active;if(rematchPending&&(run?.instance!==rematchPending||run?.ui?.phase!=='results'))clearRematch();if(rematchPending&&state.native?.message&&state.native.message!==rematchMessage&&!state.native.working){clearRematch();toast(state.native.message);}}
   function renderActive() {
     const run = state.active, game = gameById(run?.id);
-    if(rematchPending&&(run?.instance!==rematchPending||run?.ui?.phase!=='results'))clearRematch();
-    if(rematchPending&&state.native?.message&&state.native.message!==rematchMessage&&!state.native.working){clearRematch();toast(state.native.message);}
-    $('activeCard').classList.toggle('is-results',run?.ui?.phase==='results');
-    document.body.classList.toggle('has-active-game',Boolean(game));setFlag($('activeCard'), 'hidden', !game); if (!game) { actionsSignature = ''; deckAnimation?.cancel(); deckSlot = 0; $('activeCard').style.marginBottom = ''; return; }
-    $('activeCard').classList.toggle('is-paused',Boolean(run.session?.paused));
-    $('activeCard').style.setProperty('--pick-color',/^#[0-9a-f]{3,8}$/i.test(game.color||'')?game.color:'#9b7bff');
+    syncRematch();syncDetail();
+    if(parkVisual())return;
+    setClass($('activeCard'),'is-results',run?.ui?.phase==='results');
+    setClass(document.body,'has-active-game',Boolean(game));setFlag($('activeCard'), 'hidden', !game); if (!game) { actionsSignature = ''; deckAnimation?.cancel(); deckSlot = 0; $('activeCard').style.marginBottom = ''; return; }
+    setClass($('activeCard'),'is-paused',Boolean(run.session?.paused));
+    setStyle($('activeCard'),'--pick-color',/^#[0-9a-f]{3,8}$/i.test(game.color||'')?game.color:'#9b7bff');
     if(!$('activeCard').querySelector('.native-run-outline')){const ring=element('span','native-run-outline');ring.setAttribute('aria-hidden','true');$('activeCard').append(ring);}
-    $('activeTitle').textContent = game.title;$('activeArt').src=artPath(game);
+    setLabel($('activeTitle'),game.title);setImage($('activeArt'),artPath(game));
     const roster=run.roster||[],ready=new Set(run.session?.readyIds||[]),missing=roster.filter(p=>!p.testBot&&(!p.connected||!p.gameReady||!ready.has(p.id)));
     if(!run.startError&&!run.session?.paused&&run.ui?.phase==='waiting'){
       const status=$('activeStatus'),count=roster.filter(p=>p.testBot||ready.has(p.id)).length,icons=window.PartyIcons?.create;
       menuCounter(status,count,'Готовы',roster.length,true);
-      status.classList.add('native-waiting-status');status.classList.toggle('has-waiting-icons',Boolean(icons));
+      setClass(status,'native-waiting-status',true);setClass(status,'has-waiting-icons',Boolean(icons));
       if(!status.querySelector('.native-ready-count')){
         const group=element('span','native-ready-count'),caption=status.querySelector('.hp-menu-counter-label'),readout=status.querySelector('.hp-menu-counter-readout');
         if(icons){const icon=icons('tick');icon.classList.add('native-ready-icon');group.append(icon);}
@@ -242,8 +254,8 @@
         if(!previousPending)status.append(pending);
       }else previousPending?.remove();
       const t=text=>window.PartyI18n?.t?.(text)||text,description=t('Готовы')+': '+count+' / '+roster.length+(missing.length?'; '+t('ждём:')+' '+missing.map(p=>p.name).join(', '):'');
-      status.title=description;status.setAttribute('aria-label',description);
-    }else{$('activeStatus').classList.remove('hp-menu-counter','native-waiting-status','has-waiting-icons');$('activeStatus').removeAttribute('aria-label');$('activeStatus').textContent=run.startError||(run.ui?.phase==='results'?'Матч окончен':run.session?.paused?'Игра на паузе':run.ui?.progress||run.ui?.label||'Игра идёт');$('activeStatus').title=$('activeStatus').textContent;}
+      setAttribute(status,'title',description);setAttribute(status,'aria-label',description);
+    }else{const status=$('activeStatus');for(const cls of ['hp-menu-counter','native-waiting-status','has-waiting-icons'])setClass(status,cls,false);status.removeAttribute('aria-label');setLabel(status,run.startError||(run.ui?.phase==='results'?'Матч окончен':run.session?.paused?'Игра на паузе':run.ui?.progress||run.ui?.label||'Игра идёт'));setAttribute(status,'title',status.textContent);}
     const actions = (game.hostControls?.actions || []).filter(a => a.phases.includes(run.ui?.phase) && (!run.ui?.hostActions || run.ui.hostActions.includes(a.id)));
     const signature = JSON.stringify([run.instance, run.ui?.phase, run.session?.paused, run.startError, actions]);
     if (signature !== actionsSignature) {
@@ -260,12 +272,13 @@
       if(run.ui?.phase!=='waiting'&&run.ui?.phase!=='results')box.append(button(run.session?.paused ? 'Продолжить' : 'Пауза', 'quiet', () => manage({type: 'pause', paused: !state.active?.session?.paused})));
       box.append(button('В лобби', 'quiet native-danger', () => confirm('Закончить игру?', 'Текущий матч завершится для всей компании.', () => manage({type: 'stop'}))));
     }
-    $('activeActions').querySelectorAll('button').forEach(b => b.disabled = ['activeController','activeBots'].includes(b.id) ? !state.native?.ready : busy() || (b.dataset.phaseAction === 'true' && Boolean(run.session?.paused)) || (b.dataset.forceStart==='true'&&Number(run.ready?.length||0)<((state.botCount||0)>0?1:game.min)));
-    const replay=$('activeRematch');if(replay){replay.disabled=busy()||!!rematchPending;replay.setAttribute('aria-busy',String(!!rematchPending));replay.querySelector('span').textContent=window.PartyI18n?.t?.(rematchPending?'Запускаем…':'Сыграть ещё раз')||(rematchPending?'Запускаем…':'Сыграть ещё раз');}
+    $('activeActions').querySelectorAll('button').forEach(b => setFlag(b,'disabled',['activeController','activeBots'].includes(b.id) ? !state.native?.ready : busy() || (b.dataset.phaseAction === 'true' && Boolean(run.session?.paused)) || (b.dataset.forceStart==='true'&&Number(run.ready?.length||0)<((state.botCount||0)>0?1:game.min))));
+    const replay=$('activeRematch');if(replay){setFlag(replay,'disabled',busy()||!!rematchPending);setAttribute(replay,'aria-busy',String(!!rematchPending));setLabel(replay.querySelector('span'),window.PartyI18n?.t?.(rematchPending?'Запускаем…':'Сыграть ещё раз')||(rematchPending?'Запускаем…':'Сыграть ещё раз'));}
     window.PartyButtonProgress?.set(document.querySelector('#activeActions [data-force-start]'),roster.filter(p=>p.testBot||ready.has(p.id)).length,run.ui?.phase==='waiting'?roster.length:0);
   }
   let displayStatusKey = null;
   function renderRoom() {
+    if(parkVisual())return;
     const n = state.native || {}, address = n.address || '', hasAddress = Boolean(state.networkEnabled && address);
     const external = Number(n.externalDisplays) || 0;
     if(external>0){
@@ -275,7 +288,7 @@
         const externalCount=menuCounter(element('span',''),external,'Отдельная сцена ТВ:',null,true),connections=menuCounter(element('span',''),state.screens||0,'Игровых подключений экрана:',null,true);$('displayStatus').classList.add('hp-menu-counter-group');$('displayStatus').replaceChildren(externalCount,connections);
       }
     }
-    else{displayStatusKey=null;$('displayStatus').classList.remove('hp-menu-counter-group');setLabel($('displayStatus'), n.displayMode === 'requires-ios27-sdk'
+    else{displayStatusKey=null;setClass($('displayStatus'),'hp-menu-counter-group',false);setLabel($('displayStatus'), n.displayMode === 'requires-ios27-sdk'
         ? 'Для отдельного экрана на iOS 27 пересобери приложение с iOS 27 SDK.'
         : n.displayAvailable
           ? 'Дисплей доступен. Ожидаем отдельную сцену LocalParty…'
@@ -331,6 +344,7 @@
   window.addEventListener('party-startup-reveal',()=>{window.__partyStartupCovered=false;enterChoice();},{once:true});
   // Thin "host choice" card at the top of the lobby: start the selected game without the panel.
   function renderChoice() {
+    if(parkVisual())return;
     const g = gameById(state.selected), strip = $('choiceStrip'), wasHidden = strip.hidden;
     setFlag(strip, 'hidden', !g || state.active?.id===g.id); if (!g) { choiceStarting = false; return; }
     if(wasHidden&&!strip.hidden){
@@ -359,6 +373,7 @@
     if(strip.classList.contains('hp-pick-unavailable')!==unavailable)strip.classList.toggle('hp-pick-unavailable',unavailable);
   }
   function renderTVControls() {
+    if(parkVisual())return;
     renderChoice();
     const tv=state.tv, unavailable=!tv||busy(), active=!!state.active;
     const canCover=tv?.canCover===true;
@@ -389,6 +404,7 @@
   function setSwitch(id, enabled, on, off) { const b = $(id),checked=String(Boolean(enabled));if(b.getAttribute('aria-checked')!==checked){b.setAttribute('aria-checked',checked);b.textContent=enabled?on:off;} }
   function update(value) {
     if (!value || !Array.isArray(value.catalog) || !Array.isArray(value.players)) return false;
+    renderingInitial=!receivedSnapshot||!state.catalog.length;
     // Retain the last real catalog across transient empty snapshots. Do not invent
     // game IDs; disable launch until the authoritative server catalog returns.
     if (!value.catalog.length && state.catalog.length) {
@@ -400,7 +416,6 @@
     const launchError=pendingLaunchId&&value.native?.message&&value.native.message!==state.native?.message&&!value.native?.working&&!value.busy;
     if(botError){clearTimeout(botRequestTimer);botRequest=null;}
     state = value;
-    window.PartySpotlight?.update(state,{host:true,ready:true,launch:(id,button)=>{launchFromCard(id,button);return Boolean(pendingLaunchId);}});
     if(botRequest&&(Number(state.botCount)||0)===botRequest.target&&state.players.filter(p=>p.testBot).length===botRequest.target){clearTimeout(botRequestTimer);botRequest=null;}
     window.PartyI18n?.protectPlayers([...(state.players||[]),...(state.leaderboard||[]),...(state.active?.roster||[])]);
     window.PartyI18n?.acceptRoomLanguage(state.languageOverride);
@@ -408,12 +423,16 @@
     else if(pendingLaunchId&&(launchError||returnedToLobby)) clearPendingLaunch();
     else if(pendingLaunchId&&launchAwaitingScreen&&hasSharedScreen()) dispatchPendingLaunch();
     receivedSnapshot = true; clearTimeout(readyTimer); readyTimer = null;
+    syncRematch();syncDetail();
+    if(parkVisual()){renderingInitial=false;if(returnedToLobby)window.dispatchEvent(new CustomEvent('party-lobby-enter'));return true;}
+    visualDirty=false;
+    window.PartySpotlight?.update(state,{host:true,ready:true,launch:(id,button)=>{launchFromCard(id,button);return Boolean(pendingLaunchId);}});
     const connectionIssue=state.native?.connectionStatus||'';
     setLabel($('connection'), connectionIssue ? (connectionIssue.includes('недоступен')?'Сервер недоступен':'Восстанавливаем комнату…') : (state.native?.ready ? 'Комната готова' : 'Подготавливаем комнату…'));
     setAttribute($('connection'),'title',connectionIssue);
-    $('connection').classList.toggle('online', Boolean(state.native?.ready && !state.native?.connectionStatus));
-    if(state.catalog.length)menuCounter($('gameCount'),state.catalog.length,plural(state.catalog.length,'игра','игры','игр').replace(/^\d+\s/,''));else{$('gameCount').classList.remove('hp-menu-counter');$('gameCount').textContent='Каталог загружается';}
-    menuCounter($('playerCount'),state.players.length,plural(state.players.length,'игрок','игрока','игроков').replace(/^\d+\s/,''));if(state.screens)menuCounter($('screenCount'),state.screens,plural(state.screens,'общий экран','общих экрана','общих экранов').replace(/^\d+\s/,''));else{$('screenCount').classList.remove('hp-menu-counter');$('screenCount').textContent='Экран не подключён';}
+    setClass($('connection'),'online', Boolean(state.native?.ready && !state.native?.connectionStatus));
+    if(state.catalog.length)menuCounter($('gameCount'),state.catalog.length,plural(state.catalog.length,'игра','игры','игр').replace(/^\d+\s/,''));else{setClass($('gameCount'),'hp-menu-counter',false);setLabel($('gameCount'),'Каталог загружается');}
+    menuCounter($('playerCount'),state.players.length,plural(state.players.length,'игрок','игрока','игроков').replace(/^\d+\s/,''));if(state.screens)menuCounter($('screenCount'),state.screens,plural(state.screens,'общий экран','общих экрана','общих экранов').replace(/^\d+\s/,''));else{setClass($('screenCount'),'hp-menu-counter',false);setLabel($('screenCount'),'Экран не подключён');}
     const message = state.native?.message || state.native?.catalogError || state.native?.connectionStatus || state.incident?.message;
     setFlag($('message'), 'hidden', !message); setLabel($('messageText'), message || '');
     setLabel($('messageTitle'), connectionIssue?'Нет связи с локальным сервером':'Сообщение комнаты');
@@ -422,6 +441,7 @@
     renderCatalog();
     renderActive(); renderRoom(); renderTVControls(); updateDetail();renderBotPrompt();if(botError&&botPromptGame)setLabel($('startBotsHint'), value.native.message);
     if(returnedToLobby)window.dispatchEvent(new CustomEvent('party-lobby-enter'));
+    renderingInitial=false;
     return true; // acknowledgement used by the native delivery state machine
   }
   let deckAnimation, deckSlot = 0, syncDeckStack = () => {};
@@ -615,6 +635,7 @@
     }
   }
   $('retryCatalog').onclick = () => { receivedSnapshot = false; handshakeAttempts = 0; requestSnapshot(); };
+  window.addEventListener('party-native-resume',()=>{if(visualDirty){visualDirty=false;update(state);}});
   window.addEventListener('pageshow', requestSnapshot);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') { clearTimeout(readyTimer); readyTimer = null; }

@@ -225,7 +225,8 @@ struct ServerState: Equatable, Codable {
                       "viewport", "screen", "stage", "title", "description",
                       "snapshots", "snapshotAge", "snapshotGap", "simulationGap", "simulationUnchanged",
                       "arenaFrame", "arenaCircle", "arenaInset", "arenaFill",
-                      "visibility", "nativeSurface", "nativeVisible", "runningAnimations", "runningCSS"]
+                      "visibility", "nativeSurface", "nativeVisible", "runningAnimations", "runningCSS",
+                      "stageRect", "lobbyRect", "sidebarRect", "peopleRect", "rankingRect", "sidebarLayout", "rankingMargins", "visualViewport"]
         let summary = fields.compactMap { key -> String? in
             guard let value = stats[key] else { return nil }
             return "\(key)=\(String(describing: value).prefix(100))"

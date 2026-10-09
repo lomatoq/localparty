@@ -45,6 +45,11 @@
     const paints=[];
     for (const control of pendingControls) {
       if (!control.isConnected) continue;
+      // Closed sheets and hidden controller phases have no rendered labels.
+      // Their open/hidden mutations enqueue them when they become readable.
+      // Avoid walking and measuring the whole hidden catalogue on each modal
+      // body-class change or click; this work cannot affect the foreground.
+      if (mobile && (control.closest('[hidden],dialog:not([open])') || !control.getClientRects().length)) continue;
       const labels = new Set([control]);
       const walker = document.createTreeWalker(control, NodeFilter.SHOW_TEXT);
       let text;
@@ -77,21 +82,22 @@
     const candidates = [...(scope.matches?.(infoSelector) ? [scope] : []), ...(scope.querySelectorAll?.(infoSelector) || [])];
     for (const node of candidates) {
       if (node.matches(infoInteractive) || node.querySelector(infoInteractive) || node.parentElement?.closest('.hp-info-card')) continue;
-      node.classList.add('hp-info-card');
+      if (!node.classList.contains('hp-info-card')) node.classList.add('hp-info-card');
     }
   }
   function enhance(scope = document) {
     queueControlReadability(scope);
     for (const [selector, name] of Object.entries(roles)) {
-      if (scope.matches?.(selector)) scope.classList.add(name);
-      scope.querySelectorAll?.(selector).forEach(node => node.classList.add(name));
+      if (scope.matches?.(selector) && !scope.classList.contains(name)) scope.classList.add(name);
+      scope.querySelectorAll?.(selector).forEach(node => { if (!node.classList.contains(name)) node.classList.add(name); });
     }
     // The primary role owns weight even when legacy game IDs use !important rules.
     const primaries = [...(scope.querySelectorAll?.('button.hp-action-primary') || [])];
     if (scope.matches?.('button.hp-action-primary')) primaries.push(scope);
     for (const button of primaries) {
-      button.style.setProperty('font-weight', '900', 'important');
-      for (const label of button.querySelectorAll(':scope > span:not(.hp-button-icon):not(.hp-copy):not(.hp-number):not(.hp-player-name),:scope > b,:scope > strong')) label.style.setProperty('font-weight', '900', 'important');
+      for (const label of [button, ...button.querySelectorAll(':scope > span:not(.hp-button-icon):not(.hp-copy):not(.hp-number):not(.hp-player-name),:scope > b,:scope > strong')]) {
+        if (label.style.getPropertyValue('font-weight') !== '900' || label.style.getPropertyPriority('font-weight') !== 'important') label.style.setProperty('font-weight', '900', 'important');
+      }
     }
     decorateInfo(scope);
   }
@@ -101,12 +107,20 @@
     document.querySelectorAll('.hp-readout').forEach(classifyTVValue);
     // Child insertion only: avoid a full-document scan on each game snapshot.
     const observer = new MutationObserver(records => {
+      const addedRoots = new Set();
       for (const record of records) {
         if (record.type === 'attributes' && record.oldValue === record.target.getAttribute(record.attributeName)) continue;
         if (record.target.id === 'gameTitle' || record.target.classList?.contains('hp-readout')) classifyTVValue(record.target);
         if (record.type === 'attributes') queueControlReadability(record.target);
         if (record.target.nodeType === 1 && record.target.closest?.(controlSelector)) queueControlReadability(record.target);
-        for (const node of record.addedNodes) if (node.nodeType === 1) enhance(node);
+        for (const node of record.addedNodes) if (node.nodeType === 1) addedRoots.add(node);
+      }
+      // An inserted wrapper can also have child records from the same batch.
+      // Classify that subtree once, without reauthoring its classes/styles.
+      for (const node of addedRoots) {
+        let nested = false;
+        for (let parent = node.parentElement; parent; parent = parent.parentElement) if (addedRoots.has(parent)) { nested = true; break; }
+        if (node.isConnected && !nested) enhance(node);
       }
     });
     addEventListener('resize', () => queueControlReadability());
@@ -249,6 +263,7 @@
   discover(); schedule();
   const candidates = `${lists},${panels},${horizontal}`;
   new MutationObserver(records => {
+   const changed = new Set(), contents = new Set();
    for (const record of records) {
     const target = record.target.nodeType === 1 ? record.target : record.target.parentElement;
     if (!target) continue;
@@ -256,14 +271,20 @@
      if (record.oldValue === target.getAttribute(record.attributeName)) continue;
      if (target.classList.contains('hp-soft-scroll-item') && ['style','class'].includes(record.attributeName)) continue;
      // Knob transforms, particles and counter effects cannot change a sibling list.
-     for (const node of regions.keys()) if (target === node || target.contains(node) || node.contains(target)) dirtyRegions.add(node);
+     changed.add(target);
     } else {
-     for (const node of regions.keys()) if (!node.isConnected || node.contains(target)) dirtyRegions.add(node);
+     contents.add(target);
     }
     if (record.type === 'childList') for (const node of record.addedNodes) {
      if (node.nodeType === 1 && (node.matches(candidates) || node.querySelector(candidates))) discoveryPending = true;
     }
     if (record.type === 'attributes' && record.attributeName === 'class' && target.matches(candidates) && !regions.has(target)) discoveryPending = true;
+   }
+   // One popup update commonly writes text, classes and disabled state on the
+   // same few nodes. Find their scroll owners once per batch, not per record.
+   const attributes = [...changed], children = [...contents];
+   for (const node of regions.keys()) {
+    if (!node.isConnected || attributes.some(target => target === node || target.contains(node) || node.contains(target)) || children.some(target => node.contains(target))) dirtyRegions.add(node);
    }
    if (dirtyRegions.size || discoveryPending) queueUpdate();
   }).observe(document.body, {childList:true,subtree:true,characterData:true,attributes:true,attributeOldValue:true,attributeFilter:['open','hidden','class','style']});

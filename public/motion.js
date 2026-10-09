@@ -209,6 +209,7 @@
  'use strict';
  if(window.LocalPartyDialogs||!window.HTMLDialogElement)return;
  const quiet=()=>matchMedia('(prefers-reduced-motion: reduce)').matches,pending=new WeakMap(),panels=new WeakMap();
+ const inactive=()=>document.hidden||window.__partyNativeHidden===true;
  const reopening=new WeakMap();
  const backdropRules=new WeakMap();let backdropId=0;
  // ::backdrop does not inherit the dialog's custom properties. Give its own
@@ -229,10 +230,17 @@
   // The nonmodal Host tab is a native navigation surface, not a popup. Its
   // outgoing screen is animated by the native tab coordinator.
   if(dialog.id==='hostPanel'&&!dialog.matches(':modal')){cancel(dialog);nativeClose.call(dialog,...(value===undefined?[]:[value]));return;}
+  // UIKit can park a WKWebView without changing document.hidden. Authoritative
+  // ACKs still close obsolete dialogs while parked, without sampling its paint.
+  if(inactive()||quiet()){
+   reopening.get(dialog)?.cancel();reopening.delete(dialog);
+   const previous=pending.get(dialog);if(previous){clearTimeout(previous.timer);pending.delete(dialog);if(value===undefined)value=previous.value;}
+   nativeClose.call(dialog,...(value===undefined?[]:[value]));
+   dialog.classList.remove('lp-dialog-closing','sheet-closing');clearStart(dialog);previous?.resolve(true);return;
+  }
   const resuming=reopening.get(dialog),live=resuming?getComputedStyle(dialog):null,resumePose=live?Object.fromEntries(['opacity','scale','translate','transform'].map(key=>[key,live[key]])):null;
   resuming?.cancel();reopening.delete(dialog);
   const previous=pending.get(dialog);if(previous){if(value!==undefined)previous.value=value;return;}
-  if(quiet()||document.hidden){nativeClose.call(dialog,...(value===undefined?[]:[value]));return;}
   let resolve;const promise=new Promise(r=>resolve=r),record={value,resolve,promise,timer:0};pending.set(dialog,record);
   const start=resumePose||getComputedStyle(dialog);for(const key of ['opacity','scale','translate','transform'])dialog.style.setProperty('--lp-close-'+key,start[key]==='none'?(key==='scale'?'1':key==='translate'?'0 0':'none'):start[key]);
   backdropStart(dialog,getComputedStyle(dialog,'::backdrop').opacity);
@@ -253,8 +261,8 @@
  prototype.close=function(value){close(this,value);};
  function show(dialog,modal){
   if(modal)dialog.classList.add('lp-dialog-managed');
-  const reversing=pending.has(dialog),s=reversing?getComputedStyle(dialog):null,pose=s?{opacity:s.opacity,transform:s.transform,scale:s.scale,translate:s.translate}:null;
-  if(reversing)backdropStart(dialog,getComputedStyle(dialog,'::backdrop').opacity);
+  const reversing=pending.has(dialog),animateReverse=reversing&&!inactive()&&!quiet(),s=animateReverse?getComputedStyle(dialog):null,pose=s?{opacity:s.opacity,transform:s.transform,scale:s.scale,translate:s.translate}:null;
+  if(animateReverse)backdropStart(dialog,getComputedStyle(dialog,'::backdrop').opacity);
   const changeMode=reversing&&dialog.open&&dialog.matches(':modal')!==modal;
   if(reversing)dialog.classList.add('lp-dialog-resumed');else if(!dialog.open)dialog.classList.remove('lp-dialog-resumed');
   cancel(dialog);if(changeMode)nativeClose.call(dialog);
@@ -305,9 +313,10 @@
  },true);
  function setVisible(panel,show,prepare){
   const record=panels.get(panel),card=panel.id==='pauseOverlay'?panel.firstElementChild:panel;
-  if(record?.show===show||!record&&panel.hidden===!show)return;
+  const immediate=inactive()||quiet();
+  if(record?.show===show&&!immediate||!record&&panel.hidden===!show)return;
   // Retarget from the rendered pose, including a close reversed by a new update.
-  const style=getComputedStyle(card),pose={opacity:style.opacity,scale:style.scale==='none'?'1':style.scale,translate:style.translate==='none'?'0 0':style.translate};
+  const style=immediate?null:getComputedStyle(card),pose=style?{opacity:style.opacity,scale:style.scale==='none'?'1':style.scale,translate:style.translate==='none'?'0 0':style.translate}:null;
   clearTimeout(record?.timer);record?.animation.cancel();panels.delete(panel);
   const wasHidden=panel.hidden;panel.hidden=false;
   // Reparent/populate/promote popovers before starting their animation clock.
@@ -315,7 +324,7 @@
   if(show&&typeof prepare==='function')prepare();
   panel.toggleAttribute('data-lp-panel-closing',!show);
   panel.style.pointerEvents=show?'':'none';
-  if(quiet()||document.hidden){panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panel.style.removeProperty('pointer-events');if(!show&&panel.matches(':popover-open'))panel.hidePopover();return;}
+  if(immediate){panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panel.style.removeProperty('pointer-events');if(!show&&panel.matches(':popover-open'))panel.hidePopover();return;}
   const animation=card.animate([wasHidden?{opacity:0,scale:'.98',translate:'0 8px'}:pose,show?{opacity:1,scale:'1',translate:'0 0'}:{opacity:0,scale:'.98',translate:'0 8px'}],{duration:180,easing:getComputedStyle(rootElement()).getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)',fill:'both'});
   const entry={animation,show,timer:0};panels.set(panel,entry);
   const finish=()=>{

@@ -188,6 +188,18 @@ html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar>section{
  box-sizing:border-box;width:100%!important;min-width:0;max-width:100%;
  align-self:stretch;margin-inline:0!important;
 }
+/* Discovery now lives in #tvBrowse, rather than an extra lobby grid row.
+   The old 24px sidebar margin still moved Join/People down while browsing.
+   Selected lobby geometry is 24px taller and lifted by the same amount:
+   reserve that lift as inner padding only in that state. Both modes then
+   have the same card top and the same available height for roster + top.
+   The 2px optical inset retains the approved selected-card position. */
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage #lobby #tvSidebar{
+ margin-block-start:0!important;padding-block-start:2px!important;
+}
+html.hp-ui body.tv-screen #tvStage#tvStage#tvStage.tv-has-choice #lobby #tvSidebar{
+ padding-block-start:26px!important;
+}
 /* Centre the complete top-three card within the space left after the roster.
    When the roster fills the column, auto margins resolve to zero and the
    existing measured roster fitting keeps every sidebar card on screen. */

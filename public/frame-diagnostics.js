@@ -27,7 +27,24 @@
     }
     const rect=stage.getBoundingClientRect(),scale=rect.width/Math.max(1,stage.offsetWidth);
     const measure=selector=>{const el=stage.querySelector(selector);if(!el?.firstChild||el.firstChild.nodeType!==3)return'none';const range=document.createRange();range.setStart(el.firstChild,0);range.setEnd(el.firstChild,Math.min(1,el.firstChild.length));return`css:${parseFloat(getComputedStyle(el).fontSize).toFixed(2)},glyph:${range.getBoundingClientRect().height.toFixed(2)}`;};
-    return{viewport:`${innerWidth}x${innerHeight},dpr:${devicePixelRatio},visual:${visualViewport?.scale||1}`,screen:`${screen.width}x${screen.height}`,stage:`${stage.offsetWidth}x${stage.offsetHeight},scale:${scale.toFixed(3)},compact:${stage.classList.contains('tv-compact')}`,title:measure('.game:not(.featured) h3'),description:measure('.game:not(.featured) .game-info>p')};
+    const layout={};
+    const lobby=document.getElementById('lobby');
+    if(lobby&&!lobby.hidden){
+      const finite=value=>Number.isFinite(value)?Math.round(value*100)/100:0;
+      const bounds=element=>{
+        if(!element)return'none';
+        const box=element.getBoundingClientRect();
+        return`${finite(box.x)},${finite(box.y)},${finite(box.width)},${finite(box.height)}`;
+      };
+      const sidebar=document.getElementById('tvSidebar'),ranking=document.getElementById('tvRanking');
+      layout.stageRect=bounds(stage);layout.lobbyRect=bounds(lobby);layout.sidebarRect=bounds(sidebar);
+      layout.peopleRect=bounds(sidebar?.querySelector('.company-people:not(.tv-invite)'));
+      layout.rankingRect=bounds(ranking);
+      if(sidebar){const css=getComputedStyle(sidebar);layout.sidebarLayout=`height:${sidebar.clientHeight},padding:${css.paddingTop}/${css.paddingBottom},scroll:${sidebar.scrollTop}`;}
+      if(ranking){const css=getComputedStyle(ranking);layout.rankingMargins=`${css.marginTop}/${css.marginBottom}`;}
+      if(visualViewport)layout.visualViewport=`${finite(visualViewport.width)}x${finite(visualViewport.height)},top:${finite(visualViewport.offsetTop)},scale:${finite(visualViewport.scale)}`;
+    }
+    return{viewport:`${innerWidth}x${innerHeight},dpr:${devicePixelRatio},visual:${visualViewport?.scale||1}`,screen:`${screen.width}x${screen.height}`,stage:`${stage.offsetWidth}x${stage.offsetHeight},scale:${scale.toFixed(3)},compact:${stage.classList.contains('tv-compact')}`,title:measure('.game:not(.featured) h3'),description:measure('.game:not(.featured) .game-info>p'),...layout};
   }
   let last=0,start=0,count=0,total=0,max=0,over50=0,over100=0;
   const reset=()=>{last=start=count=total=max=over50=over100=0;bins.fill(0);};

@@ -9,16 +9,16 @@
  *    match header) leave with a short exit instead of vanishing.
  *  - Entrances are staged: header, then content, then lists (45 ms stagger, max 10).
  * Transform and opacity only. Reduced motion: crossfades only, no movement.
- * Kill switch for A/B checks: /tv?motion=legacy. Server state is never delayed by more
- * than one door close (<=380 ms), and never while the TV tab is hidden. */
+ * Kill switch for A/B checks: /tv?motion=legacy. Server state remains authoritative;
+ * visible scene preparation waits for the actual closed cover. Hidden TV renders directly. */
 (() => {
   'use strict';
   const stage=document.getElementById('tvStage'),body=document.body;
   if(!stage||!body?.classList.contains('tv-screen'))return;
   if(/[?&]motion=legacy(?:&|$)/.test(location.search)){document.documentElement.dataset.tvMotion='legacy';return;}
   document.documentElement.classList.add('tvm-on');
-  const revision='tv-motion-169';
-  const nativeCurtain=window.webkit?.messageHandlers?.partyTVCurtain;
+  const revision='tv-motion-246';
+  let nativeCurtain=window.webkit?.messageHandlers?.partyTVCurtain;
   if(nativeCurtain)document.documentElement.classList.add('tvm-native-curtain');
   const startup=document.getElementById('tvStartup');
   if(startup){const grain=document.createElement('i');grain.className='tvm-startup-grain';grain.setAttribute('aria-hidden','true');startup.append(grain);}
@@ -44,7 +44,7 @@
   /* ---------------- Scene curtain ---------------- */
   const curtain=$('tvSceneTransition'),heroLogo=$('tvTransitionLogo'),heroTitle=$('tvTransitionTitle');
   let doorL=null,doorR=null,seam=null,halo=null,brand=null;
-  let failsafe=0,handoffNote='',cState='idle',gen=0,timers=[],anims=[],pending=null,committed=null,heroShown=null,recede=[],preparedLobby=[];
+  let handoffNote='',cState='idle',gen=0,timers=[],anims=[],pending=null,committed=null,heroShown=null,heroGameId=null,recede=[],preparedLobby=[];
   function build(){
     if(doorL||!curtain)return;
     const doors=document.createElement('div');doors.className='tvm-doors';doors.setAttribute('aria-hidden','true');
@@ -58,10 +58,27 @@
   function reset(){stage.classList.remove('tvm-menu-preparing');preparedLobby.forEach(a=>a.cancel());preparedLobby=[];gen++;timers.forEach(clearTimeout);timers=[];anims.forEach(a=>a?.cancel());anims=[];}
   const keep=a=>{if(a)anims.push(a);return a;};
   function endRecede(){recede.forEach(a=>a?.cancel());recede=[];}
+  // Completion follows the actual compositor timeline. A busy JS frame must not
+  // hide a partially open shutter because a wall-clock timeout has elapsed.
+  function finished(list,g,done){
+    Promise.all(list.filter(Boolean).map(a=>a.finished.catch(()=>{}))).then(()=>{if(g===gen)done();});
+  }
+  async function nativeCommand(action,g){
+    if(!nativeCurtain)return false;
+    try{const complete=await nativeCurtain.postMessage(action);return g===gen&&complete!==false;}
+    catch(error){
+      if(g!==gen)return false;
+      // A missing/disconnected reply bridge leaves the web shutter as the owner.
+      // It uses the same geometry and readiness gate, never a hide fallback.
+      nativeCurtain=null;document.documentElement.classList.remove('tvm-native-curtain');
+      console.warn('TV native curtain unavailable; continuing with web shutter',error);
+      return false;
+    }
+  }
 
   // Same wordmark source as tv-show.js; has-logo keeps its meaning for tests and CSS.
   function setHero(gameId,title){
-    heroTitle.textContent=title||'';curtain.classList.remove('has-logo');heroLogo.hidden=true;heroLogo.onload=heroLogo.onerror=null;
+    heroGameId=gameId||null;heroTitle.textContent=title||'';curtain.classList.remove('has-logo');heroLogo.hidden=true;heroLogo.onload=heroLogo.onerror=null;
     if(!gameId){heroShown=heroTitle;return heroTitle;}
     const src='/assets/game-logos-v1/logos/'+encodeURIComponent(gameId)+'.png?v=1';
     const ready=()=>heroLogo.complete&&heroLogo.naturalWidth>0;
@@ -87,27 +104,33 @@
     return [$('lobby'),stage.querySelector(':scope>.tv-header')].filter(visible);
   }
   function closeDoors(to,hero){
-    build();reset();endRecede();
-    const t=tokens(),toLobby=to==='lobby',d=toLobby?t.close-40:t.close;
+    build();
+    const reversing=!curtain.hidden&&curtain.classList.contains('tvm-curtain');
+    const pose=reversing?{left:getComputedStyle(doorL).transform,right:getComputedStyle(doorR).transform,opacity:getComputedStyle(curtain).opacity}:null;
+    reset();endRecede();
+    const t=tokens(),toLobby=to==='lobby',d=toLobby?t.close-40:t.close,g=gen;
     if(toLobby)stage.classList.add('tvm-menu-preparing');
     curtain.classList.remove('tvm-resume');curtain.classList.add('tvm-curtain');curtain.classList.toggle('tvm-to-lobby',toLobby);
-    if(toLobby)heroShown=brand;else setHero(hero.gameId,hero.title);
+    if(toLobby){heroShown=brand;heroGameId=null;}else setHero(hero.gameId,hero.title);
     curtain.hidden=false;cState='closing';
-    if(nativeCurtain){const g=gen;return nativeCurtain.postMessage('close').then(()=>{if(g===gen)cState='closed';});}
-    // Fail-safe: whatever happens, the curtain never stays over the TV for long.
-    const fg=gen;clearTimeout(failsafe);failsafe=setTimeout(()=>{if(gen===fg&&cState!=='idle'&&!pending){curtain.hidden=true;curtain.classList.remove('tvm-curtain','tvm-to-lobby');reset();cState='idle';flushQueued();}},3200);
-    return new Promise(resolve=>{
-      const g=gen,done=()=>{if(g!==gen)return;cState='closed';requestAnimationFrame(()=>requestAnimationFrame(()=>{if(g===gen)resolve();}));};
-      if(reduced()){keep(play(curtain,[{opacity:0},{opacity:1}],{duration:200,easing:'ease'}));heroIn(120);later(done,210);return;}
-      keep(play(doorL,[{transform:'translateX(-101%)',easing:t.travel},{transform:'translateX(.8%)',offset:.86,easing:'ease-out'},{transform:'translateX(0)'}],{duration:d}));
-      keep(play(doorR,[{transform:'translateX(101%)',easing:t.travel},{transform:'translateX(-.8%)',offset:.86,easing:'ease-out'},{transform:'translateX(0)'}],{duration:d}));
+    const webClose=()=>new Promise(resolve=>{
+      const done=()=>{if(g!==gen)return;cState='closed';requestAnimationFrame(()=>requestAnimationFrame(()=>{if(g===gen)resolve();}));};
+      if(reduced()){
+        const fade=keep(play(curtain,[{opacity:pose?.opacity??0},{opacity:1}],{duration:200,easing:'ease',fill:'forwards'}));heroIn(120);finished([fade],g,done);return;
+      }
+      const l=keep(play(doorL,[{transform:pose?.left||'translateX(-101%)',easing:t.travel},{transform:'translateX(.8%)',offset:.86,easing:'ease-out'},{transform:'translateX(0)'}],{duration:d,fill:'forwards'}));
+      const r=keep(play(doorR,[{transform:pose?.right||'translateX(101%)',easing:t.travel},{transform:'translateX(-.8%)',offset:.86,easing:'ease-out'},{transform:'translateX(0)'}],{duration:d,fill:'forwards'}));
       keep(play(seam,[{opacity:0,transform:'skewX(-8deg) scaleY(.35)'},{opacity:1,transform:'skewX(-8deg) scaleY(1)',offset:.3},{opacity:0,transform:'skewX(-8deg) scaleY(1.04)'}],{duration:560,delay:d*.8,easing:t.out}));
-      // The outgoing scene recedes under the doors (one transformed layer each).
-      // Keep the live scene in its existing layers. Scaling the complete masked /
-      // backdrop-filtered catalog or game forces huge WebKit surface re-rasterization.
-      heroIn(toLobby?d-120:d-180);
-      later(done,d);
+      // Keep the scene in its existing layers. Scaling the full masked/blurred
+      // catalog or game forces huge WebKit surfaces to re-rasterize.
+      heroIn(toLobby?d-120:d-180);finished([l,r],g,done);
     });
+    if(nativeCurtain)return nativeCommand('close',g).then(closed=>{
+      if(g!==gen)return;
+      if(closed){cState='closed';return;}
+      return webClose();
+    });
+    return webClose();
   }
   // Wait briefly for the waiting room's wordmark so the curtain copy can land on it.
   function openWhenReady(waited=0){
@@ -117,13 +140,17 @@
     if(curtain.classList.contains('tvm-to-lobby'))preparedLobby=settleLobby(tokens().open,true);
     // Loading / shader compilation must happen behind closed doors, including
     // the first real GPU frames. Two RAFs alone run before the iframe is ready.
-    clearTimeout(failsafe);
     const started=performance.now();let readySince=0,readyFrames=0;
     const prepared=now=>{
       if(g!==gen||cState!=='revealing')return;
       const frame=$('gameFrame');let ready=true;
       if(!curtain.classList.contains('tvm-to-lobby')&&frame?.getAttribute('src')?.startsWith('/games/')){
-        try{const doc=frame.contentDocument;ready=!!doc&&doc.readyState==='complete'&&frame.contentWindow.location.pathname.startsWith('/games/')&&doc.body?.dataset.shaderWarmup!=='pending';}catch{ready=false;}
+        try{
+          const doc=frame.contentDocument,expected=new URL(frame.getAttribute('src'),location.href),actual=frame.contentWindow.location;
+          // The old game's complete document can remain attached while its new
+          // src is navigating. It is not readiness for the destination scene.
+          ready=!!doc&&doc.readyState==='complete'&&actual.pathname===expected.pathname&&actual.search===expected.search&&doc.body?.dataset.shaderWarmup!=='pending';
+        }catch{ready=false;}
       }
       // Readiness comes from the loaded document and explicit shader warmup.
       // Requiring eight <50ms main-frame gaps kept already-ready games covered
@@ -141,11 +168,25 @@
     // browsing reflow before revealing it; entrance motion stays compositor-only.
     stage.classList.remove('tvm-menu-preparing');
     const finish=()=>{if(g!==gen)return;curtain.hidden=true;curtain.classList.remove('tvm-curtain','tvm-to-lobby');reset();cState='idle';flushQueued();};
-    if(nativeCurtain){nativeCurtain.postMessage('open').then(finish);return;}
-    if(reduced()){keep(play(curtain,[{opacity:1},{opacity:0}],{duration:240,easing:'ease',fill:'forwards'}));later(finish,250);return;}
+    const enterIncoming=handed=>{
+      if(toLobby){
+        enterMenuCharacters();
+        if(preparedLobby.length){const ready=preparedLobby;preparedLobby=[];ready.forEach(a=>a.play());}else settleLobby(t.open);
+      }else if(visible($('waiting')))enterWaiting(handed,t.open*.35);
+    };
+    if(nativeCurtain){
+      // These timelines were prepared at t=0 behind closed doors. Leaving them
+      // paused until reset removed their initial transforms in one visible frame.
+      // Start them with the native opening, just as with the web shutter.
+      enterIncoming(false);
+      nativeCommand('open',g).then(opened=>{if(g!==gen)return;if(opened)finish();else{cState='revealing';openDoors();}});return;
+    }
+    if(reduced()){
+      const fade=keep(play(curtain,[{opacity:1},{opacity:0}],{duration:240,easing:'ease',fill:'forwards'}));finished([fade],g,finish);return;
+    }
     const d=t.open;
-    keep(play(doorL,[{transform:'translateX(0)'},{transform:'translateX(-101%)'}],{duration:d,easing:t.out,fill:'forwards'}));
-    keep(play(doorR,[{transform:'translateX(0)'},{transform:'translateX(101%)'}],{duration:d,easing:t.out,fill:'forwards'}));
+    const left=keep(play(doorL,[{transform:'translateX(0)'},{transform:'translateX(-101%)'}],{duration:d,easing:t.out,fill:'forwards'}));
+    const right=keep(play(doorR,[{transform:'translateX(0)'},{transform:'translateX(101%)'}],{duration:d,easing:t.out,fill:'forwards'}));
     keep(play(halo,[{opacity:1},{opacity:0}],{duration:d*.6,easing:t.out,fill:'forwards'}));
     const eyebrow=curtain.querySelector(':scope>span');if(eyebrow)keep(play(eyebrow,[{opacity:1},{opacity:0}],{duration:160,fill:'forwards'}));
     // Only the doors move; don't re-rasterize the full incoming WebGL/blur surface.
@@ -153,9 +194,8 @@
     if(!handed)keep(play(heroShown,toLobby?[{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-10px) scale(1.04)'}]:[{opacity:1},{opacity:0}],{duration:toLobby?t.exit:160,easing:t.out,fill:'forwards'}));
     // Entrances are created now (hidden from the first opening frame) and delayed,
     // so nothing is seen, removed and shown again.
-    if(toLobby){enterMenuCharacters();if(preparedLobby.length){const ready=preparedLobby;preparedLobby=[];ready.forEach(a=>a.play());}else settleLobby(d);}
-    else if(visible($('waiting')))enterWaiting(handed,d*.35);
-    later(finish,d+20);
+    enterIncoming(handed);
+    finished([left,right],g,finish);
   }
   // The curtain wordmark flies into the waiting room's own wordmark (same artwork),
   // so the game's identity never blinks between the two screens.
@@ -172,7 +212,9 @@
     // Real wordmark stays invisible until the flying copy lands exactly on it. The
     // visible copy is game-logo-renderer's smoothed canvas when it exists.
     const painted=target.parentElement?.querySelector(':scope>.hp-smooth-game-logo:not([hidden])')||target;
-    play(painted,[{opacity:0},{opacity:0,offset:.97},{opacity:1}],{duration:d+10});
+    // The receiving mark must be fully visible when the actual doors finish.
+    // A longer target timeline left one dim frame after the flying copy hid.
+    keep(play(painted,[{opacity:0},{opacity:0,offset:.97},{opacity:1}],{duration:d}));
     return true;
   }
 
@@ -186,8 +228,6 @@
     const game=s.active?s.catalog?.find(g=>g.id===s.active.id):null;
     pending={render,state:s};committed=key;
     closeDoors(s.active?'game':'lobby',{gameId:game?.id||null,title:game?.title||''}).then(()=>{if(pending)commit();else if(cState==='closed'){cState='revealing';later(openWhenReady,openDelay());}});
-    // Watchdog: the state can never wait on a stalled animation.
-    const p=pending;setTimeout(()=>{if(pending===p)commit();},tokens().close+400);
     return true;
   }
   function commit(){
@@ -210,7 +250,7 @@
     if(cState==='closing'||cState==='closed'||cState==='revealing'){
       // The destination may have changed while the doors were closing (stop + relaunch).
       const toLobby=curtain.classList.contains('tvm-to-lobby');
-      if(gameId&&(toLobby||heroShown!==heroLogo)){curtain.classList.remove('tvm-to-lobby');const hero=setHero(gameId,title);keep(play(hero,[{opacity:0,scale:.94},{opacity:1,scale:1}],{duration:240,easing:tokens().out}));}
+      if(gameId&&(toLobby||heroGameId!==gameId||heroShown!==heroLogo)){curtain.classList.remove('tvm-to-lobby');const hero=setHero(gameId,title);keep(play(hero,[{opacity:0,scale:.94},{opacity:1,scale:1}],{duration:240,easing:tokens().out}));}
       else if(!gameId&&!toLobby&&!$('lobby').hidden){curtain.classList.add('tvm-to-lobby');heroShown=brand;keep(play(brand,[{opacity:0,scale:.94},{opacity:1,scale:1}],{duration:240,easing:tokens().out}));}
       if(cState==='closed'){cState='revealing';later(openWhenReady,openDelay());}
       return true;
