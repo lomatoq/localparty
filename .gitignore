@@ -13,6 +13,14 @@ tests/*.log
 data/
 .asset-tools/
 
+# Local audit artifacts: keep the written reports, not raw runs and diagnostics.
+docs/qa/backend-audit-2026-10-09/
+docs/qa/local-runtime-2026-10-09/
+docs/qa/load-2026-10-09/*
+!docs/qa/load-2026-10-09/*.md
+docs/qa/runtime-optimization-2026-10-09/*
+!docs/qa/runtime-optimization-2026-10-09/*.md
+
 # Local secrets, generated provenance and rejected artwork (keep runtime exports).
 .env
 .env.*

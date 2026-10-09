@@ -1,4 +1,6 @@
-> Актуальное приложение — **LocalParty**, версия **0.10.0 (13)**, проект `ios/LocalParty.xcodeproj`, bundle `com.localparty.launcher`. Старое «Local Party» с танчиками — другой проект. Результаты проверки сворачивания и её ограничения приведены в [VALIDATION.md](VALIDATION.md).
+> **Актуальность, 9 октября 2026:** сеть, runtime, версии и ограничения текущей `heypals/ux-polish` описаны в [аудите бэкенда и roadmap](../docs/backend-roadmap-2026-10-09.md). Инструкция ниже содержит исторические версии и число игр; текущий каталог — 36 игр. Номер установленной сборки этим документом не подтверждается.
+>
+> Историческая инструкция **LocalParty 0.10.0 (13)**: проект `ios/LocalParty.xcodeproj`, bundle `com.localparty.launcher`. Старое «Local Party» с танчиками — другой проект. Результаты проверки сворачивания и её ограничения приведены в [VALIDATION.md](VALIDATION.md).
 
 # Local Party на iPhone
 

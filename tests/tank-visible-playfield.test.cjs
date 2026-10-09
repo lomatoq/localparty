@@ -85,7 +85,7 @@ test('Arsenal rejects nonhost, invalid, stale and old-host updates; reconnect pr
 test('paused geometry publishes recovered authoritative positions without a game tick',()=>{
  engine('tanks').run(`
  runtime.paused=true;const received=[];
- const host={trustedHost:true,data:{},send(type,data){if(type==='state')received.push(data);}};
+ const host={trustedHost:true,data:{},send(type,data){if(type==='state')received.push(data);},sendEncoded(type,packet){this.send(type,JSON.parse(packet).data);}};
  clients.add(host);handleMessage(host,{type:'registerHost'});
  const client={id:'paused-phone',data:{},send(){}};handleMessage(client,{type:'join',data:{partyId:'paused-human'}});
  const p=players.get(client.data.playerId);p.x=640;p.y=130;received.length=0;

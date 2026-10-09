@@ -699,6 +699,7 @@ function wsFrame(text, opcode=1) {
   return Buffer.concat([head, payload]);
 }
 
+const {createSnapshotSender,socketAdapter}=require('../../lib/snapshot-sender'),delivery=createSnapshotSender({softLimit:256*1024});
 class WSClient {
   constructor(socket,req) {
     this.trustedHost=runtime.managed?req?.headers?.['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req?.socket?.remoteAddress);
@@ -707,16 +708,17 @@ class WSClient {
     this.data = {};
     this.buffer = Buffer.alloc(0);
     this.closed = false;
+    this.deliverySocket=socketAdapter(this,wsFrame);
     clients.add(this); clientsById.set(this.id, this);
     socket.on('data', chunk => this.onData(chunk));
     socket.on('close', () => this.onClose());
     socket.on('end', () => this.onClose());
     socket.on('error', () => this.onClose());
   }
-  send(type, data) {
-    if (this.closed || this.socket.destroyed) return;
-    if(type==='state'&&this.socket.writableLength>256*1024)return;
-    try { this.socket.write(wsFrame(JSON.stringify({ type, data }))); } catch {}
+  send(type, data) { this.sendEncoded(type,JSON.stringify({type,data})); }
+  sendEncoded(type,packet) {
+    if(type==='state'||type==='selfState')delivery.snapshot(this.deliverySocket,packet,type);
+    else delivery.event(this.deliverySocket,packet);
   }
   pong(payload) {
     if (!this.closed && !this.socket.destroyed) try { this.socket.write(wsFrame(payload, 0xA)); } catch {}
@@ -767,7 +769,8 @@ function broadcast(type, data) {
   for (const c of clients) c.send(type, data);
 }
 function broadcastHosts(type, data) {
-  for (const c of clients) if (c.data.isHost) c.send(type, data);
+  const packet=JSON.stringify({type,data});
+  for (const c of clients) if (c.data.isHost) c.sendEncoded(type,packet);
 }
 function sendTo(id, type, data) {
   clientsById.get(id)?.send(type, data);
@@ -885,7 +888,7 @@ runtime.setInterval(() => {
   if(game.status==='finished'&&!reported){reported=true;const ps=[...players.values()],best=Math.max(...ps.map(p=>p.roundWins));runtime.report({gameId:'tanks',eventId:matchId,duration:(Date.now()-matchStarted)/1000,...(game.mode==='ctf'?{ranking:{kind:'teams'}}:game.mode==='coop'?{ranking:{kind:'score'}}:{}),players:ps.map(p=>({id:p.partyId||p.id,name:p.name,score:p.score,...(game.mode==='ctf'?{team:p.team,teamScore:p.team==='red'?game.redScore:game.blueScore}:{}),won:game.mode==='survival'?p.roundWins===best:game.mode==='ctf'?(p.team==='red'?game.redScore>=game.blueScore:game.blueScore>=game.redScore):game.winnerText.includes('Команда победила'),metrics:{kills:p.kills,deaths:p.deaths,captures:p.captures,roundWins:p.roundWins}}))});}
   broadcastAcc += dt;
   if (broadcastAcc >= 1/30) {
-    broadcastAcc = 0;
+    broadcastAcc%=1/30;
     runtime.ui?.({phase:game.status==='lobby'?'waiting':game.status==='finished'?'results':game.status==='between'?'reveal':'playing',endsAt:game.timer>0&&game.status==='playing'?Date.now()+game.timer*1000:null,label:'До конца боя',progress:game.mode==='ctf'?`Флаги ${game.redScore} : ${game.blueScore}`:game.mode==='coop'?'Защищайте реактор':`Раунд ${game.round} / ${game.maxRounds}`});
     const state = snapshot();
     broadcastHosts('state', state);

@@ -1,5 +1,7 @@
 > **iPhone-сервер:** весь каталог можно запускать прямо на телефоне. Xcode-проект: `ios/LocalParty.xcodeproj`. [Установка, фон и проверки](ios/README.md).
 
+> **Бэкенд и сеть, 9 октября 2026:** [актуальный аудит и roadmap](docs/backend-roadmap-2026-10-09.md) для `heypals/ux-polish`: 36 игр / 20 серверных семейств, локальный iPhone runtime, статус интернет-комнат и свежие сетевые проверки. Версии и количество игр в инструкции ниже относятся к прежнему portable-релизу.
+
 # Local Party
 
 **Version 0.6.2** · 26 games · One shared screen, phones as controllers

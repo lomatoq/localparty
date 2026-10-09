@@ -6,12 +6,13 @@ const app=express(),server=http.createServer(app),wss=new WebSocketServer({serve
 app.get('/host',(_,res)=>res.sendFile(__dirname+'/public/index.html'));app.use(express.static(__dirname+'/public'));
 let game=null,eventId='',reported=false,started=0;const max=mode==='mines'?16:8;
 const colors=['#c4ff71','#bd9bff','#77e0ff','#ff9bab','#ffd780','#7bffc5','#edb5ff','#b7bfff'];
-const send=(ws,type,data)=>{if(ws.readyState===1&&ws.bufferedAmount<128*1024)ws.send(JSON.stringify({type,data}));};
+const delivery=require('../../lib/snapshot-sender').createSnapshotSender();
+const send=(ws,type,data)=>type==='state'?delivery.snapshot(ws,JSON.stringify({type,data})):delivery.event(ws,{type,data});
 function snapshot(id){const out={mode,phase:game?.phase||'waiting',...(game?game.view(id):{players:[...players.values()].map(p=>({id:p.id,name:p.name,color:p.color,connected:p.connected,score:0}))})};if(id){if(mode==='mines')delete out.cells;if(mode==='airhockey')delete out.puck;}return out;}
-function broadcast(){for(const ws of wss.clients)if(ws.host||ws.pid)send(ws,'state',snapshot(ws.host?null:ws.pid));}
+function broadcast(){let display,controller;for(const ws of wss.clients){if(!ws.host&&!ws.pid)continue;if(mode==='poker'){send(ws,'state',snapshot(ws.host?null:ws.pid));continue;}if(ws.host){display??=JSON.stringify({type:'state',data:snapshot(null)});delivery.snapshot(ws,display);}else{controller??=JSON.stringify({type:'state',data:snapshot(ws.pid)});delivery.snapshot(ws,controller);}}}
 function start(){const roster=[...players.values()].filter(p=>p.connected);if(game?.phase==='playing')return false;if(roster.length<2||roster.length>max)return {ok:false,error:'Connect at least two players.'};if(mode==='airhockey'&&roster.length%2)return {ok:false,error:'Air hockey needs an even number of players.'};game=new engines[mode](roster);eventId=crypto.randomUUID();reported=false;started=Date.now();broadcast();return true;}
-wss.on('connection',(ws,req)=>{let tokens=90,last=Date.now();ws.on('message',raw=>{
- const now=Date.now();tokens=Math.min(90,tokens+(now-last)*.06);last=now;if(--tokens<0)return ws.close(1008,'Rate limit');let m;try{m=JSON.parse(raw);}catch{return;}if(!m||typeof m!=='object')return;const d=m.data&&typeof m.data==='object'?m.data:{};
+wss.on('connection',(ws,req)=>{let tokens=90,last=performance.now();ws.on('message',raw=>{
+ const now=performance.now();tokens=Math.min(90,tokens+(now-last)*.06);last=now;if(--tokens<0)return ws.close(1008,'Rate limit');let m;try{m=JSON.parse(raw);}catch{return;}if(!m||typeof m!=='object')return;const d=m.data&&typeof m.data==='object'?m.data:{};
  if(m.type==='host'){const local=runtime.managed?req.headers['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);if(local){ws.host=true;send(ws,'state',snapshot(null));}return;}
  if(m.type==='join'){
   let identity=runtime.identify(d,ws);if(runtime.managed&&!identity)return send(ws,'error','Join from the LocalParty menu.');
@@ -21,7 +22,7 @@ wss.on('connection',(ws,req)=>{let tokens=90,last=Date.now();ws.on('message',raw
  }
  if(m.type==='start'&&ws.host&&!runtime.displayOnly){const result=start();if(result!==true)send(ws,'error',result.error||'Cannot start yet.');return;}
  const p=players.get(ws.pid);if(!p||p.ws!==ws||!game||runtime.paused)return;
- if(m.type==='action'&&game.phase==='playing'){const value=mode==='poker'?d.amount:mode==='mines'?(d.action==='select'?d.direction:d.index):d;if(game.action(p.id,d.action,value))broadcast();}
+ if(m.type==='action'&&game.phase==='playing'){const value=mode==='poker'?d.amount:mode==='mines'?(d.action==='select'?d.direction:d.index):d;if(game.action(p.id,d.action,value)&&mode!=='airhockey')broadcast();}
  });ws.on('close',()=>{const p=players.get(ws.pid);if(p?.ws===ws){p.connected=false;if(p.target)p.target={x:p.x,y:p.y};runtime.presence(p.id,false);broadcast();}});
 });
 runtime.onPause(()=>{for(const p of players.values())if(p.target){p.target={x:p.x,y:p.y};p.axis=null;}});
@@ -29,6 +30,6 @@ runtime.host({start});let last=Date.now(),elapsed=0;
 runtime.setInterval(()=>{const now=Date.now(),dt=Math.min(.05,(now-last)/1000);last=now;if(game?.phase==='playing')game.step(dt);
  if(game?.phase==='results'&&!reported){reported=true;const ps=game.view(null).players,best=Math.max(...ps.map(p=>p.score));runtime.report({gameId:mode,eventId,duration:(Date.now()-started)/1000,ranking:{kind:mode==='airhockey'?'teams':'score'},players:ps.map(p=>({id:p.id,name:p.name,score:p.score,...(mode==='airhockey'?{team:p.team,teamScore:p.score}:{}),won:p.score===best}))});}
  const remaining=game?.phase==='playing'?Math.max(0,(mode==='poker'?game.deadline:mode==='mines'?180:120)-game.t):null;
- runtime.ui({phase:game?.phase||'waiting',endsAt:remaining===null?null:Date.now()+remaining*1000,label:mode==='poker'?'Poker Night':mode==='mines'?'Mine Together':'Air Hockey',progress:mode==='poker'&&game?`${game.hand} / 5`:''});elapsed+=dt;if(elapsed>=(mode==='airhockey'?.05:.2)){elapsed=0;broadcast();}
+ runtime.ui({phase:game?.phase||'waiting',endsAt:remaining===null?null:Date.now()+remaining*1000,label:mode==='poker'?'Poker Night':mode==='mines'?'Mine Together':'Air Hockey',progress:mode==='poker'&&game?`${game.hand} / 5`:''});elapsed+=dt;if(elapsed>=(mode==='airhockey'?.05:.2)){elapsed%=mode==='airhockey'?.05:.2;broadcast();}
 },16);
 server.listen(Number(process.env.PORT||0),runtime.managed?'127.0.0.1':'0.0.0.0',()=>{console.log('Tabletop '+mode+' port '+server.address().port);process.send?.({type:'ready',port:server.address().port});});
