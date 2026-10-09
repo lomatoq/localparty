@@ -855,11 +855,14 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         guard menuReady, deliveryFailures <= 5, let model else { return }
         guard !payloadInFlight else { publishAgain = true; return }
         var value: [String: Any] = ["catalog": [], "players": [], "leaderboard": [], "votes": []]
-        if let state = model.state, let data = try? JSONEncoder().encode(state), let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] { value = object }
+        var stateDictionaryReady = false
+        if let state = model.state, let data = try? JSONEncoder().encode(state), let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] { value = object; stateDictionaryReady = true }
         let liveGames = model.state?.catalog ?? []
         if !liveGames.isEmpty { lastGoodCatalog = liveGames }
         else if !model.catalog.isEmpty { lastGoodCatalog = model.catalog }
-        if let data = try? JSONEncoder().encode(lastGoodCatalog), let games = try? JSONSerialization.jsonObject(with: data) { value["catalog"] = games }
+        if !stateDictionaryReady || liveGames.isEmpty {
+            if let data = try? JSONEncoder().encode(lastGoodCatalog), let games = try? JSONSerialization.jsonObject(with: data) { value["catalog"] = games }
+        }
         let validCatalog = !liveGames.isEmpty
         let issue = model.ready && !validCatalog ? "Сервер не вернул каталог. Игры из приложения сохранены; запуск временно недоступен." : (lastGoodCatalog.isEmpty ? catalogError : "")
         if qrAddress != model.address { qrAddress = model.address; qrData = makeQR(qrAddress) }
