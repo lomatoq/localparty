@@ -8,7 +8,7 @@
   "totals": {
     "publicAssetFiles": 885,
     "games": 20,
-    "gameFiles": 836
+    "gameFiles": 837
   },
   "publicAssets": [
     {
@@ -6647,6 +6647,10 @@
         },
         {
           "file": "games/sports_siege/public/scene-curling.js",
+          "role": "module"
+        },
+        {
+          "file": "games/sports_siege/public/scene-readiness.js",
           "role": "module"
         },
         {

@@ -727,12 +727,14 @@ export class CurlingScene {
     const live = [...positions.values()], h = this.house, deg = Math.PI / 180;
     let shot, speed = 2.1; this.houseView = false;
     const lastStone = (s.throwIndex || 0) >= (s.throwCount || 0) - 1;
-    if (s.phase === 'results' || s.stage === 'end' || (s.stage === 'reveal' && lastStone)) {
+    // A choreographed shot replaces the fallback; do not fit that discarded camera.
+    const directed = (s.phase === 'playing' && s.stage !== 'end') ? this.feel?.shot(s, active, positions, {lastStone, live}) : null;
+    if (!directed && (s.phase === 'results' || s.stage === 'end' || (s.stage === 'reveal' && lastStone))) {
       // Readable diagonal top view over the house: all scoring candidates in frame.
       const near = live.filter(p => Math.hypot(p.x - h.x, p.z - h.z) <= 6.5);
       const drift = this.reduced ? 0 : Math.sin(this.clock * .32) * 5 * deg;
       shot = this.fit(this.housePoints(near), 58 * deg, 12 * deg + drift, {x: .86, top: .66, bottom: -.84}); speed = 1.7; this.houseView = true;
-    } else if ((s.stage === 'rolling' || s.stage === 'reveal') && active && positions.has(active.id)) {
+    } else if (!directed && (s.stage === 'rolling' || s.stage === 'reveal') && active && positions.has(active.id)) {
       // Look ahead at most ~9 m: a close chase early, the contact/stop area as the stone slows.
       const p = positions.get(active.id), v = this.velocity(active.id), sp = Math.hypot(v.vx, v.vz), reach = Math.min(9, sp * sp / (2 * FRICTION));
       const ux = sp > .05 ? v.vx / sp : 0, uz = sp > .05 ? v.vz / sp : -1;
@@ -752,7 +754,6 @@ export class CurlingScene {
       else {shot = this.fit(pts, pitch, yaw, {x: .88, top: .7, bottom: -.86}); speed = 2.4;}
     }
     // Choreographed chase / crane / measure shots (curling-feel.js); default framing otherwise.
-    const directed = (s.phase === 'playing' && s.stage !== 'end') ? this.feel?.shot(s, active, positions, {lastStone, live}) : null;
     if (directed) {shot = directed.shot; speed = directed.speed; this.houseView = directed.houseView;}
     else if (!shot) {
       // Aim: release stone, the full sheet width at the release line and the house with any guards.

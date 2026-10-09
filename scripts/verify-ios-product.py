@@ -33,11 +33,14 @@ MATCH_FILES = (
     'public/game-feel-state.js', 'public/game-feel.js', 'public/game-feel.css',
     'public/motion.js', 'public/motion.css',
     'public/app-ux-20261005.js', 'public/app-ux-20261005.css',
+    'public/host-pick-art172.css',
     'public/tv-motion-20261005.js', 'public/tv-motion-20261005.css',
     'public/game-ui-system.js', 'public/game-ui-system.css',
     'public/game-ui-polish-20261004.css',
     'games/bow_club/public/phone.js', 'games/bow_club/public/src/camera-policy.mjs',
     'games/bow_club/public/src/camera-preview.mjs',
+    'games/sports_siege/server.js', 'games/sports_siege/public/host.js',
+    'games/sports_siege/public/scene-readiness.js', 'games/sports_siege/public/scene-curling.js',
 )
 
 

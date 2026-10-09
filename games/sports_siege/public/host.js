@@ -1,3 +1,4 @@
+import {trackInitialSceneAssets,prepareInitialScene} from './scene-readiness.js';
 import {eventNotice} from './notice-copy.js';
 import * as THREE from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
@@ -138,12 +139,16 @@ class Stage {
     if(['bowling','curling'].includes(mode)){const rim=new THREE.PointLight(mode==='bowling'?'#c878ff':'#67f2ff',22,34,1.7);rim.position.set(0,7,-12);this.scene.add(rim);}
     this.materials=new Map();this.assetTextures=new Map();this.environmentModels=new Map();this.gltfLoader=new GLTFLoader();this.dynamic=new Map();this.crosshairs=new Map();this.turrets=new Map();this.popups=[];this.smoothBots=new Map();this.identityBubbles=[];
     this.unit=new THREE.Object3D();this.v=new THREE.Vector3();this.yAxis=new THREE.Vector3(0,1,0);this.clock=0;this.last=performance.now();this.cameraMode='wide';
-    this.staticScene();this.makePools();this.resize();window.addEventListener('resize',()=>this.resize(true));document.fonts?.ready.then(()=>this.resize(true));
+    const initialAssets=trackInitialSceneAssets(THREE.DefaultLoadingManager),initialStaticAt=performance.now();
+    try{
+    this.staticScene();this.makePools();this.resize();
+    }catch(error){initialAssets.release();throw error;}
+    const initialStaticCPU={start:initialStaticAt,end:performance.now()};window.addEventListener('resize',()=>this.resize(true));document.fonts?.ready.then(()=>this.resize(true));
     this.loop=this.loop.bind(this);window.addEventListener('pagehide',e=>{if(!e.persisted)this.dispose();});
     // Compile in parallel before the first drawn frame. Synchronous first-use
     // shader linking otherwise freezes the TV shell while its doors are moving.
     document.body.dataset.shaderWarmup='pending';
-    const warmup=this.renderer.compileAsync?.(this.scene,this.camera)||Promise.resolve();
+    const warmup=prepareInitialScene(this,initialAssets,initialStaticCPU,{diagnostics:document.documentElement.hasAttribute('data-scene-readiness-qa')});
     Promise.resolve(warmup).catch(error=>console.warn('Scene shader warmup:',error)).finally(()=>{
       if(this.disposed)return;document.body.dataset.shaderWarmup='ready';this.last=performance.now();this.raf=requestAnimationFrame(this.loop);
     });
@@ -503,7 +508,7 @@ class Stage {
     if(this.camera.isOrthographicCamera)for(const bubble of this.identityBubbles){const height=24*scale*(this.camera.top-this.camera.bottom)/h;bubble.scale.set(height*1.5,height,1);}
   }
   dispose(){if(this.disposed)return;this.disposed=true;cancelAnimationFrame(this.raf);this.renderer.dispose();this.renderer.forceContextLoss();}
-  loop(now){if(this.disposed)return;if(document.hidden||this.state?.phase==='waiting'){this.last=now;this.raf=requestAnimationFrame(this.loop);return;}if(now-this.last<(this.software?1000/15:1000/60)-1){this.raf=requestAnimationFrame(this.loop);return;}let dt=Math.min(.1,(now-this.last)/1000);this.last=now;if(this.hitStop&&now>=this.hitStop.at&&now<this.hitStop.until)dt=0;this.clock+=dt;
+  loop(now){if(this.disposed)return;if(document.hidden||!this.state||this.state.phase==='waiting'){this.last=now;this.raf=requestAnimationFrame(this.loop);return;}if(now-this.last<(this.software?1000/15:1000/60)-1){this.raf=requestAnimationFrame(this.loop);return;}let dt=Math.min(.1,(now-this.last)/1000);this.last=now;if(this.hitStop&&now>=this.hitStop.at&&now<this.hitStop.until)dt=0;this.clock+=dt;
     if(this.state)this.updateObjects(this.state,dt);this.updateEffects();this.applyShake(now);this.renderer.render(this.scene,this.camera);
     if(mode==='swarm_gate'&&$('ss-notice').classList.contains('show')){const cap=topHUD.getBoundingClientRect(),after=getComputedStyle(topHUD,'::after'),lower=parseFloat(after.bottom)||0;$('ss-notice').style.top=(cap.bottom+Math.max(0,-lower)+12*clamp(innerWidth/1280,.55,1.5))+'px';}
     if(now>noticeUntil)$('ss-notice').classList.remove('show');this.raf=requestAnimationFrame(this.loop);

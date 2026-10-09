@@ -113,3 +113,8 @@ html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable #choiceStart::befo
 html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable #choiceStart::after{opacity:0!important}
 @media(prefers-reduced-motion:reduce){html.hp-ui body.native-shell #choiceStrip #choiceStart{transform:none!important;transition:color 160ms var(--ux-ease-out)!important}html.hp-ui body.native-shell #choiceStrip #choiceStart::after{animation:none!important}}
 html[data-party-native-hidden] body.native-shell #choiceStrip :is(#choiceStart,.hp-pick-idle-face,.hp-pick-flow,.hp-pick-glare),html[data-party-native-hidden] body.native-shell #choiceStrip::after,html[data-party-native-hidden] body.native-shell #choiceStrip #choiceStart::before,html[data-party-native-hidden] body.native-shell #choiceStrip #choiceStart::after,html[data-party-native-hidden] body.native-shell #choiceStrip>.lp-cta-stroke::after{transition:none!important}
+/* The two-ID animation shorthand above also sets play-state. Keep the shared
+   visibility request authoritative without restarting the existing rim phase. */
+html.hp-ui body.native-shell #choiceStrip #choiceStart::after{animation-play-state:var(--hp-cta-play,paused)!important}
+html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable #choiceStart::after,html.hp-ui body.native-shell #choiceStrip #choiceStart:disabled::after{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){html.hp-ui body.native-shell #choiceStrip #choiceStart::after{animation-play-state:paused!important}}

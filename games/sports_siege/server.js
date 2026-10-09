@@ -23,6 +23,7 @@ const server=http.createServer((req,res)=>{
     '/curling-feel.js':'curling-feel.js',
     '/spectator-seat.js':'spectator-seat.js','/spectator-crowd.js':'spectator-crowd.js','/notice-copy.js':'notice-copy.js','/scene-bowling.js':'scene-bowling.js','/bowling-extras.js':'bowling-extras.js','/controls.js':'controls.js','/host.js':'host.js','/scene-curling.js':'scene-curling.js','/curling-extras.js':'curling-extras.js','/net.js':'net.js','/style.css':'style.css','/sports-controls.css':'sports-controls.css'};
   allowed['/bowling-alley.js']='bowling-alley.js';
+  allowed['/scene-readiness.js']='scene-readiness.js';
   allowed['/bowling-feel.js']='bowling-feel.js';
   allowed['/bowling-deck.js']='bowling-deck.js';
   allowed['/swarm-fx.js']='swarm-fx.js';

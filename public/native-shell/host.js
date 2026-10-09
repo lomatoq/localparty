@@ -107,16 +107,26 @@
   // motion.js owns every dialog exit, including swaps and rapid reopen. The
   // Sheets overlay the existing deck without collapsing or rebuilding it.
   function show(id) { closeBotPrompt();const opener=document.activeElement;for(const other of dialogs)if(other!==id&&$(other).open)$(other).close();const d=$(id);if(!d.open||d.classList.contains('lp-dialog-closing')){openers[id]=opener;d.showModal();holdEntranceUntilPainted(d);} }
-  // The first paint of a sheet (artwork decode, backdrop blur) can take longer than its
-  // 180 ms entrance, which then looked like a one-frame pop. Hold the entrance at its
-  // first keyframe until a frame has actually been presented, then play all of it.
+  // Preserve the native first-entry hold. Shared motion owns a resumed live pose.
+  const entranceHolds=new WeakMap();
   function holdEntranceUntilPainted(d) {
-    const entrance = d.getAnimations({subtree: true}).filter(a => a.playState === 'running');
-    if (!entrance.length) return;
-    // 1 ms in, not 0: WebKit skips painting a fully transparent layer, which would
-    // push the expensive first paint back into the running animation.
-    entrance.forEach(a => { a.pause(); a.currentTime = 1; });
-    requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(() => entrance.forEach(a => { if (d.open && a.playState === 'paused') a.play(); }))));
+    const previous=entranceHolds.get(d),record={generation:(previous?.generation||0)+1,animations:[]};entranceHolds.set(d,record);
+    // A reversal can inherit child effects paused by the previous entrance.
+    // Release that owned hold without rewinding the new shared-motion clock.
+    if(previous?.animations.length){
+      const live=new Set(d.getAnimations({subtree:true}));
+      previous.animations.forEach(a=>{if(live.has(a)&&a.playState==='paused')a.play();});
+    }
+    if(d.classList.contains('lp-dialog-resumed'))return;
+    const entrance=d.getAnimations({subtree:true}).filter(a=>a.playState==='running');
+    if(!entrance.length)return;record.animations=entrance;
+    entrance.forEach(a=>{a.pause();a.currentTime=1;});
+    // Preserve the existing first-entry clock. Rendering opportunities do not
+    // prove a GPU frame was presented. A newer show owns its animation clock.
+    requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      if(entranceHolds.get(d)!==record)return;
+      entrance.forEach(a=>{if(d.open&&a.playState==='paused')a.play();});record.animations=[];
+    })));
   }
   function close(id) {
     if(id==='hostPanel'&&document.body.classList.contains('native-host-tab')){window.LocalPartyTabs?.select('games');return;}
