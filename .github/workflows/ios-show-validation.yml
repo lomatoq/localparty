@@ -1,7 +1,7 @@
 name: iOS show and UI regressions
 on:
   push:
-    branches: ['codex/ios-unified-host-20260917']
+    branches: ['main']
     paths: ['public/**', 'lib/**', 'server.js', 'ios/**', 'tests/**', 'scripts/**', '.github/workflows/ios-show-validation.yml']
   workflow_dispatch:
 permissions:

@@ -1,7 +1,7 @@
 name: Alpha sports and siege
 on:
   push:
-    branches: ['alpha/sports-siege-swipe']
+    branches: ['main']
   pull_request:
     paths: ['games/sports_siege/**', 'lib/update*', 'lib/catalog.js', 'public/updates.*', 'tests/alpha*', 'tests/sports-siege.test.js', 'server.js']
   workflow_dispatch:
