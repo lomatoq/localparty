@@ -24,13 +24,24 @@
   const group=input.closest('[data-hp-input-group]')||input;
   const action=group.querySelector?.('[data-hp-input-action]');
   const bottom=top+height-12,readTop=top+12;
-  for(let n=group.parentElement;n&&n!==body;n=n.parentElement){
+  for(let n=group;n&&n!==body;n=n.parentElement){
    const style=getComputedStyle(n);if(!/(auto|scroll)/.test(style.overflowY)||n.scrollHeight<=n.clientHeight+1)continue;
    const area=n.getBoundingClientRect(),r=group.getBoundingClientRect(),a=action?.getBoundingClientRect();
    const lo=Math.max(readTop,area.top+6),hi=Math.min(bottom,area.bottom-6);
    const groupTop=Math.min(r.top,a?.top??r.top),groupBottom=Math.max(r.bottom,a?.bottom??r.bottom);
    let delta=groupBottom>hi?groupBottom-hi:groupTop<lo?groupTop-lo:0;
-   if(groupBottom-groupTop>hi-lo){const field=input.getBoundingClientRect();delta=field.bottom>hi?field.bottom-hi:field.top<lo?field.top-lo:0;}
+   if(groupBottom-groupTop>hi-lo){
+    const field=input.getBoundingClientRect();
+    const pairTop=Math.min(field.top,a?.top??field.top),pairBottom=Math.max(field.bottom,a?.bottom??field.bottom);
+    const edgeTop=Math.max(readTop,area.top),edgeBottom=Math.min(bottom,area.bottom);
+    // A long form can include headings above its field and action. Fit that
+    // editing pair through its own scrollport, keeping padding when it fits.
+    if(pairBottom-pairTop<=edgeBottom-edgeTop){
+     const pad=Math.min(6,Math.max(0,(edgeBottom-edgeTop-(pairBottom-pairTop))/2));
+     const pairLo=edgeTop+pad,pairHi=edgeBottom-pad;
+     delta=pairBottom>pairHi?pairBottom-pairHi:pairTop<pairLo?pairTop-pairLo:0;
+    }else delta=field.bottom>hi?field.bottom-hi:field.top<lo?field.top-lo:0;
+   }
    if(Math.abs(delta)>1)n.scrollTop+=delta;
   }
   const r=input.getBoundingClientRect();if(!panel&&(r.bottom>bottom||r.top<readTop))window.scrollBy({top:r.bottom>bottom?r.bottom-bottom:r.top-readTop,behavior:'instant'});

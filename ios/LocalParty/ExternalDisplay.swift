@@ -54,13 +54,23 @@ import AVFAudio
     }
 }
 
+// Share the same immutable bundled images across loading views and repeated
+// shutters. UIImage(contentsOfFile:) does not cache repeated file loads.
+@MainActor private enum PartyTVArtwork {
+    static let hero = load("heypals-hero")
+    static let logo = load("heypals-logo")
+    private static func load(_ name: String) -> UIImage? {
+        guard let url = Bundle.main.url(forResource: name, withExtension: "png", subdirectory: "Server/public/assets/branding") else { return nil }
+        return UIImage(contentsOfFile: url.path)
+    }
+}
+
 private struct PartyTVLoadingBackdrop: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 Color(red: 0.03, green: 0.04, blue: 0.07)
-                if let url = Bundle.main.url(forResource: "heypals-hero", withExtension: "png", subdirectory: "Server/public/assets/branding"),
-                   let artwork = UIImage(contentsOfFile: url.path) {
+                if let artwork = PartyTVArtwork.hero {
                     Image(uiImage: artwork).resizable().scaledToFill()
                         .frame(width: geometry.size.width + 48, height: geometry.size.height + 48)
                         .blur(radius: 14).position(x: geometry.size.width / 2, y: geometry.size.height / 2)
@@ -73,8 +83,7 @@ private struct PartyTVLoadingBackdrop: View {
 
 private struct PartyTVLoadingLogo: View {
     var body: some View {
-        if let url = Bundle.main.url(forResource: "heypals-logo", withExtension: "png", subdirectory: "Server/public/assets/branding"),
-           let logo = UIImage(contentsOfFile: url.path) {
+        if let logo = PartyTVArtwork.logo {
             Image(uiImage: logo).resizable().scaledToFit().frame(width: 420, height: 187).accessibilityLabel("HeyPals")
         } else {
             Text("HeyPals").font(.system(size: 56, weight: .bold))
@@ -164,6 +173,8 @@ private struct PartyTVContent: View {
         webView.backgroundColor = .black
         webView.scrollView.backgroundColor = .black
         webView.scrollView.contentInsetAdjustmentBehavior = .never
+        webView.scrollView.showsVerticalScrollIndicator = false
+        webView.scrollView.showsHorizontalScrollIndicator = false
         webView.scrollView.isScrollEnabled = false
         webView.isUserInteractionEnabled = false
     }
@@ -312,7 +323,7 @@ private struct PartyTVWebView: UIViewRepresentable {
         super.init(frame: frame)
         isUserInteractionEnabled = false
         for panel in [left, right] { panel.fillColor = UIColor(red: 0.025, green: 0.02, blue: 0.04, alpha: 1).cgColor; layer.addSublayer(panel) }
-        if let url = Bundle.main.url(forResource: "heypals-logo", withExtension: "png", subdirectory: "Server/public/assets/branding") { logo.image = UIImage(contentsOfFile: url.path) }
+        logo.image = PartyTVArtwork.logo
         logo.contentMode = .scaleAspectFit; addSubview(logo)
         if initiallyOpen {
             targetOpen = true

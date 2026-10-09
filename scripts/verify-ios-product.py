@@ -21,6 +21,7 @@ POCKET_FILES = (
     'public/pocket-deck.js', 'public/pocket-deck.css',
     'public/render.js', 'public/air-defense-render.js',
     'public/explosion-timeline.js', 'public/explosion-waves.js', 'public/siege-fx.js',
+    'public/pocket-plasma.js', 'public/assets/pocket-materials.json',
     'public/pocket-projectiles.js', 'public/assets/pocket-projectiles.json',
 )
 MATCH_FILES = (
@@ -36,6 +37,7 @@ MATCH_FILES = (
     'public/host-pick-art172.css',
     'public/tv-motion-20261005.js', 'public/tv-motion-20261005.css',
     'public/game-ui-system.js', 'public/game-ui-system.css',
+    'public/input-viewport.js',
     'public/game-ui-polish-20261004.css',
     'games/bow_club/public/phone.js', 'games/bow_club/public/src/camera-policy.mjs',
     'games/bow_club/public/src/camera-preview.mjs',
