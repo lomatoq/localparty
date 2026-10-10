@@ -29,7 +29,7 @@
   for(let i=0;i<100;i++){try{const r=await fetch('/host',{cache:'no-store'}),text=await r.text();const key=/PARTY_HOST_KEY="([a-f0-9]+)"/.exec(text)?.[1];if(r.ok&&key&&key!==before){location.reload();return;}}catch{}await new Promise(r=>setTimeout(r,1000));}
   $('status').textContent='Автоподключение не удалось. Запустите START_WINDOWS.bat / START_MAC.command. Журнал — ~/.localparty-updates.';restartLoop=false;
  }
- button.onclick=()=>{dialog.showModal();refresh();};dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+ button.onclick=()=>{dialog.showModal();refresh();};
  $('confirm').onchange=sync;
  dialog.querySelectorAll('input[name="lp-channel"]').forEach(r=>r.onchange=()=>{candidate=null;$('warning').textContent=r.value==='alpha'?'Экспериментальная версия: четыре новые игры. Сохраняется резервная копия.':'Стабильный релиз может не содержать alpha-игры и кнопку обновления. Профили сохраняются.';sync();});
  $('check').onclick=async()=>{working=true;candidate=null;sync();$('status').textContent='Проверяем GitHub…';try{show(await request('/check',{channel:dialog.querySelector('input[name="lp-channel"]:checked').value}));}catch(e){$('status').textContent=e.message;}finally{working=false;sync();}};

@@ -118,3 +118,20 @@ html[data-party-native-hidden] body.native-shell #choiceStrip :is(#choiceStart,.
 html.hp-ui body.native-shell #choiceStrip #choiceStart::after{animation-play-state:var(--hp-cta-play,paused)!important}
 html.hp-ui body.native-shell #choiceStrip.hp-pick-unavailable #choiceStart::after,html.hp-ui body.native-shell #choiceStrip #choiceStart:disabled::after{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){html.hp-ui body.native-shell #choiceStrip #choiceStart::after{animation-play-state:paused!important}}
+
+/* A compact running panel keeps its authored 48px medallion and illustration.
+   Reserve the same grid column so the art cannot overlap its title. */
+html body.native-shell #activeCard.is-compact:not(.is-expanded) .native-run-copy{grid-template-columns:48px minmax(0,1fr)}
+html body.native-shell #activeCard.is-compact:not(.is-expanded) .native-run-art{width:48px;height:48px}
+html body.native-shell #activeCard.is-compact:not(.is-expanded) .native-run-art .native-run-dot{width:8px;height:8px}
+/* Short phones keep the complete game title above the existing Controller action.
+   The illustration and More control remain centred beside that compact group. */
+@media(max-width:359px){
+ html body.native-shell #activeCard.is-compact:not(.is-expanded){grid-template-columns:48px minmax(0,1fr) 44px;gap:4px 9px;padding:8px 12px}
+ html body.native-shell #activeCard.is-compact:not(.is-expanded) .native-run-copy{display:contents}
+ html body.native-shell #activeCard.is-compact:not(.is-expanded) .native-run-art{grid-column:1;grid-row:1/3}
+ html body.native-shell #activeCard.is-compact:not(.is-expanded) #activeTitle{grid-column:2;grid-row:1;display:block;white-space:normal;overflow:visible;overflow-wrap:anywhere;max-height:none;text-align:left}
+ html body.native-shell #activeCard.is-compact:not(.is-expanded) #activeMore{grid-column:3;grid-row:1/3}
+ html body.native-shell #activeCard.is-compact:not(.is-expanded) #activeActions #activeController{grid-column:2;grid-row:2;justify-self:start}
+ html body.native-shell #activeCard.is-results.is-compact:not(.is-expanded) #activeActions #activeRematch{grid-row:3}
+}

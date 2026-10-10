@@ -53,7 +53,7 @@ html body.native-shell,html body.native-controller{--ux-sheet-bottom:calc(var(--
  /* Exit continues downward from wherever the sheet is (including a drag offset).
     Finishes inside motion.js's 190 ms close window. */
  html body dialog:is(#gameDetail,#rulesDialog,#statsDialog,#roomDialog).ux-sheet[open].lp-dialog-closing{
-  animation:ux-sheet-out 180ms var(--ux-exit) both!important;
+  animation:lp-sheet-dismiss 180ms var(--ux-ease-out) both!important;
   transform-origin:50% 100%!important;
  }
  html body dialog.ux-sheet[open]::backdrop{animation:ux-backdrop-in 320ms var(--ux-ease-out) both}
@@ -71,7 +71,6 @@ html body.native-shell,html body.native-controller{--ux-sheet-bottom:calc(var(--
 html body dialog.ux-sheet>.ux-grabber{display:none}
 @media (max-width:640px){html body dialog.ux-sheet>.ux-grabber{display:block}}
 @keyframes ux-sheet-in{from{translate:0 calc(100% + 40px)}to{translate:0 0}}
-@keyframes ux-sheet-out{from{translate:var(--lp-close-translate,0 0);opacity:1;scale:1}to{translate:0 calc(100% + 40px);opacity:1;scale:1}}
 @keyframes ux-backdrop-in{from{opacity:0}to{opacity:1}}
 @keyframes ux-fade-in{from{opacity:0}to{opacity:1}}
 @media (max-width:640px) and (prefers-reduced-motion:reduce){
@@ -370,9 +369,9 @@ html body #rulesDialog .hp-popup-actions{padding:0!important;background:none!imp
   padding-bottom:var(--popup-footer-clearance)!important;transform-origin:50% 100%!important;
  }
  html body dialog:is(#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open]:not(.lp-dialog-closing){animation:ux-sheet-in var(--ux-sheet-in-ms) var(--ux-spring-sheet) backwards!important}
- html body dialog:is(#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open].lp-dialog-closing{animation:ux-sheet-out 180ms var(--ux-exit) both!important}
+ html body dialog:is(#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open].lp-dialog-closing{animation:lp-sheet-dismiss 180ms var(--ux-ease-out) both!important}
  html body dialog:is(#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel).ux-sheet[open].lp-dialog-resumed:not(.lp-dialog-closing){animation:none!important}
- html body.native-host-tab #hostPanel.ux-sheet[open]{inset:0!important;border-radius:0!important;padding-bottom:calc(var(--native-tab-reserve) + 36px)!important;animation:none!important}
+ html body.native-host-tab #hostPanel.ux-sheet[open]:not(:modal){inset:0!important;border-radius:0!important;padding-bottom:calc(var(--native-tab-reserve) + 36px)!important;animation:none!important}
 }
 html body dialog:is(#rulesDialog,#statsDialog,#roomDialog,#gameDetail,#joinDialog,#catalogDialog,#nearbyDialog,#hostPanel,#confirmDialog,#confirmStop)>:is(h2,.native-sheet-head){text-align:center;justify-content:center;position:relative;isolation:isolate;background:transparent!important;align-items:center}
 html body dialog .native-sheet-head h2{width:100%;text-align:center!important;margin:0!important}
@@ -401,7 +400,7 @@ html body .lp-updates-dialog h2{text-align:center;font-size:clamp(22px,6.65vw,28
 @media(max-width:640px){
  html body dialog.lp-updates-dialog[open]{inset:auto 0 -28px!important;margin:0!important;width:100%!important;max-width:none;max-height:calc(100dvh - env(safe-area-inset-top,0px) + 12px);border-radius:28px 28px 0 0;padding:24px 20px var(--popup-footer-clearance)!important}
  html body dialog.lp-updates-dialog[open]:not(.lp-dialog-closing){animation:ux-sheet-in var(--ux-sheet-in-ms) var(--ux-spring-sheet) backwards!important}
- html body dialog.lp-updates-dialog.lp-dialog-closing{animation:ux-sheet-out 180ms var(--ux-exit) both!important}
+ html body dialog.lp-updates-dialog[open].lp-dialog-closing.sheet-closing{animation:lp-sheet-dismiss 180ms var(--ux-ease-out) both!important}
 }
 /* Focus follows the rounded control, never the rectangular text line or sheet. */
 html.hp-ui body .rule-row>summary{border-radius:999px!important}
@@ -706,6 +705,7 @@ html body [popover][role=dialog]:popover-open::backdrop{
  animation:lp-backdrop-arrive 180ms ease-out both;
 }
 html body [popover][role=dialog][data-lp-panel-closing]::backdrop{animation:lp-shared-backdrop-out 180ms ease-out both!important}
+html body [popover][role=dialog][data-lp-panel-resumed]:popover-open::backdrop{animation:lp-backdrop-resume 180ms var(--ux-ease-out) both!important}
 html.hp-ui body.is-player.in-game #pauseOverlay,html body #pauseOverlay{
  background:linear-gradient(180deg,#0c081a75,#0c081a50 55%,#0c081a80)!important;
  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
@@ -719,6 +719,7 @@ html body #pauseOverlay::before{
  animation:lp-backdrop-arrive 180ms ease-out both;
 }
 html body #pauseOverlay[data-lp-panel-closing]::before{animation:lp-shared-backdrop-out 180ms ease-out both!important}
+html body #pauseOverlay[data-lp-panel-resumed]::before{animation:lp-backdrop-resume 180ms var(--ux-ease-out) both!important}
 @media(prefers-reduced-motion:reduce){html body #pauseOverlay::before{animation:none!important}}
 /* First-time profile uses the same full-width form as profile editing. */
 html.hp-ui body #onboarding>#joinForm{grid-column:1/-1!important;min-width:0;width:100%;box-sizing:border-box}

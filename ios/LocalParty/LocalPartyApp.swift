@@ -583,6 +583,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     private weak var model: ServerModel?
     weak var surfaceController: PartySurfaceController?
     private var modelSubscription: AnyCancellable?
+    private var modelPublishQueued = false, modelPublishRepeated = false
     private var menuStarted = false
     private var deliveryEpoch = 0
     private var payloadInFlight = false, publishAgain = false
@@ -710,9 +711,22 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         if self.model !== model {
             self.model = model
             modelSubscription = model.objectWillChange.sink { [weak self] _ in
-                // objectWillChange precedes mutation. Publish on the next main turn,
-                // independently of SwiftUI's UIViewControllerRepresentable redraws.
-                DispatchQueue.main.async { [weak self] in self?.publish() }
+                // objectWillChange precedes mutation. Keep one latest publication
+                // for the next main turn, including recursively observed changes.
+                guard let self else { return }
+                if self.modelPublishQueued { self.modelPublishRepeated = true; return }
+                self.modelPublishQueued = true
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    let repeated = self.modelPublishRepeated
+                    self.modelPublishQueued = false; self.modelPublishRepeated = false
+                    self.publish()
+                    // Redundant deferred calls used to request another publication
+                    // while WebKit held the first payload. Preserve ACK/error retry
+                    // behavior without rebuilding identical Rooms bridge arguments.
+                    if repeated, self.menuReady, self.deliveryFailures <= 5,
+                       self.model != nil, self.payloadInFlight { self.publishAgain = true }
+                }
             }
             loadBundledCatalog()
         }
@@ -855,11 +869,14 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         guard menuReady, deliveryFailures <= 5, let model else { return }
         guard !payloadInFlight else { publishAgain = true; return }
         var value: [String: Any] = ["catalog": [], "players": [], "leaderboard": [], "votes": []]
-        if let state = model.state, let data = try? JSONEncoder().encode(state), let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] { value = object }
+        var stateDictionaryReady = false
+        if let state = model.state, let data = try? JSONEncoder().encode(state), let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] { value = object; stateDictionaryReady = true }
         let liveGames = model.state?.catalog ?? []
         if !liveGames.isEmpty { lastGoodCatalog = liveGames }
         else if !model.catalog.isEmpty { lastGoodCatalog = model.catalog }
-        if let data = try? JSONEncoder().encode(lastGoodCatalog), let games = try? JSONSerialization.jsonObject(with: data) { value["catalog"] = games }
+        if !stateDictionaryReady || liveGames.isEmpty {
+            if let data = try? JSONEncoder().encode(lastGoodCatalog), let games = try? JSONSerialization.jsonObject(with: data) { value["catalog"] = games }
+        }
         let validCatalog = !liveGames.isEmpty
         let issue = model.ready && !validCatalog ? "Сервер не вернул каталог. Игры из приложения сохранены; запуск временно недоступен." : (lastGoodCatalog.isEmpty ? catalogError : "")
         if qrAddress != model.address { qrAddress = model.address; qrData = makeQR(qrAddress) }
