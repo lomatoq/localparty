@@ -30,7 +30,7 @@ function connect(){
     const msg = JSON.parse(e.data);
     if(msg.type === 'state'){
       observeKartBeats(state,msg);
-      state = msg;
+      state = {...msg,track:msg.track||state.track};
       updateHud();
     }
   };

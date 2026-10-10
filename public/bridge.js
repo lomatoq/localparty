@@ -102,8 +102,9 @@
  const rewrite=value=>{const u=new URL(value,location.href);if(u.host===location.host&&!u.pathname.startsWith(prefix+'/'))u.pathname=prefix+u.pathname;return u.href;};
  const NativeSocket=window.WebSocket;
  window.WebSocket=class extends NativeSocket{
-  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native&&player)this.inputChannel=window.PartyInputChannel?.create(this,raw=>super.send(raw));if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native)announce('connecting');});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1)){window.LocalPartyFeel?.reset();if(player)window.dispatchEvent(new Event('blur'));announce('connecting');}});this.addEventListener('message',event=>{
+  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native&&player)this.inputChannel=window.PartyInputChannel?.create(this,raw=>super.send(raw));if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native){super.send(JSON.stringify({type:'party:snapshots',version:1}));announce('connecting');}});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1)){window.LocalPartyFeel?.reset();if(player)window.dispatchEvent(new Event('blur'));announce('connecting');}});this.addEventListener('message',event=>{
    try{const m=JSON.parse(event.data);
+    if(Number.isSafeInteger(m._partySnapshot))queueMicrotask(()=>{if(this.readyState===1)super.send(JSON.stringify({type:'party:ack',seq:m._partySnapshot}));});
     if(m.type==='state')publishTVInformation?.(m.data||m);
     if(['joined','resumed','identity'].includes(m.type))window.LocalPartyFeel?.identify(m.data?.id||m.id);
     if(['state','selfState'].includes(m.type))window.LocalPartyFeel?.observe(m.data||m,{channel:m.type});

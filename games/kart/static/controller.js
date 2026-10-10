@@ -116,7 +116,7 @@ function updateStats(){
   if(wheelPad.getAttribute('aria-disabled')!==String(ended))wheelPad.setAttribute('aria-disabled',String(ended));
   controlsArea.classList.toggle('race-ended',ended);
   if(ended){if(throttle||gasPointer!==null||gasKey!==null)releaseGas();if(steer||wheelPointer!==null||steeringHolds.size)releaseWheel();}
-  kartStatText(posText,me.finish_order?`#${me.finish_order}`:`${me.position||'—'}/${gameState.players.length}`);
+  kartStatText(posText,me.finish_order?`#${me.finish_order}`:`${me.position||'—'}/${gameState.playerCount??gameState.players.length}`);
   kartStatText(lapText,`${Math.min(me.lap+1,gameState.laps)}/${gameState.laps}`);
   kartStatText(timeText,fmt(gameState.race_time).split('.')[0]);
   kartStatText(bestText,me.best_lap==null?'—':fmt(me.best_lap));

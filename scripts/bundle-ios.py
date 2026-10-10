@@ -27,6 +27,7 @@ def main():
     # Swift's offline catalog uses the same extensions and settings as the server.
     node=os.environ.get('NODE_BINARY') or shutil.which('node') or next((str(p) for p in [Path.home()/'.local/bin/node',Path('/opt/homebrew/bin/node'),Path('/usr/local/bin/node')] if p.is_file()),None)
     if not node:raise SystemExit('Node.js is required to prepare the iPhone catalog. Set NODE_BINARY or install Node.js.')
+    subprocess.run([node,str(ROOT/'scripts/prepare-static.cjs'),str(DEST)],check=True,cwd=ROOT)
     catalog=subprocess.check_output([node,'-e',"const controls=require('./lib/host-controls');process.stdout.write(JSON.stringify(require('./lib/catalog').map(g=>({...g,hostControls:controls.schema(g)}))));"],cwd=ROOT)
     (DEST/'native-catalog.json').write_bytes(catalog)
     # Write into the product on every build. Xcode's directory-resource copy can

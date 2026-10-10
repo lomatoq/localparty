@@ -35,7 +35,7 @@ function handle(req,res){
 const tls=process.env.ARCADE_TLS_CERT&&process.env.ARCADE_TLS_KEY;
 const server=tls?https.createServer({cert:fs.readFileSync(process.env.ARCADE_TLS_CERT),key:fs.readFileSync(process.env.ARCADE_TLS_KEY)},handle):http.createServer(handle);
 const wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,path:'/ws',maxPayload:4096});
-function send(ws,type,data){return delivery.event(ws,{type,data});}
+function send(ws,type,data){return type==='state'&&!ws.host?delivery.snapshot(ws,JSON.stringify({type,data})):delivery.event(ws,{type,data});}
 function stateFor(s,id,host){return SnapshotView.view(s,{id,host,localPlayerId,paused:runtime.paused,...(!host&&mode==='pocket_siege'?{airDefense:AirDefense.status(game,id,{paused:runtime.paused})}:{})});}
 function broadcast(full=true){const s=game.snapshot();s.seq=++sequence;for(const ws of wss.clients){if(ws.host){const out=stateFor(s,null,true),pathKey=s.roundSerial+':'+s.level,terrainKey=s.roundSerial+':'+s.terrainRevision;if(ws.pathKey===pathKey){delete out.path;if(out.boards)out.boards=out.boards.map(b=>{const copy={...b};delete copy.path;return copy;});}if(ws.terrainKey===terrainKey){SnapshotView.omitUnchangedTerrain(out);}if(send(ws,'state',out)){ws.pathKey=pathKey;ws.terrainKey=terrainKey;}}else if(full&&ws.pid)send(ws,'state',stateFor(s,ws.pid,false));}}
 function start(settings={}){const ok=game.start(settings);broadcast();return ok;}
@@ -79,7 +79,7 @@ function publishUI(){
  // Versus has a match clock; co-op levels deliberately have no deadline.
  // Runtime applies the pause offset when publishing this simulation deadline.
  const deadline=mode==='pocket_siege'?pocketDeadline:game.arenaMode==='versus'&&game.phase==='playing'?game.duration:null;
- runtime.ui({phase:game.phase,stage:game.stage,label:mode==='pocket_siege'?'Ход':'Да фінішу',currentPlayer:p?.name,endsAt:Number.isFinite(deadline)?runtime.now()+Math.max(0,deadline-game.t)*1000:null,progress:mode==='pocket_siege'?`Ход ${Math.min(game.turn+1,(game.rounds||10)*(game.order?.length||1))} / ${(game.rounds||10)*(game.order?.length||1)}`:`Узровень ${game.level+1}`});
+ runtime.ui({simulationTimer:true,phase:game.phase,stage:game.stage,label:mode==='pocket_siege'?'Ход':'Да фінішу',currentPlayer:p?.name,endsAt:Number.isFinite(deadline)?runtime.now()+Math.max(0,deadline-game.t)*1000:null,progress:mode==='pocket_siege'?`Ход ${Math.min(game.turn+1,(game.rounds||10)*(game.order?.length||1))} / ${(game.rounds||10)*(game.order?.length||1)}`:`Узровень ${game.level+1}`});
 }
 let last=runtime.now(),acc=0,frameNo=0;
 const loop=runtime.setInterval(()=>{

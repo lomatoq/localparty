@@ -69,8 +69,8 @@
   clearTimeout(reconnectTimer);
   ws=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}/lobby`);
   const channel=ws;
-  ws.onopen=()=>{if(ws!==channel)return;$('joinForm').querySelector('button[type="submit"]').disabled=avatarBusy;$('connection').textContent='В одной сети';$('connection').classList.add('online');if(host)send({type:'host',key:window.PARTY_HOST_KEY});else if(profile)send({type:'join',...profile,clientId});};
-  ws.onmessage=event=>{if(ws!==channel)return;const m=JSON.parse(event.data);
+  ws.onopen=()=>{if(ws!==channel)return;channel.send(JSON.stringify({type:'party:snapshots',version:1}));$('joinForm').querySelector('button[type="submit"]').disabled=avatarBusy;$('connection').textContent='В одной сети';$('connection').classList.add('online');if(host)send({type:'host',key:window.PARTY_HOST_KEY});else if(profile)send({type:'join',...profile,clientId});};
+  ws.onmessage=event=>{if(ws!==channel)return;const m=JSON.parse(event.data);if(Number.isSafeInteger(m._partySnapshot))queueMicrotask(()=>{if(channel.readyState===1)channel.send(JSON.stringify({type:'party:ack',seq:m._partySnapshot}));});
    if(m.type==='state'){
      if(!m.catalog&&m.catalogRevision===state?.catalogRevision)m.catalog=state.catalog;
      if(!Array.isArray(m.catalog))return;

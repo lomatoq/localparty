@@ -15,7 +15,7 @@ for(const game of ['bow_club','arcade_deluxe','sports_siege'])test(`${game}: con
  const line=source.split('\n').find(line=>line.startsWith('function send(ws,type,data)')||line.startsWith('const send=(ws,type,data)'));
  const ctx={delivery:createSnapshotSender()},sent=[];vm.runInNewContext(line+';this.deliver=send;',ctx);
  const ws={once(){},close(){this.readyState=3;},readyState:1,bufferedAmount:600*1024,send:raw=>sent.push(JSON.parse(raw))};
- ctx.deliver(ws,'state',{});assert.equal(sent.length,game==='arcade_deluxe'?1:0);sent.length=0;
+ ctx.deliver(ws,'state',{});assert.equal(sent.length,0);if(game==='arcade_deluxe'){ws.host=true;ctx.deliver(ws,'state',{});assert.equal(sent.length,1);ws.host=false;}sent.length=0;
  for(const type of ['joined','shot-result','draw-result','error'])ctx.deliver(ws,type,{ok:true});
  assert.deepEqual(sent.map(m=>m.type),['joined','shot-result','draw-result','error']);ws.readyState=3;
 });

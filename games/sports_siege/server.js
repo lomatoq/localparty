@@ -95,7 +95,7 @@ const step=()=>{
   if(++frame%3===0){
     broadcast(frame%6===0);
     const p=match.players.get(match.currentId);
-    runtime.ui({phase:match.phase==='results'?'results':match.phase==='playing'?'playing':'waiting',
+    runtime.ui({simulationTimer:true,phase:match.phase==='results'?'results':match.phase==='playing'?'playing':'waiting',
       endsAt:match.phase==='playing'&&match.deadline>match.t?runtime.now()+(match.deadline-match.t)*1000:null,
       label:match.stage==='aim'?'На бросок':match.stage==='rolling'?'Бросок':match.stage==='break'?'Следующая волна':match.mode==='peek_shoot'?'До финала':'Матч',
       currentPlayer:p?.name,progress:mode==='swarm_gate'?`Волна ${match.wave||0} / ${match.waveCount||6}`:mode==='curling'?`Энд ${match.endIndex||0} / ${match.endCount||3}`:''});

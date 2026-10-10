@@ -700,7 +700,7 @@ function wsFrame(text, opcode=1) {
   return Buffer.concat([head, payload]);
 }
 
-const {createSnapshotSender,socketAdapter}=require('../../lib/snapshot-sender'),delivery=createSnapshotSender({softLimit:256*1024});
+const {createSnapshotSender,socketAdapter,snapshotControl}=require('../../lib/snapshot-sender'),delivery=createSnapshotSender({softLimit:256*1024});
 class WSClient {
   constructor(socket,req) {
     this.trustedHost=runtime.managed?req?.headers?.['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req?.socket?.remoteAddress);
@@ -781,6 +781,7 @@ function sendTo(id, type, data) {
 
 function handleMessage(socket, msg) {
   if(socket.partyRemoved||!socketPolicy.allow(socket)||!runtime.allowMessage(msg))return;
+  if(snapshotControl(socket.deliverySocket,msg))return;
   const event = msg && msg.type;
   const payload = msg && msg.data;
   if (event === 'registerHost') {
@@ -892,7 +893,7 @@ runtime.setInterval(() => {
   broadcastAcc += dt;
   if (broadcastAcc >= 1/30) {
     broadcastAcc%=1/30;
-    runtime.ui?.({phase:game.status==='lobby'?'waiting':game.status==='finished'?'results':game.status==='between'?'reveal':'playing',endsAt:game.timer>0&&game.status==='playing'?Date.now()+game.timer*1000:null,label:'До конца боя',progress:game.mode==='ctf'?`Флаги ${game.redScore} : ${game.blueScore}`:game.mode==='coop'?'Защищайте реактор':`Раунд ${game.round} / ${game.maxRounds}`});
+    runtime.ui?.({simulationTimer:true,phase:game.status==='lobby'?'waiting':game.status==='finished'?'results':game.status==='between'?'reveal':'playing',endsAt:game.timer>0&&game.status==='playing'?Date.now()+game.timer*1000:null,label:'До конца боя',progress:game.mode==='ctf'?`Флаги ${game.redScore} : ${game.blueScore}`:game.mode==='coop'?'Защищайте реактор':`Раунд ${game.round} / ${game.maxRounds}`});
     const state = snapshot();
     broadcastHosts('state', state);
     for (const p of getConnectedPlayers()) {

@@ -328,7 +328,7 @@ function wsFrame(text,opcode=1){
   else{head=Buffer.alloc(10);head[0]=0x80|opcode;head[1]=127;head.writeBigUInt64BE(BigInt(n),2);}
   return Buffer.concat([head,payload]);
 }
-const {createSnapshotSender,socketAdapter}=require('../../lib/snapshot-sender'),delivery=createSnapshotSender({softLimit:256*1024});
+const {createSnapshotSender,socketAdapter,snapshotControl}=require('../../lib/snapshot-sender'),delivery=createSnapshotSender({softLimit:256*1024});
 class WSClient{
   constructor(socket,req){this.trustedHost=runtime.managed?req?.headers?.['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req?.socket?.remoteAddress);this.socket=socket;this.id=`s${nextSocketId++}`;this.data={};this.buffer=Buffer.alloc(0);this.closed=false;this.deliverySocket=socketAdapter(this,wsFrame);socketPolicy.attach(this,wsFrame);clients.add(this);clientsById.set(this.id,this);socket.on('data',c=>this.onData(c));socket.on('close',()=>this.onClose());socket.on('end',()=>this.onClose());socket.on('error',()=>this.onClose());}
   send(type,data){this.sendEncoded(type,JSON.stringify({type,data}));}
@@ -342,6 +342,7 @@ function broadcastHosts(type,data){const packet=JSON.stringify({type,data});for(
 function sendTo(id,type,data){clientsById.get(id)?.send(type,data);}
 function handleMessage(socket,msg){
   if(socket.partyRemoved||!socketPolicy.allow(socket)||!runtime.allowMessage(msg))return;
+  if(snapshotControl(socket.deliverySocket,msg))return;
   const event=msg?.type,payload=msg?.data;
   if(event==='registerHost'){if(!socket.trustedHost)return;socket.data.isHost=true;socket.send('state',snapshot());socket.send('lobby',lobbyState());return;}
   if(event==='join'){
@@ -376,7 +377,7 @@ server.on('upgrade',(req,socket)=>{
 let last=BigInt(Math.floor(runtime.now()*1000000)),broadcastAcc=0;
 runtime.setInterval(()=>{
   const now=BigInt(Math.floor(runtime.now()*1000000));let dt=Number(now-last)/1e9;last=now;dt=Math.min(dt,.05);visualTime+=dt*1000;updateGame(dt);broadcastAcc+=dt;
-  if(broadcastAcc>=1/30){broadcastAcc%=1/30;runtime.ui?.({phase:game.status==='lobby'?'waiting':game.status==='finished'?'results':game.status==='between'?'reveal':game.status,endsAt:game.status==='playing'&&game.mode!=='western'?Date.now()+game.timer*1000:game.status==='countdown'?Date.now()+game.countdown*1000:null,label:'До конца раунда',progress:`Раунд ${game.round} / ${game.maxRounds}`});const s=snapshot();broadcastHosts('state',s);for(const p of connectedPlayers())sendTo(p.socketId,'selfState',selfState(p));}
+  if(broadcastAcc>=1/30){broadcastAcc%=1/30;runtime.ui?.({simulationTimer:true,phase:game.status==='lobby'?'waiting':game.status==='finished'?'results':game.status==='between'?'reveal':game.status,endsAt:game.status==='playing'&&game.mode!=='western'?Date.now()+game.timer*1000:game.status==='countdown'?Date.now()+game.countdown*1000:null,label:'До конца раунда',progress:`Раунд ${game.round} / ${game.maxRounds}`});const s=snapshot();broadcastHosts('state',s);for(const p of connectedPlayers())sendTo(p.socketId,'selfState',selfState(p));}
 },1000/TICK_RATE);
 
 server.listen(PORT,(process.env.PARTY_MANAGED === '1' ? '127.0.0.1' : '0.0.0.0'),()=>{

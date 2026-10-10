@@ -13,7 +13,7 @@ const QRCode = require('qrcode');
 const clipInvitation=new (require('./lib/clip-invitation').ClipInvitation)();
 const controls=require('./lib/host-controls');
 const {ballot}=require('./lib/game-ballot');
-const {cssFallbacks}=require('./lib/browser-compat');
+const {compatibleCSS:cssFallbacks,staticResponse}=require('./lib/static-response');
 let ballotArmed=false,ballotAttempt='';
 const catalog = require('./lib/catalog').map(g=>({...g,hostControls:controls.schema(g)}));
 const catalogRevision=crypto.createHash('sha256').update(JSON.stringify(catalog)).digest('hex').slice(0,16);
@@ -98,6 +98,7 @@ async function manage(m){
       executionRevision=m.revision;
     }
     executionAllowed=!!m.allowed;if(!executionAllowed)await pauseBeforeSuspension();else {applyGamePause();checkSession();}
+    if(embedded)await networkAccess.setSuspended(!executionAllowed);
   }
   else if(m.type==='select'){if(!catalog.some(g=>g.id===m.id))throw Error('Игра не найдена');selected=m.id;tvDirector.follow(m.id);}
   else if(m.type==='settings'){const game=catalog.find(g=>g.id===m.id);if(!game)throw Error('Игра не найдена');if(active?.game.id===m.id)throw Error('Вернитесь в лобби для смены настроек');gameSettings[m.id]=controls.settingsFor(game,m.settings);selected=m.id;}
@@ -115,13 +116,13 @@ async function manage(m){
   else if(m.type==='stop'){incident=null;if(busy)throw Error('Подождите окончания запуска');stop();}
   else if(m.type==='pause'){if(!executionAllowed&&!m.paused)throw Error('Серверу нужна активная сессия');setPaused(!!m.paused);}
   else throw Error('Неизвестная команда');
-  persistRoom(m.type);broadcast();return roomInfo();
+  persistRoom(m.type);await profileStore.flush();broadcast();return roomInfo();
 }
 
 const players = new Map(), clients = new Set();
-const profileStore=new ProfileStore(process.env.PARTY_EPHEMERAL==='1'?null:(process.env.PARTY_DATA_FILE||path.join(ROOT,'data','party.json')));
+const profileStore=new ProfileStore(process.env.PARTY_EPHEMERAL==='1'?null:(process.env.PARTY_DATA_FILE||path.join(ROOT,'data','party.json')),{deferred:true});
 const tvDirector=new (require('./lib/tv-director').TVDirector)({catalog,store:profileStore});
-const bootId=crypto.randomUUID();
+const bootId=crypto.randomUUID();global.__partyAssetVersion=bootId;
 const savedRoom=embedded?profileStore.data.room:null;
 const votes=new Map(),revoked=new Set(savedRoom?.revoked||[]);
 let incident=null;
@@ -174,7 +175,9 @@ function send(ws,data){
 }
 function eligible(){return connected().filter(p=>active?.ready.has(p.id)&&!p.testBot).map(p=>p.id);}
 function sessionState(){return active?{...active.session.view(eligible()),expectedIds:active.roster.filter(p=>!p.testBot).map(p=>p.id),pauseReason:!executionAllowed?'host-background':active.userPaused?'player':null}:undefined;}
-function broadcast(){const s=state();s.testMode=testMode;s.botCount=botCount;if(s.active)s.active.session=sessionState();const packet=JSON.stringify(s),{catalog:staticCatalog,...dynamic}=s,compact=JSON.stringify(dynamic);for(const ws of clients){lobbyDelivery.discard(ws,'game-ui');lobbyDelivery.snapshot(ws,ws.catalogRevision===catalogRevision?compact:packet);}queueMicrotask(checkBallot);}
+let broadcastTask=null;
+function broadcast(){if(broadcastTask)return;broadcastTask=setImmediate(()=>{broadcastTask=null;broadcastNow();});}
+function broadcastNow(){const s=state();s.testMode=testMode;s.botCount=botCount;if(s.active)s.active.session=sessionState();const packet=JSON.stringify(s),{catalog:staticCatalog,...dynamic}=s,compact=JSON.stringify(dynamic);for(const ws of clients){lobbyDelivery.discard(ws,'game-ui');lobbyDelivery.snapshot(ws,ws.catalogRevision===catalogRevision?compact:packet);}queueMicrotask(checkBallot);}
 function checkBallot(){
  if(!ballotArmed||!enabled||!executionAllowed||active||busy)return;
  if(!screens()&&![...clients].some(c=>c.isHost&&c.readyState===WebSocket.OPEN))return;
@@ -252,11 +255,12 @@ async function launch(id,{autoReady=[],rematch=false}={}){
     const child=embedded?require('./lib/game-worker.cjs').spawnGame(gameDir,env):spawn(process.execPath,['server.js'],{cwd:gameDir,env,windowsHide:true,stdio:['ignore','pipe','pipe','ipc']});
     next={game,port,instance,child,ready:new Set(),present:new Set(),roster:connected().map(({id,name,testBot})=>({id,name,testBot:!!testBot})),userPaused:false,session:new SessionControls(testMode)};for(const id of autoReady)next.session.setReady(id,true);let log='';
     child.on('message',m=>{
-      if(m?.type==='party:ui'&&m.ui){const changed=next.ui?.phase!==m.ui.phase;const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){for(const client of clients)send(client,{type:'game-ui',instance,ui:m.ui});if(reset||changed)broadcast();}}
+      if(m?.type==='party:ui'&&m.ui){const changed=next.ui?.phase!==m.ui.phase;const reset=next.ui?.phase==='results'&&m.ui.phase==='waiting';if(reset)next.session.resetReady();next.ui=m.ui;if(active===next){const packet=JSON.stringify({type:'game-ui',instance,ui:m.ui});for(const client of clients)lobbyDelivery.snapshot(client,packet,'game-ui');if(reset||changed)broadcast();}}
       if(m?.type==='party:presence'&&typeof m.id==='string'){if(m.connected)next.present.add(m.id);else next.present.delete(m.id);if(active===next)checkSession();}
       if(m?.type==='party:result'&&m.result?.eventId&&Array.isArray(m.result.players)){
         const recorded=!next.session.testMode&&profileStore.record(m.result,instance,id,statisticsRevision);
         const captured=active===next&&statisticsRevision===(profileStore.statisticsRevision||0)&&tvDirector.capture(m.result,instance,game,next.session.testMode);
+        if(recorded)void profileStore.flush().catch(error=>{console.error('Result persistence:',error.message);});
         if(recorded||captured)broadcast();
       }
     });
@@ -268,6 +272,7 @@ async function launch(id,{autoReady=[],rematch=false}={}){
   }catch(e){next?.child.kill();if(active?.retiring){active=null;incident={id:crypto.randomUUID(),at:Date.now(),message:'Не удалось повторить игру: '+e.message};}throw e;}finally{busy=false;persistRoom('game-launch');broadcast();}
 }
 function stop(){tvDirector.resetRun();ballotArmed=false;ballotAttempt='';votes.clear();const old=active;active=null;old?.child.kill();persistRoom('game-stop');broadcast();}
+function versionAssets(html){return html.replace(/((?:src|href)=["'])([^"']+\.(?:js|css)(?:\?[^"'#]*)?)(["'])/gi,(_,a,url,b)=>a+url+(url.includes('?')?'&':'?')+'party_v='+bootId+b);}
 function transform(text, type, prefix, req){
   if(type.includes('text/html')){
     const contentLocale=['millionaire','sinyakquiz','warsaw','spy','monster','crocodile','drawguess'].includes(prefix.split('/').at(-1))?'<script src="/i18n-content.js"></script>':'';
@@ -286,7 +291,7 @@ function transform(text, type, prefix, req){
   if(type.includes('text/css'))text=cssFallbacks(text);
   if(type.includes('text/html'))text=text.replace(/(<style[^>]*>)([\s\S]*?)(<\/style>)/gi,(_,a,b,c)=>a+cssFallbacks(b)+c);
   if(type.includes('javascript')||type.includes('text/html'))text=text.replace(/\bio\(\)/g,`partyIO({path:'${prefix}/socket.io'})`);
-  return text;
+  return type.includes('text/html')?versionAssets(text):text;
 }
 const handler=async(req,res)=>{
   if(updater&&await updater.route(req,res))return;
@@ -322,12 +327,12 @@ const handler=async(req,res)=>{
       const r=http.get({host:'127.0.0.1',port:run.port,path:sub},up=>{let body='';up.on('data',d=>body+=d);up.on('end',async()=>{try{const data=JSON.parse(body);const join=inviteUrl(req);for(const k of ['controllerUrl','joinUrl','join_url','playUrl'])if(k in data)data[k]=join;if('qr' in data)data.qr=await QRCode.toDataURL(join);if('port' in data)data.port=embedded?networkAccess.port:PORT;if('candidates' in data)data.candidates=embedded?[{name:'Wi-Fi',address:networkAccess.boundAddress,url:join}]:addresses().map(x=>({...x,url:`${scheme}://${x.address}:${PORT}/`}));json(res,up.statusCode,data);}catch{res.writeHead(up.statusCode,{'Content-Type':'application/json'});res.end(body);}});});r.on('error',()=>json(res,502,{error:'Сервер игры недоступен'}));return;
     }
     if(match[2]==='/qr.png'){res.setHeader('Content-Type','image/png');return res.end(await qrBuffer(inviteUrl(req)));}
-    const headers={...req.headers,host:`127.0.0.1:${run.port}`,'x-party-local':tvAccess(req)?'1':'0'};delete headers['accept-encoding'];
-    const upstream=http.request({host:'127.0.0.1',port:run.port,path:sub,method:req.method,headers},up=>{
+    const headers={...req.headers,host:`127.0.0.1:${run.port}`,'x-party-local':tvAccess(req)?'1':'0'};delete headers['accept-encoding'];delete headers['if-none-match'];delete headers['if-modified-since'];
+    const upstream=http.request({host:'127.0.0.1',port:run.port,path:sub,method:req.method==='HEAD'?'GET':req.method,headers},up=>{
       const type=up.headers['content-type']||'';
       const out={...up.headers};delete out['content-length'];delete out['transfer-encoding'];out['cache-control']='no-store';
       if(out.location?.startsWith('/'))out.location=prefix+out.location;
-      if(type.includes('text/html')||type.includes('javascript')||type.includes('text/css')){const chunks=[];up.on('data',d=>chunks.push(d));up.on('end',()=>{const body=Buffer.concat(chunks).toString('utf8');res.writeHead(up.statusCode,out);res.end(transform(body,type,prefix,req));});}
+      if(type.includes('text/html')||type.includes('javascript')||type.includes('text/css')){const chunks=[];up.on('data',d=>chunks.push(d));up.on('end',()=>{const bytes=Buffer.concat(chunks);if(up.statusCode===200&&!type.includes('text/html')&&['GET','HEAD'].includes(req.method))return staticResponse(req,res,prefix+url.pathname,bytes,type,text=>transform(text,type,prefix,req)).catch(()=>res.destroy());const body=bytes.toString('utf8');res.writeHead(up.statusCode,out);res.end(transform(body,type,prefix,req));});}
       else{res.writeHead(up.statusCode,out);up.pipe(res);}
     });upstream.on('error',()=>{if(!res.headersSent)json(res,502,{error:'Сервер игры недоступен'});else res.end();});req.pipe(upstream);return;
   }
@@ -371,15 +376,18 @@ const handler=async(req,res)=>{
   if(file==='index.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_HOST_KEY=${JSON.stringify(isHost?hostKey:null)};`);
   if(file==='tv.html')content=content.toString().replace('/*BOOT*/',`window.PARTY_DISPLAY_KEY=${JSON.stringify(displayKey)};`).replace('<script defer src="/tv-show.js">','<script defer src="/tv-invitation.js"></script><script defer src="/tv-show.js">');
   if(file==='index.html'||file==='tv.html')content=content.toString().replace('<head>','<head><script src="/i18n-dictionary.js"></script><script src="/i18n-shell.js"></script><script src="/i18n.js"></script>').replace('</head>',`${APP_HEAD}${file==='index.html'&&!embedded?'<link rel="stylesheet" href="/updates.css"><script defer src="/updates.js"></script>':''}</head>`);
-  if(file.endsWith('.css'))content=cssFallbacks(content.toString());
+  if(file.endsWith('.css')||file.endsWith('.js'))return staticResponse(req,res,file,Buffer.from(content),file.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8',text=>file.endsWith('.css')?cssFallbacks(text):text);
+  if(file.endsWith('.html'))content=versionAssets(content.toString());
   const ext=path.extname(file);res.writeHead(200,{'Content-Type':{'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.xml':'application/xml; charset=utf-8','.ico':'image/x-icon'}[ext],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(content);
 };
 const safeHandler=(req,res)=>Promise.resolve(handler(req,res)).catch(e=>{console.error('HTTP:',e.message);if(!res.headersSent)json(res,500,{error:'Не удалось обработать запрос'});else res.end();});
 const server=tlsFile?require('https').createServer({pfx:fs.readFileSync(tlsFile),passphrase:process.env.PARTY_TLS_PASSWORD||''},safeHandler):http.createServer(safeHandler);
 server.on('connection',socket=>socket.setNoDelay(true));
 const wss=new WebSocketServer({noServer:true,maxPayload:196608});
-function upgrade(req,socket,head){
-  const url=new URL(req.url,'http://localhost');
+function upgrade(req,socket,head){try{return routeUpgrade(req,socket,head);}catch{socket.destroy();}}
+function routeUpgrade(req,socket,head){
+  socket.on('error',()=>{});
+  let url;try{url=new URL(req.url,'http://localhost');}catch{return socket.destroy();}
   if(req.headers.origin&&req.headers.origin!==`${req.socket.encrypted?'https':'http'}://${req.headers.host}`)return socket.destroy();
   if(embedded&&!enabled)return socket.destroy();
   if(url.pathname==='/lobby'){if(req.headers.origin&&req.headers.origin!==`${req.socket.encrypted?'https':'http'}://${req.headers.host}`){socket.destroy();return;}return wss.handleUpgrade(req,socket,head,ws=>wss.emit('connection',ws,req));}
@@ -391,11 +399,14 @@ function upgrade(req,socket,head){
 }
 server.on('upgrade',upgrade);
 const lanHttps=embedded?require('./lib/lancert-https').createLANHTTPS(path.dirname(process.env.PARTY_DATA_FILE||path.join(ROOT,'data','party.json'))):null;
-const networkAccess=new (require('./lib/network-access').NetworkAccess)(safeHandler,upgrade,{port:requestedPort||8080,provision:lanHttps?ip=>lanHttps.forAddress(ip):null,address:()=>addresses()[0]?.address||null});
+const networkAccess=new (require('./lib/network-access').NetworkAccess)(safeHandler,upgrade,{port:requestedPort||8080,provision:lanHttps?ip=>lanHttps.forAddress(ip):null,address:()=>addresses()[0]?.address||null,onChange:()=>{clipInvitation.clear();broadcast();}});
 wss.on('connection',(ws,req)=>{
+  ws.on('error',()=>{});
   clients.add(ws);ws.partyPublic=!!req.partyPublic;ws.alive=true;ws.on('pong',()=>ws.alive=true);const initial=state();initial.testMode=testMode;initial.botCount=botCount;if(initial.active)initial.active.session=sessionState();send(ws,initial);
   ws.on('message',async raw=>{try{
     const m=JSON.parse(raw);
+    if(!m||typeof m!=='object'||Array.isArray(m))return;
+    if(require('./lib/snapshot-sender').snapshotControl(ws,m))return;
     if(m.type==='catalog-ready'){if(m.revision===catalogRevision)ws.catalogRevision=m.revision;return;}
     if(m.type==='ping')return send(ws,{type:'pong'});
     if(m.type==='force-language'){if(!ws.isHost)throw Error('Host access required');await manage(m);return;}
@@ -445,7 +456,7 @@ wss.on('connection',(ws,req)=>{
       if(ws.player&&ws.player!==p&&ws.player.socket===ws)throw Error('Этот контроллер уже вошёл в комнату');
       if(p.socket&&p.socket!==ws){const previous=p.socket;try{previous.send(JSON.stringify({type:'replaced'}),()=>previous.close(4001,'Reconnected elsewhere'));}catch{previous.terminate();}setTimeout(()=>{if(previous.readyState!==WebSocket.CLOSED)previous.terminate();},600).unref();}
       p.name=name;p.hand=(m.hand||saved?.hand)==='left'?'left':'right';p.avatar=avatar;p.clientId=clientId||p.clientId||'';p.testBot=testProfiles.some(bot=>bot.id===p.id);p.socket=ws;ws.player=p;
-      profileStore.register(p.token,p.name,p.hand,p.avatar);syncRoster();
+      profileStore.register(p.token,p.name,p.hand,p.avatar);await profileStore.flush();if(ws.readyState!==WebSocket.OPEN||p.socket!==ws)return;syncRoster();
       send(ws,{type:'joined',token:p.token,id:p.id,name:p.name,hand:p.hand,avatar:p.avatar||null});broadcast();return;
     }
     if(m.type==='game-status'&&ws.player?.socket===ws&&active&&m.instance===active.instance){if(m.status==='ready')active.ready.add(ws.player.id);else active.ready.delete(ws.player.id);checkSession();return;}
@@ -471,11 +482,16 @@ server.on('error',e=>{
   console.error('Не удалось запустить локальный сервер:',e);process.exit(1);
 });
 server.listen(listeningPort,bindAddress);
-function shutdown(){closing=true;clearInterval(heartbeat);clearInterval(startRelay);active?.child.kill();for(const ws of clients)ws.terminate();networkAccess.setEnabled(false);server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1000).unref();}
+async function shutdown(){
+ if(closing)return;closing=true;clearImmediate(broadcastTask);clearInterval(heartbeat);clearInterval(startRelay);active?.child.kill();for(const ws of clients)ws.terminate();
+ const stopped=new Promise(resolve=>server.close(resolve));const forced=setTimeout(()=>{server.closeAllConnections?.();},1500);forced.unref();
+ try{await Promise.all([profileStore.flush(),networkAccess.setEnabled(false),stopped]);clearTimeout(forced);process.exit(0);}catch(error){console.error('Shutdown persistence:',error.message);process.exit(1);}
+}
 process.on('SIGINT',shutdown);process.on('SIGTERM',shutdown);
 let previousTick=performance.now(),nativeWorkUnits=0;
 setInterval(()=>{const now=performance.now(),delta=now-previousTick;previousTick=now;
   if(incident&&Date.now()-incident.at>45000){incident=null;broadcast();}
+  if(embedded&&!closing)void networkAccess.reconcile();
   metrics.maxLoopDelayMs=Math.max(metrics.maxLoopDelayMs,Math.round(Math.max(0,delta-1000)));
   if(embedded&&enabled&&executionAllowed){servedSeconds+=Math.min(1.5,delta/1000);nativeWorkUnits++;}
   global.__partyReportProgress?.(nativeWorkUnits,enabled&&executionAllowed);
