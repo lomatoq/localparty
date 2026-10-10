@@ -9,7 +9,7 @@ test('Bonjour finds and updates LAN rooms, rejects unsafe destinations, removes 
 struct Game { var id: String; var title: String }
 struct UI { var phase: String }
 struct Active { var id: String; var ui: UI }
-struct ServerState { var networkEnabled=false; var urls:[String]=[]; var catalog:[Game]=[]; var active:Active?; var players:[String]=[] }
+struct ServerState { var networkEnabled=false; var urls:[String]=[]; var catalog:[Game]?=[]; var active:Active?; var players:[String]=[] }
 `+source+String.raw`
 @MainActor func testRooms() {
  let savedName=UserDefaults.standard.object(forKey:"HeyPals.roomDisplayName")

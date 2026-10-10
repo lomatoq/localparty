@@ -2,7 +2,7 @@
 const express=require('express'),http=require('http'),crypto=require('crypto'),{WebSocketServer}=require('ws'),runtime=require('../../lib/party-runtime');
 const {Poker}=require('./poker'),{Mines,Hockey}=require('./arcade');
 const mode=process.env.PARTY_GAME_ID||'poker',engines={poker:Poker,airhockey:Hockey,mines:Mines};if(!engines[mode])throw Error('Unknown game');
-const app=express(),server=http.createServer(app),wss=new WebSocketServer({server,path:'/ws',maxPayload:4096}),players=new Map(),sessions=new Map();
+const app=express(),server=http.createServer(app),wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,path:'/ws',maxPayload:4096}),players=new Map(),sessions=new Map();
 app.get('/host',(_,res)=>res.sendFile(__dirname+'/public/index.html'));app.use(express.static(__dirname+'/public'));
 let game=null,eventId='',reported=false,started=0;const max=mode==='mines'?16:8;
 const colors=['#c4ff71','#bd9bff','#77e0ff','#ff9bab','#ffd780','#7bffc5','#edb5ff','#b7bfff'];

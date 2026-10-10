@@ -1,4 +1,5 @@
 'use strict';
+const delivery=require('../../lib/snapshot-sender').createSnapshotSender();
 const SnapshotView=require('./core/snapshot-view.cjs');
 const http=require('node:http'),https=require('node:https'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),os=require('node:os');
 const {Tanks}=require('./core/tanks.cjs'),{Marbles}=require('./core/marbles.cjs'),{WEAPONS}=require('./core/weapons.cjs');
@@ -33,16 +34,16 @@ function handle(req,res){
 }
 const tls=process.env.ARCADE_TLS_CERT&&process.env.ARCADE_TLS_KEY;
 const server=tls?https.createServer({cert:fs.readFileSync(process.env.ARCADE_TLS_CERT),key:fs.readFileSync(process.env.ARCADE_TLS_KEY)},handle):http.createServer(handle);
-const wss=new WS.WebSocketServer({server,path:'/ws',maxPayload:4096});
-function send(ws,type,data){if(ws.readyState===1&&(type!=='state'||ws.bufferedAmount<180*1024)){ws.send(JSON.stringify({type,data}));return true;}return false;}
+const wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,path:'/ws',maxPayload:4096});
+function send(ws,type,data){return delivery.event(ws,{type,data});}
 function stateFor(s,id,host){return SnapshotView.view(s,{id,host,localPlayerId,paused:runtime.paused,...(!host&&mode==='pocket_siege'?{airDefense:AirDefense.status(game,id,{paused:runtime.paused})}:{})});}
 function broadcast(full=true){const s=game.snapshot();s.seq=++sequence;for(const ws of wss.clients){if(ws.host){const out=stateFor(s,null,true),pathKey=s.roundSerial+':'+s.level,terrainKey=s.roundSerial+':'+s.terrainRevision;if(ws.pathKey===pathKey){delete out.path;if(out.boards)out.boards=out.boards.map(b=>{const copy={...b};delete copy.path;return copy;});}if(ws.terrainKey===terrainKey){SnapshotView.omitUnchangedTerrain(out);}if(send(ws,'state',out)){ws.pathKey=pathKey;ws.terrainKey=terrainKey;}}else if(full&&ws.pid)send(ws,'state',stateFor(s,ws.pid,false));}}
 function start(settings={}){const ok=game.start(settings);broadcast();return ok;}
 wss.on('connection',(ws,req)=>{
  if(!managed&&req.headers.origin){try{if(new URL(req.headers.origin).host!==req.headers.host){ws.close(1008,'Origin mismatch');return;}}catch{ws.close(1008);return;}}
- ws.alive=true;ws.on('pong',()=>ws.alive=true);let credit=130,at=Date.now();ws.lastActionSeq=0;
+ ws.alive=true;ws.on('pong',()=>ws.alive=true);let credit=130,at=performance.now();ws.lastActionSeq=0;
  ws.on('message',(raw,binary)=>{
-  if(binary)return;const now=Date.now();credit=Math.min(130,credit+(now-at)*.075);at=now;if(--credit<0){ws.close(1008,'Rate limit');return;}
+  if(binary)return;const now=performance.now();credit=Math.min(130,credit+(now-at)*.075);at=now;if(--credit<0){ws.close(1008,'Rate limit');return;}
   let m;try{m=JSON.parse(raw.toString());}catch{return;}if(!m||typeof m!=='object'||Array.isArray(m))return;
   const d=m.data&&typeof m.data==='object'&&!Array.isArray(m.data)?m.data:{};
   if(m.type==='ping'){send(ws,'pong',{client:d.client,server:Date.now()});return;}
@@ -53,7 +54,7 @@ wss.on('connection',(ws,req)=>{
    if(!managed){profile=typeof d.token==='string'?sessions.get(d.token):null;if(!profile){if(sessions.size>64){send(ws,'join_error',{message:'Ліміт сесій. Перазапусці дэма-сервер.'});return;}profile={id:crypto.randomUUID(),name:String(d.name||'Гулец').trim().slice(0,24)||'Гулец',hand:d.hand,token:crypto.randomBytes(24).toString('hex')};sessions.set(profile.token,profile);}}
    if(ws.pid&&ws.pid!==profile.id){send(ws,'join_error',{message:'Гэты пульт ужо далучаны.'});return;}
    const p=game.add(profile);if(!p){send(ws,'join_error',{message:mode==='pocket_siege'?'Максимум 6 игроков.':'Максимум 3 игрока.'});return;}
-   const old=sockets.get(p.id);sockets.set(p.id,ws);ws.pid=p.id;if(old&&old!==ws)old.close(1000,'Reconnected');send(ws,'joined',{id:p.id,name:p.name,hand:p.hand,token:managed?null:profile.token,nextSeq:(p.actionSeq||0)+1});broadcast();return;
+   const old=sockets.get(p.id);sockets.set(p.id,ws);ws.pid=p.id;if(old&&old!==ws)old.close(4001,'Reconnected');send(ws,'joined',{id:p.id,name:p.name,hand:p.hand,token:managed?null:profile.token,nextSeq:(p.actionSeq||0)+1});broadcast();return;
   }
   if(ws.host){
    if(!runtime.displayOnly&&!runtime.paused&&m.type==='start'){if(!start(d))send(ws,'error',{message:'Патрэбныя гульцы: далучы тэлефоны або націсні «Паспрабаваць».'});return;}
@@ -89,8 +90,7 @@ const loop=runtime.setInterval(()=>{
   if(game.result&&reported!==game.result.eventId){reported=game.result.eventId;runtime.report(game.result);}
  }
 },1000/60);
-const heartbeat=setInterval(()=>{for(const ws of wss.clients){if(!ws.alive)ws.terminate();else{ws.alive=false;ws.ping();}}},12000);heartbeat.unref();
 const port=Number(process.env.PORT||process.env.ARCADE_PORT||(mode==='pocket_siege'?4101:4100));
-server.on('error',e=>{console.error(e.code==='EADDRINUSE'?`Port ${port} is busy. Set ARCADE_PORT to another port.`:e);process.exitCode=1;clearInterval(loop);clearInterval(heartbeat);});
+server.on('error',e=>{console.error(e.code==='EADDRINUSE'?`Port ${port} is busy. Set ARCADE_PORT to another port.`:e);process.exitCode=1;clearInterval(loop);});
 server.listen(port,managed?'127.0.0.1':'0.0.0.0',()=>{console.log(`\n${title} — http${tls?'s':''}://localhost:${server.address().port}/host\nControllers: / on the same address.\n`);process.send?.({type:'ready',port:server.address().port});});
-function close(){clearInterval(loop);clearInterval(heartbeat);wss.close();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),700).unref();}process.on('SIGTERM',close);process.on('SIGINT',close);
+function close(){clearInterval(loop);wss.close();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),700).unref();}process.on('SIGTERM',close);process.on('SIGINT',close);

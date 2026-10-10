@@ -3,9 +3,9 @@
  'use strict';
  const groups=[
   ['party','live','push shrink knives bomb western'],['tanks','live','tanks'],['tankarena','live','tankarena'],
-  ['chaos','mission','chaos'],['kart','live','kart'],['monster','prompt','monster'],['spy','prompt','spy'],
+  ['kart','live','kart'],['monster','prompt','monster'],['spy','prompt','spy'],
   ['millionaire','prompt','millionaire'],['quiz','prompt','sinyakquiz warsaw'],['crocodile','prompt','crocodile'],
-  ['jenga','turn','jenga'],['crane','turn','crane'],['naval','live','naval'],['drawguess','prompt','drawguess'],
+  ['naval','live','naval'],
   ['western_duel','turn','western_duel'],['arcade','live','taprace flappy hungry snakelines carryball'],['arcade','turn','punchmeter'],
   ['arcade_deluxe','mission','marble_bloom'],['arcade_deluxe','turn','pocket_siege'],['bow_club','live','bow_club'],
   ['tabletop','turn','poker'],['tabletop','live','airhockey'],['tabletop','mission','mines'],
@@ -16,9 +16,9 @@
  const logoFor=id=>Object.hasOwn(registry,id)?'/assets/game-logos-v1/logos/'+encodeURIComponent(id)+'.png?v=1':null;
  // Presentation ownership is independent of the game's rules/clock family.
  const compositionGroups=[
-  ['centered-scoreboard','tanks western marble_bloom pocket_siege taprace punchmeter flappy hungry snakelines carryball chaos poker airhockey'],
-  ['rail-cap','push shrink knives bomb tankarena kart western_duel jenga crane naval mines'],
-  ['content-cap','monster spy crocodile drawguess sinyakquiz warsaw millionaire'],
+  ['centered-scoreboard','tanks western marble_bloom pocket_siege taprace punchmeter flappy hungry snakelines carryball poker airhockey'],
+  ['rail-cap','push shrink knives bomb tankarena kart western_duel naval mines'],
+  ['content-cap','monster spy crocodile sinyakquiz warsaw millionaire'],
   ['game-owned','bow_club curling bowling swarm_gate peek_shoot']
  ];
  const compositions=Object.freeze(Object.fromEntries(compositionGroups.flatMap(([mode,ids])=>ids.split(' ').map(id=>[id,mode]))));
@@ -31,7 +31,6 @@
  western:['Жди сигнал. Стреляй первым.','Wait for the signal. Shoot first.'],
  tanks:['Выполняй цель выбранного режима.','Play the objective of this mode.'],
  tankarena:['Собирай оружие. Попадай в соперников.','Collect weapons. Hit your rivals.'],
- chaos:['Один курсор. Действуйте вместе.','One cursor. Work together.'],
  kart:['Проходи круги. Финишируй первым.','Complete your laps. Finish first.'],
  monster:['Нарисуй свою часть общего монстра.','Draw your part of the monster.'],
  spy:['Задавай вопросы. Найди шпиона.','Ask questions. Find the spy.'],
@@ -39,10 +38,7 @@
  sinyakquiz:['Выбери ответ на телефоне.','Answer on your phone.'],
  warsaw:['Выбери ответ на телефоне.','Answer on your phone.'],
  crocodile:['Показывай без слов. Угадывайте.','Act it out. Others guess.'],
- jenga:['Вытащи блок. Не урони башню.','Pull a block. Keep it standing.'],
- crane:['Ставь блоки. Сохрани башню.','Stack blocks. Keep it standing.'],
  naval:['Находи и топи корабли соперников.','Find and sink the enemy ships.'],
- drawguess:['Один рисует. Остальные угадывают.','One draws. Everyone else guesses.'],
  western_duel:['Жди сигнал. Не стреляй раньше.','Wait for GO. Do not fire early.'],
  taprace:['Тапай быстрее. Доберись до финиша.','Tap faster. Reach the finish.'],
  punchmeter:['Три удара. Набери больше очков.','Three hits. Score the most points.'],
@@ -83,7 +79,7 @@
   const scored=players.filter(p=>finite(p.score));if(scored.length&&id!=='airhockey'){const leader=scored.reduce((a,b)=>b.score>a.score?b:a);metric('leader','Лидер',leader.name);metric('score','Очки',leader.score);}
   // Public snapshots sometimes contain internal deadlines (Western's secret
   // random draw moment). Only explicitly public phase clocks enter the HUD.
-  const publicDeadlinePhases={millionaire:['question','reveal'],sinyakquiz:['question','reveal'],warsaw:['question','reveal'],crocodile:['turn','between'],drawguess:['drawing','reveal'],naval:['battle'],western_duel:['countdown','reveal']};
+  const publicDeadlinePhases={millionaire:['question','reveal'],sinyakquiz:['question','reveal'],warsaw:['question','reveal'],crocodile:['turn','between'],naval:['battle'],western_duel:['countdown','reveal']};
   if(!isPaused&&publicDeadlinePhases[id]?.includes(rawPhase))wall(s.endsAt);
   if(id==='western_duel'&&['waitingSignal','draw'].includes(rawPhase))out.timer=null;
   if(config.engine==='party'||id==='tanks'){
@@ -128,9 +124,6 @@
   if(id==='millionaire'){actor(s.activePlayerId);progress(s.turnsUsed,s.settings?.maxTurns,'Ходов');metric('turnsLeft','Осталось ходов',s.turnsLeft);}
   if(config.engine==='quiz'){progress(finite(s.round)?Math.min(s.round+1,s.total):null,s.total,'Вопрос');metric('submitted','Ответов',s.submitted);}
   if(id==='crocodile'){actor(s.actor);progress(finite(s.turn)?Math.min(s.turn+1,s.settings?.turns):null,s.settings?.turns,'Ход');metric('guessed','Угадано',s.turnGuessed);metric('skipped','Пропущено',s.turnSkips);}
-  if(id==='drawguess'){actor(s.artistId??s.artist);progress(finite(s.turn)?Math.min(s.turn+1,s.total):null,s.total,'Ход');}
-  if(id==='jenga'){actor(s.currentId);if(rawPhase==='playing')wall(s.turnEnds);if(finite(s.stability?.safety))metric('stability','Устойчивость',`${Math.round(Math.max(0,Math.min(1,s.stability.safety))*100)}%`);if(s.settling&&!isPaused)out.phaseLabel='Башня успокаивается';}
-  if(id==='crane'){actor(s.activeId);metric('height','Этажей',s.height);metric('lives','Жизни',s.lives);progress(finite(s.turns)?Math.min(s.turns+(rawPhase==='results'?0:1),s.maxTurns):null,s.maxTurns,'Ход');if(rawPhase==='playing'&&s.turnStage==='aiming')wall(s.deadline);}
   if(id==='western_duel'&&Array.isArray(s.duel?.pair)){const names=s.duel.pair.map(pid=>text(players.find(p=>p.id===pid)?.name)).filter(Boolean);if(names.length){out.actor=names.join(' × ');out.sources.actor='public-snapshot';}}
   if(id==='bow_club'){if(rawPhase==='playing')remaining(s.remaining);metric('arrows','Стрел на игрока',s.arrows);}
   if(config.engine==='tabletop'){if(rawPhase==='playing')remaining(s.remaining);if(id==='poker'){actor(s.turn);metric('hand','Раздача',s.hand);metric('pot','Банк',s.pot);metric('bet','Текущая ставка',s.currentBet);}if(id==='airhockey'&&Array.isArray(s.goals)&&s.goals.every(finite))metric('goals','Счёт',s.goals.join(' : '));}

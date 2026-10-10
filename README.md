@@ -1,6 +1,6 @@
 > **iPhone-сервер:** весь каталог можно запускать прямо на телефоне. Xcode-проект: `ios/LocalParty.xcodeproj`. [Установка, фон и проверки](ios/README.md).
 
-> **Бэкенд и сеть, 9 октября 2026:** [актуальный аудит и roadmap](docs/backend-roadmap-2026-10-09.md) для `heypals/ux-polish`: 36 игр / 20 серверных семейств, локальный iPhone runtime, статус интернет-комнат и свежие сетевые проверки. Версии и количество игр в инструкции ниже относятся к прежнему portable-релизу.
+> **Бэкенд и сеть, 9 октября 2026:** [актуальный аудит и roadmap](docs/backend-roadmap-2026-10-09.md) для `heypals/ux-polish`: 32 игры / 16 серверных семейств, локальный iPhone runtime, статус интернет-комнат и свежие сетевые проверки. Версии и количество игр в инструкции ниже относятся к прежнему portable-релизу.
 
 # Local Party
 
@@ -40,7 +40,6 @@ Use the computer's LAN address shown beside the QR code. `localhost` on a phone 
 | One Shot Western | Fire on the real signal; ignore false starts. |
 | Local Tanks | Drive and shoot through tank battle arenas. |
 | Tank Arsenal | Collect weapons and fight with joystick controls. |
-| One Cursor Chaos | Cooperate through 15 shared-cursor challenges. |
 | Wi-Fi Kart Party | Race around a shared kart circuit. |
 | Monster Around the Circle | Draw parts of a secret shared monster. |
 | Spy | Ask questions and discover who does not know the location. |
@@ -48,10 +47,7 @@ Use the computer's LAN address shown beside the QR code. `localhost` on a phone 
 | Sinyak Quiz Company | Answer simultaneously, alone or in teams. |
 | Funny Warsaw | Play a Warsaw-themed quiz with 150 sourced questions. |
 | Crocodile | Act out a secret word and guess aloud. |
-| Quiet, Jenga! | Carefully extract blocks from a physical 3D tower. |
-| Night Construction | Move a crane and stack a shared physical tower. |
 | Quick Naval Battle | Attack hidden fleets; the host broadcasts shots and results. |
-| Draw & Guess | Draw a secret word while others submit guesses. |
 | Two at Sunset | Compete in scheduled one-on-one cowboy duels. |
 | Tap Race | Tap as fast as you can to run down your lane. |
 | Punch Meter | Take three motion-controlled punches and compare scores. |

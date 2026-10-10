@@ -1,11 +1,11 @@
  'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const api=require('../public/game-ui-micro-assets'),catalog=require('../lib/catalog');
-assert.equal(catalog.length,36);assert.equal(api.enabled,false);
+assert.equal(catalog.length,32);assert.equal(api.enabled,false);
 for(const game of catalog)assert.equal(api.profileFor(game.id),'disabled',game.id+' has no decoration profile');
 assert.equal(api.inspect(),null);assert.equal(api.refresh(),null);
 assert.deepEqual(api.diagnostics(),{profile:'disabled',reason:'human-disabled'});
 for(const file of['public/tv.html','public/bridge.js'])assert(!fs.readFileSync(file,'utf8').includes('game-ui-micro-assets'),file+' never loads decorator code or styles');
 const source=fs.readFileSync('public/game-ui-micro-assets.js','utf8');
 assert(!/fetch\(|new .*Observer|createElement\(|drawImage\(/.test(source),'Disabled compatibility shim cannot load, observe, create or paint a decoration');
-console.log('PASS all36 decoration profiles disabled; no TV/bridge injection, asset loading or canvas paint');
+console.log('PASS all 32 decoration profiles disabled; no TV/bridge injection, asset loading or canvas paint');

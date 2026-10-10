@@ -1,4 +1,5 @@
 'use strict';
+const delivery=require('../../lib/snapshot-sender').createSnapshotSender();
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {WebSocketServer}=require('ws');
 const runtime=require('../../lib/party-runtime');
@@ -44,8 +45,8 @@ const server=http.createServer((req,res)=>{
   res.writeHead(200,{'Content-Type':mime[path.extname(file)],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});
   res.end(req.method==='HEAD'?undefined:body);
 });
-const wss=new WebSocketServer({server,path:'/ws',maxPayload:4096});
-function send(ws,type,data){if(ws.readyState===1&&(type!=='state'||ws.bufferedAmount<512*1024))ws.send(JSON.stringify({type,data}));}
+const wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,path:'/ws',maxPayload:4096});
+function send(ws,type,data){return type==='state'?delivery.snapshot(ws,JSON.stringify({type,data})):delivery.event(ws,{type,data});}
 function controllerState(s,id,bot=false){
   if(bot)return s;
   const {physics,stones,enemies,targets,covers,...small}=s;
@@ -55,10 +56,10 @@ function controllerState(s,id,bot=false){
 }
 function broadcast(full=true){const s=match.snapshot();for(const ws of wss.clients){if(ws.host)send(ws,'state',s);else if(full&&ws.pid)send(ws,'state',controllerState(s,ws.pid,ws.bot));}}
 wss.on('connection',(ws,req)=>{
-  ws.alive=true;ws.on('pong',()=>ws.alive=true);ws.budget=180;ws.budgetAt=Date.now();
+  ws.alive=true;ws.on('pong',()=>ws.alive=true);ws.budget=180;ws.budgetAt=performance.now();
   ws.on('message',(raw,binary)=>{
     if(binary)return;
-    const now=Date.now();ws.budget=Math.min(180,ws.budget+(now-ws.budgetAt)*.09);ws.budgetAt=now;
+    const now=performance.now();ws.budget=Math.min(180,ws.budget+(now-ws.budgetAt)*.09);ws.budgetAt=now;
     if(--ws.budget<0){ws.close(1008,'Too many messages');return;}
     let m;try{m=JSON.parse(raw);}catch{return;}
     if(!m||typeof m!=='object'||Array.isArray(m))return;
@@ -75,7 +76,7 @@ wss.on('connection',(ws,req)=>{
       const p=match.add(profile);if(!p){send(ws,'join_error',{message:'В комнате уже 16 игроков'});return;}
       if(!runtime.managed)sessions.set(profile.token,profile);
       const old=sockets.get(p.id);sockets.set(p.id,ws);ws.pid=p.id;ws.bot=d.bot===true;
-      if(old&&old!==ws)old.close(1000,'Replaced');
+      if(old&&old!==ws)old.close(4001,'Replaced');
       send(ws,'joined',{id:p.id,name:p.name,hand:p.hand,avatar:p.avatar||null,token:profile.token});broadcast();return;
     }
     if(ws.host&&m.type==='start'){try{match.start(d);}catch(e){send(ws,'error',{message:'Не удалось начать игру: '+e.message});}broadcast();return;}
@@ -101,7 +102,6 @@ const step=()=>{
     if(match.result&&reported!==match.result.eventId){reported=match.result.eventId;runtime.report(match.result);}
   }
 };
-const heartbeat=setInterval(()=>{for(const ws of wss.clients){if(!ws.alive)ws.terminate();else{ws.alive=false;ws.ping();}}},10000);heartbeat.unref();
 (async()=>{
   if(mode==='bowling')await bowling.init();
   runtime.setInterval(step,1000/60);

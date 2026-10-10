@@ -1,11 +1,11 @@
 /* Public snapshot feedback. Never creates game outcomes or reads secrets. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.LocalPartyFeelState=api;})(typeof globalThis==='object'?globalThis:this,function(){
  'use strict';
- const ids='push shrink knives bomb western tanks tankarena chaos kart monster spy millionaire sinyakquiz warsaw crocodile jenga crane naval drawguess western_duel taprace punchmeter flappy hungry snakelines carryball marble_bloom pocket_siege bow_club poker airhockey mines curling bowling swarm_gate peek_shoot'.split(' ');
+ const ids='push shrink knives bomb western tanks tankarena kart monster spy millionaire sinyakquiz warsaw crocodile naval western_duel taprace punchmeter flappy hungry snakelines carryball marble_bloom pocket_siege bow_club poker airhockey mines curling bowling swarm_gate peek_shoot'.split(' ');
  const live=new Set(['playing','racing','battle','drawing','question','turn','draw','waitingSignal']);
  const finite=v=>typeof v==='number'&&Number.isFinite(v);
- const scoreKeys={knives:'roundScore',western:'roundWins',tankarena:'score',punchmeter:'score',bow_club:'score',drawguess:'score',sinyakquiz:'score',warsaw:'score',millionaire:'money',mines:'score',crocodile:'score',marble_bloom:'score',poker:'chips',curling:'score',bowling:'score'};
- const selectors={knives:'#roundScore',western:'#westernWins',tanks:'#scoreMain',tankarena:'#combatScore,.arsenal-score',kart:'#lapText',punchmeter:'#punchResult strong',bow_club:'.shoot-hud strong,.score-chip .bow-points',drawguess:'.points',sinyakquiz:'.points',warsaw:'.points',millionaire:'#myMoney,#moneyPill,#moneyNow,#finalMoney,.scoreTop .money',mines:'#myMineScore,#players .tabletop-score',crocodile:'.points',marble_bloom:'#scores .score-readout strong',poker:'.seat-score',curling:'#ss-personal-score,.ss-player-score',bowling:'#ss-personal-score,.ss-player-score',carryball:'#hudValue',airhockey:'#goals'};
+ const scoreKeys={knives:'roundScore',western:'roundWins',tankarena:'score',punchmeter:'score',bow_club:'score',sinyakquiz:'score',warsaw:'score',millionaire:'money',mines:'score',crocodile:'score',marble_bloom:'score',poker:'chips',curling:'score',bowling:'score'};
+ const selectors={knives:'#roundScore',western:'#westernWins',tanks:'#scoreMain',tankarena:'#combatScore,.arsenal-score',kart:'#lapText',punchmeter:'#punchResult strong',bow_club:'.shoot-hud strong,.score-chip .bow-points',sinyakquiz:'.points',warsaw:'.points',millionaire:'#myMoney,#moneyPill,#moneyNow,#finalMoney,.scoreTop .money',mines:'#myMineScore,#players .tabletop-score',crocodile:'.points',marble_bloom:'#scores .score-readout strong',poker:'.seat-score',curling:'#ss-personal-score,.ss-player-score',bowling:'#ss-personal-score,.ss-player-score',carryball:'#hudValue',airhockey:'#goals'};
  function project(game,s={},selfId,info){
   const g=s.game||s,phase=s.phase||g.status||s.status||info?.phase,players=Array.isArray(s.players)?s.players:[],self=s.me||players.find(p=>p.id===selfId)||(s.id===selfId?s:null);
   const scope=String(s.roundSerial??s.serial??s.turnId??s.turnToken??g.round??s.hand??s.gameNumber??'match');
@@ -19,15 +19,14 @@
    const p=self||(remainingPlayers.length===1?remainingPlayers[0]:null);
    health=ownHealth(p);maxHealth=game==='naval'?5:(finite(p?.maxHp)?p.maxHp:100);alive=p?game==='tankarena'?p.dead<=0:game==='naval'?p.health>0:p.alive:null;
   }
-  if(game==='crane'){health=s.lives;maxHealth=3;alive=health>0;}
   if(game==='swarm_gate'){health=s.gate;maxHealth=1000;alive=health>0;}
   const scoreKey=scoreKeys[game],score=self&&scoreKey?self[scoreKey]:null;
   const allScores=scoreKey?Object.fromEntries(players.filter(p=>finite(p[scoreKey])).map(p=>[p.id,p[scoreKey]])):{};
-  const turnOwner={jenga:s.currentId,crane:s.activeId,monster:s.activePlayerId,millionaire:s.activePlayerId,pocket_siege:s.activeId,poker:s.turn,punchmeter:s.punchTurn,curling:s.currentId,bowling:s.currentId}[game];
+  const turnOwner={monster:s.activePlayerId,millionaire:s.activePlayerId,pocket_siege:s.activeId,poker:s.turn,punchmeter:s.punchTurn,curling:s.currentId,bowling:s.currentId}[game];
   return {phase,scope,active,remaining,turnOwner,turnIdentity:s.turnId??s.turnToken??null,selfId:self?.id||selfId,score,allScores,
    health:finite(health)?health:null,maxHealth,alive,
    ownAlive:self?['tankarena','hungry'].includes(game)?finite(self.dead)?self.dead<=0:null:typeof self.alive==='boolean'?self.alive:null:null,
-   critical:active&&finite(health)&&health>0&&(game==='crane'?health===1:health/Math.max(1,maxHealth)<=.25),
+   critical:active&&finite(health)&&health>0&&health/Math.max(1,maxHealth)<=.25,
    goals:Array.isArray(teamGoals)&&teamGoals.every(finite)?teamGoals.slice(0,2):null,
    team:game==='tanks'?self?.team==='red'?0:self?.team==='blue'?1:null:self?.team,
    canAct:!!self&&self.active!==false&&self.participant!==false&&self.alive!==false&&alive!==false&&!(self.dead>0)&&(!turnOwner||self.id===turnOwner),

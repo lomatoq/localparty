@@ -1,3 +1,4 @@
+const socketPolicy=require('../../lib/raw-socket-policy');
 const http = require('http');
 const fs = require('fs');
 const os = require('os');
@@ -329,23 +330,23 @@ function wsFrame(text,opcode=1){
 }
 const {createSnapshotSender,socketAdapter}=require('../../lib/snapshot-sender'),delivery=createSnapshotSender({softLimit:256*1024});
 class WSClient{
-  constructor(socket,req){this.trustedHost=runtime.managed?req?.headers?.['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req?.socket?.remoteAddress);this.socket=socket;this.id=`s${nextSocketId++}`;this.data={};this.buffer=Buffer.alloc(0);this.closed=false;this.deliverySocket=socketAdapter(this,wsFrame);clients.add(this);clientsById.set(this.id,this);socket.on('data',c=>this.onData(c));socket.on('close',()=>this.onClose());socket.on('end',()=>this.onClose());socket.on('error',()=>this.onClose());}
+  constructor(socket,req){this.trustedHost=runtime.managed?req?.headers?.['x-party-local']==='1':['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req?.socket?.remoteAddress);this.socket=socket;this.id=`s${nextSocketId++}`;this.data={};this.buffer=Buffer.alloc(0);this.closed=false;this.deliverySocket=socketAdapter(this,wsFrame);socketPolicy.attach(this,wsFrame);clients.add(this);clientsById.set(this.id,this);socket.on('data',c=>this.onData(c));socket.on('close',()=>this.onClose());socket.on('end',()=>this.onClose());socket.on('error',()=>this.onClose());}
   send(type,data){this.sendEncoded(type,JSON.stringify({type,data}));}
   sendEncoded(type,packet){if(type==='state'||type==='selfState')delivery.snapshot(this.deliverySocket,packet,type);else delivery.event(this.deliverySocket,packet);}
   pong(payload){if(!this.closed&&!this.socket.destroyed)try{this.socket.write(wsFrame(payload,0xA));}catch{}}
-  onData(chunk){this.buffer=Buffer.concat([this.buffer,chunk]);while(this.buffer.length>=2){const b0=this.buffer[0],b1=this.buffer[1],opcode=b0&15,masked=!!(b1&128);let n=b1&127,off=2;if(n===126){if(this.buffer.length<4)return;n=this.buffer.readUInt16BE(2);off=4;}else if(n===127){if(this.buffer.length<10)return;const big=this.buffer.readBigUInt64BE(2);if(big>1024n*1024n)return this.socket.destroy();n=Number(big);off=10;}let mask;if(masked){if(this.buffer.length<off+4)return;mask=this.buffer.subarray(off,off+4);off+=4;}if(this.buffer.length<off+n)return;const payload=Buffer.from(this.buffer.subarray(off,off+n));this.buffer=this.buffer.subarray(off+n);if(masked)for(let i=0;i<payload.length;i++)payload[i]^=mask[i&3];if(opcode===8){this.socket.end(wsFrame('',8));return;}if(opcode===9){this.pong(payload);continue;}if(opcode!==1)continue;try{handleMessage(this,JSON.parse(payload.toString('utf8')));}catch{}}}
+  onData(chunk){this.buffer=Buffer.concat([this.buffer,chunk]);while(this.buffer.length>=2){const b0=this.buffer[0],b1=this.buffer[1],opcode=b0&15,masked=!!(b1&128);let n=b1&127,off=2;if(n===126){if(this.buffer.length<4)return;n=this.buffer.readUInt16BE(2);off=4;}else if(n===127){if(this.buffer.length<10)return;const big=this.buffer.readBigUInt64BE(2);if(big>1024n*1024n)return this.socket.destroy();n=Number(big);off=10;}if(n>8192)return this.socket.destroy();let mask;if(masked){if(this.buffer.length<off+4)return;mask=this.buffer.subarray(off,off+4);off+=4;}if(this.buffer.length<off+n)return;const payload=Buffer.from(this.buffer.subarray(off,off+n));this.buffer=this.buffer.subarray(off+n);if(masked)for(let i=0;i<payload.length;i++)payload[i]^=mask[i&3];if(opcode===8){this.socket.end(wsFrame('',8));return;}if(opcode===9){this.pong(payload);continue;}if(opcode===10){socketPolicy.pong(this);continue;}if(opcode!==1)continue;try{handleMessage(this,JSON.parse(payload.toString('utf8')));}catch{}}}
   onClose(){if(this.closed)return;this.closed=true;clients.delete(this);clientsById.delete(this.id);handleDisconnect(this);}
 }
 function broadcast(type,data){for(const c of clients)c.send(type,data);}
 function broadcastHosts(type,data){const packet=JSON.stringify({type,data});for(const c of clients)if(c.data.isHost)c.sendEncoded(type,packet);}
 function sendTo(id,type,data){clientsById.get(id)?.send(type,data);}
 function handleMessage(socket,msg){
-  if(socket.partyRemoved||!runtime.allowMessage(msg))return;
+  if(socket.partyRemoved||!socketPolicy.allow(socket)||!runtime.allowMessage(msg))return;
   const event=msg?.type,payload=msg?.data;
   if(event==='registerHost'){if(!socket.trustedHost)return;socket.data.isHost=true;socket.send('state',snapshot());socket.send('lobby',lobbyState());return;}
   if(event==='join'){
     const d={...(payload||{})};const identity=runtime.identify(d,socket);if(runtime.managed&&!identity)return socket.send('error','Войдите через общее лобби');if(identity){d.token='party:'+identity.id;d.name=identity.name;d.handedness=identity.hand;}let p=null;
-    if(d.token&&tokenToPlayer.has(d.token)){p=players.get(tokenToPlayer.get(d.token));if(p){p.connected=true;p.socketId=socket.id;p.input.jx=p.input.jy=0;p.input.at=0;p.name=cleanName(d.name||p.name);if(d.handedness)p.handedness=d.handedness==='left'?'left':'right';socket.data.playerId=p.id;}}
+    if(d.token&&tokenToPlayer.has(d.token)){p=players.get(tokenToPlayer.get(d.token));if(p){p.connected=true;const previous=clientsById.get(p.socketId);p.socketId=socket.id;if(previous&&previous!==socket)previous.deliverySocket?.close(4001,'Replaced');p.input.jx=p.input.jy=0;p.input.at=0;p.name=cleanName(d.name||p.name);if(d.handedness)p.handedness=d.handedness==='left'?'left':'right';socket.data.playerId=p.id;}}
     if(!p)p=makePlayer(socket,d);if(identity)p.partyId=identity.id;
     if(!p.active&&(game.status==='playing'||game.status==='countdown')){
       if(game.mode==='knives'){

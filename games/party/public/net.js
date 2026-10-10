@@ -1,6 +1,6 @@
 function createSocketBus(){
   const handlers=new Map();
-  let ws=null, open=false, closedByUser=false, retry=null;
+  let ws=null, open=false, closedByUser=false, retry=null,delay=450;
   const queue=[];
 
   function fire(type,data){
@@ -17,12 +17,12 @@ function createSocketBus(){
       fire('connect');
     };
     ws.onmessage=e=>{
-      try{const m=JSON.parse(e.data);fire(m.type,m.data)}catch(err){console.warn('Bad server message',err)}
+      try{const m=JSON.parse(e.data);if(m.type==='joined')delay=450;fire(m.type,m.data)}catch(err){console.warn('Bad server message',err)}
     };
-    ws.onclose=()=>{
+    ws.onclose=e=>{if(e.code===4001||e.code===4003)closedByUser=true;
       open=false;
       fire('disconnect');
-      if(!closedByUser) retry=setTimeout(connect,450);
+      if(!closedByUser){retry=setTimeout(connect,delay*(.8+Math.random()*.4));delay=Math.min(5000,delay*1.7);}
     };
     ws.onerror=()=>{};
   }

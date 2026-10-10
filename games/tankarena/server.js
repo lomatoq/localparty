@@ -1,6 +1,6 @@
 'use strict';
 const express=require('express'),http=require('http'),{WebSocketServer}=require('ws'),crypto=require('crypto');
-const runtime=require('../../lib/party-runtime');const app=express(),server=http.createServer(app),wss=new WebSocketServer({server,path:'/ws'});
+const runtime=require('../../lib/party-runtime');const app=express(),server=http.createServer(app),wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,path:'/ws'});
 app.get('/host',(_,r)=>r.sendFile(__dirname+'/public/host.html'));app.use(express.static(__dirname+'/public'));
 const {createPickup,collect}=require('./powerups');
 const {weapons,randomWeapon:weapon,projectiles,hitsTank}=require('./weapons');

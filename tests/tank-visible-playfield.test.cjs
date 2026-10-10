@@ -8,7 +8,7 @@ function engine(name){
  const runtime={now:Date.now,setInterval:fn=>ticks.push(fn),allowMessage:()=>true,onPause(){},host(){},presence(){},identify:data=>data.partyId?{id:data.partyId,name:data.partyId}:null,report(){}};
  const express=()=>({get(){},use(){}});express.static=()=>{};
  class MockWebSocketServer extends EventEmitter{constructor(){super();this.clients=new Set();}}
- const context=vm.createContext({require:module=>module==='../../lib/party-runtime'?runtime:module==='http'?{createServer:()=>({on(){},listen(){}})}:module==='express'?express:module==='ws'?{WebSocketServer:MockWebSocketServer}:localRequire(module),__dirname:path.dirname(file),process:{env:{},hrtime:process.hrtime},console,Buffer,URL,Date,Math,setInterval(){},assert,EventEmitter,ticks});
+ const context=vm.createContext({require:module=>module==='../../lib/raw-socket-policy'?{allow:()=>true}:module==='../../lib/party-runtime'?runtime:module==='http'?{createServer:()=>({on(){},listen(){}})}:module==='express'?express:(module==='ws'||module==='../../lib/game-websocket-server')?{WebSocketServer:MockWebSocketServer}:localRequire(module),__dirname:path.dirname(file),process:{env:{},hrtime:process.hrtime},console,Buffer,URL,Date,Math,setInterval(){},assert,EventEmitter,ticks});
  vm.runInContext(fs.readFileSync(file,'utf8'),context);
  return {run:source=>vm.runInContext(source,context)};
 }

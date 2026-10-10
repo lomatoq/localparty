@@ -30,7 +30,7 @@ struct ServerState: Equatable, Codable {
     var botCount: Int?
     var bootId:String;var incident:RoomIncident?;var votes:[GameVote]
     var enabled: Bool; var networkEnabled:Bool; var totalMatches:Int; var leaderboard:[PartyStanding]; var selected: String?; var screens: Int; var players: [PartyPlayer]
-    var catalog: [PartyGame]; var urls: [String]; var active: ActiveGame?; var busy: Bool
+    var catalog: [PartyGame]?; var catalogRevision: String?; var urls: [String]; var active: ActiveGame?; var busy: Bool
     var executionAllowed: Bool; var gameSettings: [String:[String:String]]
 }
 @MainActor final class ServerModel: ObservableObject {
@@ -134,9 +134,12 @@ struct ServerState: Equatable, Codable {
             }
         }
     }
+    private var catalogSnapshot: [PartyGame] = []
+    private var catalogRevision: String?
     private func request(_ command: [String:Any]? = nil) async throws -> ServerState {
         if let text=try? String(contentsOf:portFile,encoding:.utf8),let value=Int(text.trimmingCharacters(in:.whitespacesAndNewlines)) { port=value }
-        var req=URLRequest(url:URL(string:"http://127.0.0.1:\(port)/api/manage")!)
+        let suffix = command == nil ? catalogRevision.map { "?catalogRevision=" + $0 } ?? "" : ""
+        var req=URLRequest(url:URL(string:"http://127.0.0.1:\(port)/api/manage" + suffix)!)
         let action=command?["type"] as? String
         req.timeoutInterval=action == "network-set" || action == "server-start" ? 120 : action == "launch" ? 75 : 3
         req.setValue("Bearer "+key,forHTTPHeaderField:"Authorization")
@@ -146,7 +149,17 @@ struct ServerState: Equatable, Codable {
             let json=(try? JSONSerialization.jsonObject(with:data)) as? [String:Any]
             throw NSError(domain:"LocalParty",code:1,userInfo:[NSLocalizedDescriptionKey:json?["error"] as? String ?? "Сервер не ответил"])
         }
-        return try JSONDecoder().decode(ServerState.self,from:data)
+        var next = try JSONDecoder().decode(ServerState.self,from:data)
+        if let received = next.catalog {
+            catalogSnapshot = received
+            catalogRevision = next.catalogRevision
+        } else if next.catalogRevision == catalogRevision && !catalogSnapshot.isEmpty {
+            next.catalog = catalogSnapshot
+        } else {
+            catalogRevision = nil
+            throw NSError(domain:"LocalParty",code:2,userInfo:[NSLocalizedDescriptionKey:"Catalog refresh required"])
+        }
+        return next
     }
     private func refresh() async {
         guard !working else {return}
@@ -159,7 +172,7 @@ struct ServerState: Equatable, Codable {
             if !ready { ready=true }
             connectionFailures=0
             if connectionStatus != nil { connectionStatus=nil }
-            if catalog != next.catalog { catalog=next.catalog }
+            if let received = next.catalog, catalog != received { catalog=received }
             if !working && settings != next.gameSettings { settings=next.gameSettings }
             if let incident=next.incident, recordedIncident != incident.id {recordedIncident=incident.id;record("incident: " + incident.message)}
             if observedBoot != next.bootId {

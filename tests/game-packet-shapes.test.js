@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),{spawn}=require('node:child_process'),WS=require('ws'),path=require('node:path');
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
-for(const engine of ['arcade','tankarena','jenga','crane','kart','chaos','western_duel'])test(`${engine} ignores invalid packet shapes without losing the game process`,{timeout:15000},async t=>{
+for(const engine of ['arcade','tankarena','kart','western_duel'])test(`${engine} ignores invalid packet shapes without losing the game process`,{timeout:15000},async t=>{
  const child=spawn(process.execPath,['server.js'],{cwd:path.join(__dirname,'../games',engine),env:{...process.env,PORT:'0',PARTY_MANAGED:'0',PARTY_GAME_ID:engine==='arcade'?'taprace':engine}});let log='',port,ws;
  child.stdout.on('data',d=>{log+=d;port=log.match(/(?:localhost|127\.0\.0\.1):(\d+)/)?.[1]||log.match(/Western Duel :(\d+)/)?.[1];});child.stderr.on('data',d=>log+=d);
  t.after(()=>{ws?.terminate();child.kill();});

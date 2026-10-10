@@ -102,7 +102,7 @@
  const rewrite=value=>{const u=new URL(value,location.href);if(u.host===location.host&&!u.pathname.startsWith(prefix+'/'))u.pathname=prefix+u.pathname;return u.href;};
  const NativeSocket=window.WebSocket;
  window.WebSocket=class extends NativeSocket{
-  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native)announce('connecting');});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1)){window.LocalPartyFeel?.reset();if(player)window.dispatchEvent(new Event('blur'));announce('connecting');}});this.addEventListener('message',event=>{
+  constructor(url,protocols){super(rewrite(url),protocols);const native=!String(url).includes('socket.io');if(native&&player)this.inputChannel=window.PartyInputChannel?.create(this,raw=>super.send(raw));if(native)nativeConnections.add(this);this.addEventListener('open',()=>{if(native)announce('connecting');});this.addEventListener('close',()=>{nativeConnections.delete(this);if(native&&![...nativeConnections].some(s=>s.readyState===1)){window.LocalPartyFeel?.reset();if(player)window.dispatchEvent(new Event('blur'));announce('connecting');}});this.addEventListener('message',event=>{
    try{const m=JSON.parse(event.data);
     if(m.type==='state')publishTVInformation?.(m.data||m);
     if(['joined','resumed','identity'].includes(m.type))window.LocalPartyFeel?.identify(m.data?.id||m.id);
@@ -114,7 +114,7 @@
     if(window.parent.PARTY_TEST_BOT&&['state','selfState'].includes(m.type))window.PARTY_BOT_SELF=m.data;
     if(['joined','resumed'].includes(m.type))announce('ready');if(['join_error','resume_error'].includes(m.type))announce('error',m.message||m.error||'Повторяем вход…');}catch{}
   });}
-  send(raw){if(player&&typeof raw==='string'){try{const m=JSON.parse(raw);if(['join','resume'].includes(m.type)){if(m.data)m.data=credentials(m.data);else Object.assign(m,credentials(m));raw=JSON.stringify(m);}}catch{}}return super.send(raw);}
+  send(raw){if(player&&typeof raw==='string'){try{const m=JSON.parse(raw);if(this.inputChannel?.send(raw,m))return;if(['join','resume'].includes(m.type)){if(m.data)m.data=credentials(m.data);else Object.assign(m,credentials(m));raw=JSON.stringify(m);}}catch{}}return super.send(raw);}
  };
  window.partyIO=options=>{
   const socket=window.io(options),emit=socket.emit.bind(socket);

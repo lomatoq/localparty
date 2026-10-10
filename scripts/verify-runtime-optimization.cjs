@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),assert=require('node:assert/strict'),{spawn}=require('node:child_process');
 const {chromium}=require(process.env.PARTY_PLAYWRIGHT||'playwright');
-const out=path.resolve('output/playwright/runtime-optimization-2026-10-09');fs.mkdirSync(out,{recursive:true});
+const out=path.resolve('output/playwright/network-pass-2026-10-09');fs.mkdirSync(out,{recursive:true});
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'runtime-visual-')),wait=ms=>new Promise(r=>setTimeout(r,ms));let log='',browser;
 const child=spawn(process.execPath,['server.js'],{env:{...process.env,PARTY_EMBEDDED:'1',PARTY_EPHEMERAL:'1',PARTY_DATA_FILE:path.join(dir,'party.json'),PARTY_PORT:'0',PARTY_INTERNAL_PORT:'0',PARTY_ADMIN_KEY:'runtime-visual',PARTY_NO_BROWSER:'1'},stdio:['ignore','pipe','pipe']});child.stdout.on('data',b=>log+=b);child.stderr.on('data',b=>log+=b);
 const errors=[],checks=[];let activeGame='lobby';
@@ -13,30 +13,19 @@ const errors=[],checks=[];let activeGame='lobby';
   const tv=await browser.newPage({viewport:{width:1280,height:720}}),phones=[];
   tv.on('pageerror',e=>errors.push(activeGame+' TV: '+e.stack));await tv.goto(base+'/tv');
   for(let n=0;n<2;n++){const page=await browser.newPage({viewport:{width:393,height:852},isMobile:true,hasTouch:true});page.on('pageerror',e=>errors.push(activeGame+' phone '+n+': '+e.stack));await page.goto(base+'/play');await page.locator('#name').fill('Player '+(n+1));await page.locator('#joinForm button[type=submit]').click();await page.locator('#home').waitFor();phones.push(page);}
-  for(const game of ['drawguess','airhockey','kart','tankarena','jenga','push','tanks']){
+  assert.equal((await api()).catalog.length,32);await wait(6500);await tv.screenshot({path:path.join(out,'catalog-tv.png')});await phones[0].screenshot({path:path.join(out,'catalog-phone.png')});
+  for(const game of process.env.PARTY_VERIFY_GAMES==='none'?[]:(process.env.PARTY_VERIFY_GAMES||'airhockey,kart,tankarena,push,tanks,naval,warsaw,crocodile,curling,marble_bloom,pocket_siege,bow_club,flappy,western_duel').split(',')){
     activeGame=game;const run=(await api({type:'launch',id:game})).active;
     for(const page of phones){await page.waitForFunction(id=>document.querySelector('#gameFrame').src.includes('/games/'+id+'/'),game);await page.waitForFunction(()=>!document.querySelector('#readyButton').disabled);await page.locator('#readyButton').click();}
     for(let n=0;n<180;n++){if((await api()).active.ui.phase==='playing')break;await wait(100);}
-    assert.equal((await api()).active.ui.phase,'playing',game+' starts');await wait(1800);
+    assert.equal((await api()).active.ui.phase,'playing',game+' starts');await wait(Number(process.env.PARTY_VERIFY_SETTLE_MS)||1800);
     const frames=phones.map(p=>p.frames().find(f=>f.url().includes('/games/'+game+'/')));
-    // Game sockets can join in a different order from lobby profiles.
-    if(game==='drawguess'&&await frames[1].locator('#canvas').evaluate(c=>c.classList.contains('canDraw'))){phones.reverse();frames.reverse();}
-    if(game==='jenga'&&await frames[0].locator('#blocks button:not(:disabled)').count()===0){phones.reverse();frames.reverse();}
-    if(game==='drawguess'){
-      const box=await frames[0].locator('#canvas').boundingBox();assert(box);await phones[0].mouse.move(box.x+box.width*.2,box.y+box.height*.4);await phones[0].mouse.down();
-      for(let n=0;n<20;n++){await phones[0].mouse.move(box.x+box.width*(.2+n*.025),box.y+box.height*(.4+.15*Math.sin(n*.3)));await wait(40);}await phones[0].mouse.up();await wait(200);
-      await frames[1].locator('#guess').fill('A test guess');await frames[1].locator('#guessForm button').click();await wait(250);
-      const ink=await frames[1].locator('#canvas').evaluate(c=>Array.from(c.getContext('2d').getImageData(0,0,c.width,c.height).data).some((v,i)=>i%4===3&&v>0));assert(ink,'guesser retains drawing after compact guess update');
-    }
-    if(game==='jenga'){await frames[0].locator('#blocks button:not(:disabled)').first().click();await wait(200);}
     for(const f of [...frames,...tv.frames().filter(f=>f.url().includes('/games/'))])await f.evaluate(()=>document.fonts.ready);
     await tv.screenshot({path:path.join(out,game+'-tv.png')});await phones[0].screenshot({path:path.join(out,game+'-phone.png')});
-    if(game==='drawguess')await phones[1].screenshot({path:path.join(out,game+'-guesser.png')});
     await frames[0].evaluate(()=>location.reload());await wait(1600);
-    if(game==='drawguess'){const f=phones[0].frames().find(f=>f.url().includes('/games/drawguess/'));assert(await f.locator('#canvas').evaluate(c=>Array.from(c.getContext('2d').getImageData(0,0,c.width,c.height).data).some((v,i)=>i%4===3&&v>0)),'reload restores ink');}
     await phones[0].screenshot({path:path.join(out,game+'-rejoined.png')});
     checks.push({game,instance:run.instance,phase:(await api()).active.ui.phase,capturedAt:new Date().toISOString(),reload:true});
-    await api({type:'stop'});await wait(300);console.log('PASS',game);
+    await api({type:'stop'});await wait(300);await tv.goto(base+'/tv');await wait(300);console.log('PASS',game);
   }
   assert.deepEqual(errors,[]);
-}finally{fs.writeFileSync(path.join(out,'checks.json'),JSON.stringify({checks,errors},null,2));await browser?.close();if(child.exitCode===null){const done=new Promise(r=>child.once('exit',r));child.kill();await done;}fs.rmSync(dir,{recursive:true,force:true});}})().catch(e=>{console.error(e,log.slice(-1600));process.exitCode=1;});
+}finally{fs.writeFileSync(path.join(out,process.env.PARTY_VERIFY_GAMES==='none'?'catalog-checks.json':process.env.PARTY_VERIFY_GAMES?'checks-'+process.env.PARTY_VERIFY_GAMES.replaceAll(',','-')+'.json':'checks.json'),JSON.stringify({checks,errors},null,2));await browser?.close();if(child.exitCode===null){const done=new Promise(r=>child.once('exit',r));child.kill();await done;}fs.rmSync(dir,{recursive:true,force:true});}})().catch(e=>{console.error(e,log.slice(-1600));process.exitCode=1;});

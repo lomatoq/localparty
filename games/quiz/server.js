@@ -1,15 +1,16 @@
 'use strict';
+const delivery=require('../../lib/snapshot-sender').createSnapshotSender();
 const express=require('express'),http=require('http'),fs=require('fs'),path=require('path'),crypto=require('crypto');
 const {WebSocketServer,WebSocket}=require('ws');
 const party=require('../../lib/party-runtime');
 const {Quiz}=require('./engine');
 const banks={warsaw:require('./data/warsaw.json'),sinyak:require('../millionaire/data/questions.json')};
-const app=express(),server=http.createServer(app),wss=new WebSocketServer({server,maxPayload:8192});
+const app=express(),server=http.createServer(app),wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,maxPayload:8192});
 const hostKey=crypto.randomBytes(24).toString('hex'),quiz=new Quiz(banks,party.report),clients=new Map(),standalone=new Map();
 const local=req=>['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
 app.get('/host',(req,res)=>{if(!local(req))return res.sendStatus(403);res.type('html').send(fs.readFileSync(path.join(__dirname,'public/index.html'),'utf8').replace('window.QUIZ_HOST_KEY=null','window.QUIZ_HOST_KEY='+JSON.stringify(hostKey)));});
 app.use(express.static(path.join(__dirname,'public')));
-function send(ws,value){if(ws.readyState===WebSocket.OPEN)ws.send(JSON.stringify(value));}
+function send(ws,value){return value.type==='state'?delivery.snapshot(ws,JSON.stringify(value)):delivery.event(ws,value);}
 function broadcast(){party.ui?.({phase:({lobby:'waiting',question:'playing',reveal:'reveal',finished:'results',paused:'paused'})[quiz.phase],endsAt:quiz.endsAt||null,label:quiz.phase==='finished'?'Итоги':quiz.phase==='reveal'?'Следующий вопрос':'На ответ',currentPlayer:null,progress:Math.min(quiz.round+1,quiz.deck?.length||quiz.settings.count)+' / '+(quiz.deck?.length||quiz.settings.count),actions:[]});for(const [ws,c] of clients)send(ws,quiz.view(c.id));}
 wss.on('connection',(ws,req)=>{
  const c={id:null,host:false};clients.set(ws,c);send(ws,quiz.view());
@@ -21,10 +22,10 @@ wss.on('connection',(ws,req)=>{
   if(!p){send(ws,{type:'error',message:'Вернитесь в главное лобби: профиль не найден.'});return;}
   if(!quiz.players.has(p.id)&&quiz.players.size>=16){send(ws,{type:'error',message:'Уже 16 игроков.'});return;}
   for(const [other,oc]of clients)if(other!==ws&&oc.id===p.id){oc.id=null;other.close(4001,'Replaced');}
-  c.id=p.id;quiz.join(p.id,p.name);send(ws,{type:'joined',id:p.id});party.presence(p.id,true);
- }else if(m.type==='team'&&c.id)quiz.team(c.id,m.team);
- else if(m.type==='answer'&&c.id){if(!quiz.submit(c.id,m.round,m.answer))send(ws,{type:'error',message:'Ответ уже принят, время вышло или отвечает капитан.'});}
- else if(c.host){if(m.type==='configure')quiz.configure(m.settings||{});if(m.type==='start')quiz.start();if(m.type==='reveal')quiz.reveal();if(m.type==='next'&&quiz.phase==='reveal')quiz.next();}
+  c.id=p.id;ws.pid=p.id;quiz.join(p.id,p.name);send(ws,{type:'joined',id:p.id});party.presence(p.id,true);
+ }else if(m.type==='team'&&c.id){if(quiz.players.get(c.id)?.team===m.team||!quiz.team(c.id,m.team))return;}
+ else if(m.type==='answer'&&c.id){if(!quiz.submit(c.id,m.round,m.answer))return send(ws,{type:'error',message:'Ответ уже принят, время вышло или отвечает капитан.'});}
+ else if(c.host&&['configure','start','reveal','next'].includes(m.type)){if(m.type==='configure')quiz.configure(m.settings||{});if(m.type==='start')quiz.start();if(m.type==='reveal')quiz.reveal();if(m.type==='next'&&quiz.phase==='reveal')quiz.next();}else return;
  quiz.tick();broadcast();
  });
  ws.on('close',()=>{clients.delete(ws);if(c.id&&![...clients.values()].some(x=>x.id===c.id)){quiz.disconnect(c.id);party.presence(c.id,false);}broadcast();});

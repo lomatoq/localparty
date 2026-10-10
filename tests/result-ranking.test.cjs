@@ -49,8 +49,8 @@ test('team metadata survives sanitized adapters and cold restart, without profil
  assert.deepEqual(new TVDirector({catalog:[game],store}).lastMatch.rows,d.lastMatch.rows);
  assert(!JSON.stringify(d.lastMatch).includes(profiles[0].token));
 });
-test('the source audit covers exactly all 36 released games',()=>{
- assert.equal(contracts.length,36);assert.deepEqual(contracts.map(c=>c.id).sort(),catalog.map(g=>g.id).sort());
+test('the source audit covers exactly all 32 released games',()=>{
+ assert.equal(contracts.length,32);assert.deepEqual(contracts.map(c=>c.id).sort(),catalog.map(g=>g.id).sort());
  for(const c of contracts){const source=fs.readFileSync(c.source,'utf8');assert.match(source,/report\(|this\.result=/,c.id+' actual producer');}
 });
 for(const contract of contracts)test(contract.id+' contract fixtures: different/tied/zero scores, 2/16 players, no synthetic all-first',()=>{

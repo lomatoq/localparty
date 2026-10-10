@@ -63,7 +63,11 @@
   const channel=ws;
   ws.onopen=()=>{if(ws!==channel)return;$('joinForm').querySelector('button[type="submit"]').disabled=avatarBusy;$('connection').textContent='В одной сети';$('connection').classList.add('online');if(host)send({type:'host',key:window.PARTY_HOST_KEY});else if(profile)send({type:'join',...profile,clientId});};
   ws.onmessage=event=>{if(ws!==channel)return;const m=JSON.parse(event.data);
-   if(m.type==='state'){window.PartyI18n?.protectPlayers([...(m.players||[]),...(m.leaderboard||[]),...(m.active?.roster||[])]);window.PartyI18n?.acceptRoomLanguage(m.languageOverride);}
+   if(m.type==='state'){
+     if(!m.catalog&&m.catalogRevision===state?.catalogRevision)m.catalog=state.catalog;
+     if(!Array.isArray(m.catalog))return;
+     if(m.catalogRevision&&ws.catalogRevision!==m.catalogRevision){ws.send(JSON.stringify({type:'catalog-ready',revision:m.catalogRevision}));ws.catalogRevision=m.catalogRevision;}
+window.PartyI18n?.protectPlayers([...(m.players||[]),...(m.leaderboard||[]),...(m.active?.roster||[])]);window.PartyI18n?.acceptRoomLanguage(m.languageOverride);}
    if(m.type==='joined')window.PartyI18n?.protectPlayers([m]);
    if(m.type==='pong')clearTimeout(pongTimer);
    if(m.type==='test-profiles'&&host){testProfiles=m.profiles||[];updateTestCompanion();return;}

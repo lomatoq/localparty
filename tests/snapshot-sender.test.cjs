@@ -37,3 +37,20 @@ test('pending channels are removed on close and never written afterward',async()
   sender.snapshot(ws,'{"seq":1}');sender.snapshot(ws,'{"turn":2}','private');ws.close();ws.bufferedAmount=0;
   await wait(25);assert.deepEqual(ws.messages,[]);
 });
+test('soft congestion has a real-time age limit even without another snapshot',async()=>{
+ const sender=createSnapshotSender({softLimit:100,hardLimit:1000,maxLagMs:20,retryMs:5}),ws=new Socket();
+ ws.bufferedAmount=150;sender.snapshot(ws,'{"seq":1}');await wait(60);assert.equal(ws.code,1013);assert.deepEqual(ws.messages,[]);
+});
+test('one oversized event cannot overrun the hard queue budget',()=>{
+ const sender=createSnapshotSender({hardLimit:100}),ws=new Socket();assert.equal(sender.event(ws,'x'.repeat(101)),false);assert.equal(ws.code,1013);assert.equal(ws.messages.length,0);
+});
+test('a newly writable channel cannot overtake older queued state',()=>{
+ const sender=createSnapshotSender({softLimit:100}),ws=new Socket();ws.bufferedAmount=150;
+ sender.snapshot(ws,'{"type":"state","turn":1}','state');ws.bufferedAmount=0;
+ sender.snapshot(ws,'{"type":"game-ui","turn":2}','game-ui');assert.deepEqual(ws.messages.map(m=>m.turn),[1,2]);ws.close();
+});
+test('a final event that crosses the soft budget starts the age watchdog',async()=>{
+ const sender=createSnapshotSender({softLimit:100,hardLimit:1000,maxLagMs:20,retryMs:5}),ws=new Socket();
+ ws.send=function(packet){this.bufferedAmount+=Buffer.byteLength(packet);};
+ assert(sender.event(ws,'x'.repeat(150)));await wait(60);assert.equal(ws.code,1013);
+});

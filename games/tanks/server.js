@@ -1,3 +1,4 @@
+const socketPolicy=require('../../lib/raw-socket-policy');
 const http = require('http');
 const fs = require('fs');
 const os = require('os');
@@ -708,7 +709,7 @@ class WSClient {
     this.data = {};
     this.buffer = Buffer.alloc(0);
     this.closed = false;
-    this.deliverySocket=socketAdapter(this,wsFrame);
+    this.deliverySocket=socketAdapter(this,wsFrame);socketPolicy.attach(this,wsFrame);
     clients.add(this); clientsById.set(this.id, this);
     socket.on('data', chunk => this.onData(chunk));
     socket.on('close', () => this.onClose());
@@ -739,6 +740,7 @@ class WSClient {
         if (n > 1024n * 1024n) return this.socket.destroy();
         len = Number(n); off = 10;
       }
+      if(len>8192)return this.socket.destroy();
       let mask;
       if (masked) {
         if (this.buffer.length < off + 4) return;
@@ -750,6 +752,7 @@ class WSClient {
       if (masked) for (let i=0;i<payload.length;i++) payload[i] ^= mask[i & 3];
       if (opcode === 0x8) { this.socket.end(wsFrame('', 0x8)); return; }
       if (opcode === 0x9) { this.pong(payload); continue; }
+      if (opcode === 0xA) { socketPolicy.pong(this); continue; }
       if (opcode !== 0x1) continue;
       try {
         const msg = JSON.parse(payload.toString('utf8'));
@@ -777,7 +780,7 @@ function sendTo(id, type, data) {
 }
 
 function handleMessage(socket, msg) {
-  if(socket.partyRemoved||!runtime.allowMessage(msg))return;
+  if(socket.partyRemoved||!socketPolicy.allow(socket)||!runtime.allowMessage(msg))return;
   const event = msg && msg.type;
   const payload = msg && msg.data;
   if (event === 'registerHost') {
@@ -796,7 +799,7 @@ function handleMessage(socket, msg) {
       p = players.get(tokenToPlayer.get(data.token));
       if (p) {
         p.connected = true;
-        p.socketId = socket.id;
+        const previous=clientsById.get(p.socketId);p.socketId = socket.id;if(previous&&previous!==socket)previous.deliverySocket?.close(4001,'Replaced');
         p.input.forward = p.input.fire = false;
         p.input.at = 0;
         p.name = cleanName(data.name || p.name);

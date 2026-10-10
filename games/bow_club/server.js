@@ -1,4 +1,5 @@
 'use strict';
+const delivery=require('../../lib/snapshot-sender').createSnapshotSender();
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),https=require('node:https'),crypto=require('node:crypto'),os=require('node:os');
 const {BowMatch}=require('./core/match.cjs');let WS;try{WS=require('ws');}catch(e){if(e.code!=='MODULE_NOT_FOUND')throw e;WS=require('./transport/ws-lite.cjs');}
 const managed=process.env.PARTY_MANAGED==='1',runtime=managed?require('../../lib/party-runtime'):{now:Date.now,setInterval,onPause(){},identify(){return null;},presence(){},host(){},report(){},ui(){},paused:false,displayOnly:false};
@@ -16,8 +17,8 @@ function handle(req,res){
  res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store','Permissions-Policy':'camera=(self), microphone=()','X-Content-Type-Options':'nosniff'});res.end(req.method==='HEAD'?undefined:body);
 }
 const server=tls?https.createServer({cert:fs.readFileSync(process.env.AR_TLS_CERT),key:fs.readFileSync(process.env.AR_TLS_KEY)},handle):http.createServer(handle);
-const wss=new WS.WebSocketServer({server,path:'/ws',maxPayload:4096});
-const send=(ws,type,data)=>{if(ws.readyState===1&&(type!=='state'||ws.bufferedAmount<96000))ws.send(JSON.stringify({type,data}));};
+const wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,path:'/ws',maxPayload:4096});
+const send=(ws,type,data)=>type==='state'?delivery.snapshot(ws,JSON.stringify({type,data})):delivery.event(ws,{type,data});
 const state=()=>({...game.snapshot(runtime.now()),paused:runtime.paused});
 const broadcast=()=>{const s=state();for(const ws of wss.clients)send(ws,'state',s);};
 function start(settings={}){const ok=game.start(settings,runtime.now());broadcast();return ok;}
@@ -34,7 +35,7 @@ wss.on('connection',(ws,req)=>{
    let profile=runtime.identify(d,ws);if(managed&&!profile)return send(ws,'join_error',{message:'Подключитесь через общий хаб.'});
    if(!managed){profile=typeof d.token==='string'?sessions.get(d.token):null;if(!profile){if(sessions.size>=64)return send(ws,'join_error',{message:'Лимит сессий.'});profile={id:crypto.randomUUID(),token:crypto.randomBytes(24).toString('hex'),name:d.name||'Лучник'};sessions.set(profile.token,profile);}}
    if(ws.pid&&ws.pid!==profile.id)return;const p=game.add(profile);if(!p)return send(ws,'join_error',{message:'Матч уже идёт или подключено 6 игроков. Подождите следующего.'});
-   const old=sockets.get(p.id);sockets.set(p.id,ws);ws.pid=p.id;if(old&&old!==ws)old.close(1000,'Reconnected');send(ws,'joined',{id:p.id,token:managed?null:profile.token,nextSeq:p.lastSeq+1});broadcast();return;
+   const old=sockets.get(p.id);sockets.set(p.id,ws);ws.pid=p.id;if(old&&old!==ws)old.close(4001,'Reconnected');send(ws,'joined',{id:p.id,token:managed?null:profile.token,nextSeq:p.lastSeq+1});broadcast();return;
   }
   if(ws.host&&!runtime.displayOnly&&!runtime.paused){if(m.type==='start'){if(!start(d))send(ws,'error',{message:'Сначала подключите телефоны.'});return;}if(m.type==='reset'){reset();return;}}
   if(!ws.pid||sockets.get(ws.pid)!==ws||runtime.paused)return;
@@ -46,7 +47,6 @@ wss.on('connection',(ws,req)=>{
 });
 runtime.host({start,reset,available:()=>game.phase==='waiting'?['start']:game.phase==='results'?['reset']:[]});runtime.onPause(()=>{for(const p of game.players)game.cancel(p.id);broadcast();});
 const loop=runtime.setInterval(()=>{if(!runtime.paused)game.step(runtime.now());runtime.ui({phase:game.phase,label:'Стрельба из лука',progress:`${game.arrows||10} стрел`,endsAt:game.phase==='playing'?game.deadline:null});if(game.result&&reported!==game.result.eventId){reported=game.result.eventId;runtime.report(game.result);}broadcast();},150);
-const heartbeat=setInterval(()=>{for(const ws of wss.clients){if(!ws.alive)ws.terminate();else{ws.alive=false;ws.ping();}}},10000);heartbeat.unref();
-server.on('error',e=>{console.error(e);clearInterval(loop);clearInterval(heartbeat);process.exitCode=1;});
+server.on('error',e=>{console.error(e);clearInterval(loop);process.exitCode=1;});
 server.listen(Number(process.env.PORT||process.env.AR_PORT||4200),managed?'127.0.0.1':'0.0.0.0',()=>{console.log(`Bow Club 0.2 — http${tls?'s':''}://localhost:${server.address().port}/tv\nController: / (camera needs trusted HTTPS; touch mode works over HTTP)`);process.send?.({type:'ready',port:server.address().port});});
-const stop=()=>{clearInterval(loop);clearInterval(heartbeat);wss.close();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),500).unref();};process.on('SIGTERM',stop);process.on('SIGINT',stop);
+const stop=()=>{clearInterval(loop);wss.close();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),500).unref();};process.on('SIGTERM',stop);process.on('SIGINT',stop);

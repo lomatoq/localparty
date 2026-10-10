@@ -12,11 +12,11 @@ test('approved game logo resolver covers actual catalog assets and rejects unkno
  const context={};vm.runInNewContext(fs.readFileSync('public/tv-information.js','utf8'),context);
  assert.equal(context.LocalPartyTVInformation.logoFor('naval'),logoFor('naval'));
 });
-test('all 36 released games have explicit family and safe runtime metadata adapter',()=>{
- assert.equal(catalog.length,36);assert.deepEqual(Object.keys(registry).sort(),catalog.map(g=>g.id).sort());
+test('all 32 released games have explicit family and safe runtime metadata adapter',()=>{
+ assert.equal(catalog.length,32);assert.deepEqual(Object.keys(registry).sort(),catalog.map(g=>g.id).sort());
  for(const game of catalog){const input={game,ui:{phase:'playing',label:'На ход',currentPlayer:'A',progress:'2 / 3',endsAt:5000},now:2000};const before=JSON.stringify(input),out=normalize(input);assert.equal(out.title,game.title);assert(['live','turn','prompt','mission'].includes(out.family));assert.equal(out.timer.remainingSeconds,3);assert.equal(out.actor,'A');assert.equal(out.progress,'2 / 3');assert.equal(out.coverage,'runtime-ui');assert.equal(out.objective?.kind,'static');assert.deepEqual(out.metrics,[]);assert.equal(JSON.stringify(input),before);}
 });
-test('all36 concise objectives have explicit English copy, not live-state claims',()=>{
+test('all 32 concise objectives have explicit English copy, not live-state claims',()=>{
  const {objectives}=require('../public/tv-information');for(const game of catalog){const pair=objectives[game.id];assert(pair,game.id);assert(pair[1].length<=40,game.id);assert(!/[А-Яа-яЁё]/.test(pair[1]),game.id);assert.equal(normalize({game}).objective.kind,'static');}
  const dictionary=require('../public/i18n-shell');for(const label of ['Прицеливание','Выбор арсенала','Дрон в полёте','Выстрел / осыпание','Арсенал готов','Прочность ворот'])assert(dictionary[label],label);
 });
@@ -46,7 +46,7 @@ test('publisher is host-only, caps traffic at 4Hz and never forwards raw secret 
  now=1250;assert(send({...s,pot:1}),'unchanged live state has a1s heartbeat');assert.equal(packets.length,3);
 });
 test('zero-based questions/drawing turns and inactive sports clocks are not mislabeled',()=>{
- for(const id of ['warsaw','drawguess','crocodile']){const r=normalize({game:{id},snapshot:{phase:'playing',round:0,turn:0,total:5,settings:{turns:5}}});assert.match(r.progress,/1 \/ 5/);}
+ for(const id of ['warsaw','crocodile']){const r=normalize({game:{id},snapshot:{phase:'playing',round:0,turn:0,total:5,settings:{turns:5}}});assert.match(r.progress,/1 \/ 5/);}
  const r=normalize({game:{id:'swarm_gate'},snapshot:{phase:'playing',stage:'wave',t:10,deadline:0}});assert.equal(r.timer,null);
  const mines=normalize({game:{id:'mines'},snapshot:{phase:'playing',remaining:180}});assert.equal(mines.timer.remainingSeconds,180,'engine remaining is180-t seconds, not cells');
 });
@@ -54,7 +54,6 @@ test('hidden Western signal and ended matches never expose countdowns',()=>{
  for(const phase of ['waitingSignal','draw'])assert.equal(normalize({game:{id:'western_duel'},snapshot:{phase,endsAt:12345},now:10000}).timer,null);
  for(const id of ['bow_club','poker','mines','airhockey','marble_bloom','swarm_gate'])for(const phase of ['waiting','results'])assert.equal(normalize({game:{id},snapshot:{phase,remaining:90,deadline:200,t:100,duration:500,arenaMode:'versus'}}).timer,null,id);
  assert.equal(normalize({game:{id:'western_duel'},snapshot:{phase:'countdown',endsAt:13000},now:10000}).timer.remainingSeconds,3);
- assert.equal(normalize({game:{id:'crane'},snapshot:{phase:'playing',turns:0,maxTurns:12}}).progress,'Ход 1 / 12');
 });
 test('team hockey HUD reports goals without inventing an individual leader',()=>{
  const info=normalize({game:{id:'airhockey'},snapshot:{phase:'playing',remaining:48,goals:[2,3],players:[{id:'a',name:'A',score:99},{id:'b',name:'B',score:0}]}});
@@ -98,10 +97,4 @@ test('TV publisher retains the last quiet-game state inside its4Hz throttle',()=
  assert.equal(packets.length,1);assert.equal(delay,190);at=250;callback();
  assert.equal(packets.length,2);assert.equal(packets[1].info.phase,'playing');assert.equal(packets[1].info.progress,'Мини-режим: вопрос и догадка');
  at=300;publish({phase:'voting'});assert(callback);at=550;publish({phase:'result'});assert.equal(callback,null);assert.equal(packets.at(-1).info.phase,'result');
-});
-
-test('Jenga stability reports real published safety instead of constant level',()=>{
- const read=safety=>normalize({game:{id:'jenga'},snapshot:{phase:'playing',stability:{level:0,safety}}}).metrics.find(m=>m.key==='stability')?.value;
- assert.equal(read(0.999),'100%');assert.equal(read(0.43),'43%');assert.equal(read(0),'0%');
- assert.equal(read(1.2),'100%');assert.equal(read(-0.1),'0%');assert.equal(read(undefined),undefined);assert.equal(read(NaN),undefined);
 });

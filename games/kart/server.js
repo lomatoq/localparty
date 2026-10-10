@@ -1,6 +1,6 @@
 'use strict';
 const express=require('express'),http=require('http'),{WebSocketServer}=require('ws'),qr=require('qrcode'),crypto=require('crypto'),runtime=require('../../lib/party-runtime');
-const app=express(),server=http.createServer(app),wss=new WebSocketServer({server,path:'/ws'}),managed=process.env.PARTY_MANAGED==='1';
+const app=express(),server=http.createServer(app),wss=new (require('../../lib/game-websocket-server').WebSocketServer)({server,path:'/ws'}),managed=process.env.PARTY_MANAGED==='1';
 const handling=require('./static/handling'),track=require('./static/track'),TRACK={width:1600,height:900,roadWidth:track.width,points:track.points},colors=['#FF5C8A','#4CC9F0','#FFD166','#7AE582','#B388FF','#FF9F1C','#00D4AA','#F72585','#90BE6D','#43AA8B','#577590','#F94144'];
 const players=new Map(),now=()=>runtime.now()/1000,clamp=(v,a,b)=>Math.max(a,Math.min(b,Number(v)||0)),norm=a=>(a%(2*Math.PI)+2*Math.PI)%(2*Math.PI),wrap=a=>norm(a+Math.PI)-Math.PI;
 let status='lobby',laps=5,countdownStarted=0,raceStarted=0,firstFinish=0,finishCounter=0,tick=0,eventId='',resultsAt=0;

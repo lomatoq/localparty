@@ -7,27 +7,9 @@ async function fixture(t,game,engine=game){
   let log='';const sockets=[];child.stdout.on('data',b=>log+=b);child.stderr.on('data',b=>log+=b);
   t.after(async()=>{for(const s of sockets)s.terminate();if(child.exitCode===null){const done=new Promise(r=>child.once('exit',r));child.kill();await done;}});
   const port=await until(()=>log.match(/(?:localhost:|127\.0\.0\.1:|port )(\d+)/)?.[1],game+' startup '+log),base='http://127.0.0.1:'+port;
-  async function connect(){const ws=new WS(base.replace('http','ws')+(game==='drawguess'?'':'/ws'));sockets.push(ws);ws.messages=[];ws.on('message',b=>ws.messages.push(JSON.parse(b)));await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});return ws;}
+  async function connect(){const ws=new WS(base.replace('http','ws')+'/ws');sockets.push(ws);ws.messages=[];ws.on('message',b=>ws.messages.push(JSON.parse(b)));await new Promise((r,j)=>{ws.once('open',r);ws.once('error',j);});return ws;}
   return {base,connect};
 }
-test('DrawGuess: guess omits history; clear, new turn and reconnect restore complete canvas; secrets stay private',{timeout:15000},async t=>{
-  const f=await fixture(t,'drawguess'),host=await f.connect();
-  const html=await(await fetch(f.base+'/host')).text(),key=JSON.parse(html.match(/window.DRAW_HOST_KEY=("[^"]+")/)[1]);
-  const send=(ws,m)=>ws.send(JSON.stringify(m));send(host,{type:'host',key});
-  const a=await f.connect(),b=await f.connect();send(a,{type:'join',name:'Artist'});send(b,{type:'join',name:'Guesser'});
-  const identity=await until(()=>a.messages.find(m=>m.type==='identity'),'artist identity');await until(()=>b.messages.some(m=>m.type==='joined'),'guesser join');
-  send(host,{type:'start'});await until(()=>a.messages.some(m=>m.phase==='drawing'),'started');
-  const state=a.messages.findLast(m=>m.type==='state');assert.equal(state.artistId,identity.id);assert(state.secret);
-  const segment={id:'one',points:[.1,.1,.5,.5],color:'#eef4e9',width:7};send(a,{type:'stroke',turnId:state.turnId,segment});
-  await until(()=>b.messages.some(m=>m.type==='stroke'),'ink delivered');b.messages=[];
-  send(b,{type:'guess',turnId:state.turnId,text:'definitely incorrect abcxyz'});
-  const compact=await until(()=>b.messages.find(m=>m.type==='state'),'guess update');assert.equal(compact.secret,null);assert.equal('strokes' in compact,false);assert.equal(compact.messages.length,1);
-  const restored=await f.connect();const full=await until(()=>restored.messages.find(m=>m.type==='state'),'restore canvas');assert.deepEqual(full.strokes,[segment]);assert.equal(full.secret,null);
-  send(restored,{type:'join',id:identity.id,token:identity.token});const privateState=await until(()=>restored.messages.find(m=>m.type==='state'&&m.secret),'restore artist');assert.equal(privateState.secret,state.secret);
-  b.messages=[];send(restored,{type:'clear',turnId:state.turnId});const clear=await until(()=>b.messages.find(m=>m.type==='state'&&Array.isArray(m.strokes)),'clear');assert.deepEqual(clear.strokes,[]);
-  send(host,{type:'end'});await until(()=>b.messages.some(m=>m.phase==='reveal'&&m.secret===state.secret),'reveal');
-  const next=await until(()=>b.messages.find(m=>m.phase==='drawing'&&m.turnId!==state.turnId),'new turn');assert.deepEqual(next.strokes,[]);assert(next.secret);
-});
 test('Air Hockey input does not amplify broadcasts and control still moves players',{timeout:15000},async t=>{
   const f=await fixture(t,'airhockey','tabletop'),host=await f.connect(),players=[];
   host.send(JSON.stringify({type:'host'}));

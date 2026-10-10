@@ -12,7 +12,7 @@ function party(engine = 'party') {
   const file = require.resolve(`../games/${engine}/server`);
   const localRequire = createRequire(file), reports = [], pauses = [];
   const context = vm.createContext({
-    require: name => name === '../../lib/party-runtime' ? {
+    require: name => name === '../../lib/raw-socket-policy' ? {allow:()=>true} : name === '../../lib/party-runtime' ? {
       now: Date.now, setInterval() {}, allowMessage: () => true,
       onPause: fn => pauses.push(fn), host() {}, presence() {},
       identify: data => data.partyId ? { id: data.partyId, name: data.partyId } : null,

@@ -67,7 +67,7 @@ struct NearbyRoom: Codable, Equatable, Identifiable {
             published = service; publishedURL = address; service.delegate = self
             service.publish()
         }
-        let game = state.catalog.first { $0.id == state.active?.id }?.title ?? ""
+        let game = state.catalog?.first { $0.id == state.active?.id }?.title ?? ""
         let values = ["v": "1", "id": identifier, "url": address,
                       "name": Self.ownName, "game": String(game.prefix(60)),
                       "phase": state.active?.ui.phase ?? "lobby", "players": String(state.players.count)]

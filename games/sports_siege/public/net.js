@@ -17,7 +17,7 @@ export class PartyConnection extends EventTarget {
       if(m.type==='join_error'||m.type==='error')this.dispatchEvent(new CustomEvent('status',{detail:m.data?.message||'Ошибка входа'}));
       this.dispatchEvent(new CustomEvent(m.type,{detail:m.data}));
     };
-    ws.onclose=()=>{if(this.ws!==ws)return;this.dispatchEvent(new CustomEvent('status',{detail:'Восстанавливаем связь…'}));if(!this.closed)setTimeout(()=>this.connect(),800);};
+    ws.onclose=e=>{if(this.ws!==ws)return;if(e.code===4001||e.code===4003){this.closed=true;return;}this.dispatchEvent(new CustomEvent('status',{detail:'Восстанавливаем связь…'}));if(!this.closed)setTimeout(()=>this.connect(),800+Math.random()*400);};
     ws.onerror=()=>{};
   }
   send(type,data={}){if(this.ws?.readyState===1)this.ws.send(JSON.stringify({type,data}));}

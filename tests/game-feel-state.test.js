@@ -53,7 +53,6 @@ test('quiz reward at reveal uses awarded score, not secret answers',()=>{
  assert.equal(t.observe({phase:'reveal',round:1,me:{id:'a',score:100}},{selfId:'a'}).events[0].semantic,'score');
 });
 test('the last Crane life is critical and Hungry loss follows respawn state',()=>{
- const crane=createTracker('crane');assert.equal(crane.observe({phase:'playing',lives:1}).critical,true);
  const hungry=createTracker('hungry');hungry.observe({phase:'playing',players:[{id:'a',alive:true,dead:0}]},{selfId:'a'});
  assert.equal(hungry.observe({phase:'playing',players:[{id:'a',alive:true,dead:2}]},{selfId:'a'}).events[0].semantic,'elimination');
 });
