@@ -583,6 +583,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     private weak var model: ServerModel?
     weak var surfaceController: PartySurfaceController?
     private var modelSubscription: AnyCancellable?
+    private var modelPublishQueued = false, modelPublishRepeated = false
     private var menuStarted = false
     private var deliveryEpoch = 0
     private var payloadInFlight = false, publishAgain = false
@@ -710,9 +711,22 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
         if self.model !== model {
             self.model = model
             modelSubscription = model.objectWillChange.sink { [weak self] _ in
-                // objectWillChange precedes mutation. Publish on the next main turn,
-                // independently of SwiftUI's UIViewControllerRepresentable redraws.
-                DispatchQueue.main.async { [weak self] in self?.publish() }
+                // objectWillChange precedes mutation. Keep one latest publication
+                // for the next main turn, including recursively observed changes.
+                guard let self else { return }
+                if self.modelPublishQueued { self.modelPublishRepeated = true; return }
+                self.modelPublishQueued = true
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    let repeated = self.modelPublishRepeated
+                    self.modelPublishQueued = false; self.modelPublishRepeated = false
+                    self.publish()
+                    // Redundant deferred calls used to request another publication
+                    // while WebKit held the first payload. Preserve ACK/error retry
+                    // behavior without rebuilding identical Rooms bridge arguments.
+                    if repeated, self.menuReady, self.deliveryFailures <= 5,
+                       self.model != nil, self.payloadInFlight { self.publishAgain = true }
+                }
             }
             loadBundledCatalog()
         }

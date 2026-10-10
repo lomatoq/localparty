@@ -580,8 +580,9 @@
   };
   $('startBotsPlus').onclick=()=>changePromptBots(1);$('startBotsMinus').onclick=()=>changePromptBots(-1);
   $('startBotsClose').onclick=closeBotPrompt;$('startBotsLaunch').onclick=()=>{if(!$('startBotsLaunch').disabled)launchFromCard(botPromptGame,botPromptAnchor);};
-  document.addEventListener('pointerdown',e=>{if(botPromptGame&&!$('startBots').contains(e.target)&&!botPromptAnchor?.contains(e.target))closeBotPrompt();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&botPromptGame){e.preventDefault();closeBotPrompt();}});
+  const bindBotOutside=()=>window.LocalPartyDialogs?.bindOutside($('startBots'),()=>botPromptAnchor,closeBotPrompt);
+  if(window.LocalPartyDialogs)bindBotOutside();else document.addEventListener('DOMContentLoaded',bindBotOutside,{once:true});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&botPromptGame){e.preventDefault();window.LocalPartyUIFeel?.dismiss(e);closeBotPrompt();}});
   window.addEventListener('resize',queueBotPromptPosition);window.addEventListener('scroll',queueBotPromptPosition,true);window.visualViewport?.addEventListener('resize',queueBotPromptPosition);
   $('botPlus').onclick=()=>manage({type:'bots-set',count:(state.botCount||0)+1});
   $('botMinus').onclick=()=>manage({type:'bots-set',count:Math.max(0,(state.botCount||0)-1)});

@@ -305,12 +305,13 @@ body.guest-catalog .guest-game.rank-row .guest-actions{grid-column:3}
    stronger closing selector above later native/skin entrance overrides. */
 html body dialog[open].lp-dialog-closing.sheet-closing,
 html body.native-shell dialog[open].lp-dialog-closing.sheet-closing{
- animation:lp-shared-dialog-out 180ms cubic-bezier(.23,1,.32,1) both!important;
+ animation:lp-dialog-dismiss 180ms var(--ux-ease-out,cubic-bezier(.23,1,.32,1)) both!important;
  transition:none!important;pointer-events:none;transform-origin:center center;
 }
 html body dialog[open].lp-dialog-closing.sheet-closing>*{animation:none!important;opacity:1;translate:none}
 html body dialog[open].lp-dialog-closing.sheet-closing::backdrop{animation:lp-shared-backdrop-out 180ms ease-out both!important}
-@keyframes lp-shared-dialog-out{from{opacity:var(--lp-close-opacity,1);translate:var(--lp-close-translate,0 0);scale:var(--lp-close-scale,1);transform:var(--lp-close-transform,none)}to{opacity:0;translate:0 8px;scale:.96;transform:none}}
+@keyframes lp-dialog-dismiss{from{opacity:var(--lp-close-opacity,1);translate:var(--lp-close-translate,0 0);scale:var(--lp-close-scale,1);transform:var(--lp-close-transform,none)}to{opacity:0;translate:0 8px;scale:.96;transform:none}}
+@keyframes lp-sheet-dismiss{from{opacity:var(--lp-close-opacity,1);translate:var(--lp-close-translate,0 0);scale:var(--lp-close-scale,1);transform:var(--lp-close-transform,none)}to{opacity:0;translate:0 calc(100% + 40px);scale:1;transform:none}}
 @keyframes lp-shared-backdrop-out{from{opacity:var(--lp-backdrop-start,1)}to{opacity:0}}
 @media(prefers-reduced-motion:reduce){html body dialog[open].lp-dialog-closing.sheet-closing,html body dialog[open].lp-dialog-closing.sheet-closing::backdrop{animation:none!important}}
 

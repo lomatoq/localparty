@@ -120,20 +120,27 @@
  for(const name of ['pointercancel','lostpointercapture'])document.addEventListener(name,e=>release(e.pointerId,false),{capture:true,passive:true});
  document.addEventListener('keydown',e=>{if(e.repeat||e.altKey||e.metaKey||e.ctrlKey||!['Enter',' '].includes(e.key))return;const el=target(e.target);if(el&&!(el.matches('a')&&e.key===' '))begin('key:'+e.key,el);},{capture:true});
  document.addEventListener('keyup',e=>release('key:'+e.key,true),{capture:true});
- document.addEventListener('click',e=>{
-  const el=target(e.target);if(!e.isTrusted||!el||['testHaptics','hapticsToggle'].includes(el.id))return;
-  releaseElement(el);
+ function feedback(pattern){
   const now=performance.now();if(now-lastHaptic<65)return;lastHaptic=now;
   // The native endpoint enforces the user's haptics toggle. Game-hit haptics
   // remain owned by the game, avoiding a second vibration on every fire button.
-  const selection=el.matches('[aria-pressed],[role=tab],.filter-tab,[data-section]'),confirmation=el.matches('[type=submit],#confirmYes,#readyButton,#resumeButton,#startBotsLaunch'),pattern=confirmation?[14,35,9]:selection?[5]:[9];
   if(document.body.classList.contains('native-shell'))window.webkit?.messageHandlers?.partyShell?.postMessage({type:'haptic',pattern});
-  else if(!el.closest('#controls,.game-controls')){if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);}
+  else {if(window.LocalPartyNative?.haptic)window.LocalPartyNative.haptic(pattern);else navigator.vibrate?.(pattern);}
+ }
+ document.addEventListener('click',e=>{
+  const el=target(e.target);if(!e.isTrusted||!el||['testHaptics','hapticsToggle'].includes(el.id))return;
+  releaseElement(el);
+  if(!document.body.classList.contains('native-shell')&&el.closest('#controls,.game-controls'))return;
+  const selection=el.matches('[aria-pressed],[role=tab],.filter-tab,[data-section]'),confirmation=el.matches('[type=submit],#confirmYes,#readyButton,#resumeButton,#startBotsLaunch'),pattern=confirmation?[14,35,9]:selection?[5]:[9];
+  feedback(pattern);
  },{capture:true,passive:true});
  window.addEventListener('blur',all);window.addEventListener('pagehide',all);window.addEventListener('party-native-hide',all);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)all();});
  media.addEventListener?.('change',all);
- window.LocalPartyUIFeel=Object.freeze({cancel:all,release:releaseElement,revision:'tactile-20260920.1'});
+ // Back buttons already pass through the delegated click above. Only an accepted
+ // outside/keyboard dismissal needs its own impact; automatic state closes stay quiet.
+ const dismiss=event=>{if(event?.isTrusted&&(event.type!=='click'||!target(event.target)))feedback([9]);};
+ window.LocalPartyUIFeel=Object.freeze({cancel:all,release:releaseElement,dismiss,revision:'tactile-20260920.1'});
 })();
 
 /* Catalog content is ready to read and tap before optional first-entry motion. */
@@ -208,7 +215,8 @@
 (() => {
  'use strict';
  if(window.LocalPartyDialogs||!window.HTMLDialogElement)return;
- const quiet=()=>matchMedia('(prefers-reduced-motion: reduce)').matches,pending=new WeakMap(),panels=new WeakMap();
+ const preference=matchMedia('(prefers-reduced-motion: reduce)'),quiet=()=>preference.matches,pending=new WeakMap(),panels=new WeakMap();
+ const pendingDialogs=new Set(),movingPanels=new Set(),resumingDialogs=new Set();
  const inactive=()=>document.hidden||window.__partyNativeHidden===true;
  const reopening=new WeakMap();
  const backdropRules=new WeakMap();let backdropId=0;
@@ -216,13 +224,14 @@
  // rule the sampled opacity so interrupted transitions never restart at 0/1.
  function backdropStart(dialog,opacity){
   let rule=backdropRules.get(dialog);if(!rule){const key=String(++backdropId),style=document.createElement('style');dialog.dataset.lpBackdrop=key;document.head.append(style);rule={key,style};backdropRules.set(dialog,rule);}
-  rule.style.textContent=`dialog[data-lp-backdrop="${rule.key}"]::backdrop{--lp-backdrop-start:${Math.max(0,Math.min(1,Number(opacity)||0))}}`;
+  const pseudo=dialog.id==='pauseOverlay'?'::before':'::backdrop';
+  rule.style.textContent=`[data-lp-backdrop="${rule.key}"]${pseudo}{--lp-backdrop-start:${Math.max(0,Math.min(1,Number(opacity)||0))}}`;
  }
 
  const prototype=HTMLDialogElement.prototype,nativeClose=prototype.close,nativeShow=prototype.show,nativeModal=prototype.showModal;
  function cancel(dialog){
   const record=pending.get(dialog);if(!record)return;
-  clearTimeout(record.timer);pending.delete(dialog);dialog.classList.remove('lp-dialog-closing','sheet-closing');clearStart(dialog);record.resolve(false);
+  clearTimeout(record.timer);pending.delete(dialog);pendingDialogs.delete(dialog);dialog.classList.remove('lp-dialog-closing','sheet-closing');clearStart(dialog);record.resolve(false);
  }
  function clearStart(dialog){for(const key of ['opacity','scale','translate','transform'])dialog.style.removeProperty('--lp-close-'+key);}
  function close(dialog,value){
@@ -233,21 +242,21 @@
   // UIKit can park a WKWebView without changing document.hidden. Authoritative
   // ACKs still close obsolete dialogs while parked, without sampling its paint.
   if(inactive()||quiet()){
-   reopening.get(dialog)?.cancel();reopening.delete(dialog);
-   const previous=pending.get(dialog);if(previous){clearTimeout(previous.timer);pending.delete(dialog);if(value===undefined)value=previous.value;}
+   reopening.get(dialog)?.cancel();reopening.delete(dialog);resumingDialogs.delete(dialog);
+   const previous=pending.get(dialog);if(previous){clearTimeout(previous.timer);pending.delete(dialog);pendingDialogs.delete(dialog);if(value===undefined)value=previous.value;}
    nativeClose.call(dialog,...(value===undefined?[]:[value]));
    dialog.classList.remove('lp-dialog-closing','sheet-closing');clearStart(dialog);previous?.resolve(true);return;
   }
   const resuming=reopening.get(dialog),live=resuming?getComputedStyle(dialog):null,resumePose=live?Object.fromEntries(['opacity','scale','translate','transform'].map(key=>[key,live[key]])):null;
-  resuming?.cancel();reopening.delete(dialog);
+  resuming?.cancel();reopening.delete(dialog);resumingDialogs.delete(dialog);
   const previous=pending.get(dialog);if(previous){if(value!==undefined)previous.value=value;return;}
-  let resolve;const promise=new Promise(r=>resolve=r),record={value,resolve,promise,timer:0};pending.set(dialog,record);
+  let resolve;const promise=new Promise(r=>resolve=r),record={value,resolve,promise,timer:0};pending.set(dialog,record);pendingDialogs.add(dialog);
   const start=resumePose||getComputedStyle(dialog);for(const key of ['opacity','scale','translate','transform'])dialog.style.setProperty('--lp-close-'+key,start[key]==='none'?(key==='scale'?'1':key==='translate'?'0 0':'none'):start[key]);
   backdropStart(dialog,getComputedStyle(dialog,'::backdrop').opacity);
   dialog.classList.add('lp-dialog-closing','sheet-closing');
   record.timer=setTimeout(()=>{
    if(pending.get(dialog)!==record)return;
-   pending.delete(dialog);
+   pending.delete(dialog);pendingDialogs.delete(dialog);
    // A nested popup can already own focus. Closing an outgoing sheet must not
    // restore the old opener over that incoming sheet.
    const focused=document.activeElement;
@@ -266,16 +275,19 @@
   const changeMode=reversing&&dialog.open&&dialog.matches(':modal')!==modal;
   if(reversing)dialog.classList.add('lp-dialog-resumed');else if(!dialog.open)dialog.classList.remove('lp-dialog-resumed');
   cancel(dialog);if(changeMode)nativeClose.call(dialog);
+  // A drag-dismissed sheet can reopen before its real close event clears the
+  // owned offset. Keep the sampled pose, but return to the normal sheet layout.
+  if(reversing&&dialog.classList.contains('ux-sheet')){dialog.style.removeProperty('translate');dialog.style.removeProperty('--ux-drag-fade');dialog.classList.remove('ux-dragging');}
   const result=(modal?nativeModal:nativeShow).call(dialog);
   if(pose&&!quiet()){
    const a=dialog.animate([pose,{opacity:1,transform:'none',scale:'1',translate:'0 0'}],{duration:180,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
-   reopening.set(dialog,a);a.finished.catch(()=>{}).then(()=>{if(reopening.get(dialog)===a){reopening.delete(dialog);a.cancel();}});
+   reopening.set(dialog,a);resumingDialogs.add(dialog);a.finished.catch(()=>{}).then(()=>{if(reopening.get(dialog)===a){reopening.delete(dialog);resumingDialogs.delete(dialog);a.cancel();}});
   }
   return result;
  }
  prototype.show=function(){return show(this,false);};
  prototype.showModal=function(){return show(this,true);};
- document.addEventListener('cancel',event=>{if(event.target instanceof HTMLDialogElement){event.preventDefault();event.target.close();}},true);
+ document.addEventListener('cancel',event=>{if(event.target instanceof HTMLDialogElement){event.preventDefault();if(event.target.open&&!pending.has(event.target))window.LocalPartyUIFeel?.dismiss(event);event.target.close();}},true);
  // Dismiss modal sheets through the same animated close path as Back. Only a
  // complete stationary backdrop tap counts; scrolling or dragging out of the
  // panel must never dismiss it. The modal hit target is the top-layer dialog,
@@ -304,7 +316,7 @@
   event.preventDefault();
   // Empty returnValue is cancellation, even if this confirmation was accepted
   // during a previous opening. Never synthesize a submit/primary-action click.
-  press.dialog.close('');
+  window.LocalPartyUIFeel?.dismiss(event);press.dialog.close('');
  },true);
  document.addEventListener('submit',event=>{
   const form=event.target;if(!(form instanceof HTMLFormElement))return;const method=event.submitter?.hasAttribute('formmethod')?event.submitter.formMethod:form.method;if(String(method).toLowerCase()!=='dialog')return;
@@ -317,19 +329,21 @@
   if(record?.show===show&&!immediate||!record&&panel.hidden===!show)return;
   // Retarget from the rendered pose, including a close reversed by a new update.
   const style=immediate?null:getComputedStyle(card),pose=style?{opacity:style.opacity,scale:style.scale==='none'?'1':style.scale,translate:style.translate==='none'?'0 0':style.translate}:null;
-  clearTimeout(record?.timer);record?.animation.cancel();panels.delete(panel);
+  if(!immediate&&(panel.matches('[popover][role=dialog]')||panel.id==='pauseOverlay'))backdropStart(panel,getComputedStyle(panel,panel.id==='pauseOverlay'?'::before':'::backdrop').opacity);
+  clearTimeout(record?.timer);record?.animation.cancel();panels.delete(panel);movingPanels.delete(panel);
   const wasHidden=panel.hidden;panel.hidden=false;
   // Reparent/populate/promote popovers before starting their animation clock.
   // Preserve wasHidden so the first visible frame still starts transparent.
   if(show&&typeof prepare==='function')prepare();
   panel.toggleAttribute('data-lp-panel-closing',!show);
+  panel.toggleAttribute('data-lp-panel-resumed',!!(show&&record&&!record.show));
   panel.style.pointerEvents=show?'':'none';
-  if(immediate){panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panel.style.removeProperty('pointer-events');if(!show&&panel.matches(':popover-open'))panel.hidePopover();return;}
-  const animation=card.animate([wasHidden?{opacity:0,scale:'.98',translate:'0 8px'}:pose,show?{opacity:1,scale:'1',translate:'0 0'}:{opacity:0,scale:'.98',translate:'0 8px'}],{duration:180,easing:getComputedStyle(rootElement()).getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)',fill:'both'});
-  const entry={animation,show,timer:0};panels.set(panel,entry);
+  if(immediate){panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panel.removeAttribute('data-lp-panel-resumed');panel.style.removeProperty('pointer-events');if(!show&&panel.matches(':popover-open'))panel.hidePopover();return;}
+  const animation=card.animate([wasHidden?{opacity:0,scale:'.98',translate:'0 8px'}:pose,show?{opacity:1,scale:'1',translate:'0 0'}:{opacity:0,scale:panel.matches('[role=dialog],#pauseOverlay')?'.96':'.98',translate:'0 8px'}],{duration:180,easing:getComputedStyle(rootElement()).getPropertyValue('--motion-ease-out').trim()||'cubic-bezier(.16,1,.3,1)',fill:'both'});
+  const entry={animation,show,timer:0};panels.set(panel,entry);movingPanels.add(panel);
   const finish=()=>{
    if(panels.get(panel)!==entry)return;
-   clearTimeout(entry.timer);panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panels.delete(panel);panel.style.removeProperty('pointer-events');animation.cancel();
+   clearTimeout(entry.timer);panel.hidden=!show;panel.removeAttribute('data-lp-panel-closing');panel.removeAttribute('data-lp-panel-resumed');panels.delete(panel);movingPanels.delete(panel);panel.style.removeProperty('pointer-events');animation.cancel();
    if(!show&&panel.matches(':popover-open'))panel.hidePopover();
   };
   animation.finished.catch(()=>{}).then(finish);
@@ -352,11 +366,51 @@
   backdrop.addEventListener('click',event=>{
    const start=press;clear();
    if(!start||event.defaultPrevented||event.target!==backdrop||backdrop.hidden||panel.hidden||Math.hypot(event.clientX-start.x,event.clientY-start.y)>10)return;
-   event.preventDefault();dismiss();
+   event.preventDefault();if(dismiss()!==false)window.LocalPartyUIFeel?.dismiss(event);
   });
  }
+ // Anchored manual popovers do not have a clickable modal backdrop. Share the
+ // same completed-tap policy without closing on pointerdown or during scrolling.
+ function bindOutside(panel,anchor,dismiss){
+  let press=null;
+  const clear=()=>{press=null;},eligible=event=>{
+   const node=event.target instanceof Element?event.target:null,excluded=typeof anchor==='function'?anchor():anchor;
+   const r=panel.getBoundingClientRect(),inside=panel.contains(node)&&(node!==panel||event.clientX>=r.left&&event.clientX<=r.right&&event.clientY>=r.top&&event.clientY<=r.bottom);
+   return node&&!panel.hidden&&!panel.hasAttribute('data-lp-panel-closing')&&!inside&&!excluded?.contains(node);
+  };
+  document.addEventListener('pointerdown',event=>{press=event.button===0&&event.isPrimary&&eligible(event)?{id:event.pointerId,x:event.clientX,y:event.clientY}:null;},{capture:true,passive:true});
+  document.addEventListener('pointermove',event=>{if(press&&(event.pointerId!==press.id||Math.hypot(event.clientX-press.x,event.clientY-press.y)>10))clear();},{capture:true,passive:true});
+  document.addEventListener('pointercancel',clear,true);document.addEventListener('scroll',clear,{capture:true,passive:true});
+  // Mobile WebKit does not synthesize click on a non-interactive background.
+  // Accept its completed stationary pointerup, leaving button clicks delegated.
+  document.addEventListener('pointerup',event=>{
+   const start=press,node=event.target instanceof Element?event.target:null;
+   if(!start||event.pointerId!==start.id||event.defaultPrevented||!eligible(event)||Math.hypot(event.clientX-start.x,event.clientY-start.y)>10)return clear();
+   if(node?.closest('button:not(:disabled),a[href],summary,select,input,label[for],[role=button],[role=switch],[data-lp-press]'))return;
+   clear();if(dismiss()!==false)window.LocalPartyUIFeel?.dismiss(event);
+  },true);
+  document.addEventListener('click',event=>{
+   const start=press;clear();if(!start||event.defaultPrevented||!eligible(event)||Math.hypot(event.clientX-start.x,event.clientY-start.y)>10)return;
+   if(dismiss()!==false)window.LocalPartyUIFeel?.dismiss(event);
+  },true);
+ }
  function rootElement(){return document.documentElement;}
- window.LocalPartyDialogs=Object.freeze({close:dialog=>dialog.close(),whenClosed:dialog=>pending.get(dialog)?.promise||Promise.resolve(true),setVisible,cancel,bindBackdrop});
+ function settleParked(){
+  // Timers/finished callbacks can be suspended with a parked WKWebView. Commit
+  // the already-requested state now, so resuming never paints a stale exit.
+  for(const dialog of [...pendingDialogs]){
+   const record=pending.get(dialog);if(!record)continue;clearTimeout(record.timer);pending.delete(dialog);pendingDialogs.delete(dialog);
+   if(dialog.open)nativeClose.call(dialog,...(record.value===undefined?[]:[record.value]));dialog.classList.remove('lp-dialog-closing','sheet-closing');clearStart(dialog);record.resolve(true);
+  }
+  for(const dialog of [...resumingDialogs]){reopening.get(dialog)?.cancel();reopening.delete(dialog);resumingDialogs.delete(dialog);}
+  for(const panel of [...movingPanels]){
+   const record=panels.get(panel);if(!record)continue;clearTimeout(record.timer);panels.delete(panel);movingPanels.delete(panel);record.animation.cancel();panel.hidden=!record.show;
+   panel.removeAttribute('data-lp-panel-closing');panel.removeAttribute('data-lp-panel-resumed');panel.style.removeProperty('pointer-events');if(!record.show&&panel.matches(':popover-open'))panel.hidePopover();
+  }
+ }
+ addEventListener('party-native-hide',settleParked);addEventListener('pagehide',settleParked);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)settleParked();});preference.addEventListener?.('change',()=>{if(quiet())settleParked();});
+ window.LocalPartyDialogs=Object.freeze({close:dialog=>dialog.close(),whenClosed:dialog=>pending.get(dialog)?.promise||Promise.resolve(true),setVisible,cancel,bindBackdrop,bindOutside});
 })();
 
 /* Native details retain their semantics and focus. Delay the closing `open`

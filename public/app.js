@@ -25,16 +25,19 @@
  document.body.classList.toggle('guest-catalog',!host);
  const incidentBanner=el('div','room-incident');incidentBanner.setAttribute('role','status');incidentBanner.hidden=true;document.querySelector('.app-header').after(incidentBanner);
  const profileBackdrop=el('div','profile-sheet-backdrop');profileBackdrop.hidden=true;document.body.append(profileBackdrop);
- let profileMotion=null,profileOpener=null;
+ let profileMotion=null,profileOpener=null;const profilePreference=matchMedia('(prefers-reduced-motion: reduce)');
  function syncProfileSheet(show,hideOnboarding){
   const sheet=$('onboarding'),wasOpen=document.body.classList.contains('profile-editing');
   if(show&&wasOpen&&!profileMotion?.exiting)return;
   if(!show&&profileMotion?.exiting){profileMotion.hide=hideOnboarding;return;}
   if(!show&&!wasOpen){sheet.hidden=hideOnboarding;profileBackdrop.hidden=true;$('profileCancel').hidden=true;return;}
+  // Freeze the compositor before reading a reversal pose; its rect and computed
+  // transform must refer to the same frame while the previous effect is replaced.
+  profileMotion?.animations.forEach(a=>a.pause());
   const current=wasOpen?getComputedStyle(sheet):null,from=current?{opacity:current.opacity,scale:current.scale==='none'?'1':current.scale,transform:current.transform}:null,shadeOpacity=getComputedStyle(profileBackdrop).opacity;
   if(profileMotion){clearTimeout(profileMotion.timer);profileMotion.animations.forEach(a=>a.cancel());profileMotion=null;}
   sheet.style.setProperty('animation','none','important');profileBackdrop.style.setProperty('animation','none','important');
-  const quiet=matchMedia('(prefers-reduced-motion: reduce)').matches||document.hidden;
+  const quiet=profilePreference.matches||document.hidden||window.__partyNativeHidden===true;
   if(show){
    document.body.removeAttribute('data-profile-closing');document.body.classList.add('profile-editing');sheet.hidden=false;profileBackdrop.hidden=false;$('profileCancel').hidden=false;
    sheet.setAttribute('role','dialog');sheet.setAttribute('aria-modal','true');sheet.style.removeProperty('pointer-events');profileBackdrop.style.removeProperty('pointer-events');
@@ -49,9 +52,14 @@
   };
   if(quiet){finish();return;}
   document.body.setAttribute('data-profile-closing','');sheet.style.pointerEvents='none';profileBackdrop.style.pointerEvents='none';
-  const animations=[sheet.animate([from,{opacity:0,scale:'.96',transform:'translate(-50%,8px)'}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'}),profileBackdrop.animate([{opacity:shadeOpacity},{opacity:0}],{duration:180,easing:'ease-out',fill:'forwards'})];
-  const record={animations,exiting:true,hide:hideOnboarding,timer:0};profileMotion=record;record.timer=setTimeout(()=>finish(record),190);
+  // Profile edits are bottom sheets too: follow their entrance back down, keeping
+  // the sampled pose on reversal and the unchanged 180 ms shade/blur clock.
+  const animations=[sheet.animate([from,{opacity:0,scale:'1',transform:'translate(-50%,calc(100% + 40px))'}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'}),profileBackdrop.animate([{opacity:shadeOpacity},{opacity:0}],{duration:180,easing:'ease-out',fill:'forwards'})];
+  const record={animations,exiting:true,hide:hideOnboarding,timer:0,finish};profileMotion=record;record.timer=setTimeout(()=>finish(record),190);
  }
+ function settleParkedProfile(){const record=profileMotion;if(!record)return;clearTimeout(record.timer);if(record.exiting){record.finish(record);return;}profileMotion=null;record.animations.forEach(a=>a.cancel());}
+ addEventListener('party-native-hide',settleParkedProfile);addEventListener('pagehide',settleParkedProfile);document.addEventListener('visibilitychange',()=>{if(document.hidden)settleParkedProfile();});
+ profilePreference.addEventListener?.('change',()=>{if(profilePreference.matches)settleParkedProfile();});
  function updateTestCompanion(){if(host)window.PartyBots?.update(state,testProfiles);}
  window.PARTY_PROFILE={};
  const tell=text=>{delete $('notice').dataset.avatarError;$('notice').textContent=text;window.LocalPartyDialogs?.setVisible($('notice'),true);clearTimeout(tell.timer);tell.timer=setTimeout(()=>window.LocalPartyDialogs?.setVisible($('notice'),false),6000);};
@@ -479,7 +487,7 @@
  $('profileCancel').onclick=()=>{if(!profile)return;editing=false;pendingAvatar=profile.avatar||null;$('name').value=profile.name||'';document.querySelector(`[name=hand][value="${profile.hand==='left'?'left':'right'}"]`).checked=true;updateAvatarPreview();render();};
  const bindProfileBackdrop=()=>window.LocalPartyDialogs?.bindBackdrop(profileBackdrop,$('onboarding'),saveProfileEdits);
  if(window.LocalPartyDialogs)bindProfileBackdrop();else document.addEventListener('DOMContentLoaded',bindProfileBackdrop,{once:true});
- document.addEventListener('keydown',event=>{if(event.key==='Escape'&&editing&&document.body.classList.contains('profile-editing')&&!avatarBusy){event.preventDefault();$('profileCancel').click();}});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&editing&&document.body.classList.contains('profile-editing')&&!avatarBusy){event.preventDefault();window.LocalPartyUIFeel?.dismiss(event);$('profileCancel').click();}});
  $('edit').onclick=openProfile;
  let avatarBusy=false;
  $('name').addEventListener('input',updateAvatarPreview);
