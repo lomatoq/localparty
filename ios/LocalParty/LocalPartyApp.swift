@@ -599,6 +599,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     private var joinedRoomURL: URL?
     private var menuReady = false
     private var phase: ScenePhase = .active
+    private lazy var qrContext = CIContext()
     private var lastPayload = "", qrAddress = "", qrData = ""
     private var wifiInviteQR = "", wifiInviteSSID = "", wifiInviteAddress = ""
     private var singleScanURL: URL?
@@ -983,7 +984,7 @@ private final class PartyBundleScheme: NSObject, WKURLSchemeHandler {
     private func makeQR(_ text: String) -> String {
         guard !text.isEmpty else { return "" }
         let filter = CIFilter.qrCodeGenerator(); filter.message = Data(text.utf8)
-        guard let output = filter.outputImage?.transformed(by: CGAffineTransform(scaleX: 6, y: 6)), let image = CIContext().createCGImage(output, from: output.extent), let png = UIImage(cgImage: image).pngData() else { return "" }
+        guard let output = filter.outputImage?.transformed(by: CGAffineTransform(scaleX: 6, y: 6)), let image = qrContext.createCGImage(output, from: output.extent), let png = UIImage(cgImage: image).pngData() else { return "" }
         return "data:image/png;base64," + png.base64EncodedString()
     }
     private func startBowMotion(frame: WKFrameInfo) {
